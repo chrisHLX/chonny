@@ -1,9 +1,9 @@
 {
     "class": "druid",
     "spec": "feral",
-    "windows": 381,
-    "killWindows": 34,
-    "matches": 50,
+    "windows": 476,
+    "killWindows": 47,
+    "matches": 61,
     "anchors": [
         "Feral Frenzy",
         "Incarnation: Avatar of Ashamane",
@@ -14,7 +14,7 @@
         "Incarnation: Avatar of Ashamane"
     ],
     "topDpsWindow": {
-        "damage": 1281965,
+        "damage": 1420141,
         "durationSeconds": 12,
         "killed": true,
         "steps": [
@@ -106,7 +106,7 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 750212,
+            "damage": 858023,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
@@ -155,7 +155,7 @@
             ]
         },
         "10": {
-            "damage": 1202088,
+            "damage": 1340264,
             "durationSeconds": 10,
             "killed": true,
             "steps": [
@@ -216,7 +216,7 @@
             ]
         },
         "12": {
-            "damage": 1281965,
+            "damage": 1420141,
             "durationSeconds": 12,
             "killed": true,
             "steps": [
@@ -307,7 +307,7 @@
             ]
         },
         "20": {
-            "damage": 1682163,
+            "damage": 1862795,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
@@ -458,7 +458,7 @@
             ]
         },
         "30": {
-            "damage": 2014135,
+            "damage": 2227315,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
@@ -657,6 +657,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:08:28+00:00"
 }

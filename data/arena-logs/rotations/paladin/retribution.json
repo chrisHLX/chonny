@@ -1,9 +1,9 @@
 {
     "class": "paladin",
     "spec": "retribution",
-    "windows": 926,
-    "killWindows": 215,
-    "matches": 113,
+    "windows": 1172,
+    "killWindows": 283,
+    "matches": 154,
     "anchors": [
         "Avenging Wrath",
         "Blade of Justice",
@@ -19,28 +19,10 @@
         "Execution Sentence"
     ],
     "topDpsWindow": {
-        "damage": 1502892,
+        "damage": 1604359,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
-            {
-                "name": "Crusading Strikes",
-                "spellId": 408385,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Execution Sentence",
-                "spellId": 343527,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Avenging Wrath",
-                "spellId": 31884,
-                "isCc": false,
-                "isRepeat": false
-            },
             {
                 "name": "Final Verdict",
                 "spellId": 383328,
@@ -50,6 +32,18 @@
             {
                 "name": "Crusading Strikes",
                 "spellId": 408385,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Gladiator's Badge",
+                "spellId": 345228,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Final Verdict",
+                "spellId": 383328,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -60,30 +54,6 @@
                 "isRepeat": false
             },
             {
-                "name": "Divine Protection",
-                "spellId": 403876,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Divine Steed",
-                "spellId": 190784,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Final Verdict",
-                "spellId": 383328,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Hammer of Justice",
-                "spellId": 853,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
                 "name": "Crusading Strikes",
                 "spellId": 408385,
                 "isCc": false,
@@ -92,12 +62,6 @@
             {
                 "name": "Final Verdict",
                 "spellId": 383328,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Crusading Strikes",
-                "spellId": 408385,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -106,12 +70,6 @@
                 "spellId": 24275,
                 "isCc": false,
                 "isRepeat": false
-            },
-            {
-                "name": "Final Verdict",
-                "spellId": 383328,
-                "isCc": false,
-                "isRepeat": true
             },
             {
                 "name": "Crusading Strikes",
@@ -128,6 +86,36 @@
             {
                 "name": "Hammer of Wrath",
                 "spellId": 24275,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Crusading Strikes",
+                "spellId": 408385,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Final Verdict",
+                "spellId": 383328,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Blade of Justice",
+                "spellId": 184575,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Crusading Strikes",
+                "spellId": 408385,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Final Verdict",
+                "spellId": 383328,
                 "isCc": false,
                 "isRepeat": true
             }
@@ -135,7 +123,7 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 980906,
+            "damage": 1124354,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
@@ -152,14 +140,32 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Final Verdict",
                     "spellId": 383328,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
+                    "name": "Divine Toll",
+                    "spellId": 375576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Crusading Strikes",
                     "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -170,33 +176,21 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Final Verdict",
-                    "spellId": 383328,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Crusading Strikes",
                     "spellId": 408385,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Divine Toll",
-                    "spellId": 375576,
-                    "isCc": false,
-                    "isRepeat": false
                 }
             ]
         },
         "10": {
-            "damage": 1261631,
+            "damage": 1505691,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
                 {
-                    "name": "Avenging Wrath",
-                    "spellId": 31884,
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -210,7 +204,19 @@
                     "name": "Crusading Strikes",
                     "spellId": 408385,
                     "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Divine Toll",
@@ -219,30 +225,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Protection",
-                    "spellId": 403876,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Divine Steed",
-                    "spellId": 190784,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Final Verdict",
-                    "spellId": 383328,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Hammer of Justice",
-                    "spellId": 853,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
                     "name": "Crusading Strikes",
                     "spellId": 408385,
                     "isCc": false,
@@ -251,12 +233,6 @@
                 {
                     "name": "Final Verdict",
                     "spellId": 383328,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Crusading Strikes",
-                    "spellId": 408385,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -267,8 +243,20 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Final Verdict",
                     "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -287,28 +275,10 @@
             ]
         },
         "12": {
-            "damage": 1502892,
+            "damage": 1604359,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
-                {
-                    "name": "Crusading Strikes",
-                    "spellId": 408385,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Execution Sentence",
-                    "spellId": 343527,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Avenging Wrath",
-                    "spellId": 31884,
-                    "isCc": false,
-                    "isRepeat": false
-                },
                 {
                     "name": "Final Verdict",
                     "spellId": 383328,
@@ -318,6 +288,18 @@
                 {
                     "name": "Crusading Strikes",
                     "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -328,30 +310,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Protection",
-                    "spellId": 403876,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Divine Steed",
-                    "spellId": 190784,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Final Verdict",
-                    "spellId": 383328,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Hammer of Justice",
-                    "spellId": 853,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
                     "name": "Crusading Strikes",
                     "spellId": 408385,
                     "isCc": false,
@@ -360,12 +318,6 @@
                 {
                     "name": "Final Verdict",
                     "spellId": 383328,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Crusading Strikes",
-                    "spellId": 408385,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -374,12 +326,6 @@
                     "spellId": 24275,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Final Verdict",
-                    "spellId": 383328,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Crusading Strikes",
@@ -396,6 +342,36 @@
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blade of Justice",
+                    "spellId": 184575,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
                     "isCc": false,
                     "isRepeat": true
                 }
@@ -758,5 +734,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-25T05:29:19+00:00"
+    "generated_at": "2026-08-27T07:12:39+00:00"
 }

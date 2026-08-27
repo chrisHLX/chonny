@@ -1,14 +1,16 @@
 {
     "class": "warrior",
     "spec": "fury",
-    "windows": 504,
-    "killWindows": 131,
-    "matches": 64,
+    "windows": 861,
+    "killWindows": 191,
+    "matches": 92,
     "anchors": [
         "Avatar",
         "Bladestorm",
         "Champion's Spear",
+        "Charge",
         "Crushing Blow",
+        "Heroic Leap",
         "Impending Victory",
         "Odyn's Fury",
         "Raging Blow",
@@ -20,13 +22,14 @@
         "Avatar",
         "Bladestorm",
         "Champion's Spear",
+        "Heroic Leap",
         "Odyn's Fury",
         "Recklessness",
         "Shattering Throw",
         "Wrecking Throw"
     ],
     "topDpsWindow": {
-        "damage": 1705005,
+        "damage": 1928936,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
@@ -124,7 +127,7 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 1129944,
+            "damage": 1246371,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
@@ -185,7 +188,7 @@
             ]
         },
         "10": {
-            "damage": 1496498,
+            "damage": 1715923,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
@@ -264,7 +267,7 @@
             ]
         },
         "12": {
-            "damage": 1705005,
+            "damage": 1928936,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
@@ -361,7 +364,7 @@
             ]
         },
         "20": {
-            "damage": 2295955,
+            "damage": 2713503,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
@@ -482,76 +485,10 @@
             ]
         },
         "30": {
-            "damage": 2791978,
+            "damage": 3468034,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
-                {
-                    "name": "Rampage",
-                    "spellId": 184367,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rampage",
-                    "spellId": 184367,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Bloodbath",
-                    "spellId": 335096,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rampage",
-                    "spellId": 184367,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Crushing Blow",
-                    "spellId": 335097,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Crushing Blow",
-                    "spellId": 335097,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rampage",
-                    "spellId": 184367,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Crushing Blow",
-                    "spellId": 335097,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rampage",
-                    "spellId": 184367,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Bloodbath",
-                    "spellId": 335096,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rampage",
-                    "spellId": 184367,
-                    "isCc": false,
-                    "isRepeat": true
-                },
                 {
                     "name": "Thunder Blast",
                     "spellId": 435222,
@@ -559,20 +496,74 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Escape Artist",
-                    "spellId": 20589,
+                    "name": "Rallying Cry",
+                    "spellId": 97462,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Bloodbath",
-                    "spellId": 335096,
+                    "name": "Avatar",
+                    "spellId": 107574,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Recklessness",
+                    "spellId": 1719,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rampage",
+                    "spellId": 184367,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rampage",
+                    "spellId": 184367,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crushing Blow",
+                    "spellId": 335097,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thunder Blast",
+                    "spellId": 435222,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Storm Bolt",
+                    "spellId": 107570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Charge",
+                    "spellId": 100,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rampage",
+                    "spellId": 184367,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crushing Blow",
+                    "spellId": 335097,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -589,60 +580,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Storm Bolt",
-                    "spellId": 107570,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Bloodbath",
-                    "spellId": 335096,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rampage",
-                    "spellId": 184367,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Execute",
-                    "spellId": 280735,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rampage",
-                    "spellId": 184367,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Bloodbath",
-                    "spellId": 335096,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shockwave",
-                    "spellId": 46968,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Thunder Blast",
-                    "spellId": 435222,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Bloodbath",
-                    "spellId": 335096,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
@@ -655,10 +592,10 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Bloodbath",
-                    "spellId": 335096,
+                    "name": "Champion's Spear",
+                    "spellId": 376079,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
                     "name": "Rampage",
@@ -671,10 +608,93 @@
                     "spellId": 435222,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Shockwave",
+                    "spellId": 46968,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rampage",
+                    "spellId": 184367,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Intervene",
+                    "spellId": 316531,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crushing Blow",
+                    "spellId": 335097,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Charge",
+                    "spellId": 100,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rampage",
+                    "spellId": 184367,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Charge",
+                    "spellId": 126664,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rampage",
+                    "spellId": 184367,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Escape Artist",
+                    "spellId": 20589,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 280735,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rampage",
+                    "spellId": 184367,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Raging Blow",
+                    "spellId": 85288,
+                    "isCc": false,
+                    "isRepeat": false
                 }
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:18:27+00:00"
 }

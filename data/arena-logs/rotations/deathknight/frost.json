@@ -1,9 +1,9 @@
 {
     "class": "deathknight",
     "spec": "frost",
-    "windows": 170,
+    "windows": 180,
     "killWindows": 27,
-    "matches": 49,
+    "matches": 51,
     "anchors": [
         "Breath of Sindragosa",
         "Death and Decay",
@@ -19,10 +19,28 @@
         "Reaper's Mark"
     ],
     "topDpsWindow": {
-        "damage": 1411854,
+        "damage": 1879922,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
+            {
+                "name": "Obliterate",
+                "spellId": 49020,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Exterminate",
+                "spellId": 441424,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Empower Rune Weapon",
+                "spellId": 47568,
+                "isCc": false,
+                "isRepeat": false
+            },
             {
                 "name": "Frostwyrm's Fury",
                 "spellId": 1265384,
@@ -30,56 +48,14 @@
                 "isRepeat": false
             },
             {
-                "name": "Gladiator's Medallion",
-                "spellId": 336126,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Empower Rune Weapon",
-                "spellId": 47568,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Frost Strike",
-                "spellId": 49143,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Empower Rune Weapon",
-                "spellId": 47568,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
                 "name": "Obliterate",
                 "spellId": 49020,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Strangulate",
-                "spellId": 47476,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Empower Rune Weapon",
-                "spellId": 47568,
                 "isCc": false,
                 "isRepeat": true
             },
             {
                 "name": "Exterminate",
                 "spellId": 441424,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Frost Strike",
-                "spellId": 49143,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -96,46 +72,64 @@
                 "isRepeat": true
             },
             {
-                "name": "Frost Strike",
-                "spellId": 49143,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
                 "name": "Obliterate",
                 "spellId": 49020,
                 "isCc": false,
                 "isRepeat": true
             },
             {
-                "name": "Exterminate",
-                "spellId": 441424,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Frost Strike",
-                "spellId": 49143,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Obliterate",
-                "spellId": 49020,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Howling Blast",
-                "spellId": 49184,
+                "name": "Lichborne",
+                "spellId": 49039,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Obliterate",
+                "spellId": 49020,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Frost Strike",
+                "spellId": 49143,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Mind Freeze",
+                "spellId": 47528,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Obliterate",
+                "spellId": 49020,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Empower Rune Weapon",
+                "spellId": 47568,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Frost Strike",
+                "spellId": 49143,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Obliterate",
+                "spellId": 49020,
+                "isCc": false,
+                "isRepeat": true
             }
         ]
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 1105723,
+            "damage": 1210473,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
@@ -196,271 +190,11 @@
             ]
         },
         "10": {
-            "damage": 1323008,
+            "damage": 1624991,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
                 {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Strangulate",
-                    "spellId": 47476,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                }
-            ]
-        },
-        "12": {
-            "damage": 1411854,
-            "durationSeconds": 12,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Frostwyrm's Fury",
-                    "spellId": 1265384,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Strangulate",
-                    "spellId": 47476,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Howling Blast",
-                    "spellId": 49184,
-                    "isCc": false,
-                    "isRepeat": false
-                }
-            ]
-        },
-        "20": {
-            "damage": 1824692,
-            "durationSeconds": 20,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Pillar of Frost",
-                    "spellId": 51271,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Blood Fury",
-                    "spellId": 20572,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Breath of Sindragosa",
-                    "spellId": 1249658,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Badge",
-                    "spellId": 345228,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reaper's Mark",
-                    "spellId": 439843,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
@@ -473,26 +207,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Strangulate",
-                    "spellId": 47476,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
+                    "name": "Empower Rune Weapon",
+                    "spellId": 47568,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -503,16 +219,16 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
+                    "name": "Obliterate",
+                    "spellId": 49020,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Death's Advance",
-                    "spellId": 48265,
+                    "name": "Exterminate",
+                    "spellId": 441424,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Obliterate",
@@ -533,20 +249,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Howling Blast",
-                    "spellId": 49184,
+                    "name": "Lichborne",
+                    "spellId": 49039,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -560,236 +264,7 @@
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Howling Blast",
-                    "spellId": 49184,
-                    "isCc": false,
-                    "isRepeat": true
-                }
-            ]
-        },
-        "30": {
-            "damage": 2023413,
-            "durationSeconds": 30,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Death Strike",
-                    "spellId": 49998,
-                    "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Death Grip",
-                    "spellId": 49576,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Frostwyrm's Fury",
-                    "spellId": 279302,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Pillar of Frost",
-                    "spellId": 51271,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Blood Fury",
-                    "spellId": 20572,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Breath of Sindragosa",
-                    "spellId": 1249658,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Badge",
-                    "spellId": 345228,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reaper's Mark",
-                    "spellId": 439843,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Strangulate",
-                    "spellId": 47476,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Frostwyrm's Fury",
-                    "spellId": 1265384,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Death's Advance",
-                    "spellId": 48265,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Howling Blast",
-                    "spellId": 49184,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frost Strike",
-                    "spellId": 49143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Howling Blast",
-                    "spellId": 49184,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Death Strike",
-                    "spellId": 49998,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Empower Rune Weapon",
-                    "spellId": 47568,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Mind Freeze",
@@ -798,8 +273,57 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Death Strike",
-                    "spellId": 49998,
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empower Rune Weapon",
+                    "spellId": 47568,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 1879922,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Empower Rune Weapon",
+                    "spellId": 47568,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Frostwyrm's Fury",
+                    "spellId": 1265384,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -810,13 +334,399 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lichborne",
+                    "spellId": 49039,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frost Strike",
+                    "spellId": 49143,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mind Freeze",
+                    "spellId": 47528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empower Rune Weapon",
+                    "spellId": 47568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frost Strike",
+                    "spellId": 49143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 2222702,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Frostwyrm's Fury",
+                    "spellId": 279302,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Empower Rune Weapon",
+                    "spellId": 47568,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Frostwyrm's Fury",
+                    "spellId": 1265384,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lichborne",
+                    "spellId": 49039,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frost Strike",
+                    "spellId": 49143,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mind Freeze",
+                    "spellId": 47528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empower Rune Weapon",
+                    "spellId": 47568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frost Strike",
+                    "spellId": 49143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Howling Blast",
+                    "spellId": 49184,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frost Strike",
+                    "spellId": 49143,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 2744691,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Empower Rune Weapon",
+                    "spellId": 47568,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Frostwyrm's Fury",
+                    "spellId": 1265384,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lichborne",
+                    "spellId": 49039,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frost Strike",
+                    "spellId": 49143,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mind Freeze",
+                    "spellId": 47528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empower Rune Weapon",
+                    "spellId": 47568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frost Strike",
+                    "spellId": 49143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Howling Blast",
+                    "spellId": 49184,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frost Strike",
+                    "spellId": 49143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frost Strike",
+                    "spellId": 49143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Death Strike",
                     "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Strangulate",
+                    "spellId": 47476,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Anti-Magic Shell",
+                    "spellId": 410358,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Howling Blast",
+                    "spellId": 49184,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empower Rune Weapon",
+                    "spellId": 47568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obliterate",
+                    "spellId": 49020,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frost Strike",
+                    "spellId": 49143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Freeze",
+                    "spellId": 47528,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frost Strike",
+                    "spellId": 49143,
                     "isCc": false,
                     "isRepeat": true
                 }
             ]
         }
     },
-    "generated_at": "2026-08-25T05:29:28+00:00"
+    "generated_at": "2026-08-27T07:03:51+00:00"
 }

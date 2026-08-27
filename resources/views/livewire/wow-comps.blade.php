@@ -22,10 +22,16 @@
     // so viewers can tell how current the underlying match analysis is (2026-08-24, direct
     // request). Older files never regenerated since that field was added carry a backfilled
     // estimate (their last git-commit date) instead of a real generation timestamp.
+    // Explicit isToday() check (2026-08-27, direct request) rather than diffForHumans() alone —
+    // a re-run that finds the exact same winning window still gets a fresh generated_at stamp
+    // every time (offensive-rotations.php writes it unconditionally), but diffForHumans() would
+    // render a same-day run as "2 hours ago" instead of plainly confirming the script ran today.
+    // Falls back to diffForHumans() for anything older, unchanged.
     $fmtRotationDate = function (?string $iso) {
         if (!$iso) return null;
         try {
-            return \Carbon\Carbon::parse($iso)->diffForHumans();
+            $date = \Carbon\Carbon::parse($iso);
+            return $date->isToday() ? 'Today' : $date->diffForHumans();
         } catch (\Throwable) {
             return null;
         }
@@ -74,6 +80,22 @@
         anyRoleAllowed(rolesString) {
             return rolesString.split(' ').some(role => this.specAllowed(role));
         },
+        // Switch tab (client-side only) + fire a fire-and-forget usage beacon so we can see
+        // which tabs actually get used without the tab bar ever round-tripping Livewire.
+        // No-ops if the tab isn't actually changing. See TrackController::wowCompsTab().
+        selectTab(name) {
+            if (this.tab === name) return;
+            this.tab = name;
+            fetch('{{ route('track.wow-comps-tab') }}', {
+                method: 'POST',
+                keepalive: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]')?.content ?? '',
+                },
+                body: JSON.stringify({ tab: name }),
+            }).catch(() => {});
+        },
     }">
     <div class="linear-card px-6 py-5">
         <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">WoW Comps</p>
@@ -81,6 +103,34 @@
         <p class="text-[12px] text-ink-muted mt-1">
             {{ $compSubtitle ?: "Pick a class + spec for each slot to compare spell kits side by side." }}
         </p>
+
+        {{-- Common picks — one-click starter comps (WowComps::PRESET_COMPS). Clicking one loads
+             it into the three slots below via applyPreset(); it's a real user action, so it logs
+             attributed selections (top classes/specs/slot breakdown) plus a per-preset row,
+             exactly like picking each spec by hand. The slots stay fully editable afterward. --}}
+        @if (!empty($presets))
+            <div class="mt-4 pt-4 border-t border-line">
+                <p class="text-[10px] font-semibold tracking-widest text-ink-subtle uppercase mb-2">Common picks</p>
+                <div class="flex flex-wrap gap-2">
+                    @foreach ($presets as $preset)
+                        <button type="button" wire:click="applyPreset('{{ $preset['key'] }}')"
+                                class="flex items-center gap-2.5 pl-2 pr-3 py-1.5 rounded-lg border border-line hover:border-gold/40 hover:bg-surface-2 transition-colors">
+                            <span class="flex -space-x-1.5">
+                                @foreach ($preset['specs'] as $ps)
+                                    <x-spec-icon :spec="$ps"
+                                                 :color="config('wow_classes.colors')[$ps->gameClass->slug] ?? '#8A8A9A'"
+                                                 size="w-6 h-6"/>
+                                @endforeach
+                            </span>
+                            <span class="text-left">
+                                <span class="block text-[12px] font-semibold text-ink leading-tight">{{ $preset['label'] }}</span>
+                                <span class="block text-[10px] text-ink-muted leading-tight">{{ collect($preset['specs'])->map(fn ($s) => $s->name)->implode(' · ') }}</span>
+                            </span>
+                        </button>
+                    @endforeach
+                </div>
+            </div>
+        @endif
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -207,38 +257,33 @@
             {{-- Tab bar — same .tab-btn/.tab-active pattern as Spell Explorer. Pure client-side
                  (Alpine `tab` state on the outer x-data), so switching never round-trips. --}}
             <div class="flex flex-wrap items-center gap-1 linear-card !hover:border-line p-1 w-fit">
-                <button type="button" @click="tab = 'offensive'" class="tab-btn flex items-center gap-1.5" :class="tab === 'offensive' ? 'tab-active' : 'tab-inactive'" title="Real, arena-log-verified offensive cooldowns for this exact spec">
+                <button type="button" @click="selectTab('offensive')" class="tab-btn flex items-center gap-1.5" :class="tab === 'offensive' ? 'tab-active' : 'tab-inactive'" title="Real, arena-log-verified offensive cooldowns for this exact spec">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
                     Offensive Cooldowns
                 </button>
-                <button type="button" @click="tab = 'defensive'" class="tab-btn flex items-center gap-1.5" :class="tab === 'defensive' ? 'tab-active' : 'tab-inactive'" title="Real, arena-log-verified defensive cooldowns for this exact spec">
+                <button type="button" @click="selectTab('defensive')" class="tab-btn flex items-center gap-1.5" :class="tab === 'defensive' ? 'tab-active' : 'tab-inactive'" title="Real, arena-log-verified defensive cooldowns for this exact spec">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l8 3.5v6c0 5-3.5 8.5-8 10.5-4.5-2-8-5.5-8-10.5v-6L12 2z"/></svg>
                     Defensive Cooldowns
                 </button>
-                <button type="button" @click="tab = 'synergies'" class="tab-btn flex items-center gap-1.5" :class="tab === 'synergies' ? 'tab-active' : 'tab-inactive'">
+                <button type="button" @click="selectTab('synergies')" class="tab-btn flex items-center gap-1.5" :class="tab === 'synergies' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
                     Crowd Control
                 </button>
-                <button type="button" @click="tab = 'pvptalents'" class="tab-btn flex items-center gap-1.5" :class="tab === 'pvptalents' ? 'tab-active' : 'tab-inactive'">
+                <button type="button" @click="selectTab('pvptalents')" class="tab-btn flex items-center gap-1.5" :class="tab === 'pvptalents' ? 'tab-active' : 'tab-inactive'">
                     <x-mc-icon name="icon-scroll" class="w-3.5 h-3.5"/>
                     PvP Talents
                 </button>
-                <button type="button" @click="tab = 'active'" class="tab-btn flex items-center gap-1.5" :class="tab === 'active' ? 'tab-active' : 'tab-inactive'">
+                <button type="button" @click="selectTab('active')" class="tab-btn flex items-center gap-1.5" :class="tab === 'active' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     Active Abilities
                 </button>
-                <button type="button" @click="tab = 'passive'" class="tab-btn flex items-center gap-1.5" :class="tab === 'passive' ? 'tab-active' : 'tab-inactive'">
+                <button type="button" @click="selectTab('passive')" class="tab-btn flex items-center gap-1.5" :class="tab === 'passive' ? 'tab-active' : 'tab-inactive'">
                     <x-mc-icon name="icon-leaf" class="w-3.5 h-3.5"/>
                     Buffs &amp; Passives
                 </button>
-                <button type="button" @click="tab = 'rotation'" class="tab-btn flex items-center gap-1.5" :class="tab === 'rotation' ? 'tab-active' : 'tab-inactive'">
+                <button type="button" @click="selectTab('rotation')" class="tab-btn flex items-center gap-1.5" :class="tab === 'rotation' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                     Burst Window
-                    <span class="badge-amber !text-[8px] !px-1 !py-0">DEV</span>
-                </button>
-                <button type="button" @click="tab = 'ratingtiers'" class="tab-btn flex items-center gap-1.5" :class="tab === 'ratingtiers' ? 'tab-active' : 'tab-inactive'">
-                    <x-mc-icon name="icon-compass" class="w-3.5 h-3.5"/>
-                    Rating Tiers
                     <span class="badge-amber !text-[8px] !px-1 !py-0">DEV</span>
                 </button>
             </div>
@@ -939,71 +984,6 @@
                 @endforeach
             </div>
 
-            {{-- Rating Tiers tab — DEV/preview, reads data/arena-logs/rating-tiers/{class}/{spec}.json
-                 directly (RatingTierAnalysisService / wow:analyze-rating-tiers), same "read straight
-                 off disk, no DB, no cache" posture as the Offensive Rotation tab above. Damage/spell-cast
-                 rate/CC/interrupts/deaths/win-loss are shown per rating band, further split by hero
-                 talent tree (Aldrachi Reaver vs Fel-Scarred etc.) — see the command's own docblock
-                 for why the hero-tree split matters (a flat per-spec average silently blends
-                 different playstyles together for hero-tree-exclusive abilities). --}}
-            <div x-show="tab === 'ratingtiers'" x-cloak class="space-y-4">
-                <div class="linear-card p-4">
-                    <p class="text-[12px] text-ink-muted leading-relaxed">
-                        <span class="text-amber-400 font-semibold">Preview / in development.</span>
-                        Damage, spell-cast rate, and win/loss-controlled survivability compared across rating bands, further split by hero talent tree. Sample sizes vary a lot by spec and hero tree right now — a low count means "not much data yet," not a confident answer.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-3 gap-3">
-                    @foreach ($comp as $mi => $member)
-                        <div class="linear-card p-3 space-y-3">
-                            @if (!$member['spec'])
-                                <p class="text-[11px] text-ink-subtle">—</p>
-                            @else
-                                @php $rt = $ratingTiers[$mi]; @endphp
-                                <p class="text-[11px] font-semibold text-ink truncate">{{ $member['spec']->name }} {{ $member['class']->name }}</p>
-
-                                @if (empty($rt['bands']))
-                                    <p class="text-[11px] text-ink-subtle italic">No rating-tier data for this spec yet.</p>
-                                @else
-                                    @foreach ($rt['bands'] as $band)
-                                        <div class="pt-2 first:pt-0 border-t border-line first:border-t-0">
-                                            <div class="flex items-center justify-between">
-                                                <span class="text-[11px] font-semibold text-ink">{{ $band['label'] }}</span>
-                                                <span class="badge-gray !text-[9px] whitespace-nowrap">n={{ $band['n'] }}</span>
-                                            </div>
-
-                                            @if ($band['n'] === 0)
-                                                <p class="text-[10px] text-ink-subtle italic mt-0.5">No matches on disk in this range.</p>
-                                            @else
-                                                <div class="grid grid-cols-2 gap-x-2 gap-y-0.5 mt-1 text-[10px]">
-                                                    <span class="text-ink-subtle">DPS</span><span class="text-ink font-mono text-right">{{ number_format($band['avgDps']) }}</span>
-                                                    <span class="text-ink-subtle">Casts/min</span><span class="text-ink font-mono text-right">{{ $band['avgCastsPerMin'] }}</span>
-                                                    <span class="text-ink-subtle">Win rate</span><span class="text-ink font-mono text-right">{{ $band['winRate'] !== null ? $band['winRate'].'%' : '—' }}</span>
-                                                    <span class="text-ink-subtle">Deaths/game</span><span class="text-ink font-mono text-right">{{ $band['avgDeaths'] }}</span>
-                                                </div>
-
-                                                @if (!empty($band['heroTreeBreakdown']) && count($band['heroTreeBreakdown']) > 1)
-                                                    <div class="mt-1.5 pl-2 border-l border-line space-y-1">
-                                                        @foreach ($band['heroTreeBreakdown'] as $treeName => $treeStats)
-                                                            @if (($treeStats['n'] ?? 0) > 0)
-                                                                <div class="flex items-center justify-between text-[9.5px]">
-                                                                    <span class="text-ink-subtle truncate">{{ $treeName }} <span class="text-ink-subtle">(n={{ $treeStats['n'] }})</span></span>
-                                                                    <span class="text-ink font-mono">{{ number_format($treeStats['avgDps']) }} dps</span>
-                                                                </div>
-                                                            @endif
-                                                        @endforeach
-                                                    </div>
-                                                @endif
-                                            @endif
-                                        </div>
-                                    @endforeach
-                                @endif
-                            @endif
-                        </div>
-                    @endforeach
-                </div>
-            </div>
         </div>
 
         {{-- Spell detail modal — one hidden content block per entry, toggled by openSpellId.

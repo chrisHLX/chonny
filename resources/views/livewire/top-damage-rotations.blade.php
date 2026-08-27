@@ -8,14 +8,28 @@
     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
     // See wow-comps.blade.php's identical helper for the full rationale — same generated_at
     // field, same "Updated ..." label, kept consistent across both consumers of this data.
+    // Explicit isToday() check (2026-08-27, direct request) rather than diffForHumans() alone —
+    // a re-run that finds the exact same winning window (no new matches changed the result)
+    // still gets a fresh generated_at stamp every time (see offensive-rotations.php's
+    // unconditional write), but diffForHumans() would render that as "2 hours ago" instead of
+    // plainly confirming "yes, the script ran today" — the actual thing a viewer wants to know.
+    // Falls back to diffForHumans() for anything older than today, unchanged.
     $fmtRotationDate = function (?string $iso) {
         if (!$iso) return null;
         try {
-            return \Carbon\Carbon::parse($iso)->diffForHumans();
+            $date = \Carbon\Carbon::parse($iso);
+            return $date->isToday() ? 'Today' : $date->diffForHumans();
         } catch (\Throwable) {
             return null;
         }
     };
+    // Label + badge color per TopDamageRotations::getMechanicsProperty()'s `kind` classification.
+    $kindBadge = [
+        'talent' => ['label' => 'Talent', 'class' => 'badge-gold'],
+        'pvp_talent' => ['label' => 'PvP Talent', 'class' => 'badge-amber'],
+        'passive' => ['label' => 'Passive', 'class' => 'badge-gray'],
+        'ability' => ['label' => 'Ability', 'class' => 'badge-green'],
+    ];
 @endphp
 
 <div class="max-w-5xl mx-auto px-4 py-8 space-y-5" x-data="{ classPickerOpen: false, pendingSpec: false }">
@@ -184,6 +198,66 @@
                         @endforeach
                     </div>
                 @endif
+            @endif
+        </div>
+    @endif
+
+    {{-- Important Mechanics (Review) — deliberately reads STAGING data (wow-arena-archive's
+         mechanics/{class}/{spec}.txt, built by wow:record-important-mechanics), not a promoted
+         copy — see ArenaLogService::mechanicsForSpec()'s docblock. This block exists to let a
+         human review what the empirical scan found before any of it is trusted as real
+         curated content, same posture as Admin\CcReview for bulk-applied CC data. --}}
+    @if ($mechanics)
+        <div class="linear-card p-5">
+            <div class="flex items-baseline justify-between gap-3 mb-1 flex-wrap">
+                <p class="text-[10px] uppercase tracking-wider text-gold font-semibold flex items-center gap-1.5">
+                    Important Mechanics
+                    <span class="badge-amber !text-[8px] !px-1 !py-0">REVIEW — NOT PROMOTED</span>
+                </p>
+                @if ($mechanics['generatedAt'])
+                    <span class="text-[10px] text-ink-subtle/70">generated {{ $mechanics['generatedAt'] }}</span>
+                @endif
+            </div>
+            <p class="text-[11px] text-ink-muted mb-3 leading-relaxed">
+                Self-buffs and target-debuffs found across {{ number_format($mechanics['windowsFound']) }} real pre-kill window(s) ({{ number_format($mechanics['matchesScanned']) }} matches scanned, --window={{ $mechanics['windowSeconds'] }}s) — the non-obvious mechanics a cast sequence alone wouldn't show (e.g. Colossus Smash amplifying damage, Ancient Arts refunding combo points). Sourced from wow-arena-archive's staging archive, not yet spot-checked — treat percentages as a starting point for review, not a verified fact.
+            </p>
+            <div class="flex flex-wrap items-center gap-2">
+                @foreach (array_slice($mechanics['rows'], 0, 30) as $row)
+                    @php
+                        $mSpell = $row['spell'] ?? null;
+                        $kb = $kindBadge[$row['kind'] ?? null] ?? null;
+                    @endphp
+                    @if ($mSpell)
+                        <button type="button"
+                                wire:click="$dispatch('show-spell-detail', { spellId: {{ $mSpell->id }}, classId: {{ $classId }}, specId: {{ $specId }} })"
+                                class="linear-card !p-2.5 w-40 flex-shrink-0 text-left hover:border-gold/40 transition-colors">
+                            <div class="flex items-center gap-2">
+                                <x-spell-icon :spell="$mSpell" size="w-8 h-8"/>
+                                <span class="min-w-0">
+                                    <span class="block text-[11px] text-ink font-semibold truncate">{{ $mSpell->display_name }}</span>
+                                    <span class="flex items-center gap-1 mt-0.5 flex-wrap">
+                                        <span class="badge-{{ $row['type'] === 'target-debuff' ? 'gold' : 'blue' }} !text-[7px] !px-1 !py-0">{{ $row['type'] }}</span>
+                                        @if ($kb)
+                                            <span class="{{ $kb['class'] }} !text-[7px] !px-1 !py-0">{{ $kb['label'] }}</span>
+                                        @endif
+                                        <span class="text-[9px] text-ink-subtle font-mono">{{ $row['pct'] }}%</span>
+                                    </span>
+                                </span>
+                            </div>
+                        </button>
+                    @else
+                        <div class="linear-card !p-2.5 w-40 flex-shrink-0">
+                            <span class="block text-[11px] text-ink font-semibold truncate">{{ $row['name'] }}</span>
+                            <span class="flex items-center gap-1 mt-0.5 flex-wrap">
+                                <span class="badge-{{ $row['type'] === 'target-debuff' ? 'gold' : 'blue' }} !text-[7px] !px-1 !py-0">{{ $row['type'] }}</span>
+                                <span class="text-[9px] text-ink-subtle font-mono">{{ $row['pct'] }}%</span>
+                            </span>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+            @if (count($mechanics['rows']) > 30)
+                <p class="text-[10px] text-ink-subtle/70 mt-2">+{{ count($mechanics['rows']) - 30 }} more in the raw file (not shown here).</p>
             @endif
         </div>
     @endif

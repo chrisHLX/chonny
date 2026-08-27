@@ -108,16 +108,47 @@ class ArenaLogService
      * Full path to a match's raw combat log — routed through the configurable archive root
      * (config('arena_logs.archive_path'), see that config file's docblock) rather than a
      * hardcoded base_path(), so the bulk archive can live outside this project entirely.
+     *
+     * Falls back to {archive_path}/season-current/raw/... when the flat top-level path doesn't
+     * exist — added 2026-08-27, confirmed real gap: wow-arena-archive (the sibling project this
+     * archive_path normally points at) organizes newly-pulled matches under its own
+     * season-current/ subdirectory, which nothing in this codebase previously knew about —
+     * every existing wow:* command was silently blind to any match living only there. Purely
+     * additive: only ever checked when the primary path is missing, so this can only make more
+     * matches resolvable, never change resolution for anything that already worked.
      */
     public function rawLogPath(string $matchId): string
     {
-        return config('arena_logs.archive_path')."/raw/{$matchId}.log.gz";
+        $primary = config('arena_logs.archive_path')."/raw/{$matchId}.log.gz";
+
+        if (!File::exists($primary)) {
+            $fallback = config('arena_logs.archive_path')."/season-current/raw/{$matchId}.log.gz";
+
+            if (File::exists($fallback)) {
+                return $fallback;
+            }
+        }
+
+        return $primary;
     }
 
-    /** Full path to a match's metadata JSON — same configurable archive root as rawLogPath(). */
+    /**
+     * Full path to a match's metadata JSON — same configurable archive root and same
+     * season-current/ fallback as rawLogPath() (see that method's docblock).
+     */
     public function metadataPath(string $matchId): string
     {
-        return config('arena_logs.archive_path')."/metadata/{$matchId}.json";
+        $primary = config('arena_logs.archive_path')."/metadata/{$matchId}.json";
+
+        if (!File::exists($primary)) {
+            $fallback = config('arena_logs.archive_path')."/season-current/metadata/{$matchId}.json";
+
+            if (File::exists($fallback)) {
+                return $fallback;
+            }
+        }
+
+        return $primary;
     }
 
     /**
@@ -472,6 +503,66 @@ class ArenaLogService
     }
 
     /**
+     * Searches the most recent matches for a bracket with NO comp/spec filter at all — the
+     * plain "latest matches" feed behind the site's own /search page when nothing is set.
+     * Unlike searchMatchesForSpec()/searchCompWins() there's no comp claim to re-verify, so
+     * results come back as-is beyond the same MIN_MATCH_DURATION_SECONDS blowout floor every
+     * other puller in this service applies.
+     *
+     * `count` is capped at 50 server-side (see searchCompWins()'s docblock) — page with
+     * `offset` (0, 50, 100, ...). Backs wow:pull-latest-matches.
+     *
+     * @return array<int, array{matchId: string, rating: int, durationInSeconds: int}>
+     */
+    public function searchLatestMatches(string $bracket, int $offset, int $count = 50): array
+    {
+        $query = '
+            query($bracket: String, $count: Int, $offset: Int) {
+              latestMatches(
+                wowVersion: "retail", bracket: $bracket, offset: $offset, count: $count
+              ) {
+                combats {
+                  __typename
+                  ... on ArenaMatchDataStub { id playerTeamRating durationInSeconds }
+                }
+              }
+            }
+        ';
+
+        $resp = Http::timeout(30)->post(self::API_URL, [
+            'query' => $query,
+            'variables' => ['bracket' => $bracket, 'count' => $count, 'offset' => $offset],
+        ]);
+
+        if (!$resp->successful()) {
+            return [];
+        }
+
+        $combats = $resp->json('data.latestMatches.combats') ?? [];
+        $results = [];
+
+        foreach ($combats as $combat) {
+            if (($combat['__typename'] ?? null) !== 'ArenaMatchDataStub') {
+                continue;
+            }
+
+            $duration = (int) ($combat['durationInSeconds'] ?? 0);
+
+            if ($duration < self::MIN_MATCH_DURATION_SECONDS) {
+                continue;
+            }
+
+            $results[] = [
+                'matchId' => $combat['id'],
+                'rating' => (int) $combat['playerTeamRating'],
+                'durationInSeconds' => $duration,
+            ];
+        }
+
+        return $results;
+    }
+
+    /**
      * Finds the highest-rated recent match containing the given spec (any team, win or
      * loss), fetch+stores it only if better than data/arena-logs/spec-index.json's current
      * best for that spec — same "only replace on genuine improvement" rule as
@@ -791,6 +882,82 @@ class ArenaLogService
         }
 
         return collect($ids);
+    }
+
+    /**
+     * Reads the STAGING mechanics.txt for one spec, built by
+     * `wow:record-important-mechanics --all` (see spell-acquisition-model.md's "Post-pull
+     * workflow" section). Deliberately reads `config('arena_logs.archive_path')` directly —
+     * the staging copy, not a promoted one — since this backs a review-only surface
+     * (TopDamageRotations' "Important Mechanics (Review)" block, added 2026-08-27): the whole
+     * point is letting a human look at freshly-generated, not-yet-trusted candidates before
+     * deciding whether any of it should ever inform real, reviewed content elsewhere. This is
+     * the one deliberate exception to this project's "never read the staging archive_path for
+     * anything the live app shows" rule (see config/arena_logs.php's own docblock) — the
+     * exception holds only because the block itself is plainly labeled unreviewed, the same way
+     * `Admin\CcReview` is allowed to surface bulk-applied-but-unspotchecked data.
+     *
+     * @return array{generatedAt: ?string, windowsFound: ?int, matchesScanned: ?int, windowSeconds: ?int, rows: array<int, array{spellId: int, type: string, pct: int, matchCount: int, totalWindows: int, name: string}>}|null
+     */
+    public function mechanicsForSpec(string $classSlug, string $specSlug): ?array
+    {
+        $path = config('arena_logs.archive_path')."/mechanics/{$classSlug}/{$specSlug}.txt";
+
+        if (!File::exists($path)) {
+            return null;
+        }
+
+        $generatedAt = null;
+        $windowsFound = null;
+        $matchesScanned = null;
+        $windowSeconds = null;
+        $rows = [];
+
+        foreach (File::lines($path) as $line) {
+            $line = trim($line);
+
+            if ($line === '') {
+                continue;
+            }
+
+            if (str_starts_with($line, '# generated')) {
+                if (preg_match('/# generated (\S+) — (\d+) pre-kill window\(s\) \(--window=(\d+)s\) across (\d+) scanned match\(es\)/', $line, $m)) {
+                    $generatedAt = $m[1];
+                    $windowsFound = (int) $m[2];
+                    $windowSeconds = (int) $m[3];
+                    $matchesScanned = (int) $m[4];
+                }
+
+                continue;
+            }
+
+            if (str_starts_with($line, '#')) {
+                continue;
+            }
+
+            $parts = array_map('trim', explode('|', $line, 5));
+
+            if (count($parts) !== 5 || !ctype_digit($parts[0])) {
+                continue;
+            }
+
+            [$matchCount, $totalWindows] = array_pad(explode('/', $parts[3]), 2, '0');
+
+            $rows[] = [
+                'spellId' => (int) $parts[0],
+                'type' => $parts[1],
+                'pct' => (int) rtrim($parts[2], '%'),
+                'matchCount' => (int) $matchCount,
+                'totalWindows' => (int) $totalWindows,
+                'name' => $parts[4],
+            ];
+        }
+
+        if ($rows === []) {
+            return null;
+        }
+
+        return compact('generatedAt', 'windowsFound', 'matchesScanned', 'windowSeconds', 'rows');
     }
 
     /**
@@ -1175,6 +1342,95 @@ class ArenaLogService
     }
 
     /**
+     * Extends findPreKillWindow() with buff/debuff evidence, added 2026-08-27 for
+     * wow:record-important-mechanics. Same kill window, same winning players (calls
+     * findPreKillWindow() as a read-only dependency rather than duplicating its death/window
+     * logic), but additionally captures every real SPELL_AURA_APPLIED event in that window,
+     * split into two kinds: self-buffs (source=dest=player, BUFF) and debuffs the player
+     * applied directly to the actual kill target (source=player, dest=killedGuid, DEBUFF).
+     *
+     * This is the same three-signal methodology already verified in wow-arena-archive's
+     * compare-player-windows.php (activeBuffsAtWindowStart/activeBuffsOnTarget/
+     * activeDebuffsAppliedByAttacker — see that file's docblocks for the real Colossus Smash/
+     * Ancient Arts worked examples this is built on), but adapted from "what was already active
+     * at one instant" (a single-window snapshot) to "did this get applied at all during the
+     * window" (a yes/no per match) — the right shape for tallying frequency across MANY
+     * independent kill windows the way wow:common-prekill-spells already does for casts,
+     * ranking by distinct-match count rather than one window's point-in-time state.
+     *
+     * Deliberately does NOT fold into findPreKillWindow()'s own return shape or
+     * recordKillSequence()'s persisted kill-sequences.jsonl format — other code already depends
+     * on those exact shapes, and this is a distinct, separately-consumed signal.
+     *
+     * @return array{killedPlayer: string, killedSpec: ?int, players: array<int, array{guid: string, name: string, spec: int, selfBuffs: array<int, array{t: float, spellId: int, name: string}>, targetDebuffs: array<int, array{t: float, spellId: int, name: string}>}>}|null
+     */
+    public function findMechanicsInWindow(string $matchId, int $windowSeconds = 20): ?array
+    {
+        $base = $this->findPreKillWindow($matchId, $windowSeconds);
+
+        if ($base === null || $base['players'] === []) {
+            return null;
+        }
+
+        $rawPath = $this->rawLogPath($matchId);
+
+        if (!File::exists($rawPath)) {
+            return null;
+        }
+
+        $raw = gzdecode(File::get($rawPath));
+        $killTime = $base['killTime'];
+        $windowStart = $killTime - $windowSeconds;
+
+        // Recover the killed guid from the raw log's own death line — findPreKillWindow() only
+        // exposes the resolved name/spec, not the raw guid, so this repeats its exact "last
+        // death in the log wins" regex/selection to stay consistent with it.
+        preg_match_all('/^([\d\/: .-]+)\s+(?:PARTY_KILL|UNIT_DIED),[^,]*,[^,]*,[^,]*,[^,]*,(Player-[^,]+),/m', $raw, $deaths, PREG_SET_ORDER);
+        $killedGuid = $deaths !== [] ? end($deaths)[2] : null;
+
+        $players = [];
+
+        foreach ($base['players'] as $player) {
+            $g = preg_quote($player['guid'], '/');
+            $selfBuffs = [];
+            $targetDebuffs = [];
+
+            preg_match_all('/^([\d\/: .-]+)\s+SPELL_AURA_APPLIED,'.$g.',"[^"]*",[^,]*,[^,]*,(Player-[^,]+),"[^"]*",[^,]*,[^,]*,(\d+),"([^"]*)",[^,]*,(BUFF|DEBUFF)/m', $raw, $auras, PREG_SET_ORDER);
+
+            foreach ($auras as $a) {
+                $t = $this->parseLogTimestamp($a[1]);
+
+                if ($t < $windowStart || $t > $killTime) {
+                    continue;
+                }
+
+                $destGuid = $a[2];
+                $entry = ['t' => round($t - $windowStart, 2), 'spellId' => (int) $a[3], 'name' => $a[4]];
+
+                if ($a[5] === 'BUFF' && $destGuid === $player['guid']) {
+                    $selfBuffs[] = $entry;
+                } elseif ($a[5] === 'DEBUFF' && $killedGuid !== null && $destGuid === $killedGuid) {
+                    $targetDebuffs[] = $entry;
+                }
+            }
+
+            $players[] = [
+                'guid' => $player['guid'],
+                'name' => $player['name'],
+                'spec' => $player['spec'],
+                'selfBuffs' => $selfBuffs,
+                'targetDebuffs' => $targetDebuffs,
+            ];
+        }
+
+        return [
+            'killedPlayer' => $base['killedPlayer'],
+            'killedSpec' => $base['killedSpec'],
+            'players' => $players,
+        ];
+    }
+
+    /**
      * Persists findPreKillWindow()'s result for a match into
      * {archive_path}/kill-sequences/{classSlug}/{specSlug}.jsonl — one JSON line per
      * (match, winning real player), accumulating across every match ever processed this way,
@@ -1289,10 +1545,10 @@ class ArenaLogService
     }
 
     /**
-     * Healer specs — hardcoded, same "well-known stable game knowledge" tier as
-     * RatingTierAnalysisService::CC_SPELL_IDS_BY_CLASS, not derived from any DB column (none
-     * exists yet). Used to tag the roster so a causal-analysis report can label "CC landed on
-     * the enemy healer" without the reader having to already know every spec's role.
+     * Healer specs — hardcoded, well-known stable game knowledge, not derived from any DB
+     * column (none exists yet). Used to tag the roster so a causal-analysis report can label
+     * "CC landed on the enemy healer" without the reader having to already know every spec's
+     * role.
      *
      * @var array<int, array{0: string, 1: string}>
      */

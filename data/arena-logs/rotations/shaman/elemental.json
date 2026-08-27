@@ -1,9 +1,9 @@
 {
     "class": "shaman",
     "spec": "elemental",
-    "windows": 140,
-    "killWindows": 36,
-    "matches": 40,
+    "windows": 186,
+    "killWindows": 46,
+    "matches": 50,
     "anchors": [
         "Ancestral Swiftness",
         "Ascendance",
@@ -17,7 +17,7 @@
         "Stormkeeper"
     ],
     "topDpsWindow": {
-        "damage": 1185743,
+        "damage": 1185633,
         "durationSeconds": 12,
         "killed": true,
         "steps": [
@@ -146,7 +146,7 @@
             ]
         },
         "10": {
-            "damage": 1017871,
+            "damage": 1017761,
             "durationSeconds": 10,
             "killed": true,
             "steps": [
@@ -213,7 +213,7 @@
             ]
         },
         "12": {
-            "damage": 1185743,
+            "damage": 1185633,
             "durationSeconds": 12,
             "killed": true,
             "steps": [
@@ -292,40 +292,10 @@
             ]
         },
         "20": {
-            "damage": 1263416,
+            "damage": 1301381,
             "durationSeconds": 20,
-            "killed": true,
+            "killed": false,
             "steps": [
-                {
-                    "name": "Ghost Wolf",
-                    "spellId": 2645,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Flame Shock",
-                    "spellId": 188389,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Lava Burst",
-                    "spellId": 51505,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Heroism",
-                    "spellId": 204362,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Badge",
-                    "spellId": 345228,
-                    "isCc": false,
-                    "isRepeat": false
-                },
                 {
                     "name": "Ascendance",
                     "spellId": 114050,
@@ -333,46 +303,10 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Spiritwalker's Grace",
-                    "spellId": 79206,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Stormkeeper",
-                    "spellId": 191634,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tempest",
-                    "spellId": 452201,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Elemental Blast",
-                    "spellId": 117014,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tempest",
-                    "spellId": 452201,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Lightning Bolt",
-                    "spellId": 188196,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Greater Purge",
@@ -381,47 +315,28 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Earth Shock",
+                    "spellId": 8042,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Voltaic Blaze",
+                    "spellId": 470057,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Nature's Swiftness",
-                    "spellId": 378081,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Elemental Blast",
-                    "spellId": 117014,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Tempest",
-                    "spellId": 452201,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Lightning Bolt",
-                    "spellId": 188196,
-                    "isCc": false,
-                    "isRepeat": true
-                }
-            ]
-        },
-        "30": {
-            "damage": 1281086,
-            "durationSeconds": 30,
-            "killed": true,
-            "steps": [
-                {
-                    "name": "Flame Shock",
-                    "spellId": 188389,
-                    "isCc": false,
-                    "isRepeat": false
                 },
                 {
                     "name": "Earthgrab Totem",
@@ -430,22 +345,107 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Thunderstorm",
-                    "spellId": 51490,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Ghost Wolf",
-                    "spellId": 2645,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Flame Shock",
-                    "spellId": 188389,
+                    "name": "Earth Shock",
+                    "spellId": 8042,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Voltaic Blaze",
+                    "spellId": 470057,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Earth Shock",
+                    "spellId": 8042,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Earth Shock",
+                    "spellId": 8042,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Voltaic Blaze",
+                    "spellId": 470057,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Earth Shock",
+                    "spellId": 8042,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 1526189,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Ascendance",
+                    "spellId": 114050,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Totemic Projection",
+                    "spellId": 108287,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Lightning Bolt",
+                    "spellId": 188196,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Lightning Bolt",
+                    "spellId": 188196,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lightning Bolt",
+                    "spellId": 188196,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Earth Shock",
+                    "spellId": 8042,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
                 },
                 {
                     "name": "Lava Burst",
@@ -454,44 +454,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Heroism",
-                    "spellId": 204362,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Badge",
-                    "spellId": 345228,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Ascendance",
-                    "spellId": 114050,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Spiritwalker's Grace",
-                    "spellId": 79206,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Stormkeeper",
-                    "spellId": 191634,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tempest",
-                    "spellId": 452201,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Elemental Blast",
-                    "spellId": 117014,
+                    "name": "Astral Shift",
+                    "spellId": 108271,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -505,11 +469,17 @@
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
-                    "name": "Lightning Bolt",
-                    "spellId": 188196,
+                    "name": "Earth Shock",
+                    "spellId": 8042,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -520,38 +490,25 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Lava Burst",
-                    "spellId": 51505,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Nature's Swiftness",
-                    "spellId": 378081,
+                    "name": "Healing Stream Totem",
+                    "spellId": 5394,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Elemental Blast",
-                    "spellId": 117014,
+                    "name": "Earth Shock",
+                    "spellId": 8042,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Tempest",
-                    "spellId": 452201,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Lightning Bolt",
-                    "spellId": 188196,
-                    "isCc": false,
-                    "isRepeat": true
+                    "name": "Thunderstorm",
+                    "spellId": 51490,
+                    "isCc": true,
+                    "isRepeat": false
                 }
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:16:11+00:00"
 }

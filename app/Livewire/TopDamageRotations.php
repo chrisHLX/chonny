@@ -136,12 +136,85 @@ class TopDamageRotations extends Component
         ];
     }
 
+    /**
+     * "Important Mechanics (Review)" block data — reads the STAGING mechanics.txt via
+     * ArenaLogService::mechanicsForSpec() (see that method's docblock for why staging, not
+     * promoted, is deliberate here). Length-independent (mechanics.txt isn't scoped per burst
+     * length the way $length is), so this only depends on classId/specId.
+     *
+     * Rows resolved to real Spell models via resolveWindowSteps() — the exact same method the
+     * Peak Burst Example sequence already uses (it's generic: any array of associative arrays
+     * with a `spellId` key works, mechanics.txt rows qualify as-is), so the two card styles
+     * share real icon/name/talent-linked-copy resolution rather than a second implementation.
+     *
+     * Each row also gets a `kind` — 'talent' / 'pvp_talent' / 'passive' / 'ability' — added
+     * 2026-08-27, direct request ("is it a talent or a buff or an ability buff"). Reuses the
+     * exact same `source` classification WowComps/SpellExplorer already compute for their own
+     * spell listings (TalentSelectionService::allTalentSpellIds()/allPvpTalentSpellIds(), see
+     * WowComps::spellReferencesFor()'s identical `'source' => ...` line) rather than a second
+     * heuristic — 'talent'/'pvp_talent' means the spell is a real pickable node for this spec;
+     * anything else is split by the spell's own `is_passive` column (already-verified data,
+     * same field `<x-spells.table>`'s Active Abilities/Buffs & Passives split already trusts)
+     * into 'passive' (an innate, always-on buff — never pressed) vs 'ability' (an active
+     * button-press whose casting produces the tracked buff/debuff).
+     */
+    public function getMechanicsProperty(): ?array
+    {
+        if (!$this->classId || !$this->specId) {
+            return null;
+        }
+
+        $class = GameClass::find($this->classId);
+        $spec = Specialization::find($this->specId);
+
+        if (!$class || !$spec) {
+            return null;
+        }
+
+        $mechanics = app(ArenaLogService::class)->mechanicsForSpec($class->slug, $spec->slug);
+
+        if ($mechanics === null) {
+            return null;
+        }
+
+        $talentService = app(TalentSelectionService::class);
+
+        $mechanics['rows'] = app(ArenaLogService::class)->resolveWindowSteps(
+            $mechanics['rows'],
+            $this->specId,
+            $talentService
+        );
+
+        $talentIds = $talentService->allTalentSpellIds($this->specId);
+        $pvpTalentIds = $talentService->allPvpTalentSpellIds($this->specId);
+
+        $mechanics['rows'] = array_map(function ($row) use ($talentIds, $pvpTalentIds) {
+            $spell = $row['spell'] ?? null;
+
+            $row['kind'] = match (true) {
+                $spell === null => null,
+                $talentIds->contains($spell->id) => 'talent',
+                $pvpTalentIds->contains($spell->id) => 'pvp_talent',
+                (bool) $spell->is_passive => 'passive',
+                default => 'ability',
+            };
+
+            return $row;
+        }, $mechanics['rows']);
+
+        return $mechanics;
+    }
+
     public function render()
     {
         return view('livewire.top-damage-rotations', [
             'classes' => $this->classes,
             'classSpecs' => $this->classSpecs,
             'rotation' => $this->rotation,
-        ])->layout('layouts.app');
+            'mechanics' => $this->mechanics,
+        ])->layout('layouts.app', [
+            'title' => 'WoW Burst Windows — Real Arena Damage Rotations | MindCollector',
+            'description' => 'The single highest-damage burst window per WoW spec, taken straight from real arena logs — the exact cast sequence, anchored on that spec\'s offensive cooldowns.',
+        ]);
     }
 }

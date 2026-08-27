@@ -1,18 +1,19 @@
 {
     "class": "shaman",
     "spec": "restoration",
-    "windows": 142,
-    "killWindows": 20,
-    "matches": 94,
+    "windows": 178,
+    "killWindows": 21,
+    "matches": 128,
     "anchors": [
         "Ancestral Swiftness",
-        "Lava Burst"
+        "Lava Burst",
+        "Surging Totem"
     ],
     "majorAnchors": [
         "Ancestral Swiftness"
     ],
     "topDpsWindow": {
-        "damage": 383508,
+        "damage": 442340,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
@@ -23,20 +24,14 @@
                 "isRepeat": false
             },
             {
-                "name": "Earthgrab Totem",
-                "spellId": 51485,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
                 "name": "Flame Shock",
                 "spellId": 188389,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Greater Purge",
-                "spellId": 378773,
+                "name": "Healing Stream Totem",
+                "spellId": 5394,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -53,22 +48,22 @@
                 "isRepeat": true
             },
             {
-                "name": "Riptide",
-                "spellId": 61295,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Riptide",
-                "spellId": 61295,
+                "name": "Lava Burst",
+                "spellId": 51505,
                 "isCc": false,
                 "isRepeat": true
+            },
+            {
+                "name": "Purge",
+                "spellId": 370,
+                "isCc": false,
+                "isRepeat": false
             }
         ]
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 346681,
+            "damage": 405152,
             "durationSeconds": 6,
             "killed": true,
             "steps": [
@@ -79,14 +74,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Lava Burst",
-                    "spellId": 51505,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Grounding Totem",
-                    "spellId": 204336,
+                    "name": "Lightning Bolt",
+                    "spellId": 188196,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -99,7 +88,7 @@
             ]
         },
         "10": {
-            "damage": 377865,
+            "damage": 437489,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
@@ -110,178 +99,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Earthgrab Totem",
-                    "spellId": 51485,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
                     "name": "Flame Shock",
                     "spellId": 188389,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Greater Purge",
-                    "spellId": 378773,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Lava Burst",
-                    "spellId": 51505,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Lava Burst",
-                    "spellId": 51505,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Riptide",
-                    "spellId": 61295,
-                    "isCc": false,
-                    "isRepeat": false
-                }
-            ]
-        },
-        "12": {
-            "damage": 383508,
-            "durationSeconds": 12,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Lava Burst",
-                    "spellId": 51505,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Earthgrab Totem",
-                    "spellId": 51485,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Flame Shock",
-                    "spellId": 188389,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Greater Purge",
-                    "spellId": 378773,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Lava Burst",
-                    "spellId": 51505,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Lava Burst",
-                    "spellId": 51505,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Riptide",
-                    "spellId": 61295,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Riptide",
-                    "spellId": 61295,
-                    "isCc": false,
-                    "isRepeat": true
-                }
-            ]
-        },
-        "20": {
-            "damage": 504477,
-            "durationSeconds": 20,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Ancestral Swiftness",
-                    "spellId": 443454,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Healing Wave",
-                    "spellId": 77472,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Stormstream Totem",
-                    "spellId": 1267068,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Lava Burst",
-                    "spellId": 51505,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Earthgrab Totem",
-                    "spellId": 51485,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Flame Shock",
-                    "spellId": 188389,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Greater Purge",
-                    "spellId": 378773,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Lava Burst",
-                    "spellId": 51505,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Lava Burst",
-                    "spellId": 51505,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Riptide",
-                    "spellId": 61295,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Riptide",
-                    "spellId": 61295,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Riptide",
-                    "spellId": 61295,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ghost Wolf",
-                    "spellId": 2645,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -296,11 +115,151 @@
                     "spellId": 51505,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Purge",
+                    "spellId": 370,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "12": {
+            "damage": 442340,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Flame Shock",
+                    "spellId": 188389,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Healing Stream Totem",
+                    "spellId": 5394,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Purge",
+                    "spellId": 370,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "20": {
+            "damage": 544428,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Healing Wave",
+                    "spellId": 77472,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Riptide",
+                    "spellId": 61295,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Flame Shock",
+                    "spellId": 188389,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Purify Spirit",
+                    "spellId": 77130,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Healing Stream Totem",
+                    "spellId": 5394,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Healing Wave",
+                    "spellId": 77472,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lava Burst",
+                    "spellId": 51505,
+                    "isCc": false,
+                    "isRepeat": true
                 }
             ]
         },
         "30": {
-            "damage": 677803,
+            "damage": 678006,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
@@ -451,6 +410,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:16:22+00:00"
 }

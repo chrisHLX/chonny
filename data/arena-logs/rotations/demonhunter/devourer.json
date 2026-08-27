@@ -1,12 +1,15 @@
 {
     "class": "demonhunter",
     "spec": "devourer",
-    "windows": 232,
-    "killWindows": 24,
-    "matches": 48,
+    "windows": 530,
+    "killWindows": 66,
+    "matches": 55,
     "anchors": [
+        "Consume Magic",
         "Cull",
+        "Disrupt",
         "Reap",
+        "Soul Immolation",
         "The Hunt",
         "Throw Glaive",
         "Vengeful Retreat",
@@ -14,89 +17,24 @@
         "Voidblade"
     ],
     "majorAnchors": [
+        "Soul Immolation",
         "The Hunt",
         "Void Nova"
     ],
     "topDpsWindow": {
-        "damage": 1471753,
+        "damage": 1820730,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
             {
-                "name": "Predator's Wake",
-                "spellId": 1259431,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "The Hunt",
-                "spellId": 1246169,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Reaper's Toll",
-                "spellId": 1245470,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Voidblade",
-                "spellId": 1245414,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Pierce the Veil",
-                "spellId": 1245483,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Reaper's Toll",
-                "spellId": 1245470,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Vengeful Retreat",
-                "spellId": 198793,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Cull",
-                "spellId": 1245453,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
                 "name": "Devour",
                 "spellId": 1217610,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Void Ray",
-                "spellId": 473728,
+                "name": "Cull",
+                "spellId": 1245453,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -104,23 +42,11 @@
                 "name": "Soul Fragment",
                 "spellId": 1223412,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": false
             },
             {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Cull",
-                "spellId": 1245453,
+                "name": "Devour",
+                "spellId": 1217610,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -139,6 +65,132 @@
             {
                 "name": "Soul Fragment",
                 "spellId": 1223412,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Devour",
+                "spellId": 1217610,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Devour",
+                "spellId": 1217610,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Cull",
+                "spellId": 1245453,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Disrupt",
+                "spellId": 183752,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Devour",
+                "spellId": 1217610,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Devour",
+                "spellId": 1217610,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Cull",
+                "spellId": 1245453,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Devour",
+                "spellId": 1217610,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Devour",
+                "spellId": 1217610,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Devour",
+                "spellId": 1217610,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Devour",
+                "spellId": 1217610,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Cull",
+                "spellId": 1245453,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Devour",
+                "spellId": 1217610,
                 "isCc": false,
                 "isRepeat": true
             }
@@ -146,19 +198,19 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 918726,
+            "damage": 1107334,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
                 {
-                    "name": "Reaper's Toll",
-                    "spellId": 1245470,
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "The Hunt",
-                    "spellId": 1246169,
+                    "name": "Cull",
+                    "spellId": 1245453,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -169,20 +221,14 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Voidblade",
-                    "spellId": 1245414,
+                    "name": "Disrupt",
+                    "spellId": 183752,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Pierce the Veil",
-                    "spellId": 1245483,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reaper's Toll",
-                    "spellId": 1245470,
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -193,26 +239,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Vengeful Retreat",
-                    "spellId": 198793,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Void Ray",
-                    "spellId": 473728,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
+                    "name": "Cull",
+                    "spellId": 1245453,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -226,36 +254,72 @@
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Soul Fragment",
                     "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cull",
+                    "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": true
                 }
             ]
         },
         "10": {
-            "damage": 1206405,
+            "damage": 1521717,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
                 {
-                    "name": "Blur",
-                    "spellId": 198589,
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "The Hunt",
-                    "spellId": 1246169,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reaper's Toll",
-                    "spellId": 1245470,
+                    "name": "Cull",
+                    "spellId": 1245453,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -266,32 +330,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Vengeful Retreat",
-                    "spellId": 198793,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Voidblade",
-                    "spellId": 1245414,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Pierce the Veil",
-                    "spellId": 1245483,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reaper's Toll",
-                    "spellId": 1245470,
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -302,16 +342,10 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Vengeful Retreat",
-                    "spellId": 198793,
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Void Ray",
-                    "spellId": 473728,
-                    "isCc": false,
-                    "isRepeat": false
                 },
                 {
                     "name": "Soul Fragment",
@@ -320,14 +354,32 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Soul Fragment",
                     "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
                     "name": "Cull",
                     "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disrupt",
+                    "spellId": 183752,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -341,7 +393,7 @@
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Soul Fragment",
@@ -350,8 +402,44 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Cull",
                     "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -370,85 +458,19 @@
             ]
         },
         "12": {
-            "damage": 1471753,
+            "damage": 1820730,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
                 {
-                    "name": "Predator's Wake",
-                    "spellId": 1259431,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "The Hunt",
-                    "spellId": 1246169,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reaper's Toll",
-                    "spellId": 1245470,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Voidblade",
-                    "spellId": 1245414,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Pierce the Veil",
-                    "spellId": 1245483,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reaper's Toll",
-                    "spellId": 1245470,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Vengeful Retreat",
-                    "spellId": 198793,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Cull",
-                    "spellId": 1245453,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Void Ray",
-                    "spellId": 473728,
+                    "name": "Cull",
+                    "spellId": 1245453,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -456,23 +478,11 @@
                     "name": "Soul Fragment",
                     "spellId": 1223412,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Cull",
-                    "spellId": 1245453,
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -491,113 +501,143 @@
                 {
                     "name": "Soul Fragment",
                     "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cull",
+                    "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disrupt",
+                    "spellId": 183752,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cull",
+                    "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cull",
+                    "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": true
                 }
             ]
         },
         "20": {
-            "damage": 1942580,
+            "damage": 2490914,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
                 {
-                    "name": "Consume",
-                    "spellId": 473662,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Blur",
-                    "spellId": 198589,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reap",
-                    "spellId": 1226019,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Consume",
-                    "spellId": 473662,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Predator's Wake",
-                    "spellId": 1259431,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "The Hunt",
-                    "spellId": 1246169,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reaper's Toll",
-                    "spellId": 1245470,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Voidblade",
-                    "spellId": 1245414,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Pierce the Veil",
-                    "spellId": 1245483,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reaper's Toll",
-                    "spellId": 1245470,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Vengeful Retreat",
-                    "spellId": 198793,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Cull",
-                    "spellId": 1245453,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
@@ -607,35 +647,11 @@
                     "name": "Soul Fragment",
                     "spellId": 1223412,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Void Ray",
-                    "spellId": 473728,
-                    "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Cull",
-                    "spellId": 1245453,
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -658,8 +674,140 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Cull",
                     "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cull",
+                    "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -680,49 +828,6 @@
                     "spellId": 1223412,
                     "isCc": false,
                     "isRepeat": true
-                }
-            ]
-        },
-        "30": {
-            "damage": 2452326,
-            "durationSeconds": 30,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Cull",
-                    "spellId": 1245453,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Devour",
-                    "spellId": 1217610,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Devour",
-                    "spellId": 1217610,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Collapsing Star",
-                    "spellId": 1221150,
-                    "isCc": false,
-                    "isRepeat": false
                 },
                 {
                     "name": "Cull",
@@ -749,10 +854,10 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Soul Immolation",
-                    "spellId": 1241937,
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Soul Fragment",
@@ -767,26 +872,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Disrupt",
-                    "spellId": 183752,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Devour",
-                    "spellId": 1217610,
+                    "name": "Cull",
+                    "spellId": 1245453,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -803,16 +890,29 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 3582323,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Soul Fragment",
                     "spellId": 1223412,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Cull",
-                    "spellId": 1245453,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
                     "name": "Devour",
@@ -821,14 +921,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Void Ray",
-                    "spellId": 473728,
+                    "name": "Cull",
+                    "spellId": 1245453,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -839,30 +933,6 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Devour",
-                    "spellId": 1217610,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Cull",
-                    "spellId": 1245453,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
@@ -935,32 +1005,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Devour",
-                    "spellId": 1217610,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Collapsing Star",
-                    "spellId": 1221150,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Void Nova",
-                    "spellId": 1234195,
+                    "name": "Disrupt",
+                    "spellId": 183752,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -971,14 +1017,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Void Ray",
-                    "spellId": 473728,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -1009,12 +1049,257 @@
                 {
                     "name": "Soul Fragment",
                     "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cull",
+                    "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cull",
+                    "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disrupt",
+                    "spellId": 183752,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cull",
+                    "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cull",
+                    "spellId": 1245453,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Soul Fragment",
+                    "spellId": 1223412,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Devour",
+                    "spellId": 1217610,
                     "isCc": false,
                     "isRepeat": true
                 }
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:07:07+00:00"
 }

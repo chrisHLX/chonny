@@ -1,10 +1,11 @@
 {
     "class": "mage",
     "spec": "arcane",
-    "windows": 141,
-    "killWindows": 13,
-    "matches": 36,
+    "windows": 195,
+    "killWindows": 23,
+    "matches": 49,
     "anchors": [
+        "Arcane Blast",
         "Arcane Orb",
         "Arcane Surge",
         "Cone of Cold",
@@ -15,10 +16,22 @@
         "Touch of the Magi"
     ],
     "topDpsWindow": {
-        "damage": 1371657,
+        "damage": 1559175,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
+            {
+                "name": "Counterspell",
+                "spellId": 2139,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Arcane Missiles",
+                "spellId": 5143,
+                "isCc": false,
+                "isRepeat": false
+            },
             {
                 "name": "Arcane Barrage",
                 "spellId": 44425,
@@ -32,34 +45,16 @@
                 "isRepeat": false
             },
             {
-                "name": "Arcane Barrage",
-                "spellId": 44425,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
                 "name": "Arcane Missiles",
                 "spellId": 5143,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Counterspell",
-                "spellId": 2139,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Prismatic Bolt",
-                "spellId": 1295924,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Arcane Barrage",
-                "spellId": 44425,
-                "isCc": false,
                 "isRepeat": true
+            },
+            {
+                "name": "Polymorph",
+                "spellId": 118,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Arcane Missiles",
@@ -68,10 +63,10 @@
                 "isRepeat": true
             },
             {
-                "name": "Alter Time",
-                "spellId": 342245,
+                "name": "Arcane Missiles",
+                "spellId": 5143,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": true
             },
             {
                 "name": "Arcane Barrage",
@@ -126,10 +121,16 @@
             ]
         },
         "10": {
-            "damage": 1191148,
+            "damage": 1341965,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
+                {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
@@ -143,44 +144,20 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Counterspell",
-                    "spellId": 2139,
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Prismatic Bolt",
-                    "spellId": 1295924,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Arcane Orb",
-                    "spellId": 153626,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Orb",
-                    "spellId": 153626,
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -199,10 +176,22 @@
             ]
         },
         "12": {
-            "damage": 1371657,
+            "damage": 1559175,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
+                {
+                    "name": "Counterspell",
+                    "spellId": 2139,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
@@ -216,34 +205,16 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Counterspell",
-                    "spellId": 2139,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Prismatic Bolt",
-                    "spellId": 1295924,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Polymorph",
+                    "spellId": 118,
+                    "isCc": true,
+                    "isRepeat": false
                 },
                 {
                     "name": "Arcane Missiles",
@@ -252,10 +223,10 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Alter Time",
-                    "spellId": 342245,
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Arcane Barrage",
@@ -272,28 +243,10 @@
             ]
         },
         "20": {
-            "damage": 1909186,
+            "damage": 2120834,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
-                {
-                    "name": "Arcane Missiles",
-                    "spellId": 5143,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Missiles",
-                    "spellId": 5143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": false
-                },
                 {
                     "name": "Arcane Orb",
                     "spellId": 153626,
@@ -304,13 +257,19 @@
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
+                },
+                {
+                    "name": "Touch of the Magi",
+                    "spellId": 321507,
+                    "isCc": false,
+                    "isRepeat": false
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
                     "name": "Counterspell",
@@ -319,38 +278,14 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Prismatic Bolt",
-                    "spellId": 1295924,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Alter Time",
-                    "spellId": 342245,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Missiles",
-                    "spellId": 5143,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -361,8 +296,38 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Polymorph",
+                    "spellId": 118,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -379,8 +344,14 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Alter Time",
-                    "spellId": 342247,
+                    "name": "Arcane Barrage",
+                    "spellId": 44425,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Barrage",
+                    "spellId": 44425,
                     "isCc": false,
                     "isRepeat": true
                 }
@@ -544,6 +515,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:09:42+00:00"
 }

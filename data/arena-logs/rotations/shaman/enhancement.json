@@ -1,9 +1,9 @@
 {
     "class": "shaman",
     "spec": "enhancement",
-    "windows": 101,
-    "killWindows": 23,
-    "matches": 56,
+    "windows": 138,
+    "killWindows": 29,
+    "matches": 72,
     "anchors": [
         "Ascendance",
         "Crash Lightning",
@@ -336,7 +336,7 @@
             ]
         },
         "20": {
-            "damage": 2520300,
+            "damage": 2552626,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
@@ -469,10 +469,16 @@
             ]
         },
         "30": {
-            "damage": 3018540,
+            "damage": 3095447,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
+                {
+                    "name": "Healing Surge",
+                    "spellId": 8004,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Voltaic Blaze",
                     "spellId": 470057,
@@ -664,27 +670,9 @@
                     "spellId": 188196,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Stormstrike",
-                    "spellId": 17364,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Lightning Bolt",
-                    "spellId": 188196,
-                    "isCc": false,
-                    "isRepeat": true
                 }
             ]
         }
     },
-    "generated_at": "2026-08-25T05:10:27+00:00"
+    "generated_at": "2026-08-27T07:16:18+00:00"
 }

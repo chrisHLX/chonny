@@ -1,15 +1,17 @@
 {
     "class": "warrior",
     "spec": "arms",
-    "windows": 981,
-    "killWindows": 149,
-    "matches": 133,
+    "windows": 1563,
+    "killWindows": 265,
+    "matches": 187,
     "anchors": [
         "Avatar",
         "Bladestorm",
         "Champion's Spear",
+        "Charge",
         "Colossus Smash",
         "Demolish",
+        "Heroic Leap",
         "Impending Victory",
         "Overpower",
         "Shattering Throw",
@@ -20,65 +22,18 @@
         "Bladestorm",
         "Champion's Spear",
         "Colossus Smash",
+        "Heroic Leap",
         "Shattering Throw",
         "Wrecking Throw"
     ],
     "topDpsWindow": {
-        "damage": 1384738,
+        "damage": 1660706,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
             {
-                "name": "Charge",
-                "spellId": 126664,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Rend",
-                "spellId": 772,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Avatar",
-                "spellId": 107574,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Berserking",
-                "spellId": 26297,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Colossus Smash",
-                "spellId": 167105,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Battle Stance",
-                "spellId": 386164,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Execute",
-                "spellId": 281000,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Execute",
-                "spellId": 281000,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Bladestorm",
-                "spellId": 446035,
+                "name": "Mortal Strike",
+                "spellId": 12294,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -86,19 +41,37 @@
                 "name": "Mortal Strike",
                 "spellId": 12294,
                 "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Execute",
+                "spellId": 281000,
+                "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Storm Bolt",
-                "spellId": 107570,
+                "name": "Charge",
+                "spellId": 100,
                 "isCc": true,
                 "isRepeat": false
             },
             {
-                "name": "Mortal Strike",
-                "spellId": 12294,
+                "name": "Execute",
+                "spellId": 281000,
                 "isCc": false,
                 "isRepeat": true
+            },
+            {
+                "name": "Charge",
+                "spellId": 126664,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Heroic Strike",
+                "spellId": 1269383,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Pummel",
@@ -113,34 +86,40 @@
                 "isRepeat": true
             },
             {
+                "name": "Overpower",
+                "spellId": 7384,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shockwave",
+                "spellId": 46968,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
                 "name": "Mortal Strike",
                 "spellId": 12294,
                 "isCc": false,
                 "isRepeat": true
             },
             {
-                "name": "Execute",
-                "spellId": 281000,
+                "name": "Heroic Strike",
+                "spellId": 1269383,
                 "isCc": false,
                 "isRepeat": true
             },
             {
-                "name": "Slam",
-                "spellId": 1464,
+                "name": "Overpower",
+                "spellId": 7384,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Champion's Spear",
-                "spellId": 376079,
-                "isCc": false,
-                "isRepeat": false
+                "isRepeat": true
             }
         ]
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 1240685,
+            "damage": 1354957,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
@@ -207,19 +186,37 @@
             ]
         },
         "10": {
-            "damage": 1371519,
+            "damage": 1533549,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
                 {
-                    "name": "Avatar",
-                    "spellId": 107574,
+                    "name": "Overpower",
+                    "spellId": 7384,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Berserking",
-                    "spellId": 26297,
+                    "name": "Heroic Strike",
+                    "spellId": 1269383,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Spell Reflection",
+                    "spellId": 23920,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -228,24 +225,6 @@
                     "spellId": 167105,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Battle Stance",
-                    "spellId": 386164,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Execute",
-                    "spellId": 281000,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Execute",
-                    "spellId": 281000,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Bladestorm",
@@ -257,13 +236,13 @@
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
-                    "name": "Storm Bolt",
-                    "spellId": 107570,
-                    "isCc": true,
-                    "isRepeat": false
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Mortal Strike",
@@ -282,83 +261,17 @@
                     "spellId": 12294,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Execute",
-                    "spellId": 281000,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Slam",
-                    "spellId": 1464,
-                    "isCc": false,
-                    "isRepeat": false
                 }
             ]
         },
         "12": {
-            "damage": 1384738,
+            "damage": 1660706,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
                 {
-                    "name": "Charge",
-                    "spellId": 126664,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rend",
-                    "spellId": 772,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Avatar",
-                    "spellId": 107574,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Berserking",
-                    "spellId": 26297,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Colossus Smash",
-                    "spellId": 167105,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Battle Stance",
-                    "spellId": 386164,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Execute",
-                    "spellId": 281000,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Execute",
-                    "spellId": 281000,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Bladestorm",
-                    "spellId": 446035,
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -366,19 +279,37 @@
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Storm Bolt",
-                    "spellId": 107570,
+                    "name": "Charge",
+                    "spellId": 100,
                     "isCc": true,
                     "isRepeat": false
                 },
                 {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
+                    "name": "Execute",
+                    "spellId": 281000,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Charge",
+                    "spellId": 126664,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Heroic Strike",
+                    "spellId": 1269383,
+                    "isCc": false,
+                    "isRepeat": false
                 },
                 {
                     "name": "Pummel",
@@ -393,33 +324,39 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Overpower",
+                    "spellId": 7384,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shockwave",
+                    "spellId": 46968,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Execute",
-                    "spellId": 281000,
+                    "name": "Heroic Strike",
+                    "spellId": 1269383,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Slam",
-                    "spellId": 1464,
+                    "name": "Overpower",
+                    "spellId": 7384,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Champion's Spear",
-                    "spellId": 376079,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 }
             ]
         },
         "20": {
-            "damage": 2063180,
+            "damage": 2530128,
             "durationSeconds": 20,
             "killed": true,
             "steps": [
@@ -546,16 +483,10 @@
             ]
         },
         "30": {
-            "damage": 2761576,
+            "damage": 3350841,
             "durationSeconds": 30,
             "killed": true,
             "steps": [
-                {
-                    "name": "Overpower",
-                    "spellId": 7384,
-                    "isCc": false,
-                    "isRepeat": false
-                },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
@@ -578,7 +509,7 @@
                     "name": "Overpower",
                     "spellId": 7384,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
                     "name": "Heroic Strike",
@@ -733,6 +664,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:18:15+00:00"
 }

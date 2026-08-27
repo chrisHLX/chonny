@@ -1,9 +1,9 @@
 {
     "class": "demonhunter",
     "spec": "havoc",
-    "windows": 715,
-    "killWindows": 141,
-    "matches": 99,
+    "windows": 803,
+    "killWindows": 161,
+    "matches": 112,
     "anchors": [
         "Blade Dance",
         "Chaos Nova",
@@ -26,7 +26,7 @@
         "The Hunt"
     ],
     "topDpsWindow": {
-        "damage": 2018141,
+        "damage": 2044010,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
@@ -130,7 +130,7 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 1245207,
+            "damage": 1299723,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
@@ -221,7 +221,7 @@
             ]
         },
         "10": {
-            "damage": 1682212,
+            "damage": 1694864,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
@@ -288,7 +288,7 @@
             ]
         },
         "12": {
-            "damage": 2018141,
+            "damage": 2044010,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
@@ -391,10 +391,16 @@
             ]
         },
         "20": {
-            "damage": 2594239,
+            "damage": 2763142,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Throw Glaive",
                     "spellId": 185123,
@@ -423,7 +429,7 @@
                     "name": "Shattered Souls",
                     "spellId": 228537,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Throw Glaive",
@@ -592,17 +598,11 @@
                     "spellId": 228537,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Annihilation",
-                    "spellId": 201427,
-                    "isCc": false,
-                    "isRepeat": true
                 }
             ]
         },
         "30": {
-            "damage": 3311099,
+            "damage": 3433248,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
@@ -873,5 +873,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-25T05:28:41+00:00"
+    "generated_at": "2026-08-27T07:07:23+00:00"
 }

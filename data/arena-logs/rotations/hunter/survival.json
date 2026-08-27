@@ -1,22 +1,20 @@
 {
     "class": "hunter",
     "spec": "survival",
-    "windows": 79,
-    "killWindows": 9,
-    "matches": 11,
+    "windows": 91,
+    "killWindows": 11,
+    "matches": 16,
     "anchors": [
         "Boomstick",
-        "Roar of Sacrifice",
         "Takedown",
         "Wildfire Bomb"
     ],
     "majorAnchors": [
         "Boomstick",
-        "Roar of Sacrifice",
         "Takedown"
     ],
     "topDpsWindow": {
-        "damage": 1292563,
+        "damage": 1732190,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
@@ -33,56 +31,44 @@
                 "isRepeat": false
             },
             {
+                "name": "Boomstick",
+                "spellId": 1261193,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
                 "name": "Wildfire Bomb",
                 "spellId": 259495,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Raptor Strike",
-                "spellId": 186270,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Kill Command",
-                "spellId": 259489,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Survival of the Fittest",
-                "spellId": 264735,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Raptor Swipe",
-                "spellId": 1262293,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Raptor Strike",
-                "spellId": 186270,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Kill Command",
-                "spellId": 259489,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Raptor Swipe",
-                "spellId": 1262293,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
                 "name": "Wildfire Bomb",
                 "spellId": 259495,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Aspect of the Eagle",
+                "spellId": 186289,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Raptor Strike",
+                "spellId": 265189,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Raptor Swipe",
+                "spellId": 1262343,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Raptor Strike",
+                "spellId": 265189,
                 "isCc": false,
                 "isRepeat": true
             }
@@ -90,7 +76,7 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 826923,
+            "damage": 1286105,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
@@ -107,45 +93,33 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Boomstick",
+                    "spellId": 1261193,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Raptor Strike",
-                    "spellId": 186270,
+                    "name": "Wildfire Bomb",
+                    "spellId": 259495,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Kill Command",
-                    "spellId": 259489,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Survival of the Fittest",
-                    "spellId": 264735,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 }
             ]
         },
         "10": {
-            "damage": 1132899,
+            "damage": 1613908,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
                 {
-                    "name": "Gladiator's Badge",
-                    "spellId": 345228,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Takedown",
-                    "spellId": 1250646,
+                    "spellId": 1253859,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -156,14 +130,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Kill Command",
-                    "spellId": 259489,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
+                    "name": "Boomstick",
+                    "spellId": 1261193,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -180,15 +148,27 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Boomstick",
-                    "spellId": 1261193,
+                    "name": "Aspect of the Eagle",
+                    "spellId": 186289,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Raptor Strike",
+                    "spellId": 265189,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Raptor Swipe",
+                    "spellId": 1262343,
                     "isCc": false,
                     "isRepeat": false
                 }
             ]
         },
         "12": {
-            "damage": 1292563,
+            "damage": 1732190,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
@@ -205,113 +185,59 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Boomstick",
+                    "spellId": 1261193,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Raptor Strike",
-                    "spellId": 186270,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Kill Command",
-                    "spellId": 259489,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Survival of the Fittest",
-                    "spellId": 264735,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Raptor Swipe",
-                    "spellId": 1262293,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Raptor Strike",
-                    "spellId": 186270,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Kill Command",
-                    "spellId": 259489,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Raptor Swipe",
-                    "spellId": 1262293,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Aspect of the Eagle",
+                    "spellId": 186289,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Raptor Strike",
+                    "spellId": 265189,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Raptor Swipe",
+                    "spellId": 1262343,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Raptor Strike",
+                    "spellId": 265189,
                     "isCc": false,
                     "isRepeat": true
                 }
             ]
         },
         "20": {
-            "damage": 1558640,
+            "damage": 2002036,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
                 {
-                    "name": "Master's Call",
-                    "spellId": 272682,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Freezing Trap",
-                    "spellId": 187650,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tranquilizing Shot",
-                    "spellId": 19801,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Sticky Tar Bomb",
-                    "spellId": 407028,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Hunter's Mark",
-                    "spellId": 257284,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Takedown",
-                    "spellId": 1250646,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Badge",
-                    "spellId": 345228,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Takedown",
                     "spellId": 1253859,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
                     "name": "Moonlight Chakram",
@@ -320,16 +246,58 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Boomstick",
+                    "spellId": 1261193,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Raptor Strike",
-                    "spellId": 186270,
+                    "name": "Wildfire Bomb",
+                    "spellId": 259495,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Aspect of the Eagle",
+                    "spellId": 186289,
                     "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Raptor Strike",
+                    "spellId": 265189,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Raptor Swipe",
+                    "spellId": 1262343,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Raptor Strike",
+                    "spellId": 265189,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tranquilizing Shot",
+                    "spellId": 19801,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Raptor Swipe",
+                    "spellId": 1262343,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Kill Command",
@@ -338,95 +306,35 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Survival of the Fittest",
-                    "spellId": 264735,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Raptor Swipe",
-                    "spellId": 1262293,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Raptor Strike",
-                    "spellId": 186270,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Raptor Swipe",
-                    "spellId": 1262293,
+                    "name": "Raptor Strike",
+                    "spellId": 265189,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Wildfire Bomb",
-                    "spellId": 259495,
+                    "name": "Raptor Swipe",
+                    "spellId": 1262343,
                     "isCc": false,
                     "isRepeat": true
                 }
             ]
         },
         "30": {
-            "damage": 1800288,
+            "damage": 2273596,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
-                {
-                    "name": "Master's Call",
-                    "spellId": 272682,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Freezing Trap",
-                    "spellId": 187650,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tranquilizing Shot",
-                    "spellId": 19801,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Sticky Tar Bomb",
-                    "spellId": 407028,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Hunter's Mark",
-                    "spellId": 257284,
-                    "isCc": false,
-                    "isRepeat": false
-                },
                 {
                     "name": "Takedown",
                     "spellId": 1250646,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Badge",
-                    "spellId": 345228,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Takedown",
-                    "spellId": 1253859,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Moonlight Chakram",
@@ -435,50 +343,80 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Boomstick",
+                    "spellId": 1261193,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
+                    "name": "Wildfire Bomb",
+                    "spellId": 259495,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Aspect of the Eagle",
+                    "spellId": 186289,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Raptor Strike",
-                    "spellId": 186270,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Kill Command",
-                    "spellId": 259489,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Survival of the Fittest",
-                    "spellId": 264735,
+                    "spellId": 265189,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
                     "name": "Raptor Swipe",
-                    "spellId": 1262293,
+                    "spellId": 1262343,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
                     "name": "Raptor Strike",
-                    "spellId": 186270,
+                    "spellId": 265189,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tranquilizing Shot",
+                    "spellId": 19801,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Raptor Swipe",
+                    "spellId": 1262343,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Kill Command",
+                    "spellId": 259489,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Raptor Strike",
+                    "spellId": 265189,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
                     "name": "Raptor Swipe",
-                    "spellId": 1262293,
+                    "spellId": 1262343,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -489,28 +427,10 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Kill Command",
-                    "spellId": 259489,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Mend Pet",
-                    "spellId": 136,
-                    "isCc": false,
+                    "name": "Binding Shot",
+                    "spellId": 109248,
+                    "isCc": true,
                     "isRepeat": false
-                },
-                {
-                    "name": "Wildfire Bomb",
-                    "spellId": 259495,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Raptor Strike",
-                    "spellId": 186270,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Kill Command",
@@ -519,14 +439,13 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Disengage",
-                    "spellId": 781,
+                    "name": "Kill Command",
+                    "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 }
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:09:39+00:00"
 }

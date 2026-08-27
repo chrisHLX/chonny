@@ -1,22 +1,22 @@
 {
     "class": "mage",
     "spec": "fire",
-    "windows": 542,
-    "killWindows": 104,
-    "matches": 131,
+    "windows": 729,
+    "killWindows": 130,
+    "matches": 173,
     "anchors": [
-        "Blazing Barrier",
         "Combustion",
         "Cone of Cold",
         "Fire Blast",
-        "Meteor"
+        "Meteor",
+        "Pyroblast"
     ],
     "majorAnchors": [
         "Combustion",
         "Meteor"
     ],
     "topDpsWindow": {
-        "damage": 1670417,
+        "damage": 2046603,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
@@ -27,72 +27,18 @@
                 "isRepeat": false
             },
             {
-                "name": "Pyroblast",
-                "spellId": 11366,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Alter Time",
-                "spellId": 342245,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Fire Blast",
-                "spellId": 108853,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Pyroblast",
-                "spellId": 11366,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Fire Blast",
-                "spellId": 108853,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Pyroblast",
-                "spellId": 11366,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Blink",
-                "spellId": 1953,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Frostfire Bolt",
-                "spellId": 431044,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Fire Blast",
-                "spellId": 108853,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Pyroblast",
-                "spellId": 11366,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
                 "name": "Counterspell",
                 "spellId": 2139,
                 "isCc": false,
                 "isRepeat": false
             },
             {
+                "name": "Pyroblast",
+                "spellId": 11366,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
                 "name": "Fire Blast",
                 "spellId": 108853,
                 "isCc": false,
@@ -111,8 +57,8 @@
                 "isRepeat": true
             },
             {
-                "name": "Frostfire Bolt",
-                "spellId": 431044,
+                "name": "Pyroblast",
+                "spellId": 11366,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -129,16 +75,46 @@
                 "isRepeat": true
             },
             {
-                "name": "Frostfire Bolt",
-                "spellId": 431044,
+                "name": "Fire Blast",
+                "spellId": 108853,
                 "isCc": false,
                 "isRepeat": true
+            },
+            {
+                "name": "Pyroblast",
+                "spellId": 11366,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Shimmer",
+                "spellId": 212653,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Fire Blast",
                 "spellId": 108853,
                 "isCc": false,
                 "isRepeat": true
+            },
+            {
+                "name": "Pyroblast",
+                "spellId": 11366,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Pyroblast",
+                "spellId": 11366,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Ice Nova",
+                "spellId": 157997,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Pyroblast",
@@ -150,10 +126,16 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 1269068,
+            "damage": 1310282,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
@@ -164,13 +146,31 @@
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Frostfire Bolt",
+                    "spellId": 431044,
+                    "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Scorch",
-                    "spellId": 2948,
+                    "name": "Fire Blast",
+                    "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Pyroblast",
@@ -181,12 +181,6 @@
                 {
                     "name": "Frostfire Bolt",
                     "spellId": 431044,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -199,7 +193,7 @@
             ]
         },
         "10": {
-            "damage": 1573942,
+            "damage": 1886678,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
@@ -210,60 +204,18 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Bull Rush",
-                    "spellId": 255654,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frostfire Bolt",
-                    "spellId": 431044,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Counterspell",
                     "spellId": 2139,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
@@ -302,6 +254,30 @@
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shimmer",
+                    "spellId": 212653,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -314,7 +290,7 @@
             ]
         },
         "12": {
-            "damage": 1670417,
+            "damage": 2046603,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
@@ -325,72 +301,18 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Alter Time",
-                    "spellId": 342245,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blink",
-                    "spellId": 1953,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Frostfire Bolt",
-                    "spellId": 431044,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Counterspell",
                     "spellId": 2139,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
@@ -409,8 +331,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Frostfire Bolt",
-                    "spellId": 431044,
+                    "name": "Pyroblast",
+                    "spellId": 11366,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -427,16 +349,46 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Frostfire Bolt",
-                    "spellId": 431044,
+                    "name": "Fire Blast",
+                    "spellId": 108853,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shimmer",
+                    "spellId": 212653,
+                    "isCc": false,
+                    "isRepeat": false
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ice Nova",
+                    "spellId": 157997,
+                    "isCc": true,
+                    "isRepeat": false
                 },
                 {
                     "name": "Pyroblast",
@@ -447,25 +399,13 @@
             ]
         },
         "20": {
-            "damage": 2021016,
+            "damage": 2611961,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
                 {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Polymorph",
-                    "spellId": 161353,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
+                    "name": "Combustion",
+                    "spellId": 190319,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -473,53 +413,17 @@
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Polymorph",
-                    "spellId": 161353,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Roll 'dem Bones",
-                    "spellId": 47776,
+                    "name": "Fireball",
+                    "spellId": 133,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Autographed Hearthstone Card",
-                    "spellId": 175513,
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -527,11 +431,11 @@
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
+                    "name": "Fire Blast",
+                    "spellId": 108853,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -548,14 +452,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Scorch",
-                    "spellId": 2948,
+                    "name": "Spellsteal",
+                    "spellId": 30449,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -568,6 +466,90 @@
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Counterspell",
+                    "spellId": 2139,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shimmer",
+                    "spellId": 212653,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -576,6 +558,12 @@
                     "spellId": 157997,
                     "isCc": true,
                     "isRepeat": false
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Pyroblast",
@@ -598,7 +586,7 @@
             ]
         },
         "30": {
-            "damage": 2535331,
+            "damage": 3319181,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
@@ -609,90 +597,18 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Spellsteal",
-                    "spellId": 30449,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Alter Time",
-                    "spellId": 342245,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blink",
-                    "spellId": 1953,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Frostfire Bolt",
-                    "spellId": 431044,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Counterspell",
                     "spellId": 2139,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
@@ -711,8 +627,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Frostfire Bolt",
-                    "spellId": 431044,
+                    "name": "Pyroblast",
+                    "spellId": 11366,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -729,10 +645,22 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Frostfire Bolt",
-                    "spellId": 431044,
+                    "name": "Fire Blast",
+                    "spellId": 108853,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shimmer",
+                    "spellId": 212653,
+                    "isCc": false,
+                    "isRepeat": false
                 },
                 {
                     "name": "Fire Blast",
@@ -747,10 +675,58 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Frost Nova",
-                    "spellId": 122,
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ice Nova",
+                    "spellId": 157997,
                     "isCc": true,
                     "isRepeat": false
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Blazing Barrier",
@@ -759,27 +735,9 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Mass Invisibility",
-                    "spellId": 414664,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frostfire Bolt",
-                    "spellId": 431044,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Frost Nova",
-                    "spellId": 122,
-                    "isCc": true,
                     "isRepeat": true
                 },
                 {
@@ -789,8 +747,20 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Frostfire Bolt",
-                    "spellId": 431044,
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Scorch",
+                    "spellId": 2948,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -801,14 +771,25 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Blazing Barrier",
-                    "spellId": 235313,
+                    "name": "Scorch",
+                    "spellId": 2948,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pyroblast",
+                    "spellId": 11366,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
                     "isCc": false,
                     "isRepeat": true
                 }
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:10:15+00:00"
 }

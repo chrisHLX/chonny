@@ -108,6 +108,10 @@ Route::get('modules', Index::class)->name('modules.index');
 
 Route::get('/spells', SpellExplorer::class)->name('spells.explore');
 Route::get('/wow-comps', \App\Livewire\WowComps::class)->name('wow-comps');
+
+// Fire-and-forget usage beacon for WoW Comps' Alpine-only tab bar — see TrackController.
+Route::post('/track/wow-comps-tab', [\App\Http\Controllers\TrackController::class, 'wowCompsTab'])
+    ->name('track.wow-comps-tab');
 Route::get('/top-damage-rotations', \App\Livewire\TopDamageRotations::class)->name('top-damage-rotations');
 Route::get('/cc-review', \App\Livewire\CcReview::class)->name('cc-review');
 

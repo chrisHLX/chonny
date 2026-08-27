@@ -1,7 +1,7 @@
 {
     "class": "druid",
     "spec": "guardian",
-    "windows": 9,
+    "windows": 18,
     "killWindows": 1,
     "matches": 4,
     "anchors": [
@@ -17,7 +17,7 @@
         "Sundering Roar"
     ],
     "topDpsWindow": {
-        "damage": 301819,
+        "damage": 361733,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
@@ -121,7 +121,7 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 225152,
+            "damage": 244642,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
@@ -176,7 +176,7 @@
             ]
         },
         "10": {
-            "damage": 301223,
+            "damage": 361733,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
@@ -255,7 +255,7 @@
             ]
         },
         "12": {
-            "damage": 301819,
+            "damage": 361733,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
@@ -358,7 +358,7 @@
             ]
         },
         "20": {
-            "damage": 471623,
+            "damage": 572691,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
@@ -509,13 +509,43 @@
             ]
         },
         "30": {
-            "damage": 664722,
+            "damage": 775853,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
                 {
-                    "name": "Regrowth",
-                    "spellId": 8936,
+                    "name": "Cat Form",
+                    "spellId": 768,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rip",
+                    "spellId": 1079,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incarnation: Guardian of Ursoc",
+                    "spellId": 102558,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ursol's Vortex",
+                    "spellId": 102793,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ironfur",
+                    "spellId": 192081,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -526,10 +556,52 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Wild Guardian",
+                    "spellId": 1269658,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Lunar Beam",
+                    "spellId": 1270292,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Skull Bash",
+                    "spellId": 93985,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incapacitating Roar",
+                    "spellId": 99,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
                     "name": "Growl",
                     "spellId": 6795,
                     "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Regrowth",
+                    "spellId": 8936,
+                    "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Mangle",
@@ -541,7 +613,7 @@
                     "name": "Ironfur",
                     "spellId": 192081,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Thrash",
@@ -662,58 +734,9 @@
                     "spellId": 77758,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Mangle",
-                    "spellId": 33917,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Lunar Beam",
-                    "spellId": 1270292,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Growl",
-                    "spellId": 6795,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Dash",
-                    "spellId": 1850,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Bear Form",
-                    "spellId": 5487,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Wild Charge",
-                    "spellId": 16979,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ironfur",
-                    "spellId": 192081,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Thrash",
-                    "spellId": 77758,
-                    "isCc": false,
-                    "isRepeat": true
                 }
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:08:28+00:00"
 }

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Mindcollector'),
+    'name' => env('APP_NAME', 'MindCollector'),
 
     'screener_module_id'       => env('SCREENER_MODULE_ID'),
     'screener_wow_module_id'   => env('SCREENER_WOW_MODULE_ID'),

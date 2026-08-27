@@ -1,2 +1,6 @@
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /jobs
+Disallow: /dashboard
+
+Sitemap: https://mindcollector.com/sitemap.xml

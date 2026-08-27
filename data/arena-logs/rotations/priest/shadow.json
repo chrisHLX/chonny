@@ -1,9 +1,9 @@
 {
     "class": "priest",
     "spec": "shadow",
-    "windows": 93,
-    "killWindows": 13,
-    "matches": 46,
+    "windows": 188,
+    "killWindows": 21,
+    "matches": 54,
     "anchors": [
         "Halo",
         "Mind Blast",
@@ -11,28 +11,54 @@
         "Shadow Word: Death",
         "Tentacle Slam",
         "Void Blast",
-        "Void Torrent"
+        "Void Torrent",
+        "Voidform"
     ],
     "majorAnchors": [
         "Halo",
-        "Power Infusion"
+        "Power Infusion",
+        "Voidform"
     ],
     "topDpsWindow": {
-        "damage": 848990,
+        "damage": 876614,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
             {
-                "name": "Void Volley",
-                "spellId": 1242173,
+                "name": "Shadow Word: Madness",
+                "spellId": 335467,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Void Volley",
-                "spellId": 1242173,
+                "name": "Shadow Word: Madness",
+                "spellId": 335467,
                 "isCc": false,
                 "isRepeat": true
+            },
+            {
+                "name": "Void Blast",
+                "spellId": 450983,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Fade",
+                "spellId": 586,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Angelic Feather",
+                "spellId": 121536,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Tentacle Slam",
+                "spellId": 1227280,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Silence",
@@ -41,32 +67,8 @@
                 "isRepeat": false
             },
             {
-                "name": "Shadow Word: Madness",
-                "spellId": 335467,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Shadow Word: Madness",
-                "spellId": 335467,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Psychic Scream",
-                "spellId": 8122,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Mind Flay: Insanity",
-                "spellId": 391403,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Void Volley",
-                "spellId": 1242173,
+                "name": "Angelic Feather",
+                "spellId": 121536,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -75,12 +77,6 @@
                 "spellId": 8092,
                 "isCc": false,
                 "isRepeat": false
-            },
-            {
-                "name": "Void Volley",
-                "spellId": 1242173,
-                "isCc": false,
-                "isRepeat": true
             }
         ]
     },
@@ -129,28 +125,10 @@
             ]
         },
         "10": {
-            "damage": 751867,
+            "damage": 758452,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
-                {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Void Volley",
-                    "spellId": 1242173,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shadow Word: Pain",
-                    "spellId": 589,
-                    "isCc": false,
-                    "isRepeat": false
-                },
                 {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
@@ -158,8 +136,26 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Mind Blast",
-                    "spellId": 8092,
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Void Blast",
+                    "spellId": 450983,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fade",
+                    "spellId": 586,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Angelic Feather",
+                    "spellId": 121536,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -168,43 +164,6 @@
                     "spellId": 1227280,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Mind Flay: Insanity",
-                    "spellId": 391403,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shadow Word: Madness",
-                    "spellId": 335467,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Mind Flay: Insanity",
-                    "spellId": 391403,
-                    "isCc": false,
-                    "isRepeat": true
-                }
-            ]
-        },
-        "12": {
-            "damage": 848990,
-            "durationSeconds": 12,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Void Volley",
-                    "spellId": 1242173,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Void Volley",
-                    "spellId": 1242173,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Silence",
@@ -213,53 +172,17 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Shadow Word: Madness",
-                    "spellId": 335467,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shadow Word: Madness",
-                    "spellId": 335467,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Psychic Scream",
-                    "spellId": 8122,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mind Flay: Insanity",
-                    "spellId": 391403,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Void Volley",
-                    "spellId": 1242173,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Mind Blast",
-                    "spellId": 8092,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Void Volley",
-                    "spellId": 1242173,
+                    "name": "Angelic Feather",
+                    "spellId": 121536,
                     "isCc": false,
                     "isRepeat": true
                 }
             ]
         },
-        "20": {
-            "damage": 1180611,
-            "durationSeconds": 20,
-            "killed": true,
+        "12": {
+            "damage": 876614,
+            "durationSeconds": 12,
+            "killed": false,
             "steps": [
                 {
                     "name": "Shadow Word: Madness",
@@ -268,56 +191,75 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Mind Blast",
-                    "spellId": 8092,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tentacle Slam",
-                    "spellId": 1227280,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mind Flay: Insanity",
-                    "spellId": 391403,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Mind Flay: Insanity",
-                    "spellId": 391403,
+                    "name": "Void Blast",
+                    "spellId": 450983,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
-                    "name": "Mind Flay: Insanity",
-                    "spellId": 391403,
+                    "name": "Fade",
+                    "spellId": 586,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
-                    "name": "Mind Flay: Insanity",
-                    "spellId": 391403,
+                    "name": "Angelic Feather",
+                    "spellId": 121536,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
                     "name": "Tentacle Slam",
                     "spellId": 1227280,
                     "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Silence",
+                    "spellId": 15487,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Angelic Feather",
+                    "spellId": 121536,
+                    "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Shadow Word: Pain",
-                    "spellId": 589,
+                    "name": "Mind Blast",
+                    "spellId": 8092,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "20": {
+            "damage": 1208100,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Mind Blast",
+                    "spellId": 8092,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Power Infusion",
+                    "spellId": 10060,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -328,8 +270,26 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Void Volley",
-                    "spellId": 1242173,
+                    "name": "Tentacle Slam",
+                    "spellId": 1227280,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Pain",
+                    "spellId": 589,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Torrent",
+                    "spellId": 263165,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -340,14 +300,20 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Mind Blast",
-                    "spellId": 8092,
+                    "name": "Void Blast",
+                    "spellId": 450983,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
-                    "name": "Mind Flay",
-                    "spellId": 15407,
+                    "name": "Fade",
+                    "spellId": 586,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Angelic Feather",
+                    "spellId": 121536,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -358,14 +324,20 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Shadow Word: Pain",
-                    "spellId": 589,
+                    "name": "Silence",
+                    "spellId": 15487,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Angelic Feather",
+                    "spellId": 121536,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Shadow Word: Madness",
-                    "spellId": 335467,
+                    "name": "Mind Blast",
+                    "spellId": 8092,
                     "isCc": false,
                     "isRepeat": true
                 }
@@ -511,5 +483,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-24T01:40:18+00:00"
+    "generated_at": "2026-08-27T07:13:13+00:00"
 }

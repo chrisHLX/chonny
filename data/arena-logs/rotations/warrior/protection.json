@@ -1,24 +1,28 @@
 {
     "class": "warrior",
     "spec": "protection",
-    "windows": 21,
-    "killWindows": 2,
+    "windows": 26,
+    "killWindows": 3,
     "matches": 7,
     "anchors": [
         "Avatar",
         "Champion's Spear",
+        "Charge",
         "Demolish",
+        "Heroic Leap",
         "Impending Victory",
+        "Shield Block",
         "Shield Charge",
         "Shield Slam"
     ],
     "majorAnchors": [
         "Avatar",
         "Champion's Spear",
+        "Heroic Leap",
         "Shield Charge"
     ],
     "topDpsWindow": {
-        "damage": 464101,
+        "damage": 495399,
         "durationSeconds": 12,
         "killed": true,
         "steps": [
@@ -110,7 +114,7 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 279919,
+            "damage": 289327,
             "durationSeconds": 6,
             "killed": true,
             "steps": [
@@ -171,7 +175,7 @@
             ]
         },
         "10": {
-            "damage": 403115,
+            "damage": 427837,
             "durationSeconds": 10,
             "killed": true,
             "steps": [
@@ -250,7 +254,7 @@
             ]
         },
         "12": {
-            "damage": 464101,
+            "damage": 495399,
             "durationSeconds": 12,
             "killed": true,
             "steps": [
@@ -341,7 +345,7 @@
             ]
         },
         "20": {
-            "damage": 576506,
+            "damage": 650038,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
@@ -468,7 +472,7 @@
             ]
         },
         "30": {
-            "damage": 871760,
+            "damage": 990291,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
@@ -661,6 +665,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:18:29+00:00"
 }

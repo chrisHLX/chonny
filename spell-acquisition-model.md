@@ -119,7 +119,77 @@ Not from an addon — pulled from wowarenalogs.com's public, unauthenticated Gra
 | **PvP-specific number resolution** — the newest capability, arena logs deriving numbers no other layer can (raw `duration_seconds`/tooltip values are PvE-scoped and known-unreliable for PvP) ||
 | Resolve a spell's real PvP CC duration from observed `SPELL_AURA_APPLIED`→`REMOVED` windows: histogram/mode across every instance on file, outliers checked against Preservation Evoker roster presence (Oppressing Roar) before being trusted or discarded | `App\Console\Commands\FindCcDuration` (`wow:find-cc-duration {spellId}`) — report-only, never writes |
 
-**Downstream consumers of the same raw log data — analysis tools, not acquisition** (listed for completeness, out of scope for this doc's actual subject): `App\Console\Commands\KillSequence`, `RecordKillSequences`, `CommonPreKillSpells`, `KeyOffensiveAbilities`, `AnalyzeKill`, `AnalyzeRatingTiers`. These read already-stored matches to answer gameplay questions (what led to this kill, what do high-rated comps do differently) — they don't correct or extend the spell data model itself.
+**Downstream consumers of the same raw log data — analysis tools, not acquisition** (listed for completeness, out of scope for this doc's actual subject): `App\Console\Commands\KillSequence`, `RecordKillSequences`, `CommonPreKillSpells`, `KeyOffensiveAbilities`, `AnalyzeKill`, `AnalyzeRatingTiers`, `RecordImportantMechanics` (new 2026-08-27, see below). These read already-stored matches to answer gameplay questions (what led to this kill, what do high-rated comps do differently) — they don't correct or extend the spell data model itself.
+
+## Post-pull workflow — what to run after pulling new matches
+
+Once new matches land in the archive (via `wow:fetch-arena-log`, `wow:pull-comp-log`,
+`wow:pull-scarce-specs`, or any other pull command), three commands turn that raw archive into
+the accumulated per-spec reference files everything else reads. All three are bulk-native
+(`--all`), idempotent (safe to re-run against matches already processed — each underlying
+writer dedupes/accumulates rather than duplicating), and write to
+`config('arena_logs.archive_path')` (currently `wow-arena-archive`, the staging archive) —
+**not** this project's own `data/arena-logs/` tree. Nothing here becomes live until a human
+manually reviews and copies the relevant files over (see config/arena_logs.php's docblock).
+
+| Step | Command | Writes to |
+|---|---|---|
+| Pre-kill sequences (winning/losing comp + kill-target context) | `php artisan wow:record-kill-sequences --all` | `{archive}/kill-sequences/{class}/{spec}.jsonl` |
+| Accumulated cast-spell lists | `php artisan wow:extract-arena-spells --all` | `{archive}/spell-usage/{class}/{spec}.txt` |
+| Frequency-ranked self-buffs/target-debuffs in pre-kill windows — the non-obvious mechanics a cast sequence alone wouldn't show (Colossus Smash amplifying damage, Ancient Arts refunding combo points) | `php artisan wow:record-important-mechanics --all` | `{archive}/mechanics/{class}/{spec}.txt` |
+
+Pass `--window=N` consistently across kill-sequences and mechanics if you want both scoped to
+the same look-back (default 20s for both). `wow:extract-arena-spells --all` and
+`wow:record-important-mechanics --all` were both added/extended 2026-08-27, same day as the
+season-current fix below — before that, `wow:extract-arena-spells` only took a single
+`{matchId}` (no bulk mode existed at all), and no mechanics-tracking command existed.
+
+**`ArenaLogService::findMechanicsInWindow()`** (backing the mechanics step) reuses
+`findPreKillWindow()` read-only for the kill window/winning-players logic, then additionally
+scans that same window for real `SPELL_AURA_APPLIED` events split into self-buffs
+(source=dest=player) and debuffs the player applied directly to the kill target
+(source=player, dest=killedGuid) — the same three-signal methodology already verified in
+`wow-arena-archive/scripts/compare-player-windows.php` (`activeBuffsAtWindowStart()`/
+`activeBuffsOnTarget()`/`activeDebuffsAppliedByAttacker()`), adapted from "what's active at one
+instant" to "did this fire at all during the window," which is the right shape for ranking by
+distinct-match frequency across many independent kill windows — same methodology
+`wow:common-prekill-spells` already uses for casts, just for auras instead. Verified against two
+known real cases before trusting it: Ancient Arts surfaced at 79% (94/119 pre-kill windows) for
+Subtlety Rogue, and Colossus Smash at 47% target-debuff / 67% self-buff (worth a second look —
+plausibly a real secondary self-buff Colossus Smash grants, not yet confirmed either way) for
+Arms Warrior, both matching the hand-traced findings from the same investigation.
+
+**season-current/ fallback, added 2026-08-27.** `ArenaLogService::rawLogPath()`/
+`metadataPath()` now fall back to `{archive}/season-current/raw|metadata/...` when a match
+isn't found at the flat top-level path — `wow-arena-archive` (the sibling project this archive
+path normally points at) stages newly-pulled matches there, and nothing in this codebase knew
+that directory existed before this fix; every existing `wow:*` arena-log command was silently
+blind to any match living only in season-current/. `wow:record-kill-sequences --all`,
+`wow:extract-arena-spells --all`, and `wow:record-important-mechanics` were all updated the
+same day to discover matchIds from both locations, not just resolve paths correctly once a
+matchId is already known. Any *other* command that globs
+`config('arena_logs.archive_path').'/metadata/*.json'` directly (`wow:common-prekill-spells`,
+`wow:discover-cc-spells`, etc.) is still blind to season-current-only matches at the
+match-*discovery* stage — the path-resolution fix helps once a matchId is known, but doesn't
+retrofit every command's own match-finding loop. Worth the same fix, case-by-case, if a
+command's results look thin after a pull that landed only in season-current.
+
+**What this workflow deliberately does NOT do:**
+- **Promote staging data to live.** `WowComps`'s Kill Sequence tab, `SpellExplorer`'s
+  priority-spells filter, and any future mechanics-block UI all read this project's own
+  `data/arena-logs/` tree directly, not `config('arena_logs.archive_path')` — a deliberate
+  human-reviewed gate (config/arena_logs.php's own docblock explains why: a fresh, unreviewed
+  pull should never silently become what the live site shows). Promotion is a manual file copy,
+  done by hand once the new data's been checked.
+- **Pull more matches.** `wow:discover-all-specs`/`wow:discover-spec-spells` fetch NEW matches
+  from the web per spec, on top of whatever's already on file — a separate, heavier,
+  network-dependent operation for filling out coverage, not for processing matches already
+  pulled. Don't run it as routine post-pull housekeeping unless more matches are actually wanted.
+- **Correct `spell_class_availability` data.** `wow:diff-arena-spells --apply` (and
+  `wow:discover-cc-spells --apply`) compare the *promoted, live* spell-usage files against the
+  DB and can write to `baseline-spec-overrides.txt`/`cc-synergies-overrides.txt`, triggering a
+  re-import. These only make sense to run *after* a promotion — running them right after a raw
+  pull just re-diffs against stale, already-promoted data and finds nothing new.
 
 ## CC discovery — built 2026-08-17
 

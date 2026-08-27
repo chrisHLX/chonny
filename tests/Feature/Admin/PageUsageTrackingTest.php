@@ -125,6 +125,100 @@ test('top damage rotations mount records a bare view and selectSpec attributes i
         ->and($selection->spec_id)->toBe($fixture['arms']->id);
 });
 
+function makeRmpPresetFixture(): array
+{
+    $game = Game::create(['slug' => 'wow', 'name' => 'World of Warcraft']);
+
+    $spec = function (string $classSlug, string $specSlug) use ($game) {
+        $class = GameClass::firstOrCreate(
+            ['game_id' => $game->id, 'slug' => $classSlug],
+            ['name' => ucfirst($classSlug)],
+        );
+
+        return Specialization::create([
+            'class_id' => $class->id,
+            'name' => ucfirst($specSlug),
+            'slug' => $specSlug,
+        ]);
+    };
+
+    return [
+        'rdruid' => $spec('druid', 'restoration'),
+        'sub'    => $spec('rogue', 'subtlety'),
+        'frost'  => $spec('mage', 'frost'),
+    ];
+}
+
+test('wow comps mount does not pre-select any slot', function () {
+    makeRmpPresetFixture();
+
+    Livewire::test(WowComps::class)
+        ->assertSet('slots.0.specId', null)
+        ->assertSet('slots.1.specId', null)
+        ->assertSet('slots.2.specId', null);
+
+    // Only the bare page view — nothing attributed.
+    expect(PageViewEvent::where('page', 'wow_comps')->count())->toBe(1)
+        ->and(PageViewEvent::where('page', 'wow_comps')->whereNotNull('class_id')->count())->toBe(0);
+});
+
+test('applyPreset loads all three slots and logs it as a real, attributed pick', function () {
+    $f = makeRmpPresetFixture();
+
+    Livewire::test(WowComps::class)
+        ->call('applyPreset', 'rmp')
+        ->assertSet('slots.0.specId', $f['rdruid']->id)
+        ->assertSet('slots.1.specId', $f['sub']->id)
+        ->assertSet('slots.2.specId', $f['frost']->id);
+
+    // One attributed row per slot (feeds top classes/specs/slot breakdown)...
+    $picks = PageViewEvent::where('page', 'wow_comps')->whereNotNull('class_id')->get();
+    expect($picks)->toHaveCount(3)
+        ->and($picks->pluck('slot')->sort()->values()->all())->toBe(['0', '1', '2'])
+        ->and($picks->firstWhere('slot', '0')->spec_id)->toBe($f['rdruid']->id);
+
+    // ...plus one 'wow_comps_preset' row for per-preset popularity.
+    $presetRows = PageViewEvent::where('page', 'wow_comps_preset')->get();
+    expect($presetRows)->toHaveCount(1)
+        ->and($presetRows->first()->slot)->toBe('rmp')
+        ->and($presetRows->first()->class_id)->toBeNull();
+
+    expect(Livewire::test(PageUsage::class)->instance()->presetBreakdown->firstWhere('preset', 'rmp')->count)->toBe(1);
+});
+
+test('applyPreset is a silent no-op when the comp specs are not all present', function () {
+    $fixture = makePageUsageFixture(); // Priest/Discipline + Warrior/Arms — not a full RMP
+
+    Livewire::test(WowComps::class)
+        ->call('applyPreset', 'rmp')
+        ->assertSet('slots.0.specId', null)
+        ->assertSet('slots.1.specId', null);
+
+    expect(PageViewEvent::where('page', 'wow_comps')->whereNotNull('class_id')->count())->toBe(0)
+        ->and(PageViewEvent::where('page', 'wow_comps_preset')->count())->toBe(0);
+});
+
+test('wow comps tab beacon records an allowlisted tab and rejects anything else', function () {
+    makePageUsageFixture();
+
+    $this->post('/track/wow-comps-tab', ['tab' => 'rotation'])->assertNoContent();
+    $this->post('/track/wow-comps-tab', ['tab' => 'rotation'])->assertNoContent();
+    $this->post('/track/wow-comps-tab', ['tab' => 'synergies'])->assertNoContent();
+    $this->post('/track/wow-comps-tab', ['tab' => 'not-a-real-tab'])->assertNoContent();
+    $this->post('/track/wow-comps-tab', [])->assertNoContent();
+
+    // Only the 3 valid ones are written, each as a wow_comps_tab row with the tab in `slot`.
+    expect(PageViewEvent::where('page', 'wow_comps_tab')->count())->toBe(3);
+    expect(PageViewEvent::where('page', 'wow_comps')->count())->toBe(0);
+
+    $breakdown = Livewire::test(PageUsage::class)->instance()->tabBreakdown;
+    expect($breakdown->firstWhere('tab', 'rotation'))->not->toBeNull()
+        ->and($breakdown->firstWhere('tab', 'rotation')->count)->toBe(2)
+        ->and($breakdown->firstWhere('tab', 'rotation')->label)->toBe('Burst Window')
+        ->and($breakdown->firstWhere('tab', 'synergies')->count)->toBe(1)
+        ->and($breakdown->pluck('tab')->contains('not-a-real-tab'))->toBeFalse();
+});
+
 test('admin page usage includes Burst Windows alongside WoW Comps and Spell Explorer', function () {
     // Regression test for the real gap found 2026-08-23: TopDamageRotations was already calling
     // PageViewEvent::log('top_damage_rotations', ...) from day one, but Admin\PageUsage's PAGES

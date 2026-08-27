@@ -17,13 +17,15 @@ return [
     | as a staging/review area, and only get manually copied into this
     | project's own data/arena-logs/ tree once the user is confident it's
     | correct. That promoted copy is what the live app actually reads —
-    | ArenaLogService::spellUsageIds() and WowComps's Kill Sequence tab are
-    | DELIBERATELY still hardcoded to this project's own data/arena-logs/
-    | path, not this config value, so a fresh unreviewed pull can never
-    | silently change what's live. Do not "fix" that asymmetry without
-    | re-reading this note — it's intentional, not leftover inconsistency.
-    | rating-tiers/, comp-index.json, spec-index.json are untouched by any
-    | of this (console-command-only, no live-read path to protect).
+    | ArenaLogService::spellUsageIds() is DELIBERATELY still hardcoded to
+    | this project's own data/arena-logs/ path, not this config value, so a
+    | fresh unreviewed pull can never silently change what's live. Do not
+    | "fix" that asymmetry without re-reading this note — it's intentional,
+    | not leftover inconsistency. (kill-sequences/ has no live reader at all
+    | as of 2026-08-27 — its one consumer, RatingTierAnalysisService, was
+    | retired that day; see wow-arena-archive/README.md for why.)
+    | comp-index.json, spec-index.json are untouched by any of this
+    | (console-command-only, no live-read path to protect).
     |
     | Defaults to the in-repo path when unset, so this is a no-op for any
     | environment that hasn't configured ARENA_LOG_ARCHIVE_PATH.

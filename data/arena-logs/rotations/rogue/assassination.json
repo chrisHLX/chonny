@@ -1,9 +1,9 @@
 {
     "class": "rogue",
     "spec": "assassination",
-    "windows": 427,
-    "killWindows": 130,
-    "matches": 140,
+    "windows": 559,
+    "killWindows": 159,
+    "matches": 179,
     "anchors": [
         "Deathmark",
         "Kingsbane",
@@ -17,7 +17,7 @@
         "Thistle Tea"
     ],
     "topDpsWindow": {
-        "damage": 1652123,
+        "damage": 1769554,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
@@ -79,19 +79,13 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 1099356,
+            "damage": 1249492,
             "durationSeconds": 6,
-            "killed": true,
+            "killed": false,
             "steps": [
                 {
                     "name": "Kingsbane",
                     "spellId": 385627,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Vanish",
-                    "spellId": 1856,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -102,57 +96,39 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Vanish",
+                    "spellId": 1856,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Garrote",
                     "spellId": 703,
                     "isCc": true,
                     "isRepeat": false
                 },
                 {
-                    "name": "Ambush",
-                    "spellId": 8676,
+                    "name": "Envenom",
+                    "spellId": 32645,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
-                    "name": "Thistle Tea",
-                    "spellId": 381623,
-                    "isCc": false,
+                    "name": "Cheap Shot",
+                    "spellId": 1833,
+                    "isCc": true,
                     "isRepeat": false
                 }
             ]
         },
         "10": {
-            "damage": 1296984,
+            "damage": 1466195,
             "durationSeconds": 10,
-            "killed": true,
+            "killed": false,
             "steps": [
-                {
-                    "name": "Kidney Shot",
-                    "spellId": 408,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shiv",
-                    "spellId": 5938,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Deathmark",
-                    "spellId": 360194,
-                    "isCc": false,
-                    "isRepeat": false
-                },
                 {
                     "name": "Kingsbane",
                     "spellId": 385627,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Vanish",
-                    "spellId": 1856,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -163,33 +139,39 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Vanish",
+                    "spellId": 1856,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Garrote",
                     "spellId": 703,
                     "isCc": true,
                     "isRepeat": false
                 },
                 {
-                    "name": "Ambush",
-                    "spellId": 8676,
+                    "name": "Envenom",
+                    "spellId": 32645,
                     "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cheap Shot",
+                    "spellId": 1833,
+                    "isCc": true,
                     "isRepeat": false
                 },
                 {
-                    "name": "Thistle Tea",
-                    "spellId": 381623,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Crimson Tempest",
-                    "spellId": 1247227,
+                    "name": "Feint",
+                    "spellId": 1966,
                     "isCc": false,
                     "isRepeat": false
                 }
             ]
         },
         "12": {
-            "damage": 1652123,
+            "damage": 1769554,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
@@ -250,7 +232,7 @@
             ]
         },
         "20": {
-            "damage": 2363032,
+            "damage": 2550572,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
@@ -365,7 +347,7 @@
             ]
         },
         "30": {
-            "damage": 2649583,
+            "damage": 2882702,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
@@ -522,5 +504,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-25T05:29:49+00:00"
+    "generated_at": "2026-08-27T07:13:34+00:00"
 }

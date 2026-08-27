@@ -87,9 +87,111 @@ class WowComps extends Component
      * into how the archive builds it, so no separate UI toggle is needed here.
      */
 
+    /**
+     * Named starter comps shown as one-click "Common picks" buttons under the slot pickers
+     * (getPresetsProperty() resolves these to real specs for the blade; applyPreset() loads one).
+     * These are a genuine user action — applyPreset() routes each slot through selectSpec() so it
+     * logs attributed PageViewEvent rows exactly like a manual pick, plus a 'wow_comps_preset'
+     * row for per-preset popularity. Deliberately NOT auto-loaded on mount: an empty picker makes
+     * it obvious the slots are yours to experiment with; a pre-filled one hid that.
+     * [slotIndex => [classSlug, specSlug]] per comp; slot 0 is the Healer slot.
+     */
+    private const PRESET_COMPS = [
+        'rmp' => [
+            'label' => 'RMP',
+            'slots' => [
+                0 => ['druid', 'restoration'],
+                1 => ['rogue', 'subtlety'],
+                2 => ['mage', 'frost'],
+            ],
+        ],
+        'jungle' => [
+            'label' => 'Jungle',
+            'slots' => [
+                0 => ['priest', 'discipline'],
+                1 => ['druid', 'feral'],
+                2 => ['hunter', 'beast-mastery'],
+            ],
+        ],
+        'turbo' => [
+            'label' => 'Turbo Cleave',
+            'slots' => [
+                0 => ['paladin', 'holy'],
+                1 => ['warrior', 'arms'],
+                2 => ['shaman', 'enhancement'],
+            ],
+        ],
+    ];
+
     public function mount(): void
     {
         PageViewEvent::log('wow_comps');
+    }
+
+    /**
+     * Loads a PRESET_COMPS entry into all three slots. All-or-nothing: if any of the comp's
+     * specs can't be resolved (un-seeded env, stripped test DB) it's a silent no-op rather than
+     * a lopsided partial comp. Each slot is set via selectSpec(), so this logs one attributed
+     * PageViewEvent per slot (feeding Admin\PageUsage's top classes/specs/slot breakdown) just
+     * like a manual pick — a preset click IS a real user selection. Additionally logs a
+     * 'wow_comps_preset' row (preset key in `slot`) for per-preset popularity, surfaced by
+     * Admin\PageUsage::getPresetBreakdownProperty() — same not-in-PAGES pattern as tab tracking.
+     */
+    public function applyPreset(string $key): void
+    {
+        $preset = self::PRESET_COMPS[$key] ?? null;
+
+        if (!$preset) {
+            return;
+        }
+
+        $resolved = [];
+
+        foreach ($preset['slots'] as $i => [$classSlug, $specSlug]) {
+            $spec = Specialization::whereHas('gameClass', fn ($q) => $q->where('slug', $classSlug))
+                ->where('slug', $specSlug)
+                ->first();
+
+            if (!$spec) {
+                return;
+            }
+
+            $resolved[$i] = $spec;
+        }
+
+        foreach ($resolved as $i => $spec) {
+            $this->selectSpec($i, $spec->class_id, $spec->id);
+        }
+
+        PageViewEvent::log('wow_comps_preset', slot: $key);
+    }
+
+    /**
+     * PRESET_COMPS resolved to real Spec models for the "Common picks" buttons. A preset whose
+     * specs aren't all present in this environment is dropped rather than shown broken.
+     *
+     * @return array<int, array{key: string, label: string, specs: array<int, Specialization>}>
+     */
+    public function getPresetsProperty(): array
+    {
+        $specsByKey = Specialization::with('gameClass')->get()
+            ->keyBy(fn (Specialization $s) => ($s->gameClass?->slug).'/'.$s->slug);
+
+        return collect(self::PRESET_COMPS)
+            ->map(function (array $preset, string $key) use ($specsByKey) {
+                $specs = collect($preset['slots'])
+                    ->sortKeys()
+                    ->map(fn (array $pair) => $specsByKey->get($pair[0].'/'.$pair[1]));
+
+                if ($specs->contains(null)) {
+                    return null;
+                }
+
+                return ['key' => $key, 'label' => $preset['label'], 'specs' => $specs->values()->all()];
+            })
+            ->filter()
+            ->values()
+            ->all();
     }
 
     public function updated(string $name): void
@@ -747,55 +849,20 @@ class WowComps extends Component
     }
 
 
-    /**
-     * Rating Tiers tab data — reads data/arena-logs/rating-tiers/{classSlug}/{specSlug}.json
-     * directly (built by RatingTierAnalysisService::analyzeSpec() / wow:analyze-rating-tiers),
-     * same "no DB, no caching, read straight off disk" posture as getOffensiveRotationsProperty()
-     * above. The file is a full JSON blob (not a per-line log), so this is a plain decode-and-
-     * pass-through — no aggregation happens at render time, unlike the kill-sequence tab, since
-     * wow:analyze-rating-tiers already computed every number (including the hero-tree
-     * breakdown) ahead of time.
-     *
-     * @return array<int, array{bands: array}|null>
-     */
-    public function getRatingTiersProperty(): array
-    {
-        return collect($this->comp)->map(function ($member) {
-            if (!$member['spec'] || !$member['class']) {
-                return null;
-            }
-
-            return $this->ratingTierDataFor($member['class'], $member['spec']);
-        })->all();
-    }
-
-    /**
-     * @return array{bands: array}
-     */
-    private function ratingTierDataFor(GameClass $class, Specialization $spec): array
-    {
-        $path = base_path("data/arena-logs/rating-tiers/{$class->slug}/{$spec->slug}.json");
-
-        if (!File::exists($path)) {
-            return ['bands' => []];
-        }
-
-        $decoded = json_decode(File::get($path), true);
-
-        return ['bands' => $decoded['bands'] ?? []];
-    }
-
     public function render()
     {
         return view('livewire.wow-comps', [
             'classSpecs' => $this->classSpecs,
             'specRoleMap' => $this->specRoleMap,
+            'presets' => $this->presets,
             'comp' => $this->comp,
             'synergies' => $this->synergies,
             'suggestedChain' => $this->suggestedChain,
             'drCategoryLegend' => $this->drCategoryLegend,
             'offensiveRotations' => $this->offensiveRotations,
-            'ratingTiers' => $this->ratingTiers,
-        ])->layout('layouts.app');
+        ])->layout('layouts.app', [
+            'title' => 'MindCollector — WoW 3v3 Arena Comp Builder & Spell Kit Comparison',
+            'description' => 'Build a 3v3 arena team and compare every class and spec\'s full spell kit side by side — crowd-control chains, cooldowns, PvP talents, burst windows and talent-aware spell data.',
+        ]);
     }
 }

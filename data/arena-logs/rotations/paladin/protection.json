@@ -1,9 +1,9 @@
 {
     "class": "paladin",
     "spec": "protection",
-    "windows": 110,
-    "killWindows": 10,
-    "matches": 15,
+    "windows": 170,
+    "killWindows": 14,
+    "matches": 20,
     "anchors": [
         "Avenging Wrath",
         "Consecration",
@@ -22,10 +22,16 @@
         "Sentinel"
     ],
     "topDpsWindow": {
-        "damage": 598839,
+        "damage": 754986,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
+            {
+                "name": "Blessed Hammer",
+                "spellId": 204019,
+                "isCc": false,
+                "isRepeat": false
+            },
             {
                 "name": "Shield of Virtue",
                 "spellId": 215652,
@@ -33,8 +39,8 @@
                 "isRepeat": false
             },
             {
-                "name": "Sentinel",
-                "spellId": 389539,
+                "name": "Avenging Wrath",
+                "spellId": 31884,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -51,6 +57,18 @@
                 "isRepeat": false
             },
             {
+                "name": "Shield of the Righteous",
+                "spellId": 53600,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Sacrosanct Crusade",
+                "spellId": 461867,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
                 "name": "Empyrean Hammer",
                 "spellId": 431398,
                 "isCc": false,
@@ -63,12 +81,6 @@
                 "isRepeat": true
             },
             {
-                "name": "Hammer of Wrath",
-                "spellId": 1241413,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
                 "name": "Avenger's Shield",
                 "spellId": 31935,
                 "isCc": true,
@@ -78,24 +90,30 @@
                 "name": "Shield of the Righteous",
                 "spellId": 53600,
                 "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "War Stomp",
+                "spellId": 20549,
+                "isCc": false,
                 "isRepeat": false
             },
             {
                 "name": "Hammer of Wrath",
                 "spellId": 1241413,
                 "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Blessed Hammer",
-                "spellId": 204019,
-                "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Avenger's Shield",
-                "spellId": 31935,
-                "isCc": true,
+                "name": "Sacrosanct Crusade",
+                "spellId": 461867,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Empyrean Hammer",
+                "spellId": 431398,
+                "isCc": false,
                 "isRepeat": true
             },
             {
@@ -105,20 +123,44 @@
                 "isRepeat": true
             },
             {
+                "name": "Empyrean Hammer",
+                "spellId": 431398,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
                 "name": "Hammer of Wrath",
                 "spellId": 1241413,
                 "isCc": false,
                 "isRepeat": true
+            },
+            {
+                "name": "Word of Glory",
+                "spellId": 85673,
+                "isCc": false,
+                "isRepeat": false
             }
         ]
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 487636,
+            "damage": 630678,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
                 {
+                    "name": "Shield of the Righteous",
+                    "spellId": 53600,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sacrosanct Crusade",
+                    "spellId": 461867,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Empyrean Hammer",
                     "spellId": 431398,
                     "isCc": false,
@@ -131,12 +173,6 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Hammer of Wrath",
-                    "spellId": 1241413,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Avenger's Shield",
                     "spellId": 31935,
                     "isCc": true,
@@ -146,74 +182,49 @@
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "War Stomp",
+                    "spellId": 20549,
+                    "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sacrosanct Crusade",
+                    "spellId": 461867,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shield of the Righteous",
+                    "spellId": 53600,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": true
                 }
             ]
         },
         "10": {
-            "damage": 571454,
+            "damage": 754986,
             "durationSeconds": 10,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Empyrean Hammer",
-                    "spellId": 431398,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Empyrean Hammer",
-                    "spellId": 431398,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Hammer of Wrath",
-                    "spellId": 1241413,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Avenger's Shield",
-                    "spellId": 31935,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shield of the Righteous",
-                    "spellId": 53600,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Hammer of Wrath",
-                    "spellId": 1241413,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blessed Hammer",
-                    "spellId": 204019,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Avenger's Shield",
-                    "spellId": 31935,
-                    "isCc": true,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shield of the Righteous",
-                    "spellId": 53600,
-                    "isCc": false,
-                    "isRepeat": true
-                }
-            ]
-        },
-        "12": {
-            "damage": 598839,
-            "durationSeconds": 12,
             "killed": false,
             "steps": [
                 {
@@ -223,8 +234,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Sentinel",
-                    "spellId": 389539,
+                    "name": "Avenging Wrath",
+                    "spellId": 31884,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -241,6 +252,18 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Shield of the Righteous",
+                    "spellId": 53600,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sacrosanct Crusade",
+                    "spellId": 461867,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Empyrean Hammer",
                     "spellId": 431398,
                     "isCc": false,
@@ -251,12 +274,6 @@
                     "spellId": 431398,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Hammer of Wrath",
-                    "spellId": 1241413,
-                    "isCc": false,
-                    "isRepeat": false
                 },
                 {
                     "name": "Avenger's Shield",
@@ -268,7 +285,43 @@
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "War Stomp",
+                    "spellId": 20549,
+                    "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sacrosanct Crusade",
+                    "spellId": 461867,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shield of the Righteous",
+                    "spellId": 53600,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Hammer of Wrath",
@@ -276,6 +329,19 @@
                     "isCc": false,
                     "isRepeat": true
                 },
+                {
+                    "name": "Word of Glory",
+                    "spellId": 85673,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "12": {
+            "damage": 754986,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
@@ -283,9 +349,87 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Shield of Virtue",
+                    "spellId": 215652,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Avenging Wrath",
+                    "spellId": 31884,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Toll",
+                    "spellId": 375576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield of the Righteous",
+                    "spellId": 53600,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sacrosanct Crusade",
+                    "spellId": 461867,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Avenger's Shield",
                     "spellId": 31935,
                     "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield of the Righteous",
+                    "spellId": 53600,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "War Stomp",
+                    "spellId": 20549,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sacrosanct Crusade",
+                    "spellId": 461867,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
                     "isRepeat": true
                 },
                 {
@@ -295,46 +439,64 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Word of Glory",
+                    "spellId": 85673,
+                    "isCc": false,
+                    "isRepeat": false
                 }
             ]
         },
         "20": {
-            "damage": 733617,
+            "damage": 786238,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
                 {
-                    "name": "Gladiator's Badge",
-                    "spellId": 345228,
+                    "name": "Judgment",
+                    "spellId": 275779,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Toll",
-                    "spellId": 375576,
+                    "name": "Avenging Wrath",
+                    "spellId": 31884,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Empyrean Hammer",
-                    "spellId": 431398,
+                    "name": "Blessed Hammer",
+                    "spellId": 204019,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Empyrean Hammer",
-                    "spellId": 431398,
+                    "name": "Consecration",
+                    "spellId": 26573,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield of Virtue",
+                    "spellId": 215652,
+                    "isCc": true,
                     "isRepeat": false
                 },
                 {
@@ -342,60 +504,6 @@
                     "spellId": 31935,
                     "isCc": true,
                     "isRepeat": false
-                },
-                {
-                    "name": "Shield of the Righteous",
-                    "spellId": 53600,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Hammer of Wrath",
-                    "spellId": 1241413,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blessed Hammer",
-                    "spellId": 204019,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Blessed Hammer",
-                    "spellId": 204019,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shield of the Righteous",
-                    "spellId": 53600,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Hammer of Wrath",
-                    "spellId": 1241413,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blessed Hammer",
-                    "spellId": 204019,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blessed Hammer",
-                    "spellId": 204019,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Hammer of Wrath",
-                    "spellId": 1241413,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Divine Steed",
@@ -404,6 +512,42 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shield of the Righteous",
+                    "spellId": 53600,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Toll",
+                    "spellId": 375576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shield of the Righteous",
+                    "spellId": 53600,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Consecration",
+                    "spellId": 26573,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
@@ -414,6 +558,12 @@
                     "spellId": 204019,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Blessing of Freedom",
+                    "spellId": 1044,
+                    "isCc": false,
+                    "isRepeat": false
                 },
                 {
                     "name": "Avenger's Shield",
@@ -440,15 +590,15 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Shield of the Righteous",
-                    "spellId": 53600,
+                    "name": "Consecration",
+                    "spellId": 26573,
                     "isCc": false,
                     "isRepeat": true
                 }
             ]
         },
         "30": {
-            "damage": 798567,
+            "damage": 866212,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
@@ -641,5 +791,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-25T05:28:42+00:00"
+    "generated_at": "2026-08-27T07:12:24+00:00"
 }

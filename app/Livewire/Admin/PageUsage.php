@@ -37,6 +37,39 @@ class PageUsage extends Component
         'top_damage_rotations' => 'Burst Windows',
     ];
 
+    /**
+     * WoW Comps tab keys (the `page_view_events.slot` value on a 'wow_comps_tab' row, written
+     * by TrackController::wowCompsTab()) => display label. Deliberately NOT a PAGES entry:
+     * 'wow_comps_tab' isn't a standalone page, and folding it into PAGES would make the
+     * summary / top-classes / top-specs loops all render empty rows for it (those rows carry
+     * no class_id/spec_id). Surfaced instead by getTabBreakdownProperty() + its own blade
+     * section, the same way getSlotBreakdownProperty() is a WowComps-specific extra outside
+     * the PAGES loop.
+     */
+    private const WOW_COMPS_TAB_LABELS = [
+        'offensive' => 'Offensive Cooldowns',
+        'defensive' => 'Defensive Cooldowns',
+        'synergies' => 'Crowd Control',
+        'pvptalents' => 'PvP Talents',
+        'active' => 'Active Abilities',
+        'passive' => 'Buffs & Passives',
+        'rotation' => 'Burst Window',
+    ];
+
+    /**
+     * WoW Comps "Common picks" preset keys (the `page_view_events.slot` value on a
+     * 'wow_comps_preset' row, written by WowComps::applyPreset()) => display label. Same
+     * not-a-PAGES-entry reasoning as WOW_COMPS_TAB_LABELS above — surfaced by
+     * getPresetBreakdownProperty() + its own blade section. A preset click also logs the
+     * normal per-slot attributed rows, so it already shows up in top classes/specs/slot
+     * breakdown; this is the extra "which preset" dimension.
+     */
+    private const WOW_COMPS_PRESET_LABELS = [
+        'rmp' => 'RMP',
+        'jungle' => 'Jungle',
+        'turbo' => 'Turbo Cleave',
+    ];
+
     public function getSummaryProperty(): array
     {
         return collect(array_keys(self::PAGES))->mapWithKeys(function (string $page) {
@@ -110,14 +143,63 @@ class PageUsage extends Component
             ]);
     }
 
+    /**
+     * WoW Comps only — how often each tab in the (Alpine-only, non-round-tripping) tab bar is
+     * opened, from the fire-and-forget beacon in wow-comps.blade.php's selectTab(). Counts an
+     * actual switch INTO a tab, not re-clicks of the already-active one (selectTab() no-ops
+     * those) and not the default tab landed on at page load.
+     */
+    public function getTabBreakdownProperty(): Collection
+    {
+        $labels = self::WOW_COMPS_TAB_LABELS;
+
+        return PageViewEvent::query()
+            ->selectRaw('slot as tab, count(*) as count')
+            ->where('page', 'wow_comps_tab')
+            ->whereNotNull('slot')
+            ->groupBy('slot')
+            ->orderByDesc('count')
+            ->get()
+            ->map(fn ($row) => (object) [
+                'tab'   => $row->tab,
+                'label' => $labels[$row->tab] ?? $row->tab,
+                'count' => (int) $row->count,
+            ]);
+    }
+
+    /**
+     * WoW Comps only — how often each "Common picks" preset button is used, from the
+     * 'wow_comps_preset' row WowComps::applyPreset() logs alongside the normal per-slot
+     * attributed rows.
+     */
+    public function getPresetBreakdownProperty(): Collection
+    {
+        $labels = self::WOW_COMPS_PRESET_LABELS;
+
+        return PageViewEvent::query()
+            ->selectRaw('slot as preset, count(*) as count')
+            ->where('page', 'wow_comps_preset')
+            ->whereNotNull('slot')
+            ->groupBy('slot')
+            ->orderByDesc('count')
+            ->get()
+            ->map(fn ($row) => (object) [
+                'preset' => $row->preset,
+                'label'  => $labels[$row->preset] ?? $row->preset,
+                'count'  => (int) $row->count,
+            ]);
+    }
+
     public function render()
     {
         return view('livewire.admin.page-usage', [
-            'pages'         => self::PAGES,
-            'summary'       => $this->summary,
-            'topClasses'    => $this->topClasses,
-            'topSpecs'      => $this->topSpecs,
-            'slotBreakdown' => $this->slotBreakdown,
+            'pages'           => self::PAGES,
+            'summary'         => $this->summary,
+            'topClasses'      => $this->topClasses,
+            'topSpecs'        => $this->topSpecs,
+            'slotBreakdown'   => $this->slotBreakdown,
+            'tabBreakdown'    => $this->tabBreakdown,
+            'presetBreakdown' => $this->presetBreakdown,
         ])->layout('layouts.app');
     }
 }

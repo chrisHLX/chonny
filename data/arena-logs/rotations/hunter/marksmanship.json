@@ -1,22 +1,22 @@
 {
     "class": "hunter",
     "spec": "marksmanship",
-    "windows": 458,
-    "killWindows": 64,
-    "matches": 84,
+    "windows": 477,
+    "killWindows": 84,
+    "matches": 105,
     "anchors": [
         "Black Arrow",
         "Explosive Shot",
         "Kill Shot",
         "Rapid Fire",
-        "Roar of Sacrifice",
         "Trueshot",
-        "Volley"
+        "Volley",
+        "Wailing Arrow"
     ],
     "majorAnchors": [
-        "Roar of Sacrifice",
         "Trueshot",
-        "Volley"
+        "Volley",
+        "Wailing Arrow"
     ],
     "topDpsWindow": {
         "damage": 1422483,
@@ -106,7 +106,7 @@
             ]
         },
         "10": {
-            "damage": 1104950,
+            "damage": 1112004,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
@@ -313,7 +313,7 @@
             ]
         },
         "30": {
-            "damage": 2422656,
+            "damage": 2433572,
             "durationSeconds": 30,
             "killed": true,
             "steps": [
@@ -440,6 +440,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:09:38+00:00"
 }

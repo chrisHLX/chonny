@@ -4,10 +4,71 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ config('app.name', 'Mindcollector') }}</title>
-        <link rel="canonical" href="https://mindcollector.com/">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="alternate icon" href="/favicon.ico">
+
+        {{-- SEO / social. A page sets its own copy via ->layout('layouts.app', ['title' => ..., 'description' => ...]);
+             everything else falls back to the site-wide defaults below. Canonical is per-URL
+             (was previously hard-pinned to the homepage on every page, which told Google every
+             page was a duplicate of "/"). --}}
+        @php
+            $seoTitle = trim($title ?? '') !== ''
+                ? $title
+                : 'MindCollector — WoW Arena PvP: Comps, Burst Windows & Spell Data';
+            $seoDescription = trim($description ?? '') !== ''
+                ? $description
+                : 'Build 3v3 arena comps and compare full spell kits side by side — crowd-control chains, burst windows, cooldowns, PvP talents and talent-aware spell data for every class and spec.';
+            $seoImage = url($ogImage ?? '/android-chrome-512x512.png');
+            $seoCanonical = url()->to(request()->getPathInfo());
+
+            $structuredData = [
+                '@context' => 'https://schema.org',
+                '@graph' => [
+                    [
+                        '@type' => 'Organization',
+                        'name' => 'MindCollector',
+                        'url' => 'https://mindcollector.com/',
+                        'logo' => 'https://mindcollector.com/android-chrome-512x512.png',
+                    ],
+                    [
+                        '@type' => 'WebSite',
+                        'name' => 'MindCollector',
+                        'url' => 'https://mindcollector.com/',
+                        'description' => 'WoW arena PvP comp builder, burst-window analysis and talent-aware spell data.',
+                    ],
+                    [
+                        '@type' => 'ItemList',
+                        'name' => 'MindCollector sections',
+                        'itemListElement' => [
+                            ['@type' => 'SiteNavigationElement', 'position' => 1, 'name' => '3v3 Comp Builder', 'url' => 'https://mindcollector.com/wow-comps'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 2, 'name' => 'Spell Explorer', 'url' => 'https://mindcollector.com/spells'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 3, 'name' => 'Burst Windows', 'url' => 'https://mindcollector.com/top-damage-rotations'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 4, 'name' => 'PvP Diagnostic', 'url' => 'https://mindcollector.com/diagnostic'],
+                        ],
+                    ],
+                ],
+            ];
+        @endphp
+        <title>{{ $seoTitle }}</title>
+        <meta name="description" content="{{ $seoDescription }}">
+        <link rel="canonical" href="{{ $seoCanonical }}">
+
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="MindCollector">
+        <meta property="og:title" content="{{ $seoTitle }}">
+        <meta property="og:description" content="{{ $seoDescription }}">
+        <meta property="og:url" content="{{ $seoCanonical }}">
+        <meta property="og:image" content="{{ $seoImage }}">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{ $seoTitle }}">
+        <meta name="twitter:description" content="{{ $seoDescription }}">
+        <meta name="twitter:image" content="{{ $seoImage }}">
+
+        <script type="application/ld+json">{!! json_encode($structuredData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="manifest" href="/site.webmanifest">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>

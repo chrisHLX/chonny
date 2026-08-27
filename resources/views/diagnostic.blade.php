@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnostic Quiz — MindCollector</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="alternate icon" href="/favicon.ico">
+    <title>PvP Diagnostic — Find Your Weak Spots | MindCollector</title>
+    <meta name="description" content="A short diagnostic that profiles how you play — WoW arena, League, StarCraft II or poker — then points you at the concepts worth training next.">
+    <link rel="canonical" href="https://mindcollector.com/diagnostic">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MindCollector">
+    <meta property="og:title" content="PvP Diagnostic — Find Your Weak Spots | MindCollector">
+    <meta property="og:description" content="A short diagnostic that profiles how you play, then points you at the concepts worth training next.">
+    <meta property="og:url" content="https://mindcollector.com/diagnostic">
+    <meta property="og:image" content="https://mindcollector.com/android-chrome-512x512.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-surface-0 text-ink min-h-screen flex flex-col">

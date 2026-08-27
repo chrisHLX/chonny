@@ -1,9 +1,9 @@
 {
     "class": "evoker",
     "spec": "devastation",
-    "windows": 67,
-    "killWindows": 2,
-    "matches": 15,
+    "windows": 111,
+    "killWindows": 5,
+    "matches": 25,
     "anchors": [
         "Deep Breath",
         "Emerald Blossom",
@@ -58,10 +58,22 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 728845,
+            "damage": 846309,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Azure Sweep",
+                    "spellId": 1265872,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Eternity Surge",
                     "spellId": 359073,
@@ -69,16 +81,10 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Hover",
-                    "spellId": 358267,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Disintegrate",
@@ -89,19 +95,25 @@
             ]
         },
         "10": {
-            "damage": 1153662,
+            "damage": 1155792,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
                 {
-                    "name": "Deep Breath",
-                    "spellId": 433874,
+                    "name": "Disintegrate",
+                    "spellId": 356995,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Unbound Flame",
+                    "spellId": 1292321,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -118,10 +130,28 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Disintegrate",
-                    "spellId": 356995,
+                    "name": "Deep Breath",
+                    "spellId": 433874,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Unbound Flame",
+                    "spellId": 1292321,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Obsidian Scales",
+                    "spellId": 363916,
+                    "isCc": false,
+                    "isRepeat": false
                 },
                 {
                     "name": "Disintegrate",
@@ -363,6 +393,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:09:04+00:00"
 }

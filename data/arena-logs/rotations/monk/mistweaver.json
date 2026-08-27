@@ -1,11 +1,12 @@
 {
     "class": "monk",
     "spec": "mistweaver",
-    "windows": 29,
-    "killWindows": 13,
-    "matches": 97,
+    "windows": 35,
+    "killWindows": 16,
+    "matches": 118,
     "anchors": [
         "Celestial Conduit",
+        "Rising Sun Kick",
         "Rushing Wind Kick",
         "Touch of Death"
     ],
@@ -14,19 +15,31 @@
         "Touch of Death"
     ],
     "topDpsWindow": {
-        "damage": 612509,
+        "damage": 627660,
         "durationSeconds": 12,
         "killed": true,
         "steps": [
             {
-                "name": "Soothing Mist",
-                "spellId": 115175,
+                "name": "Fortifying Brew",
+                "spellId": 115203,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Enveloping Mist",
-                "spellId": 124682,
+                "name": "Rushing Wind Kick",
+                "spellId": 467307,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Sheilun's Gift",
+                "spellId": 399491,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Chi Torpedo",
+                "spellId": 115008,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -40,25 +53,13 @@
                 "name": "Rushing Wind Kick",
                 "spellId": 467307,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": true
             },
             {
                 "name": "Rushing Wind Kick",
                 "spellId": 467307,
                 "isCc": false,
                 "isRepeat": true
-            },
-            {
-                "name": "Paralysis",
-                "spellId": 115078,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Song of Chi-Ji",
-                "spellId": 198898,
-                "isCc": true,
-                "isRepeat": false
             },
             {
                 "name": "Touch of Death",
@@ -70,7 +71,7 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 576528,
+            "damage": 600266,
             "durationSeconds": 6,
             "killed": true,
             "steps": [
@@ -95,10 +96,28 @@
             ]
         },
         "10": {
-            "damage": 612509,
+            "damage": 627660,
             "durationSeconds": 10,
             "killed": true,
             "steps": [
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sheilun's Gift",
+                    "spellId": 399491,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chi Torpedo",
+                    "spellId": 115008,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Thunder Focus Tea",
                     "spellId": 116680,
@@ -109,25 +128,13 @@
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Paralysis",
-                    "spellId": 115078,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Song of Chi-Ji",
-                    "spellId": 198898,
-                    "isCc": true,
-                    "isRepeat": false
                 },
                 {
                     "name": "Touch of Death",
@@ -138,10 +145,198 @@
             ]
         },
         "12": {
-            "damage": 612509,
+            "damage": 627660,
             "durationSeconds": 12,
             "killed": true,
             "steps": [
+                {
+                    "name": "Fortifying Brew",
+                    "spellId": 115203,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sheilun's Gift",
+                    "spellId": 399491,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chi Torpedo",
+                    "spellId": 115008,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thunder Focus Tea",
+                    "spellId": 116680,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Touch of Death",
+                    "spellId": 322109,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "20": {
+            "damage": 740046,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Tiger's Lust",
+                    "spellId": 116841,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ring of Peace",
+                    "spellId": 116844,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Spinning Crane Kick",
+                    "spellId": 101546,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Spinning Crane Kick",
+                    "spellId": 101546,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Renewing Mist",
+                    "spellId": 115151,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mana Tea",
+                    "spellId": 115294,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Celestial Conduit",
+                    "spellId": 443028,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Spinning Crane Kick",
+                    "spellId": 101546,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thunder Focus Tea",
+                    "spellId": 116680,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 962894,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Leg Sweep",
+                    "spellId": 119381,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thunder Focus Tea",
+                    "spellId": 116680,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Spinning Crane Kick",
+                    "spellId": 101546,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mana Tea",
+                    "spellId": 115294,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Renewing Mist",
+                    "spellId": 115151,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Soothing Mist",
                     "spellId": 115175,
@@ -155,16 +350,34 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Thunder Focus Tea",
-                    "spellId": 116680,
+                    "name": "Spinning Crane Kick",
+                    "spellId": 101546,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tiger's Lust",
+                    "spellId": 116841,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Rushing Wind Kick",
-                    "spellId": 467307,
-                    "isCc": false,
+                    "name": "Ring of Peace",
+                    "spellId": 116844,
+                    "isCc": true,
                     "isRepeat": false
+                },
+                {
+                    "name": "Spinning Crane Kick",
+                    "spellId": 101546,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Spinning Crane Kick",
+                    "spellId": 101546,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Rushing Wind Kick",
@@ -173,59 +386,16 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Paralysis",
-                    "spellId": 115078,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Song of Chi-Ji",
-                    "spellId": 198898,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Touch of Death",
-                    "spellId": 322109,
-                    "isCc": false,
-                    "isRepeat": false
-                }
-            ]
-        },
-        "20": {
-            "damage": 672948,
-            "durationSeconds": 20,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Blackout Kick",
-                    "spellId": 100784,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Thunder Focus Tea",
-                    "spellId": 116680,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rushing Wind Kick",
-                    "spellId": 467307,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rushing Wind Kick",
-                    "spellId": 467307,
+                    "name": "Renewing Mist",
+                    "spellId": 115151,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
+                    "name": "Mana Tea",
+                    "spellId": 115294,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Celestial Conduit",
@@ -234,40 +404,16 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Renewing Mist",
-                    "spellId": 115151,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Renewing Mist",
-                    "spellId": 115151,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Spinning Crane Kick",
-                    "spellId": 101546,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Spinning Crane Kick",
-                    "spellId": 101546,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Leg Sweep",
-                    "spellId": 119381,
-                    "isCc": true,
-                    "isRepeat": false
+                    "name": "Spinning Crane Kick",
+                    "spellId": 101546,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Thunder Focus Tea",
@@ -282,171 +428,13 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Tiger Palm",
-                    "spellId": 100780,
-                    "isCc": false,
-                    "isRepeat": false
-                }
-            ]
-        },
-        "30": {
-            "damage": 791404,
-            "durationSeconds": 30,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Life Cocoon",
-                    "spellId": 116849,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Renewing Mist",
-                    "spellId": 115151,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Spinning Crane Kick",
-                    "spellId": 101546,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rushing Wind Kick",
-                    "spellId": 467307,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Spinning Crane Kick",
-                    "spellId": 101546,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Tiger Palm",
-                    "spellId": 100780,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tiger Palm",
-                    "spellId": 100780,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blackout Kick",
-                    "spellId": 100784,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Thunder Focus Tea",
-                    "spellId": 116680,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Rushing Wind Kick",
-                    "spellId": 467307,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Celestial Conduit",
-                    "spellId": 443028,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Renewing Mist",
-                    "spellId": 115151,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Renewing Mist",
-                    "spellId": 115151,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Spinning Crane Kick",
-                    "spellId": 101546,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Spinning Crane Kick",
-                    "spellId": 101546,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rushing Wind Kick",
-                    "spellId": 467307,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Leg Sweep",
-                    "spellId": 119381,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Thunder Focus Tea",
-                    "spellId": 116680,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rushing Wind Kick",
-                    "spellId": 467307,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Tiger Palm",
-                    "spellId": 100780,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Roll",
-                    "spellId": 109132,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Spinning Crane Kick",
-                    "spellId": 101546,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Detox",
-                    "spellId": 115450,
-                    "isCc": false,
-                    "isRepeat": false
                 }
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:11:47+00:00"
 }

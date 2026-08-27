@@ -76,6 +76,60 @@
             @endforeach
         </div>
 
+        {{-- ── WoW Comps: tab usage ── --}}
+        <div class="linear-card overflow-hidden">
+            <div class="px-5 py-4 border-b border-line">
+                <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider">WoW Comps — tab opens</p>
+                <p class="text-[11px] text-ink-subtle mt-0.5">Counts a switch into a tab (not the default tab on load, not re-clicks of the current one).</p>
+            </div>
+
+            @if($tabBreakdown->isEmpty())
+                <p class="px-5 py-8 text-center text-[13px] text-ink-subtle">No tab opens recorded yet.</p>
+            @else
+                @php $tabMax = $tabBreakdown->max('count') ?: 1; @endphp
+                <div class="divide-y divide-line">
+                    @foreach($tabBreakdown as $row)
+                        <div class="px-5 py-3">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <p class="text-[13px] text-ink">{{ $row->label }}</p>
+                                <p class="text-[12px] text-ink-muted">{{ number_format($row->count) }}</p>
+                            </div>
+                            <div class="h-1.5 rounded-full bg-surface-2 overflow-hidden">
+                                <div class="h-full rounded-full bg-accent" style="width: {{ round(($row->count / $tabMax) * 100) }}%"></div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+
+        {{-- ── WoW Comps: "Common picks" preset usage ── --}}
+        <div class="linear-card overflow-hidden">
+            <div class="px-5 py-4 border-b border-line">
+                <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider">WoW Comps — preset picks</p>
+                <p class="text-[11px] text-ink-subtle mt-0.5">How often each "Common picks" starter comp is loaded. Each also counts toward the class/spec/slot breakdowns above.</p>
+            </div>
+
+            @if($presetBreakdown->isEmpty())
+                <p class="px-5 py-8 text-center text-[13px] text-ink-subtle">No preset picks recorded yet.</p>
+            @else
+                @php $presetMax = $presetBreakdown->max('count') ?: 1; @endphp
+                <div class="divide-y divide-line">
+                    @foreach($presetBreakdown as $row)
+                        <div class="px-5 py-3">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <p class="text-[13px] text-ink">{{ $row->label }}</p>
+                                <p class="text-[12px] text-ink-muted">{{ number_format($row->count) }}</p>
+                            </div>
+                            <div class="h-1.5 rounded-full bg-surface-2 overflow-hidden">
+                                <div class="h-full rounded-full bg-accent" style="width: {{ round(($row->count / $presetMax) * 100) }}%"></div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+
         {{-- ── WoW Comps: popularity by slot role ── --}}
         <div class="linear-card overflow-hidden">
             <div class="px-5 py-4 border-b border-line">

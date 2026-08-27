@@ -1,29 +1,68 @@
 {
     "class": "deathknight",
     "spec": "unholy",
-    "windows": 372,
-    "killWindows": 62,
-    "matches": 94,
+    "windows": 471,
+    "killWindows": 76,
+    "matches": 118,
     "anchors": [
         "Army of the Dead",
         "Dark Transformation",
         "Death and Decay",
         "Fire Blast",
+        "Meteor",
         "Putrefy",
+        "Pyroblast",
         "Soul Reaper"
     ],
     "majorAnchors": [
         "Army of the Dead",
-        "Dark Transformation"
+        "Dark Transformation",
+        "Meteor"
     ],
     "topDpsWindow": {
-        "damage": 1359981,
+        "damage": 1770205,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
             {
-                "name": "Putrefy",
-                "spellId": 1247378,
+                "name": "Necrotic Coil",
+                "spellId": 1242174,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Necrotic Coil",
+                "spellId": 1242174,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Festering Scythe",
+                "spellId": 458128,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Scourge Strike",
+                "spellId": 55090,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Anti-Magic Zone",
+                "spellId": 51052,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Death Pact",
+                "spellId": 48743,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Death Grip",
+                "spellId": 49576,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -34,26 +73,14 @@
                 "isRepeat": false
             },
             {
-                "name": "Necrotic Coil",
-                "spellId": 1242174,
+                "name": "Festering Strike",
+                "spellId": 85948,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Strangulate",
-                "spellId": 47476,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Putrefy",
-                "spellId": 1247378,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Scourge Strike",
-                "spellId": 55090,
+                "name": "Mind Freeze",
+                "spellId": 47528,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -64,20 +91,14 @@
                 "isRepeat": true
             },
             {
-                "name": "Scourge Strike",
-                "spellId": 55090,
+                "name": "Necrotic Coil",
+                "spellId": 1242174,
                 "isCc": false,
                 "isRepeat": true
             },
             {
-                "name": "Scourge Strike",
-                "spellId": 55090,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Scourge Strike",
-                "spellId": 55090,
+                "name": "Festering Scythe",
+                "spellId": 458128,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -86,24 +107,30 @@
                 "spellId": 1242174,
                 "isCc": false,
                 "isRepeat": true
-            },
-            {
-                "name": "Outbreak",
-                "spellId": 77575,
-                "isCc": false,
-                "isRepeat": false
             }
         ]
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 833166,
+            "damage": 1080535,
             "durationSeconds": 6,
-            "killed": true,
+            "killed": false,
             "steps": [
                 {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
+                    "name": "Soul Reaper",
+                    "spellId": 343294,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Festering Strike",
+                    "spellId": 85948,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mind Freeze",
+                    "spellId": 47528,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -114,8 +141,14 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Soul Reaper",
-                    "spellId": 343294,
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Festering Scythe",
+                    "spellId": 458128,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -128,7 +161,7 @@
             ]
         },
         "10": {
-            "damage": 1294167,
+            "damage": 1568640,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
@@ -195,13 +228,49 @@
             ]
         },
         "12": {
-            "damage": 1359981,
+            "damage": 1770205,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
                 {
-                    "name": "Putrefy",
-                    "spellId": 1247378,
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Festering Scythe",
+                    "spellId": 458128,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Anti-Magic Zone",
+                    "spellId": 51052,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Pact",
+                    "spellId": 48743,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Grip",
+                    "spellId": 49576,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -212,26 +281,14 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
+                    "name": "Festering Strike",
+                    "spellId": 85948,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Strangulate",
-                    "spellId": 47476,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Putrefy",
-                    "spellId": 1247378,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
+                    "name": "Mind Freeze",
+                    "spellId": 47528,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -242,20 +299,14 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
+                    "name": "Festering Scythe",
+                    "spellId": 458128,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -264,35 +315,35 @@
                     "spellId": 1242174,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Outbreak",
-                    "spellId": 77575,
-                    "isCc": false,
-                    "isRepeat": false
                 }
             ]
         },
         "20": {
-            "damage": 1977873,
+            "damage": 2441976,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
                 {
-                    "name": "Putrefy",
-                    "spellId": 1247378,
+                    "name": "Death Coil",
+                    "spellId": 47541,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Strangulate",
-                    "spellId": 47476,
-                    "isCc": true,
+                    "name": "Dark Transformation",
+                    "spellId": 1233448,
+                    "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Death Charge",
-                    "spellId": 444347,
+                    "name": "Army of the Dead",
+                    "spellId": 42650,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Putrefy",
+                    "spellId": 1247378,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -303,8 +354,26 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Death and Decay",
-                    "spellId": 43265,
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Asphyxiate",
+                    "spellId": 221562,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Dark Simulacrum",
+                    "spellId": 77606,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Festering Strike",
+                    "spellId": 85948,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -313,6 +382,42 @@
                     "spellId": 1242174,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Festering Scythe",
+                    "spellId": 458128,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Anti-Magic Zone",
+                    "spellId": 51052,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Pact",
+                    "spellId": 48743,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Grip",
+                    "spellId": 49576,
+                    "isCc": false,
+                    "isRepeat": false
                 },
                 {
                     "name": "Soul Reaper",
@@ -321,8 +426,14 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Lichborne",
-                    "spellId": 49039,
+                    "name": "Festering Strike",
+                    "spellId": 85948,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Freeze",
+                    "spellId": 47528,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -339,32 +450,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Putrefy",
-                    "spellId": 1247378,
+                    "name": "Festering Scythe",
+                    "spellId": 458128,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -375,27 +462,15 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Chains of Ice",
-                    "spellId": 45524,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
+                    "name": "Festering Strike",
+                    "spellId": 85948,
                     "isCc": false,
                     "isRepeat": true
                 }
             ]
         },
         "30": {
-            "damage": 2569964,
+            "damage": 3204141,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
@@ -540,6 +615,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-27T07:06:57+00:00"
 }

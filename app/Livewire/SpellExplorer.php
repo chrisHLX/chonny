@@ -330,6 +330,9 @@ class SpellExplorer extends Component
             'specializations' => $this->specializations,
             'classSpecs' => $this->classSpecs,
             'usingPersonalBuild' => $this->usingPersonalBuild,
-        ])->layout('layouts.app');
+        ])->layout('layouts.app', [
+            'title' => 'WoW Spell Explorer — Talent-Aware Cooldowns & Modifiers | MindCollector',
+            'description' => 'Browse any WoW class/spec\'s full spell kit with talent-aware cooldowns, charges, crowd-control categories and every talent that modifies each ability.',
+        ]);
     }
 }

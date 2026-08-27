@@ -34,7 +34,17 @@ class RecordKillSequences extends Command
         if ($this->option('matchId')) {
             $matchIds = [$this->option('matchId')];
         } elseif ($this->option('all')) {
-            $matchIds = array_map(fn ($f) => basename($f, '.log.gz'), glob(config('arena_logs.archive_path').'/raw/*.log.gz'));
+            // Checks both the archive's flat top-level raw/ and season-current/raw/ — see
+            // ArenaLogService::rawLogPath()'s docblock (2026-08-27) for why season-current
+            // needed a fallback at all; this is the matching fix at the match-*discovery* stage,
+            // without which this loop would never even attempt a season-current-only match.
+            $matchIds = [];
+            foreach ([config('arena_logs.archive_path').'/raw', config('arena_logs.archive_path').'/season-current/raw'] as $rawDir) {
+                foreach (glob("{$rawDir}/*.log.gz") as $f) {
+                    $matchIds[] = basename($f, '.log.gz');
+                }
+            }
+            $matchIds = array_unique($matchIds);
         } else {
             $this->error('Pass --matchId=<id> or --all.');
 

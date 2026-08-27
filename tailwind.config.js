@@ -12,7 +12,12 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
-                display: ['Playfair Display', ...defaultTheme.fontFamily.serif],
+                // Headings: Archivo Black — heavy, squared grotesque for a strong
+                // poster-style headline. 'Archivo' (600–900) is the fallback for
+                // weights below black / before the webfont loads. Tracking is
+                // tightened slightly in `.font-display` (resources/css/app.css).
+                // Was Playfair Display.
+                display: ['Archivo Black', 'Archivo', 'Inter', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 // Surfaces — deeper blue-blacks from the MindCollector palette
