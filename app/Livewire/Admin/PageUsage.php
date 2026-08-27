@@ -65,7 +65,7 @@ class PageUsage extends Component
      * breakdown; this is the extra "which preset" dimension.
      */
     private const WOW_COMPS_PRESET_LABELS = [
-        'rmp' => 'RMP',
+        'rmp' => 'RMD',
         'jungle' => 'Jungle',
         'turbo' => 'Turbo Cleave',
     ];

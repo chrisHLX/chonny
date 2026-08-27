@@ -98,7 +98,7 @@ class WowComps extends Component
      */
     private const PRESET_COMPS = [
         'rmp' => [
-            'label' => 'RMP',
+            'label' => 'RMD',
             'slots' => [
                 0 => ['druid', 'restoration'],
                 1 => ['rogue', 'subtlety'],
