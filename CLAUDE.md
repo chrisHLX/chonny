@@ -2269,6 +2269,10 @@ Full test suite: same 12 pre-existing, unrelated failures, zero new regressions.
 
 **Verified end-to-end, not just unit-level:** re-ran `all-spec-rotations.php` for all 38 specs (fresh `matchId`/`guid` on every window), promoted into chonny, ran the enrichment command (38/38 enriched — a few individual length brackets on Hunter/Beast Mastery had a match no longer on local disk and were correctly left unresolved rather than guessed), and confirmed a real result end-to-end: Subtlety Rogue's real archived build resolves to a sensible, real PvP talent set (Smoke Bomb, Preemptive Maneuver, Dismantle — exactly 3, not 4) and 75 real PvE talents. Full test suite: same 12 pre-existing, unrelated failures, zero new regressions.
 
+## Playstyle Analysis — per-player talent-usage read (added 2026-08-28 — see `app/Http/Services/playstyle-analysis.md`)
+
+The player-level counterpart to the spec-level `BurstWindowTalents` work above: given one real archived match, decode a player's build and tie **every talent to what it actually did that match**, with a verdict (`used` / `UNUSED` / `DEAD MODIFIER` / `NO PROC SEEN` / `passive`). `App\Http\Services\PlayerMatchAnalysisService` + `wow:analyze-player {matchId} {player}` for one match; `wow:analyze-spec-playstyle {class} {spec}` runs it over the N highest-rated archived matches for a spec and writes `data/arena-logs/playstyle/{class}/{spec}.json` (per-match analyses + a `talentSummary` took/used/flagged roll-up — the "is this a real core pick or a common mispick" signal). Reuses `ArenaLogService::resolveCombatantTalents()` for the build decode. Handles locale-translated (zh-CN) logs by resolving every observed spell_id → English `spells.name` before matching, and recognises weapon imbues (applied pre-log, never cast). The full pipeline, the linkage rules, the JSON shape, and the known gaps (raw cast counts include proc-riders; broad-modifier collapse is a heuristic; some CHOICE nodes look permanently dead sample-wide) are all in `playstyle-analysis.md` next to the service. Feeds the not-yet-built Class Guide page.
+
 ### Ornament Components
 
 **`<x-ornament.corner position="tl|tr|bl|br" class="..."/>`**
