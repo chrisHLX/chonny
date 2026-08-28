@@ -667,9 +667,14 @@ class TalentSelectionService
      */
     /**
      * Root-caused 2026-08-10 from a real report: swapping one talent in the player-facing
-     * picker (WowComps/SpellExplorer's `<livewire:talent-selector layout="grid">`, mounted
-     * without isDefaultEditor — distinct from /admin/talent-builds) on a spec the viewer had
-     * never personalized before made almost every other spell vanish from the page. Root cause
+     * picker — at the time, WowComps/SpellExplorer each mounted their own
+     * `<livewire:talent-selector layout="grid">` inline, without isDefaultEditor (distinct
+     * from /admin/talent-builds); that inline picker has SINCE been removed from both pages —
+     * confirmed 2026-08-29, neither blade file references talent-selector anymore. The bug
+     * this method fixes is unrelated to that removal and still applies to any non-admin
+     * consumer of getOrCreateUserBuild() (currently none live, but the fix stays defensive
+     * rather than assuming one will never return). On a spec the viewer had never personalized
+     * before, the bug made almost every other spell vanish from the page. Root cause
      * was NOT lost/dropped clicks — it was this method: the first click on that picker calls
      * this, which (before this fix) created a brand-new, completely EMPTY personal build via
      * plain firstOrCreate() — and resolveActiveBuild() always prefers an existing personal
