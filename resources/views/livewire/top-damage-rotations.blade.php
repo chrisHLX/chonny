@@ -32,7 +32,7 @@
     ];
 @endphp
 
-<div class="max-w-5xl mx-auto px-4 py-8 space-y-5" x-data="{ classPickerOpen: false, pendingSpec: false }">
+<div class="max-w-5xl mx-auto px-4 py-8 space-y-5" x-data="{ classPickerOpen: false, pendingSpec: false, talentModalOpen: false }">
     <div class="linear-card px-6 py-5">
         <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">Burst Windows</p>
         <h1 class="font-display text-[26px] font-bold text-ink leading-tight mt-0.5">{{ $pageTitle }}</h1>
@@ -229,7 +229,11 @@
                     }
                 }
             @endphp
-            <div class="linear-card p-5" x-data="{ talentModalOpen: false }">
+            {{-- `talentModalOpen` lives on the page-level x-data (top of file), NOT here — the
+                 Copy-as-Text modal below is a sibling of this card, not a child, so a nested
+                 scope here would leave that modal bound to an undefined variable (a blurred,
+                 click-eating overlay nothing could dismiss). --}}
+            <div class="linear-card p-5">
                 <div class="flex items-baseline justify-between gap-3 mb-3 flex-wrap">
                     <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">Talent Build Used</p>
                     <div class="flex items-center gap-2">
