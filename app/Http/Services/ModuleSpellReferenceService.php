@@ -850,6 +850,26 @@ class ModuleSpellReferenceService
      */
     private function categorizeFromOwnEffects(Spell $spell): ?string
     {
+        // Curated, verified columns outrank any effect-string inference (added 2026-08-28 after
+        // a full RMP-spell audit found categorize() never consulted them). dr_category is
+        // hand-curated per spell (cc-synergies-overrides.txt) — a spell that has one IS crowd
+        // control no matter what incidental damage/other effects it also carries. Real misfires
+        // this fixes: Dragon's Breath (School Damage + Disorient) read as Offensive; Dismantle
+        // (Disarm — its own effects are just a Dummy) read as Other.
+        //
+        // 'Slow' is deliberately excluded: it's the softest DR category (a snare, not hard CC),
+        // and several damage nukes carry a slow/root-on-impact rider whose point is still the
+        // damage — Glacial Spike is Offensive, not Crowd Control. Same judgment
+        // MECHANIC_CATEGORY_MAP already applies to 'Snare'/'Knockback' mechanics. A pure slow
+        // with no damage signal falls through to the effect check below.
+        if ($spell->dr_category !== null && $spell->dr_category !== 'Slow') {
+            return 'Crowd Control';
+        }
+
+        if ($spell->is_interrupt) {
+            return 'Utility';
+        }
+
         if ($spell->mechanic !== null && isset(self::MECHANIC_CATEGORY_MAP[$spell->mechanic])) {
             return self::MECHANIC_CATEGORY_MAP[$spell->mechanic];
         }
@@ -952,11 +972,33 @@ class ModuleSpellReferenceService
 
         $joined = $meaningfulTypes->implode(' | ');
 
+        // Reworked 2026-08-28 from an ordered first-match `match` to explicit signal detection.
+        // The old order tested CC-string, then Defensive, then Utility, all BEFORE Offensive, so
+        // any hybrid spell whose point is damage but which also carried a small heal / threat-drop
+        // / resource gain / stun-on-impact rider got mislabelled: Penance & Ultimate Penitence ->
+        // Defensive (incidental heal effect); Shadow Dance -> Utility (a "Spell Direct Amount +%"
+        // damage amp lost to an incidental Threat Reduction); Vanish -> Offensive (an incidental
+        // combo-point Energize); Metamorphosis / Heroic Leap -> Crowd Control (a stun-on-landing
+        // sibling effect). Now: real damage output or an unambiguous damage amp wins over every
+        // co-occurring signal — so an uncurated CC-effect string only ever classifies as CC when
+        // the spell isn't primarily a damage press (a real hard-CC spell almost always has a
+        // hand-curated dr_category, which categorizeFromOwnEffects() already resolved above this).
+        // A plain teleport wins over its own incidental mechanic-immunity (Blink/Shimmer/Heroic
+        // Leap). `Energize` and `Threat Reduction`/`Aggro` are dropped entirely — a resource gain
+        // or a threat drop is never itself the point of a cooldown.
+        $dealsDamage = (bool) preg_match('/School Damage|Periodic Damage|Weapon % Damage|Damage Done%/i', $joined);
+        $ampsDamage = (bool) preg_match('/Auto Attack Speed%|Modify All Haste%|Critical Strike%|Critical Bonus|Empower/i', $joined);
+        $hasCcString = (bool) preg_match('/Stun|Fear|Root|Silence|Incapacitate|Disorient|Charm|Polymorph|Freeze|Sleep|Horror|Confuse|Possess|Banish/i', $joined);
+        $isTeleport = (bool) preg_match('/\bLeap\b|Teleport|Jump Charge/i', $joined);
+        $defends = (bool) preg_match('/Damage Taken%|Absorb|Immunity|Sanctuary|Block%|Parry%|Dodge%|Damage Reduction|Direct Heal|Periodic Heal|Heal Max Health%|Modify Armor/i', $joined);
+        $utility = (bool) preg_match('/Dispel|Increase Speed%|Interrupt Cast|Redirect Threat/i', $joined);
+
         return match (true) {
-            (bool) preg_match('/Stun|Fear|Root|Silence|Incapacitate|Disorient|Charm|Polymorph|Freeze|Sleep|Horror/i', $joined) => 'Crowd Control',
-            (bool) preg_match('/Damage Taken%|Absorb|Immunity|Block%|Parry%|Dodge%|Damage Reduction|Direct Heal|Periodic Heal|Heal Max Health%|Modify Armor/i', $joined) => 'Defensive',
-            (bool) preg_match('/Dispel|Increase Speed%|Threat Reduction|Aggro|Interrupt Cast|Redirect Threat/i', $joined) => 'Utility',
-            (bool) preg_match('/School Damage|Damage Done%|Energize|Critical Strike%|Critical Bonus/i', $joined) => 'Offensive',
+            $dealsDamage || $ampsDamage => 'Offensive',
+            $hasCcString => 'Crowd Control',
+            $isTeleport => 'Utility',
+            $defends => 'Defensive',
+            $utility => 'Utility',
             default => 'Other',
         };
     }
