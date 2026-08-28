@@ -68,7 +68,7 @@ class PlayerMatchAnalysisService
 
         $rawNodeCount = $ci ? collect($ci['talents'])->pluck('nodeId')->unique()->count() : 0;
 
-        $log = $this->parseLog($raw, $player['guid']);
+        $log = $this->resolveEnglish($this->parseLog($raw, $player['guid']), $patchId);
         $talentAnalysis = $this->linkTalents($resolved['talents'], $resolved['pvpTalents'], $log, $patchId);
         $buffWeb = $this->buffWeb($log, $resolved['talents'], $patchId);
 
@@ -95,7 +95,40 @@ class PlayerMatchAnalysisService
             ],
             'talentAnalysis' => $talentAnalysis,
             'buffWeb' => $buffWeb,
+            'localeAsciiRatio' => $log['localeAsciiRatio'],
         ];
+    }
+
+    /**
+     * The combat log writes spell names in the *recording client's* locale — a match logged by
+     * a zh-CN player has every cast/aura name in Chinese, which the name-first talent linkage
+     * below can't match against our (always-English) spell data. Fix: resolve every observed
+     * spellId to its English `spells.name` and fold that into the name maps + the seen-name set,
+     * so linkage works off English regardless of who logged the match. Ids that aren't in our
+     * data (periodic-tick / internal spell_ids) keep their raw log name as the only fallback.
+     */
+    private function resolveEnglish(array $log, ?int $patchId): array
+    {
+        $ids = collect($log['casts'])->pluck('spellId')
+            ->merge(collect($log['selfBuffs'])->pluck('spellId'))
+            ->merge(array_keys($log['seenIds']))
+            ->unique()->filter()->values();
+
+        if ($ids->isEmpty()) {
+            return $log;
+        }
+
+        $en = Spell::where('patch_id', $patchId)->whereIn('spell_id', $ids)
+            ->get(['spell_id', 'name'])->pluck('name', 'spell_id');
+
+        $log['casts'] = array_map(fn ($c) => [...$c, 'enName' => $en[$c['spellId']] ?? $c['name']], $log['casts']);
+        $log['selfBuffs'] = array_map(fn ($b) => [...$b, 'enName' => $en[$b['spellId']] ?? $b['name']], $log['selfBuffs']);
+
+        foreach ($en as $name) {
+            $log['seenNames'][mb_strtolower($name)] = true;
+        }
+
+        return $log;
     }
 
     /* ------------------------------------------------------------------ *
@@ -158,6 +191,9 @@ class PlayerMatchAnalysisService
         $interrupts = [];
         $selfBuffs = [];
         $seenNames = [];   // lowercased name of every spell this player was ever the SOURCE of
+        $seenIds = [];     // spellId of same — locale-independent, used alongside names
+        $localeAscii = 0;
+        $localeTotal = 0;
         $open = [];        // spellId => stack of start-times for currently-applied self-auras
         $t0 = null;
         $tLast = 0.0;
@@ -191,6 +227,11 @@ class PlayerMatchAnalysisService
 
             if ($isSource && $spellName !== '' && $spellName !== 'nil') {
                 $seenNames[mb_strtolower($spellName)] = true;
+                if ($spellId > 0) {
+                    $seenIds[$spellId] = true;
+                }
+                $localeTotal++;
+                $localeAscii += (preg_match('/[^\x00-\x7F]/', $spellName) ? 0 : 1);
             }
 
             switch ($event) {
@@ -268,6 +309,8 @@ class PlayerMatchAnalysisService
             'selfBuffs' => collect($selfBuffs)->map(fn ($b) => [...$b, 'uptime' => round($b['uptime'], 1)])
                 ->sortByDesc('uptime')->values()->all(),
             'seenNames' => $seenNames,
+            'seenIds' => $seenIds,
+            'localeAsciiRatio' => $localeTotal > 0 ? round($localeAscii / $localeTotal, 2) : 1.0,
             'endT' => $tLast,
         ];
     }
@@ -307,10 +350,16 @@ class PlayerMatchAnalysisService
     {
         // WoW has many internal spell_ids per display name (Windstrike, Doom Winds' pulse, …),
         // so the id a talent/relationship carries rarely equals the id the combat log emits for
-        // "the same" ability. Every match below is therefore name-first.
-        $castByName = collect($log['casts'])->keyBy(fn ($c) => mb_strtolower($c['name']));
-        $buffByName = collect($log['selfBuffs'])->keyBy(fn ($b) => mb_strtolower($b['name']));
-        $seen = $log['seenNames'];   // every spell name the player was the source of (cast/damage/energize/aura)
+        // "the same" ability. Matching is therefore name-first — against the English name
+        // (resolveEnglish() folded locale-translated logs back to English) — with a spell_id
+        // fallback for the ids that DID line up.
+        $castByName = collect($log['casts'])->keyBy(fn ($c) => mb_strtolower($c['enName'] ?? $c['name']));
+        $buffByName = collect($log['selfBuffs'])->keyBy(fn ($b) => mb_strtolower($b['enName'] ?? $b['name']));
+        $seen = $log['seenNames'];        // every spell name the player was the source of
+        $seenIds = $log['seenIds'] ?? []; // …and the spell_ids, locale-independent
+
+        $wasSeen = fn (?string $name, ?int $id) => ($name && isset($seen[mb_strtolower($name)]))
+            || ($id && isset($seenIds[$id]));
 
         $picks = collect($talents)->map(fn ($t) => [...$t, 'source' => $t['treeType'] ?? 'talent'])
             ->merge(collect($pvpTalents)->map(fn ($p) => [
@@ -326,17 +375,31 @@ class PlayerMatchAnalysisService
             ->with('targetSpell:id,spell_id,name')
             ->get()->groupBy('source_spell_id');
 
-        return $picks->map(function ($t) use ($castByName, $buffByName, $seen, $spellRows, $rels, $patchId) {
+        return $picks->map(function ($t) use ($castByName, $buffByName, $seen, $seenIds, $wasSeen, $spellRows, $rels, $patchId) {
             $spell = $spellRows->get($t['spellId']);
             $name = mb_strtolower($t['name']);
             $isPassive = $spell?->is_passive ?? false;
             $castCount = $castByName->get($name)['count'] ?? 0;
             $ownBuff = $buffByName->get($name);
+            $selfSeen = $wasSeen($t['name'], $spell?->spell_id);
 
             // 1. Identity — the talent IS an active ability.
-            if (! $isPassive && ($castCount > 0 || $spell?->cooldown_seconds !== null || $spell?->charges !== null)) {
+            if (! $isPassive && ($castCount > 0 || $selfSeen || $spell?->cooldown_seconds !== null || $spell?->charges !== null)) {
+                $used = $castCount > 0 || $selfSeen;
+
                 return $this->pick($t, 'active-ability', ['castCount' => $castCount],
-                    $castCount > 0 ? "used ({$castCount}x)" : 'UNUSED — active ability, never pressed');
+                    $used ? 'used'.($castCount > 0 ? " ({$castCount}x)" : '') : 'UNUSED — active ability, never pressed');
+            }
+
+            // 1b. Weapon imbue — applied once, usually before the log starts, so it never casts;
+            //     its attack proc firing is the real "it's active" evidence (Windfury/Flametongue
+            //     Weapon -> "Windfury Attack"/"Flametongue Attack").
+            if (str_contains(mb_strtolower((string) $spell?->description), 'imbue your')) {
+                $stem = mb_strtolower(preg_replace('/\s+weapon.*$/i', '', $t['name']));
+                $proc = $stem !== '' && collect(array_keys($seen))->contains(fn ($n) => str_contains($n, $stem));
+
+                return $this->pick($t, 'active-ability', ['weaponImbue' => true],
+                    $proc ? 'active — weapon imbue, proc seen' : 'UNUSED — weapon imbue, no proc seen');
             }
 
             // 2. Its own buff/proc carries the payload (Maelstrom Weapon, Hot Hand, Flurry …).
@@ -350,10 +413,10 @@ class PlayerMatchAnalysisService
             //    every spell the player actually produced (not just SPELL_CAST_SUCCESS — auto-
             //    attack procs like Windfury Attack never cast but fire constantly).
             $mods = ($spell ? ($rels->get($spell->id) ?? collect()) : collect())
-                ->map(fn ($r) => ['target' => $r->targetSpell?->name, 'type' => $r->relationship_type])
+                ->map(fn ($r) => ['target' => $r->targetSpell?->name, 'targetId' => $r->targetSpell?->spell_id, 'type' => $r->relationship_type])
                 ->filter(fn ($m) => $m['target'] && mb_strtolower($m['target']) !== $name)
                 ->unique('target')
-                ->map(fn ($m) => [...$m, 'seen' => isset($seen[mb_strtolower($m['target'])])])
+                ->map(fn ($m) => [...$m, 'seen' => $wasSeen($m['target'], $m['targetId'])])
                 ->values();
 
             // A talent that touches many spells is a broad, always-on damage/healing/utility
@@ -379,7 +442,7 @@ class PlayerMatchAnalysisService
                 'name' => $r['name'],
                 'fired' => ($buffByName->get(mb_strtolower($r['name']))['applies'] ?? 0)
                     ?: ($castByName->get(mb_strtolower($r['name']))['count'] ?? 0)
-                    ?: (isset($seen[mb_strtolower($r['name'])]) ? 1 : 0),
+                    ?: ($wasSeen($r['name'], $r['spellId']) ? 1 : 0),
             ]);
 
             if ($refHits->isNotEmpty()) {
@@ -469,14 +532,15 @@ class PlayerMatchAnalysisService
             ->get(['id', 'spell_id', 'name', 'description']);
 
         return $top->map(function ($b) use ($end, $talentSpells) {
-            $needle = mb_strtolower($b['name']);
+            $en = $b['enName'] ?? $b['name'];
+            $needle = mb_strtolower($en);
 
-            $feeders = $talentSpells
+            $feeders = mb_strlen($needle) < 3 ? [] : $talentSpells
                 ->filter(fn ($s) => str_contains(mb_strtolower((string) $s->description), $needle))
                 ->pluck('name')->values()->all();
 
             return [
-                'buff' => $b['name'],
+                'buff' => $en,
                 'uptimePct' => (int) round($b['uptime'] / $end * 100),
                 'applies' => $b['applies'],
                 'maxStack' => $b['maxStack'],

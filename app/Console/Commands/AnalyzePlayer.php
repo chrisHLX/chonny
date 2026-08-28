@@ -45,7 +45,8 @@ class AnalyzePlayer extends Command
         $m = $a['match'];
         $this->newLine();
         $this->info("  {$m['player']}  —  {$m['spec']}");
-        $this->line("  match {$m['id']}  ·  {$m['durationSec']}s");
+        $locale = ($a['localeAsciiRatio'] ?? 1.0) < 0.6 ? '  ·  <fg=yellow>localised log (names resolved via spell_id)</>' : '';
+        $this->line("  match {$m['id']}  ·  {$m['durationSec']}s{$locale}");
         $this->line('  allies:  '.implode(', ', $m['roster']['allies']));
         $this->line('  enemies: '.implode(', ', $m['roster']['enemies']));
 
@@ -93,7 +94,7 @@ class AnalyzePlayer extends Command
         $this->newLine();
         $this->line('  <fg=yellow>CASTS</> (raw SPELL_CAST_SUCCESS — periodic/proc-ride not filtered)');
         foreach (array_slice($a['usage']['casts'], 0, 18) as $c) {
-            $this->line(sprintf('    %3dx  %-26s  %.0f–%.0fs', $c['count'], $this->trunc($c['name'], 26), $c['firstT'], $c['lastT']));
+            $this->line(sprintf('    %3dx  %-26s  %.0f–%.0fs', $c['count'], $this->trunc($c['enName'] ?? $c['name'], 26), $c['firstT'], $c['lastT']));
         }
 
         if ($a['usage']['interrupts']) {
