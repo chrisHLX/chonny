@@ -200,6 +200,141 @@
                 @endif
             @endif
         </div>
+
+        {{-- Talent Build — the real talents the player who produced this exact window actually
+             had selected, embedded once at generation time by wow:enrich-rotation-talents (see
+             that command's docblock: read straight from the archived match's own COMBATANT_INFO
+             line, not a curated/admin-default build). Only renders when that field exists — an
+             older, not-yet-re-enriched window simply omits the whole card rather than showing a
+             misleading empty one. 2026-08-27 direct request. --}}
+        @if ($rotation['window']['talentBuild'] ?? null)
+            @php
+                $tb = $rotation['window']['talentBuild'];
+                $treeLabels = ['class' => 'Class', 'spec' => 'Spec', 'hero' => 'Hero'];
+                $talentsByTree = collect($tb['talents'])->groupBy('treeType');
+                $exportText = "Talent Build — {$pageTitle} (from a real archived match, ".now()->format('Y-m-d').")\n\n";
+                foreach ($treeLabels as $key => $label) {
+                    $group = $talentsByTree->get($key, collect());
+                    if ($group->isEmpty()) continue;
+                    $exportText .= "{$label} Talents:\n";
+                    foreach ($group as $t) {
+                        $exportText .= "  - {$t['name']}" . ($t['rank'] > 1 ? " (rank {$t['rank']})" : '') . "\n";
+                    }
+                    $exportText .= "\n";
+                }
+                if (!empty($tb['pvpTalents'])) {
+                    $exportText .= "PvP Talents:\n";
+                    foreach ($tb['pvpTalents'] as $t) {
+                        $exportText .= "  - {$t['name']}\n";
+                    }
+                }
+            @endphp
+            <div class="linear-card p-5" x-data="{ talentModalOpen: false }">
+                <div class="flex items-baseline justify-between gap-3 mb-3 flex-wrap">
+                    <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">Talent Build Used</p>
+                    <div class="flex items-center gap-2">
+                        {{-- View-only mount of the same picker Admin\TalentBuildEditor uses —
+                             see BurstWindowTalents/TalentSelector's own $readOnly docblock for
+                             why nothing there can be changed. --}}
+                        <a href="{{ route('burst-window-talents', [$selectedClass->slug, $selectedSpec->slug, $length]) }}"
+                           class="btn-secondary !text-[10px] !py-1 !px-2.5">
+                            View in Talent Calculator
+                        </a>
+                        <button type="button" @click="talentModalOpen = true"
+                                class="btn-ghost !text-[10px] !py-1 !px-2.5">
+                            Copy as Text
+                        </button>
+                    </div>
+                </div>
+                <p class="text-[11px] text-ink-muted mb-3 leading-relaxed">
+                    The real talents selected by the player in this exact match — not a curated default build. Only 3 PvP talent slots are shown: real rated arena only ever fills 3 of the 4 possible slots.
+                </p>
+
+                <div class="space-y-3">
+                    @foreach ($treeLabels as $key => $label)
+                        @php $group = $talentsByTree->get($key, collect()); @endphp
+                        @if ($group->isNotEmpty())
+                            <div>
+                                <p class="text-[9px] uppercase tracking-wide text-ink-subtle font-semibold mb-1.5">{{ $label }}</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    @foreach ($group as $t)
+                                        @php $tSpell = $t['spell'] ?? null; @endphp
+                                        @if ($tSpell)
+                                            <button type="button"
+                                                    wire:click="$dispatch('show-spell-detail', { spellId: {{ $tSpell->id }}, classId: {{ $classId }}, specId: {{ $specId }} })"
+                                                    title="{{ $t['name'] }}{{ $t['rank'] > 1 ? ' (rank '.$t['rank'].')' : '' }}"
+                                                    class="flex items-center gap-1.5 pl-1 pr-2 py-1 rounded-md border border-line hover:border-gold/40 transition-colors">
+                                                <x-spell-icon :spell="$tSpell" size="w-5 h-5"/>
+                                                <span class="text-[10px] text-ink font-medium truncate max-w-[9rem]">{{ $t['name'] }}</span>
+                                                @if ($t['rank'] > 1)
+                                                    <span class="text-[9px] text-ink-subtle">×{{ $t['rank'] }}</span>
+                                                @endif
+                                            </button>
+                                        @else
+                                            <span class="text-[10px] text-ink-muted px-2 py-1 rounded-md border border-line">{{ $t['name'] }}</span>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+
+                    @if (!empty($tb['pvpTalents']))
+                        <div>
+                            <p class="text-[9px] uppercase tracking-wide text-ink-subtle font-semibold mb-1.5">PvP Talents</p>
+                            <div class="flex flex-wrap gap-1.5">
+                                @foreach ($tb['pvpTalents'] as $t)
+                                    @php $pSpell = $t['spell'] ?? null; @endphp
+                                    @if ($pSpell)
+                                        <button type="button"
+                                                wire:click="$dispatch('show-spell-detail', { spellId: {{ $pSpell->id }}, classId: {{ $classId }}, specId: {{ $specId }} })"
+                                                title="{{ $t['name'] }}"
+                                                class="flex items-center gap-1.5 pl-1 pr-2 py-1 rounded-md border border-line hover:border-violet/40 transition-colors">
+                                            <x-spell-icon :spell="$pSpell" size="w-5 h-5"/>
+                                            <span class="text-[10px] text-ink font-medium truncate max-w-[9rem]">{{ $t['name'] }}</span>
+                                        </button>
+                                    @else
+                                        <span class="text-[10px] text-ink-muted px-2 py-1 rounded-md border border-line">{{ $t['name'] }}</span>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            {{-- Copy-as-text modal — deliberately a readable talent list, NOT a real pasteable
+                 Blizzard "Export" string. BlizzardTalentStringCodec::encodeBuild() (the only
+                 mechanism that could produce one) is confirmed broken — see its own docblock,
+                 "Export-string generation attempted, confirmed broken — pulled from UI,
+                 2026-08-03" — a wrong string that LOOKS legitimate is worse than none. "View in
+                 Talent Calculator" (above) is the visual, browsable way to see this build; this
+                 modal is only for grabbing a plain-text copy of the same information. --}}
+            <div x-show="talentModalOpen" x-cloak x-transition.opacity.duration.100ms
+                 class="fixed inset-0 z-50 bg-surface-0/80 backdrop-blur-sm flex items-center justify-center p-4"
+                 @click.self="talentModalOpen = false">
+                <div class="linear-card max-w-lg w-full p-5 relative">
+                    <button type="button" @click="talentModalOpen = false" class="absolute top-3 right-3 text-ink-subtle hover:text-ink">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                    <p class="text-[13px] font-semibold text-ink mb-1">Talent List</p>
+                    <p class="text-[11px] text-ink-muted mb-3 leading-relaxed">
+                        A readable copy of the talents above — not yet a real in-game importable code. Use "View in Talent Calculator" for a visual, browsable view of the same build.
+                    </p>
+                    <textarea readonly rows="10"
+                              x-ref="talentListText"
+                              class="form-textarea !text-[11px] !font-mono w-full mb-3"
+                              onclick="this.select()">{{ trim($exportText) }}</textarea>
+                    <button type="button"
+                            x-data="{ copied: false }"
+                            @click="navigator.clipboard.writeText($refs.talentListText.value); copied = true; setTimeout(() => copied = false, 1500)"
+                            class="btn-primary !text-[11px] !py-1.5 w-full">
+                        <span x-show="!copied">Copy to Clipboard</span>
+                        <span x-show="copied" x-cloak>Copied!</span>
+                    </button>
+                </div>
+            </div>
+        @endif
     @endif
 
     {{-- Important Mechanics (Review) — deliberately reads STAGING data (wow-arena-archive's

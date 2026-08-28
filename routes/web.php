@@ -113,6 +113,9 @@ Route::get('/wow-comps', \App\Livewire\WowComps::class)->name('wow-comps');
 Route::post('/track/wow-comps-tab', [\App\Http\Controllers\TrackController::class, 'wowCompsTab'])
     ->name('track.wow-comps-tab');
 Route::get('/top-damage-rotations', \App\Livewire\TopDamageRotations::class)->name('top-damage-rotations');
+Route::get('/top-damage-rotations/{classSlug}/{specSlug}/{length}/talents', \App\Livewire\BurstWindowTalents::class)
+    ->where('length', '[0-9]+')
+    ->name('burst-window-talents');
 Route::get('/cc-review', \App\Livewire\CcReview::class)->name('cc-review');
 
 Route::get('/modules/manage', [ModuleController::class, 'manage'])->name('modules.manage')->middleware('auth');

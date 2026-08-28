@@ -13,6 +13,8 @@ class TalentNode extends Model
         'type',
         'pos_x',
         'pos_y',
+        'display_row',
+        'display_col',
         'max_ranks',
     ];
 

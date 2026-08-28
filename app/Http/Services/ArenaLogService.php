@@ -428,6 +428,262 @@ class ArenaLogService
     }
 
     /**
+     * Extracts one real player's raw talent selection + PvP talent picks straight from a
+     * match's `COMBATANT_INFO` log line — ground truth for what that specific character
+     * actually had selected in that specific real match, as opposed to any curated/admin-default
+     * TalentBuild. This format is already documented in arena-log-api.md but — confirmed via a
+     * repo-wide grep before writing this — had never actually been parsed by any application
+     * code until now (only referenced in a docblock comment).
+     *
+     * COMBATANT_INFO's relevant shape (comma-separated, one line per real player):
+     *   COMBATANT_INFO,<guid>,<...many plain numeric fields...>,
+     *     [(nodeId,entryId,rank),(nodeId,entryId,rank),...],
+     *     (pvpSlot1,pvpSlot2,pvpSlot3,pvpSlot4),
+     *     [<gear tuples, not extracted here>]
+     *
+     * `nodeId`/`entryId` map directly onto talent_nodes.external_node_id /
+     * talent_node_entries.external_talent_id — resolved separately by resolveCombatantTalents(),
+     * not here, so this method stays a pure, DB-free raw-log extraction (matching the class's
+     * documented "read raw logs, don't touch the app DB" split for its extraction methods).
+     * PvP slot value 0 means "empty" — confirmed empirically across 6 independent real matches
+     * (2026-08-27) that real rated 3v3 only ever populates 3 of the 4 possible slots; 0s are
+     * filtered out here rather than passed through as fake "talent id 0" picks.
+     *
+     * @return array{talents: array<int, array{nodeId:int, entryId:int, rank:int}>, pvpTalentIds: array<int>}|null
+     *         null when the match isn't on file, or the player's GUID has no COMBATANT_INFO line
+     *         (e.g. a spectator-only or otherwise incomplete log).
+     */
+    public function extractCombatantInfo(string $matchId, string $playerGuid): ?array
+    {
+        $rawPath = $this->rawLogPath($matchId);
+
+        if (!File::exists($rawPath)) {
+            return null;
+        }
+
+        $rawLog = gzdecode(File::get($rawPath));
+        $guid = preg_quote($playerGuid, '/');
+
+        // Lazily skip everything up to the first `,[` after this player's COMBATANT_INFO —
+        // that's always the start of the talent bracket, since nothing earlier in the line
+        // contains a literal `[`. Capture the talent bracket's contents, then the PvP 4-tuple
+        // immediately following it (before the gear list's own opening bracket).
+        $pattern = '/COMBATANT_INFO,'.$guid.',.*?,\[((?:\(\d+,\d+,\d+\),?)*)\],\((\d+,\d+,\d+,\d+)\),\[/';
+
+        if (!preg_match($pattern, $rawLog, $m)) {
+            return null;
+        }
+
+        preg_match_all('/\((\d+),(\d+),(\d+)\)/', $m[1], $talentMatches, PREG_SET_ORDER);
+
+        $talents = array_map(fn ($t) => [
+            'nodeId' => (int) $t[1],
+            'entryId' => (int) $t[2],
+            'rank' => (int) $t[3],
+        ], $talentMatches);
+
+        $pvpTalentIds = array_values(array_filter(
+            array_map('intval', explode(',', $m[2])),
+            fn ($id) => $id !== 0
+        ));
+
+        return compact('talents', 'pvpTalentIds');
+    }
+
+    /**
+     * Minimum number of unambiguously-resolved talents a single resolveCombatantTalents() call
+     * needs before it will trust its own computed median offset to disambiguate a genuine
+     * CHOICE node (see that method's docblock) — below this, "flag, don't guess" wins and
+     * CHOICE nodes are simply left unresolved for that call rather than risking a wrong guess
+     * off too small a sample.
+     */
+    private const MIN_OFFSET_SAMPLES_FOR_CHOICE_RESOLUTION = 5;
+
+    /**
+     * Resolves extractCombatantInfo()'s raw (nodeId, entryId, rank) triples + PvP talent ids
+     * into readable names/spell_ids, scoped to exactly the trees $specId can actually reach
+     * (class tree + this spec's own tree + any hero tree available to it) — same three-way
+     * union TalentSelectionService::allTalentSpellIds() already uses, reimplemented here rather
+     * than called directly since that method returns a flat spell_id set with no node/rank/tree
+     * info, which this needs to preserve (a raw node not in scope for this spec's trees is
+     * silently skipped, not an error — COMBATANT_INFO's node ids span the player's ENTIRE class
+     * trait tree per arena-log-api.md, i.e. every spec's own nodes too, not just the one
+     * actually played).
+     *
+     * PvP talents: the raw tuple's 3 non-zero values are plain patch-scoped spell_ids directly
+     * (confirmed 2026-08-27 by resolving all three against `spells.spell_id` and getting exact
+     * hits) — NOT `pvp_talents.external_pvp_talent_id`, confirmed to be a completely different,
+     * much smaller legacy id space (a handful of low numbers vs. these 6-digit values) with zero
+     * overlap. Resolved via a direct Spell lookup, same as any other real cast-spell resolution
+     * elsewhere in this service.
+     *
+     * Talent-tree entries are a harder case: `talent_node_entries.external_talent_id` (this
+     * project's own import of Blizzard's Game Data API `talent_id` field) is confirmed to be a
+     * genuinely DIFFERENT Blizzard-side identifier from COMBATANT_INFO's own raw entryId — not
+     * an import bug, two real id spaces for the same logical concept (the API's static talent
+     * config id vs. the live trait-system's runtime entry id). Node ids (`external_node_id`) DO
+     * match directly and need no correction. For a node with only one real spell among its
+     * entries, the node match alone is enough — no entry-id matching needed at all. For a
+     * genuine multi-spell CHOICE node, resolution uses an empirically-verified fallback: the gap
+     * between our stored external_talent_id and the raw entryId lands in a consistent few-
+     * hundred-wide band for a real pairing and wildly outside it for a wrong one (confirmed
+     * 2026-08-27 across 114 real archived Holy Paladin matches — every one of 12 genuine 2-option
+     * CHOICE nodes with observed variance resolved correctly, 12/12, cross-checked against known
+     * WoW PvP talent meta). This resolution computes that band itself, per call, from the
+     * unambiguous single-spell nodes it already resolved in the same pass — never a hardcoded
+     * constant — and only trusts it once MIN_OFFSET_SAMPLES_FOR_CHOICE_RESOLUTION unambiguous
+     * nodes were available; otherwise CHOICE nodes are left unresolved rather than guessed.
+     *
+     * @return array{
+     *   talents: array<int, array{name:string, spellId:int, rank:int, treeType:?string, resolvedByOffset:bool, nodeId:int, entryId:int}>,
+     *   pvpTalents: array<int, array{name:string, spellId:int, pvpTalentId:?int}>
+     * }
+     */
+    public function resolveCombatantTalents(array $combatantInfo, int $specId): array
+    {
+        $spec = Specialization::find($specId);
+        $patchId = \App\Models\Patch::where('is_current', true)->value('id');
+
+        if (!$spec || !$patchId) {
+            return ['talents' => [], 'pvpTalents' => []];
+        }
+
+        $treeIds = \App\Models\TalentTree::where('patch_id', $patchId)
+            ->where(function ($q) use ($spec, $specId) {
+                $q->where(fn ($q2) => $q2->where('class_id', $spec->class_id)->where('type', 'class'))
+                    ->orWhere(fn ($q2) => $q2->where('spec_id', $specId)->where('type', 'spec'))
+                    ->orWhere(fn ($q2) => $q2->where('type', 'hero')
+                        ->whereHas('specializations', fn ($q3) => $q3->where('specializations.id', $specId)));
+            })
+            ->pluck('id');
+
+        $nodesByExternalId = \App\Models\TalentNode::whereIn('talent_tree_id', $treeIds)
+            ->with(['entries.spell', 'talentTree'])
+            ->get()
+            ->keyBy('external_node_id');
+
+        $rawTalents = $combatantInfo['talents'] ?? [];
+
+        // Keyed by nodeId, not appended positionally — a real, otherwise-unexplained
+        // COMBATANT_INFO quirk was confirmed 2026-08-27: the same node can appear more than
+        // once in a single player's own line with differing rank values (1, 2, 1 observed for
+        // one real 2-rank node), most likely a per-point-invested log rather than a final-state
+        // one. Keying by nodeId and keeping only the highest rank seen collapses this to the one
+        // row a "here is the build" export should actually show, regardless of how many raw
+        // lines the log happened to emit for it.
+        $talentsByNodeId = [];
+        $offsets = [];
+
+        // Pass 1 — unambiguous nodes: only one distinct real spell among the node's entries,
+        // so no entry-id matching is needed at all. Also collects this call's own
+        // (stored - raw) offset for pass 2's median.
+        foreach ($rawTalents as $t) {
+            $node = $nodesByExternalId->get($t['nodeId']);
+            if (!$node || $node->entries->isEmpty()) {
+                continue;
+            }
+
+            if ($node->entries->pluck('spell_id')->unique()->count() > 1) {
+                continue; // genuine CHOICE node — pass 2
+            }
+
+            $entry = $node->entries->firstWhere('rank', $t['rank']) ?? $node->entries->first();
+            if (!$entry || !$entry->spell) {
+                continue;
+            }
+
+            if (!isset($talentsByNodeId[$t['nodeId']]) || $t['rank'] > $talentsByNodeId[$t['nodeId']]['rank']) {
+                $talentsByNodeId[$t['nodeId']] = [
+                    'name' => $entry->spell->display_name,
+                    'spellId' => $entry->spell->spell_id,
+                    'rank' => $t['rank'],
+                    'treeType' => $node->talentTree->type ?? null,
+                    'resolvedByOffset' => false,
+                    // Internal DB ids (not Blizzard's external ones) — added 2026-08-28 so a
+                    // read-only view of this build can seed TalentSelector's own
+                    // $chosenEntries (node_id => entry_id) shape directly, without needing to
+                    // re-derive them from spellId a second time downstream.
+                    'nodeId' => $node->id,
+                    'entryId' => $entry->id,
+                ];
+            }
+            $offsets[] = $entry->external_talent_id - $t['entryId'];
+        }
+
+        sort($offsets);
+        $medianOffset = count($offsets) > 0 ? $offsets[(int) floor(count($offsets) / 2)] : null;
+
+        // Pass 2 — genuine multi-spell CHOICE nodes: pick whichever candidate entry's own
+        // offset lands closest to the median computed above. See this method's docblock for
+        // why this is trusted rather than a guess.
+        if ($medianOffset !== null && count($offsets) >= self::MIN_OFFSET_SAMPLES_FOR_CHOICE_RESOLUTION) {
+            foreach ($rawTalents as $t) {
+                if (isset($talentsByNodeId[$t['nodeId']])) {
+                    continue;
+                }
+
+                $node = $nodesByExternalId->get($t['nodeId']);
+                if (!$node) {
+                    continue;
+                }
+
+                $distinctEntries = $node->entries->unique('spell_id');
+                if ($distinctEntries->count() < 2) {
+                    continue;
+                }
+
+                $best = $distinctEntries
+                    ->sortBy(fn ($e) => abs(($e->external_talent_id - $t['entryId']) - $medianOffset))
+                    ->first();
+
+                if ($best && $best->spell) {
+                    $talentsByNodeId[$t['nodeId']] = [
+                        'name' => $best->spell->display_name,
+                        'spellId' => $best->spell->spell_id,
+                        'rank' => $t['rank'],
+                        'treeType' => $node->talentTree->type ?? null,
+                        'resolvedByOffset' => true,
+                        'nodeId' => $node->id,
+                        'entryId' => $best->id,
+                    ];
+                }
+            }
+        }
+
+        $talents = array_values($talentsByNodeId);
+
+        $pvpTalents = [];
+        $pvpIds = $combatantInfo['pvpTalentIds'] ?? [];
+
+        if (!empty($pvpIds)) {
+            $spells = Spell::whereIn('spell_id', $pvpIds)->where('patch_id', $patchId)->get()->keyBy('spell_id');
+
+            // Internal pvp_talents.id (not the spell_id resolved above) — a real spec's PvP
+            // talent list is small (a dozen or so rows), so this is a second, cheap lookup keyed
+            // by the just-resolved Spell's own internal id, letting a read-only view seed
+            // TalentSelector's $chosenPvpTalentIds (an array of pvp_talents.id) directly.
+            $pvpTalentRowsBySpellId = \App\Models\PvpTalent::where('spec_id', $spec->id)
+                ->where('patch_id', $patchId)
+                ->whereIn('spell_id', $spells->pluck('id'))
+                ->get()
+                ->keyBy('spell_id');
+
+            foreach ($pvpIds as $id) {
+                $spell = $spells->get($id);
+                if ($spell) {
+                    $pvpTalents[] = [
+                        'name' => $spell->display_name,
+                        'spellId' => $spell->spell_id,
+                        'pvpTalentId' => $pvpTalentRowsBySpellId->get($spell->id)?->id,
+                    ];
+                }
+            }
+        }
+
+        return compact('talents', 'pvpTalents');
+    }
+
+    /**
      * Minimum match length (seconds) for pullHighestRatedMatchForSpec() to consider a
      * candidate. Found necessary 2026-08-14, same day as the sort-order bug: wow:discover-all-specs
      * picked an 18-second match as the "highest rated" for both Frost Mage and Arms Warrior

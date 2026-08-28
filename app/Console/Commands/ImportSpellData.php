@@ -626,6 +626,8 @@ class ImportSpellData extends Command
                 'type' => $nodeData['node_type'] ?? 'UNKNOWN',
                 'pos_x' => $nodeData['raw_position_x'] ?? null,
                 'pos_y' => $nodeData['raw_position_y'] ?? null,
+                'display_row' => $nodeData['display_row'] ?? null,
+                'display_col' => $nodeData['display_col'] ?? null,
                 'max_ranks' => $nodeData['max_ranks'] ?? 1,
             ], 'talent_nodes');
         }

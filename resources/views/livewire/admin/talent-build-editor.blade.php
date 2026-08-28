@@ -26,6 +26,6 @@
     </div>
 
     @if ($specId)
-        <livewire:talent-selector :spec-id="$specId" :is-default-editor="true" :key="'default-build-'.$specId" />
+        <livewire:talent-selector :spec-id="$specId" :is-default-editor="true" layout="grid" :key="'default-build-'.$specId" />
     @endif
 </div>

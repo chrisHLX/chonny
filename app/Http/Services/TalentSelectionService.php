@@ -752,6 +752,92 @@ class TalentSelectionService
      *
      * @return Collection<int, int> other node ids at the same position
      */
+    /**
+     * Total points spent in one talent tree, from a caller-supplied LIVE selection map rather
+     * than a persisted TalentBuild — deliberately, so lock-checking reflects what's on screen
+     * right now, not what's been written to the DB. A guest's picker preview never persists at
+     * all (see TalentSelector's own docblock), and even an authenticated pick's DB write is a
+     * side effect of the click, not its source of truth — $rankByNodeId is always
+     * TalentSelector's own $chosenEntries, converted to ranks, for exactly this reason.
+     *
+     * @param Collection<int, TalentNode> $treeNodes every node belonging to the tree being
+     *   checked — already loaded by the caller (TalentSelector's classTalentNodes/
+     *   specTalentNodes/heroTalentNodes), so this needs no query of its own.
+     * @param Collection<int, int> $rankByNodeId talent_node_id => rank currently invested
+     *   (TalentBuildChoice.rank is the real rank number, not "1 per node" — a node invested at
+     *   rank 2 counts as 2 points, matching how the game itself counts multi-rank investment)
+     */
+    public function pointsSpentInTree(Collection $treeNodes, Collection $rankByNodeId): int
+    {
+        return $treeNodes->sum(fn (TalentNode $n) => $rankByNodeId->get($n->id, 0));
+    }
+
+    /**
+     * Whether $node is locked behind a point-threshold gate — see config/talent_gates.php for
+     * the gate row/threshold values, and that file's own header for why they're an explicitly
+     * UNVERIFIED placeholder for the current game system rather than a confirmed fact. Scoped to
+     * Class/Spec trees only: Hero trees carry the same display_row field structurally, but are a
+     * much smaller (~10-point) pool than the Class/Spec-scaled thresholds in config assume, and
+     * no source found confirms hero trees gate the same way at all — applying an unverified rule
+     * at the wrong scale would be worse than not gating hero trees, so they're left governed
+     * purely by isNodePrerequisiteLocked() below, which needs no such assumption.
+     *
+     * Gates stack: the highest-row gate at or below this node's own row is the one that governs
+     * (every source checked has thresholds only increasing with row, so requiring the max is
+     * equivalent to requiring every applicable gate individually).
+     */
+    public function isNodeGateLocked(TalentNode $node, Collection $treeNodes, Collection $rankByNodeId): bool
+    {
+        if ($node->display_row === null || !in_array($node->talentTree->type, ['class', 'spec'], true)) {
+            return false;
+        }
+
+        $applicableGates = collect(config('talent_gates.gates'))
+            ->filter(fn (array $gate) => $node->display_row >= $gate['display_row']);
+
+        if ($applicableGates->isEmpty()) {
+            return false;
+        }
+
+        $threshold = $applicableGates->max('points_required');
+
+        return $this->pointsSpentInTree($treeNodes, $rankByNodeId) < $threshold;
+    }
+
+    /**
+     * Whether $node is locked behind an unmet prerequisite — talent_node_edges, imported directly
+     * from Blizzard's own locked_by/unlocks fields (see ImportSpellData::importTreeNodes()), no
+     * inference involved, no config to keep in sync. A node with more than one incoming edge is
+     * treated as unlocked once ANY ONE prerequisite has at least 1 point invested — real trees
+     * commonly have multiple paths converging on one node, and requiring ALL of them would
+     * incorrectly lock a node reachable from either branch. A node with zero incoming edges (a
+     * root of its tree) is never prerequisite-locked.
+     *
+     * @param Collection<int, int> $rankByNodeId talent_node_id => rank currently invested
+     */
+    public function isNodePrerequisiteLocked(TalentNode $node, Collection $rankByNodeId): bool
+    {
+        $prerequisiteNodeIds = $node->incomingEdges()->pluck('from_node_id');
+
+        if ($prerequisiteNodeIds->isEmpty()) {
+            return false;
+        }
+
+        return !$prerequisiteNodeIds->contains(fn ($id) => $rankByNodeId->get($id, 0) > 0);
+    }
+
+    /**
+     * Combines both lock mechanics — the one check a picker's click-handler/render should use.
+     *
+     * @param Collection<int, TalentNode> $treeNodes
+     * @param Collection<int, int> $rankByNodeId
+     */
+    public function isNodeLocked(TalentNode $node, Collection $treeNodes, Collection $rankByNodeId): bool
+    {
+        return $this->isNodeGateLocked($node, $treeNodes, $rankByNodeId)
+            || $this->isNodePrerequisiteLocked($node, $rankByNodeId);
+    }
+
     public function samePositionSiblingNodeIds(TalentNode $node): Collection
     {
         if ($node->type !== 'ACTIVE') {

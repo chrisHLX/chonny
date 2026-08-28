@@ -359,9 +359,13 @@ class MurlokTalentImportService
             }
         }
 
-        // murlok's own PvP talent UI is a fixed 4 flat slots (no per-slot restriction in our data
-        // either — see TalentSelectionService::syncPvpChoices()'s docblock) — top 4 by pick count.
-        $top = $ranked->sortByDesc('count')->take(4);
+        // murlok's own PvP talent UI renders a fixed 4 flat slots, and this importer used to take
+        // the top 4 by pick count on that basis — but real archived arena matches (COMBATANT_INFO's
+        // own PvP-talent tuple, checked across 6 independent samples, 2026-08-27) consistently show
+        // only 3 slots ever populated in real rated 3v3 play; the 4th is a structural ceiling that
+        // exists (available at appropriate level per our own addon's own findings) but isn't what
+        // real top players actually run. Real match evidence outranks murlok's UI shape — take 3.
+        $top = $ranked->sortByDesc('count')->take(3);
 
         return [
             'ids' => $top->pluck('talent.id')->all(),

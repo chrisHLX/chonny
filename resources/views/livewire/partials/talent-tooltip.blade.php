@@ -8,6 +8,10 @@
     Always opens upward (`bottom-full`) — not perfect for a node in the very top row of a tree
     (can clip against the modal's own scroll container), an accepted tradeoff rather than adding
     flip-direction detection for this first pass.
+
+    `$locked` (optional, default false) — whether the parent already determined this entry's node
+    can't be picked yet (TalentSelector::isNodeLocked()). Shown as a plain note, not a specific
+    reason (gate vs. prerequisite) — the parent doesn't currently pass which one applied.
 --}}
 @php $spell = $entry->spell; $description = $this->resolvedDescription($entry); @endphp
 <div class="hidden group-hover:block absolute z-30 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 pointer-events-none">
@@ -15,6 +19,9 @@
         <p class="text-[12px] font-semibold text-ink">{{ $spell->display_name }}</p>
         @if ($maxRanks && $maxRanks > 1)
             <p class="text-[10px] text-gold mt-0.5">Rank {{ $rank }} / {{ $maxRanks }}</p>
+        @endif
+        @if ($locked ?? false)
+            <p class="text-[10px] text-ink-subtle mt-0.5">🔒 Requires an earlier talent, or more points spent in this tree</p>
         @endif
         @if ($description)
             <p class="text-[11px] text-ink-muted mt-1 leading-snug">{{ Str::limit($description, 220) }}</p>

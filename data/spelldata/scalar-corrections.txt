@@ -122,3 +122,12 @@
 # knowledge (Polymorph has always had a real cast bar, ~1.5s, a stable fact across the game's
 # history), not derived from any file.
 118 | cast_type=cast | Polymorph
+
+# Chimaeral Sting (Hunter PvP talent, spell_id 356719, all 3 specs — Beast Mastery/Marksmanship/
+# Survival) — same shape as Scatter Shot above: cooldown never present in any source this project
+# has on file (zero spell_effects rows at all for this spell_id, confirmed directly). Its own
+# description IS fully captured (a real 3-stage venom chain: Scorpid Venom 90% slow 3s -> Spider
+# Venom Silence 3s -> Viper Venom 20% dmg/heal reduction 3s), just with no cooldown component in
+# that text — cooldown supplied directly by the user from their own play knowledge (2026-08-27),
+# real-world confirmed fact, not recoverable from any imported source.
+356719 | cooldown_seconds=60 | Chimaeral Sting

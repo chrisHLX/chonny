@@ -100,7 +100,10 @@
 
 @if ($nodes->isNotEmpty())
     <div>
-        <p class="text-[11px] font-semibold text-ink-muted uppercase tracking-wide mb-2">{{ $label }}</p>
+        <p class="text-[11px] font-semibold text-ink-muted uppercase tracking-wide mb-2">
+            {{ $label }}
+            <span class="text-ink-subtle normal-case font-normal">— {{ $pointsSpent }} point{{ $pointsSpent === 1 ? '' : 's' }} spent</span>
+        </p>
         <div class="bg-surface-2/40 border border-line rounded-lg overflow-x-auto">
             <div class="relative" style="width: {{ $containerWidth }}px; height: {{ $containerHeight }}px;">
                 <svg class="absolute inset-0" width="{{ $containerWidth }}" height="{{ $containerHeight }}">
@@ -130,6 +133,12 @@
                         $pos = $posById[$node->id];
                         $entries = $node->entries->filter(fn ($e) => $e->spell);
                         $chosenEntryId = $chosenEntries[$node->id] ?? null;
+                        // Only meaningful for a NOT-YET-invested node — an already-chosen node is
+                        // never re-locked (see TalentSelector::toggleEntry()/cycleNode()'s own
+                        // "only gate a fresh investment" rule), so this always reads false once
+                        // $chosenEntryId is set, without needing a separate check here.
+                        $isLocked = $chosenEntryId === null && $this->isNodeLocked($node);
+                        $lockedClasses = 'border-line-strong grayscale opacity-20 cursor-not-allowed pointer-events-none';
                     @endphp
                     @continue($entries->isEmpty())
                     <div class="absolute -translate-x-1/2 -translate-y-1/2 z-10" style="left: {{ $pos['left'] }}px; top: {{ $pos['top'] }}px;">
@@ -144,7 +153,8 @@
                                         <button
                                             type="button"
                                             wire:click="toggleEntry({{ $node->id }}, {{ $entry->id }})"
-                                            class="rounded-md border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0' }}"
+                                            @disabled($isLocked)
+                                            class="rounded-md border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}"
                                         >
                                             <x-spell-icon :spell="$entry->spell" size="w-9 h-9"/>
                                         </button>
@@ -152,8 +162,10 @@
                                             <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold flex items-center justify-center ring-2 ring-surface-1">
                                                 <svg class="w-2.5 h-2.5 text-surface-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                             </span>
+                                        @elseif ($isLocked)
+                                            @include('livewire.partials.talent-lock-badge')
                                         @endif
-                                        @include('livewire.partials.talent-tooltip', ['entry' => $entry, 'rank' => null, 'maxRanks' => null])
+                                        @include('livewire.partials.talent-tooltip', ['entry' => $entry, 'rank' => null, 'maxRanks' => null, 'locked' => $isLocked])
                                     </div>
                                 @endforeach
                             </div>
@@ -168,8 +180,8 @@
                                 $currentRank = $currentEntry?->id === $chosenEntryId ? $currentEntry->rank : 0;
                             @endphp
                             <div class="group relative flex flex-col items-center gap-0.5">
-                                <button type="button" wire:click="cycleNode({{ $node->id }})" class="flex flex-col items-center gap-0.5">
-                                    <span class="block rounded-md border transition {{ $currentRank > 0 ? 'border-gold ring-2 ring-gold' : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0' }}">
+                                <button type="button" wire:click="cycleNode({{ $node->id }})" @disabled($isLocked) class="flex flex-col items-center gap-0.5">
+                                    <span class="block rounded-md border transition {{ $currentRank > 0 ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}">
                                         <x-spell-icon :spell="$currentEntry->spell" size="w-11 h-11"/>
                                     </span>
                                     <span class="flex gap-0.5">
@@ -182,8 +194,10 @@
                                     <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold flex items-center justify-center ring-2 ring-surface-1">
                                         <svg class="w-2.5 h-2.5 text-surface-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                     </span>
+                                @elseif ($isLocked)
+                                    @include('livewire.partials.talent-lock-badge')
                                 @endif
-                                @include('livewire.partials.talent-tooltip', ['entry' => $currentEntry, 'rank' => $currentRank, 'maxRanks' => $node->max_ranks])
+                                @include('livewire.partials.talent-tooltip', ['entry' => $currentEntry, 'rank' => $currentRank, 'maxRanks' => $node->max_ranks, 'locked' => $isLocked])
                             </div>
                         @else
                             @php $entry = $entries->first(); $isChosen = $chosenEntryId === $entry->id; @endphp
@@ -191,7 +205,8 @@
                                 <button
                                     type="button"
                                     wire:click="toggleEntry({{ $node->id }}, {{ $entry->id }})"
-                                    class="block rounded-md border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0' }}"
+                                    @disabled($isLocked)
+                                    class="block rounded-md border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}"
                                 >
                                     <x-spell-icon :spell="$entry->spell" size="w-11 h-11"/>
                                 </button>
@@ -199,8 +214,10 @@
                                     <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold flex items-center justify-center ring-2 ring-surface-1">
                                         <svg class="w-2.5 h-2.5 text-surface-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                     </span>
+                                @elseif ($isLocked)
+                                    @include('livewire.partials.talent-lock-badge')
                                 @endif
-                                @include('livewire.partials.talent-tooltip', ['entry' => $entry, 'rank' => null, 'maxRanks' => null])
+                                @include('livewire.partials.talent-tooltip', ['entry' => $entry, 'rank' => null, 'maxRanks' => null, 'locked' => $isLocked])
                             </div>
                         @endif
                     </div>

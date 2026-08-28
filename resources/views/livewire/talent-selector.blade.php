@@ -3,16 +3,24 @@
         <div>
             <p class="text-[13px] font-semibold text-ink">
                 {{ $specialization?->name }} Talents
-                @if ($isDefaultEditor)
+                @if ($readOnly)
+                    <span class="badge-gray ml-1">Read-only</span>
+                @elseif ($isDefaultEditor)
                     <span class="badge-gold ml-1">Editing Default</span>
                 @elseif (!auth()->check())
                     <span class="badge-gray ml-1">Preview — sign in to save</span>
                 @endif
             </p>
-            <p class="text-[11px] text-ink-subtle mt-0.5">Pick your talents to see accurate cooldowns and modifiers below.</p>
+            <p class="text-[11px] text-ink-subtle mt-0.5">
+                @if ($readOnly)
+                    A real talent build from an archived match — nothing here can be changed.
+                @else
+                    Pick your talents to see accurate cooldowns and modifiers below.
+                @endif
+            </p>
         </div>
 
-        @if ($moduleHeroTreeId)
+        @if ($moduleHeroTreeId || $readOnly)
             {{-- This guide only covers one hero tree — no picker needed, see TalentSelector's
                  $moduleHeroTreeId docblock. Shown as a fact about the content, not a choice. --}}
             <span class="badge-gray">{{ $selectedHeroTree?->name ?? 'Hero Talent' }}</span>
@@ -26,6 +34,7 @@
         @endif
     </div>
 
+    @if (!$readOnly)
     <div class="px-5 py-4 border-b border-line bg-surface-2/40">
         <p class="text-[11px] font-semibold text-ink-muted uppercase tracking-wide mb-2">Import from Blizzard</p>
         <p class="text-[10px] text-ink-subtle mb-2">
@@ -73,15 +82,22 @@
             </div>
         @endif
     </div>
+    @endif
 
-    <div class="p-5 space-y-6">
+    {{-- readOnly: purely a CSS non-interactivity cue (pointer-events-none + slightly reduced
+         opacity) — every mutating method already no-ops server-side regardless (see
+         TalentSelector's $readOnly docblock), this just stops the grid/pvp buttons from looking
+         clickable in the first place. Deliberately not touching talent-tree-grid.blade.php's own
+         button markup to add this — that partial is shared with the live admin editor. --}}
+    <div class="p-5 space-y-6" @if ($readOnly) style="pointer-events: none; opacity: 0.92;" @endif>
         @if ($layout === 'grid')
             {{-- Positional tree layout mirroring the real in-game/Wowhead-style talent UI — see
-                 talent-tree-grid.blade.php. Used by the player-facing picker modal on
-                 WowComps/SpellExplorer; Admin\TalentBuildEditor still gets the flat list below. --}}
-            @include('livewire.partials.talent-tree-grid', ['nodes' => $classTalentNodes, 'edges' => $classTalentEdges, 'label' => 'Class Talents', 'chosenEntries' => $chosenEntries])
-            @include('livewire.partials.talent-tree-grid', ['nodes' => $specTalentNodes, 'edges' => $specTalentEdges, 'label' => ($specialization?->name ?? 'Spec').' Talents', 'chosenEntries' => $chosenEntries])
-            @include('livewire.partials.talent-tree-grid', ['nodes' => $heroTalentNodes, 'edges' => $heroTalentEdges, 'label' => ($selectedHeroTree?->name ?? 'Hero').' Talents', 'chosenEntries' => $chosenEntries])
+                 talent-tree-grid.blade.php. Used by Admin\TalentBuildEditor (as of 2026-08-27);
+                 the flat card list below is kept as the default for any future caller that
+                 doesn't need positioning/edges/lock enforcement, but nothing currently uses it. --}}
+            @include('livewire.partials.talent-tree-grid', ['nodes' => $classTalentNodes, 'edges' => $classTalentEdges, 'label' => 'Class Talents', 'chosenEntries' => $chosenEntries, 'pointsSpent' => $classPointsSpent])
+            @include('livewire.partials.talent-tree-grid', ['nodes' => $specTalentNodes, 'edges' => $specTalentEdges, 'label' => ($specialization?->name ?? 'Spec').' Talents', 'chosenEntries' => $chosenEntries, 'pointsSpent' => $specPointsSpent])
+            @include('livewire.partials.talent-tree-grid', ['nodes' => $heroTalentNodes, 'edges' => $heroTalentEdges, 'label' => ($selectedHeroTree?->name ?? 'Hero').' Talents', 'chosenEntries' => $chosenEntries, 'pointsSpent' => $heroPointsSpent])
         @else
             @foreach ([
                 ['label' => 'Class Talents', 'nodes' => $classTalentNodes],

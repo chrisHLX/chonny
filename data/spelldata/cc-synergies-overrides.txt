@@ -376,3 +376,18 @@
 # after. Fixed by moving the tag to the correct spell_id; 136511 blanked above, not deleted.
 113724 | Incapacitate | | | | 6 | Stun |||  Ring of Frost (cast/display spell_id only — confirmed 2026-08-22 zero real aura events across 420 matches. Own description confirms two real components: 82691 is the real incapacitate-on-entering effect (matches own mechanic='Freeze'), 321329 is a separate slow-on-expiry follow-up — out of scope, Slow isn't a hard-CC category. pairs_with_category CORRECTED 2026-08-23 from Root to Stun — direct domain-expert correction: unlike Solar Beam (which real play pairs with a Root), Ring of Frost is normally set up with any Stun, or commonly the same caster's own Dragon's Breath (a Disorient — not captured by this single-value field, flagged as a known gap rather than silently ignored).)
 82691 | Incapacitate | | | | 6 | Stun |||  Ring of Frost (the REAL aura spell_id — 489 real instances confirmed; value copied from 113724's already-curated 6.0s. pairs_with_category CORRECTED 2026-08-23 from Root to Stun, same reasoning as 113724 above — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+
+# Chimaeral Sting (Hunter PvP talent, spell_id 356719 — unambiguous, only one real copy exists,
+# already correctly tagged verified_override for all 3 Hunter specs) — added 2026-08-27, direct
+# user report: missing from Hunter's CC on the Synergies tab. Own description confirms a real
+# 3-stage venom chain, not a single effect: Scorpid Venom (90% slow, 3s) -> Spider Venom
+# (Silence, 3s) -> Viper Venom (20% damage/healing reduction, 3s), each starting after the
+# previous ends. Tagged Silence specifically per direct user instruction — that's the
+# arena-relevant CC stage; the slow and damage-reduction stages aren't captured by this
+# single-value dr_category field (same known limitation as every other multi-effect spell in
+# this file, e.g. Disable/Censure's conditional-category gap documented in CLAUDE.md).
+# pvp_duration_seconds=3 taken directly from the Spider Venom stage's own stated duration, not
+# measured from arena logs. See scalar-corrections.txt for the same spell_id's cooldown fix
+# (60s, also supplied directly by the user — never present in any source this project has on
+# file for this spell).
+356719 | Silence | | | | 3 | | | | Chimaeral Sting

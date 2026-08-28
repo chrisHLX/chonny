@@ -35,6 +35,7 @@ class PageUsage extends Component
         'spell_explorer' => 'Spell Explorer',
         'wow_comps' => 'WoW Comps',
         'top_damage_rotations' => 'Burst Windows',
+        'burst_window_talents' => 'Burst Window Talent View',
     ];
 
     /**

@@ -29,14 +29,35 @@ use Livewire\Component;
  * authoring the spec's meta/default build) reuses the exact same picker against the
  * (user_id=null, is_default=true) build instead of the visitor's own.
  *
- * Deliberately not built: talent-tree spend-order/point-budget validation — any entry in any
- * node is selectable regardless of prerequisites (see the plan's explicit deferrals).
+ * Spend-order enforcement (added 2026-08-27, 'grid' layout only — see isNodeLocked()):
+ * prerequisite-edge locking uses talent_node_edges, imported directly from Blizzard's own
+ * locked_by/unlocks fields, no inference involved. Point-threshold gate locking (Class/Spec
+ * trees only) uses config/talent_gates.php — that file's own header flags its row/points values
+ * as an UNVERIFIED placeholder carried over from the prior expansion's known rule, not confirmed
+ * for the current game system; update it the moment real numbers are confirmed. 'list' layout
+ * (unused as of this date — see the $layout docblock below) never gained this enforcement, since
+ * it has no per-node visual state to grey out in the first place.
  */
 class TalentSelector extends Component
 {
     public int $specId;
 
     public bool $isDefaultEditor = false;
+
+    /**
+     * View-only mode (added 2026-08-28) — mounts the exact same grid/lock/tooltip rendering the
+     * admin default-build editor uses, seeded from a caller-supplied set of picks
+     * ($presetChosenEntries/$presetPvpTalentIds, see mount()) instead of resolving a real
+     * persisted TalentBuild. Built for the Burst Windows page: "link the talents to our own
+     * talent calculator... but not as something we can change, just like something to look at."
+     * Every mutating method below (toggleEntry/cycleNode/togglePvpTalent/updatedHeroTreeId/
+     * previewImport/applyImport/discardImport) and persistIfAuthenticated() short-circuit to a
+     * no-op the instant this is true — nothing this component does can ever write to
+     * talent_builds in this mode, regardless of whether a viewer is authenticated or an admin.
+     * isNodeLocked() also always returns false here: lock/grey styling exists to explain why a
+     * pick *can't* be made yet, which is meaningless once nothing can be picked at all.
+     */
+    public bool $readOnly = false;
 
     /**
      * A module's own declared hero tree (ModuleGameBuild::hero_talent_tree_id), when this
@@ -60,12 +81,18 @@ class TalentSelector extends Component
     public ?int $heroTreeId = null;
 
     /**
-     * 'list' (default) — the original flat, grouped card layout, unchanged for
-     * Admin\TalentBuildEditor. 'grid' — a positional tree layout (talent-tree-grid.blade.php,
-     * one instance per class/spec/hero tree) using talent_nodes.pos_x/pos_y + talent_node_edges
-     * to mirror the real in-game/Wowhead-style tree, used by the player-facing picker modal on
-     * WowComps/SpellExplorer. Both modes share every persistence method below — only the Blade
-     * view differs.
+     * 'list' (default when no layout prop is passed) — the original flat, grouped card layout:
+     * no icons, no positioning, no connector lines, no lock enforcement. No live caller passes
+     * this as of 2026-08-27 (WowComps/SpellExplorer's own interactive picker was removed
+     * entirely on 2026-08-01/08-16, and Admin\TalentBuildEditor was switched to 'grid' the same
+     * day this note was written) — kept rather than deleted since it's a working, simpler
+     * fallback the Blade view still supports natively, not dead code load-bearing on anything.
+     *
+     * 'grid' — a positional tree layout (talent-tree-grid.blade.php, one instance per
+     * class/spec/hero tree) using talent_nodes.pos_x/pos_y + talent_node_edges to mirror the
+     * real in-game/Wowhead-style tree, including prerequisite/gate lock enforcement (see
+     * isNodeLocked()) and a points-spent counter per tree. This is what Admin\TalentBuildEditor
+     * uses. Both layout modes share every persistence method below — only the Blade view differs.
      */
     public string $layout = 'list';
 
@@ -88,12 +115,38 @@ class TalentSelector extends Component
 
     private const MAX_PVP_TALENTS = 3;
 
-    public function mount(int $specId, bool $isDefaultEditor = false, ?int $moduleHeroTreeId = null, string $layout = 'list'): void
-    {
+    /**
+     * @param  ?array<int,int>  $presetChosenEntries  readOnly mode only — talent_node_id =>
+     *         chosen talent_node_entry id, e.g. from ArenaLogService::resolveCombatantTalents()'s
+     *         `nodeId`/`entryId` fields. Ignored (never read) unless $readOnly is true.
+     * @param  ?array<int,int>  $presetPvpTalentIds  readOnly mode only — pvp_talents.id list.
+     */
+    public function mount(
+        int $specId,
+        bool $isDefaultEditor = false,
+        ?int $moduleHeroTreeId = null,
+        string $layout = 'list',
+        bool $readOnly = false,
+        ?array $presetChosenEntries = null,
+        ?array $presetPvpTalentIds = null,
+    ): void {
         $this->specId = $specId;
         $this->isDefaultEditor = $isDefaultEditor;
         $this->moduleHeroTreeId = $moduleHeroTreeId;
         $this->layout = $layout;
+        $this->readOnly = $readOnly;
+
+        if ($readOnly) {
+            // Deliberately bypasses resolveActiveBuild() entirely — a read-only view shows
+            // exactly the caller-supplied picks (a real archived match's own talents, not a
+            // persisted TalentBuild row), and must never fall back to touching a viewer's own
+            // saved build. See this property's docblock for why nothing here can ever persist.
+            $this->chosenEntries = $presetChosenEntries ?? [];
+            $this->chosenPvpTalentIds = $presetPvpTalentIds ?? [];
+            $this->deriveHeroTreeFromChosenEntries();
+
+            return;
+        }
 
         $service = app(TalentSelectionService::class);
         $user = $isDefaultEditor ? null : auth()->user();
@@ -107,7 +160,17 @@ class TalentSelector extends Component
 
         $this->chosenEntries = $build->choices()->pluck('chosen_entry_id', 'talent_node_id')->all();
         $this->chosenPvpTalentIds = $build->pvpChoices()->orderBy('slot')->pluck('pvp_talent_id')->values()->all();
+        $this->deriveHeroTreeFromChosenEntries();
+    }
 
+    /**
+     * Sets $heroTreeId from whichever hero-tree node (if any) $chosenEntries already has a pick
+     * in, falling back to $moduleHeroTreeId when there's none — shared by both the normal
+     * persisted-build path and the readOnly preset path in mount(), extracted 2026-08-28 so
+     * readOnly mode doesn't have to duplicate this logic.
+     */
+    private function deriveHeroTreeFromChosenEntries(): void
+    {
         if ($this->chosenEntries !== []) {
             $heroEntry = TalentNodeEntry::whereIn('id', array_values($this->chosenEntries))
                 ->whereHas('talentNode.talentTree', fn ($q) => $q->where('type', 'hero'))
@@ -117,14 +180,18 @@ class TalentSelector extends Component
             $this->heroTreeId = $heroEntry?->talentNode->talent_tree_id;
         }
 
-        // No hero-tree pick in the resolved build (a brand-new saved build, or the unsaved-shell
-        // fallback that already set nothing above) — fall back to the module's own declared tree
-        // rather than leaving the picker unset. See the $moduleHeroTreeId docblock above.
-        $this->heroTreeId ??= $moduleHeroTreeId;
+        // No hero-tree pick found above (a brand-new saved build, the unsaved-shell fallback, or
+        // a readOnly preset with no hero selection) — fall back to the module's own declared
+        // tree rather than leaving the picker unset. See the $moduleHeroTreeId docblock above.
+        $this->heroTreeId ??= $this->moduleHeroTreeId;
     }
 
     public function updatedHeroTreeId($value): void
     {
+        if ($this->readOnly) {
+            return;
+        }
+
         $staleNodeIds = TalentNode::whereHas(
             'talentTree',
             fn ($q) => $q->where('type', 'hero')->when($value, fn ($q2) => $q2->where('id', '!=', $value))
@@ -150,6 +217,10 @@ class TalentSelector extends Component
     /** Handles both "pick this entry for this node" and "click the already-chosen entry again to clear it". */
     public function toggleEntry(int $nodeId, int $entryId): void
     {
+        if ($this->readOnly) {
+            return;
+        }
+
         if (($this->chosenEntries[$nodeId] ?? null) === $entryId) {
             unset($this->chosenEntries[$nodeId]);
 
@@ -157,6 +228,14 @@ class TalentSelector extends Component
                 fn (TalentSelectionService $service, TalentBuild $build) => $service->deleteChoice($build, $nodeId)
             );
         } else {
+            // Gate/prerequisite locking only applies to a FRESH investment in this node — not to
+            // swapping a CHOICE node's already-invested pick between its two options (that isn't
+            // new investment, just changing which spell the existing point buys), matching
+            // cycleNode()'s equivalent $currentRank === 0 check below.
+            if (!isset($this->chosenEntries[$nodeId]) && $this->isNodeLocked(TalentNode::with('talentTree')->findOrFail($nodeId))) {
+                return;
+            }
+
             $this->chosenEntries[$nodeId] = $entryId;
 
             $this->persistIfAuthenticated(
@@ -181,6 +260,10 @@ class TalentSelector extends Component
      */
     public function cycleNode(int $nodeId): void
     {
+        if ($this->readOnly) {
+            return;
+        }
+
         $entriesByRank = TalentNodeEntry::where('talent_node_id', $nodeId)->orderBy('rank')->get()->keyBy('rank');
 
         if ($entriesByRank->isEmpty()) {
@@ -195,6 +278,13 @@ class TalentSelector extends Component
         $nextEntry = $entriesByRank->get($currentRank + 1);
 
         if ($nextEntry) {
+            // Same "only gate a fresh investment" rule as toggleEntry() — advancing an
+            // already-picked node's rank (1 -> 2, etc.) never re-checks the lock, only the
+            // initial 0 -> 1 pick does.
+            if ($currentRank === 0 && $this->isNodeLocked(TalentNode::with('talentTree')->findOrFail($nodeId))) {
+                return;
+            }
+
             $this->chosenEntries[$nodeId] = $nextEntry->id;
 
             $this->persistIfAuthenticated(
@@ -213,6 +303,10 @@ class TalentSelector extends Component
 
     public function togglePvpTalent(int $pvpTalentId): void
     {
+        if ($this->readOnly) {
+            return;
+        }
+
         if (in_array($pvpTalentId, $this->chosenPvpTalentIds, true)) {
             $this->chosenPvpTalentIds = array_values(array_diff($this->chosenPvpTalentIds, [$pvpTalentId]));
         } elseif (count($this->chosenPvpTalentIds) < self::MAX_PVP_TALENTS) {
@@ -237,6 +331,10 @@ class TalentSelector extends Component
      */
     public function previewImport(): void
     {
+        if ($this->readOnly) {
+            return;
+        }
+
         $this->importError = null;
         $this->importPreview = null;
         $this->importWarnings = [];
@@ -283,7 +381,7 @@ class TalentSelector extends Component
      */
     public function applyImport(): void
     {
-        if (!$this->importPreview) {
+        if ($this->readOnly || !$this->importPreview) {
             return;
         }
 
@@ -319,6 +417,13 @@ class TalentSelector extends Component
 
     private function persistIfAuthenticated(\Closure $callback): void
     {
+        // Defense-in-depth — every caller above already short-circuits before ever reaching
+        // here when $readOnly is true, but this guarantees nothing writes to talent_builds via
+        // this path regardless of how it's reached.
+        if ($this->readOnly) {
+            return;
+        }
+
         if (!$this->isDefaultEditor && !auth()->check()) {
             return;
         }
@@ -387,11 +492,71 @@ class TalentSelector extends Component
             return collect();
         }
 
+        // setRelation rather than ->with('talentTree') — every node here already belongs to the
+        // same $tree the caller passed in, so this avoids a real query for something already
+        // known, purely to let isNodeLocked()'s gate check read $node->talentTree->type cheaply.
         return $tree->nodes()
             ->with('entries.spell')
             ->orderBy('pos_y')
             ->orderBy('pos_x')
-            ->get();
+            ->get()
+            ->each(fn (TalentNode $n) => $n->setRelation('talentTree', $tree));
+    }
+
+    /** @var ?Collection<int, int> talent_node_id => rank, memoized per render/action from $chosenEntries */
+    private ?Collection $rankByNodeIdCache = null;
+
+    /**
+     * Converts the live $chosenEntries state (node_id => entry_id) into the node_id => rank map
+     * TalentSelectionService's lock-checking methods need — see those methods' own docblocks for
+     * why this reads live component state rather than a persisted TalentBuild.
+     */
+    private function rankByNodeId(): Collection
+    {
+        if ($this->rankByNodeIdCache === null) {
+            $rankByEntryId = TalentNodeEntry::whereIn('id', array_values($this->chosenEntries))->pluck('rank', 'id');
+            $this->rankByNodeIdCache = collect($this->chosenEntries)->map(fn ($entryId) => $rankByEntryId->get($entryId, 0));
+        }
+
+        return $this->rankByNodeIdCache;
+    }
+
+    /** Which of the three loaded tree-node collections $node belongs to, for scoping a lock check to the right tree's point pool. */
+    private function treeNodesFor(TalentNode $node): Collection
+    {
+        return match ($node->talent_tree_id) {
+            $this->classTalentTree?->id => $this->classTalentNodes,
+            $this->specTalentTree?->id => $this->specTalentNodes,
+            $this->selectedHeroTree?->id => $this->heroTalentNodes,
+            default => collect(),
+        };
+    }
+
+    /** Whether $node can't be picked yet — an unmet prerequisite edge, or (Class/Spec trees only) an unmet point-threshold gate. Used both for render-time greying and click-time enforcement. */
+    public function isNodeLocked(TalentNode $node): bool
+    {
+        if ($this->readOnly) {
+            // Lock/grey styling exists to explain why a pick can't be made *yet* — meaningless
+            // once nothing can be picked at all (see the $readOnly property's own docblock).
+            return false;
+        }
+
+        return app(TalentSelectionService::class)->isNodeLocked($node, $this->treeNodesFor($node), $this->rankByNodeId());
+    }
+
+    public function getClassPointsSpentProperty(): int
+    {
+        return app(TalentSelectionService::class)->pointsSpentInTree($this->classTalentNodes, $this->rankByNodeId());
+    }
+
+    public function getSpecPointsSpentProperty(): int
+    {
+        return app(TalentSelectionService::class)->pointsSpentInTree($this->specTalentNodes, $this->rankByNodeId());
+    }
+
+    public function getHeroPointsSpentProperty(): int
+    {
+        return app(TalentSelectionService::class)->pointsSpentInTree($this->heroTalentNodes, $this->rankByNodeId());
     }
 
     /** Prerequisite connections scoped to one tree's own nodes — the grid layout's connector lines. Not computed at all in 'list' mode, since only the grid partial reads it. */
@@ -546,6 +711,9 @@ class TalentSelector extends Component
             'classTalentEdges' => $this->classTalentEdges,
             'specTalentEdges' => $this->specTalentEdges,
             'heroTalentEdges' => $this->heroTalentEdges,
+            'classPointsSpent' => $this->classPointsSpent,
+            'specPointsSpent' => $this->specPointsSpent,
+            'heroPointsSpent' => $this->heroPointsSpent,
         ]);
     }
 }

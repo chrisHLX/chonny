@@ -125,6 +125,24 @@ class TopDamageRotations extends Component
 
         if ($window !== null) {
             $window['steps'] = $service->resolveWindowSteps($window['steps'], $this->specId, $talentService);
+
+            // Embedded once, at rotation-generation time, by `wow:enrich-rotation-talents` (see
+            // that command's docblock) — the real talent build the player who produced this
+            // exact window actually had selected. Resolving `spell` here reuses
+            // resolveWindowSteps() as-is (it's generic over any {spellId: ...} array) purely for
+            // icon display — this doesn't re-derive or re-verify the talent build itself.
+            if (isset($window['talentBuild'])) {
+                $window['talentBuild']['talents'] = $service->resolveWindowSteps(
+                    $window['talentBuild']['talents'] ?? [],
+                    $this->specId,
+                    $talentService
+                );
+                $window['talentBuild']['pvpTalents'] = $service->resolveWindowSteps(
+                    $window['talentBuild']['pvpTalents'] ?? [],
+                    $this->specId,
+                    $talentService
+                );
+            }
         }
 
         return [
