@@ -512,7 +512,7 @@ Found missing from this list 2026-08-05 while answering a deployment question ab
 - The Bash tool is git-bash and does NOT have PHP on its PATH (`php: command not found`) — never attempt `php`/`artisan` commands via the Bash tool; use the PowerShell tool for anything PHP/artisan-related, and Bash only for non-PHP shell work (file listing, git, etc.) if preferred.
 - Care still applies as with any command execution: prefer read/idempotent commands freely, but treat destructive or state-changing artisan commands (migrate:fresh, db:seed on a real DB, queue:restart, etc.) with the same confirm-first judgment as any other risky action.
 
-## Production Environment
+## Production Environment (deploy procedure updated 2026-08-29 — read `DEPLOY.md` for the full runbook)
 - Linux server (Nginx + PHP-FPM) — Windows-specific assumptions do not apply
 - 2 Supervisor workers both listening on the **default queue** running `php artisan queue:work`:
   - Worker 1: timeout 90s
@@ -520,6 +520,7 @@ Found missing from this list 2026-08-05 while answering a deployment question ab
   *(No supervisor `.conf` is committed to the repo — verify against `/etc/supervisor/conf.d/` on the production server if these values change.)*
 - Long-running jobs (e.g. `GenerateModuleContentJob`) must complete within 90s or they will be killed and retried — a dedicated long queue with a higher timeout is a **future improvement**
 - Same Redis, MySQL, and `.env` variable requirements as local dev
+- **Deploy is `cd /var/www/mindcollector && ./deploy.sh` — never a bare `git pull` directly on the server.** `opcache.validate_timestamps=Off` on this box means a bare `git pull` updates files on disk but already-running PHP-FPM workers keep executing old bytecode until FPM actually restarts — same staleness risk separately applies to the 2 Supervisor queue workers (long-running CLI processes holding old class definitions in memory) and to anything cached in Redis by a worker that was running stale code at the time. `deploy.sh` (repo root) restarts php-fpm, restarts the queue workers, bumps the WoW spell-reference cache version, runs a post-deploy smoke test against `/`, `/wow-comps`, `/spells`, and saves a full timestamped run breakdown to `storage/logs/deploy-*.log` on the server. This exists because of a real incident (2026-08-28: a bare `git pull` + a stale OPcache-computed Redis cache entry caused real 500s on `/wow-comps` for real users; a spell-cache-version bump alone did not fix it, since the bad entry was already written under the current version — see `DEPLOY.md` for the full trace). Whenever `data/spelldata/` or a spell/talent migration is part of the deploy, `deploy.sh` prints a reminder to run `import:spelldata` by hand afterward (verify the patch version against the DB first, per the frozen-patch-string rule below — the script deliberately never runs this step itself).
 
 ## Implementation Roadmap
 Gap Analysis: Axes and Skill Types
