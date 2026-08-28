@@ -8,6 +8,7 @@ use App\Models\GameClass;
 use App\Models\PageViewEvent;
 use App\Models\Specialization;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
 use Livewire\Component;
 
 /**
@@ -38,16 +39,25 @@ class TopDamageRotations extends Component
 
     public function mount(): void
     {
-        $firstClass = GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))
+        // Default to the first WoW spec that actually has a promoted burst window — NOT just
+        // `orderBy('name')->first()`, which lands on Death Knight / Blood: a tank spec with
+        // effectively no rated-3v3 pre-kill data, so it has neither a rotation window nor a
+        // mechanics file, and the whole page renders empty (reported 2026-08-28).
+        $spec = Specialization::with('gameClass')
+            ->whereHas('gameClass.game', fn ($q) => $q->where('slug', 'wow'))
             ->orderBy('name')
-            ->first();
+            ->get()
+            ->first(fn ($s) => $s->gameClass
+                && File::exists(base_path("data/arena-logs/rotations/{$s->gameClass->slug}/{$s->slug}.json")));
 
-        if (!$firstClass) {
-            return;
+        if ($spec) {
+            $this->classId = $spec->class_id;
+            $this->specId = $spec->id;
+        } else {
+            $firstClass = GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))->orderBy('name')->first();
+            $this->classId = $firstClass?->id;
+            $this->specId = $firstClass ? Specialization::where('class_id', $firstClass->id)->orderBy('name')->first()?->id : null;
         }
-
-        $this->classId = $firstClass->id;
-        $this->specId = Specialization::where('class_id', $firstClass->id)->orderBy('name')->first()?->id;
 
         // Bare page view only, not attributed to the default class/spec — same reasoning as
         // SpellExplorer::mount()'s identical guard (every visitor lands on this default
