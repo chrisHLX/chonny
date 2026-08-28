@@ -36,6 +36,7 @@ class PageUsage extends Component
         'wow_comps' => 'WoW Comps',
         'top_damage_rotations' => 'Burst Windows',
         'burst_window_talents' => 'Burst Window Talent View',
+        'class_guide' => 'Class Guide',
     ];
 
     /**

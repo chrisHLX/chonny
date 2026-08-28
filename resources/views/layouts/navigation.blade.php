@@ -63,6 +63,11 @@
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                 Burst Windows
             </a>
+            <a href="{{ route('class-guide') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('class-guide') ? 'active !text-accent' : '' }}">
+                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                Class Guides
+            </a>
             <a href="{{ route('spells.explore') }}"
                class="sidebar-item text-[12px] {{ request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
