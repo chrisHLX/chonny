@@ -156,7 +156,7 @@
                 @foreach ($w['steps'] as $step)
                     <li class="text-[11px] px-2 py-1 rounded-md border
                                {{ $step['isCc'] ?? false ? 'border-violet/50 text-violet-hover bg-violet-subtle' : ($step['isRepeat'] ?? false ? 'border-line text-ink-subtle' : 'border-line-strong text-ink') }}">
-                        {{ $step['name'] }}
+                        {{ $step['displayName'] ?? $step['name'] }}
                     </li>
                     @if (!$loop->last)<li class="text-ink-subtle text-[10px]">→</li>@endif
                 @endforeach

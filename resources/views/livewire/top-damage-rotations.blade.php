@@ -192,7 +192,7 @@
                                 </button>
                             @else
                                 <div class="linear-card !p-2.5 w-36 flex-shrink-0">
-                                    <span class="block text-[11px] text-ink font-semibold truncate">{{ $step['name'] }}</span>
+                                    <span class="block text-[11px] text-ink font-semibold truncate">{{ $step['displayName'] ?? $step['name'] }}</span>
                                 </div>
                             @endif
                         @endforeach

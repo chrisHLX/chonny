@@ -187,9 +187,29 @@ class ClassGuide extends Component
             ->values()->all();
     }
 
+    /**
+     * The 12s burst window, with each step's spellId resolved to a real Spell (via
+     * ArenaLogService::resolveWindowSteps() — see that method's docblock) so the page can render
+     * the patch-data `displayName` instead of the step's raw `name`, which is in whichever locale
+     * the source match was logged in (confirmed real: a zh-CN-logged match leaves Chinese step
+     * names on an otherwise-English page). Same resolution TopDamageRotations/WowComps already
+     * apply to their own burst-window steps — this page just wasn't wired up to it yet.
+     */
     public function getBurstWindowProperty(): ?array
     {
-        return app(ArenaLogService::class)->rotationForSpec($this->classSlug, $this->specSlug);
+        $rotation = app(ArenaLogService::class)->rotationForSpec($this->classSlug, $this->specSlug);
+
+        if ($rotation === null || empty($rotation['topDpsWindow']['steps']) || ! $this->spec) {
+            return $rotation;
+        }
+
+        $rotation['topDpsWindow']['steps'] = app(ArenaLogService::class)->resolveWindowSteps(
+            $rotation['topDpsWindow']['steps'],
+            $this->spec->id,
+            app(\App\Http\Services\TalentSelectionService::class)
+        );
+
+        return $rotation;
     }
 
     /* ------------------------------------------------------------------ */

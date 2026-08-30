@@ -1,7 +1,7 @@
 {
     "class": "Monk",
     "talent_tree_id": 1000,
-    "fetched_at": "2026-08-12T21:34:30+00:00",
+    "fetched_at": "2026-08-29T03:28:49+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -12,8 +12,15 @@
                 "display_col": 6,
                 "raw_position_x": 5400,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101149,
+                    101185
+                ],
+                "unlocks": [
+                    110097,
+                    101184,
+                    110027
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -36,8 +43,15 @@
                 "display_col": 6,
                 "raw_position_x": 5400,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101149,
+                    109826
+                ],
+                "unlocks": [
+                    101184,
+                    110027,
+                    101152
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -60,8 +74,14 @@
                 "display_col": 3,
                 "raw_position_x": 3600,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101165
+                ],
+                "unlocks": [
+                    101175,
+                    101169,
+                    101171
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -98,8 +118,14 @@
                 "display_col": 4,
                 "raw_position_x": 4200,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101167
+                ],
+                "unlocks": [
+                    101173,
+                    101163,
+                    101165
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -136,8 +162,14 @@
                 "display_col": 6,
                 "raw_position_x": 5400,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101182,
+                    101140,
+                    101138
+                ],
+                "unlocks": [
+                    101180
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -160,8 +192,13 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101167
+                ],
+                "unlocks": [
+                    101137,
+                    101173
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -184,8 +221,14 @@
                 "display_col": 6,
                 "raw_position_x": 5400,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101182,
+                    101140,
+                    101138
+                ],
+                "unlocks": [
+                    101180
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -208,8 +251,14 @@
                 "display_col": 7,
                 "raw_position_x": 6000,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    110025,
+                    101183
+                ],
+                "unlocks": [
+                    101180,
+                    101137
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -232,8 +281,12 @@
                 "display_col": 4,
                 "raw_position_x": 4200,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101153
+                ],
+                "unlocks": [
+                    101167
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -257,7 +310,10 @@
                 "raw_position_x": 4200,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    101147,
+                    101149
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -281,7 +337,10 @@
                 "raw_position_x": 3000,
                 "raw_position_y": 1502,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    101147,
+                    101144
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -304,8 +363,13 @@
                 "display_col": 1,
                 "raw_position_x": 2400,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101143
+                ],
+                "unlocks": [
+                    110023,
+                    101146
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -328,8 +392,14 @@
                 "display_col": 1,
                 "raw_position_x": 2400,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101144,
+                    101146
+                ],
+                "unlocks": [
+                    102433,
+                    101158
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -352,8 +422,15 @@
                 "display_col": 2,
                 "raw_position_x": 3000,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101147,
+                    101144
+                ],
+                "unlocks": [
+                    110024,
+                    101160,
+                    110023
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -376,8 +453,15 @@
                 "display_col": 3,
                 "raw_position_x": 3600,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101142,
+                    101143
+                ],
+                "unlocks": [
+                    101146,
+                    101153,
+                    101161
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -400,8 +484,12 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101149
+                ],
+                "unlocks": [
+                    110098
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -424,8 +512,15 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101142,
+                    101186
+                ],
+                "unlocks": [
+                    101153,
+                    101148,
+                    101150
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -462,8 +557,15 @@
                 "display_col": 6,
                 "raw_position_x": 5400,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101185,
+                    101149
+                ],
+                "unlocks": [
+                    101184,
+                    110027,
+                    110098
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -486,8 +588,12 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101152
+                ],
+                "unlocks": [
+                    101182
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -510,8 +616,16 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101148,
+                    101153,
+                    101090
+                ],
+                "unlocks": [
+                    101183,
+                    101151,
+                    101167
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -534,8 +648,15 @@
                 "display_col": 4,
                 "raw_position_x": 4200,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101149,
+                    101147
+                ],
+                "unlocks": [
+                    101160,
+                    101141,
+                    110098
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -558,7 +679,9 @@
                 "display_col": 7,
                 "raw_position_x": 6000,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    101179
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -582,8 +705,13 @@
                 "display_col": 2,
                 "raw_position_x": 3000,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101165,
+                    110020
+                ],
+                "unlocks": [
+                    101169
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -606,8 +734,15 @@
                 "display_col": 2,
                 "raw_position_x": 3000,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101158,
+                    101166,
+                    102433
+                ],
+                "unlocks": [
+                    101155,
+                    101157
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -630,8 +765,13 @@
                 "display_col": 1,
                 "raw_position_x": 2400,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101158,
+                    110020
+                ],
+                "unlocks": [
+                    101169
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -654,8 +794,14 @@
                 "display_col": 1,
                 "raw_position_x": 2400,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101159,
+                    110023
+                ],
+                "unlocks": [
+                    101157,
+                    110020
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -692,8 +838,15 @@
                 "display_col": 2,
                 "raw_position_x": 3000,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101160,
+                    110024,
+                    110023
+                ],
+                "unlocks": [
+                    101158,
+                    110020
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -716,8 +869,15 @@
                 "display_col": 3,
                 "raw_position_x": 3600,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101146,
+                    101161,
+                    101153
+                ],
+                "unlocks": [
+                    101167,
+                    101159
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -740,8 +900,12 @@
                 "display_col": 3,
                 "raw_position_x": 3600,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101147
+                ],
+                "unlocks": [
+                    101160
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -764,8 +928,14 @@
                 "display_col": 4,
                 "raw_position_x": 4200,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101173,
+                    101163,
+                    101165
+                ],
+                "unlocks": [
+                    101175
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -788,8 +958,12 @@
                 "display_col": 4,
                 "raw_position_x": 4200,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101136
+                ],
+                "unlocks": [
+                    101162
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -812,8 +986,14 @@
                 "display_col": 4,
                 "raw_position_x": 4200,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101173,
+                    101163,
+                    101165
+                ],
+                "unlocks": [
+                    101175
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -850,8 +1030,15 @@
                 "display_col": 3,
                 "raw_position_x": 3597,
                 "raw_position_y": 5102,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101136,
+                    101166
+                ],
+                "unlocks": [
+                    101155,
+                    101162,
+                    110022
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -874,8 +1061,13 @@
                 "display_col": 3,
                 "raw_position_x": 3600,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101167
+                ],
+                "unlocks": [
+                    101165,
+                    110020
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -909,8 +1101,16 @@
                 "display_col": 4,
                 "raw_position_x": 4200,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101160,
+                    101141,
+                    110098
+                ],
+                "unlocks": [
+                    101136,
+                    101138,
+                    101166
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -933,7 +1133,9 @@
                 "display_col": 1,
                 "raw_position_x": 2400,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    101169
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -957,8 +1159,15 @@
                 "display_col": 2,
                 "raw_position_x": 3000,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101157,
+                    101155,
+                    110022
+                ],
+                "unlocks": [
+                    101168,
+                    101170
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -992,7 +1201,10 @@
                 "display_col": 3,
                 "raw_position_x": 3600,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    101169,
+                    101171
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1016,8 +1228,13 @@
                 "display_col": 3,
                 "raw_position_x": 3600,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    110022
+                ],
+                "unlocks": [
+                    101176,
+                    101170
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1040,8 +1257,14 @@
                 "display_col": 4,
                 "raw_position_x": 4200,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101163,
+                    101173,
+                    101165
+                ],
+                "unlocks": [
+                    101175
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1064,8 +1287,15 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101136,
+                    101138
+                ],
+                "unlocks": [
+                    101162,
+                    101174,
+                    108540
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1088,8 +1318,14 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101173
+                ],
+                "unlocks": [
+                    101179,
+                    101177,
+                    101175
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1126,8 +1362,14 @@
                 "display_col": 4,
                 "raw_position_x": 4200,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101174,
+                    101162,
+                    110022
+                ],
+                "unlocks": [
+                    101176
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1150,7 +1392,11 @@
                 "display_col": 4,
                 "raw_position_x": 4200,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    101177,
+                    101175,
+                    101171
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1188,8 +1434,13 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101174
+                ],
+                "unlocks": [
+                    101176,
+                    101178
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1212,7 +1463,10 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    101179,
+                    101177
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1236,8 +1490,14 @@
                 "display_col": 6,
                 "raw_position_x": 5400,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101174,
+                    101180
+                ],
+                "unlocks": [
+                    101154,
+                    101178
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -1271,8 +1531,13 @@
                 "display_col": 7,
                 "raw_position_x": 6000,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101140,
+                    101137
+                ],
+                "unlocks": [
+                    101179
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1295,8 +1560,14 @@
                 "display_col": 6,
                 "raw_position_x": 5400,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101182,
+                    101140,
+                    101138
+                ],
+                "unlocks": [
+                    101180
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1319,8 +1590,13 @@
                 "display_col": 6,
                 "raw_position_x": 5400,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101183,
+                    110095
+                ],
+                "unlocks": [
+                    101137
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1343,8 +1619,15 @@
                 "display_col": 6,
                 "raw_position_x": 5400,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101184,
+                    110098,
+                    110027
+                ],
+                "unlocks": [
+                    101140,
+                    101182
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1381,8 +1664,14 @@
                 "display_col": 7,
                 "raw_position_x": 6000,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101185,
+                    101150
+                ],
+                "unlocks": [
+                    110025,
+                    101183
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -1416,8 +1705,13 @@
                 "display_col": 7,
                 "raw_position_x": 6000,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101186
+                ],
+                "unlocks": [
+                    101184,
+                    101150
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1441,7 +1735,10 @@
                 "raw_position_x": 5400,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    101185,
+                    101149
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1512,8 +1809,15 @@
                 "display_col": 2,
                 "raw_position_x": 3000,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101160,
+                    110024,
+                    110026
+                ],
+                "unlocks": [
+                    101158,
+                    110019
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1522,7 +1826,7 @@
                         "talent_name": "Chi Wave",
                         "spell_id": 450391,
                         "spell_name": "Chi Wave",
-                        "description": "Every 15 sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 21 healing. Bounces up to 7 times to targets within 25 yards.",
+                        "description": "Every 15 sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 20 healing. Bounces up to 7 times to targets within 25 yards.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1536,8 +1840,15 @@
                 "display_col": 2,
                 "raw_position_x": 3000,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    110024,
+                    101160,
+                    101145
+                ],
+                "unlocks": [
+                    101158,
+                    101156
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1558,7 +1869,7 @@
                                 "talent_name": "Chi Burst",
                                 "spell_id": 123986,
                                 "spell_name": "Chi Burst",
-                                "description": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 99 Nature damage to all enemies, and 78 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets.\r\n\r\n\r\nCasting Chi Burst does not prevent avoiding attacks.",
+                                "description": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 98 Nature damage to all enemies, and 78 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets.\r\n\r\n\r\nCasting Chi Burst does not prevent avoiding attacks.",
                                 "cast_time": "1 sec cast",
                                 "cooldown": "30 sec cooldown",
                                 "range": "40 yd range"
@@ -1574,7 +1885,9 @@
                 "display_col": 6,
                 "raw_position_x": 5400,
                 "raw_position_y": 5700,
-                "locked_by": [],
+                "locked_by": [
+                    101173
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1598,8 +1911,13 @@
                 "display_col": 7,
                 "raw_position_x": 6000,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109827
+                ],
+                "unlocks": [
+                    101184,
+                    101090
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1623,7 +1941,10 @@
                 "raw_position_x": 5400,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    109826,
+                    101149
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1646,8 +1967,15 @@
                 "display_col": 2,
                 "raw_position_x": 3000,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    102432,
+                    101158,
+                    101166
+                ],
+                "unlocks": [
+                    101157,
+                    101155
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1670,8 +1998,15 @@
                 "display_col": 2,
                 "raw_position_x": 3000,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101159,
+                    101166,
+                    101158
+                ],
+                "unlocks": [
+                    101155,
+                    101157
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1694,8 +2029,14 @@
                 "display_col": 3,
                 "raw_position_x": 3600,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101165
+                ],
+                "unlocks": [
+                    101171,
+                    101169,
+                    101175
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1718,8 +2059,14 @@
                 "display_col": 3,
                 "raw_position_x": 3600,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101165
+                ],
+                "unlocks": [
+                    101171,
+                    101169,
+                    101175
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1756,8 +2103,14 @@
                 "display_col": 1,
                 "raw_position_x": 2400,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101144,
+                    101146
+                ],
+                "unlocks": [
+                    101158,
+                    101159
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1780,8 +2133,12 @@
                 "display_col": 2,
                 "raw_position_x": 3000,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101146
+                ],
+                "unlocks": [
+                    101159
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1804,8 +2161,12 @@
                 "display_col": 7,
                 "raw_position_x": 6000,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101184
+                ],
+                "unlocks": [
+                    101140
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1828,8 +2189,14 @@
                 "display_col": 1,
                 "raw_position_x": 2400,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101144,
+                    101146
+                ],
+                "unlocks": [
+                    102432,
+                    101158
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1866,8 +2233,12 @@
                 "display_col": 6,
                 "raw_position_x": 5400,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101150
+                ],
+                "unlocks": [
+                    101183
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1890,8 +2261,12 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    110098
+                ],
+                "unlocks": [
+                    101182
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1914,8 +2289,15 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101089,
+                    101148,
+                    101153
+                ],
+                "unlocks": [
+                    101167,
+                    101183
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1938,8 +2320,16 @@
                 "display_col": 5,
                 "raw_position_x": 4800,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    101153,
+                    101148,
+                    101150
+                ],
+                "unlocks": [
+                    101183,
+                    110095,
+                    101167
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -2393,7 +2783,7 @@
                             "talent_name": "Celestial Conduit",
                             "spell_id": 443028,
                             "spell_name": "Celestial Conduit",
-                            "description": "The August Celestials empower you, causing you to radiate 289 Nature damage onto enemies and 20,759 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
+                            "description": "The August Celestials empower you, causing you to radiate 282 Nature damage onto enemies and 20,493 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
                             "cast_time": "Channeled",
                             "cooldown": "1.5 min cooldown",
                             "range": null
@@ -2482,7 +2872,7 @@
                             "talent_name": "Celestial Conduit",
                             "spell_id": 1248989,
                             "spell_name": "Celestial Conduit",
-                            "description": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 1 min.\r\n\r\n Celestial Conduit:\r\nThe August Celestials empower you, causing you to radiate 290 Nature damage onto enemies and 21,037 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
+                            "description": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 1 min.\r\n\r\n Celestial Conduit:\r\nThe August Celestials empower you, causing you to radiate 291 Nature damage onto enemies and 20,589 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3458,7 +3848,7 @@
                             "talent_name": "Invoke Xuen, the White Tiger",
                             "spell_id": 123904,
                             "spell_name": "Invoke Xuen, the White Tiger",
-                            "description": "Summons an effigy of Xuen, the White Tiger for 20 sec. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every 0.9 sec with Tiger Lightning for 9 Nature damage.",
+                            "description": "Summons an effigy of Xuen, the White Tiger for 20 sec. Xuen attacks your primary target, and strikes 3 enemies within 10 yards every 0.9 sec with Tiger Lightning for 8 Nature damage.",
                             "cast_time": "Instant",
                             "cooldown": "2 min cooldown",
                             "range": "40 yd range"
@@ -3722,7 +4112,7 @@
                             "talent_name": "Combat Wisdom",
                             "spell_id": 121817,
                             "spell_name": "Combat Wisdom",
-                            "description": "While out of combat, your Chi balances to 2 instead of depleting to empty.\r\n\r\nYour stamina is increased by 5% and every 15 sec, your next Tiger Palm also casts Expel Harm.\r\n\r\n Expel Harm\r\nExpel negative chi from your body, healing for 459 and dealing 10% of the amount healed as Nature damage to an enemy within 20 yards.",
+                            "description": "While out of combat, your Chi balances to 2 instead of depleting to empty.\r\n\r\nYour stamina is increased by 5% and every 15 sec, your next Tiger Palm also casts Expel Harm.\r\n\r\n Expel Harm\r\nExpel negative chi from your body, healing for 456 and dealing 10% of the amount healed as Nature damage to an enemy within 20 yards.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4346,7 +4736,7 @@
                             "talent_name": "Celestial Conduit",
                             "spell_id": 1248989,
                             "spell_name": "Celestial Conduit",
-                            "description": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 1 min.\r\n\r\n Celestial Conduit:\r\nThe August Celestials empower you, causing you to radiate 292 Nature damage onto enemies and 20,652 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
+                            "description": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 1 min.\r\n\r\n Celestial Conduit:\r\nThe August Celestials empower you, causing you to radiate 287 Nature damage onto enemies and 20,450 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4467,7 +4857,7 @@
                             "talent_name": "Teachings of the Monastery",
                             "spell_id": 116645,
                             "spell_name": "Teachings of the Monastery",
-                            "description": "Tiger Palm causes your next Blackout Kick to strike an additional time dealing 30 Physical damage, stacking up to 4.\r\n\r\nBlackout Kick has a 12% chance to reset the remaining cooldown on Rising Sun Kick.\r\n\r\n",
+                            "description": "Tiger Palm causes your next Blackout Kick to strike an additional time dealing 29 Physical damage, stacking up to 4.\r\n\r\nBlackout Kick has a 12% chance to reset the remaining cooldown on Rising Sun Kick.\r\n\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5126,7 +5516,7 @@
                                     "talent_name": "Whirling Dragon Punch",
                                     "spell_id": 152175,
                                     "spell_name": "Whirling Dragon Punch",
-                                    "description": "Performs a devastating whirling upward strike, dealing 328 damage to all nearby enemies and an additional 159 damage to the first target struck. Damage reduced beyond 5 targets.\r\n\r\nOnly usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
+                                    "description": "Performs a devastating whirling upward strike, dealing 330 damage to all nearby enemies and an additional 159 damage to the first target struck. Damage reduced beyond 5 targets.\r\n\r\nOnly usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
                                     "cast_time": "Instant",
                                     "cooldown": "35 sec cooldown",
                                     "range": null
@@ -5579,7 +5969,7 @@
                             "talent_name": "Jadefire Stomp",
                             "spell_id": 457974,
                             "spell_name": "Jadefire Stomp",
-                            "description": "At the end of your Fists of Fury channel, you release a Jadefire Stomp, dealing 34 damage to 5 enemies in front of you and increasing your movement speed by 20% for 3 sec.",
+                            "description": "At the end of your Fists of Fury channel, you release a Jadefire Stomp, dealing 35 damage to 5 enemies in front of you and increasing your movement speed by 20% for 3 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5831,7 +6221,7 @@
                             "talent_name": "Celestial Conduit",
                             "spell_id": 443028,
                             "spell_name": "Celestial Conduit",
-                            "description": "The August Celestials empower you, causing you to radiate 292 Nature damage onto enemies and 21,257 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
+                            "description": "The August Celestials empower you, causing you to radiate 291 Nature damage onto enemies and 20,943 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
                             "cast_time": "Channeled",
                             "cooldown": "1.5 min cooldown",
                             "range": null
@@ -6037,7 +6427,7 @@
                             "talent_name": "Thunder Focus Tea",
                             "spell_id": 116680,
                             "spell_name": "Thunder Focus Tea",
-                            "description": "Receive a jolt of energy, empowering your next spell cast:\r\n\r\nEnveloping Mist: Immediately heals for 2,846 and is instant cast.\r\nRenewing Mist: Duration increased by 10 sec.\r\nRising Sun Kick: Cooldown reduced by 9 sec.\r\n",
+                            "description": "Receive a jolt of energy, empowering your next spell cast:\r\n\r\nEnveloping Mist: Immediately heals for 2,865 and is instant cast.\r\nRenewing Mist: Duration increased by 10 sec.\r\nRising Sun Kick: Cooldown reduced by 9 sec.\r\n",
                             "cast_time": "Instant",
                             "cooldown": "1 sec cooldown",
                             "range": null
@@ -6275,7 +6665,7 @@
                             "talent_name": "Invigorating Mists",
                             "spell_id": 274586,
                             "spell_name": "Invigorating Mists",
-                            "description": "Vivify heals all allies with your Renewing Mist active for 1,203.\r\n\r\nSheilun's Gift's healing is increased by 500% on its primary target.",
+                            "description": "Vivify heals all allies with your Renewing Mist active for 1,243.\r\n\r\nSheilun's Gift's healing is increased by 500% on its primary target.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6468,7 +6858,7 @@
                                     "talent_name": "Revival",
                                     "spell_id": 115310,
                                     "spell_name": "Revival",
-                                    "description": "Heals all party and raid members within 40 yds for 23,002 and clears them of 3 harmful Magic, all Poison, and all Disease effects.\r\n\r\nHealing reduced beyond 5 targets.",
+                                    "description": "Heals all party and raid members within 40 yds for 22,942 and clears them of 3 harmful Magic, all Poison, and all Disease effects.\r\n\r\nHealing reduced beyond 5 targets.",
                                     "cast_time": "Instant",
                                     "cooldown": "1 sec cooldown",
                                     "range": null
@@ -6478,7 +6868,7 @@
                                     "talent_name": "Restoral",
                                     "spell_id": 388615,
                                     "spell_name": "Restoral",
-                                    "description": "Heals all party and raid members within 40 yds for 23,093 and clears them of all harmful Poison and Disease effects. \r\n\r\nCastable while stunned.\r\n\r\nHealing reduced beyond 5 targets.",
+                                    "description": "Heals all party and raid members within 40 yds for 22,515 and clears them of all harmful Poison and Disease effects. \r\n\r\nCastable while stunned.\r\n\r\nHealing reduced beyond 5 targets.",
                                     "cast_time": "Instant",
                                     "cooldown": "1 sec cooldown",
                                     "range": null
@@ -7127,7 +7517,7 @@
                             "talent_name": "Yu'lon's Whisper",
                             "spell_id": 388038,
                             "spell_name": "Yu'lon's Whisper",
-                            "description": "While channeling Mana Tea you exhale the breath of Yu'lon, healing up to 5 allies within 15 yards for 346 every 0.4 sec.",
+                            "description": "While channeling Mana Tea you exhale the breath of Yu'lon, healing up to 5 allies within 15 yards for 353 every 0.4 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8224,7 +8614,7 @@
                             "talent_name": "Keg Smash",
                             "spell_id": 121253,
                             "spell_name": "Keg Smash",
-                            "description": "Smash a keg of brew, dealing 100 Physical damage to your primary target and 66 Physical damage to all other enemies within 8 yds, and reducing their movement speed by 20% for 15 sec. Deals reduced damage beyond 5 targets.",
+                            "description": "Smash a keg of brew, dealing 100 Physical damage to your primary target and 67 Physical damage to all other enemies within 8 yds, and reducing their movement speed by 20% for 15 sec. Deals reduced damage beyond 5 targets.",
                             "cast_time": "Instant",
                             "cooldown": "1 sec cooldown",
                             "range": "15 yd range"
@@ -8767,7 +9157,7 @@
                             "talent_name": "Gift of the Ox",
                             "spell_id": 124502,
                             "spell_name": "Gift of the Ox",
-                            "description": "When you take damage, you have a chance to summon a Healing Sphere.\r\n\r\nHealing Sphere:\r\nSummon a Healing Sphere visible only to you. Moving through this Healing Sphere heals you for 114.",
+                            "description": "When you take damage, you have a chance to summon a Healing Sphere.\r\n\r\nHealing Sphere:\r\nSummon a Healing Sphere visible only to you. Moving through this Healing Sphere heals you for 117.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8801,7 +9191,7 @@
                                     "talent_name": "Special Delivery",
                                     "spell_id": 196730,
                                     "spell_name": "Special Delivery",
-                                    "description": "Drinking from your Brews has a 100% chance to toss a keg high into the air that lands nearby after 3 sec, dealing 35 Physical damage to all enemies within 8 yards and reducing their movement speed by 50% for 15 sec.",
+                                    "description": "Drinking from your Brews has a 100% chance to toss a keg high into the air that lands nearby after 3 sec, dealing 34 Physical damage to all enemies within 8 yards and reducing their movement speed by 50% for 15 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8844,7 +9234,7 @@
                             "talent_name": "Spirit of the Ox",
                             "spell_id": 400629,
                             "spell_name": "Spirit of the Ox",
-                            "description": "Blackout Kick has a chance to summon a Healing Sphere.\r\n\r\nHealing Sphere:\r\nSummon a Healing Sphere visible only to you. Moving through this Healing Sphere heals you for 115.",
+                            "description": "Blackout Kick has a chance to summon a Healing Sphere.\r\n\r\nHealing Sphere:\r\nSummon a Healing Sphere visible only to you. Moving through this Healing Sphere heals you for 113.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9016,7 +9406,7 @@
                                     "talent_name": "Celestial Brew",
                                     "spell_id": 322507,
                                     "spell_name": "Celestial Brew",
-                                    "description": "A swig of strong brew that coalesces purified chi escaping your body into a celestial guard, absorbing 1,984 damage.",
+                                    "description": "A swig of strong brew that coalesces purified chi escaping your body into a celestial guard, absorbing 2,381 damage.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": null
@@ -9026,7 +9416,7 @@
                                     "talent_name": "Celestial Infusion",
                                     "spell_id": 1241059,
                                     "spell_name": "Celestial Infusion",
-                                    "description": "A strong herbal brew that coalesces purified chi escaping your body into a celestial guard, absorbing 30% of incoming damage, up to 1,984 total.",
+                                    "description": "A strong herbal brew that coalesces purified chi escaping your body into a celestial guard, absorbing 30% of incoming damage, up to 2,381 total.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": null
@@ -9276,7 +9666,7 @@
                             "talent_name": "Breath of Fire",
                             "spell_id": 115181,
                             "spell_name": "Breath of Fire",
-                            "description": "Breathe fire on targets in front of you, causing 35 Fire damage. Deals reduced damage to secondary targets.\r\n\r\nTargets affected by Keg Smash will also burn, taking 23 Fire damage and dealing 5% reduced damage to you for 12 sec.",
+                            "description": "Breathe fire on targets in front of you, causing 34 Fire damage. Deals reduced damage to secondary targets.\r\n\r\nTargets affected by Keg Smash will also burn, taking 23 Fire damage and dealing 5% reduced damage to you for 12 sec.",
                             "cast_time": "Instant",
                             "cooldown": "15 sec cooldown",
                             "range": null
@@ -9658,7 +10048,7 @@
                             "talent_name": "Walk with the Ox",
                             "spell_id": 387219,
                             "spell_name": "Walk with the Ox",
-                            "description": "Your damaging abilities have a chance to invoke Niuzao, causing him to charge to your target's location and Stomp, dealing 138 Physical damage to your target and reduced damage to secondary targets.\r\n",
+                            "description": "Your damaging abilities have a chance to invoke Niuzao, causing him to charge to your target's location and Stomp, dealing 140 Physical damage to your target and reduced damage to secondary targets.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9669,7 +10059,7 @@
                             "talent_name": "Walk with the Ox",
                             "spell_id": 387219,
                             "spell_name": "Walk with the Ox",
-                            "description": "Your damaging abilities have an increased chance to invoke Niuzao, causing him to charge to your target's location and Stomp, dealing 139 Physical damage to your target and reduced damage to secondary targets.\r\n",
+                            "description": "Your damaging abilities have an increased chance to invoke Niuzao, causing him to charge to your target's location and Stomp, dealing 140 Physical damage to your target and reduced damage to secondary targets.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

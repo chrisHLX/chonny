@@ -1,7 +1,7 @@
 {
     "class": "Priest",
     "talent_tree_id": 795,
-    "fetched_at": "2026-08-12T21:34:08+00:00",
+    "fetched_at": "2026-08-29T03:28:25+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -12,8 +12,15 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109009,
+                    82672
+                ],
+                "unlocks": [
+                    109890,
+                    82687,
+                    108731
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -36,8 +43,14 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108730,
+                    82703
+                ],
+                "unlocks": [
+                    109006,
+                    82556
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -60,7 +73,10 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    109010,
+                    82674
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -84,8 +100,14 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82686,
+                    109014
+                ],
+                "unlocks": [
+                    82673,
+                    82685
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -108,7 +130,10 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    82679,
+                    82697
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -132,7 +157,10 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    109010,
+                    82697
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -170,8 +198,14 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82684,
+                    109012
+                ],
+                "unlocks": [
+                    109010,
+                    82697
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -194,8 +228,15 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82699,
+                    109019,
+                    82690
+                ],
+                "unlocks": [
+                    109012,
+                    82684
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -218,8 +259,12 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82682
+                ],
+                "unlocks": [
+                    82675
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -242,8 +287,13 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109012
+                ],
+                "unlocks": [
+                    82697,
+                    82679
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -266,8 +316,13 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109012
+                ],
+                "unlocks": [
+                    82697,
+                    82679
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -290,8 +345,14 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82712,
+                    82678
+                ],
+                "unlocks": [
+                    82677,
+                    109011
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -325,7 +386,10 @@
                 "display_col": 8,
                 "raw_position_x": 6300,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    82674,
+                    82686
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -349,8 +413,13 @@
                 "display_col": 8,
                 "raw_position_x": 6300,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109015
+                ],
+                "unlocks": [
+                    82674,
+                    82685
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -384,8 +453,14 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109006,
+                    82556
+                ],
+                "unlocks": [
+                    109020,
+                    82690
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -408,8 +483,15 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109890,
+                    108731,
+                    82687
+                ],
+                "unlocks": [
+                    82678,
+                    82712
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -432,8 +514,13 @@
                 "display_col": 9,
                 "raw_position_x": 6900,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82708,
+                    82710
+                ],
+                "unlocks": [
+                    109021
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -456,8 +543,12 @@
                 "display_col": 9,
                 "raw_position_x": 6900,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82701
+                ],
+                "unlocks": [
+                    82708
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -494,8 +585,13 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82699,
+                    82702
+                ],
+                "unlocks": [
+                    109012
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -518,8 +614,14 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82682,
+                    82677
+                ],
+                "unlocks": [
+                    82675,
+                    82676
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -553,8 +655,13 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109917
+                ],
+                "unlocks": [
+                    82678,
+                    82696
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -577,8 +684,14 @@
                 "display_col": 8,
                 "raw_position_x": 6300,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108730
+                ],
+                "unlocks": [
+                    82710,
+                    109006,
+                    82695
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -601,8 +714,12 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82716
+                ],
+                "unlocks": [
+                    82696
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -626,7 +743,10 @@
                 "raw_position_x": 4500,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    82672,
+                    109009
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -649,8 +769,12 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109009
+                ],
+                "unlocks": [
+                    109890
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -673,8 +797,12 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109009
+                ],
+                "unlocks": [
+                    109890
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -697,8 +825,12 @@
                 "display_col": 9,
                 "raw_position_x": 6900,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82695
+                ],
+                "unlocks": [
+                    82693
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -735,8 +867,15 @@
                 "display_col": 8,
                 "raw_position_x": 6300,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109006,
+                    82701
+                ],
+                "unlocks": [
+                    109020,
+                    82693,
+                    109005
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -773,8 +912,12 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82712
+                ],
+                "unlocks": [
+                    109011
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -797,8 +940,15 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109020,
+                    82690
+                ],
+                "unlocks": [
+                    109015,
+                    82711,
+                    82684
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -807,7 +957,7 @@
                         "talent_name": "Shadow Word: Death",
                         "spell_id": 32379,
                         "spell_name": "Shadow Word: Death",
-                        "description": "A word of dark binding that inflicts 327 Shadow damage to your target. If your target is not killed by Shadow Word: Death, you take backlash damage equal to 5% of your maximum health.\r\n\r\nDamage increased by 150% to targets below 20% health.",
+                        "description": "A word of dark binding that inflicts 323 Shadow damage to your target. If your target is not killed by Shadow Word: Death, you take backlash damage equal to 5% of your maximum health.\r\n\r\nDamage increased by 150% to targets below 20% health.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -822,7 +972,10 @@
                 "raw_position_x": 5700,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    82672,
+                    82701
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -831,7 +984,7 @@
                         "talent_name": "Mind Blast",
                         "spell_id": 8092,
                         "spell_name": "Mind Blast",
-                        "description": "Blast the target's mind for 293 Shadow damage. Costs a high amount of mana.",
+                        "description": "Blast the target's mind for 295 Shadow damage. Costs a high amount of mana.",
                         "cast_time": "1.5 sec cast",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -845,8 +998,15 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109009,
+                    82718
+                ],
+                "unlocks": [
+                    109890,
+                    109917,
+                    82716
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -869,8 +1029,13 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82715,
+                    82718
+                ],
+                "unlocks": [
+                    82702
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -894,7 +1059,10 @@
                 "raw_position_x": 3300,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    109009,
+                    82718
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -917,8 +1085,14 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82717
+                ],
+                "unlocks": [
+                    82716,
+                    82715,
+                    82719
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -927,7 +1101,7 @@
                         "talent_name": "Holy Nova",
                         "spell_id": 132157,
                         "spell_name": "Holy Nova",
-                        "description": "An explosion of holy light around you deals up to 157 Holy damage to enemies and up to 117 healing to allies within 12 yds, reduced if there are more than 5 targets.",
+                        "description": "An explosion of holy light around you deals up to 156 Holy damage to enemies and up to 118 healing to allies within 12 yds, reduced if there are more than 5 targets.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": null
@@ -941,7 +1115,9 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 2700,
-                "locked_by": [],
+                "locked_by": [
+                    82718
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -980,7 +1156,7 @@
                         "talent_name": "Void Torrent",
                         "spell_id": 263165,
                         "spell_name": "Void Torrent",
-                        "description": "Channel a torrent of void energy into the target, dealing 3,972 Shadow damage over 3 sec and tearing open an Entropic Rift.\r\n\r\n Entropic Rift\r\nMind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 228 Shadow damage every 0.9 sec while within its reach.\r\n\r\nGenerates 24 Insanity over the duration.",
+                        "description": "Channel a torrent of void energy into the target, dealing 3,976 Shadow damage over 3 sec and tearing open an Entropic Rift.\r\n\r\n Entropic Rift\r\nMind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 226 Shadow damage every 0.9 sec while within its reach.\r\n\r\nGenerates 24 Insanity over the duration.",
                         "cast_time": "Channeled",
                         "cooldown": "30 sec cooldown",
                         "range": "40 yd range"
@@ -1009,7 +1185,7 @@
                         "talent_name": "Halo",
                         "spell_id": 120644,
                         "spell_name": "Halo",
-                        "description": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 607 and dealing 548 Shadow damage to enemies. Healing reduced beyond 6 targets.",
+                        "description": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 605 and dealing 548 Shadow damage to enemies. Healing reduced beyond 6 targets.",
                         "cast_time": "1.5 sec cast",
                         "cooldown": "1 min cooldown",
                         "range": "40 yd range"
@@ -1086,7 +1262,7 @@
                         "talent_name": "Halo",
                         "spell_id": 120517,
                         "spell_name": "Halo",
-                        "description": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 600 and dealing 554 Holy damage to enemies.\r\n\r\nHealing reduced beyond 6 targets.",
+                        "description": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 611 and dealing 547 Holy damage to enemies.\r\n\r\nHealing reduced beyond 6 targets.",
                         "cast_time": "1.5 sec cast",
                         "cooldown": "1 min cooldown",
                         "range": "40 yd range"
@@ -1101,7 +1277,10 @@
                 "raw_position_x": 5700,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    82672,
+                    82701
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1110,7 +1289,7 @@
                         "talent_name": "Holy Fire",
                         "spell_id": 14914,
                         "spell_name": "Holy Fire",
-                        "description": "Consumes the enemy in Holy flames that cause 1,186 Holy damage and an additional 421 Holy damage over 7 sec.",
+                        "description": "Consumes the enemy in Holy flames that cause 1,149 Holy damage and an additional 421 Holy damage over 7 sec.",
                         "cast_time": "1.5 sec cast",
                         "cooldown": "10 sec cooldown",
                         "range": "40 yd range"
@@ -1124,8 +1303,12 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82556
+                ],
+                "unlocks": [
+                    82690
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1148,8 +1331,12 @@
                 "display_col": 8,
                 "raw_position_x": 6300,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82710
+                ],
+                "unlocks": [
+                    109021
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1172,8 +1359,14 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82672,
+                    82701
+                ],
+                "unlocks": [
+                    82710,
+                    82687
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1196,8 +1389,15 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82717,
+                    82703
+                ],
+                "unlocks": [
+                    82705,
+                    82556,
+                    82715
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1220,8 +1420,14 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82677,
+                    109011
+                ],
+                "unlocks": [
+                    82676,
+                    82673
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -1255,8 +1461,14 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82711,
+                    82684,
+                    109015
+                ],
+                "unlocks": [
+                    109010
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1279,8 +1491,14 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82696,
+                    82678
+                ],
+                "unlocks": [
+                    82677,
+                    82682
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1303,8 +1521,12 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109015
+                ],
+                "unlocks": [
+                    82674
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1327,8 +1549,15 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82712,
+                    109021
+                ],
+                "unlocks": [
+                    109011,
+                    109014,
+                    82686
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1351,8 +1580,12 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109890
+                ],
+                "unlocks": [
+                    82678
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1375,8 +1608,14 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82687,
+                    82710
+                ],
+                "unlocks": [
+                    82712,
+                    109021
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1399,8 +1638,14 @@
                 "display_col": 8,
                 "raw_position_x": 6300,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109020,
+                    109005,
+                    82693
+                ],
+                "unlocks": [
+                    109015
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1423,8 +1668,15 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82556,
+                    82715,
+                    82705
+                ],
+                "unlocks": [
+                    82690,
+                    109019
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1447,8 +1699,12 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    82715
+                ],
+                "unlocks": [
+                    82699
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1521,7 +1777,7 @@
                             "talent_name": "Devour Matter",
                             "spell_id": 451840,
                             "spell_name": "Devour Matter",
-                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 962 extra damage to them and granting you 1% mana if a shield was present.",
+                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 950 extra damage to them and granting you 1% mana if a shield was present.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1607,7 +1863,7 @@
                             "talent_name": "Void Torrent",
                             "spell_id": 263165,
                             "spell_name": "Void Torrent",
-                            "description": "Channel a torrent of void energy into the target, dealing 3,973 Shadow damage over 3 sec and tearing open an Entropic Rift.\r\n\r\n Entropic Rift\r\nMind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 228 Shadow damage every 0.9 sec while within its reach.\r\n\r\nGenerates 24 Insanity over the duration.",
+                            "description": "Channel a torrent of void energy into the target, dealing 3,909 Shadow damage over 3 sec and tearing open an Entropic Rift.\r\n\r\n Entropic Rift\r\nMind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 228 Shadow damage every 0.9 sec while within its reach.\r\n\r\nGenerates 24 Insanity over the duration.",
                             "cast_time": "Channeled",
                             "cooldown": "30 sec cooldown",
                             "range": "40 yd range"
@@ -1820,7 +2076,7 @@
                             "talent_name": "Void Blast",
                             "spell_id": 450405,
                             "spell_name": "Void Blast",
-                            "description": "Entropic Rift upgrades Smite into Void Blast while it is active.\r\n\r\nVoid Blast:\r\nSends a blast of cosmic void energy at the enemy, causing 573 Shadow damage.",
+                            "description": "Entropic Rift upgrades Smite into Void Blast while it is active.\r\n\r\nVoid Blast:\r\nSends a blast of cosmic void energy at the enemy, causing 561 Shadow damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1962,7 +2218,7 @@
                             "talent_name": "Entropic Rift",
                             "spell_id": 447444,
                             "spell_name": "Entropic Rift",
-                            "description": "Mind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 226 Shadow damage every 0.9 sec while within its reach.",
+                            "description": "Mind Blast tears open an Entropic Rift that follows the enemy for 8 sec. Enemies caught in its path suffer 230 Shadow damage every 0.9 sec while within its reach.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2251,7 +2507,7 @@
                             "talent_name": "Halo",
                             "spell_id": 120644,
                             "spell_name": "Halo",
-                            "description": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 615 and dealing 551 Shadow damage to enemies. Healing reduced beyond 6 targets.",
+                            "description": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 611 and dealing 544 Shadow damage to enemies. Healing reduced beyond 6 targets.",
                             "cast_time": "1.5 sec cast",
                             "cooldown": "1 min cooldown",
                             "range": "40 yd range"
@@ -2338,7 +2594,7 @@
                             "talent_name": "Halo",
                             "spell_id": 120517,
                             "spell_name": "Halo",
-                            "description": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 611 and dealing 553 Holy damage to enemies.\r\n\r\nHealing reduced beyond 6 targets.",
+                            "description": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 596 and dealing 553 Holy damage to enemies.\r\n\r\nHealing reduced beyond 6 targets.",
                             "cast_time": "1.5 sec cast",
                             "cooldown": "1 min cooldown",
                             "range": "40 yd range"
@@ -2739,7 +2995,7 @@
                             "talent_name": "Assured Safety",
                             "spell_id": 440766,
                             "spell_name": "Assured Safety",
-                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,728 damage.",
+                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,735 damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2943,7 +3199,7 @@
                             "talent_name": "Holy Word: Serenity",
                             "spell_id": 2050,
                             "spell_name": "Holy Word: Serenity",
-                            "description": "Perform a miracle, healing an ally for 8,318.\r\n\r\nCooldown reduced by 6 sec when you cast Flash Heal.",
+                            "description": "Perform a miracle, healing an ally for 8,164.\r\n\r\nCooldown reduced by 6 sec when you cast Flash Heal.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3084,7 +3340,7 @@
                             "talent_name": "Holy Word: Sanctify",
                             "spell_id": 34861,
                             "spell_name": "Holy Word: Sanctify",
-                            "description": "Releases miraculous light at a target location, healing up to 5 allies within 10 yds for 2,255.\r\n\r\nCooldown reduced by 6 sec when you cast Prayer of Healing.",
+                            "description": "Releases miraculous light at a target location, healing up to 5 allies within 10 yds for 2,290.\r\n\r\nCooldown reduced by 6 sec when you cast Prayer of Healing.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3141,7 +3397,7 @@
                             "talent_name": "Holy Word: Chastise",
                             "spell_id": 88625,
                             "spell_name": "Holy Word: Chastise",
-                            "description": "Chastises the target for 1,475 Holy damage and incapacitates them for 4 sec.",
+                            "description": "Chastises the target for 1,456 Holy damage and incapacitates them for 4 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": "30 yd range"
@@ -3285,7 +3541,7 @@
                             "talent_name": "Assured Safety",
                             "spell_id": 440766,
                             "spell_name": "Assured Safety",
-                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,733 damage.",
+                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,741 damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3413,7 +3669,7 @@
                             "talent_name": "Prayer of Healing",
                             "spell_id": 596,
                             "spell_name": "Prayer of Healing",
-                            "description": "A powerful prayer that heals your target and 4 injured allies within 40 yards for 2,239.",
+                            "description": "A powerful prayer that heals your target and 4 injured allies within 40 yards for 2,199.",
                             "cast_time": "2.5 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3838,7 +4094,7 @@
                             "talent_name": "Cosmic Ripple",
                             "spell_id": 238136,
                             "spell_name": "Cosmic Ripple",
-                            "description": "When Holy Word: Serenity or Holy Word: Sanctify finish their cooldown, you emit a burst of light that heals up to 5 injured targets within 40 yards for 456.",
+                            "description": "When Holy Word: Serenity or Holy Word: Sanctify finish their cooldown, you emit a burst of light that heals up to 5 injured targets within 40 yards for 463.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4185,7 +4441,7 @@
                             "talent_name": "Divine Hymn",
                             "spell_id": 64843,
                             "spell_name": "Divine Hymn",
-                            "description": "Heals all party or raid members within 40 yards for 10,493 over 4.5 sec. Each heal increases all targets' healing taken by 4% for 15 sec, stacking.\r\n\r\nYou gain Guardian Spirit while channeling Divine Hymn.\r\n\r\nHealing reduced beyond 5 targets.",
+                            "description": "Heals all party or raid members within 40 yards for 10,598 over 4.5 sec. Each heal increases all targets' healing taken by 4% for 15 sec, stacking.\r\n\r\nYou gain Guardian Spirit while channeling Divine Hymn.\r\n\r\nHealing reduced beyond 5 targets.",
                             "cast_time": "Channeled",
                             "cooldown": "3 min cooldown",
                             "range": null
@@ -4213,7 +4469,7 @@
                             "talent_name": "Enlightenment",
                             "spell_id": 193155,
                             "spell_name": "Enlightenment",
-                            "description": "You regenerate mana 10% faster.",
+                            "description": "You regenerate mana 25% faster.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5150,7 +5406,7 @@
                             "talent_name": "Atonement",
                             "spell_id": 81749,
                             "spell_name": "Atonement",
-                            "description": "Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for 15 sec.\r\n\r\nYour spell damage heals all targets affected by Atonement for 32% of the damage done. Healing is reduced when healing more than 5 targets.",
+                            "description": "Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for 15 sec.\r\n\r\nYour spell damage heals all targets affected by Atonement for 46% of the damage done. Healing is reduced when healing more than 5 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5291,7 +5547,7 @@
                             "talent_name": "Power Word: Radiance",
                             "spell_id": 194509,
                             "spell_name": "Power Word: Radiance",
-                            "description": "A burst of light heals the target and 4 injured allies within 40 yards for 2,233, and applies Atonement for 60% of its normal duration.",
+                            "description": "A burst of light heals the target and 4 injured allies within 40 yards for 2,161, and applies Atonement for 60% of its normal duration.",
                             "cast_time": "2 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5377,7 +5633,7 @@
                             "talent_name": "Assured Safety",
                             "spell_id": 440766,
                             "spell_name": "Assured Safety",
-                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,740 damage.",
+                            "description": "Casting Prayer of Mending applies Power Word: Shield to your target.\r\n\r\n Power Word: Shield\r\nShields an ally for 15 sec, absorbing 1,781 damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5865,7 +6121,7 @@
                                     "talent_name": "Ultimate Penitence",
                                     "spell_id": 421453,
                                     "spell_name": "Ultimate Penitence",
-                                    "description": "Ascend into the air and unleash a massive barrage of Penance bolts, causing 22,626 Holy damage to enemies or 53,449 healing to allies over 5.4 sec.\r\n\r\nWhile ascended, gain a shield for 100% of your health. In addition, you are unaffected by knockbacks or crowd control effects.",
+                                    "description": "Ascend into the air and unleash a massive barrage of Penance bolts, causing 22,111 Holy damage to enemies or 51,797 healing to allies over 5.4 sec.\r\n\r\nWhile ascended, gain a shield for 100% of your health. In addition, you are unaffected by knockbacks or crowd control effects.",
                                     "cast_time": "1.5 sec cast",
                                     "cooldown": "4 min cooldown",
                                     "range": "40 yd range"
@@ -6484,7 +6740,7 @@
                             "talent_name": "Devour Matter",
                             "spell_id": 451840,
                             "spell_name": "Devour Matter",
-                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 970 extra damage to them and granting you 1% mana if a shield was present.",
+                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 967 extra damage to them and granting you 1% mana if a shield was present.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6715,7 +6971,7 @@
                             "talent_name": "Shadow Mend",
                             "spell_id": 1252217,
                             "spell_name": "Shadow Mend",
-                            "description": "Flash Heal is upgraded to Shadow Mend, a stronger heal with a higher mana cost.\r\n\r\n Shadow Mend:\r\nWraps an ally in shadows which heal for 3,263, but at a price.\r\n\r\nThe ally will take 163 damage every 1 sec, until they have taken 1,628 total damage from all sources, or leave combat.",
+                            "description": "Flash Heal is upgraded to Shadow Mend, a stronger heal with a higher mana cost.\r\n\r\n Shadow Mend:\r\nWraps an ally in shadows which heal for 3,279, but at a price.\r\n\r\nThe ally will take 163 damage every 1 sec, until they have taken 1,630 total damage from all sources, or leave combat.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7267,7 +7523,7 @@
                             "talent_name": "Master the Darkness",
                             "spell_id": 1253590,
                             "spell_name": "Master the Darkness",
-                            "description": "Penance has a 25% chance to upgrade Power Word: Shield into Void Shield.\r\n\r\n Void Shield:\r\nShields 3 allies for 15 sec, absorbing 1,751 damage.\r\n\r\n",
+                            "description": "Penance has a 25% chance to upgrade Power Word: Shield into Void Shield.\r\n\r\n Void Shield:\r\nShields 3 allies for 15 sec, absorbing 1,798 damage.\r\n\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7590,7 +7846,7 @@
                             "talent_name": "Tentacle Slam",
                             "spell_id": 1227280,
                             "spell_name": "Tentacle Slam",
-                            "description": "Summons a massive shadowy appendage to slam the ground, dealing 263 Shadow damage in front of you and 8 yds around your target.\r\n\r\nApplies Vampiric Touch to up to 6 enemies, prioritizing ones without Vampiric Touch.\r\n\r\nGenerates 6 Insanity.",
+                            "description": "Summons a massive shadowy appendage to slam the ground, dealing 258 Shadow damage in front of you and 8 yds around your target.\r\n\r\nApplies Vampiric Touch to up to 6 enemies, prioritizing ones without Vampiric Touch.\r\n\r\nGenerates 6 Insanity.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -7618,7 +7874,7 @@
                             "talent_name": "Shadowy Apparitions",
                             "spell_id": 341491,
                             "spell_name": "Shadowy Apparitions",
-                            "description": "Shadow Word: Madness conjures Shadowy Apparitions that float towards all targets afflicted by your Vampiric Touch for 327 Shadow damage.",
+                            "description": "Shadow Word: Madness conjures Shadowy Apparitions that float towards all targets afflicted by your Vampiric Touch for 316 Shadow damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8455,7 +8711,7 @@
                             "talent_name": "Void Blast",
                             "spell_id": 450405,
                             "spell_name": "Void Blast",
-                            "description": "Entropic Rift upgrades Smite into Void Blast while it is active.\r\n\r\nVoid Blast:\r\nSends a blast of cosmic void energy at the enemy, causing 573 Shadow damage.",
+                            "description": "Entropic Rift upgrades Smite into Void Blast while it is active.\r\n\r\nVoid Blast:\r\nSends a blast of cosmic void energy at the enemy, causing 570 Shadow damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8727,7 +8983,7 @@
                             "talent_name": "Devour Matter",
                             "spell_id": 451840,
                             "spell_name": "Devour Matter",
-                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 985 extra damage to them and granting you 1% mana if a shield was present.",
+                            "description": "Shadow Word: Death consumes absorb shields from your target, dealing 978 extra damage to them and granting you 1% mana if a shield was present.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9464,7 +9720,7 @@
                             "talent_name": "Idol of Yogg-Saron",
                             "spell_id": 373273,
                             "spell_name": "Idol of Yogg-Saron",
-                            "description": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20 sec.\r\n\r\n Void Spike\r\nHurls a bolt of dark magic, dealing 356 Shadow damage and 192 Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
+                            "description": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20 sec.\r\n\r\n Void Spike\r\nHurls a bolt of dark magic, dealing 358 Shadow damage and 186 Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9491,7 +9747,7 @@
                             "talent_name": "Idol of C'Thun",
                             "spell_id": 377349,
                             "spell_name": "Idol of C'Thun",
-                            "description": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target.\r\n\r\n Mind Flay\r\nAssaults the target's mind with Shadow energy, causing 1,226 Shadow damage over 10 sec and slowing their movement speed by 30%.\r\n\r\nGenerates 5 Insanity over the duration.\r\n\r\n Mind Sear\r\nCorrosive shadow energy radiates from the target, dealing 813 Shadow damage over 10 sec to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.\r\n\r\nGenerates 5 Insanity over the duration.",
+                            "description": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target.\r\n\r\n Mind Flay\r\nAssaults the target's mind with Shadow energy, causing 1,238 Shadow damage over 10 sec and slowing their movement speed by 30%.\r\n\r\nGenerates 5 Insanity over the duration.\r\n\r\n Mind Sear\r\nCorrosive shadow energy radiates from the target, dealing 800 Shadow damage over 10 sec to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.\r\n\r\nGenerates 5 Insanity over the duration.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

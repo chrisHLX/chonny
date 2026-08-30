@@ -24,7 +24,9 @@
             {{-- This guide only covers one hero tree — no picker needed, see TalentSelector's
                  $moduleHeroTreeId docblock. Shown as a fact about the content, not a choice. --}}
             <span class="badge-gray">{{ $selectedHeroTree?->name ?? 'Hero Talent' }}</span>
-        @elseif ($heroTrees->isNotEmpty())
+        @elseif ($layout !== 'grid' && $heroTrees->isNotEmpty())
+            {{-- 'grid' layout gets its own in-game-style "choose your hero talent" picker inline
+                 in the tree row below instead of this plain dropdown — see that section. --}}
             <select wire:model.live="heroTreeId" class="form-select text-[12px] py-1.5">
                 <option value="">Choose Hero Talent…</option>
                 @foreach ($heroTrees as $tree)
@@ -91,13 +93,148 @@
          button markup to add this — that partial is shared with the live admin editor. --}}
     <div class="p-5 space-y-6" @if ($readOnly) style="pointer-events: none; opacity: 0.92;" @endif>
         @if ($layout === 'grid')
-            {{-- Positional tree layout mirroring the real in-game/Wowhead-style talent UI — see
-                 talent-tree-grid.blade.php. Used by Admin\TalentBuildEditor (as of 2026-08-27);
-                 the flat card list below is kept as the default for any future caller that
-                 doesn't need positioning/edges/lock enforcement, but nothing currently uses it. --}}
-            @include('livewire.partials.talent-tree-grid', ['nodes' => $classTalentNodes, 'edges' => $classTalentEdges, 'label' => 'Class Talents', 'chosenEntries' => $chosenEntries, 'pointsSpent' => $classPointsSpent])
-            @include('livewire.partials.talent-tree-grid', ['nodes' => $specTalentNodes, 'edges' => $specTalentEdges, 'label' => ($specialization?->name ?? 'Spec').' Talents', 'chosenEntries' => $chosenEntries, 'pointsSpent' => $specPointsSpent])
-            @include('livewire.partials.talent-tree-grid', ['nodes' => $heroTalentNodes, 'edges' => $heroTalentEdges, 'label' => ($selectedHeroTree?->name ?? 'Hero').' Talents', 'chosenEntries' => $chosenEntries, 'pointsSpent' => $heroPointsSpent])
+            {{-- Positional tree layout mirroring the real in-game talent UI: class tree on the
+                 left, hero tree (single choice) in the middle, spec tree on the right — same
+                 left-to-right order and same-row placement the real client uses, replacing the
+                 old always-stacked-vertically layout that forced a long page scroll just to see
+                 all three trees. Each tree still sizes itself to its own real column/row count
+                 (talent-tree-grid.blade.php) — a hero tree is naturally much narrower than
+                 class/spec since it has far fewer nodes, so it reads as the compact middle column
+                 without needing a separate "compact mode".
+
+                 Hero-tree choice is inline here (not the header <select> above, which only
+                 renders for the legacy 'list' layout) — mirrors the real in-game "Activate" popup
+                 (pick one of the two, see both compared side by side, only the chosen one stays
+                 visible afterward): before a tree is chosen, a placeholder card opens the picker
+                 modal; nothing about the *other* option is shown anywhere until it's actually
+                 picked, same as the real client. `x-data` lives on this wrapper (not the root
+                 component div) so it doesn't collide with anything else on the page. --}}
+            {{-- flex-nowrap + overflow-x-auto (rather than a viewport-width breakpoint like
+                 `2xl:flex-nowrap`) so the three trees always stay grouped in one row and share
+                 one scrollbar if they don't fit — a viewport breakpoint doesn't actually track
+                 this element's own (container-capped) width, and centering + wrapping together
+                 can clip the left tree's start position once scrolling kicks in. --}}
+            <div x-data="{ heroPicker: false }" class="flex flex-nowrap items-start gap-4 overflow-x-auto pb-2">
+                <div class="flex-shrink-0">
+                    @include('livewire.partials.talent-tree-grid', ['nodes' => $classTalentNodes, 'edges' => $classTalentEdges, 'label' => 'Class Talents', 'chosenEntries' => $chosenEntries, 'pointsSpent' => $classPointsSpent])
+                </div>
+
+                <div class="flex-shrink-0">
+                    @if ($moduleHeroTreeId || $readOnly || $heroTreeId)
+                        @php $currentHeroOption = collect($heroTreeOptions)->first(fn ($o) => $o['tree']->id === $heroTreeId); @endphp
+                        <div>
+                            {{-- A small circular "identity" portrait above the hero tree, same
+                                 spirit as the real in-game/Wowhead hero-tree circle — built from
+                                 real data we already have (the tree's own keystone spell, see
+                                 TalentSelector::getHeroTreeOptionsProperty()), not invented art.
+                                 We don't have Blizzard's actual hero-tree background artwork on
+                                 file (a separate asset this app has never fetched), so this is a
+                                 deliberately simpler stand-in for that, not a pixel copy of it. --}}
+                            @if ($currentHeroOption)
+                                <div class="flex justify-center mb-2">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-gold/70 shadow-gold-sm">
+                                        <x-spell-icon :spell="$currentHeroOption['icon']" size="w-12 h-12"/>
+                                    </div>
+                                </div>
+                            @endif
+                            @include('livewire.partials.talent-tree-grid', ['nodes' => $heroTalentNodes, 'edges' => $heroTalentEdges, 'label' => ($selectedHeroTree?->name ?? 'Hero').' Talents', 'chosenEntries' => $chosenEntries, 'pointsSpent' => $heroPointsSpent])
+                            @if (!$moduleHeroTreeId && !$readOnly && count($heroTreeOptions) > 1)
+                                <button type="button" x-on:click="heroPicker = true" class="mt-2 text-[11px] text-ink-subtle hover:text-gold transition">
+                                    Change hero talent tree →
+                                </button>
+                            @endif
+                        </div>
+                    @elseif (!$readOnly && count($heroTreeOptions) >= 1)
+                        {{-- Not chosen yet — top-aligned with the same "LABEL — n points spent"
+                             heading row talent-tree-grid.blade.php renders for the other two
+                             trees (not @include'd directly here since there's no tree to render
+                             yet), so all three columns start at the same height instead of this
+                             one floating at whatever height a plain centered box would land at
+                             next to two much taller trees. --}}
+                        <div>
+                            <p class="text-[11px] font-semibold text-ink-muted uppercase tracking-wide mb-2">Hero Talents</p>
+                            @if (count($heroTreeOptions) === 1)
+                                {{-- A spec should always have exactly two hero trees by game
+                                     design (see TalentTree::specializations()'s docblock) — this
+                                     is a data-gap fallback, not the normal path: with only one
+                                     real option there's nothing to compare, so skip the picker
+                                     modal and just activate it directly on click. --}}
+                                <button
+                                    type="button"
+                                    wire:click="$set('heroTreeId', {{ $heroTreeOptions[0]['tree']->id }})"
+                                    class="w-40 h-40 flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-line-strong bg-surface-2/40 hover:border-gold/60 text-ink-subtle hover:text-gold transition"
+                                >
+                                    <x-spell-icon :spell="$heroTreeOptions[0]['icon']" size="w-10 h-10"/>
+                                    <span class="text-[12px] font-semibold text-center px-2">{{ $heroTreeOptions[0]['tree']->name }}</span>
+                                </button>
+                            @else
+                                <button
+                                    type="button"
+                                    x-on:click="heroPicker = true"
+                                    class="w-40 h-40 flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-line-strong bg-surface-2/40 hover:border-gold/60 text-ink-subtle hover:text-gold transition"
+                                >
+                                    <x-mc-icon name="icon-compass" class="w-8 h-8"/>
+                                    <span class="text-[12px] font-semibold text-center px-2">Choose Hero<br/>Talent Tree</span>
+                                </button>
+                            @endif
+                        </div>
+                    @endif
+                </div>
+
+                <div class="flex-shrink-0">
+                    @include('livewire.partials.talent-tree-grid', ['nodes' => $specTalentNodes, 'edges' => $specTalentEdges, 'label' => ($specialization?->name ?? 'Spec').' Talents', 'chosenEntries' => $chosenEntries, 'pointsSpent' => $specPointsSpent])
+                </div>
+
+                @if (!$moduleHeroTreeId && !$readOnly && count($heroTreeOptions) > 1)
+                    {{-- Both hero trees compared side by side, same shape as the real in-game
+                         popup (see the reference screenshot this was built from) — but built only
+                         from real, on-hand data (icon/name/talent count), never invented lore
+                         text, since TalentTree carries no description column. Picking one calls
+                         straight into the existing $heroTreeId property (updatedHeroTreeId()
+                         already prunes any stale picks in the tree being left) — no new PHP
+                         method needed, same as any other wire:model-backed picker in this app. --}}
+                    <div x-show="heroPicker" x-cloak x-transition.opacity.duration.100ms
+                         class="fixed inset-0 z-50 bg-surface-0/80 backdrop-blur-sm flex items-center justify-center p-4"
+                         @click.self="heroPicker = false">
+                        <div class="linear-card max-w-2xl w-full p-6 relative">
+                            <button type="button" x-on:click="heroPicker = false" class="absolute top-3 right-3 text-ink-subtle hover:text-ink z-10">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            </button>
+                            <h3 class="font-display text-[16px] font-bold text-ink mb-1">Choose Your Hero Talent Tree</h3>
+                            <p class="text-[11px] text-ink-subtle mb-4">Only one is active at a time — picking a tree clears any points spent in the other.</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                @foreach ($heroTreeOptions as $option)
+                                    @php $isActive = $option['tree']->id === $heroTreeId; @endphp
+                                    <div class="rounded-lg border {{ $isActive ? 'border-gold bg-gold-subtle/20' : 'border-line bg-surface-1' }} p-4 flex flex-col items-center text-center gap-3">
+                                        <x-spell-icon :spell="$option['icon']" size="w-16 h-16"/>
+                                        <div>
+                                            <p class="font-display text-[15px] font-bold text-ink">{{ $option['tree']->name }}</p>
+                                            <p class="text-[11px] text-ink-subtle mt-0.5">{{ $option['nodeCount'] }} talents</p>
+                                        </div>
+                                        @if ($isActive)
+                                            <span class="badge-gold">Active</span>
+                                        @else
+                                            <button
+                                                type="button"
+                                                x-on:click="
+                                                    @if ($heroPointsSpent > 0)
+                                                        if (!confirm('Switch to {{ $option['tree']->name }}? This clears your points in {{ $selectedHeroTree?->name }}.')) return;
+                                                    @endif
+                                                    $wire.set('heroTreeId', {{ $option['tree']->id }});
+                                                    heroPicker = false;
+                                                "
+                                                class="btn-primary text-[12px] py-1.5 px-4"
+                                            >
+                                                Activate
+                                            </button>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </div>
         @else
             @foreach ([
                 ['label' => 'Class Talents', 'nodes' => $classTalentNodes],

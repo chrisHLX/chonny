@@ -1,7 +1,7 @@
 {
     "class": "Paladin",
     "talent_tree_id": 790,
-    "fetched_at": "2026-08-12T21:34:05+00:00",
+    "fetched_at": "2026-08-29T03:28:21+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -12,7 +12,9 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 4500,
-                "locked_by": [],
+                "locked_by": [
+                    110006
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -50,8 +52,14 @@
                 "display_col": 1,
                 "raw_position_x": 3000,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103850,
+                    103853,
+                    103867
+                ],
+                "unlocks": [
+                    93357
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -74,8 +82,15 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81631,
+                    81605
+                ],
+                "unlocks": [
+                    81616,
+                    81614,
+                    93180
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -96,7 +111,7 @@
                                 "talent_name": "Holy Prism",
                                 "spell_id": 114165,
                                 "spell_name": "Holy Prism",
-                                "description": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,426 Holy damage and radiates 2,566 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 5,889 and radiates 941 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
+                                "description": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,465 Holy damage and radiates 2,594 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 6,082 and radiates 929 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
                                 "cast_time": "Instant",
                                 "cooldown": "45 sec cooldown",
                                 "range": "40 yd range"
@@ -112,8 +127,13 @@
                 "display_col": 1,
                 "raw_position_x": 3004,
                 "raw_position_y": 2104,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81597
+                ],
+                "unlocks": [
+                    93188,
+                    103858
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -136,8 +156,13 @@
                 "display_col": 1,
                 "raw_position_x": 3004,
                 "raw_position_y": 2104,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81597
+                ],
+                "unlocks": [
+                    81613,
+                    103858
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -161,7 +186,11 @@
                 "raw_position_x": 6001,
                 "raw_position_y": 1499,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    81603,
+                    93010,
+                    81598
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -170,7 +199,7 @@
                         "talent_name": "Hammer of Wrath",
                         "spell_id": 1241288,
                         "spell_name": "Hammer of Wrath",
-                        "description": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.\r\n\r\n Hammer of Wrath\r\nHurls a divine hammer that strikes an enemy for 44 Holy damage.\r\n\r\nGenerates 1 Holy Power.",
+                        "description": "During Avenging Wrath, Judgment is empowered into Hammer of Wrath.\r\n\r\n Hammer of Wrath\r\nHurls a divine hammer that strikes an enemy for 43 Holy damage.\r\n\r\nGenerates 1 Holy Power.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -184,8 +213,14 @@
                 "display_col": 7,
                 "raw_position_x": 6600,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93009,
+                    93165
+                ],
+                "unlocks": [
+                    81615,
+                    81608
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -209,7 +244,11 @@
                 "raw_position_x": 3600,
                 "raw_position_y": 1499,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    81507,
+                    109999,
+                    103859
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -232,8 +271,15 @@
                 "display_col": 5,
                 "raw_position_x": 5400,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81510,
+                    81600
+                ],
+                "unlocks": [
+                    81603,
+                    103854,
+                    81632
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -257,7 +303,11 @@
                 "raw_position_x": 4799,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    109999,
+                    81598,
+                    81632
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -280,8 +330,14 @@
                 "display_col": 6,
                 "raw_position_x": 6004,
                 "raw_position_y": 2703,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81510,
+                    81598
+                ],
+                "unlocks": [
+                    81604,
+                    93009
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -304,8 +360,14 @@
                 "display_col": 7,
                 "raw_position_x": 6604,
                 "raw_position_y": 3304,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81603,
+                    103855
+                ],
+                "unlocks": [
+                    93165,
+                    93009
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -328,8 +390,14 @@
                 "display_col": 3,
                 "raw_position_x": 4200,
                 "raw_position_y": 3301,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81632
+                ],
+                "unlocks": [
+                    81630,
+                    110006,
+                    81614
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -352,8 +420,14 @@
                 "display_col": 3,
                 "raw_position_x": 4200,
                 "raw_position_y": 5099,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81614
+                ],
+                "unlocks": [
+                    103865,
+                    103866,
+                    103867
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -390,8 +464,13 @@
                 "display_col": 7,
                 "raw_position_x": 6600,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81615,
+                    81543
+                ],
+                "unlocks": [
+                    103856
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -414,8 +493,16 @@
                 "display_col": 2,
                 "raw_position_x": 3600,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109998,
+                    93168,
+                    81614
+                ],
+                "unlocks": [
+                    103850,
+                    103853,
+                    103867
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -438,8 +525,14 @@
                 "display_col": 2,
                 "raw_position_x": 3600,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103859,
+                    109999,
+                    81508
+                ],
+                "unlocks": [
+                    103860
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -462,8 +555,16 @@
                 "display_col": 3,
                 "raw_position_x": 4200,
                 "raw_position_y": 4501,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81630,
+                    110006,
+                    81605
+                ],
+                "unlocks": [
+                    81607,
+                    93192,
+                    81609
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -486,8 +587,15 @@
                 "display_col": 6,
                 "raw_position_x": 6000,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109997,
+                    81543,
+                    81616
+                ],
+                "unlocks": [
+                    103864,
+                    81608
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -510,8 +618,16 @@
                 "display_col": 5,
                 "raw_position_x": 5399,
                 "raw_position_y": 4501,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93009,
+                    110006,
+                    93187
+                ],
+                "unlocks": [
+                    93192,
+                    81617,
+                    81615
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -534,8 +650,13 @@
                 "display_col": 5,
                 "raw_position_x": 5399,
                 "raw_position_y": 5099,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81616
+                ],
+                "unlocks": [
+                    103864,
+                    103868
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -558,8 +679,14 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81616,
+                    81614
+                ],
+                "unlocks": [
+                    103866,
+                    103868
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -596,8 +723,15 @@
                 "display_col": 3,
                 "raw_position_x": 4200,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103866,
+                    103865,
+                    103867
+                ],
+                "unlocks": [
+                    103861,
+                    93357
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -631,8 +765,12 @@
                 "display_col": 6,
                 "raw_position_x": 6000,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103864
+                ],
+                "unlocks": [
+                    103863
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -655,8 +793,16 @@
                 "display_col": 2,
                 "raw_position_x": 3600,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81605,
+                    103860,
+                    93188
+                ],
+                "unlocks": [
+                    109998,
+                    81614,
+                    93168
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -690,8 +836,14 @@
                 "display_col": 5,
                 "raw_position_x": 5400,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81632
+                ],
+                "unlocks": [
+                    93009,
+                    110006,
+                    93187
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -728,8 +880,16 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109999,
+                    81598,
+                    81600
+                ],
+                "unlocks": [
+                    81605,
+                    81631,
+                    103857
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -752,8 +912,14 @@
                 "display_col": 6,
                 "raw_position_x": 6004,
                 "raw_position_y": 2704,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81510,
+                    81598
+                ],
+                "unlocks": [
+                    93009,
+                    110092
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -776,8 +942,13 @@
                 "display_col": 1,
                 "raw_position_x": 3000,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93168,
+                    81609
+                ],
+                "unlocks": [
+                    81495
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -800,8 +971,16 @@
                 "display_col": 6,
                 "raw_position_x": 6000,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81604,
+                    81631,
+                    81603
+                ],
+                "unlocks": [
+                    109997,
+                    81543,
+                    81616
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -835,8 +1014,12 @@
                 "display_col": 7,
                 "raw_position_x": 6604,
                 "raw_position_y": 2104,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81510
+                ],
+                "unlocks": [
+                    103855
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -859,8 +1042,12 @@
                 "display_col": 7,
                 "raw_position_x": 6604,
                 "raw_position_y": 3902,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81604
+                ],
+                "unlocks": [
+                    81543
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -883,8 +1070,15 @@
                 "display_col": 1,
                 "raw_position_x": 3000,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81630,
+                    103860
+                ],
+                "unlocks": [
+                    103850,
+                    81609,
+                    103853
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -907,8 +1101,12 @@
                 "display_col": 5,
                 "raw_position_x": 5400,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81631
+                ],
+                "unlocks": [
+                    81616
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -931,7 +1129,9 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 4500,
-                "locked_by": [],
+                "locked_by": [
+                    81496
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -969,7 +1169,9 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 4500,
-                "locked_by": [],
+                "locked_by": [
+                    109368
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1007,8 +1209,12 @@
                 "display_col": 5,
                 "raw_position_x": 5400,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81631
+                ],
+                "unlocks": [
+                    81616
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1031,8 +1237,15 @@
                 "display_col": 2,
                 "raw_position_x": 3600,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109999,
+                    103859,
+                    81507
+                ],
+                "unlocks": [
+                    81630,
+                    103860
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1055,8 +1268,15 @@
                 "display_col": 2,
                 "raw_position_x": 3600,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103859,
+                    109999,
+                    81507
+                ],
+                "unlocks": [
+                    109867,
+                    103860
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1093,8 +1313,14 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81614,
+                    81616
+                ],
+                "unlocks": [
+                    103866,
+                    103868
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1131,8 +1357,14 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81614,
+                    81616
+                ],
+                "unlocks": [
+                    103866,
+                    103868
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1169,7 +1401,11 @@
                 "display_col": 2,
                 "raw_position_x": 3600,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    81495,
+                    81621,
+                    103862
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1193,8 +1429,12 @@
                 "display_col": 5,
                 "raw_position_x": 5400,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81631
+                ],
+                "unlocks": [
+                    81616
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1279,8 +1519,13 @@
                 "display_col": 1,
                 "raw_position_x": 3000,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81609,
+                    93168
+                ],
+                "unlocks": [
+                    81495
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1303,8 +1548,15 @@
                 "display_col": 5,
                 "raw_position_x": 5400,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103866,
+                    103864,
+                    103868
+                ],
+                "unlocks": [
+                    103863,
+                    103861
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -1338,8 +1590,13 @@
                 "display_col": 1,
                 "raw_position_x": 3000,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93168,
+                    81609
+                ],
+                "unlocks": [
+                    81495
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1362,8 +1619,13 @@
                 "display_col": 1,
                 "raw_position_x": 3000,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93168,
+                    81609
+                ],
+                "unlocks": [
+                    81495
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1386,7 +1648,9 @@
                 "display_col": 5,
                 "raw_position_x": 5400,
                 "raw_position_y": 2700,
-                "locked_by": [],
+                "locked_by": [
+                    81598
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1410,8 +1674,12 @@
                 "display_col": 7,
                 "raw_position_x": 6600,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93010
+                ],
+                "unlocks": [
+                    81604
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1448,8 +1716,13 @@
                 "display_col": 7,
                 "raw_position_x": 6600,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103864,
+                    81608
+                ],
+                "unlocks": [
+                    103863
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1486,7 +1759,9 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 3300,
-                "locked_by": [],
+                "locked_by": [
+                    81632
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1510,8 +1785,12 @@
                 "display_col": 1,
                 "raw_position_x": 3000,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81507
+                ],
+                "unlocks": [
+                    103860
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -1545,8 +1824,12 @@
                 "display_col": 2,
                 "raw_position_x": 3600,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81597
+                ],
+                "unlocks": [
+                    93188
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1569,8 +1852,14 @@
                 "display_col": 1,
                 "raw_position_x": 3000,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93188,
+                    103858
+                ],
+                "unlocks": [
+                    81630,
+                    93168
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1593,7 +1882,10 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    103851,
+                    81621
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1617,8 +1909,12 @@
                 "display_col": 2,
                 "raw_position_x": 3600,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103867
+                ],
+                "unlocks": [
+                    93357
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1641,7 +1937,11 @@
                 "display_col": 6,
                 "raw_position_x": 6000,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    103851,
+                    103856,
+                    81628
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1665,8 +1965,15 @@
                 "display_col": 6,
                 "raw_position_x": 6000,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81617,
+                    81615
+                ],
+                "unlocks": [
+                    81628,
+                    103851,
+                    103856
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1689,8 +1996,12 @@
                 "display_col": 3,
                 "raw_position_x": 4200,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81607
+                ],
+                "unlocks": [
+                    81621
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1727,8 +2038,14 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93192,
+                    81607
+                ],
+                "unlocks": [
+                    103851,
+                    81621
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1737,7 +2054,7 @@
                         "talent_name": "Holy Ritual",
                         "spell_id": 199422,
                         "spell_name": "Holy Ritual",
-                        "description": "Allies are healed for 7,752 when you cast Blessing of Protection or Blessing of Sacrifice on them.",
+                        "description": "Allies are healed for 7,645 when you cast Blessing of Protection or Blessing of Sacrifice on them.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1751,8 +2068,15 @@
                 "display_col": 2,
                 "raw_position_x": 3600,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81609,
+                    81607
+                ],
+                "unlocks": [
+                    81495,
+                    103862,
+                    81621
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1775,8 +2099,13 @@
                 "display_col": 5,
                 "raw_position_x": 5400,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81617,
+                    93192
+                ],
+                "unlocks": [
+                    103851
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1799,8 +2128,15 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81631,
+                    81605
+                ],
+                "unlocks": [
+                    93181,
+                    81616,
+                    81614
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1823,8 +2159,13 @@
                 "display_col": 2,
                 "raw_position_x": 3600,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    110012,
+                    93189
+                ],
+                "unlocks": [
+                    81630
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1847,8 +2188,12 @@
                 "display_col": 6,
                 "raw_position_x": 6000,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93009
+                ],
+                "unlocks": [
+                    81615
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1871,8 +2216,12 @@
                 "display_col": 2,
                 "raw_position_x": 3600,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81630
+                ],
+                "unlocks": [
+                    81609
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1895,8 +2244,15 @@
                 "display_col": 3,
                 "raw_position_x": 4200,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81600,
+                    81597
+                ],
+                "unlocks": [
+                    110012,
+                    93188,
+                    81632
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1919,8 +2275,15 @@
                 "display_col": 4,
                 "raw_position_x": 4800,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81631,
+                    81605
+                ],
+                "unlocks": [
+                    81479,
+                    81616,
+                    81614
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1943,7 +2306,9 @@
                 "display_col": 3,
                 "raw_position_x": 4200,
                 "raw_position_y": 2700,
-                "locked_by": [],
+                "locked_by": [
+                    109999
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1967,8 +2332,12 @@
                 "display_col": 7,
                 "raw_position_x": 6600,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    110093
+                ],
+                "unlocks": [
+                    81543
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1991,8 +2360,13 @@
                 "display_col": 7,
                 "raw_position_x": 6600,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103855,
+                    92220
+                ],
+                "unlocks": [
+                    93009
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -2015,8 +2389,14 @@
                 "display_col": 7,
                 "raw_position_x": 6600,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103855,
+                    81603
+                ],
+                "unlocks": [
+                    110091,
+                    93009
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -2145,7 +2525,7 @@
                             "talent_name": "Light's Guidance",
                             "spell_id": 427445,
                             "spell_name": "Light's Guidance",
-                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 244 Holy damage and 121 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
+                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 244 Holy damage and 123 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3435,7 +3815,7 @@
                             "talent_name": "Light's Guidance",
                             "spell_id": 427445,
                             "spell_name": "Light's Guidance",
-                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 241 Holy damage and 120 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
+                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 242 Holy damage and 122 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3574,7 +3954,7 @@
                             "talent_name": "Divine Hammer",
                             "spell_id": 432929,
                             "spell_name": "Divine Hammer",
-                            "description": "Divine Toll summons Divine Hammers that spin around you for 8 sec.\r\n\r\nDivine Hammer\r\nStrikes all enemies nearby for 51 Holy damage every 2 sec. Deals reduced damage beyond 8 targets.",
+                            "description": "Divine Toll summons Divine Hammers that spin around you for 8 sec.\r\n\r\nDivine Hammer\r\nStrikes all enemies nearby for 50 Holy damage every 2 sec. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3634,7 +4014,7 @@
                                     "talent_name": "Hammer of the Righteous",
                                     "spell_id": 53595,
                                     "spell_name": "Hammer of the Righteous",
-                                    "description": "Hammers the current target for 70 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
+                                    "description": "Hammers the current target for 71 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": "Melee Range"
@@ -5617,7 +5997,7 @@
                             "talent_name": "Holy Shock",
                             "spell_id": 20473,
                             "spell_name": "Holy Shock",
-                            "description": "Triggers a burst of Light on the target, dealing 815 Holy damage to an enemy, or 4,322 healing to an ally.\r\n\r\nGenerates 1 Holy Power.\r\n",
+                            "description": "Triggers a burst of Light on the target, dealing 820 Holy damage to an enemy, or 4,318 healing to an ally.\r\n\r\nGenerates 1 Holy Power.\r\n",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -6643,7 +7023,7 @@
                             "talent_name": "Shining Righteousness",
                             "spell_id": 414443,
                             "spell_name": "Shining Righteousness",
-                            "description": "Shield of the Righteous deals 965 damage to its first target struck.\r\n\r\nShield of the Righteous now has a 35% chance to activate Divine Purpose if talented.",
+                            "description": "Shield of the Righteous deals 991 damage to its first target struck.\r\n\r\nShield of the Righteous now has a 35% chance to activate Divine Purpose if talented.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7335,7 +7715,7 @@
                                     "talent_name": "Avenging Crusader",
                                     "spell_id": 216331,
                                     "spell_name": "Avenging Crusader",
-                                    "description": "You become the ultimate crusader of light, for 15 sec. Auto-attack damage is increased by 1,000%, Judgment and Crusader Strike heal up to 5 injured allies within 40 yds for 55% of the damage done, split evenly among them.\r\n\r\nThis spell is replaced with Crusader Strike while active.\r\n\r\nCrusader Strike:\r\nStrike the target for 48 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
+                                    "description": "You become the ultimate crusader of light, for 15 sec. Auto-attack damage is increased by 1,000%, Judgment and Crusader Strike heal up to 5 injured allies within 40 yds for 55% of the damage done, split evenly among them.\r\n\r\nThis spell is replaced with Crusader Strike while active.\r\n\r\nCrusader Strike:\r\nStrike the target for 50 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
                                     "cast_time": "Instant",
                                     "cooldown": "1 min cooldown",
                                     "range": null
@@ -7917,7 +8297,7 @@
                             "talent_name": "Light's Guidance",
                             "spell_id": 427445,
                             "spell_name": "Light's Guidance",
-                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 244 Holy damage and 123 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
+                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 246 Holy damage and 124 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8918,7 +9298,7 @@
                             "talent_name": "Final Verdict",
                             "spell_id": 383328,
                             "spell_name": "Final Verdict",
-                            "description": "Unleashes a powerful weapon strike that deals 164 Holy damage to an enemy target,\r\n\r\nHas a 15% chance to reset the cooldown of Judgment.",
+                            "description": "Unleashes a powerful weapon strike that deals 162 Holy damage to an enemy target,\r\n\r\nHas a 15% chance to reset the cooldown of Judgment.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "12 yd range"
@@ -9461,7 +9841,7 @@
                                     "talent_name": "Templar Strikes",
                                     "spell_id": 406646,
                                     "spell_name": "Templar Strikes",
-                                    "description": "Crusader Strike loses a charge but is now a combo ability.\r\n\r\nTemplar Strike slashes an enemy for 66 Radiant damage and gets followed up by Templar Slash that deals 76 Radiant damage. Templar Slash always critically strikes.",
+                                    "description": "Crusader Strike loses a charge but is now a combo ability.\r\n\r\nTemplar Strike slashes an enemy for 65 Radiant damage and gets followed up by Templar Slash that deals 75 Radiant damage. Templar Slash always critically strikes.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -9471,7 +9851,7 @@
                                     "talent_name": "Crusading Strikes",
                                     "spell_id": 404542,
                                     "spell_name": "Crusading Strikes",
-                                    "description": "Crusader Strike replaces your auto-attacks and deals 82 Physical damage.\r\n\r\nAuto-attack speed is decreased by 15%.",
+                                    "description": "Crusader Strike replaces your auto-attacks and deals 81 Physical damage.\r\n\r\nAuto-attack speed is decreased by 15%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null

@@ -1,7 +1,7 @@
 {
     "class": "Evoker",
     "talent_tree_id": 872,
-    "fetched_at": "2026-08-12T21:34:26+00:00",
+    "fetched_at": "2026-08-29T03:28:45+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -12,7 +12,9 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 2700,
-                "locked_by": [],
+                "locked_by": [
+                    93312
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -36,7 +38,9 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 3899,
-                "locked_by": [],
+                "locked_by": [
+                    93311
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -60,8 +64,12 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93349
+                ],
+                "unlocks": [
+                    93288
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -84,8 +92,12 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93288
+                ],
+                "unlocks": [
+                    93346
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -108,8 +120,15 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93348,
+                    93286,
+                    93354
+                ],
+                "unlocks": [
+                    93352,
+                    93287
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -132,7 +151,9 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 2700,
-                "locked_by": [],
+                "locked_by": [
+                    103843
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -156,8 +177,12 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93295
+                ],
+                "unlocks": [
+                    93349
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -180,8 +205,12 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93292
+                ],
+                "unlocks": [
+                    93348
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -204,8 +233,12 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93294
+                ],
+                "unlocks": [
+                    93291
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -239,7 +272,9 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 3900,
-                "locked_by": [],
+                "locked_by": [
+                    93294
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -263,8 +298,14 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93295,
+                    93341
+                ],
+                "unlocks": [
+                    93292,
+                    93293
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -287,8 +328,15 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93341,
+                    103843
+                ],
+                "unlocks": [
+                    93290,
+                    93294,
+                    103844
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -322,7 +370,9 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 6300,
-                "locked_by": [],
+                "locked_by": [
+                    93298
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -346,8 +396,16 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93299,
+                    93309,
+                    93354
+                ],
+                "unlocks": [
+                    93352,
+                    93343,
+                    93297
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -370,8 +428,12 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93355
+                ],
+                "unlocks": [
+                    93298
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -394,8 +456,12 @@
                 "display_col": 4,
                 "raw_position_x": 3899,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93350
+                ],
+                "unlocks": [
+                    93354
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -418,8 +484,12 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93302
+                ],
+                "unlocks": [
+                    93355
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -442,8 +512,15 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93312,
+                    103843
+                ],
+                "unlocks": [
+                    93311,
+                    93301,
+                    103844
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -478,7 +555,9 @@
                 "raw_position_x": 3900,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    103843
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -502,7 +581,9 @@
                 "raw_position_x": 2700,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    93312
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -526,7 +607,9 @@
                 "raw_position_x": 5100,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    93341
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -549,8 +632,12 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93309
+                ],
+                "unlocks": [
+                    93343
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -559,7 +646,7 @@
                         "talent_name": "Unravel",
                         "spell_id": 1264378,
                         "spell_name": "Unravel",
-                        "description": "Direct damage from Fire Breath consumes absorb shields from enemies, dealing 4,483 additional Spellfrost damage to them.",
+                        "description": "Direct damage from Fire Breath consumes absorb shields from enemies, dealing 4,618 additional Spellfrost damage to them.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -573,8 +660,13 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93309
+                ],
+                "unlocks": [
+                    93343,
+                    110065
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -597,8 +689,15 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    110064,
+                    93355
+                ],
+                "unlocks": [
+                    93298,
+                    93307,
+                    93308
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -621,8 +720,12 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93311
+                ],
+                "unlocks": [
+                    110064
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -656,8 +759,14 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93312,
+                    93302
+                ],
+                "unlocks": [
+                    93271,
+                    93310
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -680,8 +789,14 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93305
+                ],
+                "unlocks": [
+                    93270,
+                    93302,
+                    93311
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -704,7 +819,9 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 2700,
-                "locked_by": [],
+                "locked_by": [
+                    93341
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -728,8 +845,14 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93306
+                ],
+                "unlocks": [
+                    93295,
+                    93294,
+                    93340
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -738,7 +861,7 @@
                         "talent_name": "Verdant Embrace",
                         "spell_id": 360995,
                         "spell_name": "Verdant Embrace",
-                        "description": "Fly to an ally and heal them for 5,226, or heal yourself for the same amount.",
+                        "description": "Fly to an ally and heal them for 6,532, or heal yourself for the same amount.",
                         "cast_time": "Instant",
                         "cooldown": "0.5 sec cooldown",
                         "range": "25 yd range"
@@ -752,7 +875,10 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    93343,
+                    110065
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -776,8 +902,14 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93307,
+                    93308,
+                    93298
+                ],
+                "unlocks": [
+                    93342
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -800,8 +932,12 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93348
+                ],
+                "unlocks": [
+                    93715
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -824,8 +960,12 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93354
+                ],
+                "unlocks": [
+                    93352
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -848,7 +988,11 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    93347,
+                    93287,
+                    93715
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -872,8 +1016,12 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93348
+                ],
+                "unlocks": [
+                    93346
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -907,8 +1055,15 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93291,
+                    93349
+                ],
+                "unlocks": [
+                    93288,
+                    93344,
+                    93347
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -931,8 +1086,14 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93290,
+                    93350
+                ],
+                "unlocks": [
+                    93286,
+                    93348
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -967,7 +1128,11 @@
                 "raw_position_x": 3899,
                 "raw_position_y": 3899,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    93349,
+                    93300,
+                    93355
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -990,7 +1155,9 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    93352
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1028,8 +1195,14 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93288,
+                    93345,
+                    93298
+                ],
+                "unlocks": [
+                    93351
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1052,7 +1225,9 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 5100,
-                "locked_by": [],
+                "locked_by": [
+                    110064
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1076,8 +1251,14 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93300
+                ],
+                "unlocks": [
+                    93345,
+                    93288,
+                    93298
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1100,8 +1281,14 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93301,
+                    93350
+                ],
+                "unlocks": [
+                    93299,
+                    93309
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -1135,8 +1322,12 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93344
+                ],
+                "unlocks": [
+                    93346
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1265,8 +1456,14 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93304
+                ],
+                "unlocks": [
+                    93289,
+                    93295,
+                    93302
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1289,7 +1486,10 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 3300,
-                "locked_by": [],
+                "locked_by": [
+                    93295,
+                    93302
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1313,8 +1513,13 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93310
+                ],
+                "unlocks": [
+                    93309,
+                    93353
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1337,8 +1542,12 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93308
+                ],
+                "unlocks": [
+                    93342
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1829,7 +2038,7 @@
                             "talent_name": "Command Squadron",
                             "spell_id": 1260745,
                             "spell_name": "Command Squadron",
-                            "description": "While flying during Deep Breath you are assisted by a squadron of Dracthyr who assault enemies with Pyre, dealing 961 Fire damage to nearby enemies up to 8 times.",
+                            "description": "While flying during Deep Breath you are assisted by a squadron of Dracthyr who assault enemies with Pyre, dealing 963 Fire damage to nearby enemies up to 8 times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2962,7 +3171,7 @@
                             "talent_name": "Upheaval",
                             "spell_id": 396286,
                             "spell_name": "Upheaval",
-                            "description": "Gather earthen power beneath your enemy's feet and send them hurtling upwards, dealing 1,643 Volcanic damage to the target and nearby enemies.\r\n\r\nEmpowering expands the area of effect.\r\n\r\nI:   3 yd radius.\r\n\r\nII:  6 yd radius.\r\n\r\nIII: 9 yd radius.",
+                            "description": "Gather earthen power beneath your enemy's feet and send them hurtling upwards, dealing 1,637 Volcanic damage to the target and nearby enemies.\r\n\r\nEmpowering expands the area of effect.\r\n\r\nI:   3 yd radius.\r\n\r\nII:  6 yd radius.\r\n\r\nIII: 9 yd radius.",
                             "cast_time": "Channeled",
                             "cooldown": "40 sec cooldown",
                             "range": "25 yd range"
@@ -3023,7 +3232,7 @@
                             "talent_name": "Defy Fate",
                             "spell_id": 404195,
                             "spell_name": "Defy Fate",
-                            "description": "Fatal attacks are diverted into a nearby timeline, preventing the damage, and your death, in this one.\r\n\r\nThe release of temporal energy restores 12,154 health to you, and 4,161 to 4 nearby allies, over 9 sec. Healing starts high and declines over the duration.\r\n\r\nMay only occur once every 6 min.",
+                            "description": "Fatal attacks are diverted into a nearby timeline, preventing the damage, and your death, in this one.\r\n\r\nThe release of temporal energy restores 12,718 health to you, and 4,068 to 4 nearby allies, over 9 sec. Healing starts high and declines over the duration.\r\n\r\nMay only occur once every 6 min.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5588,7 +5797,7 @@
                                     "talent_name": "Dream Flight",
                                     "spell_id": 359816,
                                     "spell_name": "Dream Flight",
-                                    "description": "Take in a deep breath and fly to the targeted location, healing all allies in your path for 1,900 immediately, and 4,309 over 15 sec, reduced beyond 5 targets.\r\n\r\nRemoves all root effects. You are immune to movement impairing and loss of control effects.\r\n\r\nDamage taken while you are flying is absorbed, up to 100% of your maximum health.",
+                                    "description": "Take in a deep breath and fly to the targeted location, healing all allies in your path for 1,900 immediately, and 4,233 over 15 sec, reduced beyond 5 targets.\r\n\r\nRemoves all root effects. You are immune to movement impairing and loss of control effects.\r\n\r\nDamage taken while you are flying is absorbed, up to 100% of your maximum health.",
                                     "cast_time": "Instant",
                                     "cooldown": "2 min cooldown",
                                     "range": "15-50 yd range"
@@ -5957,7 +6166,7 @@
                             "talent_name": "Time of Need",
                             "spell_id": 368412,
                             "spell_name": "Time of Need",
-                            "description": "When you or an ally fall below 30% health, a version of yourself enters your timeline and heals them for 15,679. Your alternate self continues healing for 8 sec before returning to their timeline.\r\n\r\nMay only occur once every 60 sec.",
+                            "description": "When you or an ally fall below 30% health, a version of yourself enters your timeline and heals them for 19,596. Your alternate self continues healing for 8 sec before returning to their timeline.\r\n\r\nMay only occur once every 60 sec.",
                             "cast_time": "Passive",
                             "cooldown": "2 min cooldown",
                             "range": null
@@ -6139,7 +6348,7 @@
                                     "talent_name": "Dream Simulacrum",
                                     "spell_id": 1241669,
                                     "spell_name": "Dream Simulacrum",
-                                    "description": "Verdant Embrace healing is increased by 30%. In addition, it no longer causes you to leap to your target, instead sending forth a Dream Simulacrum.",
+                                    "description": "Verdant Embrace healing is increased by 40%. In addition, it no longer causes you to leap to your target, instead sending forth a Dream Simulacrum.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -6447,7 +6656,7 @@
                             "talent_name": "Command Squadron",
                             "spell_id": 1260745,
                             "spell_name": "Command Squadron",
-                            "description": "While flying during Deep Breath you are assisted by a squadron of Dracthyr who assault enemies with Pyre, dealing 952 Fire damage to nearby enemies up to 8 times.",
+                            "description": "While flying during Deep Breath you are assisted by a squadron of Dracthyr who assault enemies with Pyre, dealing 942 Fire damage to nearby enemies up to 8 times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6614,7 +6823,7 @@
                             "talent_name": "Pyre",
                             "spell_id": 357211,
                             "spell_name": "Pyre",
-                            "description": "Lob a ball of flame, dealing 1,675 Fire damage to your target and all enemies within 8 yds.",
+                            "description": "Lob a ball of flame, dealing 1,678 Fire damage to your target and all enemies within 8 yds.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "25 yd range"
@@ -7267,7 +7476,7 @@
                             "talent_name": "Eternity Surge",
                             "spell_id": 359073,
                             "spell_name": "Eternity Surge",
-                            "description": "Focus your energies to release a salvo of pure magic, dealing 4,141 Spellfrost damage to an enemy. Damages additional enemies within 25 yds when empowered.\r\n\r\nI:   Damages 1 enemy.\r\n\r\nII:  Damages 2 enemies.\r\n\r\nIII: Damages 3 enemies.",
+                            "description": "Focus your energies to release a salvo of pure magic, dealing 4,101 Spellfrost damage to an enemy. Damages additional enemies within 25 yds when empowered.\r\n\r\nI:   Damages 1 enemy.\r\n\r\nII:  Damages 2 enemies.\r\n\r\nIII: Damages 3 enemies.",
                             "cast_time": "Channeled",
                             "cooldown": "30 sec cooldown",
                             "range": "25 yd range"
@@ -7449,7 +7658,7 @@
                             "talent_name": "Azure Sweep",
                             "spell_id": 1265867,
                             "spell_name": "Azure Sweep",
-                            "description": "Eternity Surge upgrades your next Azure Strike to Azure Sweep, damaging all nearby enemies and dealing 75% additional damage.\r\n\r\n Azure Sweep\r\nConcentrate azure energy into your tail and sweep to release pure magic upon an enemy and nearby targets for 629 Spellfrost damage. Damage reduced beyond 8 targets.",
+                            "description": "Eternity Surge upgrades your next Azure Strike to Azure Sweep, damaging all nearby enemies and dealing 75% additional damage.\r\n\r\n Azure Sweep\r\nConcentrate azure energy into your tail and sweep to release pure magic upon an enemy and nearby targets for 611 Spellfrost damage. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7518,7 +7727,7 @@
                             "talent_name": "Ruby Embers",
                             "spell_id": 365937,
                             "spell_name": "Ruby Embers",
-                            "description": "Living Flame deals 111 damage over 12 sec to enemies, or restores 220 health to allies over 12 sec. Stacks 3 times.",
+                            "description": "Living Flame deals 113 damage over 12 sec to enemies, or restores 226 health to allies over 12 sec. Stacks 3 times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7875,7 +8084,7 @@
                             "talent_name": "Shattering Stars",
                             "spell_id": 1265802,
                             "spell_name": "Shattering Stars",
-                            "description": "Eternity Surge additionally releases a Shattering Star at your target that deals 50% more damage per empower level reached.\r\n\r\n Shattering Star\r\nExhale a bolt of concentrated power from your mouth at the target for 652 Spellfrost damage.",
+                            "description": "Eternity Surge additionally releases a Shattering Star at your target that deals 50% more damage per empower level reached.\r\n\r\n Shattering Star\r\nExhale a bolt of concentrated power from your mouth at the target for 654 Spellfrost damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7903,7 +8112,7 @@
                             "talent_name": "Feed the Flames",
                             "spell_id": 369846,
                             "spell_name": "Feed the Flames",
-                            "description": "After casting 6 Pyres, your next Pyre will explode into a Firestorm.\r\n\r\n Firestorm\r\nAn explosion bombards the target area with white-hot embers, dealing 5,527 Fire damage to enemies over 10 sec.",
+                            "description": "After casting 6 Pyres, your next Pyre will explode into a Firestorm.\r\n\r\n Firestorm\r\nAn explosion bombards the target area with white-hot embers, dealing 5,481 Fire damage to enemies over 10 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

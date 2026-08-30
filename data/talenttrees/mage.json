@@ -1,7 +1,7 @@
 {
     "class": "Mage",
     "talent_tree_id": 658,
-    "fetched_at": "2026-08-12T21:34:12+00:00",
+    "fetched_at": "2026-08-29T03:28:29+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -12,8 +12,13 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62114
+                ],
+                "unlocks": [
+                    110082,
+                    62105
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -36,7 +41,11 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    62087,
+                    62086,
+                    62129
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -60,8 +69,12 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108658
+                ],
+                "unlocks": [
+                    62085
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -84,8 +97,12 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108658
+                ],
+                "unlocks": [
+                    62085
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -106,7 +123,7 @@
                                 "talent_name": "Ice Nova",
                                 "spell_id": 157997,
                                 "spell_name": "Ice Nova",
-                                "description": "Causes a whirl of icy wind around the enemy, dealing 570 Frost damage to the target and all other enemies within 8 yds, freezing them in place for 2 sec. Damage reduced beyond 8 targets.",
+                                "description": "Causes a whirl of icy wind around the enemy, dealing 587 Frost damage to the target and all other enemies within 8 yds, freezing them in place for 2 sec. Damage reduced beyond 8 targets.",
                                 "cast_time": "Instant",
                                 "cooldown": "25 sec cooldown",
                                 "range": "40 yd range"
@@ -122,8 +139,12 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62096
+                ],
+                "unlocks": [
+                    62094
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -160,8 +181,12 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108657
+                ],
+                "unlocks": [
+                    108655
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -184,8 +209,12 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108657
+                ],
+                "unlocks": [
+                    108655
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -208,7 +237,11 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    62088,
+                    62129,
+                    62100
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -246,8 +279,16 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    110597,
+                    62098,
+                    62127
+                ],
+                "unlocks": [
+                    62100,
+                    62129,
+                    62088
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -270,8 +311,16 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108661,
+                    93524,
+                    110078
+                ],
+                "unlocks": [
+                    108657,
+                    62096,
+                    110080
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -294,8 +343,15 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108657,
+                    62096,
+                    110080
+                ],
+                "unlocks": [
+                    108655,
+                    62094
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -318,8 +374,13 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62115
+                ],
+                "unlocks": [
+                    108660,
+                    62114
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -353,8 +414,15 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108660,
+                    62114
+                ],
+                "unlocks": [
+                    108661,
+                    62105,
+                    110079
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -377,8 +445,15 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62104,
+                    62084
+                ],
+                "unlocks": [
+                    62110,
+                    62127,
+                    62125
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -415,8 +490,12 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62122
+                ],
+                "unlocks": [
+                    62124
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -439,8 +518,13 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62105,
+                    110082
+                ],
+                "unlocks": [
+                    108658
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -477,8 +561,12 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93524
+                ],
+                "unlocks": [
+                    108657
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -512,8 +600,14 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62102,
+                    108654
+                ],
+                "unlocks": [
+                    62104,
+                    62084
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -547,8 +641,13 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62117
+                ],
+                "unlocks": [
+                    108654,
+                    62102
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -571,8 +670,15 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62124,
+                    108660
+                ],
+                "unlocks": [
+                    108661,
+                    93524,
+                    110078
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -596,7 +702,10 @@
                 "raw_position_x": 3900,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    62115,
+                    62122
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -605,7 +714,7 @@
                         "talent_name": "Ice Barrier",
                         "spell_id": 11426,
                         "spell_name": "Ice Barrier",
-                        "description": "Shields you with ice, absorbing 9,165 damage for 1 min.\r\n\r\nMelee attacks against you reduce the attacker's movement speed by 50%.",
+                        "description": "Shields you with ice, absorbing 10,692 damage for 1 min.\r\n\r\nMelee attacks against you reduce the attacker's movement speed by 50%.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": null
@@ -620,7 +729,10 @@
                 "raw_position_x": 3900,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    62115,
+                    62122
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -629,7 +741,7 @@
                         "talent_name": "Blazing Barrier",
                         "spell_id": 235313,
                         "spell_name": "Blazing Barrier",
-                        "description": "Shields you in flame, absorbing 9,165 damage for 1 min.\r\n\r\nMelee attacks against you cause the attacker to take 58 Fire damage.",
+                        "description": "Shields you in flame, absorbing 9,165 damage for 1 min.\r\n\r\nMelee attacks against you cause the attacker to take 59 Fire damage.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": null
@@ -644,7 +756,10 @@
                 "raw_position_x": 3900,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    62115,
+                    62122
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -667,8 +782,13 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62117
+                ],
+                "unlocks": [
+                    62107,
+                    62123
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -691,8 +811,13 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62122
+                ],
+                "unlocks": [
+                    62124,
+                    108660
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -726,8 +851,14 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62107,
+                    62123
+                ],
+                "unlocks": [
+                    108662,
+                    62116
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -750,8 +881,12 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62105
+                ],
+                "unlocks": [
+                    108658
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -774,8 +909,16 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62105,
+                    108661,
+                    110079
+                ],
+                "unlocks": [
+                    108658,
+                    62096,
+                    110081
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -798,8 +941,15 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62096,
+                    108658,
+                    110081
+                ],
+                "unlocks": [
+                    62094,
+                    62085
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -822,8 +972,15 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108662,
+                    62116
+                ],
+                "unlocks": [
+                    62098,
+                    62112,
+                    108659
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -894,8 +1051,12 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108660
+                ],
+                "unlocks": [
+                    108661
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -906,7 +1067,7 @@
                                 "talent_name": "Dragon's Breath",
                                 "spell_id": 31661,
                                 "spell_name": "Dragon's Breath",
-                                "description": "Enemies in a 12 yd cone in front of you take 271 Fire damage and are disoriented for 4 sec. Damage will cancel the effect.",
+                                "description": "Enemies in a 12 yd cone in front of you take 282 Fire damage and are disoriented for 4 sec. Damage will cancel the effect.",
                                 "cast_time": "Instant",
                                 "cooldown": "45 sec cooldown",
                                 "range": null
@@ -916,7 +1077,7 @@
                                 "talent_name": "Supernova",
                                 "spell_id": 157980,
                                 "spell_name": "Supernova",
-                                "description": "Pulses arcane energy around the target enemy or ally, dealing 174 Arcane damage to all enemies within 8 yds, and knocking them upward. A primary enemy target will take 100% increased damage.",
+                                "description": "Pulses arcane energy around the target enemy or ally, dealing 178 Arcane damage to all enemies within 8 yds, and knocking them upward. A primary enemy target will take 100% increased damage.",
                                 "cast_time": "Instant",
                                 "cooldown": "45 sec cooldown",
                                 "range": "40 yd range"
@@ -932,8 +1093,12 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62115
+                ],
+                "unlocks": [
+                    62114
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -970,7 +1135,11 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    62100,
+                    62092,
+                    62091
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -994,7 +1163,11 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    62100,
+                    62092,
+                    62091
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1018,8 +1191,16 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108659,
+                    62098,
+                    62112
+                ],
+                "unlocks": [
+                    62100,
+                    62092,
+                    62091
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1042,8 +1223,16 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62110,
+                    62127,
+                    62125
+                ],
+                "unlocks": [
+                    62086,
+                    62129,
+                    62087
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1066,8 +1255,12 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    93524
+                ],
+                "unlocks": [
+                    108657
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1090,8 +1283,15 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62102,
+                    62123
+                ],
+                "unlocks": [
+                    62116,
+                    62104,
+                    101883
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1114,8 +1314,16 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62116,
+                    62104,
+                    101883
+                ],
+                "unlocks": [
+                    110597,
+                    62098,
+                    62127
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1138,8 +1346,12 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62124
+                ],
+                "unlocks": [
+                    93524
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -1173,7 +1385,11 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    62092,
+                    62100,
+                    62091
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1197,8 +1413,12 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62116
+                ],
+                "unlocks": [
+                    62098
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1221,8 +1441,12 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62104
+                ],
+                "unlocks": [
+                    62127
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1245,8 +1469,12 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62098
+                ],
+                "unlocks": [
+                    62100
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1269,8 +1497,12 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62127
+                ],
+                "unlocks": [
+                    62129
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1293,8 +1525,12 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    62084
+                ],
+                "unlocks": [
+                    62110
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1317,8 +1553,12 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108661
+                ],
+                "unlocks": [
+                    62096
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1628,7 +1868,7 @@
                                     "talent_name": "Explosive Potential",
                                     "spell_id": 1246030,
                                     "spell_name": "Explosive Potential",
-                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 224 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
+                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 230 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -1770,7 +2010,7 @@
                             "talent_name": "Glorious Incandescence",
                             "spell_id": 449394,
                             "spell_name": "Glorious Incandescence",
-                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 415 Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 426 Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2114,7 +2354,7 @@
                             "talent_name": "Splintering Sorcery",
                             "spell_id": 443739,
                             "spell_name": "Splintering Sorcery",
-                            "description": "Casting Arcane Blast or Arcane Pulse conjures an Arcane Splinter.\r\n\r\nArcane Splinter:\r\nConjure raw Arcane magic into a sharp projectile that deals 219 Arcane damage.\r\n",
+                            "description": "Casting Arcane Blast or Arcane Pulse conjures an Arcane Splinter.\r\n\r\nArcane Splinter:\r\nConjure raw Arcane magic into a sharp projectile that deals 225 Arcane damage.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2346,7 +2586,7 @@
                             "talent_name": "Isothermic Core",
                             "spell_id": 431095,
                             "spell_name": "Isothermic Core",
-                            "description": "Meteor now also calls down a Comet Storm, dealing 2,632 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,759 Fire damage to nearby enemies.",
+                            "description": "Meteor now also calls down a Comet Storm, dealing 2,785 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,868 Fire damage to nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2375,7 +2615,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,079 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,115 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2658,7 +2898,7 @@
                             "talent_name": "Duality",
                             "spell_id": 1262843,
                             "spell_name": "Duality",
-                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,553 Fire damage.",
+                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,722 Fire damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2687,7 +2927,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,074 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,081 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2721,7 +2961,7 @@
                             "talent_name": "Ice Lance",
                             "spell_id": 30455,
                             "spell_name": "Ice Lance",
-                            "description": "Quickly fling a shard of ice at the target, dealing 750 Frost damage.\r\n\r\nShatters 4 stacks of Freezing.",
+                            "description": "Quickly fling a shard of ice at the target, dealing 766 Frost damage.\r\n\r\nShatters 4 stacks of Freezing.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2750,7 +2990,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,059 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,093 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2779,7 +3019,7 @@
                             "talent_name": "Splintering Sorcery",
                             "spell_id": 443739,
                             "spell_name": "Splintering Sorcery",
-                            "description": "Casting Arcane Blast or Arcane Pulse conjures an Arcane Splinter.\r\n\r\nArcane Splinter:\r\nConjure raw Arcane magic into a sharp projectile that deals 219 Arcane damage.\r\n",
+                            "description": "Casting Arcane Blast or Arcane Pulse conjures an Arcane Splinter.\r\n\r\nArcane Splinter:\r\nConjure raw Arcane magic into a sharp projectile that deals 225 Arcane damage.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2809,7 +3049,7 @@
                                     "talent_name": "Blizzard",
                                     "spell_id": 190356,
                                     "spell_name": "Blizzard",
-                                    "description": "Ice shards pelt the target area, dealing 1,453 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at a selected location",
+                                    "description": "Ice shards pelt the target area, dealing 1,642 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at a selected location",
                                     "cast_time": "2 sec cast",
                                     "cooldown": "12 sec cooldown",
                                     "range": "40 yd range"
@@ -2819,7 +3059,7 @@
                                     "talent_name": "Blizzard",
                                     "spell_id": 1248829,
                                     "spell_name": "Blizzard",
-                                    "description": "Ice shards pelt the target area, dealing 1,483 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at your target.",
+                                    "description": "Ice shards pelt the target area, dealing 1,678 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at your target.",
                                     "cast_time": "2 sec cast",
                                     "cooldown": "12 sec cooldown",
                                     "range": "40 yd range"
@@ -2993,7 +3233,7 @@
                             "talent_name": "Duality",
                             "spell_id": 1262843,
                             "spell_name": "Duality",
-                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,601 Fire damage.",
+                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,679 Fire damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3148,7 +3388,7 @@
                             "talent_name": "Frostbite",
                             "spell_id": 1248825,
                             "spell_name": "Frostbite",
-                            "description": "When Frostbolt critically strikes, it applies 1 additional stack of Freezing.\r\n\r\nEach stack of Freezing that you Shatter deals 92 damage to nearby enemies. Damage reduced beyond 5 targets.",
+                            "description": "When Frostbolt critically strikes, it applies 1 additional stack of Freezing.\r\n\r\nEach stack of Freezing that you Shatter deals 104 damage to nearby enemies. Damage reduced beyond 5 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3177,7 +3417,7 @@
                             "talent_name": "Icicles",
                             "spell_id": 1246832,
                             "spell_name": "Icicles",
-                            "description": "While in combat, Frost crystallizes around you, generating an Icicle every 5.4 sec. Upon generating 5 Icicles, Frostbolt upgrades to Glacial Spike for its next cast.\r\n\r\n Glacial Spike\r\nConjures a massive spike of ice that impales your target, dealing 5,310 damage and slowing the target's movement speed by 50% for 8 sec.\r\n\r\nApplies 3 stacks of Freezing.",
+                            "description": "While in combat, Frost crystallizes around you, generating an Icicle every 5.4 sec. Upon generating 5 Icicles, Frostbolt upgrades to Glacial Spike for its next cast.\r\n\r\n Glacial Spike\r\nConjures a massive spike of ice that impales your target, dealing 5,524 damage and slowing the target's movement speed by 50% for 8 sec.\r\n\r\nApplies 3 stacks of Freezing.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3472,7 +3712,7 @@
                             "talent_name": "Flurry",
                             "spell_id": 44614,
                             "spell_name": "Flurry",
-                            "description": "Unleash a flurry of ice, striking the target 3 times for a total of 1,560 Frost damage.\r\n\r\nApplies 3 stacks of Freezing.",
+                            "description": "Unleash a flurry of ice, striking the target 3 times for a total of 1,627 Frost damage.\r\n\r\nApplies 3 stacks of Freezing.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3544,7 +3784,7 @@
                             "talent_name": "Frozen Orb",
                             "spell_id": 84714,
                             "spell_name": "Frozen Orb",
-                            "description": "Launches an orb of swirling ice in front of you, dealing up to 5,545 Frost damage to all enemies it passes through over 15 sec. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets.\r\n\r\nEnemies damaged by the Frozen Orb are slowed by 50% for 8 sec.",
+                            "description": "Launches an orb of swirling ice in front of you, dealing up to 5,623 Frost damage to all enemies it passes through over 15 sec. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets.\r\n\r\nEnemies damaged by the Frozen Orb are slowed by 50% for 8 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": "40 yd range"
@@ -3856,7 +4096,7 @@
                             "talent_name": "Ray of Frost",
                             "spell_id": 205021,
                             "spell_name": "Ray of Frost",
-                            "description": "Channel an icy beam at the enemy for 3.6 sec, dealing 1,846 Frost damage every 0.45 sec.\r\n\r\nApplies 8 stacks of Freezing over its duration.",
+                            "description": "Channel an icy beam at the enemy for 3.6 sec, dealing 1,898 Frost damage every 0.45 sec.\r\n\r\nApplies 8 stacks of Freezing over its duration.",
                             "cast_time": "Channeled",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3943,7 +4183,7 @@
                             "talent_name": "Isothermic Core",
                             "spell_id": 431095,
                             "spell_name": "Isothermic Core",
-                            "description": "Meteor now also calls down a Comet Storm, dealing 2,626 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,646 Fire damage to nearby enemies.",
+                            "description": "Meteor now also calls down a Comet Storm, dealing 2,752 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,739 Fire damage to nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4523,7 +4763,7 @@
                             "talent_name": "Glacial Assault",
                             "spell_id": 378947,
                             "spell_name": "Glacial Assault",
-                            "description": "Flurry has a 12% chance each hit to call down an icy comet, crashing into your target and nearby enemies for 615 Frost damage.\r\n\r\nApplies 1 stack of Freezing.",
+                            "description": "Flurry has a 12% chance each hit to call down an icy comet, crashing into your target and nearby enemies for 632 Frost damage.\r\n\r\nApplies 1 stack of Freezing.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4746,7 +4986,7 @@
                             "talent_name": "Comet Storm",
                             "spell_id": 1247777,
                             "spell_name": "Comet Storm",
-                            "description": "Casting Ray of Frost replaces your Ray of Frost with Comet Storm, calling down a series of 7 icy comets on and around the target, that deals up to 2,484 Frost damage to all enemies within 8 yds of its impacts.\r\n\r\nEach Comet Shatters 1 stack of Freezing.",
+                            "description": "Casting Ray of Frost replaces your Ray of Frost with Comet Storm, calling down a series of 7 icy comets on and around the target, that deals up to 2,538 Frost damage to all enemies within 8 yds of its impacts.\r\n\r\nEach Comet Shatters 1 stack of Freezing.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4770,7 +5010,7 @@
                             "talent_name": "Hand of Frost",
                             "spell_id": 1262935,
                             "spell_name": "Hand of Frost",
-                            "description": "Shattering an enemy has a 10% chance to summon a Hand of Frost to pursue your target, dealing 2,281 Frost damage and applying 1 stack of Freezing on contact.",
+                            "description": "Shattering an enemy has a 10% chance to summon a Hand of Frost to pursue your target, dealing 1,622 Frost damage and applying 1 stack of Freezing on contact.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4808,7 +5048,7 @@
                             "talent_name": "Pyroblast",
                             "spell_id": 11366,
                             "spell_name": "Pyroblast",
-                            "description": "Hurls an immense fiery boulder that causes 2,624 Fire damage.",
+                            "description": "Hurls an immense fiery boulder that causes 2,712 Fire damage.",
                             "cast_time": "4 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -4837,7 +5077,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,061 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,084 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -4866,7 +5106,7 @@
                             "talent_name": "Fire Blast",
                             "spell_id": 108853,
                             "spell_name": "Fire Blast",
-                            "description": "Blasts the enemy, critically striking for 802 Fire damage.\r\n\r\nCastable while casting other spells.",
+                            "description": "Blasts the enemy, critically striking for 821 Fire damage.\r\n\r\nCastable while casting other spells.",
                             "cast_time": "Instant",
                             "cooldown": "0.5 sec cooldown",
                             "range": "40 yd range"
@@ -4923,7 +5163,7 @@
                                     "talent_name": "Flamestrike",
                                     "spell_id": 2120,
                                     "spell_name": "Flamestrike",
-                                    "description": "Calls down a pillar of fire, burning all enemies within the area for 1,418 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at a selected location.",
+                                    "description": "Calls down a pillar of fire, burning all enemies within the area for 1,450 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at a selected location.",
                                     "cast_time": "3.5 sec cast",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -4933,7 +5173,7 @@
                                     "talent_name": "Flamestrike",
                                     "spell_id": 1254851,
                                     "spell_name": "Flamestrike",
-                                    "description": "Calls down a pillar of fire on your target, burning all enemies within the area for 1,410 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at your target.",
+                                    "description": "Calls down a pillar of fire on your target, burning all enemies within the area for 1,426 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at your target.",
                                     "cast_time": "3.5 sec cast",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -5079,7 +5319,7 @@
                             "talent_name": "Duality",
                             "spell_id": 1262843,
                             "spell_name": "Duality",
-                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,657 Fire damage.",
+                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,786 Fire damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5378,7 +5618,7 @@
                             "talent_name": "Meteor",
                             "spell_id": 153561,
                             "spell_name": "Meteor",
-                            "description": "Calls down a meteor which lands at the target location after 3 sec, dealing 3,696 Fire damage to all enemies, and burns the ground, dealing 1,707 Fire damage over 4 sec to all enemies in the area.\r\n\r\nDamage reduced beyond 8 targets.",
+                            "description": "Calls down a meteor which lands at the target location after 3 sec, dealing 3,808 Fire damage to all enemies, and burns the ground, dealing 1,754 Fire damage over 4 sec to all enemies in the area.\r\n\r\nDamage reduced beyond 8 targets.",
                             "cast_time": "Instant",
                             "cooldown": "45 sec cooldown",
                             "range": "40 yd range"
@@ -5519,7 +5759,7 @@
                             "talent_name": "Scorch",
                             "spell_id": 2948,
                             "spell_name": "Scorch",
-                            "description": "Scorches an enemy for 419 Fire damage.\r\n\r\nWhen cast on a target below 30% health, Scorch is a guaranteed critical strike.\r\n\r\nCastable while moving.",
+                            "description": "Scorches an enemy for 426 Fire damage.\r\n\r\nWhen cast on a target below 30% health, Scorch is a guaranteed critical strike.\r\n\r\nCastable while moving.",
                             "cast_time": "1.5 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5676,7 +5916,7 @@
                             "talent_name": "Isothermic Core",
                             "spell_id": 431095,
                             "spell_name": "Isothermic Core",
-                            "description": "Meteor now also calls down a Comet Storm, dealing 2,660 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,703 Fire damage to nearby enemies.",
+                            "description": "Meteor now also calls down a Comet Storm, dealing 2,726 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,706 Fire damage to nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5882,7 +6122,7 @@
                             "talent_name": "Conflagration",
                             "spell_id": 1271171,
                             "spell_name": "Conflagration",
-                            "description": "Fire Blast deals 162 additional Fire damage to up to 8 nearby enemies.",
+                            "description": "Fire Blast deals 166 additional Fire damage to up to 8 nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6122,7 +6362,7 @@
                             "talent_name": "Glorious Incandescence",
                             "spell_id": 449394,
                             "spell_name": "Glorious Incandescence",
-                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 415 Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 432 Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6357,7 +6597,7 @@
                                     "talent_name": "Explosive Potential",
                                     "spell_id": 1246030,
                                     "spell_name": "Explosive Potential",
-                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 224 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
+                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 231 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -6803,7 +7043,7 @@
                             "talent_name": "Cinderstorm",
                             "spell_id": 1254865,
                             "spell_name": "Cinderstorm",
-                            "description": "Casting Pyroblast or Flamestrike has a 8% chance to summon a storm of 5 cinders that pursue your target. Upon reaching your target, each cinder deals 774 Fire damage, applies Ignite at 100% effectiveness, and spreads 50% of your Ignite to up to 1 nearby target.",
+                            "description": "Casting Pyroblast or Flamestrike has a 8% chance to summon a storm of 5 cinders that pursue your target. Upon reaching your target, each cinder deals 1,039 Fire damage, applies Ignite at 100% effectiveness, and spreads 50% of your Ignite to up to 1 nearby target.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -6893,7 +7133,7 @@
                             "talent_name": "Arcane Missiles",
                             "spell_id": 5143,
                             "spell_name": "Arcane Missiles",
-                            "description": "Requires Clearcasting\r\nLaunches 5 waves of Arcane Missiles at the enemy over 2.2 sec, causing a total of 2,203 Arcane damage.",
+                            "description": "Requires Clearcasting\r\nLaunches 5 waves of Arcane Missiles at the enemy over 2.2 sec, causing a total of 2,226 Arcane damage.",
                             "cast_time": "Channeled",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -6922,7 +7162,7 @@
                             "talent_name": "Splintering Sorcery",
                             "spell_id": 443739,
                             "spell_name": "Splintering Sorcery",
-                            "description": "Casting Arcane Blast or Arcane Pulse conjures an Arcane Splinter.\r\n\r\nArcane Splinter:\r\nConjure raw Arcane magic into a sharp projectile that deals 219 Arcane damage.\r\n",
+                            "description": "Casting Arcane Blast or Arcane Pulse conjures an Arcane Splinter.\r\n\r\nArcane Splinter:\r\nConjure raw Arcane magic into a sharp projectile that deals 225 Arcane damage.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7360,7 +7600,7 @@
                             "talent_name": "Arcane Pulse",
                             "spell_id": 1241462,
                             "spell_name": "Arcane Pulse",
-                            "description": "A pulse of Arcane magic erupts from underneath your target, dealing 2,448 Arcane damage to all enemies within 8 yds. Damage reduced beyond 5 targets.\r\n\r\nGenerates 1 Arcane Charge for each enemy struck.",
+                            "description": "A pulse of Arcane magic erupts from underneath your target, dealing 2,546 Arcane damage to all enemies within 8 yds. Damage reduced beyond 5 targets.\r\n\r\nGenerates 1 Arcane Charge for each enemy struck.",
                             "cast_time": "2 sec cast",
                             "cooldown": "15 sec cooldown",
                             "range": "40 yd range"
@@ -7390,7 +7630,7 @@
                             "talent_name": "Arcane Surge",
                             "spell_id": 365350,
                             "spell_name": "Arcane Surge",
-                            "description": "Expend all of your current mana to annihilate your enemy target and nearby enemies for up to 3,740 Arcane damage based on Mana spent. Deals reduced damage beyond 8 targets.\r\n\r\nFor the next 15 sec, your Mana regeneration is increased by 425% and spell damage is increased by 35%.\r\n\r\nGenerates Clearcasting.",
+                            "description": "Expend all of your current mana to annihilate your enemy target and nearby enemies for up to 3,844 Arcane damage based on Mana spent. Deals reduced damage beyond 8 targets.\r\n\r\nFor the next 15 sec, your Mana regeneration is increased by 425% and spell damage is increased by 35%.\r\n\r\nGenerates Clearcasting.",
                             "cast_time": "2.5 sec cast",
                             "cooldown": "1.5 min cooldown",
                             "range": "40 yd range"
@@ -7419,7 +7659,7 @@
                             "talent_name": "Arcane Orb",
                             "spell_id": 153626,
                             "spell_name": "Arcane Orb",
-                            "description": "Launches an Arcane Orb forward from your position, traveling up to 40 yds, dealing 1,221 Arcane damage to enemies it passes through.\r\n\r\nGrants 1 Arcane Charge when cast and every time it deals damage.",
+                            "description": "Launches an Arcane Orb forward from your position, traveling up to 40 yds, dealing 1,235 Arcane damage to enemies it passes through.\r\n\r\nGrants 1 Arcane Charge when cast and every time it deals damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -8031,7 +8271,7 @@
                                     "talent_name": "Arcane Echo",
                                     "spell_id": 342231,
                                     "spell_name": "Arcane Echo",
-                                    "description": "Direct damage you deal to enemies affected by Touch of the Magi, causes an explosion that deals 41 Arcane damage to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                                    "description": "Direct damage you deal to enemies affected by Touch of the Magi, causes an explosion that deals 42 Arcane damage to all nearby enemies. Deals reduced damage beyond 8 targets.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8204,7 +8444,7 @@
                             "talent_name": "Glorious Incandescence",
                             "spell_id": 449394,
                             "spell_name": "Glorious Incandescence",
-                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 420 Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 426 Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8447,7 +8687,7 @@
                                     "talent_name": "Explosive Potential",
                                     "spell_id": 1246030,
                                     "spell_name": "Explosive Potential",
-                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 220 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
+                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 229 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8911,7 +9151,7 @@
                             "talent_name": "Prismatic Bolt",
                             "spell_id": 1295923,
                             "spell_name": "Prismatic Bolt",
-                            "description": "Arcane Barrage has a 1% chance per stack of Arcane Salvo consumed to replace your next Arcane Blast with Prismatic Bolt.\r\n\r\n Prismatic Bolt\r\nDevastates the target with overwhelming energy, dealing 16,101 Arcane damage to them and 10,053 Arcane damage to other nearby enemies. Damage reduced beyond 5 targets.\r\n\r\nGenerates 4 Arcane Charges.",
+                            "description": "Arcane Barrage has a 1% chance per stack of Arcane Salvo consumed to replace your next Arcane Blast with Prismatic Bolt.\r\n\r\n Prismatic Bolt\r\nDevastates the target with overwhelming energy, dealing 16,518 Arcane damage to them and 10,590 Arcane damage to other nearby enemies. Damage reduced beyond 5 targets.\r\n\r\nGenerates 4 Arcane Charges.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

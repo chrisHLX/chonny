@@ -1,7 +1,7 @@
 {
     "class": "Demon Hunter",
     "talent_tree_id": 854,
-    "fetched_at": "2026-08-12T21:34:19+00:00",
+    "fetched_at": "2026-08-29T03:28:38+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -24,8 +24,12 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90933
+                ],
+                "unlocks": [
+                    91000
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -62,7 +66,9 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 6300,
-                "locked_by": [],
+                "locked_by": [
+                    90929
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -86,8 +92,14 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    91000,
+                    108728
+                ],
+                "unlocks": [
+                    90928,
+                    91002
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -110,8 +122,12 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90942
+                ],
+                "unlocks": [
+                    90931
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -134,8 +150,14 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90941,
+                    90930
+                ],
+                "unlocks": [
+                    108729,
+                    90938
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -158,8 +180,15 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90999,
+                    91006
+                ],
+                "unlocks": [
+                    90947,
+                    91004,
+                    90927
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -182,8 +211,13 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90935
+                ],
+                "unlocks": [
+                    90996,
+                    90996
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -206,8 +240,14 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90936,
+                    90940
+                ],
+                "unlocks": [
+                    90934,
+                    95152
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -241,8 +281,15 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90994,
+                    95150,
+                    90937
+                ],
+                "unlocks": [
+                    90935,
+                    108728
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -276,8 +323,12 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90938
+                ],
+                "unlocks": [
+                    90936
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -300,8 +351,15 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90931,
+                    91007
+                ],
+                "unlocks": [
+                    90994,
+                    95150,
+                    90937
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -324,8 +382,12 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    95150
+                ],
+                "unlocks": [
+                    108728
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -348,8 +410,13 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90994,
+                    95154
+                ],
+                "unlocks": [
+                    90935
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -372,8 +439,14 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90942,
+                    108722
+                ],
+                "unlocks": [
+                    91007,
+                    90931
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -397,7 +470,10 @@
                 "raw_position_x": 2700,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    90941,
+                    90930
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -408,7 +484,7 @@
                         "spell_name": "Vengeful Retreat",
                         "description": "Remove all snares and vault away. Nearby enemies take 5 Physical damage.",
                         "cast_time": "Instant",
-                        "cooldown": "0.5 sec cooldown",
+                        "cooldown": "0.75 sec cooldown",
                         "range": null
                     }
                 ]
@@ -420,8 +496,12 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90946
+                ],
+                "unlocks": [
+                    90948
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -445,7 +525,10 @@
                 "raw_position_x": 5100,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    90950,
+                    90945
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -468,8 +551,13 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90933,
+                    95151
+                ],
+                "unlocks": [
+                    91000
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -492,8 +580,14 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90950,
+                    90945
+                ],
+                "unlocks": [
+                    90999,
+                    91006
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -516,8 +610,12 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    95149
+                ],
+                "unlocks": [
+                    90997
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -551,8 +649,14 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 2100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90946,
+                    108722
+                ],
+                "unlocks": [
+                    91007,
+                    90948
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -575,8 +679,17 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90931,
+                    90931,
+                    90931,
+                    90931,
+                    90931
+                ],
+                "unlocks": [
+                    90994,
+                    95154
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -599,8 +712,13 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90938
+                ],
+                "unlocks": [
+                    90936,
+                    90940
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -637,8 +755,13 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90934,
+                    90934
+                ],
+                "unlocks": [
+                    110010
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -672,7 +795,9 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    90949
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -696,8 +821,13 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90948
+                ],
+                "unlocks": [
+                    95151,
+                    90933
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -720,8 +850,15 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90947,
+                    91004,
+                    90927
+                ],
+                "unlocks": [
+                    90929,
+                    95149
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -755,7 +892,9 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    91002
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -793,8 +932,13 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 6300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    95152,
+                    90929
+                ],
+                "unlocks": [
+                    91001
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -817,8 +961,15 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90936,
+                    91004,
+                    90939
+                ],
+                "unlocks": [
+                    90929,
+                    95152
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -841,8 +992,14 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 4500,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90933,
+                    95150
+                ],
+                "unlocks": [
+                    91000,
+                    108728
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -876,7 +1033,9 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 3900,
-                "locked_by": [],
+                "locked_by": [
+                    91006
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -900,8 +1059,15 @@
                 "display_col": 5,
                 "raw_position_x": 4500,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    91007,
+                    90948
+                ],
+                "unlocks": [
+                    91005,
+                    95150,
+                    90933
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -924,8 +1090,14 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 2700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90941,
+                    90950
+                ],
+                "unlocks": [
+                    91006,
+                    90938
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -949,7 +1121,11 @@
                 "raw_position_x": 3900,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    90941,
+                    90950,
+                    90950
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -972,8 +1148,12 @@
                 "display_col": 6,
                 "raw_position_x": 5100,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    91000
+                ],
+                "unlocks": [
+                    90949
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -996,8 +1176,15 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    91006,
+                    90938
+                ],
+                "unlocks": [
+                    90936,
+                    91004,
+                    90939
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1020,8 +1207,12 @@
                 "display_col": 7,
                 "raw_position_x": 5700,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90999
+                ],
+                "unlocks": [
+                    90947
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1044,8 +1235,14 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 5700,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108728,
+                    90935
+                ],
+                "unlocks": [
+                    110011,
+                    91002
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1068,8 +1265,13 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 3900,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    108729,
+                    108729
+                ],
+                "unlocks": [
+                    90940
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1124,8 +1326,15 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    91004,
+                    90936,
+                    90939
+                ],
+                "unlocks": [
+                    90929,
+                    95152
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1148,8 +1357,13 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90931
+                ],
+                "unlocks": [
+                    95154,
+                    90994
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1158,7 +1372,7 @@
                         "talent_name": "Void Nova",
                         "spell_id": 1234195,
                         "spell_name": "Void Nova",
-                        "description": "Unleash an eruption of void energy, dealing 103 Cosmic damage and stunning your target and all nearby enemies for 2 sec.",
+                        "description": "Unleash an eruption of void energy, dealing 104 Cosmic damage and stunning your target and all nearby enemies for 2 sec.",
                         "cast_time": "Instant",
                         "cooldown": "45 sec cooldown",
                         "range": "30 yd range"
@@ -1189,7 +1403,10 @@
                 "raw_position_x": 3900,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    90950,
+                    90941
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1213,7 +1430,10 @@
                 "raw_position_x": 3900,
                 "raw_position_y": 1500,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    90950,
+                    90941
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1222,7 +1442,7 @@
                         "talent_name": "Voidblade",
                         "spell_id": 1245412,
                         "spell_name": "Voidblade",
-                        "description": "Unleash your glaives and charge to your target, dealing 870 Cosmic damage.\r\n",
+                        "description": "Unleash your glaives and charge to your target, dealing 869 Cosmic damage.\r\n",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "15 yd range"
@@ -1236,8 +1456,15 @@
                 "display_col": 4,
                 "raw_position_x": 3900,
                 "raw_position_y": 5100,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    91004,
+                    90936,
+                    90939
+                ],
+                "unlocks": [
+                    90929,
+                    95152
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1260,8 +1487,13 @@
                 "display_col": 1,
                 "raw_position_x": 2100,
                 "raw_position_y": 3300,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    90931
+                ],
+                "unlocks": [
+                    95154,
+                    95154
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1284,7 +1516,9 @@
                 "display_col": 2,
                 "raw_position_x": 2700,
                 "raw_position_y": 6900,
-                "locked_by": [],
+                "locked_by": [
+                    90996
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1308,7 +1542,9 @@
                 "display_col": 3,
                 "raw_position_x": 3300,
                 "raw_position_y": 6300,
-                "locked_by": [],
+                "locked_by": [
+                    95152
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1649,7 +1885,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,343 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,364 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2294,7 +2530,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,290 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,283 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2449,7 +2685,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 670 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 679 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2904,7 +3140,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,390 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,422 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3136,7 +3372,7 @@
                             "talent_name": "Fel Devastation",
                             "spell_id": 212084,
                             "spell_name": "Fel Devastation",
-                            "description": "Unleash the fel within you, damaging enemies directly in front of you for 162 Fire damage over 2 sec.",
+                            "description": "Unleash the fel within you, damaging enemies directly in front of you for 163 Fire damage over 2 sec.",
                             "cast_time": "Channeled",
                             "cooldown": "40 sec cooldown",
                             "range": "20 yd range"
@@ -3291,7 +3527,7 @@
                             "talent_name": "Spirit Bomb",
                             "spell_id": 247454,
                             "spell_name": "Spirit Bomb",
-                            "description": "Consume up to 5 Soul Fragments then explode, dealing 69 Fire damage to nearby enemies, increased by 20% per fragment consumed. Deals reduced damage beyond 8 targets.",
+                            "description": "Consume up to 5 Soul Fragments then explode, dealing 70 Fire damage to nearby enemies, increased by 20% per fragment consumed. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Instant",
                             "cooldown": "25 sec cooldown",
                             "range": null
@@ -3320,7 +3556,7 @@
                             "talent_name": "Fiery Brand",
                             "spell_id": 204021,
                             "spell_name": "Fiery Brand",
-                            "description": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by 40% and instantly dealing 143 Fire damage to the enemy.",
+                            "description": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by 40% and instantly dealing 145 Fire damage to the enemy.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "30 yd range"
@@ -3860,7 +4096,7 @@
                             "talent_name": "Sigil of Spite",
                             "spell_id": 390163,
                             "spell_name": "Sigil of Spite",
-                            "description": "Place a demonic sigil at the target location that activates after 2 sec.\r\n\r\nDetonates to deal 241 Chaos damage and shatter up to 3 Soul Fragments from enemies affected by the sigil. Deals reduced damage beyond 5 targets.",
+                            "description": "Place a demonic sigil at the target location that activates after 2 sec.\r\n\r\nDetonates to deal 238 Chaos damage and shatter up to 3 Soul Fragments from enemies affected by the sigil. Deals reduced damage beyond 5 targets.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "30 yd range"
@@ -4011,7 +4247,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 677 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 675 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4883,7 +5119,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,261 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,232 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5107,7 +5343,7 @@
                             "talent_name": "Soul Carver",
                             "spell_id": 207407,
                             "spell_name": "Soul Carver",
-                            "description": "Carve into the soul of your target, dealing 171 Fire damage and an additional 104 Fire damage over 3 sec.  Immediately shatters 3 Soul Fragments from the target and 1 additional Soul Fragment every 1 sec.",
+                            "description": "Carve into the soul of your target, dealing 171 Fire damage and an additional 106 Fire damage over 3 sec.  Immediately shatters 3 Soul Fragments from the target and 1 additional Soul Fragment every 1 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": "Melee Range"
@@ -5250,7 +5486,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,407 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,400 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5306,7 +5542,7 @@
                             "talent_name": "Eye Beam",
                             "spell_id": 198013,
                             "spell_name": "Eye Beam",
-                            "description": "Blasts all enemies in front of you, for up to 279 Chaos damage over 1.8 sec. Deals reduced damage beyond 5 targets.",
+                            "description": "Blasts all enemies in front of you, for up to 278 Chaos damage over 1.8 sec. Deals reduced damage beyond 5 targets.",
                             "cast_time": "Channeled",
                             "cooldown": "30 sec cooldown",
                             "range": "20 yd range"
@@ -6574,7 +6810,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 661 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 674 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6603,7 +6839,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,385 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,383 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7129,7 +7365,7 @@
                             "talent_name": "The Hunt",
                             "spell_id": 370965,
                             "spell_name": "The Hunt",
-                            "description": "Charge to your target, striking them for 257 Chaos damage, rooting them in place for 1.5 sec and inflicting 188 Chaos damage over 6 sec to up to 5 enemies in your path. ",
+                            "description": "Charge to your target, striking them for 261 Chaos damage, rooting them in place for 1.5 sec and inflicting 188 Chaos damage over 6 sec to up to 5 enemies in your path. ",
                             "cast_time": "1 sec cast",
                             "cooldown": "1.5 min cooldown",
                             "range": "50 yd range"
@@ -7767,7 +8003,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,262 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,302 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8049,7 +8285,7 @@
                             "talent_name": "Essence Break",
                             "spell_id": 258860,
                             "spell_name": "Essence Break",
-                            "description": "Slash all enemies in front of you for 163 Chaos damage, causing Chaos Strike and Blade Dance to deal 90 Chaos damage to them for 4 sec. Deals reduced damage beyond 8 targets.",
+                            "description": "Slash all enemies in front of you for 159 Chaos damage, causing Chaos Strike and Blade Dance to deal 90 Chaos damage to them for 4 sec. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Instant",
                             "cooldown": "40 sec cooldown",
                             "range": null
@@ -8076,7 +8312,7 @@
                             "talent_name": "Glaive Tempest",
                             "spell_id": 1244557,
                             "spell_name": "Glaive Tempest",
-                            "description": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 64 Chaos damage over 3 sec to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 65 Chaos damage over 3 sec to all nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8114,7 +8350,7 @@
                                     "talent_name": "Collective Anguish",
                                     "spell_id": 390152,
                                     "spell_name": "Collective Anguish",
-                                    "description": "Eye Beam summons an allied Vengeance Demon Hunter who casts Fel Devastation, dealing 93 Fire damage over 2 sec. Dealing damage heals you for up to 62 health.",
+                                    "description": "Eye Beam summons an allied Vengeance Demon Hunter who casts Fel Devastation, dealing 92 Fire damage over 2 sec. Dealing damage heals you for up to 61 health.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8233,7 +8469,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,338 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,355 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8260,7 +8496,7 @@
                             "talent_name": "Void Ray",
                             "spell_id": 473728,
                             "spell_name": "Void Ray",
-                            "description": "Requires 100 Fury\r\nUnleash a beam of concentrated void energy, dealing 76 Cosmic damage and consuming 5 Fury every 0.1 sec.\r\n\r\nEffect ends after 2.7 sec or upon reaching 0 Fury.",
+                            "description": "Requires 100 Fury\r\nUnleash a beam of concentrated void energy, dealing 77 Cosmic damage and consuming 5 Fury every 0.1 sec.\r\n\r\nEffect ends after 2.7 sec or upon reaching 0 Fury.",
                             "cast_time": "Channeled",
                             "cooldown": null,
                             "range": "25 yd range"
@@ -8867,7 +9103,7 @@
                             "talent_name": "Collapsing Star",
                             "spell_id": 1221167,
                             "spell_name": "Collapsing Star",
-                            "description": "While in Void Metamorphosis, every 30 Soul Fragments harvested grants access to Collapsing Star.\r\n\r\n Collapsing Star\r\nChannel an immense amount of void energy into a single, cataclysmic blast, dealing 2,402 Cosmic damage to your target and 1,817 Cosmic damage to all nearby enemies. Damage reduced beyond 8 targets.\r\n\r\nWhile casting Collapsing Star, your Fury drain is significantly reduced.",
+                            "description": "While in Void Metamorphosis, every 30 Soul Fragments harvested grants access to Collapsing Star.\r\n\r\n Collapsing Star\r\nChannel an immense amount of void energy into a single, cataclysmic blast, dealing 2,412 Cosmic damage to your target and 1,782 Cosmic damage to all nearby enemies. Damage reduced beyond 8 targets.\r\n\r\nWhile casting Collapsing Star, your Fury drain is significantly reduced.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9074,7 +9310,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 669 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 676 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9103,7 +9339,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,401 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,326 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10284,7 +10520,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,296 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,276 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10591,7 +10827,7 @@
                             "talent_name": "The Hunt",
                             "spell_id": 1246167,
                             "spell_name": "The Hunt",
-                            "description": "Charge to your target, striking them for 2,262 Cosmic damage, rooting them in place for 1.5 sec and inflicting 1,628 Cosmic damage over 6 sec to up to 5 enemies in your path.",
+                            "description": "Charge to your target, striking them for 2,278 Cosmic damage, rooting them in place for 1.5 sec and inflicting 1,628 Cosmic damage over 6 sec to up to 5 enemies in your path.",
                             "cast_time": "1 sec cast",
                             "cooldown": "1.5 min cooldown",
                             "range": "50 yd range"
@@ -10657,7 +10893,7 @@
                             "talent_name": "Eradicate",
                             "spell_id": 1226033,
                             "spell_name": "Eradicate",
-                            "description": "Fully channeling Void Ray upgrades your Reap to Eradicate.\r\n\r\n Eradicate\r\nSlam your Scythe to the ground, dealing 2,404 Cosmic damage to your primary target and 2,043 to all other enemies within a 25 yd cone in front of you. Damage reduced beyond 5 targets.\r\n\r\nEradicate gathers up to 4 nearby souls.",
+                            "description": "Fully channeling Void Ray upgrades your Reap to Eradicate.\r\n\r\n Eradicate\r\nSlam your Scythe to the ground, dealing 2,116 Cosmic damage to your primary target and 1,904 to all other enemies within a 25 yd cone in front of you. Damage reduced beyond 5 targets.\r\n\r\nEradicate gathers up to 4 nearby souls.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

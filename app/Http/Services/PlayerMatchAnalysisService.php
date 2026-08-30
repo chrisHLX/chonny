@@ -106,11 +106,20 @@ class PlayerMatchAnalysisService
      * spellId to its English `spells.name` and fold that into the name maps + the seen-name set,
      * so linkage works off English regardless of who logged the match. Ids that aren't in our
      * data (periodic-tick / internal spell_ids) keep their raw log name as the only fallback.
+     *
+     * Covers all four spellId-keyed sections that can carry a locale name — `casts`/`selfBuffs`
+     * feed talent linkage so they've always needed this; `interrupts`/`castFailed` don't feed
+     * linkage but are still surfaced to admin/report output, so a resolvable id there (most are —
+     * an interrupted spell is usually a well-known, already-imported ability) shouldn't stay
+     * displayed in the wrong language just because nothing downstream happened to need matching
+     * on it.
      */
     private function resolveEnglish(array $log, ?int $patchId): array
     {
         $ids = collect($log['casts'])->pluck('spellId')
             ->merge(collect($log['selfBuffs'])->pluck('spellId'))
+            ->merge(collect($log['interrupts'])->pluck('interruptedSpellId'))
+            ->merge(collect($log['castFailed'])->pluck('spellId'))
             ->merge(array_keys($log['seenIds']))
             ->unique()->filter()->values();
 
@@ -123,6 +132,10 @@ class PlayerMatchAnalysisService
 
         $log['casts'] = array_map(fn ($c) => [...$c, 'enName' => $en[$c['spellId']] ?? $c['name']], $log['casts']);
         $log['selfBuffs'] = array_map(fn ($b) => [...$b, 'enName' => $en[$b['spellId']] ?? $b['name']], $log['selfBuffs']);
+        $log['interrupts'] = array_map(fn ($i) => [
+            ...$i, 'interruptedName' => $en[$i['interruptedSpellId']] ?? $i['interruptedName'],
+        ], $log['interrupts']);
+        $log['castFailed'] = array_map(fn ($c) => [...$c, 'name' => $en[$c['spellId']] ?? $c['name']], $log['castFailed']);
 
         foreach ($en as $name) {
             $log['seenNames'][mb_strtolower($name)] = true;
@@ -533,6 +546,16 @@ class PlayerMatchAnalysisService
 
         return $top->map(function ($b) use ($end, $talentSpells) {
             $en = $b['enName'] ?? $b['name'];
+
+            // resolveEnglish() falls back to the raw log name when a spellId isn't in our data
+            // at all (confirmed real: some reward/vanity buffs genuinely have no spells row for
+            // the current patch) — for a match logged by a non-English client that raw name is
+            // still in that locale. Showing an unreadable foreign string in an English-only UI
+            // is worse than omitting the row, so drop anything that never resolved to English.
+            if (preg_match('/[^\x00-\x7F]/', $en)) {
+                return null;
+            }
+
             $needle = mb_strtolower($en);
 
             $feeders = mb_strlen($needle) < 3 ? [] : $talentSpells
@@ -546,6 +569,6 @@ class PlayerMatchAnalysisService
                 'maxStack' => $b['maxStack'],
                 'feedingTalents' => $feeders,
             ];
-        })->values()->all();
+        })->filter()->values()->all();
     }
 }

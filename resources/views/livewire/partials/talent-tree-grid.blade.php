@@ -78,12 +78,20 @@
     $numRows = $rowIndexByY === [] ? 1 : max($rowIndexByY) + 1;
 
     // Fixed per-cell size (px) — every tree renders at the same visual density regardless of how
-    // sparse or dense its real node count is. Sized to comfortably fit the widest element (an
-    // 80px-wide CHOICE-node pair) and tallest (a 44px icon + rank-pip row) without touching
-    // neighboring cells.
-    $padding = 24;
-    $cellW = 80;
-    $cellH = 84;
+    // sparse or dense its real node count is. Shrunk twice on 2026-08-29 after real reports that
+    // three full-size trees side by side (talent-selector.blade.php's 'grid' layout) overflowed
+    // even a widened 1800px container: a first pass (80/84/24px -> 68/72/16) wasn't nearly enough
+    // — measuring the actual, post-filter column counts real specs use (not assumed) found some
+    // run 11-13 columns wide, not the ~9 originally guessed. A second pass (50/54/12) fixed the
+    // common case (~1550-1600px combined) but a full sweep of every WoW spec found one real
+    // outlier still overflowing badly: Restoration Druid at 1904px combined. This third pass
+    // targets that worst case specifically, not just the average, landing Restoration Druid
+    // (and therefore every other spec, since it was the widest) comfortably under ~1650px —
+    // inside a typical widescreen viewport after the nav sidebar and page padding, with no
+    // spec needing the overflow-x-auto scroll fallback in normal use.
+    $padding = 10;
+    $cellW = 44;
+    $cellH = 46;
     $containerWidth = $padding * 2 + $numCols * $cellW;
     $containerHeight = $padding * 2 + $numRows * $cellH;
 
@@ -154,13 +162,13 @@
                                             type="button"
                                             wire:click="toggleEntry({{ $node->id }}, {{ $entry->id }})"
                                             @disabled($isLocked)
-                                            class="rounded-md border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}"
+                                            class="rounded-full overflow-hidden border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}"
                                         >
-                                            <x-spell-icon :spell="$entry->spell" size="w-9 h-9"/>
+                                            <x-spell-icon :spell="$entry->spell" size="w-7 h-7"/>
                                         </button>
                                         @if ($isChosen)
-                                            <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold flex items-center justify-center ring-2 ring-surface-1">
-                                                <svg class="w-2.5 h-2.5 text-surface-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                            <span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-gold flex items-center justify-center ring-2 ring-surface-1">
+                                                <svg class="w-2 h-2 text-surface-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                             </span>
                                         @elseif ($isLocked)
                                             @include('livewire.partials.talent-lock-badge')
@@ -181,8 +189,8 @@
                             @endphp
                             <div class="group relative flex flex-col items-center gap-0.5">
                                 <button type="button" wire:click="cycleNode({{ $node->id }})" @disabled($isLocked) class="flex flex-col items-center gap-0.5">
-                                    <span class="block rounded-md border transition {{ $currentRank > 0 ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}">
-                                        <x-spell-icon :spell="$currentEntry->spell" size="w-11 h-11"/>
+                                    <span class="block rounded-full overflow-hidden border transition {{ $currentRank > 0 ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}">
+                                        <x-spell-icon :spell="$currentEntry->spell" size="w-8 h-8"/>
                                     </span>
                                     <span class="flex gap-0.5">
                                         @for ($i = 1; $i <= $node->max_ranks; $i++)
@@ -191,8 +199,8 @@
                                     </span>
                                 </button>
                                 @if ($currentRank > 0)
-                                    <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold flex items-center justify-center ring-2 ring-surface-1">
-                                        <svg class="w-2.5 h-2.5 text-surface-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                    <span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-gold flex items-center justify-center ring-2 ring-surface-1">
+                                        <svg class="w-2 h-2 text-surface-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                     </span>
                                 @elseif ($isLocked)
                                     @include('livewire.partials.talent-lock-badge')
@@ -206,13 +214,13 @@
                                     type="button"
                                     wire:click="toggleEntry({{ $node->id }}, {{ $entry->id }})"
                                     @disabled($isLocked)
-                                    class="block rounded-md border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}"
+                                    class="block rounded-full overflow-hidden border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}"
                                 >
-                                    <x-spell-icon :spell="$entry->spell" size="w-11 h-11"/>
+                                    <x-spell-icon :spell="$entry->spell" size="w-8 h-8"/>
                                 </button>
                                 @if ($isChosen)
-                                    <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold flex items-center justify-center ring-2 ring-surface-1">
-                                        <svg class="w-2.5 h-2.5 text-surface-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                    <span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-gold flex items-center justify-center ring-2 ring-surface-1">
+                                        <svg class="w-2 h-2 text-surface-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                     </span>
                                 @elseif ($isLocked)
                                     @include('livewire.partials.talent-lock-badge')

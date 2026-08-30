@@ -1,4 +1,6 @@
-<div class="max-w-5xl mx-auto px-4 py-8 space-y-5">
+{{-- Wider than this app's usual max-w-7xl content cap — see the identical note in
+     admin/talent-build-editor.blade.php, the other page embedding the 'grid'-layout picker. --}}
+<div class="max-w-[1800px] mx-auto px-4 py-8 space-y-5">
     <div>
         <a href="{{ route('top-damage-rotations') }}" class="inline-flex items-center gap-1 text-[11px] text-ink-subtle hover:text-gold transition-colors mb-3">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>

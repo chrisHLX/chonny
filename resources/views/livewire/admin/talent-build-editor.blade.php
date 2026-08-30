@@ -1,4 +1,8 @@
-<div class="max-w-5xl mx-auto px-4 py-8 space-y-6">
+{{-- Wider than this app's usual max-w-7xl content cap — the talent-selector's 'grid' layout
+     renders class/hero/spec trees side by side (see talent-selector.blade.php), and a real
+     class/spec tree needs real horizontal room (up to ~9 columns) to read the way it does
+     in-game instead of forcing an early wrap or a cramped horizontal scroll. --}}
+<div class="max-w-[1800px] mx-auto px-4 py-8 space-y-6">
     <div>
         <h1 class="text-[22px] font-semibold text-ink">Default Talent Builds</h1>
         <p class="text-[13px] text-ink-muted mt-1">

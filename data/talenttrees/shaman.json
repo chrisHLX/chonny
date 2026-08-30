@@ -1,7 +1,7 @@
 {
     "class": "Shaman",
     "talent_tree_id": 786,
-    "fetched_at": "2026-08-12T21:33:48+00:00",
+    "fetched_at": "2026-08-29T03:28:04+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -12,8 +12,14 @@
                 "display_col": 3,
                 "raw_position_x": 3900,
                 "raw_position_y": 4200,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103622,
+                    103579
+                ],
+                "unlocks": [
+                    103617,
+                    103624
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -84,8 +90,15 @@
                 "display_col": 4,
                 "raw_position_x": 4500,
                 "raw_position_y": 3600,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103614,
+                    103611
+                ],
+                "unlocks": [
+                    81073,
+                    103627,
+                    103618
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -108,8 +121,14 @@
                 "display_col": 5,
                 "raw_position_x": 5100,
                 "raw_position_y": 1800,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103583,
+                    103598
+                ],
+                "unlocks": [
+                    103613,
+                    103616
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -146,8 +165,14 @@
                 "display_col": 5,
                 "raw_position_x": 5100,
                 "raw_position_y": 3000,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103613,
+                    103616
+                ],
+                "unlocks": [
+                    110085,
+                    103606
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -182,7 +207,10 @@
                 "raw_position_x": 5700,
                 "raw_position_y": 1200,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    109492,
+                    103581
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -191,7 +219,7 @@
                         "talent_name": "Chain Lightning",
                         "spell_id": 188443,
                         "spell_name": "Chain Lightning",
-                        "description": "Hurls a lightning bolt at the enemy, dealing 436 Nature damage and then jumping to additional nearby enemies. Affects 3 total targets",
+                        "description": "Hurls a lightning bolt at the enemy, dealing 440 Nature damage and then jumping to additional nearby enemies. Affects 3 total targets",
                         "cast_time": "2 sec cast",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -205,8 +233,13 @@
                 "display_col": 1,
                 "raw_position_x": 2700,
                 "raw_position_y": 5400,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103594,
+                    103624
+                ],
+                "unlocks": [
+                    103626
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -229,8 +262,14 @@
                 "display_col": 6,
                 "raw_position_x": 5700,
                 "raw_position_y": 4200,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103606,
+                    110085
+                ],
+                "unlocks": [
+                    103623,
+                    103612
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -253,8 +292,15 @@
                 "display_col": 4,
                 "raw_position_x": 4500,
                 "raw_position_y": 5400,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103617,
+                    103607
+                ],
+                "unlocks": [
+                    103593,
+                    103599,
+                    103587
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -277,8 +323,14 @@
                 "display_col": 3,
                 "raw_position_x": 3900,
                 "raw_position_y": 6000,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103586,
+                    109386
+                ],
+                "unlocks": [
+                    109388,
+                    103620
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -302,7 +354,10 @@
                 "raw_position_x": 3300,
                 "raw_position_y": 1200,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    103610,
+                    103596
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -311,7 +366,7 @@
                         "talent_name": "Chain Heal",
                         "spell_id": 1064,
                         "spell_name": "Chain Heal",
-                        "description": "Heals the friendly target for 888, then jumps up to 20 yards to heal the 3 most injured nearby allies. Healing is reduced by 30% with each jump.",
+                        "description": "Heals the friendly target for 893, then jumps up to 20 yards to heal the 3 most injured nearby allies. Healing is reduced by 30% with each jump.",
                         "cast_time": "2 sec cast",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -325,8 +380,14 @@
                 "display_col": 1,
                 "raw_position_x": 2700,
                 "raw_position_y": 3000,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103591,
+                    103602
+                ],
+                "unlocks": [
+                    103622,
+                    103601
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -335,7 +396,7 @@
                         "talent_name": "Healing Stream Totem",
                         "spell_id": 5394,
                         "spell_name": "Healing Stream Totem",
-                        "description": "Summons a totem at your feet for 15 sec that heals an injured party or raid member within 40 yards for 263 every 1.8 sec.\r\n\r\nIf you already know Healing Stream Totem, instead gain 1 additional charge of Healing Stream Totem.",
+                        "description": "Summons a totem at your feet for 15 sec that heals an injured party or raid member within 40 yards for 254 every 1.8 sec.\r\n\r\nIf you already know Healing Stream Totem, instead gain 1 additional charge of Healing Stream Totem.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": null
@@ -349,8 +410,14 @@
                 "display_col": 2,
                 "raw_position_x": 3300,
                 "raw_position_y": 2400,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103596,
+                    103610
+                ],
+                "unlocks": [
+                    103614,
+                    103590
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -387,8 +454,14 @@
                 "display_col": 5,
                 "raw_position_x": 5100,
                 "raw_position_y": 6000,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103625,
+                    103586
+                ],
+                "unlocks": [
+                    109388,
+                    109387
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -425,8 +498,14 @@
                 "display_col": 1,
                 "raw_position_x": 2700,
                 "raw_position_y": 4200,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103601,
+                    103622
+                ],
+                "unlocks": [
+                    103584,
+                    103624
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -449,8 +528,13 @@
                 "display_col": 1,
                 "raw_position_x": 2700,
                 "raw_position_y": 1800,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103588
+                ],
+                "unlocks": [
+                    103591,
+                    103602
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -459,7 +543,7 @@
                         "talent_name": "Earth Shield",
                         "spell_id": 974,
                         "spell_name": "Earth Shield",
-                        "description": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for 336 when they take damage. This heal can only occur once every 3 sec. Maximum 9 charges.\r\n\r\nEarth Shield can only be placed on one target at a time. Only one Elemental Shield can be active on the Shaman.",
+                        "description": "Protects the target with an earthen shield, increasing your healing on them by 20% and healing them for 330 when they take damage. This heal can only occur once every 3 sec. Maximum 9 charges.\r\n\r\nEarth Shield can only be placed on one target at a time. Only one Elemental Shield can be active on the Shaman.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -474,7 +558,11 @@
                 "raw_position_x": 4500,
                 "raw_position_y": 1200,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    103581,
+                    103605,
+                    103610
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -483,7 +571,7 @@
                         "talent_name": "Lava Burst",
                         "spell_id": 51505,
                         "spell_name": "Lava Burst",
-                        "description": "Hurls molten lava at the target, dealing 674 Fire damage. Lava Burst will always critically strike if the target is affected by Flame Shock and its damage is increased by your critical strike chance.",
+                        "description": "Hurls molten lava at the target, dealing 695 Fire damage. Lava Burst will always critically strike if the target is affected by Flame Shock and its damage is increased by your critical strike chance.",
                         "cast_time": "2 sec cast",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -497,8 +585,12 @@
                 "display_col": 4,
                 "raw_position_x": 4500,
                 "raw_position_y": 6000,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103586
+                ],
+                "unlocks": [
+                    109388
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -535,8 +627,12 @@
                 "display_col": 7,
                 "raw_position_x": 6300,
                 "raw_position_y": 6000,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103623
+                ],
+                "unlocks": [
+                    109387
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -559,8 +655,12 @@
                 "display_col": 1,
                 "raw_position_x": 2700,
                 "raw_position_y": 3600,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103590
+                ],
+                "unlocks": [
+                    103594
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -583,8 +683,12 @@
                 "display_col": 1,
                 "raw_position_x": 2700,
                 "raw_position_y": 2400,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103596
+                ],
+                "unlocks": [
+                    103590
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -607,8 +711,12 @@
                 "display_col": 4,
                 "raw_position_x": 4500,
                 "raw_position_y": 1800,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103598
+                ],
+                "unlocks": [
+                    103616
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -631,8 +739,13 @@
                 "display_col": 6,
                 "raw_position_x": 5700,
                 "raw_position_y": 3600,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103615,
+                    103582
+                ],
+                "unlocks": [
+                    103585
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -655,8 +768,13 @@
                 "display_col": 5,
                 "raw_position_x": 5100,
                 "raw_position_y": 4800,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103627
+                ],
+                "unlocks": [
+                    103586,
+                    103625
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -693,8 +811,14 @@
                 "display_col": 3,
                 "raw_position_x": 3900,
                 "raw_position_y": 4200,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103579,
+                    103622
+                ],
+                "unlocks": [
+                    103624,
+                    103617
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -717,8 +841,14 @@
                 "display_col": 3,
                 "raw_position_x": 3900,
                 "raw_position_y": 1800,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103598,
+                    103588
+                ],
+                "unlocks": [
+                    103616,
+                    103591
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -741,8 +871,13 @@
                 "display_col": 4,
                 "raw_position_x": 4500,
                 "raw_position_y": 3000,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103616
+                ],
+                "unlocks": [
+                    103579,
+                    110085
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -779,8 +914,12 @@
                 "display_col": 6,
                 "raw_position_x": 5700,
                 "raw_position_y": 4800,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103585
+                ],
+                "unlocks": [
+                    103625
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -803,8 +942,14 @@
                 "display_col": 6,
                 "raw_position_x": 5700,
                 "raw_position_y": 2400,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109492,
+                    103581
+                ],
+                "unlocks": [
+                    103582,
+                    103615
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -827,8 +972,14 @@
                 "display_col": 3,
                 "raw_position_x": 3900,
                 "raw_position_y": 3000,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103591,
+                    103616
+                ],
+                "unlocks": [
+                    103622,
+                    103579
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -862,8 +1013,14 @@
                 "display_col": 7,
                 "raw_position_x": 6300,
                 "raw_position_y": 3000,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109493,
+                    103613
+                ],
+                "unlocks": [
+                    103628,
+                    103606
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -886,8 +1043,16 @@
                 "display_col": 4,
                 "raw_position_x": 4500,
                 "raw_position_y": 2400,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103581,
+                    103610,
+                    103605
+                ],
+                "unlocks": [
+                    103614,
+                    103582,
+                    103611
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -910,8 +1075,15 @@
                 "display_col": 4,
                 "raw_position_x": 4500,
                 "raw_position_y": 4800,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81073,
+                    103627,
+                    103618
+                ],
+                "unlocks": [
+                    103586,
+                    109386
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -945,8 +1117,12 @@
                 "display_col": 4,
                 "raw_position_x": 4500,
                 "raw_position_y": 4200,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103579
+                ],
+                "unlocks": [
+                    103617
+                ],
                 "max_ranks": 2,
                 "ranks": [
                     {
@@ -980,7 +1156,10 @@
                 "display_col": 2,
                 "raw_position_x": 3300,
                 "raw_position_y": 6600,
-                "locked_by": [],
+                "locked_by": [
+                    103587,
+                    103626
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1004,8 +1183,14 @@
                 "display_col": 2,
                 "raw_position_x": 3300,
                 "raw_position_y": 3600,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103614,
+                    103590
+                ],
+                "unlocks": [
+                    81073,
+                    103594
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1028,8 +1213,14 @@
                 "display_col": 7,
                 "raw_position_x": 6300,
                 "raw_position_y": 4800,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103628,
+                    103585
+                ],
+                "unlocks": [
+                    103625,
+                    103600
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1052,8 +1243,14 @@
                 "display_col": 2,
                 "raw_position_x": 3300,
                 "raw_position_y": 4800,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    81073,
+                    103594
+                ],
+                "unlocks": [
+                    103584,
+                    109386
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1090,8 +1287,15 @@
                 "display_col": 6,
                 "raw_position_x": 5700,
                 "raw_position_y": 5400,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103623,
+                    103607,
+                    103612
+                ],
+                "unlocks": [
+                    103593,
+                    109387
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1114,8 +1318,12 @@
                 "display_col": 1,
                 "raw_position_x": 2700,
                 "raw_position_y": 6000,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103584
+                ],
+                "unlocks": [
+                    103620
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1152,8 +1360,14 @@
                 "display_col": 5,
                 "raw_position_x": 5100,
                 "raw_position_y": 4200,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    110085,
+                    103579
+                ],
+                "unlocks": [
+                    103617,
+                    103607
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1176,8 +1390,12 @@
                 "display_col": 7,
                 "raw_position_x": 6300,
                 "raw_position_y": 3600,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103615
+                ],
+                "unlocks": [
+                    103623
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1200,8 +1418,13 @@
                 "display_col": 3,
                 "raw_position_x": 3900,
                 "raw_position_y": 5400,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103617,
+                    103624
+                ],
+                "unlocks": [
+                    103587
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1224,7 +1447,11 @@
                 "display_col": 6,
                 "raw_position_x": 5700,
                 "raw_position_y": 6600,
-                "locked_by": [],
+                "locked_by": [
+                    103593,
+                    103625,
+                    103600
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1248,7 +1475,11 @@
                 "display_col": 4,
                 "raw_position_x": 4500,
                 "raw_position_y": 6600,
-                "locked_by": [],
+                "locked_by": [
+                    103599,
+                    103587,
+                    103593
+                ],
                 "unlocks": [],
                 "max_ranks": 1,
                 "ranks": [
@@ -1273,7 +1504,11 @@
                 "raw_position_x": 4500,
                 "raw_position_y": 1200,
                 "locked_by": [],
-                "unlocks": [],
+                "unlocks": [
+                    103581,
+                    103605,
+                    103610
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1296,8 +1531,13 @@
                 "display_col": 7,
                 "raw_position_x": 6300,
                 "raw_position_y": 1800,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103583
+                ],
+                "unlocks": [
+                    103613,
+                    109493
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1306,7 +1546,7 @@
                         "talent_name": "Frost Shock",
                         "spell_id": 196840,
                         "spell_name": "Frost Shock",
-                        "description": "Chills the target with frost, causing 275 Frost damage and reducing the target's movement speed by 50% for 6 sec.",
+                        "description": "Chills the target with frost, causing 277 Frost damage and reducing the target's movement speed by 50% for 6 sec.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -1320,8 +1560,12 @@
                 "display_col": 7,
                 "raw_position_x": 6300,
                 "raw_position_y": 2400,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    109492
+                ],
+                "unlocks": [
+                    103615
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1358,8 +1602,14 @@
                 "display_col": 5,
                 "raw_position_x": 5100,
                 "raw_position_y": 3600,
-                "locked_by": [],
-                "unlocks": [],
+                "locked_by": [
+                    103582,
+                    103611
+                ],
+                "unlocks": [
+                    103627,
+                    103585
+                ],
                 "max_ranks": 1,
                 "ranks": [
                     {
@@ -1586,7 +1836,7 @@
                             "talent_name": "Surging Totem",
                             "spell_id": 444995,
                             "spell_name": "Surging Totem",
-                            "description": "Summons a totem at the target location that creates a Tremor immediately and every 5.4 sec for 42 Flamestrike damage. Damage reduced beyond 5 targets. Lasts 25 sec.",
+                            "description": "Summons a totem at the target location that creates a Tremor immediately and every 5.4 sec for 43 Flamestrike damage. Damage reduced beyond 5 targets. Lasts 25 sec.",
                             "cast_time": "Instant",
                             "cooldown": "25 sec cooldown",
                             "range": "40 yd range"
@@ -1713,7 +1963,7 @@
                             "talent_name": "Totemic Rebound",
                             "spell_id": 445025,
                             "spell_name": "Totemic Rebound",
-                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 839. Jumps to 2 nearby targets within 20 yards.",
+                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 819. Jumps to 2 nearby targets within 20 yards.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2772,7 +3022,7 @@
                             "talent_name": "Riptide",
                             "spell_id": 61295,
                             "spell_name": "Riptide",
-                            "description": "Restorative waters wash over a friendly target, healing them for 2,263 and an additional 2,036 over 18 sec.",
+                            "description": "Restorative waters wash over a friendly target, healing them for 2,312 and an additional 2,036 over 18 sec.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2971,7 +3221,7 @@
                             "talent_name": "Healing Rain",
                             "spell_id": 73920,
                             "spell_name": "Healing Rain",
-                            "description": "Blanket the target area in healing rains, restoring 1,044 health to up to 6 allies over 18 sec.\r\n\r\nYou can only have one Healing Rain active at a time.",
+                            "description": "Blanket the target area in healing rains, restoring 1,053 health to up to 6 allies over 18 sec.\r\n\r\nYou can only have one Healing Rain active at a time.",
                             "cast_time": "2 sec cast",
                             "cooldown": "12 sec cooldown",
                             "range": "40 yd range"
@@ -3000,7 +3250,7 @@
                             "talent_name": "Healing Stream Totem",
                             "spell_id": 5394,
                             "spell_name": "Healing Stream Totem",
-                            "description": "Summons a totem at your feet for 15 sec that heals an injured party or raid member within 40 yards for 253 every 1.8 sec.\r\n\r\nIf you already know Healing Stream Totem, instead gain 1 additional charge of Healing Stream Totem.",
+                            "description": "Summons a totem at your feet for 15 sec that heals an injured party or raid member within 40 yards for 256 every 1.8 sec.\r\n\r\nIf you already know Healing Stream Totem, instead gain 1 additional charge of Healing Stream Totem.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -3028,7 +3278,7 @@
                             "talent_name": "Totemic Rebound",
                             "spell_id": 445025,
                             "spell_name": "Totemic Rebound",
-                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 840. Jumps to 2 nearby targets within 20 yards.",
+                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 856. Jumps to 2 nearby targets within 20 yards.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3296,7 +3546,7 @@
                             "talent_name": "Acid Rain",
                             "spell_id": 378443,
                             "spell_name": "Acid Rain",
-                            "description": "Deal 375 Nature damage every 1.8 sec to up to 5 enemies inside of your Healing Rain.",
+                            "description": "Deal 374 Nature damage every 1.8 sec to up to 5 enemies inside of your Healing Rain.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3329,7 +3579,7 @@
                                     "talent_name": "Ascendance",
                                     "spell_id": 114052,
                                     "spell_name": "Ascendance",
-                                    "description": "Immediately heals for 4,950 split between allies within 20 yds and transforms into a Water Ascendant for 15 sec.\r\n\r\nWhile ascended, Chain Heal jumps to 3 additional allies with 10% healing reduced for all jumps, Healing Wave always critical heals and heals 1 additional ally at 50% effectiveness, and the mana cost of Chain Heal and Healing Wave is reduced by 25%.",
+                                    "description": "Immediately heals for 4,966 split between allies within 20 yds and transforms into a Water Ascendant for 15 sec.\r\n\r\nWhile ascended, Chain Heal jumps to 3 additional allies with 10% healing reduced for all jumps, Healing Wave always critical heals and heals 1 additional ally at 50% effectiveness, and the mana cost of Chain Heal and Healing Wave is reduced by 25%.",
                                     "cast_time": "Instant",
                                     "cooldown": "3 min cooldown",
                                     "range": null
@@ -3339,7 +3589,7 @@
                                     "talent_name": "Healing Tide Totem",
                                     "spell_id": 108280,
                                     "spell_name": "Healing Tide Totem",
-                                    "description": "Summons a totem at your feet for 10 sec, which pulses every 1.8 sec, healing all party or raid members within 40 yards for 1,932.\r\n\r\nHealing reduced beyond 5 targets.",
+                                    "description": "Summons a totem at your feet for 10 sec, which pulses every 1.8 sec, healing all party or raid members within 40 yards for 1,911.\r\n\r\nHealing reduced beyond 5 targets.",
                                     "cast_time": "Instant",
                                     "cooldown": "3 min cooldown",
                                     "range": null
@@ -4213,7 +4463,7 @@
                             "talent_name": "Unleash Life",
                             "spell_id": 73685,
                             "spell_name": "Unleash Life",
-                            "description": "Unleash elemental forces of Life, healing a friendly target for 4,565.\r\n\r\nIncreases the healing of your next Riptide, Chain Heal, or Healing Wave by 25% and reduces its cast time by 30%.",
+                            "description": "Unleash elemental forces of Life, healing a friendly target for 4,656.\r\n\r\nIncreases the healing of your next Riptide, Chain Heal, or Healing Wave by 25% and reduces its cast time by 30%.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -4495,7 +4745,7 @@
                             "talent_name": "Downpour",
                             "spell_id": 462486,
                             "spell_name": "Downpour",
-                            "description": "Casting Healing Rain grants a use of Downpour for 16 sec.\r\n\r\n Downpour\r\nA burst of water at your Healing Rain's location heals up to 5 injured allies within 12 yards for 1,250.",
+                            "description": "Casting Healing Rain grants a use of Downpour for 16 sec.\r\n\r\n Downpour\r\nA burst of water at your Healing Rain's location heals up to 5 injured allies within 12 yards for 1,221.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4917,7 +5167,7 @@
                             "talent_name": "Stormstream Totem",
                             "spell_id": 1267016,
                             "spell_name": "Stormstream Totem",
-                            "description": "Riptide has a 6% chance to upgrade your next Healing Stream Totem to Stormstream Totem which heals for 10% more, heals 1 additional ally at 100% effectiveness, and heals 2 injured allies for 5,085 healing when used.",
+                            "description": "Riptide has a 6% chance to upgrade your next Healing Stream Totem to Stormstream Totem which heals for 10% more, heals 1 additional ally at 100% effectiveness, and heals 2 injured allies for 5,079 healing when used.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4983,7 +5233,7 @@
                             "talent_name": "Surging Totem",
                             "spell_id": 444995,
                             "spell_name": "Surging Totem",
-                            "description": "Summons a totem at the target location that creates a Tremor immediately and every 5.4 sec for 43 Flamestrike damage. Damage reduced beyond 5 targets. Lasts 25 sec.",
+                            "description": "Summons a totem at the target location that creates a Tremor immediately and every 5.4 sec for 42 Flamestrike damage. Damage reduced beyond 5 targets. Lasts 25 sec.",
                             "cast_time": "Instant",
                             "cooldown": "25 sec cooldown",
                             "range": "40 yd range"
@@ -5012,7 +5262,7 @@
                             "talent_name": "Windfury Weapon",
                             "spell_id": 33757,
                             "spell_name": "Windfury Weapon",
-                            "description": "Imbue your main-hand weapon with the element of Wind for 1 hour. Each main-hand attack has a 15% chance to trigger two extra attacks, dealing 9 Physical damage each.",
+                            "description": "Imbue your main-hand weapon with the element of Wind for 1 hour. Each main-hand attack has a 15% chance to trigger two extra attacks, dealing 10 Physical damage each.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -5069,7 +5319,7 @@
                             "talent_name": "Totemic Rebound",
                             "spell_id": 445025,
                             "spell_name": "Totemic Rebound",
-                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 843. Jumps to 2 nearby targets within 20 yards.",
+                            "description": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within 30 yards for 819. Jumps to 2 nearby targets within 20 yards.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5224,7 +5474,7 @@
                             "talent_name": "Crash Lightning",
                             "spell_id": 187874,
                             "spell_name": "Crash Lightning",
-                            "description": "Electrocutes all enemies in front of you, dealing 64 Nature damage. \r\n\r\nEnhances your weapons for 12 sec, causing Stormstrike and Lava Lash to discharge 34 Nature damage split between up to 5 enemies in front of you. ",
+                            "description": "Electrocutes all enemies in front of you, dealing 64 Nature damage. \r\n\r\nEnhances your weapons for 12 sec, causing Stormstrike and Lava Lash to discharge 33 Nature damage split between up to 5 enemies in front of you. ",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -5919,7 +6169,7 @@
                             "talent_name": "Voltaic Blaze",
                             "spell_id": 470057,
                             "spell_name": "Voltaic Blaze",
-                            "description": "Instantly shocks the target and 5 enemies within 10 yds with blazing thunder, applying Flame Shock and dealing 1,499 Nature damage. Always critically strikes.\r\n\r\nGenerates 1 stack of Maelstrom Weapon.",
+                            "description": "Instantly shocks the target and 5 enemies within 10 yds with blazing thunder, applying Flame Shock and dealing 1,511 Nature damage. Always critically strikes.\r\n\r\nGenerates 1 stack of Maelstrom Weapon.",
                             "cast_time": "Instant",
                             "cooldown": "10 sec cooldown",
                             "range": "40 yd range"
@@ -6218,7 +6468,7 @@
                             "talent_name": "Fire Nova",
                             "spell_id": 1260666,
                             "spell_name": "Fire Nova",
-                            "description": "Voltaic Blaze generates 2 additional Maelstrom Weapon and has a 30% chance to cause a Fire Nova.\r\n\r\nFire Nova\r\nErupt a burst of fiery damage from all targets affected by your Flame Shock, dealing 35 Volcanic damage to up to 6 targets within 8 yds of your Flame Shock targets.",
+                            "description": "Voltaic Blaze generates 2 additional Maelstrom Weapon and has a 30% chance to cause a Fire Nova.\r\n\r\nFire Nova\r\nErupt a burst of fiery damage from all targets affected by your Flame Shock, dealing 34 Volcanic damage to up to 6 targets within 8 yds of your Flame Shock targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6467,7 +6717,7 @@
                             "talent_name": "Sundering",
                             "spell_id": 197214,
                             "spell_name": "Sundering",
-                            "description": "Shatters a line of earth in front of you with your main hand weapon, causing 90 Flamestrike damage to any enemy hit.",
+                            "description": "Shatters a line of earth in front of you with your main hand weapon, causing 86 Flamestrike damage to any enemy hit.",
                             "cast_time": "Instant",
                             "cooldown": "30 sec cooldown",
                             "range": null
@@ -6890,7 +7140,7 @@
                             "talent_name": "Primordial Storm",
                             "spell_id": 1218047,
                             "spell_name": "Primordial Storm",
-                            "description": "Sundering transforms into a single use Primordial Storm for 15 sec after it is cast.\r\n\r\nPrimordial Storm\r\nDevastate nearby enemies with a Primordial Storm dealing 41 Flamestrike, 41 Froststrike, 41 Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets.\r\n\r\nConsumes Maelstrom Weapon for increased damage.",
+                            "description": "Sundering transforms into a single use Primordial Storm for 15 sec after it is cast.\r\n\r\nPrimordial Storm\r\nDevastate nearby enemies with a Primordial Storm dealing 42 Flamestrike, 42 Froststrike, 42 Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 150% effectiveness. Deals reduced damage beyond 5 targets.\r\n\r\nConsumes Maelstrom Weapon for increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6983,7 +7233,7 @@
                                     "talent_name": "Earth Shock",
                                     "spell_id": 8042,
                                     "spell_name": "Earth Shock",
-                                    "description": "Instantly shocks the target with concussive force, causing 3,005 Nature damage.",
+                                    "description": "Instantly shocks the target with concussive force, causing 3,052 Nature damage.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -6993,7 +7243,7 @@
                                     "talent_name": "Elemental Blast",
                                     "spell_id": 117014,
                                     "spell_name": "Elemental Blast",
-                                    "description": "Harnesses the raw power of the elements, dealing 762 Elemental damage and increasing your Critical Strike or Haste by 3% or Mastery by 6% for 10 sec.",
+                                    "description": "Harnesses the raw power of the elements, dealing 767 Elemental damage and increasing your Critical Strike or Haste by 3% or Mastery by 6% for 10 sec.",
                                     "cast_time": "2 sec cast",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -7165,7 +7415,7 @@
                                     "talent_name": "Earthquake",
                                     "spell_id": 462620,
                                     "spell_name": "Earthquake",
-                                    "description": "Causes the earth within 8 yards of your target to tremble and break, dealing 1,446 Nature damage over 6 sec and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap.\r\n\r\nThis spell is cast at your target.",
+                                    "description": "Causes the earth within 8 yards of your target to tremble and break, dealing 1,434 Nature damage over 6 sec and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap.\r\n\r\nThis spell is cast at your target.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -7175,7 +7425,7 @@
                                     "talent_name": "Earthquake",
                                     "spell_id": 61882,
                                     "spell_name": "Earthquake",
-                                    "description": "Causes the earth within 8 yards of the target location to tremble and break, dealing 1,421 Nature damage over 6 sec and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap.\r\n\r\nThis spell is cast at a selected location.",
+                                    "description": "Causes the earth within 8 yards of the target location to tremble and break, dealing 1,469 Nature damage over 6 sec and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap.\r\n\r\nThis spell is cast at a selected location.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -8353,7 +8603,7 @@
                             "talent_name": "Earthen Rage",
                             "spell_id": 170374,
                             "spell_name": "Earthen Rage",
-                            "description": "Your damaging spells incite the earth around you to come to your aid for 6 sec, repeatedly dealing 160 Nature damage to your most recently attacked target.",
+                            "description": "Your damaging spells incite the earth around you to come to your aid for 6 sec, repeatedly dealing 162 Nature damage to your most recently attacked target.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8896,7 +9146,7 @@
                             "talent_name": "Voltaic Blaze",
                             "spell_id": 470057,
                             "spell_name": "Voltaic Blaze",
-                            "description": "Instantly shocks the target and 5 enemies within 10 yds with blazing thunder, applying Flame Shock and dealing 1,542 Nature damage. Always critically strikes.\r\n\r\nGenerates 1 stack of Maelstrom Weapon.",
+                            "description": "Instantly shocks the target and 5 enemies within 10 yds with blazing thunder, applying Flame Shock and dealing 1,547 Nature damage. Always critically strikes.\r\n\r\nGenerates 1 stack of Maelstrom Weapon.",
                             "cast_time": "Instant",
                             "cooldown": "10 sec cooldown",
                             "range": "40 yd range"

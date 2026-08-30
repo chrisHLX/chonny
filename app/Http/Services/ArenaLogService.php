@@ -1311,8 +1311,20 @@ class ArenaLogService
      * whichever length the viewer picks from `topDpsWindowsByLength` instead of always the one
      * length WowComps has wired in) doesn't duplicate this resolution logic.
      *
+     * Also adds `displayName` — the resolved Spell's own display name (always English/patch-
+     * data, see Spell::getDisplayNameAttribute()) when one was found, else the step's raw `name`
+     * unchanged. `name` itself is deliberately left untouched: offensive-rotations.php (in the
+     * separate wow-arena-archive project) writes it straight from the combat log line, which is
+     * in the *recording client's* locale — a window built from a zh-CN-logged match therefore
+     * has raw Chinese step names (confirmed real, e.g. Protection Warrior's promoted rotation).
+     * Several other consumers (anchor matching in this same class, the CC-chain command/service
+     * files) match against `name` as an exact key against archive-side data that's in the same
+     * locale, so overwriting it here would silently break those comparisons for a localised
+     * window. `displayName` is purely additive — the fix for "what a viewer reads on screen",
+     * added 2026-08-29 after a real report of Chinese characters on the Class Guide page.
+     *
      * @param  array<int, array{name: string, spellId: int, isCc: bool, isRepeat: bool}>  $steps
-     * @return array<int, array{name: string, spellId: int, isCc: bool, isRepeat: bool, spell: ?Spell}>
+     * @return array<int, array{name: string, displayName: string, spellId: int, isCc: bool, isRepeat: bool, spell: ?Spell}>
      */
     public function resolveWindowSteps(array $steps, int $specId, \App\Http\Services\TalentSelectionService $talentService): array
     {
@@ -1331,6 +1343,20 @@ class ArenaLogService
                 $spell = $talentService->preferTalentLinkedCopy($spell, $specId);
             }
             $step['spell'] = $spell;
+
+            // A step whose spellId genuinely isn't in our data at all (confirmed real: item/
+            // trinket procs — our spelldata import is scoped to SimC's per-class dumps, which
+            // don't cover those) has no English name to recover. If the raw log name is also
+            // non-Latin (a locale-logged match), showing it verbatim is unreadable to an English
+            // viewer — but this is a step in an ordered sequence, so dropping it (as buffWeb()
+            // does for the same "unresolvable" case) would misrepresent the real cast count.
+            // Fall back to a clearly-labelled placeholder instead of either extreme.
+            $step['displayName'] = match (true) {
+                $spell !== null => $spell->display_name,
+                preg_match('/[^\x00-\x7F]/', $step['name']) === 1 => 'Unknown ability',
+                default => $step['name'],
+            };
+
             return $step;
         }, $steps);
     }
@@ -1595,6 +1621,62 @@ class ArenaLogService
             'losingComp' => $losingComp,
             'players' => $players,
         ];
+    }
+
+    /**
+     * The opening-window counterpart to findPreKillWindow() — anchored to the match's own
+     * earliest logged timestamp instead of a kill, so it works on every match regardless of
+     * whether/when anyone died (a match a player lost quickly still has a real opener). Built
+     * 2026-08-29 for wow:test-opener-theory, testing a real, falsifiable claim ("higher-rated
+     * DPS players press more of their available offensive kit in the opener than lower-rated
+     * players") rather than assumed.
+     *
+     * "Match start" = the earliest timestamp on ANY parseable log line, not the player's own
+     * first cast specifically — arena combat logs begin recording essentially at the
+     * gates-open moment with no pre-match noise (unlike a raid log's trash/buff-up period
+     * before pull), so the log's first line is a reliable, source-agnostic anchor.
+     *
+     * Deliberately a single-player extraction (unlike findPreKillWindow(), which resolves the
+     * whole winning team) — the opener-theory analysis only ever needs one target player per
+     * match, and building the multi-player result findPreKillWindow() returns would be unused
+     * work here.
+     *
+     * @return array{matchStart: float, casts: array<int, array{time: float, spellId: int, name: string}>}|null
+     *         null when the match isn't on file or has no parseable timestamped lines at all.
+     */
+    public function findOpenerWindow(string $matchId, string $playerGuid, int $windowSeconds = 10): ?array
+    {
+        $rawPath = $this->rawLogPath($matchId);
+
+        if (!File::exists($rawPath)) {
+            return null;
+        }
+
+        $raw = gzdecode(File::get($rawPath));
+
+        if (!preg_match('/^([\d\/: .-]+)\s+\S/m', $raw, $firstLine)) {
+            return null;
+        }
+
+        $matchStart = $this->parseLogTimestamp($firstLine[1]);
+
+        $g = preg_quote($playerGuid, '/');
+        preg_match_all('/^([\d\/: .-]+)\s+SPELL_CAST_SUCCESS,'.$g.',"[^"]*",[^,]*,[^,]*,[^,]*,(?:"[^"]*"|nil),[^,]*,[^,]*,(\d+),"([^"]*)"/m', $raw, $casts, PREG_SET_ORDER);
+
+        $sequence = [];
+
+        foreach ($casts as $c) {
+            $t = $this->parseLogTimestamp($c[1]);
+            $offset = $t - $matchStart;
+
+            if ($offset < 0 || $offset > $windowSeconds) {
+                continue;
+            }
+
+            $sequence[] = ['time' => round($offset, 2), 'spellId' => (int) $c[2], 'name' => $c[3]];
+        }
+
+        return ['matchStart' => $matchStart, 'casts' => $sequence];
     }
 
     /**

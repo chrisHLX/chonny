@@ -683,6 +683,32 @@ class TalentSelector extends Component
         return $this->loadTreeNodes($this->selectedHeroTree);
     }
 
+    /**
+     * Every hero tree available to this spec, each paired with a representative icon (its
+     * topmost node's spell — loadTreeNodes() already orders by pos_y then pos_x, so the first
+     * node is the one every hero tree visually branches down from) and its total talent count —
+     * powers the "choose your hero talent" picker modal (talent-selector.blade.php), which shows
+     * both options side by side the way the real in-game popup does, rather than a plain
+     * dropdown. We have no lore/description text for hero trees (TalentTree carries no such
+     * column — Blizzard's Game Data API doesn't expose it), so the card only ever shows real,
+     * on-hand facts (icon, name, node count) instead of inventing flavor text.
+     *
+     * @return array<int, array{tree: TalentTree, icon: ?\App\Models\Spell, nodeCount: int}>
+     */
+    public function getHeroTreeOptionsProperty(): array
+    {
+        return $this->heroTrees->map(function (TalentTree $tree) {
+            $nodes = $this->loadTreeNodes($tree);
+            $keystoneEntry = $nodes->first()?->entries->first(fn (TalentNodeEntry $e) => $e->spell);
+
+            return [
+                'tree' => $tree,
+                'icon' => $keystoneEntry?->spell,
+                'nodeCount' => $nodes->filter(fn (TalentNode $n) => $n->entries->contains(fn ($e) => $e->spell))->count(),
+            ];
+        })->values()->all();
+    }
+
     public function getPvpTalentsProperty(): Collection
     {
         $patchId = $this->currentPatchId();
@@ -705,6 +731,7 @@ class TalentSelector extends Component
             'classTalentNodes' => $this->classTalentNodes,
             'specTalentNodes' => $this->specTalentNodes,
             'heroTrees' => $this->heroTrees,
+            'heroTreeOptions' => $this->heroTreeOptions,
             'selectedHeroTree' => $this->selectedHeroTree,
             'heroTalentNodes' => $this->heroTalentNodes,
             'pvpTalents' => $this->pvpTalents,

@@ -390,6 +390,11 @@ if (!$skipTrees) {
         $specNodeCount = 0;
         $heroNodeCount = 0;
 
+        // external_node_id => ['unlocks' => [...], 'locked_by' => [...]] — see the enrichment
+        // pass below, right after $classNodes is finalized, for the full story on why this
+        // exists (the bare class-tree endpoint fetched above never carries real unlocks data).
+        $classNodeUnlocksById = [];
+
         foreach ($specsByClass[$className] ?? [] as $specRef) {
             fwrite(STDOUT, "  Fetching spec: {$specRef['name']} (spec {$specRef['spec_id']})...\n");
             $specResponse = apiGet(
@@ -399,6 +404,28 @@ if (!$skipTrees) {
 
             $specNodes = array_map('normalizeNode', $specResponse['spec_talent_nodes'] ?? []);
             $specNodeCount += count($specNodes);
+
+            // This same combined endpoint also echoes `class_talent_nodes` — confirmed live
+            // 2026-08-29 (see the investigation this fix came from) that, unlike the bare
+            // class-tree endpoint above, THIS copy actually carries real unlocks/locked_by data
+            // (42/43 populated for a real spec checked). It's not simply "identical to the bare
+            // fetch" the way the comment below this loop used to assume — that assumption was
+            // never actually verified for the unlocks field specifically. It's also NOT a safe
+            // drop-in replacement for the node SET itself: cross-checking three specs of the
+            // same class found `class_talent_nodes` differs per spec by a handful of ids each
+            // time, and the ids that differ turn out to be duplicate internal node records for
+            // the same real talent (e.g. Demon Hunter's "Chaos Nova" exists as both node 90993
+            // and node 108729 depending on which spec's fetch surfaced it — the same "one real
+            // ability, multiple internal ids" pattern seen throughout this project's spelldata
+            // pipeline, just at the node level here). Unioning node SETS across specs would risk
+            // re-introducing duplicate/bloated nodes. So this only ever harvests unlocks/locked_by
+            // for whichever node ids happen to already be in our existing, already-deduplicated
+            // $classNodes list (via the enrichment pass below) — it never adds a new node id.
+            foreach (array_map('normalizeNode', $specResponse['class_talent_nodes'] ?? []) as $node) {
+                if (!isset($classNodeUnlocksById[$node['id']]) && (!empty($node['unlocks']) || !empty($node['locked_by']))) {
+                    $classNodeUnlocksById[$node['id']] = ['unlocks' => $node['unlocks'], 'locked_by' => $node['locked_by']];
+                }
+            }
 
             $heroTreeIds = [];
             foreach ($specResponse['hero_talent_trees'] ?? [] as $heroTree) {
@@ -446,6 +473,24 @@ if (!$skipTrees) {
             fn (array $node) => !isset($specNodeIds[$node['id']])
         ));
 
+        // Enrich the already-correct class node set with real unlocks/locked_by harvested above
+        // — additive only, never adds/removes a node id, just fills in the prerequisite-edge
+        // data the bare class-tree fetch never carries (see $classNodeUnlocksById's docblock).
+        $classNodesEnriched = 0;
+        foreach ($classNodes as &$classNode) {
+            if (isset($classNodeUnlocksById[$classNode['id']])) {
+                $classNode['unlocks']   = $classNodeUnlocksById[$classNode['id']]['unlocks'];
+                $classNode['locked_by'] = $classNodeUnlocksById[$classNode['id']]['locked_by'];
+                $classNodesEnriched++;
+            }
+        }
+        unset($classNode);
+
+        if ($classNodesEnriched < count($classNodes)) {
+            $missing = count($classNodes) - $classNodesEnriched;
+            fwrite(STDOUT, "  [note] {$missing}/" . count($classNodes) . " class nodes have no unlocks data from any spec's fetch (left as [], same as before this fix)\n");
+        }
+
         $output = [
             'class'             => $className,
             'talent_tree_id'    => $treeId,
@@ -461,6 +506,7 @@ if (!$skipTrees) {
 
         $summary[$className]['tree_count']      = 1 + count($specs); // class tree + each spec tree
         $summary[$className]['class_node_count'] = count($classNodes);
+        $summary[$className]['class_node_unlocks_count'] = $classNodesEnriched;
         $summary[$className]['spec_node_count']  = $specNodeCount;
         $summary[$className]['hero_tree_count']  = count($heroTrees);
         $summary[$className]['hero_node_count']  = $heroNodeCount;
@@ -585,7 +631,7 @@ foreach ($summary as $className => $stats) {
     fwrite(STDOUT, "\n{$className}\n");
     if (isset($stats['tree_count'])) {
         fwrite(STDOUT, "  Trees:       {$stats['tree_count']} (1 class + " . ($stats['tree_count'] - 1) . " spec)\n");
-        fwrite(STDOUT, "  Nodes:       {$stats['class_node_count']} class + {$stats['spec_node_count']} spec + {$stats['hero_node_count']} hero ({$stats['hero_tree_count']} hero trees)\n");
+        fwrite(STDOUT, "  Nodes:       {$stats['class_node_count']} class ({$stats['class_node_unlocks_count']} with real unlocks data) + {$stats['spec_node_count']} spec + {$stats['hero_node_count']} hero ({$stats['hero_tree_count']} hero trees)\n");
     }
     if (isset($stats['pvp_talent_count'])) {
         fwrite(STDOUT, "  PvP talents: {$stats['pvp_talent_count']}\n");
