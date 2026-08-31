@@ -19,6 +19,9 @@
 /public/storage
 /storage/*.key
 /storage/pail
+# Written by deploy.sh on the live server only (TalentSelectionService::deployedCodeFingerprint())
+# — per-environment, never meant to be committed.
+/storage/app/deployed-commit.txt
 /vendor
 /data/spelldata/raw/*
 !/data/spelldata/raw/.gitkeep

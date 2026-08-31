@@ -653,7 +653,45 @@ class TalentSelector extends Component
 
     public function getSpecTalentNodesProperty(): Collection
     {
-        return $this->loadTreeNodes($this->specTalentTree);
+        $nodes = $this->loadTreeNodes($this->specTalentTree);
+        $spec = $this->specialization;
+        $patchId = $this->currentPatchId();
+
+        if ($nodes->isEmpty() || !$spec || !$patchId) {
+            return $nodes;
+        }
+
+        // Same defensive shape, same root cause, and same "render-time safety net, not the real
+        // fix" caveat as getClassTalentNodesProperty() directly above — but for HERO nodes
+        // echoed into a SPEC tree's own node list, which that filter never covered. Added
+        // 2026-09-01 from a real user report ("there are hero talents on the right hand side
+        // that seem to be greyed out with the class talents"): confirmed systemic, not a
+        // one-off — 39 of 40 spec trees are affected, 1,127 duplicated nodes in total. Feral
+        // Druid's spec tree carried 28 of them (BOTH of its hero trees, Druid of the Claw at
+        // one edge and Wildstalker at the other), rendering as two disconnected greyed-out
+        // clusters flanking the real tree and inflating it from 7 real columns to 17.
+        //
+        // Matching on external_node_id alone is safe here despite that column not being
+        // globally unique (see BlizzardTalentStringCodec's own docblock on that hazard) —
+        // verified before shipping, not assumed: all 1,127 matched pairs carry an IDENTICAL
+        // spell set, i.e. every single one is a genuine duplicate rather than a coincidental
+        // id collision. Also verified zero of the 3,659 existing talent_build_choices rows
+        // point at any node this hides, so no saved build loses a pick.
+        //
+        // Deliberately NOT applied to BlizzardTalentStringCodec::orderedNodesForSpec(), which
+        // reads these same spec-tree nodes unfiltered to align its bit-stream: that decode path
+        // is separately verified working against a real exported string, so the bloat is very
+        // likely present in Blizzard's own live trait-tree ordering too. Filtering it there
+        // would re-break the exact alignment the 2026-08-02 class-tree fix established. This is
+        // a display concern only.
+        $heroExternalIds = TalentNode::whereHas(
+            'talentTree',
+            fn ($q) => $q->where('class_id', $spec->class_id)
+                ->where('patch_id', $patchId)
+                ->where('type', 'hero')
+        )->pluck('external_node_id');
+
+        return $nodes->reject(fn (TalentNode $n) => $heroExternalIds->contains($n->external_node_id))->values();
     }
 
     public function getHeroTreesProperty(): Collection

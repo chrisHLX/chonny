@@ -1027,6 +1027,73 @@ class ModuleSpellReferenceService
     }
 
     /**
+     * Defensive shape check run on a `wow_spell_references:*` payload before WowComps/
+     * SpellExplorer trust a cached copy — second layer of protection alongside
+     * TalentSelectionService::deployedCodeFingerprint()'s automatic cache-busting, added
+     * 2026-08-31 after the real "Undefined array key 'cooldown'" production incident (see
+     * DEPLOY.md). The fingerprint fix addresses the actual root cause (stale bytecode writing
+     * a bad entry); this is the backstop for anything else that could still produce a
+     * malformed entry (a crashed write mid-flight, a future shape change nobody remembered to
+     * account for, manual Redis tampering) — an entry that fails this check is treated as a
+     * cache miss and recomputed, so a viewer sees a slightly slower page load instead of a 500.
+     *
+     * Deliberately narrow: only checks for the exact failure this codebase has actually hit
+     * (a top-level entry missing its own 'cooldown'/'charges' keys), not a full schema
+     * validation — a broader check would need updating every time this shape legitimately
+     * grows a new field, which risks becoming exactly the kind of forgotten-maintenance trap
+     * this exists to guard against. Wrapped in try/catch so a payload weird enough to confuse
+     * the validator itself is treated as invalid rather than crashing here instead of in the
+     * blade.
+     *
+     * $requireEnrichedModifiers additionally checks that every modifier in the 'named'/
+     * 'baseline' buckets has its OWN 'cooldown' key — true for WowComps (its private
+     * enrichModifiers() adds this so the "Modifies / Enhances" accordion can show a modifier's
+     * own effective cooldown; the real 2026-08-28 incident was specifically this key going
+     * missing) but NOT for SpellExplorer, whose cached modifiers array is the raw
+     * ModuleSpellReferenceService::modifiersFor() shape ({spell, relationship_type,
+     * modifier_value, modifier_unit} only, by design — SpellExplorer's own modal reads a
+     * spell's cooldown fresh via SpellDetailModal, never from this cached array). Passing
+     * true for SpellExplorer's cache would make every entry fail validation permanently,
+     * silently defeating its cache rather than protecting it.
+     */
+    public function spellReferencesCacheIsValid(mixed $value, bool $requireEnrichedModifiers = false): bool
+    {
+        if (!is_array($value)) {
+            return false;
+        }
+
+        try {
+            foreach ($value as $entry) {
+                if (!is_array($entry) || !array_key_exists('cooldown', $entry) || !array_key_exists('charges', $entry)) {
+                    return false;
+                }
+
+                if (!$requireEnrichedModifiers) {
+                    continue;
+                }
+
+                foreach (['named', 'baseline'] as $bucket) {
+                    $modifiers = $entry['modifiers'][$bucket] ?? null;
+
+                    if ($modifiers === null) {
+                        continue;
+                    }
+
+                    foreach ($modifiers as $mod) {
+                        if (!is_array($mod) || !array_key_exists('cooldown', $mod)) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        } catch (\Throwable) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Shared implementation behind effectiveCooldown()/effectiveCharges() — both are the same
      * shape (start from a spell's base value for one scalar field, apply every selected,
      * magnitude-bearing modifier of one relationship_type: flat unit first, then percent) and

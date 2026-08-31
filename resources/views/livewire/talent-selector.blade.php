@@ -86,12 +86,29 @@
     </div>
     @endif
 
-    {{-- readOnly: purely a CSS non-interactivity cue (pointer-events-none + slightly reduced
-         opacity) — every mutating method already no-ops server-side regardless (see
-         TalentSelector's $readOnly docblock), this just stops the grid/pvp buttons from looking
-         clickable in the first place. Deliberately not touching talent-tree-grid.blade.php's own
-         button markup to add this — that partial is shared with the live admin editor. --}}
-    <div class="p-5 space-y-6" @if ($readOnly) style="pointer-events: none; opacity: 0.92;" @endif>
+    {{-- readOnly: purely a CSS non-interactivity cue — every mutating method already no-ops
+         server-side regardless (see TalentSelector's $readOnly docblock), this just stops the
+         grid/pvp buttons from looking clickable in the first place. Deliberately not touching
+         talent-tree-grid.blade.php's own button markup to add this — that partial is shared with
+         the live admin editor.
+
+         Moved onto the buttons themselves (2026-09-01) rather than the blanket
+         `pointer-events: none` on this whole wrapper it used to be: that killed mouse events for
+         the ENTIRE subtree, so hover tooltips never fired on the read-only page — first under the
+         old CSS `group-hover` tooltips (`:hover` can't match with pointer-events disabled) and it
+         would equally have killed the new JS-positioned ones. Reading what a talent actually does
+         is the main point of a look-but-don't-touch view, so the buttons alone are made inert and
+         the wrapper divs that carry the hover handlers stay live. Every write path is
+         server-guarded anyway (see TalentSelector::$readOnly), so this is presentation only.
+
+         Deliberately plain `pointer-events-none` on each button rather than a
+         `[&_button]:pointer-events-none` arbitrary variant on this wrapper — that reads better
+         but was verified NOT to compile here: a real `npm run build` produced no such rule in
+         public/build/assets/*.css (nor `opacity-[0.92]`), while plain `.pointer-events-none` was
+         present. Tailwind's extractor doesn't reliably pull an arbitrary variant out of a Blade
+         `{{ }}` ternary in this project's setup, so relying on it would have silently shipped a
+         read-only view whose buttons still looked clickable. --}}
+    <div class="p-5 space-y-6 {{ $readOnly ? 'opacity-90' : '' }}">
         @if ($layout === 'grid')
             {{-- Positional tree layout mirroring the real in-game talent UI: class tree on the
                  left, hero tree (single choice) in the middle, spec tree on the right — same
@@ -296,7 +313,8 @@
                             title="{{ $talent->spell->description }}"
                             class="flex items-center gap-2 px-2.5 py-2 rounded-md border text-left text-[12px] transition
                                 {{ $isChosen ? 'border-violet bg-violet-subtle' : 'border-line bg-surface-2 hover:border-line-strong' }}
-                                {{ $isFull ? 'opacity-40 cursor-not-allowed' : '' }}"
+                                {{ $isFull ? 'opacity-40 cursor-not-allowed' : '' }}
+                                {{ $readOnly ? 'pointer-events-none' : '' }}"
                         >
                             <x-spell-icon :spell="$talent->spell" size="w-7 h-7"/>
                             <span class="font-semibold {{ $isChosen ? 'text-violet-hover' : 'text-ink' }}">{{ $talent->spell->display_name }}</span>

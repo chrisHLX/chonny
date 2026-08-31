@@ -37,6 +37,7 @@ class PageUsage extends Component
         'top_damage_rotations' => 'Burst Windows',
         'burst_window_talents' => 'Burst Window Talent View',
         'class_guide' => 'Class Guide',
+        'top_cc_chains' => 'Top 10 CC Chains',
     ];
 
     /**

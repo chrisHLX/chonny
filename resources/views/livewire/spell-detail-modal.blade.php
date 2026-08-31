@@ -7,7 +7,9 @@
         'Other' => 'badge-gray',
     ];
     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
-    $cooldownDisplay = fn (array $entry) => $entry['cooldown']['seconds'] !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
+    // Defensive `?? null` reads throughout this file — see the identical note in
+    // wow-comps.blade.php for why (a real production incident, 2026-08-31 fix).
+    $cooldownDisplay = fn (array $entry) => ($entry['cooldown']['seconds'] ?? null) !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
 @endphp
 
 <div>
@@ -47,15 +49,15 @@
                 <div>
                     <span class="text-ink-subtle">Cooldown</span>
                     <span class="text-ink font-semibold ml-1">{{ $cooldownDisplay($entry) ?? '—' }}</span>
-                    @if ($entry['cooldown']['seconds'] !== null && $entry['cooldown']['base_seconds'] !== null && round($entry['cooldown']['seconds'], 2) !== round($entry['cooldown']['base_seconds'], 2))
+                    @if (($entry['cooldown']['seconds'] ?? null) !== null && ($entry['cooldown']['base_seconds'] ?? null) !== null && round($entry['cooldown']['seconds'], 2) !== round($entry['cooldown']['base_seconds'], 2))
                         <span class="text-[10px] text-ink-subtle line-through ml-1">{{ $fmtSeconds($entry['cooldown']['base_seconds']) }}</span>
                     @endif
                 </div>
-                @if ($entry['charges']['charges'] !== null && $entry['charges']['charges'] > 1)
+                @if (($entry['charges']['charges'] ?? null) !== null && $entry['charges']['charges'] > 1)
                     <div>
                         <span class="text-ink-subtle">Charges</span>
                         <span class="text-ink font-semibold ml-1">{{ $entry['charges']['charges'] }}</span>
-                        @if ($entry['charges']['base_charges'] !== null && $entry['charges']['charges'] !== $entry['charges']['base_charges'])
+                        @if (($entry['charges']['base_charges'] ?? null) !== null && $entry['charges']['charges'] !== $entry['charges']['base_charges'])
                             <span class="text-[10px] text-ink-subtle line-through ml-1">{{ $entry['charges']['base_charges'] }}</span>
                         @endif
                     </div>
@@ -71,7 +73,7 @@
                     @foreach ($entry['modifiers']['named'] as $mod)
                         @php
                             $modId = $mod['spell']->id;
-                            $modCooldownDisplay = $mod['cooldown']['seconds'] !== null ? $fmtSeconds($mod['cooldown']['seconds']) : null;
+                            $modCooldownDisplay = ($mod['cooldown']['seconds'] ?? null) !== null ? $fmtSeconds($mod['cooldown']['seconds']) : null;
                         @endphp
                         <div class="mb-1 last:mb-0">
                             <button type="button"

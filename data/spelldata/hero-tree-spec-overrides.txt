@@ -11,19 +11,33 @@
 # (data/spelldata/filtered/demonhunter/hero-*.txt) literally tag Fel-Scarred and Void-Scarred
 # as "(Havoc, Devourer)" and Annihilator as "(Generic)" (not a real spec name at all, which
 # is why Annihilator ended up with zero spec links before this file existed — silently
-# skipped by scanHeroTreeSpecs()'s spec-name lookup). Confirmed directly with the user
-# (who has real, current game knowledge — Devourer is brand-new content, plausibly why
-# SimC's community-maintained dump hasn't caught up yet): the real pairing is
-# Havoc/Vengeance sharing Fel-Scarred + Aldrachi Reaver (same as their live-game precedent),
-# with Devourer (a new 3rd spec) getting its own exclusive pair, Annihilator + Void-Scarred.
-# Aldrachi Reaver's own dump tag ("(Havoc, Vengeance)") was already correct and needs no
-# override — not listed below, matching this file's "only list actual corrections" convention.
+# skipped by scanHeroTreeSpecs()'s spec-name lookup).
+#
+# REVISED 2026-08-31 — the 2026-08-15 pairing below (kept, struck through, for history) was
+# correct for its own patch context but is now stale: found while investigating
+# wow:import-murlok-defaults --all --apply leaving Vengeance's hero tree unresolved despite a
+# real page match. Independently verified via WebSearch against Wowhead/Method.gg/Icy Veins
+# (current Midnight/12.1 guides, three independent sources agreeing) rather than trusting
+# murlok's scrape alone, per this project's own "verify, don't just trust one scraped source"
+# discipline — the Midnight expansion reworked Demon Hunter's hero trees: Fel-Scarred was
+# REMOVED from Vengeance (Havoc keeps it, alone now), and Vengeance instead shares Annihilator
+# with Devourer. Void-Scarred is confirmed Devourer's own tree — one source describes it as
+# "formerly called Fel Scarred," i.e. Devourer's own renamed/distinct variant, not the same
+# tree Havoc still has. Current, correct pairing:
+#   Havoc:     Aldrachi Reaver, Fel-Scarred
+#   Vengeance: Aldrachi Reaver, Annihilator
+#   Devourer:  Annihilator, Void-Scarred
+# Aldrachi Reaver's own dump tag ("(Havoc, Vengeance)") is still correct and needs no override
+# — not listed below, matching this file's "only list actual corrections" convention.
+#
+# ~~demonhunter | fel-scarred | Havoc,Vengeance | SimC dump says (Havoc, Devourer) - wrong, confirmed by user 2026-08-15~~ SUPERSEDED 2026-08-31, Fel-Scarred left Vengeance in Midnight
+# ~~demonhunter | annihilator | Devourer | SimC dump says (Generic) - Devourer-exclusive per user confirmation 2026-08-15~~ SUPERSEDED 2026-08-31, Annihilator is now shared Vengeance+Devourer
 #
 # Format: classSlug | heroTreeNameSlug | comma-separated spec names | note
 # heroTreeNameSlug must match scanHeroTreeSpecs()'s own normalizeSlug() of the hero tree's
 # display name (e.g. "Fel-Scarred" -> "fel-scarred") — verify against a real import run's
 # output if a future addition doesn't seem to take effect.
 
-demonhunter | fel-scarred | Havoc,Vengeance | SimC dump says (Havoc, Devourer) - wrong, confirmed by user 2026-08-15
-demonhunter | void-scarred | Devourer | SimC dump says (Havoc, Devourer) - Devourer-exclusive per user confirmation 2026-08-15
-demonhunter | annihilator | Devourer | SimC dump says (Generic), not a real spec name - Devourer-exclusive per user confirmation 2026-08-15
+demonhunter | fel-scarred | Havoc | SimC dump says (Havoc, Devourer) - wrong; also Vengeance lost this tree in Midnight, confirmed via Wowhead/Method.gg/Icy Veins 2026-08-31
+demonhunter | void-scarred | Devourer | SimC dump says (Havoc, Devourer) - Devourer-exclusive, confirmed 2026-08-15 and re-confirmed 2026-08-31
+demonhunter | annihilator | Vengeance,Devourer | SimC dump says (Generic), not a real spec name - shared Vengeance+Devourer per Midnight rework, confirmed via Wowhead/Method.gg/Icy Veins 2026-08-31

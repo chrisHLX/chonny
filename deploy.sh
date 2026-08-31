@@ -90,9 +90,20 @@ echo "    same staleness risk as php-fpm, different mechanism — a long-lived C
 echo "    OPcache)"
 php artisan queue:restart
 
-echo "==> Bumping the WoW spell-reference cache version — forces every wow_spell_references:*"
-echo "    Redis entry to be treated as stale, so the next render recomputes under the code that"
-echo "    was JUST deployed instead of possibly serving an old-shaped cached array."
+echo "==> Writing the deployed-commit fingerprint (storage/app/deployed-commit.txt) — read by"
+echo "    TalentSelectionService::deployedCodeFingerprint() and folded into every"
+echo "    wow_spell_references:* cache key. Written HERE, strictly AFTER the php8.2-fpm restart"
+echo "    above, on purpose: this guarantees the fingerprint only ever changes to a new value"
+echo "    once the process serving requests is actually running the code that value describes —"
+echo "    closing the exact race that made bumping spellCacheVersion() alone insufficient during"
+echo "    the 2026-08-28 incident (see DEPLOY.md). Do not move this step earlier."
+mkdir -p storage/app
+git rev-parse --short HEAD > storage/app/deployed-commit.txt
+echo "    Fingerprint now: $(cat storage/app/deployed-commit.txt)"
+
+echo "==> Bumping the WoW spell-reference cache version — belt-and-suspenders alongside the"
+echo "    fingerprint above; still the right tool for a DATA-only change (import:spelldata, an"
+echo "    admin default-build edit) that doesn't involve a code deploy at all."
 php artisan tinker --execute="app(App\Http\Services\TalentSelectionService::class)->bumpSpellCacheVersion(); echo 'Spell cache version now: ' . app(App\Http\Services\TalentSelectionService::class)->spellCacheVersion();"
 
 if echo "$CHANGED_FILES" | grep -qE '^data/spelldata/|^database/migrations/.*(spell|talent)'; then

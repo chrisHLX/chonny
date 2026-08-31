@@ -123,10 +123,69 @@ class MurlokTalentImportService
      * syncPvpChoices(). Call preview() first and only pass its result here once it looks right —
      * mirrors TalentSelector's own preview-before-apply import flow.
      *
+     * **Refuses to write a near-empty result over existing data** (added 2026-08-31, after a
+     * real incident): `--all --apply` wiped Death Knight/Blood and Warrior/Protection's real,
+     * previously-working ~91-choice default builds down to zero. Root cause: murlok.io serves a
+     * genuinely different, stripped page (no `talents-class`/`talents-hero` sections at all — a
+     * client-side-WASM-rendered shell with nothing for a plain HTTP fetch to read) for a spec/
+     * bracket combination it doesn't have enough real high-rated players to build a heatmap for
+     * — confirmed true for both specs at the 3v3 bracket specifically (real data existed at
+     * `blitz` for both). `preview()` doesn't distinguish that case from "real page, genuinely
+     * zero picks" — both come back as an all-zero-but-technically-successful result — and
+     * `apply()` had no check at all before deleting existing choices, so it happily replaced 91
+     * real, working choices with nothing. Since `apply()` is the single write path (called by
+     * both `ImportMurlokDefaults` and, if a future admin UI button is added per this class's own
+     * "not built" note, from there too), the guard lives here rather than only in the console
+     * command, so nothing can bypass it.
+     *
+     * Deliberately a blunt, deterministic check — not a ratio/heuristic score, which would need
+     * tuning and could still be fooled: refuse when either tree came back with literally zero
+     * selected nodes despite the page claiming a real class/spec, or when a hero tree section
+     * exists at all (`heroNodesTotal > 0`) but resolved zero picks. The second condition is
+     * scoped to `heroNodesTotal > 0` so it never blocks a spec that genuinely has zero hero
+     * nodes in our own data (a real future case — no example currently confirmed; an earlier
+     * version of this note cited Demon Hunter/Devourer as one, which turned out to be wrong — see
+     * below) — only a spec whose hero tree genuinely exists but came back empty is rejected.
+     *
+     * **`heroNodesTotal === 0` is not always "this spec legitimately has no hero tree" — found
+     * 2026-08-31, same investigation as the guard above.** Devourer/Vengeance/Windwalker all came
+     * back `0/0` for hero in the `--all --apply` run this guard exists to prevent recurring
+     * damage from, but Devourer genuinely HAS 3 real hero trees in our DB (Fel-Scarred,
+     * Void-Scarred, Annihilator) — `resolveHeroTree()`'s exact-string match just failed on a
+     * punctuation difference (murlok's page says "Void Scarred"/"Shado Pan", no hyphen; our DB
+     * stores "Void-Scarred"/"Shado-Pan", hyphenated). Vengeance's case is a second, different
+     * gap: murlok's page lists "Annihilator" as a real hero tree option for Vengeance, but our
+     * `talent_tree_specializations` pivot only links that tree to Devourer — a likely-real
+     * missing spec/tree link in the imported data, not a text-matching bug at all. Neither is
+     * fixed by this guard (it can't distinguish "genuinely no hero tree" from "resolution failed
+     * for some other reason" when the failure happens upstream in `resolveHeroTree()`, before
+     * `heroNodesTotal` is even computed) — flagged here, not fixed, so a future session doesn't
+     * have to re-discover it. The guard still does its job for these three: it won't let a future
+     * `--apply` silently degrade their real class/spec picks while masking the hero gap.
+     *
      * @param  array  $preview  the exact return value of preview()
+     *
+     * @throws RuntimeException when the scrape looks too empty to trust — the caller should try
+     *                           a different bracket (see MurlokTalentImportService's own
+     *                           "checked 5 brackets" precedent for Blood DK/Protection Warrior)
+     *                           rather than retrying the same bracket/spec blindly.
      */
     public function apply(array $preview, TalentSelectionService $talentService): TalentBuild
     {
+        if ($preview['classNodesSelected'] === 0 || $preview['specNodesSelected'] === 0) {
+            throw new RuntimeException(
+                "Refusing to apply — murlok returned zero real class/spec picks for this spec/bracket ".
+                "(class {$preview['classNodesSelected']}/{$preview['classNodesTotal']}, spec {$preview['specNodesSelected']}/{$preview['specNodesTotal']}). ".
+                'This usually means murlok has too little real player data for this spec at this bracket (its page renders a stripped placeholder with no talent grid at all) rather than a genuine zero-pick result — try a different bracket (2v2, blitz, rbg) before assuming this spec truly has no data.'
+            );
+        }
+
+        if ($preview['heroNodesTotal'] > 0 && $preview['heroNodesSelected'] === 0) {
+            throw new RuntimeException(
+                "Refusing to apply — this spec has a real hero tree ({$preview['heroNodesTotal']} nodes) but murlok resolved zero hero picks for this bracket. Try a different bracket before assuming the hero tree truly has no data."
+            );
+        }
+
         $build = $talentService->getOrCreateDefaultBuild($preview['specId'], $preview['patchId']);
 
         $build->choices()->delete();
@@ -378,6 +437,16 @@ class MurlokTalentImportService
      * spec's actual available hero trees by name. Logged as unmatched (not guessed/defaulted to
      * the first available tree) if the name doesn't line up — a real possibility if Blizzard
      * renamed a hero tree and murlok or our own import haven't both caught up yet.
+     *
+     * Punctuation-normalized before comparing (2026-08-31, real bug found via the incident that
+     * prompted MurlokTalentImportService::apply()'s new empty-result guard — see that method's
+     * docblock): murlok's page headings render a hero tree's real hyphenated name WITHOUT the
+     * hyphen ("Void Scarred", "Shado Pan"), while our own imported `talent_trees.name` keeps it
+     * ("Void-Scarred", "Shado-Pan") — an exact-string match after only lowercasing/trimming fails
+     * on this every time, even though both sides plainly refer to the same tree. `normalizeName()`
+     * collapses hyphens (and any run of whitespace a hyphen-removal can leave behind) to a single
+     * space before comparing — deliberately narrow (hyphens only, not stripping apostrophes or
+     * other punctuation) since it's the one confirmed real discrepancy shape.
      */
     private function resolveHeroTree(Specialization $spec, int $patchId, ?string $parsedName, array &$unmatched): ?TalentTree
     {
@@ -391,13 +460,19 @@ class MurlokTalentImportService
             ->with('nodes.entries.spell')
             ->get();
 
-        $match = $available->first(fn ($t) => Str::lower(trim($t->name)) === Str::lower(trim($parsedName)));
+        $normalizedParsed = $this->normalizeHeroTreeName($parsedName);
+        $match = $available->first(fn ($t) => $this->normalizeHeroTreeName($t->name) === $normalizedParsed);
 
         if (!$match) {
             $unmatched[] = "Hero tree '{$parsedName}' (page) did not match any of: ".$available->pluck('name')->implode(', ');
         }
 
         return $match;
+    }
+
+    private function normalizeHeroTreeName(string $name): string
+    {
+        return trim(preg_replace('/\s+/', ' ', str_replace('-', ' ', Str::lower(trim($name)))));
     }
 
     /**

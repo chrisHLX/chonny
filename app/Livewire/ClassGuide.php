@@ -18,7 +18,6 @@ use Livewire\Component;
  *   - the talent-convergence roll-up from data/arena-logs/playstyle/{class}/{spec}.json
  *     (how many of the sampled top-rated players took each talent, and how many actually
  *     got value from it — the core-pick vs common-mispick signal)
- *   - the aggregated buff/proc web from the same file
  *   - the peak burst window from ArenaLogService::rotationForSpec()
  *
  * Read-only, public, no auth. The talent *grid* itself lives on the sibling BurstWindowTalents
@@ -26,6 +25,14 @@ use Livewire\Component;
  *
  * Only specs that have been through `wow:analyze-spec-playstyle` have the playstyle file; the
  * page degrades to "burst window only" (and a note) for the rest rather than 404ing.
+ *
+ * The "situational"/"rarely paid off" band and the buff/proc web (both computed from the same
+ * playstyle file) were removed from this page 2026-09-01, direct instruction — the situational
+ * band's framing ("a habit worth questioning") didn't fit a fundamentally reactive/conditional
+ * pick like Evasion, where "didn't need it this game" is the correct outcome, not a mistake; see
+ * playstyle-analysis.md for what the underlying data still supports if a better framing for it
+ * is designed later. getTalentBandsProperty() still computes a 'situational' key internally
+ * (harmless, unused) — only this page's rendering of it was removed, not the data layer.
  */
 class ClassGuide extends Component
 {
@@ -156,38 +163,6 @@ class ClassGuide extends Component
     }
 
     /**
-     * buffWeb rows aggregated across the sample: average uptime, times it hit its max stack,
-     * and the union of talents the analysis tied to it.
-     *
-     * @return array<int, array{buff:string, avgUptime:int, maxStack:int, seenIn:int, feeders:array}>
-     */
-    public function getBuffSummaryProperty(): array
-    {
-        $ps = $this->playstyle;
-
-        if (! $ps) {
-            return [];
-        }
-
-        $sample = max(1, (int) $ps['sampleSize']);
-
-        return collect($ps['matches'])
-            ->flatMap(fn ($m) => $m['buffWeb'])
-            ->groupBy('buff')
-            ->map(fn ($g, $buff) => [
-                'buff' => $buff,
-                'avgUptime' => (int) round($g->avg('uptimePct')),
-                'maxStack' => (int) $g->max('maxStack'),
-                'seenIn' => $g->count(),
-                'feeders' => $g->flatMap(fn ($b) => $b['feedingTalents'])->unique()->values()->all(),
-            ])
-            ->filter(fn ($r) => $r['seenIn'] >= max(2, $sample * 0.3))
-            ->sortByDesc('avgUptime')
-            ->take(8)
-            ->values()->all();
-    }
-
-    /**
      * The 12s burst window, with each step's spellId resolved to a real Spell (via
      * ArenaLogService::resolveWindowSteps() — see that method's docblock) so the page can render
      * the patch-data `displayName` instead of the step's raw `name`, which is in whichever locale
@@ -249,12 +224,11 @@ class ClassGuide extends Component
             'spec' => $this->spec,
             'playstyle' => $this->playstyle,
             'bands' => $this->talentBands,
-            'buffs' => $this->buffSummary,
             'burst' => $this->burstWindow,
             'picker' => $this->picker,
         ])->layout('layouts.app', [
             'title' => "{$title} | MindCollector",
-            'description' => 'How a WoW arena spec actually plays — the talents top-rated players converge on, which of them earn their slot, the burst window, and the buffs that drive it, all from real archived matches.',
+            'description' => 'How a WoW arena spec actually plays — the talents top-rated players converge on, which of them earn their slot, and the burst window, all from real archived matches.',
         ]);
     }
 }

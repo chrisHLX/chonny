@@ -555,12 +555,85 @@ if ($rotationExternalIds !== []) {
     $rotationSpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 }
 
+// Every spell_id referenced in a promoted rotation file's "What Was Happening" mechanics block
+// (window.mechanics.championBuffs/championDebuffs/targetBuffs/targetDebuffs — the real
+// champion/target buff+debuff facts embedded by wow:enrich-rotation-mechanics). Added
+// 2026-09-01 after a real report ("I think maybe the spells aren't linking to our icons
+// properly") — confirmed by direct check: real, correctly-resolved spells (Tiger's Tenacity,
+// Predatory Swiftness, Executioner's Precision, and many more) were rendering with no icon at
+// all, because this script's target-set was extended for window.steps on 2026-08-23 but never
+// again when the separate `mechanics` field was added a few days later (2026-08-27+) — the
+// exact same "a display path was added after this script's target-set query was last written,
+// so it was invisible to it" shape documented for every other source above. Unlike `steps`
+// (an ordered rotation a viewer picks talents/spec context for), these four categories are
+// deliberately cross-class by design (a teammate's healing cooldown, an enemy's buff) — so this
+// pulls in spells belonging to every class, not just the 40 already covered by talent/PvP data.
+$mechanicsExternalIds = [];
+foreach (glob($projectRoot . '/data/arena-logs/rotations/*/*.json') as $rotFile) {
+    $decoded = json_decode(file_get_contents($rotFile), true);
+    if (!$decoded) {
+        continue;
+    }
+    foreach (($decoded['topDpsWindowsByLength'] ?? []) as $window) {
+        if (!$window) {
+            continue;
+        }
+        foreach (['championBuffs', 'championDebuffs', 'targetBuffs', 'targetDebuffs'] as $key) {
+            foreach (($window['mechanics'][$key] ?? []) as $item) {
+                if (!empty($item['spellId'])) {
+                    $mechanicsExternalIds[(int) $item['spellId']] = true;
+                }
+            }
+        }
+    }
+}
+$mechanicsSpellDbIds = [];
+if ($mechanicsExternalIds !== []) {
+    $placeholders = implode(',', array_fill(0, count($mechanicsExternalIds), '?'));
+    $stmt = $pdo->prepare("SELECT id FROM spells WHERE spell_id IN ({$placeholders})");
+    $stmt->execute(array_keys($mechanicsExternalIds));
+    $mechanicsSpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+}
+
+// Every spell_id referenced in the CC-chain corpus (data/arena-logs/cc-chains/{class}/
+// {spec}.json's steps — powers the Top 10 CC Chains page). Added 2026-08-31 after a real report
+// ("some icons are missing yet the same spell in crowd control has the icon on it") — confirmed
+// by direct check: Holy Word: Chastise, Binding Shot, Freezing Trap, and Ring of Frost were all
+// showing with no icon, while a same-NAMED sibling spell_id (a different internal spells.id for
+// the identical real ability) already had one. Same exact "a display path existed before this
+// script's target-set query ever covered it" shape as every source above — wow:find-cc-chains's
+// spell_ids come from real raw combat-log casts, not from talent_node_entries/pvp_talents/etc.,
+// so they were never in scope until now.
+$ccChainExternalIds = [];
+foreach (glob($projectRoot . '/data/arena-logs/cc-chains/*/*.json') as $ccFile) {
+    $decoded = json_decode(file_get_contents($ccFile), true);
+    if (!is_array($decoded)) {
+        continue;
+    }
+    foreach ($decoded as $chain) {
+        foreach (($chain['steps'] ?? []) as $step) {
+            if (!empty($step['spellId'])) {
+                $ccChainExternalIds[(int) $step['spellId']] = true;
+            }
+        }
+    }
+}
+$ccChainSpellDbIds = [];
+if ($ccChainExternalIds !== []) {
+    $placeholders = implode(',', array_fill(0, count($ccChainExternalIds), '?'));
+    $stmt = $pdo->prepare("SELECT id FROM spells WHERE spell_id IN ({$placeholders})");
+    $stmt->execute(array_keys($ccChainExternalIds));
+    $ccChainSpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+}
+
 $targetSpellDbIds = array_values(array_unique(array_merge(
     $talentSpellDbIds,
     $pvpTalentSpellDbIds,
     $verifiedOverrideSpellDbIds,
     $explicitBaselineCooldownSpellDbIds,
-    $rotationSpellDbIds
+    $rotationSpellDbIds,
+    $mechanicsSpellDbIds,
+    $ccChainSpellDbIds
 )));
 
 if ($limitSpellIds !== null) {

@@ -164,7 +164,22 @@ class ImportMurlokDefaults extends Command
             return array_merge($preview, ['label' => $label, 'ok' => true]);
         }
 
-        $build = $murlok->apply($preview, $talentService);
+        // apply() throws when the scrape looks too empty to trust (added 2026-08-31, after a
+        // real incident — see its own docblock: --all --apply wiped two real tank-spec builds to
+        // zero because nothing here caught that failure). Caught the same way preview()'s
+        // RuntimeException already is, so one bad spec's refusal shows up as a FAILED row in the
+        // --all summary table instead of crashing the whole run and losing every result after it.
+        try {
+            $build = $murlok->apply($preview, $talentService);
+        } catch (RuntimeException $e) {
+            if ($verbose) {
+                $this->error($e->getMessage());
+
+                return false;
+            }
+
+            return ['label' => $label, 'ok' => false, 'error' => $e->getMessage()];
+        }
 
         if ($verbose) {
             $this->line('');

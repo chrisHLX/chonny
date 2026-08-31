@@ -1086,3 +1086,14 @@
 # shape. Windstrike (115356, Stormstrike's Ascendance-transformed copy) was already correctly
 # promoted this same way in an earlier session; Stormstrike itself was simply never done alongside it.
 17364 | shaman | enhancement | Stormstrike
+
+# Dire Beast (219199, Beast Mastery Hunter) — found 2026-09-01 investigating a real display
+# collision reported by the user: this spec's real, 10s-cooldown "summon a wild beast" ability
+# wasn't reaching any display path at all (not talented, not previously in this file), so
+# preferSelectedPerName()'s same-name dedup had no visible candidate to prefer over a genuinely
+# different, real Beast Mastery talent that also happens to be named "Dire Beast" (a passive
+# proc — "damage from your bleed effects has a chance to summon a dire beast," spell_id 120679,
+# a real talent-tree entry, not a hidden/internal record). Both are real; only the baseline
+# castable one belongs in the always-shown display set here — the passive proc-talent still
+# shows correctly on its own where the talent tree itself is browsed.
+219199 | hunter | beast-mastery | Dire Beast

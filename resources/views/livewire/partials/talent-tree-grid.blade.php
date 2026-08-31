@@ -37,7 +37,23 @@
     small checkmark badge — three redundant signals (color, ring, badge) instead of one subtle one.
 --}}
 @php
-    $nodesWithPos = $nodes->filter(fn ($n) => $n->pos_x !== null && $n->pos_y !== null);
+    // The grid is sized, and every coordinate cluster computed, from ONLY the nodes this partial
+    // actually draws. Fixed 2026-09-01 from a real report ("a lot of empty space where the
+    // talents aren't taking them up and instead being pushed to the sides"): sizing used to come
+    // from every positioned node, but the render loop separately skipped any node with no
+    // spell-bearing entry — so those skipped nodes still claimed a column (and a row) each,
+    // reserving width nothing was ever drawn into. Measured across all 40 specs: 130 dead
+    // columns total. Druid's class tree was the visible worst case at 13 columns of which the
+    // last 4 were completely empty (~240px of dead space that pushed the real tree hard left),
+    // plus an empty top row; Hunter's had 3 of 10 empty. Deriving both the clusters and
+    // $posById from this one set also means an edge pointing at a skipped node is correctly
+    // dropped by the isset() guard below, instead of drawing a stray line to the grid origin
+    // via the old `?? 0` coordinate fallback.
+    $renderNodes = $nodes->filter(fn ($n) => $n->pos_x !== null
+        && $n->pos_y !== null
+        && $n->entries->contains(fn ($e) => $e->spell));
+
+    $nodesWithPos = $renderNodes;
 
     // Cluster near-duplicate raw coordinates into one shared column/row index. Blizzard's raw
     // pos_x/pos_y occasionally carries several values within a few units of each other for what
@@ -78,41 +94,127 @@
     $numRows = $rowIndexByY === [] ? 1 : max($rowIndexByY) + 1;
 
     // Fixed per-cell size (px) — every tree renders at the same visual density regardless of how
-    // sparse or dense its real node count is. Shrunk twice on 2026-08-29 after real reports that
-    // three full-size trees side by side (talent-selector.blade.php's 'grid' layout) overflowed
-    // even a widened 1800px container: a first pass (80/84/24px -> 68/72/16) wasn't nearly enough
-    // — measuring the actual, post-filter column counts real specs use (not assumed) found some
-    // run 11-13 columns wide, not the ~9 originally guessed. A second pass (50/54/12) fixed the
-    // common case (~1550-1600px combined) but a full sweep of every WoW spec found one real
-    // outlier still overflowing badly: Restoration Druid at 1904px combined. This third pass
-    // targets that worst case specifically, not just the average, landing Restoration Druid
-    // (and therefore every other spec, since it was the widest) comfortably under ~1650px —
-    // inside a typical widescreen viewport after the nav sidebar and page padding, with no
-    // spec needing the overflow-x-auto scroll fallback in normal use.
-    $padding = 10;
-    $cellW = 44;
-    $cellH = 46;
-    $containerWidth = $padding * 2 + $numCols * $cellW;
-    $containerHeight = $padding * 2 + $numRows * $cellH;
+    // sparse or dense its real node count is. Shrunk twice on 2026-08-29 chasing a container
+    // overflow (80/84/24 -> 68/72/16 -> 50/54/12 -> 44/46/10), each pass making cells smaller to
+    // fit more columns. **Raised back up on 2026-09-01 after finding the overflow was never
+    // really about cell size at all**: the widest trees were wide because ~28 HERO-tree nodes
+    // were being duplicated into nearly every spec tree (39 of 40 — see
+    // TalentSelector::getSpecTalentNodesProperty()'s filter, added the same day). Feral Druid's
+    // spec tree, for example, was 17 columns; its real width is 7. With that fixed, there is
+    // room to size cells for CORRECTNESS rather than squeezing them to hide a data bug.
+    //
+    // 60px is not arbitrary — it's set by the widest thing a cell has to hold without
+    // overlapping its neighbour, which is a CHOICE node's two side-by-side icons:
+    // 2x24px (w-6) + 2px (gap-0.5) + 4px (p-0.5) + 2px (border) = 56px, leaving a 4px gap at
+    // 60px spacing. That overlap is exactly what the 44px cells produced (a 70px-wide CHOICE
+    // pair in a 44px cell visibly collided with both neighbours — the original user report).
+    // Re-measured across all 40 specs at this size: the widest (Restoration Druid, 27 columns
+    // across all three trees) lands at ~1712px, inside the 1800px container the admin editor
+    // and the read-only Burst Window page both use.
+    // Padding has to clear HALF the widest/tallest node, because every node is centred on its
+    // grid point (-translate-x/y-1/2). At the old 10px a CHOICE node (56px wide, so 28px either
+    // side of centre) hung 18px outside the container and was visibly sliced off by the box
+    // border on the first column — same on the top row, where a multi-rank node's icon + rank
+    // pips + the selected-checkmark badge reach ~24px above centre. 34px clears the widest case
+    // (28px) with a small margin and still leaves every spec inside the container: re-measured
+    // across all 40 specs at this padding, the widest (Restoration Druid) is 1616px against the
+    // ~1768px available, and 0 specs overflow.
+    $padding = 34;
+    $cellW = 60;
+    $cellH = 50;
+    // (numCols - 1), not numCols: cellW is the distance BETWEEN column centres, and the first
+    // centre already sits at $padding — so N columns span (N-1) gaps, not N. Using numCols
+    // reserved one whole extra cell of dead space on the right of every tree (and one row's
+    // worth below), which is the second half of the reported "empty space... talents pushed to
+    // the sides": 60px per tree horizontally, ~180px across the three, on top of the dead
+    // columns fixed above. Confirmed by parsing real rendered HTML — the rightmost node sat
+    // exactly 60px + padding short of the container edge on every tree before this.
+    $containerWidth = $padding * 2 + max(0, $numCols - 1) * $cellW;
+    $containerHeight = $padding * 2 + max(0, $numRows - 1) * $cellH;
 
     $toPixels = fn ($x, $y) => [
         'left' => $padding + ($colIndexByX[$x] ?? 0) * $cellW,
         'top' => $padding + ($rowIndexByY[$y] ?? 0) * $cellH,
     ];
-    $posById = $nodes->mapWithKeys(fn ($n) => [$n->id => $toPixels($n->pos_x ?? 0, $n->pos_y ?? 0)]);
+    $posById = $renderNodes->mapWithKeys(fn ($n) => [$n->id => $toPixels($n->pos_x, $n->pos_y)]);
 
     // Unique per include (this partial renders 3x per picker — class/spec/hero) so the SVG
     // <marker> id below can't collide across sections on the same page.
     $markerId = 'tt-arrow-'.\Illuminate\Support\Str::slug($label);
+
+    // Tooltip content as plain data-* attributes, read by the shared viewport-positioned tooltip
+    // at the bottom of this partial (see talent-tooltip.blade.php). Passing the text through
+    // attributes rather than interpolating it into an Alpine expression avoids any quote/newline
+    // escaping hazard in a spell description — Blade's own attribute escaping handles it.
+    // Read-only mode makes only the BUTTONS inert, never this partial's wrapper divs — those
+    // carry the hover handlers that drive the tooltip, and a look-but-don't-touch view still
+    // needs to explain what each talent does. See talent-selector.blade.php's own note for why
+    // this is a plain class per button rather than one arbitrary-variant class on the wrapper.
+    $btnInert = ($readOnly ?? false) ? ' pointer-events-none' : '';
+
+    $tipAttrs = function ($entry, ?int $rank, ?int $maxRanks, bool $locked) {
+        $rankLabel = ($maxRanks && $maxRanks > 1) ? "Rank {$rank} / {$maxRanks}" : '';
+
+        return 'data-tip-name="'.e($entry->spell->display_name).'" '
+            .'data-tip-rank="'.e($rankLabel).'" '
+            .'data-tip-locked="'.($locked ? '1' : '').'" '
+            .'data-tip-desc="'.e(\Illuminate\Support\Str::limit($this->resolvedDescription($entry), 220)).'"';
+    };
 @endphp
 
-@if ($nodes->isNotEmpty())
-    <div>
+@if ($renderNodes->isNotEmpty())
+    {{-- Tooltip is a SINGLE shared element per tree, positioned in viewport coordinates
+         (position: fixed) rather than one absolutely-positioned tooltip per node. Rewritten
+         2026-09-01 from a real report ("when you hover a talent it needs to show the text
+         without being cut off like it currently does when you hover talents on the box edge").
+
+         Two separate causes, both fixed by this approach:
+         1. The old tooltip was an absolutely-positioned child of the tree's scroll container.
+            Setting `overflow-x: auto` makes the browser compute `overflow-y` to `auto` as well
+            (per spec, `visible` can't pair with a scrolling value), so that container clipped
+            tooltips vertically — the top row's tooltips were cut off no matter how they were
+            positioned. The scroll container is gone entirely now (the outer flex row in
+            talent-selector.blade.php already provides one shared horizontal scrollbar; this
+            inner one was both redundant and the clipping culprit).
+         2. It was hardcoded `bottom-full` (always upward) and horizontally centred, so an
+            edge node's tooltip ran off the side or the top with nothing to flip it back.
+         `position: fixed` escapes ancestor overflow clipping entirely, and show() below clamps
+         to the viewport on both axes and flips above/below as space allows. Safe to use fixed
+         here specifically because nothing on this element's ancestor chain sets transform /
+         filter / backdrop-filter (any of which would make it a containing block and re-trap the
+         tooltip) — the per-node wrappers DO set a transform, which is exactly why the tooltip
+         lives out here at tree level rather than inside them. --}}
+    <div x-data="{
+            tip: null,
+            tipX: -9999,
+            tipY: -9999,
+            show(el) {
+                this.tip = {
+                    name: el.dataset.tipName,
+                    rank: el.dataset.tipRank,
+                    locked: el.dataset.tipLocked === '1',
+                    desc: el.dataset.tipDesc,
+                };
+                this.$nextTick(() => {
+                    const t = this.$refs.tip;
+                    if (!t) return;
+                    const r = el.getBoundingClientRect();
+                    const w = t.offsetWidth;
+                    const h = t.offsetHeight;
+                    let x = r.left + r.width / 2 - w / 2;
+                    let y = r.top - h - 8;
+                    if (y < 8) y = r.bottom + 8;
+                    this.tipX = Math.max(8, Math.min(x, window.innerWidth - w - 8));
+                    this.tipY = Math.max(8, Math.min(y, window.innerHeight - h - 8));
+                });
+            },
+            hide() { this.tip = null; },
+         }">
         <p class="text-[11px] font-semibold text-ink-muted uppercase tracking-wide mb-2">
             {{ $label }}
             <span class="text-ink-subtle normal-case font-normal">— {{ $pointsSpent }} point{{ $pointsSpent === 1 ? '' : 's' }} spent</span>
         </p>
-        <div class="bg-surface-2/40 border border-line rounded-lg overflow-x-auto">
+        <div class="bg-surface-2/40 border border-line rounded-lg">
             <div class="relative" style="width: {{ $containerWidth }}px; height: {{ $containerHeight }}px;">
                 <svg class="absolute inset-0" width="{{ $containerWidth }}" height="{{ $containerHeight }}">
                     <defs>
@@ -136,7 +238,7 @@
                     @endforeach
                 </svg>
 
-                @foreach ($nodes as $node)
+                @foreach ($renderNodes as $node)
                     @php
                         $pos = $posById[$node->id];
                         $entries = $node->entries->filter(fn ($e) => $e->spell);
@@ -148,32 +250,40 @@
                         $isLocked = $chosenEntryId === null && $this->isNodeLocked($node);
                         $lockedClasses = 'border-line-strong grayscale opacity-20 cursor-not-allowed pointer-events-none';
                     @endphp
-                    @continue($entries->isEmpty())
+                    {{-- No @continue for entry-less nodes here any more: $renderNodes already
+                         excludes them, and having the skip live separately from the sizing pass
+                         is exactly what caused the dead-column bug this partial was fixed for. --}}
                     <div class="absolute -translate-x-1/2 -translate-y-1/2 z-10" style="left: {{ $pos['left'] }}px; top: {{ $pos['top'] }}px;">
                         @if ($node->type === 'CHOICE' && $entries->count() > 1)
                             {{-- Mutually-exclusive options in one slot — clicking either calls the
                                  normal toggleEntry(), which already replaces whichever was
                                  previously chosen for this node (see its own docblock). --}}
-                            <div class="flex gap-1 bg-surface-1 border border-line-strong rounded-lg p-1">
+                            {{-- gap-0.5/p-0.5 + w-6 icons keep the whole pair at 56px so it fits
+                                 inside one 60px cell — see the $cellW note above; the previous
+                                 gap-1/p-1 + w-7 combination came to 70px and visibly overlapped
+                                 both neighbouring cells. --}}
+                            <div class="flex gap-0.5 bg-surface-1 border border-line-strong rounded-lg p-0.5">
                                 @foreach ($entries as $entry)
                                     @php $isChosen = $chosenEntryId === $entry->id; @endphp
-                                    <div class="group relative">
+                                    <div class="relative"
+                                         {!! $tipAttrs($entry, null, null, $isLocked) !!}
+                                         @mouseenter="show($event.currentTarget)" @mouseleave="hide()"
+                                         @focusin="show($event.currentTarget)" @focusout="hide()">
                                         <button
                                             type="button"
                                             wire:click="toggleEntry({{ $node->id }}, {{ $entry->id }})"
                                             @disabled($isLocked)
-                                            class="rounded-full overflow-hidden border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}"
+                                            class="block rounded-full overflow-hidden border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}{{ $btnInert }}"
                                         >
-                                            <x-spell-icon :spell="$entry->spell" size="w-7 h-7"/>
+                                            <x-spell-icon :spell="$entry->spell" size="w-6 h-6"/>
                                         </button>
                                         @if ($isChosen)
-                                            <span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-gold flex items-center justify-center ring-2 ring-surface-1">
-                                                <svg class="w-2 h-2 text-surface-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                            <span class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-gold flex items-center justify-center ring-2 ring-surface-1">
+                                                <svg class="w-1.5 h-1.5 text-surface-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                             </span>
                                         @elseif ($isLocked)
                                             @include('livewire.partials.talent-lock-badge')
                                         @endif
-                                        @include('livewire.partials.talent-tooltip', ['entry' => $entry, 'rank' => null, 'maxRanks' => null, 'locked' => $isLocked])
                                     </div>
                                 @endforeach
                             </div>
@@ -187,8 +297,11 @@
                                 $currentEntry = $entries->first(fn ($e) => $e->id === $chosenEntryId) ?? $entries->sortBy('rank')->first();
                                 $currentRank = $currentEntry?->id === $chosenEntryId ? $currentEntry->rank : 0;
                             @endphp
-                            <div class="group relative flex flex-col items-center gap-0.5">
-                                <button type="button" wire:click="cycleNode({{ $node->id }})" @disabled($isLocked) class="flex flex-col items-center gap-0.5">
+                            <div class="relative flex flex-col items-center gap-0.5"
+                                 {!! $tipAttrs($currentEntry, $currentRank, $node->max_ranks, $isLocked) !!}
+                                 @mouseenter="show($event.currentTarget)" @mouseleave="hide()"
+                                 @focusin="show($event.currentTarget)" @focusout="hide()">
+                                <button type="button" wire:click="cycleNode({{ $node->id }})" @disabled($isLocked) class="flex flex-col items-center gap-0.5{{ $btnInert }}">
                                     <span class="block rounded-full overflow-hidden border transition {{ $currentRank > 0 ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}">
                                         <x-spell-icon :spell="$currentEntry->spell" size="w-8 h-8"/>
                                     </span>
@@ -205,16 +318,18 @@
                                 @elseif ($isLocked)
                                     @include('livewire.partials.talent-lock-badge')
                                 @endif
-                                @include('livewire.partials.talent-tooltip', ['entry' => $currentEntry, 'rank' => $currentRank, 'maxRanks' => $node->max_ranks, 'locked' => $isLocked])
                             </div>
                         @else
                             @php $entry = $entries->first(); $isChosen = $chosenEntryId === $entry->id; @endphp
-                            <div class="group relative">
+                            <div class="relative"
+                                 {!! $tipAttrs($entry, null, null, $isLocked) !!}
+                                 @mouseenter="show($event.currentTarget)" @mouseleave="hide()"
+                                 @focusin="show($event.currentTarget)" @focusout="hide()">
                                 <button
                                     type="button"
                                     wire:click="toggleEntry({{ $node->id }}, {{ $entry->id }})"
                                     @disabled($isLocked)
-                                    class="block rounded-full overflow-hidden border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}"
+                                    class="block rounded-full overflow-hidden border transition {{ $isChosen ? 'border-gold ring-2 ring-gold' : ($isLocked ? $lockedClasses : 'border-line hover:border-line-strong grayscale opacity-40 hover:opacity-70 hover:grayscale-0') }}{{ $btnInert }}"
                                 >
                                     <x-spell-icon :spell="$entry->spell" size="w-8 h-8"/>
                                 </button>
@@ -225,12 +340,13 @@
                                 @elseif ($isLocked)
                                     @include('livewire.partials.talent-lock-badge')
                                 @endif
-                                @include('livewire.partials.talent-tooltip', ['entry' => $entry, 'rank' => null, 'maxRanks' => null, 'locked' => $isLocked])
                             </div>
                         @endif
                     </div>
                 @endforeach
             </div>
         </div>
+
+        @include('livewire.partials.talent-tooltip')
     </div>
 @endif

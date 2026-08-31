@@ -110,6 +110,12 @@ class PullLatestMatches extends Command
             $this->warn("Stopped short of {$target} — recent feed exhausted or --max-pages hit. Re-run later for more.");
         }
 
+        if ($new > 0) {
+            $this->newLine();
+            $this->warn('New matches landed — every live surface derived from match data (Burst Windows, mechanics, Crowd Control, Class Guide) is now stale until you refresh it. Run:');
+            $this->line('  php artisan wow:refresh-match-derived');
+        }
+
         return self::SUCCESS;
     }
 }

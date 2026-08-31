@@ -82,6 +82,36 @@ class FindCcChains extends Command
      */
     private const HARD_CC_CATEGORIES = ['Stun', 'Silence', 'Incapacitate', 'Disorient'];
 
+    /**
+     * Spells that carry a real `dr_category` (for WowComps' Synergies tab / talent-visibility
+     * purposes) but must NEVER be treated as an independent real CC event in THIS chain-builder,
+     * because a separate, dedicated spell_id already and always accurately captures the real
+     * triggered event — counting both double-reports one real cast as two chain steps, or worse,
+     * counts a non-triggering cast as if it landed CC at all.
+     *
+     * CORRECTED 2026-08-31, same-day follow-up to the first attempt at this exact report ("you
+     * cant be silenced more than 4.5s in a row without going on dr") — the first fix (capping
+     * spell_id 703's own raw duration to its curated pvp_duration_seconds) treated a symptom, not
+     * the cause, and was REMOVED once the real mechanism was found by reading real raw timestamps
+     * from an actual chain, not just the durations: Garrote (703, the bleed — "causing X Bleed
+     * damage over 18 sec. Silences the target for [duration] when used from Stealth") and
+     * "Garrote - Silence" (1330, a genuinely separate, clean spell — "Silences an enemy for
+     * $d", no bleed conflation, its own correct duration_seconds=5.00/pvp_duration_seconds=3.0)
+     * fire from the SAME real cast within 0.01-0.02s of each other whenever the silence actually
+     * triggers. Worse: a Garrote cast NOT from Stealth produces 703 with NO adjacent 1330 at all
+     * — confirmed directly in the same real chain (the very first Garrote step had no matching
+     * Garrote - Silence nearby) — meaning that cast produced zero real silence, yet 703's own
+     * aura was still being counted as a full CC application either way. Excluding 703 here (while
+     * 1330 keeps its own dr_category and gets scanned normally) fixes both problems at once: no
+     * double-counting when the silence does trigger, and no phantom CC when it doesn't. WowComps'
+     * Synergies tab is untouched — 703's own dr_category classification stays exactly as it was,
+     * this list only narrows what THIS command's chain-building treats as a real observed event.
+     *
+     * Same "verify one exception at a time by reading the spell's own real data, don't bulk-
+     * derive" discipline as baseline-spec-overrides.txt elsewhere in this project.
+     */
+    private const CC_CHAIN_EXCLUDED_SPELL_IDS = [703]; // Garrote — see "Garrote - Silence" (1330) instead
+
     protected $signature = 'wow:find-cc-chains
         {--gap=2.0 : Max seconds between one CC ending and the next starting to still count as one continuous chain}
         {--min-abilities=2 : Minimum CC applications a merged window must have to be reported as a chain}
@@ -104,12 +134,18 @@ class FindCcChains extends Command
         // spell_id => dr_category, the same already-curated CC definition used everywhere else
         // in this project (CcChainBuilder, WowComps' Synergies tab, analyzeKillCausally()) —
         // narrowed to the 4 hard-CC categories by default, see HARD_CC_CATEGORIES' docblock.
+        // CC_CHAIN_EXCLUDED_SPELL_IDS is filtered out here specifically (not from $ccSpells
+        // itself, which still feeds $namesBySpellId/display in case it's referenced elsewhere) —
+        // see that constant's own docblock for why Garrote's own aura must never be treated as
+        // an independent real CC event in this command specifically.
         $includeUtility = (bool) $this->option('include-utility');
         $ccSpells = Spell::where('patch_id', $patch->id)
             ->whereNotNull('dr_category')
             ->when(!$includeUtility, fn ($q) => $q->whereIn('dr_category', self::HARD_CC_CATEGORIES))
             ->get();
-        $ccByCategory = $ccSpells->pluck('dr_category', 'spell_id')->all();
+        $ccByCategory = $ccSpells
+            ->reject(fn (Spell $s) => in_array($s->spell_id, self::CC_CHAIN_EXCLUDED_SPELL_IDS, true))
+            ->pluck('dr_category', 'spell_id')->all();
 
         // Real English ability name from our own spells table, keyed by spell_id — NOT the raw
         // combat-log text captured per match (which reflects whatever locale that specific
@@ -247,7 +283,8 @@ class FindCcChains extends Command
      * mergeIntoChains()'s job, kept separate so the gap-tolerance rule stays in one place.
      *
      * @param  array<string, array<string, mixed>>  $roster
-     * @param  array<int, string>  $ccByCategory  spell_id => dr_category
+     * @param  array<int, string>  $ccByCategory  spell_id => dr_category (already excludes
+     *   CC_CHAIN_EXCLUDED_SPELL_IDS — see that constant's own docblock)
      * @param  array<int, string>  $namesBySpellId  spell_id => real English display name
      * @return array<string, array<int, array{start: float, end: float, name: string, spellId: int, drCategory: string, source: string}>>
      */
@@ -301,9 +338,12 @@ class FindCcChains extends Command
             }
 
             if ($event === 'SPELL_AURA_REMOVED' && isset($openWindows[$key])) {
+                $start = $openWindows[$key];
+                $end = $this->parseTimestamp($m[1]);
+
                 $intervalsByHealer[$dest][] = [
-                    'start' => $openWindows[$key],
-                    'end' => $this->parseTimestamp($m[1]),
+                    'start' => $start,
+                    'end' => $end,
                     'name' => $namesBySpellId[$spellId] ?? $m[6],
                     'spellId' => $spellId,
                     'drCategory' => $ccByCategory[$spellId],

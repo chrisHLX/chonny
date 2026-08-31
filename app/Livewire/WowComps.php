@@ -88,6 +88,67 @@ class WowComps extends Component
      */
 
     /**
+     * A second, tighter floor added on top of the above (2026-08-31, direct request): the
+     * arena-log classification answers "is this real offensive/defensive activity," not "is
+     * this a cooldown in the traditional sense" — plenty of sub-25s rotational fillers
+     * (Judgment, Conflagrate, Blade Dance, Penance, Wild Growth, ...) qualified as
+     * offensive/defensive and read as confusing clutter on their respective tabs. 25s was
+     * chosen for the Offensive tab first, by auditing every currently-shown offensive entry
+     * across all specs and checking two real boundary cases directly: Secret Technique
+     * (Subtlety Rogue) computes to exactly 25s and clears it; Discipline Priest's Mind Blast
+     * computes to 28s and clears it (its Shadow Priest namesake, by contrast, is a genuinely
+     * different, much shorter 9s ability — not the same case, confirmed by checking both
+     * separately). A 30s floor was considered and rejected specifically because it would have
+     * excluded that real Mind Blast. The same 25s floor was then applied to the Defensive tab
+     * the same day, after an identical audit-and-confirm pass — see
+     * DEFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS below for that tab's own boundary cases (Feint,
+     * Demon Spikes, Fade all landed under 25s despite being real defensive cooldowns, not
+     * filler — a smaller, differently-shaped exception set than the offensive tab's, since
+     * defensive cooldowns in this game's actual design tend to run shorter than offensive
+     * burst cooldowns; only 25 of 188 defensive-priority entries fell under 25s at all,
+     * against 69 of 218 on the offensive side).
+     */
+    public const MIN_COOLDOWN_TAB_SECONDS = 25;
+
+    /**
+     * Named, reviewed exceptions to MIN_COOLDOWN_TAB_SECONDS for the Offensive tab — spell_ids
+     * that clear a lower bar because they were individually confirmed to be real cooldown-
+     * window tools, not rotational filler, despite landing just under the general floor. Added
+     * 2026-08-31 after confirming (via a fresh audit re-run) that these are the ONLY two
+     * offensive-priority entries anywhere in the [24, 25) band across all 39 specs — a blanket
+     * 24s floor would currently produce an identical result to this list, but was rejected in
+     * favor of this: a coincidental future ability landing at 24s (a new hero talent, a patch
+     * rebalance) should never silently clear the bar unreviewed just because the number happens
+     * to work today. Same "verify one at a time, hand-curate, never bulk-derive" discipline this
+     * project already applies to baseline-ability visibility and DR-category tagging
+     * elsewhere — see CLAUDE.md's "Baseline ability display" section for the fuller precedent.
+     * Each entry names the spell_id used, not the display name, to avoid the same-name-
+     * duplicate-copy ambiguity documented throughout this codebase (e.g. Mind Blast above).
+     */
+    public const OFFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS = [
+        258920 => 'Immolation Aura (Havoc Demon Hunter, 24s) — pairs with Metamorphosis/Eye Beam bursts, a real cooldown-window tool, not filler.',
+        113656 => 'Fists of Fury (Windwalker Monk, 24s) — Windwalker\'s channeled burst piece, paired with Storm/Earth/Fire or Serenity. Mixed classification (real signals for both offense and defense), so it needs an entry here too, not just in the defensive list below — see that entry for the same reasoning applied to the Defensive tab.',
+    ];
+
+    /**
+     * Named, reviewed exceptions to MIN_COOLDOWN_TAB_SECONDS for the Defensive tab — same
+     * discipline as OFFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS above, reviewed independently rather
+     * than assumed to mirror it (a spell's defensive value doesn't have to track its offensive
+     * value). Feint/Demon Spikes/Fade are all genuine "press this to reduce damage taken"
+     * cooldowns, not the routine-healing-spell filler (Penance, Wild Growth, Prayer of Mending,
+     * ...) that made up most of the sub-25s defensive-priority list. Confirmed borderline cases
+     * deliberately left OUT: Blink and Chi Torpedo get used defensively (repositioning out of
+     * danger) but aren't damage-mitigation tools the way these three are; Swiftmend is a big
+     * heal used often enough to read as routine rather than a dedicated cooldown.
+     */
+    public const DEFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS = [
+        1966 => 'Feint (Rogue, all specs, 15s) — a real AoE damage-reduction cooldown, not the utility-poison-adjacent filler most of this tab\'s sub-25s entries are.',
+        203720 => 'Demon Spikes (Vengeance Demon Hunter, 20s) — Vengeance\'s signature damage-reduction cooldown.',
+        586 => 'Fade (Priest, all specs, 20s) — a real damage-reduction/threat-drop cooldown, commonly treated as a genuine defensive tool despite the short base cooldown.',
+        113656 => 'Fists of Fury (Windwalker Monk, 24s) — same ability and same reasoning as its entry in OFFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS above (Mixed classification, appears on both tabs).',
+    ];
+
+    /**
      * Named starter comps shown as one-click "Common picks" buttons under the slot pickers
      * (getPresetsProperty() resolves these to real specs for the blade; applyPreset() loads one).
      * These are a genuine user action — applyPreset() routes each slot through selectSpec() so it
@@ -326,14 +387,35 @@ class WowComps extends Component
         $defaultBuild = $build->exists ? $build : null;
         $buildStamp = $defaultBuild ? "{$defaultBuild->id}:{$defaultBuild->updated_at?->timestamp}" : 'none';
         $version = $talentService->spellCacheVersion();
+        // Automatically busts this cache on every real deploy — see
+        // TalentSelectionService::deployedCodeFingerprint()'s own docblock for the full
+        // incident this closes (2026-08-31).
+        $codeFingerprint = $talentService->deployedCodeFingerprint();
 
         $this->ensureMemoryHeadroom();
 
-        return Cache::remember(
-            "wow_spell_references:spec:{$spec->id}:build:{$buildStamp}:v{$version}",
-            now()->addHours(6),
-            fn () => $this->computeSpellReferencesFor($spec, $service, $talentService, $defaultBuild)
-        );
+        $cacheKey = "wow_spell_references:spec:{$spec->id}:build:{$buildStamp}:v{$version}:{$codeFingerprint}";
+
+        // Manual get/validate/put instead of Cache::remember() — a plain remember() would trust
+        // whatever's already sitting under this key without question. spellReferencesCacheIsValid()
+        // is the second layer of defense from the same 2026-08-31 fix: even a malformed entry
+        // that somehow slips past the fingerprint above (a crashed write, manual tampering) gets
+        // treated as a miss and recomputed, instead of being handed to the blade template to
+        // crash on.
+        $cached = Cache::get($cacheKey);
+
+        // requireEnrichedModifiers=true — this page's "Modifies / Enhances" accordion reads
+        // each modifier's own 'cooldown' key (via enrichModifiers()); see
+        // spellReferencesCacheIsValid()'s own docblock for why this must NOT default true for
+        // every caller.
+        if ($service->spellReferencesCacheIsValid($cached, requireEnrichedModifiers: true)) {
+            return $cached;
+        }
+
+        $result = $this->computeSpellReferencesFor($spec, $service, $talentService, $defaultBuild);
+        Cache::put($cacheKey, $result, now()->addHours(6));
+
+        return $result;
     }
 
     /**
@@ -765,6 +847,9 @@ class WowComps extends Component
 
         $talentService = app(TalentSelectionService::class);
         $version = $talentService->spellCacheVersion();
+        // Same automatic deploy-triggered cache-bust as spellReferencesFor() — see
+        // TalentSelectionService::deployedCodeFingerprint()'s docblock.
+        $codeFingerprint = $talentService->deployedCodeFingerprint();
 
         $buildStamps = $selectedMembers->map(function ($member) use ($talentService) {
             $build = $talentService->resolveActiveBuild(auth()->user(), $member['spec']->id);
@@ -773,7 +858,7 @@ class WowComps extends Component
         })->implode('|');
 
         return Cache::remember(
-            "wow_cc_formula:{$buildStamps}:v{$version}",
+            "wow_cc_formula:{$buildStamps}:v{$version}:{$codeFingerprint}",
             now()->addHours(6),
             fn () => app(CcFormulaService::class)->buildChainFromComp($selectedMembers->all())
         );

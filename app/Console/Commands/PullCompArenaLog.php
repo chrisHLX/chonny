@@ -23,6 +23,10 @@ use Illuminate\Console\Command;
  * Usage:
  *   php artisan wow:pull-comp-log 256,64,261
  *   php artisan wow:pull-comp-log 256,64,261 --bracket=3v3 --count=50
+ *
+ * Any new matches this adds to the archive leave every match-derived live surface (Burst
+ * Windows, mechanics, Crowd Control, Class Guide) stale until refreshed — run
+ * `php artisan wow:refresh-match-derived` afterward. See that command's own docblock.
  */
 class PullCompArenaLog extends Command
 {

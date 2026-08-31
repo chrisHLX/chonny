@@ -95,6 +95,49 @@ class TalentSelectionService
     }
 
     /**
+     * An automatic, deploy-triggered second half of the wow_spell_references cache key,
+     * folded in alongside spellCacheVersion() by every caller (WowComps/SpellExplorer) — added
+     * 2026-08-31 after a real production incident (see DEPLOY.md's "Incident: 2026-08-28"
+     * writeup) where spellCacheVersion() alone wasn't enough: production's `opcache.
+     * validate_timestamps=Off` meant PHP-FPM kept executing old, pre-fix bytecode after a `git
+     * pull` landed new code, until the process was manually restarted. A "fresh" computation
+     * during that gap was still done by stale code, and wrote a bad cache entry under
+     * whatever version number was current at the time — bumping the version afterward doesn't
+     * retroactively fix an entry already sitting under that version.
+     *
+     * This closes the gap structurally rather than relying on a human remembering to bump
+     * anything for a *code* change (spellCacheVersion() stays exactly as it was — the right
+     * tool for *data* changes with no code deploy involved, e.g. import:spelldata, an admin
+     * default-build edit). deploy.sh writes the just-deployed commit's short SHA into
+     * storage/app/deployed-commit.txt as its LAST step, strictly after PHP-FPM has already been
+     * restarted — so this fingerprint only ever changes to a new value once the process
+     * serving requests is guaranteed to be running the code that fingerprint actually
+     * describes. A stale-bytecode computation during the deploy window itself still uses the
+     * OLD fingerprint (safe — that's the same fingerprint old code was already using before
+     * this deploy started, so it can't collide with anything the new code will ever compute
+     * under the new fingerprint).
+     *
+     * Falls back to the literal string 'dev' when the file doesn't exist — local development,
+     * where nothing ever runs deploy.sh. This is harmless: local dev doesn't have production's
+     * OPcache-staleness risk in the first place (opcache is typically disabled or
+     * validate_timestamps=On locally), so a constant fallback that never busts the cache on its
+     * own is the correct, no-op behavior there — spellCacheVersion() alone still works exactly
+     * as before for local testing.
+     */
+    public function deployedCodeFingerprint(): string
+    {
+        $path = storage_path('app/deployed-commit.txt');
+
+        if (!File::exists($path)) {
+            return 'dev';
+        }
+
+        $contents = trim(File::get($path));
+
+        return $contents !== '' ? $contents : 'dev';
+    }
+
+    /**
      * Resolution order: the user's own saved build for this spec, else the admin-curated
      * default (is_default = true) for this spec+patch, else an unsaved in-memory TalentBuild
      * with no choices — callers fall back to base/unmodified spell data in that case, same as
@@ -618,14 +661,43 @@ class TalentSelectionService
      * when present (it reflects the actual chosen talent, the strongest signal), else lowest
      * spell_id, same deterministic fallback as alwaysAvailableAbilityIds().
      *
+     * **Fixed 2026-09-01, a real and confirmed bug in the "prefer selected" rule above:**
+     * "selected" doesn't always mean "this copy is the real, castable spell." Found via 6
+     * confirmed cases (Hammer of Wrath, Dire Beast, Stormstream Totem, Void Blast, Rushing Wind
+     * Kick, and their equivalents on other specs) where a REAL talent node's own spell_id
+     * happens to point at a hidden internal record — Blizzard's own data literally names it
+     * identically to a real, separate, always-available active spell, but the record itself is
+     * a passive modifier/proc description (`is_passive=true` and/or `not_in_spellbook=true` in
+     * every confirmed case), not something a player presses. Since the talent node genuinely IS
+     * selected in the build, the old logic correctly-per-its-own-rule picked that hidden record
+     * over the real spell — silently hiding the actual ability behind its own talent's internal
+     * description record. This is a different failure shape from the "duplicate copy of the
+     * same real spell" case this method was originally built for (e.g. Secret Technique, where
+     * every candidate copy is already `is_passive=false`) — not a sort-order tiebreak problem,
+     * a genuinely wrong candidate winning.
+     *
+     * Fix: narrow each group to its "visible, castable" candidates (`is_passive=false` AND
+     * `not_in_spellbook=false`) BEFORE applying the selected/lowest-spell_id preference, falling
+     * back to the full original group only when no such candidate exists (preserves correct
+     * behavior for a name that's genuinely passive-only, e.g. most of the Buffs & Passives
+     * tab — no candidate is excluded there, so nothing changes for those). Verified this doesn't
+     * regress the original Secret Technique case: every one of its 10 duplicate copies is
+     * already `is_passive=false`, so the narrowing step is a no-op for it and the existing
+     * selected/lowest-spell_id logic runs unchanged.
+     *
      * @param  Collection<int, Spell>  $spells
      * @return Collection<int, Spell>
      */
     public function preferSelectedPerName(Collection $spells, Collection $selectedSpellIds): Collection
     {
         return $spells->groupBy('name')
-            ->map(fn (Collection $group) => $group->first(fn (Spell $s) => $selectedSpellIds->contains($s->id))
-                ?? $group->sortBy('spell_id')->first())
+            ->map(function (Collection $group) use ($selectedSpellIds) {
+                $visible = $group->filter(fn (Spell $s) => !$s->is_passive && !$s->not_in_spellbook);
+                $candidates = $visible->isNotEmpty() ? $visible : $group;
+
+                return $candidates->first(fn (Spell $s) => $selectedSpellIds->contains($s->id))
+                    ?? $candidates->sortBy('spell_id')->first();
+            })
             ->values();
     }
 

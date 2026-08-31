@@ -77,7 +77,12 @@ class PlayerMatchAnalysisService
                 'id' => $matchId,
                 'durationSec' => $meta['durationInSeconds'] ?? $log['endT'],
                 'result' => $meta['result'] ?? null,
-                'player' => $player['name'],
+                // Deliberately no real character name here (removed 2026-08-31, direct
+                // instruction, same fix already applied to Burst Windows' mechanics card —
+                // "just track the class and specs") — this is a public page, and class/spec is
+                // the only fact this feature needs. wow:analyze-player / this command's own CLI
+                // output still print the real name to the console for the operator running it;
+                // only the persisted/rendered field is affected.
                 'spec' => $spec ? "{$spec->gameClass?->name} / {$spec->name}" : "spec {$player['specExternalId']}",
                 'roster' => $this->rosterFor($meta, $player),
             ],

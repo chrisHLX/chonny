@@ -22,6 +22,10 @@ use Illuminate\Console\Command;
  * Usage:
  *   php artisan wow:pull-low-rated-spec demonhunter havoc
  *   php artisan wow:pull-low-rated-spec demonhunter havoc --max-rating=2000 --top=15 --pages=8
+ *
+ * Any new matches this adds to the archive leave every match-derived live surface (Burst
+ * Windows, mechanics, Crowd Control, Class Guide) stale until refreshed — run
+ * `php artisan wow:refresh-match-derived` afterward. See that command's own docblock.
  */
 class PullLowRatedSpec extends Command
 {

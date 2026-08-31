@@ -90,12 +90,14 @@
                         @php
                             $spell = $entry['spell'];
                             $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
-                            $cooldown = $entry['cooldown'];
+                            // Defensive `?? [...]` fallback shape — see the identical note in
+                            // wow-comps.blade.php for why (a real production incident, 2026-08-31 fix).
+                            $cooldown = $entry['cooldown'] ?? ['seconds' => null, 'base_seconds' => null, 'applied' => collect()];
                             $cooldownDisplay = $cooldown['seconds'] !== null ? $fmtSeconds($cooldown['seconds']) : null;
                             $cooldownChanged = $cooldown['seconds'] !== null
                                 && $cooldown['base_seconds'] !== null
                                 && round($cooldown['seconds'], 2) !== round($cooldown['base_seconds'], 2);
-                            $charges = $entry['charges'];
+                            $charges = $entry['charges'] ?? ['charges' => null, 'base_charges' => null, 'applied' => collect()];
                             $chargesChanged = $charges['charges'] !== null
                                 && $charges['base_charges'] !== null
                                 && $charges['charges'] !== $charges['base_charges'];

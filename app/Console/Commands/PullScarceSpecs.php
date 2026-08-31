@@ -51,6 +51,10 @@ use Illuminate\Support\Facades\File;
  * which spec was targeted) if/when tanks actually get played in this bracket.
  *
  * Usage: php artisan wow:pull-scarce-specs --min-count=8 --top=5 --pages=4
+ *
+ * Any new matches this adds to the archive leave every match-derived live surface (Burst
+ * Windows, mechanics, Crowd Control, Class Guide) stale until refreshed — run
+ * `php artisan wow:refresh-match-derived` afterward. See that command's own docblock.
  */
 class PullScarceSpecs extends Command
 {

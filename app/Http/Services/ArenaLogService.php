@@ -684,6 +684,170 @@ class ArenaLogService
     }
 
     /**
+     * Enriches ONE specific real burst window (the "Peak Burst Example" a rotation.json carries
+     * per length bracket) with what was actually happening around it that its own cast sequence
+     * alone doesn't show — added 2026-08-29, replacing an earlier attempt (findMechanicsInWindow()
+     * + wow:record-important-mechanics, both removed the same day) that tried to answer this with
+     * a FREQUENCY-RANKED AGGREGATE across many different windows/matches/targets instead. Direct
+     * correction: "the window was only ever recorded with one target and one specific example" —
+     * so this re-opens that exact match and computes real facts for that exact moment, using the
+     * matchId/guid/start/end/targetGuid the window is already recorded with (see
+     * offensive-rotations.php's export section — those fields used to get stripped before export
+     * the same way matchId/guid once did, until wow:enrich-rotation-talents needed them; extended
+     * the same way here).
+     *
+     * Four categories — same self/target x buff/debuff split already proven in wow-arena-
+     * archive's compare-player-windows.php (activeBuffsAtWindowStart()/activeBuffsOnTarget()/
+     * activeDebuffsAppliedByAttacker()), extended per direct instruction (2026-08-29):
+     *   - championBuffs   — self-buffs the attacker has active at window start (source=dest=
+     *                       attacker, BUFF). Same as the old activeBuffsAtWindowStart().
+     *   - championDebuffs — debuffs on the attacker, but ONLY from an enemy-team source — "what
+     *                       real pressure was this player under," not any self-inflicted
+     *                       drawback of their own kit (direct instruction: enemy-sourced only).
+     *   - targetBuffs     — the target's own active defensive/proc state (source=anyone,
+     *                       dest=target, BUFF). Same as the old activeBuffsOnTarget().
+     *   - targetDebuffs   — debuffs on the target from ANYONE ON THE ATTACKER'S OWN TEAM, not
+     *                       just the analyzed player (direct instruction: "whole team" — this
+     *                       widens the old activeDebuffsAppliedByAttacker(), which was scoped to
+     *                       the analyzed player alone, to capture what the whole team set up).
+     *
+     * Each category returns raw {spellId, name} pairs (name = the raw log's own fallback text,
+     * not yet DB-resolved) — callers resolve real Spell models via resolveWindowSteps(), same as
+     * every other consumer of this shape in this codebase.
+     *
+     * Deliberately does NOT resolve or return the target's real character name (removed
+     * 2026-08-31, direct instruction — "just track the class and specs") — only `targetGuid`
+     * (an opaque internal WoW identifier, needed to re-open this exact match on a future
+     * re-enrichment run, never rendered anywhere) and `targetSpecExternalId` (resolved to
+     * class/spec by the caller) are kept. Real player identities have no reason to be persisted
+     * or displayed here — class/spec is the only fact this feature actually needs.
+     *
+     * @return array{targetGuid: ?string, targetSpecExternalId: ?int, championBuffs: array<int, array{spellId: int, name: string}>, championDebuffs: array<int, array{spellId: int, name: string}>, targetBuffs: array<int, array{spellId: int, name: string}>, targetDebuffs: array<int, array{spellId: int, name: string}>}|null
+     */
+    public function enrichBurstWindow(string $matchId, string $attackerGuid, ?string $targetGuid, float $windowStart): ?array
+    {
+        $rawPath = $this->rawLogPath($matchId);
+        $metaPath = $this->metadataPath($matchId);
+
+        if (!File::exists($rawPath) || !File::exists($metaPath)) {
+            return null;
+        }
+
+        $raw = gzdecode(File::get($rawPath));
+
+        if ($raw === false) {
+            return null;
+        }
+
+        $meta = json_decode(File::get($metaPath), true);
+
+        $teamByGuid = [];
+        $specExternalByGuid = [];
+
+        foreach ($meta['units'] ?? [] as $u) {
+            if (!str_starts_with($u['id'] ?? '', 'Player-')) {
+                continue;
+            }
+
+            $teamByGuid[$u['id']] = $u['reaction'];
+            $specExternalByGuid[$u['id']] = (int) ($u['spec'] ?? 0);
+        }
+
+        $attackerTeam = $teamByGuid[$attackerGuid] ?? null;
+
+        // Unrestricted source, same as targetBuffs below — a buff is unambiguously beneficial
+        // regardless of who applied it, unlike a debuff (which needs a whose-team framing to be
+        // meaningful at all). FIXED 2026-09-01: this used to require $src === $attackerGuid
+        // (self-cast only), silently dropping every ally-sourced buff — confirmed via a real
+        // match's raw log that a healer teammate's Power Word: Shield/Guardian Spirit/Prayer of
+        // Mending/Body and Soul were all continuously active on the champion going into a real
+        // burst window, none of which ever appeared in "What Was Happening" because of this
+        // filter. Re-run wow:enrich-rotation-mechanics (or wow:refresh-match-derived) after this
+        // change to regenerate every spec's already-embedded mechanics data with the fix applied.
+        $championBuffs = $this->activeAurasAt($raw, $attackerGuid, $windowStart, 'BUFF', fn (string $src) => true);
+        $championDebuffs = $this->activeAurasAt($raw, $attackerGuid, $windowStart, 'DEBUFF', fn (string $src) => isset($teamByGuid[$src]) && $teamByGuid[$src] !== $attackerTeam);
+
+        $targetBuffs = [];
+        $targetDebuffs = [];
+
+        if ($targetGuid !== null) {
+            $targetBuffs = $this->activeAurasAt($raw, $targetGuid, $windowStart, 'BUFF', fn (string $src) => true);
+            $targetDebuffs = $this->activeAurasAt($raw, $targetGuid, $windowStart, 'DEBUFF', fn (string $src) => isset($teamByGuid[$src]) && $teamByGuid[$src] === $attackerTeam);
+        }
+
+        return [
+            'targetGuid' => $targetGuid,
+            'targetSpecExternalId' => $targetGuid !== null ? ($specExternalByGuid[$targetGuid] ?? null) : null,
+            'championBuffs' => $championBuffs,
+            'championDebuffs' => $championDebuffs,
+            'targetBuffs' => $targetBuffs,
+            'targetDebuffs' => $targetDebuffs,
+        ];
+    }
+
+    /**
+     * Shared state-machine engine behind enrichBurstWindow()'s four categories — "what auras of
+     * $auraType were active on $destGuid at $windowStart, from a source $sourceFilter accepts."
+     * Only a plain (non-dose) SPELL_AURA_APPLIED establishes tracking — a _DOSE line's trailing
+     * field is a stack count, not a BUFF/DEBUFF label, so it can never safely start tracking
+     * something on its own (ported discipline from wow-arena-archive's activeBuffsOnTarget()/
+     * activeDebuffsAppliedByAttacker(), which this generalizes: those were two near-identical
+     * copies differing only in source/dest/aura-type filtering — one shared engine here instead).
+     *
+     * The BUFF/DEBUFF check is a real trap, not a formality: "BUFF" is a literal substring of
+     * "DEBUFF", so a naive str_contains($lineAuraType, 'BUFF') would also match every debuff
+     * line. Checked explicitly both ways instead.
+     *
+     * @param  callable(string): bool  $sourceFilter
+     * @return array<int, array{spellId: int, name: string}>
+     */
+    private function activeAurasAt(string $raw, string $destGuid, float $windowStart, string $auraType, callable $sourceFilter): array
+    {
+        $state = [];
+
+        foreach (explode("\n", $raw) as $line) {
+            if (!str_contains($line, $destGuid)) {
+                continue;
+            }
+
+            if (!preg_match('/^([\d\/: .-]+)\s+(SPELL_AURA_APPLIED(?:_DOSE)?|SPELL_AURA_REMOVED(?:_DOSE)?),(Player-[^,]+),"[^"]*",[^,]*,[^,]*,(Player-[^,]+),/', $line, $m)) {
+                continue;
+            }
+
+            if ($m[4] !== $destGuid || !$sourceFilter($m[3])) {
+                continue;
+            }
+
+            $ts = $this->parseLogTimestamp($m[1]);
+
+            if ($ts > $windowStart) {
+                continue;
+            }
+
+            $eventType = $m[2];
+            $fields = explode(',', $line);
+            $spellId = (int) ($fields[9] ?? 0);
+            $spellName = trim($fields[10] ?? '', '"');
+
+            if ($eventType === 'SPELL_AURA_APPLIED') {
+                $isDebuffLine = str_contains(trim(end($fields)), 'DEBUFF');
+
+                if (($auraType === 'BUFF' && $isDebuffLine) || ($auraType === 'DEBUFF' && !$isDebuffLine)) {
+                    continue;
+                }
+
+                $state[$spellId] = ['spellId' => $spellId, 'name' => $spellName];
+            } elseif ($eventType === 'SPELL_AURA_REMOVED') {
+                unset($state[$spellId]);
+            }
+            // SPELL_AURA_APPLIED_DOSE / SPELL_AURA_REMOVED_DOSE: stack changed on an
+            // already-tracked aura — no state change, presence (not stack count) is what matters.
+        }
+
+        return array_values($state);
+    }
+
+    /**
      * Minimum match length (seconds) for pullHighestRatedMatchForSpec() to consider a
      * candidate. Found necessary 2026-08-14, same day as the sort-order bug: wow:discover-all-specs
      * picked an 18-second match as the "highest rated" for both Frost Mage and Arms Warrior
@@ -1138,82 +1302,6 @@ class ArenaLogService
         }
 
         return collect($ids);
-    }
-
-    /**
-     * Reads the STAGING mechanics.txt for one spec, built by
-     * `wow:record-important-mechanics --all` (see spell-acquisition-model.md's "Post-pull
-     * workflow" section). Deliberately reads `config('arena_logs.archive_path')` directly —
-     * the staging copy, not a promoted one — since this backs a review-only surface
-     * (TopDamageRotations' "Important Mechanics (Review)" block, added 2026-08-27): the whole
-     * point is letting a human look at freshly-generated, not-yet-trusted candidates before
-     * deciding whether any of it should ever inform real, reviewed content elsewhere. This is
-     * the one deliberate exception to this project's "never read the staging archive_path for
-     * anything the live app shows" rule (see config/arena_logs.php's own docblock) — the
-     * exception holds only because the block itself is plainly labeled unreviewed, the same way
-     * `Admin\CcReview` is allowed to surface bulk-applied-but-unspotchecked data.
-     *
-     * @return array{generatedAt: ?string, windowsFound: ?int, matchesScanned: ?int, windowSeconds: ?int, rows: array<int, array{spellId: int, type: string, pct: int, matchCount: int, totalWindows: int, name: string}>}|null
-     */
-    public function mechanicsForSpec(string $classSlug, string $specSlug): ?array
-    {
-        $path = config('arena_logs.archive_path')."/mechanics/{$classSlug}/{$specSlug}.txt";
-
-        if (!File::exists($path)) {
-            return null;
-        }
-
-        $generatedAt = null;
-        $windowsFound = null;
-        $matchesScanned = null;
-        $windowSeconds = null;
-        $rows = [];
-
-        foreach (File::lines($path) as $line) {
-            $line = trim($line);
-
-            if ($line === '') {
-                continue;
-            }
-
-            if (str_starts_with($line, '# generated')) {
-                if (preg_match('/# generated (\S+) — (\d+) pre-kill window\(s\) \(--window=(\d+)s\) across (\d+) scanned match\(es\)/', $line, $m)) {
-                    $generatedAt = $m[1];
-                    $windowsFound = (int) $m[2];
-                    $windowSeconds = (int) $m[3];
-                    $matchesScanned = (int) $m[4];
-                }
-
-                continue;
-            }
-
-            if (str_starts_with($line, '#')) {
-                continue;
-            }
-
-            $parts = array_map('trim', explode('|', $line, 5));
-
-            if (count($parts) !== 5 || !ctype_digit($parts[0])) {
-                continue;
-            }
-
-            [$matchCount, $totalWindows] = array_pad(explode('/', $parts[3]), 2, '0');
-
-            $rows[] = [
-                'spellId' => (int) $parts[0],
-                'type' => $parts[1],
-                'pct' => (int) rtrim($parts[2], '%'),
-                'matchCount' => (int) $matchCount,
-                'totalWindows' => (int) $totalWindows,
-                'name' => $parts[4],
-            ];
-        }
-
-        if ($rows === []) {
-            return null;
-        }
-
-        return compact('generatedAt', 'windowsFound', 'matchesScanned', 'windowSeconds', 'rows');
     }
 
     /**
@@ -1677,95 +1765,6 @@ class ArenaLogService
         }
 
         return ['matchStart' => $matchStart, 'casts' => $sequence];
-    }
-
-    /**
-     * Extends findPreKillWindow() with buff/debuff evidence, added 2026-08-27 for
-     * wow:record-important-mechanics. Same kill window, same winning players (calls
-     * findPreKillWindow() as a read-only dependency rather than duplicating its death/window
-     * logic), but additionally captures every real SPELL_AURA_APPLIED event in that window,
-     * split into two kinds: self-buffs (source=dest=player, BUFF) and debuffs the player
-     * applied directly to the actual kill target (source=player, dest=killedGuid, DEBUFF).
-     *
-     * This is the same three-signal methodology already verified in wow-arena-archive's
-     * compare-player-windows.php (activeBuffsAtWindowStart/activeBuffsOnTarget/
-     * activeDebuffsAppliedByAttacker — see that file's docblocks for the real Colossus Smash/
-     * Ancient Arts worked examples this is built on), but adapted from "what was already active
-     * at one instant" (a single-window snapshot) to "did this get applied at all during the
-     * window" (a yes/no per match) — the right shape for tallying frequency across MANY
-     * independent kill windows the way wow:common-prekill-spells already does for casts,
-     * ranking by distinct-match count rather than one window's point-in-time state.
-     *
-     * Deliberately does NOT fold into findPreKillWindow()'s own return shape or
-     * recordKillSequence()'s persisted kill-sequences.jsonl format — other code already depends
-     * on those exact shapes, and this is a distinct, separately-consumed signal.
-     *
-     * @return array{killedPlayer: string, killedSpec: ?int, players: array<int, array{guid: string, name: string, spec: int, selfBuffs: array<int, array{t: float, spellId: int, name: string}>, targetDebuffs: array<int, array{t: float, spellId: int, name: string}>}>}|null
-     */
-    public function findMechanicsInWindow(string $matchId, int $windowSeconds = 20): ?array
-    {
-        $base = $this->findPreKillWindow($matchId, $windowSeconds);
-
-        if ($base === null || $base['players'] === []) {
-            return null;
-        }
-
-        $rawPath = $this->rawLogPath($matchId);
-
-        if (!File::exists($rawPath)) {
-            return null;
-        }
-
-        $raw = gzdecode(File::get($rawPath));
-        $killTime = $base['killTime'];
-        $windowStart = $killTime - $windowSeconds;
-
-        // Recover the killed guid from the raw log's own death line — findPreKillWindow() only
-        // exposes the resolved name/spec, not the raw guid, so this repeats its exact "last
-        // death in the log wins" regex/selection to stay consistent with it.
-        preg_match_all('/^([\d\/: .-]+)\s+(?:PARTY_KILL|UNIT_DIED),[^,]*,[^,]*,[^,]*,[^,]*,(Player-[^,]+),/m', $raw, $deaths, PREG_SET_ORDER);
-        $killedGuid = $deaths !== [] ? end($deaths)[2] : null;
-
-        $players = [];
-
-        foreach ($base['players'] as $player) {
-            $g = preg_quote($player['guid'], '/');
-            $selfBuffs = [];
-            $targetDebuffs = [];
-
-            preg_match_all('/^([\d\/: .-]+)\s+SPELL_AURA_APPLIED,'.$g.',"[^"]*",[^,]*,[^,]*,(Player-[^,]+),"[^"]*",[^,]*,[^,]*,(\d+),"([^"]*)",[^,]*,(BUFF|DEBUFF)/m', $raw, $auras, PREG_SET_ORDER);
-
-            foreach ($auras as $a) {
-                $t = $this->parseLogTimestamp($a[1]);
-
-                if ($t < $windowStart || $t > $killTime) {
-                    continue;
-                }
-
-                $destGuid = $a[2];
-                $entry = ['t' => round($t - $windowStart, 2), 'spellId' => (int) $a[3], 'name' => $a[4]];
-
-                if ($a[5] === 'BUFF' && $destGuid === $player['guid']) {
-                    $selfBuffs[] = $entry;
-                } elseif ($a[5] === 'DEBUFF' && $killedGuid !== null && $destGuid === $killedGuid) {
-                    $targetDebuffs[] = $entry;
-                }
-            }
-
-            $players[] = [
-                'guid' => $player['guid'],
-                'name' => $player['name'],
-                'spec' => $player['spec'],
-                'selfBuffs' => $selfBuffs,
-                'targetDebuffs' => $targetDebuffs,
-            ];
-        }
-
-        return [
-            'killedPlayer' => $base['killedPlayer'],
-            'killedSpec' => $base['killedSpec'],
-            'players' => $players,
-        ];
     }
 
     /**

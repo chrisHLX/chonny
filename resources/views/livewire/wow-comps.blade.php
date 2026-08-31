@@ -14,9 +14,21 @@
         'Offensive' => 'badge-orange',
         'Other' => 'badge-gray',
     ];
-    $groupOrder = ['active' => 'Active Abilities', 'passive' => 'Buffs & Passives'];
+    // Buffs & Passives removed 2026-09-01 (see the tab bar's own comment for the full
+    // reasoning/measurement) — 'active' left as a single-entry map rather than restructuring
+    // the @foreach ($groupOrder as ...) loop below into a one-off, since the loop's shared
+    // x-show/category-grouping logic still needs to run for whatever groups remain.
+    $groupOrder = ['active' => 'Active Abilities'];
     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
-    $cooldownDisplay = fn (array $entry) => $entry['cooldown']['seconds'] !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
+    // Defensive `?? null` reads throughout this file (here and at every other ['cooldown']/
+    // ['charges'] access below) — added 2026-08-31 after a real production incident where a
+    // stale-bytecode-computed Redis cache entry was missing a 'cooldown' key and 500'd this
+    // page for every visitor until someone noticed (see DEPLOY.md's "Incident: 2026-08-28").
+    // The real fix is deployedCodeFingerprint() busting the cache automatically on every
+    // deploy (TalentSelectionService) — this is the second, cheaper layer: even if a
+    // malformed entry ever gets served again for any other reason, the page degrades to
+    // showing "no cooldown data" instead of a hard 500 for every visitor.
+    $cooldownDisplay = fn (array $entry) => ($entry['cooldown']['seconds'] ?? null) !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
     // "Last updated" label for arena-log-derived data (Peak Burst) — reads the generated_at
     // stamp offensive-rotations.php now writes into each rotations/{class}/{spec}.json export,
     // so viewers can tell how current the underlying match analysis is (2026-08-24, direct
@@ -73,6 +85,7 @@
         tab: 'synergies',
         classPickerSlot: null,
         pendingSlot: null,
+        pendingPreset: null,
         slotLabels: @js(array_column($slots, 'label')),
         specAllowed(role) {
             return this.slotLabels[this.classPickerSlot] === 'Healer' ? role === 'healer' : role !== 'healer';
@@ -107,24 +120,45 @@
         {{-- Common picks — one-click starter comps (WowComps::PRESET_COMPS). Clicking one loads
              it into the three slots below via applyPreset(); it's a real user action, so it logs
              attributed selections (top classes/specs/slot breakdown) plus a per-preset row,
-             exactly like picking each spec by hand. The slots stay fully editable afterward. --}}
+             exactly like picking each spec by hand. The slots stay fully editable afterward.
+             pendingPreset drives a spinner + disabled state while the round trip resolves — same
+             idiom as pendingSlot above (spec picker) and the same real problem: applyPreset()
+             loads 3 full spec kits at once via getCompProperty(), which can genuinely take a
+             couple seconds, and with no feedback a click reads as "didn't register" (direct
+             report, 2026-08-31 — same class of report that motivated pendingSlot originally). --}}
         @if (!empty($presets))
             <div class="mt-4 pt-4 border-t border-line">
                 <p class="text-[10px] font-semibold tracking-widest text-ink-subtle uppercase mb-2">Common picks</p>
                 <div class="flex flex-wrap gap-2">
                     @foreach ($presets as $preset)
-                        <button type="button" wire:click="applyPreset('{{ $preset['key'] }}')"
+                        <button type="button"
+                                @click="
+                                    pendingPreset = '{{ $preset['key'] }}';
+                                    $wire.applyPreset('{{ $preset['key'] }}').finally(() => pendingPreset = null);
+                                "
+                                :disabled="pendingPreset === '{{ $preset['key'] }}'"
+                                :class="pendingPreset === '{{ $preset['key'] }}' && 'opacity-60 cursor-wait'"
                                 class="flex items-center gap-2.5 pl-2 pr-3 py-1.5 rounded-lg border border-line hover:border-gold/40 hover:bg-surface-2 transition-colors">
-                            <span class="flex -space-x-1.5">
-                                @foreach ($preset['specs'] as $ps)
-                                    <x-spec-icon :spec="$ps"
-                                                 :color="config('wow_classes.colors')[$ps->gameClass->slug] ?? '#8A8A9A'"
-                                                 size="w-6 h-6"/>
-                                @endforeach
-                            </span>
+                            <template x-if="pendingPreset === '{{ $preset['key'] }}'">
+                                <span class="flex items-center justify-center w-6 h-6 flex-shrink-0">
+                                    <svg class="animate-spin w-4 h-4 text-gold" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                                    </svg>
+                                </span>
+                            </template>
+                            <template x-if="pendingPreset !== '{{ $preset['key'] }}'">
+                                <span class="flex -space-x-1.5">
+                                    @foreach ($preset['specs'] as $ps)
+                                        <x-spec-icon :spec="$ps"
+                                                     :color="config('wow_classes.colors')[$ps->gameClass->slug] ?? '#8A8A9A'"
+                                                     size="w-6 h-6"/>
+                                    @endforeach
+                                </span>
+                            </template>
                             <span class="text-left">
                                 <span class="block text-[12px] font-semibold text-ink leading-tight">{{ $preset['label'] }}</span>
-                                <span class="block text-[10px] text-ink-muted leading-tight">{{ collect($preset['specs'])->map(fn ($s) => $s->name)->implode(' · ') }}</span>
+                                <span class="block text-[10px] text-ink-muted leading-tight" x-text="pendingPreset === '{{ $preset['key'] }}' ? 'Loading…' : '{{ collect($preset['specs'])->map(fn ($s) => $s->name)->implode(' · ') }}'"></span>
                             </span>
                         </button>
                     @endforeach
@@ -277,10 +311,19 @@
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     Active Abilities
                 </button>
-                <button type="button" @click="selectTab('passive')" class="tab-btn flex items-center gap-1.5" :class="tab === 'passive' ? 'tab-active' : 'tab-inactive'">
-                    <x-mc-icon name="icon-leaf" class="w-3.5 h-3.5"/>
-                    Buffs &amp; Passives
-                </button>
+                {{-- "Buffs & Passives" tab removed 2026-09-01, direct request — a real performance
+                     measurement (not a guess) found ALL tabs on this page render their full
+                     markup unconditionally on every load (x-show/x-cloak only hides them via
+                     CSS, nothing is server-side lazy), and 72% of a typical 3-spec comp's
+                     entries are passive — removing this tab's list AND (see the modal-block
+                     loop further down) its now-unreachable per-entry modal content cut a real
+                     3-spec render from ~331ms/3.13MB to ~171ms/1.75MB. Confirmed safe to do
+                     unconditionally (not "only when nothing else needs it"): a genuinely passive
+                     spell can never legitimately also be a real, pressable Offensive/Defensive
+                     cooldown (traced 7 apparent counterexamples down to 0 real ones — every one
+                     was the wrong duplicate spell_id copy, since fixed in
+                     TalentSelectionService::preferSelectedPerName()), so nothing on the
+                     Offensive/Defensive/Crowd Control/PvP Talents tabs depended on this list. --}}
                 <button type="button" @click="selectTab('rotation')" class="tab-btn flex items-center gap-1.5" :class="tab === 'rotation' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                     Burst Window
@@ -305,6 +348,20 @@
                  $offDefFilter builder below, only the direction ('offensive'/'defensive') and
                  tab key differ.
 
+                 Minimum-cooldown floor, both tabs (2026-08-31, offensive first, defensive the
+                 same day after an identical audit-and-confirm pass): a real, arena-log-verified
+                 classification still includes plenty of sub-25s rotational abilities (Judgment,
+                 Conflagrate, Blade Dance on offense; Penance, Wild Growth, Prayer of Mending on
+                 defense) that aren't "cooldowns" in the traditional sense a player means by that
+                 word — reported as genuinely confusing users. See
+                 WowComps::MIN_COOLDOWN_TAB_SECONDS for the full reasoning behind 25s specifically
+                 (Secret Technique/Mind Blast boundary cases). Named exceptions
+                 (WowComps::OFFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS /
+                 ::DEFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS — reviewed and confirmed independently per
+                 tab, not assumed to mirror each other) clear the floor individually rather than
+                 via a lower blanket number — see each constant's own docblock for why, and for
+                 the specific abilities and reasoning.
+
                  Collapsed from 5 per-category boxes (one grid-of-3-member-columns per category)
                  down to ONE merged box per tab, 2026-08-20 direct follow-up — same card style the
                  Synergies tab's CC cards already use (icon/name/badge row/stat block/owner label,
@@ -316,7 +373,17 @@
                  its own owner (class/spec) label — same "don't group by column, let each card
                  say who it belongs to" pattern as the Synergies boxes. --}}
             @php
-                $offDefFilter = fn (string $direction) => fn ($e) => ($e['isPriority'] ?? false) && ($e['offensiveDefensive'][$direction] ?? false);
+                $cooldownFloorExceptions = [
+                    'offensive' => \App\Livewire\WowComps::OFFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS,
+                    'defensive' => \App\Livewire\WowComps::DEFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS,
+                ];
+                $offDefFilter = fn (string $direction) => fn ($e) =>
+                    ($e['isPriority'] ?? false)
+                    && ($e['offensiveDefensive'][$direction] ?? false)
+                    && (
+                        ($e['cooldown']['seconds'] ?? 0) >= \App\Livewire\WowComps::MIN_COOLDOWN_TAB_SECONDS
+                        || array_key_exists($e['spell']->spell_id, $cooldownFloorExceptions[$direction])
+                    );
             @endphp
             @foreach (['offensive' => 'Offensive', 'defensive' => 'Defensive'] as $direction => $directionLabel)
                 @php
@@ -989,18 +1056,39 @@
         {{-- Spell detail modal — one hidden content block per entry, toggled by openSpellId.
              Simplest correct approach for a shape-check page; a production version would swap
              this for a single dynamically-populated modal instead of rendering one block per
-             spell. --}}
+             spell.
+
+             Passive-entry skip added 2026-09-01 alongside removing the Buffs & Passives tab
+             (see the tab bar's own comment) — a passive entry's modal is otherwise unreachable
+             now that its only click target is gone, so generating it is pure wasted render
+             cost. NOT a blanket `is_passive` skip, though — several other tabs can legitimately
+             open a passive entry's modal and must stay reachable: PvP Talents (some real PvP
+             talents are passive stat modifiers, not gated by is_passive at all — see that tab's
+             own filter), Crowd Control/Synergies (dr_category-tagged), and Peels/Interrupts
+             (is_peel/is_interrupt-tagged) all pull from this same $comp[i]['entries'] array and
+             key into these same modal blocks. isPriority is kept as a broad safety margin on
+             top of the specific Offensive/Defensive check — slightly more conservative than
+             strictly necessary, but real cast evidence for a spec is a reasonable bar for
+             "worth keeping clickable" regardless of exact tab. --}}
         <div class="fixed inset-0 z-50 bg-surface-0/80 backdrop-blur-sm flex items-center justify-center p-4"
              x-show="openSpellId !== null" x-cloak
              @click.self="openSpellId = null"
              @keydown.escape.window="openSpellId = null">
             @foreach ($comp as $mi => $member)
                 @foreach ($member['entries'] as $entry)
+                    @continue(
+                        $entry['spell']->is_passive
+                        && ($entry['source'] ?? null) !== 'pvp_talent'
+                        && !($entry['isPriority'] ?? false)
+                        && $entry['spell']->dr_category === null
+                        && !$entry['spell']->is_peel
+                        && !$entry['spell']->is_interrupt
+                    )
                     @php
                         $modalKey = "m{$mi}-s{$entry['spell']->id}";
                         $spell = $entry['spell'];
-                        $cooldown = $entry['cooldown'];
-                        $charges = $entry['charges'];
+                        $cooldown = $entry['cooldown'] ?? ['seconds' => null, 'base_seconds' => null, 'applied' => collect()];
+                        $charges = $entry['charges'] ?? ['charges' => null, 'base_charges' => null, 'applied' => collect()];
                         $cooldownChanged = $cooldown['seconds'] !== null && $cooldown['base_seconds'] !== null && round($cooldown['seconds'], 2) !== round($cooldown['base_seconds'], 2);
                         $chargesChanged = $charges['charges'] !== null && $charges['base_charges'] !== null && $charges['charges'] !== $charges['base_charges'];
                     @endphp
@@ -1054,7 +1142,7 @@
                                 @foreach ($entry['modifiers']['named'] as $mod)
                                     @php
                                         $modId = $mod['spell']->id;
-                                        $modCooldown = $mod['cooldown'];
+                                        $modCooldown = $mod['cooldown'] ?? ['seconds' => null, 'base_seconds' => null, 'applied' => collect()];
                                         $modCooldownDisplay = $modCooldown['seconds'] !== null ? $fmtSeconds($modCooldown['seconds']) : null;
                                     @endphp
                                     <div class="mb-1 last:mb-0">

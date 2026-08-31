@@ -32,6 +32,10 @@ use Illuminate\Console\Command;
  * user made that call directly on 2026-08-14).
  *
  * Usage: php artisan wow:discover-spec-spells deathknight unholy
+ *
+ * Any new match this adds to the archive leaves every match-derived live surface (Burst
+ * Windows, mechanics, Crowd Control, Class Guide) stale until refreshed — run
+ * `php artisan wow:refresh-match-derived` afterward. See that command's own docblock.
  */
 class DiscoverSpecSpells extends Command
 {

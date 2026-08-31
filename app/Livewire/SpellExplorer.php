@@ -176,14 +176,28 @@ class SpellExplorer extends Component
         $defaultBuild = $build->exists ? $build : null;
         $buildStamp = $defaultBuild ? "{$defaultBuild->id}:{$defaultBuild->updated_at?->timestamp}" : 'none';
         $version = $talentService->spellCacheVersion();
+        // Automatically busts this cache on every real deploy — see
+        // TalentSelectionService::deployedCodeFingerprint()'s own docblock for the full
+        // incident this closes (2026-08-31), same fix as WowComps::spellReferencesFor().
+        $codeFingerprint = $talentService->deployedCodeFingerprint();
 
         $this->ensureMemoryHeadroom();
 
-        return Cache::remember(
-            "wow_spell_references:spec:{$this->specId}:build:{$buildStamp}:v{$version}",
-            now()->addHours(6),
-            fn () => $this->computeSpellReferences($service, $talentService, $defaultBuild)
-        );
+        $cacheKey = "wow_spell_references:spec:{$this->specId}:build:{$buildStamp}:v{$version}:{$codeFingerprint}";
+
+        // Manual get/validate/put instead of Cache::remember() — see
+        // WowComps::spellReferencesFor()'s identical comment for why (second layer of defense
+        // via ModuleSpellReferenceService::spellReferencesCacheIsValid()).
+        $cached = Cache::get($cacheKey);
+
+        if ($service->spellReferencesCacheIsValid($cached)) {
+            return $cached;
+        }
+
+        $result = $this->computeSpellReferences($service, $talentService, $defaultBuild);
+        Cache::put($cacheKey, $result, now()->addHours(6));
+
+        return $result;
     }
 
     /**

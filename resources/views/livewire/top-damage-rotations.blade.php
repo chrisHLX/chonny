@@ -23,13 +23,6 @@
             return null;
         }
     };
-    // Label + badge color per TopDamageRotations::getMechanicsProperty()'s `kind` classification.
-    $kindBadge = [
-        'talent' => ['label' => 'Talent', 'class' => 'badge-gold'],
-        'pvp_talent' => ['label' => 'PvP Talent', 'class' => 'badge-amber'],
-        'passive' => ['label' => 'Passive', 'class' => 'badge-gray'],
-        'ability' => ['label' => 'Ability', 'class' => 'badge-green'],
-    ];
 @endphp
 
 <div class="max-w-5xl mx-auto px-4 py-8 space-y-5" x-data="{ classPickerOpen: false, pendingSpec: false, talentModalOpen: false }">
@@ -254,55 +247,15 @@
                     The real talents selected by the player in this exact match — not a curated default build. Only 3 PvP talent slots are shown: real rated arena only ever fills 3 of the 4 possible slots.
                 </p>
 
-                <div class="space-y-3">
-                    @foreach ($treeLabels as $key => $label)
-                        @php $group = $talentsByTree->get($key, collect()); @endphp
-                        @if ($group->isNotEmpty())
-                            <div>
-                                <p class="text-[9px] uppercase tracking-wide text-ink-subtle font-semibold mb-1.5">{{ $label }}</p>
-                                <div class="flex flex-wrap gap-1.5">
-                                    @foreach ($group as $t)
-                                        @php $tSpell = $t['spell'] ?? null; @endphp
-                                        @if ($tSpell)
-                                            <button type="button"
-                                                    wire:click="$dispatch('show-spell-detail', { spellId: {{ $tSpell->id }}, classId: {{ $classId }}, specId: {{ $specId }} })"
-                                                    title="{{ $t['name'] }}{{ $t['rank'] > 1 ? ' (rank '.$t['rank'].')' : '' }}"
-                                                    class="flex items-center gap-1.5 pl-1 pr-2 py-1 rounded-md border border-line hover:border-gold/40 transition-colors">
-                                                <x-spell-icon :spell="$tSpell" size="w-5 h-5"/>
-                                                <span class="text-[10px] text-ink font-medium truncate max-w-[9rem]">{{ $t['name'] }}</span>
-                                                @if ($t['rank'] > 1)
-                                                    <span class="text-[9px] text-ink-subtle">×{{ $t['rank'] }}</span>
-                                                @endif
-                                            </button>
-                                        @else
-                                            <span class="text-[10px] text-ink-muted px-2 py-1 rounded-md border border-line">{{ $t['name'] }}</span>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-
-                    @if (!empty($tb['pvpTalents']))
-                        <div>
-                            <p class="text-[9px] uppercase tracking-wide text-ink-subtle font-semibold mb-1.5">PvP Talents</p>
-                            <div class="flex flex-wrap gap-1.5">
-                                @foreach ($tb['pvpTalents'] as $t)
-                                    @php $pSpell = $t['spell'] ?? null; @endphp
-                                    @if ($pSpell)
-                                        <button type="button"
-                                                wire:click="$dispatch('show-spell-detail', { spellId: {{ $pSpell->id }}, classId: {{ $classId }}, specId: {{ $specId }} })"
-                                                title="{{ $t['name'] }}"
-                                                class="flex items-center gap-1.5 pl-1 pr-2 py-1 rounded-md border border-line hover:border-violet/40 transition-colors">
-                                            <x-spell-icon :spell="$pSpell" size="w-5 h-5"/>
-                                            <span class="text-[10px] text-ink font-medium truncate max-w-[9rem]">{{ $t['name'] }}</span>
-                                        </button>
-                                    @else
-                                        <span class="text-[10px] text-ink-muted px-2 py-1 rounded-md border border-line">{{ $t['name'] }}</span>
-                                    @endif
-                                @endforeach
-                            </div>
-                        </div>
+                {{-- Simplified 2026-09-01, direct request: the full per-talent chip grid moved
+                     to the read-only calculator ("View in Talent Calculator" above) — this card
+                     just names the hero tree the build actually used and points there. --}}
+                <div class="flex items-center gap-2 text-[12px]">
+                    <span class="text-ink-subtle">Hero Talent:</span>
+                    @if ($tb['heroTreeName'] ?? null)
+                        <span class="text-ink font-semibold">{{ $tb['heroTreeName'] }}</span>
+                    @else
+                        <span class="text-ink-subtle italic">not resolved</span>
                     @endif
                 </div>
             </div>
@@ -339,66 +292,78 @@
                 </div>
             </div>
         @endif
-    @endif
 
-    {{-- Important Mechanics (Review) — deliberately reads STAGING data (wow-arena-archive's
-         mechanics/{class}/{spec}.txt, built by wow:record-important-mechanics), not a promoted
-         copy — see ArenaLogService::mechanicsForSpec()'s docblock. This block exists to let a
-         human review what the empirical scan found before any of it is trusted as real
-         curated content, same posture as Admin\CcReview for bulk-applied CC data. --}}
-    @if ($mechanics)
-        <div class="linear-card p-5">
-            <div class="flex items-baseline justify-between gap-3 mb-1 flex-wrap">
-                <p class="text-[10px] uppercase tracking-wider text-gold font-semibold flex items-center gap-1.5">
-                    Important Mechanics
-                    <span class="badge-amber !text-[8px] !px-1 !py-0">REVIEW — NOT PROMOTED</span>
-                </p>
-                @if ($mechanics['generatedAt'])
-                    <span class="text-[10px] text-ink-subtle/70">generated {{ $mechanics['generatedAt'] }}</span>
-                @endif
-            </div>
-            <p class="text-[11px] text-ink-muted mb-3 leading-relaxed">
-                Self-buffs and target-debuffs found across {{ number_format($mechanics['windowsFound']) }} real pre-kill window(s) ({{ number_format($mechanics['matchesScanned']) }} matches scanned, --window={{ $mechanics['windowSeconds'] }}s) — the non-obvious mechanics a cast sequence alone wouldn't show (e.g. Colossus Smash amplifying damage, Ancient Arts refunding combo points). Sourced from wow-arena-archive's staging archive, not yet spot-checked — treat percentages as a starting point for review, not a verified fact.
-            </p>
-            <div class="flex flex-wrap items-center gap-2">
-                @foreach (array_slice($mechanics['rows'], 0, 30) as $row)
-                    @php
-                        $mSpell = $row['spell'] ?? null;
-                        $kb = $kindBadge[$row['kind'] ?? null] ?? null;
-                    @endphp
-                    @if ($mSpell)
-                        <button type="button"
-                                wire:click="$dispatch('show-spell-detail', { spellId: {{ $mSpell->id }}, classId: {{ $classId }}, specId: {{ $specId }} })"
-                                class="linear-card !p-2.5 w-40 flex-shrink-0 text-left hover:border-gold/40 transition-colors">
-                            <div class="flex items-center gap-2">
-                                <x-spell-icon :spell="$mSpell" size="w-8 h-8"/>
-                                <span class="min-w-0">
-                                    <span class="block text-[11px] text-ink font-semibold truncate">{{ $mSpell->display_name }}</span>
-                                    <span class="flex items-center gap-1 mt-0.5 flex-wrap">
-                                        <span class="badge-{{ $row['type'] === 'target-debuff' ? 'gold' : 'blue' }} !text-[7px] !px-1 !py-0">{{ $row['type'] }}</span>
-                                        @if ($kb)
-                                            <span class="{{ $kb['class'] }} !text-[7px] !px-1 !py-0">{{ $kb['label'] }}</span>
-                                        @endif
-                                        <span class="text-[9px] text-ink-subtle font-mono">{{ $row['pct'] }}%</span>
-                                    </span>
-                                </span>
-                            </div>
-                        </button>
-                    @else
-                        <div class="linear-card !p-2.5 w-40 flex-shrink-0">
-                            <span class="block text-[11px] text-ink font-semibold truncate">{{ $row['name'] }}</span>
-                            <span class="flex items-center gap-1 mt-0.5 flex-wrap">
-                                <span class="badge-{{ $row['type'] === 'target-debuff' ? 'gold' : 'blue' }} !text-[7px] !px-1 !py-0">{{ $row['type'] }}</span>
-                                <span class="text-[9px] text-ink-subtle font-mono">{{ $row['pct'] }}%</span>
-                            </span>
-                        </div>
+        {{-- What Was Happening — real champion/target buff+debuff facts for this EXACT window,
+             embedded once at generation time by wow:enrich-rotation-mechanics (see
+             ArenaLogService::enrichBurstWindow()'s docblock). Replaced the old aggregate
+             "Important Mechanics (Review)" block entirely, 2026-08-29 direct instruction — that
+             approach smeared many different windows/targets together into a frequency list;
+             this instead answers the actual question by re-opening the one real match this
+             window came from. Champion (the attacker) and Target are deliberately two separate
+             columns, each split into Buffs/Debuffs, per direct instruction on keeping this
+             clean and simple rather than one dense undifferentiated list. --}}
+        @if ($rotation['window']['mechanics'] ?? null)
+            @php
+                $mech = $rotation['window']['mechanics'];
+                $mechColumns = [
+                    'Champion' => ['buffs' => 'championBuffs', 'debuffs' => 'championDebuffs'],
+                    'Target' => ['buffs' => 'targetBuffs', 'debuffs' => 'targetDebuffs'],
+                ];
+            @endphp
+            <div class="linear-card p-5">
+                {{-- Target identity is class/spec only, deliberately not the real player's
+                     character name (removed 2026-08-31, direct instruction) — this is a public
+                     page, and class/spec is the only fact this card actually needs. --}}
+                <div class="flex items-baseline justify-between gap-3 mb-1 flex-wrap">
+                    <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">What Was Happening</p>
+                    @if ($mech['targetSpecName'])
+                        <span class="text-[10px] text-ink-subtle">
+                            Target: <span class="text-ink font-semibold">{{ $mech['targetSpecName'] }} {{ $mech['targetClassName'] }}</span>
+                        </span>
                     @endif
-                @endforeach
+                </div>
+                <p class="text-[11px] text-ink-muted mb-4 leading-relaxed">
+                    Real facts from this exact match — what the champion and target actually had active the moment this window began. The cast sequence above only ever shows what was pressed inside the window itself; this is everything already in play going into it.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    @foreach ($mechColumns as $colLabel => $keys)
+                        @php
+                            $buffs = $mech[$keys['buffs']] ?? [];
+                            $debuffs = $mech[$keys['debuffs']] ?? [];
+                        @endphp
+                        <div>
+                            <p class="text-[10px] uppercase tracking-wide text-ink-subtle font-semibold mb-2">{{ $colLabel }}</p>
+                            @if (empty($buffs) && empty($debuffs))
+                                <p class="text-[11px] text-ink-subtle italic">Nothing active at window start.</p>
+                            @else
+                                @foreach (['Buffs' => $buffs, 'Debuffs' => $debuffs] as $subLabel => $items)
+                                    @if (!empty($items))
+                                        <p class="text-[9px] uppercase tracking-wide text-ink-subtle/70 mb-1 {{ !$loop->first ? 'mt-3' : '' }}">{{ $subLabel }}</p>
+                                        <div class="flex flex-wrap gap-1.5">
+                                            @foreach ($items as $item)
+                                                @php $itemSpell = $item['spell'] ?? null; @endphp
+                                                @if ($itemSpell)
+                                                    <button type="button"
+                                                            wire:click="$dispatch('show-spell-detail', { spellId: {{ $itemSpell->id }}, classId: {{ $classId }}, specId: {{ $specId }} })"
+                                                            title="{{ $item['name'] }}"
+                                                            class="flex items-center gap-1.5 pl-1 pr-2 py-1 rounded-md border border-line hover:border-gold/40 transition-colors">
+                                                        <x-spell-icon :spell="$itemSpell" size="w-5 h-5"/>
+                                                        <span class="text-[10px] text-ink font-medium truncate max-w-[8rem]">{{ $itemSpell->display_name }}</span>
+                                                    </button>
+                                                @else
+                                                    <span class="text-[10px] text-ink-muted px-2 py-1 rounded-md border border-line">{{ $item['name'] }}</span>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
             </div>
-            @if (count($mechanics['rows']) > 30)
-                <p class="text-[10px] text-ink-subtle/70 mt-2">+{{ count($mechanics['rows']) - 30 }} more in the raw file (not shown here).</p>
-            @endif
-        </div>
+        @endif
     @endif
 
     <livewire:spell-detail-modal/>

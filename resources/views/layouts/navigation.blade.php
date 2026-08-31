@@ -66,7 +66,12 @@
             <a href="{{ route('class-guide') }}"
                class="sidebar-item text-[12px] {{ request()->routeIs('class-guide') ? 'active !text-accent' : '' }}">
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Class Guides
+                Class Kits
+            </a>
+            <a href="{{ route('top-cc-chains') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('top-cc-chains') ? 'active !text-accent' : '' }}">
+                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                Top 10 CC Chains
             </a>
             <a href="{{ route('spells.explore') }}"
                class="sidebar-item text-[12px] {{ request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">

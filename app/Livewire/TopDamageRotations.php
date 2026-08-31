@@ -7,6 +7,7 @@ use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
 use App\Models\PageViewEvent;
 use App\Models\Specialization;
+use App\Models\TalentNode;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Livewire\Component;
@@ -152,6 +153,62 @@ class TopDamageRotations extends Component
                     $this->specId,
                     $talentService
                 );
+
+                // The embedded talent list only ever carries `treeType` (the generic
+                // 'class'/'spec'/'hero' string — see ArenaLogService::resolveCombatantTalents())
+                // never the specific hero tree's own proper name (e.g. "Deathstalker"). Resolved
+                // here, live, rather than re-running wow:enrich-rotation-talents across every
+                // spec just to embed one extra string: any hero-type talent already carries its
+                // real internal `nodeId` (added 2026-08-28 for the read-only calculator preset),
+                // so one cheap lookup gets the tree it actually belongs to.
+                $heroTalent = collect($window['talentBuild']['talents'] ?? [])
+                    ->first(fn ($t) => ($t['treeType'] ?? null) === 'hero' && !empty($t['nodeId']));
+                $window['talentBuild']['heroTreeName'] = $heroTalent
+                    ? TalentNode::find($heroTalent['nodeId'])?->talentTree?->name
+                    : null;
+            }
+
+            // Embedded once, at rotation-generation time, by `wow:enrich-rotation-mechanics` —
+            // real champion/target buff+debuff facts for this exact real window (see
+            // ArenaLogService::enrichBurstWindow()'s docblock for the full reasoning: this
+            // replaced an earlier, rejected attempt at a frequency-ranked AGGREGATE across many
+            // different windows, direct correction 2026-08-29 — "the window was only ever
+            // recorded with one target and one specific example"). Each of the four categories
+            // resolved to real Spell models the same way steps/talentBuild already are.
+            if (isset($window['mechanics'])) {
+                foreach (['championBuffs', 'championDebuffs', 'targetBuffs', 'targetDebuffs'] as $key) {
+                    $resolved = $service->resolveWindowSteps(
+                        $window['mechanics'][$key] ?? [],
+                        $this->specId,
+                        $talentService
+                    );
+
+                    // Unlike steps/talentBuild (an ordered sequence, where dropping an
+                    // unresolvable entry would misrepresent the real cast count — see
+                    // resolveWindowSteps()'s own docblock), mechanics is an unordered "what was
+                    // active" list, so an entry with no real Spell match carries no
+                    // informational value here and is dropped rather than shown as an
+                    // unclickable plain-text chip. Confirmed 2026-08-31 (direct user report of
+                    // "generic world buff" clutter): every one of a real sample of noisy names —
+                    // Find Herbs, Rune of Masterful Cunning, Flight Style: Skyriding, Sign of
+                    // Battle, Touch of Elune - Day — has ZERO row in `spells` for the current
+                    // patch at all (professions/world-seasonal-content/crafted-gear-rune procs,
+                    // none of which are part of the SimC class dumps this import is built from),
+                    // while every real class buff checked — including cross-class ones like
+                    // Guardian Spirit, Chaos Brand, Mystic Touch, Skyfury — resolves cleanly.
+                    // Deliberately NOT filtered by "is this in the champion/target's own spec
+                    // kit" (e.g. reusing WowComps' Buffs & Passives list) — targetBuffs/
+                    // targetDebuffs/championDebuffs are intentionally cross-class (a teammate's
+                    // healing cooldown or an enemy's CC showing up on someone else's buff list is
+                    // exactly the real signal these categories exist to surface), so a spec-kit
+                    // whitelist would incorrectly strip real, correct cross-class entries. No
+                    // curated list needed — "does it resolve to a real Spell row at all" already
+                    // separates the two cleanly.
+                    $window['mechanics'][$key] = array_values(array_filter(
+                        $resolved,
+                        fn ($item) => $item['spell'] !== null
+                    ));
+                }
             }
         }
 
@@ -164,82 +221,12 @@ class TopDamageRotations extends Component
         ];
     }
 
-    /**
-     * "Important Mechanics (Review)" block data — reads the STAGING mechanics.txt via
-     * ArenaLogService::mechanicsForSpec() (see that method's docblock for why staging, not
-     * promoted, is deliberate here). Length-independent (mechanics.txt isn't scoped per burst
-     * length the way $length is), so this only depends on classId/specId.
-     *
-     * Rows resolved to real Spell models via resolveWindowSteps() — the exact same method the
-     * Peak Burst Example sequence already uses (it's generic: any array of associative arrays
-     * with a `spellId` key works, mechanics.txt rows qualify as-is), so the two card styles
-     * share real icon/name/talent-linked-copy resolution rather than a second implementation.
-     *
-     * Each row also gets a `kind` — 'talent' / 'pvp_talent' / 'passive' / 'ability' — added
-     * 2026-08-27, direct request ("is it a talent or a buff or an ability buff"). Reuses the
-     * exact same `source` classification WowComps/SpellExplorer already compute for their own
-     * spell listings (TalentSelectionService::allTalentSpellIds()/allPvpTalentSpellIds(), see
-     * WowComps::spellReferencesFor()'s identical `'source' => ...` line) rather than a second
-     * heuristic — 'talent'/'pvp_talent' means the spell is a real pickable node for this spec;
-     * anything else is split by the spell's own `is_passive` column (already-verified data,
-     * same field `<x-spells.table>`'s Active Abilities/Buffs & Passives split already trusts)
-     * into 'passive' (an innate, always-on buff — never pressed) vs 'ability' (an active
-     * button-press whose casting produces the tracked buff/debuff).
-     */
-    public function getMechanicsProperty(): ?array
-    {
-        if (!$this->classId || !$this->specId) {
-            return null;
-        }
-
-        $class = GameClass::find($this->classId);
-        $spec = Specialization::find($this->specId);
-
-        if (!$class || !$spec) {
-            return null;
-        }
-
-        $mechanics = app(ArenaLogService::class)->mechanicsForSpec($class->slug, $spec->slug);
-
-        if ($mechanics === null) {
-            return null;
-        }
-
-        $talentService = app(TalentSelectionService::class);
-
-        $mechanics['rows'] = app(ArenaLogService::class)->resolveWindowSteps(
-            $mechanics['rows'],
-            $this->specId,
-            $talentService
-        );
-
-        $talentIds = $talentService->allTalentSpellIds($this->specId);
-        $pvpTalentIds = $talentService->allPvpTalentSpellIds($this->specId);
-
-        $mechanics['rows'] = array_map(function ($row) use ($talentIds, $pvpTalentIds) {
-            $spell = $row['spell'] ?? null;
-
-            $row['kind'] = match (true) {
-                $spell === null => null,
-                $talentIds->contains($spell->id) => 'talent',
-                $pvpTalentIds->contains($spell->id) => 'pvp_talent',
-                (bool) $spell->is_passive => 'passive',
-                default => 'ability',
-            };
-
-            return $row;
-        }, $mechanics['rows']);
-
-        return $mechanics;
-    }
-
     public function render()
     {
         return view('livewire.top-damage-rotations', [
             'classes' => $this->classes,
             'classSpecs' => $this->classSpecs,
             'rotation' => $this->rotation,
-            'mechanics' => $this->mechanics,
         ])->layout('layouts.app', [
             'title' => 'WoW Burst Windows — Real Arena Damage Rotations | MindCollector',
             'description' => 'The single highest-damage burst window per WoW spec, taken straight from real arena logs — the exact cast sequence, anchored on that spec\'s offensive cooldowns.',
