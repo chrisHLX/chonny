@@ -99,6 +99,13 @@ class SpellDetailModal extends Component
             'modifiers' => [
                 'named' => $this->enrichModifiers($modifiers['named'], $service, $gameBuild, $selected, $ranks),
                 'baseline' => $modifiers['baseline'],
+                // 'Could be improved by...' — real, structurally-confirmed modifiers whose
+                // talent isn't currently selected (see ModuleSpellReferenceService::
+                // modifiersFor()'s docblock, 2026-09-01). Only meaningful once a spec context
+                // exists — with no specId there's no resolved build to be "not selected" in, so
+                // 'potential' and 'named' would be indistinguishable; that case is handled by
+                // the blade simply not rendering the section rather than by hiding it here.
+                'potential' => $this->enrichModifiers($modifiers['potential'], $service, $gameBuild, $selected, $ranks),
             ],
         ];
     }

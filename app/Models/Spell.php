@@ -30,6 +30,7 @@ class Spell extends Model
         'chain_target',
         'is_peel',
         'is_interrupt',
+        'is_mobility',
         'pairs_with_category',
         'requires_stealth',
         'requires_target_out_of_combat',
@@ -49,6 +50,7 @@ class Spell extends Model
         'is_passive' => 'boolean',
         'is_peel' => 'boolean',
         'is_interrupt' => 'boolean',
+        'is_mobility' => 'boolean',
         'requires_stealth' => 'boolean',
         'requires_target_out_of_combat' => 'boolean',
     ];

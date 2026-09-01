@@ -22,15 +22,22 @@ use Livewire\Component;
 /**
  * Phase-1 shape-check page: pick 3 specs (Healer / DPS / DPS slots — the class/spec picker
  * restricts each slot to real matching specs, see SPEC_ROLES below, added 2026-08-22) and see
- * each one's spell kit side by side for comparison, grouped
- * Offensive/Defensive/Utility/Crowd Control/Other same as Spell Explorer (categorize()'s
- * heuristic — every spell in the kit, filler included), plus separate Offensive Cooldowns /
- * Defensive Cooldowns tabs backed by wow-arena-archive's real, arena-log-verified cooldown
- * classification (see ArenaLogService::offensiveDefensiveClassification()) — a narrower,
- * higher-confidence answer than categorize() for the specific question "is this a real
- * offensive or defensive cooldown a competitive player actually presses," not every spell in
- * the kit. Deliberately no comps table, no spell_functions table, no seeding — this exists
- * purely to get the picker/layout shape right before any of that schema work happens.
+ * each one's spell kit side by side for comparison. The full-kit "Active Abilities" tab
+ * (every spell, grouped Offensive/Defensive/Utility/Crowd Control/Other via categorize()'s
+ * heuristic, filler included) was removed 2026-09-01, direct instruction, for performance — it
+ * was the single largest remaining tab (5 category groups × 3 members × every spell in the
+ * kit), and with the earlier "Buffs & Passives" removal already gone (see git history for that
+ * measurement) there was no natural pair left to keep it next to. Every remaining tab is a
+ * narrower, hand-curated/verified slice: Offensive Cooldowns / Defensive Cooldowns, backed by
+ * wow-arena-archive's real, arena-log-verified cooldown classification (see
+ * ArenaLogService::offensiveDefensiveClassification()) — a narrower, higher-confidence answer
+ * than categorize() for the specific question "is this a real offensive or defensive cooldown a
+ * competitive player actually presses," not every spell in the kit. Mobility (spells.is_mobility,
+ * hand-curated) and Crowd Control/Synergies (dr_category-tagged) round out the rest.
+ * categorize() itself is UNCHANGED and still computed per-entry — every remaining tab's cards
+ * still show a category badge — only the full-kit grouped-by-category rendering loop is gone.
+ * Deliberately no comps table, no spell_functions table, no seeding — this exists purely to get
+ * the picker/layout shape right before any of that schema work happens.
  *
  * REWORKED 2026-08-16, same change and same reasoning as SpellExplorer (see that class's
  * docblock): every real talent-tree entry and every PvP talent for each slot's spec is ALWAYS
@@ -550,6 +557,11 @@ class WowComps extends Component
             $modifiersBySpellId[$spell->id] = $modifiers;
             $modifierSpells->push(...$modifiers['named']->pluck('spell'));
             $modifierSpells->push(...$modifiers['baseline']->pluck('spell'));
+            // 'potential' (2026-09-01, see ModuleSpellReferenceService::modifiersFor()'s
+            // docblock) also needs preloading — the Mobility tab surfaces "could be improved by
+            // an untaken talent" as a per-card hint, same source data SpellDetailModal already
+            // shows in full on click.
+            $modifierSpells->push(...$modifiers['potential']->pluck('spell'));
         }
 
         $modifierSpells = $modifierSpells->unique('id');
@@ -570,7 +582,13 @@ class WowComps extends Component
                     'modifiers' => [
                         'named' => $this->enrichModifiers($modifiers['named'], $service, $build, $selected, $ranks),
                         'baseline' => $this->enrichModifiers($modifiers['baseline'], $service, $build, $selected, $ranks),
+                        'potential' => $this->enrichModifiers($modifiers['potential'], $service, $build, $selected, $ranks),
                     ],
+                    // Mobility tab hint (2026-09-01) — "there's an untaken talent that would
+                    // improve this," surfaced as a small badge on the card; full detail (which
+                    // talent, by how much) lives in the spell-detail modal's own "Could Be
+                    // Improved By" section, same click that already opens it.
+                    'hasPotentialImprovement' => $modifiers['potential']->isNotEmpty(),
                     'cooldown' => $service->effectiveCooldown($spell, $build, $selected, $ranks),
                     'charges' => $service->effectiveCharges($spell, $build, $selected, $ranks),
                     // Verified/explicit-spec baseline abilities are never talent-gated, so

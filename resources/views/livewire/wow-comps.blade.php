@@ -1,24 +1,17 @@
 @php
-    $categoryOrder = ['Crowd Control', 'Defensive', 'Utility', 'Offensive', 'Other'];
-    $categoryAccent = [
-        'Crowd Control' => 'text-violet',
-        'Defensive' => 'text-rose-400',
-        'Utility' => 'text-amber-400',
-        'Offensive' => 'text-orange-400',
-        'Other' => 'text-ink-subtle',
-    ];
+    // 'Mobility' added 2026-09-01 — see categorize()'s docblock: carved out of what used to be
+    // part of 'Utility' (Blink/Sprint/Heroic Leap no longer share a header with Kick/Dispel Magic).
+    // $categoryOrder/$categoryAccent (the category-grouped-by-column layout) were removed the
+    // same day alongside the Active Abilities tab itself — $categoryBadge below is still used by
+    // every remaining tab's per-card badge, just no longer by a full-kit category grouping.
     $categoryBadge = [
         'Crowd Control' => 'badge-blue',
         'Defensive' => 'badge-red',
+        'Mobility' => 'badge-green',
         'Utility' => 'badge-amber',
         'Offensive' => 'badge-orange',
         'Other' => 'badge-gray',
     ];
-    // Buffs & Passives removed 2026-09-01 (see the tab bar's own comment for the full
-    // reasoning/measurement) — 'active' left as a single-entry map rather than restructuring
-    // the @foreach ($groupOrder as ...) loop below into a one-off, since the loop's shared
-    // x-show/category-grouping logic still needs to run for whatever groups remain.
-    $groupOrder = ['active' => 'Active Abilities'];
     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
     // Defensive `?? null` reads throughout this file (here and at every other ['cooldown']/
     // ['charges'] access below) — added 2026-08-31 after a real production incident where a
@@ -299,6 +292,10 @@
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l8 3.5v6c0 5-3.5 8.5-8 10.5-4.5-2-8-5.5-8-10.5v-6L12 2z"/></svg>
                     Defensive Cooldowns
                 </button>
+                <button type="button" @click="selectTab('mobility')" class="tab-btn flex items-center gap-1.5" :class="tab === 'mobility' ? 'tab-active' : 'tab-inactive'" title="Hand-curated escape/gap-closer/reposition tools for this exact spec">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M4 12h16"/></svg>
+                    Mobility
+                </button>
                 <button type="button" @click="selectTab('synergies')" class="tab-btn flex items-center gap-1.5" :class="tab === 'synergies' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
                     Crowd Control
@@ -307,23 +304,19 @@
                     <x-mc-icon name="icon-scroll" class="w-3.5 h-3.5"/>
                     PvP Talents
                 </button>
-                <button type="button" @click="selectTab('active')" class="tab-btn flex items-center gap-1.5" :class="tab === 'active' ? 'tab-active' : 'tab-inactive'">
-                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    Active Abilities
-                </button>
-                {{-- "Buffs & Passives" tab removed 2026-09-01, direct request — a real performance
-                     measurement (not a guess) found ALL tabs on this page render their full
-                     markup unconditionally on every load (x-show/x-cloak only hides them via
-                     CSS, nothing is server-side lazy), and 72% of a typical 3-spec comp's
-                     entries are passive — removing this tab's list AND (see the modal-block
-                     loop further down) its now-unreachable per-entry modal content cut a real
-                     3-spec render from ~331ms/3.13MB to ~171ms/1.75MB. Confirmed safe to do
-                     unconditionally (not "only when nothing else needs it"): a genuinely passive
-                     spell can never legitimately also be a real, pressable Offensive/Defensive
-                     cooldown (traced 7 apparent counterexamples down to 0 real ones — every one
-                     was the wrong duplicate spell_id copy, since fixed in
-                     TalentSelectionService::preferSelectedPerName()), so nothing on the
-                     Offensive/Defensive/Crowd Control/PvP Talents tabs depended on this list. --}}
+                {{-- "Buffs & Passives" tab removed 2026-09-01 (see prior comment history in this
+                     file's git log for the original performance measurement — ~331ms/3.13MB to
+                     ~171ms/1.75MB for a 3-spec render), and "Active Abilities" itself removed the
+                     same day, direct instruction — it was the single largest remaining tab (every
+                     spell in the kit, unfiltered, across 5 category groups × 3 members), and with
+                     Buffs & Passives already gone there was no longer a natural pair to keep it
+                     next to. Every other tab on this page is already a hand-curated/verified
+                     narrower slice (Offensive/Defensive Cooldowns, Mobility, Crowd Control,
+                     PvP Talents) — none of them depended on the Active Abilities group or its
+                     category-grouped rendering loop, which is removed below alongside this
+                     button. See the modal-block loop further down for the matching tightened
+                     @continue skip (an entry unreachable from any remaining tab no longer gets a
+                     hidden modal block generated for it either). --}}
                 <button type="button" @click="selectTab('rotation')" class="tab-btn flex items-center gap-1.5" :class="tab === 'rotation' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                     Burst Window
@@ -460,53 +453,82 @@
                 </div>
             @endforeach
 
-            @foreach ($groupOrder as $groupKey => $groupLabel)
-                @php
-                    $groupHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains(fn ($e) => ($e['spell']->is_passive ? 'passive' : 'active') === $groupKey));
-                @endphp
-                @continue(!$groupHasAny)
-
-                <div x-show="tab === '{{ $groupKey }}'" x-cloak>
-                    @foreach ($categoryOrder as $category)
-                        @php
-                            $categoryHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains(fn ($e) => ($e['spell']->is_passive ? 'passive' : 'active') === $groupKey && $e['category'] === $category));
-                        @endphp
-                        @continue(!$categoryHasAny)
-
-                        <div class="mb-4">
-                            <p class="text-[10px] uppercase tracking-wide {{ $categoryAccent[$category] }} font-semibold mb-1.5 pl-1">{{ $category }}</p>
-                            <div class="grid grid-cols-3 gap-3">
-                                @foreach ($comp as $mi => $member)
-                                    <div class="linear-card p-1.5 space-y-0.5">
+            {{-- Mobility tab (2026-09-01, direct request — pairs with Defensive Cooldowns above:
+                 "what can this class use to get away or kite. Or peel"). Unlike Offensive/
+                 Defensive, there's no arena-log-verified classification behind this — it's
+                 spells.is_mobility, a plain hand-curated flag (see that migration's docblock),
+                 so the filter is just the flag itself, no isPriority/cooldown-floor gating.
+                 Deliberately includes BOTH escapes (Sprint/Blink) and gap-closers (Charge/
+                 Infernal Strike) per direct instruction ("we don't know how players will use
+                 them"). Same card style as Offensive/Defensive Cooldowns, plus a small "talent
+                 available" hint (hasPotentialImprovement, see modifiersFor()'s 'potential'
+                 bucket) — clicking the card opens the same spell-detail modal, whose "Could Be
+                 Improved By" section explains which untaken talent and by how much. This is the
+                 concrete answer to the reported gap: a mobility-boosting talent is often not in
+                 the admin-default build (builds are curated for damage, not mobility), so a
+                 viewer previously had no way to know one existed at all. --}}
+            @php
+                $mobilityByMember = collect($comp)->map(fn ($member, $mi) => [
+                    'mi' => $mi,
+                    'member' => $member,
+                    'entries' => collect($member['entries'])->filter(fn ($e) => $e['spell']->is_mobility)->sortBy(fn ($e) => $e['spell']->display_name)->values(),
+                ])->filter(fn ($row) => $row['entries']->isNotEmpty())->values();
+            @endphp
+            <div x-show="tab === 'mobility'" x-cloak>
+                @if ($mobilityByMember->isEmpty())
+                    <p class="text-[12px] text-ink-subtle px-1 py-4 text-center">
+                        No hand-curated mobility abilities found for any selected spec yet.
+                    </p>
+                @else
+                    <div class="space-y-4">
+                        @foreach ($mobilityByMember as $row)
+                            @php
+                                $member = $row['member'];
+                                $ownerColor = $member['class'] ? (config('wow_classes.colors')[$member['class']->slug] ?? null) : null;
+                            @endphp
+                            <div class="linear-card p-4">
+                                @if ($member['spec'])
+                                    <p class="text-[11px] font-semibold uppercase tracking-wide mb-3" style="{{ $ownerColor ? 'color: '.$ownerColor : '' }}">{{ $member['class']->name }} ({{ $member['spec']->name }})</p>
+                                @endif
+                                <div class="flex flex-wrap gap-2.5">
+                                    @foreach ($row['entries'] as $entry)
                                         @php
-                                            $catEntries = collect($member['entries'])->filter(
-                                                fn ($e) => ($e['spell']->is_passive ? 'passive' : 'active') === $groupKey && $e['category'] === $category
-                                            );
+                                            $spell = $entry['spell'];
+                                            $modalKey = "m{$row['mi']}-s{$spell->id}";
+                                            [$cdValue, $cdUnit] = $splitUnit($cooldownDisplay($entry) ?? '—');
                                         @endphp
-                                        @forelse ($catEntries as $entry)
-                                            @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
-                                            <button type="button"
-                                                    @click="openSpellId = '{{ $modalKey }}'"
-                                                    class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
-                                                <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
-                                                <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
+                                        <button type="button"
+                                                @click="openSpellId = '{{ $modalKey }}'"
+                                                class="linear-card !p-3 w-44 flex-shrink-0 text-left hover:border-gold/40 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
+                                            <div class="flex items-center gap-2 mb-2">
+                                                <x-spell-icon :spell="$spell" size="w-8 h-8"/>
+                                                <span class="text-[12px] text-ink font-semibold truncate">{{ $spell->display_name }}</span>
+                                            </div>
+                                            <div class="flex flex-wrap items-center gap-1">
+                                                <span class="{{ $categoryBadge[$entry['category']] ?? 'badge-gray' }} !text-[9px]">{{ $entry['category'] }}</span>
                                                 @if (($entry['source'] ?? null) === 'talent')
-                                                    <span class="badge-blue shrink-0" title="Talent">T</span>
+                                                    <span class="badge-blue !text-[9px]" title="Talent">T</span>
                                                 @elseif (($entry['source'] ?? null) === 'pvp_talent')
-                                                    <span class="badge-gold shrink-0" title="PvP Talent">PvP</span>
+                                                    <span class="badge-gold !text-[9px]" title="PvP Talent">PvP</span>
                                                 @endif
-                                                <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
-                                            </button>
-                                        @empty
-                                            <p class="text-[11px] text-ink-subtle px-1.5 py-1">—</p>
-                                        @endforelse
-                                    </div>
-                                @endforeach
+                                                @if ($entry['hasPotentialImprovement'] ?? false)
+                                                    <span class="badge-gold !text-[9px]" title="An untaken talent would improve this — click for details">💡 Talent available</span>
+                                                @endif
+                                            </div>
+                                            <div class="flex items-center gap-3 mt-2.5 pt-2.5 border-t border-line">
+                                                <div class="flex flex-col leading-none">
+                                                    <span class="text-[9px] uppercase tracking-wider text-ink-subtle font-semibold mb-1">CD</span>
+                                                    <span class="text-[15px] font-bold text-ink tabular-nums">{{ $cdValue }}<span class="text-[10px] font-bold text-ink">{{ $cdUnit }}</span></span>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endforeach
+                        @endforeach
+                    </div>
+                @endif
+            </div>
 
             {{-- Synergies tab — deterministic CC-chain sequencing via CcChainBuilder. Two cards,
                  per WowComps::SYNERGY_GROUPS: "Utility" (Knockback/Disarm/Slow/Root, merged into
@@ -1058,18 +1080,21 @@
              this for a single dynamically-populated modal instead of rendering one block per
              spell.
 
-             Passive-entry skip added 2026-09-01 alongside removing the Buffs & Passives tab
-             (see the tab bar's own comment) — a passive entry's modal is otherwise unreachable
-             now that its only click target is gone, so generating it is pure wasted render
-             cost. NOT a blanket `is_passive` skip, though — several other tabs can legitimately
-             open a passive entry's modal and must stay reachable: PvP Talents (some real PvP
-             talents are passive stat modifiers, not gated by is_passive at all — see that tab's
-             own filter), Crowd Control/Synergies (dr_category-tagged), and Peels/Interrupts
-             (is_peel/is_interrupt-tagged) all pull from this same $comp[i]['entries'] array and
-             key into these same modal blocks. isPriority is kept as a broad safety margin on
-             top of the specific Offensive/Defensive check — slightly more conservative than
-             strictly necessary, but real cast evidence for a spec is a reasonable bar for
-             "worth keeping clickable" regardless of exact tab. --}}
+             Skip generalized 2026-09-01: originally only skipped PASSIVE entries once Buffs &
+             Passives was removed (a passive's modal was otherwise unreachable). The same day,
+             Active Abilities itself was also removed (direct request, performance) — that tab
+             was the one place every ACTIVE entry was reachable regardless of any other flag, so
+             the skip now applies uniformly to active and passive entries alike: an entry only
+             gets a modal block if it's reachable from one of the tabs that remain. NOT a blanket
+             is_passive check on its own — several tabs can legitimately open a passive entry's
+             modal and must stay reachable: PvP Talents (some real PvP talents are passive stat
+             modifiers, not gated by is_passive at all — see that tab's own filter), Crowd
+             Control/Synergies (dr_category-tagged), and Mobility/Peels/Interrupts (is_mobility/
+             is_peel/is_interrupt-tagged) all pull from this same $comp[i]['entries'] array and
+             key into these same modal blocks. isPriority is kept as a broad safety margin on top
+             of the specific Offensive/Defensive check — slightly more conservative than strictly
+             necessary, but real cast evidence for a spec is a reasonable bar for "worth keeping
+             clickable" regardless of exact tab. --}}
         <div class="fixed inset-0 z-50 bg-surface-0/80 backdrop-blur-sm flex items-center justify-center p-4"
              x-show="openSpellId !== null" x-cloak
              @click.self="openSpellId = null"
@@ -1077,12 +1102,12 @@
             @foreach ($comp as $mi => $member)
                 @foreach ($member['entries'] as $entry)
                     @continue(
-                        $entry['spell']->is_passive
-                        && ($entry['source'] ?? null) !== 'pvp_talent'
+                        ($entry['source'] ?? null) !== 'pvp_talent'
                         && !($entry['isPriority'] ?? false)
                         && $entry['spell']->dr_category === null
                         && !$entry['spell']->is_peel
                         && !$entry['spell']->is_interrupt
+                        && !$entry['spell']->is_mobility
                     )
                     @php
                         $modalKey = "m{$mi}-s{$entry['spell']->id}";
@@ -1162,6 +1187,48 @@
                                             @if ($modCooldownDisplay)
                                                 <p class="text-[10px] text-ink-subtle mt-1"><span class="font-semibold">Cooldown</span> {{ $modCooldownDisplay }}</p>
                                             @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+
+                        {{-- "Could be improved by" — same 'potential' bucket as
+                             SpellDetailModal's own copy of this section (see
+                             ModuleSpellReferenceService::modifiersFor()'s docblock, 2026-09-01).
+                             Motivating case: a Mobility-tab spell whose CD-reducing talent isn't
+                             in the resolved build (default builds are curated for damage, not
+                             mobility) previously gave no indication such a talent even exists. --}}
+                        @if (!empty($entry['modifiers']['potential']) && $entry['modifiers']['potential']->isNotEmpty())
+                            <div class="mt-3 pt-3 border-t border-line">
+                                <p class="text-[10px] uppercase tracking-wide text-gold/80 font-semibold mb-1">Could Be Improved By</p>
+                                <p class="text-[10px] text-ink-subtle mb-1.5">Not currently selected in this build:</p>
+                                @foreach ($entry['modifiers']['potential'] as $mod)
+                                    @php
+                                        $potModId = 'p'.$mod['spell']->id;
+                                        $magParts = [];
+                                        if (($mod['modifier_value'] ?? null) !== null && ($mod['modifier_unit'] ?? null)) {
+                                            $magParts[] = 'up to '.$mod['modifier_value'].' '.$mod['modifier_unit'];
+                                        }
+                                    @endphp
+                                    <div class="mb-1 last:mb-0">
+                                        <button type="button"
+                                                @click="expandedMod = expandedMod === '{{ $potModId }}' ? null : '{{ $potModId }}'"
+                                                class="w-full flex items-center gap-1.5 text-left py-0.5 -mx-1 px-1 rounded hover:bg-surface-2 transition-colors opacity-80">
+                                            <svg class="w-3 h-3 text-ink-subtle flex-shrink-0 transition-transform" :class="expandedMod === '{{ $potModId }}' && 'rotate-90'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                            </svg>
+                                            <x-spell-icon :spell="$mod['spell']" size="w-5 h-5" class="grayscale"/>
+                                            <span class="text-[12px] text-ink-muted flex-1 truncate">{{ $mod['spell']->display_name }}</span>
+                                            @if ($magParts)
+                                                <span class="text-[10px] text-gold/70 font-mono">{{ implode(', ', $magParts) }}</span>
+                                            @endif
+                                        </button>
+                                        <div x-show="expandedMod === '{{ $potModId }}'" x-cloak x-collapse
+                                             class="ml-[18px] pl-2.5 border-l border-line mt-1 mb-1.5">
+                                            <span class="{{ $categoryBadge[$mod['category']] ?? 'badge-gray' }} mb-1">{{ $mod['category'] }}</span>
+                                            <p class="text-[11px] text-ink-muted leading-relaxed mt-1">{{ $mod['description']['text'] ?: 'No description available.' }}</p>
+                                            <p class="text-[10px] text-ink-subtle italic mt-1">A talent, not currently taken — take it to apply this.</p>
                                         </div>
                                     </div>
                                 @endforeach

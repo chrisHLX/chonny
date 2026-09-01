@@ -332,7 +332,20 @@ class ModuleSpellReferenceService
      * the rank the current build actually selected, rather than showing no number at all for a
      * talent ImportSpellData deliberately left un-computed at import time.
      *
-     * @return array{named: Collection, baseline: Collection}
+     * Since 2026-09-01, a third bucket — 'potential' — surfaces exactly the candidates the
+     * comment above used to describe as silently dropped: real, structurally-confirmed
+     * modifiers (isConfidentlyInBuild() passes) whose talent simply isn't selected in the
+     * current build. Motivating report: a player clicking a mobility spell (e.g. a gap-closer)
+     * sees its unmodified cooldown with no indication a talent exists that would reduce it,
+     * because default/admin builds are curated for damage output and routinely don't take
+     * mobility-flavoured talents. "Not shown as active" (the existing, correct 'named'/
+     * effectiveCooldown() behaviour) and "not shown to exist at all" (the actual gap) are two
+     * different problems — this bucket closes the second without touching the first. Uses the
+     * SAME resolveRankAwareMagnitude() call as 'named' — since the candidate has no entry in
+     * $selectedRanks, that method's own documented highest-rank fallback applies, so the number
+     * shown is "the best case if this rank were taken," not a guess at an unselected rank.
+     *
+     * @return array{named: Collection, baseline: Collection, potential: Collection}
      */
     public function modifiersFor(Spell $spell, ModuleGameBuild $build, ?Collection $selectedSpellIds = null, ?Collection $selectedRanks = null): array
     {
@@ -345,10 +358,11 @@ class ModuleSpellReferenceService
 
         $named = collect();
         $baseline = collect();
+        $potential = collect();
         $seenIds = collect([$spell->id]);
 
         $classify = function (Spell $candidate, string $relationshipType, ?SpellRelationship $rel = null) use (
-            &$named, &$baseline, $isBaseline, $context, $treeIds, $selectedSpellIds, $selectedRanks
+            &$named, &$baseline, &$potential, $isBaseline, $context, $treeIds, $selectedSpellIds, $selectedRanks
         ) {
             if ($this->isKnownJunk($candidate)) {
                 return;
@@ -371,18 +385,24 @@ class ModuleSpellReferenceService
                 return;
             }
 
-            if (!$selectedSpellIds->contains($candidate->id)) {
-                // Not currently selected — still a real, possible modifier, just not applying
-                // right now. Dropped from 'named' rather than shown as if it were active; see
-                // effectiveCooldown() for the same selection gate applied to the computed number.
+            if (!$this->isConfidentlyInBuild($candidate, $context['class_id'], $context['spec_id'], $treeIds)) {
+                // Ambiguous class-wide tag, not an actual talent in this build's trees, not
+                // explicitly spec-tagged — dropped rather than shown as unexplained noise,
+                // regardless of selection state.
                 return;
             }
 
-            if ($this->isConfidentlyInBuild($candidate, $context['class_id'], $context['spec_id'], $treeIds)) {
-                $named->push($entry);
+            if (!$selectedSpellIds->contains($candidate->id)) {
+                // Not currently selected — a real, structurally-confirmed modifier, just not
+                // applying right now. Kept in 'potential' (see docblock above) rather than
+                // 'named', so the numeric math (effectiveCooldown()/effectiveCharges(), which
+                // reuse this same selection gate) never treats it as active.
+                $potential->push($entry);
+
+                return;
             }
-            // else: ambiguous class-wide tag, not an actual talent in this build's trees, not
-            // explicitly Discipline-tagged — dropped rather than shown as unexplained noise.
+
+            $named->push($entry);
         };
 
         foreach ($spell->incomingRelationships as $rel) {
@@ -423,6 +443,7 @@ class ModuleSpellReferenceService
         return [
             'named' => $this->dedupeGenericModifies($named),
             'baseline' => $this->dedupeGenericModifies($baseline),
+            'potential' => $this->dedupeGenericModifies($potential),
         ];
     }
 
@@ -816,7 +837,12 @@ class ModuleSpellReferenceService
      * 0.36, 4.80); Breath of Sindragosa's bookkeeping effect has sp_coefficient = NULL. Requiring
      * "no sp_coefficient either" is what correctly separates the two cases.
      *
-     * @return string One of: 'Crowd Control', 'Defensive', 'Utility', 'Offensive', 'Other'
+     * 'Mobility' added 2026-09-01 — carved out of what used to be part of 'Utility' (see
+     * categorizeFromEffects()'s docblock: Blink/Sprint/Heroic Leap-type effects previously
+     * bucketed identically to Kick/Dispel Magic under one label). Same "curated flag outranks
+     * inference" precedent as is_interrupt above.
+     *
+     * @return string One of: 'Crowd Control', 'Defensive', 'Utility', 'Mobility', 'Offensive', 'Other'
      */
     public function categorize(Spell $spell): string
     {
@@ -868,6 +894,14 @@ class ModuleSpellReferenceService
 
         if ($spell->is_interrupt) {
             return 'Utility';
+        }
+
+        // Curated $is_mobility outranks the effect-signal split below for the same reason
+        // is_interrupt does — a hand-verified flag beats inference. Checked before the mechanic
+        // map too: a mobility spell can incidentally carry a Snare/Root mechanic tag on itself
+        // (e.g. a leap that also snares on landing) and this must not lose to that.
+        if ($spell->is_mobility) {
+            return 'Mobility';
         }
 
         if ($spell->mechanic !== null && isset(self::MECHANIC_CATEGORY_MAP[$spell->mechanic])) {
@@ -989,14 +1023,20 @@ class ModuleSpellReferenceService
         $dealsDamage = (bool) preg_match('/School Damage|Periodic Damage|Weapon % Damage|Damage Done%/i', $joined);
         $ampsDamage = (bool) preg_match('/Auto Attack Speed%|Modify All Haste%|Critical Strike%|Critical Bonus|Empower/i', $joined);
         $hasCcString = (bool) preg_match('/Stun|Fear|Root|Silence|Incapacitate|Disorient|Charm|Polymorph|Freeze|Sleep|Horror|Confuse|Possess|Banish/i', $joined);
-        $isTeleport = (bool) preg_match('/\bLeap\b|Teleport|Jump Charge/i', $joined);
+        // Split out of $utility 2026-09-01 (own bucket, previously folded into 'Utility' below —
+        // meant Blink/Sprint/Heroic Leap showed under the same header as Kick/Dispel Magic, with
+        // no way to tell "escape/reposition" tools apart from "interrupt/dispel" tools). Own-
+        // effect self-mobility signal only — gap-closers/escapes both count (a Leap toward a
+        // target and a Leap away from one are the same effect-string shape; direction isn't
+        // knowable from effect data alone, and per direct instruction both count anyway).
+        $isMobility = (bool) preg_match('/\bLeap\b|Teleport|Jump Charge|Increase Speed%/i', $joined);
         $defends = (bool) preg_match('/Damage Taken%|Absorb|Immunity|Sanctuary|Block%|Parry%|Dodge%|Damage Reduction|Direct Heal|Periodic Heal|Heal Max Health%|Modify Armor/i', $joined);
-        $utility = (bool) preg_match('/Dispel|Increase Speed%|Interrupt Cast|Redirect Threat/i', $joined);
+        $utility = (bool) preg_match('/Dispel|Interrupt Cast|Redirect Threat/i', $joined);
 
         return match (true) {
             $dealsDamage || $ampsDamage => 'Offensive',
             $hasCcString => 'Crowd Control',
-            $isTeleport => 'Utility',
+            $isMobility => 'Mobility',
             $defends => 'Defensive',
             $utility => 'Utility',
             default => 'Other',

@@ -2,6 +2,7 @@
     $categoryBadge = [
         'Crowd Control' => 'badge-blue',
         'Defensive' => 'badge-red',
+        'Mobility' => 'badge-green',
         'Utility' => 'badge-amber',
         'Offensive' => 'badge-orange',
         'Other' => 'badge-gray',
@@ -92,6 +93,49 @@
                                 @if ($modCooldownDisplay)
                                     <p class="text-[10px] text-ink-subtle mt-1"><span class="font-semibold">Cooldown</span> {{ $modCooldownDisplay }}</p>
                                 @endif
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+            {{-- "Could be improved by" — real, structurally-confirmed talents that would modify
+                 this spell but aren't currently selected in the resolved build (see
+                 ModuleSpellReferenceService::modifiersFor()'s 'potential' bucket docblock,
+                 2026-09-01). Only shown with a real spec context — with no build resolved,
+                 there's nothing to distinguish "not selected" from "not applicable." Framed as
+                 "up to" since the magnitude shown is the modifier's highest-rank value, not
+                 necessarily what a lower rank would give. --}}
+            @if ($specId && $entry['modifiers']['potential']->isNotEmpty())
+                <div class="mt-3 pt-3 border-t border-line">
+                    <p class="text-[10px] uppercase tracking-wide text-gold/80 font-semibold mb-1">Could Be Improved By</p>
+                    <p class="text-[10px] text-ink-subtle mb-1.5">Not currently selected in this build:</p>
+                    @foreach ($entry['modifiers']['potential'] as $mod)
+                        @php
+                            $modId = 'p'.$mod['spell']->id;
+                            $magParts = [];
+                            if (($mod['modifier_value'] ?? null) !== null && ($mod['modifier_unit'] ?? null)) {
+                                $magParts[] = 'up to '.$mod['modifier_value'].' '.$mod['modifier_unit'];
+                            }
+                        @endphp
+                        <div class="mb-1 last:mb-0">
+                            <button type="button"
+                                    @click="expandedMod = expandedMod === '{{ $modId }}' ? null : '{{ $modId }}'"
+                                    class="w-full flex items-center gap-1.5 text-left py-0.5 -mx-1 px-1 rounded hover:bg-surface-2 transition-colors opacity-80">
+                                <svg class="w-3 h-3 text-ink-subtle flex-shrink-0 transition-transform" :class="expandedMod === '{{ $modId }}' && 'rotate-90'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                                <x-spell-icon :spell="$mod['spell']" size="w-5 h-5" class="grayscale"/>
+                                <span class="text-[12px] text-ink-muted flex-1 truncate">{{ $mod['spell']->display_name }}</span>
+                                @if ($magParts)
+                                    <span class="text-[10px] text-gold/70 font-mono">{{ implode(', ', $magParts) }}</span>
+                                @endif
+                            </button>
+                            <div x-show="expandedMod === '{{ $modId }}'" x-cloak x-collapse
+                                 class="ml-[18px] pl-2.5 border-l border-line mt-1 mb-1.5">
+                                <span class="{{ $categoryBadge[$mod['category']] ?? 'badge-gray' }} mb-1">{{ $mod['category'] }}</span>
+                                <p class="text-[11px] text-ink-muted leading-relaxed mt-1">{{ $mod['description']['text'] ?: 'No description available.' }}</p>
+                                <p class="text-[10px] text-ink-subtle italic mt-1">A talent, not currently taken — take it to apply this.</p>
                             </div>
                         </div>
                     @endforeach

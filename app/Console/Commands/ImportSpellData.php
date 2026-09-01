@@ -1519,7 +1519,7 @@ class ImportSpellData extends Command
                 continue;
             }
 
-            $parts = array_map('trim', explode('|', $line, 10));
+            $parts = array_map('trim', explode('|', $line, 11));
 
             if (count($parts) < 6 || !ctype_digit($parts[0])) {
                 $this->ccSynergyOverrideSkips++;
@@ -1530,12 +1530,15 @@ class ImportSpellData extends Command
 
             [$externalSpellId, $drCategory, $chainTarget, $isPeel, $isInterrupt, $pvpDuration] = $parts;
             // pairs_with_category — added 2026-08-23, 7th data field. requires_stealth /
-            // requires_target_out_of_combat — added 2026-08-23, 8th/9th data fields. All three
-            // optional/backward-compatible: an older line without them simply has no requirement
-            // recorded, same as every other blank field in this file.
+            // requires_target_out_of_combat — added 2026-08-23, 8th/9th data fields. is_mobility
+            // — added 2026-09-01, 10th data field, same append-only backward-compatible pattern
+            // (WoW Comps' new "Mobility" tab). All four optional/backward-compatible: an older
+            // line without them simply has no requirement/flag recorded, same as every other
+            // blank field in this file.
             $pairsWithCategory = $parts[6] ?? '';
             $requiresStealth = $parts[7] ?? '';
             $requiresTargetOutOfCombat = $parts[8] ?? '';
+            $isMobility = $parts[9] ?? '';
 
             $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
 
@@ -1595,6 +1598,7 @@ class ImportSpellData extends Command
                 'pairs_with_category' => $pairsWithCategory !== '' ? $pairsWithCategory : null,
                 'requires_stealth' => $requiresStealth === '1',
                 'requires_target_out_of_combat' => $requiresTargetOutOfCombat === '1',
+                'is_mobility' => $isMobility === '1',
             ], 'spells');
 
             $this->ccSynergyOverridesApplied++;

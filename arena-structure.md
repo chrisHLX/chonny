@@ -580,3 +580,105 @@ amount of schema or addon work rescues it.
 **Not yet captured anywhere:** terrain. Part 9 lists pillar geometry as a variable
 that changes the cost of positional defence, but nothing in the project models maps
 at all. Possibly out of scope; noted so the omission is deliberate.
+
+---
+
+## Part 14 — Worked Example: The Rogue Kill Window
+
+Added 2026-09-01, from the player's own dictation. Every other part of this
+framework is abstract — this is the first fully-threaded concrete example run
+through it end to end, and it is what actually validated the framework rather than
+the reverse: the player derived Parts 2/4/8/10 independently, from analysis, before
+reading this file, and this example is where that analysis happened.
+
+**The go itself (Assassination Rogue, from stealth):**
+
+1. **Death Mark**, opened from stealth. This spends the term "our damage available"
+   at maximum strength immediately, but *supplies no CC of its own* — it is a pure
+   damage cooldown. Taken as the opener anyway, because stealth is itself a
+   guaranteed-complete-conjunction moment (Part 8): it is the one point where a free
+   global is available with total certainty, so the "no CC" gap is accepted as the
+   cost of taking it.
+2. **Garrote** — now damage-buffed by Death Mark, and separately applies a genuine
+   CC term: a 3-second silence, while also building combo points. This is the first
+   point the conjunction's "control on the target" term gets satisfied.
+3. **Cheap Shot** — a stun, more combo points. Control term extended, damage term
+   still loading.
+4. **Rupture** at full combo points, then **Kingsbane**, then **Kidney Shot** — the
+   remaining offensive cooldowns land while the target has been locked, continuously,
+   since Garrote's first silence tick.
+
+Read against Part 2: the sequence is not "use abilities in a good order," it is
+satisfying the conjunction's three terms in a specific sequence *because the terms
+have different lead times* — damage (Death Mark) is instant, control (Garrote onward)
+has to be built and chained, and the target's outs have to be denied by the CC chain
+itself never breaking. The player's own framing — "all damage CDs used, the target
+locked the entire time" — is Part 2's conjunction stated in one sentence from inside
+the go, not from the framework's abstraction.
+
+**The gap the sequence leaves, and who fills it:** no CC lands before Garrote's
+first tick — a full global of total vulnerability with nothing controlling the
+target. The player's own note: *"there could have been a Sap prior, but looking at
+globals, no follow-up CC after Sap"* — Sap is a single-global Incapacitate with
+nothing chaining out of it, so it does not by itself close the gap. **This is
+exactly the "terms substitute across teammates, not across categories" rule from
+Part 2**: a second class supplying CC (a Mage, etc.) on that same opening global is
+what actually closes it — the rogue's kit alone cannot.
+
+**Anti-go, read correctly vs. incorrectly (Part 3/9, the state-recognition column
+of Part 11):**
+
+- **Correct read (high-rated):** CC the rogue on their *first* global, the instant
+  Death Mark lands — before Garrote's silence even ticks. This falsifies the "our
+  damage available" term at the earliest possible moment, cheapest available, per
+  Part 2's defensive rule ("you only have to falsify one term... whichever removal
+  is cheapest wins").
+- **Incorrect read (lower-rated):** the defending team is in a *pressure mindset* —
+  they try to trade damage back immediately instead of reading what the rogue's
+  team is actually attempting. This is precisely Part 11's "state-recognition
+  failure": failing to recognise **only them** (the rogue's team, not theirs) and
+  playing the same way regardless. It is not a trait problem ("this player is
+  reckless") — it is a specific, nameable, teachable failure to read that this go
+  is *their* go, not a neutral damage race.
+
+**The rogue's own decision node — trinket or hold:**
+
+Once CC'd, the rogue has exactly the branching decision Part 10 describes, but the
+player's own phrasing sharpens Part 10 into something more operational than the
+framework currently states it: not just "is this go deterministic," but a genuine
+one-ply lookahead on *both* branches before acting —
+
+> *"If I trinket, what global do I use next? If I don't, what will I have to use
+> after the chain ends?"*
+
+This is Part 10's Tier 1/Tier 2 split, run *forward* from a decision rather than
+*backward* from a verdict: trinketing immediately and re-applying CC of your own
+usually lets the go continue uninterrupted; not trinketing frequently still ends in
+trinketing anyway, just later and after paying for additional defensives in the
+meantime — net worse, not neutral (compare Part 4's "an uncashed window leaves you
+net negative, not neutral," same shape of result, opposite side of the ledger). The
+player's own note that this is *analysable but not computable live* — "a lot of
+information that in my experience you can't process during a game... this is
+something I have only recently learnt from writing about it" — is the single
+clearest confirmation in this whole framework of Part 9's closing claim: **the
+structure can be authored without an expert; only the values need one, and writing
+them down is what makes them teachable at all**, because the player themselves only
+recognised the rule by writing about it, not by playing more games.
+
+**Post-commitment simplification (Part 4, restated concretely):** once cooldowns
+have been forced in this exchange, the remaining game genuinely does simplify to
+timer-tracking — the player's own example is anticipating exactly when Kingsbane
+returns. This is Part 4's "window duration = return of the *last* missing term,"
+made literal: once you know which specific cooldowns just got spent, the next
+legitimate window is a known number of seconds away, not a fresh unknown.
+
+**Why this belongs here rather than as its own file:** every piece of it already had
+a named home in Parts 1–11 before this example existed — the example didn't
+introduce new theory, it is the first real proof the theory holds against an actual
+sequence a Gladiator-level player actually executes. The validation test Part 11's
+Open Questions section proposes ("take one matchup, write its state table, check
+whether the model correctly diagnoses the player's own losses") is effectively what
+just happened here, informally, for a single go rather than a full matchup. The
+next real test is the same exercise run deliberately: take one real matchup this
+player has played, write its full state table (Part 12), and check it against ten
+actual losses.
