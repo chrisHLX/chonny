@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Services\ArenaLogService;
+use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\SpellDataFileParser;
 use App\Http\Services\TalentSelectionService;
 use App\Models\Game;
@@ -24,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Str;
 use JsonException;
 
@@ -157,6 +160,10 @@ class ImportSpellData extends Command
 
     private int $cooldownScalingNotesApplied = 0;
 
+    private int $ccImmunityNoteSkips = 0;
+
+    private int $ccImmunityNotesApplied = 0;
+
     private int $scalarCorrectionsApplied = 0;
 
     private int $scalarCorrectionSkips = 0;
@@ -219,6 +226,7 @@ class ImportSpellData extends Command
         $this->importBaselineSpecOverrides($patch);
         $this->importCcSynergyOverrides($patch);
         $this->importCooldownScalingNotes($patch);
+        $this->importCcImmunityOverrides($patch);
         $this->importScalarCorrections($patch);
 
         // Retroactive cleanup for stale class-tree talent nodes that duplicate a spec-tree
@@ -266,10 +274,32 @@ class ImportSpellData extends Command
             }
         }
 
+        $this->materializeSpellShape($patch);
+
         // Spell data (cooldowns, descriptions, mechanic, effects) may have changed for any
         // spec touched by this run — bump the shared version counter WowComps/SpellExplorer's
         // Redis cache keys off, rather than trying to enumerate which specs are affected.
         app(TalentSelectionService::class)->bumpSpellCacheVersion();
+
+        // Regenerate every spec's precomputed kit file (data/spell-kits/{class}/{spec}.json) now
+        // that the version counter above has moved — added 2026-09-05 after a real, confirmed
+        // gap: this step never ran automatically, so a version bump here silently invalidated
+        // every one of those 40 files (each one embeds the version/fingerprint it was built
+        // against) with nothing ever regenerating them. WowComps/SpellExplorer both fall back to
+        // a slow live-compute-and-cache path when the file is stale, which is safe but far more
+        // expensive — confirmed via direct profiling: a 3-spec WowComps render dropped from
+        // 6,964ms/3,042 queries to 970ms/146 once its specs' files were fresh again. Checked
+        // right before this fix shipped: 37 of the 40 files were stale, from spell-data changes
+        // made across several import runs with nobody remembering to run the precompute command
+        // after any of them. Shelled out as its own subprocess (same pattern as
+        // RefreshMatchDerived::callArtisan()) rather than an in-process $this->call() — this
+        // command computes a full kit for all 40 specs, and running it inside this already-heavy
+        // process risked compounding memory usage the same way that class's own docblock
+        // documents for its own multi-step orchestration.
+        Process::timeout(0)->run(
+            ['php', '-d', 'memory_limit=1024M', base_path('artisan'), 'wow:precompute-spell-kits'],
+            fn (string $type, string $output) => $this->output->write($output)
+        );
 
         $this->printSummary();
         $this->runSpellbookDiffCheck();
@@ -479,6 +509,8 @@ class ImportSpellData extends Command
                 'range_yards' => $record['range_yards'],
                 'is_passive' => $record['is_passive'],
                 'cast_type' => $record['cast_type'],
+                'usable_while_cc' => $record['usable_while_cc'],
+                'bypasses_active_defense' => $record['bypasses_active_defense'],
             ];
 
             // A pointer-form record (description_ref !== null) always parses to description=null
@@ -514,6 +546,8 @@ class ImportSpellData extends Command
                     'scaled_value' => $effect['scaled_value'],
                     'sp_coefficient' => $effect['sp_coefficient'],
                     'pvp_coefficient' => $effect['pvp_coefficient'],
+                    'misc_value' => $effect['misc_value'],
+                    'affected_schools' => $effect['affected_schools'],
                     'rank_op' => $effect['rank_op'],
                     'rank_values' => $effect['rank_values'],
                 ], 'spell_effects');
@@ -1189,6 +1223,7 @@ class ImportSpellData extends Command
             }
 
             $resolved = null;
+            $resolvedVariables = null;
             $visited = [$spellExternalId => true];
             $current = $refExternalId;
 
@@ -1209,6 +1244,14 @@ class ImportSpellData extends Command
 
                 if ($next->description !== null) {
                     $resolved = $next->description;
+                    // The inherited description's own $<varname> tokens resolve against the
+                    // POINTER TARGET's Variables block, not the pointing spell's (which has
+                    // none) — e.g. Shield Discipline (47755) points at 197045, whose
+                    // "Variables: $mana=${$47755s1/100}.1" is what its "$<mana>%" means. Carry
+                    // it across alongside the text so the resolver can evaluate it instead of
+                    // blanket-rendering "(varies)". Only used when the pointing spell has no
+                    // Variables of its own (below).
+                    $resolvedVariables = $next->variables;
                     break;
                 }
 
@@ -1230,12 +1273,18 @@ class ImportSpellData extends Command
                 continue;
             }
 
+            $write = ['description' => $resolved];
+
+            // Backfill the pointer target's Variables block too, but never clobber one the
+            // pointing spell already has of its own.
+            if ($resolvedVariables !== null && ($target->variables ?? null) === null) {
+                $write['variables'] = $resolvedVariables;
+            }
+
             $this->upsertTrack(Spell::class, [
                 'patch_id' => $target->patch_id,
                 'spell_id' => $target->spell_id,
-            ], [
-                'description' => $resolved,
-            ], 'spells');
+            ], $write, 'spells');
         }
     }
 
@@ -1660,6 +1709,57 @@ class ImportSpellData extends Command
     }
 
     /**
+     * Reads data/spelldata/cc-immunity-overrides.txt — see that file's own header for the full
+     * rationale (PvP talents have zero structured effect data anywhere in this pipeline, so a
+     * fact like Phase Shift's "casting Fade grants brief immunity" can only ever be hand-
+     * transcribed from its own description text, never auto-derived). Same two-column
+     * `spell_id | note` shape and same line-parsing structure as importCooldownScalingNotes()
+     * just above — deliberately not merged into that method despite the identical shape, since
+     * the two notes describe conceptually different things (a cooldown-magnitude caveat vs. a
+     * CC-immunity fact) and keeping them in separate files/methods means a future reader
+     * skimming either summary line doesn't have to mentally split one count into two meanings.
+     */
+    private function importCcImmunityOverrides(Patch $patch): void
+    {
+        $path = base_path('data/spelldata/cc-immunity-overrides.txt');
+
+        if (!File::exists($path)) {
+            return;
+        }
+
+        foreach (File::lines($path) as $line) {
+            $line = trim($line);
+
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+
+            $parts = array_map('trim', explode('|', $line, 2));
+
+            if (count($parts) < 2 || !ctype_digit($parts[0]) || $parts[1] === '') {
+                $this->ccImmunityNoteSkips++;
+                $this->warn("  Skipping malformed cc-immunity-overrides.txt line: {$line}");
+
+                continue;
+            }
+
+            [$externalSpellId, $note] = $parts;
+
+            $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
+
+            if (!$spell) {
+                $this->ccImmunityNoteSkips++;
+                $this->warn("  Skipping unresolved cc-immunity-overrides.txt line (spell not found for this patch): {$line}");
+
+                continue;
+            }
+
+            $this->upsertTrack(Spell::class, ['id' => $spell->id], ['cc_immunity_note' => $note], 'spells');
+            $this->ccImmunityNotesApplied++;
+        }
+    }
+
+    /**
      * Reads data/spelldata/scalar-corrections.txt — see that file's own header for the full
      * rationale. Field-level patch only: a spell must already exist for this patch (created via
      * the normal SimC import, PvP-talent import, or importManualSpells() above), and only the
@@ -1971,6 +2071,104 @@ class ImportSpellData extends Command
 
         if ($this->cooldownScalingNotesApplied > 0 || $this->cooldownScalingNoteSkips > 0) {
             $this->comment("Cooldown scaling notes: {$this->cooldownScalingNotesApplied} applied, {$this->cooldownScalingNoteSkips} skipped (see warnings above).");
+        }
+
+        if ($this->ccImmunityNotesApplied > 0 || $this->ccImmunityNoteSkips > 0) {
+            $this->comment("CC immunity notes (PvP-talent-only, hand-curated): {$this->ccImmunityNotesApplied} applied, {$this->ccImmunityNoteSkips} skipped (see warnings above).");
+        }
+    }
+
+    /**
+     * Materializes the "full concrete shape of a spell" so a real SQL query can answer things
+     * like "Assassination Rogue spells with dr_category=Stun" or "Assassination Rogue spells
+     * that are Offensive Cooldowns" without any live PHP recomputation — see CLAUDE.md's
+     * 2026-09-03 "spell shape" section for the design discussion this closes out. Runs
+     * unconditionally at the end of every import, same "always run this defensive pass"
+     * precedent as cleanupSamePositionCollisions()/cleanupClassTreeBloat() above.
+     *
+     * Two independent writes, deliberately NOT derived from each other (confirmed by reading
+     * the live blade filter directly rather than assumed — see wow-comps.blade.php's own
+     * $offDefFilter closure): categorize()'s Offensive/Defensive/Crowd Control/Mobility/
+     * Utility/Other label is one signal (spell-level, from the spell's own dr_category/
+     * mechanic/effect data); "is this an Offensive/Defensive Cooldown" (what the live
+     * Cooldowns tab actually shows) is a COMPLETELY SEPARATE, spec-scoped signal — it never
+     * checks categorize()'s output at all, only isPriority (real arena-log cast evidence for
+     * THAT spec) + ArenaLogService::offensiveDefensiveClassification() (a different,
+     * independently-curated arena-log signal) + the cooldown floor/exceptions. Both are useful,
+     * neither substitutes for the other.
+     */
+    private function materializeSpellShape(Patch $patch): void
+    {
+        $service = app(ModuleSpellReferenceService::class);
+        $arenaLogService = app(ArenaLogService::class);
+
+        // --- spells.category / spells.silence_immune_by_school ---
+        $spells = Spell::where('patch_id', $patch->id)->with('effects')->get();
+        $service->preloadCategorize($spells);
+        foreach ($spells as $spell) {
+            $category = $service->categorize($spell);
+            $silenceImmune = $spell->school === 'Physical' && !$spell->is_passive;
+
+            if ($spell->category !== $category || (bool) $spell->silence_immune_by_school !== $silenceImmune) {
+                $spell->category = $category;
+                $spell->silence_immune_by_school = $silenceImmune;
+                $spell->save();
+            }
+        }
+
+        // --- spell_class_availability.is_priority / is_offensive_cooldown / is_defensive_cooldown ---
+        // Scoped to rows with an explicit spec_id only — a spec_id=NULL (class-wide/ambiguous
+        // baseline) row can never be matched by a spec-scoped query like "Assassination Rogue
+        // spells..." in the first place, so there's nothing meaningful to compute for it here.
+        $offDef = $arenaLogService->offensiveDefensiveClassification();
+
+        $rows = SpellClassAvailability::whereHas('spell', fn ($q) => $q->where('patch_id', $patch->id))
+            ->whereNotNull('spec_id')
+            ->with(['spell', 'gameClass', 'specialization'])
+            ->get()
+            ->groupBy(fn ($row) => $row->gameClass?->slug.'|'.$row->specialization?->slug);
+
+        foreach ($rows as $key => $group) {
+            [$classSlug, $specSlug] = array_pad(explode('|', $key, 2), 2, null);
+            if ($classSlug === null || $specSlug === null) {
+                continue;
+            }
+
+            $priorityIds = $arenaLogService->spellUsageIds($classSlug, $specSlug);
+            $spellsInGroup = $group->pluck('spell')->filter()->unique('id')->values();
+            $priorityMap = $arenaLogService->preloadPrioritySpells($spellsInGroup, $priorityIds);
+
+            foreach ($group as $row) {
+                $spell = $row->spell;
+                if (!$spell) {
+                    continue;
+                }
+
+                $isPriority = $priorityMap[$spell->id] ?? false;
+                $signal = $offDef['bySpellId'][$spell->spell_id]
+                    ?? $offDef['byName'][$spell->display_name]
+                    ?? null;
+                $offensiveSignal = $signal['offensive'] ?? false;
+                $defensiveSignal = $signal['defensive'] ?? false;
+
+                $cooldown = (float) ($spell->cooldown_seconds ?? 0);
+                $clearsFloor = $cooldown >= \App\Livewire\WowComps::MIN_COOLDOWN_TAB_SECONDS;
+                $offensiveException = array_key_exists($spell->spell_id, \App\Livewire\WowComps::OFFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS);
+                $defensiveException = array_key_exists($spell->spell_id, \App\Livewire\WowComps::DEFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS);
+
+                $isOffensiveCooldown = $isPriority && $offensiveSignal && ($clearsFloor || $offensiveException);
+                $isDefensiveCooldown = $isPriority && $defensiveSignal && ($clearsFloor || $defensiveException);
+
+                if ((bool) $row->is_priority !== $isPriority
+                    || (bool) $row->is_offensive_cooldown !== $isOffensiveCooldown
+                    || (bool) $row->is_defensive_cooldown !== $isDefensiveCooldown) {
+                    $row->update([
+                        'is_priority' => $isPriority,
+                        'is_offensive_cooldown' => $isOffensiveCooldown,
+                        'is_defensive_cooldown' => $isDefensiveCooldown,
+                    ]);
+                }
+            }
         }
     }
 

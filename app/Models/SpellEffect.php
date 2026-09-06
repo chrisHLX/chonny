@@ -15,6 +15,8 @@ class SpellEffect extends Model
         'scaled_value',
         'sp_coefficient',
         'pvp_coefficient',
+        'misc_value',
+        'affected_schools',
         'rank_op',
         'rank_values',
     ];
@@ -28,6 +30,7 @@ class SpellEffect extends Model
         'scaled_value' => 'float',
         'sp_coefficient' => 'float',
         'pvp_coefficient' => 'float',
+        'misc_value' => 'integer',
         'rank_values' => 'array',
     ];
 

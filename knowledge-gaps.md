@@ -26,11 +26,11 @@ probably missing from your understanding of X," instead of only ever
 discovering gaps when someone happens to ask the right question in a
 conversation. Every entry below is raw material for that, not just a fun fact.
 
-## This ledger is a last resort, not a first response
+## Before logging something here, dig first
 
-**Before something gets logged here as an unfixable/structural gap, the
-investigation has to actually be exhausted — not just "I checked our two
-local data folders and didn't find it."** Concretely, that means, in order:
+A gap is only worth recording as structural once the easy explanations are
+ruled out — not just "I checked our two local data folders and didn't find it."
+The order that's worked, in practice:
 
 1. Check whether the value is derivable from data *we already imported* —
    re-read the relevant `.txt`/`.json` file directly, don't trust a summary
@@ -46,7 +46,7 @@ local data folders and didn't find it."** Concretely, that means, in order:
 4. Only once all three of those come back empty does something belong in
    this file as a genuine, confirmed structural gap.
 
-**Why this rule exists:** the "PvP talents have no cooldown data" entry below
+**Why this matters:** the "PvP talents have no cooldown data" entry below
 was first written after only step 1 — inspecting our own already-imported
 JSON — and concluded "permanent gap, nothing to be done." It took a direct
 challenge ("how would Wowhead have this, must be an older version?") to
@@ -55,9 +55,9 @@ hand-picks a narrow field subset (step 2) and that the live API genuinely
 has nothing more even when queried directly right now (step 3) — a
 categorically stronger, actually-trustworthy conclusion than the original
 one, even though it happened to land in the same place. The entry below is
-now a model of the *right* amount of work before writing CONFIRMED, not just
-an example finding — a future entry that skips straight to "flagged, can't
-fix" after only step 1 should be treated as incomplete, not done.
+now a good model of how much digging to do before writing CONFIRMED — an entry
+that jumps straight to "flagged, can't fix" after only step 1 is probably
+incomplete.
 
 ## How an entry gets in here
 

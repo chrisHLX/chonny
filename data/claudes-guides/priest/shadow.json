@@ -1,0 +1,84 @@
+{
+    "classSlug": "priest",
+    "specSlug": "shadow",
+    "title": "Shadow Priest",
+    "subtitle": "A data-grounded PvP read, written by Claude — not a dictated expert module. See the disclaimer at the end.",
+    "dataSources": {
+        "playstyleSample": 10,
+        "ratingRange": [2178, 3020],
+        "patch": "12.0.7.68453",
+        "freshPullPerformed": false,
+        "note": "Built entirely from the existing 10-match sample (2178-3020 rating) already on file — no new arena-log pull was performed for this. If that changes later, any fresh pull gets the standard wow:refresh-match-derived treatment so Class Guide/Burst Windows/CC chains for this spec benefit too, not just this page."
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "heading": "Identity",
+            "paragraphs": [
+                "Shadow's real identity is DoT maintenance layered under a periodic Voidform escalation — most of the kit exists to keep Shadow Word: Pain and Vampiric Touch ticking on the right target while a handful of real cooldowns (Voidform, Power Infusion, Void Torrent) periodically spike that baseline. Per Part 4 of this project's own arena framework (arena-structure.md), that changes what 'the cooldown ledger' means for this spec: it isn't one number to track, it's a maintenance state — are the DoTs currently up, is Voidform active — closer to Unholy Death Knight's pet-and-plague attrition model than to a single-cooldown burst spec like Rogue.",
+                "The real per-talent data backs this framing directly: Collapsing Void was taken in 9 of 10 sampled matches but never once detected as actually firing — consistent with a talent that either sits dormant most games or reflects a detection gap for a proc-only effect, not a core rotational piece."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Offensive Cooldowns",
+            "intro": "Void Torrent and Power Infusion are the real cooldowns; Voidform and Void Bolt are the sustained-pressure core underneath them.",
+            "spellIds": [263165, 10060, 228260, 205448, 8092, 32379]
+        },
+        {
+            "type": "prose",
+            "heading": "A moderate-use spell worth reading correctly",
+            "paragraphs": [
+                "Shadow Word: Death was taken in every sampled match and actually cast in half of them (5 of 10). That split makes sense for what the spell actually is — a bonus-damage execute that's most valuable against a low-health target, not a spammable filler. A 50% real-use rate on a situational execute is closer to correct play than it might look at first glance; the interesting comparison is Mass Dispel (4 of 10) and Intangibility (2 of 10), both genuinely rare tools that exist for a specific situation this rating bracket's real games didn't always produce."
+            ]
+        },
+        {
+            "type": "prose",
+            "heading": "The real burst window — damage, control, and survival in one sequence",
+            "paragraphs": [
+                "The actual highest-DPS 12-second window found across the whole archived sample: Shadow Word: Madness (x2) -> Void Blast -> Fade -> Angelic Feather -> Tentacle Slam -> Silence -> Angelic Feather -> Mind Blast. This is the clearest version yet of a pattern this whole guide series keeps finding — a Silence (real control) sits directly inside the highest-measured-damage window, continuing the pattern already found in five other specs in this series.",
+                "But this window adds something new worth calling out specifically: Fade — a real defensive cooldown — also sits inside it, not off to the side. That means for this spec, in this real archived game, staying alive long enough to keep pressuring and actually pressuring were the same sequence, not two separate decisions made at different moments. That's a genuinely useful thing to know before assuming a 'burst window' means pure, uninterrupted offense with defense handled separately."
+            ]
+        },
+        {
+            "type": "sequence",
+            "heading": "The real observed burst window",
+            "intro": "The literal top-DPS 12s window from the archived match sample — read live from the same rotation file Burst Windows/Class Guide use for this spec.",
+            "useRealBurstWindow": true,
+            "burstWindowLength": 12
+        },
+        {
+            "type": "prose",
+            "heading": "Reading the anti-go against Shadow",
+            "paragraphs": [
+                "Per Part 11 of the framework, the state-recognition signal here is DoT uptime, not any single cooldown. A Shadow Priest whose Vampiric Touch and Shadow Word: Pain have been rolling uninterrupted for several seconds is already mid-way through their real damage plan, well before Voidform or Void Torrent ever gets pressed — interrupting or dispelling a DoT early denies more total damage than answering the visible cooldown spike later does, the same 'break the cheapest term first' principle already documented for Destruction Warlock's Wither in this series."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Defensive Cooldowns",
+            "intro": "Dispersion is the hard stop; Fade and Desperate Prayer are the cheaper, more frequent answers underneath it.",
+            "spellIds": [47585, 586, 19236]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Crowd Control",
+            "intro": "Mind Control and Psychic Scream share the Disorient category and diminish each other; Silence is a separate pool entirely, which is exactly why it could stack onto the burst window above without losing duration.",
+            "spellIds": [8122, 605, 15487]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Mobility",
+            "intro": "A thin mobility kit compared to most specs in this series — Angelic Feather is the one real repositioning tool, and it doubles as a heal-adjacent utility when cast on an ally.",
+            "spellIds": [121536]
+        },
+        {
+            "type": "prose",
+            "heading": "The cooldown ledger — what to actually track",
+            "paragraphs": [
+                "Per Part 4 of the framework, this spec rewards tracking DoT uptime over any single cooldown timer, similar to the attrition framing already used for Unholy DK in this series. Voidform and Power Infusion matter, but they matter more or less depending on whether the DoT baseline underneath them is already established — the same cooldown pressed onto fresh targets versus already-ticking ones is not the same value, and that's the number worth actually watching mid-match."
+            ]
+        }
+    ],
+    "disclaimer": "This guide was written by Claude (an AI), synthesized from real archived match data and this project's own arena-structure.md framework — it is NOT a dictated expert module and does not carry the same trust tier as the Discipline Priest or Feral Druid canonical modules elsewhere on this site. Every cooldown, category, and observed sequence above is read live from the same database everything else uses; the reasoning connecting them is AI-generated analysis, offered as a data-grounded opinion, not verified expertise. Treat it as a starting hypothesis to test against your own games, not a verdict."
+}

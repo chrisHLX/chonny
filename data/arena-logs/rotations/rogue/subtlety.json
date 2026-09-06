@@ -1,9 +1,9 @@
 {
     "class": "rogue",
     "spec": "subtlety",
-    "windows": 842,
-    "killWindows": 126,
-    "matches": 251,
+    "windows": 346,
+    "killWindows": 68,
+    "matches": 103,
     "anchors": [
         "Goremaw's Bite",
         "Secret Technique",
@@ -807,7 +807,7 @@
                     "pvpTalentId": 315
                 }
             ],
-            "resolvedAt": "2026-08-31T06:43:34+00:00"
+            "resolvedAt": "2026-09-06T02:56:53+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-61-0F89DF7D",
@@ -1025,15 +1025,21 @@
             ],
             "targetClassName": "Paladin",
             "targetSpecName": "Retribution",
-            "resolvedAt": "2026-08-31T10:03:16+00:00"
+            "resolvedAt": "2026-09-06T02:57:04+00:00"
         }
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 1158787,
+            "damage": 1137390,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
+                {
+                    "name": "Shadow Dance",
+                    "spellId": 185313,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Secret Technique",
                     "spellId": 280719,
@@ -1071,13 +1077,13 @@
                     "isRepeat": true
                 }
             ],
-            "matchId": "a2cc81c968fe55803c5c0b49dae1c1ee",
-            "guid": "Player-3676-0DEA3558",
-            "start": 80345.863,
-            "end": 80351.863,
-            "targetGuid": "Player-11-09D7AA11",
+            "matchId": "2fa668c111216933003c73410e36a597",
+            "guid": "Player-96-0EC67A02",
+            "start": 69365.383,
+            "end": 69371.383,
+            "targetGuid": "Player-11-0E60B6D5",
             "talentBuild": {
-                "matchId": "a2cc81c968fe55803c5c0b49dae1c1ee",
+                "matchId": "2fa668c111216933003c73410e36a597",
                 "talents": [
                     {
                         "name": "Master Poisoner",
@@ -1359,6 +1365,15 @@
                         "entryId": 5456
                     },
                     {
+                        "name": "Nimble Fingers",
+                        "spellId": 378427,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4509,
+                        "entryId": 5458
+                    },
+                    {
                         "name": "Quick Fingers",
                         "spellId": 1267210,
                         "rank": 1,
@@ -1458,58 +1473,58 @@
                         "entryId": 5830
                     },
                     {
-                        "name": "Flawless Form",
-                        "spellId": 441321,
+                        "name": "Corrupt the Blood",
+                        "spellId": 1248785,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 4819,
-                        "entryId": 5835
+                        "nodeId": 4848,
+                        "entryId": 5872
                     },
                     {
-                        "name": "Coup de Grace",
-                        "spellId": 441423,
+                        "name": "Clear the Witnesses",
+                        "spellId": 1248793,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 4820,
-                        "entryId": 5836
+                        "nodeId": 4850,
+                        "entryId": 5875
                     },
                     {
-                        "name": "Disorienting Strikes",
-                        "spellId": 441274,
+                        "name": "Singular Focus",
+                        "spellId": 457055,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 4822,
-                        "entryId": 5839
+                        "nodeId": 4851,
+                        "entryId": 5876
                     },
                     {
-                        "name": "Surprising Strikes",
-                        "spellId": 441273,
+                        "name": "Hunt Them Down",
+                        "spellId": 457054,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 4823,
-                        "entryId": 5840
+                        "nodeId": 4854,
+                        "entryId": 5881
                     },
                     {
-                        "name": "Nimble Flurry",
-                        "spellId": 441367,
+                        "name": "Unshakeable Drive",
+                        "spellId": 1248774,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 4824,
-                        "entryId": 5841
+                        "nodeId": 4855,
+                        "entryId": 5882
                     },
                     {
-                        "name": "Devious Distractions",
-                        "spellId": 441263,
+                        "name": "Darkest Night",
+                        "spellId": 457058,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 4825,
-                        "entryId": 5842
+                        "nodeId": 4857,
+                        "entryId": 5884
                     },
                     {
                         "name": "Without a Trace",
@@ -1539,31 +1554,31 @@
                         "entryId": 5792
                     },
                     {
-                        "name": "Clever Combatant",
-                        "spellId": 1276679,
+                        "name": "Mass Casualty",
+                        "spellId": 1273035,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 4830,
-                        "entryId": 5850
+                        "nodeId": 4858,
+                        "entryId": 5885
                     },
                     {
-                        "name": "Flashing Steel",
-                        "spellId": 1276630,
+                        "name": "Quietus Celeris",
+                        "spellId": 1273017,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 4831,
-                        "entryId": 5851
+                        "nodeId": 4859,
+                        "entryId": 5886
                     },
                     {
-                        "name": "Hoodwink",
-                        "spellId": 1276626,
+                        "name": "Precise Killer",
+                        "spellId": 1272989,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 4832,
-                        "entryId": 5852
+                        "nodeId": 4860,
+                        "entryId": 5887
                     },
                     {
                         "name": "Deadened Nerves",
@@ -1584,15 +1599,6 @@
                         "entryId": 5580
                     },
                     {
-                        "name": "Toxic Stiletto",
-                        "spellId": 1267182,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4613,
-                        "entryId": 5581
-                    },
-                    {
                         "name": "Ancient Arts",
                         "spellId": 1268932,
                         "rank": 2,
@@ -1602,13 +1608,13 @@
                         "entryId": 5834
                     },
                     {
-                        "name": "Unseen Blade",
-                        "spellId": 441146,
+                        "name": "Deathstalker's Mark",
+                        "spellId": 457052,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 4828,
-                        "entryId": 5847
+                        "nodeId": 4856,
+                        "entryId": 5883
                     },
                     {
                         "name": "Cloak of Shadows",
@@ -1701,13 +1707,13 @@
                         "entryId": 5454
                     },
                     {
-                        "name": "Tricks of the Trade",
-                        "spellId": 57934,
+                        "name": "Blackjack",
+                        "spellId": 379005,
                         "rank": 1,
                         "treeType": "class",
                         "resolvedByOffset": true,
                         "nodeId": 4461,
-                        "entryId": 5397
+                        "entryId": 5398
                     },
                     {
                         "name": "Warning Signs",
@@ -1719,250 +1725,294 @@
                         "entryId": 5791
                     },
                     {
-                        "name": "Cloud Cover",
-                        "spellId": 441429,
+                        "name": "Lingering Darkness",
+                        "spellId": 457056,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": true,
-                        "nodeId": 4821,
-                        "entryId": 5837
+                        "nodeId": 4849,
+                        "entryId": 5873
                     },
                     {
-                        "name": "Thousand Cuts",
-                        "spellId": 441346,
+                        "name": "Shadewalker",
+                        "spellId": 457057,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": true,
-                        "nodeId": 4827,
-                        "entryId": 5845
+                        "nodeId": 4852,
+                        "entryId": 5877
                     },
                     {
-                        "name": "Smoke",
-                        "spellId": 441247,
+                        "name": "Momentum of Despair",
+                        "spellId": 457067,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": true,
-                        "nodeId": 4829,
-                        "entryId": 5848
+                        "nodeId": 4853,
+                        "entryId": 5879
                     },
                     {
-                        "name": "Don't Be Suspicious",
-                        "spellId": 441415,
+                        "name": "Bait and Switch",
+                        "spellId": 457034,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": true,
-                        "nodeId": 4826,
-                        "entryId": 5844
+                        "nodeId": 4847,
+                        "entryId": 5871
                     }
                 ],
                 "pvpTalents": [
+                    {
+                        "name": "Smoke Bomb",
+                        "spellId": 212182,
+                        "pvpTalentId": 312
+                    },
                     {
                         "name": "Preemptive Maneuver",
                         "spellId": 1219122,
                         "pvpTalentId": 319
                     },
                     {
-                        "name": "Thick as Thieves",
-                        "spellId": 221622,
-                        "pvpTalentId": 316
-                    },
-                    {
-                        "name": "Smoke Bomb",
-                        "spellId": 212182,
-                        "pvpTalentId": 312
+                        "name": "Dismantle",
+                        "spellId": 207777,
+                        "pvpTalentId": 315
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:34+00:00"
+                "resolvedAt": "2026-09-06T02:56:53+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-11-09D7AA11",
+                "targetGuid": "Player-11-0E60B6D5",
                 "championBuffs": [
-                    {
-                        "spellId": 1264521,
-                        "name": "Find Weakness"
-                    },
-                    {
-                        "spellId": 121471,
-                        "name": "Shadow Blades"
-                    },
                     {
                         "spellId": 196911,
                         "name": "Shadow Techniques"
                     },
                     {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
+                        "spellId": 315496,
+                        "name": "Slice and Dice"
                     },
                     {
-                        "spellId": 441326,
-                        "name": "Flawless Form"
-                    },
-                    {
-                        "spellId": 441786,
-                        "name": "Escalating Blade"
-                    },
-                    {
-                        "spellId": 1966,
-                        "name": "Feint"
-                    },
-                    {
-                        "spellId": 441640,
-                        "name": "Smokescreen"
-                    },
-                    {
-                        "spellId": 196980,
-                        "name": "Master of Shadows"
-                    },
-                    {
-                        "spellId": 185422,
-                        "name": "Shadow Dance"
-                    },
-                    {
-                        "spellId": 112942,
-                        "name": "Shadow Focus"
-                    },
-                    {
-                        "spellId": 386237,
-                        "name": "Fade to Nothing"
-                    },
-                    {
-                        "spellId": 393969,
-                        "name": "Danse Macabre"
-                    },
-                    {
-                        "spellId": 394203,
-                        "name": "The Rotten"
-                    },
-                    {
-                        "spellId": 1287978,
-                        "name": "Rune of Lynxlike Reflexes"
+                        "spellId": 457273,
+                        "name": "Lingering Darkness"
                     },
                     {
                         "spellId": 1269163,
                         "name": "Ancient Arts"
                     },
                     {
-                        "spellId": 20572,
-                        "name": "Blood Fury"
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
                     },
                     {
-                        "spellId": 345228,
-                        "name": "Gladiator's Badge"
+                        "spellId": 119611,
+                        "name": "Renewing Mist"
                     },
                     {
-                        "spellId": 221630,
-                        "name": "Tricks of the Trade"
-                    }
-                ],
-                "championDebuffs": [
-                    {
-                        "spellId": 1490,
-                        "name": "Chaos Brand"
+                        "spellId": 1264521,
+                        "name": "Find Weakness"
                     },
                     {
-                        "spellId": 1287663,
-                        "name": "Rune of Lingering"
+                        "spellId": 1241759,
+                        "name": "Genius Insight"
                     },
                     {
-                        "spellId": 197277,
-                        "name": "Judgment"
+                        "spellId": 457115,
+                        "name": "Momentum of Despair"
                     },
                     {
-                        "spellId": 408383,
-                        "name": "Judgment of Justice"
+                        "spellId": 411036,
+                        "name": "Sphere of Hope"
                     },
                     {
-                        "spellId": 164812,
-                        "name": "Moonfire"
-                    }
-                ],
-                "targetBuffs": [
-                    {
-                        "spellId": 1256697,
-                        "name": "Find Lumber"
+                        "spellId": 124682,
+                        "name": "Enveloping Mist"
                     },
                     {
-                        "spellId": 43308,
-                        "name": "Find Fish"
-                    },
-                    {
-                        "spellId": 404464,
-                        "name": "Flight Style: Skyriding"
-                    },
-                    {
-                        "spellId": 465,
-                        "name": "Devotion Aura"
-                    },
-                    {
-                        "spellId": 186403,
-                        "name": "Sign of Battle"
-                    },
-                    {
-                        "spellId": 1126,
-                        "name": "Mark of the Wild"
+                        "spellId": 388513,
+                        "name": "Overflowing Mists"
                     },
                     {
                         "spellId": 345230,
                         "name": "Gladiator's Insignia"
                     },
                     {
-                        "spellId": 6940,
-                        "name": "Blessing of Sacrifice"
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
                     },
                     {
-                        "spellId": 1266308,
-                        "name": "Divine Resonance"
+                        "spellId": 1289063,
+                        "name": "Rune of Echoes"
                     },
                     {
-                        "spellId": 407065,
-                        "name": "Rush of Light"
+                        "spellId": 112942,
+                        "name": "Shadow Focus"
                     },
                     {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
+                        "spellId": 393971,
+                        "name": "Soothing Darkness"
                     },
                     {
-                        "spellId": 1241715,
-                        "name": "Might of the Void"
+                        "spellId": 196980,
+                        "name": "Master of Shadows"
                     },
                     {
-                        "spellId": 1229746,
-                        "name": "Arcanoweave Insight"
+                        "spellId": 386237,
+                        "name": "Fade to Nothing"
+                    },
+                    {
+                        "spellId": 115192,
+                        "name": "Subterfuge"
+                    },
+                    {
+                        "spellId": 1292922,
+                        "name": "Coalescence"
+                    },
+                    {
+                        "spellId": 406220,
+                        "name": "Chi Cocoon"
+                    }
+                ],
+                "championDebuffs": [
+                    {
+                        "spellId": 197277,
+                        "name": "Judgment"
+                    },
+                    {
+                        "spellId": 445836,
+                        "name": "Overwhelmed"
+                    },
+                    {
+                        "spellId": 208086,
+                        "name": "Colossus Smash"
+                    },
+                    {
+                        "spellId": 262115,
+                        "name": "Deep Wounds"
+                    },
+                    {
+                        "spellId": 1287663,
+                        "name": "Rune of Lingering"
+                    }
+                ],
+                "targetBuffs": [
+                    {
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
+                    },
+                    {
+                        "spellId": 462854,
+                        "name": "Skyfury"
+                    },
+                    {
+                        "spellId": 974,
+                        "name": "Earth Shield"
+                    },
+                    {
+                        "spellId": 6673,
+                        "name": "Battle Shout"
+                    },
+                    {
+                        "spellId": 61295,
+                        "name": "Riptide"
+                    },
+                    {
+                        "spellId": 445606,
+                        "name": "Imminent Demise"
+                    },
+                    {
+                        "spellId": 1269394,
+                        "name": "Master of Warfare"
+                    },
+                    {
+                        "spellId": 465,
+                        "name": "Devotion Aura"
+                    },
+                    {
+                        "spellId": 462568,
+                        "name": "Elemental Resistance"
+                    },
+                    {
+                        "spellId": 207400,
+                        "name": "Ancestral Vigor"
+                    },
+                    {
+                        "spellId": 386164,
+                        "name": "Battle Stance"
+                    },
+                    {
+                        "spellId": 445584,
+                        "name": "Executioner"
+                    },
+                    {
+                        "spellId": 1259061,
+                        "name": "Favored by Kulzi"
+                    },
+                    {
+                        "spellId": 260708,
+                        "name": "Sweeping Strikes"
+                    },
+                    {
+                        "spellId": 208086,
+                        "name": "Colossus Smash"
+                    },
+                    {
+                        "spellId": 386633,
+                        "name": "Executioner's Precision"
+                    },
+                    {
+                        "spellId": 1269391,
+                        "name": "Master of Warfare"
                     },
                     {
                         "spellId": 435551,
                         "name": "Enduring Bloodstone"
                     },
                     {
-                        "spellId": 774,
-                        "name": "Rejuvenation"
+                        "spellId": 345230,
+                        "name": "Gladiator's Insignia"
                     }
                 ],
                 "targetDebuffs": [
                     {
-                        "spellId": 441224,
-                        "name": "Fazed"
+                        "spellId": 113746,
+                        "name": "Mystic Touch"
                     },
                     {
-                        "spellId": 1221389,
-                        "name": "Freezing"
-                    },
-                    {
-                        "spellId": 3409,
-                        "name": "Crippling Poison"
+                        "spellId": 164815,
+                        "name": "Sunfire"
                     },
                     {
                         "spellId": 8680,
                         "name": "Wound Poison"
                     },
                     {
-                        "spellId": 1833,
-                        "name": "Cheap Shot"
+                        "spellId": 411038,
+                        "name": "Sphere of Despair"
+                    },
+                    {
+                        "spellId": 3409,
+                        "name": "Crippling Poison"
+                    },
+                    {
+                        "spellId": 408,
+                        "name": "Kidney Shot"
+                    },
+                    {
+                        "spellId": 1287663,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 164812,
+                        "name": "Moonfire"
+                    },
+                    {
+                        "spellId": 457129,
+                        "name": "Deathstalker's Mark"
                     }
                 ],
-                "targetClassName": "Paladin",
-                "targetSpecName": "Retribution",
-                "resolvedAt": "2026-08-31T10:03:16+00:00"
+                "targetClassName": "Warrior",
+                "targetSpecName": "Arms",
+                "resolvedAt": "2026-09-06T02:57:04+00:00"
             }
         },
         "10": {
@@ -2738,7 +2788,7 @@
                         "pvpTalentId": 315
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:34+00:00"
+                "resolvedAt": "2026-09-06T02:56:53+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0F89DF7D",
@@ -2972,7 +3022,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-08-31T10:03:16+00:00"
+                "resolvedAt": "2026-09-06T02:57:04+00:00"
             }
         },
         "12": {
@@ -3766,7 +3816,7 @@
                         "pvpTalentId": 315
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:34+00:00"
+                "resolvedAt": "2026-09-06T02:56:53+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0F89DF7D",
@@ -3984,17 +4034,53 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-08-31T10:03:16+00:00"
+                "resolvedAt": "2026-09-06T02:57:04+00:00"
             }
         },
         "20": {
-            "damage": 1750190,
+            "damage": 1622525,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
                 {
+                    "name": "Backstab",
+                    "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Backstab",
+                    "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Kidney Shot",
+                    "spellId": 408,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Dance",
+                    "spellId": 185313,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Shadow Blades",
                     "spellId": 121471,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Goremaw's Bite",
+                    "spellId": 426591,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -4005,22 +4091,16 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Shadowstrike",
-                    "spellId": 185438,
+                    "name": "Eviscerate",
+                    "spellId": 196819,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Coup de Grace",
-                    "spellId": 441776,
+                    "name": "Vanish",
+                    "spellId": 1856,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Secret Technique",
-                    "spellId": 282449,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Cheap Shot",
@@ -4032,7 +4112,25 @@
                     "name": "Eviscerate",
                     "spellId": 196819,
                     "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Eviscerate",
@@ -4044,112 +4142,28 @@
                     "name": "Backstab",
                     "spellId": 53,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Crimson Vial",
-                    "spellId": 185311,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Feint",
-                    "spellId": 1966,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shadow Dance",
-                    "spellId": 185313,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shadowstrike",
-                    "spellId": 185438,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shadowstep",
-                    "spellId": 36554,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Kick",
-                    "spellId": 1766,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Coup de Grace",
-                    "spellId": 441776,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shadowstrike",
-                    "spellId": 185438,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Tricks of the Trade",
-                    "spellId": 57934,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Goremaw's Bite",
-                    "spellId": 426591,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Feint",
-                    "spellId": 1966,
-                    "isCc": false,
                     "isRepeat": true
                 },
                 {
                     "name": "Backstab",
                     "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
                     "isCc": false,
                     "isRepeat": true
                 }
             ],
-            "matchId": "01bcb46b0b3237d1c8fe3ff6e52cd475",
-            "guid": "Player-84-0A9D2B08",
-            "start": 74441.746,
-            "end": 74461.746,
-            "targetGuid": "Player-11-0E746B6C",
+            "matchId": "ee33befde9e6f42bcfd35cc773cfc8b2",
+            "guid": "Player-57-0D8DAAEA",
+            "start": 68777.241,
+            "end": 68797.241,
+            "targetGuid": "Player-76-0B955513",
             "talentBuild": {
-                "matchId": "01bcb46b0b3237d1c8fe3ff6e52cd475",
+                "matchId": "ee33befde9e6f42bcfd35cc773cfc8b2",
                 "talents": [
                     {
                         "name": "Master Poisoner",
@@ -4276,15 +4290,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 4809,
                         "entryId": 5823
-                    },
-                    {
-                        "name": "Perforated Veins",
-                        "spellId": 382518,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4801,
-                        "entryId": 5813
                     },
                     {
                         "name": "Relentless Strikes",
@@ -4512,13 +4517,1005 @@
                         "entryId": 5480
                     },
                     {
-                        "name": "Unbreakable Stride",
-                        "spellId": 400804,
+                        "name": "Deep Cuts",
+                        "spellId": 1267216,
                         "rank": 1,
                         "treeType": "class",
                         "resolvedByOffset": false,
-                        "nodeId": 4553,
-                        "entryId": 5511
+                        "nodeId": 4554,
+                        "entryId": 5512
+                    },
+                    {
+                        "name": "Superior Mixture",
+                        "spellId": 423701,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4557,
+                        "entryId": 5515
+                    },
+                    {
+                        "name": "Shadowcraft",
+                        "spellId": 426594,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4814,
+                        "entryId": 5830
+                    },
+                    {
+                        "name": "Corrupt the Blood",
+                        "spellId": 1248785,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 4848,
+                        "entryId": 5872
+                    },
+                    {
+                        "name": "Clear the Witnesses",
+                        "spellId": 1248793,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 4850,
+                        "entryId": 5875
+                    },
+                    {
+                        "name": "Singular Focus",
+                        "spellId": 457055,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 4851,
+                        "entryId": 5876
+                    },
+                    {
+                        "name": "Hunt Them Down",
+                        "spellId": 457054,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 4854,
+                        "entryId": 5881
+                    },
+                    {
+                        "name": "Unshakeable Drive",
+                        "spellId": 1248774,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 4855,
+                        "entryId": 5882
+                    },
+                    {
+                        "name": "Darkest Night",
+                        "spellId": 457058,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 4857,
+                        "entryId": 5884
+                    },
+                    {
+                        "name": "Without a Trace",
+                        "spellId": 382513,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4597,
+                        "entryId": 5563
+                    },
+                    {
+                        "name": "Featherfoot",
+                        "spellId": 423683,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4598,
+                        "entryId": 5564
+                    },
+                    {
+                        "name": "Double Dance",
+                        "spellId": 394930,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4783,
+                        "entryId": 5792
+                    },
+                    {
+                        "name": "Mass Casualty",
+                        "spellId": 1273035,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 4858,
+                        "entryId": 5885
+                    },
+                    {
+                        "name": "Quietus Celeris",
+                        "spellId": 1273017,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 4859,
+                        "entryId": 5886
+                    },
+                    {
+                        "name": "Precise Killer",
+                        "spellId": 1272989,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 4860,
+                        "entryId": 5887
+                    },
+                    {
+                        "name": "Deadened Nerves",
+                        "spellId": 231719,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4611,
+                        "entryId": 5579
+                    },
+                    {
+                        "name": "Shadowrunner",
+                        "spellId": 378807,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4612,
+                        "entryId": 5580
+                    },
+                    {
+                        "name": "Toxic Stiletto",
+                        "spellId": 1267182,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4613,
+                        "entryId": 5581
+                    },
+                    {
+                        "name": "Ancient Arts",
+                        "spellId": 1268932,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4818,
+                        "entryId": 5834
+                    },
+                    {
+                        "name": "Deathstalker's Mark",
+                        "spellId": 457052,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 4856,
+                        "entryId": 5883
+                    },
+                    {
+                        "name": "Cloak of Shadows",
+                        "spellId": 31224,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4468,
+                        "entryId": 5407
+                    },
+                    {
+                        "name": "Forced Induction",
+                        "spellId": 470668,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 4423,
+                        "entryId": 5350
+                    },
+                    {
+                        "name": "Tricks of the Trade",
+                        "spellId": 57934,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 4461,
+                        "entryId": 5397
+                    },
+                    {
+                        "name": "Improved Ambush",
+                        "spellId": 381620,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 4466,
+                        "entryId": 5404
+                    },
+                    {
+                        "name": "Shot in the Dark",
+                        "spellId": 257505,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 4771,
+                        "entryId": 5776
+                    },
+                    {
+                        "name": "Deepening Shadows",
+                        "spellId": 185314,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 4793,
+                        "entryId": 5803
+                    },
+                    {
+                        "name": "Quick Decisions",
+                        "spellId": 382503,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 4764,
+                        "entryId": 5765
+                    },
+                    {
+                        "name": "Fade to Nothing",
+                        "spellId": 382514,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 4772,
+                        "entryId": 5779
+                    },
+                    {
+                        "name": "Deepening Shadows",
+                        "spellId": 185314,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 4792,
+                        "entryId": 7558
+                    },
+                    {
+                        "name": "Gouge",
+                        "spellId": 1776,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 4505,
+                        "entryId": 5452
+                    },
+                    {
+                        "name": "Elusiveness",
+                        "spellId": 79008,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 4506,
+                        "entryId": 5454
+                    },
+                    {
+                        "name": "Warning Signs",
+                        "spellId": 426555,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 4782,
+                        "entryId": 5791
+                    },
+                    {
+                        "name": "Lingering Darkness",
+                        "spellId": 457056,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 4849,
+                        "entryId": 5873
+                    },
+                    {
+                        "name": "Shadewalker",
+                        "spellId": 457057,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 4852,
+                        "entryId": 5877
+                    },
+                    {
+                        "name": "Follow the Blood",
+                        "spellId": 457068,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 4853,
+                        "entryId": 5880
+                    },
+                    {
+                        "name": "Bait and Switch",
+                        "spellId": 457034,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 4847,
+                        "entryId": 5871
+                    }
+                ],
+                "pvpTalents": [
+                    {
+                        "name": "Dismantle",
+                        "spellId": 207777,
+                        "pvpTalentId": 315
+                    },
+                    {
+                        "name": "Preemptive Maneuver",
+                        "spellId": 1219122,
+                        "pvpTalentId": 319
+                    },
+                    {
+                        "name": "Smoke Bomb",
+                        "spellId": 212182,
+                        "pvpTalentId": 312
+                    }
+                ],
+                "resolvedAt": "2026-09-06T02:56:53+00:00"
+            },
+            "mechanics": {
+                "targetGuid": "Player-76-0B955513",
+                "championBuffs": [
+                    {
+                        "spellId": 315496,
+                        "name": "Slice and Dice"
+                    },
+                    {
+                        "spellId": 1264521,
+                        "name": "Find Weakness"
+                    },
+                    {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
+                    },
+                    {
+                        "spellId": 1241715,
+                        "name": "Might of the Void"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 196911,
+                        "name": "Shadow Techniques"
+                    },
+                    {
+                        "spellId": 1241759,
+                        "name": "Genius Insight"
+                    },
+                    {
+                        "spellId": 36554,
+                        "name": "Shadowstep"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    }
+                ],
+                "championDebuffs": [
+                    {
+                        "spellId": 1287663,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 197277,
+                        "name": "Judgment"
+                    },
+                    {
+                        "spellId": 431625,
+                        "name": "Empyrean Hammer"
+                    },
+                    {
+                        "spellId": 388539,
+                        "name": "Rend"
+                    }
+                ],
+                "targetBuffs": [
+                    {
+                        "spellId": 335149,
+                        "name": "Sign of the Scourge"
+                    },
+                    {
+                        "spellId": 465,
+                        "name": "Devotion Aura"
+                    },
+                    {
+                        "spellId": 6673,
+                        "name": "Battle Shout"
+                    },
+                    {
+                        "spellId": 154797,
+                        "name": "Touch of Elune - Night"
+                    },
+                    {
+                        "spellId": 1126,
+                        "name": "Mark of the Wild"
+                    },
+                    {
+                        "spellId": 5215,
+                        "name": "Prowl"
+                    },
+                    {
+                        "spellId": 392360,
+                        "name": "Reforestation"
+                    },
+                    {
+                        "spellId": 155777,
+                        "name": "Rejuvenation (Germination)"
+                    },
+                    {
+                        "spellId": 378989,
+                        "name": "Lycara's Teachings"
+                    },
+                    {
+                        "spellId": 1287425,
+                        "name": "Void-Touched Orbs"
+                    },
+                    {
+                        "spellId": 1227806,
+                        "name": "Lifebloom"
+                    },
+                    {
+                        "spellId": 1232285,
+                        "name": "Efflorescence"
+                    },
+                    {
+                        "spellId": 1241715,
+                        "name": "Might of the Void"
+                    },
+                    {
+                        "spellId": 1264618,
+                        "name": "Sylvan Beckoning"
+                    }
+                ],
+                "targetDebuffs": [
+                    {
+                        "spellId": 457129,
+                        "name": "Deathstalker's Mark"
+                    }
+                ],
+                "targetClassName": "Druid",
+                "targetSpecName": "Restoration",
+                "resolvedAt": "2026-09-06T02:57:04+00:00"
+            }
+        },
+        "30": {
+            "damage": 2007732,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Shadowstep",
+                    "spellId": 36554,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cheap Shot",
+                    "spellId": 1833,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Dance",
+                    "spellId": 185313,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Blades",
+                    "spellId": 121471,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Secret Technique",
+                    "spellId": 280719,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Secret Technique",
+                    "spellId": 282449,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Goremaw's Bite",
+                    "spellId": 426591,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Feint",
+                    "spellId": 1966,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cheap Shot",
+                    "spellId": 1833,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Backstab",
+                    "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Feint",
+                    "spellId": 1966,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Kidney Shot",
+                    "spellId": 408,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Vanish",
+                    "spellId": 1856,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Coup de Grace",
+                    "spellId": 441776,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Dance",
+                    "spellId": 185313,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tricks of the Trade",
+                    "spellId": 57934,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cloak of Shadows",
+                    "spellId": 31224,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Evasion",
+                    "spellId": 5277,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Secret Technique",
+                    "spellId": 280719,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Backstab",
+                    "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Secret Technique",
+                    "spellId": 282449,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowstep",
+                    "spellId": 36554,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Backstab",
+                    "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Feint",
+                    "spellId": 1966,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ],
+            "matchId": "3d8db653a710969179ce4f1772752843",
+            "guid": "Player-1136-09614036",
+            "start": 82398.196,
+            "end": 82428.196,
+            "targetGuid": "Player-76-0B42BC54",
+            "talentBuild": {
+                "matchId": "3d8db653a710969179ce4f1772752843",
+                "talents": [
+                    {
+                        "name": "Master Poisoner",
+                        "spellId": 378436,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4421,
+                        "entryId": 5347
+                    },
+                    {
+                        "name": "Improved Wound Poison",
+                        "spellId": 319066,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4422,
+                        "entryId": 5348
+                    },
+                    {
+                        "name": "Supercharger",
+                        "spellId": 470347,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4424,
+                        "entryId": 5352
+                    },
+                    {
+                        "name": "Recuperator",
+                        "spellId": 378996,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4425,
+                        "entryId": 5353
+                    },
+                    {
+                        "name": "Blind",
+                        "spellId": 2094,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4460,
+                        "entryId": 5396
+                    },
+                    {
+                        "name": "Improved Sprint",
+                        "spellId": 231691,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4462,
+                        "entryId": 5399
+                    },
+                    {
+                        "name": "Find Weakness",
+                        "spellId": 91023,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4751,
+                        "entryId": 5751
+                    },
+                    {
+                        "name": "Thrill Seeking",
+                        "spellId": 394931,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4467,
+                        "entryId": 5406
+                    },
+                    {
+                        "name": "Premeditation",
+                        "spellId": 343160,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4763,
+                        "entryId": 5764
+                    },
+                    {
+                        "name": "Improved Find Weakness",
+                        "spellId": 382512,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4800,
+                        "entryId": 5812
+                    },
+                    {
+                        "name": "Death Perception",
+                        "spellId": 469642,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4809,
+                        "entryId": 5823
+                    },
+                    {
+                        "name": "Relentless Strikes",
+                        "spellId": 58423,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4779,
+                        "entryId": 5787
+                    },
+                    {
+                        "name": "Improved Shuriken Storm",
+                        "spellId": 319951,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4758,
+                        "entryId": 5758
+                    },
+                    {
+                        "name": "Veiltouched",
+                        "spellId": 382017,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4794,
+                        "entryId": 5804
+                    },
+                    {
+                        "name": "Replicating Shadows",
+                        "spellId": 382506,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4795,
+                        "entryId": 5805
+                    },
+                    {
+                        "name": "Deeper Daggers",
+                        "spellId": 382517,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4803,
+                        "entryId": 5815
+                    },
+                    {
+                        "name": "Secret Stratagem",
+                        "spellId": 394320,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4785,
+                        "entryId": 5794
+                    },
+                    {
+                        "name": "Shadowed Finishers",
+                        "spellId": 382511,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4784,
+                        "entryId": 5793
+                    },
+                    {
+                        "name": "Shadow Blades",
+                        "spellId": 121471,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4757,
+                        "entryId": 5757
+                    },
+                    {
+                        "name": "Master of Shadows",
+                        "spellId": 196976,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4775,
+                        "entryId": 5783
+                    },
+                    {
+                        "name": "Dark Shadow",
+                        "spellId": 245687,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4810,
+                        "entryId": 5825
+                    },
+                    {
+                        "name": "Shadow Focus",
+                        "spellId": 108209,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4777,
+                        "entryId": 5785
+                    },
+                    {
+                        "name": "Umbral Edge",
+                        "spellId": 1281468,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4791,
+                        "entryId": 5801
+                    },
+                    {
+                        "name": "Improved Backstab",
+                        "spellId": 319949,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4756,
+                        "entryId": 5756
+                    },
+                    {
+                        "name": "Shiv",
+                        "spellId": 5938,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4504,
+                        "entryId": 5451
+                    },
+                    {
+                        "name": "Deadly Precision",
+                        "spellId": 381542,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4507,
+                        "entryId": 5456
+                    },
+                    {
+                        "name": "Quick Fingers",
+                        "spellId": 1267210,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4510,
+                        "entryId": 5459
+                    },
+                    {
+                        "name": "Deeper Stratagem",
+                        "spellId": 193531,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4514,
+                        "entryId": 5464
+                    },
+                    {
+                        "name": "Alacrity",
+                        "spellId": 193539,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4515,
+                        "entryId": 5466
+                    },
+                    {
+                        "name": "Swift Slasher",
+                        "spellId": 381988,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4516,
+                        "entryId": 5467
+                    },
+                    {
+                        "name": "Graceful Guile",
+                        "spellId": 423647,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4518,
+                        "entryId": 5469
+                    },
+                    {
+                        "name": "Danger Sense",
+                        "spellId": 1267220,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4524,
+                        "entryId": 5476
+                    },
+                    {
+                        "name": "Evasion",
+                        "spellId": 5277,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4525,
+                        "entryId": 5477
+                    },
+                    {
+                        "name": "Fleet Footed",
+                        "spellId": 378813,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4527,
+                        "entryId": 5480
                     },
                     {
                         "name": "Deep Cuts",
@@ -4602,24 +5599,6 @@
                         "entryId": 5842
                     },
                     {
-                        "name": "Without a Trace",
-                        "spellId": 382513,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4597,
-                        "entryId": 5563
-                    },
-                    {
-                        "name": "Featherfoot",
-                        "spellId": 423683,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4598,
-                        "entryId": 5564
-                    },
-                    {
                         "name": "Double Dance",
                         "spellId": 394930,
                         "rank": 1,
@@ -4701,6 +5680,78 @@
                         "entryId": 5407
                     },
                     {
+                        "name": "Subterfuge",
+                        "spellId": 108208,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4463,
+                        "entryId": 5401
+                    },
+                    {
+                        "name": "Soothing Darkness",
+                        "spellId": 393970,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4465,
+                        "entryId": 5403
+                    },
+                    {
+                        "name": "The Rotten",
+                        "spellId": 382015,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4813,
+                        "entryId": 5829
+                    },
+                    {
+                        "name": "Improved Secret Technique",
+                        "spellId": 1279444,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4778,
+                        "entryId": 5786
+                    },
+                    {
+                        "name": "Danse Macabre",
+                        "spellId": 382528,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4815,
+                        "entryId": 5831
+                    },
+                    {
+                        "name": "Without a Trace",
+                        "spellId": 382513,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4597,
+                        "entryId": 5563
+                    },
+                    {
+                        "name": "Unbreakable Stride",
+                        "spellId": 400804,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4553,
+                        "entryId": 5511
+                    },
+                    {
+                        "name": "Nimble Fingers",
+                        "spellId": 378427,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 4509,
+                        "entryId": 5458
+                    },
+                    {
                         "name": "Forced Induction",
                         "spellId": 470668,
                         "rank": 1,
@@ -4708,15 +5759,6 @@
                         "resolvedByOffset": true,
                         "nodeId": 4423,
                         "entryId": 5350
-                    },
-                    {
-                        "name": "Tricks of the Trade",
-                        "spellId": 57934,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 4461,
-                        "entryId": 5397
                     },
                     {
                         "name": "Improved Ambush",
@@ -4735,15 +5777,6 @@
                         "resolvedByOffset": true,
                         "nodeId": 4771,
                         "entryId": 5776
-                    },
-                    {
-                        "name": "Deepening Shadows",
-                        "spellId": 185314,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 4793,
-                        "entryId": 5803
                     },
                     {
                         "name": "Quick Decisions",
@@ -4780,6 +5813,15 @@
                         "resolvedByOffset": true,
                         "nodeId": 4506,
                         "entryId": 5454
+                    },
+                    {
+                        "name": "Tricks of the Trade",
+                        "spellId": 57934,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 4461,
+                        "entryId": 5397
                     },
                     {
                         "name": "Warning Signs",
@@ -4825,13 +5867,31 @@
                         "resolvedByOffset": true,
                         "nodeId": 4826,
                         "entryId": 5844
+                    },
+                    {
+                        "name": "Deepening Shadows",
+                        "spellId": 185314,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 4793,
+                        "entryId": 5803
+                    },
+                    {
+                        "name": "Deepening Shadows",
+                        "spellId": 185314,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 4792,
+                        "entryId": 7558
                     }
                 ],
                 "pvpTalents": [
                     {
-                        "name": "Thick as Thieves",
-                        "spellId": 221622,
-                        "pvpTalentId": 316
+                        "name": "Preemptive Maneuver",
+                        "spellId": 1219122,
+                        "pvpTalentId": 319
                     },
                     {
                         "name": "Smoke Bomb",
@@ -4839,27 +5899,31 @@
                         "pvpTalentId": 312
                     },
                     {
-                        "name": "Preemptive Maneuver",
-                        "spellId": 1219122,
-                        "pvpTalentId": 319
+                        "name": "Thick as Thieves",
+                        "spellId": 221622,
+                        "pvpTalentId": 316
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:34+00:00"
+                "resolvedAt": "2026-09-06T02:56:53+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-11-0E746B6C",
+                "targetGuid": "Player-76-0B42BC54",
                 "championBuffs": [
                     {
-                        "spellId": 3408,
-                        "name": "Crippling Poison"
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
                     },
                     {
                         "spellId": 8679,
                         "name": "Wound Poison"
                     },
                     {
-                        "spellId": 225788,
-                        "name": "Sign of the Emissary"
+                        "spellId": 3408,
+                        "name": "Crippling Poison"
+                    },
+                    {
+                        "spellId": 154797,
+                        "name": "Touch of Elune - Night"
                     },
                     {
                         "spellId": 21562,
@@ -4874,1241 +5938,209 @@
                         "name": "Vanish"
                     },
                     {
-                        "spellId": 441786,
-                        "name": "Escalating Blade"
+                        "spellId": 414664,
+                        "name": "Mass Invisibility"
                     },
                     {
-                        "spellId": 196911,
-                        "name": "Shadow Techniques"
+                        "spellId": 1459,
+                        "name": "Arcane Intellect"
                     },
                     {
-                        "spellId": 390677,
-                        "name": "Inspiration"
+                        "spellId": 139,
+                        "name": "Renew"
                     },
                     {
-                        "spellId": 1241715,
-                        "name": "Might of the Void"
+                        "spellId": 58984,
+                        "name": "Shadowmeld"
                     },
                     {
-                        "spellId": 194384,
-                        "name": "Atonement"
+                        "spellId": 115191,
+                        "name": "Stealth"
                     },
                     {
                         "spellId": 1287771,
                         "name": "Rune of Masterful Cunning"
                     },
                     {
-                        "spellId": 196980,
-                        "name": "Master of Shadows"
+                        "spellId": 441326,
+                        "name": "Flawless Form"
                     },
                     {
-                        "spellId": 185422,
-                        "name": "Shadow Dance"
-                    },
-                    {
-                        "spellId": 112942,
-                        "name": "Shadow Focus"
-                    },
-                    {
-                        "spellId": 386237,
-                        "name": "Fade to Nothing"
-                    },
-                    {
-                        "spellId": 393969,
-                        "name": "Danse Macabre"
-                    },
-                    {
-                        "spellId": 394203,
-                        "name": "The Rotten"
+                        "spellId": 77489,
+                        "name": "Echo of Light"
                     },
                     {
                         "spellId": 1229746,
                         "name": "Arcanoweave Insight"
                     },
                     {
-                        "spellId": 1264521,
-                        "name": "Find Weakness"
+                        "spellId": 1241715,
+                        "name": "Might of the Void"
+                    },
+                    {
+                        "spellId": 196911,
+                        "name": "Shadow Techniques"
+                    },
+                    {
+                        "spellId": 65081,
+                        "name": "Body and Soul"
+                    },
+                    {
+                        "spellId": 196980,
+                        "name": "Master of Shadows"
+                    },
+                    {
+                        "spellId": 343173,
+                        "name": "Premeditation"
+                    },
+                    {
+                        "spellId": 386237,
+                        "name": "Fade to Nothing"
+                    },
+                    {
+                        "spellId": 112942,
+                        "name": "Shadow Focus"
                     }
                 ],
                 "championDebuffs": [
                     {
-                        "spellId": 34914,
-                        "name": "Vampiric Touch"
+                        "spellId": 163505,
+                        "name": "Rake"
                     },
                     {
-                        "spellId": 589,
-                        "name": "Shadow Word: Pain"
+                        "spellId": 1221389,
+                        "name": "Freezing"
                     },
                     {
-                        "spellId": 197277,
-                        "name": "Judgment"
+                        "spellId": 155722,
+                        "name": "Rake"
                     },
                     {
-                        "spellId": 335467,
-                        "name": "Shadow Word: Madness"
+                        "spellId": 1079,
+                        "name": "Rip"
                     },
                     {
-                        "spellId": 1243069,
-                        "name": "Horrific Visions"
+                        "spellId": 439531,
+                        "name": "Bloodseeker Vines"
+                    },
+                    {
+                        "spellId": 155625,
+                        "name": "Moonfire"
+                    },
+                    {
+                        "spellId": 188389,
+                        "name": "Flame Shock"
+                    },
+                    {
+                        "spellId": 1287663,
+                        "name": "Rune of Lingering"
                     }
                 ],
                 "targetBuffs": [
                     {
-                        "spellId": 400745,
-                        "name": "Afterimage"
+                        "spellId": 61295,
+                        "name": "Riptide"
                     },
                     {
-                        "spellId": 433674,
-                        "name": "Light's Deliverance"
+                        "spellId": 462568,
+                        "name": "Elemental Resistance"
                     },
                     {
-                        "spellId": 156322,
-                        "name": "Eternal Flame"
+                        "spellId": 974,
+                        "name": "Earth Shield"
                     },
                     {
-                        "spellId": 1044,
-                        "name": "Blessing of Freedom"
+                        "spellId": 207400,
+                        "name": "Ancestral Vigor"
                     },
                     {
-                        "spellId": 465,
-                        "name": "Devotion Aura"
+                        "spellId": 69369,
+                        "name": "Predatory Swiftness"
                     },
                     {
-                        "spellId": 85416,
-                        "name": "Grand Crusader"
+                        "spellId": 382024,
+                        "name": "Earthliving Weapon"
                     },
                     {
-                        "spellId": 435551,
-                        "name": "Enduring Bloodstone"
+                        "spellId": 1241715,
+                        "name": "Might of the Void"
+                    },
+                    {
+                        "spellId": 102543,
+                        "name": "Incarnation: Avatar of Ashamane"
+                    },
+                    {
+                        "spellId": 405069,
+                        "name": "Overflowing Power"
+                    },
+                    {
+                        "spellId": 5217,
+                        "name": "Tiger's Fury"
+                    },
+                    {
+                        "spellId": 345230,
+                        "name": "Gladiator's Insignia"
+                    },
+                    {
+                        "spellId": 1263939,
+                        "name": "Unseen Predator's Craving"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 768,
+                        "name": "Cat Form"
+                    },
+                    {
+                        "spellId": 378990,
+                        "name": "Lycara's Teachings"
+                    },
+                    {
+                        "spellId": 1287770,
+                        "name": "Rune of the Versatile Warrior"
+                    },
+                    {
+                        "spellId": 405189,
+                        "name": "Overflowing Power"
+                    },
+                    {
+                        "spellId": 1287978,
+                        "name": "Rune of Lynxlike Reflexes"
                     }
                 ],
                 "targetDebuffs": [
                     {
-                        "spellId": 113746,
-                        "name": "Mystic Touch"
-                    },
-                    {
-                        "spellId": 589,
-                        "name": "Shadow Word: Pain"
-                    },
-                    {
-                        "spellId": 1833,
-                        "name": "Cheap Shot"
+                        "spellId": 12654,
+                        "name": "Ignite"
                     },
                     {
                         "spellId": 8680,
                         "name": "Wound Poison"
-                    }
-                ],
-                "targetClassName": "Paladin",
-                "targetSpecName": "Protection",
-                "resolvedAt": "2026-08-31T10:03:16+00:00"
-            }
-        },
-        "30": {
-            "damage": 1981812,
-            "durationSeconds": 30,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Shadowstrike",
-                    "spellId": 185438,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shadow Blades",
-                    "spellId": 121471,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Cheap Shot",
-                    "spellId": 1833,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Secret Technique",
-                    "spellId": 280719,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Kidney Shot",
-                    "spellId": 408,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shadow Dance",
-                    "spellId": 185313,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shadowstrike",
-                    "spellId": 185438,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Coup de Grace",
-                    "spellId": 441776,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shadowstrike",
-                    "spellId": 185438,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Feint",
-                    "spellId": 1966,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shuriken Storm",
-                    "spellId": 212743,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Vanish",
-                    "spellId": 1856,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shadowstep",
-                    "spellId": 36554,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shadow Dance",
-                    "spellId": 185313,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blood Fury",
-                    "spellId": 20572,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shadowstrike",
-                    "spellId": 185438,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Feint",
-                    "spellId": 1966,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shadowstrike",
-                    "spellId": 185438,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Backstab",
-                    "spellId": 53,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Eviscerate",
-                    "spellId": 196819,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Feint",
-                    "spellId": 1966,
-                    "isCc": false,
-                    "isRepeat": true
-                }
-            ],
-            "matchId": "64d7d3140edd162ccc6d4464250474f3",
-            "guid": "Player-11-0EB4780B",
-            "start": 72696.331,
-            "end": 72726.331,
-            "targetGuid": "Player-57-0D4FC38C",
-            "talentBuild": {
-                "matchId": "64d7d3140edd162ccc6d4464250474f3",
-                "talents": [
-                    {
-                        "name": "Master Poisoner",
-                        "spellId": 378436,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4421,
-                        "entryId": 5347
-                    },
-                    {
-                        "name": "Improved Wound Poison",
-                        "spellId": 319066,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4422,
-                        "entryId": 5348
-                    },
-                    {
-                        "name": "Supercharger",
-                        "spellId": 470347,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4424,
-                        "entryId": 5352
-                    },
-                    {
-                        "name": "Recuperator",
-                        "spellId": 378996,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4425,
-                        "entryId": 5353
-                    },
-                    {
-                        "name": "Blind",
-                        "spellId": 2094,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4460,
-                        "entryId": 5396
-                    },
-                    {
-                        "name": "Improved Sprint",
-                        "spellId": 231691,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4462,
-                        "entryId": 5399
-                    },
-                    {
-                        "name": "Subterfuge",
-                        "spellId": 108208,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4463,
-                        "entryId": 5401
-                    },
-                    {
-                        "name": "Find Weakness",
-                        "spellId": 91023,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4751,
-                        "entryId": 5751
-                    },
-                    {
-                        "name": "Soothing Darkness",
-                        "spellId": 393970,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4465,
-                        "entryId": 5403
-                    },
-                    {
-                        "name": "Thrill Seeking",
-                        "spellId": 394931,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4467,
-                        "entryId": 5406
-                    },
-                    {
-                        "name": "Premeditation",
-                        "spellId": 343160,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4763,
-                        "entryId": 5764
-                    },
-                    {
-                        "name": "Improved Find Weakness",
-                        "spellId": 382512,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4800,
-                        "entryId": 5812
-                    },
-                    {
-                        "name": "The Rotten",
-                        "spellId": 382015,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4813,
-                        "entryId": 5829
-                    },
-                    {
-                        "name": "Death Perception",
-                        "spellId": 469642,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4809,
-                        "entryId": 5823
-                    },
-                    {
-                        "name": "Relentless Strikes",
-                        "spellId": 58423,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4779,
-                        "entryId": 5787
-                    },
-                    {
-                        "name": "Improved Shuriken Storm",
-                        "spellId": 319951,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4758,
-                        "entryId": 5758
-                    },
-                    {
-                        "name": "Veiltouched",
-                        "spellId": 382017,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4794,
-                        "entryId": 5804
-                    },
-                    {
-                        "name": "Improved Secret Technique",
-                        "spellId": 1279444,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4778,
-                        "entryId": 5786
-                    },
-                    {
-                        "name": "Replicating Shadows",
-                        "spellId": 382506,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4795,
-                        "entryId": 5805
-                    },
-                    {
-                        "name": "Deeper Daggers",
-                        "spellId": 382517,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4803,
-                        "entryId": 5815
-                    },
-                    {
-                        "name": "Secret Stratagem",
-                        "spellId": 394320,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4785,
-                        "entryId": 5794
-                    },
-                    {
-                        "name": "Shadowed Finishers",
-                        "spellId": 382511,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4784,
-                        "entryId": 5793
-                    },
-                    {
-                        "name": "Shadow Blades",
-                        "spellId": 121471,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4757,
-                        "entryId": 5757
-                    },
-                    {
-                        "name": "Master of Shadows",
-                        "spellId": 196976,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4775,
-                        "entryId": 5783
-                    },
-                    {
-                        "name": "Danse Macabre",
-                        "spellId": 382528,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4815,
-                        "entryId": 5831
-                    },
-                    {
-                        "name": "Dark Shadow",
-                        "spellId": 245687,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4810,
-                        "entryId": 5825
-                    },
-                    {
-                        "name": "Shadow Focus",
-                        "spellId": 108209,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4777,
-                        "entryId": 5785
-                    },
-                    {
-                        "name": "Weaponmaster",
-                        "spellId": 193537,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4781,
-                        "entryId": 5789
-                    },
-                    {
-                        "name": "Umbral Edge",
-                        "spellId": 1281468,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4791,
-                        "entryId": 5801
-                    },
-                    {
-                        "name": "Improved Backstab",
-                        "spellId": 319949,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4756,
-                        "entryId": 5756
-                    },
-                    {
-                        "name": "Shiv",
-                        "spellId": 5938,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4504,
-                        "entryId": 5451
-                    },
-                    {
-                        "name": "Deadly Precision",
-                        "spellId": 381542,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4507,
-                        "entryId": 5456
-                    },
-                    {
-                        "name": "Nimble Fingers",
-                        "spellId": 378427,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4509,
-                        "entryId": 5458
-                    },
-                    {
-                        "name": "Quick Fingers",
-                        "spellId": 1267210,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4510,
-                        "entryId": 5459
-                    },
-                    {
-                        "name": "Deeper Stratagem",
-                        "spellId": 193531,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4514,
-                        "entryId": 5464
-                    },
-                    {
-                        "name": "Alacrity",
-                        "spellId": 193539,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4515,
-                        "entryId": 5466
-                    },
-                    {
-                        "name": "Swift Slasher",
-                        "spellId": 381988,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4516,
-                        "entryId": 5467
-                    },
-                    {
-                        "name": "Graceful Guile",
-                        "spellId": 423647,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4518,
-                        "entryId": 5469
-                    },
-                    {
-                        "name": "Danger Sense",
-                        "spellId": 1267220,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4524,
-                        "entryId": 5476
-                    },
-                    {
-                        "name": "Evasion",
-                        "spellId": 5277,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4525,
-                        "entryId": 5477
-                    },
-                    {
-                        "name": "Fleet Footed",
-                        "spellId": 378813,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4527,
-                        "entryId": 5480
-                    },
-                    {
-                        "name": "Unbreakable Stride",
-                        "spellId": 400804,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4553,
-                        "entryId": 5511
-                    },
-                    {
-                        "name": "Deep Cuts",
-                        "spellId": 1267216,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4554,
-                        "entryId": 5512
-                    },
-                    {
-                        "name": "Shadowcraft",
-                        "spellId": 426594,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4814,
-                        "entryId": 5830
-                    },
-                    {
-                        "name": "Flawless Form",
-                        "spellId": 441321,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 4819,
-                        "entryId": 5835
-                    },
-                    {
-                        "name": "Coup de Grace",
-                        "spellId": 441423,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 4820,
-                        "entryId": 5836
-                    },
-                    {
-                        "name": "Disorienting Strikes",
-                        "spellId": 441274,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 4822,
-                        "entryId": 5839
-                    },
-                    {
-                        "name": "Surprising Strikes",
-                        "spellId": 441273,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 4823,
-                        "entryId": 5840
-                    },
-                    {
-                        "name": "Nimble Flurry",
-                        "spellId": 441367,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 4824,
-                        "entryId": 5841
-                    },
-                    {
-                        "name": "Devious Distractions",
-                        "spellId": 441263,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 4825,
-                        "entryId": 5842
-                    },
-                    {
-                        "name": "Without a Trace",
-                        "spellId": 382513,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4597,
-                        "entryId": 5563
-                    },
-                    {
-                        "name": "Featherfoot",
-                        "spellId": 423683,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4598,
-                        "entryId": 5564
-                    },
-                    {
-                        "name": "Double Dance",
-                        "spellId": 394930,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4783,
-                        "entryId": 5792
-                    },
-                    {
-                        "name": "Clever Combatant",
-                        "spellId": 1276679,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 4830,
-                        "entryId": 5850
-                    },
-                    {
-                        "name": "Flashing Steel",
-                        "spellId": 1276630,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 4831,
-                        "entryId": 5851
-                    },
-                    {
-                        "name": "Hoodwink",
-                        "spellId": 1276626,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 4832,
-                        "entryId": 5852
-                    },
-                    {
-                        "name": "Deadened Nerves",
-                        "spellId": 231719,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4611,
-                        "entryId": 5579
-                    },
-                    {
-                        "name": "Shadowrunner",
-                        "spellId": 378807,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4612,
-                        "entryId": 5580
-                    },
-                    {
-                        "name": "Ancient Arts",
-                        "spellId": 1268932,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 4818,
-                        "entryId": 5834
-                    },
-                    {
-                        "name": "Unseen Blade",
-                        "spellId": 441146,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 4828,
-                        "entryId": 5847
-                    },
-                    {
-                        "name": "Cloak of Shadows",
-                        "spellId": 31224,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 4468,
-                        "entryId": 5407
-                    },
-                    {
-                        "name": "Forced Induction",
-                        "spellId": 470668,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 4423,
-                        "entryId": 5350
-                    },
-                    {
-                        "name": "Improved Ambush",
-                        "spellId": 381620,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 4466,
-                        "entryId": 5404
-                    },
-                    {
-                        "name": "Shot in the Dark",
-                        "spellId": 257505,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 4771,
-                        "entryId": 5776
-                    },
-                    {
-                        "name": "Quick Decisions",
-                        "spellId": 382503,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 4764,
-                        "entryId": 5765
-                    },
-                    {
-                        "name": "Fade to Nothing",
-                        "spellId": 382514,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 4772,
-                        "entryId": 5779
-                    },
-                    {
-                        "name": "Deepening Shadows",
-                        "spellId": 185314,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 4792,
-                        "entryId": 7558
-                    },
-                    {
-                        "name": "Gouge",
-                        "spellId": 1776,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 4505,
-                        "entryId": 5452
-                    },
-                    {
-                        "name": "Elusiveness",
-                        "spellId": 79008,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 4506,
-                        "entryId": 5454
-                    },
-                    {
-                        "name": "Blackjack",
-                        "spellId": 379005,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 4461,
-                        "entryId": 5398
-                    },
-                    {
-                        "name": "Warning Signs",
-                        "spellId": 426555,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 4782,
-                        "entryId": 5791
-                    },
-                    {
-                        "name": "Cloud Cover",
-                        "spellId": 441429,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 4821,
-                        "entryId": 5837
-                    },
-                    {
-                        "name": "Thousand Cuts",
-                        "spellId": 441346,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 4827,
-                        "entryId": 5845
-                    },
-                    {
-                        "name": "Smoke",
-                        "spellId": 441247,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 4829,
-                        "entryId": 5848
-                    },
-                    {
-                        "name": "Don't Be Suspicious",
-                        "spellId": 441415,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 4826,
-                        "entryId": 5844
-                    }
-                ],
-                "pvpTalents": [
-                    {
-                        "name": "Silhouette",
-                        "spellId": 197899,
-                        "pvpTalentId": 311
-                    },
-                    {
-                        "name": "Preemptive Maneuver",
-                        "spellId": 1219122,
-                        "pvpTalentId": 319
-                    },
-                    {
-                        "name": "Smoke Bomb",
-                        "spellId": 212182,
-                        "pvpTalentId": 312
-                    }
-                ],
-                "resolvedAt": "2026-08-31T06:43:34+00:00"
-            },
-            "mechanics": {
-                "targetGuid": "Player-57-0D4FC38C",
-                "championBuffs": [
-                    {
-                        "spellId": 404464,
-                        "name": "飞行模式：驭空术"
-                    },
-                    {
-                        "spellId": 8679,
-                        "name": "致伤药膏"
-                    },
-                    {
-                        "spellId": 3408,
-                        "name": "减速药膏"
-                    },
-                    {
-                        "spellId": 186403,
-                        "name": "战争印记"
-                    },
-                    {
-                        "spellId": 21562,
-                        "name": "真言术：韧"
-                    },
-                    {
-                        "spellId": 1459,
-                        "name": "奥术智慧"
-                    },
-                    {
-                        "spellId": 315496,
-                        "name": "切割"
-                    },
-                    {
-                        "spellId": 11327,
-                        "name": "消失"
-                    },
-                    {
-                        "spellId": 414664,
-                        "name": "群体隐形"
-                    },
-                    {
-                        "spellId": 194384,
-                        "name": "救赎"
-                    },
-                    {
-                        "spellId": 441786,
-                        "name": "锋化之刃"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "精通狡诈符文"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "奥纹洞察"
-                    },
-                    {
-                        "spellId": 1241715,
-                        "name": "虚空的力量"
-                    },
-                    {
-                        "spellId": 196911,
-                        "name": "暗影技巧"
-                    },
-                    {
-                        "spellId": 441326,
-                        "name": "无瑕之形"
-                    },
-                    {
-                        "spellId": 1287665,
-                        "name": "萦绕符文"
-                    },
-                    {
-                        "spellId": 1253593,
-                        "name": "虚空之盾"
-                    },
-                    {
-                        "spellId": 65081,
-                        "name": "身心合一"
                     },
-                    {
-                        "spellId": 196980,
-                        "name": "暗影大师"
-                    },
-                    {
-                        "spellId": 185422,
-                        "name": "暗影之舞"
-                    },
-                    {
-                        "spellId": 112942,
-                        "name": "暗影集中"
-                    },
-                    {
-                        "spellId": 386237,
-                        "name": "隐匿无踪"
-                    },
-                    {
-                        "spellId": 393969,
-                        "name": "断魂之舞"
-                    },
-                    {
-                        "spellId": 394203,
-                        "name": "腐化印记"
-                    },
-                    {
-                        "spellId": 1264521,
-                        "name": "洞悉弱点"
-                    }
-                ],
-                "championDebuffs": [
                     {
-                        "spellId": 1260251,
-                        "name": "处决宣判"
+                        "spellId": 441224,
+                        "name": "Fazed"
                     },
                     {
-                        "spellId": 388539,
-                        "name": "撕裂"
+                        "spellId": 468655,
+                        "name": "Frostfire Bolt"
                     },
                     {
                         "spellId": 1287663,
-                        "name": "萦绕符文"
-                    },
-                    {
-                        "spellId": 431625,
-                        "name": "苍穹之锤"
-                    },
-                    {
-                        "spellId": 354788,
-                        "name": "屠宰场"
+                        "name": "Rune of Lingering"
                     }
                 ],
-                "targetBuffs": [
-                    {
-                        "spellId": 462568,
-                        "name": "元素抗性"
-                    },
-                    {
-                        "spellId": 433671,
-                        "name": "圣言"
-                    },
-                    {
-                        "spellId": 61295,
-                        "name": "激流"
-                    },
-                    {
-                        "spellId": 382024,
-                        "name": "大地生命武器"
-                    },
-                    {
-                        "spellId": 433674,
-                        "name": "圣光裁决"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "奥纹洞察"
-                    },
-                    {
-                        "spellId": 207400,
-                        "name": "先祖活力"
-                    },
-                    {
-                        "spellId": 345230,
-                        "name": "角斗士徽记"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "精通狡诈符文"
-                    },
-                    {
-                        "spellId": 1241715,
-                        "name": "虚空的力量"
-                    },
-                    {
-                        "spellId": 1241410,
-                        "name": "愤怒之锤"
-                    },
-                    {
-                        "spellId": 454351,
-                        "name": "复仇之怒"
-                    },
-                    {
-                        "spellId": 1287665,
-                        "name": "萦绕符文"
-                    },
-                    {
-                        "spellId": 1289063,
-                        "name": "回响符文"
-                    },
-                    {
-                        "spellId": 432629,
-                        "name": "公允裁定"
-                    },
-                    {
-                        "spellId": 431536,
-                        "name": "倾天圣威"
-                    },
-                    {
-                        "spellId": 24275,
-                        "name": "愤怒之锤"
-                    },
-                    {
-                        "spellId": 1044,
-                        "name": "自由祝福"
-                    }
-                ],
-                "targetDebuffs": [
-                    {
-                        "spellId": 3409,
-                        "name": "减速药膏"
-                    },
-                    {
-                        "spellId": 8680,
-                        "name": "致伤药膏"
-                    },
-                    {
-                        "spellId": 12654,
-                        "name": "点燃"
-                    },
-                    {
-                        "spellId": 1287663,
-                        "name": "萦绕符文"
-                    }
-                ],
-                "targetClassName": "Paladin",
-                "targetSpecName": "Retribution",
-                "resolvedAt": "2026-08-31T10:03:16+00:00"
+                "targetClassName": "Druid",
+                "targetSpecName": "Feral",
+                "resolvedAt": "2026-09-06T02:57:04+00:00"
             }
         }
     },
-    "generated_at": "2026-08-31T06:41:48+00:00"
+    "generated_at": "2026-09-06T02:55:22+00:00"
 }

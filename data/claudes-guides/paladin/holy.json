@@ -1,0 +1,93 @@
+{
+    "classSlug": "paladin",
+    "specSlug": "holy",
+    "title": "Holy Paladin",
+    "subtitle": "A data-grounded PvP read, written by Claude — not a dictated expert module. See the disclaimer at the end.",
+    "dataSources": {
+        "playstyleSample": 10,
+        "ratingRange": [2272, 2705],
+        "patch": "12.0.7.68453",
+        "freshPullPerformed": false,
+        "note": "Built entirely from the existing 10-match sample (2272-2705 rating) already on file — no new arena-log pull was performed for this. If that changes later, any fresh pull gets the standard wow:refresh-match-derived treatment so Class Guide/Burst Windows/CC chains for this spec benefit too, not just this page."
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "heading": "Identity",
+            "paragraphs": [
+                "This is the first healer in this guide series, and the framing has to change accordingly. A DPS spec's whole identity, per Part 2 of this project's own arena framework (arena-structure.md), is assembling a kill conjunction — control plus damage plus denied outs. A healer's identity is closer to the mirror image: it exists almost entirely to defeat other teams' conjunctions, not to build its own. Holy Paladin's real kit reflects that directly — of everything in its real, arena-log-verified kit, only a handful of entries are pure damage, and even those (Denounce especially, see below) do defensive work as a side effect.",
+                "The other honest framing difference: a healer rarely chooses when the fight happens. Per Part 11 (state recognition), a DPS spec's job is largely about recognizing when it's their own go; a healer's job is almost entirely about recognizing when it's the *enemy's* go, and having the right answer ready before that moment, not during it."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Core Toolkit",
+            "intro": "Holy Paladin's real damage output isn't separate from its healing — Holy Shock and Denounce are dual-purpose, and Judgment/Hammer of Wrath exist to fuel Holy Power rather than to close out a kill.",
+            "spellIds": [20473, 216331, 275773, 1241413, 26573]
+        },
+        {
+            "type": "prose",
+            "heading": "Denounce — the honest surprise in this spec's own damage kit",
+            "paragraphs": [
+                "Denounce's real description, read directly from this project's own imported spell data, is more interesting than its name suggests: it deals Holy damage and prevents the target from causing critical effects for its duration. That's not a pure damage spell — it's a defensive tool disguised as one, denying the enemy's own burst potential the exact same way a Rogue's opener denies a healer's outs, just from the opposite side of the fight. Casting Denounce on the enemy's own kill-target-committed DPS during their all-in is a legitimate defensive play, not just incidental chip damage.",
+                "This matters because it means a Holy Paladin's 'damage' rotation and its 'defense' plan are the same rotation more often than the class's reputation suggests — pressing Denounce at the right moment is doing double duty, whether or not that's the reason it gets pressed."
+            ]
+        },
+        {
+            "type": "prose",
+            "heading": "The real burst window — the actual surprise",
+            "paragraphs": [
+                "The highest-DPS 12-second window found across the whole archived sample: Crusader Strike -> Denounce -> Hammer of Wrath -> Crusader Strike -> Denounce -> Denounce -> Hammer of Wrath -> Crusader Strike -> Crusader Strike. Crusader Strike is confirmed, real Holy Paladin kit (its own description reduces Judgment's cooldown when talented and generates Holy Power) — this is a genuine, real melee-weaving playstyle, not a data error.",
+                "This is worth being direct about, since it's the most surprising thing this whole guide-writing exercise has turned up: the real highest-damage window for a *healer* spec is a melee-weave sequence, not a healing sequence at all — which makes sense once you remember burst windows are computed from damage events, and a healer's actual job (keeping people alive) produces no 'damage' signal to measure in the first place. Read this section for what it actually shows — a real, viable secondary damage playstyle that exists inside the healing role — not as 'how Holy Paladin heals,' which this data structurally cannot show."
+            ]
+        },
+        {
+            "type": "sequence",
+            "heading": "The real observed high-damage window",
+            "intro": "The literal top-DPS 12s window from the archived match sample — genuinely a melee-weave sequence, not a healing one. Read live from the same rotation file Burst Windows/Class Guide use for this spec.",
+            "useRealBurstWindow": true,
+            "burstWindowLength": 12
+        },
+        {
+            "type": "prose",
+            "heading": "The actual job: recognizing the enemy's go",
+            "paragraphs": [
+                "Per Part 11 of the framework, the single most valuable skill for any healer is recognizing the moment an enemy team has actually committed — not reacting to damage numbers after the fact, but recognizing the CC-plus-burst conjunction as it assembles. A Holy Paladin's own toolkit is built around that recognition: Blessing of Protection and Blessing of Spellwarding each answer one entire term of the enemy's conjunction completely (physical or magic damage respectively), the same way a Rogue's Cloak of Shadows/Evasion split does — using either against the wrong damage type is the same pure waste documented in that guide.",
+                "The real per-talent data shows this recognition gap concretely: Blessing of Protection was only actually cast in 3 of the 8 sampled matches where it was taken. That's not underuse — a defensive that only fires when a real all-in threatens a teammate, and stays unused the rest of the time, is exactly the correct pattern per Part 7's ladder-to-threat rule."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Personal & Team Defensives",
+            "intro": "Divine Shield and Lay on Hands are the two biggest, rarest tools in the entire kit — Blessing of Protection/Spellwarding are the same idea aimed at a teammate instead of yourself.",
+            "spellIds": [642, 633, 498, 1022, 204018]
+        },
+        {
+            "type": "prose",
+            "heading": "A real talent this data flags as overrated",
+            "paragraphs": [
+                "Light of Dawn was taken in all 10 sampled matches but actually cast in only 1. That's a striking gap worth stating plainly: an AoE heal finisher is built for group content where several people are clustered and hurt at once — a 3v3 arena has, at most, two teammates to heal, and they're rarely standing together the way a group-heal spell wants them to. The real data suggests this talent is a common pick that's rarely the right button in this specific format, not a core part of the rotation the way its tree placement might imply."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Crowd Control",
+            "intro": "A genuinely small CC kit compared to a control spec like Frost Mage — Paladins trade CC breadth for defensive depth.",
+            "spellIds": [853, 115750]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Utility & Support",
+            "intro": "Freedom and Sacrifice exist to answer a teammate's specific problem — a root/slow, or a burst they can't otherwise survive.",
+            "spellIds": [1044, 6940, 190784]
+        },
+        {
+            "type": "prose",
+            "heading": "The cooldown ledger for a healer",
+            "paragraphs": [
+                "Per Part 4 of the framework, the number worth actually tracking is time-since-last-Lay-on-Hands (600s) and time-since-last-Divine-Shield (300s) — not because they're used often, but because they're the two answers that fully negate a real all-in, and the enemy team's own game plan is partly a function of whether those two specific buttons are still available. A Holy Paladin who has spent both is playing a genuinely different, more fragile game than one who hasn't, and both teams' actual decisions should reflect that, not just the Paladin's own."
+            ]
+        }
+    ],
+    "disclaimer": "This guide was written by Claude (an AI), synthesized from real archived match data and this project's own arena-structure.md framework — it is NOT a dictated expert module and does not carry the same trust tier as the Discipline Priest or Feral Druid canonical modules elsewhere on this site. Every cooldown, category, and observed sequence above is read live from the same database everything else uses; the reasoning connecting them is AI-generated analysis, offered as a data-grounded opinion, not verified expertise. Treat it as a starting hypothesis to test against your own games, not a verdict."
+}

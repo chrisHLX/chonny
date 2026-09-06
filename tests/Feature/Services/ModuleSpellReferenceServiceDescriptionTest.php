@@ -202,3 +202,124 @@ test('resolveDescription correctly evaluates multi-term ${...} arithmetic (safeE
     // applied — safeEval('800/1000') returned just the first term, 800.0).
     expect($result['text'])->toBe('Increases the duration by 0.8 sec.');
 });
+
+/*
+ * ${...} unresolved-token handling — added 2026-09-06 after Eviscerate rendered
+ * "1 point : 0 damage 2 points: 0 damage ..." from ${$m1*N}: an unresolved token was being
+ * substituted as literal 0 and the arithmetic evaluated anyway, producing a confidently-wrong
+ * number. Now: a null token in a MULTIPLICAND/DIVISOR position discards the whole ${...} to
+ * "(varies)"; a null token in an ADDITIVE/DIVIDEND position ("no modifier applied") keeps 0.
+ */
+test('resolveDescription discards a ${...} whose unresolved token is a multiplicand', function () {
+    $fixture = makeDescriptionFixture();
+    // $m1 points at an effect that does not exist on this spell — must NOT become "0 damage".
+    $spell = makeTestSpell($fixture, 20, 'Causes ${$m1*3} damage per combo point.');
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Causes (varies) damage per combo point.')
+        ->and($result['uncertain'])->toBeTrue();
+});
+
+test('resolveDescription keeps a computed ${...} value when the missing token is a pure additive term', function () {
+    // Alter Time shape: "${$110909d+$s3}" — $d of a real referenced spell resolves, $s3 does
+    // not exist. "+$s3" is a "no extension talent" term; 0 is its arithmetic identity.
+    $fixture = makeDescriptionFixture();
+    Spell::create(['patch_id' => $fixture['patch']->id, 'spell_id' => 110909, 'name' => 'Alter Time Aura', 'duration_seconds' => 10]);
+    $spell = makeTestSpell($fixture, 21, 'Returns you to your location after ${$110909d+$s3} seconds.');
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Returns you to your location after 10 seconds.');
+});
+
+test('resolveDescription treats a missing token as 0 when it is a dividend inside (1 + $x/100)', function () {
+    // Nature's Guardian shape: "${$Xs1*(1+$s2/100)}" — $s2 is a talent-gated percent modifier,
+    // 0 when not talented. It divides 100 (dividend), so 0 is safe and the base value stands.
+    $fixture = makeDescriptionFixture();
+    $other = Spell::create(['patch_id' => $fixture['patch']->id, 'spell_id' => 31616, 'name' => 'Heal Effect']);
+    SpellEffect::create(['spell_id' => $other->id, 'effect_index' => 1, 'base_value' => 40, 'scaled_value' => 40]);
+    $spell = makeTestSpell($fixture, 22, 'Heal for ${$31616s1*(1+$s2/100)}% of your health.');
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Heal for 40% of your health.');
+});
+
+test('resolveDescription resolves $mN against the spell\'s own effect', function () {
+    // Prosperity shape: "Swiftmend now has ${$m1+1} charges." — own effect #1 Base Value 1.
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 23, 'Swiftmend now has ${$m1+1} charges.');
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'base_value' => 1, 'scaled_value' => 1]);
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Swiftmend now has 2 charges.')
+        ->and($result['uncertain'])->toBeFalse();
+});
+
+test('resolveDescription discards a ${...} whose unresolved token is a divisor', function () {
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 24, 'Restores ${$s1/$s2} per second.');
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'base_value' => 100, 'scaled_value' => 100]);
+    // effect #2 absent -> $s2 null, and it is the divisor.
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Restores (varies) per second.')
+        ->and($result['uncertain'])->toBeTrue();
+});
+
+/*
+ * $<varname> Variables-block resolution + ".N" precision-suffix handling — added 2026-09-06
+ * after Shield Discipline (spell_id 47755) rendered "restore (varies)% of your maximum mana"
+ * for "$mana=${$47755s1/100}.1", a conditional-free single ${...} formula that Pass 2 can
+ * evaluate exactly.
+ */
+test('resolveDescription evaluates a $<var> whose Variables definition is one unconditional ${...}', function () {
+    $fixture = makeDescriptionFixture();
+    $spell = Spell::create([
+        'patch_id' => $fixture['patch']->id, 'spell_id' => 30,
+        'name' => 'Test Spell',
+        'description' => 'Restore $<mana>% of your maximum mana.',
+        'variables' => '$mana=${$s1/100}.1',
+    ]);
+    SpellClassAvailability::create(['spell_id' => $spell->id, 'class_id' => $fixture['class']->id, 'spec_id' => $fixture['spec']->id, 'source' => 'baseline']);
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'base_value' => 50, 'scaled_value' => 50]);
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Restore 0.5% of your maximum mana.')
+        ->and($result['uncertain'])->toBeFalse();
+});
+
+test('resolveDescription keeps $<var> as (varies) when the Variables block has any $? conditional', function () {
+    // Penance shape: a conditional-free var sits in the SAME block as a conditional one — the
+    // whole block is untrusted, nothing is inlined.
+    $fixture = makeDescriptionFixture();
+    $spell = Spell::create([
+        'patch_id' => $fixture['patch']->id, 'spell_id' => 31,
+        'name' => 'Test Spell',
+        'description' => 'Deals $<dmg> damage.',
+        'variables' => "\$mult=\$?a100[\${2}][\${1}]\n\$dmg=\${\$s1}",
+    ]);
+    SpellClassAvailability::create(['spell_id' => $spell->id, 'class_id' => $fixture['class']->id, 'spec_id' => $fixture['spec']->id, 'source' => 'baseline']);
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'base_value' => 500, 'scaled_value' => 500]);
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Deals (varies) damage.')
+        ->and($result['uncertain'])->toBeTrue();
+});
+
+test('resolveDescription consumes a trailing ".N" precision suffix after ${...}', function () {
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 32, 'Reduces the cooldown by ${$s1/1000}.1 sec.');
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'base_value' => 3000, 'scaled_value' => 3000]);
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    // Before: "by 3.1 sec" (${3000/1000}=3, then literal ".1"). Now the suffix is dropped and
+    // formatNumber() renders the whole value.
+    expect($result['text'])->toBe('Reduces the cooldown by 3 sec.');
+});

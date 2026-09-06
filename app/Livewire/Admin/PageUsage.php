@@ -38,6 +38,9 @@ class PageUsage extends Component
         'burst_window_talents' => 'Burst Window Talent View',
         'class_guide' => 'Class Guide',
         'top_cc_chains' => 'Top 10 CC Chains',
+        'claudes_guides' => "Claude's Guides",
+        'claudes_counters' => 'Spell Counters',
+        'burst_guides' => 'Burst Guides',
     ];
 
     /**
@@ -193,16 +196,36 @@ class PageUsage extends Component
             ]);
     }
 
+    /**
+     * Claude's Counters / Spell Counters — which matchup got picked most, from the `slot` column
+     * the page's old two-spec matchup picker used to write. Frozen/historical only as of
+     * 2026-09-04: that picker (and the attributed log call behind it) was removed when the page
+     * was rewritten to a plain per-class counters list with no matchup concept at all — this
+     * still reads real past data correctly, it just won't gain any new rows going forward. Left
+     * in rather than deleted since the history itself is still real and accurate.
+     */
+    public function getCountersMatchupBreakdownProperty(): \Illuminate\Support\Collection
+    {
+        return PageViewEvent::query()
+            ->selectRaw('slot as matchup, count(*) as count')
+            ->where('page', 'claudes_counters')
+            ->whereNotNull('slot')
+            ->groupBy('slot')
+            ->orderByDesc('count')
+            ->get();
+    }
+
     public function render()
     {
         return view('livewire.admin.page-usage', [
-            'pages'           => self::PAGES,
-            'summary'         => $this->summary,
-            'topClasses'      => $this->topClasses,
-            'topSpecs'        => $this->topSpecs,
-            'slotBreakdown'   => $this->slotBreakdown,
-            'tabBreakdown'    => $this->tabBreakdown,
-            'presetBreakdown' => $this->presetBreakdown,
+            'pages'                  => self::PAGES,
+            'summary'                => $this->summary,
+            'topClasses'             => $this->topClasses,
+            'topSpecs'               => $this->topSpecs,
+            'slotBreakdown'          => $this->slotBreakdown,
+            'tabBreakdown'           => $this->tabBreakdown,
+            'presetBreakdown'        => $this->presetBreakdown,
+            'countersMatchupBreakdown' => $this->countersMatchupBreakdown,
         ])->layout('layouts.app');
     }
 }

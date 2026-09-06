@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Http\Services\ArenaLogService;
 use App\Http\Services\ModuleSpellReferenceService;
+use App\Http\Services\SpecKitComputer;
 use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
 use App\Models\ModuleGameBuild;
@@ -174,6 +175,23 @@ class SpellExplorer extends Component
         // until the 6-hour TTL expires or spellCacheVersion() is bumped manually.
         $build = $talentService->resolveActiveBuild(auth()->user(), $this->specId);
         $defaultBuild = $build->exists ? $build : null;
+
+        // Precompute path (2026-09-01) — same shared file/design as WowComps::spellReferencesFor()
+        // (see PrecomputeSpellKits's own docblock). Only applicable for the spec's real
+        // admin-default build; a personal build falls straight through to the existing
+        // live-compute-and-cache path below, unchanged. SpecKitComputer::compute()'s output is a
+        // strict superset of what this page's own computeSpellReferences() produces (this page
+        // just never reads the extra 'hasPotentialImprovement'/'offensiveDefensive'/enriched-
+        // modifier fields) — so the SAME files wow:precompute-spell-kits already writes for
+        // WowComps serve this page too, with zero new precompute work.
+        if ($defaultBuild && $defaultBuild->is_default) {
+            $spec = Specialization::find($this->specId);
+            $precomputed = $spec ? app(SpecKitComputer::class)->tryReadPrecomputed($spec, $talentService) : null;
+            if ($precomputed !== null) {
+                return $precomputed;
+            }
+        }
+
         $buildStamp = $defaultBuild ? "{$defaultBuild->id}:{$defaultBuild->updated_at?->timestamp}" : 'none';
         $version = $talentService->spellCacheVersion();
         // Automatically busts this cache on every real deploy — see

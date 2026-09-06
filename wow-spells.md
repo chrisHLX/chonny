@@ -173,7 +173,11 @@ Two different scenarios, with very different amounts of work.
    - The admin-default `TalentBuild` lookup (`resolveActiveBuild()`) *does* filter by `patch_id` — so after a new patch goes current, an old default build simply stops being found (falls through silently to "empty," not an error) until someone creates a new one for the new patch via `/admin/talent-builds`.
    - **`TalentSelectionService::resolveBuildForModule()` and the personal-build half of `resolveActiveBuild()` have no `patch_id` filter at all** (confirmed by re-reading both — this is a real, previously-unnoticed gap, not something fixed as part of today's module-linked-build work). A module-linked build (like the Discipline Priest Oracle one) would keep being "found" after a new patch import, but its `talent_build_choices` still reference the *old* patch's `talent_node_id`/`chosen_entry_id`. Since the new patch's `spell_relationships` graph has no overlap with those stale, old-patch spell ids, this doesn't crash — every modifier/charge computation for the new patch just silently comes back as "nothing selected," which is a quiet, easy-to-miss regression on every canonical module the first time a new patch goes live. Worth fixing (either a patch-filtered lookup, or a re-link step in the new-patch process) before this project has more than one canonical module riding on it.
 
-## Known gaps (not fixed here, not forgotten)
+## Known gaps
+
+Against `VISION.md`'s standing goals these are a to-do list, not accepted limitations — anything
+that surfaces an unresolved token, a `(varies)`, a duplicate row, or a missing modifier to a
+user is a defect to close.
 
 - No UI for linking talents to a module (§7) — the data model and resolution fully support it, only the picker-mode UI is missing.
 - `modifies_cooldown`'s two non-computed Category effect types, `modifies_charge_rate`, `hasted_cooldown`, `bypasses_cooldown` — all correctly labeled, none have a verified magnitude conversion yet (needs its own hand-verified worked example per type before adding one — see `game-data.md`'s "flag, don't guess" precedent).

@@ -1,0 +1,287 @@
+{
+    "matchupSlug": "rogue-assassination_vs_mage-frost",
+    "sideA": {
+        "classSlug": "rogue",
+        "specSlug": "assassination",
+        "title": "Assassination Rogue",
+        "range": "melee"
+    },
+    "sideB": {
+        "classSlug": "mage",
+        "specSlug": "frost",
+        "title": "Frost Mage",
+        "range": "ranged"
+    },
+    "generatedAt": "2026-09-01T06:16:18+00:00",
+    "tickSeconds": 1.5,
+    "beats": [
+        {
+            "tick": 1,
+            "time_seconds": 1.5,
+            "actor": "A",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 1833,
+                "name": "Cheap Shot",
+                "role": "cc"
+            },
+            "note": "Assassination Rogue lands Cheap Shot (Stun) on Frost Mage.",
+            "pressure": {
+                "A": 0,
+                "B": 0
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 2,
+            "time_seconds": 3,
+            "actor": "B",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Frost Mage is still locked down (3 tick(s) of Stun remaining) and can't act this turn.",
+            "pressure": {
+                "A": 0,
+                "B": 0
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 3,
+            "time_seconds": 4.5,
+            "actor": "A",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 360194,
+                "name": "Deathmark",
+                "role": "offensive"
+            },
+            "note": "Assassination Rogue presses Deathmark while Frost Mage is still locked down \u2014 free pressure.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 4,
+            "time_seconds": 6,
+            "actor": "B",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 118,
+                "name": "Polymorph",
+                "role": "cc"
+            },
+            "note": "Frost Mage lands Polymorph (Incapacitate) on Assassination Rogue.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 5,
+            "time_seconds": 7.5,
+            "actor": "A",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Assassination Rogue is still locked down (4 tick(s) of Incapacitate remaining) and can't act this turn.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 6,
+            "time_seconds": 9,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 80353,
+                "name": "Time Warp",
+                "role": "offensive"
+            },
+            "note": "Frost Mage presses Time Warp while Assassination Rogue is still locked down \u2014 free pressure.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 7,
+            "time_seconds": 10.5,
+            "actor": "A",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Assassination Rogue is still locked down (2 tick(s) of Incapacitate remaining) and can't act this turn.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 8,
+            "time_seconds": 12,
+            "actor": "B",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 31661,
+                "name": "Dragon's Breath",
+                "role": "cc"
+            },
+            "note": "Frost Mage lands Dragon's Breath (Disorient) on Assassination Rogue.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 2,
+                "B": 1
+            }
+        },
+        {
+            "tick": 9,
+            "time_seconds": 13.5,
+            "actor": "A",
+            "action_type": "trinket",
+            "ability": null,
+            "note": "Assassination Rogue trinkets out of the effect \u2014 2 ticks of control still remaining was judged too costly to ride out.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 10,
+            "time_seconds": 15,
+            "actor": "B",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 122,
+                "name": "Frost Nova",
+                "role": "cc"
+            },
+            "note": "Frost Mage lands Frost Nova (Root) on Assassination Rogue.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 11,
+            "time_seconds": 16.5,
+            "actor": "A",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Assassination Rogue is still locked down (6 tick(s) of Root remaining) and can't act this turn.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 12,
+            "time_seconds": 18,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 84714,
+                "name": "Frozen Orb",
+                "role": "offensive"
+            },
+            "note": "Frost Mage presses Frozen Orb while Assassination Rogue is still locked down \u2014 free pressure.",
+            "pressure": {
+                "A": 80,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 13,
+            "time_seconds": 19.5,
+            "actor": "A",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Assassination Rogue is still locked down (4 tick(s) of Root remaining) and can't act this turn.",
+            "pressure": {
+                "A": 80,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 14,
+            "time_seconds": 21,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 205021,
+                "name": "Ray of Frost",
+                "role": "offensive"
+            },
+            "note": "Frost Mage presses Ray of Frost while Assassination Rogue is still locked down \u2014 free pressure.",
+            "pressure": {
+                "A": 100,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        }
+    ],
+    "summary": {
+        "sideA": {
+            "title": "Assassination Rogue",
+            "final_pressure": 100
+        },
+        "sideB": {
+            "title": "Frost Mage",
+            "final_pressure": 40
+        },
+        "ticks_run": 14,
+        "ended_early": true
+    }
+}

@@ -149,6 +149,8 @@ class SpellDataFileParser
                     'free_specs' => [],
                     'not_in_spellbook' => false,
                     'is_passive' => false,
+                    'usable_while_cc' => null,
+                    'bypasses_active_defense' => false,
                     'rank_scaling' => [],
                     'effects' => [],
                 ];
@@ -315,6 +317,33 @@ class SpellDataFileParser
                 // it — none confirmed to exist in this dataset, but the exact-code form costs
                 // nothing and avoids relearning the same false-positive lesson twice).
                 $current['is_passive'] = str_contains($m[1], 'Passive (6)');
+
+                // `usable_while_cc` / `bypasses_active_defense` — see this class's own docblock
+                // and the 2026_09_02 migration for the full investigation. Matched by exact
+                // numeric attribute code, same discipline as not_in_spellbook/is_passive above
+                // (every code confirmed stable/unique dataset-wide before being hardcoded here).
+                $ccMap = [
+                    'Allow While Stunned (163)' => 'stun',
+                    'Allow While Stunned by Stun Mechanic (378)' => 'stun',
+                    'Allow While Stunned By Horror Mechanic (342)' => 'horror',
+                    'Allow While Feared By Fear Mechanic (417)' => 'fear',
+                    'Allow While Fleeing (177)' => 'flee',
+                    'Allow While Confused (178)' => 'confuse',
+                    'Allow While Charmed (261)' => 'charm',
+                ];
+                $ccTypes = [];
+                foreach ($ccMap as $code => $token) {
+                    if (str_contains($m[1], $code)) {
+                        $ccTypes[$token] = true;
+                    }
+                }
+                $current['usable_while_cc'] = $ccTypes === [] ? null : implode(',', array_keys($ccTypes));
+
+                $current['bypasses_active_defense'] = str_contains($m[1], 'No Active Defense (21)')
+                    || str_contains($m[1], 'No Attack Dodge (247)')
+                    || str_contains($m[1], 'No Attack Parry (248)')
+                    || str_contains($m[1], 'No Attack Block (256)');
+
                 $inEffects = false;
 
                 continue;
@@ -539,6 +568,8 @@ class SpellDataFileParser
                     'scaled_value' => null,
                     'sp_coefficient' => null,
                     'pvp_coefficient' => null,
+                    'misc_value' => null,
+                    'affected_schools' => null,
                     'modified_by' => [],
                     'affects_category' => [],
                 ];
@@ -575,8 +606,29 @@ class SpellDataFileParser
                 $currentEffect['pvp_coefficient'] = (float) $m[1];
             }
 
+            // "Misc Value: 9" or "Misc Value: 0x7e" — deliberately matched against "Value:"
+            // directly (not "Value \d+:") so this never accidentally captures the separate
+            // "Misc Value 2: N" field that appears on some effect lines. Hex-prefixed values
+            // (school bitmasks) are converted to decimal via intval's base-0 auto-detect; a
+            // bare decimal (a Mechanic Immunity code) parses the same way. See the
+            // 2026_09_02 migration's docblock for what this column is for.
+            if (preg_match('/Misc Value:\s*(0x[0-9a-fA-F]+|-?\d+)/', $line, $m)) {
+                $currentEffect['misc_value'] = (int) intval($m[1], 0);
+            }
+
             if (preg_match('/Modified By:\s*(.+)$/', $line, $m)) {
                 $currentEffect['modified_by'] = $currentEffect['modified_by'] + $this->parseSpellRefs($m[1]);
+            }
+
+            // "Affected School(s): All" / "Affected School(s): Physical" / "Affected School(s):
+            // Arcane, Fire, Frost, Holy, Nature, Shadow" — the real payload of a School Immunity
+            // effect (which schools a spell's immunity covers), previously discarded entirely.
+            // Stored as the raw comma-joined text, not re-encoded to a bitmask — "All" is kept
+            // literal rather than expanded to every school name, since that's exactly the string
+            // this field's one real consumer (ModuleSpellReferenceService::schoolImmunityGrantedBy())
+            // needs to match against a CC spell's own `school` column.
+            if (preg_match('/Affected School\(s\):\s*(.+)$/', $line, $m)) {
+                $currentEffect['affected_schools'] = trim($m[1]);
             }
 
             // "Affected Spells (Category): Pain Suppression (33206)" — this spell's own

@@ -250,6 +250,7 @@
 317898 | Slow | | | | 6  | ||| |  Blinding Sleet
 334275 | Slow | | | | 12.0  | ||| |  Curse of Exhaustion
 344867 | Stun | | | |  | ||| |  Chaos Nova
+179057 | Stun | | | | 3.0 | ||| |  Chaos Nova (the REAL displayed copy — resolved via TalentNodeEntry + verified_override for Havoc/Vengeance, source=talent/class tree. 344867 above is a same-named baseline-only duplicate, never actually reachable on any spec's display, so its own tag was never wrong, just inert — this line is the one that fixes the live bug: an AoE stun with no dr_category was falling into Offensive Cooldowns via categorize()'s damage-effect signal instead of showing under Crowd Control. pvp_duration_seconds=3.0 confirmed by the domain expert directly, matches the spell's own stored duration_seconds exactly.)
 347008 | | | | 1 |  | ||| |  Axe Toss (desc=Special Ability)
 351338 | | | | 1 |  | ||| |  Quell
 356084 | Slow | | | | 2  | ||| |  Blaze of Light
@@ -430,3 +431,17 @@
 358267 | | | | |  | | | | 1 |  Hover
 374227 | | | | |  | | | | 1 |  Zephyr
 444347 | | | | |  | | | | 1 |  Death Charge
+
+# Mobility batch 2, 2026-09-01 — closing real gaps found after broadening the discovery method
+# past "currently selected in a meta build" (see CLAUDE.md's mobility-tab section for the full
+# trace). Disengage/Master's Call matched a wider effect-signal set (Directional Knockback /
+# Mechanic Immunity) never checked by the original scan. Shadowstep has no usable effect data at
+# all in this patch's import (empty effects) — hand-tagged, no signal to derive it from, same as
+# any spell in that position elsewhere in this file. Charge/Divine Steed each collapsed a
+# multi-dozen-copy name collision to the one spell_id actually reachable by the relevant class's
+# specs (verified via allTalentSpellIds()/baseline sets before writing, not guessed).
+781 | | | | |  | | | | 1 |  Disengage
+54216 | | | | |  | | | | 1 |  Master's Call
+36554 | | | | |  | | | | 1 |  Shadowstep
+100 | | | | |  | | | | 1 |  Charge (Warrior)
+190784 | | | | |  | | | | 1 |  Divine Steed

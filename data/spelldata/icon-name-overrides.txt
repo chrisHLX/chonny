@@ -68,3 +68,10 @@
 1269383 | ability_rogue_ambush | Heroic Strike (resolved via wow:resolve-wowhead-icons)
 1271985 | ability_heroicleap | Champion's Leap (resolved via wow:resolve-wowhead-icons)
 1292321 | inv_ability_flameshaperevoker_engulf | Unbound Flame (resolved via wow:resolve-wowhead-icons)
+
+# 2026-09-06 — Warlock create-item spells: Blizzard's spell-media API doesn't index them under
+# any spell_id, and no same-name sibling has an icon. Wowhead's own filename carried a spurious
+# "_-" ("warlock_-healthstone"); the de-dashed form resolves 200 OK on Blizzard's official icon
+# CDN (render.worldofwarcraft.com/us/icons/56/...), verified directly before adding.
+6262 | warlock_healthstone | Healthstone
+452930 | warlock_bloodstone | Demonic Healthstone

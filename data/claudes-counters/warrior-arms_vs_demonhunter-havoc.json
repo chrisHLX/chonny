@@ -1,0 +1,595 @@
+{
+    "matchupSlug": "warrior-arms_vs_demonhunter-havoc",
+    "sideA": {
+        "classSlug": "warrior",
+        "specSlug": "arms",
+        "title": "Arms Warrior",
+        "range": "melee"
+    },
+    "sideB": {
+        "classSlug": "demonhunter",
+        "specSlug": "havoc",
+        "title": "Havoc Demon Hunter",
+        "range": "melee"
+    },
+    "generatedAt": "2026-09-01T06:16:19+00:00",
+    "tickSeconds": 1.5,
+    "beats": [
+        {
+            "tick": 1,
+            "time_seconds": 1.5,
+            "actor": "A",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 107570,
+                "name": "Storm Bolt",
+                "role": "cc"
+            },
+            "note": "Arms Warrior lands Storm Bolt (Stun) on Havoc Demon Hunter.",
+            "pressure": {
+                "A": 0,
+                "B": 0
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 2,
+            "time_seconds": 3,
+            "actor": "B",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Havoc Demon Hunter is still locked down (2 tick(s) of Stun remaining) and can't act this turn.",
+            "pressure": {
+                "A": 0,
+                "B": 0
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 3,
+            "time_seconds": 4.5,
+            "actor": "A",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 5246,
+                "name": "Intimidating Shout",
+                "role": "cc"
+            },
+            "note": "Arms Warrior lands Intimidating Shout (Disorient) on Havoc Demon Hunter.",
+            "pressure": {
+                "A": 0,
+                "B": 0
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 2
+            }
+        },
+        {
+            "tick": 4,
+            "time_seconds": 6,
+            "actor": "B",
+            "action_type": "trinket",
+            "ability": null,
+            "note": "Havoc Demon Hunter trinkets out of the effect \u2014 4 ticks of control still remaining was judged too costly to ride out.",
+            "pressure": {
+                "A": 0,
+                "B": 0
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 0
+            }
+        },
+        {
+            "tick": 5,
+            "time_seconds": 7.5,
+            "actor": "A",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 236077,
+                "name": "Disarm",
+                "role": "cc"
+            },
+            "note": "Arms Warrior lands Disarm (Disarm) on Havoc Demon Hunter.",
+            "pressure": {
+                "A": 0,
+                "B": 0
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 6,
+            "time_seconds": 9,
+            "actor": "B",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Havoc Demon Hunter is still locked down (4 tick(s) of Disarm remaining) and can't act this turn.",
+            "pressure": {
+                "A": 0,
+                "B": 0
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 7,
+            "time_seconds": 10.5,
+            "actor": "A",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 227847,
+                "name": "Bladestorm",
+                "role": "offensive"
+            },
+            "note": "Arms Warrior presses Bladestorm while Havoc Demon Hunter is still locked down \u2014 free pressure.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 8,
+            "time_seconds": 12,
+            "actor": "B",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Havoc Demon Hunter is still locked down (2 tick(s) of Disarm remaining) and can't act this turn.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 9,
+            "time_seconds": 13.5,
+            "actor": "A",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 46968,
+                "name": "Shockwave",
+                "role": "cc"
+            },
+            "note": "Arms Warrior lands Shockwave (Stun) on Havoc Demon Hunter \u2014 diminished to 50% duration from a recent repeat.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 2
+            }
+        },
+        {
+            "tick": 10,
+            "time_seconds": 15,
+            "actor": "B",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 217832,
+                "name": "Imprison",
+                "role": "cc"
+            },
+            "note": "Havoc Demon Hunter lands Imprison (Incapacitate) on Arms Warrior.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 2
+            }
+        },
+        {
+            "tick": 11,
+            "time_seconds": 16.5,
+            "actor": "A",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Arms Warrior is still locked down (2 tick(s) of Incapacitate remaining) and can't act this turn.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 2
+            }
+        },
+        {
+            "tick": 12,
+            "time_seconds": 18,
+            "actor": "B",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 207684,
+                "name": "Sigil of Misery",
+                "role": "cc"
+            },
+            "note": "Havoc Demon Hunter lands Sigil of Misery (Disorient) on Arms Warrior.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 2,
+                "B": 2
+            }
+        },
+        {
+            "tick": 13,
+            "time_seconds": 19.5,
+            "actor": "A",
+            "action_type": "trinket",
+            "ability": null,
+            "note": "Arms Warrior trinkets out of the effect \u2014 2 ticks of control still remaining was judged too costly to ride out.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 2
+            }
+        },
+        {
+            "tick": 14,
+            "time_seconds": 21,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 200166,
+                "name": "Metamorphosis",
+                "role": "offensive"
+            },
+            "note": "Havoc Demon Hunter presses Metamorphosis.",
+            "pressure": {
+                "A": 20,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 2
+            }
+        },
+        {
+            "tick": 15,
+            "time_seconds": 22.5,
+            "actor": "A",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 236077,
+                "name": "Disarm",
+                "role": "cc"
+            },
+            "note": "Arms Warrior lands Disarm (Disarm) on Havoc Demon Hunter \u2014 diminished to 50% duration from a recent repeat.",
+            "pressure": {
+                "A": 20,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 3
+            }
+        },
+        {
+            "tick": 16,
+            "time_seconds": 24,
+            "actor": "B",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Havoc Demon Hunter is still locked down (2 tick(s) of Disarm remaining) and can't act this turn.",
+            "pressure": {
+                "A": 20,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 3
+            }
+        },
+        {
+            "tick": 17,
+            "time_seconds": 25.5,
+            "actor": "A",
+            "action_type": "cc_wasted",
+            "ability": {
+                "spell_id": 236077,
+                "name": "Disarm",
+                "role": "cc"
+            },
+            "note": "Arms Warrior lands Disarm, but Havoc Demon Hunter is already immune to Disarm this window \u2014 no effect.",
+            "pressure": {
+                "A": 20,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 3
+            }
+        },
+        {
+            "tick": 18,
+            "time_seconds": 27,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 247938,
+                "name": "Chaos Blades",
+                "role": "offensive"
+            },
+            "note": "Havoc Demon Hunter presses Chaos Blades.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 3
+            }
+        },
+        {
+            "tick": 19,
+            "time_seconds": 28.5,
+            "actor": "A",
+            "action_type": "cc_wasted",
+            "ability": {
+                "spell_id": 236077,
+                "name": "Disarm",
+                "role": "cc"
+            },
+            "note": "Arms Warrior lands Disarm, but Havoc Demon Hunter is already immune to Disarm this window \u2014 no effect.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 3
+            }
+        },
+        {
+            "tick": 20,
+            "time_seconds": 30,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 370965,
+                "name": "The Hunt",
+                "role": "offensive"
+            },
+            "note": "Havoc Demon Hunter presses The Hunt.",
+            "pressure": {
+                "A": 60,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 3
+            }
+        },
+        {
+            "tick": 21,
+            "time_seconds": 31.5,
+            "actor": "A",
+            "action_type": "defensive",
+            "ability": {
+                "spell_id": 23920,
+                "name": "Spell Reflection",
+                "role": "defensive"
+            },
+            "note": "Arms Warrior answers the pressure with Spell Reflection, easing off the incoming damage.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 3
+            }
+        },
+        {
+            "tick": 22,
+            "time_seconds": 33,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 258860,
+                "name": "Essence Break",
+                "role": "offensive"
+            },
+            "note": "Havoc Demon Hunter presses Essence Break.",
+            "pressure": {
+                "A": 60,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 3
+            }
+        },
+        {
+            "tick": 23,
+            "time_seconds": 34.5,
+            "actor": "A",
+            "action_type": "defensive",
+            "ability": {
+                "spell_id": 384100,
+                "name": "Berserker Shout",
+                "role": "defensive"
+            },
+            "note": "Arms Warrior answers the pressure with Berserker Shout, easing off the incoming damage.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 3
+            }
+        },
+        {
+            "tick": 24,
+            "time_seconds": 36,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 188499,
+                "name": "Blade Dance",
+                "role": "offensive"
+            },
+            "note": "Havoc Demon Hunter presses Blade Dance.",
+            "pressure": {
+                "A": 48,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 3
+            }
+        },
+        {
+            "tick": 25,
+            "time_seconds": 37.5,
+            "actor": "A",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 107570,
+                "name": "Storm Bolt",
+                "role": "cc"
+            },
+            "note": "Arms Warrior lands Storm Bolt (Stun) on Havoc Demon Hunter.",
+            "pressure": {
+                "A": 48,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 4
+            }
+        },
+        {
+            "tick": 26,
+            "time_seconds": 39,
+            "actor": "B",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Havoc Demon Hunter is still locked down (2 tick(s) of Stun remaining) and can't act this turn.",
+            "pressure": {
+                "A": 48,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 4
+            }
+        },
+        {
+            "tick": 27,
+            "time_seconds": 40.5,
+            "actor": "A",
+            "action_type": "cc_wasted",
+            "ability": {
+                "spell_id": 236077,
+                "name": "Disarm",
+                "role": "cc"
+            },
+            "note": "Arms Warrior lands Disarm, but Havoc Demon Hunter is already immune to Disarm this window \u2014 no effect.",
+            "pressure": {
+                "A": 48,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 4
+            }
+        },
+        {
+            "tick": 28,
+            "time_seconds": 42,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 210152,
+                "name": "Death Sweep",
+                "role": "offensive"
+            },
+            "note": "Havoc Demon Hunter presses Death Sweep.",
+            "pressure": {
+                "A": 56,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 4
+            }
+        },
+        {
+            "tick": 29,
+            "time_seconds": 43.5,
+            "actor": "A",
+            "action_type": "defensive",
+            "ability": {
+                "spell_id": 118038,
+                "name": "Die by the Sword",
+                "role": "defensive"
+            },
+            "note": "Arms Warrior answers the pressure with Die by the Sword, easing off the incoming damage.",
+            "pressure": {
+                "A": 36,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 4
+            }
+        },
+        {
+            "tick": 30,
+            "time_seconds": 45,
+            "actor": "B",
+            "action_type": "wait",
+            "ability": null,
+            "note": "Havoc Demon Hunter has nothing impactful available and holds position.",
+            "pressure": {
+                "A": 36,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 4
+            }
+        }
+    ],
+    "summary": {
+        "sideA": {
+            "title": "Arms Warrior",
+            "final_pressure": 36
+        },
+        "sideB": {
+            "title": "Havoc Demon Hunter",
+            "final_pressure": 40
+        },
+        "ticks_run": 30,
+        "ended_early": false
+    }
+}

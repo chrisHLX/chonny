@@ -44,7 +44,12 @@ use Illuminate\Support\Facades\Process;
  *      to data/arena-logs/playstyle/{class}/{spec}.json, read live by the Class Guide page.
  *      Skippable via --skip-playstyle — the slowest step (~40 specs x a real N-match analysis
  *      each), worth skipping for a quick CC/burst-window-only refresh.
- *   7. TalentSelectionService::bumpSpellCacheVersion() — every step above changes what a cached
+ *   7. wow:build-burst-guides — writes data/claudes-guides/burst-guides/{class}/{spec}.json (the
+ *      Burst Guides page's own source), computed from the freshly-promoted rotations at step 3
+ *      above. Pure local JSON computation (no raw-log decompression), fast — added 2026-09-04
+ *      alongside the Burst Guides page itself, same "don't let a new match pull silently leave
+ *      this stale" discipline that motivated this whole orchestrator.
+ *   8. TalentSelectionService::bumpSpellCacheVersion() — every step above changes what a cached
  *      wow_spell_references:* entry would compute, and forgetting this bump is the single most
  *      recurring class of bug documented in CLAUDE.md this whole project. Automatic, every run,
  *      unconditionally — there is no scenario where skipping it is correct.
@@ -73,7 +78,8 @@ class RefreshMatchDerived extends Command
     protected $signature = 'wow:refresh-match-derived
         {--skip-cc-chains : Skip step 1 (wow:find-cc-chains --json)}
         {--skip-rotations : Skip steps 2-5 (burst-window regeneration + talent/mechanics enrichment)}
-        {--skip-playstyle : Skip step 6 (wow:analyze-spec-playstyle, looped over every spec — the slowest step)}';
+        {--skip-playstyle : Skip step 6 (wow:analyze-spec-playstyle, looped over every spec — the slowest step)}
+        {--skip-burst-guides : Skip step 7 (wow:build-burst-guides)}';
 
     protected $description = 'Regenerates every live, match-data-derived surface (Burst Windows, mechanics, Crowd Control, Class Guide) from the current arena-log archive. Run after pulling new matches.';
 
@@ -82,12 +88,12 @@ class RefreshMatchDerived extends Command
         $archivePath = config('arena_logs.archive_path');
         $scriptsDir = "{$archivePath}/scripts";
 
-        $this->step('1/6 — Crowd Control chain corpus (wow:find-cc-chains --json)', fn () => $this->option('skip-cc-chains')
+        $this->step('1/7 — Crowd Control chain corpus (wow:find-cc-chains --json)', fn () => $this->option('skip-cc-chains')
             ? $this->skipped()
             : $this->callArtisan('wow:find-cc-chains', ['--json']));
 
         if (!$this->option('skip-rotations')) {
-            $ok = $this->step('2/6 — Regenerate burst-window rotations (all-spec-rotations.php)', function () use ($scriptsDir) {
+            $ok = $this->step('2/7 — Regenerate burst-window rotations (all-spec-rotations.php)', function () use ($scriptsDir) {
                 $script = "{$scriptsDir}/all-spec-rotations.php";
                 if (!File::exists($script)) {
                     $this->error("  Not found: {$script} — is ARENA_LOG_ARCHIVE_PATH pointing at a real wow-arena-archive checkout?");
@@ -99,19 +105,23 @@ class RefreshMatchDerived extends Command
             });
 
             if ($ok) {
-                $this->step('3/6 — Promote regenerated rotations into the live repo', fn () => $this->promoteRotations($archivePath));
-                $this->step('4/6 — Enrich promoted windows with real talent builds', fn () => $this->callArtisan('wow:enrich-rotation-talents'));
-                $this->step('5/6 — Enrich promoted windows with real champion/target mechanics', fn () => $this->callArtisan('wow:enrich-rotation-mechanics'));
+                $this->step('3/7 — Promote regenerated rotations into the live repo', fn () => $this->promoteRotations($archivePath));
+                $this->step('4/7 — Enrich promoted windows with real talent builds', fn () => $this->callArtisan('wow:enrich-rotation-talents'));
+                $this->step('5/7 — Enrich promoted windows with real champion/target mechanics', fn () => $this->callArtisan('wow:enrich-rotation-mechanics'));
             } else {
                 $this->warn('  Skipping promotion + enrichment — rotation regeneration itself failed.');
             }
         } else {
-            $this->step('2-5/6 — Burst-window regeneration + enrichment', fn () => $this->skipped());
+            $this->step('2-5/7 — Burst-window regeneration + enrichment', fn () => $this->skipped());
         }
 
-        $this->step('6/6 — Class Guide playstyle data (wow:analyze-spec-playstyle, every spec)', fn () => $this->option('skip-playstyle')
+        $this->step('6/7 — Class Guide playstyle data (wow:analyze-spec-playstyle, every spec)', fn () => $this->option('skip-playstyle')
             ? $this->skipped()
             : $this->refreshPlaystyle());
+
+        $this->step('7/7 — Burst Guides (wow:build-burst-guides)', fn () => $this->option('skip-burst-guides')
+            ? $this->skipped()
+            : $this->callArtisan('wow:build-burst-guides'));
 
         $talentService->bumpSpellCacheVersion();
         $this->newLine();

@@ -1,129 +1,115 @@
 # CC chains landing on real monk/mistweaver healers (opposing side only)
-# Total qualifying chains found: 327 | shown here: 20
+# Total qualifying chains found: 237 | shown here: 20
 # Gap tolerance: 2s | Min abilities per chain: 2 | Categories: Stun/Silence/Incapacitate/Disorient only (--include-utility widens this)
 # "(DR'd)" marks a step whose dr_category already appeared earlier in the same chain — real in-game DR is already baked into its own timing, this is just a readability flag.
 
-=== #1 — 19.39s total time-in-CC — 3 caster(s) — match efd6a8f86e1c879ead1163f69e70ba5a — target: Isawthedevil-Area52-US ===
-  [+  0.00s] Ring of Frost            (Incapacitate )   6.01s  by Fire Mage
-  [+  5.37s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
-  [+ 12.38s] Polymorph                (Incapacitate ) (DR'd)   2.98s  by Fire Mage
-  [+ 15.32s] Holy Word: Chastise      (Stun         )   3.02s  by Holy Priest
-  [+ 16.29s] Kidney Shot              (Stun         ) (DR'd)   2.51s  by Subtlety Rogue
-  [+ 18.82s] Mind Control             (Disorient    ) (DR'd)   0.58s  by Holy Priest
+=== #1 — 19.27s total time-in-CC — 3 caster(s) — match 574511eff0a7f63c080d52bac269b414 — target: Dgtru-Sargeras-US ===
+  [+  0.00s] Gouge                    (Incapacitate )   3.01s  by Subtlety Rogue
+  [+  2.05s] Cyclone                  (Disorient    )   4.99s  by Balance Druid
+  [+  7.23s] Paralysis                (Incapacitate ) (DR'd)   1.50s  by Mistweaver Monk
+  [+  9.71s] Song of Chi-Ji           (Disorient    ) (DR'd)   3.00s  by Mistweaver Monk
+  [+ 14.55s] Cheap Shot               (Stun         )   1.06s  by Subtlety Rogue
+  [+ 17.26s] Cheap Shot               (Stun         ) (DR'd)   2.01s  by Subtlety Rogue
 
-=== #2 — 19.38s total time-in-CC — 3 caster(s) — match ef8f618911a47e8ac666e6ca946ea17e — target: Isawthedevil-Area52-US ===
-  [+  0.00s] Ring of Frost            (Incapacitate )   6.00s  by Fire Mage
-  [+  5.37s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
-  [+ 12.38s] Polymorph                (Incapacitate ) (DR'd)   2.96s  by Fire Mage
-  [+ 15.32s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
-  [+ 16.29s] Kidney Shot              (Stun         ) (DR'd)   2.50s  by Subtlety Rogue
-  [+ 18.79s] Mind Control             (Disorient    ) (DR'd)   0.58s  by Holy Priest
+=== #2 — 17.2s total time-in-CC — 2 caster(s) — match 574511eff0a7f63c080d52bac269b414 — target: Dgtru-Sargeras-US ===
+  [+  0.00s] Sap                      (Incapacitate )   6.01s  by Subtlety Rogue
+  [+  6.61s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
+  [+ 12.36s] Kidney Shot              (Stun         )   4.06s  by Subtlety Rogue
+  [+ 16.42s] Cheap Shot               (Stun         ) (DR'd)   0.78s  by Subtlety Rogue
 
-=== #3 — 18.14s total time-in-CC — 3 caster(s) — match bab6b445e4a994ca1502b71727d1def2 — target: Isawthedevil-Area52-US ===
-  [+  0.00s] Cheap Shot               (Stun         )   4.01s  by Subtlety Rogue
-  [+  5.35s] Holy Word: Chastise      (Incapacitate )   3.03s  by Holy Priest
-  [+  8.06s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
-  [+ 15.14s] Polymorph                (Incapacitate ) (DR'd)   3.00s  by Fire Mage
+=== #3 — 15.7s total time-in-CC — 2 caster(s) — match fcfe23a42332b622d9d7e1765f4b97d5 — target: Properhero-Stormrage-US ===
+  [+  0.00s] Binding Shot             (Stun         )   1.50s  by Beast Mastery Hunter
+  [+  0.79s] Freezing Trap            (Incapacitate )   6.00s  by Beast Mastery Hunter
+  [+  7.46s] Psychic Scream           (Disorient    )   6.00s  by Shadow Priest
+  [+ 14.33s] Silence                  (Silence      )   1.37s  by Shadow Priest
 
-=== #4 — 17.34s total time-in-CC — 3 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Blindwombat-Tichondrius-US ===
-  [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Holy Paladin
-  [+  5.69s] Ring of Frost            (Incapacitate )   6.01s  by Frost Mage
-  [+ 11.34s] Howl of Terror           (Disorient    )   6.00s  by Demonology Warlock
+=== #4 — 15.59s total time-in-CC — 2 caster(s) — match 56ce043bf39725549d55ec341adbc903 — target: Demisexual-Gallywix-US ===
+  [+  0.00s] Polymorph                (Incapacitate )   6.01s  by Frost Mage
+  [+  5.25s] Cyclone                  (Disorient    )   5.02s  by Feral Druid
+  [+ 11.18s] Polymorph                (Incapacitate ) (DR'd)   3.01s  by Frost Mage
+  [+ 14.08s] Dragon's Breath          (Disorient    ) (DR'd)   1.51s  by Frost Mage
 
-=== #5 — 17.2s total time-in-CC — 3 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Blindwombat-Tichondrius-US ===
-  [+  0.00s] Hammer of Justice        (Stun         )   4.49s  by Holy Paladin
-  [+  2.01s] Polymorph                (Incapacitate )   6.00s  by Frost Mage
-  [+  7.95s] Blinding Light           (Disorient    )   4.00s  by Holy Paladin
-  [+ 11.72s] Howl of Terror           (Disorient    ) (DR'd)   3.01s  by Demonology Warlock
-  [+ 14.19s] Polymorph                (Incapacitate ) (DR'd)   3.00s  by Frost Mage
+=== #5 — 15.13s total time-in-CC — 2 caster(s) — match f12576054c520c8ea43a5ac3aa1420a8 — target: Properhero-Stormrage-US ===
+  [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Unholy Death Knight
+  [+  6.85s] Freezing Trap            (Incapacitate )   6.00s  by Survival Hunter
+  [+ 13.13s] Blinding Sleet           (Disorient    ) (DR'd)   2.00s  by Unholy Death Knight
 
-=== #6 — 16.73s total time-in-CC — 2 caster(s) — match ef8f618911a47e8ac666e6ca946ea17e — target: Isawthedevil-Area52-US ===
-  [+  0.00s] Polymorph                (Incapacitate )   5.37s  by Fire Mage
-  [+  5.36s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
-  [+  6.63s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
-  [+ 14.59s] Mind Control             (Disorient    ) (DR'd)   2.14s  by Holy Priest
+=== #6 — 15.12s total time-in-CC — 2 caster(s) — match 1b53441e6a9303e619ac1844f0110de3 — target: Properhero-Stormrage-US ===
+  [+  0.00s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
+  [+  1.33s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
+  [+  9.13s] Polymorph                (Incapacitate )   6.00s  by Arcane Mage
 
-=== #7 — 16.73s total time-in-CC — 2 caster(s) — match efd6a8f86e1c879ead1163f69e70ba5a — target: Isawthedevil-Area52-US ===
-  [+  0.00s] Polymorph                (Incapacitate )   5.38s  by Fire Mage
-  [+  5.35s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
-  [+  6.62s] Psychic Scream           (Disorient    )   6.02s  by Holy Priest
-  [+ 14.58s] Mind Control             (Disorient    ) (DR'd)   2.14s  by Holy Priest
+=== #7 — 14.98s total time-in-CC — 2 caster(s) — match f0dbeb2a45146c6573713fe256ec639e — target: Mocassin-Terenas-US ===
+  [+  0.00s] Silence                  (Silence      )   1.31s  by Shadow Priest
+  [+  1.62s] Incapacitating Roar      (Incapacitate )   3.02s  by Feral Druid
+  [+  3.83s] Cyclone                  (Disorient    )   5.00s  by Feral Druid
+  [+ 10.06s] Maim                     (Stun         )   4.92s  by Feral Druid
 
-=== #8 — 16.34s total time-in-CC — 2 caster(s) — match 3fbb10056ecda608e47862c06e03c58f — target: Actiulbear-奥特兰克-CN ===
-  [+  0.00s] Sap                      (Incapacitate )   0.51s  by Assassination Rogue
-  [+  1.00s] Sap                      (Incapacitate ) (DR'd)   3.01s  by Assassination Rogue
-  [+  3.69s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
-  [+  9.26s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
-  [+ 13.34s] Garrote - Silence        (Silence      )   3.00s  by Assassination Rogue
+=== #8 — 14.01s total time-in-CC — 3 caster(s) — match fcfe23a42332b622d9d7e1765f4b97d5 — target: Dgtru-Sargeras-US ===
+  [+  0.00s] Paralysis                (Incapacitate )   0.32s  by Mistweaver Monk
+  [+  1.27s] Leg Sweep                (Stun         )   4.01s  by Mistweaver Monk
+  [+  5.04s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
+  [+  9.89s] Gouge                    (Incapacitate ) (DR'd)   1.51s  by Subtlety Rogue
+  [+ 11.50s] Cyclone                  (Disorient    ) (DR'd)   2.51s  by Balance Druid
 
-=== #9 — 15.54s total time-in-CC — 2 caster(s) — match f06c818281f19c54ba7df41f430f8bb9 — target: Blindwombat-Tichondrius-US ===
-  [+  0.00s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
-  [+  5.96s] Holy Word: Chastise      (Stun         )   2.71s  by Holy Priest
-  [+  9.55s] Polymorph                (Incapacitate )   5.99s  by Frost Mage
+=== #9 — 13.45s total time-in-CC — 2 caster(s) — match a7e172b32d12e2f4cd962d800b9a074b — target: Mocassin-Terenas-US ===
+  [+  0.00s] Freezing Trap            (Incapacitate )   6.01s  by Beast Mastery Hunter
+  [+  5.18s] Psychic Scream           (Disorient    )   5.99s  by Holy Priest
+  [+ 10.43s] Mind Control             (Disorient    ) (DR'd)   3.02s  by Holy Priest
 
-=== #10 — 15.24s total time-in-CC — 3 caster(s) — match 3fbb10056ecda608e47862c06e03c58f — target: Actiulbear-奥特兰克-CN ===
-  [+  0.00s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
-  [+  4.73s] Blind                    (Disorient    )   5.01s  by Assassination Rogue
-  [+  8.61s] Sap                      (Incapacitate ) (DR'd)   3.01s  by Assassination Rogue
-  [+ 12.24s] Psychic Scream           (Disorient    ) (DR'd)   3.00s  by Holy Priest
+=== #10 — 13.43s total time-in-CC — 2 caster(s) — match 85077ac28b9b23c10be6b644931daabf — target: Mocassin-Terenas-US ===
+  [+  0.00s] Freezing Trap            (Incapacitate )   6.00s  by Beast Mastery Hunter
+  [+  5.15s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
+  [+ 10.41s] Mind Control             (Disorient    ) (DR'd)   3.01s  by Holy Priest
 
-=== #11 — 15.23s total time-in-CC — 3 caster(s) — match ef8f618911a47e8ac666e6ca946ea17e — target: Isawthedevil-Area52-US ===
-  [+  0.00s] Dragon's Breath          (Disorient    )   3.02s  by Fire Mage
-  [+  2.32s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
-  [+  8.41s] Psychic Scream           (Disorient    ) (DR'd)   3.01s  by Holy Priest
-  [+ 11.22s] Cheap Shot               (Stun         )   4.01s  by Subtlety Rogue
+=== #11 — 13.43s total time-in-CC — 2 caster(s) — match bb50fe3a3bc93462c52498c30744e0c7 — target: Mocassin-Terenas-US ===
+  [+  0.00s] Freezing Trap            (Incapacitate )   6.00s  by Beast Mastery Hunter
+  [+  5.15s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
+  [+ 10.41s] Mind Control             (Disorient    ) (DR'd)   3.02s  by Holy Priest
 
-=== #12 — 15.22s total time-in-CC — 2 caster(s) — match b1f2d139418c1c796ecbda7d9f4b0a40 — target: Metafloyd-Illidan-US ===
-  [+  0.00s] Sap                      (Incapacitate )   6.01s  by Assassination Rogue
-  [+  7.49s] Freezing Trap            (Incapacitate ) (DR'd)   2.99s  by Survival Hunter
-  [+ 10.22s] Blind                    (Disorient    )   5.01s  by Assassination Rogue
+=== #12 — 13.01s total time-in-CC — 2 caster(s) — match 1b53441e6a9303e619ac1844f0110de3 — target: Properhero-Stormrage-US ===
+  [+  0.00s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
+  [+  1.50s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
+  [+  7.05s] Polymorph                (Incapacitate )   1.83s  by Arcane Mage
+  [+ 10.00s] Polymorph                (Incapacitate ) (DR'd)   3.01s  by Arcane Mage
 
-=== #13 — 15.22s total time-in-CC — 3 caster(s) — match efd6a8f86e1c879ead1163f69e70ba5a — target: Isawthedevil-Area52-US ===
-  [+  0.00s] Dragon's Breath          (Disorient    )   3.01s  by Fire Mage
-  [+  2.32s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
-  [+  8.41s] Psychic Scream           (Disorient    ) (DR'd)   3.00s  by Holy Priest
-  [+ 11.21s] Cheap Shot               (Stun         )   4.01s  by Subtlety Rogue
+=== #13 — 12.21s total time-in-CC — 3 caster(s) — match 0600c729a0616d25823f7a33e06ae26d — target: Abeldra-MoonGuard-US ===
+  [+  0.00s] Cheap Shot               (Stun         )   3.97s  by Assassination Rogue
+  [+  5.13s] Holy Word: Chastise      (Stun         ) (DR'd)   1.50s  by Holy Priest
+  [+  6.70s] Psychic Scream           (Disorient    )   5.50s  by Holy Priest
+  [+ 11.12s] Polymorph                (Incapacitate )   1.09s  by Fire Mage
 
-=== #14 — 15.18s total time-in-CC — 3 caster(s) — match ef8f618911a47e8ac666e6ca946ea17e — target: Isawthedevil-Area52-US ===
-  [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
-  [+  3.78s] Ring of Frost            (Incapacitate )   6.01s  by Fire Mage
-  [+  8.25s] Sap                      (Incapacitate ) (DR'd)   2.08s  by Subtlety Rogue
-  [+ 10.31s] Cheap Shot               (Stun         )   2.06s  by Subtlety Rogue
-  [+ 10.59s] Mind Control             (Disorient    ) (DR'd)   0.63s  by Holy Priest
-  [+ 13.68s] Holy Word: Chastise      (Stun         ) (DR'd)   1.50s  by Holy Priest
+=== #14 — 11.62s total time-in-CC — 2 caster(s) — match db299afd250ba5e42af9bac5cf282509 — target: Poincaré-Azralon-US ===
+  [+  0.00s] Kidney Shot              (Stun         )   5.00s  by Assassination Rogue
+  [+  5.58s] Garrote - Silence        (Silence      )   3.02s  by Assassination Rogue
+  [+  8.66s] Holy Word: Chastise      (Incapacitate )   2.96s  by Holy Priest
 
-=== #15 — 15.18s total time-in-CC — 3 caster(s) — match efd6a8f86e1c879ead1163f69e70ba5a — target: Isawthedevil-Area52-US ===
-  [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
-  [+  3.77s] Ring of Frost            (Incapacitate )   6.02s  by Fire Mage
-  [+  8.24s] Sap                      (Incapacitate ) (DR'd)   2.08s  by Subtlety Rogue
-  [+ 10.30s] Cheap Shot               (Stun         )   2.08s  by Subtlety Rogue
-  [+ 10.59s] Mind Control             (Disorient    ) (DR'd)   0.64s  by Holy Priest
-  [+ 13.68s] Holy Word: Chastise      (Stun         ) (DR'd)   1.50s  by Holy Priest
+=== #15 — 11.62s total time-in-CC — 2 caster(s) — match f0dbeb2a45146c6573713fe256ec639e — target: Mocassin-Terenas-US ===
+  [+  0.00s] Silence                  (Silence      )   4.03s  by Shadow Priest
+  [+  3.34s] Cyclone                  (Disorient    )   4.99s  by Feral Druid
+  [+  9.12s] Cyclone                  (Disorient    ) (DR'd)   2.50s  by Feral Druid
 
-=== #16 — 15.01s total time-in-CC — 2 caster(s) — match d78e05e782aa7c0344e6174e1eb477e1 — target: Isawthedevil-Area52-US ===
-  [+  0.00s] Blind                    (Disorient    )   5.03s  by Subtlety Rogue
-  [+  3.52s] Polymorph                (Incapacitate )   4.68s  by Fire Mage
-  [+  7.91s] Kidney Shot              (Stun         )   5.00s  by Subtlety Rogue
-  [+ 12.99s] Cheap Shot               (Stun         ) (DR'd)   2.02s  by Subtlety Rogue
+=== #16 — 11.57s total time-in-CC — 2 caster(s) — match 2fa668c111216933003c73410e36a597 — target: Properhero-Stormrage-US ===
+  [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Retribution Paladin
+  [+  4.92s] Hex                      (Incapacitate )   1.58s  by Restoration Shaman
+  [+  7.57s] Blinding Light           (Disorient    )   4.01s  by Retribution Paladin
 
-=== #17 — 14.98s total time-in-CC — 3 caster(s) — match 329c0acaf87c70176025c3c3dd59d87c — target: Drjacqueoff-Dalaran-US ===
-  [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
-  [+  5.31s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
-  [+  9.69s] Polymorph                (Incapacitate )   5.29s  by Fire Mage
+=== #17 — 11.39s total time-in-CC — 2 caster(s) — match 333ee3e02a88a4760f316ca23f7416da — target: Abeldra-MoonGuard-US ===
+  [+  0.00s] Hammer of Justice        (Stun         )   5.01s  by Retribution Paladin
+  [+  6.38s] Cyclone                  (Disorient    )   5.01s  by Restoration Druid
 
-=== #18 — 14.78s total time-in-CC — 2 caster(s) — match 91b1e4836d3de1b60516f4d3a3c07314 — target: Gorem-Tichondrius-US ===
-  [+  0.00s] Polymorph                (Incapacitate )   4.48s  by Fire Mage
-  [+  5.72s] Polymorph                (Incapacitate ) (DR'd)   1.12s  by Fire Mage
-  [+  7.38s] Psychic Scream           (Disorient    )   1.87s  by Holy Priest
-  [+ 10.60s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
-  [+ 13.26s] Dragon's Breath          (Disorient    ) (DR'd)   1.51s  by Fire Mage
+=== #18 — 11.37s total time-in-CC — 2 caster(s) — match c2dd850caea6aff2002308eef60d3507 — target: Properhero-Stormrage-US ===
+  [+  0.00s] Blind                    (Disorient    )   2.17s  by Subtlety Rogue
+  [+  2.86s] Kidney Shot              (Stun         )   4.22s  by Subtlety Rogue
+  [+  7.08s] Cheap Shot               (Stun         ) (DR'd)   2.00s  by Subtlety Rogue
+  [+  9.87s] Dragon's Breath          (Disorient    ) (DR'd)   1.50s  by Fire Mage
 
-=== #19 — 14.69s total time-in-CC — 3 caster(s) — match 7e09d7a89a8874773ef06a1dc4e3f1ad — target: Isawthedevil-Area52-US ===
-  [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
-  [+  5.21s] Psychic Scream           (Disorient    ) (DR'd)   2.99s  by Holy Priest
-  [+  8.71s] Polymorph                (Incapacitate )   5.98s  by Fire Mage
+=== #19 — 11.36s total time-in-CC — 2 caster(s) — match f12576054c520c8ea43a5ac3aa1420a8 — target: Properhero-Stormrage-US ===
+  [+  0.00s] Freezing Trap            (Incapacitate )   6.01s  by Survival Hunter
+  [+  5.37s] Psychic Scream           (Disorient    )   6.00s  by Discipline Priest
 
-=== #20 — 14.59s total time-in-CC — 2 caster(s) — match f06c818281f19c54ba7df41f430f8bb9 — target: Blindwombat-Tichondrius-US ===
-  [+  0.00s] Polymorph                (Incapacitate )   6.00s  by Frost Mage
-  [+  5.87s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
-  [+ 11.88s] Holy Word: Chastise      (Stun         )   2.71s  by Holy Priest
+=== #20 — 11.35s total time-in-CC — 2 caster(s) — match b0762b711312c3aa3a20f4822d9da69d — target: Properhero-Stormrage-US ===
+  [+  0.00s] Blind                    (Disorient    )   2.16s  by Subtlety Rogue
+  [+  2.85s] Kidney Shot              (Stun         )   4.23s  by Subtlety Rogue
+  [+  7.08s] Cheap Shot               (Stun         ) (DR'd)   2.00s  by Subtlety Rogue
+  [+  9.85s] Dragon's Breath          (Disorient    ) (DR'd)   1.50s  by Fire Mage

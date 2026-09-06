@@ -1097,3 +1097,11 @@
 # castable one belongs in the always-shown display set here — the passive proc-talent still
 # shows correctly on its own where the talent tree itself is browsed.
 219199 | hunter | beast-mastery | Dire Beast
+
+# Master's Call — 2026-09-01, found missing from the Mobility tab (baseline, spec_id=NULL, same
+# ambiguous bucket as Leg Sweep/Mind Sear elsewhere in this file). Genuinely class-wide: uses
+# whatever pet is currently active to remove/immune movement-impairing effects on self or an
+# ally, real for any Hunter spec with a pet out — same confidence tier as Hammer of Justice.
+54216 | hunter | beast-mastery | Master's Call
+54216 | hunter | marksmanship | Master's Call
+54216 | hunter | survival | Master's Call

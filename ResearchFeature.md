@@ -1,4 +1,7 @@
 Research Feature — Complete Reference
+
+> Legacy. Part of the earlier learning-platform direction (see VISION.md) — AI-generated module/question content. Kept as a reference; the system it describes is dormant, not the current focus.
+
 Purpose
 Research is the factual foundation for all AI-generated content in Chonny. Before GPT-4 writes module pages or questions, Gemini fetches current, source-specific information on the topic and hands it to GPT as a grounding block. Without research, GPT falls back to its training knowledge — which may be outdated or wrong for patch-specific games content. With research, GPT is explicitly instructed to use only what Gemini returned and to not generalise.
 

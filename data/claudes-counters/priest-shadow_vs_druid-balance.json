@@ -1,0 +1,399 @@
+{
+    "matchupSlug": "priest-shadow_vs_druid-balance",
+    "sideA": {
+        "classSlug": "priest",
+        "specSlug": "shadow",
+        "title": "Shadow Priest",
+        "range": "ranged"
+    },
+    "sideB": {
+        "classSlug": "druid",
+        "specSlug": "balance",
+        "title": "Balance Druid",
+        "range": "ranged"
+    },
+    "generatedAt": "2026-09-01T06:16:19+00:00",
+    "tickSeconds": 1.5,
+    "beats": [
+        {
+            "tick": 1,
+            "time_seconds": 1.5,
+            "actor": "A",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 15487,
+                "name": "Silence",
+                "role": "cc"
+            },
+            "note": "Shadow Priest lands Silence (Silence) on Balance Druid.",
+            "pressure": {
+                "A": 0,
+                "B": 0
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 2,
+            "time_seconds": 3,
+            "actor": "B",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Balance Druid is still locked down (3 tick(s) of Silence remaining) and can't act this turn.",
+            "pressure": {
+                "A": 0,
+                "B": 0
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 3,
+            "time_seconds": 4.5,
+            "actor": "A",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 10060,
+                "name": "Power Infusion",
+                "role": "offensive"
+            },
+            "note": "Shadow Priest presses Power Infusion while Balance Druid is still locked down \u2014 free pressure.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 4,
+            "time_seconds": 6,
+            "actor": "B",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 5211,
+                "name": "Mighty Bash",
+                "role": "cc"
+            },
+            "note": "Balance Druid lands Mighty Bash (Stun) on Shadow Priest.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 5,
+            "time_seconds": 7.5,
+            "actor": "A",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Shadow Priest is still locked down (3 tick(s) of Stun remaining) and can't act this turn.",
+            "pressure": {
+                "A": 0,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 6,
+            "time_seconds": 9,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 194223,
+                "name": "Celestial Alignment",
+                "role": "offensive"
+            },
+            "note": "Balance Druid presses Celestial Alignment while Shadow Priest is still locked down \u2014 free pressure.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 7,
+            "time_seconds": 10.5,
+            "actor": "A",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 8122,
+                "name": "Psychic Scream",
+                "role": "cc"
+            },
+            "note": "Shadow Priest lands Psychic Scream (Disorient) on Balance Druid.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 2
+            }
+        },
+        {
+            "tick": 8,
+            "time_seconds": 12,
+            "actor": "B",
+            "action_type": "trinket",
+            "ability": null,
+            "note": "Balance Druid trinkets out of the effect \u2014 4 ticks of control still remaining was judged too costly to ride out.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 0
+            }
+        },
+        {
+            "tick": 9,
+            "time_seconds": 13.5,
+            "actor": "A",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 605,
+                "name": "Mind Control",
+                "role": "cc"
+            },
+            "note": "Shadow Priest lands Mind Control (Disorient) on Balance Druid \u2014 diminished to 50% duration from a recent repeat.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 10,
+            "time_seconds": 15,
+            "actor": "B",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Balance Druid is still locked down (2 tick(s) of Disorient remaining) and can't act this turn.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 11,
+            "time_seconds": 16.5,
+            "actor": "A",
+            "action_type": "cc_wasted",
+            "ability": {
+                "spell_id": 605,
+                "name": "Mind Control",
+                "role": "cc"
+            },
+            "note": "Shadow Priest lands Mind Control, but Balance Druid is already immune to Disorient this window \u2014 no effect.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 12,
+            "time_seconds": 18,
+            "actor": "B",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 78675,
+                "name": "Solar Beam",
+                "role": "cc"
+            },
+            "note": "Balance Druid lands Solar Beam (Silence) on Shadow Priest.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 2,
+                "B": 1
+            }
+        },
+        {
+            "tick": 13,
+            "time_seconds": 19.5,
+            "actor": "A",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Shadow Priest is still locked down (4 tick(s) of Silence remaining) and can't act this turn.",
+            "pressure": {
+                "A": 40,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 2,
+                "B": 1
+            }
+        },
+        {
+            "tick": 14,
+            "time_seconds": 21,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 102560,
+                "name": "Incarnation: Chosen of Elune",
+                "role": "offensive"
+            },
+            "note": "Balance Druid presses Incarnation: Chosen of Elune while Shadow Priest is still locked down \u2014 free pressure.",
+            "pressure": {
+                "A": 80,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 2,
+                "B": 1
+            }
+        },
+        {
+            "tick": 15,
+            "time_seconds": 22.5,
+            "actor": "A",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Shadow Priest is still locked down (2 tick(s) of Silence remaining) and can't act this turn.",
+            "pressure": {
+                "A": 80,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 2,
+                "B": 1
+            }
+        },
+        {
+            "tick": 16,
+            "time_seconds": 24,
+            "actor": "B",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 99,
+                "name": "Incapacitating Roar",
+                "role": "cc"
+            },
+            "note": "Balance Druid lands Incapacitating Roar (Incapacitate) on Shadow Priest.",
+            "pressure": {
+                "A": 80,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 3,
+                "B": 1
+            }
+        },
+        {
+            "tick": 17,
+            "time_seconds": 25.5,
+            "actor": "A",
+            "action_type": "trinket",
+            "ability": null,
+            "note": "Shadow Priest trinkets out of the effect \u2014 2 ticks of control still remaining was judged too costly to ride out.",
+            "pressure": {
+                "A": 80,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 0,
+                "B": 1
+            }
+        },
+        {
+            "tick": 18,
+            "time_seconds": 27,
+            "actor": "B",
+            "action_type": "cc",
+            "ability": {
+                "spell_id": 33786,
+                "name": "Cyclone",
+                "role": "cc"
+            },
+            "note": "Balance Druid lands Cyclone (Disorient) on Shadow Priest.",
+            "pressure": {
+                "A": 80,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 19,
+            "time_seconds": 28.5,
+            "actor": "A",
+            "action_type": "stuck",
+            "ability": null,
+            "note": "Shadow Priest is still locked down (4 tick(s) of Disorient remaining) and can't act this turn.",
+            "pressure": {
+                "A": 80,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        },
+        {
+            "tick": 20,
+            "time_seconds": 30,
+            "actor": "B",
+            "action_type": "offensive",
+            "ability": {
+                "spell_id": 202770,
+                "name": "Fury of Elune",
+                "role": "offensive"
+            },
+            "note": "Balance Druid presses Fury of Elune while Shadow Priest is still locked down \u2014 free pressure.",
+            "pressure": {
+                "A": 100,
+                "B": 40
+            },
+            "cc_chain_depth": {
+                "A": 1,
+                "B": 1
+            }
+        }
+    ],
+    "summary": {
+        "sideA": {
+            "title": "Shadow Priest",
+            "final_pressure": 100
+        },
+        "sideB": {
+            "title": "Balance Druid",
+            "final_pressure": 40
+        },
+        "ticks_run": 20,
+        "ended_early": true
+    }
+}

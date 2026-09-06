@@ -117,8 +117,14 @@ Route::get('/top-damage-rotations/{classSlug}/{specSlug}/{length}/talents', \App
     ->where('length', '[0-9]+')
     ->name('burst-window-talents');
 Route::get('/cc-review', \App\Livewire\CcReview::class)->name('cc-review');
+Route::get('/cc-immunity-review', \App\Livewire\CcImmunityReview::class)->name('cc-immunity-review');
+Route::get('/spell-finder', \App\Livewire\SpellFinder::class)->name('spell-finder');
 Route::get('/class-guide/{classSlug?}/{specSlug?}', \App\Livewire\ClassGuide::class)->name('class-guide');
 Route::get('/cc-chains', \App\Livewire\TopCcChains::class)->name('top-cc-chains');
+Route::get('/claudes-guides/{classSlug?}/{specSlug?}', \App\Livewire\ClaudesGuides::class)->name('claudes-guides');
+Route::get('/burst-guides', \App\Livewire\BurstGuides::class)->name('burst-guides');
+Route::get('/spell-counters', \App\Livewire\ClaudesCounters::class)->name('claudes-counters');
+Route::redirect('/claudes-counters', '/spell-counters'); // old URL, kept working for anything already linked/bookmarked to it
 
 Route::get('/modules/manage', [ModuleController::class, 'manage'])->name('modules.manage')->middleware('auth');
 Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules.create')->middleware('auth');

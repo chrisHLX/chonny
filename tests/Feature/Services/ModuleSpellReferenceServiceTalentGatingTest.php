@@ -10,6 +10,9 @@ use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\SpellClassAvailability;
 use App\Models\SpellRelationship;
+use App\Models\TalentNode;
+use App\Models\TalentNodeEntry;
+use App\Models\TalentTree;
 
 /**
  * Covers the motivating example from the "Talent-aware spell data" plan: the Discipline PvP
@@ -152,4 +155,94 @@ test('modifiersFor keeps a bare "modifies" entry when no more specific relations
 
     expect($selected['named'])->toHaveCount(1)
         ->and($selected['named']->first()['relationship_type'])->toBe('modifies');
+});
+
+/**
+ * Covers a real report (2026-09-0x, Feral Druid): Incarnation: Avatar of Ashamane wasn't showing
+ * Ashamane's Guidance's -30s cooldown reduction, while Feral Frenzy's equivalent talent (Focused
+ * Frenzy, a single, unsplit spell_id) worked fine. Traced to the same "one ability split across
+ * multiple internal spell_id records" pattern already documented throughout this project, just
+ * surfacing in the SELECTION-CONFIRMATION step this time: the talent-tree-linked copy of
+ * "Ashamane's Guidance" (reachable via a real TalentNodeEntry, and what a player actually selects)
+ * had zero outgoing spell_relationships; a completely different spell_id sharing the exact same
+ * name carried the real -30s modifies_cooldown relationship, but had no TalentNodeEntry of its
+ * own — so isConfidentlyInBuild() correctly (per its own pre-fix logic) never treated it as real,
+ * and the modifier was silently dropped regardless of whether the talent was actually selected.
+ */
+function makeSplitTalentFixture(): array
+{
+    $game = Game::create(['slug' => 'wow-split', 'name' => 'World of Warcraft']);
+    $patch = Patch::create(['game_id' => $game->id, 'build_version' => '11.0.0', 'is_current' => true]);
+    $class = GameClass::create(['game_id' => $game->id, 'name' => 'Druid', 'slug' => 'druid-split']);
+    $spec = Specialization::create(['class_id' => $class->id, 'name' => 'Feral', 'slug' => 'feral-split']);
+
+    $incarnation = Spell::create([
+        'patch_id' => $patch->id, 'spell_id' => 900001, 'name' => 'Test Incarnation', 'cooldown_seconds' => 180,
+    ]);
+    SpellClassAvailability::create([
+        'spell_id' => $incarnation->id, 'class_id' => $class->id, 'spec_id' => $spec->id, 'source' => 'talent',
+    ]);
+
+    // The copy a player actually selects — reachable via a real talent tree node, but carries NO
+    // relationship data of its own (matches the real Ashamane's Guidance 391548 exactly).
+    $selectableGuidance = Spell::create([
+        'patch_id' => $patch->id, 'spell_id' => 900002, 'name' => 'Test Guidance', 'is_passive' => true,
+    ]);
+    $tree = TalentTree::create(['patch_id' => $patch->id, 'class_id' => $class->id, 'spec_id' => $spec->id, 'type' => 'spec', 'name' => 'Feral', 'external_tree_id' => $spec->id]);
+    $node = TalentNode::create(['talent_tree_id' => $tree->id, 'external_node_id' => 1, 'type' => 'ACTIVE', 'max_ranks' => 1]);
+    TalentNodeEntry::create(['talent_node_id' => $node->id, 'spell_id' => $selectableGuidance->id, 'rank' => 1, 'max_rank' => 1]);
+
+    // The copy carrying the REAL relationship data — same name, no TalentNodeEntry anywhere, but
+    // DOES have its own spell_class_availability row with spec_id=NULL (confirmed against the
+    // real data — this is the exact same structurally-ambiguous "class-wide" bucket already
+    // documented at length elsewhere in this project, e.g. Mind Sear/Leg Sweep). A null spec_id
+    // satisfies buildKitSpellIdsFor()'s broader `whereNull OR matches` check (so the relationship
+    // is at least visible to the kit at all) but FAILS classAvailabilitySpellIdsFor()'s exact
+    // `where('spec_id', $specId)` match that isConfidentlyInBuild() relies on — which is
+    // precisely what made this bug possible: the source spell is "in the kit" but not
+    // "confidently" so, with no talent_node_entry to fall back on either.
+    $dataBearingGuidance = Spell::create([
+        'patch_id' => $patch->id, 'spell_id' => 900003, 'name' => 'Test Guidance', 'is_passive' => true,
+    ]);
+    SpellClassAvailability::create([
+        'spell_id' => $dataBearingGuidance->id, 'class_id' => $class->id, 'spec_id' => null, 'source' => 'talent',
+    ]);
+    SpellRelationship::create([
+        'source_spell_id' => $dataBearingGuidance->id,
+        'target_spell_id' => $incarnation->id,
+        'relationship_type' => 'modifies_cooldown',
+        'modifier_value' => -30,
+        'modifier_unit' => 'seconds',
+    ]);
+
+    $build = new ModuleGameBuild(['class_id' => $class->id, 'specialization_id' => $spec->id, 'hero_talent_tree_id' => null]);
+
+    return compact('incarnation', 'selectableGuidance', 'dataBearingGuidance', 'build');
+}
+
+test('a talent split across two spell_id copies still applies its modifier when the SELECTABLE copy is chosen', function () {
+    $fixture = makeSplitTalentFixture();
+    $service = new ModuleSpellReferenceService();
+
+    // The player selects the copy that's actually reachable via the talent tree — never the
+    // data-bearing one directly, since nothing in the game ever lets them pick that one.
+    $selected = collect([$fixture['selectableGuidance']->id]);
+
+    $result = $service->effectiveCooldown($fixture['incarnation'], $fixture['build'], $selected);
+    expect($result['seconds'])->toBe(150.0) // 180 - 30
+        ->and($result['applied'])->toHaveCount(1);
+
+    $mods = $service->modifiersFor($fixture['incarnation'], $fixture['build'], $selected);
+    expect($mods['named'])->toHaveCount(1)
+        ->and($mods['named']->first()['spell']->name)->toBe('Test Guidance')
+        ->and($mods['named']->first()['modifier_value'])->toBe(-30.0);
+});
+
+test('the same split talent is correctly NOT applied when the selectable copy is not chosen', function () {
+    $fixture = makeSplitTalentFixture();
+    $service = new ModuleSpellReferenceService();
+
+    $result = $service->effectiveCooldown($fixture['incarnation'], $fixture['build'], collect());
+    expect($result['seconds'])->toBe(180.0)
+        ->and($result['applied'])->toBeEmpty();
 });

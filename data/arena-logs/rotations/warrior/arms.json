@@ -1,9 +1,9 @@
 {
     "class": "warrior",
     "spec": "arms",
-    "windows": 1883,
-    "killWindows": 298,
-    "matches": 225,
+    "windows": 2645,
+    "killWindows": 447,
+    "matches": 304,
     "anchors": [
         "Avatar",
         "Bladestorm",
@@ -27,7 +27,7 @@
         "Wrecking Throw"
     ],
     "topDpsWindow": {
-        "damage": 1660706,
+        "damage": 2095322,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
@@ -44,38 +44,32 @@
                 "isRepeat": true
             },
             {
-                "name": "Execute",
-                "spellId": 281000,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Charge",
-                "spellId": 100,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Execute",
-                "spellId": 281000,
+                "name": "Mortal Strike",
+                "spellId": 12294,
                 "isCc": false,
                 "isRepeat": true
             },
             {
-                "name": "Charge",
-                "spellId": 126664,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Heroic Strike",
-                "spellId": 1269383,
+                "name": "Cleave",
+                "spellId": 845,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Pummel",
-                "spellId": 6552,
+                "name": "Colossus Smash",
+                "spellId": 167105,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Sweeping Strikes",
+                "spellId": 260708,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Execute",
+                "spellId": 281000,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -86,20 +80,14 @@
                 "isRepeat": true
             },
             {
-                "name": "Overpower",
-                "spellId": 7384,
+                "name": "Spell Reflection",
+                "spellId": 23920,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Shockwave",
-                "spellId": 46968,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Mortal Strike",
-                "spellId": 12294,
+                "name": "Execute",
+                "spellId": 281000,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -107,22 +95,22 @@
                 "name": "Heroic Strike",
                 "spellId": 1269383,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": false
             },
             {
-                "name": "Overpower",
-                "spellId": 7384,
+                "name": "Execute",
+                "spellId": 281000,
                 "isCc": false,
                 "isRepeat": true
             }
         ],
-        "matchId": "695cae9388d8ad9afa3edb623df0daea",
-        "guid": "Player-60-0ED6051F",
-        "start": 74379.552,
-        "end": 74391.552,
-        "targetGuid": "Player-11-0EA30783",
+        "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
+        "guid": "Player-121-0AD91B00",
+        "start": 80139.966,
+        "end": 80151.966,
+        "targetGuid": "Player-60-0FFBD835",
         "talentBuild": {
-            "matchId": "695cae9388d8ad9afa3edb623df0daea",
+            "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
             "talents": [
                 {
                     "name": "Die by the Sword",
@@ -170,15 +158,6 @@
                     "entryId": 7387
                 },
                 {
-                    "name": "Bloodsurge",
-                    "spellId": 384361,
-                    "rank": 1,
-                    "treeType": "spec",
-                    "resolvedByOffset": false,
-                    "nodeId": 6125,
-                    "entryId": 7401
-                },
-                {
                     "name": "Improved Overpower",
                     "spellId": 385571,
                     "rank": 1,
@@ -199,11 +178,11 @@
                 {
                     "name": "Bloodborne",
                     "spellId": 383287,
-                    "rank": 2,
+                    "rank": 1,
                     "treeType": "spec",
                     "resolvedByOffset": false,
                     "nodeId": 6156,
-                    "entryId": 7442
+                    "entryId": 7441
                 },
                 {
                     "name": "Colossus Smash",
@@ -267,6 +246,15 @@
                     "resolvedByOffset": false,
                     "nodeId": 5816,
                     "entryId": 7029
+                },
+                {
+                    "name": "Second Wind",
+                    "spellId": 29838,
+                    "rank": 1,
+                    "treeType": "class",
+                    "resolvedByOffset": false,
+                    "nodeId": 5817,
+                    "entryId": 7030
                 },
                 {
                     "name": "Storm Bolt",
@@ -348,15 +336,6 @@
                     "resolvedByOffset": false,
                     "nodeId": 5831,
                     "entryId": 7049
-                },
-                {
-                    "name": "Shockwave",
-                    "spellId": 46968,
-                    "rank": 1,
-                    "treeType": "class",
-                    "resolvedByOffset": false,
-                    "nodeId": 5834,
-                    "entryId": 7053
                 },
                 {
                     "name": "Champion's Spear",
@@ -539,15 +518,6 @@
                     "entryId": 7179
                 },
                 {
-                    "name": "Martial Prowess",
-                    "spellId": 1273062,
-                    "rank": 1,
-                    "treeType": "spec",
-                    "resolvedByOffset": false,
-                    "nodeId": 6145,
-                    "entryId": 7427
-                },
-                {
                     "name": "Deep Wounds",
                     "spellId": 1261060,
                     "rank": 1,
@@ -555,6 +525,15 @@
                     "resolvedByOffset": false,
                     "nodeId": 6147,
                     "entryId": 7429
+                },
+                {
+                    "name": "Mortal Wounds",
+                    "spellId": 1261062,
+                    "rank": 1,
+                    "treeType": "spec",
+                    "resolvedByOffset": false,
+                    "nodeId": 6169,
+                    "entryId": 7457
                 },
                 {
                     "name": "Strength of Arms",
@@ -647,6 +626,33 @@
                     "entryId": 7025
                 },
                 {
+                    "name": "Fervor of Battle",
+                    "spellId": 202316,
+                    "rank": 1,
+                    "treeType": "spec",
+                    "resolvedByOffset": false,
+                    "nodeId": 6128,
+                    "entryId": 7404
+                },
+                {
+                    "name": "Cleave",
+                    "spellId": 845,
+                    "rank": 1,
+                    "treeType": "spec",
+                    "resolvedByOffset": false,
+                    "nodeId": 6139,
+                    "entryId": 7419
+                },
+                {
+                    "name": "Shockwave",
+                    "spellId": 46968,
+                    "rank": 1,
+                    "treeType": "class",
+                    "resolvedByOffset": false,
+                    "nodeId": 5834,
+                    "entryId": 7053
+                },
+                {
                     "name": "Fueled by Violence",
                     "spellId": 383103,
                     "rank": 1,
@@ -654,24 +660,6 @@
                     "resolvedByOffset": true,
                     "nodeId": 6119,
                     "entryId": 7394
-                },
-                {
-                    "name": "Berserker Shout",
-                    "spellId": 384100,
-                    "rank": 1,
-                    "treeType": "class",
-                    "resolvedByOffset": true,
-                    "nodeId": 5823,
-                    "entryId": 7036
-                },
-                {
-                    "name": "Shattering Throw",
-                    "spellId": 64382,
-                    "rank": 1,
-                    "treeType": "class",
-                    "resolvedByOffset": true,
-                    "nodeId": 5824,
-                    "entryId": 7039
                 },
                 {
                     "name": "Bladestorm",
@@ -683,13 +671,13 @@
                     "entryId": 7443
                 },
                 {
-                    "name": "Overpowering Finish",
-                    "spellId": 400205,
+                    "name": "Powerful Momentum",
+                    "spellId": 1261050,
                     "rank": 1,
                     "treeType": "spec",
                     "resolvedByOffset": true,
-                    "nodeId": 6135,
-                    "entryId": 7412
+                    "nodeId": 6140,
+                    "entryId": 7421
                 },
                 {
                     "name": "Culling Cyclone",
@@ -762,168 +750,206 @@
                     "resolvedByOffset": true,
                     "nodeId": 6137,
                     "entryId": 7415
+                },
+                {
+                    "name": "Berserker Shout",
+                    "spellId": 384100,
+                    "rank": 1,
+                    "treeType": "class",
+                    "resolvedByOffset": true,
+                    "nodeId": 5823,
+                    "entryId": 7036
                 }
             ],
             "pvpTalents": [
-                {
-                    "name": "Berserker Roar",
-                    "spellId": 1227751,
-                    "pvpTalentId": 408
-                },
                 {
                     "name": "Sharpen Blade",
                     "spellId": 1219165,
                     "pvpTalentId": 401
                 },
                 {
-                    "name": "Demolition",
-                    "spellId": 329033,
-                    "pvpTalentId": 404
+                    "name": "Safeguard",
+                    "spellId": 424654,
+                    "pvpTalentId": 406
+                },
+                {
+                    "name": "Disarm",
+                    "spellId": 236077,
+                    "pvpTalentId": 403
                 }
             ],
-            "resolvedAt": "2026-08-31T06:43:28+00:00"
+            "resolvedAt": "2026-09-06T02:56:48+00:00"
         },
         "mechanics": {
-            "targetGuid": "Player-11-0EA30783",
+            "targetGuid": "Player-60-0FFBD835",
             "championBuffs": [
-                {
-                    "spellId": 1269394,
-                    "name": "Master of Warfare"
-                },
-                {
-                    "spellId": 386164,
-                    "name": "Battle Stance"
-                },
-                {
-                    "spellId": 1287771,
-                    "name": "Rune of Masterful Cunning"
-                },
-                {
-                    "spellId": 107574,
-                    "name": "Avatar"
-                },
-                {
-                    "spellId": 260708,
-                    "name": "Sweeping Strikes"
-                },
-                {
-                    "spellId": 1241715,
-                    "name": "Might of the Void"
-                },
-                {
-                    "spellId": 1292058,
-                    "name": "Heroic Might"
-                },
-                {
-                    "spellId": 345230,
-                    "name": "Gladiator's Insignia"
-                },
-                {
-                    "spellId": 316440,
-                    "name": "Martial Prowess"
-                },
-                {
-                    "spellId": 446035,
-                    "name": "Bladestorm"
-                }
-            ],
-            "championDebuffs": [],
-            "targetBuffs": [
-                {
-                    "spellId": 2383,
-                    "name": "Find Herbs"
-                },
                 {
                     "spellId": 2580,
                     "name": "Find Minerals"
                 },
                 {
-                    "spellId": 186403,
-                    "name": "Sign of Battle"
+                    "spellId": 471521,
+                    "name": "Sign of the Explorer"
                 },
                 {
-                    "spellId": 154796,
-                    "name": "Touch of Elune - Day"
-                },
-                {
-                    "spellId": 21562,
-                    "name": "Power Word: Fortitude"
-                },
-                {
-                    "spellId": 414664,
-                    "name": "Mass Invisibility"
-                },
-                {
-                    "spellId": 58984,
-                    "name": "Shadowmeld"
-                },
-                {
-                    "spellId": 110960,
-                    "name": "Greater Invisibility"
-                },
-                {
-                    "spellId": 1459,
-                    "name": "Arcane Intellect"
-                },
-                {
-                    "spellId": 47788,
-                    "name": "Guardian Spirit"
-                },
-                {
-                    "spellId": 77489,
-                    "name": "Echo of Light"
-                },
-                {
-                    "spellId": 1229746,
-                    "name": "Arcanoweave Insight"
-                },
-                {
-                    "spellId": 205473,
-                    "name": "Icicles"
-                },
-                {
-                    "spellId": 1241715,
-                    "name": "Might of the Void"
-                },
-                {
-                    "spellId": 1287771,
-                    "name": "Rune of Masterful Cunning"
-                },
-                {
-                    "spellId": 65081,
-                    "name": "Body and Soul"
-                },
-                {
-                    "spellId": 1222865,
-                    "name": "Glacial Spike!"
-                },
-                {
-                    "spellId": 44544,
-                    "name": "Fingers of Frost"
-                },
-                {
-                    "spellId": 461531,
-                    "name": "Brainstorm"
-                },
-                {
-                    "spellId": 455122,
-                    "name": "Permafrost Lances"
-                },
-                {
-                    "spellId": 270232,
-                    "name": "Freezing Rain"
+                    "spellId": 6673,
+                    "name": "Battle Shout"
                 },
                 {
                     "spellId": 462854,
                     "name": "Skyfury"
                 },
                 {
-                    "spellId": 1287978,
-                    "name": "Rune of Lynxlike Reflexes"
+                    "spellId": 445584,
+                    "name": "Executioner"
                 },
                 {
-                    "spellId": 1247730,
-                    "name": "Thermal Void"
+                    "spellId": 1269394,
+                    "name": "Master of Warfare"
+                },
+                {
+                    "spellId": 1292058,
+                    "name": "Heroic Might"
+                },
+                {
+                    "spellId": 386164,
+                    "name": "Battle Stance"
+                },
+                {
+                    "spellId": 1229746,
+                    "name": "Arcanoweave Insight"
+                },
+                {
+                    "spellId": 1287771,
+                    "name": "Rune of Masterful Cunning"
+                },
+                {
+                    "spellId": 262232,
+                    "name": "War Machine"
+                },
+                {
+                    "spellId": 107574,
+                    "name": "Avatar"
+                },
+                {
+                    "spellId": 1241715,
+                    "name": "Might of the Void"
+                },
+                {
+                    "spellId": 446035,
+                    "name": "Bladestorm"
+                }
+            ],
+            "championDebuffs": [
+                {
+                    "spellId": 191587,
+                    "name": "Virulent Plague"
+                },
+                {
+                    "spellId": 445836,
+                    "name": "Overwhelmed"
+                },
+                {
+                    "spellId": 208086,
+                    "name": "Colossus Smash"
+                },
+                {
+                    "spellId": 327096,
+                    "name": "War"
+                },
+                {
+                    "spellId": 374557,
+                    "name": "Brittle"
+                }
+            ],
+            "targetBuffs": [
+                {
+                    "spellId": 1254252,
+                    "name": "Lesser Ghoul"
+                },
+                {
+                    "spellId": 33763,
+                    "name": "Lifebloom"
+                },
+                {
+                    "spellId": 1242998,
+                    "name": "Lesser Ghoul"
+                },
+                {
+                    "spellId": 1241569,
+                    "name": "Clawing Shadows"
+                },
+                {
+                    "spellId": 81340,
+                    "name": "Sudden Doom"
+                },
+                {
+                    "spellId": 1241077,
+                    "name": "Festering Scythe"
+                },
+                {
+                    "spellId": 1287771,
+                    "name": "Rune of Masterful Cunning"
+                },
+                {
+                    "spellId": 223143,
+                    "name": "Prismatic Bauble"
+                },
+                {
+                    "spellId": 345230,
+                    "name": "Gladiator's Insignia"
+                },
+                {
+                    "spellId": 774,
+                    "name": "Rejuvenation"
+                },
+                {
+                    "spellId": 8936,
+                    "name": "Regrowth"
+                },
+                {
+                    "spellId": 439530,
+                    "name": "Symbiotic Blooms"
+                },
+                {
+                    "spellId": 468152,
+                    "name": "Reactive Resin"
+                },
+                {
+                    "spellId": 444347,
+                    "name": "Death Charge"
+                },
+                {
+                    "spellId": 410358,
+                    "name": "Anti-Magic Shell"
+                },
+                {
+                    "spellId": 155777,
+                    "name": "Rejuvenation (Germination)"
+                },
+                {
+                    "spellId": 1268917,
+                    "name": "Unholy Aura"
+                },
+                {
+                    "spellId": 377588,
+                    "name": "Ghoulish Frenzy"
+                },
+                {
+                    "spellId": 1256576,
+                    "name": "Forbidden Sacrifice"
+                },
+                {
+                    "spellId": 1235391,
+                    "name": "Dark Transformation"
+                },
+                {
+                    "spellId": 1242654,
+                    "name": "Reaping"
+                },
+                {
+                    "spellId": 390260,
+                    "name": "Commander of the Dead"
                 }
             ],
             "targetDebuffs": [
@@ -932,60 +958,72 @@
                     "name": "Overwhelmed"
                 },
                 {
+                    "spellId": 1490,
+                    "name": "Chaos Brand"
+                },
+                {
                     "spellId": 388539,
                     "name": "Rend"
                 },
                 {
-                    "spellId": 1271964,
-                    "name": "Honed Reflexes"
+                    "spellId": 453177,
+                    "name": "Burning Blades"
+                },
+                {
+                    "spellId": 390181,
+                    "name": "Soulscar"
+                },
+                {
+                    "spellId": 213405,
+                    "name": "Master of the Glaive"
+                },
+                {
+                    "spellId": 188389,
+                    "name": "Flame Shock"
                 },
                 {
                     "spellId": 115804,
                     "name": "Mortal Wounds"
                 },
                 {
-                    "spellId": 236299,
-                    "name": "Chrono Shift"
-                },
-                {
-                    "spellId": 210824,
-                    "name": "Touch of the Magi"
+                    "spellId": 262115,
+                    "name": "Deep Wounds"
                 }
             ],
-            "targetClassName": "Mage",
-            "targetSpecName": "Frost",
-            "resolvedAt": "2026-08-31T10:02:59+00:00"
+            "targetClassName": "Death Knight",
+            "targetSpecName": "Unholy",
+            "resolvedAt": "2026-09-06T02:56:55+00:00"
         }
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 1354957,
+            "damage": 1175894,
             "durationSeconds": 6,
-            "killed": false,
+            "killed": true,
             "steps": [
                 {
-                    "name": "Colossus Smash",
-                    "spellId": 167105,
+                    "name": "Charge",
+                    "spellId": 100,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Battle Stance",
-                    "spellId": 386164,
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Execute",
-                    "spellId": 281000,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Execute",
-                    "spellId": 281000,
+                    "name": "Charge",
+                    "spellId": 126664,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": false
                 },
                 {
                     "name": "Bladestorm",
@@ -997,25 +1035,7 @@
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Storm Bolt",
-                    "spellId": 107570,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Pummel",
-                    "spellId": 6552,
-                    "isCc": false,
-                    "isRepeat": false
                 },
                 {
                     "name": "Mortal Strike",
@@ -1024,13 +1044,13 @@
                     "isRepeat": true
                 }
             ],
-            "matchId": "e6805e5a7504f21454cbb2ca45dbb094",
-            "guid": "Player-11-0C8AE50E",
-            "start": 72305.497,
-            "end": 72311.497,
-            "targetGuid": "Player-57-0E2B0796",
+            "matchId": "56c7ef21579f09e8228a44f95b152a20",
+            "guid": "Player-57-0E213E5B",
+            "start": 77551.146,
+            "end": 77557.146,
+            "targetGuid": "Player-11-0E9F19E7",
             "talentBuild": {
-                "matchId": "e6805e5a7504f21454cbb2ca45dbb094",
+                "matchId": "56c7ef21579f09e8228a44f95b152a20",
                 "talents": [
                     {
                         "name": "Die by the Sword",
@@ -1078,13 +1098,979 @@
                         "entryId": 7387
                     },
                     {
-                        "name": "Bloodsurge",
-                        "spellId": 384361,
+                        "name": "Improved Overpower",
+                        "spellId": 385571,
                         "rank": 1,
                         "treeType": "spec",
                         "resolvedByOffset": false,
-                        "nodeId": 6125,
-                        "entryId": 7401
+                        "nodeId": 6126,
+                        "entryId": 7402
+                    },
+                    {
+                        "name": "Tactician",
+                        "spellId": 184783,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6130,
+                        "entryId": 7406
+                    },
+                    {
+                        "name": "Colossus Smash",
+                        "spellId": 167105,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6131,
+                        "entryId": 7407
+                    },
+                    {
+                        "name": "Massacre",
+                        "spellId": 281001,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6149,
+                        "entryId": 7432
+                    },
+                    {
+                        "name": "Impale",
+                        "spellId": 383430,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6132,
+                        "entryId": 7408
+                    },
+                    {
+                        "name": "Cleave",
+                        "spellId": 845,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6139,
+                        "entryId": 7419
+                    },
+                    {
+                        "name": "Two-Handed Weapon Specialization",
+                        "spellId": 382896,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5808,
+                        "entryId": 7020
+                    },
+                    {
+                        "name": "Impending Victory",
+                        "spellId": 202168,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5811,
+                        "entryId": 7024
+                    },
+                    {
+                        "name": "War Machine",
+                        "spellId": 262231,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5813,
+                        "entryId": 7026
+                    },
+                    {
+                        "name": "Rallying Cry",
+                        "spellId": 97462,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5816,
+                        "entryId": 7029
+                    },
+                    {
+                        "name": "Storm Bolt",
+                        "spellId": 107570,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5818,
+                        "entryId": 7031
+                    },
+                    {
+                        "name": "Fast Footwork",
+                        "spellId": 382260,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5820,
+                        "entryId": 7033
+                    },
+                    {
+                        "name": "Heroic Leap",
+                        "spellId": 6544,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5821,
+                        "entryId": 7034
+                    },
+                    {
+                        "name": "Pain and Gain",
+                        "spellId": 382549,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5826,
+                        "entryId": 7041
+                    },
+                    {
+                        "name": "Bounding Stride",
+                        "spellId": 202163,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5827,
+                        "entryId": 7042
+                    },
+                    {
+                        "name": "Wild Strikes",
+                        "spellId": 382946,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5828,
+                        "entryId": 7044
+                    },
+                    {
+                        "name": "Armored to the Teeth",
+                        "spellId": 384124,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5829,
+                        "entryId": 7046
+                    },
+                    {
+                        "name": "Reinforced Plates",
+                        "spellId": 382939,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5830,
+                        "entryId": 7048
+                    },
+                    {
+                        "name": "Leeching Strikes",
+                        "spellId": 382258,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5831,
+                        "entryId": 7049
+                    },
+                    {
+                        "name": "Shockwave",
+                        "spellId": 46968,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5834,
+                        "entryId": 7053
+                    },
+                    {
+                        "name": "Cruel Strikes",
+                        "spellId": 392777,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5837,
+                        "entryId": 7057
+                    },
+                    {
+                        "name": "Double Time",
+                        "spellId": 103827,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5838,
+                        "entryId": 7058
+                    },
+                    {
+                        "name": "Spell Reflection",
+                        "spellId": 23920,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5839,
+                        "entryId": 7059
+                    },
+                    {
+                        "name": "Bloodletting",
+                        "spellId": 383154,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6164,
+                        "entryId": 7452
+                    },
+                    {
+                        "name": "Critical Thinking",
+                        "spellId": 389306,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6158,
+                        "entryId": 7446
+                    },
+                    {
+                        "name": "Executioner's Precision",
+                        "spellId": 386634,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6165,
+                        "entryId": 7453
+                    },
+                    {
+                        "name": "Sharpened Blades",
+                        "spellId": 383341,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6138,
+                        "entryId": 7418
+                    },
+                    {
+                        "name": "Show No Mercy",
+                        "spellId": 444771,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 6172,
+                        "entryId": 7460
+                    },
+                    {
+                        "name": "Imminent Demise",
+                        "spellId": 444769,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 6175,
+                        "entryId": 7465
+                    },
+                    {
+                        "name": "Slayer's Malice",
+                        "spellId": 444779,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 6177,
+                        "entryId": 7468
+                    },
+                    {
+                        "name": "Reap the Storm",
+                        "spellId": 444775,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 6178,
+                        "entryId": 7469
+                    },
+                    {
+                        "name": "Overwhelming Blades",
+                        "spellId": 444772,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 6179,
+                        "entryId": 7470
+                    },
+                    {
+                        "name": "Death Drive",
+                        "spellId": 444770,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 6180,
+                        "entryId": 7471
+                    },
+                    {
+                        "name": "Unrelenting Onslaught",
+                        "spellId": 444780,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 6182,
+                        "entryId": 7473
+                    },
+                    {
+                        "name": "Honed Reflexes",
+                        "spellId": 391271,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5919,
+                        "entryId": 7161
+                    },
+                    {
+                        "name": "Anger Management",
+                        "spellId": 152278,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5930,
+                        "entryId": 7169
+                    },
+                    {
+                        "name": "Battlefield Commander",
+                        "spellId": 424742,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5931,
+                        "entryId": 7170
+                    },
+                    {
+                        "name": "Rend",
+                        "spellId": 772,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5937,
+                        "entryId": 7179
+                    },
+                    {
+                        "name": "Fervor of Battle",
+                        "spellId": 202316,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6128,
+                        "entryId": 7404
+                    },
+                    {
+                        "name": "Deep Wounds",
+                        "spellId": 1261060,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6147,
+                        "entryId": 7429
+                    },
+                    {
+                        "name": "Mortal Wounds",
+                        "spellId": 1261062,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6169,
+                        "entryId": 7457
+                    },
+                    {
+                        "name": "Strength of Arms",
+                        "spellId": 400803,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6136,
+                        "entryId": 7414
+                    },
+                    {
+                        "name": "Unhinged",
+                        "spellId": 386628,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 6183,
+                        "entryId": 7474
+                    },
+                    {
+                        "name": "Deadly Focus",
+                        "spellId": 1270718,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 6184,
+                        "entryId": 7475
+                    },
+                    {
+                        "name": "Violent Euphoria",
+                        "spellId": 1270717,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 6185,
+                        "entryId": 7476
+                    },
+                    {
+                        "name": "Field Dressing",
+                        "spellId": 1271926,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5965,
+                        "entryId": 7211
+                    },
+                    {
+                        "name": "Avatar",
+                        "spellId": 107574,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6170,
+                        "entryId": 7458
+                    },
+                    {
+                        "name": "Master of Warfare",
+                        "spellId": 1269314,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6171,
+                        "entryId": 7459
+                    },
+                    {
+                        "name": "Slayer's Dominance",
+                        "spellId": 444767,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 6181,
+                        "entryId": 7472
+                    },
+                    {
+                        "name": "Battle Stance",
+                        "spellId": 386164,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5812,
+                        "entryId": 7025
+                    },
+                    {
+                        "name": "Bloodborne",
+                        "spellId": 383287,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6156,
+                        "entryId": 7441
+                    },
+                    {
+                        "name": "Champion's Spear",
+                        "spellId": 376079,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5836,
+                        "entryId": 7055
+                    },
+                    {
+                        "name": "Crushing Force",
+                        "spellId": 382764,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5935,
+                        "entryId": 7176
+                    },
+                    {
+                        "name": "Javelineer",
+                        "spellId": 1271948,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5964,
+                        "entryId": 7210
+                    },
+                    {
+                        "name": "Fueled by Violence",
+                        "spellId": 383103,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 6119,
+                        "entryId": 7394
+                    },
+                    {
+                        "name": "Berserker Shout",
+                        "spellId": 384100,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 5823,
+                        "entryId": 7036
+                    },
+                    {
+                        "name": "Bladestorm",
+                        "spellId": 227847,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 6157,
+                        "entryId": 7443
+                    },
+                    {
+                        "name": "Powerful Momentum",
+                        "spellId": 1261050,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 6140,
+                        "entryId": 7421
+                    },
+                    {
+                        "name": "Culling Cyclone",
+                        "spellId": 444778,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 6173,
+                        "entryId": 7461
+                    },
+                    {
+                        "name": "Vicious Agility",
+                        "spellId": 444777,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 6176,
+                        "entryId": 7467
+                    },
+                    {
+                        "name": "Opportunist",
+                        "spellId": 444774,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 6174,
+                        "entryId": 7464
+                    },
+                    {
+                        "name": "Tactical Edge",
+                        "spellId": 1261051,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 6148,
+                        "entryId": 7430
+                    },
+                    {
+                        "name": "Just Warming Up",
+                        "spellId": 1261048,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 6137,
+                        "entryId": 7415
+                    },
+                    {
+                        "name": "Interpose",
+                        "spellId": 1244088,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 5933,
+                        "entryId": 7174
+                    },
+                    {
+                        "name": "Intimidating Shout",
+                        "spellId": 5246,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 5936,
+                        "entryId": 7177
+                    },
+                    {
+                        "name": "Battlelord",
+                        "spellId": 386630,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 6168,
+                        "entryId": 7570
+                    },
+                    {
+                        "name": "Shattering Throw",
+                        "spellId": 64382,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 5824,
+                        "entryId": 7039
+                    }
+                ],
+                "pvpTalents": [
+                    {
+                        "name": "Sharpen Blade",
+                        "spellId": 1219165,
+                        "pvpTalentId": 401
+                    },
+                    {
+                        "name": "Disarm",
+                        "spellId": 236077,
+                        "pvpTalentId": 403
+                    },
+                    {
+                        "name": "Safeguard",
+                        "spellId": 424654,
+                        "pvpTalentId": 406
+                    }
+                ],
+                "resolvedAt": "2026-09-06T02:56:48+00:00"
+            },
+            "mechanics": {
+                "targetGuid": "Player-11-0E9F19E7",
+                "championBuffs": [
+                    {
+                        "spellId": 227723,
+                        "name": "Mana Divining Stone"
+                    },
+                    {
+                        "spellId": 1272713,
+                        "name": "Sentinel's Blessing"
+                    },
+                    {
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
+                    },
+                    {
+                        "spellId": 6673,
+                        "name": "Battle Shout"
+                    },
+                    {
+                        "spellId": 462854,
+                        "name": "Skyfury"
+                    },
+                    {
+                        "spellId": 1269394,
+                        "name": "Master of Warfare"
+                    },
+                    {
+                        "spellId": 260708,
+                        "name": "Sweeping Strikes"
+                    },
+                    {
+                        "spellId": 462568,
+                        "name": "Elemental Resistance"
+                    },
+                    {
+                        "spellId": 445606,
+                        "name": "Imminent Demise"
+                    },
+                    {
+                        "spellId": 465,
+                        "name": "Devotion Aura"
+                    },
+                    {
+                        "spellId": 386164,
+                        "name": "Battle Stance"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    },
+                    {
+                        "spellId": 1287770,
+                        "name": "Rune of the Versatile Warrior"
+                    },
+                    {
+                        "spellId": 1241715,
+                        "name": "Might of the Void"
+                    },
+                    {
+                        "spellId": 445584,
+                        "name": "Executioner"
+                    },
+                    {
+                        "spellId": 107574,
+                        "name": "Avatar"
+                    },
+                    {
+                        "spellId": 52437,
+                        "name": "Sudden Death"
+                    },
+                    {
+                        "spellId": 198817,
+                        "name": "Sharpen Blade"
+                    },
+                    {
+                        "spellId": 208086,
+                        "name": "Colossus Smash"
+                    },
+                    {
+                        "spellId": 392778,
+                        "name": "Wild Strikes"
+                    },
+                    {
+                        "spellId": 386633,
+                        "name": "Executioner's Precision"
+                    },
+                    {
+                        "spellId": 1292058,
+                        "name": "Heroic Might"
+                    },
+                    {
+                        "spellId": 262232,
+                        "name": "War Machine"
+                    },
+                    {
+                        "spellId": 61295,
+                        "name": "Riptide"
+                    },
+                    {
+                        "spellId": 207400,
+                        "name": "Ancestral Vigor"
+                    }
+                ],
+                "championDebuffs": [
+                    {
+                        "spellId": 12654,
+                        "name": "Ignite"
+                    },
+                    {
+                        "spellId": 703,
+                        "name": "Garrote"
+                    },
+                    {
+                        "spellId": 2818,
+                        "name": "Deadly Poison"
+                    },
+                    {
+                        "spellId": 8680,
+                        "name": "Wound Poison"
+                    },
+                    {
+                        "spellId": 1943,
+                        "name": "Rupture"
+                    },
+                    {
+                        "spellId": 1287663,
+                        "name": "Rune of Lingering"
+                    }
+                ],
+                "targetBuffs": [
+                    {
+                        "spellId": 1459,
+                        "name": "Arcane Intellect"
+                    },
+                    {
+                        "spellId": 1257350,
+                        "name": "Fired Up"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    },
+                    {
+                        "spellId": 448604,
+                        "name": "Spellfire Sphere"
+                    },
+                    {
+                        "spellId": 102342,
+                        "name": "Ironbark"
+                    },
+                    {
+                        "spellId": 155777,
+                        "name": "Rejuvenation (Germination)"
+                    },
+                    {
+                        "spellId": 8936,
+                        "name": "Regrowth"
+                    },
+                    {
+                        "spellId": 449314,
+                        "name": "Mana Cascade"
+                    },
+                    {
+                        "spellId": 439530,
+                        "name": "Symbiotic Blooms"
+                    },
+                    {
+                        "spellId": 33763,
+                        "name": "Lifebloom"
+                    },
+                    {
+                        "spellId": 383811,
+                        "name": "Fevered Incantation"
+                    },
+                    {
+                        "spellId": 461531,
+                        "name": "Brainstorm"
+                    },
+                    {
+                        "spellId": 1287774,
+                        "name": "Rune of Burning Haste"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 48107,
+                        "name": "Heating Up"
+                    },
+                    {
+                        "spellId": 774,
+                        "name": "Rejuvenation"
+                    }
+                ],
+                "targetDebuffs": [
+                    {
+                        "spellId": 197277,
+                        "name": "Judgment"
+                    },
+                    {
+                        "spellId": 431907,
+                        "name": "Sun's Avatar"
+                    },
+                    {
+                        "spellId": 431380,
+                        "name": "Dawnlight"
+                    },
+                    {
+                        "spellId": 383346,
+                        "name": "Expurgation"
+                    },
+                    {
+                        "spellId": 408383,
+                        "name": "Judgment of Justice"
+                    },
+                    {
+                        "spellId": 208086,
+                        "name": "Colossus Smash"
+                    },
+                    {
+                        "spellId": 445836,
+                        "name": "Overwhelmed"
+                    },
+                    {
+                        "spellId": 262115,
+                        "name": "Deep Wounds"
+                    },
+                    {
+                        "spellId": 1271964,
+                        "name": "Honed Reflexes"
+                    }
+                ],
+                "targetClassName": "Mage",
+                "targetSpecName": "Fire",
+                "resolvedAt": "2026-09-06T02:56:55+00:00"
+            }
+        },
+        "10": {
+            "damage": 1724224,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Spell Reflection",
+                    "spellId": 23920,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Heroic Strike",
+                    "spellId": 1269383,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Overpower",
+                    "spellId": 7384,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Heroic Strike",
+                    "spellId": 1269383,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ],
+            "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
+            "guid": "Player-121-0AD91B00",
+            "start": 80145.966,
+            "end": 80155.966,
+            "targetGuid": "Player-60-0FFBD835",
+            "talentBuild": {
+                "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
+                "talents": [
+                    {
+                        "name": "Die by the Sword",
+                        "spellId": 118038,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6120,
+                        "entryId": 7396
+                    },
+                    {
+                        "name": "Mortal Strike",
+                        "spellId": 12294,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6108,
+                        "entryId": 7380
+                    },
+                    {
+                        "name": "Overpower",
+                        "spellId": 7384,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6113,
+                        "entryId": 7386
+                    },
+                    {
+                        "name": "Improved Execute",
+                        "spellId": 316405,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6127,
+                        "entryId": 7403
+                    },
+                    {
+                        "name": "Sudden Death",
+                        "spellId": 29725,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6114,
+                        "entryId": 7387
                     },
                     {
                         "name": "Improved Overpower",
@@ -1107,11 +2093,11 @@
                     {
                         "name": "Bloodborne",
                         "spellId": 383287,
-                        "rank": 2,
+                        "rank": 1,
                         "treeType": "spec",
                         "resolvedByOffset": false,
                         "nodeId": 6156,
-                        "entryId": 7442
+                        "entryId": 7441
                     },
                     {
                         "name": "Colossus Smash",
@@ -1555,6 +2541,33 @@
                         "entryId": 7025
                     },
                     {
+                        "name": "Fervor of Battle",
+                        "spellId": 202316,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6128,
+                        "entryId": 7404
+                    },
+                    {
+                        "name": "Cleave",
+                        "spellId": 845,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6139,
+                        "entryId": 7419
+                    },
+                    {
+                        "name": "Shockwave",
+                        "spellId": 46968,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5834,
+                        "entryId": 7053
+                    },
+                    {
                         "name": "Fueled by Violence",
                         "spellId": 383103,
                         "rank": 1,
@@ -1564,24 +2577,6 @@
                         "entryId": 7394
                     },
                     {
-                        "name": "Berserker Shout",
-                        "spellId": 384100,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5823,
-                        "entryId": 7036
-                    },
-                    {
-                        "name": "Wrecking Throw",
-                        "spellId": 384110,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5824,
-                        "entryId": 7038
-                    },
-                    {
                         "name": "Bladestorm",
                         "spellId": 227847,
                         "rank": 1,
@@ -1589,15 +2584,6 @@
                         "resolvedByOffset": true,
                         "nodeId": 6157,
                         "entryId": 7443
-                    },
-                    {
-                        "name": "Overpowering Finish",
-                        "spellId": 400205,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 6135,
-                        "entryId": 7412
                     },
                     {
                         "name": "Powerful Momentum",
@@ -1654,933 +2640,6 @@
                         "entryId": 7177
                     },
                     {
-                        "name": "Tactical Edge",
-                        "spellId": 1261051,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 6148,
-                        "entryId": 7430
-                    },
-                    {
-                        "name": "Just Warming Up",
-                        "spellId": 1261048,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 6137,
-                        "entryId": 7415
-                    }
-                ],
-                "pvpTalents": [
-                    {
-                        "name": "Safeguard",
-                        "spellId": 424654,
-                        "pvpTalentId": 406
-                    },
-                    {
-                        "name": "Sharpen Blade",
-                        "spellId": 1219165,
-                        "pvpTalentId": 401
-                    },
-                    {
-                        "name": "Disarm",
-                        "spellId": 236077,
-                        "pvpTalentId": 403
-                    }
-                ],
-                "resolvedAt": "2026-08-31T06:43:28+00:00"
-            },
-            "mechanics": {
-                "targetGuid": "Player-57-0E2B0796",
-                "championBuffs": [
-                    {
-                        "spellId": 186403,
-                        "name": "Sign of Battle"
-                    },
-                    {
-                        "spellId": 6673,
-                        "name": "Battle Shout"
-                    },
-                    {
-                        "spellId": 1126,
-                        "name": "Mark of the Wild"
-                    },
-                    {
-                        "spellId": 974,
-                        "name": "Earth Shield"
-                    },
-                    {
-                        "spellId": 462854,
-                        "name": "Skyfury"
-                    },
-                    {
-                        "spellId": 386208,
-                        "name": "Defensive Stance"
-                    },
-                    {
-                        "spellId": 102342,
-                        "name": "Ironbark"
-                    },
-                    {
-                        "spellId": 118038,
-                        "name": "Die by the Sword"
-                    },
-                    {
-                        "spellId": 97463,
-                        "name": "Rallying Cry"
-                    },
-                    {
-                        "spellId": 345228,
-                        "name": "Gladiator's Badge"
-                    },
-                    {
-                        "spellId": 23920,
-                        "name": "Spell Reflection"
-                    },
-                    {
-                        "spellId": 385391,
-                        "name": "Spell Reflection"
-                    },
-                    {
-                        "spellId": 1287770,
-                        "name": "Rune of the Versatile Warrior"
-                    },
-                    {
-                        "spellId": 107574,
-                        "name": "Avatar"
-                    },
-                    {
-                        "spellId": 26297,
-                        "name": "Berserking"
-                    }
-                ],
-                "championDebuffs": [
-                    {
-                        "spellId": 8680,
-                        "name": "Wound Poison"
-                    },
-                    {
-                        "spellId": 411038,
-                        "name": "Sphere of Despair"
-                    },
-                    {
-                        "spellId": 12654,
-                        "name": "Ignite"
-                    },
-                    {
-                        "spellId": 113746,
-                        "name": "Mystic Touch"
-                    },
-                    {
-                        "spellId": 468655,
-                        "name": "Frostfire Bolt"
-                    },
-                    {
-                        "spellId": 205708,
-                        "name": "Chilled"
-                    }
-                ],
-                "targetBuffs": [
-                    {
-                        "spellId": 411036,
-                        "name": "Sphere of Hope"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "Arcanoweave Insight"
-                    },
-                    {
-                        "spellId": 1241715,
-                        "name": "Might of the Void"
-                    },
-                    {
-                        "spellId": 383811,
-                        "name": "Fevered Incantation"
-                    },
-                    {
-                        "spellId": 461531,
-                        "name": "Brainstorm"
-                    },
-                    {
-                        "spellId": 453385,
-                        "name": "Fire's Ire"
-                    },
-                    {
-                        "spellId": 190319,
-                        "name": "Combustion"
-                    },
-                    {
-                        "spellId": 383637,
-                        "name": "Fiery Rush"
-                    },
-                    {
-                        "spellId": 345228,
-                        "name": "Gladiator's Badge"
-                    },
-                    {
-                        "spellId": 1257350,
-                        "name": "Fired Up"
-                    },
-                    {
-                        "spellId": 1287978,
-                        "name": "Rune of Lynxlike Reflexes"
-                    },
-                    {
-                        "spellId": 1287665,
-                        "name": "Rune of Lingering"
-                    },
-                    {
-                        "spellId": 119611,
-                        "name": "Renewing Mist"
-                    },
-                    {
-                        "spellId": 450769,
-                        "name": "Aspect of Harmony"
-                    },
-                    {
-                        "spellId": 115175,
-                        "name": "Soothing Mist"
-                    },
-                    {
-                        "spellId": 124682,
-                        "name": "Enveloping Mist"
-                    },
-                    {
-                        "spellId": 388513,
-                        "name": "Overflowing Mists"
-                    },
-                    {
-                        "spellId": 48107,
-                        "name": "Heating Up"
-                    }
-                ],
-                "targetDebuffs": [
-                    {
-                        "spellId": 1251059,
-                        "name": "Stormbind"
-                    },
-                    {
-                        "spellId": 188389,
-                        "name": "Flame Shock"
-                    },
-                    {
-                        "spellId": 164812,
-                        "name": "Moonfire"
-                    },
-                    {
-                        "spellId": 388539,
-                        "name": "Rend"
-                    },
-                    {
-                        "spellId": 1287663,
-                        "name": "Rune of Lingering"
-                    }
-                ],
-                "targetClassName": "Mage",
-                "targetSpecName": "Fire",
-                "resolvedAt": "2026-08-31T10:02:58+00:00"
-            }
-        },
-        "10": {
-            "damage": 1533549,
-            "durationSeconds": 10,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Overpower",
-                    "spellId": 7384,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Heroic Strike",
-                    "spellId": 1269383,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Execute",
-                    "spellId": 281000,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Spell Reflection",
-                    "spellId": 23920,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Colossus Smash",
-                    "spellId": 167105,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Bladestorm",
-                    "spellId": 446035,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pummel",
-                    "spellId": 6552,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
-                    "isRepeat": true
-                }
-            ],
-            "matchId": "695cae9388d8ad9afa3edb623df0daea",
-            "guid": "Player-60-0ED6051F",
-            "start": 74243.552,
-            "end": 74253.552,
-            "targetGuid": "Player-11-0EA30783",
-            "talentBuild": {
-                "matchId": "695cae9388d8ad9afa3edb623df0daea",
-                "talents": [
-                    {
-                        "name": "Die by the Sword",
-                        "spellId": 118038,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6120,
-                        "entryId": 7396
-                    },
-                    {
-                        "name": "Mortal Strike",
-                        "spellId": 12294,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6108,
-                        "entryId": 7380
-                    },
-                    {
-                        "name": "Overpower",
-                        "spellId": 7384,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6113,
-                        "entryId": 7386
-                    },
-                    {
-                        "name": "Improved Execute",
-                        "spellId": 316405,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6127,
-                        "entryId": 7403
-                    },
-                    {
-                        "name": "Sudden Death",
-                        "spellId": 29725,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6114,
-                        "entryId": 7387
-                    },
-                    {
-                        "name": "Bloodsurge",
-                        "spellId": 384361,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6125,
-                        "entryId": 7401
-                    },
-                    {
-                        "name": "Improved Overpower",
-                        "spellId": 385571,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6126,
-                        "entryId": 7402
-                    },
-                    {
-                        "name": "Tactician",
-                        "spellId": 184783,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6130,
-                        "entryId": 7406
-                    },
-                    {
-                        "name": "Bloodborne",
-                        "spellId": 383287,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6156,
-                        "entryId": 7442
-                    },
-                    {
-                        "name": "Colossus Smash",
-                        "spellId": 167105,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6131,
-                        "entryId": 7407
-                    },
-                    {
-                        "name": "Massacre",
-                        "spellId": 281001,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6149,
-                        "entryId": 7432
-                    },
-                    {
-                        "name": "Impale",
-                        "spellId": 383430,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6132,
-                        "entryId": 7408
-                    },
-                    {
-                        "name": "Two-Handed Weapon Specialization",
-                        "spellId": 382896,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5808,
-                        "entryId": 7020
-                    },
-                    {
-                        "name": "Impending Victory",
-                        "spellId": 202168,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5811,
-                        "entryId": 7024
-                    },
-                    {
-                        "name": "War Machine",
-                        "spellId": 262231,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5813,
-                        "entryId": 7026
-                    },
-                    {
-                        "name": "Rallying Cry",
-                        "spellId": 97462,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5816,
-                        "entryId": 7029
-                    },
-                    {
-                        "name": "Storm Bolt",
-                        "spellId": 107570,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5818,
-                        "entryId": 7031
-                    },
-                    {
-                        "name": "Fast Footwork",
-                        "spellId": 382260,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5820,
-                        "entryId": 7033
-                    },
-                    {
-                        "name": "Heroic Leap",
-                        "spellId": 6544,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5821,
-                        "entryId": 7034
-                    },
-                    {
-                        "name": "Pain and Gain",
-                        "spellId": 382549,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5826,
-                        "entryId": 7041
-                    },
-                    {
-                        "name": "Bounding Stride",
-                        "spellId": 202163,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5827,
-                        "entryId": 7042
-                    },
-                    {
-                        "name": "Wild Strikes",
-                        "spellId": 382946,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5828,
-                        "entryId": 7044
-                    },
-                    {
-                        "name": "Armored to the Teeth",
-                        "spellId": 384124,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5829,
-                        "entryId": 7046
-                    },
-                    {
-                        "name": "Reinforced Plates",
-                        "spellId": 382939,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5830,
-                        "entryId": 7048
-                    },
-                    {
-                        "name": "Leeching Strikes",
-                        "spellId": 382258,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5831,
-                        "entryId": 7049
-                    },
-                    {
-                        "name": "Shockwave",
-                        "spellId": 46968,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5834,
-                        "entryId": 7053
-                    },
-                    {
-                        "name": "Champion's Spear",
-                        "spellId": 376079,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5836,
-                        "entryId": 7055
-                    },
-                    {
-                        "name": "Cruel Strikes",
-                        "spellId": 392777,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5837,
-                        "entryId": 7057
-                    },
-                    {
-                        "name": "Double Time",
-                        "spellId": 103827,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5838,
-                        "entryId": 7058
-                    },
-                    {
-                        "name": "Spell Reflection",
-                        "spellId": 23920,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5839,
-                        "entryId": 7059
-                    },
-                    {
-                        "name": "Bloodletting",
-                        "spellId": 383154,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6164,
-                        "entryId": 7452
-                    },
-                    {
-                        "name": "Critical Thinking",
-                        "spellId": 389306,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6158,
-                        "entryId": 7446
-                    },
-                    {
-                        "name": "Executioner's Precision",
-                        "spellId": 386634,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6165,
-                        "entryId": 7453
-                    },
-                    {
-                        "name": "Sharpened Blades",
-                        "spellId": 383341,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6138,
-                        "entryId": 7418
-                    },
-                    {
-                        "name": "Show No Mercy",
-                        "spellId": 444771,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 6172,
-                        "entryId": 7460
-                    },
-                    {
-                        "name": "Imminent Demise",
-                        "spellId": 444769,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 6175,
-                        "entryId": 7465
-                    },
-                    {
-                        "name": "Slayer's Malice",
-                        "spellId": 444779,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 6177,
-                        "entryId": 7468
-                    },
-                    {
-                        "name": "Reap the Storm",
-                        "spellId": 444775,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 6178,
-                        "entryId": 7469
-                    },
-                    {
-                        "name": "Overwhelming Blades",
-                        "spellId": 444772,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 6179,
-                        "entryId": 7470
-                    },
-                    {
-                        "name": "Death Drive",
-                        "spellId": 444770,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 6180,
-                        "entryId": 7471
-                    },
-                    {
-                        "name": "Unrelenting Onslaught",
-                        "spellId": 444780,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 6182,
-                        "entryId": 7473
-                    },
-                    {
-                        "name": "Honed Reflexes",
-                        "spellId": 391271,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5919,
-                        "entryId": 7161
-                    },
-                    {
-                        "name": "Anger Management",
-                        "spellId": 152278,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5930,
-                        "entryId": 7169
-                    },
-                    {
-                        "name": "Battlefield Commander",
-                        "spellId": 424742,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5931,
-                        "entryId": 7170
-                    },
-                    {
-                        "name": "Crushing Force",
-                        "spellId": 382764,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5935,
-                        "entryId": 7176
-                    },
-                    {
-                        "name": "Rend",
-                        "spellId": 772,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5937,
-                        "entryId": 7179
-                    },
-                    {
-                        "name": "Martial Prowess",
-                        "spellId": 1273062,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6145,
-                        "entryId": 7427
-                    },
-                    {
-                        "name": "Deep Wounds",
-                        "spellId": 1261060,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6147,
-                        "entryId": 7429
-                    },
-                    {
-                        "name": "Strength of Arms",
-                        "spellId": 400803,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6136,
-                        "entryId": 7414
-                    },
-                    {
-                        "name": "Unhinged",
-                        "spellId": 386628,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 6183,
-                        "entryId": 7474
-                    },
-                    {
-                        "name": "Deadly Focus",
-                        "spellId": 1270718,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 6184,
-                        "entryId": 7475
-                    },
-                    {
-                        "name": "Violent Euphoria",
-                        "spellId": 1270717,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 6185,
-                        "entryId": 7476
-                    },
-                    {
-                        "name": "Javelineer",
-                        "spellId": 1271948,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5964,
-                        "entryId": 7210
-                    },
-                    {
-                        "name": "Field Dressing",
-                        "spellId": 1271926,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5965,
-                        "entryId": 7211
-                    },
-                    {
-                        "name": "Avatar",
-                        "spellId": 107574,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6170,
-                        "entryId": 7458
-                    },
-                    {
-                        "name": "Master of Warfare",
-                        "spellId": 1269314,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6171,
-                        "entryId": 7459
-                    },
-                    {
-                        "name": "Slayer's Dominance",
-                        "spellId": 444767,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 6181,
-                        "entryId": 7472
-                    },
-                    {
-                        "name": "Battle Stance",
-                        "spellId": 386164,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5812,
-                        "entryId": 7025
-                    },
-                    {
-                        "name": "Fueled by Violence",
-                        "spellId": 383103,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 6119,
-                        "entryId": 7394
-                    },
-                    {
-                        "name": "Berserker Shout",
-                        "spellId": 384100,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5823,
-                        "entryId": 7036
-                    },
-                    {
-                        "name": "Shattering Throw",
-                        "spellId": 64382,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5824,
-                        "entryId": 7039
-                    },
-                    {
-                        "name": "Bladestorm",
-                        "spellId": 227847,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 6157,
-                        "entryId": 7443
-                    },
-                    {
-                        "name": "Overpowering Finish",
-                        "spellId": 400205,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 6135,
-                        "entryId": 7412
-                    },
-                    {
-                        "name": "Culling Cyclone",
-                        "spellId": 444778,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 6173,
-                        "entryId": 7461
-                    },
-                    {
-                        "name": "Vicious Agility",
-                        "spellId": 444777,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 6176,
-                        "entryId": 7467
-                    },
-                    {
-                        "name": "Opportunist",
-                        "spellId": 444774,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 6174,
-                        "entryId": 7464
-                    },
-                    {
-                        "name": "Interpose",
-                        "spellId": 1244088,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5933,
-                        "entryId": 7174
-                    },
-                    {
-                        "name": "Intimidating Shout",
-                        "spellId": 5246,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5936,
-                        "entryId": 7177
-                    },
-                    {
                         "name": "Battlelord",
                         "spellId": 386630,
                         "rank": 1,
@@ -2606,224 +2665,309 @@
                         "resolvedByOffset": true,
                         "nodeId": 6137,
                         "entryId": 7415
+                    },
+                    {
+                        "name": "Berserker Shout",
+                        "spellId": 384100,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 5823,
+                        "entryId": 7036
                     }
                 ],
                 "pvpTalents": [
-                    {
-                        "name": "Berserker Roar",
-                        "spellId": 1227751,
-                        "pvpTalentId": 408
-                    },
                     {
                         "name": "Sharpen Blade",
                         "spellId": 1219165,
                         "pvpTalentId": 401
                     },
                     {
-                        "name": "Demolition",
-                        "spellId": 329033,
-                        "pvpTalentId": 404
+                        "name": "Safeguard",
+                        "spellId": 424654,
+                        "pvpTalentId": 406
+                    },
+                    {
+                        "name": "Disarm",
+                        "spellId": 236077,
+                        "pvpTalentId": 403
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:28+00:00"
+                "resolvedAt": "2026-09-06T02:56:48+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-11-0EA30783",
+                "targetGuid": "Player-60-0FFBD835",
                 "championBuffs": [
                     {
-                        "spellId": 1269394,
-                        "name": "Master of Warfare"
+                        "spellId": 2580,
+                        "name": "Find Minerals"
+                    },
+                    {
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
+                    },
+                    {
+                        "spellId": 6673,
+                        "name": "Battle Shout"
+                    },
+                    {
+                        "spellId": 462854,
+                        "name": "Skyfury"
                     },
                     {
                         "spellId": 445584,
                         "name": "Executioner"
                     },
                     {
+                        "spellId": 1269394,
+                        "name": "Master of Warfare"
+                    },
+                    {
                         "spellId": 386164,
                         "name": "Battle Stance"
-                    },
-                    {
-                        "spellId": 445606,
-                        "name": "Imminent Demise"
-                    },
-                    {
-                        "spellId": 1292058,
-                        "name": "Heroic Might"
-                    },
-                    {
-                        "spellId": 1241715,
-                        "name": "Might of the Void"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
-                    },
-                    {
-                        "spellId": 462568,
-                        "name": "Elemental Resistance"
-                    },
-                    {
-                        "spellId": 68992,
-                        "name": "Darkflight"
-                    },
-                    {
-                        "spellId": 260708,
-                        "name": "Sweeping Strikes"
-                    },
-                    {
-                        "spellId": 199854,
-                        "name": "Tactician"
-                    },
-                    {
-                        "spellId": 456120,
-                        "name": "Opportunist"
-                    }
-                ],
-                "championDebuffs": [
-                    {
-                        "spellId": 205708,
-                        "name": "Chilled"
-                    },
-                    {
-                        "spellId": 1287663,
-                        "name": "Rune of Lingering"
-                    },
-                    {
-                        "spellId": 1220758,
-                        "name": "Overpowered Barrier"
-                    }
-                ],
-                "targetBuffs": [
-                    {
-                        "spellId": 2383,
-                        "name": "Find Herbs"
-                    },
-                    {
-                        "spellId": 2580,
-                        "name": "Find Minerals"
-                    },
-                    {
-                        "spellId": 186403,
-                        "name": "Sign of Battle"
-                    },
-                    {
-                        "spellId": 1459,
-                        "name": "Arcane Intellect"
-                    },
-                    {
-                        "spellId": 154796,
-                        "name": "Touch of Elune - Day"
-                    },
-                    {
-                        "spellId": 21562,
-                        "name": "Power Word: Fortitude"
-                    },
-                    {
-                        "spellId": 205473,
-                        "name": "Icicles"
-                    },
-                    {
-                        "spellId": 394195,
-                        "name": "Overflowing Energy"
-                    },
-                    {
-                        "spellId": 77489,
-                        "name": "Echo of Light"
-                    },
-                    {
-                        "spellId": 414664,
-                        "name": "Mass Invisibility"
-                    },
-                    {
-                        "spellId": 1222865,
-                        "name": "Glacial Spike!"
-                    },
-                    {
-                        "spellId": 58984,
-                        "name": "Shadowmeld"
                     },
                     {
                         "spellId": 1229746,
                         "name": "Arcanoweave Insight"
                     },
                     {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
+                    },
+                    {
+                        "spellId": 107574,
+                        "name": "Avatar"
+                    },
+                    {
                         "spellId": 1241715,
                         "name": "Might of the Void"
                     },
                     {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
+                        "spellId": 356528,
+                        "name": "Necrotic Wound"
+                    },
+                    {
+                        "spellId": 1270731,
+                        "name": "Violent Euphoria"
+                    },
+                    {
+                        "spellId": 262232,
+                        "name": "War Machine"
+                    },
+                    {
+                        "spellId": 260708,
+                        "name": "Sweeping Strikes"
+                    },
+                    {
+                        "spellId": 52437,
+                        "name": "Sudden Death"
+                    },
+                    {
+                        "spellId": 198817,
+                        "name": "Sharpen Blade"
+                    },
+                    {
+                        "spellId": 435551,
+                        "name": "Enduring Bloodstone"
+                    },
+                    {
+                        "spellId": 61295,
+                        "name": "Riptide"
                     },
                     {
                         "spellId": 1287665,
                         "name": "Rune of Lingering"
                     },
                     {
-                        "spellId": 44544,
-                        "name": "Fingers of Frost"
+                        "spellId": 207400,
+                        "name": "Ancestral Vigor"
                     },
                     {
-                        "spellId": 461531,
-                        "name": "Brainstorm"
-                    },
-                    {
-                        "spellId": 455122,
-                        "name": "Permafrost Lances"
-                    },
-                    {
-                        "spellId": 270232,
-                        "name": "Freezing Rain"
-                    },
-                    {
-                        "spellId": 1247730,
-                        "name": "Thermal Void"
-                    },
-                    {
-                        "spellId": 444754,
-                        "name": "Slippery Slinging"
-                    },
-                    {
-                        "spellId": 342246,
-                        "name": "Alter Time"
+                        "spellId": 382024,
+                        "name": "Earthliving Weapon"
                     }
                 ],
-                "targetDebuffs": [
+                "championDebuffs": [
                     {
-                        "spellId": 115804,
-                        "name": "Mortal Wounds"
+                        "spellId": 191587,
+                        "name": "Virulent Plague"
                     },
                     {
-                        "spellId": 445836,
-                        "name": "Overwhelmed"
+                        "spellId": 327096,
+                        "name": "War"
                     },
                     {
-                        "spellId": 188389,
-                        "name": "Flame Shock"
-                    },
-                    {
-                        "spellId": 262115,
-                        "name": "Deep Wounds"
-                    },
-                    {
-                        "spellId": 236299,
-                        "name": "Chrono Shift"
+                        "spellId": 327093,
+                        "name": "Pestilence"
                     },
                     {
                         "spellId": 1287663,
                         "name": "Rune of Lingering"
                     },
                     {
+                        "spellId": 327095,
+                        "name": "Death"
+                    },
+                    {
+                        "spellId": 262115,
+                        "name": "Deep Wounds"
+                    },
+                    {
+                        "spellId": 445836,
+                        "name": "Overwhelmed"
+                    },
+                    {
                         "spellId": 388539,
                         "name": "Rend"
+                    },
+                    {
+                        "spellId": 327092,
+                        "name": "Famine"
                     }
                 ],
-                "targetClassName": "Mage",
-                "targetSpecName": "Frost",
-                "resolvedAt": "2026-08-31T10:02:58+00:00"
+                "targetBuffs": [
+                    {
+                        "spellId": 1254252,
+                        "name": "Lesser Ghoul"
+                    },
+                    {
+                        "spellId": 33763,
+                        "name": "Lifebloom"
+                    },
+                    {
+                        "spellId": 1242998,
+                        "name": "Lesser Ghoul"
+                    },
+                    {
+                        "spellId": 1241569,
+                        "name": "Clawing Shadows"
+                    },
+                    {
+                        "spellId": 81340,
+                        "name": "Sudden Doom"
+                    },
+                    {
+                        "spellId": 1241077,
+                        "name": "Festering Scythe"
+                    },
+                    {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
+                    },
+                    {
+                        "spellId": 345230,
+                        "name": "Gladiator's Insignia"
+                    },
+                    {
+                        "spellId": 8936,
+                        "name": "Regrowth"
+                    },
+                    {
+                        "spellId": 444347,
+                        "name": "Death Charge"
+                    },
+                    {
+                        "spellId": 155777,
+                        "name": "Rejuvenation (Germination)"
+                    },
+                    {
+                        "spellId": 1268917,
+                        "name": "Unholy Aura"
+                    },
+                    {
+                        "spellId": 377588,
+                        "name": "Ghoulish Frenzy"
+                    },
+                    {
+                        "spellId": 1256576,
+                        "name": "Forbidden Sacrifice"
+                    },
+                    {
+                        "spellId": 1235391,
+                        "name": "Dark Transformation"
+                    },
+                    {
+                        "spellId": 1242654,
+                        "name": "Reaping"
+                    },
+                    {
+                        "spellId": 390260,
+                        "name": "Commander of the Dead"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 48438,
+                        "name": "Wild Growth"
+                    },
+                    {
+                        "spellId": 444505,
+                        "name": "Mograine's Might"
+                    },
+                    {
+                        "spellId": 188290,
+                        "name": "Death and Decay"
+                    },
+                    {
+                        "spellId": 51460,
+                        "name": "Runic Corruption"
+                    }
+                ],
+                "targetDebuffs": [
+                    {
+                        "spellId": 445836,
+                        "name": "Overwhelmed"
+                    },
+                    {
+                        "spellId": 1490,
+                        "name": "Chaos Brand"
+                    },
+                    {
+                        "spellId": 388539,
+                        "name": "Rend"
+                    },
+                    {
+                        "spellId": 453177,
+                        "name": "Burning Blades"
+                    },
+                    {
+                        "spellId": 188389,
+                        "name": "Flame Shock"
+                    },
+                    {
+                        "spellId": 115804,
+                        "name": "Mortal Wounds"
+                    },
+                    {
+                        "spellId": 262115,
+                        "name": "Deep Wounds"
+                    },
+                    {
+                        "spellId": 320338,
+                        "name": "Essence Break"
+                    },
+                    {
+                        "spellId": 208086,
+                        "name": "Colossus Smash"
+                    },
+                    {
+                        "spellId": 390181,
+                        "name": "Soulscar"
+                    },
+                    {
+                        "spellId": 213405,
+                        "name": "Master of the Glaive"
+                    }
+                ],
+                "targetClassName": "Death Knight",
+                "targetSpecName": "Unholy",
+                "resolvedAt": "2026-09-06T02:56:55+00:00"
             }
         },
         "12": {
-            "damage": 1660706,
+            "damage": 2095322,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
@@ -2840,38 +2984,32 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Execute",
-                    "spellId": 281000,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Charge",
-                    "spellId": 100,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Execute",
-                    "spellId": 281000,
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Charge",
-                    "spellId": 126664,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Heroic Strike",
-                    "spellId": 1269383,
+                    "name": "Cleave",
+                    "spellId": 845,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Pummel",
-                    "spellId": 6552,
+                    "name": "Colossus Smash",
+                    "spellId": 167105,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sweeping Strikes",
+                    "spellId": 260708,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -2882,20 +3020,14 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Overpower",
-                    "spellId": 7384,
+                    "name": "Spell Reflection",
+                    "spellId": 23920,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Shockwave",
-                    "spellId": 46968,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
+                    "name": "Execute",
+                    "spellId": 281000,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -2903,22 +3035,22 @@
                     "name": "Heroic Strike",
                     "spellId": 1269383,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
-                    "name": "Overpower",
-                    "spellId": 7384,
+                    "name": "Execute",
+                    "spellId": 281000,
                     "isCc": false,
                     "isRepeat": true
                 }
             ],
-            "matchId": "695cae9388d8ad9afa3edb623df0daea",
-            "guid": "Player-60-0ED6051F",
-            "start": 74379.552,
-            "end": 74391.552,
-            "targetGuid": "Player-11-0EA30783",
+            "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
+            "guid": "Player-121-0AD91B00",
+            "start": 80139.966,
+            "end": 80151.966,
+            "targetGuid": "Player-60-0FFBD835",
             "talentBuild": {
-                "matchId": "695cae9388d8ad9afa3edb623df0daea",
+                "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
                 "talents": [
                     {
                         "name": "Die by the Sword",
@@ -2966,15 +3098,6 @@
                         "entryId": 7387
                     },
                     {
-                        "name": "Bloodsurge",
-                        "spellId": 384361,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6125,
-                        "entryId": 7401
-                    },
-                    {
                         "name": "Improved Overpower",
                         "spellId": 385571,
                         "rank": 1,
@@ -2995,11 +3118,11 @@
                     {
                         "name": "Bloodborne",
                         "spellId": 383287,
-                        "rank": 2,
+                        "rank": 1,
                         "treeType": "spec",
                         "resolvedByOffset": false,
                         "nodeId": 6156,
-                        "entryId": 7442
+                        "entryId": 7441
                     },
                     {
                         "name": "Colossus Smash",
@@ -3063,6 +3186,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 5816,
                         "entryId": 7029
+                    },
+                    {
+                        "name": "Second Wind",
+                        "spellId": 29838,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5817,
+                        "entryId": 7030
                     },
                     {
                         "name": "Storm Bolt",
@@ -3144,15 +3276,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 5831,
                         "entryId": 7049
-                    },
-                    {
-                        "name": "Shockwave",
-                        "spellId": 46968,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5834,
-                        "entryId": 7053
                     },
                     {
                         "name": "Champion's Spear",
@@ -3335,15 +3458,6 @@
                         "entryId": 7179
                     },
                     {
-                        "name": "Martial Prowess",
-                        "spellId": 1273062,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6145,
-                        "entryId": 7427
-                    },
-                    {
                         "name": "Deep Wounds",
                         "spellId": 1261060,
                         "rank": 1,
@@ -3351,6 +3465,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 6147,
                         "entryId": 7429
+                    },
+                    {
+                        "name": "Mortal Wounds",
+                        "spellId": 1261062,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6169,
+                        "entryId": 7457
                     },
                     {
                         "name": "Strength of Arms",
@@ -3443,6 +3566,33 @@
                         "entryId": 7025
                     },
                     {
+                        "name": "Fervor of Battle",
+                        "spellId": 202316,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6128,
+                        "entryId": 7404
+                    },
+                    {
+                        "name": "Cleave",
+                        "spellId": 845,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6139,
+                        "entryId": 7419
+                    },
+                    {
+                        "name": "Shockwave",
+                        "spellId": 46968,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5834,
+                        "entryId": 7053
+                    },
+                    {
                         "name": "Fueled by Violence",
                         "spellId": 383103,
                         "rank": 1,
@@ -3450,24 +3600,6 @@
                         "resolvedByOffset": true,
                         "nodeId": 6119,
                         "entryId": 7394
-                    },
-                    {
-                        "name": "Berserker Shout",
-                        "spellId": 384100,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5823,
-                        "entryId": 7036
-                    },
-                    {
-                        "name": "Shattering Throw",
-                        "spellId": 64382,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5824,
-                        "entryId": 7039
                     },
                     {
                         "name": "Bladestorm",
@@ -3479,13 +3611,13 @@
                         "entryId": 7443
                     },
                     {
-                        "name": "Overpowering Finish",
-                        "spellId": 400205,
+                        "name": "Powerful Momentum",
+                        "spellId": 1261050,
                         "rank": 1,
                         "treeType": "spec",
                         "resolvedByOffset": true,
-                        "nodeId": 6135,
-                        "entryId": 7412
+                        "nodeId": 6140,
+                        "entryId": 7421
                     },
                     {
                         "name": "Culling Cyclone",
@@ -3558,168 +3690,206 @@
                         "resolvedByOffset": true,
                         "nodeId": 6137,
                         "entryId": 7415
+                    },
+                    {
+                        "name": "Berserker Shout",
+                        "spellId": 384100,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 5823,
+                        "entryId": 7036
                     }
                 ],
                 "pvpTalents": [
-                    {
-                        "name": "Berserker Roar",
-                        "spellId": 1227751,
-                        "pvpTalentId": 408
-                    },
                     {
                         "name": "Sharpen Blade",
                         "spellId": 1219165,
                         "pvpTalentId": 401
                     },
                     {
-                        "name": "Demolition",
-                        "spellId": 329033,
-                        "pvpTalentId": 404
+                        "name": "Safeguard",
+                        "spellId": 424654,
+                        "pvpTalentId": 406
+                    },
+                    {
+                        "name": "Disarm",
+                        "spellId": 236077,
+                        "pvpTalentId": 403
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:28+00:00"
+                "resolvedAt": "2026-09-06T02:56:48+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-11-0EA30783",
+                "targetGuid": "Player-60-0FFBD835",
                 "championBuffs": [
-                    {
-                        "spellId": 1269394,
-                        "name": "Master of Warfare"
-                    },
-                    {
-                        "spellId": 386164,
-                        "name": "Battle Stance"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
-                    },
-                    {
-                        "spellId": 107574,
-                        "name": "Avatar"
-                    },
-                    {
-                        "spellId": 260708,
-                        "name": "Sweeping Strikes"
-                    },
-                    {
-                        "spellId": 1241715,
-                        "name": "Might of the Void"
-                    },
-                    {
-                        "spellId": 1292058,
-                        "name": "Heroic Might"
-                    },
-                    {
-                        "spellId": 345230,
-                        "name": "Gladiator's Insignia"
-                    },
-                    {
-                        "spellId": 316440,
-                        "name": "Martial Prowess"
-                    },
-                    {
-                        "spellId": 446035,
-                        "name": "Bladestorm"
-                    }
-                ],
-                "championDebuffs": [],
-                "targetBuffs": [
-                    {
-                        "spellId": 2383,
-                        "name": "Find Herbs"
-                    },
                     {
                         "spellId": 2580,
                         "name": "Find Minerals"
                     },
                     {
-                        "spellId": 186403,
-                        "name": "Sign of Battle"
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
                     },
                     {
-                        "spellId": 154796,
-                        "name": "Touch of Elune - Day"
-                    },
-                    {
-                        "spellId": 21562,
-                        "name": "Power Word: Fortitude"
-                    },
-                    {
-                        "spellId": 414664,
-                        "name": "Mass Invisibility"
-                    },
-                    {
-                        "spellId": 58984,
-                        "name": "Shadowmeld"
-                    },
-                    {
-                        "spellId": 110960,
-                        "name": "Greater Invisibility"
-                    },
-                    {
-                        "spellId": 1459,
-                        "name": "Arcane Intellect"
-                    },
-                    {
-                        "spellId": 47788,
-                        "name": "Guardian Spirit"
-                    },
-                    {
-                        "spellId": 77489,
-                        "name": "Echo of Light"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "Arcanoweave Insight"
-                    },
-                    {
-                        "spellId": 205473,
-                        "name": "Icicles"
-                    },
-                    {
-                        "spellId": 1241715,
-                        "name": "Might of the Void"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
-                    },
-                    {
-                        "spellId": 65081,
-                        "name": "Body and Soul"
-                    },
-                    {
-                        "spellId": 1222865,
-                        "name": "Glacial Spike!"
-                    },
-                    {
-                        "spellId": 44544,
-                        "name": "Fingers of Frost"
-                    },
-                    {
-                        "spellId": 461531,
-                        "name": "Brainstorm"
-                    },
-                    {
-                        "spellId": 455122,
-                        "name": "Permafrost Lances"
-                    },
-                    {
-                        "spellId": 270232,
-                        "name": "Freezing Rain"
+                        "spellId": 6673,
+                        "name": "Battle Shout"
                     },
                     {
                         "spellId": 462854,
                         "name": "Skyfury"
                     },
                     {
-                        "spellId": 1287978,
-                        "name": "Rune of Lynxlike Reflexes"
+                        "spellId": 445584,
+                        "name": "Executioner"
                     },
                     {
-                        "spellId": 1247730,
-                        "name": "Thermal Void"
+                        "spellId": 1269394,
+                        "name": "Master of Warfare"
+                    },
+                    {
+                        "spellId": 1292058,
+                        "name": "Heroic Might"
+                    },
+                    {
+                        "spellId": 386164,
+                        "name": "Battle Stance"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    },
+                    {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
+                    },
+                    {
+                        "spellId": 262232,
+                        "name": "War Machine"
+                    },
+                    {
+                        "spellId": 107574,
+                        "name": "Avatar"
+                    },
+                    {
+                        "spellId": 1241715,
+                        "name": "Might of the Void"
+                    },
+                    {
+                        "spellId": 446035,
+                        "name": "Bladestorm"
+                    }
+                ],
+                "championDebuffs": [
+                    {
+                        "spellId": 191587,
+                        "name": "Virulent Plague"
+                    },
+                    {
+                        "spellId": 445836,
+                        "name": "Overwhelmed"
+                    },
+                    {
+                        "spellId": 208086,
+                        "name": "Colossus Smash"
+                    },
+                    {
+                        "spellId": 327096,
+                        "name": "War"
+                    },
+                    {
+                        "spellId": 374557,
+                        "name": "Brittle"
+                    }
+                ],
+                "targetBuffs": [
+                    {
+                        "spellId": 1254252,
+                        "name": "Lesser Ghoul"
+                    },
+                    {
+                        "spellId": 33763,
+                        "name": "Lifebloom"
+                    },
+                    {
+                        "spellId": 1242998,
+                        "name": "Lesser Ghoul"
+                    },
+                    {
+                        "spellId": 1241569,
+                        "name": "Clawing Shadows"
+                    },
+                    {
+                        "spellId": 81340,
+                        "name": "Sudden Doom"
+                    },
+                    {
+                        "spellId": 1241077,
+                        "name": "Festering Scythe"
+                    },
+                    {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
+                    },
+                    {
+                        "spellId": 223143,
+                        "name": "Prismatic Bauble"
+                    },
+                    {
+                        "spellId": 345230,
+                        "name": "Gladiator's Insignia"
+                    },
+                    {
+                        "spellId": 774,
+                        "name": "Rejuvenation"
+                    },
+                    {
+                        "spellId": 8936,
+                        "name": "Regrowth"
+                    },
+                    {
+                        "spellId": 439530,
+                        "name": "Symbiotic Blooms"
+                    },
+                    {
+                        "spellId": 468152,
+                        "name": "Reactive Resin"
+                    },
+                    {
+                        "spellId": 444347,
+                        "name": "Death Charge"
+                    },
+                    {
+                        "spellId": 410358,
+                        "name": "Anti-Magic Shell"
+                    },
+                    {
+                        "spellId": 155777,
+                        "name": "Rejuvenation (Germination)"
+                    },
+                    {
+                        "spellId": 1268917,
+                        "name": "Unholy Aura"
+                    },
+                    {
+                        "spellId": 377588,
+                        "name": "Ghoulish Frenzy"
+                    },
+                    {
+                        "spellId": 1256576,
+                        "name": "Forbidden Sacrifice"
+                    },
+                    {
+                        "spellId": 1235391,
+                        "name": "Dark Transformation"
+                    },
+                    {
+                        "spellId": 1242654,
+                        "name": "Reaping"
+                    },
+                    {
+                        "spellId": 390260,
+                        "name": "Commander of the Dead"
                     }
                 ],
                 "targetDebuffs": [
@@ -3728,43 +3898,49 @@
                         "name": "Overwhelmed"
                     },
                     {
+                        "spellId": 1490,
+                        "name": "Chaos Brand"
+                    },
+                    {
                         "spellId": 388539,
                         "name": "Rend"
                     },
                     {
-                        "spellId": 1271964,
-                        "name": "Honed Reflexes"
+                        "spellId": 453177,
+                        "name": "Burning Blades"
+                    },
+                    {
+                        "spellId": 390181,
+                        "name": "Soulscar"
+                    },
+                    {
+                        "spellId": 213405,
+                        "name": "Master of the Glaive"
+                    },
+                    {
+                        "spellId": 188389,
+                        "name": "Flame Shock"
                     },
                     {
                         "spellId": 115804,
                         "name": "Mortal Wounds"
                     },
                     {
-                        "spellId": 236299,
-                        "name": "Chrono Shift"
-                    },
-                    {
-                        "spellId": 210824,
-                        "name": "Touch of the Magi"
+                        "spellId": 262115,
+                        "name": "Deep Wounds"
                     }
                 ],
-                "targetClassName": "Mage",
-                "targetSpecName": "Frost",
-                "resolvedAt": "2026-08-31T10:02:59+00:00"
+                "targetClassName": "Death Knight",
+                "targetSpecName": "Unholy",
+                "resolvedAt": "2026-09-06T02:56:55+00:00"
             }
         },
         "20": {
-            "damage": 2530128,
+            "damage": 3075994,
             "durationSeconds": 20,
-            "killed": true,
+            "killed": false,
             "steps": [
                 {
-                    "name": "Shockwave",
-                    "spellId": 46968,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
@@ -3777,34 +3953,10 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Execute",
-                    "spellId": 281000,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Spell Reflection",
-                    "spellId": 23920,
+                    "name": "Intervene",
+                    "spellId": 316531,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Charge",
-                    "spellId": 100,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Storm Bolt",
-                    "spellId": 107570,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Bladestorm",
@@ -3831,6 +3983,54 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cleave",
+                    "spellId": 845,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Colossus Smash",
+                    "spellId": 167105,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sweeping Strikes",
+                    "spellId": 260708,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Spell Reflection",
+                    "spellId": 23920,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
@@ -3843,32 +4043,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pummel",
-                    "spellId": 6552,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Overpower",
-                    "spellId": 7384,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Intimidating Shout",
-                    "spellId": 5246,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Overpower",
-                    "spellId": 7384,
+                    "name": "Execute",
+                    "spellId": 281000,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -3877,15 +4053,21 @@
                     "spellId": 281000,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Overpower",
+                    "spellId": 7384,
+                    "isCc": false,
+                    "isRepeat": false
                 }
             ],
-            "matchId": "09049f0072ea8632c7501ffb146f8c7c",
-            "guid": "Player-60-0ED6051F",
-            "start": 74047.812,
-            "end": 74067.812,
-            "targetGuid": "Player-57-0DBBC17C",
+            "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
+            "guid": "Player-121-0AD91B00",
+            "start": 80134.966,
+            "end": 80154.966,
+            "targetGuid": "Player-60-0FFBD835",
             "talentBuild": {
-                "matchId": "09049f0072ea8632c7501ffb146f8c7c",
+                "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
                 "talents": [
                     {
                         "name": "Die by the Sword",
@@ -3933,15 +4115,6 @@
                         "entryId": 7387
                     },
                     {
-                        "name": "Bloodsurge",
-                        "spellId": 384361,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6125,
-                        "entryId": 7401
-                    },
-                    {
                         "name": "Improved Overpower",
                         "spellId": 385571,
                         "rank": 1,
@@ -3962,11 +4135,11 @@
                     {
                         "name": "Bloodborne",
                         "spellId": 383287,
-                        "rank": 2,
+                        "rank": 1,
                         "treeType": "spec",
                         "resolvedByOffset": false,
                         "nodeId": 6156,
-                        "entryId": 7442
+                        "entryId": 7441
                     },
                     {
                         "name": "Colossus Smash",
@@ -4030,6 +4203,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 5816,
                         "entryId": 7029
+                    },
+                    {
+                        "name": "Second Wind",
+                        "spellId": 29838,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5817,
+                        "entryId": 7030
                     },
                     {
                         "name": "Storm Bolt",
@@ -4111,15 +4293,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 5831,
                         "entryId": 7049
-                    },
-                    {
-                        "name": "Shockwave",
-                        "spellId": 46968,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5834,
-                        "entryId": 7053
                     },
                     {
                         "name": "Champion's Spear",
@@ -4302,15 +4475,6 @@
                         "entryId": 7179
                     },
                     {
-                        "name": "Martial Prowess",
-                        "spellId": 1273062,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6145,
-                        "entryId": 7427
-                    },
-                    {
                         "name": "Deep Wounds",
                         "spellId": 1261060,
                         "rank": 1,
@@ -4318,6 +4482,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 6147,
                         "entryId": 7429
+                    },
+                    {
+                        "name": "Mortal Wounds",
+                        "spellId": 1261062,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6169,
+                        "entryId": 7457
                     },
                     {
                         "name": "Strength of Arms",
@@ -4410,6 +4583,33 @@
                         "entryId": 7025
                     },
                     {
+                        "name": "Fervor of Battle",
+                        "spellId": 202316,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6128,
+                        "entryId": 7404
+                    },
+                    {
+                        "name": "Cleave",
+                        "spellId": 845,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6139,
+                        "entryId": 7419
+                    },
+                    {
+                        "name": "Shockwave",
+                        "spellId": 46968,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5834,
+                        "entryId": 7053
+                    },
+                    {
                         "name": "Fueled by Violence",
                         "spellId": 383103,
                         "rank": 1,
@@ -4417,24 +4617,6 @@
                         "resolvedByOffset": true,
                         "nodeId": 6119,
                         "entryId": 7394
-                    },
-                    {
-                        "name": "Berserker Shout",
-                        "spellId": 384100,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5823,
-                        "entryId": 7036
-                    },
-                    {
-                        "name": "Shattering Throw",
-                        "spellId": 64382,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5824,
-                        "entryId": 7039
                     },
                     {
                         "name": "Bladestorm",
@@ -4446,13 +4628,13 @@
                         "entryId": 7443
                     },
                     {
-                        "name": "Overpowering Finish",
-                        "spellId": 400205,
+                        "name": "Powerful Momentum",
+                        "spellId": 1261050,
                         "rank": 1,
                         "treeType": "spec",
                         "resolvedByOffset": true,
-                        "nodeId": 6135,
-                        "entryId": 7412
+                        "nodeId": 6140,
+                        "entryId": 7421
                     },
                     {
                         "name": "Culling Cyclone",
@@ -4525,45 +4707,58 @@
                         "resolvedByOffset": true,
                         "nodeId": 6137,
                         "entryId": 7415
+                    },
+                    {
+                        "name": "Berserker Shout",
+                        "spellId": 384100,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 5823,
+                        "entryId": 7036
                     }
                 ],
                 "pvpTalents": [
-                    {
-                        "name": "Berserker Roar",
-                        "spellId": 1227751,
-                        "pvpTalentId": 408
-                    },
                     {
                         "name": "Sharpen Blade",
                         "spellId": 1219165,
                         "pvpTalentId": 401
                     },
                     {
-                        "name": "Demolition",
-                        "spellId": 329033,
-                        "pvpTalentId": 404
-                    }
-                ],
-                "resolvedAt": "2026-08-31T06:43:28+00:00"
-            },
-            "mechanics": {
-                "targetGuid": "Player-57-0DBBC17C",
-                "championBuffs": [
-                    {
-                        "spellId": 974,
-                        "name": "Earth Shield"
+                        "name": "Safeguard",
+                        "spellId": 424654,
+                        "pvpTalentId": 406
                     },
                     {
-                        "spellId": 61295,
-                        "name": "Riptide"
+                        "name": "Disarm",
+                        "spellId": 236077,
+                        "pvpTalentId": 403
+                    }
+                ],
+                "resolvedAt": "2026-09-06T02:56:48+00:00"
+            },
+            "mechanics": {
+                "targetGuid": "Player-60-0FFBD835",
+                "championBuffs": [
+                    {
+                        "spellId": 2580,
+                        "name": "Find Minerals"
+                    },
+                    {
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
+                    },
+                    {
+                        "spellId": 6673,
+                        "name": "Battle Shout"
+                    },
+                    {
+                        "spellId": 462854,
+                        "name": "Skyfury"
                     },
                     {
                         "spellId": 445584,
                         "name": "Executioner"
-                    },
-                    {
-                        "spellId": 386164,
-                        "name": "Battle Stance"
                     },
                     {
                         "spellId": 1269394,
@@ -4574,128 +4769,152 @@
                         "name": "Imminent Demise"
                     },
                     {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
-                    },
-                    {
-                        "spellId": 107574,
-                        "name": "Avatar"
-                    },
-                    {
-                        "spellId": 392778,
-                        "name": "Wild Strikes"
-                    },
-                    {
-                        "spellId": 462568,
-                        "name": "Elemental Resistance"
-                    },
-                    {
-                        "spellId": 316440,
-                        "name": "Martial Prowess"
-                    },
-                    {
                         "spellId": 260708,
                         "name": "Sweeping Strikes"
                     },
                     {
-                        "spellId": 52437,
-                        "name": "Sudden Death"
+                        "spellId": 1292058,
+                        "name": "Heroic Might"
                     },
                     {
-                        "spellId": 198817,
-                        "name": "Sharpen Blade"
+                        "spellId": 386633,
+                        "name": "Executioner's Precision"
                     },
                     {
-                        "spellId": 208086,
-                        "name": "Colossus Smash"
-                    }
-                ],
-                "championDebuffs": [
-                    {
-                        "spellId": 980,
-                        "name": "Agony"
-                    },
-                    {
-                        "spellId": 48181,
-                        "name": "Haunt"
-                    },
-                    {
-                        "spellId": 205708,
-                        "name": "Chilled"
-                    }
-                ],
-                "targetBuffs": [
-                    {
-                        "spellId": 1263084,
-                        "name": "Toggle Find Lumber"
-                    },
-                    {
-                        "spellId": 1256697,
-                        "name": "Find Lumber"
-                    },
-                    {
-                        "spellId": 186403,
-                        "name": "Sign of Battle"
-                    },
-                    {
-                        "spellId": 110960,
-                        "name": "Greater Invisibility"
-                    },
-                    {
-                        "spellId": 1459,
-                        "name": "Arcane Intellect"
-                    },
-                    {
-                        "spellId": 414664,
-                        "name": "Mass Invisibility"
-                    },
-                    {
-                        "spellId": 205473,
-                        "name": "Icicles"
-                    },
-                    {
-                        "spellId": 1222865,
-                        "name": "Glacial Spike!"
-                    },
-                    {
-                        "spellId": 455122,
-                        "name": "Permafrost Lances"
-                    },
-                    {
-                        "spellId": 270232,
-                        "name": "Freezing Rain"
+                        "spellId": 386164,
+                        "name": "Battle Stance"
                     },
                     {
                         "spellId": 1229746,
                         "name": "Arcanoweave Insight"
                     },
                     {
-                        "spellId": 1287774,
-                        "name": "Rune of Burning Haste"
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
                     },
                     {
-                        "spellId": 774,
-                        "name": "Rejuvenation"
+                        "spellId": 52437,
+                        "name": "Sudden Death"
+                    },
+                    {
+                        "spellId": 435551,
+                        "name": "Enduring Bloodstone"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 262232,
+                        "name": "War Machine"
+                    },
+                    {
+                        "spellId": 107574,
+                        "name": "Avatar"
+                    }
+                ],
+                "championDebuffs": [
+                    {
+                        "spellId": 191587,
+                        "name": "Virulent Plague"
+                    },
+                    {
+                        "spellId": 445836,
+                        "name": "Overwhelmed"
+                    },
+                    {
+                        "spellId": 374557,
+                        "name": "Brittle"
+                    },
+                    {
+                        "spellId": 444834,
+                        "name": "Trollbane's Icy Fury"
+                    },
+                    {
+                        "spellId": 208086,
+                        "name": "Colossus Smash"
+                    },
+                    {
+                        "spellId": 327093,
+                        "name": "Pestilence"
+                    }
+                ],
+                "targetBuffs": [
+                    {
+                        "spellId": 1254252,
+                        "name": "Lesser Ghoul"
+                    },
+                    {
+                        "spellId": 33763,
+                        "name": "Lifebloom"
+                    },
+                    {
+                        "spellId": 1242998,
+                        "name": "Lesser Ghoul"
                     },
                     {
                         "spellId": 155777,
                         "name": "Rejuvenation (Germination)"
                     },
                     {
+                        "spellId": 1241569,
+                        "name": "Clawing Shadows"
+                    },
+                    {
+                        "spellId": 81340,
+                        "name": "Sudden Doom"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    },
+                    {
+                        "spellId": 374585,
+                        "name": "Rune Mastery"
+                    },
+                    {
+                        "spellId": 1241077,
+                        "name": "Festering Scythe"
+                    },
+                    {
+                        "spellId": 49039,
+                        "name": "Lichborne"
+                    },
+                    {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
+                    },
+                    {
+                        "spellId": 223143,
+                        "name": "Prismatic Bauble"
+                    },
+                    {
                         "spellId": 345230,
                         "name": "Gladiator's Insignia"
                     },
                     {
-                        "spellId": 11426,
-                        "name": "Ice Barrier"
+                        "spellId": 774,
+                        "name": "Rejuvenation"
                     },
                     {
-                        "spellId": 468152,
-                        "name": "Reactive Resin"
+                        "spellId": 8936,
+                        "name": "Regrowth"
                     },
                     {
                         "spellId": 48438,
                         "name": "Wild Growth"
+                    },
+                    {
+                        "spellId": 454886,
+                        "name": "Suppression"
+                    },
+                    {
+                        "spellId": 435551,
+                        "name": "Enduring Bloodstone"
                     }
                 ],
                 "targetDebuffs": [
@@ -4704,49 +4923,41 @@
                         "name": "Overwhelmed"
                     },
                     {
-                        "spellId": 115804,
-                        "name": "Mortal Wounds"
+                        "spellId": 1490,
+                        "name": "Chaos Brand"
                     },
                     {
                         "spellId": 388539,
                         "name": "Rend"
                     },
                     {
+                        "spellId": 453177,
+                        "name": "Burning Blades"
+                    },
+                    {
+                        "spellId": 390181,
+                        "name": "Soulscar"
+                    },
+                    {
+                        "spellId": 213405,
+                        "name": "Master of the Glaive"
+                    },
+                    {
+                        "spellId": 247121,
+                        "name": "Metamorphosis"
+                    },
+                    {
                         "spellId": 188389,
                         "name": "Flame Shock"
-                    },
-                    {
-                        "spellId": 262115,
-                        "name": "Deep Wounds"
-                    },
-                    {
-                        "spellId": 1287663,
-                        "name": "Rune of Lingering"
-                    },
-                    {
-                        "spellId": 205021,
-                        "name": "Ray of Frost"
-                    },
-                    {
-                        "spellId": 1221389,
-                        "name": "Freezing"
-                    },
-                    {
-                        "spellId": 205708,
-                        "name": "Chilled"
-                    },
-                    {
-                        "spellId": 208086,
-                        "name": "Colossus Smash"
                     }
                 ],
-                "targetClassName": "Mage",
-                "targetSpecName": "Frost",
-                "resolvedAt": "2026-08-31T10:02:59+00:00"
+                "targetClassName": "Death Knight",
+                "targetSpecName": "Unholy",
+                "resolvedAt": "2026-09-06T02:56:55+00:00"
             }
         },
         "30": {
-            "damage": 3350841,
+            "damage": 3825956,
             "durationSeconds": 30,
             "killed": true,
             "steps": [
@@ -4763,94 +4974,10 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Avatar",
-                    "spellId": 107574,
+                    "name": "Intervene",
+                    "spellId": 316531,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Overpower",
-                    "spellId": 7384,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Heroic Strike",
-                    "spellId": 1269383,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Overpower",
-                    "spellId": 7384,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Heroic Strike",
-                    "spellId": 1269383,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Colossus Smash",
-                    "spellId": 167105,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shockwave",
-                    "spellId": 46968,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Execute",
-                    "spellId": 281000,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Execute",
-                    "spellId": 281000,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Spell Reflection",
-                    "spellId": 23920,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Charge",
-                    "spellId": 100,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Storm Bolt",
-                    "spellId": 107570,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mortal Strike",
-                    "spellId": 12294,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Bladestorm",
@@ -4877,6 +5004,114 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cleave",
+                    "spellId": 845,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Colossus Smash",
+                    "spellId": 167105,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sweeping Strikes",
+                    "spellId": 260708,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Spell Reflection",
+                    "spellId": 23920,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Heroic Strike",
+                    "spellId": 1269383,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Overpower",
+                    "spellId": 7384,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Heroic Strike",
+                    "spellId": 1269383,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Charge",
+                    "spellId": 100,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mortal Strike",
+                    "spellId": 12294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Charge",
+                    "spellId": 126664,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
@@ -4895,43 +5130,19 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Pummel",
-                    "spellId": 6552,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Overpower",
-                    "spellId": 7384,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Intimidating Shout",
-                    "spellId": 5246,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Overpower",
-                    "spellId": 7384,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
                     "isRepeat": true
                 }
             ],
-            "matchId": "09049f0072ea8632c7501ffb146f8c7c",
-            "guid": "Player-60-0ED6051F",
-            "start": 74037.812,
-            "end": 74067.812,
-            "targetGuid": "Player-57-0DBBC17C",
+            "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
+            "guid": "Player-121-0AD91B00",
+            "start": 80134.966,
+            "end": 80164.966,
+            "targetGuid": "Player-60-0FFBD835",
             "talentBuild": {
-                "matchId": "09049f0072ea8632c7501ffb146f8c7c",
+                "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
                 "talents": [
                     {
                         "name": "Die by the Sword",
@@ -4979,15 +5190,6 @@
                         "entryId": 7387
                     },
                     {
-                        "name": "Bloodsurge",
-                        "spellId": 384361,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6125,
-                        "entryId": 7401
-                    },
-                    {
                         "name": "Improved Overpower",
                         "spellId": 385571,
                         "rank": 1,
@@ -5008,11 +5210,11 @@
                     {
                         "name": "Bloodborne",
                         "spellId": 383287,
-                        "rank": 2,
+                        "rank": 1,
                         "treeType": "spec",
                         "resolvedByOffset": false,
                         "nodeId": 6156,
-                        "entryId": 7442
+                        "entryId": 7441
                     },
                     {
                         "name": "Colossus Smash",
@@ -5076,6 +5278,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 5816,
                         "entryId": 7029
+                    },
+                    {
+                        "name": "Second Wind",
+                        "spellId": 29838,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5817,
+                        "entryId": 7030
                     },
                     {
                         "name": "Storm Bolt",
@@ -5157,15 +5368,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 5831,
                         "entryId": 7049
-                    },
-                    {
-                        "name": "Shockwave",
-                        "spellId": 46968,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 5834,
-                        "entryId": 7053
                     },
                     {
                         "name": "Champion's Spear",
@@ -5348,15 +5550,6 @@
                         "entryId": 7179
                     },
                     {
-                        "name": "Martial Prowess",
-                        "spellId": 1273062,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 6145,
-                        "entryId": 7427
-                    },
-                    {
                         "name": "Deep Wounds",
                         "spellId": 1261060,
                         "rank": 1,
@@ -5364,6 +5557,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 6147,
                         "entryId": 7429
+                    },
+                    {
+                        "name": "Mortal Wounds",
+                        "spellId": 1261062,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6169,
+                        "entryId": 7457
                     },
                     {
                         "name": "Strength of Arms",
@@ -5456,6 +5658,33 @@
                         "entryId": 7025
                     },
                     {
+                        "name": "Fervor of Battle",
+                        "spellId": 202316,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6128,
+                        "entryId": 7404
+                    },
+                    {
+                        "name": "Cleave",
+                        "spellId": 845,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 6139,
+                        "entryId": 7419
+                    },
+                    {
+                        "name": "Shockwave",
+                        "spellId": 46968,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 5834,
+                        "entryId": 7053
+                    },
+                    {
                         "name": "Fueled by Violence",
                         "spellId": 383103,
                         "rank": 1,
@@ -5463,24 +5692,6 @@
                         "resolvedByOffset": true,
                         "nodeId": 6119,
                         "entryId": 7394
-                    },
-                    {
-                        "name": "Berserker Shout",
-                        "spellId": 384100,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5823,
-                        "entryId": 7036
-                    },
-                    {
-                        "name": "Shattering Throw",
-                        "spellId": 64382,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 5824,
-                        "entryId": 7039
                     },
                     {
                         "name": "Bladestorm",
@@ -5492,13 +5703,13 @@
                         "entryId": 7443
                     },
                     {
-                        "name": "Overpowering Finish",
-                        "spellId": 400205,
+                        "name": "Powerful Momentum",
+                        "spellId": 1261050,
                         "rank": 1,
                         "treeType": "spec",
                         "resolvedByOffset": true,
-                        "nodeId": 6135,
-                        "entryId": 7412
+                        "nodeId": 6140,
+                        "entryId": 7421
                     },
                     {
                         "name": "Culling Cyclone",
@@ -5571,49 +5782,66 @@
                         "resolvedByOffset": true,
                         "nodeId": 6137,
                         "entryId": 7415
+                    },
+                    {
+                        "name": "Berserker Shout",
+                        "spellId": 384100,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 5823,
+                        "entryId": 7036
                     }
                 ],
                 "pvpTalents": [
-                    {
-                        "name": "Berserker Roar",
-                        "spellId": 1227751,
-                        "pvpTalentId": 408
-                    },
                     {
                         "name": "Sharpen Blade",
                         "spellId": 1219165,
                         "pvpTalentId": 401
                     },
                     {
-                        "name": "Demolition",
-                        "spellId": 329033,
-                        "pvpTalentId": 404
-                    }
-                ],
-                "resolvedAt": "2026-08-31T06:43:28+00:00"
-            },
-            "mechanics": {
-                "targetGuid": "Player-57-0DBBC17C",
-                "championBuffs": [
-                    {
-                        "spellId": 974,
-                        "name": "Earth Shield"
+                        "name": "Safeguard",
+                        "spellId": 424654,
+                        "pvpTalentId": 406
                     },
                     {
-                        "spellId": 61295,
-                        "name": "Riptide"
+                        "name": "Disarm",
+                        "spellId": 236077,
+                        "pvpTalentId": 403
+                    }
+                ],
+                "resolvedAt": "2026-09-06T02:56:48+00:00"
+            },
+            "mechanics": {
+                "targetGuid": "Player-60-0FFBD835",
+                "championBuffs": [
+                    {
+                        "spellId": 2580,
+                        "name": "Find Minerals"
+                    },
+                    {
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
+                    },
+                    {
+                        "spellId": 6673,
+                        "name": "Battle Shout"
+                    },
+                    {
+                        "spellId": 462854,
+                        "name": "Skyfury"
                     },
                     {
                         "spellId": 445584,
                         "name": "Executioner"
                     },
                     {
-                        "spellId": 386164,
-                        "name": "Battle Stance"
-                    },
-                    {
                         "spellId": 1269394,
                         "name": "Master of Warfare"
+                    },
+                    {
+                        "spellId": 445606,
+                        "name": "Imminent Demise"
                     },
                     {
                         "spellId": 260708,
@@ -5624,128 +5852,144 @@
                         "name": "Heroic Might"
                     },
                     {
-                        "spellId": 445606,
-                        "name": "Imminent Demise"
-                    },
-                    {
-                        "spellId": 207400,
-                        "name": "Ancestral Vigor"
-                    },
-                    {
-                        "spellId": 435551,
-                        "name": "Enduring Bloodstone"
-                    },
-                    {
-                        "spellId": 384100,
-                        "name": "Berserker Shout"
-                    },
-                    {
-                        "spellId": 1219209,
-                        "name": "Berserker Roar"
-                    },
-                    {
-                        "spellId": 456120,
-                        "name": "Opportunist"
-                    },
-                    {
-                        "spellId": 316440,
-                        "name": "Martial Prowess"
-                    },
-                    {
                         "spellId": 386633,
                         "name": "Executioner's Precision"
+                    },
+                    {
+                        "spellId": 386164,
+                        "name": "Battle Stance"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    },
+                    {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
                     },
                     {
                         "spellId": 52437,
                         "name": "Sudden Death"
                     },
                     {
-                        "spellId": 462568,
-                        "name": "Elemental Resistance"
-                    },
-                    {
-                        "spellId": 386631,
-                        "name": "Battlelord"
-                    },
-                    {
-                        "spellId": 386632,
-                        "name": "Battlelord"
-                    }
-                ],
-                "championDebuffs": [
-                    {
-                        "spellId": 205708,
-                        "name": "Chilled"
-                    },
-                    {
-                        "spellId": 980,
-                        "name": "Agony"
-                    },
-                    {
-                        "spellId": 1221389,
-                        "name": "Freezing"
-                    },
-                    {
-                        "spellId": 48181,
-                        "name": "Haunt"
-                    }
-                ],
-                "targetBuffs": [
-                    {
-                        "spellId": 1263084,
-                        "name": "Toggle Find Lumber"
-                    },
-                    {
-                        "spellId": 1256697,
-                        "name": "Find Lumber"
-                    },
-                    {
-                        "spellId": 186403,
-                        "name": "Sign of Battle"
-                    },
-                    {
-                        "spellId": 110960,
-                        "name": "Greater Invisibility"
-                    },
-                    {
-                        "spellId": 1459,
-                        "name": "Arcane Intellect"
-                    },
-                    {
-                        "spellId": 414664,
-                        "name": "Mass Invisibility"
-                    },
-                    {
-                        "spellId": 1126,
-                        "name": "Mark of the Wild"
-                    },
-                    {
-                        "spellId": 205473,
-                        "name": "Icicles"
-                    },
-                    {
-                        "spellId": 155777,
-                        "name": "Rejuvenation (Germination)"
-                    },
-                    {
-                        "spellId": 33763,
-                        "name": "Lifebloom"
-                    },
-                    {
-                        "spellId": 1222865,
-                        "name": "Glacial Spike!"
-                    },
-                    {
-                        "spellId": 102342,
-                        "name": "Ironbark"
+                        "spellId": 435551,
+                        "name": "Enduring Bloodstone"
                     },
                     {
                         "spellId": 1287665,
                         "name": "Rune of Lingering"
                     },
                     {
-                        "spellId": 1287425,
-                        "name": "Void-Touched Orbs"
+                        "spellId": 262232,
+                        "name": "War Machine"
+                    },
+                    {
+                        "spellId": 107574,
+                        "name": "Avatar"
+                    }
+                ],
+                "championDebuffs": [
+                    {
+                        "spellId": 191587,
+                        "name": "Virulent Plague"
+                    },
+                    {
+                        "spellId": 445836,
+                        "name": "Overwhelmed"
+                    },
+                    {
+                        "spellId": 374557,
+                        "name": "Brittle"
+                    },
+                    {
+                        "spellId": 444834,
+                        "name": "Trollbane's Icy Fury"
+                    },
+                    {
+                        "spellId": 208086,
+                        "name": "Colossus Smash"
+                    },
+                    {
+                        "spellId": 327093,
+                        "name": "Pestilence"
+                    }
+                ],
+                "targetBuffs": [
+                    {
+                        "spellId": 1254252,
+                        "name": "Lesser Ghoul"
+                    },
+                    {
+                        "spellId": 33763,
+                        "name": "Lifebloom"
+                    },
+                    {
+                        "spellId": 1242998,
+                        "name": "Lesser Ghoul"
+                    },
+                    {
+                        "spellId": 155777,
+                        "name": "Rejuvenation (Germination)"
+                    },
+                    {
+                        "spellId": 1241569,
+                        "name": "Clawing Shadows"
+                    },
+                    {
+                        "spellId": 81340,
+                        "name": "Sudden Doom"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    },
+                    {
+                        "spellId": 374585,
+                        "name": "Rune Mastery"
+                    },
+                    {
+                        "spellId": 1241077,
+                        "name": "Festering Scythe"
+                    },
+                    {
+                        "spellId": 49039,
+                        "name": "Lichborne"
+                    },
+                    {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
+                    },
+                    {
+                        "spellId": 223143,
+                        "name": "Prismatic Bauble"
+                    },
+                    {
+                        "spellId": 345230,
+                        "name": "Gladiator's Insignia"
+                    },
+                    {
+                        "spellId": 774,
+                        "name": "Rejuvenation"
+                    },
+                    {
+                        "spellId": 8936,
+                        "name": "Regrowth"
+                    },
+                    {
+                        "spellId": 48438,
+                        "name": "Wild Growth"
+                    },
+                    {
+                        "spellId": 454886,
+                        "name": "Suppression"
+                    },
+                    {
+                        "spellId": 435551,
+                        "name": "Enduring Bloodstone"
                     }
                 ],
                 "targetDebuffs": [
@@ -5754,39 +5998,39 @@
                         "name": "Overwhelmed"
                     },
                     {
-                        "spellId": 115804,
-                        "name": "Mortal Wounds"
+                        "spellId": 1490,
+                        "name": "Chaos Brand"
                     },
                     {
                         "spellId": 388539,
                         "name": "Rend"
                     },
                     {
+                        "spellId": 453177,
+                        "name": "Burning Blades"
+                    },
+                    {
+                        "spellId": 390181,
+                        "name": "Soulscar"
+                    },
+                    {
+                        "spellId": 213405,
+                        "name": "Master of the Glaive"
+                    },
+                    {
+                        "spellId": 247121,
+                        "name": "Metamorphosis"
+                    },
+                    {
                         "spellId": 188389,
                         "name": "Flame Shock"
-                    },
-                    {
-                        "spellId": 1271964,
-                        "name": "Honed Reflexes"
-                    },
-                    {
-                        "spellId": 262115,
-                        "name": "Deep Wounds"
-                    },
-                    {
-                        "spellId": 205708,
-                        "name": "Chilled"
-                    },
-                    {
-                        "spellId": 1221389,
-                        "name": "Freezing"
                     }
                 ],
-                "targetClassName": "Mage",
-                "targetSpecName": "Frost",
-                "resolvedAt": "2026-08-31T10:02:59+00:00"
+                "targetClassName": "Death Knight",
+                "targetSpecName": "Unholy",
+                "resolvedAt": "2026-09-06T02:56:55+00:00"
             }
         }
     },
-    "generated_at": "2026-08-31T06:43:16+00:00"
+    "generated_at": "2026-09-06T02:56:35+00:00"
 }

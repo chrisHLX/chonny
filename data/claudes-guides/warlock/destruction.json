@@ -1,0 +1,85 @@
+{
+    "classSlug": "warlock",
+    "specSlug": "destruction",
+    "title": "Destruction Warlock",
+    "subtitle": "A data-grounded PvP read, written by Claude — not a dictated expert module. See the disclaimer at the end.",
+    "dataSources": {
+        "playstyleSample": 10,
+        "ratingRange": [2218, 3062],
+        "patch": "12.0.7.68453",
+        "freshPullPerformed": false,
+        "note": "Built entirely from the existing 10-match sample (2218-3062 rating — the widest rating spread of any guide in this series) already on file — no new arena-log pull was performed for this. If that changes later, any fresh pull gets the standard wow:refresh-match-derived treatment so Class Guide/Burst Windows/CC chains for this spec benefit too, not just this page."
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "heading": "Identity",
+            "paragraphs": [
+                "Destruction's real kit is a DoT-and-detonate spec, not a pure direct-damage one, and its own data confirms that structure directly: Malevolence's actual description causes enemies suffering from Wither to take bonus Shadowflame damage and increase its own stack count — meaning the spec's biggest offensive cooldown is explicitly a Wither amplifier, not an independent burst button. Per Part 2 of this project's own arena framework (arena-structure.md), this changes what 'assembling the kill conjunction' looks like for this spec specifically: the damage term isn't available the instant Malevolence is pressed, it's available a few seconds after Wither has already been ticking, which means the setup window matters here in a way it doesn't for a pure burst spec.",
+                "Cataclysm's own description confirms the DoT-application role directly too — it applies Wither (or Immolate, conditionally) to every target it hits. This is a spec whose 'opener' isn't a stun-lock the way Rogue's is; it's landing the DoT, then timing Malevolence to detonate it."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Offensive Cooldowns",
+            "intro": "Malevolence is the detonator; Wither is the fuse. Everything else in this grid exists to either set up or cash in that same relationship.",
+            "spellIds": [442726, 445468, 152108, 116858, 6353]
+        },
+        {
+            "type": "prose",
+            "heading": "A real ability the data says isn't worth casting in arena",
+            "paragraphs": [
+                "Rain of Fire was taken in all 10 sampled matches but never actually cast in a single one. This is a genuinely useful, honest finding rather than noise: Rain of Fire is a ground-targeted AoE spell, and a 3v3 arena rarely has enemies clustered tightly enough, for long enough, to make an AoE cast worth the time it costs relative to single-target damage on the actual kill target. The talent is likely a forced pick from the tree's own layout rather than a real rotational choice — worth knowing before assuming it belongs in a real single-target rotation.",
+                "Demonic Resilience (a passive defensive stat talent) shows the same 10-taken/0-detected pattern, but for a different, more mundane reason: it's a flat damage-reduction passive with no discrete cast or proc event to log, so a 0 here reflects a gap in what this kind of analysis can observe, not a real absence of value. Worth distinguishing the two cases rather than treating every 0 the same way — Rain of Fire's 0 is a real finding, Demonic Resilience's 0 is a measurement limitation."
+            ]
+        },
+        {
+            "type": "prose",
+            "heading": "The real burst window",
+            "paragraphs": [
+                "The actual highest-DPS 12-second window found across the whole archived sample: Malevolence -> Fear -> Chaos Bolt -> Chaos Bolt -> Incinerate -> Fear -> Conflagrate -> Chaos Bolt -> Incinerate. This is a genuinely clean confirmation of the spec's own stated identity — Malevolence opens the window exactly as its description promises, and the rest is Chaos Bolt/Incinerate cashing in the amplified Wither underneath it.",
+                "Worth being honest about what's also present here that a pure damage narrative might skip over: Fear appears twice inside this same 12-second window. Same pattern as the Frost Mage and Unholy DK guides in this series — the real highest-value window isn't pure damage-spam, it's damage layered with denying the opponent's own response, which for a Warlock means locking down whichever teammate would otherwise interrupt or peel this exact sequence."
+            ]
+        },
+        {
+            "type": "sequence",
+            "heading": "The real observed burst window",
+            "intro": "The literal top-DPS 12s window from the archived match sample — read live from the same rotation file Burst Windows/Class Guide use for this spec.",
+            "useRealBurstWindow": true,
+            "burstWindowLength": 12
+        },
+        {
+            "type": "prose",
+            "heading": "Reading the anti-go against Destruction",
+            "paragraphs": [
+                "Per Part 11 of the framework, the state-recognition signal to watch for here isn't Malevolence itself — it's Wither actually landing and staying up. Malevolence only matters if Wither is already ticking; interrupting or dispelling Wither before Malevolence gets pressed defeats the whole sequence more cheaply than answering the detonation itself. This is the same 'break the cheapest term of the conjunction, not the most visible one' principle documented for other specs in this series, applied to a DoT-first spec instead of a stun-first one."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Defensive Cooldowns",
+            "intro": "A notably thinner defensive kit than most specs in this series — Unending Resolve is the one real hard answer.",
+            "spellIds": [104773, 108416, 452930]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Crowd Control",
+            "intro": "Fear, Howl of Terror, and Seduction all share the Disorient category — they diminish each other, so chaining more than one back to back inside one DR window is mostly wasted duration, not free extra control.",
+            "spellIds": [5782, 5484, 119909, 6789, 111771]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Utility",
+            "intro": "Spell Lock is a school-specific lockout (not a full silence — check what school it actually stops before assuming it shuts down everything), and Curse of Exhaustion is a genuine Slow, useful for kiting a committed melee target.",
+            "spellIds": [119910, 89808, 334275]
+        },
+        {
+            "type": "prose",
+            "heading": "The cooldown ledger — what to actually track",
+            "paragraphs": [
+                "Per Part 4 of the framework, the number worth tracking for this spec is time-since-Malevolence, same shape as Rogue's Deathmark tracking — except here it's paired with a second condition (is Wither currently up) rather than being sufficient on its own. A Malevolence spent without Wither already ticking is a wasted cooldown in the same way a Smoke Bomb spent on partial pressure is — the button existing and being pressed is not the same as the button actually doing its job."
+            ]
+        }
+    ],
+    "disclaimer": "This guide was written by Claude (an AI), synthesized from real archived match data and this project's own arena-structure.md framework — it is NOT a dictated expert module and does not carry the same trust tier as the Discipline Priest or Feral Druid canonical modules elsewhere on this site. Every cooldown, category, and observed sequence above is read live from the same database everything else uses; the reasoning connecting them is AI-generated analysis, offered as a data-grounded opinion, not verified expertise. Treat it as a starting hypothesis to test against your own games, not a verdict."
+}

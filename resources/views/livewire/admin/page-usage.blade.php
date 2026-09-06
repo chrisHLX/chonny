@@ -130,6 +130,33 @@
             @endif
         </div>
 
+        {{-- ── Spell Counters: matchup picks ── --}}
+        <div class="linear-card overflow-hidden">
+            <div class="px-5 py-4 border-b border-line">
+                <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider">Spell Counters — matchup picks</p>
+                <p class="text-[11px] text-ink-subtle mt-0.5">Which simulated 1v1 gets selected most. No class_id/spec_id here (a duel involves two specs) — same reason WoW Comps' tab/preset breakdowns live outside the main table above.</p>
+            </div>
+
+            @if($countersMatchupBreakdown->isEmpty())
+                <p class="px-5 py-8 text-center text-[13px] text-ink-subtle">No matchup selections recorded yet.</p>
+            @else
+                @php $countersMax = $countersMatchupBreakdown->max('count') ?: 1; @endphp
+                <div class="divide-y divide-line">
+                    @foreach($countersMatchupBreakdown as $row)
+                        <div class="px-5 py-3">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <p class="text-[13px] text-ink">{{ str_replace(['_vs_', '-'], [' vs ', ' / '], $row->matchup) }}</p>
+                                <p class="text-[12px] text-ink-muted">{{ number_format($row->count) }}</p>
+                            </div>
+                            <div class="h-1.5 rounded-full bg-surface-2 overflow-hidden">
+                                <div class="h-full rounded-full bg-accent" style="width: {{ round(($row->count / $countersMax) * 100) }}%"></div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+
         {{-- ── WoW Comps: popularity by slot role ── --}}
         <div class="linear-card overflow-hidden">
             <div class="px-5 py-4 border-b border-line">

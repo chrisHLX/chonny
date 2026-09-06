@@ -1,5 +1,7 @@
 # Next Step + Reflection Loop — How It Works
 
+> **Legacy.** Documents the earlier learning-platform direction (see `VISION.md`). Kept as a reference for how the code works today; the system it describes is dormant, not the current focus.
+
 Second, faster cadence on top of the diagnostic profile. The diagnostic produces a profile roughly once per subject (slow cadence); this system gives the user one concrete practice task at a time and reinterprets it after they report back (fast cadence, re-triggered by reflection or by expiry).
 
 Built on another machine, code pulled and verified here on 2026-07-08. See `## Next Step + Reflection Loop ✓ COMPLETE` in `CLAUDE.md` for the canonical reference — this file is the build/verification narrative behind that entry.

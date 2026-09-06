@@ -1,9 +1,9 @@
 {
     "class": "monk",
     "spec": "windwalker",
-    "windows": 835,
-    "killWindows": 169,
-    "matches": 167,
+    "windows": 620,
+    "killWindows": 122,
+    "matches": 122,
     "anchors": [
         "Fists of Fury",
         "Rising Sun Kick",
@@ -20,26 +20,20 @@
         "Zenith"
     ],
     "topDpsWindow": {
-        "damage": 1807415,
+        "damage": 1834366,
         "durationSeconds": 12,
-        "killed": false,
+        "killed": true,
         "steps": [
             {
-                "name": "Spear Hand Strike",
-                "spellId": 116705,
+                "name": "Tiger Palm",
+                "spellId": 100780,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Blackout Kick",
-                "spellId": 100784,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Rushing Wind Kick",
-                "spellId": 467307,
-                "isCc": false,
+                "name": "Leg Sweep",
+                "spellId": 119381,
+                "isCc": true,
                 "isRepeat": false
             },
             {
@@ -49,28 +43,22 @@
                 "isRepeat": false
             },
             {
-                "name": "Tiger Palm",
-                "spellId": 100780,
+                "name": "Zenith",
+                "spellId": 1249625,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Touch of Karma",
-                "spellId": 122470,
+                "name": "Gladiator's Badge",
+                "spellId": 345228,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Blackout Kick",
-                "spellId": 100784,
+                "name": "Blood Fury",
+                "spellId": 33697,
                 "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Rushing Wind Kick",
-                "spellId": 467307,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false
             },
             {
                 "name": "Rising Sun Kick",
@@ -79,20 +67,38 @@
                 "isRepeat": true
             },
             {
-                "name": "Tiger Palm",
-                "spellId": 100780,
+                "name": "Ring of Peace",
+                "spellId": 116844,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Strike of the Windlord",
+                "spellId": 392983,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": false
             },
             {
                 "name": "Blackout Kick",
                 "spellId": 100784,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": false
             },
             {
-                "name": "Rushing Wind Kick",
-                "spellId": 467307,
+                "name": "Fists of Fury",
+                "spellId": 113656,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Touch of Death",
+                "spellId": 322109,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Tiger Palm",
+                "spellId": 100780,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -103,13 +109,13 @@
                 "isRepeat": true
             }
         ],
-        "matchId": "bc2e75ff7d1637466658c9dddaa8c56f",
-        "guid": "Player-73-0EF027BE",
-        "start": 6389.204,
-        "end": 6401.204,
-        "targetGuid": "Player-3676-0EE85CB8",
+        "matchId": "a4634ca7e43678b06855af333a88d82d",
+        "guid": "Player-11-0EB543F0",
+        "start": 59653.26,
+        "end": 59665.26,
+        "targetGuid": "Player-11-0E6F8F80",
         "talentBuild": {
-            "matchId": "bc2e75ff7d1637466658c9dddaa8c56f",
+            "matchId": "a4634ca7e43678b06855af333a88d82d",
             "talents": [
                 {
                     "name": "Sharp Reflexes",
@@ -301,15 +307,6 @@
                     "entryId": 4238
                 },
                 {
-                    "name": "Bounding Agility",
-                    "spellId": 450520,
-                    "rank": 1,
-                    "treeType": "class",
-                    "resolvedByOffset": false,
-                    "nodeId": 3534,
-                    "entryId": 4247
-                },
-                {
                     "name": "Zenith Stomp",
                     "spellId": 1272694,
                     "rank": 1,
@@ -317,6 +314,15 @@
                     "resolvedByOffset": false,
                     "nodeId": 3535,
                     "entryId": 4248
+                },
+                {
+                    "name": "Peace and Prosperity",
+                    "spellId": 450448,
+                    "rank": 1,
+                    "treeType": "class",
+                    "resolvedByOffset": false,
+                    "nodeId": 3536,
+                    "entryId": 4249
                 },
                 {
                     "name": "Yu'lon's Grace",
@@ -380,6 +386,15 @@
                     "resolvedByOffset": false,
                     "nodeId": 3546,
                     "entryId": 4262
+                },
+                {
+                    "name": "Windwalking",
+                    "spellId": 157411,
+                    "rank": 1,
+                    "treeType": "class",
+                    "resolvedByOffset": false,
+                    "nodeId": 3548,
+                    "entryId": 4265
                 },
                 {
                     "name": "Martial Instincts",
@@ -589,15 +604,6 @@
                     "entryId": 4487
                 },
                 {
-                    "name": "Diffuse Magic",
-                    "spellId": 1243287,
-                    "rank": 1,
-                    "treeType": "class",
-                    "resolvedByOffset": false,
-                    "nodeId": 3631,
-                    "entryId": 4369
-                },
-                {
                     "name": "Rushing Wind Kick",
                     "spellId": 1250566,
                     "rank": 1,
@@ -634,15 +640,6 @@
                     "entryId": 4719
                 },
                 {
-                    "name": "Vigorous Expulsion",
-                    "spellId": 392900,
-                    "rank": 1,
-                    "treeType": "class",
-                    "resolvedByOffset": false,
-                    "nodeId": 3648,
-                    "entryId": 4386
-                },
-                {
                     "name": "Stillstep Coil",
                     "spellId": 1266733,
                     "rank": 1,
@@ -650,6 +647,15 @@
                     "resolvedByOffset": false,
                     "nodeId": 3653,
                     "entryId": 4392
+                },
+                {
+                    "name": "Reinvigoration",
+                    "spellId": 1266740,
+                    "rank": 1,
+                    "treeType": "class",
+                    "resolvedByOffset": false,
+                    "nodeId": 3655,
+                    "entryId": 4395
                 },
                 {
                     "name": "Spear Hand Strike",
@@ -821,1262 +827,123 @@
                     "pvpTalentId": 230
                 },
                 {
+                    "name": "Wind Waker",
+                    "spellId": 357633,
+                    "pvpTalentId": 228
+                },
+                {
                     "name": "Grapple Weapon",
                     "spellId": 233759,
                     "pvpTalentId": 227
-                },
-                {
-                    "name": "Ride the Wind",
-                    "spellId": 201372,
-                    "pvpTalentId": 226
                 }
             ],
-            "resolvedAt": "2026-08-31T06:43:35+00:00"
+            "resolvedAt": "2026-09-06T02:56:54+00:00"
         },
         "mechanics": {
-            "targetGuid": "Player-3676-0EE85CB8",
+            "targetGuid": "Player-11-0E6F8F80",
             "championBuffs": [
                 {
-                    "spellId": 1256697,
-                    "name": "Find Lumber"
+                    "spellId": 471521,
+                    "name": "Sign of the Explorer"
                 },
                 {
-                    "spellId": 186406,
-                    "name": "Sign of the Critter"
-                },
-                {
-                    "spellId": 335149,
-                    "name": "Sign of the Scourge"
-                },
-                {
-                    "spellId": 1126,
-                    "name": "Mark of the Wild"
-                },
-                {
-                    "spellId": 53563,
-                    "name": "Beacon of Light"
-                },
-                {
-                    "spellId": 101643,
-                    "name": "Transcendence"
-                },
-                {
-                    "spellId": 196741,
-                    "name": "Hit Combo"
-                },
-                {
-                    "spellId": 1241715,
-                    "name": "Might of the Void"
-                },
-                {
-                    "spellId": 202090,
-                    "name": "Teachings of the Monastery"
-                },
-                {
-                    "spellId": 116768,
-                    "name": "Blackout Kick!"
-                },
-                {
-                    "spellId": 1229746,
-                    "name": "Arcanoweave Insight"
-                },
-                {
-                    "spellId": 1287771,
-                    "name": "Rune of Masterful Cunning"
-                },
-                {
-                    "spellId": 451298,
-                    "name": "Momentum Boost"
-                },
-                {
-                    "spellId": 209746,
-                    "name": "Moonkin Aura"
-                },
-                {
-                    "spellId": 451021,
-                    "name": "Flurry Charge"
-                },
-                {
-                    "spellId": 1249625,
-                    "name": "Zenith"
-                },
-                {
-                    "spellId": 345228,
-                    "name": "Gladiator's Badge"
+                    "spellId": 129914,
+                    "name": "Combat Wisdom"
                 },
                 {
                     "spellId": 1261724,
                     "name": "Tigereye Brew"
                 },
                 {
-                    "spellId": 116841,
-                    "name": "Tiger's Lust"
+                    "spellId": 194384,
+                    "name": "Atonement"
                 },
                 {
-                    "spellId": 1248705,
-                    "name": "Skyfire Heel"
+                    "spellId": 101643,
+                    "name": "Transcendence"
                 },
                 {
-                    "spellId": 1249753,
-                    "name": "Combo Strikes: Rising Sun Kick"
-                },
-                {
-                    "spellId": 414143,
-                    "name": "Yu'lon's Grace"
+                    "spellId": 465,
+                    "name": "Devotion Aura"
                 }
             ],
             "championDebuffs": [
                 {
-                    "spellId": 445474,
-                    "name": "Wither"
-                },
-                {
-                    "spellId": 80240,
-                    "name": "Havoc"
+                    "spellId": 383346,
+                    "name": "Expurgation"
                 }
             ],
             "targetBuffs": [
                 {
-                    "spellId": 48018,
-                    "name": "Demonic Circle"
+                    "spellId": 465,
+                    "name": "Devotion Aura"
+                },
+                {
+                    "spellId": 471877,
+                    "name": "Howl of the Pack Leader"
                 },
                 {
                     "spellId": 1229746,
                     "name": "Arcanoweave Insight"
                 },
                 {
-                    "spellId": 1241715,
-                    "name": "Might of the Void"
+                    "spellId": 1044,
+                    "name": "Blessing of Freedom"
                 },
                 {
-                    "spellId": 117828,
-                    "name": "Backdraft"
+                    "spellId": 246152,
+                    "name": "Barbed Shot"
                 },
                 {
-                    "spellId": 387263,
-                    "name": "Flashpoint"
+                    "spellId": 1276720,
+                    "name": "Nature's Ally"
                 },
                 {
-                    "spellId": 345230,
-                    "name": "Gladiator's Insignia"
+                    "spellId": 186258,
+                    "name": "Aspect of the Cheetah"
                 },
                 {
-                    "spellId": 256374,
-                    "name": "Entropic Embrace"
+                    "spellId": 19574,
+                    "name": "Bestial Wrath"
                 },
                 {
-                    "spellId": 387385,
-                    "name": "Backlash"
+                    "spellId": 1265063,
+                    "name": "Bloody Frenzy"
                 },
                 {
-                    "spellId": 1287774,
-                    "name": "Rune of Burning Haste"
+                    "spellId": 471878,
+                    "name": "Howl of the Pack Leader"
                 },
                 {
-                    "spellId": 389614,
-                    "name": "Abyss Walker"
+                    "spellId": 1258338,
+                    "name": "Stampede!"
                 },
                 {
-                    "spellId": 442726,
-                    "name": "Malevolence"
-                },
-                {
-                    "spellId": 77489,
-                    "name": "Echo of Light"
-                },
-                {
-                    "spellId": 65081,
-                    "name": "Body and Soul"
-                },
-                {
-                    "spellId": 457578,
-                    "name": "Summon Overfiend"
+                    "spellId": 1287772,
+                    "name": "Rune of Critical Power"
                 },
                 {
                     "spellId": 1287665,
                     "name": "Rune of Lingering"
                 }
             ],
-            "targetDebuffs": [
-                {
-                    "spellId": 113746,
-                    "name": "Mystic Touch"
-                },
-                {
-                    "spellId": 164815,
-                    "name": "Sunfire"
-                },
-                {
-                    "spellId": 164812,
-                    "name": "Moonfire"
-                },
-                {
-                    "spellId": 1263250,
-                    "name": "Astral Smolder"
-                },
-                {
-                    "spellId": 450214,
-                    "name": "Stellar Amplification"
-                },
-                {
-                    "spellId": 115804,
-                    "name": "Mortal Wounds"
-                }
-            ],
-            "targetClassName": "Warlock",
-            "targetSpecName": "Destruction",
-            "resolvedAt": "2026-08-31T10:03:17+00:00"
+            "targetDebuffs": [],
+            "targetClassName": "Hunter",
+            "targetSpecName": "Beast Mastery",
+            "resolvedAt": "2026-09-06T02:57:05+00:00"
         }
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 1426048,
+            "damage": 1593417,
             "durationSeconds": 6,
             "killed": true,
             "steps": [
                 {
-                    "name": "Paralysis",
-                    "spellId": 115078,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Badge",
-                    "spellId": 345228,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Zenith",
-                    "spellId": 1249625,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Strike of the Windlord",
-                    "spellId": 392983,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Blackout Kick",
-                    "spellId": 100784,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rising Sun Kick",
-                    "spellId": 107428,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Touch of Death",
-                    "spellId": 322109,
-                    "isCc": false,
-                    "isRepeat": false
-                }
-            ],
-            "matchId": "06f8bbdef42ca3979587d7cff6cfea2b",
-            "guid": "Player-11-0EB26FC6",
-            "start": 867.495,
-            "end": 873.495,
-            "targetGuid": "Player-11-0EB8E9AA",
-            "talentBuild": {
-                "matchId": "06f8bbdef42ca3979587d7cff6cfea2b",
-                "talents": [
-                    {
-                        "name": "Ferociousness",
-                        "spellId": 458623,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3685,
-                        "entryId": 4430
-                    },
-                    {
-                        "name": "Sharp Reflexes",
-                        "spellId": 261917,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3675,
-                        "entryId": 4418
-                    },
-                    {
-                        "name": "Ascension",
-                        "spellId": 115396,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3687,
-                        "entryId": 4433
-                    },
-                    {
-                        "name": "Brawler's Intensity",
-                        "spellId": 451485,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3709,
-                        "entryId": 4458
-                    },
-                    {
-                        "name": "Glory of the Dawn",
-                        "spellId": 392958,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3698,
-                        "entryId": 4447
-                    },
-                    {
-                        "name": "Communion With Wind",
-                        "spellId": 451576,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3723,
-                        "entryId": 4475
-                    },
-                    {
-                        "name": "Momentum Boost",
-                        "spellId": 451294,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3673,
-                        "entryId": 4416
-                    },
-                    {
-                        "name": "Zenith",
-                        "spellId": 1249625,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3707,
-                        "entryId": 4456
-                    },
-                    {
-                        "name": "Teachings of the Monastery",
-                        "spellId": 116645,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3697,
-                        "entryId": 4446
-                    },
-                    {
-                        "name": "Dual Threat",
-                        "spellId": 451823,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3696,
-                        "entryId": 4445
-                    },
-                    {
-                        "name": "Energy Burst",
-                        "spellId": 451498,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3719,
-                        "entryId": 4471
-                    },
-                    {
-                        "name": "Sequenced Strikes",
-                        "spellId": 451515,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3721,
-                        "entryId": 4473
-                    },
-                    {
-                        "name": "Dance of Chi-Ji",
-                        "spellId": 325201,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3716,
-                        "entryId": 4467
-                    },
-                    {
-                        "name": "Dance of the Wind",
-                        "spellId": 432181,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3510,
-                        "entryId": 4221
-                    },
-                    {
-                        "name": "Improved Touch of Death",
-                        "spellId": 322113,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3513,
-                        "entryId": 4224
-                    },
-                    {
-                        "name": "Grace of the Crane",
-                        "spellId": 388811,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3519,
-                        "entryId": 4230
-                    },
-                    {
-                        "name": "Tiger's Lust",
-                        "spellId": 116841,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3520,
-                        "entryId": 4231
-                    },
-                    {
-                        "name": "Wind's Reach",
-                        "spellId": 450514,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3521,
-                        "entryId": 4232
-                    },
-                    {
-                        "name": "Detox",
-                        "spellId": 218164,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3523,
-                        "entryId": 4235
-                    },
-                    {
-                        "name": "Calming Presence",
-                        "spellId": 388664,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3526,
-                        "entryId": 4238
-                    },
-                    {
-                        "name": "Swift Art",
-                        "spellId": 450622,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3528,
-                        "entryId": 4240
-                    },
-                    {
-                        "name": "Tiger Fang",
-                        "spellId": 1272781,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3532,
-                        "entryId": 4245
-                    },
-                    {
-                        "name": "Zenith Stomp",
-                        "spellId": 1272694,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3535,
-                        "entryId": 4248
-                    },
-                    {
-                        "name": "Yu'lon's Grace",
-                        "spellId": 414131,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3538,
-                        "entryId": 4252
-                    },
-                    {
-                        "name": "Ferocity of Xuen",
-                        "spellId": 388674,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3539,
-                        "entryId": 4254
-                    },
-                    {
-                        "name": "Transcendence",
-                        "spellId": 101643,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3540,
-                        "entryId": 4255
-                    },
-                    {
-                        "name": "Chi Proficiency",
-                        "spellId": 450426,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3542,
-                        "entryId": 4258
-                    },
-                    {
-                        "name": "Flow of Chi",
-                        "spellId": 450569,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3543,
-                        "entryId": 4259
-                    },
-                    {
-                        "name": "Healing Winds",
-                        "spellId": 450560,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3544,
-                        "entryId": 4260
-                    },
-                    {
-                        "name": "Fortifying Brew",
-                        "spellId": 115203,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3546,
-                        "entryId": 4262
-                    },
-                    {
-                        "name": "Martial Instincts",
-                        "spellId": 450427,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3552,
-                        "entryId": 4271
-                    },
-                    {
-                        "name": "Tiger Tail Sweep",
-                        "spellId": 264348,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3555,
-                        "entryId": 4274
-                    },
-                    {
-                        "name": "Ancient Arts",
-                        "spellId": 344359,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3557,
-                        "entryId": 4278
-                    },
-                    {
-                        "name": "Fast Feet",
-                        "spellId": 388809,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3558,
-                        "entryId": 4279
-                    },
-                    {
-                        "name": "Rising Star",
-                        "spellId": 388849,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3706,
-                        "entryId": 4455
-                    },
-                    {
-                        "name": "Weapon of Wind",
-                        "spellId": 1272678,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3730,
-                        "entryId": 4483
-                    },
-                    {
-                        "name": "Martial Agility",
-                        "spellId": 1272685,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3737,
-                        "entryId": 4490
-                    },
-                    {
-                        "name": "Xuen's Battlegear",
-                        "spellId": 392993,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3728,
-                        "entryId": 4481
-                    },
-                    {
-                        "name": "Knowledge of the Broken Temple",
-                        "spellId": 451529,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3731,
-                        "entryId": 4484
-                    },
-                    {
-                        "name": "Sunfire Spiral",
-                        "spellId": 1272415,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3722,
-                        "entryId": 4474
-                    },
-                    {
-                        "name": "Inner Peace",
-                        "spellId": 397768,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3720,
-                        "entryId": 4472
-                    },
-                    {
-                        "name": "Combo Breaker",
-                        "spellId": 137384,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3715,
-                        "entryId": 4466
-                    },
-                    {
-                        "name": "Hit Combo",
-                        "spellId": 196740,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3708,
-                        "entryId": 4457
-                    },
-                    {
-                        "name": "Combat Wisdom",
-                        "spellId": 121817,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3674,
-                        "entryId": 4417
-                    },
-                    {
-                        "name": "Fists of Fury",
-                        "spellId": 113656,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3667,
-                        "entryId": 4408
-                    },
-                    {
-                        "name": "Vigilant Watch",
-                        "spellId": 450993,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3901,
-                        "entryId": 4703
-                    },
-                    {
-                        "name": "Martial Precision",
-                        "spellId": 450990,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3903,
-                        "entryId": 4706
-                    },
-                    {
-                        "name": "Veteran's Eye",
-                        "spellId": 450987,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3906,
-                        "entryId": 4710
-                    },
-                    {
-                        "name": "One Versus Many",
-                        "spellId": 450988,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3907,
-                        "entryId": 4711
-                    },
-                    {
-                        "name": "Efficient Training",
-                        "spellId": 450989,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3908,
-                        "entryId": 4712
-                    },
-                    {
-                        "name": "Wisdom of the Wall",
-                        "spellId": 1272821,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3909,
-                        "entryId": 4713
-                    },
-                    {
-                        "name": "Against All Odds",
-                        "spellId": 450986,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3910,
-                        "entryId": 4714
-                    },
-                    {
-                        "name": "Skyfire Heel",
-                        "spellId": 1248704,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3734,
-                        "entryId": 4487
-                    },
-                    {
-                        "name": "Rushing Wind Kick",
-                        "spellId": 1250566,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3727,
-                        "entryId": 4480
-                    },
-                    {
-                        "name": "Shado Over the Battlefield",
-                        "spellId": 1262612,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3912,
-                        "entryId": 4717
-                    },
-                    {
-                        "name": "Stand Ready",
-                        "spellId": 1262603,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3913,
-                        "entryId": 4718
-                    },
-                    {
-                        "name": "Weapons of the Wall",
-                        "spellId": 1262610,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3914,
-                        "entryId": 4719
-                    },
-                    {
-                        "name": "Vivacious Vivification",
-                        "spellId": 388812,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3651,
-                        "entryId": 4390
-                    },
-                    {
-                        "name": "Stillstep Coil",
-                        "spellId": 1266733,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3653,
-                        "entryId": 4392
-                    },
-                    {
-                        "name": "Spear Hand Strike",
-                        "spellId": 116705,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3659,
-                        "entryId": 4399
-                    },
-                    {
-                        "name": "Tigereye Brew",
-                        "spellId": 1261703,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3740,
-                        "entryId": 4495
-                    },
-                    {
-                        "name": "Paralysis",
-                        "spellId": 115078,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3515,
-                        "entryId": 4226
-                    },
-                    {
-                        "name": "Rising Sun Kick",
-                        "spellId": 107428,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3559,
-                        "entryId": 4280
-                    },
-                    {
-                        "name": "Flurry Strikes",
-                        "spellId": 450615,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3905,
-                        "entryId": 4709
-                    },
-                    {
-                        "name": "Spiritual Focus",
-                        "spellId": 280197,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 3713,
-                        "entryId": 4464
-                    },
-                    {
-                        "name": "Ring of Peace",
-                        "spellId": 116844,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 3509,
-                        "entryId": 4219
-                    },
-                    {
-                        "name": "Disable",
-                        "spellId": 116095,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 3522,
-                        "entryId": 4234
-                    },
-                    {
-                        "name": "Ironshell Brew",
-                        "spellId": 388814,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 3547,
-                        "entryId": 4263
-                    },
-                    {
-                        "name": "Escape from Reality",
-                        "spellId": 394110,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 3549,
-                        "entryId": 4266
-                    },
-                    {
-                        "name": "Celerity",
-                        "spellId": 115173,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 3556,
-                        "entryId": 4275
-                    },
-                    {
-                        "name": "Echo Technique",
-                        "spellId": 1250042,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 3724,
-                        "entryId": 4477
-                    },
-                    {
-                        "name": "Strike of the Windlord",
-                        "spellId": 392983,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 3718,
-                        "entryId": 4469
-                    },
-                    {
-                        "name": "Whirling Steel",
-                        "spellId": 450991,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 3902,
-                        "entryId": 4704
-                    },
-                    {
-                        "name": "Pride of Pandaria",
-                        "spellId": 450979,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 3904,
-                        "entryId": 4707
-                    },
-                    {
-                        "name": "Combat Stance",
-                        "spellId": 1272844,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 3911,
-                        "entryId": 4715
-                    },
-                    {
-                        "name": "Crashing Fists",
-                        "spellId": 1248747,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 3712,
-                        "entryId": 4462
-                    },
-                    {
-                        "name": "Strength of Spirit",
-                        "spellId": 387276,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 3650,
-                        "entryId": 4388
-                    }
-                ],
-                "pvpTalents": [
-                    {
-                        "name": "Turbo Fists",
-                        "spellId": 287681,
-                        "pvpTalentId": 230
-                    },
-                    {
-                        "name": "Ride the Wind",
-                        "spellId": 201372,
-                        "pvpTalentId": 226
-                    },
-                    {
-                        "name": "Grapple Weapon",
-                        "spellId": 233759,
-                        "pvpTalentId": 227
-                    }
-                ],
-                "resolvedAt": "2026-08-31T06:43:35+00:00"
-            },
-            "mechanics": {
-                "targetGuid": "Player-11-0EB8E9AA",
-                "championBuffs": [
-                    {
-                        "spellId": 101643,
-                        "name": "魂体双分"
-                    },
-                    {
-                        "spellId": 196741,
-                        "name": "连击"
-                    },
-                    {
-                        "spellId": 392883,
-                        "name": "活力苏醒"
-                    },
-                    {
-                        "spellId": 1252488,
-                        "name": "娴熟狩猎"
-                    },
-                    {
-                        "spellId": 1261724,
-                        "name": "虎眼酒"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "精通狡诈符文"
-                    },
-                    {
-                        "spellId": 33763,
-                        "name": "生命绽放"
-                    },
-                    {
-                        "spellId": 120954,
-                        "name": "壮胆酒"
-                    },
-                    {
-                        "spellId": 8936,
-                        "name": "愈合"
-                    },
-                    {
-                        "spellId": 774,
-                        "name": "回春术"
-                    },
-                    {
-                        "spellId": 1287978,
-                        "name": "山猫敏捷符文"
-                    },
-                    {
-                        "spellId": 48438,
-                        "name": "野性成长"
-                    },
-                    {
-                        "spellId": 1248705,
-                        "name": "天火踢"
-                    },
-                    {
-                        "spellId": 202090,
-                        "name": "禅院教诲"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "奥纹洞察"
-                    },
-                    {
-                        "spellId": 129914,
-                        "name": "战斗贤才"
-                    },
-                    {
-                        "spellId": 414143,
-                        "name": "玉珑的优雅"
-                    },
-                    {
-                        "spellId": 1249758,
-                        "name": "组合拳：怒雷破"
-                    },
-                    {
-                        "spellId": 113656,
-                        "name": "怒雷破"
-                    },
-                    {
-                        "spellId": 451297,
-                        "name": "疾拳之势"
-                    }
-                ],
-                "championDebuffs": [
-                    {
-                        "spellId": 8680,
-                        "name": "致伤药膏"
-                    },
-                    {
-                        "spellId": 12654,
-                        "name": "点燃"
-                    },
-                    {
-                        "spellId": 426593,
-                        "name": "赤喉之咬"
-                    },
-                    {
-                        "spellId": 14914,
-                        "name": "神圣之火"
-                    },
-                    {
-                        "spellId": 468655,
-                        "name": "霜火之箭"
-                    },
-                    {
-                        "spellId": 205708,
-                        "name": "冰冻"
-                    }
-                ],
-                "targetBuffs": [
-                    {
-                        "spellId": 8679,
-                        "name": "致伤药膏"
-                    },
-                    {
-                        "spellId": 3408,
-                        "name": "减速药膏"
-                    },
-                    {
-                        "spellId": 186403,
-                        "name": "战争印记"
-                    },
-                    {
-                        "spellId": 21562,
-                        "name": "真言术：韧"
-                    },
-                    {
-                        "spellId": 1459,
-                        "name": "奥术智慧"
-                    },
-                    {
-                        "spellId": 315496,
-                        "name": "切割"
-                    },
-                    {
-                        "spellId": 414664,
-                        "name": "群体隐形"
-                    },
-                    {
-                        "spellId": 139,
-                        "name": "恢复"
-                    },
-                    {
-                        "spellId": 11327,
-                        "name": "消失"
-                    },
-                    {
-                        "spellId": 77489,
-                        "name": "圣光回响"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "精通狡诈符文"
-                    },
-                    {
-                        "spellId": 345228,
-                        "name": "角斗士徽章"
-                    },
-                    {
-                        "spellId": 1264521,
-                        "name": "洞悉弱点"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "奥纹洞察"
-                    },
-                    {
-                        "spellId": 289655,
-                        "name": "神圣之地"
-                    },
-                    {
-                        "spellId": 1966,
-                        "name": "佯攻"
-                    },
-                    {
-                        "spellId": 1287978,
-                        "name": "山猫敏捷符文"
-                    },
-                    {
-                        "spellId": 196911,
-                        "name": "暗影技巧"
-                    },
-                    {
-                        "spellId": 441326,
-                        "name": "无瑕之形"
-                    },
-                    {
-                        "spellId": 441786,
-                        "name": "锋化之刃"
-                    }
-                ],
-                "targetDebuffs": [
-                    {
-                        "spellId": 113746,
-                        "name": "玄秘掌"
-                    },
-                    {
-                        "spellId": 164812,
-                        "name": "月火术"
-                    },
-                    {
-                        "spellId": 1287663,
-                        "name": "萦绕符文"
-                    },
-                    {
-                        "spellId": 188389,
-                        "name": "烈焰震击"
-                    },
-                    {
-                        "spellId": 197209,
-                        "name": "引雷针"
-                    },
-                    {
-                        "spellId": 201787,
-                        "name": "重拳出击"
-                    },
-                    {
-                        "spellId": 1251059,
-                        "name": "风暴束缚"
-                    }
-                ],
-                "targetClassName": "Rogue",
-                "targetSpecName": "Subtlety",
-                "resolvedAt": "2026-08-31T10:03:17+00:00"
-            }
-        },
-        "10": {
-            "damage": 1645849,
-            "durationSeconds": 10,
-            "killed": true,
-            "steps": [
-                {
-                    "name": "Blackout Kick",
-                    "spellId": 100784,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rushing Wind Kick",
-                    "spellId": 467307,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Badge",
-                    "spellId": 345228,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Zenith",
-                    "spellId": 1249625,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rising Sun Kick",
-                    "spellId": 107428,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Strike of the Windlord",
-                    "spellId": 392983,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Blackout Kick",
-                    "spellId": 100784,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Ring of Peace",
@@ -2085,8 +952,14 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Tiger's Lust",
-                    "spellId": 116841,
+                    "name": "Strike of the Windlord",
+                    "spellId": 392983,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -2103,23 +976,14 @@
                     "isRepeat": false
                 }
             ],
-            "matchId": "23e1d4db2c65071a2d7ed19d960f5d60",
-            "guid": "Player-73-0FDE7EFB",
-            "start": 547.7529999999999,
-            "end": 557.7529999999999,
-            "targetGuid": "Player-3683-0D6F0DD7",
+            "matchId": "a4634ca7e43678b06855af333a88d82d",
+            "guid": "Player-11-0EB543F0",
+            "start": 59656.26,
+            "end": 59662.26,
+            "targetGuid": "Player-11-0E6F8F80",
             "talentBuild": {
-                "matchId": "23e1d4db2c65071a2d7ed19d960f5d60",
+                "matchId": "a4634ca7e43678b06855af333a88d82d",
                 "talents": [
-                    {
-                        "name": "Ferociousness",
-                        "spellId": 458623,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3685,
-                        "entryId": 4430
-                    },
                     {
                         "name": "Sharp Reflexes",
                         "spellId": 261917,
@@ -2292,6 +1156,15 @@
                         "entryId": 4232
                     },
                     {
+                        "name": "Detox",
+                        "spellId": 218164,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3523,
+                        "entryId": 4235
+                    },
+                    {
                         "name": "Calming Presence",
                         "spellId": 388664,
                         "rank": 1,
@@ -2299,15 +1172,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3526,
                         "entryId": 4238
-                    },
-                    {
-                        "name": "Bounding Agility",
-                        "spellId": 450520,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3534,
-                        "entryId": 4247
                     },
                     {
                         "name": "Zenith Stomp",
@@ -2355,15 +1219,6 @@
                         "entryId": 4255
                     },
                     {
-                        "name": "Lighter Than Air",
-                        "spellId": 449582,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3541,
-                        "entryId": 4256
-                    },
-                    {
                         "name": "Chi Proficiency",
                         "spellId": 450426,
                         "rank": 2,
@@ -2380,6 +1235,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 3543,
                         "entryId": 4259
+                    },
+                    {
+                        "name": "Healing Winds",
+                        "spellId": 450560,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3544,
+                        "entryId": 4260
                     },
                     {
                         "name": "Fortifying Brew",
@@ -2652,13 +1516,13 @@
                         "entryId": 4392
                     },
                     {
-                        "name": "Energy Transfer",
-                        "spellId": 450631,
+                        "name": "Reinvigoration",
+                        "spellId": 1266740,
                         "rank": 1,
                         "treeType": "class",
                         "resolvedByOffset": false,
-                        "nodeId": 3657,
-                        "entryId": 4397
+                        "nodeId": 3655,
+                        "entryId": 4395
                     },
                     {
                         "name": "Spear Hand Strike",
@@ -2672,7 +1536,7 @@
                     {
                         "name": "Tigereye Brew",
                         "spellId": 1261703,
-                        "rank": 1,
+                        "rank": 2,
                         "treeType": "spec",
                         "resolvedByOffset": false,
                         "nodeId": 3740,
@@ -2830,110 +1694,150 @@
                         "pvpTalentId": 230
                     },
                     {
-                        "name": "Grapple Weapon",
-                        "spellId": 233759,
-                        "pvpTalentId": 227
-                    },
-                    {
                         "name": "Wind Waker",
                         "spellId": 357633,
                         "pvpTalentId": 228
+                    },
+                    {
+                        "name": "Grapple Weapon",
+                        "spellId": 233759,
+                        "pvpTalentId": 227
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:35+00:00"
+                "resolvedAt": "2026-09-06T02:56:54+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-3683-0D6F0DD7",
+                "targetGuid": "Player-11-0E6F8F80",
                 "championBuffs": [
                     {
-                        "spellId": 2580,
-                        "name": "Find Minerals"
-                    },
-                    {
-                        "spellId": 335149,
-                        "name": "Sign of the Scourge"
-                    },
-                    {
-                        "spellId": 21562,
-                        "name": "Power Word: Fortitude"
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
                     },
                     {
                         "spellId": 101643,
                         "name": "Transcendence"
                     },
                     {
-                        "spellId": 291843,
-                        "name": "Brush It Off"
-                    },
-                    {
-                        "spellId": 1261724,
-                        "name": "Tigereye Brew"
+                        "spellId": 465,
+                        "name": "Devotion Aura"
                     },
                     {
                         "spellId": 451021,
                         "name": "Flurry Charge"
                     },
                     {
-                        "spellId": 1229746,
-                        "name": "Arcanoweave Insight"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
-                    },
-                    {
-                        "spellId": 139,
-                        "name": "Renew"
-                    },
-                    {
-                        "spellId": 77489,
-                        "name": "Echo of Light"
-                    },
-                    {
-                        "spellId": 390677,
-                        "name": "Inspiration"
-                    },
-                    {
                         "spellId": 196741,
                         "name": "Hit Combo"
-                    },
-                    {
-                        "spellId": 325202,
-                        "name": "Dance of Chi-Ji"
-                    },
-                    {
-                        "spellId": 65081,
-                        "name": "Body and Soul"
-                    },
-                    {
-                        "spellId": 1249756,
-                        "name": "Combo Strikes: Tiger Palm"
-                    },
-                    {
-                        "spellId": 116768,
-                        "name": "Blackout Kick!"
                     },
                     {
                         "spellId": 202090,
                         "name": "Teachings of the Monastery"
                     },
                     {
-                        "spellId": 129914,
-                        "name": "Combat Wisdom"
-                    },
-                    {
                         "spellId": 1248705,
                         "name": "Skyfire Heel"
+                    },
+                    {
+                        "spellId": 1249625,
+                        "name": "Zenith"
+                    },
+                    {
+                        "spellId": 1249763,
+                        "name": "Combo Strikes: Zenith Stomp"
+                    },
+                    {
+                        "spellId": 345228,
+                        "name": "Gladiator's Badge"
+                    },
+                    {
+                        "spellId": 33697,
+                        "name": "Blood Fury"
                     }
                 ],
                 "championDebuffs": [
+                    {
+                        "spellId": 1287663,
+                        "name": "Rune of Lingering"
+                    },
                     {
                         "spellId": 197277,
                         "name": "Judgment"
                     },
                     {
-                        "spellId": 408383,
-                        "name": "Judgment of Justice"
+                        "spellId": 431414,
+                        "name": "Sun Sear"
+                    },
+                    {
+                        "spellId": 204242,
+                        "name": "Consecration"
+                    }
+                ],
+                "targetBuffs": [
+                    {
+                        "spellId": 465,
+                        "name": "Devotion Aura"
+                    },
+                    {
+                        "spellId": 471877,
+                        "name": "Howl of the Pack Leader"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    },
+                    {
+                        "spellId": 1044,
+                        "name": "Blessing of Freedom"
+                    },
+                    {
+                        "spellId": 246152,
+                        "name": "Barbed Shot"
+                    },
+                    {
+                        "spellId": 1276720,
+                        "name": "Nature's Ally"
+                    },
+                    {
+                        "spellId": 186258,
+                        "name": "Aspect of the Cheetah"
+                    },
+                    {
+                        "spellId": 19574,
+                        "name": "Bestial Wrath"
+                    },
+                    {
+                        "spellId": 1265063,
+                        "name": "Bloody Frenzy"
+                    },
+                    {
+                        "spellId": 471878,
+                        "name": "Howl of the Pack Leader"
+                    },
+                    {
+                        "spellId": 1258338,
+                        "name": "Stampede!"
+                    },
+                    {
+                        "spellId": 1287772,
+                        "name": "Rune of Critical Power"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 61295,
+                        "name": "Riptide"
+                    },
+                    {
+                        "spellId": 207400,
+                        "name": "Ancestral Vigor"
+                    }
+                ],
+                "targetDebuffs": [
+                    {
+                        "spellId": 113746,
+                        "name": "Mystic Touch"
                     },
                     {
                         "spellId": 431907,
@@ -2944,109 +1848,95 @@
                         "name": "Dawnlight"
                     },
                     {
-                        "spellId": 388539,
-                        "name": "Rend"
+                        "spellId": 119381,
+                        "name": "Leg Sweep"
                     },
                     {
-                        "spellId": 164812,
-                        "name": "Moonfire"
+                        "spellId": 197277,
+                        "name": "Judgment"
+                    },
+                    {
+                        "spellId": 431414,
+                        "name": "Sun Sear"
                     },
                     {
                         "spellId": 383346,
                         "name": "Expurgation"
+                    },
+                    {
+                        "spellId": 204242,
+                        "name": "Consecration"
+                    },
+                    {
+                        "spellId": 115804,
+                        "name": "Mortal Wounds"
+                    },
+                    {
+                        "spellId": 589,
+                        "name": "Shadow Word: Pain"
                     }
                 ],
-                "targetBuffs": [
-                    {
-                        "spellId": 465,
-                        "name": "Devotion Aura"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
-                    },
-                    {
-                        "spellId": 16870,
-                        "name": "Clearcasting"
-                    },
-                    {
-                        "spellId": 1227806,
-                        "name": "Lifebloom"
-                    },
-                    {
-                        "spellId": 392360,
-                        "name": "Reforestation"
-                    },
-                    {
-                        "spellId": 774,
-                        "name": "Rejuvenation"
-                    },
-                    {
-                        "spellId": 1232285,
-                        "name": "Efflorescence"
-                    },
-                    {
-                        "spellId": 48438,
-                        "name": "Wild Growth"
-                    },
-                    {
-                        "spellId": 768,
-                        "name": "Cat Form"
-                    },
-                    {
-                        "spellId": 378990,
-                        "name": "Lycara's Teachings"
-                    }
-                ],
-                "targetDebuffs": [
-                    {
-                        "spellId": 113746,
-                        "name": "Mystic Touch"
-                    }
-                ],
-                "targetClassName": "Druid",
-                "targetSpecName": "Restoration",
-                "resolvedAt": "2026-08-31T10:03:17+00:00"
+                "targetClassName": "Hunter",
+                "targetSpecName": "Beast Mastery",
+                "resolvedAt": "2026-09-06T02:57:05+00:00"
             }
         },
-        "12": {
-            "damage": 1807415,
-            "durationSeconds": 12,
-            "killed": false,
+        "10": {
+            "damage": 1834366,
+            "durationSeconds": 10,
+            "killed": true,
             "steps": [
                 {
-                    "name": "Spear Hand Strike",
-                    "spellId": 116705,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Blackout Kick",
-                    "spellId": 100784,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rushing Wind Kick",
-                    "spellId": 467307,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rising Sun Kick",
-                    "spellId": 107428,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Touch of Karma",
-                    "spellId": 122470,
+                    "name": "Leg Sweep",
+                    "spellId": 119381,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Zenith",
+                    "spellId": 1249625,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blood Fury",
+                    "spellId": 33697,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ring of Peace",
+                    "spellId": 116844,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Strike of the Windlord",
+                    "spellId": 392983,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -3054,52 +1944,28 @@
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
-                    "name": "Rushing Wind Kick",
-                    "spellId": 467307,
+                    "name": "Fists of Fury",
+                    "spellId": 113656,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
-                    "name": "Rising Sun Kick",
-                    "spellId": 107428,
+                    "name": "Touch of Death",
+                    "spellId": 322109,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Tiger Palm",
-                    "spellId": 100780,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blackout Kick",
-                    "spellId": 100784,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rushing Wind Kick",
-                    "spellId": 467307,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rising Sun Kick",
-                    "spellId": 107428,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 }
             ],
-            "matchId": "bc2e75ff7d1637466658c9dddaa8c56f",
-            "guid": "Player-73-0EF027BE",
-            "start": 6389.204,
-            "end": 6401.204,
-            "targetGuid": "Player-3676-0EE85CB8",
+            "matchId": "a4634ca7e43678b06855af333a88d82d",
+            "guid": "Player-11-0EB543F0",
+            "start": 59653.26,
+            "end": 59663.26,
+            "targetGuid": "Player-11-0E6F8F80",
             "talentBuild": {
-                "matchId": "bc2e75ff7d1637466658c9dddaa8c56f",
+                "matchId": "a4634ca7e43678b06855af333a88d82d",
                 "talents": [
                     {
                         "name": "Sharp Reflexes",
@@ -3291,15 +2157,6 @@
                         "entryId": 4238
                     },
                     {
-                        "name": "Bounding Agility",
-                        "spellId": 450520,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3534,
-                        "entryId": 4247
-                    },
-                    {
                         "name": "Zenith Stomp",
                         "spellId": 1272694,
                         "rank": 1,
@@ -3307,6 +2164,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 3535,
                         "entryId": 4248
+                    },
+                    {
+                        "name": "Peace and Prosperity",
+                        "spellId": 450448,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3536,
+                        "entryId": 4249
                     },
                     {
                         "name": "Yu'lon's Grace",
@@ -3370,6 +2236,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 3546,
                         "entryId": 4262
+                    },
+                    {
+                        "name": "Windwalking",
+                        "spellId": 157411,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3548,
+                        "entryId": 4265
                     },
                     {
                         "name": "Martial Instincts",
@@ -3579,15 +2454,6 @@
                         "entryId": 4487
                     },
                     {
-                        "name": "Diffuse Magic",
-                        "spellId": 1243287,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3631,
-                        "entryId": 4369
-                    },
-                    {
                         "name": "Rushing Wind Kick",
                         "spellId": 1250566,
                         "rank": 1,
@@ -3624,15 +2490,6 @@
                         "entryId": 4719
                     },
                     {
-                        "name": "Vigorous Expulsion",
-                        "spellId": 392900,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3648,
-                        "entryId": 4386
-                    },
-                    {
                         "name": "Stillstep Coil",
                         "spellId": 1266733,
                         "rank": 1,
@@ -3640,6 +2497,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 3653,
                         "entryId": 4392
+                    },
+                    {
+                        "name": "Reinvigoration",
+                        "spellId": 1266740,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3655,
+                        "entryId": 4395
                     },
                     {
                         "name": "Spear Hand Strike",
@@ -3811,211 +2677,1024 @@
                         "pvpTalentId": 230
                     },
                     {
+                        "name": "Wind Waker",
+                        "spellId": 357633,
+                        "pvpTalentId": 228
+                    },
+                    {
                         "name": "Grapple Weapon",
                         "spellId": 233759,
                         "pvpTalentId": 227
-                    },
-                    {
-                        "name": "Ride the Wind",
-                        "spellId": 201372,
-                        "pvpTalentId": 226
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:35+00:00"
+                "resolvedAt": "2026-09-06T02:56:54+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-3676-0EE85CB8",
+                "targetGuid": "Player-11-0E6F8F80",
                 "championBuffs": [
                     {
-                        "spellId": 1256697,
-                        "name": "Find Lumber"
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
                     },
                     {
-                        "spellId": 186406,
-                        "name": "Sign of the Critter"
-                    },
-                    {
-                        "spellId": 335149,
-                        "name": "Sign of the Scourge"
-                    },
-                    {
-                        "spellId": 1126,
-                        "name": "Mark of the Wild"
-                    },
-                    {
-                        "spellId": 53563,
-                        "name": "Beacon of Light"
-                    },
-                    {
-                        "spellId": 101643,
-                        "name": "Transcendence"
-                    },
-                    {
-                        "spellId": 196741,
-                        "name": "Hit Combo"
-                    },
-                    {
-                        "spellId": 1241715,
-                        "name": "Might of the Void"
-                    },
-                    {
-                        "spellId": 202090,
-                        "name": "Teachings of the Monastery"
-                    },
-                    {
-                        "spellId": 116768,
-                        "name": "Blackout Kick!"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "Arcanoweave Insight"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
-                    },
-                    {
-                        "spellId": 451298,
-                        "name": "Momentum Boost"
-                    },
-                    {
-                        "spellId": 209746,
-                        "name": "Moonkin Aura"
-                    },
-                    {
-                        "spellId": 451021,
-                        "name": "Flurry Charge"
-                    },
-                    {
-                        "spellId": 1249625,
-                        "name": "Zenith"
-                    },
-                    {
-                        "spellId": 345228,
-                        "name": "Gladiator's Badge"
+                        "spellId": 129914,
+                        "name": "Combat Wisdom"
                     },
                     {
                         "spellId": 1261724,
                         "name": "Tigereye Brew"
                     },
                     {
-                        "spellId": 116841,
-                        "name": "Tiger's Lust"
+                        "spellId": 194384,
+                        "name": "Atonement"
                     },
                     {
-                        "spellId": 1248705,
-                        "name": "Skyfire Heel"
+                        "spellId": 101643,
+                        "name": "Transcendence"
                     },
                     {
-                        "spellId": 1249753,
-                        "name": "Combo Strikes: Rising Sun Kick"
-                    },
-                    {
-                        "spellId": 414143,
-                        "name": "Yu'lon's Grace"
+                        "spellId": 465,
+                        "name": "Devotion Aura"
                     }
                 ],
                 "championDebuffs": [
                     {
-                        "spellId": 445474,
-                        "name": "Wither"
-                    },
-                    {
-                        "spellId": 80240,
-                        "name": "Havoc"
+                        "spellId": 383346,
+                        "name": "Expurgation"
                     }
                 ],
                 "targetBuffs": [
                     {
-                        "spellId": 48018,
-                        "name": "Demonic Circle"
+                        "spellId": 465,
+                        "name": "Devotion Aura"
+                    },
+                    {
+                        "spellId": 471877,
+                        "name": "Howl of the Pack Leader"
                     },
                     {
                         "spellId": 1229746,
                         "name": "Arcanoweave Insight"
                     },
                     {
-                        "spellId": 1241715,
-                        "name": "Might of the Void"
+                        "spellId": 1044,
+                        "name": "Blessing of Freedom"
                     },
                     {
-                        "spellId": 117828,
-                        "name": "Backdraft"
+                        "spellId": 246152,
+                        "name": "Barbed Shot"
                     },
                     {
-                        "spellId": 387263,
-                        "name": "Flashpoint"
+                        "spellId": 1276720,
+                        "name": "Nature's Ally"
                     },
                     {
-                        "spellId": 345230,
-                        "name": "Gladiator's Insignia"
+                        "spellId": 186258,
+                        "name": "Aspect of the Cheetah"
                     },
                     {
-                        "spellId": 256374,
-                        "name": "Entropic Embrace"
+                        "spellId": 19574,
+                        "name": "Bestial Wrath"
                     },
                     {
-                        "spellId": 387385,
-                        "name": "Backlash"
+                        "spellId": 1265063,
+                        "name": "Bloody Frenzy"
                     },
                     {
-                        "spellId": 1287774,
-                        "name": "Rune of Burning Haste"
+                        "spellId": 471878,
+                        "name": "Howl of the Pack Leader"
                     },
                     {
-                        "spellId": 389614,
-                        "name": "Abyss Walker"
+                        "spellId": 1258338,
+                        "name": "Stampede!"
                     },
                     {
-                        "spellId": 442726,
-                        "name": "Malevolence"
-                    },
-                    {
-                        "spellId": 77489,
-                        "name": "Echo of Light"
-                    },
-                    {
-                        "spellId": 65081,
-                        "name": "Body and Soul"
-                    },
-                    {
-                        "spellId": 457578,
-                        "name": "Summon Overfiend"
+                        "spellId": 1287772,
+                        "name": "Rune of Critical Power"
                     },
                     {
                         "spellId": 1287665,
                         "name": "Rune of Lingering"
                     }
                 ],
-                "targetDebuffs": [
+                "targetDebuffs": [],
+                "targetClassName": "Hunter",
+                "targetSpecName": "Beast Mastery",
+                "resolvedAt": "2026-09-06T02:57:05+00:00"
+            }
+        },
+        "12": {
+            "damage": 1834366,
+            "durationSeconds": 12,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Leg Sweep",
+                    "spellId": 119381,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Zenith",
+                    "spellId": 1249625,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blood Fury",
+                    "spellId": 33697,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ring of Peace",
+                    "spellId": 116844,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Strike of the Windlord",
+                    "spellId": 392983,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fists of Fury",
+                    "spellId": 113656,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Touch of Death",
+                    "spellId": 322109,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ],
+            "matchId": "a4634ca7e43678b06855af333a88d82d",
+            "guid": "Player-11-0EB543F0",
+            "start": 59653.26,
+            "end": 59665.26,
+            "targetGuid": "Player-11-0E6F8F80",
+            "talentBuild": {
+                "matchId": "a4634ca7e43678b06855af333a88d82d",
+                "talents": [
                     {
-                        "spellId": 113746,
-                        "name": "Mystic Touch"
+                        "name": "Sharp Reflexes",
+                        "spellId": 261917,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3675,
+                        "entryId": 4418
                     },
                     {
-                        "spellId": 164815,
-                        "name": "Sunfire"
+                        "name": "Ascension",
+                        "spellId": 115396,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3687,
+                        "entryId": 4433
                     },
                     {
-                        "spellId": 164812,
-                        "name": "Moonfire"
+                        "name": "Brawler's Intensity",
+                        "spellId": 451485,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3709,
+                        "entryId": 4458
                     },
                     {
-                        "spellId": 1263250,
-                        "name": "Astral Smolder"
+                        "name": "Glory of the Dawn",
+                        "spellId": 392958,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3698,
+                        "entryId": 4447
                     },
                     {
-                        "spellId": 450214,
-                        "name": "Stellar Amplification"
+                        "name": "Communion With Wind",
+                        "spellId": 451576,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3723,
+                        "entryId": 4475
                     },
                     {
-                        "spellId": 115804,
-                        "name": "Mortal Wounds"
+                        "name": "Universal Energy",
+                        "spellId": 1272175,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3725,
+                        "entryId": 4478
+                    },
+                    {
+                        "name": "Momentum Boost",
+                        "spellId": 451294,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3673,
+                        "entryId": 4416
+                    },
+                    {
+                        "name": "Touch of the Tiger",
+                        "spellId": 388856,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3684,
+                        "entryId": 4428
+                    },
+                    {
+                        "name": "Zenith",
+                        "spellId": 1249625,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3707,
+                        "entryId": 4456
+                    },
+                    {
+                        "name": "Teachings of the Monastery",
+                        "spellId": 116645,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3697,
+                        "entryId": 4446
+                    },
+                    {
+                        "name": "Dual Threat",
+                        "spellId": 451823,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3696,
+                        "entryId": 4445
+                    },
+                    {
+                        "name": "Energy Burst",
+                        "spellId": 451498,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3719,
+                        "entryId": 4471
+                    },
+                    {
+                        "name": "Sequenced Strikes",
+                        "spellId": 451515,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3721,
+                        "entryId": 4473
+                    },
+                    {
+                        "name": "Dance of Chi-Ji",
+                        "spellId": 325201,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3716,
+                        "entryId": 4467
+                    },
+                    {
+                        "name": "Dance of the Wind",
+                        "spellId": 432181,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3510,
+                        "entryId": 4221
+                    },
+                    {
+                        "name": "Improved Touch of Death",
+                        "spellId": 322113,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3513,
+                        "entryId": 4224
+                    },
+                    {
+                        "name": "Grace of the Crane",
+                        "spellId": 388811,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3519,
+                        "entryId": 4230
+                    },
+                    {
+                        "name": "Tiger's Lust",
+                        "spellId": 116841,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3520,
+                        "entryId": 4231
+                    },
+                    {
+                        "name": "Wind's Reach",
+                        "spellId": 450514,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3521,
+                        "entryId": 4232
+                    },
+                    {
+                        "name": "Detox",
+                        "spellId": 218164,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3523,
+                        "entryId": 4235
+                    },
+                    {
+                        "name": "Calming Presence",
+                        "spellId": 388664,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3526,
+                        "entryId": 4238
+                    },
+                    {
+                        "name": "Zenith Stomp",
+                        "spellId": 1272694,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3535,
+                        "entryId": 4248
+                    },
+                    {
+                        "name": "Peace and Prosperity",
+                        "spellId": 450448,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3536,
+                        "entryId": 4249
+                    },
+                    {
+                        "name": "Yu'lon's Grace",
+                        "spellId": 414131,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3538,
+                        "entryId": 4252
+                    },
+                    {
+                        "name": "Ferocity of Xuen",
+                        "spellId": 388674,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3539,
+                        "entryId": 4254
+                    },
+                    {
+                        "name": "Transcendence",
+                        "spellId": 101643,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3540,
+                        "entryId": 4255
+                    },
+                    {
+                        "name": "Chi Proficiency",
+                        "spellId": 450426,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3542,
+                        "entryId": 4258
+                    },
+                    {
+                        "name": "Flow of Chi",
+                        "spellId": 450569,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3543,
+                        "entryId": 4259
+                    },
+                    {
+                        "name": "Healing Winds",
+                        "spellId": 450560,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3544,
+                        "entryId": 4260
+                    },
+                    {
+                        "name": "Fortifying Brew",
+                        "spellId": 115203,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3546,
+                        "entryId": 4262
+                    },
+                    {
+                        "name": "Windwalking",
+                        "spellId": 157411,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3548,
+                        "entryId": 4265
+                    },
+                    {
+                        "name": "Martial Instincts",
+                        "spellId": 450427,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3552,
+                        "entryId": 4271
+                    },
+                    {
+                        "name": "Tiger Tail Sweep",
+                        "spellId": 264348,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3555,
+                        "entryId": 4274
+                    },
+                    {
+                        "name": "Ancient Arts",
+                        "spellId": 344359,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3557,
+                        "entryId": 4278
+                    },
+                    {
+                        "name": "Fast Feet",
+                        "spellId": 388809,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3558,
+                        "entryId": 4279
+                    },
+                    {
+                        "name": "Rising Star",
+                        "spellId": 388849,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3706,
+                        "entryId": 4455
+                    },
+                    {
+                        "name": "Weapon of Wind",
+                        "spellId": 1272678,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3730,
+                        "entryId": 4483
+                    },
+                    {
+                        "name": "Martial Agility",
+                        "spellId": 1272685,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3737,
+                        "entryId": 4490
+                    },
+                    {
+                        "name": "Memory of the Monastery",
+                        "spellId": 454969,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3726,
+                        "entryId": 4479
+                    },
+                    {
+                        "name": "Xuen's Battlegear",
+                        "spellId": 392993,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3728,
+                        "entryId": 4481
+                    },
+                    {
+                        "name": "Sunfire Spiral",
+                        "spellId": 1272415,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3722,
+                        "entryId": 4474
+                    },
+                    {
+                        "name": "Inner Peace",
+                        "spellId": 397768,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3720,
+                        "entryId": 4472
+                    },
+                    {
+                        "name": "Combo Breaker",
+                        "spellId": 137384,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3715,
+                        "entryId": 4466
+                    },
+                    {
+                        "name": "Hit Combo",
+                        "spellId": 196740,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3708,
+                        "entryId": 4457
+                    },
+                    {
+                        "name": "Combat Wisdom",
+                        "spellId": 121817,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3674,
+                        "entryId": 4417
+                    },
+                    {
+                        "name": "Fists of Fury",
+                        "spellId": 113656,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3667,
+                        "entryId": 4408
+                    },
+                    {
+                        "name": "Vigilant Watch",
+                        "spellId": 450993,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3901,
+                        "entryId": 4703
+                    },
+                    {
+                        "name": "Martial Precision",
+                        "spellId": 450990,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3903,
+                        "entryId": 4706
+                    },
+                    {
+                        "name": "Veteran's Eye",
+                        "spellId": 450987,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3906,
+                        "entryId": 4710
+                    },
+                    {
+                        "name": "One Versus Many",
+                        "spellId": 450988,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3907,
+                        "entryId": 4711
+                    },
+                    {
+                        "name": "Efficient Training",
+                        "spellId": 450989,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3908,
+                        "entryId": 4712
+                    },
+                    {
+                        "name": "Wisdom of the Wall",
+                        "spellId": 1272821,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3909,
+                        "entryId": 4713
+                    },
+                    {
+                        "name": "Against All Odds",
+                        "spellId": 450986,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3910,
+                        "entryId": 4714
+                    },
+                    {
+                        "name": "Skyfire Heel",
+                        "spellId": 1248704,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3734,
+                        "entryId": 4487
+                    },
+                    {
+                        "name": "Rushing Wind Kick",
+                        "spellId": 1250566,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3727,
+                        "entryId": 4480
+                    },
+                    {
+                        "name": "Shado Over the Battlefield",
+                        "spellId": 1262612,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3912,
+                        "entryId": 4717
+                    },
+                    {
+                        "name": "Stand Ready",
+                        "spellId": 1262603,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3913,
+                        "entryId": 4718
+                    },
+                    {
+                        "name": "Weapons of the Wall",
+                        "spellId": 1262610,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3914,
+                        "entryId": 4719
+                    },
+                    {
+                        "name": "Stillstep Coil",
+                        "spellId": 1266733,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3653,
+                        "entryId": 4392
+                    },
+                    {
+                        "name": "Reinvigoration",
+                        "spellId": 1266740,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3655,
+                        "entryId": 4395
+                    },
+                    {
+                        "name": "Spear Hand Strike",
+                        "spellId": 116705,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3659,
+                        "entryId": 4399
+                    },
+                    {
+                        "name": "Tigereye Brew",
+                        "spellId": 1261703,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3740,
+                        "entryId": 4495
+                    },
+                    {
+                        "name": "Paralysis",
+                        "spellId": 115078,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3515,
+                        "entryId": 4226
+                    },
+                    {
+                        "name": "Rising Sun Kick",
+                        "spellId": 107428,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3559,
+                        "entryId": 4280
+                    },
+                    {
+                        "name": "Flurry Strikes",
+                        "spellId": 450615,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3905,
+                        "entryId": 4709
+                    },
+                    {
+                        "name": "Spiritual Focus",
+                        "spellId": 280197,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 3713,
+                        "entryId": 4464
+                    },
+                    {
+                        "name": "Ring of Peace",
+                        "spellId": 116844,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 3509,
+                        "entryId": 4219
+                    },
+                    {
+                        "name": "Disable",
+                        "spellId": 116095,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 3522,
+                        "entryId": 4234
+                    },
+                    {
+                        "name": "Ironshell Brew",
+                        "spellId": 388814,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 3547,
+                        "entryId": 4263
+                    },
+                    {
+                        "name": "Escape from Reality",
+                        "spellId": 394110,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 3549,
+                        "entryId": 4266
+                    },
+                    {
+                        "name": "Celerity",
+                        "spellId": 115173,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 3556,
+                        "entryId": 4275
+                    },
+                    {
+                        "name": "Echo Technique",
+                        "spellId": 1250042,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 3724,
+                        "entryId": 4477
+                    },
+                    {
+                        "name": "Strike of the Windlord",
+                        "spellId": 392983,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 3718,
+                        "entryId": 4469
+                    },
+                    {
+                        "name": "Whirling Steel",
+                        "spellId": 450991,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 3902,
+                        "entryId": 4704
+                    },
+                    {
+                        "name": "Pride of Pandaria",
+                        "spellId": 450979,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 3904,
+                        "entryId": 4707
+                    },
+                    {
+                        "name": "Combat Stance",
+                        "spellId": 1272844,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 3911,
+                        "entryId": 4715
+                    },
+                    {
+                        "name": "Crashing Fists",
+                        "spellId": 1248747,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 3712,
+                        "entryId": 4462
+                    },
+                    {
+                        "name": "Strength of Spirit",
+                        "spellId": 387276,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 3650,
+                        "entryId": 4388
                     }
                 ],
-                "targetClassName": "Warlock",
-                "targetSpecName": "Destruction",
-                "resolvedAt": "2026-08-31T10:03:17+00:00"
+                "pvpTalents": [
+                    {
+                        "name": "Turbo Fists",
+                        "spellId": 287681,
+                        "pvpTalentId": 230
+                    },
+                    {
+                        "name": "Wind Waker",
+                        "spellId": 357633,
+                        "pvpTalentId": 228
+                    },
+                    {
+                        "name": "Grapple Weapon",
+                        "spellId": 233759,
+                        "pvpTalentId": 227
+                    }
+                ],
+                "resolvedAt": "2026-09-06T02:56:54+00:00"
+            },
+            "mechanics": {
+                "targetGuid": "Player-11-0E6F8F80",
+                "championBuffs": [
+                    {
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
+                    },
+                    {
+                        "spellId": 129914,
+                        "name": "Combat Wisdom"
+                    },
+                    {
+                        "spellId": 1261724,
+                        "name": "Tigereye Brew"
+                    },
+                    {
+                        "spellId": 194384,
+                        "name": "Atonement"
+                    },
+                    {
+                        "spellId": 101643,
+                        "name": "Transcendence"
+                    },
+                    {
+                        "spellId": 465,
+                        "name": "Devotion Aura"
+                    }
+                ],
+                "championDebuffs": [
+                    {
+                        "spellId": 383346,
+                        "name": "Expurgation"
+                    }
+                ],
+                "targetBuffs": [
+                    {
+                        "spellId": 465,
+                        "name": "Devotion Aura"
+                    },
+                    {
+                        "spellId": 471877,
+                        "name": "Howl of the Pack Leader"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    },
+                    {
+                        "spellId": 1044,
+                        "name": "Blessing of Freedom"
+                    },
+                    {
+                        "spellId": 246152,
+                        "name": "Barbed Shot"
+                    },
+                    {
+                        "spellId": 1276720,
+                        "name": "Nature's Ally"
+                    },
+                    {
+                        "spellId": 186258,
+                        "name": "Aspect of the Cheetah"
+                    },
+                    {
+                        "spellId": 19574,
+                        "name": "Bestial Wrath"
+                    },
+                    {
+                        "spellId": 1265063,
+                        "name": "Bloody Frenzy"
+                    },
+                    {
+                        "spellId": 471878,
+                        "name": "Howl of the Pack Leader"
+                    },
+                    {
+                        "spellId": 1258338,
+                        "name": "Stampede!"
+                    },
+                    {
+                        "spellId": 1287772,
+                        "name": "Rune of Critical Power"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    }
+                ],
+                "targetDebuffs": [],
+                "targetClassName": "Hunter",
+                "targetSpecName": "Beast Mastery",
+                "resolvedAt": "2026-09-06T02:57:05+00:00"
             }
         },
         "20": {
@@ -4854,7 +4533,7 @@
                         "pvpTalentId": 226
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:35+00:00"
+                "resolvedAt": "2026-09-06T02:56:54+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3676-0EE85CB8",
@@ -5048,7 +4727,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Destruction",
-                "resolvedAt": "2026-08-31T10:03:17+00:00"
+                "resolvedAt": "2026-09-06T02:57:05+00:00"
             }
         },
         "30": {
@@ -5965,7 +5644,7 @@
                         "pvpTalentId": 226
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:35+00:00"
+                "resolvedAt": "2026-09-06T02:56:54+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3676-0EE85CB8",
@@ -6159,9 +5838,9 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Destruction",
-                "resolvedAt": "2026-08-31T10:03:17+00:00"
+                "resolvedAt": "2026-09-06T02:57:05+00:00"
             }
         }
     },
-    "generated_at": "2026-08-31T06:38:10+00:00"
+    "generated_at": "2026-09-06T02:52:08+00:00"
 }

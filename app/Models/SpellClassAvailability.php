@@ -22,6 +22,15 @@ class SpellClassAvailability extends Model
         'class_id',
         'spec_id',
         'source',
+        'is_priority',
+        'is_offensive_cooldown',
+        'is_defensive_cooldown',
+    ];
+
+    protected $casts = [
+        'is_priority' => 'boolean',
+        'is_offensive_cooldown' => 'boolean',
+        'is_defensive_cooldown' => 'boolean',
     ];
 
     public function spell()

@@ -6,8 +6,10 @@ use App\Models\GameClass;
 use App\Models\ModuleGameBuild;
 use App\Models\Specialization;
 use App\Models\Spell;
+use App\Models\SpellClassAvailability;
 use App\Models\SpellEffect;
 use App\Models\SpellRelationship;
+use App\Models\TalentNodeEntry;
 use App\Models\TalentTree;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -71,11 +73,78 @@ class ModuleSpellReferenceService
     /** @var array<string, bool> keyed by "{spell->id}:{classId}:{specId}:{treeIds}" — see isConfidentlyInBuild(). */
     private array $confidentlyInBuildMemo = [];
 
+    /** @var array<string, ?Spell> keyed by "{spell->id}:{classId}:{specId}:{treeIds}" — see findConfidentSibling(). */
+    private array $confidentSiblingMemo = [];
+
+    /**
+     * @var array<string, Collection<int, int>> keyed by treeIds (comma-joined) — the set of
+     * spell_ids that ARE a talent pick in those trees, bulk-fetched once. See
+     * talentPickSpellIdsFor() / isConfidentlyInBuild()'s "bulk-preload" fix, 2026-09-01.
+     */
+    private array $talentPickSpellIdsMemo = [];
+
+    /**
+     * @var array<string, Collection<int, int>> keyed by "{classId}:{specId}" — the set of
+     * spell_ids explicitly available to that class/spec, bulk-fetched once. See
+     * classAvailabilitySpellIdsFor().
+     */
+    private array $classAvailabilitySpellIdsMemo = [];
+
+    /**
+     * @var array<int, Collection<int, int>> keyed by classId — the set of spell_ids available
+     * to that class at all (any spec_id, including class-wide NULL rows), bulk-fetched once.
+     * See classSpellIdsFor() / resolveKitContext()'s "own-class?" check.
+     */
+    private array $classSpellIdsMemo = [];
+
     /** @var array<int, array{seconds: ?float, charges: ?int, duration: ?float}> keyed by spell->id — see resolveBaseCooldownCharges(). */
     private array $baseCooldownChargesMemo = [];
 
     /** @var array<int, string> keyed by spell->id — see categorize(). */
     private array $categorizeMemo = [];
+
+    /**
+     * @var array<string, Collection<int, Spell>> keyed by "{classId}:{specId}:{heroTreeId}" —
+     * see kitSpellsFor(). Full Spell rows (all columns — not a trimmed id/name/description
+     * select, since a text-scan match's Spell object is handed straight into $classify() and
+     * from there into every downstream caller that needs cooldown/charges/dr_category/etc.
+     * columns, same as a structurally-found candidate).
+     */
+    private array $kitSpellsMemo = [];
+
+    /**
+     * @var array<string, array{named: Collection, baseline: Collection, potential: Collection}>
+     * keyed by "{spell->id}:{contextKey}:{selectionSignature}" — see modifiersFor()'s own
+     * docblock ("recomputed 2-3x per spell" fix, 2026-09-01). Found via a real profiling pass:
+     * effectiveCooldown()/effectiveCharges() each call modifiersFor() fresh via
+     * effectiveScalarValue(), so a single main entry's cooldown+charges alone already invoked it
+     * 3 TIMES (once directly in the caller's own per-entry loop, once via each of those two
+     * methods) with byte-for-byte identical inputs — confirmed: 696 effectiveCooldown/Charges
+     * calls for only 181 distinct spells in one spec's render.
+     *
+     * REAL BUG, caught and fixed 2026-09-01, same day: this memo was originally keyed by
+     * spl_object_id($selectedSpellIds)/spl_object_id($selectedRanks) instead of their actual
+     * content, on the (wrong) assumption that "a different spec always passes a different
+     * Collection object, so entries never collide." PHP recycles object ids once an object is
+     * garbage-collected, and BOTH WowComps::getCompProperty() (3 slots, one shared
+     * ModuleSpellReferenceService instance across all of them, live in production) and
+     * wow:precompute-spell-kits (all 40 specs, one shared instance across the whole command)
+     * reuse a single service instance across MULTIPLE specs' own compute() calls — each spec's
+     * $selectedSpellIds/$selectedRanks Collections go out of scope and get freed the moment that
+     * spec's computation finishes, freeing their object ids for the NEXT spec's freshly-created
+     * Collections to reuse. Reproduced directly: processing all 40 specs with shared instances
+     * (matching the precompute command's own pattern) returned a WRONG, silently-corrupted
+     * modifier set for Frost Mage's Ice Block (150s/1 charge/4 modifiers, missing Glacial
+     * Bulwark's contribution entirely) versus the correct, verified-by-hand value (120s/2
+     * charges/6 modifiers) that four independent fresh-instance runs all agreed on. Fixed by
+     * keying on the Collections' own CONTENT (sorted spell ids / sorted spell_id=>rank pairs,
+     * joined into a plain string) instead of object identity — immune to GC recycling by
+     * construction, at the cost of one cheap sort+join per modifiersFor() call.
+     */
+    private array $modifiersForMemo = [];
+
+    /** @var array<string, array{text: string, uncertain: bool}> keyed by "{spell->id}:{contextKey}" — see resolveDescription(). */
+    private array $resolveDescriptionMemo = [];
 
     /**
      * Resolves a spell name to a concrete Spell for this build, disambiguating the same way
@@ -219,13 +288,29 @@ class ModuleSpellReferenceService
      */
     private function resolveKitContext(Spell $spell, ModuleGameBuild $build): array
     {
-        $key = $spell->id.':'.$build->class_id;
+        // REAL BUG, caught and fixed 2026-09-01: this key used to be just "{spell->id}:{class_id}"
+        // — missing spec_id/hero_tree_id entirely, even though the cached VALUE below is
+        // spec/hero-tree-specific ('spec_id' => $build->specialization_id, 'hero_tree_id' =>
+        // $build->hero_talent_tree_id). Any two specs of the SAME class share a class_id, so
+        // whichever spec was resolved FIRST for a given spell (in own-class) silently "won" and
+        // stuck for every other same-class spec's later lookup of that same spell, for as long as
+        // one service instance's memo lived. Invisible before today: WowComps' 3-slot comps rarely
+        // pick two specs of the same class, and SpellExplorer/Modules\Show only ever process one
+        // spec per request — wow:precompute-spell-kits (all 40 specs, one shared instance, same-
+        // class specs adjacent in the loop) is what actually triggered it and made it visible,
+        // reproduced directly: Frost Mage's Ice Block silently lost 2 of its 3 real modifiers
+        // (missing Glacial Bulwark) once a same-class Mage spec was processed first in the same
+        // run. Fixed by keying on the full resolved context, not just class_id.
+        $key = $spell->id.':'.$build->class_id.':'.$build->specialization_id.':'.$build->hero_talent_tree_id;
 
         if (array_key_exists($key, $this->kitContextMemo)) {
             return $this->kitContextMemo[$key];
         }
 
-        $inOwnClass = $spell->classAvailability()->where('class_id', $build->class_id)->exists();
+        // Bulk-preloaded 2026-09-01 (see classSpellIdsFor()) — was a fresh `->exists()` query per
+        // distinct spell, the largest remaining query bucket once isConfidentlyInBuild() got the
+        // same treatment (profiled: 185 of these for one spec's render, ~83ms).
+        $inOwnClass = $this->classSpellIdsFor($build->class_id)->has($spell->id);
 
         $context = $inOwnClass
             ? [
@@ -291,6 +376,35 @@ class ModuleSpellReferenceService
     }
 
     /**
+     * Full Spell rows for buildKitSpellIdsFor()'s id set, fetched ONCE per kit context and
+     * memoized — see modifiersFor()'s docblock, "text-scan hot spot" (found 2026-09-01 via a
+     * real user report of WoW Comps taking 5-8s cold). Before this existed, modifiersFor()'s
+     * text-scan fallback pass ran a fresh `Spell::whereIn(...)->where('description', 'like', ...)`
+     * query once per DISPLAY ENTRY (up to ~175 times for one spec) even though the scanned set —
+     * nearly the whole kit — barely changes between entries. Measured directly: those queries
+     * were only 13.7% of modifiersFor()'s total query COUNT but 81% of its DB TIME (unindexed
+     * leading-wildcard LIKE against a text column, run repeatedly). Fetching the kit's rows once
+     * and matching in PHP thereafter turns ~175 near-duplicate queries into 1.
+     *
+     * @return Collection<int, Spell>
+     */
+    private function kitSpellsFor(?int $classId, ?int $specId, ?int $heroTreeId): Collection
+    {
+        $key = $classId.':'.$specId.':'.$heroTreeId;
+        if (array_key_exists($key, $this->kitSpellsMemo)) {
+            return $this->kitSpellsMemo[$key];
+        }
+
+        $kitIds = $this->buildKitSpellIdsFor($classId, $specId, $heroTreeId);
+
+        if ($kitIds->isEmpty()) {
+            return $this->kitSpellsMemo[$key] = collect();
+        }
+
+        return $this->kitSpellsMemo[$key] = Spell::whereIn('id', $kitIds)->get()->keyBy('id');
+    }
+
+    /**
      * What modifies/enhances a mentioned spell, split into two groups per the user's explicit
      * request (2026-07-25): 'named' — real talent/spell modifiers worth surfacing per-row, and
      * 'baseline' — the generic always-on class-wide passive auras (e.g. "Priest", "Discipline
@@ -352,6 +466,20 @@ class ModuleSpellReferenceService
         $selectedSpellIds ??= collect();
         $selectedRanks ??= collect();
         $context = $this->resolveKitContext($spell, $build);
+
+        // Content-based, NOT spl_object_id()-based — see this property's own docblock
+        // ($modifiersForMemo) for the real bug this replaced. Cheap: both collections are
+        // small (a spec's own selections), sorting/joining costs microseconds against the
+        // DB round-trips this memo exists to avoid.
+        $selectionSignature = $selectedSpellIds->sort()->implode(',')
+            .'|'.$selectedRanks->sortKeys()->map(fn ($rank, $id) => "{$id}:{$rank}")->implode(',');
+
+        $memoKey = $spell->id.':'.$context['class_id'].':'.$context['spec_id'].':'.$context['hero_tree_id']
+            .':'.$selectionSignature;
+        if (array_key_exists($memoKey, $this->modifiersForMemo)) {
+            return $this->modifiersForMemo[$memoKey];
+        }
+
         $kitIds = $this->buildKitSpellIdsFor($context['class_id'], $context['spec_id'], $context['hero_tree_id']);
         $isBaseline = $this->genericBaselineAuraCheckerFor($context['class_id'], $context['spec_id']);
         $treeIds = $this->buildTreeIdsFor($context['class_id'], $context['spec_id'], $context['hero_tree_id']);
@@ -385,14 +513,26 @@ class ModuleSpellReferenceService
                 return;
             }
 
+            // $selectionCheckSpell is normally $candidate itself — the sibling fallback only
+            // kicks in when $candidate structurally CANNOT be confirmed (no talent_node_entry, no
+            // baseline row), which happens when a talent's relationship data was captured against
+            // a different internal spell_id than the one actually reachable via the talent tree
+            // (see findConfidentSibling()'s own docblock — confirmed real via Ashamane's
+            // Guidance/Incarnation: Avatar of Ashamane, 2026-09-0x). The entry itself keeps
+            // $candidate as its 'spell' (still carries the real modifier_value/relationship_type);
+            // only the SELECTION check below uses the sibling's id instead.
+            $selectionCheckSpell = $candidate;
             if (!$this->isConfidentlyInBuild($candidate, $context['class_id'], $context['spec_id'], $treeIds)) {
-                // Ambiguous class-wide tag, not an actual talent in this build's trees, not
-                // explicitly spec-tagged — dropped rather than shown as unexplained noise,
-                // regardless of selection state.
-                return;
+                $selectionCheckSpell = $this->findConfidentSibling($candidate, $context['class_id'], $context['spec_id'], $treeIds);
+                if ($selectionCheckSpell === null) {
+                    // Ambiguous class-wide tag, not an actual talent in this build's trees (and no
+                    // same-named sibling is either) — dropped rather than shown as unexplained
+                    // noise, regardless of selection state.
+                    return;
+                }
             }
 
-            if (!$selectedSpellIds->contains($candidate->id)) {
+            if (!$selectedSpellIds->contains($selectionCheckSpell->id)) {
                 // Not currently selected — a real, structurally-confirmed modifier, just not
                 // applying right now. Kept in 'potential' (see docblock above) rather than
                 // 'named', so the numeric math (effectiveCooldown()/effectiveCharges(), which
@@ -430,9 +570,16 @@ class ModuleSpellReferenceService
 
         $textCandidateIds = $kitIds->diff($seenIds);
         if ($textCandidateIds->isNotEmpty()) {
-            $textMatches = Spell::whereIn('id', $textCandidateIds)
-                ->where('description', 'like', '%'.$spell->name.'%')
-                ->get();
+            // Matched against kitSpellsFor()'s per-kit-context memoized rows, not a fresh query —
+            // see that method's docblock (the "text-scan hot spot" fix, 2026-09-01). stripos(),
+            // not str_contains(), to preserve the exact same case-INsensitive match the original
+            // `where('description', 'like', ...)` got for free from MySQL's default collation —
+            // switching to a case-sensitive PHP check would silently drop real matches that only
+            // differ by case.
+            $kitSpells = $this->kitSpellsFor($context['class_id'], $context['spec_id'], $context['hero_tree_id']);
+            $textMatches = $textCandidateIds
+                ->map(fn ($id) => $kitSpells->get($id))
+                ->filter(fn (?Spell $s) => $s !== null && $s->description !== null && stripos($s->description, $spell->name) !== false);
 
             foreach ($textMatches as $match) {
                 $seenIds->push($match->id);
@@ -440,7 +587,7 @@ class ModuleSpellReferenceService
             }
         }
 
-        return [
+        return $this->modifiersForMemo[$memoKey] = [
             'named' => $this->dedupeGenericModifies($named),
             'baseline' => $this->dedupeGenericModifies($baseline),
             'potential' => $this->dedupeGenericModifies($potential),
@@ -784,6 +931,112 @@ class ModuleSpellReferenceService
     ];
 
     /**
+     * Blizzard's internal numeric mechanic-id enum, as seen in a "Mechanic Immunity" effect's
+     * `misc_value` (see the 2026-09-02 migration on spell_effects and SpellDataFileParser's
+     * "Misc Value" capture). Deliberately a PARTIAL map — only codes actually cross-validated
+     * against a real spell's own description text are included; every other code renders as an
+     * honest "Unknown mechanic (code N)" via ccImmunityGrantedBy() below rather than trusting an
+     * unverified guess at the full enum. Verified codes, each checked against a real spell whose
+     * own tooltip states the effect in plain English:
+     *   5  = Fear        — Berserker Rage: "immunity to Fear, Sap, and some Incapacitate effects"
+     *   9  = Silence      — Unending Resolve: "immunity to interrupt, silence, and pushback effects"
+     *   12 = Stun         — Icebound Fortitude: "granting immunity to Stun effects"
+     *   14 = Incapacitate — Berserker Rage (see above)
+     *   26 = Interrupt    — Unending Resolve (see above)
+     *   30 = Sapped       — Berserker Rage (see above, "Sap" specifically — a narrower Incapacitate
+     *                       subtype used only by Rogue's Sap)
+     * Codes 23 ("Turned") and others appear in the raw data (e.g. also on Berserker Rage) but
+     * were not independently confirmed against a second, unambiguous source — left unmapped.
+     *
+     * @var array<int, string>
+     */
+    private const MECHANIC_IMMUNITY_CODE_MAP = [
+        5 => 'Fear',
+        9 => 'Silence',
+        12 => 'Stun',
+        14 => 'Incapacitate',
+        26 => 'Interrupt',
+        30 => 'Sap',
+    ];
+
+    /**
+     * Every CC-mechanic-type this spell's own effects grant immunity to, once active — reads
+     * $spell->effects (must be eager-loaded by the caller) for any 'Mechanic Immunity' effect
+     * and maps its misc_value through MECHANIC_IMMUNITY_CODE_MAP above. Distinct from
+     * spells.usable_while_cc (which answers "can this be CAST while already under CC X" — a
+     * separate Attribute-flag-derived fact, see SpellDataFileParser) — this answers "does
+     * casting this GRANT immunity to CC X for its duration." A spell can have either, both, or
+     * neither; they are not the same fact. An unmapped misc_value renders as an honest
+     * "Unknown mechanic (code N)" string rather than being silently dropped, so a gap in
+     * MECHANIC_IMMUNITY_CODE_MAP's coverage is visible rather than invisible.
+     *
+     * @return Collection<int, string>
+     */
+    public function ccImmunityGrantedBy(Spell $spell): Collection
+    {
+        return $spell->effects
+            ->filter(fn ($e) => $e->type === 'Mechanic Immunity' && $e->misc_value !== null)
+            ->map(fn ($e) => self::MECHANIC_IMMUNITY_CODE_MAP[$e->misc_value] ?? "Unknown mechanic (code {$e->misc_value})")
+            ->unique()
+            ->values();
+    }
+
+    /**
+     * True when this spell's own effects grant School Immunity covering $school (e.g. "Physical",
+     * "Shadow") — a real, DIFFERENT immunity mechanism from ccImmunityGrantedBy()'s Mechanic
+     * Immunity, added 2026-09-04 after a real report: Cloak of Shadows/Divine Shield/Blessing of
+     * Protection all use School Immunity, and none of them were showing up as counters to a
+     * Physical-school Stun like Kidney Shot because this effect's own payload (which schools it
+     * covers) was never captured at all — see the 2026_09_04 migration on spell_effects.
+     *
+     * Deliberately keyed off the CC spell's own `school` column, not dr_category — unlike the
+     * Mechanic Immunity correspondence (which needed a hand-verified per-category mapping, see
+     * DR_CATEGORY_TO_IMMUNITY_MECHANIC in ClaudesCounters), School Immunity applies uniformly to
+     * ANY CC spell with a real school value, since "Affected School(s)" is a literal school-name
+     * match — no judgment call, no guessed correspondence needed.
+     *
+     * "All" is matched for every non-null school (a spell with no school data can't be matched
+     * against anything, honestly). A specific school list (e.g. "Arcane, Fire, Frost, Holy,
+     * Nature, Shadow") is matched via substring containment against $school.
+     *
+     * Falls back to a same-name, same-patch sibling when the spell's own effects come back empty
+     * — the same "one real ability split across multiple internal spell_id records" pattern
+     * already handled elsewhere in this service (findEffectByIndex(), categorize()'s sibling
+     * merge). Confirmed real for Cloak of Shadows specifically: the player-cast, talent-linked
+     * copy (31224) has no School Immunity effect of its own at all — it fires a "Trigger Spell"
+     * pointing at a separate hidden aura record (35729) that carries the real immunity effects.
+     */
+    public function grantsSchoolImmunityFor(Spell $spell, ?string $school): bool
+    {
+        if ($school === null) {
+            return false;
+        }
+
+        $matches = function (Collection $effects) use ($school) {
+            return $effects->contains(function ($e) use ($school) {
+                if ($e->type !== 'School Immunity' || $e->affected_schools === null) {
+                    return false;
+                }
+
+                return $e->affected_schools === 'All' || str_contains($e->affected_schools, $school);
+            });
+        };
+
+        if ($matches($spell->effects)) {
+            return true;
+        }
+
+        $siblingEffects = Spell::where('name', $spell->name)
+            ->where('patch_id', $spell->patch_id)
+            ->where('id', '!=', $spell->id)
+            ->with('effects')
+            ->get()
+            ->flatMap(fn (Spell $sibling) => $sibling->effects);
+
+        return $matches($siblingEffects);
+    }
+
+    /**
      * Best-effort display grouping (Crowd Control / Defensive / Utility / Offensive / Other) for
      * the Spells table — added 2026-08-02, purely a view-layer heuristic over each spell's
      * already-captured `spell_effects.type` strings ($spell->effects must be eager-loaded by the
@@ -997,10 +1250,33 @@ class ModuleSpellReferenceService
             ->reject(function (SpellEffect $effect) {
                 $isHealType = str_contains((string) $effect->type, 'Direct Heal') || str_contains((string) $effect->type, 'Periodic Heal');
 
-                return $isHealType
+                if ($isHealType
                     && (float) ($effect->base_value ?? 0) <= 1
                     && (float) ($effect->scaled_value ?? 0) <= 1
-                    && $effect->sp_coefficient === null;
+                    && $effect->sp_coefficient === null) {
+                    return true;
+                }
+
+                // A zero-magnitude "Increase Speed%" effect is a real, common shape: a
+                // defensive/utility ability that also has a purely talent-conditional movement
+                // bonus riding on it, base 0 unless that specific (often rare) talent is known —
+                // e.g. Barkskin's own Increase Speed% effect is 0/0 by default, only becoming
+                // real when the "Flower Walk" talent is selected (confirmed directly in the raw
+                // data — "Modified By: Flower Walk"). Unlike a genuine movement ability (Stampeding
+                // Roar, base_value 60, no talent gate needed to matter), this contributes nothing
+                // for the vast majority of viewers, so it must not out-rank Barkskin's own real,
+                // unconditional Damage Taken% effect in categorizeFromEffects()'s priority match
+                // below — found 2026-09-03 via a real report (Barkskin showing "Mobility" instead
+                // of "Defensive" for Balance Druid). `modified_by` itself isn't persisted onto
+                // spell_effects (only used transiently to build spell_relationships at import
+                // time), so a bare zero-magnitude check is the available signal — safe here
+                // specifically because a real, always-on speed boost never legitimately sits at a
+                // flat 0 (confirmed against Stampeding Roar/Sprint-shaped abilities).
+                $isInertSpeedBoost = str_contains((string) $effect->type, 'Increase Speed%')
+                    && (float) ($effect->base_value ?? 0) === 0.0
+                    && (float) ($effect->scaled_value ?? 0) === 0.0;
+
+                return $isInertSpeedBoost;
             })
             ->pluck('type');
 
@@ -1204,6 +1480,17 @@ class ModuleSpellReferenceService
      *
      * @param  array<int, int>  $treeIds
      */
+    /**
+     * Bulk-preloaded 2026-09-01 (see the two helpers below) — this used to run two fresh
+     * `->exists()` queries per NEW candidate spell (a talent-pick check, a class-availability
+     * check), which the existing per-(spell,context) memo above only saves on a REPEAT
+     * candidate. Profiled directly: 549 spell_class_availability + 483 talent_node_entries
+     * queries for one spec's render, almost entirely first-time candidate checks, not redundant
+     * ones — the per-spell memo was already doing its job, the underlying per-candidate query
+     * itself was the remaining cost. Now both checks are plain in-memory set-membership tests
+     * against a set fetched once per tree/class/spec context, same "fetch the whole context
+     * once" pattern as kitSpellsFor()'s text-scan fix just above it.
+     */
     private function isConfidentlyInBuild(Spell $spell, ?int $classId, ?int $specId, array $treeIds): bool
     {
         if ($classId === null) {
@@ -1215,18 +1502,108 @@ class ModuleSpellReferenceService
             return $this->confidentlyInBuildMemo[$key];
         }
 
-        $isTalentPick = $spell->talentNodeEntries()
-            ->whereHas('talentNode', fn ($q) => $q->whereIn('talent_tree_id', $treeIds))
-            ->exists();
-
-        if ($isTalentPick) {
+        if ($this->talentPickSpellIdsFor($treeIds)->has($spell->id)) {
             return $this->confidentlyInBuildMemo[$key] = true;
         }
 
-        return $this->confidentlyInBuildMemo[$key] = $spell->classAvailability()
-            ->where('class_id', $classId)
+        return $this->confidentlyInBuildMemo[$key] = $this->classAvailabilitySpellIdsFor($classId, $specId)->has($spell->id);
+    }
+
+    /**
+     * Same-named-sibling fallback for isConfidentlyInBuild() — found via a real bug report
+     * (2026-09-0x, Feral Druid): Incarnation: Avatar of Ashamane wasn't showing Ashamane's
+     * Guidance's -30s cooldown reduction, while Feral Frenzy's own equivalent talent (Focused
+     * Frenzy) worked fine. Traced to the exact "one ability split across multiple internal
+     * spell_id records" pattern already documented throughout this project (Penance, Angelic
+     * Bulwark, Roar of Sacrifice, Mind Blast, ...) — just showing up in the SELECTION-CONFIRMATION
+     * step instead of description/categorization/icon resolution this time: "Ashamane's Guidance"
+     * exists as 3 separate spell_id records for this patch. The one actually linked to a real
+     * talent_node_entry (and therefore reachable/selectable via the talent tree) has ZERO outgoing
+     * spell_relationships rows. The one carrying the real `-30 seconds` modifies_cooldown
+     * relationship to Incarnation has NO talent_node_entry at all, so isConfidentlyInBuild()
+     * correctly (per its own existing logic) never treats it as real. Confirmed via direct query,
+     * not assumed: 391548 (tree-linked, node_id=1938, actually selected in the real admin-default
+     * build) — 0 outgoing relationships; 1244546 (the -30s relationship's real source) — no
+     * talent_node_entry anywhere. Focused Frenzy has no such split (a single spell_id record does
+     * both jobs), which is exactly why it never showed this bug.
+     *
+     * Returns the first same-named sibling that IS confidently in the build (has a real
+     * talent_node_entry or class-availability row) — the caller then checks THAT sibling's
+     * presence in $selectedSpellIds instead of the original candidate's, since the original
+     * candidate structurally cannot ever be "selected" (nothing in the talent tree points at it).
+     * Returns null (no fallback found) when every same-named copy is equally unreachable — that
+     * case stays correctly dropped as unexplained noise, per isConfidentlyInBuild()'s own
+     * documented behavior, not force-matched to something unrelated.
+     */
+    private function findConfidentSibling(Spell $spell, ?int $classId, ?int $specId, array $treeIds): ?Spell
+    {
+        $key = $spell->id.':'.$classId.':'.$specId.':'.implode(',', $treeIds);
+        if (array_key_exists($key, $this->confidentSiblingMemo)) {
+            return $this->confidentSiblingMemo[$key];
+        }
+
+        $siblings = Spell::where('patch_id', $spell->patch_id)
+            ->where('name', $spell->name)
+            ->where('id', '!=', $spell->id)
+            ->get();
+
+        foreach ($siblings as $sibling) {
+            if ($this->isConfidentlyInBuild($sibling, $classId, $specId, $treeIds)) {
+                return $this->confidentSiblingMemo[$key] = $sibling;
+            }
+        }
+
+        return $this->confidentSiblingMemo[$key] = null;
+    }
+
+    /** @return Collection<int, true> a set (values unused, keyed by spell_id) — see isConfidentlyInBuild(). */
+    private function talentPickSpellIdsFor(array $treeIds): Collection
+    {
+        $key = implode(',', $treeIds);
+        if (array_key_exists($key, $this->talentPickSpellIdsMemo)) {
+            return $this->talentPickSpellIdsMemo[$key];
+        }
+
+        if (empty($treeIds)) {
+            return $this->talentPickSpellIdsMemo[$key] = collect();
+        }
+
+        return $this->talentPickSpellIdsMemo[$key] = TalentNodeEntry::whereHas(
+            'talentNode',
+            fn ($q) => $q->whereIn('talent_tree_id', $treeIds)
+        )->pluck('spell_id')->unique()->flip();
+    }
+
+    /** @return Collection<int, true> a set (values unused, keyed by spell_id) — see resolveKitContext(). */
+    private function classSpellIdsFor(?int $classId): Collection
+    {
+        if (array_key_exists($classId, $this->classSpellIdsMemo)) {
+            return $this->classSpellIdsMemo[$classId];
+        }
+
+        if ($classId === null) {
+            return $this->classSpellIdsMemo[$classId] = collect();
+        }
+
+        return $this->classSpellIdsMemo[$classId] = SpellClassAvailability::where('class_id', $classId)
+            ->pluck('spell_id')->unique()->flip();
+    }
+
+    /** @return Collection<int, true> a set (values unused, keyed by spell_id) — see isConfidentlyInBuild(). */
+    private function classAvailabilitySpellIdsFor(?int $classId, ?int $specId): Collection
+    {
+        $key = $classId.':'.$specId;
+        if (array_key_exists($key, $this->classAvailabilitySpellIdsMemo)) {
+            return $this->classAvailabilitySpellIdsMemo[$key];
+        }
+
+        if ($classId === null) {
+            return $this->classAvailabilitySpellIdsMemo[$key] = collect();
+        }
+
+        return $this->classAvailabilitySpellIdsMemo[$key] = SpellClassAvailability::where('class_id', $classId)
             ->where('spec_id', $specId)
-            ->exists();
+            ->pluck('spell_id')->unique()->flip();
     }
 
     /**
@@ -1281,7 +1658,32 @@ class ModuleSpellReferenceService
         Log::debug($message, $context);
     }
 
+    /**
+     * Thin memoizing wrapper — the real work is resolveDescriptionUncached() below. Added
+     * 2026-09-01 alongside the modifiersFor() memo (see that one's own docblock for the full
+     * profiling context): confirmed 342 of 523 resolveDescription() calls in one spec's render
+     * were the exact same (spell, context) pair recomputed from scratch — the same spell being a
+     * modifier of several different display entries re-runs this method's full regex pipeline
+     * (color-code stripping, conditional-branch resolution, sibling-effect recovery, SP
+     * coefficient display, etc.) once per occurrence instead of once per spell. The result
+     * depends only on $spell and the resolved kit context (never on which talents are selected —
+     * resolveDescriptionUncached() takes no $selectedSpellIds/$selectedRanks at all), so a plain
+     * (spell->id, context) key is sufficient — no object-identity trick needed here, unlike
+     * modifiersFor()'s memo.
+     */
     public function resolveDescription(Spell $spell, ModuleGameBuild $build): array
+    {
+        $context = $this->resolveKitContext($spell, $build);
+        $memoKey = $spell->id.':'.$context['class_id'].':'.$context['spec_id'].':'.$context['hero_tree_id'];
+
+        if (array_key_exists($memoKey, $this->resolveDescriptionMemo)) {
+            return $this->resolveDescriptionMemo[$memoKey];
+        }
+
+        return $this->resolveDescriptionMemo[$memoKey] = $this->resolveDescriptionUncached($spell, $build, $context);
+    }
+
+    private function resolveDescriptionUncached(Spell $spell, ModuleGameBuild $build, array $context): array
     {
         $text = $spell->description ?? '';
 
@@ -1290,7 +1692,6 @@ class ModuleSpellReferenceService
         }
 
         $uncertain = false;
-        $context = $this->resolveKitContext($spell, $build);
         $kitIds = $this->buildKitSpellIdsFor($context['class_id'], $context['spec_id'], $context['hero_tree_id']);
 
         // Pass 0: truncate a dangling, unterminated conditional at the very end of the string
@@ -1409,18 +1810,29 @@ class ModuleSpellReferenceService
         );
 
         // Pass 1.5: bare "$<varname>" references to a named Variables-block formula (e.g.
-        // Penance's "$<penancedamage>") — added 2026-08-02. Actually evaluating the referenced
-        // variable's own formula is out of scope (it can chain through multiple conditional
-        // talent multipliers — see variablesModifiers()'s docblock for why that's deliberately
-        // not attempted), but leaving the raw "$<penancedamage>" token visible in otherwise-clean
-        // prose reads as more broken than the plain "(varies)" placeholder every other
-        // unresolvable case already falls back to — neither Pass 2 nor Pass 3's token regex
-        // matches the angle-bracket form at all, so without this pass it silently passed through
-        // unchanged. variablesModifiers() (called separately by the caller) surfaces which real
-        // talents affect the value instead.
+        // Penance's "$<penancedamage>") — added 2026-08-02.
+        //
+        // Blanket-evaluating these is still out of scope: a Variables block can chain through
+        // conditional talent multipliers ($castigation=$?a193134[${1}][${0}]), and picking a
+        // branch would be a guess — see variablesModifiers()'s docblock. BUT a large share of
+        // Variables entries are a single, unconditional ${...} arithmetic expression (optionally
+        // with a ".N" precision suffix — 690 such spots dataset-wide), which Pass 2 already
+        // knows how to evaluate exactly. So: if the whole Variables block for this spell is
+        // conditional-free ($? absent) AND the referenced var is defined as one bare ${...}
+        // expression, inline that expression here and let Pass 2 resolve it (subject to its own
+        // "unresolved token -> (varies)" guards). Otherwise fall back to "(varies)" as before.
+        // Found 2026-09-06 via Shield Discipline (47755): "$mana=${$47755s1/100}.1" -> "0.5%".
+        $varDefs = $this->parseVariableDefs($spell->variables);
         $text = preg_replace_callback(
-            '/\$<[a-zA-Z0-9]+>/',
-            function () use (&$uncertain) {
+            '/\$<([a-zA-Z0-9]+)>/',
+            function ($m) use (&$uncertain, $varDefs) {
+                $def = $varDefs[$m[1]] ?? null;
+
+                if ($def !== null && preg_match('/^\$\{[^{}]*\}(?:\.\d)?$/', $def)) {
+                    // Hand the bare ${...} (precision suffix stripped) to Pass 2 below.
+                    return preg_replace('/(\})\.\d$/', '$1', $def);
+                }
+
                 $uncertain = true;
 
                 return '(varies)';
@@ -1429,24 +1841,68 @@ class ModuleSpellReferenceService
         );
 
         // Pass 2: ${...} arithmetic — substitute embedded value tokens, then safely evaluate.
+        // A trailing ".N" immediately after the closing brace is SimC's decimal-precision
+        // specifier (690 occurrences dataset-wide, effectively always ".1") — consumed and
+        // dropped here; formatNumber() already renders sensible precision (whole when exact,
+        // else one decimal). Before this it passed through as literal text ("lasts 3.1 sec"
+        // where the real value is 3, "restore 0.5.1%" once a $<var> resolved to 0.5).
         $text = preg_replace_callback(
-            '/\$\{([^{}]*)\}/',
+            '/\$\{([^{}]*)\}(?:\.\d)?/',
             function ($m) use (&$uncertain, $spell) {
+                // An unresolved token substituted as 0 only produces a correct result when 0 is
+                // the arithmetic identity for its position: an ADDITIVE term (`+$s3`, `$d-$s1`)
+                // or a DIVIDEND (`$s2/100`). As a MULTIPLICAND (`$m1*3`) it annihilates the
+                // product; as a DIVISOR (`$s1/$s2`) it breaks the expression. So a null token in
+                // a poisoning position discards the whole ${...} to "(varies)" — matching what
+                // effectValue()/Pass 3 already do for the bare-token case (game-data.md Gap 1) —
+                // while a null token in a safe additive/dividend position is genuinely "no
+                // modifier applied" and 0 is kept.
+                // Found 2026-09-06: Eviscerate's ${$m1*N} rendered "1 point : 0 damage ...";
+                // 21 kit entries affected. Additive carve-out added same day so Alter Time
+                // (${$110909d+$s3}) keeps its real "10 seconds" and Nature's Guardian
+                // (${$Xs1*(1+$s2/100)}) keeps its real base %.
+                $expr = $m[1];
+                $poisoned = false;
+                $count = 0;
+
                 $inner = preg_replace_callback(
                     '/\$(\d*[a-zA-Z]+\d*)/',
-                    function ($mm) use (&$uncertain, $spell) {
-                        $value = $this->resolveValueToken($mm[1], $spell);
+                    function ($mm) use (&$poisoned, &$uncertain, $spell, $expr) {
+                        // PREG_OFFSET_CAPTURE: $mm[n] is [string, byteOffset].
+                        [$full, $offset] = $mm[0];
+                        $token = $mm[1][0];
 
-                        if ($value === null) {
-                            $uncertain = true;
+                        $value = $this->resolveValueToken($token, $spell);
 
-                            return '0';
+                        if ($value !== null) {
+                            return (string) $value;
                         }
 
-                        return (string) $value;
+                        $uncertain = true;
+
+                        // Operators immediately flanking this token in the raw expression.
+                        $before = rtrim(substr($expr, 0, $offset));
+                        $after = ltrim(substr($expr, $offset + strlen($full)));
+                        $prevOp = $before === '' ? '' : substr($before, -1);
+                        $nextOp = $after === '' ? '' : substr($after, 0, 1);
+
+                        // 0 annihilates a product and breaks division-by; it's the identity for
+                        // an additive term or a dividend.
+                        if ($prevOp === '*' || $prevOp === '/' || $nextOp === '*') {
+                            $poisoned = true;
+                        }
+
+                        return '0';
                     },
-                    $m[1]
+                    $m[1],
+                    -1,
+                    $count,
+                    PREG_OFFSET_CAPTURE
                 );
+
+                if ($poisoned) {
+                    return '(varies)';
+                }
 
                 $result = $this->safeEval($inner);
                 if ($result === null) {
@@ -1599,6 +2055,32 @@ class ModuleSpellReferenceService
     }
 
     /**
+     * Parses a spell's raw Variables block into a name => right-hand-side map. Format is one
+     * "$name=expression" per line (the block is "\n"-joined at parse time — see
+     * SpellDataFileParser). Returns [] when there is no block OR when the block contains any
+     * "$?" conditional anywhere — in that case no single definition can be trusted as
+     * unconditional, so Pass 1.5 falls back to "(varies)" for the whole block rather than
+     * risk inlining a branch-dependent value. (2026-09-06)
+     *
+     * @return array<string, string>
+     */
+    private function parseVariableDefs(?string $variables): array
+    {
+        if ($variables === null || $variables === '' || str_contains($variables, '$?')) {
+            return [];
+        }
+
+        $defs = [];
+        foreach (preg_split('/\r?\n/', $variables) as $line) {
+            if (preg_match('/^\s*\$([a-zA-Z0-9]+)\s*=\s*(.+?)\s*$/', $line, $m)) {
+                $defs[$m[1]] = $m[2];
+            }
+        }
+
+        return $defs;
+    }
+
+    /**
      * Real talent/spell names referenced by this spell's own Variables block (the raw
      * "$var=$?a<id>[...][...]" formula text captured separately from description — see
      * SpellDataFileParser) — added 2026-08-02 as the practical fallback for a formula
@@ -1657,6 +2139,21 @@ class ModuleSpellReferenceService
     {
         if (preg_match('/^s(\d+)$/', $token, $m)) {
             $effect = $this->findEffectByIndex($spell, (int) $m[1]);
+
+            return $effect ? $this->effectValue($effect) : null;
+        }
+
+        // $mN / $MN (effect min/max value) resolve against the spell's OWN effect only — never
+        // findEffectByIndex()'s same-name sibling recovery. $mN backs "grant +N charges" talents
+        // (Prosperity/Ice Ward/Focused Thunder: "${$m1+1} charges", own effect #1 Base Value 1 →
+        // renders "2 charges" instead of the old "(varies)"). Sibling recovery is unsafe here:
+        // a combo-point finisher like Eviscerate has its own effect #1 at 0/0 (real value is
+        // AP-coefficient-scaled, uncaptured) but a same-name sibling carries an unrelated 35
+        // (Energy cost) — pulling that in rendered a confident, wrong "35 damage per point".
+        // Own-effect-only keeps the safe win and lets effectValue()'s 0/0 guard return null so
+        // Pass 2's poison check falls back to "(varies)". (2026-09-06)
+        if (preg_match('/^[mM](\d+)$/', $token, $m)) {
+            $effect = $spell->effects->firstWhere('effect_index', (int) $m[1]);
 
             return $effect ? $this->effectValue($effect) : null;
         }

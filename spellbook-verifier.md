@@ -1,4 +1,6 @@
-# Plan: In-Game Spellbook Verifier (addon + import + diff)
+# In-Game Spellbook Verifier (addon + import + diff)
+
+> Completed 2026-08-02 (Phase 1). Kept as the design record. Reframed from a plan doc — the "out of scope" list below is just what this piece of work didn't cover, not a set of prohibitions.
 
 ## Goal
 
@@ -22,13 +24,13 @@ Patch-day workflow Phase 1 enables: log in → `/mcexport` → `/reload` → run
 
 Current verification matches by **name**, which is ambiguous (11 "Penance" rows; only 2 real). The spellbook API returns spell IDs, so the export tells us *which* ID is the player-facing one. This turns `Not In Spellbook`-style inference into a cross-check instead of a guess.
 
-## Out of scope
+## What this piece of work didn't cover
 
-- Any change to `QuizRunner.php` or `AiService.php` (locked — do not open).
-- **The Phase 2 description resolver.** Do not build any code that resolves description templates, compares description text, or diffs descriptions. Phase 1 only captures and stores them.
-- Promoting resolved description text or resolved numbers into the general `spells` table. Resolved text is build-specific ground truth; it lives on snapshot entries only, never on `spells`.
-- Any change to the SimC importer (`ImportSpellData`, `SpellDataFileParser`) or to `resolveBaselineSpecIds()`. This plan only *reads* what they produced.
-- Auto-correcting data based on the diff. The diff **prints/flags only**. Corrections remain a human decision recorded via `spell_corrections` (existing conventions apply).
+- `QuizRunner.php` / `AiService.php` — untouched (unrelated).
+- **The Phase 2 description resolver** — Phase 1 only captures and stores descriptions; it doesn't resolve templates, compare description text, or diff descriptions.
+- Promoting resolved description text or resolved numbers into the general `spells` table. Resolved text is build-specific ground truth and lives on snapshot entries — copying it onto `spells` would make it wrong for other builds.
+- Changes to the SimC importer (`ImportSpellData`, `SpellDataFileParser`) or `resolveBaselineSpecIds()` — this pipeline only *reads* what they produced.
+- Auto-correcting data from the diff. The diff **prints/flags only**; corrections are a human decision recorded via `spell_corrections`.
 - Talent *tree topology* import (node positions, choice groups). The addon captures which talents the character has selected/knows, for availability verification only.
 - Other characters / inspect API. Self-character only.
 - Automation of the login/reload step itself. Manual trigger is fine.
@@ -37,7 +39,7 @@ Current verification matches by **name**, which is ambiguous (11 "Penance" rows;
 
 ### INVESTIGATE FIRST — report before writing any Lua
 
-The WoW client API changed significantly in 11.x (e.g. the `C_SpellBook` namespace replaced older `GetSpellBookItemInfo`-style calls) and may have changed again in 12.0. **Do not trust any API signature from memory — mine or yours.** Before writing the addon:
+The WoW client API changed significantly in 11.x (e.g. the `C_SpellBook` namespace replaced older `GetSpellBookItemInfo`-style calls) and may have changed again in 12.0. **Warning: don't trust an API signature from memory** — verify in-game with `/dump`. Before writing the addon:
 
 1. Check whether the repo already contains any addon/Lua artifacts or notes (search for `SavedVariables`, `.toc`, `Interface/AddOns` mentions).
 2. Report the addon skeleton you intend to write, listing every WoW API function you plan to call, marked `UNVERIFIED` — Chriso will validate the calls in-game with `/dump` before you finalize. Expected relevant namespaces (verify, don't assume): `C_SpellBook` (spellbook items + spell IDs, skill line ranges), `C_ClassTalents` / `C_Traits` (active config ID, node/entry state, **loadout export string generation**), PvP talent slot APIs, `UnitClass` / `GetSpecialization` / `GetSpecializationInfo`, and spell description retrieval (likely `C_Spell` description APIs and/or a `Spell` object mixin with an async continuation pattern).

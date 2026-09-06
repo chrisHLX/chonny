@@ -92,6 +92,7 @@ class SpellDetailModal extends Component
         return [
             'spell' => $spell,
             'category' => $service->categorize($spell),
+            'grantsCcImmunity' => $service->ccImmunityGrantedBy($spell),
             'description' => $description,
             'formulaModifiers' => $description['uncertain'] ? $service->variablesModifiers($spell) : new Collection(),
             'cooldown' => $service->effectiveCooldown($spell, $gameBuild, $selected, $ranks),

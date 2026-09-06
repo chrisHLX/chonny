@@ -46,11 +46,11 @@ test('selecting a spec and length renders the real Peak Burst Example for that l
     $html = $component->html();
     expect($html)->toContain('Peak Burst Example');
     // 6s bracket's real damage figure from the committed data file — see the export's own
-    // topDpsWindowsByLength.6.damage. Updated 2026-08-27 after a fresh all-spec-rotations.php
-    // regeneration (more archived matches processed since this was last written) legitimately
-    // moved the real number — re-check this value directly from the committed JSON any time the
+    // topDpsWindowsByLength.6.damage. Updated 2026-09-05 after the archive's oldest-500-match
+    // cull + a fresh 300-match pull + all-spec-rotations.php regeneration legitimately moved the
+    // real number again — re-check this value directly from the committed JSON any time the
     // rotation data is regenerated, don't assume it's stable across reruns.
-    expect($html)->toContain('1,158,787');
+    expect($html)->toContain('1,137,390');
 });
 
 test('selectLength ignores a value outside the allowed set', function () {

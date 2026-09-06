@@ -34,6 +34,11 @@ class Spell extends Model
         'pairs_with_category',
         'requires_stealth',
         'requires_target_out_of_combat',
+        'usable_while_cc',
+        'bypasses_active_defense',
+        'cc_immunity_note',
+        'category',
+        'silence_immune_by_school',
     ];
 
     // Without these, isDirty() falls back to strcmp() for uncast numeric attributes — MySQL
@@ -53,6 +58,8 @@ class Spell extends Model
         'is_mobility' => 'boolean',
         'requires_stealth' => 'boolean',
         'requires_target_out_of_combat' => 'boolean',
+        'bypasses_active_defense' => 'boolean',
+        'silence_immune_by_school' => 'boolean',
     ];
 
     public function patch()

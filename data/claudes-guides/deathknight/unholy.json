@@ -1,0 +1,92 @@
+{
+    "classSlug": "deathknight",
+    "specSlug": "unholy",
+    "title": "Unholy Death Knight",
+    "subtitle": "A data-grounded PvP read, written by Claude — not a dictated expert module. See the disclaimer at the end.",
+    "dataSources": {
+        "playstyleSample": 10,
+        "ratingRange": [3022, 3123],
+        "patch": "12.0.7.68453",
+        "freshPullPerformed": false,
+        "note": "Built entirely from the existing 10-match sample (3022-3123 rating) already on file — no new arena-log pull was performed for this. If that changes later, any fresh pull gets the standard wow:refresh-match-derived treatment so Class Guide/Burst Windows/CC chains for this spec benefit too, not just this page."
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "heading": "Identity",
+            "paragraphs": [
+                "Unholy's real, current-patch kit is meaningfully different from what its name suggests to a returning player. Reading the actual imported spell data rather than relying on older memory: Putrefy summons a Lesser Ghoul that strikes and then explodes; Festering Scythe is a frontal cleave that speeds up existing plague ticks rather than the older wound-stacking Festering Strike; Necrotic Coil is a piercing Shadow vortex. This guide is written strictly against what the data actually says for this patch, not against an older mental model of the spec — worth flagging directly, since Unholy has been reworked enough times that stale assumptions are a real risk here.",
+                "The identity that does carry over: this is a pressure-and-attrition spec built around a permanent pet (the Ghoul, empowered by Dark Transformation) plus a rolling disease/plague pressure layer, rather than a single big cooldown window. Per Part 4 of this project's own arena framework (arena-structure.md), Unholy's own go-frequency is governed less by any one cooldown and more by whether Dark Transformation and the pet are both currently online — the pet is a persistent damage source, not a one-shot burst tool."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Offensive Cooldowns",
+            "intro": "Army of the Dead and Dark Transformation are the two real cooldowns that escalate the pet's own damage; Putrefy and Soul Reaper are the shorter-cadence pressure tools underneath them.",
+            "spellIds": [42650, 1233448, 1247378, 343294, 55090]
+        },
+        {
+            "type": "prose",
+            "heading": "A control tool that's barely used — and what that probably means",
+            "paragraphs": [
+                "Asphyxiate (a real, hard-hitting stun in this spec's kit) was taken in every one of the 10 sampled matches but actually cast in only 2 of them. That's a sharp gap worth taking seriously rather than dismissing: it suggests real high-rated Unholy players are holding this cooldown for a specific, narrower moment rather than spending it reactively — most plausibly, saving it to lock a healer or kill target during an already-assembled go, per Part 8's certainty-window framing, rather than using it as a generic peel or interrupt-adjacent tool.",
+                "This is the same lesson as the Rogue guide's Smoke Bomb discussion, just discovered independently from a completely different spec's real data: a big, rare CC tool spent early on partial pressure is a wasted opportunity, and the data here is consistent with real players already knowing that, not with the tool being under-valued."
+            ]
+        },
+        {
+            "type": "prose",
+            "heading": "The real burst window — CC woven into the damage",
+            "paragraphs": [
+                "The actual highest-DPS 12-second window found across the whole archived sample: Putrefy -> Necrotic Coil -> Necrotic Coil -> Blinding Sleet -> Necrotic Coil -> Necrotic Coil -> Scourge Strike -> Scourge Strike -> Necrotic Coil -> Scourge Strike. This is the third time in this guide series that a real damage window has turned out to include a control ability, not just damage abilities — Blinding Sleet (a Disorient) sits right in the middle of it, exactly the same pattern already found in the Frost Mage guide's Counterspell.",
+                "Read together with that earlier finding, this looks like a genuine cross-spec pattern rather than a coincidence specific to one class: the actual highest-value moment in a real fight is rarely pure, uninterrupted damage-spam — it's damage layered with denying the opponent's own answer, whatever form that answer would have taken. Worth remembering as a general principle, not just a Frost Mage or Unholy DK quirk."
+            ]
+        },
+        {
+            "type": "sequence",
+            "heading": "The real observed burst window",
+            "intro": "The literal top-DPS 12s window from the archived match sample — read live from the same rotation file Burst Windows/Class Guide use for this spec.",
+            "useRealBurstWindow": true,
+            "burstWindowLength": 12
+        },
+        {
+            "type": "prose",
+            "heading": "Reading the anti-go against Unholy",
+            "paragraphs": [
+                "Per Part 11 of the framework, the state-recognition failure to watch for here is treating Unholy's pressure as a single spike to survive rather than a sustained attrition problem. Because so much of this spec's output comes from a persistent pet rather than a one-shot cooldown, the correct defensive read is less about a single moment and more about the running total: is the pet still alive, is Dark Transformation active, has the plague pressure been building uninterrupted. Answering only the visible spike (Putrefy's Ghoul-strike-and-explode) while ignoring the underlying pet uptime is the same shape of mistake as reacting to a Rogue's finishers while ignoring that Garrote's silence already locked the exchange several seconds earlier."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Defensive Cooldowns",
+            "intro": "Icebound Fortitude is the everyday answer; Anti-Magic Zone/Shell split by damage school the same way a Rogue's Cloak/Evasion pair does.",
+            "spellIds": [48792, 48707, 51052, 48743, 49039]
+        },
+        {
+            "type": "prose",
+            "heading": "The defensive ladder, read correctly",
+            "paragraphs": [
+                "Icebound Fortitude was actually needed in 7 of the 10 sampled matches — a normal, frequent-use defensive per Part 7's ladder framing. The Anti-Magic Shell/Zone split matters the same way Cloak of Shadows/Evasion does for Rogue: Anti-Magic Shell (and Zone, its group-wide extension) only answers magic damage completely, and using either against a physical burst is pure waste regardless of how big the number looks on the tooltip."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Crowd Control",
+            "intro": "A tighter CC kit than Rogue or Mage, but each piece is genuinely different in category — Silence and Disorient don't diminish each other, so this spec can chain both back to back.",
+            "spellIds": [47476, 207167]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Mobility & Utility",
+            "intro": "Death Grip pulls the fight to you rather than repositioning away from it — the opposite direction of most classes' mobility tools, and a real, distinct utility in its own right.",
+            "spellIds": [49576, 444347, 212552, 47528]
+        },
+        {
+            "type": "prose",
+            "heading": "The cooldown ledger — what to actually track",
+            "paragraphs": [
+                "Per Part 4 of the framework, the number worth tracking for this spec isn't a single cooldown timer the way it is for Rogue's Deathmark — it's a compound state: is Dark Transformation active, is the pet alive, and how long has the plague pressure been ticking uninterrupted. Unholy's own next 'go' isn't a fixed number of seconds away the way a burst spec's is; it's whenever that compound state next lines up, which makes reading the enemy Unholy DK's current pet/transformation status more valuable than watching any single ability's cooldown bar."
+            ]
+        }
+    ],
+    "disclaimer": "This guide was written by Claude (an AI), synthesized from real archived match data and this project's own arena-structure.md framework — it is NOT a dictated expert module and does not carry the same trust tier as the Discipline Priest or Feral Druid canonical modules elsewhere on this site. Every cooldown, category, and observed sequence above is read live from the same database everything else uses; the reasoning connecting them is AI-generated analysis, offered as a data-grounded opinion, not verified expertise. Treat it as a starting hypothesis to test against your own games, not a verdict."
+}

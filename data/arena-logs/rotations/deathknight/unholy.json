@@ -1,9 +1,9 @@
 {
     "class": "deathknight",
     "spec": "unholy",
-    "windows": 509,
-    "killWindows": 79,
-    "matches": 129,
+    "windows": 360,
+    "killWindows": 57,
+    "matches": 112,
     "anchors": [
         "Army of the Dead",
         "Dark Transformation",
@@ -20,10 +20,22 @@
         "Meteor"
     ],
     "topDpsWindow": {
-        "damage": 1782071,
+        "damage": 2028976,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
+            {
+                "name": "Army of the Dead",
+                "spellId": 42650,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Dark Transformation",
+                "spellId": 1233448,
+                "isCc": false,
+                "isRepeat": false
+            },
             {
                 "name": "Putrefy",
                 "spellId": 1247378,
@@ -37,15 +49,9 @@
                 "isRepeat": false
             },
             {
-                "name": "Necrotic Coil",
-                "spellId": 1242174,
+                "name": "Soul Reaper",
+                "spellId": 343294,
                 "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Blinding Sleet",
-                "spellId": 207167,
-                "isCc": true,
                 "isRepeat": false
             },
             {
@@ -67,8 +73,20 @@
                 "isRepeat": false
             },
             {
-                "name": "Scourge Strike",
-                "spellId": 55090,
+                "name": "Anti-Magic Shell",
+                "spellId": 410358,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Necrotic Coil",
+                "spellId": 1242174,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Putrefy",
+                "spellId": 1247378,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -79,19 +97,19 @@
                 "isRepeat": true
             },
             {
-                "name": "Scourge Strike",
-                "spellId": 55090,
+                "name": "Necrotic Coil",
+                "spellId": 1242174,
                 "isCc": false,
                 "isRepeat": true
             }
         ],
-        "matchId": "bfe179ee8d63fdf4c0e0a1eb0cd5dc69",
-        "guid": "Player-11-0E98F57D",
-        "start": 2667.997,
-        "end": 2679.997,
-        "targetGuid": "Player-3675-0B0248F1",
+        "matchId": "312969f6dd44bca0177c8d809a28592c",
+        "guid": "Player-60-0FFBD835",
+        "start": 78936.238,
+        "end": 78948.238,
+        "targetGuid": "Player-73-0FD03140",
         "talentBuild": {
-            "matchId": "bfe179ee8d63fdf4c0e0a1eb0cd5dc69",
+            "matchId": "312969f6dd44bca0177c8d809a28592c",
             "talents": [
                 {
                     "name": "Blinding Sleet",
@@ -175,15 +193,6 @@
                     "entryId": 604
                 },
                 {
-                    "name": "Anti-Magic Zone",
-                    "spellId": 51052,
-                    "rank": 1,
-                    "treeType": "class",
-                    "resolvedByOffset": false,
-                    "nodeId": 503,
-                    "entryId": 607
-                },
-                {
                     "name": "Improved Death Strike",
                     "spellId": 374277,
                     "rank": 1,
@@ -263,15 +272,6 @@
                     "resolvedByOffset": false,
                     "nodeId": 517,
                     "entryId": 624
-                },
-                {
-                    "name": "Coldthirst",
-                    "spellId": 378848,
-                    "rank": 1,
-                    "treeType": "class",
-                    "resolvedByOffset": false,
-                    "nodeId": 518,
-                    "entryId": 625
                 },
                 {
                     "name": "Mind Freeze",
@@ -706,6 +706,24 @@
                     "entryId": 614
                 },
                 {
+                    "name": "Anti-Magic Zone",
+                    "spellId": 51052,
+                    "rank": 1,
+                    "treeType": "class",
+                    "resolvedByOffset": false,
+                    "nodeId": 503,
+                    "entryId": 607
+                },
+                {
+                    "name": "Coldthirst",
+                    "spellId": 378848,
+                    "rank": 1,
+                    "treeType": "class",
+                    "resolvedByOffset": false,
+                    "nodeId": 518,
+                    "entryId": 625
+                },
+                {
                     "name": "Asphyxiate",
                     "spellId": 221562,
                     "rank": 1,
@@ -777,118 +795,42 @@
                     "pvpTalentId": 41
                 }
             ],
-            "resolvedAt": "2026-08-31T06:43:34+00:00"
+            "resolvedAt": "2026-09-06T02:56:54+00:00"
         },
         "mechanics": {
-            "targetGuid": "Player-3675-0B0248F1",
+            "targetGuid": "Player-73-0FD03140",
             "championBuffs": [
-                {
-                    "spellId": 404468,
-                    "name": "Flight Style: Steady"
-                },
-                {
-                    "spellId": 335149,
-                    "name": "Sign of the Scourge"
-                },
-                {
-                    "spellId": 465,
-                    "name": "Devotion Aura"
-                },
-                {
-                    "spellId": 53563,
-                    "name": "Beacon of Light"
-                },
                 {
                     "spellId": 1254252,
                     "name": "Lesser Ghoul"
-                },
-                {
-                    "spellId": 1241077,
-                    "name": "Festering Scythe"
-                },
-                {
-                    "spellId": 1244893,
-                    "name": "Beacon of the Savior"
-                },
-                {
-                    "spellId": 1242998,
-                    "name": "Lesser Ghoul"
-                },
-                {
-                    "spellId": 1241569,
-                    "name": "Clawing Shadows"
-                },
-                {
-                    "spellId": 1287771,
-                    "name": "Rune of Masterful Cunning"
-                },
-                {
-                    "spellId": 20572,
-                    "name": "Blood Fury"
-                },
-                {
-                    "spellId": 1268917,
-                    "name": "Unholy Aura"
-                },
-                {
-                    "spellId": 42650,
-                    "name": "Army of the Dead"
-                },
-                {
-                    "spellId": 1242223,
-                    "name": "Forbidden Knowledge"
-                },
-                {
-                    "spellId": 444763,
-                    "name": "Apocalyptic Conquest"
-                },
-                {
-                    "spellId": 6940,
-                    "name": "Blessing of Sacrifice"
-                },
-                {
-                    "spellId": 156322,
-                    "name": "Eternal Flame"
-                },
-                {
-                    "spellId": 377588,
-                    "name": "Ghoulish Frenzy"
-                },
-                {
-                    "spellId": 1235391,
-                    "name": "Dark Transformation"
-                },
-                {
-                    "spellId": 390260,
-                    "name": "Commander of the Dead"
-                },
-                {
-                    "spellId": 431907,
-                    "name": "Sun's Avatar"
-                },
-                {
-                    "spellId": 431381,
-                    "name": "Dawnlight"
                 },
                 {
                     "spellId": 1256576,
                     "name": "Forbidden Sacrifice"
                 },
                 {
-                    "spellId": 53480,
-                    "name": "Roar of Sacrifice"
+                    "spellId": 1268917,
+                    "name": "Unholy Aura"
                 },
                 {
-                    "spellId": 444505,
-                    "name": "Mograine's Might"
+                    "spellId": 1287771,
+                    "name": "Rune of Masterful Cunning"
                 },
                 {
-                    "spellId": 188290,
-                    "name": "Death and Decay"
+                    "spellId": 1241077,
+                    "name": "Festering Scythe"
                 },
                 {
-                    "spellId": 51460,
-                    "name": "Runic Corruption"
+                    "spellId": 774,
+                    "name": "Rejuvenation"
+                },
+                {
+                    "spellId": 1287665,
+                    "name": "Rune of Lingering"
+                },
+                {
+                    "spellId": 1229746,
+                    "name": "Arcanoweave Insight"
                 },
                 {
                     "spellId": 345230,
@@ -897,156 +839,200 @@
                 {
                     "spellId": 81340,
                     "name": "Sudden Doom"
+                },
+                {
+                    "spellId": 444347,
+                    "name": "Death Charge"
+                },
+                {
+                    "spellId": 33763,
+                    "name": "Lifebloom"
                 }
             ],
             "championDebuffs": [
                 {
-                    "spellId": 155722,
-                    "name": "Rake"
+                    "spellId": 703,
+                    "name": "Garrote"
                 },
                 {
-                    "spellId": 58180,
-                    "name": "Infected Wounds"
+                    "spellId": 450214,
+                    "name": "Stellar Amplification"
                 },
                 {
-                    "spellId": 1079,
-                    "name": "Rip"
+                    "spellId": 202347,
+                    "name": "Stellar Flare"
                 },
                 {
-                    "spellId": 439531,
-                    "name": "Bloodseeker Vines"
+                    "spellId": 1263250,
+                    "name": "Astral Smolder"
                 }
             ],
             "targetBuffs": [
                 {
-                    "spellId": 345230,
-                    "name": "Gladiator's Insignia"
+                    "spellId": 471521,
+                    "name": "Sign of the Explorer"
                 },
                 {
-                    "spellId": 186289,
-                    "name": "Aspect of the Eagle"
+                    "spellId": 381746,
+                    "name": "Blessing of the Bronze"
                 },
                 {
-                    "spellId": 139,
-                    "name": "Renew"
+                    "spellId": 1126,
+                    "name": "Mark of the Wild"
                 },
                 {
-                    "spellId": 53480,
-                    "name": "Roar of Sacrifice"
+                    "spellId": 5215,
+                    "name": "Prowl"
                 },
                 {
-                    "spellId": 26297,
-                    "name": "Berserking"
+                    "spellId": 768,
+                    "name": "Cat Form"
                 },
                 {
-                    "spellId": 1275630,
-                    "name": "Raptor Swipe!"
+                    "spellId": 157228,
+                    "name": "Owlkin Frenzy"
                 },
                 {
-                    "spellId": 259388,
-                    "name": "Mongoose Fury"
+                    "spellId": 367364,
+                    "name": "Reversion"
+                },
+                {
+                    "spellId": 366155,
+                    "name": "Reversion"
                 },
                 {
                     "spellId": 1229746,
                     "name": "Arcanoweave Insight"
                 },
                 {
+                    "spellId": 24858,
+                    "name": "Moonkin Form"
+                },
+                {
+                    "spellId": 378992,
+                    "name": "Lycara's Teachings"
+                },
+                {
+                    "spellId": 355941,
+                    "name": "Dream Breath"
+                },
+                {
+                    "spellId": 376788,
+                    "name": "Dream Breath"
+                },
+                {
+                    "spellId": 22812,
+                    "name": "Barkskin"
+                },
+                {
+                    "spellId": 48517,
+                    "name": "Eclipse (Solar)"
+                },
+                {
+                    "spellId": 394049,
+                    "name": "Balance of All Things"
+                },
+                {
+                    "spellId": 1263363,
+                    "name": "Ascendant Fires"
+                },
+                {
+                    "spellId": 433832,
+                    "name": "Dream Burst"
+                },
+                {
+                    "spellId": 373267,
+                    "name": "Lifebind"
+                },
+                {
+                    "spellId": 1287665,
+                    "name": "Rune of Lingering"
+                },
+                {
+                    "spellId": 279709,
+                    "name": "Starlord"
+                },
+                {
+                    "spellId": 209746,
+                    "name": "Moonkin Aura"
+                },
+                {
                     "spellId": 356528,
                     "name": "Necrotic Wound"
-                },
-                {
-                    "spellId": 65081,
-                    "name": "Body and Soul"
-                },
-                {
-                    "spellId": 77489,
-                    "name": "Echo of Light"
-                },
-                {
-                    "spellId": 385540,
-                    "name": "Rejuvenating Wind"
                 }
             ],
             "targetDebuffs": [
-                {
-                    "spellId": 1240996,
-                    "name": "Dread Plague"
-                },
                 {
                     "spellId": 191587,
                     "name": "Virulent Plague"
                 },
                 {
-                    "spellId": 115804,
-                    "name": "Mortal Wounds"
-                },
-                {
-                    "spellId": 444828,
-                    "name": "Chains of Ice"
-                },
-                {
-                    "spellId": 444826,
-                    "name": "Chains of Ice"
-                },
-                {
-                    "spellId": 327092,
-                    "name": "Famine"
-                },
-                {
-                    "spellId": 327095,
-                    "name": "Death"
-                },
-                {
-                    "spellId": 390271,
-                    "name": "Coil of Devastation"
+                    "spellId": 1240996,
+                    "name": "Dread Plague"
                 },
                 {
                     "spellId": 327096,
                     "name": "War"
                 },
                 {
+                    "spellId": 388539,
+                    "name": "Rend"
+                },
+                {
                     "spellId": 327093,
                     "name": "Pestilence"
                 },
                 {
-                    "spellId": 1253836,
-                    "name": "Sanctified Armaments"
+                    "spellId": 327095,
+                    "name": "Death"
                 },
                 {
-                    "spellId": 1241521,
-                    "name": "Soul Reaper"
+                    "spellId": 327092,
+                    "name": "Famine"
                 },
                 {
-                    "spellId": 269576,
-                    "name": "Master Marksman"
+                    "spellId": 445836,
+                    "name": "Overwhelmed"
+                },
+                {
+                    "spellId": 262115,
+                    "name": "Deep Wounds"
+                },
+                {
+                    "spellId": 444633,
+                    "name": "Undeath"
+                },
+                {
+                    "spellId": 208086,
+                    "name": "Colossus Smash"
                 }
             ],
-            "targetClassName": "Hunter",
-            "targetSpecName": "Survival",
-            "resolvedAt": "2026-08-31T10:03:17+00:00"
+            "targetClassName": "Druid",
+            "targetSpecName": "Balance",
+            "resolvedAt": "2026-09-06T02:57:05+00:00"
         }
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 1080535,
+            "damage": 1275550,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
                 {
-                    "name": "Soul Reaper",
-                    "spellId": 343294,
+                    "name": "Anti-Magic Shell",
+                    "spellId": 410358,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Festering Strike",
-                    "spellId": 85948,
+                    "name": "Putrefy",
+                    "spellId": 1247378,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Mind Freeze",
-                    "spellId": 47528,
+                    "name": "Death Pact",
+                    "spellId": 48743,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -1063,25 +1049,31 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Festering Scythe",
-                    "spellId": 458128,
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
                     "isCc": false,
                     "isRepeat": true
                 }
             ],
-            "matchId": "6e5e93ae231027d9100ce580fbfffb9d",
-            "guid": "Player-157-0C0AA86A",
-            "start": 62663.797,
-            "end": 62669.797,
-            "targetGuid": "Player-11-0EB74E01",
+            "matchId": "53666f7de3ed5427dd54584c7f4bdb54",
+            "guid": "Player-76-0BFF96AF",
+            "start": 79783.609,
+            "end": 79789.609,
+            "targetGuid": "Player-11-0EB8616D",
             "talentBuild": {
-                "matchId": "6e5e93ae231027d9100ce580fbfffb9d",
+                "matchId": "53666f7de3ed5427dd54584c7f4bdb54",
                 "talents": [
                     {
                         "name": "Blinding Sleet",
@@ -1109,6 +1101,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 488,
                         "entryId": 589
+                    },
+                    {
+                        "name": "Assimilation",
+                        "spellId": 374383,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 489,
+                        "entryId": 590
                     },
                     {
                         "name": "Gloom Ward",
@@ -1363,6 +1364,15 @@
                         "entryId": 965
                     },
                     {
+                        "name": "Unholy Devotion",
+                        "spellId": 1241858,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 797,
+                        "entryId": 940
+                    },
+                    {
                         "name": "Dark Transformation",
                         "spellId": 1233448,
                         "rank": 1,
@@ -1525,6 +1535,15 @@
                         "entryId": 774
                     },
                     {
+                        "name": "Null Magic",
+                        "spellId": 454842,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 651,
+                        "entryId": 775
+                    },
+                    {
                         "name": "Blightburst",
                         "spellId": 1254552,
                         "rank": 1,
@@ -1642,15 +1661,6 @@
                         "entryId": 966
                     },
                     {
-                        "name": "Unholy Devotion",
-                        "spellId": 1241858,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 797,
-                        "entryId": 940
-                    },
-                    {
                         "name": "Rider's Champion",
                         "spellId": 444005,
                         "rank": 1,
@@ -1669,24 +1679,6 @@
                         "entryId": 614
                     },
                     {
-                        "name": "Null Magic",
-                        "spellId": 454842,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 651,
-                        "entryId": 775
-                    },
-                    {
-                        "name": "Blood Draw",
-                        "spellId": 374598,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 496,
-                        "entryId": 599
-                    },
-                    {
                         "name": "Coldthirst",
                         "spellId": 378848,
                         "rank": 1,
@@ -1694,6 +1686,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 518,
                         "entryId": 625
+                    },
+                    {
+                        "name": "Asphyxiate",
+                        "spellId": 221562,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 502,
+                        "entryId": 605
                     },
                     {
                         "name": "Raise Abomination",
@@ -1739,22 +1740,13 @@
                         "resolvedByOffset": true,
                         "nodeId": 511,
                         "entryId": 617
-                    },
-                    {
-                        "name": "Asphyxiate",
-                        "spellId": 221562,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 502,
-                        "entryId": 605
                     }
                 ],
                 "pvpTalents": [
                     {
-                        "name": "Spellwarden",
-                        "spellId": 410320,
-                        "pvpTalentId": 48
+                        "name": "Dark Simulacrum",
+                        "spellId": 77606,
+                        "pvpTalentId": 40
                     },
                     {
                         "name": "Necrotic Wounds",
@@ -1762,23 +1754,55 @@
                         "pvpTalentId": 41
                     },
                     {
-                        "name": "Dark Simulacrum",
-                        "spellId": 77606,
-                        "pvpTalentId": 40
+                        "name": "Spellwarden",
+                        "spellId": 410320,
+                        "pvpTalentId": 48
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:34+00:00"
+                "resolvedAt": "2026-09-06T02:56:54+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-11-0EB74E01",
+                "targetGuid": "Player-11-0EB8616D",
                 "championBuffs": [
+                    {
+                        "spellId": 444763,
+                        "name": "Apocalyptic Conquest"
+                    },
+                    {
+                        "spellId": 1287978,
+                        "name": "Rune of Lynxlike Reflexes"
+                    },
+                    {
+                        "spellId": 345230,
+                        "name": "Gladiator's Insignia"
+                    },
+                    {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
+                    },
+                    {
+                        "spellId": 81340,
+                        "name": "Sudden Doom"
+                    },
                     {
                         "spellId": 1254252,
                         "name": "Lesser Ghoul"
                     },
                     {
+                        "spellId": 374585,
+                        "name": "Rune Mastery"
+                    },
+                    {
+                        "spellId": 49039,
+                        "name": "Lichborne"
+                    },
+                    {
                         "spellId": 1256576,
                         "name": "Forbidden Sacrifice"
+                    },
+                    {
+                        "spellId": 209746,
+                        "name": "Moonkin Aura"
                     },
                     {
                         "spellId": 1268917,
@@ -1789,32 +1813,12 @@
                         "name": "Festering Scythe"
                     },
                     {
-                        "spellId": 1242866,
-                        "name": "Raise Dead"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
-                    },
-                    {
-                        "spellId": 345230,
-                        "name": "Gladiator's Insignia"
-                    },
-                    {
-                        "spellId": 1242998,
-                        "name": "Lesser Ghoul"
-                    },
-                    {
                         "spellId": 377588,
                         "name": "Ghoulish Frenzy"
                     },
                     {
                         "spellId": 1235391,
                         "name": "Dark Transformation"
-                    },
-                    {
-                        "spellId": 1242654,
-                        "name": "Reaping"
                     },
                     {
                         "spellId": 390260,
@@ -1829,8 +1833,8 @@
                         "name": "Forbidden Knowledge"
                     },
                     {
-                        "spellId": 444763,
-                        "name": "Apocalyptic Conquest"
+                        "spellId": 1242998,
+                        "name": "Lesser Ghoul"
                     },
                     {
                         "spellId": 444505,
@@ -1839,188 +1843,108 @@
                     {
                         "spellId": 188290,
                         "name": "Death and Decay"
-                    },
-                    {
-                        "spellId": 77616,
-                        "name": "Dark Simulacrum"
-                    },
-                    {
-                        "spellId": 51460,
-                        "name": "Runic Corruption"
-                    },
-                    {
-                        "spellId": 147833,
-                        "name": "Intervene"
-                    },
-                    {
-                        "spellId": 424655,
-                        "name": "Safeguard"
-                    },
-                    {
-                        "spellId": 1287665,
-                        "name": "Rune of Lingering"
-                    },
-                    {
-                        "spellId": 1241569,
-                        "name": "Clawing Shadows"
-                    },
-                    {
-                        "spellId": 81340,
-                        "name": "Sudden Doom"
-                    },
-                    {
-                        "spellId": 1245369,
-                        "name": "Beacon of the Savior"
-                    },
-                    {
-                        "spellId": 48743,
-                        "name": "Death Pact"
                     }
                 ],
                 "championDebuffs": [
                     {
-                        "spellId": 441224,
-                        "name": "Fazed"
-                    },
-                    {
-                        "spellId": 8680,
-                        "name": "Wound Poison"
-                    },
-                    {
-                        "spellId": 426593,
-                        "name": "Goremaw's Bite"
-                    },
-                    {
-                        "spellId": 31589,
-                        "name": "Slow"
-                    },
-                    {
-                        "spellId": 1287663,
-                        "name": "Rune of Lingering"
-                    },
-                    {
-                        "spellId": 12654,
-                        "name": "Ignite"
-                    },
-                    {
-                        "spellId": 468655,
-                        "name": "Frostfire Bolt"
-                    },
-                    {
                         "spellId": 205708,
                         "name": "Chilled"
+                    },
+                    {
+                        "spellId": 1221389,
+                        "name": "Freezing"
+                    },
+                    {
+                        "spellId": 205021,
+                        "name": "Ray of Frost"
                     }
                 ],
                 "targetBuffs": [
                     {
-                        "spellId": 186403,
-                        "name": "Sign of Battle"
-                    },
-                    {
-                        "spellId": 21562,
-                        "name": "Power Word: Fortitude"
-                    },
-                    {
-                        "spellId": 414664,
-                        "name": "Mass Invisibility"
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
                     },
                     {
                         "spellId": 1459,
                         "name": "Arcane Intellect"
                     },
                     {
-                        "spellId": 139,
-                        "name": "Renew"
+                        "spellId": 21562,
+                        "name": "Power Word: Fortitude"
                     },
                     {
-                        "spellId": 77489,
-                        "name": "Echo of Light"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "Arcanoweave Insight"
-                    },
-                    {
-                        "spellId": 1287770,
-                        "name": "Rune of the Versatile Warrior"
+                        "spellId": 154797,
+                        "name": "Touch of Elune - Night"
                     },
                     {
                         "spellId": 110960,
                         "name": "Greater Invisibility"
                     },
                     {
-                        "spellId": 1241715,
-                        "name": "Might of the Void"
+                        "spellId": 455122,
+                        "name": "Permafrost Lances"
                     },
                     {
-                        "spellId": 345230,
-                        "name": "Gladiator's Insignia"
+                        "spellId": 270232,
+                        "name": "Freezing Rain"
                     },
                     {
-                        "spellId": 453385,
-                        "name": "Fire's Ire"
+                        "spellId": 10060,
+                        "name": "Power Infusion"
                     },
                     {
-                        "spellId": 190319,
-                        "name": "Combustion"
+                        "spellId": 205473,
+                        "name": "Icicles"
                     },
                     {
-                        "spellId": 383637,
-                        "name": "Fiery Rush"
+                        "spellId": 1287774,
+                        "name": "Rune of Burning Haste"
                     },
                     {
-                        "spellId": 47788,
-                        "name": "Guardian Spirit"
-                    },
-                    {
-                        "spellId": 383811,
-                        "name": "Fevered Incantation"
-                    },
-                    {
-                        "spellId": 390677,
-                        "name": "Inspiration"
+                        "spellId": 139,
+                        "name": "Renew"
                     },
                     {
                         "spellId": 1287665,
                         "name": "Rune of Lingering"
                     },
                     {
-                        "spellId": 461531,
-                        "name": "Brainstorm"
+                        "spellId": 77489,
+                        "name": "Echo of Light"
                     },
                     {
-                        "spellId": 1257350,
-                        "name": "Fired Up"
+                        "spellId": 1263263,
+                        "name": "Hand of Frost"
+                    },
+                    {
+                        "spellId": 356528,
+                        "name": "Necrotic Wound"
+                    },
+                    {
+                        "spellId": 377362,
+                        "name": "Precognition"
+                    },
+                    {
+                        "spellId": 462854,
+                        "name": "Skyfury"
+                    },
+                    {
+                        "spellId": 1247908,
+                        "name": "Splinterstorm"
                     },
                     {
                         "spellId": 65081,
                         "name": "Body and Soul"
-                    },
-                    {
-                        "spellId": 269651,
-                        "name": "Pyroclasm"
-                    },
-                    {
-                        "spellId": 48107,
-                        "name": "Heating Up"
                     }
                 ],
                 "targetDebuffs": [
-                    {
-                        "spellId": 191587,
-                        "name": "Virulent Plague"
-                    },
                     {
                         "spellId": 1240996,
                         "name": "Dread Plague"
                     },
                     {
-                        "spellId": 388539,
-                        "name": "Rend"
-                    },
-                    {
-                        "spellId": 327095,
-                        "name": "Death"
+                        "spellId": 191587,
+                        "name": "Virulent Plague"
                     },
                     {
                         "spellId": 327096,
@@ -2029,14 +1953,6 @@
                     {
                         "spellId": 327092,
                         "name": "Famine"
-                    },
-                    {
-                        "spellId": 327093,
-                        "name": "Pestilence"
-                    },
-                    {
-                        "spellId": 390271,
-                        "name": "Coil of Devastation"
                     },
                     {
                         "spellId": 444633,
@@ -2051,32 +1967,34 @@
                         "name": "Chains of Ice"
                     },
                     {
-                        "spellId": 262115,
-                        "name": "Deep Wounds"
-                    },
-                    {
-                        "spellId": 354788,
-                        "name": "Slaughterhouse"
-                    },
-                    {
-                        "spellId": 435203,
-                        "name": "Thunder Clap"
-                    },
-                    {
                         "spellId": 444826,
                         "name": "Chains of Ice"
+                    },
+                    {
+                        "spellId": 1241521,
+                        "name": "Soul Reaper"
+                    },
+                    {
+                        "spellId": 327095,
+                        "name": "Death"
                     }
                 ],
                 "targetClassName": "Mage",
-                "targetSpecName": "Fire",
-                "resolvedAt": "2026-08-31T10:03:17+00:00"
+                "targetSpecName": "Frost",
+                "resolvedAt": "2026-09-06T02:57:05+00:00"
             }
         },
         "10": {
-            "damage": 1568640,
+            "damage": 1939844,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Soul Reaper",
                     "spellId": 343294,
@@ -2087,23 +2005,23 @@
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
-                    "name": "Strangulate",
-                    "spellId": 47476,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Putrefy",
-                    "spellId": 1247378,
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Anti-Magic Shell",
+                    "spellId": 410358,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -2113,949 +2031,6 @@
                     "isCc": false,
                     "isRepeat": true
                 },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
-                }
-            ],
-            "matchId": "5fc464c760c5badbe533fd13c86d36ec",
-            "guid": "Player-9-074B4E40",
-            "start": 53725.384,
-            "end": 53735.384,
-            "targetGuid": "Player-57-0DB0DEC7",
-            "talentBuild": {
-                "matchId": "5fc464c760c5badbe533fd13c86d36ec",
-                "talents": [
-                    {
-                        "name": "Runic Attenuation",
-                        "spellId": 207104,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 487,
-                        "entryId": 588
-                    },
-                    {
-                        "name": "Anti-Magic Barrier",
-                        "spellId": 205727,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 488,
-                        "entryId": 589
-                    },
-                    {
-                        "name": "Gloom Ward",
-                        "spellId": 391571,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 492,
-                        "entryId": 594
-                    },
-                    {
-                        "name": "Will of the Necropolis",
-                        "spellId": 206967,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 494,
-                        "entryId": 597
-                    },
-                    {
-                        "name": "Runic Protection",
-                        "spellId": 454788,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 495,
-                        "entryId": 598
-                    },
-                    {
-                        "name": "Unholy Endurance",
-                        "spellId": 389682,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 498,
-                        "entryId": 601
-                    },
-                    {
-                        "name": "Brittle",
-                        "spellId": 374504,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 501,
-                        "entryId": 604
-                    },
-                    {
-                        "name": "Anti-Magic Zone",
-                        "spellId": 51052,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 503,
-                        "entryId": 607
-                    },
-                    {
-                        "name": "Improved Death Strike",
-                        "spellId": 374277,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 505,
-                        "entryId": 609
-                    },
-                    {
-                        "name": "Veteran of the Third War",
-                        "spellId": 48263,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 506,
-                        "entryId": 610
-                    },
-                    {
-                        "name": "Unholy Momentum",
-                        "spellId": 374265,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 507,
-                        "entryId": 612
-                    },
-                    {
-                        "name": "Death Strike",
-                        "spellId": 49998,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 508,
-                        "entryId": 613
-                    },
-                    {
-                        "name": "Cleaving Strikes",
-                        "spellId": 316916,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 510,
-                        "entryId": 615
-                    },
-                    {
-                        "name": "Unholy Bond",
-                        "spellId": 374261,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 513,
-                        "entryId": 619
-                    },
-                    {
-                        "name": "Rune Mastery",
-                        "spellId": 374574,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 515,
-                        "entryId": 622
-                    },
-                    {
-                        "name": "Icebound Fortitude",
-                        "spellId": 48792,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 517,
-                        "entryId": 624
-                    },
-                    {
-                        "name": "Mind Freeze",
-                        "spellId": 47528,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 519,
-                        "entryId": 626
-                    },
-                    {
-                        "name": "Suppression",
-                        "spellId": 374049,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 522,
-                        "entryId": 629
-                    },
-                    {
-                        "name": "Magus of the Dead",
-                        "spellId": 390196,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 780,
-                        "entryId": 920
-                    },
-                    {
-                        "name": "Unholy Aura",
-                        "spellId": 377440,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 812,
-                        "entryId": 959
-                    },
-                    {
-                        "name": "Coil of Devastation",
-                        "spellId": 390270,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 785,
-                        "entryId": 925
-                    },
-                    {
-                        "name": "Foul Infections",
-                        "spellId": 455396,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 769,
-                        "entryId": 907
-                    },
-                    {
-                        "name": "Harbinger of Doom",
-                        "spellId": 276023,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 795,
-                        "entryId": 937
-                    },
-                    {
-                        "name": "Soul Reaper",
-                        "spellId": 343294,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 779,
-                        "entryId": 919
-                    },
-                    {
-                        "name": "Dark Transformation",
-                        "spellId": 1233448,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 764,
-                        "entryId": 902
-                    },
-                    {
-                        "name": "Outbreak",
-                        "spellId": 77575,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 754,
-                        "entryId": 889
-                    },
-                    {
-                        "name": "Scourge Strike",
-                        "spellId": 55090,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 756,
-                        "entryId": 891
-                    },
-                    {
-                        "name": "Sudden Doom",
-                        "spellId": 49530,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 757,
-                        "entryId": 892
-                    },
-                    {
-                        "name": "Festering Scythe",
-                        "spellId": 455397,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 777,
-                        "entryId": 917
-                    },
-                    {
-                        "name": "Ghoulish Frenzy",
-                        "spellId": 377587,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 789,
-                        "entryId": 929
-                    },
-                    {
-                        "name": "Army of the Dead",
-                        "spellId": 42650,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 786,
-                        "entryId": 926
-                    },
-                    {
-                        "name": "Ebon Fever",
-                        "spellId": 207269,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 776,
-                        "entryId": 916
-                    },
-                    {
-                        "name": "Apocalypse Now",
-                        "spellId": 444040,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 901,
-                        "entryId": 1064
-                    },
-                    {
-                        "name": "Hungering Thirst",
-                        "spellId": 444037,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 903,
-                        "entryId": 1067
-                    },
-                    {
-                        "name": "Whitemane's Famine",
-                        "spellId": 444033,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 904,
-                        "entryId": 1068
-                    },
-                    {
-                        "name": "Mawsworn Menace",
-                        "spellId": 444099,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 905,
-                        "entryId": 1069
-                    },
-                    {
-                        "name": "Nazgrim's Conquest",
-                        "spellId": 444052,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 906,
-                        "entryId": 1070
-                    },
-                    {
-                        "name": "Trollbane's Icy Fury",
-                        "spellId": 444097,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 908,
-                        "entryId": 1073
-                    },
-                    {
-                        "name": "Mograine's Might",
-                        "spellId": 444047,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 910,
-                        "entryId": 1075
-                    },
-                    {
-                        "name": "Death's Echo",
-                        "spellId": 356367,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 650,
-                        "entryId": 774
-                    },
-                    {
-                        "name": "Null Magic",
-                        "spellId": 454842,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 651,
-                        "entryId": 775
-                    },
-                    {
-                        "name": "Reaping",
-                        "spellId": 377514,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 787,
-                        "entryId": 927
-                    },
-                    {
-                        "name": "Putrefy",
-                        "spellId": 1247378,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 763,
-                        "entryId": 901
-                    },
-                    {
-                        "name": "Clawing Shadows",
-                        "spellId": 1241567,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 762,
-                        "entryId": 900
-                    },
-                    {
-                        "name": "Putrid Echoes",
-                        "spellId": 377580,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 804,
-                        "entryId": 947
-                    },
-                    {
-                        "name": "Lord of the Dead",
-                        "spellId": 1256813,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 816,
-                        "entryId": 964
-                    },
-                    {
-                        "name": "Unholy Armaments",
-                        "spellId": 1265971,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 911,
-                        "entryId": 1076
-                    },
-                    {
-                        "name": "Let Terror Reign",
-                        "spellId": 1265949,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 912,
-                        "entryId": 1077
-                    },
-                    {
-                        "name": "Ride or Die!",
-                        "spellId": 1265959,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 913,
-                        "entryId": 1078
-                    },
-                    {
-                        "name": "Enfeeble",
-                        "spellId": 392566,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 678,
-                        "entryId": 803
-                    },
-                    {
-                        "name": "Necromancer's Cunning",
-                        "spellId": 288848,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 771,
-                        "entryId": 910
-                    },
-                    {
-                        "name": "Forbidden Knowledge",
-                        "spellId": 1242158,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 818,
-                        "entryId": 966
-                    },
-                    {
-                        "name": "Morbidity",
-                        "spellId": 377592,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 794,
-                        "entryId": 936
-                    },
-                    {
-                        "name": "Commander of the Dead",
-                        "spellId": 390259,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 813,
-                        "entryId": 961
-                    },
-                    {
-                        "name": "Outnumber",
-                        "spellId": 1241705,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 817,
-                        "entryId": 965
-                    },
-                    {
-                        "name": "Unholy Devotion",
-                        "spellId": 1241858,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 797,
-                        "entryId": 940
-                    },
-                    {
-                        "name": "Doomed Bidding",
-                        "spellId": 455386,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 805,
-                        "entryId": 948
-                    },
-                    {
-                        "name": "Blinding Sleet",
-                        "spellId": 207167,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 486,
-                        "entryId": 587
-                    },
-                    {
-                        "name": "Blood Draw",
-                        "spellId": 374598,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 496,
-                        "entryId": 599
-                    },
-                    {
-                        "name": "Death Pact",
-                        "spellId": 48743,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 512,
-                        "entryId": 618
-                    },
-                    {
-                        "name": "Coldthirst",
-                        "spellId": 378848,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 518,
-                        "entryId": 625
-                    },
-                    {
-                        "name": "Osmosis",
-                        "spellId": 454835,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 523,
-                        "entryId": 630
-                    },
-                    {
-                        "name": "Cycle of Death",
-                        "spellId": 1290864,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 784,
-                        "entryId": 924
-                    },
-                    {
-                        "name": "Proliferating Chill",
-                        "spellId": 373930,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 643,
-                        "entryId": 767
-                    },
-                    {
-                        "name": "Blightburst",
-                        "spellId": 1254552,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 803,
-                        "entryId": 946
-                    },
-                    {
-                        "name": "Death Defiance",
-                        "spellId": 1266818,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 680,
-                        "entryId": 805
-                    },
-                    {
-                        "name": "Rider's Champion",
-                        "spellId": 444005,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 909,
-                        "entryId": 1074
-                    },
-                    {
-                        "name": "Raise Dead",
-                        "spellId": 46585,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 509,
-                        "entryId": 614
-                    },
-                    {
-                        "name": "Raise Abomination",
-                        "spellId": 1242608,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 796,
-                        "entryId": 938
-                    },
-                    {
-                        "name": "Pact of the Apocalypse",
-                        "spellId": 444083,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 900,
-                        "entryId": 1063
-                    },
-                    {
-                        "name": "Death Charge",
-                        "spellId": 444010,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 907,
-                        "entryId": 1072
-                    },
-                    {
-                        "name": "Asphyxiate",
-                        "spellId": 221562,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 502,
-                        "entryId": 605
-                    },
-                    {
-                        "name": "A Feast of Souls",
-                        "spellId": 444072,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 902,
-                        "entryId": 1066
-                    },
-                    {
-                        "name": "Wraith Walk",
-                        "spellId": 212552,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 511,
-                        "entryId": 617
-                    }
-                ],
-                "pvpTalents": [
-                    {
-                        "name": "Necrotic Wounds",
-                        "spellId": 356520,
-                        "pvpTalentId": 41
-                    },
-                    {
-                        "name": "Strangulate",
-                        "spellId": 47476,
-                        "pvpTalentId": 44
-                    },
-                    {
-                        "name": "Spellwarden",
-                        "spellId": 410320,
-                        "pvpTalentId": 48
-                    }
-                ],
-                "resolvedAt": "2026-08-31T06:43:34+00:00"
-            },
-            "mechanics": {
-                "targetGuid": "Player-57-0DB0DEC7",
-                "championBuffs": [
-                    {
-                        "spellId": 2580,
-                        "name": "寻找矿物"
-                    },
-                    {
-                        "spellId": 1303146,
-                        "name": "合约：祖尔加拉的部队"
-                    },
-                    {
-                        "spellId": 186403,
-                        "name": "战争印记"
-                    },
-                    {
-                        "spellId": 1126,
-                        "name": "野性印记"
-                    },
-                    {
-                        "spellId": 462854,
-                        "name": "天怒"
-                    },
-                    {
-                        "spellId": 1256576,
-                        "name": "禁忌献祭"
-                    },
-                    {
-                        "spellId": 1254252,
-                        "name": "次级食尸鬼"
-                    },
-                    {
-                        "spellId": 1268917,
-                        "name": "邪恶光环"
-                    },
-                    {
-                        "spellId": 1242866,
-                        "name": "亡者复生"
-                    },
-                    {
-                        "spellId": 1241569,
-                        "name": "暗影之爪"
-                    },
-                    {
-                        "spellId": 1242998,
-                        "name": "次级食尸鬼"
-                    },
-                    {
-                        "spellId": 462568,
-                        "name": "元素抗性"
-                    },
-                    {
-                        "spellId": 81340,
-                        "name": "末日突降"
-                    },
-                    {
-                        "spellId": 1287770,
-                        "name": "全能勇士符文"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "奥纹洞察"
-                    },
-                    {
-                        "spellId": 42650,
-                        "name": "亡者大军"
-                    },
-                    {
-                        "spellId": 1242223,
-                        "name": "禁断知识"
-                    },
-                    {
-                        "spellId": 444763,
-                        "name": "天启征服"
-                    },
-                    {
-                        "spellId": 377588,
-                        "name": "食尸鬼狂热"
-                    },
-                    {
-                        "spellId": 1235391,
-                        "name": "黑暗突变"
-                    },
-                    {
-                        "spellId": 1242654,
-                        "name": "割魂索命"
-                    },
-                    {
-                        "spellId": 390260,
-                        "name": "亡者指挥官"
-                    },
-                    {
-                        "spellId": 444505,
-                        "name": "莫格莱尼的力量"
-                    },
-                    {
-                        "spellId": 188290,
-                        "name": "枯萎凋零"
-                    }
-                ],
-                "championDebuffs": [
-                    {
-                        "spellId": 197277,
-                        "name": "审判"
-                    },
-                    {
-                        "spellId": 269576,
-                        "name": "狙击高手"
-                    },
-                    {
-                        "spellId": 204242,
-                        "name": "奉献"
-                    }
-                ],
-                "targetBuffs": [
-                    {
-                        "spellId": 33763,
-                        "name": "生命绽放"
-                    },
-                    {
-                        "spellId": 1227806,
-                        "name": "生命绽放"
-                    },
-                    {
-                        "spellId": 155777,
-                        "name": "回春术（萌芽）"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "精通狡诈符文"
-                    },
-                    {
-                        "spellId": 1297663,
-                        "name": "哈尔拉兹仪式"
-                    },
-                    {
-                        "spellId": 1297664,
-                        "name": "埃基尔松仪式"
-                    },
-                    {
-                        "spellId": 8936,
-                        "name": "愈合"
-                    },
-                    {
-                        "spellId": 345230,
-                        "name": "角斗士徽记"
-                    },
-                    {
-                        "spellId": 1232285,
-                        "name": "百花齐放"
-                    },
-                    {
-                        "spellId": 16870,
-                        "name": "节能施法"
-                    },
-                    {
-                        "spellId": 774,
-                        "name": "回春术"
-                    },
-                    {
-                        "spellId": 378989,
-                        "name": "莱卡拉的教诲"
-                    },
-                    {
-                        "spellId": 1302255,
-                        "name": "源生"
-                    },
-                    {
-                        "spellId": 33891,
-                        "name": "化身：生命之树"
-                    },
-                    {
-                        "spellId": 117679,
-                        "name": "化身"
-                    },
-                    {
-                        "spellId": 429474,
-                        "name": "盛放注能"
-                    },
-                    {
-                        "spellId": 400126,
-                        "name": "森林小径"
-                    }
-                ],
-                "targetDebuffs": [
-                    {
-                        "spellId": 191587,
-                        "name": "恶性病变"
-                    },
-                    {
-                        "spellId": 327096,
-                        "name": "战争"
-                    },
-                    {
-                        "spellId": 327092,
-                        "name": "饥荒"
-                    },
-                    {
-                        "spellId": 327093,
-                        "name": "疫病"
-                    },
-                    {
-                        "spellId": 444633,
-                        "name": "死灵"
-                    },
-                    {
-                        "spellId": 327095,
-                        "name": "死亡"
-                    },
-                    {
-                        "spellId": 374557,
-                        "name": "羸弱"
-                    }
-                ],
-                "targetClassName": "Druid",
-                "targetSpecName": "Restoration",
-                "resolvedAt": "2026-08-31T10:03:17+00:00"
-            }
-        },
-        "12": {
-            "damage": 1782071,
-            "durationSeconds": 12,
-            "killed": false,
-            "steps": [
                 {
                     "name": "Putrefy",
                     "spellId": 1247378,
@@ -3066,64 +2041,22 @@
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blinding Sleet",
-                    "spellId": 207167,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
                     "isRepeat": true
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
                     "isCc": false,
                     "isRepeat": true
                 }
             ],
-            "matchId": "bfe179ee8d63fdf4c0e0a1eb0cd5dc69",
-            "guid": "Player-11-0E98F57D",
-            "start": 2667.997,
-            "end": 2679.997,
-            "targetGuid": "Player-3675-0B0248F1",
+            "matchId": "312969f6dd44bca0177c8d809a28592c",
+            "guid": "Player-60-0FFBD835",
+            "start": 78938.238,
+            "end": 78948.238,
+            "targetGuid": "Player-73-0FD03140",
             "talentBuild": {
-                "matchId": "bfe179ee8d63fdf4c0e0a1eb0cd5dc69",
+                "matchId": "312969f6dd44bca0177c8d809a28592c",
                 "talents": [
                     {
                         "name": "Blinding Sleet",
@@ -3207,15 +2140,6 @@
                         "entryId": 604
                     },
                     {
-                        "name": "Anti-Magic Zone",
-                        "spellId": 51052,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 503,
-                        "entryId": 607
-                    },
-                    {
                         "name": "Improved Death Strike",
                         "spellId": 374277,
                         "rank": 1,
@@ -3295,15 +2219,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 517,
                         "entryId": 624
-                    },
-                    {
-                        "name": "Coldthirst",
-                        "spellId": 378848,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 518,
-                        "entryId": 625
                     },
                     {
                         "name": "Mind Freeze",
@@ -3738,6 +2653,24 @@
                         "entryId": 614
                     },
                     {
+                        "name": "Anti-Magic Zone",
+                        "spellId": 51052,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 503,
+                        "entryId": 607
+                    },
+                    {
+                        "name": "Coldthirst",
+                        "spellId": 378848,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 518,
+                        "entryId": 625
+                    },
+                    {
                         "name": "Asphyxiate",
                         "spellId": 221562,
                         "rank": 1,
@@ -3809,62 +2742,62 @@
                         "pvpTalentId": 41
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:34+00:00"
+                "resolvedAt": "2026-09-06T02:56:54+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-3675-0B0248F1",
+                "targetGuid": "Player-73-0FD03140",
                 "championBuffs": [
-                    {
-                        "spellId": 404468,
-                        "name": "Flight Style: Steady"
-                    },
-                    {
-                        "spellId": 335149,
-                        "name": "Sign of the Scourge"
-                    },
-                    {
-                        "spellId": 465,
-                        "name": "Devotion Aura"
-                    },
-                    {
-                        "spellId": 53563,
-                        "name": "Beacon of Light"
-                    },
                     {
                         "spellId": 1254252,
                         "name": "Lesser Ghoul"
                     },
                     {
-                        "spellId": 1241077,
-                        "name": "Festering Scythe"
-                    },
-                    {
-                        "spellId": 1244893,
-                        "name": "Beacon of the Savior"
-                    },
-                    {
-                        "spellId": 1242998,
-                        "name": "Lesser Ghoul"
-                    },
-                    {
-                        "spellId": 1241569,
-                        "name": "Clawing Shadows"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
-                    },
-                    {
-                        "spellId": 20572,
-                        "name": "Blood Fury"
+                        "spellId": 1256576,
+                        "name": "Forbidden Sacrifice"
                     },
                     {
                         "spellId": 1268917,
                         "name": "Unholy Aura"
                     },
                     {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
+                    },
+                    {
+                        "spellId": 1241077,
+                        "name": "Festering Scythe"
+                    },
+                    {
+                        "spellId": 774,
+                        "name": "Rejuvenation"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    },
+                    {
+                        "spellId": 345230,
+                        "name": "Gladiator's Insignia"
+                    },
+                    {
+                        "spellId": 81340,
+                        "name": "Sudden Doom"
+                    },
+                    {
+                        "spellId": 444347,
+                        "name": "Death Charge"
+                    },
+                    {
+                        "spellId": 33763,
+                        "name": "Lifebloom"
+                    },
+                    {
                         "spellId": 42650,
                         "name": "Army of the Dead"
+                    },
+                    {
+                        "spellId": 377588,
+                        "name": "Ghoulish Frenzy"
                     },
                     {
                         "spellId": 1242223,
@@ -3875,52 +2808,1017 @@
                         "name": "Apocalyptic Conquest"
                     },
                     {
-                        "spellId": 6940,
-                        "name": "Blessing of Sacrifice"
-                    },
-                    {
-                        "spellId": 156322,
-                        "name": "Eternal Flame"
-                    },
-                    {
-                        "spellId": 377588,
-                        "name": "Ghoulish Frenzy"
-                    },
-                    {
                         "spellId": 1235391,
                         "name": "Dark Transformation"
+                    },
+                    {
+                        "spellId": 1242654,
+                        "name": "Reaping"
                     },
                     {
                         "spellId": 390260,
                         "name": "Commander of the Dead"
                     },
                     {
-                        "spellId": 431907,
-                        "name": "Sun's Avatar"
+                        "spellId": 1242998,
+                        "name": "Lesser Ghoul"
                     },
                     {
-                        "spellId": 431381,
-                        "name": "Dawnlight"
+                        "spellId": 439530,
+                        "name": "Symbiotic Blooms"
+                    },
+                    {
+                        "spellId": 374585,
+                        "name": "Rune Mastery"
+                    },
+                    {
+                        "spellId": 48438,
+                        "name": "Wild Growth"
+                    }
+                ],
+                "championDebuffs": [
+                    {
+                        "spellId": 703,
+                        "name": "Garrote"
+                    },
+                    {
+                        "spellId": 450214,
+                        "name": "Stellar Amplification"
+                    },
+                    {
+                        "spellId": 202347,
+                        "name": "Stellar Flare"
+                    },
+                    {
+                        "spellId": 1263250,
+                        "name": "Astral Smolder"
+                    },
+                    {
+                        "spellId": 8680,
+                        "name": "Wound Poison"
+                    },
+                    {
+                        "spellId": 3409,
+                        "name": "Crippling Poison"
+                    }
+                ],
+                "targetBuffs": [
+                    {
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
+                    },
+                    {
+                        "spellId": 381746,
+                        "name": "Blessing of the Bronze"
+                    },
+                    {
+                        "spellId": 1126,
+                        "name": "Mark of the Wild"
+                    },
+                    {
+                        "spellId": 5215,
+                        "name": "Prowl"
+                    },
+                    {
+                        "spellId": 768,
+                        "name": "Cat Form"
+                    },
+                    {
+                        "spellId": 157228,
+                        "name": "Owlkin Frenzy"
+                    },
+                    {
+                        "spellId": 367364,
+                        "name": "Reversion"
+                    },
+                    {
+                        "spellId": 366155,
+                        "name": "Reversion"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
+                    },
+                    {
+                        "spellId": 24858,
+                        "name": "Moonkin Form"
+                    },
+                    {
+                        "spellId": 378992,
+                        "name": "Lycara's Teachings"
+                    },
+                    {
+                        "spellId": 355941,
+                        "name": "Dream Breath"
+                    },
+                    {
+                        "spellId": 376788,
+                        "name": "Dream Breath"
+                    },
+                    {
+                        "spellId": 22812,
+                        "name": "Barkskin"
+                    },
+                    {
+                        "spellId": 48517,
+                        "name": "Eclipse (Solar)"
+                    },
+                    {
+                        "spellId": 1263363,
+                        "name": "Ascendant Fires"
+                    },
+                    {
+                        "spellId": 433832,
+                        "name": "Dream Burst"
+                    },
+                    {
+                        "spellId": 279709,
+                        "name": "Starlord"
+                    },
+                    {
+                        "spellId": 209746,
+                        "name": "Moonkin Aura"
+                    },
+                    {
+                        "spellId": 356528,
+                        "name": "Necrotic Wound"
+                    },
+                    {
+                        "spellId": 1287770,
+                        "name": "Rune of the Versatile Warrior"
+                    }
+                ],
+                "targetDebuffs": [
+                    {
+                        "spellId": 191587,
+                        "name": "Virulent Plague"
+                    },
+                    {
+                        "spellId": 1240996,
+                        "name": "Dread Plague"
+                    },
+                    {
+                        "spellId": 327096,
+                        "name": "War"
+                    },
+                    {
+                        "spellId": 388539,
+                        "name": "Rend"
+                    },
+                    {
+                        "spellId": 327093,
+                        "name": "Pestilence"
+                    },
+                    {
+                        "spellId": 327095,
+                        "name": "Death"
+                    },
+                    {
+                        "spellId": 327092,
+                        "name": "Famine"
+                    },
+                    {
+                        "spellId": 445836,
+                        "name": "Overwhelmed"
+                    },
+                    {
+                        "spellId": 444633,
+                        "name": "Undeath"
+                    },
+                    {
+                        "spellId": 208086,
+                        "name": "Colossus Smash"
+                    },
+                    {
+                        "spellId": 132169,
+                        "name": "Storm Bolt"
+                    },
+                    {
+                        "spellId": 374557,
+                        "name": "Brittle"
+                    },
+                    {
+                        "spellId": 392490,
+                        "name": "Enfeeble"
+                    }
+                ],
+                "targetClassName": "Druid",
+                "targetSpecName": "Balance",
+                "resolvedAt": "2026-09-06T02:57:05+00:00"
+            }
+        },
+        "12": {
+            "damage": 2028976,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Army of the Dead",
+                    "spellId": 42650,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Dark Transformation",
+                    "spellId": 1233448,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Putrefy",
+                    "spellId": 1247378,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Soul Reaper",
+                    "spellId": 343294,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Anti-Magic Shell",
+                    "spellId": 410358,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Putrefy",
+                    "spellId": 1247378,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ],
+            "matchId": "312969f6dd44bca0177c8d809a28592c",
+            "guid": "Player-60-0FFBD835",
+            "start": 78936.238,
+            "end": 78948.238,
+            "targetGuid": "Player-73-0FD03140",
+            "talentBuild": {
+                "matchId": "312969f6dd44bca0177c8d809a28592c",
+                "talents": [
+                    {
+                        "name": "Blinding Sleet",
+                        "spellId": 207167,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 486,
+                        "entryId": 587
+                    },
+                    {
+                        "name": "Runic Attenuation",
+                        "spellId": 207104,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 487,
+                        "entryId": 588
+                    },
+                    {
+                        "name": "Anti-Magic Barrier",
+                        "spellId": 205727,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 488,
+                        "entryId": 589
+                    },
+                    {
+                        "name": "Gloom Ward",
+                        "spellId": 391571,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 492,
+                        "entryId": 594
+                    },
+                    {
+                        "name": "Will of the Necropolis",
+                        "spellId": 206967,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 494,
+                        "entryId": 597
+                    },
+                    {
+                        "name": "Runic Protection",
+                        "spellId": 454788,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 495,
+                        "entryId": 598
+                    },
+                    {
+                        "name": "Grip of the Dead",
+                        "spellId": 273952,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 497,
+                        "entryId": 600
+                    },
+                    {
+                        "name": "Unholy Endurance",
+                        "spellId": 389682,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 498,
+                        "entryId": 601
+                    },
+                    {
+                        "name": "Brittle",
+                        "spellId": 374504,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 501,
+                        "entryId": 604
+                    },
+                    {
+                        "name": "Improved Death Strike",
+                        "spellId": 374277,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 505,
+                        "entryId": 609
+                    },
+                    {
+                        "name": "Veteran of the Third War",
+                        "spellId": 48263,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 506,
+                        "entryId": 610
+                    },
+                    {
+                        "name": "Unholy Momentum",
+                        "spellId": 374265,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 507,
+                        "entryId": 612
+                    },
+                    {
+                        "name": "Death Strike",
+                        "spellId": 49998,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 508,
+                        "entryId": 613
+                    },
+                    {
+                        "name": "Cleaving Strikes",
+                        "spellId": 316916,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 510,
+                        "entryId": 615
+                    },
+                    {
+                        "name": "Death Pact",
+                        "spellId": 48743,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 512,
+                        "entryId": 618
+                    },
+                    {
+                        "name": "Unholy Bond",
+                        "spellId": 374261,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 513,
+                        "entryId": 619
+                    },
+                    {
+                        "name": "Rune Mastery",
+                        "spellId": 374574,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 515,
+                        "entryId": 622
+                    },
+                    {
+                        "name": "Icebound Fortitude",
+                        "spellId": 48792,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 517,
+                        "entryId": 624
+                    },
+                    {
+                        "name": "Mind Freeze",
+                        "spellId": 47528,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 519,
+                        "entryId": 626
+                    },
+                    {
+                        "name": "Suppression",
+                        "spellId": 374049,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 522,
+                        "entryId": 629
+                    },
+                    {
+                        "name": "Osmosis",
+                        "spellId": 454835,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 523,
+                        "entryId": 630
+                    },
+                    {
+                        "name": "Magus of the Dead",
+                        "spellId": 390196,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 780,
+                        "entryId": 920
+                    },
+                    {
+                        "name": "Commander of the Dead",
+                        "spellId": 390259,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 813,
+                        "entryId": 961
+                    },
+                    {
+                        "name": "Unholy Aura",
+                        "spellId": 377440,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 812,
+                        "entryId": 959
+                    },
+                    {
+                        "name": "Cycle of Death",
+                        "spellId": 1290864,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 784,
+                        "entryId": 924
+                    },
+                    {
+                        "name": "Coil of Devastation",
+                        "spellId": 390270,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 785,
+                        "entryId": 925
+                    },
+                    {
+                        "name": "Morbidity",
+                        "spellId": 377592,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 794,
+                        "entryId": 936
+                    },
+                    {
+                        "name": "Foul Infections",
+                        "spellId": 455396,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 769,
+                        "entryId": 907
+                    },
+                    {
+                        "name": "Harbinger of Doom",
+                        "spellId": 276023,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 795,
+                        "entryId": 937
+                    },
+                    {
+                        "name": "Soul Reaper",
+                        "spellId": 343294,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 779,
+                        "entryId": 919
+                    },
+                    {
+                        "name": "Outnumber",
+                        "spellId": 1241705,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 817,
+                        "entryId": 965
+                    },
+                    {
+                        "name": "Unholy Devotion",
+                        "spellId": 1241858,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 797,
+                        "entryId": 940
+                    },
+                    {
+                        "name": "Dark Transformation",
+                        "spellId": 1233448,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 764,
+                        "entryId": 902
+                    },
+                    {
+                        "name": "Outbreak",
+                        "spellId": 77575,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 754,
+                        "entryId": 889
+                    },
+                    {
+                        "name": "Scourge Strike",
+                        "spellId": 55090,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 756,
+                        "entryId": 891
+                    },
+                    {
+                        "name": "Sudden Doom",
+                        "spellId": 49530,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 757,
+                        "entryId": 892
+                    },
+                    {
+                        "name": "Festering Scythe",
+                        "spellId": 455397,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 777,
+                        "entryId": 917
+                    },
+                    {
+                        "name": "Ghoulish Frenzy",
+                        "spellId": 377587,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 789,
+                        "entryId": 929
+                    },
+                    {
+                        "name": "Army of the Dead",
+                        "spellId": 42650,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 786,
+                        "entryId": 926
+                    },
+                    {
+                        "name": "Ebon Fever",
+                        "spellId": 207269,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 776,
+                        "entryId": 916
+                    },
+                    {
+                        "name": "Apocalypse Now",
+                        "spellId": 444040,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 901,
+                        "entryId": 1064
+                    },
+                    {
+                        "name": "Hungering Thirst",
+                        "spellId": 444037,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 903,
+                        "entryId": 1067
+                    },
+                    {
+                        "name": "Whitemane's Famine",
+                        "spellId": 444033,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 904,
+                        "entryId": 1068
+                    },
+                    {
+                        "name": "Mawsworn Menace",
+                        "spellId": 444099,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 905,
+                        "entryId": 1069
+                    },
+                    {
+                        "name": "Nazgrim's Conquest",
+                        "spellId": 444052,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 906,
+                        "entryId": 1070
+                    },
+                    {
+                        "name": "Trollbane's Icy Fury",
+                        "spellId": 444097,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 908,
+                        "entryId": 1073
+                    },
+                    {
+                        "name": "Mograine's Might",
+                        "spellId": 444047,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 910,
+                        "entryId": 1075
+                    },
+                    {
+                        "name": "Proliferating Chill",
+                        "spellId": 373930,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 643,
+                        "entryId": 767
+                    },
+                    {
+                        "name": "Doomed Bidding",
+                        "spellId": 455386,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 805,
+                        "entryId": 948
+                    },
+                    {
+                        "name": "Death's Echo",
+                        "spellId": 356367,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 650,
+                        "entryId": 774
+                    },
+                    {
+                        "name": "Null Magic",
+                        "spellId": 454842,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 651,
+                        "entryId": 775
+                    },
+                    {
+                        "name": "Blightburst",
+                        "spellId": 1254552,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 803,
+                        "entryId": 946
+                    },
+                    {
+                        "name": "Reaping",
+                        "spellId": 377514,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 787,
+                        "entryId": 927
+                    },
+                    {
+                        "name": "Putrefy",
+                        "spellId": 1247378,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 763,
+                        "entryId": 901
+                    },
+                    {
+                        "name": "Clawing Shadows",
+                        "spellId": 1241567,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 762,
+                        "entryId": 900
+                    },
+                    {
+                        "name": "Putrid Echoes",
+                        "spellId": 377580,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 804,
+                        "entryId": 947
+                    },
+                    {
+                        "name": "Lord of the Dead",
+                        "spellId": 1256813,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 816,
+                        "entryId": 964
+                    },
+                    {
+                        "name": "Unholy Armaments",
+                        "spellId": 1265971,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 911,
+                        "entryId": 1076
+                    },
+                    {
+                        "name": "Let Terror Reign",
+                        "spellId": 1265949,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 912,
+                        "entryId": 1077
+                    },
+                    {
+                        "name": "Ride or Die!",
+                        "spellId": 1265959,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 913,
+                        "entryId": 1078
+                    },
+                    {
+                        "name": "Enfeeble",
+                        "spellId": 392566,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 678,
+                        "entryId": 803
+                    },
+                    {
+                        "name": "Death Defiance",
+                        "spellId": 1266818,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 680,
+                        "entryId": 805
+                    },
+                    {
+                        "name": "Necromancer's Cunning",
+                        "spellId": 288848,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 771,
+                        "entryId": 910
+                    },
+                    {
+                        "name": "Forbidden Knowledge",
+                        "spellId": 1242158,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 818,
+                        "entryId": 966
+                    },
+                    {
+                        "name": "Rider's Champion",
+                        "spellId": 444005,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 909,
+                        "entryId": 1074
+                    },
+                    {
+                        "name": "Raise Dead",
+                        "spellId": 46585,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 509,
+                        "entryId": 614
+                    },
+                    {
+                        "name": "Anti-Magic Zone",
+                        "spellId": 51052,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 503,
+                        "entryId": 607
+                    },
+                    {
+                        "name": "Coldthirst",
+                        "spellId": 378848,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 518,
+                        "entryId": 625
+                    },
+                    {
+                        "name": "Asphyxiate",
+                        "spellId": 221562,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 502,
+                        "entryId": 605
+                    },
+                    {
+                        "name": "Raise Abomination",
+                        "spellId": 1242608,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 796,
+                        "entryId": 938
+                    },
+                    {
+                        "name": "Pact of the Apocalypse",
+                        "spellId": 444083,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 900,
+                        "entryId": 1063
+                    },
+                    {
+                        "name": "A Feast of Souls",
+                        "spellId": 444072,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 902,
+                        "entryId": 1066
+                    },
+                    {
+                        "name": "Death Charge",
+                        "spellId": 444010,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 907,
+                        "entryId": 1072
+                    },
+                    {
+                        "name": "Wraith Walk",
+                        "spellId": 212552,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 511,
+                        "entryId": 617
+                    }
+                ],
+                "pvpTalents": [
+                    {
+                        "name": "Spellwarden",
+                        "spellId": 410320,
+                        "pvpTalentId": 48
+                    },
+                    {
+                        "name": "Strangulate",
+                        "spellId": 47476,
+                        "pvpTalentId": 44
+                    },
+                    {
+                        "name": "Necrotic Wounds",
+                        "spellId": 356520,
+                        "pvpTalentId": 41
+                    }
+                ],
+                "resolvedAt": "2026-09-06T02:56:54+00:00"
+            },
+            "mechanics": {
+                "targetGuid": "Player-73-0FD03140",
+                "championBuffs": [
+                    {
+                        "spellId": 1254252,
+                        "name": "Lesser Ghoul"
                     },
                     {
                         "spellId": 1256576,
                         "name": "Forbidden Sacrifice"
                     },
                     {
-                        "spellId": 53480,
-                        "name": "Roar of Sacrifice"
+                        "spellId": 1268917,
+                        "name": "Unholy Aura"
                     },
                     {
-                        "spellId": 444505,
-                        "name": "Mograine's Might"
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
                     },
                     {
-                        "spellId": 188290,
-                        "name": "Death and Decay"
+                        "spellId": 1241077,
+                        "name": "Festering Scythe"
                     },
                     {
-                        "spellId": 51460,
-                        "name": "Runic Corruption"
+                        "spellId": 774,
+                        "name": "Rejuvenation"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
                     },
                     {
                         "spellId": 345230,
@@ -3929,133 +3827,177 @@
                     {
                         "spellId": 81340,
                         "name": "Sudden Doom"
+                    },
+                    {
+                        "spellId": 444347,
+                        "name": "Death Charge"
+                    },
+                    {
+                        "spellId": 33763,
+                        "name": "Lifebloom"
                     }
                 ],
                 "championDebuffs": [
                     {
-                        "spellId": 155722,
-                        "name": "Rake"
+                        "spellId": 703,
+                        "name": "Garrote"
                     },
                     {
-                        "spellId": 58180,
-                        "name": "Infected Wounds"
+                        "spellId": 450214,
+                        "name": "Stellar Amplification"
                     },
                     {
-                        "spellId": 1079,
-                        "name": "Rip"
+                        "spellId": 202347,
+                        "name": "Stellar Flare"
                     },
                     {
-                        "spellId": 439531,
-                        "name": "Bloodseeker Vines"
+                        "spellId": 1263250,
+                        "name": "Astral Smolder"
                     }
                 ],
                 "targetBuffs": [
                     {
-                        "spellId": 345230,
-                        "name": "Gladiator's Insignia"
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
                     },
                     {
-                        "spellId": 186289,
-                        "name": "Aspect of the Eagle"
+                        "spellId": 381746,
+                        "name": "Blessing of the Bronze"
                     },
                     {
-                        "spellId": 139,
-                        "name": "Renew"
+                        "spellId": 1126,
+                        "name": "Mark of the Wild"
                     },
                     {
-                        "spellId": 53480,
-                        "name": "Roar of Sacrifice"
+                        "spellId": 5215,
+                        "name": "Prowl"
                     },
                     {
-                        "spellId": 26297,
-                        "name": "Berserking"
+                        "spellId": 768,
+                        "name": "Cat Form"
                     },
                     {
-                        "spellId": 1275630,
-                        "name": "Raptor Swipe!"
+                        "spellId": 157228,
+                        "name": "Owlkin Frenzy"
                     },
                     {
-                        "spellId": 259388,
-                        "name": "Mongoose Fury"
+                        "spellId": 367364,
+                        "name": "Reversion"
+                    },
+                    {
+                        "spellId": 366155,
+                        "name": "Reversion"
                     },
                     {
                         "spellId": 1229746,
                         "name": "Arcanoweave Insight"
                     },
                     {
+                        "spellId": 24858,
+                        "name": "Moonkin Form"
+                    },
+                    {
+                        "spellId": 378992,
+                        "name": "Lycara's Teachings"
+                    },
+                    {
+                        "spellId": 355941,
+                        "name": "Dream Breath"
+                    },
+                    {
+                        "spellId": 376788,
+                        "name": "Dream Breath"
+                    },
+                    {
+                        "spellId": 22812,
+                        "name": "Barkskin"
+                    },
+                    {
+                        "spellId": 48517,
+                        "name": "Eclipse (Solar)"
+                    },
+                    {
+                        "spellId": 394049,
+                        "name": "Balance of All Things"
+                    },
+                    {
+                        "spellId": 1263363,
+                        "name": "Ascendant Fires"
+                    },
+                    {
+                        "spellId": 433832,
+                        "name": "Dream Burst"
+                    },
+                    {
+                        "spellId": 373267,
+                        "name": "Lifebind"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 279709,
+                        "name": "Starlord"
+                    },
+                    {
+                        "spellId": 209746,
+                        "name": "Moonkin Aura"
+                    },
+                    {
                         "spellId": 356528,
                         "name": "Necrotic Wound"
-                    },
-                    {
-                        "spellId": 65081,
-                        "name": "Body and Soul"
-                    },
-                    {
-                        "spellId": 77489,
-                        "name": "Echo of Light"
-                    },
-                    {
-                        "spellId": 385540,
-                        "name": "Rejuvenating Wind"
                     }
                 ],
                 "targetDebuffs": [
-                    {
-                        "spellId": 1240996,
-                        "name": "Dread Plague"
-                    },
                     {
                         "spellId": 191587,
                         "name": "Virulent Plague"
                     },
                     {
-                        "spellId": 115804,
-                        "name": "Mortal Wounds"
-                    },
-                    {
-                        "spellId": 444828,
-                        "name": "Chains of Ice"
-                    },
-                    {
-                        "spellId": 444826,
-                        "name": "Chains of Ice"
-                    },
-                    {
-                        "spellId": 327092,
-                        "name": "Famine"
-                    },
-                    {
-                        "spellId": 327095,
-                        "name": "Death"
-                    },
-                    {
-                        "spellId": 390271,
-                        "name": "Coil of Devastation"
+                        "spellId": 1240996,
+                        "name": "Dread Plague"
                     },
                     {
                         "spellId": 327096,
                         "name": "War"
                     },
                     {
+                        "spellId": 388539,
+                        "name": "Rend"
+                    },
+                    {
                         "spellId": 327093,
                         "name": "Pestilence"
                     },
                     {
-                        "spellId": 1253836,
-                        "name": "Sanctified Armaments"
+                        "spellId": 327095,
+                        "name": "Death"
                     },
                     {
-                        "spellId": 1241521,
-                        "name": "Soul Reaper"
+                        "spellId": 327092,
+                        "name": "Famine"
                     },
                     {
-                        "spellId": 269576,
-                        "name": "Master Marksman"
+                        "spellId": 445836,
+                        "name": "Overwhelmed"
+                    },
+                    {
+                        "spellId": 262115,
+                        "name": "Deep Wounds"
+                    },
+                    {
+                        "spellId": 444633,
+                        "name": "Undeath"
+                    },
+                    {
+                        "spellId": 208086,
+                        "name": "Colossus Smash"
                     }
                 ],
-                "targetClassName": "Hunter",
-                "targetSpecName": "Survival",
-                "resolvedAt": "2026-08-31T10:03:17+00:00"
+                "targetClassName": "Druid",
+                "targetSpecName": "Balance",
+                "resolvedAt": "2026-09-06T02:57:05+00:00"
             }
         },
         "20": {
@@ -4858,7 +4800,7 @@
                         "pvpTalentId": 41
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:34+00:00"
+                "resolvedAt": "2026-09-06T02:56:54+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3675-0B0248F1",
@@ -5116,13 +5058,13 @@
                 ],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Survival",
-                "resolvedAt": "2026-08-31T10:03:17+00:00"
+                "resolvedAt": "2026-09-06T02:57:05+00:00"
             }
         },
         "30": {
-            "damage": 3204141,
+            "damage": 3135479,
             "durationSeconds": 30,
-            "killed": false,
+            "killed": true,
             "steps": [
                 {
                     "name": "Putrefy",
@@ -5131,40 +5073,10 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Putrefy",
-                    "spellId": 1247378,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Strangulate",
                     "spellId": 47476,
                     "isCc": true,
                     "isRepeat": false
-                },
-                {
-                    "name": "Death Charge",
-                    "spellId": 444347,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Death and Decay",
-                    "spellId": 43265,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Soul Reaper",
@@ -5173,48 +5085,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Lichborne",
-                    "spellId": 49039,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Scourge Strike",
-                    "spellId": 55090,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Putrefy",
                     "spellId": 1247378,
                     "isCc": false,
@@ -5224,19 +5094,43 @@
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blinding Sleet",
+                    "spellId": 207167,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
                     "isRepeat": true
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
-                    "name": "Chains of Ice",
-                    "spellId": 45524,
-                    "isCc": true,
-                    "isRepeat": false
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Necrotic Coil",
@@ -5257,19 +5151,61 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Festering Scythe",
                     "spellId": 458128,
                     "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Coil",
+                    "spellId": 47541,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Putrefy",
+                    "spellId": 1247378,
+                    "isCc": false,
+                    "isRepeat": true
                 }
             ],
-            "matchId": "453e15d978bee5a1565b6b85d4f48365",
-            "guid": "Player-60-0FFB8623",
-            "start": 74718.876,
-            "end": 74748.876,
-            "targetGuid": "Player-84-0965E86F",
+            "matchId": "bfe179ee8d63fdf4c0e0a1eb0cd5dc69",
+            "guid": "Player-11-0E98F57D",
+            "start": 2665.997,
+            "end": 2695.997,
+            "targetGuid": "Player-3675-0B0248F1",
             "talentBuild": {
-                "matchId": "453e15d978bee5a1565b6b85d4f48365",
+                "matchId": "bfe179ee8d63fdf4c0e0a1eb0cd5dc69",
                 "talents": [
                     {
                         "name": "Blinding Sleet",
@@ -5441,6 +5377,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 517,
                         "entryId": 624
+                    },
+                    {
+                        "name": "Coldthirst",
+                        "spellId": 378848,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 518,
+                        "entryId": 625
                     },
                     {
                         "name": "Mind Freeze",
@@ -5875,15 +5820,6 @@
                         "entryId": 614
                     },
                     {
-                        "name": "Blood Draw",
-                        "spellId": 374598,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 496,
-                        "entryId": 599
-                    },
-                    {
                         "name": "Asphyxiate",
                         "spellId": 221562,
                         "rank": 1,
@@ -5955,38 +5891,38 @@
                         "pvpTalentId": 41
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:35+00:00"
+                "resolvedAt": "2026-09-06T02:56:54+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-84-0965E86F",
+                "targetGuid": "Player-3675-0B0248F1",
                 "championBuffs": [
+                    {
+                        "spellId": 404468,
+                        "name": "Flight Style: Steady"
+                    },
+                    {
+                        "spellId": 335149,
+                        "name": "Sign of the Scourge"
+                    },
+                    {
+                        "spellId": 465,
+                        "name": "Devotion Aura"
+                    },
+                    {
+                        "spellId": 53563,
+                        "name": "Beacon of Light"
+                    },
                     {
                         "spellId": 1254252,
                         "name": "Lesser Ghoul"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "Arcanoweave Insight"
-                    },
-                    {
-                        "spellId": 774,
-                        "name": "Rejuvenation"
                     },
                     {
                         "spellId": 1241077,
                         "name": "Festering Scythe"
                     },
                     {
-                        "spellId": 1256576,
-                        "name": "Forbidden Sacrifice"
-                    },
-                    {
-                        "spellId": 81340,
-                        "name": "Sudden Doom"
+                        "spellId": 1244893,
+                        "name": "Beacon of the Savior"
                     },
                     {
                         "spellId": 1242998,
@@ -5997,20 +5933,24 @@
                         "name": "Clawing Shadows"
                     },
                     {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
+                        "spellId": 20572,
+                        "name": "Blood Fury"
+                    },
+                    {
                         "spellId": 1268917,
                         "name": "Unholy Aura"
                     },
                     {
-                        "spellId": 8936,
-                        "name": "Regrowth"
-                    },
-                    {
                         "spellId": 42650,
                         "name": "Army of the Dead"
-                    },
-                    {
-                        "spellId": 377588,
-                        "name": "Ghoulish Frenzy"
                     },
                     {
                         "spellId": 1242223,
@@ -6021,136 +5961,132 @@
                         "name": "Apocalyptic Conquest"
                     },
                     {
-                        "spellId": 1235391,
-                        "name": "Dark Transformation"
+                        "spellId": 6940,
+                        "name": "Blessing of Sacrifice"
                     },
                     {
-                        "spellId": 1242654,
-                        "name": "Reaping"
+                        "spellId": 156322,
+                        "name": "Eternal Flame"
+                    },
+                    {
+                        "spellId": 377588,
+                        "name": "Ghoulish Frenzy"
+                    },
+                    {
+                        "spellId": 1235391,
+                        "name": "Dark Transformation"
                     },
                     {
                         "spellId": 390260,
                         "name": "Commander of the Dead"
                     },
                     {
+                        "spellId": 1242654,
+                        "name": "Reaping"
+                    },
+                    {
+                        "spellId": 431907,
+                        "name": "Sun's Avatar"
+                    },
+                    {
+                        "spellId": 431381,
+                        "name": "Dawnlight"
+                    },
+                    {
+                        "spellId": 1256576,
+                        "name": "Forbidden Sacrifice"
+                    },
+                    {
+                        "spellId": 53480,
+                        "name": "Roar of Sacrifice"
+                    },
+                    {
                         "spellId": 444505,
                         "name": "Mograine's Might"
                     },
                     {
-                        "spellId": 444347,
-                        "name": "Death Charge"
+                        "spellId": 188290,
+                        "name": "Death and Decay"
                     },
                     {
-                        "spellId": 223143,
-                        "name": "Prismatic Bauble"
+                        "spellId": 51460,
+                        "name": "Runic Corruption"
                     },
                     {
-                        "spellId": 48438,
-                        "name": "Wild Growth"
+                        "spellId": 345230,
+                        "name": "Gladiator's Insignia"
+                    },
+                    {
+                        "spellId": 81340,
+                        "name": "Sudden Doom"
                     }
                 ],
                 "championDebuffs": [
                     {
-                        "spellId": 197277,
-                        "name": "Judgment"
+                        "spellId": 155722,
+                        "name": "Rake"
                     },
                     {
-                        "spellId": 1289063,
-                        "name": "Rune of Echoes"
+                        "spellId": 58180,
+                        "name": "Infected Wounds"
                     },
                     {
-                        "spellId": 204242,
-                        "name": "Consecration"
+                        "spellId": 1079,
+                        "name": "Rip"
                     },
                     {
-                        "spellId": 431625,
-                        "name": "Empyrean Hammer"
+                        "spellId": 155625,
+                        "name": "Moonfire"
                     },
                     {
-                        "spellId": 1236942,
-                        "name": "Divine Hammer"
+                        "spellId": 439531,
+                        "name": "Bloodseeker Vines"
+                    },
+                    {
+                        "spellId": 1253836,
+                        "name": "Sanctified Armaments"
                     }
                 ],
                 "targetBuffs": [
                     {
-                        "spellId": 2580,
-                        "name": "Find Minerals"
+                        "spellId": 345230,
+                        "name": "Gladiator's Insignia"
                     },
                     {
-                        "spellId": 317920,
-                        "name": "Concentration Aura"
+                        "spellId": 186289,
+                        "name": "Aspect of the Eagle"
                     },
                     {
-                        "spellId": 2383,
-                        "name": "Find Herbs"
+                        "spellId": 139,
+                        "name": "Renew"
                     },
                     {
-                        "spellId": 186403,
-                        "name": "Sign of Battle"
+                        "spellId": 53480,
+                        "name": "Roar of Sacrifice"
                     },
                     {
-                        "spellId": 21562,
-                        "name": "Power Word: Fortitude"
+                        "spellId": 264735,
+                        "name": "Survival of the Fittest"
                     },
                     {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
+                        "spellId": 26297,
+                        "name": "Berserking"
                     },
                     {
-                        "spellId": 433671,
-                        "name": "Sanctification"
+                        "spellId": 1275630,
+                        "name": "Raptor Swipe!"
                     },
                     {
-                        "spellId": 1287665,
-                        "name": "Rune of Lingering"
+                        "spellId": 259388,
+                        "name": "Mongoose Fury"
                     },
                     {
-                        "spellId": 345228,
-                        "name": "Gladiator's Badge"
-                    },
-                    {
-                        "spellId": 1241410,
-                        "name": "Hammer of Wrath"
-                    },
-                    {
-                        "spellId": 31884,
-                        "name": "Avenging Wrath"
-                    },
-                    {
-                        "spellId": 406086,
-                        "name": "Art of War"
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
                     },
                     {
                         "spellId": 356528,
                         "name": "Necrotic Wound"
-                    },
-                    {
-                        "spellId": 432629,
-                        "name": "Undisputed Ruling"
-                    },
-                    {
-                        "spellId": 433674,
-                        "name": "Light's Deliverance"
-                    },
-                    {
-                        "spellId": 435551,
-                        "name": "Enduring Bloodstone"
-                    },
-                    {
-                        "spellId": 431536,
-                        "name": "Shake the Heavens"
-                    },
-                    {
-                        "spellId": 198034,
-                        "name": "Divine Hammer"
-                    },
-                    {
-                        "spellId": 407065,
-                        "name": "Rush of Light"
-                    },
-                    {
-                        "spellId": 77489,
-                        "name": "Echo of Light"
                     }
                 ],
                 "targetDebuffs": [
@@ -6163,28 +6099,16 @@
                         "name": "Virulent Plague"
                     },
                     {
-                        "spellId": 327092,
-                        "name": "Famine"
+                        "spellId": 1287663,
+                        "name": "Rune of Lingering"
                     },
                     {
-                        "spellId": 374557,
-                        "name": "Brittle"
+                        "spellId": 115804,
+                        "name": "Mortal Wounds"
                     },
                     {
-                        "spellId": 327096,
-                        "name": "War"
-                    },
-                    {
-                        "spellId": 327095,
-                        "name": "Death"
-                    },
-                    {
-                        "spellId": 376080,
-                        "name": "Champion's Spear"
-                    },
-                    {
-                        "spellId": 444633,
-                        "name": "Undeath"
+                        "spellId": 212431,
+                        "name": "Explosive Shot"
                     },
                     {
                         "spellId": 444828,
@@ -6195,15 +6119,35 @@
                         "name": "Chains of Ice"
                     },
                     {
-                        "spellId": 208086,
-                        "name": "Colossus Smash"
+                        "spellId": 327092,
+                        "name": "Famine"
+                    },
+                    {
+                        "spellId": 327095,
+                        "name": "Death"
+                    },
+                    {
+                        "spellId": 390271,
+                        "name": "Coil of Devastation"
+                    },
+                    {
+                        "spellId": 327096,
+                        "name": "War"
+                    },
+                    {
+                        "spellId": 327093,
+                        "name": "Pestilence"
+                    },
+                    {
+                        "spellId": 257044,
+                        "name": "Rapid Fire"
                     }
                 ],
-                "targetClassName": "Paladin",
-                "targetSpecName": "Retribution",
-                "resolvedAt": "2026-08-31T10:03:17+00:00"
+                "targetClassName": "Hunter",
+                "targetSpecName": "Survival",
+                "resolvedAt": "2026-09-06T02:57:05+00:00"
             }
         }
     },
-    "generated_at": "2026-08-31T06:33:22+00:00"
+    "generated_at": "2026-09-06T02:47:59+00:00"
 }

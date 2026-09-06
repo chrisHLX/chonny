@@ -1,0 +1,84 @@
+{
+    "classSlug": "demonhunter",
+    "specSlug": "havoc",
+    "title": "Havoc Demon Hunter",
+    "subtitle": "A data-grounded PvP read, written by Claude — not a dictated expert module. See the disclaimer at the end.",
+    "dataSources": {
+        "playstyleSample": 10,
+        "ratingRange": [3035, 3123],
+        "patch": "12.0.7.68453",
+        "freshPullPerformed": false,
+        "note": "Built entirely from the existing 10-match sample (3035-3123 rating, the highest-rated sample in this whole guide series) already on file — no new arena-log pull was performed for this. If that changes later, any fresh pull gets the standard wow:refresh-match-derived treatment so Class Guide/Burst Windows/CC chains for this spec benefit too, not just this page."
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "heading": "Identity",
+            "paragraphs": [
+                "Havoc's real identity runs on a resource-consumption combo, not a straightforward rotation: killing an enemy (or certain abilities) generates Soul Fragments, and consuming enough of them — or casting The Hunt or Sigil of Spite — upgrades the next Throw Glaive into a stronger Reaver's Glaive, confirmed directly from the ability's own current-patch description. This is a genuinely different kind of 'setup' than anything else covered in this series: not a DoT building up, not a cooldown aligning, but a resource threshold being crossed mid-fight.",
+                "This is also, by a clear margin, the highest-rated sample and the highest-measured-damage burst window in this entire guide series (3035-3123 rating; over 2 million damage in the archived window below) — worth keeping in mind when reading the rest of this guide, since it reflects genuinely elite-level play, not just a solid sample."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Offensive Cooldowns",
+            "intro": "Metamorphosis and Chaos Blades are the two headline escalations; Death Sweep, Blade Dance, and Essence Break are the sustained pressure underneath them.",
+            "spellIds": [200166, 247938, 210152, 188499, 258860, 370965]
+        },
+        {
+            "type": "prose",
+            "heading": "A category quirk worth being upfront about",
+            "paragraphs": [
+                "Eye Beam shows up in this spec's real kit tagged Defensive rather than Offensive, despite clearly reading as a damage cooldown to a player. This isn't a mistake unique to this guide — it's the same documented limitation already flagged elsewhere in this project for other multi-purpose spells (Fade, on Priest, lands in Defensive for the same structural reason: the categorization heuristic keys off a spell's own effect data, and a spell with any damage-reduction or self-preservation component attached gets pulled toward Defensive even when its primary read is offensive). Mentioned here directly rather than silently reassigning it — the badge you'll see on this ability elsewhere on the site reflects the same real, known quirk, not an error specific to this guide."
+            ]
+        },
+        {
+            "type": "prose",
+            "heading": "The real burst window — the highest measured in this whole series",
+            "paragraphs": [
+                "The actual highest-DPS 12-second window found across the whole archived sample: Throw Glaive -> Death Sweep -> Throw Glaive -> Death Sweep -> Shattered Souls -> Throw Glaive -> Vengeful Retreat -> Throw Glaive -> Fel Lance (x8) — 16 real steps, and over 2 million damage, both the highest of any guide in this series so far.",
+                "Two things worth being honest about. First, Shattered Souls appearing in this sequence isn't a button being pressed — its own description confirms it's a passive proc that fires on a kill, showing up here as a logged event rather than a deliberate cast, the same 'not every step is a decision' caveat worth remembering from earlier guides in this series. Second, and genuinely different from every other spec covered so far: this is the first burst window in the whole series with no CC ability inside it at all. Vengeful Retreat (mobility, not control) is the closest thing to a non-damage step, and it's a repositioning tool, not a control one. Worth recording as the honest exception to the pattern this series kept finding elsewhere, not glossed over to keep the pattern looking universal."
+            ]
+        },
+        {
+            "type": "sequence",
+            "heading": "The real observed burst window",
+            "intro": "The literal top-DPS 12s window from the archived match sample — the highest measured damage and highest step count of any guide in this whole series. Read live from the same rotation file Burst Windows/Class Guide use for this spec.",
+            "useRealBurstWindow": true,
+            "burstWindowLength": 12
+        },
+        {
+            "type": "prose",
+            "heading": "Reading the anti-go against Havoc",
+            "paragraphs": [
+                "Per Part 11 of the framework, and given the finding above, the correct read against this spec leans more on raw damage-output recognition than on watching for a CC tell the way most other specs in this series reward. Because Havoc's real threat model can be pure, sustained, uninterrupted pressure with no accompanying control, the signal to watch for is closer to Windwalker Monk's density-based framing earlier in this series — how long has this pressure already been running — than to any single ability landing."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Defensive Cooldowns",
+            "intro": "Darkness and Immolation Aura are the real answers — Eye Beam's own Defensive tag, per the note above, reflects a category quirk rather than a hidden intentional design choice.",
+            "spellIds": [196718, 258920, 198013]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Crowd Control",
+            "intro": "A genuinely thin CC kit for a melee spec — Imprison and Sigil of Misery are the only two real tools, from two different diminishing-returns categories.",
+            "spellIds": [217832, 207684]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Mobility",
+            "intro": "Vengeful Retreat and Blur are both defensive-and-mobile at once — reposition while also mitigating, rather than a pure escape.",
+            "spellIds": [198589, 198793]
+        },
+        {
+            "type": "prose",
+            "heading": "The cooldown ledger — what to actually track",
+            "paragraphs": [
+                "Per Part 4 of the framework, the useful number here isn't a cooldown timer at all — it's Soul Fragment count, since that resource is what actually gates the Reaver's Glaive upgrade documented above. This is a genuinely different kind of ledger than most of this series: a resource threshold rather than a clock, closer in spirit to tracking Holy Power or combo points than to watching Deathmark or Colossus Smash recharge."
+            ]
+        }
+    ],
+    "disclaimer": "This guide was written by Claude (an AI), synthesized from real archived match data and this project's own arena-structure.md framework — it is NOT a dictated expert module and does not carry the same trust tier as the Discipline Priest or Feral Druid canonical modules elsewhere on this site. Every cooldown, category, and observed sequence above is read live from the same database everything else uses; the reasoning connecting them is AI-generated analysis, offered as a data-grounded opinion, not verified expertise. Treat it as a starting hypothesis to test against your own games, not a verdict."
+}

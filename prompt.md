@@ -1,5 +1,7 @@
 # AI Prompt Inventory
 
+> **Mostly legacy.** Most entries here belong to the earlier learning-platform direction (question generation, diagnostic profiles, module content, research — see `VISION.md`). Kept as a reference; those systems are dormant, not the current focus.
+
 A reference for every prompt sent to AI in this codebase — what triggers it, what data goes in, and what comes back.
 
 ---

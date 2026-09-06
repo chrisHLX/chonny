@@ -1,5 +1,7 @@
 # Module Upload Format
 
+> **Legacy.** Part of the earlier learning-platform direction (see `VISION.md`). Kept as a reference; the module/quiz system it feeds is dormant, not the current focus.
+
 Used by the "Upload Module" tool (`/modules/upload`) to create a Module + its quiz questions from
 two pasted/uploaded files instead of typing everything into the dashboard forms by hand. **Claude:
 use this exact format whenever asked to draft a module's content or questions for upload** — don't

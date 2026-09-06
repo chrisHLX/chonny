@@ -1,0 +1,85 @@
+{
+    "classSlug": "shaman",
+    "specSlug": "restoration",
+    "title": "Restoration Shaman",
+    "subtitle": "A data-grounded PvP read, written by Claude — not a dictated expert module. See the disclaimer at the end.",
+    "dataSources": {
+        "playstyleSample": 10,
+        "ratingRange": [2235, 2757],
+        "patch": "12.0.7.68453",
+        "freshPullPerformed": false,
+        "note": "Built entirely from the existing 10-match sample (2235-2757 rating) already on file — no new arena-log pull was performed for this. If that changes later, any fresh pull gets the standard wow:refresh-match-derived treatment so Class Guide/Burst Windows/CC chains for this spec benefit too, not just this page."
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "heading": "Identity",
+            "paragraphs": [
+                "The second healer in this series, and a useful contrast to Holy Paladin's guide: both are defense-first specs per Part 2 of this project's own arena framework (arena-structure.md) — existing mostly to defeat other teams' conjunctions rather than assemble their own — but they get there through very different tools. Holy Paladin leans on hard, binary answers (Divine Shield, Blessing of Protection) that fully negate one term of the enemy's plan. Restoration Shaman leans on totems — Spirit Link Totem, Healing Tide Totem — that spread mitigation across the whole team at once rather than fully answering any one threat.",
+                "That distinction matters for how this spec should be read defensively: a Holy Paladin's toolkit asks 'which specific problem am I answering right now,' while a Restoration Shaman's toolkit more often asks 'is the whole team about to take damage at once,' since several of its best tools are group-wide by design."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Core Damage & Filler",
+            "intro": "Real, arena-log-verified offensive output for this spec — Lava Burst and Flame Shock are the actual damage core, not just filler between heals.",
+            "spellIds": [51505, 470411, 188443, 188196]
+        },
+        {
+            "type": "prose",
+            "heading": "A cluster of talents the data can't see, and one it clearly can",
+            "paragraphs": [
+                "Three related talents — Imbuement Mastery, Splitstream, and Supportive Imbuements — all show the identical pattern: taken in 9 of 10 matches, detected as never firing in any of them. All three are passive weapon-imbue modifiers with no discrete cast event of their own, which is the same measurement-limitation case already flagged for Demonic Resilience in the Destruction Warlock guide — a 0 here reflects what this kind of analysis can observe, not a real absence of value.",
+                "Deeply Rooted Elements is a cleaner, more genuine finding: taken in all 10 matches, flagged as unused in all 10. Unlike the imbue cluster above, this is a real proc-based talent with an observable trigger condition, so a clean 10-for-10 flag is a meaningful signal that this specific talent rarely does its job in real high-rated arena play, not just a gap in what the analysis can see."
+            ]
+        },
+        {
+            "type": "prose",
+            "heading": "The real burst window — a different kind of surprise than the last healer",
+            "paragraphs": [
+                "The actual highest-DPS 12-second window found across the whole archived sample: Lava Burst -> Flame Shock -> Healing Stream Totem -> Lava Burst (x3) -> Purge. Worth comparing directly against the Holy Paladin guide's own equivalent finding, since the two healers surprised in genuinely different ways: Holy Paladin's highest-damage window turned out to be a pure melee-weave sequence with no healing in it at all. This spec's highest-damage window still drops a real healing totem right in the middle of it.",
+                "That's a meaningfully different shape of 'what a healer's damage window actually looks like,' and it fits the totem-based identity described above — this spec's damage and its healing aren't cleanly separated the way Holy Paladin's damage-weave and healing turned out to be. Purge (a dispel/utility spell, not damage or healing) also appears in the sequence — a third activity mixed into the same window, on top of the damage-plus-heal blend."
+            ]
+        },
+        {
+            "type": "sequence",
+            "heading": "The real observed high-damage window",
+            "intro": "The literal top-DPS 12s window from the archived match sample — read live from the same rotation file Burst Windows/Class Guide use for this spec.",
+            "useRealBurstWindow": true,
+            "burstWindowLength": 12
+        },
+        {
+            "type": "prose",
+            "heading": "Reading the anti-go against Restoration Shaman",
+            "paragraphs": [
+                "Per Part 11 of the framework, the state-recognition trap here is treating this spec's totems as static, always-on background noise rather than a resource with its own timing. Spirit Link Totem and Healing Tide Totem each fully answer a specific kind of team-wide burst — using either preemptively, before the enemy's actual all-in lands, is the same defensive-padding mistake documented for Smoke Bomb/Ice Block earlier in this series, just group-scoped instead of self-scoped."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Healing Cooldowns & Team Defensives",
+            "intro": "Spirit Link Totem and Healing Tide Totem are the two biggest, rarest team-wide answers; Astral Shift and Riptide are the cheaper, more frequent self/single-target tools.",
+            "spellIds": [98008, 108280, 108271, 61295, 73685]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Crowd Control",
+            "intro": "Hex (Incapacitate) and Capacitor Totem/Lightning Lasso (both Stun) don't diminish each other — Earthgrab Totem's Root is a fourth, independent category on top of those two.",
+            "spellIds": [51514, 192058, 305483, 51485]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Mobility",
+            "intro": "Ghost Wolf and Spirit Walk are this spec's real repositioning tools — neither is flashy, but both matter for a totem-based caster that needs to stay in range of its own drops.",
+            "spellIds": [2645, 58875]
+        },
+        {
+            "type": "prose",
+            "heading": "The cooldown ledger — what to actually track",
+            "paragraphs": [
+                "Per Part 4 of the framework, the number worth tracking is time-since-Spirit-Link-Totem, since that single cooldown is the closest thing this spec has to a Lay-on-Hands-style hard answer, and — same as the Holy Paladin comparison above — the enemy team's own real game plan should account for whether it's still available, not just this Shaman's own planning."
+            ]
+        }
+    ],
+    "disclaimer": "This guide was written by Claude (an AI), synthesized from real archived match data and this project's own arena-structure.md framework — it is NOT a dictated expert module and does not carry the same trust tier as the Discipline Priest or Feral Druid canonical modules elsewhere on this site. Every cooldown, category, and observed sequence above is read live from the same database everything else uses; the reasoning connecting them is AI-generated analysis, offered as a data-grounded opinion, not verified expertise. Treat it as a starting hypothesis to test against your own games, not a verdict."
+}

@@ -6,9 +6,8 @@ everything else there) or explicitly dropped.
 
 ## Tag spells as Hero Talents on spell displays (flagged 2026-08-22)
 
-**Not current — do not build without a fresh decision.** Noted here per direct instruction after
-building the Top Damage Rotations page, as a real gap worth remembering rather than acting on
-immediately.
+**Not being worked on — noted for later.** Recorded after building the Top Damage Rotations page
+as a real gap worth remembering rather than acting on immediately.
 
 **The ask:** show, on a spell's card/detail (WoW Comps, Spell Explorer, Top Damage Rotations,
 `<x-spells.table>`, `SpellDetailModal` — anywhere a spell renders today), whether it's

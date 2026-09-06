@@ -1,0 +1,84 @@
+{
+    "classSlug": "monk",
+    "specSlug": "windwalker",
+    "title": "Windwalker Monk",
+    "subtitle": "A data-grounded PvP read, written by Claude — not a dictated expert module. See the disclaimer at the end.",
+    "dataSources": {
+        "playstyleSample": 10,
+        "ratingRange": [2240, 2708],
+        "patch": "12.0.7.68453",
+        "freshPullPerformed": false,
+        "note": "Built entirely from the existing 10-match sample (2240-2708 rating) already on file — no new arena-log pull was performed for this. If that changes later, any fresh pull gets the standard wow:refresh-match-derived treatment so Class Guide/Burst Windows/CC chains for this spec benefit too, not just this page."
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "heading": "Identity",
+            "paragraphs": [
+                "Windwalker is the highest-mobility, highest-tempo spec in this guide series so far — its real burst window (below) packs 13 real casts into 12 seconds, more than double the density of any other spec covered here. Per Part 8 of this project's own arena framework (arena-structure.md), most specs have one clear certainty window (an opener, a cooldown alignment); Windwalker's actual identity is closer to a continuous stream of smaller certainty windows, each one only a global or two long, chained together by Chi generation rather than by one big setup sequence.",
+                "Zenith's own description makes this explicit: activating it resets Rising Sun Kick's cooldown and reduces Chi costs — a cooldown specifically built to compress the rotation further, not to add a new damage source on its own. This is a spec whose 'burst' is really just its normal rotation running with zero downtime, rather than a separate mode it switches into."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Offensive Cooldowns",
+            "intro": "Fists of Fury and Strike of the Windlord are the real cooldowns; Rising Sun Kick, Rushing Wind Kick, Blackout Kick, and Tiger Palm are the constant-uptime core the rest of the kit compresses around.",
+            "spellIds": [113656, 392983, 107428, 467307, 100784, 1249625]
+        },
+        {
+            "type": "prose",
+            "heading": "Two real, situational tools the data confirms are situational, not weak",
+            "paragraphs": [
+                "Escape from Reality (a mobility/vanish-style tool) and Zenith Stomp were both taken in all 10 sampled matches but only cast in 3 and 2 of them respectively. Neither of those numbers should read as 'these talents are bad' — both are the kind of tool that exists for a specific, rare moment (a hard escape, a specific stun-adjacent finisher) rather than something spent every game. The real signal here is closer to the Rogue guide's Smoke Bomb discussion and the Unholy DK guide's Asphyxiate discussion: a low use-rate on a big, situational tool is consistent with correct play, not neglect — the same pattern recurring across three completely different specs in this series is itself worth noting."
+            ]
+        },
+        {
+            "type": "prose",
+            "heading": "The real burst window — the densest in this series",
+            "paragraphs": [
+                "The actual highest-DPS 12-second window found across the whole archived sample: Spear Hand Strike -> Blackout Kick -> Rushing Wind Kick -> Rising Sun Kick -> Tiger Palm -> Touch of Karma -> Blackout Kick -> Rushing Wind Kick -> Rising Sun Kick -> Tiger Palm -> Blackout Kick -> Rushing Wind Kick -> Rising Sun Kick. Two things stand out. First, the sheer cast density (13 abilities in 12 seconds) is a genuinely different shape from every other spec in this series — nothing here waits for a cooldown, the whole window is filler-and-finisher chained continuously.",
+                "Second, and consistent with a pattern this whole guide series keeps finding: Spear Hand Strike — an interrupt — opens the window, not a pure damage ability. That makes four specs in a row (Frost Mage's Counterspell, Unholy DK's Blinding Sleet, Destruction Warlock's Fear, and now this) where the actual highest-measured-damage window in real archived play starts or includes denying the opponent's own response. At this point it reads less like a coincidence specific to any one spec and more like a real, general pattern in how high-rated PvP burst windows actually work — worth treating as a standing hypothesis for any future spec covered in this series, not just noting it fresh each time."
+            ]
+        },
+        {
+            "type": "sequence",
+            "heading": "The real observed burst window",
+            "intro": "The literal top-DPS 12s window from the archived match sample — the densest, fastest-paced window found across this whole guide series. Read live from the same rotation file Burst Windows/Class Guide use for this spec.",
+            "useRealBurstWindow": true,
+            "burstWindowLength": 12
+        },
+        {
+            "type": "prose",
+            "heading": "Reading the anti-go against Windwalker",
+            "paragraphs": [
+                "Per Part 11 of the framework, the state-recognition trap here is treating this spec the way you'd treat a slower, cooldown-driven burst spec — waiting for 'the moment' to react. Windwalker doesn't have one clean moment; per the density shown above, its pressure is closer to a continuous stream. The correct read shifts from 'when do they commit' to 'how long has this pressure already been running,' since a fast-paced spec like this one can rack up real, lasting damage well before any single cooldown announces that a fight has started."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Defensive Cooldowns",
+            "intro": "Touch of Karma reflects damage back at its source rather than just reducing it — a genuinely different defensive mechanic from every other spec's tools in this series.",
+            "spellIds": [122470, 115203]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Crowd Control",
+            "intro": "Leg Sweep (Stun) and Paralysis (Incapacitate) are different DR categories and don't diminish each other — Ring of Peace's Knockback is a genuinely unusual mechanic (ejects enemies from a fixed zone rather than a directional push).",
+            "spellIds": [119381, 115078, 233759, 116844]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Mobility",
+            "intro": "Flying Serpent Kick and Tiger's Lust give this spec some of the best pure repositioning in the game, on top of the interrupt/finisher-dense rotation above.",
+            "spellIds": [101545, 116841]
+        },
+        {
+            "type": "prose",
+            "heading": "The cooldown ledger — what to actually track",
+            "paragraphs": [
+                "Per Part 4 of the framework, this is the one spec in this series where tracking a single slow cooldown makes the least sense — Windwalker's pressure comes from rotational density, not a big periodic reset. The more useful number to track is simpler: is the Monk currently in melee range and unCC'd. Given how compressed this rotation is, uptime itself is closer to this spec's real 'cooldown' than any individual ability's timer."
+            ]
+        }
+    ],
+    "disclaimer": "This guide was written by Claude (an AI), synthesized from real archived match data and this project's own arena-structure.md framework — it is NOT a dictated expert module and does not carry the same trust tier as the Discipline Priest or Feral Druid canonical modules elsewhere on this site. Every cooldown, category, and observed sequence above is read live from the same database everything else uses; the reasoning connecting them is AI-generated analysis, offered as a data-grounded opinion, not verified expertise. Treat it as a starting hypothesis to test against your own games, not a verdict."
+}

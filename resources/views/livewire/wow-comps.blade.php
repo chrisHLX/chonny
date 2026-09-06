@@ -317,7 +317,14 @@
                      button. See the modal-block loop further down for the matching tightened
                      @continue skip (an entry unreachable from any remaining tab no longer gets a
                      hidden modal block generated for it either). --}}
-                <button type="button" @click="selectTab('rotation')" class="tab-btn flex items-center gap-1.5" :class="tab === 'rotation' ? 'tab-active' : 'tab-inactive'">
+                {{-- Burst Window's own data (getOffensiveRotationsProperty()) is deliberately NOT
+                     computed until this tab is actually opened — see that method's own docblock:
+                     a real profile found it costing 226ms/517 queries, by far the single most
+                     expensive thing on this page, recomputed on every spec pick regardless of
+                     which tab was visible. $wire.loadRotationTab() (a no-op after the first real
+                     call — rotationTabLoaded stays true) fetches it the first time; selectTab()
+                     still does the instant client-side tab switch as before. --}}
+                <button type="button" @click="selectTab('rotation'); $wire.loadRotationTab()" class="tab-btn flex items-center gap-1.5" :class="tab === 'rotation' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                     Burst Window
                     <span class="badge-amber !text-[8px] !px-1 !py-0">DEV</span>
@@ -1001,7 +1008,14 @@
                                 @endif
                             </div>
 
-                            @if (!$rot || empty($rot['topDpsWindow']))
+                            @if (!$rotationTabLoaded)
+                                {{-- Genuinely not fetched yet — see loadRotationTab()'s docblock
+                                     for why this data isn't computed until this tab is opened.
+                                     Shown only for the brief moment before the round trip
+                                     resolves; distinct from the "no data at all" message below so
+                                     a real burst window isn't misreported as missing. --}}
+                                <p class="text-[12px] text-ink-subtle italic">Loading burst window…</p>
+                            @elseif (!$rot || empty($rot['topDpsWindow']))
                                 <p class="text-[12px] text-ink-subtle italic">Not enough match evidence for a burst window on this spec yet.</p>
                             @else
                                 @php $topDps = $rot['topDpsWindow']; $rotUpdated = $fmtRotationDate($rot['generated_at'] ?? null); @endphp

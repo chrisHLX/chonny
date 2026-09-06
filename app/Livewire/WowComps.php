@@ -5,18 +5,16 @@ namespace App\Livewire;
 use App\Http\Services\ArenaLogService;
 use App\Http\Services\CcFormulaService;
 use App\Http\Services\ModuleSpellReferenceService;
+use App\Http\Services\SpecKitComputer;
 use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
-use App\Models\ModuleGameBuild;
 use App\Models\PageViewEvent;
 use App\Models\Patch;
 use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\TalentBuild;
-use App\Models\TalentNodeEntry;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\File;
 use Livewire\Component;
 
 /**
@@ -57,6 +55,24 @@ class WowComps extends Component
         ['label' => 'DPS', 'classId' => null, 'specId' => null],
         ['label' => 'DPS', 'classId' => null, 'specId' => null],
     ];
+
+    /**
+     * Gates getOffensiveRotationsProperty() — added 2026-09-05 after real profiling (a fresh
+     * 3-spec render, Livewire::test()) isolated it as the single most expensive computed property
+     * on this page by a wide margin: 226ms / 517 queries, against 146ms/40 for the full 3-spec
+     * `comp` kit itself and 5ms for `synergies` (which just re-groups $comp, already computed).
+     * Real usage data (Admin\PageUsage) confirms Burst Window is one of the less-opened tabs (14
+     * recorded switches) while the default tab is 'synergies' — yet this was being recomputed on
+     * every single spec pick regardless of which tab was even visible. Set true only by
+     * loadRotationTab(), called from the Burst Window tab button itself (see the blade) — so the
+     * cost is paid once, the first time someone actually opens that tab, not on every render.
+     */
+    public bool $rotationTabLoaded = false;
+
+    public function loadRotationTab(): void
+    {
+        $this->rotationTabLoaded = true;
+    }
 
     /**
      * Static, unambiguous Blizzard-defined role per spec — stable reference data, same
@@ -392,6 +408,28 @@ class WowComps extends Component
         // cache is used.
         $build = $talentService->resolveActiveBuild(auth()->user(), $spec->id);
         $defaultBuild = $build->exists ? $build : null;
+
+        $kitComputer = app(SpecKitComputer::class);
+
+        // Precompute path (2026-09-01) — see wow:precompute-spell-kits's own docblock for the
+        // full "precompute, don't recompute live" redesign this is part of. Only applicable when
+        // the resolved build IS the spec's real admin-default row (is_default=true) — a personal,
+        // per-user customized build can't be precomputed for every possible user, so that case
+        // (and the rare unsaved-empty-shell case, $build->exists === false) falls straight
+        // through to the exact same live-compute-and-cache path this method always used. This
+        // covers the overwhelming majority of real page views (every guest, and any logged-in
+        // user who hasn't personally customized this spec's talents) with a flat file read and
+        // zero Redis round-trip at all.
+        if ($defaultBuild && $defaultBuild->is_default) {
+            $precomputed = $kitComputer->tryReadPrecomputed($spec, $talentService);
+            if ($precomputed !== null) {
+                return $precomputed;
+            }
+            // Falls through to live-compute-and-cache below when the file is missing/stale —
+            // e.g. the precompute command hasn't been run yet for this spec, or an admin edited
+            // the default build since the last precompute run. Never a hard dependency.
+        }
+
         $buildStamp = $defaultBuild ? "{$defaultBuild->id}:{$defaultBuild->updated_at?->timestamp}" : 'none';
         $version = $talentService->spellCacheVersion();
         // Automatically busts this cache on every real deploy — see
@@ -419,7 +457,7 @@ class WowComps extends Component
             return $cached;
         }
 
-        $result = $this->computeSpellReferencesFor($spec, $service, $talentService, $defaultBuild);
+        $result = $kitComputer->compute($spec, $defaultBuild, $service, $talentService);
         Cache::put($cacheKey, $result, now()->addHours(6));
 
         return $result;
@@ -466,180 +504,6 @@ class WowComps extends Component
         }
     }
 
-    /**
-     * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array, isSelected: bool, source: string}>
-     */
-    private function computeSpellReferencesFor(Specialization $spec, ModuleSpellReferenceService $service, TalentSelectionService $talentService, ?TalentBuild $defaultBuild): array
-    {
-        $selected = $defaultBuild ? $talentService->selectedSpellIds($defaultBuild) : collect();
-        $ranks = $defaultBuild ? $talentService->selectedRanks($defaultBuild) : collect();
-
-        // Always-shown display set — see this class's docblock (reworked 2026-08-16). Every
-        // real talent-tree entry and every PvP talent for the spec, regardless of whether the
-        // resolved overlay build ($selected) picked it. choiceSiblingSpellIds() is no longer
-        // needed here: allTalentSpellIds() already includes every option of every CHOICE node
-        // unconditionally, not just the unpicked side of a node that HAS a pick.
-        $allTalentIds = $talentService->allTalentSpellIds($spec->id);
-        $allPvpIds = $talentService->allPvpTalentSpellIds($spec->id);
-
-        // Manually-verified baseline abilities only (Leg Sweep, Freezing Trap, ...) — NOT
-        // TalentSelectionService::alwaysAvailableAbilityIds() (see that method's "DO NOT WIRE
-        // IN" banner and CLAUDE.md's "Baseline ability display" section — that path derives
-        // from the ambiguous spec_id=NULL bucket and leaked Mind Sear onto Discipline Priest).
-        // verifiedBaselineAbilityIds() only ever reads explicit-spec_id, hand-curated rows —
-        // safe by construction, just small (grows one verified entry at a time).
-        $verifiedBaselineIds = $talentService->verifiedBaselineAbilityIds($spec->id);
-
-        // Explicit-spec_id baseline abilities with a real cooldown/CC mechanic — see
-        // TalentSelectionService::explicitBaselineCooldownAbilityIds()'s docblock. Safe
-        // (explicit spec_id, no NULL-bucket guessing) but only ever a partial fix for
-        // baseline-heavy specs like Demon Hunter/Evoker — see CLAUDE.md.
-        $cooldownBaselineIds = $talentService->explicitBaselineCooldownAbilityIds($spec->class_id, $spec->id);
-        $displayIds = $allTalentIds->merge($allPvpIds)->merge($verifiedBaselineIds)->merge($cooldownBaselineIds)->unique();
-
-        // Real arena-match cast evidence for this spec — powers the "Cooldowns" tab (2026-08-18),
-        // same shared source SpellExplorer's "Priority Spells" filter reads. Tagged onto every
-        // entry regardless of tab, same "compute once, filter at render time" pattern the rest of
-        // this method already uses for category/group.
-        $class = GameClass::find($spec->class_id);
-        $arenaLogService = app(ArenaLogService::class);
-        $priorityExternalIds = $class ? $arenaLogService->spellUsageIds($class->slug, $spec->slug) : collect();
-
-        // Offensive/Defensive Cooldowns tabs (2026-08-20) — real, arena-log-verified
-        // classification, promoted from wow-arena-archive (see ArenaLogService::
-        // offensiveDefensiveClassification()'s own docblock). Deliberately intersected with
-        // isPriority below, not used alone: the classification is a GLOBAL "is this spell ever
-        // an offensive/defensive cooldown" answer, spec-blind by design — isPriority is what
-        // narrows it to "and this exact spec actually cast it," the same two-signal intersection
-        // spec-cooldowns.php itself uses in the archive.
-        $classification = $arenaLogService->offensiveDefensiveClassification();
-
-        $build = new ModuleGameBuild([
-            'class_id' => $spec->class_id,
-            'specialization_id' => $spec->id,
-            'hero_talent_tree_id' => $this->detectHeroTreeId($selected),
-        ]);
-
-        $spells = Spell::whereIn('id', $displayIds)
-            ->with(['effects', 'incomingRelationships.sourceSpell.effects'])
-            ->orderBy('name')
-            ->get();
-
-        // Collapses same-name duplicate spell_id copies down to one entry (e.g. Secret
-        // Technique's real press + its shadow-clone spell_id, both structurally reachable via
-        // the display-id union above) — see preferSelectedPerName()'s own docblock. Added
-        // 2026-08-21 after a real report of duplicate cards on this page; this method already
-        // existed for exactly this problem but was never wired into the 2026-08-16
-        // "always show every talent" rework, which is what reintroduced the duplicates.
-        $spells = $talentService->preferSelectedPerName($spells, $selected);
-
-        // Bulk-resolves what would otherwise be one query per spell for both of these — see
-        // each method's own docblock for the profiling that found this (a cold render of one
-        // spec's ~175 entries cost ~1800 queries/3.2s before this, ~700 of which were these two
-        // exact per-spell sibling lookups). Must run before modifiersFor()/enrichModifiers()
-        // below so their per-spell calls hit an already-primed memo instead of querying
-        // individually.
-        $service->preloadBaseCooldownCharges($spells);
-        $service->preloadCategorize($spells);
-        $priorityBySpellId = $arenaLogService->preloadPrioritySpells($spells, $priorityExternalIds);
-
-        // modifiersFor() computed once per entry here (not again inside the final map() below)
-        // specifically so every modifier spell it surfaces can be collected and preloaded in
-        // bulk too — enrichModifiers() calls effectiveCooldown() on each modifier's own spell,
-        // a DIFFERENT spell than the main entry, so preloading only $spells above left this
-        // second tier of lookups still going one-by-one (confirmed via profiling: this was the
-        // majority of the ~389 sibling queries remaining after the first preload pass).
-        $modifiersBySpellId = [];
-        $modifierSpells = collect();
-
-        foreach ($spells as $spell) {
-            $modifiers = $service->modifiersFor($spell, $build, $selected, $ranks);
-            $modifiersBySpellId[$spell->id] = $modifiers;
-            $modifierSpells->push(...$modifiers['named']->pluck('spell'));
-            $modifierSpells->push(...$modifiers['baseline']->pluck('spell'));
-            // 'potential' (2026-09-01, see ModuleSpellReferenceService::modifiersFor()'s
-            // docblock) also needs preloading — the Mobility tab surfaces "could be improved by
-            // an untaken talent" as a per-card hint, same source data SpellDetailModal already
-            // shows in full on click.
-            $modifierSpells->push(...$modifiers['potential']->pluck('spell'));
-        }
-
-        $modifierSpells = $modifierSpells->unique('id');
-        $service->preloadBaseCooldownCharges($modifierSpells);
-        $service->preloadCategorize($modifierSpells);
-
-        return $spells
-            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityBySpellId, $modifiersBySpellId, $classification) {
-                $description = $service->resolveDescription($spell, $build);
-                $modifiers = $modifiersBySpellId[$spell->id];
-                $offDef = $classification['bySpellId'][$spell->spell_id] ?? $classification['byName'][$spell->display_name] ?? null;
-
-                return [
-                    'spell' => $spell,
-                    'category' => $service->categorize($spell),
-                    'description' => $description,
-                    'formulaModifiers' => $description['uncertain'] ? $service->variablesModifiers($spell) : collect(),
-                    'modifiers' => [
-                        'named' => $this->enrichModifiers($modifiers['named'], $service, $build, $selected, $ranks),
-                        'baseline' => $this->enrichModifiers($modifiers['baseline'], $service, $build, $selected, $ranks),
-                        'potential' => $this->enrichModifiers($modifiers['potential'], $service, $build, $selected, $ranks),
-                    ],
-                    // Mobility tab hint (2026-09-01) — "there's an untaken talent that would
-                    // improve this," surfaced as a small badge on the card; full detail (which
-                    // talent, by how much) lives in the spell-detail modal's own "Could Be
-                    // Improved By" section, same click that already opens it.
-                    'hasPotentialImprovement' => $modifiers['potential']->isNotEmpty(),
-                    'cooldown' => $service->effectiveCooldown($spell, $build, $selected, $ranks),
-                    'charges' => $service->effectiveCharges($spell, $build, $selected, $ranks),
-                    // Verified/explicit-spec baseline abilities are never talent-gated, so
-                    // they read as "selected" (normal opacity) regardless of the talent build.
-                    'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
-                    'source' => $allTalentIds->contains($spell->id) ? 'talent' : ($allPvpIds->contains($spell->id) ? 'pvp_talent' : 'baseline'),
-                    'isPriority' => $priorityBySpellId[$spell->id] ?? false,
-                    'offensiveDefensive' => $offDef,
-                ];
-            })
-            ->all();
-    }
-
-    /**
-     * Adds each modifier's own description/category/cooldown to its entry — added 2026-08-09 so
-     * the modal's "Modifies / Enhances" list can expand a modifier inline (an accordion) instead
-     * of only showing its bare name. modifiersFor() itself only returns
-     * {spell, relationship_type, modifier_value, modifier_unit} — resolving each modifier's own
-     * detail is a separate step, done here rather than inside modifiersFor() since that method is
-     * also called from Modules\Show/SpellExplorer, neither of which needs this extra resolution
-     * work (no modifier-accordion UI on either page). Reuses the same $build/$selected/$ranks
-     * context as the parent spell, since a modifier's own effective cooldown depends on the same
-     * talent build.
-     *
-     * @param  \Illuminate\Support\Collection<int, array>  $modifiers
-     * @return \Illuminate\Support\Collection<int, array>
-     */
-    private function enrichModifiers(Collection $modifiers, ModuleSpellReferenceService $service, ModuleGameBuild $build, Collection $selected, Collection $ranks): Collection
-    {
-        return $modifiers->map(function (array $mod) use ($service, $build, $selected, $ranks) {
-            $mod['description'] = $service->resolveDescription($mod['spell'], $build);
-            $mod['category'] = $service->categorize($mod['spell']);
-            $mod['cooldown'] = $service->effectiveCooldown($mod['spell'], $build, $selected, $ranks);
-
-            return $mod;
-        });
-    }
-
-    private function detectHeroTreeId(Collection $selectedSpellIds): ?int
-    {
-        if ($selectedSpellIds->isEmpty()) {
-            return null;
-        }
-
-        return TalentNodeEntry::whereIn('spell_id', $selectedSpellIds)
-            ->whereHas('talentNode.talentTree', fn ($q) => $q->where('type', 'hero'))
-            ->with('talentNode')
-            ->first()
-            ?->talentNode
-            ?->talent_tree_id;
-    }
 
     /**
      * The two Synergies tab boxes, in render order (2026-08-16, third same-day revision — Utility
@@ -924,6 +788,10 @@ class WowComps extends Component
      */
     public function getOffensiveRotationsProperty(): array
     {
+        if (!$this->rotationTabLoaded) {
+            return [];
+        }
+
         $service = app(ArenaLogService::class);
         $talentService = app(TalentSelectionService::class);
 

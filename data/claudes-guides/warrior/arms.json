@@ -1,0 +1,104 @@
+{
+    "classSlug": "warrior",
+    "specSlug": "arms",
+    "title": "Arms Warrior",
+    "subtitle": "Sequences, not prose — imagined presses through a real kit. See the disclaimer at the end.",
+    "dataSources": {
+        "playstyleSample": 10,
+        "ratingRange": [2553, 3111],
+        "patch": "12.0.7.68453",
+        "freshPullPerformed": false,
+        "note": "Built entirely from the existing 10-match sample (2553-3111 rating) already on file — no new arena-log pull was performed for this."
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "heading": "Identity",
+            "paragraphs": [
+                "Colossus Smash opens the window; Mortal Strike/Execute/Overpower cash it in. No pet, no combo points — Rage is the resource, but its real per-ability cost isn't cleanly resolvable from this project's spell-description data (unlike Rogue's combo points, which were readable directly), so it's not numerically tracked below. Flagged, not faked."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Offensive Cooldowns",
+            "spellIds": [167105, 227847, 107574, 12294, 281000, 376079, 1719]
+        },
+        {
+            "type": "rotationBlock",
+            "heading": "Opener",
+            "tag": "cooldowns up",
+            "steps": [
+                {"spellId": 1719, "tag": "CD, +Rage gen, +crit"},
+                {"spellId": 167105, "tag": "CD, sets up the window"},
+                {"spellId": 12294},
+                {"spellId": 7384, "tag": "buffs next MS/Cleave"},
+                {"spellId": 12294},
+                {"spellId": 281000, "tag": "execute range only"},
+                {"spellId": 227847, "tag": "CD"}
+            ]
+        },
+        {
+            "type": "rotationBlock",
+            "heading": "Sustained",
+            "tag": "cooldowns down",
+            "steps": [
+                {"spellId": 1464},
+                {"spellId": 7384},
+                {"spellId": 12294},
+                {"spellId": 1680},
+                {"spellId": 12294}
+            ]
+        },
+        {
+            "type": "rotationBlock",
+            "heading": "CC-Woven",
+            "tag": "control then cash in",
+            "steps": [
+                {"spellId": 107570, "tag": "Stun"},
+                {"spellId": 167105, "tag": "CD, while locked"},
+                {"spellId": 12294, "tag": "free pressure"},
+                {"spellId": 5246, "tag": "Disorient — different DR pool"},
+                {"spellId": 12294, "tag": "free pressure"}
+            ]
+        },
+        {
+            "type": "sequence",
+            "heading": "Real Observed Window",
+            "tag": "data, not imagined",
+            "useRealBurstWindow": true,
+            "burstWindowLength": 12
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Defensive Cooldowns",
+            "spellIds": [118038, 23920, 384100, 97463]
+        },
+        {
+            "type": "rotationBlock",
+            "heading": "Defensive Ladder",
+            "tag": "cheapest first",
+            "steps": [
+                {"spellId": 23920, "tag": "vs magic only"},
+                {"spellId": 384100},
+                {"spellId": 118038, "tag": "hard stop"},
+                {"spellId": 97463, "tag": "team-wide, save for a real all-in"}
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Crowd Control",
+            "spellIds": [107570, 46968, 5246, 236077]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Mobility",
+            "spellIds": [100, 6544, 1244157]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Utility",
+            "spellIds": [147833]
+        }
+    ],
+    "disclaimer": "This guide was written by Claude (an AI) — not a dictated expert module, not the same trust tier as the Discipline Priest or Feral Druid canonical modules elsewhere on this site. Every ability/cooldown/category is real, live data. The Opener/Sustained/CC-Woven/Defensive Ladder sequences are IMAGINED — my own constructed presses through this real kit, not derived from a real logged match. Rage costs are NOT modeled — unlike Rogue's combo points, this project's spell data doesn't cleanly surface per-ability Rage cost, so sequence order here reflects logical priority (cooldown windows, execute-range gating, DR-diverse CC chaining), not a verified resource budget. Recklessness, Rallying Cry, Piercing Howl, and Intervene were all missing from this guide's first version — none were in the site-wide 'selectable kit' view at all (same baseline-visibility gap already documented for Rogue's Envenom/Rupture/Mutilate), found only by falling back to a direct spell lookup. The Real Observed Window section is measured from real archived matches, not imagined."
+}

@@ -298,7 +298,7 @@ verify-then-add step as every other line in that file.
 site unattended" precedent already established for `wow:import-murlok-defaults`. Looping this
 across all ~40 specs automatically is a plausible future step, not built here.
 
-## Tank specs are genuinely scarce in this data source — do not keep re-pulling for them
+## Tank specs are genuinely scarce in this data source — not worth extra pull budget
 
 Confirmed 2026-08-15, while running `wow:pull-scarce-specs` (see `app/Console/Commands/PullScarceSpecs.php`) to top up the specs with the fewest recorded kill-sequence examples. Three specs stayed stuck at 0 examples even after a deep search (`--pages=8`, 400 recent 3v3 matches scanned via `latestMatches`):
 
@@ -306,7 +306,7 @@ Confirmed 2026-08-15, while running `wow:pull-scarce-specs` (see `app/Console/Co
 - **Death Knight / Blood** — only 2 matches exist in the pool, both already on disk, both losses for that spec (so 0 kill-sequence rows — `findPreKillWindow()` only ever records the *winning* team's sequence).
 - **Demon Hunter / Vengeance** — only 3 matches exist in the pool, same shape as Blood DK.
 
-This is a real, structural fact about the population `latestMatches` draws from (rated 3v3), not a search-depth or query-string problem: tank specs essentially don't queue rated 3v3 arena in any meaningful volume, so there's very little for this pipeline to find regardless of how deep it searches. **Decision (direct user instruction): stop deliberately targeting these — "no use forcing something, they will surface naturally if people start playing them."** `wow:pull-scarce-specs` will still incidentally pick up a tank spec's match if one appears as a free byproduct of pulling for some other spec in the same match (every match's full 6-player roster gets extracted regardless of which spec was originally targeted), but don't spend additional search budget hunting for these three specifically.
+This is a real, structural fact about the population `latestMatches` draws from (rated 3v3), not a search-depth or query-string problem: tank specs essentially don't queue rated 3v3 arena in any meaningful volume, so there's very little for this pipeline to find regardless of how deep it searches. So it's not worth deliberately targeting these — they'll surface naturally if people start playing them. `wow:pull-scarce-specs` still picks up a tank spec's match incidentally when one appears as a byproduct of pulling for some other spec in the same match (every match's full 6-player roster gets extracted regardless of which spec was originally targeted).
 
 ## Open questions / not yet tried
 

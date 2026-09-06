@@ -1,0 +1,94 @@
+{
+    "classSlug": "mage",
+    "specSlug": "frost",
+    "title": "Frost Mage",
+    "subtitle": "A data-grounded PvP read, written by Claude — not a dictated expert module. See the disclaimer at the end.",
+    "dataSources": {
+        "playstyleSample": 10,
+        "ratingRange": [2952, 3111],
+        "patch": "12.0.7.68453",
+        "freshPullPerformed": false,
+        "note": "Built entirely from the existing 10-match sample (2952-3111 rating) already on file — no new arena-log pull was performed for this. If that changes later, any fresh pull gets the standard wow:refresh-match-derived treatment so Class Guide/Burst Windows/CC chains for this spec benefit too, not just this page."
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "heading": "Identity",
+            "paragraphs": [
+                "Frost is close to the opposite design of the Assassination Rogue guide I wrote first: Rogue fuses damage and control into one sequence that has to be threaded together. Frost's kit is a pile of independent, standalone control tools — Polymorph, Frost Nova, Ring of Frost, Dragon's Breath — each of which works completely on its own, with no setup required. Per Part 2 of this project's own arena framework (arena-structure.md): a kill needs control on the target, damage available, and their outs denied. Frost's actual plan is to make the control term so cheap and so repeatable that the other two terms barely need to be efficient — this spec wins fights by making the enemy team spend their whole game just answering CC, not by out-damaging them.",
+                "That's also the honest read on why this spec has almost no dedicated 'burst' identity the way Rogue or Warlock do. Frozen Orb and Ray of Frost are real cooldowns, but neither is a Deathmark-style all-in button — they're just bigger numbers layered on top of a control game that was already winning. The damage is real, but it is not the point."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Offensive Cooldowns",
+            "intro": "Real, arena-log-verified offensive cooldowns for this exact spec — the same classification WoW Comps' own Offensive Cooldowns tab uses.",
+            "spellIds": [84714, 205021, 44614, 319836, 80353]
+        },
+        {
+            "type": "prose",
+            "heading": "Control first, damage second",
+            "paragraphs": [
+                "The real per-talent usage data from the archived sample makes this identity concrete rather than just asserted. Three talents were taken in every one of the 10 sampled matches and flagged as never actually producing a real effect: Master of Time, Remove Curse, and Cold Snap — all three are utility/reset buttons rather than damage, and in this rating bracket's real games they simply weren't needed. That's not a knock on the talents (a cooldown reset you never need to use is a talent doing its job by existing as a safety net) — it's a sign that a well-played Frost Mage's game plan already worked without reaching for its backup tools.",
+                "Summon Water Elemental is the more interesting case: taken in all 10 matches, but the pet was only re-summoned in 3 of them. The pet itself is passive uptime, not something you 'use' — a low re-summon count across a sample actually means the elemental mostly just stayed alive and kept ticking Frost bolts, which is the correct outcome, not a sign of neglect."
+            ]
+        },
+        {
+            "type": "prose",
+            "heading": "The real burst window — a genuine surprise",
+            "paragraphs": [
+                "The actual highest-DPS 12-second window found across the whole archived sample: Ice Lance -> Counterspell -> Flurry -> Ice Lance -> Glacial Spike -> Ray of Frost -> Comet Storm -> Flurry -> Ice Lance -> Ice Lance (shown below with real spell icons). This is the second time real data has caught something a pure narrative account would have missed: Counterspell — a full-cost interrupt — sits in the middle of the highest-damage window found in the sample, not off to the side of it.",
+                "That's worth taking seriously rather than dismissing as noise. It means the actual highest-value 12 seconds in a real high-rated Frost Mage's game wasn't pure damage-spam — it included denying the opponent's own answer (almost certainly a heal or a defensive on the enemy healer) at the exact moment the Mage's own damage was peaking. Read against Part 2's conjunction framing: interrupting the target's own outs is just as much a term of the kill conjunction as the Mage's raw damage is, and this data shows a real player treating it that way inside the burst window itself, not as a separate, earlier step."
+            ]
+        },
+        {
+            "type": "sequence",
+            "heading": "The real observed burst window",
+            "intro": "The literal top-DPS 12s window from the archived match sample — read live from the same rotation file Burst Windows/Class Guide use for this spec.",
+            "useRealBurstWindow": true,
+            "burstWindowLength": 12
+        },
+        {
+            "type": "prose",
+            "heading": "Reading the anti-go against a control mage",
+            "paragraphs": [
+                "The correct defensive read, per Part 11 of the framework (state recognition): the moment Polymorph, Frost Nova, or Ring of Frost lands on your healer or kill target is the moment the Mage's whole plan has already succeeded for that exchange, regardless of what the actual damage numbers end up being. The wrong read is watching your own health bar for the signal to react — by the time damage alone tells you something is wrong, the control term of the conjunction has already been true for several seconds.",
+                "The correct answer is almost always the cheapest available: trinket or a self-CC-break on whichever control effect actually threatens the current exchange, not necessarily the first one that lands. A Frost Nova on a melee teammate who wasn't going anywhere this global is not worth spending a trinket on; a Polymorph on your healer mid-cast is."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Defensive Cooldowns",
+            "intro": "Ice Block is the hard stop; Ice Barrier and Greater Invisibility are the softer, more frequent answers underneath it.",
+            "spellIds": [45438, 11426, 110959]
+        },
+        {
+            "type": "prose",
+            "heading": "The defensive ladder, read correctly",
+            "paragraphs": [
+                "Per Part 7 of the framework: ladder to the threat, cheapest first. Ice Barrier (a real shield, recastable, 3 charges) is the free-to-liberal answer — it doesn't fully stop anything but it buys time and doesn't cost a real decision. Ice Block is the actual hard stop — full immunity, but it also fully removes you from casting for its duration, so using it against partial pressure just to be safe is the same defensive-padding mistake documented in the Rogue guide's own Smoke Bomb discussion: the button meant for the real all-in moment, gone before that moment arrives.",
+                "The real data backs this up directly: Ice Block was only needed in 7 of the 10 sampled matches, not all 10 — meaning in 3 real high-rated games, a genuinely strong player won or survived without ever needing their hardest defensive tool at all. That's the target: Ice Block unused at the end of a won match is a correctly-played game, not a wasted cooldown."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Crowd Control",
+            "intro": "This is the actual core of the spec — five independent control tools, most requiring no setup at all, which is the whole reason Frost doesn't need a Deathmark-style opener sequence the way Rogue does.",
+            "spellIds": [118, 122, 31661, 113724, 157997]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Mobility",
+            "intro": "Both charges of Blink exist for the same reason as a rogue's escape kit — staying in the fight on your own terms, not just running away.",
+            "spellIds": [1953, 212653]
+        },
+        {
+            "type": "prose",
+            "heading": "The cooldown ledger — what to actually track",
+            "paragraphs": [
+                "Per Part 4 of the framework, a spec's own go-frequency is governed by its slowest real cooldown. For Frost, that isn't Frozen Orb (60s) or Ray of Frost (60s) individually — it's the combined state of Polymorph/Ring of Frost/Dragon's Breath all being up at once, since the spec's actual power comes from stacking control, not from any single damage cooldown. The single number worth tracking mid-match isn't 'when does my next big damage cooldown come back' the way it is for Rogue — it's 'how many of my control tools are currently available,' since that number is what actually predicts whether the next exchange goes this Mage's way."
+            ]
+        }
+    ],
+    "disclaimer": "This guide was written by Claude (an AI), synthesized from real archived match data and this project's own arena-structure.md framework — it is NOT a dictated expert module and does not carry the same trust tier as the Discipline Priest or Feral Druid canonical modules elsewhere on this site. Every cooldown, category, and observed sequence above is read live from the same database everything else uses; the reasoning connecting them is AI-generated analysis, offered as a data-grounded opinion, not verified expertise. Treat it as a starting hypothesis to test against your own games, not a verdict."
+}

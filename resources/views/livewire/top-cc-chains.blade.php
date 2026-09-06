@@ -130,7 +130,7 @@
                     </div>
 
                     @if ($chain['distinctCasters'])
-                        <p class="text-[10px] text-ink-subtle/70 mt-3">{{ $chain['distinctCasters'] }} distinct caster(s) contributed to this chain.</p>
+                        <p class="text-[10px] text-ink-subtle/70 mt-3">Of the {{ count($chain['casters']) }} team members above, {{ $chain['distinctCasters'] }} actually landed a CC step recorded in this exact chain.</p>
                     @endif
                 </div>
             @endforeach

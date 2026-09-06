@@ -1,0 +1,21 @@
+# cc_immunity_note curation — see the 2026_09_02 migration's own docblock for the full
+# rationale. This file exists specifically for PvP-talent-only CC-immunity/usable-while-CC'd
+# facts, which cannot be auto-derived the way spells.usable_while_cc/bypasses_active_defense
+# are for normal baseline/talent abilities (via real Attribute-line flags — see
+# SpellDataFileParser's docblock). Confirmed why: every PvP talent checked (e.g. Phase Shift,
+# spell_id 408557) has ZERO spell_effects rows in this pipeline — PvP talents are description-
+# only data (name/description/spec availability), never full SimC Attributes+Effects dumps like
+# regular abilities get. So for this category specifically, the free-text description is the
+# ONLY source of truth, and it has to be hand-read and hand-transcribed, same discipline as
+# baseline-spec-overrides.txt/cc-synergies-overrides.txt — verify one line at a time, never
+# bulk-guess.
+#
+# Format: spell_id | note (free text, may contain most punctuation but NOT a literal "|")
+#
+# spell_id is the REAL spell that carries this behavior — for a passive PvP talent that
+# modifies a different spell's behavior (Phase Shift modifies Fade), the note is attached to
+# the spell whose card a player would actually be looking at when they need this fact, which is
+# usually the modified spell itself, not the talent. State clearly in the note which talent is
+# required, since the base spell alone does NOT have this behavior.
+
+586 | With the "Phase Shift" PvP talent known (all 3 Priest specs, spell_id 408557), casting Fade also grants immunity to all attacks and spells for 1 sec. Interrupt effects are not affected by Phase Shift. Base Fade (no talent) has no immunity component — see Attributes-derived data on this spell for its own (none) CC-immunity flags.

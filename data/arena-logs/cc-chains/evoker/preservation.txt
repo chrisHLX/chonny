@@ -1,5 +1,5 @@
 # CC chains landing on real evoker/preservation healers (opposing side only)
-# Total qualifying chains found: 461 | shown here: 20
+# Total qualifying chains found: 178 | shown here: 20
 # Gap tolerance: 2s | Min abilities per chain: 2 | Categories: Stun/Silence/Incapacitate/Disorient only (--include-utility widens this)
 # "(DR'd)" marks a step whose dr_category already appeared earlier in the same chain — real in-game DR is already baked into its own timing, this is just a readability flag.
 
@@ -17,106 +17,99 @@
   [+ 11.51s] Howl of Terror           (Disorient    )   6.07s  by Destruction Warlock
   [+ 18.26s] Gouge                    (Incapacitate ) (DR'd)   1.57s  by Subtlety Rogue
 
-=== #3 — 18.57s total time-in-CC — 3 caster(s) — match 4444b7c64e25e66a49be18fc986af53f — target: Tiburøn-Kazzak-EU ===
-  [+  0.00s] Polymorph                (Incapacitate )   6.02s  by Frost Mage
-  [+  4.96s] Sleep Walk               (Disorient    )   5.09s  by Preservation Evoker
-  [+  9.58s] Polymorph                (Incapacitate ) (DR'd)   3.02s  by Frost Mage
-  [+ 10.05s] Sleep Walk               (Disorient    ) (DR'd)   3.00s  by Preservation Evoker
-  [+ 14.56s] Cheap Shot               (Stun         )   4.01s  by Subtlety Rogue
-
-=== #4 — 18.44s total time-in-CC — 2 caster(s) — match 2ac41d0d1138463571542285eb6361ca — target: Tiburøn-Kazzak-EU ===
-  [+  0.00s] Howl of Terror           (Disorient    )   6.02s  by Affliction Warlock
-  [+  6.04s] Fear                     (Disorient    ) (DR'd)   2.99s  by Affliction Warlock
-  [+ 11.02s] Paralysis                (Incapacitate )   3.02s  by Mistweaver Monk
-  [+ 14.43s] Leg Sweep                (Stun         )   4.01s  by Mistweaver Monk
-
-=== #5 — 16.03s total time-in-CC — 3 caster(s) — match 181219cf2d0bfc3c69984669e37964b4 — target: Tiburøn-Kazzak-EU ===
-  [+  0.00s] Cheap Shot               (Stun         )   4.01s  by Subtlety Rogue
-  [+  4.32s] Dragon's Breath          (Disorient    )   0.69s  by Frost Mage
-  [+  6.72s] Sleep Walk               (Disorient    ) (DR'd)   3.00s  by Preservation Evoker
-  [+  7.00s] Polymorph                (Incapacitate )   6.01s  by Frost Mage
-  [+ 13.06s] Sap                      (Incapacitate ) (DR'd)   2.97s  by Subtlety Rogue
-
-=== #6 — 15.47s total time-in-CC — 3 caster(s) — match b76242883225cc499296309ee7f8d6e0 — target: Exrtj-Tichondrius-US ===
-  [+  0.00s] Polymorph                (Incapacitate )   6.00s  by Frost Mage
-  [+  5.41s] Sleep Walk               (Disorient    )   3.93s  by Preservation Evoker
-  [+  9.03s] Cheap Shot               (Stun         )   5.20s  by Subtlety Rogue
-  [+ 13.96s] Terror of the Skies      (Stun         ) (DR'd)   1.50s  by Preservation Evoker
-
-=== #7 — 15.06s total time-in-CC — 3 caster(s) — match 99606f360d6043926b9976686cec7f01 — target: Tiburøn-Kazzak-EU ===
-  [+  0.00s] Sleep Walk               (Disorient    )   3.00s  by Preservation Evoker
-  [+  0.24s] Polymorph                (Incapacitate )   6.01s  by Frost Mage
-  [+  6.14s] Sap                      (Incapacitate ) (DR'd)   3.02s  by Subtlety Rogue
-  [+  9.04s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
-  [+ 13.06s] Cheap Shot               (Stun         ) (DR'd)   2.00s  by Subtlety Rogue
-
-=== #8 — 14.94s total time-in-CC — 2 caster(s) — match 4cf0e8f7bb0d5cda76e17c7b847c07de — target: Zaevoker-KirinTor-US ===
-  [+  0.00s] Holy Word: Chastise      (Incapacitate )   3.02s  by Holy Priest
-  [+  2.28s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
-  [+  9.93s] Kidney Shot              (Stun         )   5.01s  by Subtlety Rogue
-
-=== #9 — 14.82s total time-in-CC — 2 caster(s) — match b76242883225cc499296309ee7f8d6e0 — target: Exrtj-Tichondrius-US ===
-  [+  0.00s] Sap                      (Incapacitate )   2.93s  by Subtlety Rogue
-  [+  2.90s] Cheap Shot               (Stun         )   4.01s  by Subtlety Rogue
-  [+  6.80s] Sleep Walk               (Disorient    )   5.01s  by Preservation Evoker
-  [+ 11.81s] Sleep Walk               (Disorient    ) (DR'd)   3.01s  by Preservation Evoker
-
-=== #10 — 14.78s total time-in-CC — 3 caster(s) — match e9994c29a11e9a290d011c6af1f82de1 — target: Zonia-Lordaeron-EU ===
-  [+  0.00s] Cheap Shot               (Stun         )   4.00s  by Assassination Rogue
-  [+  2.68s] Cyclone                  (Disorient    )   5.01s  by Restoration Druid
-  [+  8.76s] Polymorph                (Incapacitate )   6.01s  by Frost Mage
-
-=== #11 — 14.6s total time-in-CC — 2 caster(s) — match b8650cecffa410b1be7de80484bc068b — target: Zaegorn-Stormreaver-US ===
+=== #3 — 14.6s total time-in-CC — 2 caster(s) — match b8650cecffa410b1be7de80484bc068b — target: Zaegorn-Stormreaver-US ===
   [+  0.00s] Sap                      (Incapacitate )   5.48s  by Assassination Rogue
   [+  5.45s] Holy Word: Chastise      (Stun         )   3.02s  by Holy Priest
   [+  8.11s] Psychic Scream           (Disorient    )   5.98s  by Holy Priest
   [+ 12.67s] Mind Control             (Disorient    ) (DR'd)   1.93s  by Holy Priest
 
-=== #12 — 14.59s total time-in-CC — 2 caster(s) — match f1a68e10724be5ce0748a84c90caa887 — target: Zaegorn-Stormreaver-US ===
+=== #4 — 14.59s total time-in-CC — 2 caster(s) — match f1a68e10724be5ce0748a84c90caa887 — target: Zaegorn-Stormreaver-US ===
   [+  0.00s] Sap                      (Incapacitate )   5.51s  by Assassination Rogue
   [+  5.47s] Holy Word: Chastise      (Stun         )   3.08s  by Holy Priest
   [+  8.13s] Psychic Scream           (Disorient    )   5.97s  by Holy Priest
   [+ 12.68s] Mind Control             (Disorient    ) (DR'd)   1.91s  by Holy Priest
 
-=== #13 — 14.48s total time-in-CC — 2 caster(s) — match 6c6e287faca38cb5662459eb15a7b56e — target: Exrtj-Tichondrius-US ===
-  [+  0.00s] Sleep Walk               (Disorient    )   5.99s  by Preservation Evoker
-  [+  5.92s] Kidney Shot              (Stun         )   6.50s  by Subtlety Rogue
-  [+ 12.52s] Terror of the Skies      (Stun         ) (DR'd)   1.95s  by Preservation Evoker
+=== #5 — 14.48s total time-in-CC — 2 caster(s) — match e45acec3a9de96e9a5e8e77d02ad443b — target: Murglurglmr-Tichondrius-US ===
+  [+  0.00s] Freezing Trap            (Incapacitate )   6.00s  by Beast Mastery Hunter
+  [+  6.63s] Fear                     (Disorient    )   5.99s  by Affliction Warlock
+  [+ 11.49s] Binding Shot             (Stun         )   2.99s  by Beast Mastery Hunter
 
-=== #14 — 14.4s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Exrtj-Stormrage-US ===
-  [+  0.00s] Sap                      (Incapacitate )   6.00s  by Subtlety Rogue
-  [+  7.23s] Kidney Shot              (Stun         )   5.00s  by Subtlety Rogue
-  [+ 12.40s] Cheap Shot               (Stun         ) (DR'd)   2.00s  by Subtlety Rogue
+=== #6 — 14.22s total time-in-CC — 2 caster(s) — match 4300051c58b361717ac6329a09a0721d — target: Alysrazor-WyrmrestAccord-US ===
+  [+  0.00s] Hammer of Justice        (Stun         )   5.01s  by Retribution Paladin
+  [+  4.70s] Psychic Scream           (Disorient    )   6.01s  by Discipline Priest
+  [+ 11.21s] Mind Control             (Disorient    ) (DR'd)   3.00s  by Discipline Priest
 
-=== #15 — 14.28s total time-in-CC — 2 caster(s) — match bfd65074c4a8f3b8a677ac88ca52ead7 — target: Exrtj-Tichondrius-US ===
+=== #7 — 14.2s total time-in-CC — 2 caster(s) — match c2214a0c81d97f8e671091c741881189 — target: Vaporx-Illidan-US ===
+  [+  0.00s] Fear                     (Disorient    )   3.04s  by Destruction Warlock
+  [+  4.67s] Kidney Shot              (Stun         )   5.01s  by Subtlety Rogue
+  [+  9.68s] Cheap Shot               (Stun         ) (DR'd)   2.01s  by Subtlety Rogue
+  [+ 12.65s] Mortal Coil              (Incapacitate )   1.55s  by Destruction Warlock
+
+=== #8 — 13.3s total time-in-CC — 2 caster(s) — match d6d283c85539d98dcfc82588b762b958 — target: Mocassîn-Terenas-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Restoration Druid
-  [+  5.38s] Hammer of Justice        (Stun         )   5.01s  by Retribution Paladin
-  [+ 11.77s] Cyclone                  (Disorient    ) (DR'd)   2.51s  by Restoration Druid
+  [+  5.55s] Binding Shot             (Stun         )   3.00s  by Beast Mastery Hunter
+  [+  7.30s] Freezing Trap            (Incapacitate )   6.00s  by Beast Mastery Hunter
 
-=== #16 — 14.27s total time-in-CC — 3 caster(s) — match 3921f9884f7ebba1cb7788b0edbc332c — target: Zaegorn-Stormreaver-US ===
-  [+  0.00s] Hammer of Justice        (Stun         )   5.02s  by Holy Paladin
-  [+  4.24s] Intimidating Shout       (Disorient    )   7.18s  by Fury Warrior
-  [+ 11.25s] Imprison                 (Incapacitate )   3.01s  by Havoc Demon Hunter
+=== #9 — 12.77s total time-in-CC — 3 caster(s) — match ae35a9220bdbd47d17af6d26f269d4a8 — target: Drafira-Ysondre-EU ===
+  [+  0.00s] Polymorph                (Incapacitate )   0.57s  by Fire Mage
+  [+  2.07s] Storm Bolt               (Stun         )   3.00s  by Arms Warrior
+  [+  4.01s] Psychic Scream           (Disorient    )   6.01s  by Discipline Priest
+  [+  9.75s] Polymorph                (Incapacitate ) (DR'd)   3.01s  by Fire Mage
 
-=== #17 — 14.14s total time-in-CC — 2 caster(s) — match 2df5170f5d1a2a223b7c0f647bf52f79 — target: Dizzvo-Tichondrius-US ===
+=== #10 — 12.73s total time-in-CC — 2 caster(s) — match c9d105fd6a68c7359cbf77aad36fad9b — target: Alysrazor-WyrmrestAccord-US ===
+  [+  0.00s] Intimidation             (Stun         )   3.01s  by Marksmanship Hunter
+  [+  1.74s] Freezing Trap            (Incapacitate )   5.96s  by Marksmanship Hunter
+  [+  7.73s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
+
+=== #11 — 12.71s total time-in-CC — 2 caster(s) — match a8322990885ea11b2e1c2f00eec5e494 — target: Vaporx-Illidan-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.01s  by Mistweaver Monk
-  [+  2.80s] Song of Chi-Ji           (Disorient    )   6.01s  by Mistweaver Monk
-  [+  8.76s] Sap                      (Incapacitate ) (DR'd)   3.01s  by Subtlety Rogue
-  [+ 11.64s] Blind                    (Disorient    ) (DR'd)   2.50s  by Subtlety Rogue
+  [+  2.50s] Song of Chi-Ji           (Disorient    )   6.00s  by Mistweaver Monk
+  [+  8.70s] Leg Sweep                (Stun         )   4.01s  by Mistweaver Monk
+  [+  9.67s] Cheap Shot               (Stun         ) (DR'd)   2.00s  by Subtlety Rogue
 
-=== #18 — 13.7s total time-in-CC — 3 caster(s) — match 03ed7fc7f7d6e0108c59bf7382643101 — target: Tiburøn-Kazzak-EU ===
-  [+  0.00s] Sleep Walk               (Disorient    )   3.91s  by Preservation Evoker
-  [+  0.58s] Polymorph                (Incapacitate )   6.95s  by Frost Mage
-  [+  7.20s] Kidney Shot              (Stun         )   6.51s  by Subtlety Rogue
+=== #12 — 12.44s total time-in-CC — 3 caster(s) — match ba73fbe7d594602dbc1613fd94e44df0 — target: Dilfspice-Stormrage-US ===
+  [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Balance Druid
+  [+  5.15s] Cyclone                  (Disorient    ) (DR'd)   2.50s  by Balance Druid
+  [+  7.86s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
+  [+ 11.77s] Sap                      (Incapacitate ) (DR'd)   0.67s  by Subtlety Rogue
 
-=== #19 — 12.97s total time-in-CC — 3 caster(s) — match 049469896073b6ded78e0db731fd0a0b — target: Ifly-Archimonde-US ===
-  [+  0.00s] Binding Shot             (Stun         )   3.01s  by Beast Mastery Hunter
-  [+  1.04s] Freezing Trap            (Incapacitate )   1.48s  by Beast Mastery Hunter
-  [+  5.00s] Blinding Light           (Disorient    )   2.31s  by Holy Paladin
-  [+  8.08s] Hammer of Justice        (Stun         ) (DR'd)   2.51s  by Holy Paladin
-  [+ 10.98s] Blinding Sleet           (Disorient    ) (DR'd)   1.98s  by Unholy Death Knight
+=== #13 — 12.22s total time-in-CC — 2 caster(s) — match b8650cecffa410b1be7de80484bc068b — target: Zaegorn-Stormreaver-US ===
+  [+  0.00s] Blind                    (Disorient    )   3.98s  by Assassination Rogue
+  [+  5.79s] Garrote - Silence        (Silence      )   3.00s  by Assassination Rogue
+  [+  6.15s] Howl of Terror           (Disorient    ) (DR'd)   0.67s  by Destruction Warlock
+  [+  8.21s] Cheap Shot               (Stun         )   4.01s  by Assassination Rogue
 
-=== #20 — 12.79s total time-in-CC — 2 caster(s) — match 7b0127419d0564df31ea7150fe9e0379 — target: Chronowarden-BurningLegion-US ===
-  [+  0.00s] Blind                    (Disorient    )   4.99s  by Subtlety Rogue
-  [+  4.18s] Ring of Frost            (Incapacitate )   6.00s  by Fire Mage
-  [+  9.79s] Sap                      (Incapacitate ) (DR'd)   3.01s  by Subtlety Rogue
+=== #14 — 12.2s total time-in-CC — 2 caster(s) — match f1a68e10724be5ce0748a84c90caa887 — target: Zaegorn-Stormreaver-US ===
+  [+  0.00s] Blind                    (Disorient    )   3.92s  by Assassination Rogue
+  [+  5.75s] Garrote - Silence        (Silence      )   2.98s  by Assassination Rogue
+  [+  6.08s] Howl of Terror           (Disorient    ) (DR'd)   0.66s  by Destruction Warlock
+  [+  8.17s] Cheap Shot               (Stun         )   4.03s  by Assassination Rogue
+
+=== #15 — 11.61s total time-in-CC — 2 caster(s) — match 615b27ab4af998efc49fc157894ed0c5 — target: Alysrazor-WyrmrestAccord-US ===
+  [+  0.00s] Psychic Scream           (Disorient    )   6.03s  by Discipline Priest
+  [+  6.58s] Maim                     (Stun         )   5.03s  by Feral Druid
+
+=== #16 — 11.35s total time-in-CC — 3 caster(s) — match 4c3461ccc99d9a40da2113a3ff44b167 — target: Anaegnir-Tichondrius-US ===
+  [+  0.00s] Freezing Trap            (Incapacitate )   3.45s  by Beast Mastery Hunter
+  [+  5.34s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
+  [+  6.26s] Hammer of Justice        (Stun         )   2.50s  by Retribution Paladin
+
+=== #17 — 11.22s total time-in-CC — 2 caster(s) — match 5c49350d8093e2533e8d2db3c40ee61c — target: Alysrazor-WyrmrestAccord-US ===
+  [+  0.00s] Polymorph                (Incapacitate )   6.00s  by Frost Mage
+  [+  3.15s] Intimidating Shout       (Disorient    )   6.01s  by Arms Warrior
+  [+  9.10s] Polymorph                (Incapacitate ) (DR'd)   2.13s  by Frost Mage
+
+=== #18 — 11.22s total time-in-CC — 2 caster(s) — match b8650cecffa410b1be7de80484bc068b — target: Zaegorn-Stormreaver-US ===
+  [+  0.00s] Fear                     (Disorient    )   6.02s  by Destruction Warlock
+  [+  5.28s] Holy Word: Chastise      (Stun         )   3.02s  by Holy Priest
+  [+  9.65s] Mind Control             (Disorient    ) (DR'd)   1.57s  by Holy Priest
+
+=== #19 — 11.2s total time-in-CC — 2 caster(s) — match f1a68e10724be5ce0748a84c90caa887 — target: Zaegorn-Stormreaver-US ===
+  [+  0.00s] Fear                     (Disorient    )   6.06s  by Destruction Warlock
+  [+  5.28s] Holy Word: Chastise      (Stun         )   3.02s  by Holy Priest
+  [+  9.67s] Mind Control             (Disorient    ) (DR'd)   1.53s  by Holy Priest
+
+=== #20 — 11.13s total time-in-CC — 2 caster(s) — match 879ed734446458a3d6b2155e39446834 — target: Buffdemoxd-Illidan-US ===
+  [+  0.00s] Scatter Shot             (Incapacitate )   3.01s  by Survival Hunter
+  [+  3.73s] Hammer of Justice        (Stun         )   4.99s  by Holy Paladin
+  [+  9.55s] Blinding Light           (Disorient    )   1.58s  by Holy Paladin

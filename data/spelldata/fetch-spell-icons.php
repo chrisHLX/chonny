@@ -25,9 +25,23 @@
  *     one-per-name the way the display method is, since fetching a few extra icons for
  *     same-named duplicate copies is harmless and this script doesn't need to know which
  *     specific copy the display layer will end up picking.
+ *   - Every spells.id in a precomputed spell-kit payload (data/spell-kits/{class}/{spec}.json,
+ *     written by wow:precompute-spell-kits from SpellExplorer/WowComps' own display union).
+ *     Added 2026-09-06 — the definitive "everything the kit-driven pages render" set. Shield
+ *     Discipline (spell_id 47755, a source=baseline/spec_id=NULL cooldownless passive) surfaced
+ *     it — in none of the buckets above.
+ *   - EVERY spell with a spell_class_availability row for the current patch (added 2026-09-06,
+ *     same day, after /claudes-counters showed missing icons — that page and CcReview/
+ *     CcImmunityReview render spells straight off class availability, passive/hidden ones
+ *     included, NOT the kit subset). This is the widest reasonable target and subsumes every
+ *     query above for coverage; the arena-log sources below still matter (a module can
+ *     reference an opponent ability with no class-availability row). ~8k of these are
+ *     hidden/internal/removed/test records with no Blizzard media entry — they land in the
+ *     "no API" count and render a placeholder div, exactly as before; the run is just noisier.
  * These are queried directly from the local Laravel database rather than derived from the
  * JSON files in data/talenttrees/ or data/pvptalents/, ensuring consistency with whatever
- * was actually imported.
+ * was actually imported. (The spell-kit source above still relies on wow:precompute-spell-kits
+ * having been run first for the current data — RefreshMatchDerived / a normal deploy do that.)
  *
  * After the API-driven pass above, a separate step applies
  * data/spelldata/icon-name-overrides.txt — hand-curated icon filenames for spells that are
@@ -506,6 +520,27 @@ $pvpTalentSpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 $stmt = $pdo->query("SELECT DISTINCT spell_id FROM spell_class_availability WHERE source = 'verified_override' ORDER BY spell_id");
 $verifiedOverrideSpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 
+// EVERY spell with a class-availability row for the current patch (spells.id). Added 2026-09-06
+// after a report of missing icons on /claudes-counters — a page whose spell set is
+// "SpellClassAvailability for the current patch" (baseline + talent + pvp_talent +
+// verified_override), NOT the precomputed-kit subset. The review/counter pages
+// (ClaudesCounters, CcReview, CcImmunityReview) all render spells straight off class
+// availability, including passive/hidden ones the kit's preferSelectedPerName() collapses
+// away. This is the widest reasonable target: if a spell is available to any class/spec it can
+// appear on some class/spec surface, so it should have an icon. Subsumes every source above
+// for coverage; the arena-log sources below still matter (opponent abilities referenced on a
+// module can lack a class-availability row). Hidden/internal/test spells with no Blizzard media
+// entry land in the normal "no API" bucket and render a placeholder, same as before.
+$stmt = $pdo->query(
+    "SELECT DISTINCT sca.spell_id
+     FROM spell_class_availability sca
+     JOIN spells s ON s.id = sca.spell_id
+     JOIN patches p ON p.id = s.patch_id
+     WHERE p.is_current = 1
+     ORDER BY sca.spell_id"
+);
+$classAvailabilitySpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
 // Mirrors TalentSelectionService::explicitBaselineCooldownAbilityIds()'s exact filter — see
 // this file's docblock for why this source was missing until 2026-08-10.
 $stmt = $pdo->query(
@@ -626,14 +661,42 @@ if ($ccChainExternalIds !== []) {
     $ccChainSpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 }
 
+// Every spells.id that actually appears in a precomputed spell-kit payload
+// (data/spell-kits/{class}/{spec}.json's entries[].spellId — written by
+// wow:precompute-spell-kits straight from SpellExplorer/WowComps' own display union). This is
+// the DEFINITIVE "everything we render on a spell surface" set: any spell that shows up on a
+// page is, by construction, in one of these files. Added 2026-09-06 after Shield Discipline
+// (spell_id 47755) rendered with no icon — a `source=baseline, spec_id=NULL` passive with no
+// cooldown, so it fell outside every talent/pvp/verified_override/explicit-cooldown/arena-log
+// bucket above (it only reaches the page via preferSelectedPerName() collapsing it against a
+// hidden sibling). Rather than add yet another narrow source query the next time a display
+// path is introduced — the exact recurring gap every dated comment in this block describes —
+// this reads the render output itself. entries[].spellId is already a spells.id (internal PK),
+// same as talent_node_entries.spell_id, so no spell_id->id lookup is needed.
+$spellKitDbIds = [];
+foreach (glob($projectRoot . '/data/spell-kits/*/*.json') as $kitFile) {
+    $decoded = json_decode(file_get_contents($kitFile), true);
+    if (!is_array($decoded)) {
+        continue;
+    }
+    foreach (($decoded['entries'] ?? []) as $entry) {
+        if (!empty($entry['spellId'])) {
+            $spellKitDbIds[(int) $entry['spellId']] = true;
+        }
+    }
+}
+$spellKitDbIds = array_keys($spellKitDbIds);
+
 $targetSpellDbIds = array_values(array_unique(array_merge(
     $talentSpellDbIds,
     $pvpTalentSpellDbIds,
     $verifiedOverrideSpellDbIds,
     $explicitBaselineCooldownSpellDbIds,
+    $classAvailabilitySpellDbIds,
     $rotationSpellDbIds,
     $mechanicsSpellDbIds,
-    $ccChainSpellDbIds
+    $ccChainSpellDbIds,
+    $spellKitDbIds
 )));
 
 if ($limitSpellIds !== null) {
@@ -641,7 +704,8 @@ if ($limitSpellIds !== null) {
 }
 
 $totalSpellIds = count($targetSpellDbIds);
-fwrite(STDOUT, "Found {$totalSpellIds} distinct spells.id referenced by talent data.\n\n");
+fwrite(STDOUT, "Found {$totalSpellIds} distinct spells.id (class-availability + talent/pvp/arena-log/kit sources).\n");
+fwrite(STDOUT, "Note: hidden/internal/test spells with no Blizzard media entry are expected in the \"no API\" count below — they render a placeholder, not a broken image.\n\n");
 
 // Filter to only spells that don't already have icon_name set
 $placeholders = implode(',', array_fill(0, count($targetSpellDbIds), '?'));

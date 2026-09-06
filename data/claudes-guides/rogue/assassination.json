@@ -1,0 +1,123 @@
+{
+    "classSlug": "rogue",
+    "specSlug": "assassination",
+    "title": "Assassination Rogue",
+    "subtitle": "Sequences, not prose — imagined presses through a real kit. See the disclaimer at the end.",
+    "dataSources": {
+        "playstyleSample": 10,
+        "ratingRange": [2422, 2679],
+        "patch": "12.0.7.68453",
+        "freshPullPerformed": false,
+        "note": "Built entirely from data already on file when this guide was written — the existing 10-match sample (2422–2679 rating) was judged sufficient, so no new arena-log pull was performed for this."
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "heading": "Identity",
+            "paragraphs": [
+                "Damage and control share one resource here — every sequence below is built to show that directly, not argue it."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Offensive Cooldowns",
+            "spellIds": [360194, 385627, 381623, 57934]
+        },
+        {
+            "type": "rotationBlock",
+            "heading": "Opener",
+            "tag": "cooldowns up, from stealth, 5 CP cap, base kit (no Implacable)",
+            "steps": [
+                {"spellId": 360194, "tag": "CD, buffs Garrote/Rupture/poison +75%"},
+                {"spellId": 703, "tag": "Silence, builder, +1 CP → 1"},
+                {"spellId": 1833, "tag": "Stun, builder, +1 CP → 2"},
+                {"spellId": 385627, "tag": "CD — no CP on its own base kit, see the Kingsbane Reset block below for the Implacable-talented case"},
+                {"spellId": 1329, "tag": "builder, +2 CP → 4"},
+                {"spellId": 1943, "tag": "finisher, 4 CP → 0"},
+                {"spellId": 1329, "tag": "builder, +2 CP → 2"},
+                {"spellId": 1329, "tag": "builder, +2 CP → 4"},
+                {"spellId": 408, "tag": "Stun, finisher, 4 CP → 0"}
+            ]
+        },
+        {
+            "type": "rotationBlock",
+            "heading": "Kingsbane Reset (talent-gated — Implacable)",
+            "tag": "Implacable is real and currently selectable on Assassination's spec tree, but is NOT in the current admin-default TalentBuild — this block only applies if it's actually picked",
+            "steps": [
+                {"spellId": 32645, "tag": "any finisher, CP → 0 first — this combo starts from an empty bar"},
+                {"spellId": 385627, "tag": "CD — triggers Implacable Strikes: 5 strikes over ~1 sec, each applies Lethal Poisons and generates 1 CP → fills 0 to 5 CP"},
+                {"spellId": 408, "tag": "Stun, finisher, full 5 CP → 0 — the longest possible Kidney Shot, right off a Kingsbane cast instead of 3-4 GCDs of building"}
+            ]
+        },
+        {
+            "type": "rotationBlock",
+            "heading": "Sustained",
+            "tag": "cooldowns down — no stealth, Kingsbane on CD",
+            "steps": [
+                {"spellId": 1329, "tag": "builder, +2 CP → 2"},
+                {"spellId": 1329, "tag": "builder, +2 CP → 4"},
+                {"spellId": 32645, "tag": "finisher, 4 CP → 0"},
+                {"spellId": 1329, "tag": "builder, +2 CP → 2"},
+                {"spellId": 1329, "tag": "builder, +2 CP → 4"},
+                {"spellId": 32645, "tag": "finisher, 4 CP → 0"}
+            ]
+        },
+        {
+            "type": "rotationBlock",
+            "heading": "CC-Woven",
+            "tag": "control then cash in, 5 CP cap, base kit (no Implacable)",
+            "steps": [
+                {"spellId": 703, "tag": "Silence, builder, +1 CP → 1"},
+                {"spellId": 1833, "tag": "Stun, builder, +1 CP → 2"},
+                {"spellId": 385627, "tag": "CD — no CP on its own base kit"},
+                {"spellId": 1329, "tag": "builder, +2 CP → 4"},
+                {"spellId": 408, "tag": "Stun — DR'd 50%, finisher, 4 CP → 0"}
+            ]
+        },
+        {
+            "type": "sequence",
+            "heading": "Real Observed Window",
+            "tag": "data, not imagined",
+            "useRealBurstWindow": true,
+            "burstWindowLength": 12
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Defensive Cooldowns",
+            "spellIds": [1966, 185311, 31224, 5277, 212182, 1856]
+        },
+        {
+            "type": "rotationBlock",
+            "heading": "Defensive Ladder",
+            "tag": "cheapest first",
+            "steps": [
+                {"spellId": 1966, "tag": "frequent"},
+                {"spellId": 31224, "tag": "vs magic"},
+                {"spellId": 5277, "tag": "vs physical"},
+                {"spellId": 1856, "tag": "restealth, breaks roots/snares, 3s dmg immunity"},
+                {"spellId": 212182, "tag": "full commit only"}
+            ]
+        },
+        {
+            "type": "rotationBlock",
+            "heading": "Reset",
+            "tag": "Vanish restores stealth openers",
+            "steps": [
+                {"spellId": 1856, "tag": "restealth"},
+                {"spellId": 703, "tag": "Silence, builder — usable again from stealth"},
+                {"spellId": 1833, "tag": "Stun, builder — usable again from stealth"}
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Crowd Control",
+            "spellIds": [1833, 408, 703, 1330, 2094, 1776, 6770, 207777]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Mobility",
+            "spellIds": [36554, 2983, 114018]
+        }
+    ],
+    "disclaimer": "This guide was written by Claude (an AI) — not a dictated expert module, not the same trust tier as the Discipline Priest or Feral Druid canonical modules elsewhere on this site. Every ability/cooldown/category/combo-point value is real, live data (resolved from each spell's own current description text and its actual spell_effects rows, not assumed). The Opener/Sustained/CC-Woven/Defensive Ladder/Kingsbane Reset sequences are IMAGINED — my own constructed presses through this real kit, not derived from a real logged match and not something I can actually play to verify. The Real Observed Window section is the one exception: that sequence is measured from real archived matches, not imagined. A real correction from this guide's first version: Kingsbane was described in prose as one of 'the finishers,' then corrected to 'a combo-point builder (+1 CP per cast)' in an earlier revision of this file — that second claim was ALSO wrong. Checked directly against Kingsbane's own spell_effects (2026-09-04): its only resource-related effect is an Energize Power (Energy, not combo points) — base Kingsbane generates zero combo points, full stop. The Opener/CC-Woven sequences above have been corrected to reflect this (Kingsbane no longer credited with +1 CP; downstream running totals recalculated). RESOLVED, not just corrected: a player had reported Garrote/Kingsbane sometimes filling the combo point bar to full in real games. An earlier pass investigated Premeditation as the explanation and found it isn't a selectable talent in this project's data at all — a dead end, correctly abandoned. The real explanation, found the same day this correction was made: Implacable (a genuine, currently-selectable Assassination spec talent — confirmed via talent_node_entries, unlike Premeditation) — 'After striking with Kingsbane, rapidly strike that target 5 times over ~1 second, each strike applies Lethal Poisons and generates a combo point' (confirmed via Implacable Strikes' own spell_effects: 5 strikes at 0.2-second intervals). That's a real, verified 0-to-5 combo-point fill from one Kingsbane cast — matches the reported symptom exactly, not approximately. Important caveat: Implacable is NOT currently selected in Assassination's admin-default TalentBuild, so this mechanic does not apply to whatever kit WoW Comps/Spell Explorer/Burst Guides show by default for this spec right now — the Kingsbane Reset block above is explicitly talent-gated, not part of the base-kit sequences. Whether Implacable is worth prioritizing over whatever the current default build has instead is a real balance/preference question this guide doesn't take a position on."
+}

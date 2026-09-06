@@ -73,6 +73,16 @@
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                 Top 10 CC Chains
             </a>
+            <a href="{{ route('burst-guides') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('burst-guides') ? 'active !text-accent' : '' }}">
+                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                Burst Guides
+            </a>
+            <a href="{{ route('claudes-counters') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('claudes-counters') ? 'active !text-accent' : '' }}">
+                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                Spell Counters
+            </a>
             <a href="{{ route('spells.explore') }}"
                class="sidebar-item text-[12px] {{ request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>

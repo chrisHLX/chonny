@@ -1,5 +1,7 @@
 # QuizRunner — How It Works
 
+> **Legacy.** Documents the earlier learning-platform direction (see `VISION.md`). Kept as a reference for how the code works today; the system it describes is dormant, not the current focus.
+
 `app/Livewire/QuizRunner.php`
 
 ## Session flow

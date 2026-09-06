@@ -11,6 +11,9 @@
     // Defensive `?? null` reads throughout this file — see the identical note in
     // wow-comps.blade.php for why (a real production incident, 2026-08-31 fix).
     $cooldownDisplay = fn (array $entry) => ($entry['cooldown']['seconds'] ?? null) !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
+    // Labels for spells.usable_while_cc's comma-separated tokens — see SpellDataFileParser's
+    // docblock for exactly which raw Attribute code each one comes from.
+    $ccTokenLabel = ['stun' => 'Stunned', 'fear' => 'Feared', 'flee' => 'Fleeing', 'confuse' => 'Confused', 'charm' => 'Charmed', 'horror' => 'Horror-stunned'];
 @endphp
 
 <div>
@@ -66,6 +69,44 @@
             </div>
             @if ($entry['spell']->cooldown_scaling_note)
                 <p class="text-[10px] text-ink-subtle italic mt-1.5">{{ $entry['spell']->cooldown_scaling_note }}</p>
+            @endif
+
+            @php
+                // Silence is a school-lockout, not a universal action-lock like Stun/Fear/
+                // Confuse/Charm — those need an explicit "Allow While X" Attribute flag (see
+                // usable_while_cc above) because they block ALL actions regardless of school.
+                // Silence specifically prevents casting spells of the locked schools, and a
+                // Physical-school ability was never subject to that lockout in the first place —
+                // no per-spell flag exists for this anywhere in the dataset (confirmed: zero
+                // "Allow While Silenced"-shaped attribute exists at all), because none is needed.
+                // Computed live from spells.school (already-captured, no new column) — not
+                // stored in usable_while_cc, which is reserved for genuine Attribute-flag facts.
+                // Reads the materialized column (ImportSpellData::materializeSpellShape()) rather
+                // than recomputing school==='Physical' inline — same "don't recompute a
+                // build-independent fact on every request" principle as spells.category.
+                $isPhysicalActive = (bool) $entry['spell']->silence_immune_by_school;
+            @endphp
+            @if ($entry['spell']->usable_while_cc || $entry['spell']->bypasses_active_defense || $entry['spell']->cc_immunity_note || $entry['grantsCcImmunity']->isNotEmpty() || $isPhysicalActive)
+                <div class="mt-2 pt-2 border-t border-line space-y-1">
+                    @if ($isPhysicalActive)
+                        <p class="text-[10px] text-violet"><span class="font-semibold">Physical ability — not affected by Silence</span></p>
+                    @endif
+                    @if ($entry['spell']->usable_while_cc)
+                        <p class="text-[10px] text-violet">
+                            <span class="font-semibold">Usable while:</span>
+                            {{ collect(explode(',', $entry['spell']->usable_while_cc))->map(fn ($t) => $ccTokenLabel[$t] ?? $t)->implode(', ') }}
+                        </p>
+                    @endif
+                    @if ($entry['spell']->bypasses_active_defense)
+                        <p class="text-[10px] text-violet"><span class="font-semibold">Cannot be dodged, parried, or blocked.</span></p>
+                    @endif
+                    @if ($entry['spell']->cc_immunity_note)
+                        <p class="text-[10px] text-ink-subtle italic">{{ $entry['spell']->cc_immunity_note }}</p>
+                    @endif
+                    @if ($entry['grantsCcImmunity']->isNotEmpty())
+                        <p class="text-[10px] text-violet"><span class="font-semibold">Grants immunity to:</span> {{ $entry['grantsCcImmunity']->implode(', ') }} (while active)</p>
+                    @endif
+                </div>
             @endif
 
             @if ($entry['modifiers']['named']->isNotEmpty())

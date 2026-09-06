@@ -2,9 +2,10 @@
 
 Production is a single Ubuntu 22.04 box (Vultr, `45.76.116.44` / `mindcollector.com`), Nginx +
 PHP-FPM 8.2, code at `/var/www/mindcollector`. There is no CI/CD pipeline — deploy has always
-meant SSHing in and running `git pull` directly against the live checkout. That gap is what
-caused the incident below, and `deploy.sh` (repo root) is the fix: **use it instead of a bare
-`git pull` from now on.**
+meant SSHing in and running `git pull` directly against the live checkout. That gap caused the
+incident below. `deploy.sh` (repo root) closes it — **prefer it over a bare `git pull` on the
+server**, which can leave stale bytecode and stale Redis cache entries running (full trace
+further down).
 
 ```
 cd /var/www/mindcollector && ./deploy.sh

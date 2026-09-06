@@ -1,9 +1,9 @@
 {
     "class": "mage",
     "spec": "arcane",
-    "windows": 249,
-    "killWindows": 30,
-    "matches": 58,
+    "windows": 177,
+    "killWindows": 31,
+    "matches": 41,
     "anchors": [
         "Arcane Blast",
         "Arcane Orb",
@@ -755,7 +755,7 @@
                     "pvpTalentId": 218
                 }
             ],
-            "resolvedAt": "2026-08-31T06:43:28+00:00"
+            "resolvedAt": "2026-09-06T02:56:48+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-57-0E2DA319",
@@ -973,31 +973,19 @@
             ],
             "targetClassName": "Druid",
             "targetSpecName": "Balance",
-            "resolvedAt": "2026-08-31T10:02:58+00:00"
+            "resolvedAt": "2026-09-06T02:56:55+00:00"
         }
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 1012654,
+            "damage": 1033751,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
                 {
-                    "name": "Prismatic Bolt",
-                    "spellId": 1295924,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Blast",
-                    "spellId": 30451,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
+                    "name": "Polymorph",
+                    "spellId": 118,
+                    "isCc": true,
                     "isRepeat": false
                 },
                 {
@@ -1007,19 +995,31 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
+                },
+                {
+                    "name": "Arcane Orb",
+                    "spellId": 153626,
+                    "isCc": false,
+                    "isRepeat": false
                 }
             ],
-            "matchId": "ada610b339c4e8f6053ca075b82c4132",
-            "guid": "Player-11-0EBB11F3",
-            "start": 78278.402,
-            "end": 78284.402,
-            "targetGuid": "Player-57-0D230005",
+            "matchId": "911b77be833306d4347fc312657c568e",
+            "guid": "Player-96-0EDBDC37",
+            "start": 85143.417,
+            "end": 85149.417,
+            "targetGuid": "Player-60-0FF9ACD2",
             "talentBuild": {
-                "matchId": "ada610b339c4e8f6053ca075b82c4132",
+                "matchId": "911b77be833306d4347fc312657c568e",
                 "talents": [
                     {
                         "name": "Spellsteal",
@@ -1029,6 +1029,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 2966,
                         "entryId": 3558
+                    },
+                    {
+                        "name": "Permafrost Bauble",
+                        "spellId": 1265517,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2968,
+                        "entryId": 3560
                     },
                     {
                         "name": "Barrier Diffusion",
@@ -1155,15 +1164,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3014,
                         "entryId": 3616
-                    },
-                    {
-                        "name": "Mass Invisibility",
-                        "spellId": 414664,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 2972,
-                        "entryId": 3566
                     },
                     {
                         "name": "Splinterstorm",
@@ -1229,6 +1229,150 @@
                         "entryId": 4070
                     },
                     {
+                        "name": "Improved Clearcasting",
+                        "spellId": 321420,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3314,
+                        "entryId": 3974
+                    },
+                    {
+                        "name": "Arcane Missiles",
+                        "spellId": 5143,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3305,
+                        "entryId": 3964
+                    },
+                    {
+                        "name": "Arcing Cleave",
+                        "spellId": 231564,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3315,
+                        "entryId": 3975
+                    },
+                    {
+                        "name": "Signature Spell",
+                        "spellId": 470021,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3387,
+                        "entryId": 4062
+                    },
+                    {
+                        "name": "Arcane Orb",
+                        "spellId": 153626,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3322,
+                        "entryId": 3984
+                    },
+                    {
+                        "name": "Concentrated Power",
+                        "spellId": 414379,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3307,
+                        "entryId": 3966
+                    },
+                    {
+                        "name": "Arcane Salvo",
+                        "spellId": 384452,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3308,
+                        "entryId": 3967
+                    },
+                    {
+                        "name": "Charm of Medivh",
+                        "spellId": 1244107,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3103,
+                        "entryId": 3725
+                    },
+                    {
+                        "name": "Charm of Aegwynn",
+                        "spellId": 1244105,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3104,
+                        "entryId": 3726
+                    },
+                    {
+                        "name": "Inspired Intellect",
+                        "spellId": 458437,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3106,
+                        "entryId": 3728
+                    },
+                    {
+                        "name": "Overflowing Energy",
+                        "spellId": 390218,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3107,
+                        "entryId": 3729
+                    },
+                    {
+                        "name": "Improved Prismatic Barrier",
+                        "spellId": 321745,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3109,
+                        "entryId": 3732
+                    },
+                    {
+                        "name": "Polished Focus",
+                        "spellId": 1261082,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3395,
+                        "entryId": 4072
+                    },
+                    {
+                        "name": "Infused Splinters",
+                        "spellId": 1261080,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3396,
+                        "entryId": 4073
+                    },
+                    {
+                        "name": "Improved Counterspell",
+                        "spellId": 1270865,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3156,
+                        "entryId": 3788
+                    },
+                    {
+                        "name": "Mass Invisibility",
+                        "spellId": 414664,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2972,
+                        "entryId": 3566
+                    },
+                    {
                         "name": "Orb Mastery",
                         "spellId": 1243435,
                         "rank": 1,
@@ -1245,15 +1389,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3335,
                         "entryId": 3998
-                    },
-                    {
-                        "name": "Improved Clearcasting",
-                        "spellId": 321420,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3314,
-                        "entryId": 3974
                     },
                     {
                         "name": "Intuition",
@@ -1283,15 +1418,6 @@
                         "entryId": 4016
                     },
                     {
-                        "name": "Arcane Missiles",
-                        "spellId": 5143,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3305,
-                        "entryId": 3964
-                    },
-                    {
                         "name": "Touch of the Magi",
                         "spellId": 321507,
                         "rank": 1,
@@ -1319,15 +1445,6 @@
                         "entryId": 4015
                     },
                     {
-                        "name": "Arcing Cleave",
-                        "spellId": 231564,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3315,
-                        "entryId": 3975
-                    },
-                    {
                         "name": "Charged Orb",
                         "spellId": 384651,
                         "rank": 1,
@@ -1344,24 +1461,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3356,
                         "entryId": 4025
-                    },
-                    {
-                        "name": "Signature Spell",
-                        "spellId": 470021,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3387,
-                        "entryId": 4062
-                    },
-                    {
-                        "name": "Arcane Orb",
-                        "spellId": 153626,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3322,
-                        "entryId": 3984
                     },
                     {
                         "name": "Aether Attunement",
@@ -1382,24 +1481,6 @@
                         "entryId": 4028
                     },
                     {
-                        "name": "Concentrated Power",
-                        "spellId": 414379,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3307,
-                        "entryId": 3966
-                    },
-                    {
-                        "name": "Arcane Salvo",
-                        "spellId": 384452,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3308,
-                        "entryId": 3967
-                    },
-                    {
                         "name": "Resonance",
                         "spellId": 205028,
                         "rank": 1,
@@ -1409,42 +1490,6 @@
                         "entryId": 4007
                     },
                     {
-                        "name": "Charm of Medivh",
-                        "spellId": 1244107,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3103,
-                        "entryId": 3725
-                    },
-                    {
-                        "name": "Charm of Aegwynn",
-                        "spellId": 1244105,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3104,
-                        "entryId": 3726
-                    },
-                    {
-                        "name": "Master of Escape",
-                        "spellId": 210476,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3105,
-                        "entryId": 3727
-                    },
-                    {
-                        "name": "Inspired Intellect",
-                        "spellId": 458437,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3106,
-                        "entryId": 3728
-                    },
-                    {
                         "name": "Improved Conjuration",
                         "spellId": 1244025,
                         "rank": 2,
@@ -1452,15 +1497,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3108,
                         "entryId": 3731
-                    },
-                    {
-                        "name": "Improved Prismatic Barrier",
-                        "spellId": 321745,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3109,
-                        "entryId": 3732
                     },
                     {
                         "name": "Eureka",
@@ -1488,33 +1524,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3365,
                         "entryId": 4037
-                    },
-                    {
-                        "name": "Polished Focus",
-                        "spellId": 1261082,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3395,
-                        "entryId": 4072
-                    },
-                    {
-                        "name": "Infused Splinters",
-                        "spellId": 1261080,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3396,
-                        "entryId": 4073
-                    },
-                    {
-                        "name": "Improved Counterspell",
-                        "spellId": 1270865,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3156,
-                        "entryId": 3788
                     },
                     {
                         "name": "Brainstorm",
@@ -1571,15 +1580,6 @@
                         "entryId": 4071
                     },
                     {
-                        "name": "Remove Curse",
-                        "spellId": 475,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 2985,
-                        "entryId": 3585
-                    },
-                    {
                         "name": "Ring of Frost",
                         "spellId": 113724,
                         "rank": 1,
@@ -1596,15 +1596,6 @@
                         "resolvedByOffset": true,
                         "nodeId": 3389,
                         "entryId": 4064
-                    },
-                    {
-                        "name": "Reactive Barrier",
-                        "spellId": 444827,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 3390,
-                        "entryId": 4066
                     },
                     {
                         "name": "Supernova",
@@ -1625,22 +1616,31 @@
                         "entryId": 3567
                     },
                     {
-                        "name": "High Voltage",
-                        "spellId": 461248,
+                        "name": "Time Walk",
+                        "spellId": 1244087,
                         "rank": 1,
-                        "treeType": "spec",
+                        "treeType": "class",
                         "resolvedByOffset": true,
-                        "nodeId": 3363,
-                        "entryId": 4034
+                        "nodeId": 3100,
+                        "entryId": 3721
                     },
                     {
-                        "name": "Aegwynn's Technique",
-                        "spellId": 1243507,
+                        "name": "Ice Nova",
+                        "spellId": 157997,
                         "rank": 1,
-                        "treeType": "spec",
+                        "treeType": "class",
                         "resolvedByOffset": true,
-                        "nodeId": 3341,
-                        "entryId": 4005
+                        "nodeId": 2969,
+                        "entryId": 3562
+                    },
+                    {
+                        "name": "Reactive Barrier",
+                        "spellId": 444827,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 3390,
+                        "entryId": 4066
                     },
                     {
                         "name": "Slipstream",
@@ -1652,31 +1652,22 @@
                         "entryId": 3991
                     },
                     {
-                        "name": "Time Walk",
-                        "spellId": 1244087,
+                        "name": "Aegwynn's Technique",
+                        "spellId": 1243507,
                         "rank": 1,
-                        "treeType": "class",
+                        "treeType": "spec",
                         "resolvedByOffset": true,
-                        "nodeId": 3100,
-                        "entryId": 3721
+                        "nodeId": 3341,
+                        "entryId": 4005
                     },
                     {
-                        "name": "Improved Blink",
-                        "spellId": 1244340,
+                        "name": "High Voltage",
+                        "spellId": 461248,
                         "rank": 1,
-                        "treeType": "class",
+                        "treeType": "spec",
                         "resolvedByOffset": true,
-                        "nodeId": 2979,
-                        "entryId": 3576
-                    },
-                    {
-                        "name": "Ice Nova",
-                        "spellId": 157997,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 2969,
-                        "entryId": 3562
+                        "nodeId": 3363,
+                        "entryId": 4034
                     },
                     {
                         "name": "Shifting Shards",
@@ -1695,6 +1686,15 @@
                         "resolvedByOffset": true,
                         "nodeId": 3369,
                         "entryId": 4041
+                    },
+                    {
+                        "name": "Shimmer",
+                        "spellId": 212653,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2979,
+                        "entryId": 3575
                     }
                 ],
                 "pvpTalents": [
@@ -1714,177 +1714,160 @@
                         "pvpTalentId": 217
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:28+00:00"
+                "resolvedAt": "2026-09-06T02:56:47+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-57-0D230005",
+                "targetGuid": "Player-60-0FF9ACD2",
                 "championBuffs": [
                     {
-                        "spellId": 21562,
-                        "name": "Power Word: Fortitude"
-                    },
-                    {
-                        "spellId": 1459,
-                        "name": "Arcane Intellect"
-                    },
-                    {
-                        "spellId": 1295942,
-                        "name": "Prismatic Bolt!"
-                    },
-                    {
-                        "spellId": 1287774,
-                        "name": "Rune of Burning Haste"
+                        "spellId": 61295,
+                        "name": "Riptide"
                     },
                     {
                         "spellId": 345230,
                         "name": "Gladiator's Insignia"
                     },
                     {
-                        "spellId": 365362,
-                        "name": "Arcane Surge"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "Arcanoweave Insight"
-                    },
-                    {
-                        "spellId": 1244893,
-                        "name": "Beacon of the Savior"
-                    },
-                    {
-                        "spellId": 1242974,
-                        "name": "Arcane Salvo"
-                    },
-                    {
-                        "spellId": 1309793,
-                        "name": "Amplified Refraction"
-                    },
-                    {
-                        "spellId": 55342,
-                        "name": "Mirror Image"
-                    },
-                    {
-                        "spellId": 157128,
-                        "name": "Saved by the Light"
-                    }
-                ],
-                "championDebuffs": [
-                    {
-                        "spellId": 1221389,
-                        "name": "Freezing"
-                    },
-                    {
-                        "spellId": 205708,
-                        "name": "Chilled"
-                    }
-                ],
-                "targetBuffs": [
-                    {
-                        "spellId": 108370,
-                        "name": "Soul Leech"
-                    },
-                    {
-                        "spellId": 186406,
-                        "name": "Sign of the Critter"
-                    },
-                    {
-                        "spellId": 335149,
-                        "name": "Sign of the Scourge"
-                    },
-                    {
-                        "spellId": 196099,
-                        "name": "Grimoire of Sacrifice"
-                    },
-                    {
-                        "spellId": 48018,
-                        "name": "Demonic Circle"
-                    },
-                    {
-                        "spellId": 440836,
-                        "name": "Essence of Yu'lon"
-                    },
-                    {
-                        "spellId": 139,
-                        "name": "Renew"
-                    },
-                    {
-                        "spellId": 77489,
-                        "name": "Echo of Light"
+                        "spellId": 1287774,
+                        "name": "Rune of Burning Haste"
                     },
                     {
                         "spellId": 1287665,
                         "name": "Rune of Lingering"
                     },
                     {
-                        "spellId": 289655,
-                        "name": "Sanctified Ground"
+                        "spellId": 263725,
+                        "name": "Clearcasting"
                     },
                     {
-                        "spellId": 442726,
-                        "name": "Malevolence"
+                        "spellId": 461531,
+                        "name": "Brainstorm"
+                    },
+                    {
+                        "spellId": 382024,
+                        "name": "Earthliving Weapon"
+                    },
+                    {
+                        "spellId": 365362,
+                        "name": "Arcane Surge"
+                    },
+                    {
+                        "spellId": 1242974,
+                        "name": "Arcane Salvo"
+                    },
+                    {
+                        "spellId": 394195,
+                        "name": "Overflowing Energy"
+                    },
+                    {
+                        "spellId": 236298,
+                        "name": "Chrono Shift"
+                    }
+                ],
+                "championDebuffs": [],
+                "targetBuffs": [
+                    {
+                        "spellId": 1272710,
+                        "name": "Crimson Blessing"
+                    },
+                    {
+                        "spellId": 465,
+                        "name": "Devotion Aura"
+                    },
+                    {
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
+                    },
+                    {
+                        "spellId": 21562,
+                        "name": "Power Word: Fortitude"
+                    },
+                    {
+                        "spellId": 6673,
+                        "name": "Battle Shout"
+                    },
+                    {
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
                     },
                     {
                         "spellId": 1287770,
                         "name": "Rune of the Versatile Warrior"
+                    },
+                    {
+                        "spellId": 431522,
+                        "name": "Dawnlight"
+                    },
+                    {
+                        "spellId": 1241410,
+                        "name": "Hammer of Wrath"
+                    },
+                    {
+                        "spellId": 454351,
+                        "name": "Avenging Wrath"
+                    },
+                    {
+                        "spellId": 1264050,
+                        "name": "Born in Sunlight"
+                    },
+                    {
+                        "spellId": 77489,
+                        "name": "Echo of Light"
+                    },
+                    {
+                        "spellId": 1305230,
+                        "name": "Divine Power"
+                    },
+                    {
+                        "spellId": 65081,
+                        "name": "Body and Soul"
+                    },
+                    {
+                        "spellId": 24275,
+                        "name": "Hammer of Wrath"
+                    },
+                    {
+                        "spellId": 407065,
+                        "name": "Rush of Light"
+                    },
+                    {
+                        "spellId": 221883,
+                        "name": "Divine Steed"
                     }
                 ],
                 "targetDebuffs": [
-                    {
-                        "spellId": 146739,
-                        "name": "Corruption"
-                    },
-                    {
-                        "spellId": 980,
-                        "name": "Agony"
-                    },
-                    {
-                        "spellId": 1259790,
-                        "name": "Unstable Affliction"
-                    },
                     {
                         "spellId": 210824,
                         "name": "Touch of the Magi"
                     },
                     {
-                        "spellId": 334275,
-                        "name": "Curse of Exhaustion"
+                        "spellId": 236299,
+                        "name": "Chrono Shift"
                     },
                     {
-                        "spellId": 204242,
-                        "name": "Consecration"
+                        "spellId": 1287663,
+                        "name": "Rune of Lingering"
                     }
                 ],
-                "targetClassName": "Warlock",
-                "targetSpecName": "Destruction",
-                "resolvedAt": "2026-08-31T10:02:58+00:00"
+                "targetClassName": "Paladin",
+                "targetSpecName": "Retribution",
+                "resolvedAt": "2026-09-06T02:56:55+00:00"
             }
         },
         "10": {
-            "damage": 1418202,
+            "damage": 1477091,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
                 {
-                    "name": "Prismatic Bolt",
-                    "spellId": 1295924,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Touch of the Magi",
-                    "spellId": 321507,
-                    "isCc": false,
+                    "name": "Polymorph",
+                    "spellId": 118,
+                    "isCc": true,
                     "isRepeat": false
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Counterspell",
-                    "spellId": 2139,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -1895,14 +1878,14 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Arcane Blast",
-                    "spellId": 30451,
+                    "name": "Arcane Barrage",
+                    "spellId": 44425,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
+                    "name": "Arcane Orb",
+                    "spellId": 153626,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -1919,13 +1902,13 @@
                     "isRepeat": true
                 }
             ],
-            "matchId": "9a8ce8e03a83652d5faa8110eb0646d8",
-            "guid": "Player-11-0EBB11F3",
-            "start": 81627.807,
-            "end": 81637.807,
-            "targetGuid": "Player-57-0E2DA319",
+            "matchId": "911b77be833306d4347fc312657c568e",
+            "guid": "Player-96-0EDBDC37",
+            "start": 85143.417,
+            "end": 85153.417,
+            "targetGuid": "Player-60-0FF9ACD2",
             "talentBuild": {
-                "matchId": "9a8ce8e03a83652d5faa8110eb0646d8",
+                "matchId": "911b77be833306d4347fc312657c568e",
                 "talents": [
                     {
                         "name": "Spellsteal",
@@ -1935,6 +1918,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 2966,
                         "entryId": 3558
+                    },
+                    {
+                        "name": "Permafrost Bauble",
+                        "spellId": 1265517,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2968,
+                        "entryId": 3560
                     },
                     {
                         "name": "Barrier Diffusion",
@@ -2063,76 +2055,67 @@
                         "entryId": 3616
                     },
                     {
-                        "name": "Mass Invisibility",
-                        "spellId": 414664,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 2972,
-                        "entryId": 3566
-                    },
-                    {
-                        "name": "Ashes of Inspiration",
-                        "spellId": 1260272,
+                        "name": "Splinterstorm",
+                        "spellId": 443783,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 3370,
-                        "entryId": 4042
+                        "nodeId": 3384,
+                        "entryId": 4059
                     },
                     {
-                        "name": "Burden of Power",
-                        "spellId": 451035,
+                        "name": "Spellfrost Teachings",
+                        "spellId": 444986,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 3371,
-                        "entryId": 4043
+                        "nodeId": 3385,
+                        "entryId": 4060
                     },
                     {
-                        "name": "Codex of the Sunstriders",
-                        "spellId": 449382,
+                        "name": "Controlled Instincts",
+                        "spellId": 444483,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 3372,
-                        "entryId": 4044
+                        "nodeId": 3386,
+                        "entryId": 4061
                     },
                     {
-                        "name": "Memory of Al'ar",
-                        "spellId": 449619,
+                        "name": "Archmage's Wrath",
+                        "spellId": 444968,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 3373,
-                        "entryId": 4045
+                        "nodeId": 3388,
+                        "entryId": 4063
                     },
                     {
-                        "name": "Rondurmancy",
-                        "spellId": 449596,
+                        "name": "Splintering Orbs",
+                        "spellId": 444256,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 3375,
-                        "entryId": 4047
+                        "nodeId": 3391,
+                        "entryId": 4068
                     },
                     {
-                        "name": "Invocation: Arcane Phoenix",
-                        "spellId": 448658,
+                        "name": "Augury Abounds",
+                        "spellId": 1280165,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 3379,
-                        "entryId": 4054
+                        "nodeId": 3392,
+                        "entryId": 4069
                     },
                     {
-                        "name": "Mana Cascade",
-                        "spellId": 449293,
+                        "name": "Force of Will",
+                        "spellId": 444719,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 3380,
-                        "entryId": 4055
+                        "nodeId": 3393,
+                        "entryId": 4070
                     },
                     {
                         "name": "Improved Clearcasting",
@@ -2142,6 +2125,159 @@
                         "resolvedByOffset": false,
                         "nodeId": 3314,
                         "entryId": 3974
+                    },
+                    {
+                        "name": "Arcane Missiles",
+                        "spellId": 5143,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3305,
+                        "entryId": 3964
+                    },
+                    {
+                        "name": "Arcing Cleave",
+                        "spellId": 231564,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3315,
+                        "entryId": 3975
+                    },
+                    {
+                        "name": "Signature Spell",
+                        "spellId": 470021,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3387,
+                        "entryId": 4062
+                    },
+                    {
+                        "name": "Arcane Orb",
+                        "spellId": 153626,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3322,
+                        "entryId": 3984
+                    },
+                    {
+                        "name": "Concentrated Power",
+                        "spellId": 414379,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3307,
+                        "entryId": 3966
+                    },
+                    {
+                        "name": "Arcane Salvo",
+                        "spellId": 384452,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3308,
+                        "entryId": 3967
+                    },
+                    {
+                        "name": "Charm of Medivh",
+                        "spellId": 1244107,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3103,
+                        "entryId": 3725
+                    },
+                    {
+                        "name": "Charm of Aegwynn",
+                        "spellId": 1244105,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3104,
+                        "entryId": 3726
+                    },
+                    {
+                        "name": "Inspired Intellect",
+                        "spellId": 458437,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3106,
+                        "entryId": 3728
+                    },
+                    {
+                        "name": "Overflowing Energy",
+                        "spellId": 390218,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3107,
+                        "entryId": 3729
+                    },
+                    {
+                        "name": "Improved Prismatic Barrier",
+                        "spellId": 321745,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3109,
+                        "entryId": 3732
+                    },
+                    {
+                        "name": "Polished Focus",
+                        "spellId": 1261082,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3395,
+                        "entryId": 4072
+                    },
+                    {
+                        "name": "Infused Splinters",
+                        "spellId": 1261080,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 3396,
+                        "entryId": 4073
+                    },
+                    {
+                        "name": "Improved Counterspell",
+                        "spellId": 1270865,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3156,
+                        "entryId": 3788
+                    },
+                    {
+                        "name": "Mass Invisibility",
+                        "spellId": 414664,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2972,
+                        "entryId": 3566
+                    },
+                    {
+                        "name": "Orb Mastery",
+                        "spellId": 1243435,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3366,
+                        "entryId": 4038
+                    },
+                    {
+                        "name": "Energized Familiar",
+                        "spellId": 452997,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3335,
+                        "entryId": 3998
                     },
                     {
                         "name": "Intuition",
@@ -2171,15 +2307,6 @@
                         "entryId": 4016
                     },
                     {
-                        "name": "Arcane Missiles",
-                        "spellId": 5143,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3305,
-                        "entryId": 3964
-                    },
-                    {
                         "name": "Touch of the Magi",
                         "spellId": 321507,
                         "rank": 1,
@@ -2207,15 +2334,6 @@
                         "entryId": 4015
                     },
                     {
-                        "name": "Arcing Cleave",
-                        "spellId": 231564,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3315,
-                        "entryId": 3975
-                    },
-                    {
                         "name": "Charged Orb",
                         "spellId": 384651,
                         "rank": 1,
@@ -2234,22 +2352,13 @@
                         "entryId": 4025
                     },
                     {
-                        "name": "Arcane Orb",
-                        "spellId": 153626,
+                        "name": "Aether Attunement",
+                        "spellId": 1243307,
                         "rank": 1,
                         "treeType": "spec",
                         "resolvedByOffset": false,
-                        "nodeId": 3322,
-                        "entryId": 3984
-                    },
-                    {
-                        "name": "Aether Attunement",
-                        "spellId": 1243307,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
                         "nodeId": 3340,
-                        "entryId": 4004
+                        "entryId": 4003
                     },
                     {
                         "name": "Arcane Singularity",
@@ -2261,24 +2370,6 @@
                         "entryId": 4028
                     },
                     {
-                        "name": "Concentrated Power",
-                        "spellId": 414379,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3307,
-                        "entryId": 3966
-                    },
-                    {
-                        "name": "Arcane Salvo",
-                        "spellId": 384452,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3308,
-                        "entryId": 3967
-                    },
-                    {
                         "name": "Resonance",
                         "spellId": 205028,
                         "rank": 1,
@@ -2288,42 +2379,6 @@
                         "entryId": 4007
                     },
                     {
-                        "name": "Charm of Medivh",
-                        "spellId": 1244107,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3103,
-                        "entryId": 3725
-                    },
-                    {
-                        "name": "Charm of Aegwynn",
-                        "spellId": 1244105,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3104,
-                        "entryId": 3726
-                    },
-                    {
-                        "name": "Master of Escape",
-                        "spellId": 210476,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3105,
-                        "entryId": 3727
-                    },
-                    {
-                        "name": "Inspired Intellect",
-                        "spellId": 458437,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3106,
-                        "entryId": 3728
-                    },
-                    {
                         "name": "Improved Conjuration",
                         "spellId": 1244025,
                         "rank": 2,
@@ -2331,15 +2386,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3108,
                         "entryId": 3731
-                    },
-                    {
-                        "name": "Improved Prismatic Barrier",
-                        "spellId": 321745,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3109,
-                        "entryId": 3732
                     },
                     {
                         "name": "Eureka",
@@ -2367,42 +2413,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3365,
                         "entryId": 4037
-                    },
-                    {
-                        "name": "Spellfire Salvo",
-                        "spellId": 1260616,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3381,
-                        "entryId": 4056
-                    },
-                    {
-                        "name": "Pyrocosm",
-                        "spellId": 1260673,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3382,
-                        "entryId": 4057
-                    },
-                    {
-                        "name": "Glorious Incandescence",
-                        "spellId": 449394,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": false,
-                        "nodeId": 3383,
-                        "entryId": 4058
-                    },
-                    {
-                        "name": "Improved Counterspell",
-                        "spellId": 1270865,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3156,
-                        "entryId": 3788
                     },
                     {
                         "name": "Brainstorm",
@@ -2450,31 +2460,13 @@
                         "entryId": 3588
                     },
                     {
-                        "name": "Spellfire Spheres",
-                        "spellId": 448601,
+                        "name": "Splintering Sorcery",
+                        "spellId": 443739,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": false,
-                        "nodeId": 3374,
-                        "entryId": 4046
-                    },
-                    {
-                        "name": "Remove Curse",
-                        "spellId": 475,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 2985,
-                        "entryId": 3585
-                    },
-                    {
-                        "name": "Orb Barrage",
-                        "spellId": 384858,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3367,
-                        "entryId": 4039
+                        "nodeId": 3394,
+                        "entryId": 4071
                     },
                     {
                         "name": "Ring of Frost",
@@ -2486,31 +2478,13 @@
                         "entryId": 3563
                     },
                     {
-                        "name": "Merely a Setback",
-                        "spellId": 449330,
+                        "name": "Slippery Slinging",
+                        "spellId": 444752,
                         "rank": 1,
                         "treeType": "hero",
                         "resolvedByOffset": true,
-                        "nodeId": 3376,
-                        "entryId": 4048
-                    },
-                    {
-                        "name": "Savor the Moment",
-                        "spellId": 449412,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 3377,
-                        "entryId": 4050
-                    },
-                    {
-                        "name": "Lessons in Debilitation",
-                        "spellId": 449627,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 3378,
-                        "entryId": 4052
+                        "nodeId": 3389,
+                        "entryId": 4064
                     },
                     {
                         "name": "Supernova",
@@ -2531,33 +2505,6 @@
                         "entryId": 3567
                     },
                     {
-                        "name": "High Voltage",
-                        "spellId": 461248,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 3363,
-                        "entryId": 4034
-                    },
-                    {
-                        "name": "Aegwynn's Technique",
-                        "spellId": 1243507,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 3341,
-                        "entryId": 4005
-                    },
-                    {
-                        "name": "Slipstream",
-                        "spellId": 236457,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 3328,
-                        "entryId": 3991
-                    },
-                    {
                         "name": "Time Walk",
                         "spellId": 1244087,
                         "rank": 1,
@@ -2565,15 +2512,6 @@
                         "resolvedByOffset": true,
                         "nodeId": 3100,
                         "entryId": 3721
-                    },
-                    {
-                        "name": "Improved Blink",
-                        "spellId": 1244340,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 2979,
-                        "entryId": 3576
                     },
                     {
                         "name": "Ice Nova",
@@ -2585,6 +2523,51 @@
                         "entryId": 3562
                     },
                     {
+                        "name": "Reactive Barrier",
+                        "spellId": 444827,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 3390,
+                        "entryId": 4066
+                    },
+                    {
+                        "name": "Slipstream",
+                        "spellId": 236457,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 3328,
+                        "entryId": 3991
+                    },
+                    {
+                        "name": "Aegwynn's Technique",
+                        "spellId": 1243507,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 3341,
+                        "entryId": 4005
+                    },
+                    {
+                        "name": "High Voltage",
+                        "spellId": 461248,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 3363,
+                        "entryId": 4034
+                    },
+                    {
+                        "name": "Shifting Shards",
+                        "spellId": 444675,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 3397,
+                        "entryId": 4075
+                    },
+                    {
                         "name": "Touch of the Archmage",
                         "spellId": 1257942,
                         "rank": 1,
@@ -2592,6 +2575,15 @@
                         "resolvedByOffset": true,
                         "nodeId": 3369,
                         "entryId": 4041
+                    },
+                    {
+                        "name": "Shimmer",
+                        "spellId": 212653,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2979,
+                        "entryId": 3575
                     }
                 ],
                 "pvpTalents": [
@@ -2606,226 +2598,149 @@
                         "pvpTalentId": 225
                     },
                     {
-                        "name": "Kleptomania",
-                        "spellId": 198100,
-                        "pvpTalentId": 218
+                        "name": "Improved Mass Invisibility",
+                        "spellId": 415945,
+                        "pvpTalentId": 217
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:28+00:00"
+                "resolvedAt": "2026-09-06T02:56:47+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-57-0E2DA319",
+                "targetGuid": "Player-60-0FF9ACD2",
                 "championBuffs": [
                     {
-                        "spellId": 1217242,
-                        "name": "Enlightened"
-                    },
-                    {
-                        "spellId": 448604,
-                        "name": "Spellfire Sphere"
-                    },
-                    {
-                        "spellId": 1126,
-                        "name": "Mark of the Wild"
-                    },
-                    {
-                        "spellId": 432502,
-                        "name": "Sacred Weapon"
-                    },
-                    {
-                        "spellId": 1287665,
-                        "name": "Rune of Lingering"
-                    },
-                    {
-                        "spellId": 210126,
-                        "name": "Arcane Familiar"
-                    },
-                    {
-                        "spellId": 1459,
-                        "name": "Arcane Intellect"
+                        "spellId": 61295,
+                        "name": "Riptide"
                     },
                     {
                         "spellId": 345230,
                         "name": "Gladiator's Insignia"
                     },
                     {
-                        "spellId": 449322,
-                        "name": "Mana Cascade"
-                    },
-                    {
-                        "spellId": 236298,
-                        "name": "Chrono Shift"
-                    },
-                    {
-                        "spellId": 1295942,
-                        "name": "Prismatic Bolt!"
-                    },
-                    {
-                        "spellId": 1259061,
-                        "name": "Favored by Kulzi"
-                    },
-                    {
-                        "spellId": 157128,
-                        "name": "Saved by the Light"
-                    }
-                ],
-                "championDebuffs": [
-                    {
-                        "spellId": 164815,
-                        "name": "Sunfire"
-                    },
-                    {
-                        "spellId": 164812,
-                        "name": "Moonfire"
-                    },
-                    {
-                        "spellId": 1263250,
-                        "name": "Astral Smolder"
-                    }
-                ],
-                "targetBuffs": [
-                    {
-                        "spellId": 335149,
-                        "name": "Sign of the Scourge"
-                    },
-                    {
-                        "spellId": 154797,
-                        "name": "Touch of Elune - Night"
-                    },
-                    {
-                        "spellId": 5215,
-                        "name": "Prowl"
-                    },
-                    {
-                        "spellId": 768,
-                        "name": "Cat Form"
-                    },
-                    {
-                        "spellId": 1126,
-                        "name": "Mark of the Wild"
-                    },
-                    {
-                        "spellId": 209746,
-                        "name": "Moonkin Aura"
-                    },
-                    {
-                        "spellId": 1241715,
-                        "name": "Might of the Void"
-                    },
-                    {
-                        "spellId": 24858,
-                        "name": "Moonkin Form"
-                    },
-                    {
-                        "spellId": 378992,
-                        "name": "Lycara's Teachings"
-                    },
-                    {
-                        "spellId": 33763,
-                        "name": "Lifebloom"
-                    },
-                    {
-                        "spellId": 774,
-                        "name": "Rejuvenation"
+                        "spellId": 1287774,
+                        "name": "Rune of Burning Haste"
                     },
                     {
                         "spellId": 1287665,
                         "name": "Rune of Lingering"
                     },
                     {
-                        "spellId": 155777,
-                        "name": "Rejuvenation (Germination)"
+                        "spellId": 263725,
+                        "name": "Clearcasting"
                     },
                     {
-                        "spellId": 1287774,
-                        "name": "Rune of Burning Haste"
+                        "spellId": 461531,
+                        "name": "Brainstorm"
                     },
                     {
-                        "spellId": 48438,
-                        "name": "Wild Growth"
+                        "spellId": 382024,
+                        "name": "Earthliving Weapon"
                     },
                     {
-                        "spellId": 439530,
-                        "name": "Symbiotic Blooms"
+                        "spellId": 365362,
+                        "name": "Arcane Surge"
                     },
                     {
-                        "spellId": 102560,
-                        "name": "Incarnation: Chosen of Elune"
+                        "spellId": 1242974,
+                        "name": "Arcane Salvo"
                     },
                     {
-                        "spellId": 48517,
-                        "name": "Eclipse (Solar)"
+                        "spellId": 394195,
+                        "name": "Overflowing Energy"
                     },
                     {
-                        "spellId": 1264618,
-                        "name": "Sylvan Beckoning"
+                        "spellId": 236298,
+                        "name": "Chrono Shift"
+                    }
+                ],
+                "championDebuffs": [],
+                "targetBuffs": [
+                    {
+                        "spellId": 1272710,
+                        "name": "Crimson Blessing"
                     },
                     {
-                        "spellId": 48518,
-                        "name": "Eclipse (Lunar)"
+                        "spellId": 465,
+                        "name": "Devotion Aura"
                     },
                     {
-                        "spellId": 394049,
-                        "name": "Balance of All Things"
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
                     },
                     {
-                        "spellId": 394050,
-                        "name": "Balance of All Things"
+                        "spellId": 21562,
+                        "name": "Power Word: Fortitude"
                     },
                     {
-                        "spellId": 1263382,
-                        "name": "Ascendant Stars"
+                        "spellId": 6673,
+                        "name": "Battle Shout"
                     },
                     {
-                        "spellId": 455801,
-                        "name": "Cenarius' Might"
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
                     },
                     {
-                        "spellId": 1263363,
-                        "name": "Ascendant Fires"
+                        "spellId": 1287770,
+                        "name": "Rune of the Versatile Warrior"
                     },
                     {
-                        "spellId": 343648,
-                        "name": "Solstice"
+                        "spellId": 431522,
+                        "name": "Dawnlight"
                     },
                     {
-                        "spellId": 234084,
-                        "name": "Moon and Stars"
+                        "spellId": 1241410,
+                        "name": "Hammer of Wrath"
                     },
                     {
-                        "spellId": 8936,
-                        "name": "Regrowth"
+                        "spellId": 454351,
+                        "name": "Avenging Wrath"
                     },
                     {
-                        "spellId": 1287955,
-                        "name": "Rune of Void-Tainted Shell"
+                        "spellId": 1264050,
+                        "name": "Born in Sunlight"
                     },
                     {
-                        "spellId": 279709,
-                        "name": "Starlord"
+                        "spellId": 77489,
+                        "name": "Echo of Light"
+                    },
+                    {
+                        "spellId": 1305230,
+                        "name": "Divine Power"
+                    },
+                    {
+                        "spellId": 65081,
+                        "name": "Body and Soul"
+                    },
+                    {
+                        "spellId": 24275,
+                        "name": "Hammer of Wrath"
+                    },
+                    {
+                        "spellId": 407065,
+                        "name": "Rush of Light"
+                    },
+                    {
+                        "spellId": 221883,
+                        "name": "Divine Steed"
                     }
                 ],
                 "targetDebuffs": [
                     {
-                        "spellId": 146739,
-                        "name": "Corruption"
+                        "spellId": 210824,
+                        "name": "Touch of the Magi"
                     },
                     {
-                        "spellId": 48181,
-                        "name": "Haunt"
+                        "spellId": 236299,
+                        "name": "Chrono Shift"
                     },
                     {
-                        "spellId": 204242,
-                        "name": "Consecration"
-                    },
-                    {
-                        "spellId": 6789,
-                        "name": "Mortal Coil"
+                        "spellId": 1287663,
+                        "name": "Rune of Lingering"
                     }
                 ],
-                "targetClassName": "Druid",
-                "targetSpecName": "Balance",
-                "resolvedAt": "2026-08-31T10:02:58+00:00"
+                "targetClassName": "Paladin",
+                "targetSpecName": "Retribution",
+                "resolvedAt": "2026-09-06T02:56:55+00:00"
             }
         },
         "12": {
@@ -3568,7 +3483,7 @@
                         "pvpTalentId": 218
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:28+00:00"
+                "resolvedAt": "2026-09-06T02:56:48+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-57-0E2DA319",
@@ -3786,25 +3701,43 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Balance",
-                "resolvedAt": "2026-08-31T10:02:58+00:00"
+                "resolvedAt": "2026-09-06T02:56:55+00:00"
             }
         },
         "20": {
-            "damage": 2120834,
+            "damage": 2340121,
             "durationSeconds": 20,
-            "killed": false,
+            "killed": true,
             "steps": [
-                {
-                    "name": "Arcane Orb",
-                    "spellId": 153626,
-                    "isCc": false,
-                    "isRepeat": false
-                },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Prismatic Bolt",
+                    "spellId": 1295924,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Greater Invisibility",
+                    "spellId": 110960,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Touch of the Magi",
@@ -3813,16 +3746,22 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Arcane Barrage",
+                    "spellId": 44425,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
-                    "name": "Counterspell",
-                    "spellId": 2139,
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Arcane Missiles",
@@ -3837,21 +3776,9 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Arcane Orb",
-                    "spellId": 153626,
+                    "name": "Alter Time",
+                    "spellId": 342245,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Missiles",
-                    "spellId": 5143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Polymorph",
-                    "spellId": 118,
-                    "isCc": true,
                     "isRepeat": false
                 },
                 {
@@ -3861,55 +3788,49 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Arcane Barrage",
+                    "spellId": 44425,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Alter Time",
+                    "spellId": 342247,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shimmer",
+                    "spellId": 212653,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Prismatic Bolt",
+                    "spellId": 1295924,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
                     "isCc": false,
                     "isRepeat": true
                 }
             ],
-            "matchId": "45e480ebf918a092b86cc8e49179801e",
-            "guid": "Player-76-0BFF2E85",
-            "start": 80772.858,
-            "end": 80792.858,
-            "targetGuid": "Player-11-0EAE17AC",
+            "matchId": "8bec46f334f13a1799fdb57f6121b04b",
+            "guid": "Player-1136-097A3517",
+            "start": 79001.412,
+            "end": 79021.412,
+            "targetGuid": "Player-5-0A76CC9B",
             "talentBuild": {
-                "matchId": "45e480ebf918a092b86cc8e49179801e",
+                "matchId": "8bec46f334f13a1799fdb57f6121b04b",
                 "talents": [
                     {
                         "name": "Spellsteal",
@@ -4029,15 +3950,6 @@
                         "entryId": 3594
                     },
                     {
-                        "name": "Time Manipulation",
-                        "spellId": 387807,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 2994,
-                        "entryId": 3595
-                    },
-                    {
                         "name": "Greater Invisibility",
                         "spellId": 110959,
                         "rank": 1,
@@ -4045,6 +3957,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 3014,
                         "entryId": 3616
+                    },
+                    {
+                        "name": "Mass Invisibility",
+                        "spellId": 414664,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2972,
+                        "entryId": 3566
                     },
                     {
                         "name": "Ashes of Inspiration",
@@ -4110,13 +4031,13 @@
                         "entryId": 4055
                     },
                     {
-                        "name": "Mana Bomb",
-                        "spellId": 457521,
+                        "name": "Energized Familiar",
+                        "spellId": 452997,
                         "rank": 1,
                         "treeType": "spec",
                         "resolvedByOffset": false,
-                        "nodeId": 3329,
-                        "entryId": 3992
+                        "nodeId": 3335,
+                        "entryId": 3998
                     },
                     {
                         "name": "Improved Clearcasting",
@@ -4200,6 +4121,15 @@
                         "entryId": 3975
                     },
                     {
+                        "name": "Orb Barrage",
+                        "spellId": 384858,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3367,
+                        "entryId": 4039
+                    },
+                    {
                         "name": "Charged Orb",
                         "spellId": 384651,
                         "rank": 1,
@@ -4270,15 +4200,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3342,
                         "entryId": 4007
-                    },
-                    {
-                        "name": "Illuminated Thoughts",
-                        "spellId": 384060,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3351,
-                        "entryId": 4017
                     },
                     {
                         "name": "Charm of Medivh",
@@ -4470,6 +4391,24 @@
                         "entryId": 3563
                     },
                     {
+                        "name": "Shimmer",
+                        "spellId": 212653,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2979,
+                        "entryId": 3575
+                    },
+                    {
+                        "name": "Merely a Setback",
+                        "spellId": 449330,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 3376,
+                        "entryId": 4048
+                    },
+                    {
                         "name": "Savor the Moment",
                         "spellId": 449412,
                         "rank": 1,
@@ -4542,15 +4481,6 @@
                         "entryId": 3721
                     },
                     {
-                        "name": "Improved Blink",
-                        "spellId": 1244340,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 2979,
-                        "entryId": 3576
-                    },
-                    {
                         "name": "Ice Nova",
                         "spellId": 157997,
                         "rank": 1,
@@ -4560,13 +4490,13 @@
                         "entryId": 3562
                     },
                     {
-                        "name": "Time Twist",
-                        "spellId": 1255166,
+                        "name": "Touch of the Archmage",
+                        "spellId": 1257942,
                         "rank": 1,
-                        "treeType": "hero",
+                        "treeType": "spec",
                         "resolvedByOffset": true,
-                        "nodeId": 3376,
-                        "entryId": 4049
+                        "nodeId": 3369,
+                        "entryId": 4041
                     },
                     {
                         "name": "Ice Ward",
@@ -4576,22 +4506,13 @@
                         "resolvedByOffset": true,
                         "nodeId": 2981,
                         "entryId": 3579
-                    },
-                    {
-                        "name": "Touch of the Archmage",
-                        "spellId": 1257942,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": true,
-                        "nodeId": 3369,
-                        "entryId": 4041
                     }
                 ],
                 "pvpTalents": [
                     {
-                        "name": "Kleptomania",
-                        "spellId": 198100,
-                        "pvpTalentId": 218
+                        "name": "Improved Mass Invisibility",
+                        "spellId": 415945,
+                        "pvpTalentId": 217
                     },
                     {
                         "name": "Chrono Shift",
@@ -4604,117 +4525,93 @@
                         "pvpTalentId": 225
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:28+00:00"
+                "resolvedAt": "2026-09-06T02:56:48+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-11-0EAE17AC",
+                "targetGuid": "Player-5-0A76CC9B",
                 "championBuffs": [
                     {
-                        "spellId": 2383,
-                        "name": "Find Herbs"
+                        "spellId": 43308,
+                        "name": "Find Fish"
                     },
                     {
                         "spellId": 404464,
                         "name": "Flight Style: Skyriding"
                     },
                     {
-                        "spellId": 186403,
-                        "name": "Sign of Battle"
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
                     },
                     {
-                        "spellId": 1239355,
-                        "name": "Vicious Thalassian Flask of Honor"
-                    },
-                    {
-                        "spellId": 1459,
-                        "name": "Arcane Intellect"
-                    },
-                    {
-                        "spellId": 245686,
-                        "name": "Fashionable!"
+                        "spellId": 462854,
+                        "name": "Skyfury"
                     },
                     {
                         "spellId": 1217242,
                         "name": "Enlightened"
                     },
                     {
-                        "spellId": 53563,
-                        "name": "Beacon of Light"
+                        "spellId": 1126,
+                        "name": "Mark of the Wild"
+                    },
+                    {
+                        "spellId": 154797,
+                        "name": "Touch of Elune - Night"
                     },
                     {
                         "spellId": 210126,
                         "name": "Arcane Familiar"
                     },
                     {
-                        "spellId": 6673,
-                        "name": "Battle Shout"
-                    },
-                    {
-                        "spellId": 394195,
-                        "name": "Overflowing Energy"
+                        "spellId": 1459,
+                        "name": "Arcane Intellect"
                     },
                     {
                         "spellId": 110960,
                         "name": "Greater Invisibility"
                     },
                     {
-                        "spellId": 465,
-                        "name": "Devotion Aura"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "Arcanoweave Insight"
-                    },
-                    {
                         "spellId": 1241715,
                         "name": "Might of the Void"
                     },
                     {
-                        "spellId": 21562,
-                        "name": "Power Word: Fortitude"
+                        "spellId": 1295942,
+                        "name": "Prismatic Bolt!"
                     },
                     {
-                        "spellId": 10060,
-                        "name": "Power Infusion"
-                    },
-                    {
-                        "spellId": 1244893,
-                        "name": "Beacon of the Savior"
-                    },
-                    {
-                        "spellId": 365362,
-                        "name": "Arcane Surge"
+                        "spellId": 345230,
+                        "name": "Gladiator's Insignia"
                     },
                     {
                         "spellId": 461531,
                         "name": "Brainstorm"
                     },
                     {
-                        "spellId": 1242974,
-                        "name": "Arcane Salvo"
+                        "spellId": 263725,
+                        "name": "Clearcasting"
+                    },
+                    {
+                        "spellId": 1277009,
+                        "name": "Overpowered Missiles"
+                    },
+                    {
+                        "spellId": 774,
+                        "name": "Rejuvenation"
+                    },
+                    {
+                        "spellId": 235450,
+                        "name": "Prismatic Barrier"
+                    },
+                    {
+                        "spellId": 449336,
+                        "name": "Merely a Setback"
+                    },
+                    {
+                        "spellId": 414664,
+                        "name": "Mass Invisibility"
                     },
                     {
                         "spellId": 449322,
-                        "name": "Mana Cascade"
-                    },
-                    {
-                        "spellId": 157128,
-                        "name": "Saved by the Light"
-                    }
-                ],
-                "championDebuffs": [
-                    {
-                        "spellId": 1287663,
-                        "name": "Rune of Lingering"
-                    }
-                ],
-                "targetBuffs": [
-                    {
-                        "spellId": 461531,
-                        "name": "Brainstorm"
-                    },
-                    {
-                        "spellId": 449314,
                         "name": "Mana Cascade"
                     },
                     {
@@ -4722,66 +4619,132 @@
                         "name": "Spellfire Sphere"
                     },
                     {
-                        "spellId": 1241715,
-                        "name": "Might of the Void"
+                        "spellId": 155777,
+                        "name": "Rejuvenation (Germination)"
+                    }
+                ],
+                "championDebuffs": [
+                    {
+                        "spellId": 980,
+                        "name": "Agony"
+                    },
+                    {
+                        "spellId": 146739,
+                        "name": "Corruption"
+                    },
+                    {
+                        "spellId": 392388,
+                        "name": "Atrophic Poison"
+                    },
+                    {
+                        "spellId": 1259790,
+                        "name": "Unstable Affliction"
+                    },
+                    {
+                        "spellId": 1943,
+                        "name": "Rupture"
+                    },
+                    {
+                        "spellId": 2818,
+                        "name": "Deadly Poison"
+                    },
+                    {
+                        "spellId": 8680,
+                        "name": "Wound Poison"
+                    },
+                    {
+                        "spellId": 703,
+                        "name": "Garrote"
+                    },
+                    {
+                        "spellId": 1714,
+                        "name": "Curse of Tongues"
+                    },
+                    {
+                        "spellId": 450538,
+                        "name": "Soul Anathema"
+                    },
+                    {
+                        "spellId": 48181,
+                        "name": "Haunt"
+                    }
+                ],
+                "targetBuffs": [
+                    {
+                        "spellId": 8679,
+                        "name": "Wound Poison"
+                    },
+                    {
+                        "spellId": 139,
+                        "name": "Renew"
+                    },
+                    {
+                        "spellId": 315496,
+                        "name": "Slice and Dice"
                     },
                     {
                         "spellId": 77489,
                         "name": "Echo of Light"
                     },
                     {
-                        "spellId": 1287774,
-                        "name": "Rune of Burning Haste"
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
                     },
                     {
-                        "spellId": 383395,
-                        "name": "Feel the Burn"
+                        "spellId": 394080,
+                        "name": "Scent of Blood"
+                    },
+                    {
+                        "spellId": 1249093,
+                        "name": "Fatebound Coin Flips"
+                    },
+                    {
+                        "spellId": 1287771,
+                        "name": "Rune of Masterful Cunning"
+                    },
+                    {
+                        "spellId": 452923,
+                        "name": "Fatebound Coin (Heads)"
+                    },
+                    {
+                        "spellId": 392401,
+                        "name": "Improved Garrote"
                     },
                     {
                         "spellId": 64844,
                         "name": "Divine Hymn"
-                    },
-                    {
-                        "spellId": 48107,
-                        "name": "Heating Up"
-                    },
-                    {
-                        "spellId": 1229746,
-                        "name": "Arcanoweave Insight"
-                    },
-                    {
-                        "spellId": 383811,
-                        "name": "Fevered Incantation"
                     }
                 ],
                 "targetDebuffs": [
                     {
-                        "spellId": 388539,
-                        "name": "Rend"
+                        "spellId": 188389,
+                        "name": "Flame Shock"
                     },
                     {
-                        "spellId": 445836,
-                        "name": "Overwhelmed"
+                        "spellId": 164812,
+                        "name": "Moonfire"
                     },
                     {
-                        "spellId": 1287663,
-                        "name": "Rune of Lingering"
-                    },
-                    {
-                        "spellId": 115804,
-                        "name": "Mortal Wounds"
+                        "spellId": 1251059,
+                        "name": "Stormbind"
                     }
                 ],
-                "targetClassName": "Mage",
-                "targetSpecName": "Fire",
-                "resolvedAt": "2026-08-31T10:02:58+00:00"
+                "targetClassName": "Rogue",
+                "targetSpecName": "Assassination",
+                "resolvedAt": "2026-09-06T02:56:55+00:00"
             }
         },
         "30": {
-            "damage": 2656375,
+            "damage": 2675976,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
+                {
+                    "name": "Arcane Surge",
+                    "spellId": 365350,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
@@ -4789,10 +4752,94 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Touch of the Magi",
-                    "spellId": 321507,
+                    "name": "Prismatic Bolt",
+                    "spellId": 1295924,
                     "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Polymorph",
+                    "spellId": 118,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Barrage",
+                    "spellId": 44425,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Orb",
+                    "spellId": 153626,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Barrage",
+                    "spellId": 44425,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ring of Frost",
+                    "spellId": 113724,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Polymorph",
+                    "spellId": 118,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Polymorph",
+                    "spellId": 118,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Prismatic Bolt",
+                    "spellId": 1295924,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Missiles",
+                    "spellId": 5143,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Barrage",
+                    "spellId": 44425,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Orb",
+                    "spellId": 153626,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Counterspell",
@@ -4801,58 +4848,10 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Prismatic Bolt",
-                    "spellId": 1295924,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Missiles",
-                    "spellId": 5143,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Orb",
-                    "spellId": 153626,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Orb",
-                    "spellId": 153626,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Blink",
-                    "spellId": 1953,
-                    "isCc": false,
-                    "isRepeat": false
                 },
                 {
                     "name": "Arcane Missiles",
@@ -4863,24 +4862,6 @@
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Missiles",
-                    "spellId": 5143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Orb",
-                    "spellId": 153626,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Missiles",
-                    "spellId": 5143,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -4891,55 +4872,19 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Polymorph",
-                    "spellId": 118,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
                     "name": "Arcane Orb",
                     "spellId": 153626,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blink",
-                    "spellId": 1953,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Missiles",
-                    "spellId": 5143,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Polymorph",
-                    "spellId": 118,
-                    "isCc": true,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Barrage",
-                    "spellId": 44425,
                     "isCc": false,
                     "isRepeat": true
                 }
             ],
-            "matchId": "9c2105892809c7f3ed314184164c7c41",
-            "guid": "Player-76-0BFF2E85",
-            "start": 76761.699,
-            "end": 76791.699,
-            "targetGuid": "Player-11-0EB9FAE6",
+            "matchId": "911b77be833306d4347fc312657c568e",
+            "guid": "Player-96-0EDBDC37",
+            "start": 85139.417,
+            "end": 85169.417,
+            "targetGuid": "Player-60-0FF9ACD2",
             "talentBuild": {
-                "matchId": "9c2105892809c7f3ed314184164c7c41",
+                "matchId": "911b77be833306d4347fc312657c568e",
                 "talents": [
                     {
                         "name": "Spellsteal",
@@ -4949,6 +4894,15 @@
                         "resolvedByOffset": false,
                         "nodeId": 2966,
                         "entryId": 3558
+                    },
+                    {
+                        "name": "Permafrost Bauble",
+                        "spellId": 1265517,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2968,
+                        "entryId": 3560
                     },
                     {
                         "name": "Barrier Diffusion",
@@ -5023,15 +4977,6 @@
                         "entryId": 3584
                     },
                     {
-                        "name": "Remove Curse",
-                        "spellId": 475,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 2985,
-                        "entryId": 3585
-                    },
-                    {
                         "name": "Ice Block",
                         "spellId": 45438,
                         "rank": 1,
@@ -5084,15 +5029,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3014,
                         "entryId": 3616
-                    },
-                    {
-                        "name": "Mass Invisibility",
-                        "spellId": 414664,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 2972,
-                        "entryId": 3566
                     },
                     {
                         "name": "Splinterstorm",
@@ -5158,24 +5094,6 @@
                         "entryId": 4070
                     },
                     {
-                        "name": "Orb Mastery",
-                        "spellId": 1243435,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3366,
-                        "entryId": 4038
-                    },
-                    {
-                        "name": "Energized Familiar",
-                        "spellId": 452997,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3335,
-                        "entryId": 3998
-                    },
-                    {
                         "name": "Improved Clearcasting",
                         "spellId": 321420,
                         "rank": 1,
@@ -5183,33 +5101,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3314,
                         "entryId": 3974
-                    },
-                    {
-                        "name": "Intuition",
-                        "spellId": 1223798,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3333,
-                        "entryId": 3996
-                    },
-                    {
-                        "name": "Arcane Surge",
-                        "spellId": 365350,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3321,
-                        "entryId": 3983
-                    },
-                    {
-                        "name": "Focusing Crystal",
-                        "spellId": 461257,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3350,
-                        "entryId": 4016
                     },
                     {
                         "name": "Arcane Missiles",
@@ -5221,33 +5112,6 @@
                         "entryId": 3964
                     },
                     {
-                        "name": "Touch of the Magi",
-                        "spellId": 321507,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3334,
-                        "entryId": 3997
-                    },
-                    {
-                        "name": "Arcane Familiar",
-                        "spellId": 205022,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3330,
-                        "entryId": 3993
-                    },
-                    {
-                        "name": "Enlightened",
-                        "spellId": 321387,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3349,
-                        "entryId": 4015
-                    },
-                    {
                         "name": "Arcing Cleave",
                         "spellId": 231564,
                         "rank": 1,
@@ -5255,24 +5119,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3315,
                         "entryId": 3975
-                    },
-                    {
-                        "name": "Charged Orb",
-                        "spellId": 384651,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3331,
-                        "entryId": 3994
-                    },
-                    {
-                        "name": "Prodigious Savant",
-                        "spellId": 384612,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3356,
-                        "entryId": 4025
                     },
                     {
                         "name": "Signature Spell",
@@ -5293,24 +5139,6 @@
                         "entryId": 3984
                     },
                     {
-                        "name": "Aether Attunement",
-                        "spellId": 1243307,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3340,
-                        "entryId": 4003
-                    },
-                    {
-                        "name": "Arcane Singularity",
-                        "spellId": 1244001,
-                        "rank": 2,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3358,
-                        "entryId": 4028
-                    },
-                    {
                         "name": "Concentrated Power",
                         "spellId": 414379,
                         "rank": 1,
@@ -5327,15 +5155,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3308,
                         "entryId": 3967
-                    },
-                    {
-                        "name": "Resonance",
-                        "spellId": 205028,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3342,
-                        "entryId": 4007
                     },
                     {
                         "name": "Charm of Medivh",
@@ -5374,15 +5193,6 @@
                         "entryId": 3729
                     },
                     {
-                        "name": "Improved Conjuration",
-                        "spellId": 1244025,
-                        "rank": 2,
-                        "treeType": "class",
-                        "resolvedByOffset": false,
-                        "nodeId": 3108,
-                        "entryId": 3731
-                    },
-                    {
                         "name": "Improved Prismatic Barrier",
                         "spellId": 321745,
                         "rank": 1,
@@ -5390,33 +5200,6 @@
                         "resolvedByOffset": false,
                         "nodeId": 3109,
                         "entryId": 3732
-                    },
-                    {
-                        "name": "Eureka",
-                        "spellId": 452198,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3357,
-                        "entryId": 4026
-                    },
-                    {
-                        "name": "Expanded Mind",
-                        "spellId": 1243557,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3336,
-                        "entryId": 3999
-                    },
-                    {
-                        "name": "Overpowered Missiles",
-                        "spellId": 1244329,
-                        "rank": 1,
-                        "treeType": "spec",
-                        "resolvedByOffset": false,
-                        "nodeId": 3365,
-                        "entryId": 4037
                     },
                     {
                         "name": "Polished Focus",
@@ -5444,6 +5227,168 @@
                         "resolvedByOffset": false,
                         "nodeId": 3156,
                         "entryId": 3788
+                    },
+                    {
+                        "name": "Mass Invisibility",
+                        "spellId": 414664,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2972,
+                        "entryId": 3566
+                    },
+                    {
+                        "name": "Orb Mastery",
+                        "spellId": 1243435,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3366,
+                        "entryId": 4038
+                    },
+                    {
+                        "name": "Energized Familiar",
+                        "spellId": 452997,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3335,
+                        "entryId": 3998
+                    },
+                    {
+                        "name": "Intuition",
+                        "spellId": 1223798,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3333,
+                        "entryId": 3996
+                    },
+                    {
+                        "name": "Arcane Surge",
+                        "spellId": 365350,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3321,
+                        "entryId": 3983
+                    },
+                    {
+                        "name": "Focusing Crystal",
+                        "spellId": 461257,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3350,
+                        "entryId": 4016
+                    },
+                    {
+                        "name": "Touch of the Magi",
+                        "spellId": 321507,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3334,
+                        "entryId": 3997
+                    },
+                    {
+                        "name": "Arcane Familiar",
+                        "spellId": 205022,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3330,
+                        "entryId": 3993
+                    },
+                    {
+                        "name": "Enlightened",
+                        "spellId": 321387,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3349,
+                        "entryId": 4015
+                    },
+                    {
+                        "name": "Charged Orb",
+                        "spellId": 384651,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3331,
+                        "entryId": 3994
+                    },
+                    {
+                        "name": "Prodigious Savant",
+                        "spellId": 384612,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3356,
+                        "entryId": 4025
+                    },
+                    {
+                        "name": "Aether Attunement",
+                        "spellId": 1243307,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3340,
+                        "entryId": 4003
+                    },
+                    {
+                        "name": "Arcane Singularity",
+                        "spellId": 1244001,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3358,
+                        "entryId": 4028
+                    },
+                    {
+                        "name": "Resonance",
+                        "spellId": 205028,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3342,
+                        "entryId": 4007
+                    },
+                    {
+                        "name": "Improved Conjuration",
+                        "spellId": 1244025,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 3108,
+                        "entryId": 3731
+                    },
+                    {
+                        "name": "Eureka",
+                        "spellId": 452198,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3357,
+                        "entryId": 4026
+                    },
+                    {
+                        "name": "Expanded Mind",
+                        "spellId": 1243557,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3336,
+                        "entryId": 3999
+                    },
+                    {
+                        "name": "Overpowered Missiles",
+                        "spellId": 1244329,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 3365,
+                        "entryId": 4037
                     },
                     {
                         "name": "Brainstorm",
@@ -5518,15 +5463,6 @@
                         "entryId": 4064
                     },
                     {
-                        "name": "Reactive Barrier",
-                        "spellId": 444827,
-                        "rank": 1,
-                        "treeType": "hero",
-                        "resolvedByOffset": true,
-                        "nodeId": 3390,
-                        "entryId": 4066
-                    },
-                    {
                         "name": "Supernova",
                         "spellId": 157980,
                         "rank": 1,
@@ -5545,22 +5481,31 @@
                         "entryId": 3567
                     },
                     {
-                        "name": "High Voltage",
-                        "spellId": 461248,
+                        "name": "Time Walk",
+                        "spellId": 1244087,
                         "rank": 1,
-                        "treeType": "spec",
+                        "treeType": "class",
                         "resolvedByOffset": true,
-                        "nodeId": 3363,
-                        "entryId": 4034
+                        "nodeId": 3100,
+                        "entryId": 3721
                     },
                     {
-                        "name": "Aegwynn's Technique",
-                        "spellId": 1243507,
+                        "name": "Ice Nova",
+                        "spellId": 157997,
                         "rank": 1,
-                        "treeType": "spec",
+                        "treeType": "class",
                         "resolvedByOffset": true,
-                        "nodeId": 3341,
-                        "entryId": 4005
+                        "nodeId": 2969,
+                        "entryId": 3562
+                    },
+                    {
+                        "name": "Reactive Barrier",
+                        "spellId": 444827,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 3390,
+                        "entryId": 4066
                     },
                     {
                         "name": "Slipstream",
@@ -5572,31 +5517,22 @@
                         "entryId": 3991
                     },
                     {
-                        "name": "Time Walk",
-                        "spellId": 1244087,
+                        "name": "Aegwynn's Technique",
+                        "spellId": 1243507,
                         "rank": 1,
-                        "treeType": "class",
+                        "treeType": "spec",
                         "resolvedByOffset": true,
-                        "nodeId": 3100,
-                        "entryId": 3721
+                        "nodeId": 3341,
+                        "entryId": 4005
                     },
                     {
-                        "name": "Improved Blink",
-                        "spellId": 1244340,
+                        "name": "High Voltage",
+                        "spellId": 461248,
                         "rank": 1,
-                        "treeType": "class",
+                        "treeType": "spec",
                         "resolvedByOffset": true,
-                        "nodeId": 2979,
-                        "entryId": 3576
-                    },
-                    {
-                        "name": "Ice Nova",
-                        "spellId": 157997,
-                        "rank": 1,
-                        "treeType": "class",
-                        "resolvedByOffset": true,
-                        "nodeId": 2969,
-                        "entryId": 3562
+                        "nodeId": 3363,
+                        "entryId": 4034
                     },
                     {
                         "name": "Shifting Shards",
@@ -5615,173 +5551,158 @@
                         "resolvedByOffset": true,
                         "nodeId": 3369,
                         "entryId": 4041
+                    },
+                    {
+                        "name": "Shimmer",
+                        "spellId": 212653,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2979,
+                        "entryId": 3575
                     }
                 ],
                 "pvpTalents": [
                     {
-                        "name": "Master Shepherd",
-                        "spellId": 410248,
-                        "pvpTalentId": 222
-                    },
-                    {
-                        "name": "Improved Mass Invisibility",
-                        "spellId": 415945,
-                        "pvpTalentId": 217
+                        "name": "Chrono Shift",
+                        "spellId": 235711,
+                        "pvpTalentId": 224
                     },
                     {
                         "name": "Overpowered Barrier",
                         "spellId": 1220739,
                         "pvpTalentId": 225
+                    },
+                    {
+                        "name": "Improved Mass Invisibility",
+                        "spellId": 415945,
+                        "pvpTalentId": 217
                     }
                 ],
-                "resolvedAt": "2026-08-31T06:43:28+00:00"
+                "resolvedAt": "2026-09-06T02:56:48+00:00"
             },
             "mechanics": {
-                "targetGuid": "Player-11-0EB9FAE6",
+                "targetGuid": "Player-60-0FF9ACD2",
                 "championBuffs": [
                     {
-                        "spellId": 2383,
-                        "name": "Find Herbs"
+                        "spellId": 61295,
+                        "name": "Riptide"
                     },
                     {
-                        "spellId": 404464,
-                        "name": "Flight Style: Skyriding"
-                    },
-                    {
-                        "spellId": 1239355,
-                        "name": "Vicious Thalassian Flask of Honor"
-                    },
-                    {
-                        "spellId": 186403,
-                        "name": "Sign of Battle"
-                    },
-                    {
-                        "spellId": 210126,
-                        "name": "Arcane Familiar"
-                    },
-                    {
-                        "spellId": 245686,
-                        "name": "Fashionable!"
-                    },
-                    {
-                        "spellId": 1217242,
-                        "name": "Enlightened"
-                    },
-                    {
-                        "spellId": 1287771,
-                        "name": "Rune of Masterful Cunning"
-                    },
-                    {
-                        "spellId": 394195,
-                        "name": "Overflowing Energy"
-                    },
-                    {
-                        "spellId": 1459,
-                        "name": "Arcane Intellect"
+                        "spellId": 207400,
+                        "name": "Ancestral Vigor"
                     },
                     {
                         "spellId": 345230,
                         "name": "Gladiator's Insignia"
                     },
                     {
+                        "spellId": 1287774,
+                        "name": "Rune of Burning Haste"
+                    },
+                    {
+                        "spellId": 1287665,
+                        "name": "Rune of Lingering"
+                    },
+                    {
                         "spellId": 1242974,
                         "name": "Arcane Salvo"
                     },
                     {
-                        "spellId": 194384,
-                        "name": "Atonement"
+                        "spellId": 263725,
+                        "name": "Clearcasting"
+                    },
+                    {
+                        "spellId": 461531,
+                        "name": "Brainstorm"
+                    },
+                    {
+                        "spellId": 382024,
+                        "name": "Earthliving Weapon"
+                    }
+                ],
+                "championDebuffs": [],
+                "targetBuffs": [
+                    {
+                        "spellId": 1272710,
+                        "name": "Crimson Blessing"
+                    },
+                    {
+                        "spellId": 465,
+                        "name": "Devotion Aura"
+                    },
+                    {
+                        "spellId": 471521,
+                        "name": "Sign of the Explorer"
                     },
                     {
                         "spellId": 21562,
                         "name": "Power Word: Fortitude"
                     },
                     {
-                        "spellId": 10060,
-                        "name": "Power Infusion"
+                        "spellId": 6673,
+                        "name": "Battle Shout"
                     },
                     {
-                        "spellId": 365362,
-                        "name": "Arcane Surge"
+                        "spellId": 1229746,
+                        "name": "Arcanoweave Insight"
                     },
                     {
-                        "spellId": 414664,
-                        "name": "Mass Invisibility"
+                        "spellId": 1287770,
+                        "name": "Rune of the Versatile Warrior"
                     },
                     {
-                        "spellId": 1295898,
-                        "name": "Versatile Ritual"
-                    }
-                ],
-                "championDebuffs": [],
-                "targetBuffs": [
+                        "spellId": 221883,
+                        "name": "Divine Steed"
+                    },
                     {
-                        "spellId": 1459,
-                        "name": "Arcane Intellect"
+                        "spellId": 431522,
+                        "name": "Dawnlight"
+                    },
+                    {
+                        "spellId": 1241410,
+                        "name": "Hammer of Wrath"
+                    },
+                    {
+                        "spellId": 454351,
+                        "name": "Avenging Wrath"
+                    },
+                    {
+                        "spellId": 445206,
+                        "name": "Blessing of An'she"
+                    },
+                    {
+                        "spellId": 1264050,
+                        "name": "Born in Sunlight"
                     },
                     {
                         "spellId": 77489,
                         "name": "Echo of Light"
                     },
                     {
-                        "spellId": 48107,
-                        "name": "Heating Up"
+                        "spellId": 1305230,
+                        "name": "Divine Power"
                     },
                     {
-                        "spellId": 235313,
-                        "name": "Blazing Barrier"
+                        "spellId": 431907,
+                        "name": "Sun's Avatar"
                     },
                     {
                         "spellId": 41635,
                         "name": "Prayer of Mending"
-                    },
-                    {
-                        "spellId": 1246768,
-                        "name": "Power Word: Shield"
-                    },
-                    {
-                        "spellId": 65081,
-                        "name": "Body and Soul"
-                    },
-                    {
-                        "spellId": 1953,
-                        "name": "Blink"
-                    },
-                    {
-                        "spellId": 383811,
-                        "name": "Fevered Incantation"
                     }
                 ],
                 "targetDebuffs": [
                     {
-                        "spellId": 703,
-                        "name": "Garrote"
-                    },
-                    {
-                        "spellId": 8680,
-                        "name": "Wound Poison"
-                    },
-                    {
-                        "spellId": 3409,
-                        "name": "Crippling Poison"
-                    },
-                    {
-                        "spellId": 589,
-                        "name": "Shadow Word: Pain"
-                    },
-                    {
-                        "spellId": 381628,
-                        "name": "Internal Bleeding"
-                    },
-                    {
-                        "spellId": 1943,
-                        "name": "Rupture"
+                        "spellId": 210824,
+                        "name": "Touch of the Magi"
                     }
                 ],
-                "targetClassName": "Mage",
-                "targetSpecName": "Fire",
-                "resolvedAt": "2026-08-31T10:02:58+00:00"
+                "targetClassName": "Paladin",
+                "targetSpecName": "Retribution",
+                "resolvedAt": "2026-09-06T02:56:55+00:00"
             }
         }
     },
-    "generated_at": "2026-08-31T06:36:21+00:00"
+    "generated_at": "2026-09-06T02:51:03+00:00"
 }

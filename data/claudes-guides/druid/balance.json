@@ -1,0 +1,84 @@
+{
+    "classSlug": "druid",
+    "specSlug": "balance",
+    "title": "Balance Druid",
+    "subtitle": "A data-grounded PvP read, written by Claude — not a dictated expert module. See the disclaimer at the end.",
+    "dataSources": {
+        "playstyleSample": 10,
+        "ratingRange": [2173, 2894],
+        "patch": "12.0.7.68453",
+        "freshPullPerformed": false,
+        "note": "Built entirely from the existing 10-match sample (2173-2894 rating) already on file — no new arena-log pull was performed for this. If that changes later, any fresh pull gets the standard wow:refresh-match-derived treatment so Class Guide/Burst Windows/CC chains for this spec benefit too, not just this page."
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "heading": "Identity",
+            "paragraphs": [
+                "Balance has the largest real crowd-control kit of any spec covered in this series so far — eight distinct CC abilities, spread across five different diminishing-returns categories (Disorient, Root, Stun, Silence, Knockback), plus two shapeshift forms and a genuine damage-caster core. Per Part 2 of this project's own arena framework (arena-structure.md), that breadth puts Balance closer to Frost Mage's control-first identity than to a pure damage spec — the difference is that where Frost's control tools are mostly independent of its damage rotation, Balance's own burst window (below) shows its CC actually woven directly into its highest-damage sequence, not sitting to the side of it."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Offensive Cooldowns",
+            "intro": "Celestial Alignment and Incarnation: Chosen of Elune are the two headline escalations; Starsurge and Starfire are the sustained core underneath them.",
+            "spellIds": [194223, 102560, 202770, 197626, 197628]
+        },
+        {
+            "type": "prose",
+            "heading": "A finding worth reading carefully, not literally",
+            "paragraphs": [
+                "Celestial Alignment — this spec's own signature offensive cooldown, and the ability that opens its real burst window below — was taken in all 10 sampled matches and flagged as never detected as used in any of them. Taken completely literally, that would mean real Balance Druids in this rating bracket never press their own headline cooldown, which is obviously not a credible reading given it's the same ability opening the actual measured burst window a few paragraphs down.",
+                "The far more likely explanation, consistent with this project's own documented gaps around this kind of analysis: Celestial Alignment applies a buff rather than dealing direct damage itself, so a detection method built around discrete damaging casts may simply have no event to key off for it. Flagged here as a probable measurement limitation, not asserted as a real finding — worth remembering that a 0-used count isn't automatically meaningful just because it's a clean number."
+            ]
+        },
+        {
+            "type": "prose",
+            "heading": "The real burst window — two different CC categories in one sequence",
+            "paragraphs": [
+                "The actual highest-DPS 12-second window found across the whole archived sample: Starsurge -> Force of Nature -> Starsurge -> Cyclone -> Starfire -> Starsurge -> Starfire -> Mighty Bash -> Starfire -> Starsurge -> Starsurge. This is the strongest version yet of the pattern this whole guide series keeps finding — not just one control ability inside the highest-damage window, but two genuinely different ones: Cyclone (Disorient) and Mighty Bash (Stun), from two separate diminishing-returns pools, both landing inside the same 12 seconds.",
+                "That's a meaningfully stronger data point than the single-CC cases already found in five other specs in this series. It's consistent with a real, deliberate pattern rather than one ability happening to be nearby — locking a target with two different CC categories back to back, neither diminishing the other, while damage output peaks at the same time."
+            ]
+        },
+        {
+            "type": "sequence",
+            "heading": "The real observed burst window",
+            "intro": "The literal top-DPS 12s window from the archived match sample — the only guide in this series so far where two different real CC categories both land inside the same measured burst. Read live from the same rotation file Burst Windows/Class Guide use for this spec.",
+            "useRealBurstWindow": true,
+            "burstWindowLength": 12
+        },
+        {
+            "type": "prose",
+            "heading": "Reading the anti-go against Balance",
+            "paragraphs": [
+                "Per Part 11 of the framework, the state-recognition trap here is treating a single landed CC as the whole threat. Given the finding above, a real Balance Druid's go can involve stacking two separate control categories on the same target — meaning a defender who breaks the first one (say, Cyclone) and relaxes has very possibly walked straight into the second (Mighty Bash) a moment later. The correct read treats a single CC landing as a warning that more control may already be queued up, not as the end of the threat."
+            ]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Defensive & Shapeshift Toolkit",
+            "intro": "Bear Form and Frenzied Regeneration are the hard defensive answers; Regrowth and Moonkin Form round out a hybrid's real self-preservation kit.",
+            "spellIds": [5487, 22842, 8936, 197625]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Crowd Control",
+            "intro": "The largest CC kit in this series — five distinct diminishing-returns categories represented (Disorient, Root, Stun, Silence, Knockback), which is exactly why two of them could land in the same burst window above without either losing duration.",
+            "spellIds": [33786, 339, 102359, 102401, 5211, 78675, 132469, 99]
+        },
+        {
+            "type": "spellGrid",
+            "heading": "Mobility",
+            "intro": "Barkskin, Dash, and Stampeding Roar round out this spec's real repositioning and survival kit outside of pure damage or control.",
+            "spellIds": [22812, 1850, 106898]
+        },
+        {
+            "type": "prose",
+            "heading": "The cooldown ledger — what to actually track",
+            "paragraphs": [
+                "Per Part 4 of the framework, the number worth tracking isn't any single cooldown but the combined availability of this spec's CC kit — given the eight-ability, five-category breadth documented above, 'how much control is currently up' predicts this spec's next real go far better than watching Celestial Alignment's timer alone would."
+            ]
+        }
+    ],
+    "disclaimer": "This guide was written by Claude (an AI), synthesized from real archived match data and this project's own arena-structure.md framework — it is NOT a dictated expert module and does not carry the same trust tier as the Discipline Priest or Feral Druid canonical modules elsewhere on this site. Every cooldown, category, and observed sequence above is read live from the same database everything else uses; the reasoning connecting them is AI-generated analysis, offered as a data-grounded opinion, not verified expertise. Treat it as a starting hypothesis to test against your own games, not a verdict."
+}
