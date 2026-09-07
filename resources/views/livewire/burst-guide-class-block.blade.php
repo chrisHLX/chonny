@@ -1,26 +1,34 @@
 @php
     // Same badge maps as WowComps/Claude's Guides/Top 10 CC Chains — reused verbatim so a spell
     // card here looks like every other spell card on the site.
-    $categoryBadge = [
-        'Crowd Control' => 'badge-blue',
-        'Defensive' => 'badge-red',
-        'Mobility' => 'badge-green',
-        'Utility' => 'badge-amber',
-        'Offensive' => 'badge-orange',
-        'Other' => 'badge-gray',
+    $categoryBadge = config('spell_display.category_badges');
+    $drBadge = config('spell_display.dr_badges');
+
+    $fmtSeconds = fn ($s) => rtrim(rtrim(number_format((float) $s, 2), '0'), '.').'s';
+    $fmtNumber = fn ($n) => rtrim(rtrim(number_format((float) $n, 1), '0'), '.');
+
+    // What each phase MEANS. The builder decides which phase a step is in (from its measured
+    // median timing); these strings only explain the phase a player is looking at.
+    $phaseMeta = [
+        'setup' => ['label' => 'Set up', 'note' => 'Before you commit — this is what stops the damage being healed or walked away from.'],
+        'commit' => ['label' => 'Commit', 'note' => 'Press these together. The window starts here.'],
+        'execute' => ['label' => 'Execute', 'note' => 'Spend the window.'],
     ];
-    $drBadge = [
-        'Stun' => 'badge-red',
-        'Disorient' => 'badge-blue',
-        'Incapacitate' => 'badge-amber',
-        'Root' => 'badge-green',
-        'Silence' => 'badge-gray',
-        'Knockback' => 'badge-orange',
-        'Disarm' => 'badge-gold',
-        'Slow' => 'badge-gray',
+
+    // Curated spells.chain_target where one exists, else inferred from dr_category — see
+    // BurstGuideBuilder::inferControlTarget().
+    $controlTargetLabel = [
+        'kill_target' => 'on the kill target',
+        'healer' => 'on their healer',
+        'both' => 'either target',
+        'peel' => 'peel / positioning',
     ];
-    $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
-    $splitUnit = fn (string $s) => [rtrim($s, 's'), 's'];
+    $controlTargetHint = [
+        'kill_target' => "Doesn't break on damage, so it holds while you burst.",
+        'healer' => 'Breaks on damage — it cannot sit on the target you are bursting.',
+        'both' => "Survives damage, so it works on either — on the kill target to hold them for the burst, or on their healer to set up further control.",
+        'peel' => 'Movement control — positioning and peeling rather than a hard lock.',
+    ];
 @endphp
 
 {{-- Livewire requires exactly one persistent root element on every render, even when the
@@ -31,67 +39,132 @@
 @if ($guide['class'] && !empty($guide['specs']))
     @php $classColor = config('wow_classes.colors')[$guide['class']->slug] ?? '#8A8A9A'; @endphp
     <div class="linear-card px-6 py-5">
+        @if ($showClassHeader ?? true)
         <div class="flex items-center gap-2.5 mb-4">
             <x-class-icon :class="$guide['class']" size="w-7 h-7"/>
             <h2 class="font-display text-[18px] font-bold" style="color: {{ $classColor }}">{{ $guide['class']->name }}</h2>
         </div>
+        @endif
 
-        <div class="space-y-4">
+        <div class="space-y-7">
             @foreach ($guide['specs'] as $s)
+                @php
+                    $window = $s['window'];
+                    $evidence = $s['evidence'];
+                @endphp
                 <div>
-                    <div class="flex items-center gap-2 mb-2">
+                    {{-- Spec header: the two numbers that make a burst plan actionable, plus the
+                         evidence behind them. --}}
+                    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1">
                         <x-spec-icon :spec="$s['spec']" :color="$classColor" size="w-5 h-5"/>
                         <p class="text-[12.5px] font-semibold text-ink">{{ $s['spec']->name }}</p>
-                        @if ($s['meta']['sourceLengthSeconds'])
-                            <span class="badge-gray !text-[9px]">from a real {{ $s['meta']['sourceLengthSeconds'] }}s window</span>
+
+                        @if (!empty($window['goLengthSeconds']))
+                            <span class="badge-gold !text-[9px]"
+                                  title="{{ $window['goLengthBasis'] === 'buff-duration'
+                                      ? 'The real duration of the damage buff you open with.'
+                                      : 'Measured: how long it takes to get every cooldown out, across every real window on file.' }}">
+                                {{ $fmtNumber($window['goLengthSeconds']) }}s window
+                            </span>
                         @endif
-                        @if ($s['meta']['truncatedAtRepeat'] ?? false)
-                            <span class="badge-gold !text-[9px]" title="Stopped once the sequence started repeating">stops at repeat</span>
+                        @if (!empty($window['globals']))
+                            <span class="badge-blue !text-[9px]" title="Window length divided by this spec's own measured global cooldown ({{ $evidence['gcdSeconds'] ?? '?' }}s).">
+                                ~{{ $window['globals'] }} globals
+                            </span>
+                        @endif
+                        @if (!empty($window['anchorCooldownSeconds']))
+                            <span class="badge-gray !text-[9px]" title="Cooldown of the ability this whole plan is built around.">
+                                every {{ $fmtNumber($window['anchorCooldownSeconds']) }}s
+                            </span>
                         @endif
                     </div>
 
-                    <div class="overflow-x-auto pb-1">
-                        <ol class="flex items-center gap-1.5 w-max">
-                            @foreach ($s['steps'] as $entry)
-                                @php
-                                    $spell = $entry['spell'];
-                                    $cdSeconds = $entry['cooldown']['seconds'] ?? null;
-                                    [$cdValue, $cdUnit] = $cdSeconds !== null ? $splitUnit($fmtSeconds((float) $cdSeconds)) : ['—', ''];
-                                @endphp
-                                <li>
+                    @php
+                        // Built in PHP, not inline: a Blade directive written directly against the
+                        // preceding word ("matches@if(...)") does not compile and renders as
+                        // literal "@if (...)" text on the page.
+                        $kills = !empty($evidence['killWindows'])
+                            ? ', '.number_format($evidence['killWindows']).' of which ended in a kill'
+                            : '';
+                    @endphp
+                    <p class="text-[10px] text-ink-subtle mb-3">
+                        Aggregated from {{ number_format($evidence['anchoredWindows'] ?? 0) }} real burst windows
+                        across {{ number_format($evidence['matches'] ?? 0) }} matches{{ $kills }}.
+                        @if (($window['goLengthBasis'] ?? null) === 'measured')
+                            Window length measured from the data — this spec has no opener whose buff duration bounds it.
+                        @endif
+                        @if (isset($evidence['gcdMeasured']) && !$evidence['gcdMeasured'])
+                            Global cooldown could not be measured for this spec; the game's base 1.5s is assumed.
+                        @endif
+                    </p>
+
+                    <div class="space-y-3">
+                        @foreach ($s['phases'] as $phaseKey => $steps)
+                            <div>
+                                <div class="flex items-baseline gap-2 mb-1.5">
+                                    <span class="text-[10px] uppercase tracking-wider font-bold text-gold">{{ $phaseMeta[$phaseKey]['label'] }}</span>
+                                    <span class="text-[10px] text-ink-subtle">{{ $phaseMeta[$phaseKey]['note'] }}</span>
+                                </div>
+
+                                <div class="overflow-x-auto pb-1">
+                                    <ol class="flex items-stretch gap-1.5 w-max">
+                                        @foreach ($steps as $entry)
+                                            <li>
+                                                <x-burst-step
+                                                    :entry="$entry"
+                                                    :class-id="$guide['class']->id"
+                                                    :spec-id="$s['spec']->id"
+                                                    :category-badge="$categoryBadge"
+                                                    :dr-badge="$drBadge"
+                                                    :control-target-label="$controlTargetLabel"
+                                                    :control-target-hint="$controlTargetHint"/>
+                                            </li>
+                                            @if (!$loop->last)
+                                                <li class="flex items-center text-ink-subtle text-[11px] shrink-0">→</li>
+                                            @endif
+                                        @endforeach
+                                    </ol>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        @if (!empty($s['fill']))
+                            <div>
+                                <div class="flex items-baseline gap-2 mb-1.5">
+                                    <span class="text-[10px] uppercase tracking-wider font-bold text-violet">Fill</span>
+                                    <span class="text-[10px] text-ink-subtle">Spend every remaining global on these — the number is how many times per window, on average.</span>
+                                </div>
+                                <div class="overflow-x-auto pb-1">
+                                    <ul class="flex items-stretch gap-1.5 w-max">
+                                        @foreach ($s['fill'] as $entry)
+                                            <li>
+                                                <x-burst-step
+                                                    :entry="$entry"
+                                                    :class-id="$guide['class']->id"
+                                                    :spec-id="$s['spec']->id"
+                                                    :category-badge="$categoryBadge"
+                                                    :dr-badge="$drBadge"
+                                                    :control-target-label="$controlTargetLabel"
+                                                    :control-target-hint="$controlTargetHint"/>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if (!empty($s['alsoPressed']))
+                            {{-- Surfaced rather than hidden: these show up often in real windows but
+                                 are not part of dealing damage (mobility, defensives, utility). --}}
+                            <p class="text-[10px] text-ink-subtle pt-0.5">
+                                <span class="font-semibold text-ink-muted">Also pressed here, but not part of the damage:</span>
+                                @foreach ($s['alsoPressed'] as $entry)
                                     <button type="button"
-                                            wire:click="$dispatch('show-spell-detail', { spellId: {{ $spell->id }}, classId: {{ $guide['class']->id }}, specId: {{ $s['spec']->id }} })"
-                                            class="linear-card !p-2.5 w-36 flex-shrink-0 text-left hover:border-gold/40 transition-colors">
-                                        <div class="flex items-center gap-1.5 mb-1.5">
-                                            <x-spell-icon :spell="$spell" size="w-6 h-6"/>
-                                            <span class="text-[11px] text-ink font-semibold truncate leading-tight">{{ $spell->display_name }}</span>
-                                        </div>
-                                        <div class="flex flex-wrap items-center gap-1 mb-1.5">
-                                            @if ($spell->dr_category)
-                                                <span class="{{ $drBadge[$spell->dr_category] ?? 'badge-gray' }} !text-[8px]">{{ $spell->dr_category }}</span>
-                                            @else
-                                                <span class="{{ $categoryBadge[$entry['category']] ?? 'badge-gray' }} !text-[8px]">{{ $entry['category'] }}</span>
-                                            @endif
-                                        </div>
-                                        <div class="flex items-center gap-2 pt-1.5 border-t border-line">
-                                            <div class="flex flex-col leading-none">
-                                                <span class="text-[8px] uppercase tracking-wider text-ink-subtle font-semibold mb-0.5">CD</span>
-                                                <span class="text-[12px] font-bold text-ink tabular-nums">{{ $cdValue }}<span class="text-[8px] font-bold text-ink">{{ $cdUnit }}</span></span>
-                                            </div>
-                                            @if ($spell->pvp_duration_seconds)
-                                                <div class="flex flex-col leading-none">
-                                                    <span class="text-[8px] uppercase tracking-wider text-ink-subtle font-semibold mb-0.5">Dur</span>
-                                                    <span class="text-[12px] font-bold text-ink tabular-nums">{{ rtrim(rtrim(number_format($spell->pvp_duration_seconds, 1), '0'), '.') }}<span class="text-[8px] font-bold text-ink">s</span></span>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </button>
-                                </li>
-                                @if (!$loop->last)
-                                    <li class="text-ink-subtle text-[11px] shrink-0">→</li>
-                                @endif
-                            @endforeach
-                        </ol>
+                                            wire:click="$dispatch('show-spell-detail', { spellId: {{ $entry['spell']->id }}, classId: {{ $guide['class']->id }}, specId: {{ $s['spec']->id }} })"
+                                            class="hover:text-gold transition-colors underline decoration-dotted underline-offset-2">{{ $entry['spell']->display_name }}</button>{{ $loop->last ? '' : ' ·' }}
+                                @endforeach
+                            </p>
+                        @endif
                     </div>
                 </div>
             @endforeach

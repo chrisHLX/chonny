@@ -1,8 +1,8 @@
 {
     "class": "shaman",
     "spec": "enhancement",
-    "windows": 153,
-    "killWindows": 32,
+    "windows": 88,
+    "killWindows": 19,
     "matches": 64,
     "anchors": [
         "Ascendance",
@@ -27,85 +27,99 @@
                 "name": "Tempest",
                 "spellId": 452201,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.29
             },
             {
                 "name": "Tempest",
                 "spellId": 452201,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 1.32
             },
             {
                 "name": "Chain Lightning",
                 "spellId": 188443,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.35
             },
             {
                 "name": "Chain Lightning",
                 "spellId": 188443,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 3.38
             },
             {
                 "name": "Chain Lightning",
                 "spellId": 188443,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.43
             },
             {
                 "name": "Crash Lightning",
                 "spellId": 187874,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.43
             },
             {
                 "name": "Tempest",
                 "spellId": 452201,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.49
             },
             {
                 "name": "Crash Lightning",
                 "spellId": 187874,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.49
             },
             {
                 "name": "Chain Lightning",
                 "spellId": 188443,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.51
             },
             {
                 "name": "Chain Lightning",
                 "spellId": 188443,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 7.53
             },
             {
                 "name": "Wind Shear",
                 "spellId": 57994,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.7
             },
             {
                 "name": "Chain Lightning",
                 "spellId": 188443,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.53
             },
             {
                 "name": "Windstrike",
                 "spellId": 115356,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 10.85
             },
             {
                 "name": "Chain Lightning",
                 "spellId": 188443,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.99
             }
         ],
         "matchId": "962f27f65fd04705b322693bfdd7e092",
@@ -818,7 +832,7 @@
                     "pvpTalentId": 336
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:49+00:00"
+            "resolvedAt": "2026-09-06T12:25:34+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-73-0F015434",
@@ -996,7 +1010,7 @@
             ],
             "targetClassName": "Paladin",
             "targetSpecName": "Retribution",
-            "resolvedAt": "2026-09-06T02:56:57+00:00"
+            "resolvedAt": "2026-09-06T12:25:41+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -1009,49 +1023,57 @@
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.29
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.32
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.35
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.38
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.43
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.43
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.49
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.49
                 }
             ],
             "matchId": "962f27f65fd04705b322693bfdd7e092",
@@ -1764,7 +1786,7 @@
                         "pvpTalentId": 336
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-73-0F015434",
@@ -1942,7 +1964,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "10": {
@@ -1954,73 +1976,85 @@
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.29
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.32
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.35
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.38
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.43
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.43
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.49
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.49
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.51
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.53
                 },
                 {
                     "name": "Wind Shear",
                     "spellId": 57994,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.7
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.53
                 }
             ],
             "matchId": "962f27f65fd04705b322693bfdd7e092",
@@ -2733,7 +2767,7 @@
                         "pvpTalentId": 336
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-73-0F015434",
@@ -2911,7 +2945,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "12": {
@@ -2923,85 +2957,99 @@
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.29
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.32
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.35
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.38
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.43
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.43
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.49
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.49
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.51
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.53
                 },
                 {
                     "name": "Wind Shear",
                     "spellId": 57994,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.7
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.53
                 },
                 {
                     "name": "Windstrike",
                     "spellId": 115356,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.85
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.99
                 }
             ],
             "matchId": "962f27f65fd04705b322693bfdd7e092",
@@ -3714,7 +3762,7 @@
                         "pvpTalentId": 336
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-73-0F015434",
@@ -3892,7 +3940,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "20": {
@@ -3904,127 +3952,148 @@
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.29
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.32
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.35
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.38
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.43
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.43
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.49
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.49
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.51
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.53
                 },
                 {
                     "name": "Wind Shear",
                     "spellId": 57994,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.7
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.53
                 },
                 {
                     "name": "Windstrike",
                     "spellId": 115356,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.85
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.99
                 },
                 {
                     "name": "Voltaic Blaze",
                     "spellId": 470057,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.2
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.32
                 },
                 {
                     "name": "Stormstrike",
                     "spellId": 17364,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.2
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.52
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.6
                 },
                 {
                     "name": "Astral Shift",
                     "spellId": 108271,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 19.34
                 },
                 {
                     "name": "Stormstrike",
                     "spellId": 17364,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.93
                 }
             ],
             "matchId": "962f27f65fd04705b322693bfdd7e092",
@@ -4737,7 +4806,7 @@
                         "pvpTalentId": 336
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-73-0F015434",
@@ -4915,7 +4984,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "30": {
@@ -4927,199 +4996,232 @@
                     "name": "Healing Surge",
                     "spellId": 8004,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.69
                 },
                 {
                     "name": "Voltaic Blaze",
                     "spellId": 470057,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.88
                 },
                 {
                     "name": "Stormstrike",
                     "spellId": 17364,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.95
                 },
                 {
                     "name": "Bloodlust",
                     "spellId": 204361,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.07
                 },
                 {
                     "name": "Blood Fury",
                     "spellId": 33697,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.07
                 },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.09
                 },
                 {
                     "name": "Ascendance",
                     "spellId": 114051,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.14
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.29
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.32
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.35
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.38
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.43
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.43
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.49
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.49
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.51
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.53
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.53
                 },
                 {
                     "name": "Wind Shear",
                     "spellId": 57994,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.7
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.53
                 },
                 {
                     "name": "Windstrike",
                     "spellId": 115356,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.85
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.99
                 },
                 {
                     "name": "Voltaic Blaze",
                     "spellId": 470057,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.2
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 20.32
                 },
                 {
                     "name": "Stormstrike",
                     "spellId": 17364,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.2
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.52
                 },
                 {
                     "name": "Crash Lightning",
                     "spellId": 187874,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.6
                 },
                 {
                     "name": "Astral Shift",
                     "spellId": 108271,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 25.34
                 },
                 {
                     "name": "Stormstrike",
                     "spellId": 17364,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.93
                 },
                 {
                     "name": "Stormstrike",
                     "spellId": 17364,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.17
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.42
                 },
                 {
                     "name": "Stormstrike",
                     "spellId": 17364,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.65
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.67
                 }
             ],
             "matchId": "962f27f65fd04705b322693bfdd7e092",
@@ -5832,7 +5934,7 @@
                         "pvpTalentId": 336
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-73-0F015434",
@@ -6018,9 +6120,9 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:55:31+00:00"
+    "generated_at": "2026-09-06T12:24:36+00:00"
 }

@@ -3,17 +3,13 @@
     // so this page's spell cards look like every other spell card on the site, per direct
     // instruction ("style each guide the same way we have been... use those blocks from wow
     // comps").
-    $categoryBadge = [
-        'Crowd Control' => 'badge-blue',
-        'Defensive' => 'badge-red',
-        'Mobility' => 'badge-green',
-        'Utility' => 'badge-amber',
-        'Offensive' => 'badge-orange',
-        'Other' => 'badge-gray',
-    ];
+    $categoryBadge = config('spell_display.category_badges');
     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
     $splitUnit = fn (string $s) => [rtrim($s, 's'), 's'];
-    $cooldownDisplay = fn (array $entry) => ($entry['cooldown']['seconds'] ?? null) !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
+    // Accepts array OR AppSupportSpellProfile — the latter is ArrayAccess, which PHP's `array`
+    // type hint does not satisfy. Left untyped rather than union-typed so this keeps working if
+    // the entry shape moves again.
+    $cooldownDisplay = fn ($entry) => ($entry['cooldown']['seconds'] ?? null) !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
 @endphp
 
 <div class="max-w-5xl mx-auto px-4 py-8 space-y-5" x-data="{ openSpellId: null }">
@@ -92,8 +88,9 @@
                                     </div>
                                     <div class="flex flex-wrap items-center gap-1">
                                         <span class="{{ $categoryBadge[$entry['category']] ?? 'badge-gray' }} !text-[9px]">{{ $entry['category'] }}</span>
-                                        @if ($spell->dr_category)
-                                            <span class="badge-blue !text-[9px]">{{ $spell->dr_category }}</span>
+                                        {{-- Build-resolved (SpellProfile::drCategory), not the raw column: a few spells flip CC type on a talent. --}}
+                                        @if ($entry['drCategory'])
+                                            <span class="badge-blue !text-[9px]">{{ $entry['drCategory'] }}</span>
                                         @endif
                                     </div>
                                     <div class="flex items-center gap-3 mt-2.5 pt-2.5 border-t border-line">

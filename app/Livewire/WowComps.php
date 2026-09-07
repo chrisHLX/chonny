@@ -12,7 +12,6 @@ use App\Models\PageViewEvent;
 use App\Models\Patch;
 use App\Models\Specialization;
 use App\Models\Spell;
-use App\Models\TalentBuild;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
@@ -225,7 +224,7 @@ class WowComps extends Component
     {
         $preset = self::PRESET_COMPS[$key] ?? null;
 
-        if (!$preset) {
+        if (! $preset) {
             return;
         }
 
@@ -236,7 +235,7 @@ class WowComps extends Component
                 ->where('slug', $specSlug)
                 ->first();
 
-            if (!$spec) {
+            if (! $spec) {
                 return;
             }
 
@@ -287,6 +286,7 @@ class WowComps extends Component
                 ->first()?->id;
 
             $this->logSlotSelection($index);
+
             return;
         }
 
@@ -504,7 +504,6 @@ class WowComps extends Component
         }
     }
 
-
     /**
      * The two Synergies tab boxes, in render order (2026-08-16, third same-day revision — Utility
      * dropped CcChainBuilder sequencing too, matching the plain-grouping design DRs got in the
@@ -632,23 +631,33 @@ class WowComps extends Component
         // suppressed, like Asphyxiate once Strangulate is selected). Lets a viewer see at a
         // glance which CC a comp is passing up, not just what it has.
         $excludedCc = collect();
+        $drById = [];
         foreach ($this->comp as $mi => $member) {
-            if (!$member['spec']) {
+            if (! $member['spec']) {
                 continue;
             }
             $label = "{$member['spec']->name} {$member['class']->name}";
             foreach ($member['entries'] as $entry) {
                 $spell = $entry['spell'];
+                // The BUILD-RESOLVED dr_category, not $spell->dr_category. A handful of spells
+                // flip CC type on one talent (Holy Word: Chastise incapacitates, and stuns once
+                // Censure is talented) and this comp's own build is what settles which applies —
+                // see SpellProfileBuilder::resolveDrCategory(). Everything downstream of this
+                // method groups and badges off $drById, never the raw column, so a conditional
+                // spell can't end up sorted into one group and badged as another.
+                $dr = $entry['drCategory'];
 
-                if (!($entry['isSelected'] ?? true)) {
-                    if ($spell->dr_category !== null) {
-                        $excludedCc->push(['spell' => $spell, 'label' => $label, 'mi' => $mi]);
+                if (! ($entry['isSelected'] ?? true)) {
+                    if ($dr !== null) {
+                        $excludedCc->push(['spell' => $spell, 'dr' => $dr, 'label' => $label, 'mi' => $mi]);
                     }
+
                     continue;
                 }
 
-                if ($spell->dr_category !== null) {
+                if ($dr !== null) {
                     $ccEntries->push($spell);
+                    $drById[$spell->id] = $dr;
                     $ownerMap[$spell->id] = $mi;
                 }
                 if ($spell->is_peel) {
@@ -659,7 +668,7 @@ class WowComps extends Component
                     $interrupts->push($spell);
                     $ownerMap[$spell->id] = $mi;
                 }
-                if (!array_key_exists($spell->id, $cooldownById)) {
+                if (! array_key_exists($spell->id, $cooldownById)) {
                     $cooldownById[$spell->id] = $entry['cooldown']['seconds'];
                     $chargesById[$spell->id] = $entry['charges']['charges'];
                 }
@@ -669,7 +678,7 @@ class WowComps extends Component
         $peels = $peels->unique('id')->values();
         $interrupts = $interrupts->unique('id')->values();
         $excludedCc = $excludedCc->unique(fn ($e) => $e['spell']->id)
-            ->sortBy(fn ($e) => $e['spell']->dr_category.$e['spell']->name)
+            ->sortBy(fn ($e) => $e['dr'].$e['spell']->name)
             ->values();
 
         $groups = [];
@@ -678,13 +687,13 @@ class WowComps extends Component
             $covered = array_merge($covered, $categories);
             $ordered = collect();
             foreach ($categories as $cat) {
-                $ordered = $ordered->merge($ccEntries->filter(fn (Spell $s) => $s->dr_category === $cat)->sortBy('name')->values());
+                $ordered = $ordered->merge($ccEntries->filter(fn (Spell $s) => ($drById[$s->id] ?? null) === $cat)->sortBy('name')->values());
             }
             $groups[$label] = $ordered->values();
         }
 
-        foreach ($ccEntries->pluck('dr_category')->unique()->diff($covered)->sort()->values() as $cat) {
-            $groups[$cat] = $ccEntries->filter(fn (Spell $s) => $s->dr_category === $cat)->sortBy('name')->values();
+        foreach (collect($drById)->unique()->diff($covered)->sort()->values() as $cat) {
+            $groups[$cat] = $ccEntries->filter(fn (Spell $s) => ($drById[$s->id] ?? null) === $cat)->sortBy('name')->values();
         }
 
         return [
@@ -695,6 +704,7 @@ class WowComps extends Component
             'cooldown_by_id' => $cooldownById,
             'charges_by_id' => $chargesById,
             'excluded' => $excludedCc,
+            'dr_by_id' => $drById,
         ];
     }
 
@@ -788,7 +798,7 @@ class WowComps extends Component
      */
     public function getOffensiveRotationsProperty(): array
     {
-        if (!$this->rotationTabLoaded) {
+        if (! $this->rotationTabLoaded) {
             return [];
         }
 
@@ -796,13 +806,13 @@ class WowComps extends Component
         $talentService = app(TalentSelectionService::class);
 
         return collect($this->comp)->map(function ($member) use ($service, $talentService) {
-            if (!$member['spec']) {
+            if (! $member['spec']) {
                 return null;
             }
 
             $rotation = $service->rotationForSpec($member['class']->slug, $member['spec']->slug);
 
-            if ($rotation === null || !isset($rotation['topDpsWindow'])) {
+            if ($rotation === null || ! isset($rotation['topDpsWindow'])) {
                 return null;
             }
 
@@ -818,7 +828,6 @@ class WowComps extends Component
             return $rotation;
         })->all();
     }
-
 
     public function render()
     {

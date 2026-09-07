@@ -2,14 +2,20 @@
 
     <div class="linear-card px-6 py-5">
         <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">Burst Guides</p>
-        <h1 class="font-display text-[26px] font-bold text-ink leading-tight mt-0.5">A Definite Series of Keys to Press</h1>
+        <h1 class="font-display text-[26px] font-bold text-ink leading-tight mt-0.5">How Each Spec Actually Bursts</h1>
         <p class="text-[12px] text-ink-muted mt-1.5 max-w-3xl">
-            One block per spec, computed straight from that spec's own real, densest observed archived burst window —
-            filtered down to real damage cooldowns (via the same Offensive/Defensive classification WoW Comps and
-            Spells use) plus any Crowd Control landed on the kill target, with ordinary rotation kept and purely
-            defensive/utility noise dropped. Each sequence stops once it starts visibly repeating — what's left is a
-            simple, honest read of what was actually pressed, not a theoretical or hand-authored rotation. Click any
-            step for its real description.
+            One plan per spec: how long its go really lasts, how many globals fit inside it, and what to press in
+            order — <span class="text-ink">set up</span> what stops the damage being healed,
+            <span class="text-ink">commit</span> your cooldowns, <span class="text-ink">execute</span> the window,
+            then <span class="text-ink">fill</span> every global left over.
+        </p>
+        <p class="text-[11px] text-ink-subtle mt-2 max-w-3xl">
+            Nothing here is hand-written per spec. Every figure is aggregated across <em>every</em> real archived burst
+            window for that spec — hundreds of them, across dozens of matches — so a step earns its place by being
+            typical, not by appearing once. Timings are median offsets from the spec's biggest cooldown; the global
+            cooldown is measured per spec from real cast cadence; and where a control ability belongs follows the rule
+            that control breaking on damage cannot sit on the target you are damaging. Click any step for its real
+            description.
         </p>
     </div>
 

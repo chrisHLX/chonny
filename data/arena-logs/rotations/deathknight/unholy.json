@@ -28,79 +28,92 @@
                 "name": "Army of the Dead",
                 "spellId": 42650,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.08
             },
             {
                 "name": "Dark Transformation",
                 "spellId": 1233448,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.09
             },
             {
                 "name": "Putrefy",
                 "spellId": 1247378,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.4
             },
             {
                 "name": "Necrotic Coil",
                 "spellId": 1242174,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.5
             },
             {
                 "name": "Soul Reaper",
                 "spellId": 343294,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.57
             },
             {
                 "name": "Necrotic Coil",
                 "spellId": 1242174,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.63
             },
             {
                 "name": "Necrotic Coil",
                 "spellId": 1242174,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.68
             },
             {
                 "name": "Scourge Strike",
                 "spellId": 55090,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 6.77
             },
             {
                 "name": "Anti-Magic Shell",
                 "spellId": 410358,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 6.85
             },
             {
                 "name": "Necrotic Coil",
                 "spellId": 1242174,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 7.84
             },
             {
                 "name": "Putrefy",
                 "spellId": 1247378,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.91
             },
             {
                 "name": "Necrotic Coil",
                 "spellId": 1242174,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.99
             },
             {
                 "name": "Necrotic Coil",
                 "spellId": 1242174,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.04
             }
         ],
         "matchId": "312969f6dd44bca0177c8d809a28592c",
@@ -795,7 +808,7 @@
                     "pvpTalentId": 41
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:54+00:00"
+            "resolvedAt": "2026-09-06T12:25:37+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-73-0FD03140",
@@ -1009,7 +1022,7 @@
             ],
             "targetClassName": "Druid",
             "targetSpecName": "Balance",
-            "resolvedAt": "2026-09-06T02:57:05+00:00"
+            "resolvedAt": "2026-09-06T12:25:45+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -1022,49 +1035,57 @@
                     "name": "Anti-Magic Shell",
                     "spellId": 410358,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.16
                 },
                 {
                     "name": "Putrefy",
                     "spellId": 1247378,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.64
                 },
                 {
                     "name": "Death Pact",
                     "spellId": 48743,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.9
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.69
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.74
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.76
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.78
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.8
                 }
             ],
             "matchId": "53666f7de3ed5427dd54584c7f4bdb54",
@@ -1759,7 +1780,7 @@
                         "pvpTalentId": 48
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0EB8616D",
@@ -1981,7 +2002,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Frost",
-                "resolvedAt": "2026-09-06T02:57:05+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "10": {
@@ -1993,61 +2014,71 @@
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.5
                 },
                 {
                     "name": "Soul Reaper",
                     "spellId": 343294,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.57
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.63
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.68
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.77
                 },
                 {
                     "name": "Anti-Magic Shell",
                     "spellId": 410358,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.85
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.84
                 },
                 {
                     "name": "Putrefy",
                     "spellId": 1247378,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.91
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.99
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.04
                 }
             ],
             "matchId": "312969f6dd44bca0177c8d809a28592c",
@@ -2742,7 +2773,7 @@
                         "pvpTalentId": 41
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-73-0FD03140",
@@ -3004,7 +3035,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Balance",
-                "resolvedAt": "2026-09-06T02:57:05+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "12": {
@@ -3016,79 +3047,92 @@
                     "name": "Army of the Dead",
                     "spellId": 42650,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.08
                 },
                 {
                     "name": "Dark Transformation",
                     "spellId": 1233448,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.09
                 },
                 {
                     "name": "Putrefy",
                     "spellId": 1247378,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.4
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.5
                 },
                 {
                     "name": "Soul Reaper",
                     "spellId": 343294,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.57
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.63
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.68
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.77
                 },
                 {
                     "name": "Anti-Magic Shell",
                     "spellId": 410358,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.85
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.84
                 },
                 {
                     "name": "Putrefy",
                     "spellId": 1247378,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.91
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.99
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.04
                 }
             ],
             "matchId": "312969f6dd44bca0177c8d809a28592c",
@@ -3783,7 +3827,7 @@
                         "pvpTalentId": 41
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-73-0FD03140",
@@ -3997,7 +4041,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Balance",
-                "resolvedAt": "2026-09-06T02:57:05+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "20": {
@@ -4009,103 +4053,120 @@
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.74
                 },
                 {
                     "name": "Putrefy",
                     "spellId": 1247378,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.03
                 },
                 {
                     "name": "Strangulate",
                     "spellId": 47476,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.7
                 },
                 {
                     "name": "Soul Reaper",
                     "spellId": 343294,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.47
                 },
                 {
                     "name": "Putrefy",
                     "spellId": 1247378,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.69
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.93
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.13
                 },
                 {
                     "name": "Blinding Sleet",
                     "spellId": 207167,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.33
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.5
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.66
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.02
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.52
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.72
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.96
                 },
                 {
                     "name": "Festering Strike",
                     "spellId": 85948,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.21
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.04
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.31
                 }
             ],
             "matchId": "bfe179ee8d63fdf4c0e0a1eb0cd5dc69",
@@ -4800,7 +4861,7 @@
                         "pvpTalentId": 41
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3675-0B0248F1",
@@ -5058,7 +5119,7 @@
                 ],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Survival",
-                "resolvedAt": "2026-09-06T02:57:05+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "30": {
@@ -5070,133 +5131,155 @@
                     "name": "Putrefy",
                     "spellId": 1247378,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.03
                 },
                 {
                     "name": "Strangulate",
                     "spellId": 47476,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.7
                 },
                 {
                     "name": "Soul Reaper",
                     "spellId": 343294,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.47
                 },
                 {
                     "name": "Putrefy",
                     "spellId": 1247378,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.69
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.93
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.13
                 },
                 {
                     "name": "Blinding Sleet",
                     "spellId": 207167,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.33
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.5
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.66
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.02
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.52
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.72
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.96
                 },
                 {
                     "name": "Festering Strike",
                     "spellId": 85948,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.21
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.04
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.31
                 },
                 {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.86
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.22
                 },
                 {
                     "name": "Festering Scythe",
                     "spellId": 458128,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 25.7
                 },
                 {
                     "name": "Scourge Strike",
                     "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.06
                 },
                 {
                     "name": "Death Coil",
                     "spellId": 47541,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 28.39
                 },
                 {
                     "name": "Putrefy",
                     "spellId": 1247378,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.71
                 }
             ],
             "matchId": "bfe179ee8d63fdf4c0e0a1eb0cd5dc69",
@@ -5891,7 +5974,7 @@
                         "pvpTalentId": 41
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3675-0B0248F1",
@@ -6145,9 +6228,9 @@
                 ],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Survival",
-                "resolvedAt": "2026-09-06T02:57:05+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:47:59+00:00"
+    "generated_at": "2026-09-06T12:19:14+00:00"
 }

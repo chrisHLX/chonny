@@ -28,85 +28,92 @@
                 "name": "Tiger Palm",
                 "spellId": 100780,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.11
             },
             {
                 "name": "Leg Sweep",
                 "spellId": 119381,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.11
             },
             {
                 "name": "Rising Sun Kick",
                 "spellId": 107428,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.11
             },
             {
                 "name": "Zenith",
                 "spellId": 1249625,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.56
             },
             {
                 "name": "Gladiator's Badge",
                 "spellId": 345228,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.58
             },
             {
                 "name": "Blood Fury",
                 "spellId": 33697,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Rising Sun Kick",
-                "spellId": 107428,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 2.58
             },
             {
                 "name": "Ring of Peace",
                 "spellId": 116844,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.09
             },
             {
                 "name": "Strike of the Windlord",
                 "spellId": 392983,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.88
             },
             {
                 "name": "Blackout Kick",
                 "spellId": 100784,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.88
             },
             {
                 "name": "Fists of Fury",
                 "spellId": 113656,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 6.9
             },
             {
                 "name": "Touch of Death",
                 "spellId": 322109,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.68
             },
             {
                 "name": "Tiger Palm",
                 "spellId": 100780,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.32
             },
             {
                 "name": "Rising Sun Kick",
                 "spellId": 107428,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.33
             }
         ],
         "matchId": "a4634ca7e43678b06855af333a88d82d",
@@ -837,7 +844,7 @@
                     "pvpTalentId": 227
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:54+00:00"
+            "resolvedAt": "2026-09-06T12:25:37+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-11-0E6F8F80",
@@ -930,7 +937,7 @@
             "targetDebuffs": [],
             "targetClassName": "Hunter",
             "targetSpecName": "Beast Mastery",
-            "resolvedAt": "2026-09-06T02:57:05+00:00"
+            "resolvedAt": "2026-09-06T12:25:45+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -943,37 +950,43 @@
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.1
                 },
                 {
                     "name": "Ring of Peace",
                     "spellId": 116844,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.09
                 },
                 {
                     "name": "Strike of the Windlord",
                     "spellId": 392983,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.88
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.88
                 },
                 {
                     "name": "Fists of Fury",
                     "spellId": 113656,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.9
                 },
                 {
                     "name": "Touch of Death",
                     "spellId": 322109,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.68
                 }
             ],
             "matchId": "a4634ca7e43678b06855af333a88d82d",
@@ -1704,7 +1717,7 @@
                         "pvpTalentId": 227
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E6F8F80",
@@ -1878,7 +1891,7 @@
                 ],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Beast Mastery",
-                "resolvedAt": "2026-09-06T02:57:05+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "10": {
@@ -1890,73 +1903,78 @@
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.11
                 },
                 {
                     "name": "Leg Sweep",
                     "spellId": 119381,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.11
                 },
                 {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.11
                 },
                 {
                     "name": "Zenith",
                     "spellId": 1249625,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.56
                 },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.58
                 },
                 {
                     "name": "Blood Fury",
                     "spellId": 33697,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rising Sun Kick",
-                    "spellId": 107428,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 2.58
                 },
                 {
                     "name": "Ring of Peace",
                     "spellId": 116844,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.09
                 },
                 {
                     "name": "Strike of the Windlord",
                     "spellId": 392983,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.88
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.88
                 },
                 {
                     "name": "Fists of Fury",
                     "spellId": 113656,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.9
                 },
                 {
                     "name": "Touch of Death",
                     "spellId": 322109,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.68
                 }
             ],
             "matchId": "a4634ca7e43678b06855af333a88d82d",
@@ -2687,7 +2705,7 @@
                         "pvpTalentId": 227
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E6F8F80",
@@ -2780,7 +2798,7 @@
                 "targetDebuffs": [],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Beast Mastery",
-                "resolvedAt": "2026-09-06T02:57:05+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "12": {
@@ -2792,85 +2810,92 @@
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.11
                 },
                 {
                     "name": "Leg Sweep",
                     "spellId": 119381,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.11
                 },
                 {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.11
                 },
                 {
                     "name": "Zenith",
                     "spellId": 1249625,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.56
                 },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.58
                 },
                 {
                     "name": "Blood Fury",
                     "spellId": 33697,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rising Sun Kick",
-                    "spellId": 107428,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 2.58
                 },
                 {
                     "name": "Ring of Peace",
                     "spellId": 116844,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.09
                 },
                 {
                     "name": "Strike of the Windlord",
                     "spellId": 392983,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.88
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.88
                 },
                 {
                     "name": "Fists of Fury",
                     "spellId": 113656,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.9
                 },
                 {
                     "name": "Touch of Death",
                     "spellId": 322109,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.68
                 },
                 {
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.32
                 },
                 {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.33
                 }
             ],
             "matchId": "a4634ca7e43678b06855af333a88d82d",
@@ -3601,7 +3626,7 @@
                         "pvpTalentId": 227
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E6F8F80",
@@ -3694,7 +3719,7 @@
                 "targetDebuffs": [],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Beast Mastery",
-                "resolvedAt": "2026-09-06T02:57:05+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "20": {
@@ -3706,103 +3731,120 @@
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.34
                 },
                 {
                     "name": "Spear Hand Strike",
                     "spellId": 116705,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.16
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.3
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.31
                 },
                 {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.23
                 },
                 {
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.23
                 },
                 {
                     "name": "Touch of Karma",
                     "spellId": 122470,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.5
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.22
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.24
                 },
                 {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.15
                 },
                 {
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.16
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.14
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.13
                 },
                 {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.05
                 },
                 {
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.07
                 },
                 {
                     "name": "Fists of Fury",
                     "spellId": 113656,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.06
                 },
                 {
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.35
                 }
             ],
             "matchId": "bc2e75ff7d1637466658c9dddaa8c56f",
@@ -4533,7 +4575,7 @@
                         "pvpTalentId": 226
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3676-0EE85CB8",
@@ -4727,7 +4769,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Destruction",
-                "resolvedAt": "2026-09-06T02:57:05+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "30": {
@@ -4739,181 +4781,211 @@
                     "name": "Spear Hand Strike",
                     "spellId": 116705,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.16
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.3
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.31
                 },
                 {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.23
                 },
                 {
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.23
                 },
                 {
                     "name": "Touch of Karma",
                     "spellId": 122470,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.5
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.22
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.24
                 },
                 {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.15
                 },
                 {
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.16
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.14
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.13
                 },
                 {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.05
                 },
                 {
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.07
                 },
                 {
                     "name": "Fists of Fury",
                     "spellId": 113656,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.06
                 },
                 {
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.35
                 },
                 {
                     "name": "Grapple Weapon",
                     "spellId": 233759,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 19.39
                 },
                 {
                     "name": "Fortifying Brew",
                     "spellId": 115203,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 19.63
                 },
                 {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.36
                 },
                 {
                     "name": "Tiger Palm",
                     "spellId": 100780,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.35
                 },
                 {
                     "name": "Zenith",
                     "spellId": 1249625,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 22.09
                 },
                 {
                     "name": "Rising Sun Kick",
                     "spellId": 107428,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.36
                 },
                 {
                     "name": "Paralysis",
                     "spellId": 115078,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 23.98
                 },
                 {
                     "name": "Roll",
                     "spellId": 109132,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 24.24
                 },
                 {
                     "name": "Flying Serpent Kick",
                     "spellId": 101545,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 24.95
                 },
                 {
                     "name": "Roll",
                     "spellId": 109132,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.2
                 },
                 {
                     "name": "Strike of the Windlord",
                     "spellId": 392983,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 27.36
                 },
                 {
                     "name": "Spear Hand Strike",
                     "spellId": 116705,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.05
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.36
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.35
                 }
             ],
             "matchId": "bc2e75ff7d1637466658c9dddaa8c56f",
@@ -5644,7 +5716,7 @@
                         "pvpTalentId": 226
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3676-0EE85CB8",
@@ -5838,9 +5910,9 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Destruction",
-                "resolvedAt": "2026-09-06T02:57:05+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:52:08+00:00"
+    "generated_at": "2026-09-06T12:22:14+00:00"
 }

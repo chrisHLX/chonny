@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-06T02:13:10+00:00",
-    "spellCacheVersion": 4136,
+    "generatedAt": "2026-09-07T01:42:53+00:00",
+    "spellCacheVersion": 4155,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -30,7 +30,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8789,
@@ -59,7 +60,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8596,
@@ -88,7 +90,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8744,
@@ -235,7 +238,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8636,
@@ -264,7 +268,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8600,
@@ -293,7 +298,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8668,
@@ -322,7 +328,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8745,
@@ -643,9 +650,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -655,45 +668,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_holy_pureofheart.jpg",
                                         "created_at": "2026-07-30T14:02:36.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 15772,
-                                                "spell_id": 8591,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -15000,
-                                                "scaled_value": -15000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:02:36.000000Z",
-                                                "updated_at": "2026-09-02T11:57:57.000000Z"
-                                            },
-                                            {
-                                                "id": 15773,
-                                                "spell_id": 8591,
-                                                "effect_index": 2,
-                                                "type": "Modify Recharge Time (Category)",
-                                                "base_value": -15000,
-                                                "scaled_value": -15000,
-                                                "misc_value": 2220,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:02:36.000000Z",
-                                                "updated_at": "2026-09-02T11:57:57.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -15,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 8591
                                 }
                             ]
                         }
@@ -1390,7 +1370,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Silence"
         },
         {
             "spellId": 8692,
@@ -1669,7 +1650,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Buff"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8840,
@@ -1698,7 +1680,8 @@
             "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8662,
@@ -1727,7 +1710,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8628,
@@ -1756,7 +1740,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8750,
@@ -1980,7 +1965,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 12672,
@@ -2009,7 +1995,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8577,
@@ -2038,7 +2025,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8631,
@@ -2084,7 +2072,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8570,
@@ -2199,7 +2188,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8569,
@@ -2312,9 +2302,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -2324,29 +2320,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_holy_sealofprotection.jpg",
                                         "created_at": "2026-07-30T14:02:36.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 15776,
-                                                "spell_id": 8594,
-                                                "effect_index": 1,
-                                                "type": "Modify Recharge Time (Category)",
-                                                "base_value": -60000,
-                                                "scaled_value": -60000,
-                                                "misc_value": 1392,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:02:36.000000Z",
-                                                "updated_at": "2026-09-02T11:57:57.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 8594
                                 }
                             ]
                         }
@@ -2448,9 +2427,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -2460,7 +2445,7 @@
                             "is_passive": true,
                             "icon_name": "spell_holy_sealofprotection.jpg",
                             "created_at": "2026-07-30T14:02:36.000000Z",
-                            "updated_at": "2026-09-03T03:33:43.000000Z",
+                            "updated_at": "2026-09-06T04:00:29.000000Z",
                             "effects": [
                                 {
                                     "id": 15776,
@@ -2482,7 +2467,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -60,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 8594
                     }
                 ]
             },
@@ -2498,7 +2484,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8571,
@@ -2767,9 +2754,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -2779,7 +2772,7 @@
                             "is_passive": true,
                             "icon_name": "spell_holy_sealofsacrifice.jpg",
                             "created_at": "2026-07-30T14:02:36.000000Z",
-                            "updated_at": "2026-09-03T03:33:43.000000Z",
+                            "updated_at": "2026-09-06T04:00:29.000000Z",
                             "effects": [
                                 {
                                     "id": 15775,
@@ -2801,7 +2794,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -60,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 8593
                     }
                 ]
             },
@@ -2817,7 +2811,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8749,
@@ -2914,9 +2909,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -2926,29 +2927,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_holy_sealofprotection.jpg",
                                         "created_at": "2026-07-30T14:02:36.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 15776,
-                                                "spell_id": 8594,
-                                                "effect_index": 1,
-                                                "type": "Modify Recharge Time (Category)",
-                                                "base_value": -60000,
-                                                "scaled_value": -60000,
-                                                "misc_value": 1392,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:02:36.000000Z",
-                                                "updated_at": "2026-09-02T11:57:57.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 8594
                                 }
                             ]
                         }
@@ -3034,9 +3018,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -3046,7 +3036,7 @@
                             "is_passive": true,
                             "icon_name": "spell_holy_sealofprotection.jpg",
                             "created_at": "2026-07-30T14:02:36.000000Z",
-                            "updated_at": "2026-09-03T03:33:43.000000Z",
+                            "updated_at": "2026-09-06T04:00:29.000000Z",
                             "effects": [
                                 {
                                     "id": 15776,
@@ -3068,7 +3058,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -60,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 8594
                     }
                 ]
             },
@@ -3084,7 +3075,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8661,
@@ -3113,7 +3105,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8575,
@@ -3173,9 +3166,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -3185,7 +3184,7 @@
                             "is_passive": true,
                             "icon_name": "inv_shoulder_raidpaladindragon_d_01.jpg",
                             "created_at": "2026-07-30T14:02:37.000000Z",
-                            "updated_at": "2026-09-03T03:33:46.000000Z",
+                            "updated_at": "2026-09-06T04:00:37.000000Z",
                             "effects": [
                                 {
                                     "id": 15826,
@@ -3207,7 +3206,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -15,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 8619
                     }
                 ]
             },
@@ -3219,7 +3219,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Disorient"
         },
         {
             "spellId": 8686,
@@ -3248,7 +3249,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8635,
@@ -3277,7 +3279,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8754,
@@ -3306,7 +3309,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8771,
@@ -3335,7 +3339,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8583,
@@ -3364,7 +3369,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8581,
@@ -3426,7 +3432,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8580,
@@ -3455,7 +3462,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 7737,
@@ -3971,7 +3979,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8767,
@@ -4000,7 +4009,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8751,
@@ -4029,7 +4039,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8768,
@@ -4058,7 +4069,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8687,
@@ -4104,7 +4116,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8663,
@@ -4152,7 +4165,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8683,
@@ -4230,7 +4244,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8660,
@@ -4259,7 +4274,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8582,
@@ -4288,7 +4304,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8627,
@@ -4317,7 +4334,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8592,
@@ -4346,7 +4364,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8621,
@@ -4375,7 +4394,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8578,
@@ -4649,9 +4669,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -4661,7 +4687,7 @@
                             "is_passive": true,
                             "icon_name": "ability_paladin_divinesteed.jpg",
                             "created_at": "2026-07-30T14:02:36.000000Z",
-                            "updated_at": "2026-09-03T03:33:40.000000Z",
+                            "updated_at": "2026-09-06T04:00:20.000000Z",
                             "effects": [
                                 {
                                     "id": 15755,
@@ -4683,14 +4709,16 @@
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
-                        "modifier_unit": "charges"
+                        "modifier_unit": "charges",
+                        "selection_spell_id": 8583
                     }
                 ]
             },
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8589,
@@ -5424,9 +5452,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -5436,7 +5470,7 @@
                             "is_passive": true,
                             "icon_name": "spell_holy_pureofheart.jpg",
                             "created_at": "2026-07-30T14:02:36.000000Z",
-                            "updated_at": "2026-09-03T03:33:43.000000Z",
+                            "updated_at": "2026-09-06T04:00:29.000000Z",
                             "effects": [
                                 {
                                     "id": 15772,
@@ -5474,7 +5508,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -15,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 8591
                     }
                 ]
             },
@@ -5490,7 +5525,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Buff"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8603,
@@ -5519,7 +5555,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8602,
@@ -5548,7 +5585,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8783,
@@ -5577,7 +5615,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8681,
@@ -5606,7 +5645,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8615,
@@ -5652,7 +5692,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8609,
@@ -5681,7 +5722,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8634,
@@ -5710,7 +5752,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8764,
@@ -5739,7 +5782,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8753,
@@ -5768,7 +5812,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8586,
@@ -5797,7 +5842,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8765,
@@ -5893,7 +5939,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8656,
@@ -5922,7 +5969,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8759,
@@ -5951,7 +5999,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8785,
@@ -5980,7 +6029,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8590,
@@ -6009,7 +6059,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8747,
@@ -6071,7 +6122,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8584,
@@ -6100,7 +6152,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8834,
@@ -6129,7 +6182,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8748,
@@ -6242,9 +6296,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -6254,7 +6314,7 @@
                             "is_passive": true,
                             "icon_name": "ability_paladin_empoweredsealsrighteous.jpg",
                             "created_at": "2026-07-30T14:02:38.000000Z",
-                            "updated_at": "2026-09-03T03:33:47.000000Z",
+                            "updated_at": "2026-09-06T04:00:39.000000Z",
                             "effects": [
                                 {
                                     "id": 16168,
@@ -6292,14 +6352,16 @@
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
-                        "modifier_unit": "charges"
+                        "modifier_unit": "charges",
+                        "selection_spell_id": 8783
                     }
                 ]
             },
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 7969,
@@ -6364,9 +6426,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -6376,7 +6444,7 @@
                             "is_passive": true,
                             "icon_name": "ability_paladin_empoweredsealsrighteous.jpg",
                             "created_at": "2026-07-30T14:02:38.000000Z",
-                            "updated_at": "2026-09-03T03:33:47.000000Z",
+                            "updated_at": "2026-09-06T04:00:39.000000Z",
                             "effects": [
                                 {
                                     "id": 16168,
@@ -6414,14 +6482,16 @@
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
-                        "modifier_unit": "charges"
+                        "modifier_unit": "charges",
+                        "selection_spell_id": 8783
                     }
                 ]
             },
             "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8608,
@@ -6450,7 +6520,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8832,
@@ -6479,7 +6550,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8666,
@@ -6541,7 +6613,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 7726,
@@ -6618,9 +6691,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -6630,7 +6709,7 @@
                             "is_passive": true,
                             "icon_name": "spell_holy_fistofjustice.jpg",
                             "created_at": "2026-07-30T14:02:36.000000Z",
-                            "updated_at": "2026-09-03T03:33:40.000000Z",
+                            "updated_at": "2026-09-06T04:00:21.000000Z",
                             "effects": [
                                 {
                                     "id": 15758,
@@ -6652,7 +6731,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -15,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 8586
                     }
                 ]
             },
@@ -6664,7 +6744,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Stun"
         },
         {
             "spellId": 8746,
@@ -7016,7 +7097,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8500,
@@ -7454,9 +7536,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -7466,7 +7554,7 @@
                             "is_passive": true,
                             "icon_name": "ability_paladin_enlightenedjudgements.jpg",
                             "created_at": "2026-07-30T14:02:38.000000Z",
-                            "updated_at": "2026-09-03T03:33:39.000000Z",
+                            "updated_at": "2026-09-06T04:00:18.000000Z",
                             "effects": [
                                 {
                                     "id": 16111,
@@ -7504,7 +7592,8 @@
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
-                        "modifier_unit": "charges"
+                        "modifier_unit": "charges",
+                        "selection_spell_id": 8751
                     }
                 ]
             },
@@ -7515,7 +7604,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Buff"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8680,
@@ -7544,7 +7634,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8756,
@@ -7573,7 +7664,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8588,
@@ -7602,7 +7694,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8678,
@@ -7631,7 +7724,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8599,
@@ -7660,7 +7754,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8654,
@@ -7904,9 +7999,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -7916,45 +8017,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_holy_pureofheart.jpg",
                                         "created_at": "2026-07-30T14:02:36.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 15772,
-                                                "spell_id": 8591,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -15000,
-                                                "scaled_value": -15000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:02:36.000000Z",
-                                                "updated_at": "2026-09-02T11:57:57.000000Z"
-                                            },
-                                            {
-                                                "id": 15773,
-                                                "spell_id": 8591,
-                                                "effect_index": 2,
-                                                "type": "Modify Recharge Time (Category)",
-                                                "base_value": -15000,
-                                                "scaled_value": -15000,
-                                                "misc_value": 2220,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:02:36.000000Z",
-                                                "updated_at": "2026-09-02T11:57:57.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -15,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 8591
                                 }
                             ]
                         }
@@ -7989,9 +8057,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -8001,7 +8075,7 @@
                             "is_passive": true,
                             "icon_name": "spell_holy_pureofheart.jpg",
                             "created_at": "2026-07-30T14:02:36.000000Z",
-                            "updated_at": "2026-09-03T03:33:43.000000Z",
+                            "updated_at": "2026-09-06T04:00:29.000000Z",
                             "effects": [
                                 {
                                     "id": 15772,
@@ -8039,7 +8113,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -15,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 8591
                     }
                 ]
             },
@@ -8055,7 +8130,8 @@
                 "offensive": true,
                 "defensive": true,
                 "label": "Mixed"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8831,
@@ -8084,7 +8160,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8626,
@@ -8113,7 +8190,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8579,
@@ -8142,7 +8220,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8788,
@@ -8171,7 +8250,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8776,
@@ -8200,7 +8280,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8594,
@@ -8229,7 +8310,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8604,
@@ -8258,7 +8340,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8835,
@@ -8287,7 +8370,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8625,
@@ -8316,7 +8400,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8790,
@@ -8345,7 +8430,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8026,
@@ -8650,9 +8736,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -8662,45 +8754,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_holy_pureofheart.jpg",
                                         "created_at": "2026-07-30T14:02:36.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 15772,
-                                                "spell_id": 8591,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -15000,
-                                                "scaled_value": -15000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:02:36.000000Z",
-                                                "updated_at": "2026-09-02T11:57:57.000000Z"
-                                            },
-                                            {
-                                                "id": 15773,
-                                                "spell_id": 8591,
-                                                "effect_index": 2,
-                                                "type": "Modify Recharge Time (Category)",
-                                                "base_value": -15000,
-                                                "scaled_value": -15000,
-                                                "misc_value": 2220,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:02:36.000000Z",
-                                                "updated_at": "2026-09-02T11:57:57.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -15,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 8591
                                 }
                             ]
                         }
@@ -9496,9 +9555,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -9508,7 +9573,7 @@
                             "is_passive": true,
                             "icon_name": "ability_paladin_enlightenedjudgements.jpg",
                             "created_at": "2026-07-30T14:02:38.000000Z",
-                            "updated_at": "2026-09-03T03:33:39.000000Z",
+                            "updated_at": "2026-09-06T04:00:18.000000Z",
                             "effects": [
                                 {
                                     "id": 16111,
@@ -9546,7 +9611,8 @@
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
-                        "modifier_unit": "charges"
+                        "modifier_unit": "charges",
+                        "selection_spell_id": 8751
                     }
                 ]
             },
@@ -9557,7 +9623,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Buff"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8568,
@@ -9736,7 +9803,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8658,
@@ -9765,7 +9833,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8629,
@@ -9794,7 +9863,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8761,
@@ -9823,7 +9893,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8619,
@@ -9852,7 +9923,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8673,
@@ -9946,7 +10018,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8674,
@@ -9975,7 +10048,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8688,
@@ -10004,7 +10078,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8576,
@@ -10033,7 +10108,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8623,
@@ -10079,7 +10155,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8606,
@@ -10108,7 +10185,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8838,
@@ -10137,7 +10215,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8669,
@@ -10183,7 +10262,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8597,
@@ -10212,7 +10292,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8607,
@@ -10241,7 +10322,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8591,
@@ -10287,7 +10369,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8573,
@@ -10366,7 +10449,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8595,
@@ -10542,7 +10626,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8755,
@@ -10571,7 +10656,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8777,
@@ -10633,7 +10719,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8670,
@@ -10662,7 +10749,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8769,
@@ -10691,7 +10779,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8671,
@@ -10720,7 +10809,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8618,
@@ -10749,7 +10839,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8752,
@@ -10778,7 +10869,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8665,
@@ -10807,7 +10899,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8664,
@@ -10836,7 +10929,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8833,
@@ -10865,7 +10959,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8620,
@@ -10894,7 +10989,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8378,
@@ -11071,9 +11167,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -11083,45 +11185,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_holy_pureofheart.jpg",
                                         "created_at": "2026-07-30T14:02:36.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 15772,
-                                                "spell_id": 8591,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -15000,
-                                                "scaled_value": -15000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:02:36.000000Z",
-                                                "updated_at": "2026-09-02T11:57:57.000000Z"
-                                            },
-                                            {
-                                                "id": 15773,
-                                                "spell_id": 8591,
-                                                "effect_index": 2,
-                                                "type": "Modify Recharge Time (Category)",
-                                                "base_value": -15000,
-                                                "scaled_value": -15000,
-                                                "misc_value": 2220,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:02:36.000000Z",
-                                                "updated_at": "2026-09-02T11:57:57.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -15,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 8591
                                 }
                             ]
                         }
@@ -11303,9 +11372,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -11315,7 +11390,7 @@
                             "is_passive": true,
                             "icon_name": "spell_holy_pureofheart.jpg",
                             "created_at": "2026-07-30T14:02:36.000000Z",
-                            "updated_at": "2026-09-03T03:33:43.000000Z",
+                            "updated_at": "2026-09-06T04:00:29.000000Z",
                             "effects": [
                                 {
                                     "id": 15772,
@@ -11353,7 +11428,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -15,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 8591
                     }
                 ]
             },
@@ -11369,7 +11445,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Buff"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8593,
@@ -11398,7 +11475,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8679,
@@ -11427,7 +11505,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8684,
@@ -11489,7 +11568,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8605,
@@ -11535,7 +11615,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8693,
@@ -11564,7 +11645,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8766,
@@ -11593,7 +11675,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8770,
@@ -11622,7 +11705,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8598,
@@ -11651,7 +11735,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8758,
@@ -11680,7 +11765,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8689,
@@ -11726,7 +11812,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8839,
@@ -11755,7 +11842,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8779,
@@ -11784,7 +11872,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8624,
@@ -11813,7 +11902,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8772,
@@ -11914,7 +12004,8 @@
                 "offensive": true,
                 "defensive": true,
                 "label": "Mixed"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 8676,
@@ -11976,7 +12067,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8657,
@@ -12005,7 +12097,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 7758,
@@ -12597,7 +12690,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8633,
@@ -12643,7 +12737,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8837,
@@ -12672,7 +12767,8 @@
             "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Silence"
         },
         {
             "spellId": 8757,
@@ -12734,7 +12830,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8842,
@@ -12763,7 +12860,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8763,
@@ -12792,7 +12890,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8781,
@@ -12821,7 +12920,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8655,
@@ -12850,7 +12950,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8841,
@@ -12879,7 +12980,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8617,
@@ -12908,7 +13010,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 7919,
@@ -12937,7 +13040,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8614,
@@ -12966,7 +13070,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8616,
@@ -12995,7 +13100,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8775,
@@ -13024,7 +13130,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8784,
@@ -13053,7 +13160,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8667,
@@ -13082,7 +13190,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8774,
@@ -13111,7 +13220,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8572,
@@ -13173,7 +13283,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8760,
@@ -13202,7 +13313,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8587,
@@ -13231,7 +13343,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8574,
@@ -13260,7 +13373,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8682,
@@ -13289,7 +13403,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8778,
@@ -13318,7 +13433,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8685,
@@ -13347,7 +13463,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8762,
@@ -13376,7 +13493,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8659,
@@ -13405,7 +13523,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8782,
@@ -13434,7 +13553,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8632,
@@ -13463,7 +13583,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8780,
@@ -13492,7 +13613,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8836,
@@ -13521,7 +13643,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 7796,
@@ -14113,7 +14236,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8613,
@@ -14142,7 +14266,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8677,
@@ -14171,7 +14296,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8612,
@@ -14200,7 +14326,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8773,
@@ -14229,7 +14356,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 8675,
@@ -14258,7 +14386,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         }
     ]
 }

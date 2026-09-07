@@ -61,32 +61,22 @@
             <a href="{{ route('top-damage-rotations') }}"
                class="sidebar-item text-[12px] {{ request()->routeIs('top-damage-rotations') ? 'active !text-accent' : '' }}">
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Burst Windows
+                Top Burst Windows
             </a>
-            <a href="{{ route('class-guide') }}"
-               class="sidebar-item text-[12px] {{ request()->routeIs('class-guide') ? 'active !text-accent' : '' }}">
+            {{-- One link replacing four (Class Kits / Burst Guides / Spell Counters / Spells),
+                 2026-09-07: all four answer questions about a single class/spec, so they are now
+                 tabs on one per-spec page. The four routes still exist and still render on their
+                 own for anything already bookmarked or linked; they are just no longer separate
+                 destinations in the nav. See App\Livewire\PvpGuides. --}}
+            <a href="{{ route('pvp-guides') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('pvp-guides') || request()->routeIs('class-guide') || request()->routeIs('burst-guides') || request()->routeIs('claudes-counters') || request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Class Kits
+                PvP Guides
             </a>
             <a href="{{ route('top-cc-chains') }}"
                class="sidebar-item text-[12px] {{ request()->routeIs('top-cc-chains') ? 'active !text-accent' : '' }}">
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                 Top 10 CC Chains
-            </a>
-            <a href="{{ route('burst-guides') }}"
-               class="sidebar-item text-[12px] {{ request()->routeIs('burst-guides') ? 'active !text-accent' : '' }}">
-                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Burst Guides
-            </a>
-            <a href="{{ route('claudes-counters') }}"
-               class="sidebar-item text-[12px] {{ request()->routeIs('claudes-counters') ? 'active !text-accent' : '' }}">
-                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Spell Counters
-            </a>
-            <a href="{{ route('spells.explore') }}"
-               class="sidebar-item text-[12px] {{ request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">
-                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Spells
             </a>
         </div>
 

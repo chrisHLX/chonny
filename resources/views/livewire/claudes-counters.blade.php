@@ -1,5 +1,8 @@
-<div class="max-w-6xl mx-auto px-4 py-8 space-y-5">
+{{-- Embedded (a PvP Guides panel) drops the page-level width cap/padding and its own header —
+     the parent page supplies both. --}}
+<div class="{{ ($embedded ?? false) ? 'space-y-5' : 'max-w-6xl mx-auto px-4 py-8 space-y-5' }}">
 
+    @unless ($embedded ?? false)
     {{-- Header --}}
     <div class="linear-card px-6 py-5">
         <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">Spell Counters</p>
@@ -13,6 +16,7 @@
             a real dodge/parry buff. Click any spell for full detail.
         </p>
     </div>
+    @endunless
 
     @foreach ($counterableByClass as $className => $rows)
         <div class="linear-card px-6 py-5">
@@ -26,7 +30,7 @@
                                     class="flex items-center gap-2 hover:opacity-80 transition-opacity">
                                 <x-spell-icon :spell="$rowSpell" size="w-7 h-7"/>
                                 <span class="text-[12px] text-ink font-semibold">{{ $rowSpell->display_name }}</span>
-                                <span class="badge-blue !text-[9px]">{{ $rowSpell->dr_category }}</span>
+                                <span class="{{ config('spell_display.dr_badges')[$rowSpell->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $rowSpell->dr_category }}</span>
                             </button>
                             @unless ($row['hasAnyCounter'])
                                 <span class="text-[10px] text-ink-subtle italic">no known counter</span>
@@ -35,29 +39,32 @@
 
                         @if ($row['hasAnyCounter'])
                             <div class="flex flex-wrap gap-x-4 gap-y-1.5 mt-2 pt-2 border-t border-line">
-                                @foreach ([
-                                    ['label' => 'Usable while', 'entries' => $row['usableWhileThis']],
-                                    ['label' => 'Immune via (mechanic)', 'entries' => $row['grantsImmunity']],
-                                    ['label' => 'Immune via (school)', 'entries' => $row['schoolImmunity']],
-                                    ['label' => 'Dodge/Parry', 'entries' => $row['dodgeParryBoost']],
-                                ] as $bucket)
-                                    @if ($bucket['entries']->isNotEmpty())
-                                        @php $shown = $bucket['entries']->take(8); $remaining = $bucket['entries']->count() - $shown->count(); @endphp
-                                        <div class="flex items-center flex-wrap gap-1.5">
-                                            <span class="text-[9px] text-ink-subtle uppercase tracking-wide">{{ $bucket['label'] }} ({{ $bucket['entries']->count() }}):</span>
-                                            @foreach ($shown as $counterSpell)
-                                                <button type="button"
-                                                        wire:click="$dispatch('show-spell-detail', { spellId: {{ $counterSpell->id }} })"
-                                                        class="flex items-center gap-1 bg-surface-2 rounded px-1.5 py-0.5 hover:bg-surface-3 transition-colors">
-                                                    <x-spell-icon :spell="$counterSpell" size="w-4 h-4"/>
-                                                    <span class="text-[10.5px] text-ink-muted">{{ $counterSpell->display_name }}</span>
-                                                </button>
-                                            @endforeach
-                                            @if ($remaining > 0)
-                                                <span class="text-[10px] text-ink-subtle italic">+{{ $remaining }} more</span>
-                                            @endif
-                                        </div>
-                                    @endif
+                                {{-- Buckets come pre-ordered and pre-sorted from the component;
+                                     labels and confidence both come from SpellCounter so no
+                                     template invents its own vocabulary for them. --}}
+                                @foreach ($row['buckets'] as $mechanism => $entries)
+                                    @php
+                                        $shown = $entries->take(8);
+                                        $remaining = $entries->count() - $shown->count();
+                                        $weak = !$entries->first()->isHighConfidence();
+                                    @endphp
+                                    <div class="flex items-center flex-wrap gap-1.5 {{ $weak ? 'opacity-60' : '' }}">
+                                        <span class="text-[9px] text-ink-subtle uppercase tracking-wide"
+                                              @if ($weak) title="Blizzard's 'Allow While Stunned' attribute also fires on auras that merely persist through the effect — treat with care." @endif>
+                                            {{ $entries->first()->label() }} ({{ $entries->count() }}){{ $weak ? ' ?' : '' }}:
+                                        </span>
+                                        @foreach ($shown as $counter)
+                                            <button type="button"
+                                                    wire:click="$dispatch('show-spell-detail', { spellId: {{ $counter->counter_spell_id }} })"
+                                                    class="flex items-center gap-1 bg-surface-2 rounded px-1.5 py-0.5 hover:bg-surface-3 transition-colors">
+                                                <x-spell-icon :spell="$counter->counterSpell" size="w-4 h-4"/>
+                                                <span class="text-[10.5px] text-ink-muted">{{ $counter->counterSpell->display_name }}</span>
+                                            </button>
+                                        @endforeach
+                                        @if ($remaining > 0)
+                                            <span class="text-[10px] text-ink-subtle italic">+{{ $remaining }} more</span>
+                                        @endif
+                                    </div>
                                 @endforeach
                             </div>
                         @endif
@@ -86,5 +93,8 @@
         </p>
     </div>
 
-    <livewire:spell-detail-modal/>
+    {{-- Only one shared modal may exist per page; when embedded, PvP Guides mounts it. --}}
+    @unless ($embedded ?? false)
+        <livewire:spell-detail-modal/>
+    @endunless
 </div>

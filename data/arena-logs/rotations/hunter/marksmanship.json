@@ -27,73 +27,85 @@
                 "name": "Trueshot",
                 "spellId": 288613,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.96
             },
             {
                 "name": "Blood Fury",
                 "spellId": 20572,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.96
             },
             {
                 "name": "Moonlight Chakram",
                 "spellId": 1264949,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.15
             },
             {
                 "name": "Counter Shot",
                 "spellId": 147362,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.84
             },
             {
                 "name": "Aimed Shot",
                 "spellId": 19434,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.51
             },
             {
                 "name": "Arcane Shot",
                 "spellId": 185358,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.88
             },
             {
                 "name": "Volley",
                 "spellId": 260243,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.23
             },
             {
                 "name": "Gladiator's Medallion",
                 "spellId": 336126,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 7.46
             },
             {
                 "name": "Aimed Shot",
                 "spellId": 19434,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 7.58
             },
             {
                 "name": "Arcane Shot",
                 "spellId": 185358,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.95
             },
             {
                 "name": "Rapid Fire",
                 "spellId": 257044,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 10.29
             },
             {
                 "name": "Kill Shot",
                 "spellId": 53351,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 11.65
             }
         ],
         "matchId": "3818c4505163c6a6612d103570e80543",
@@ -779,7 +791,7 @@
                     "pvpTalentId": 173
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:51+00:00"
+            "resolvedAt": "2026-09-06T12:25:35+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-57-0DE79FFB",
@@ -977,7 +989,7 @@
             ],
             "targetClassName": "Shaman",
             "targetSpecName": "Elemental",
-            "resolvedAt": "2026-09-06T02:57:01+00:00"
+            "resolvedAt": "2026-09-06T12:25:43+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -990,31 +1002,36 @@
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.46
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.58
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.95
                 },
                 {
                     "name": "Rapid Fire",
                     "spellId": 257044,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.29
                 },
                 {
                     "name": "Kill Shot",
                     "spellId": 53351,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.65
                 }
             ],
             "matchId": "3818c4505163c6a6612d103570e80543",
@@ -1700,7 +1717,7 @@
                         "pvpTalentId": 173
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-57-0DE79FFB",
@@ -1894,7 +1911,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Elemental",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "10": {
@@ -1906,49 +1923,57 @@
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.51
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.88
                 },
                 {
                     "name": "Volley",
                     "spellId": 260243,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.23
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.46
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.58
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.95
                 },
                 {
                     "name": "Rapid Fire",
                     "spellId": 257044,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.29
                 },
                 {
                     "name": "Kill Shot",
                     "spellId": 53351,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.65
                 }
             ],
             "matchId": "3818c4505163c6a6612d103570e80543",
@@ -2634,7 +2659,7 @@
                         "pvpTalentId": 173
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-57-0DE79FFB",
@@ -2824,7 +2849,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Elemental",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "12": {
@@ -2836,73 +2861,85 @@
                     "name": "Trueshot",
                     "spellId": 288613,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.96
                 },
                 {
                     "name": "Blood Fury",
                     "spellId": 20572,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.96
                 },
                 {
                     "name": "Moonlight Chakram",
                     "spellId": 1264949,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.15
                 },
                 {
                     "name": "Counter Shot",
                     "spellId": 147362,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.84
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.51
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.88
                 },
                 {
                     "name": "Volley",
                     "spellId": 260243,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.23
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.46
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.58
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.95
                 },
                 {
                     "name": "Rapid Fire",
                     "spellId": 257044,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.29
                 },
                 {
                     "name": "Kill Shot",
                     "spellId": 53351,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.65
                 }
             ],
             "matchId": "3818c4505163c6a6612d103570e80543",
@@ -3588,7 +3625,7 @@
                         "pvpTalentId": 173
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-57-0DE79FFB",
@@ -3786,7 +3823,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Elemental",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "20": {
@@ -3798,85 +3835,99 @@
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.17
                 },
                 {
                     "name": "Rapid Fire",
                     "spellId": 257044,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.67
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.48
                 },
                 {
                     "name": "Explosive Shot",
                     "spellId": 212431,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.78
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.09
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.4
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.71
                 },
                 {
                     "name": "Volley",
                     "spellId": 260243,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.03
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.34
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.65
                 },
                 {
                     "name": "Disengage",
                     "spellId": 781,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.97
                 },
                 {
                     "name": "Rapid Fire",
                     "spellId": 257044,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.74
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.9
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.97
                 }
             ],
             "matchId": "49d1647483bea7e862b9431eb8c7ad23",
@@ -4562,7 +4613,7 @@
                         "pvpTalentId": 172
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3726-0C53060F",
@@ -4704,7 +4755,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Fury",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "30": {
@@ -4716,157 +4767,183 @@
                     "name": "Volley",
                     "spellId": 260243,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.29
                 },
                 {
                     "name": "Disengage",
                     "spellId": 781,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.93
                 },
                 {
                     "name": "Rapid Fire",
                     "spellId": 257044,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.62
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.47
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.75
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.05
                 },
                 {
                     "name": "Explosive Shot",
                     "spellId": 212431,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.34
                 },
                 {
                     "name": "Aspect of the Cheetah",
                     "spellId": 186257,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.88
                 },
                 {
                     "name": "Master's Call",
                     "spellId": 1241871,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.43
                 },
                 {
                     "name": "Concussive Shot",
                     "spellId": 5116,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.73
                 },
                 {
                     "name": "Trueshot",
                     "spellId": 288613,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.37
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.02
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.32
                 },
                 {
                     "name": "Tranquilizing Shot",
                     "spellId": 19801,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.62
                 },
                 {
                     "name": "Moonlight Chakram",
                     "spellId": 1264949,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.96
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.26
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.56
                 },
                 {
                     "name": "Concussive Shot",
                     "spellId": 5116,
                     "isCc": true,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.85
                 },
                 {
                     "name": "Rapid Fire",
                     "spellId": 257044,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.15
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.77
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.3
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.3
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.58
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.99
                 },
                 {
                     "name": "Disengage",
                     "spellId": 781,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.66
                 },
                 {
                     "name": "Scatter Shot",
                     "spellId": 213691,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 29.37
                 }
             ],
             "matchId": "c162b2b644ee2c9724351e728ebb2df0",
@@ -5002,9 +5079,9 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Fury",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:50:57+00:00"
+    "generated_at": "2026-09-06T12:21:21+00:00"
 }

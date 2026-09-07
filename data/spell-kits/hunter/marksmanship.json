@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-06T02:13:05+00:00",
-    "spellCacheVersion": 4136,
+    "generatedAt": "2026-09-07T01:42:42+00:00",
+    "spellCacheVersion": 4155,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -30,7 +30,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5729,
@@ -79,9 +80,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -91,29 +98,12 @@
                                         "is_passive": true,
                                         "icon_name": "ability_hunter_assassinate.jpg",
                                         "created_at": "2026-07-30T14:01:22.000000Z",
-                                        "updated_at": "2026-09-03T03:33:40.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 10582,
-                                                "spell_id": 5649,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -30000,
-                                                "scaled_value": -30000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:01:22.000000Z",
-                                                "updated_at": "2026-09-02T11:57:39.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:22.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -30,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5649
                                 }
                             ]
                         }
@@ -155,9 +145,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -167,29 +163,12 @@
                                         "is_passive": true,
                                         "icon_name": "ability_hunter_assassinate.jpg",
                                         "created_at": "2026-07-30T14:01:22.000000Z",
-                                        "updated_at": "2026-09-03T03:33:40.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 10582,
-                                                "spell_id": 5649,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -30000,
-                                                "scaled_value": -30000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:01:22.000000Z",
-                                                "updated_at": "2026-09-02T11:57:39.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:22.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -30,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5649
                                 }
                             ]
                         }
@@ -790,7 +769,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 4836,
@@ -871,9 +851,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -883,29 +869,12 @@
                                         "is_passive": true,
                                         "icon_name": "ability_hunter_assassinate.jpg",
                                         "created_at": "2026-07-30T14:01:22.000000Z",
-                                        "updated_at": "2026-09-03T03:33:40.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 10582,
-                                                "spell_id": 5649,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -30000,
-                                                "scaled_value": -30000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:01:22.000000Z",
-                                                "updated_at": "2026-09-02T11:57:39.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:22.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -30,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5649
                                 }
                             ]
                         }
@@ -1170,7 +1139,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5632,
@@ -1199,7 +1169,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 4839,
@@ -1356,9 +1327,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -1368,7 +1345,7 @@
                             "is_passive": true,
                             "icon_name": "ability_hunter_aspectoftheviper.jpg",
                             "created_at": "2026-07-30T14:01:21.000000Z",
-                            "updated_at": "2026-09-03T03:33:40.000000Z",
+                            "updated_at": "2026-09-06T04:00:22.000000Z",
                             "effects": [
                                 {
                                     "id": 10391,
@@ -1393,7 +1370,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5550
                     },
                     {
                         "spell": {
@@ -1418,9 +1396,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -1430,7 +1414,7 @@
                             "is_passive": true,
                             "icon_name": "ability_racial_runningwild.jpg",
                             "created_at": "2026-07-30T14:01:22.000000Z",
-                            "updated_at": "2026-09-03T03:33:48.000000Z",
+                            "updated_at": "2026-09-06T04:00:40.000000Z",
                             "effects": [
                                 {
                                     "id": 10554,
@@ -1468,7 +1452,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5634
                     },
                     {
                         "spell": {
@@ -1493,9 +1478,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -1505,7 +1496,7 @@
                             "is_passive": true,
                             "icon_name": "ability_mount_jungletiger.jpg",
                             "created_at": "2026-07-30T14:01:21.000000Z",
-                            "updated_at": "2026-09-03T03:33:48.000000Z",
+                            "updated_at": "2026-09-06T04:00:40.000000Z",
                             "effects": [
                                 {
                                     "id": 10427,
@@ -1527,7 +1518,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5578
                     }
                 ]
             },
@@ -1539,7 +1531,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5737,
@@ -1568,7 +1561,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5663,
@@ -1631,7 +1625,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 4842,
@@ -1772,9 +1767,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -1784,7 +1785,7 @@
                             "is_passive": true,
                             "icon_name": "ability_hunter_aspectoftheviper.jpg",
                             "created_at": "2026-07-30T14:01:21.000000Z",
-                            "updated_at": "2026-09-03T03:33:40.000000Z",
+                            "updated_at": "2026-09-06T04:00:22.000000Z",
                             "effects": [
                                 {
                                     "id": 10391,
@@ -1809,7 +1810,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5550
                     },
                     {
                         "spell": {
@@ -1834,9 +1836,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -1846,7 +1854,7 @@
                             "is_passive": true,
                             "icon_name": "ability_hunter_pet_turtle.jpg",
                             "created_at": "2026-07-30T14:01:21.000000Z",
-                            "updated_at": "2026-09-03T03:33:48.000000Z",
+                            "updated_at": "2026-09-06T04:00:40.000000Z",
                             "effects": [
                                 {
                                     "id": 10428,
@@ -1868,7 +1876,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5579
                     }
                 ]
             },
@@ -1884,7 +1893,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5661,
@@ -1913,7 +1923,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5597,
@@ -1942,7 +1953,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5543,
@@ -2070,7 +2082,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Stun"
         },
         {
             "spellId": 5590,
@@ -2151,9 +2164,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -2163,29 +2182,12 @@
                                         "is_passive": true,
                                         "icon_name": "ability_hunter_assassinate.jpg",
                                         "created_at": "2026-07-30T14:01:22.000000Z",
-                                        "updated_at": "2026-09-03T03:33:40.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 10582,
-                                                "spell_id": 5649,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -30000,
-                                                "scaled_value": -30000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:01:22.000000Z",
-                                                "updated_at": "2026-09-02T11:57:39.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:22.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -30,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5649
                                 }
                             ]
                         }
@@ -2800,9 +2802,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -2812,7 +2820,7 @@
                             "is_passive": true,
                             "icon_name": "spell_hunter_focusingshot.jpg",
                             "created_at": "2026-07-30T14:01:22.000000Z",
-                            "updated_at": "2026-09-03T03:33:41.000000Z",
+                            "updated_at": "2026-09-06T04:00:24.000000Z",
                             "effects": [
                                 {
                                     "id": 10590,
@@ -2850,7 +2858,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -2,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5651
                     }
                 ]
             },
@@ -2881,9 +2890,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -2893,7 +2908,7 @@
                             "is_passive": true,
                             "icon_name": "spell_hunter_focusingshot.jpg",
                             "created_at": "2026-07-30T14:01:22.000000Z",
-                            "updated_at": "2026-09-03T03:33:41.000000Z",
+                            "updated_at": "2026-09-06T04:00:24.000000Z",
                             "effects": [
                                 {
                                     "id": 10590,
@@ -2931,7 +2946,8 @@
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
-                        "modifier_unit": "charges"
+                        "modifier_unit": "charges",
+                        "selection_spell_id": 5651
                     }
                 ]
             },
@@ -2942,7 +2958,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5595,
@@ -2971,7 +2988,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5598,
@@ -3033,7 +3051,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5603,
@@ -3062,7 +3081,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5550,
@@ -3091,7 +3111,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5655,
@@ -3137,7 +3158,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5642,
@@ -3166,7 +3188,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5649,
@@ -3195,7 +3218,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5547,
@@ -3228,7 +3252,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5630,
@@ -3257,7 +3282,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5577,
@@ -3286,7 +3312,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5731,
@@ -3315,7 +3342,8 @@
             "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Silence"
         },
         {
             "spellId": 5584,
@@ -3344,7 +3372,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5586,
@@ -3373,7 +3402,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5537,
@@ -3469,7 +3499,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Slow"
         },
         {
             "spellId": 5634,
@@ -3498,7 +3529,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5735,
@@ -3527,7 +3559,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5601,
@@ -3556,7 +3589,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5544,
@@ -3635,7 +3669,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5685,
@@ -3664,7 +3699,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5675,
@@ -3693,7 +3729,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5589,
@@ -3722,7 +3759,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5651,
@@ -3751,7 +3789,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5652,
@@ -3942,7 +3981,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5573,
@@ -3971,7 +4011,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5736,
@@ -4000,7 +4041,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 4707,
@@ -4175,7 +4217,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5553,
@@ -4204,7 +4247,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5623,
@@ -4233,7 +4277,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5671,
@@ -4262,7 +4307,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5670,
@@ -4291,7 +4337,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5596,
@@ -4320,7 +4367,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5567,
@@ -4349,7 +4397,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 4789,
@@ -4491,9 +4540,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -4503,7 +4558,7 @@
                             "is_passive": true,
                             "icon_name": "ability_hunter_onewithnature.jpg",
                             "created_at": "2026-07-30T14:01:21.000000Z",
-                            "updated_at": "2026-09-03T03:33:40.000000Z",
+                            "updated_at": "2026-09-06T04:00:22.000000Z",
                             "effects": [
                                 {
                                     "id": 10392,
@@ -4528,7 +4583,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -60,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5551
                     }
                 ]
             },
@@ -4544,7 +4600,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5643,
@@ -4609,9 +4666,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -4621,29 +4684,12 @@
                                         "is_passive": true,
                                         "icon_name": "ability_hunter_assassinate.jpg",
                                         "created_at": "2026-07-30T14:01:22.000000Z",
-                                        "updated_at": "2026-09-03T03:33:40.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 10582,
-                                                "spell_id": 5649,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -30000,
-                                                "scaled_value": -30000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:01:22.000000Z",
-                                                "updated_at": "2026-09-02T11:57:39.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:22.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -30,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5649
                                 }
                             ]
                         }
@@ -4944,7 +4990,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Buff"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5662,
@@ -4990,7 +5037,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5683,
@@ -5019,7 +5067,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5653,
@@ -5048,7 +5097,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 4844,
@@ -5174,9 +5224,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -5186,7 +5242,7 @@
                             "is_passive": true,
                             "icon_name": "ability_hunter_traplauncher.jpg",
                             "created_at": "2026-07-30T14:01:21.000000Z",
-                            "updated_at": "2026-09-03T03:33:42.000000Z",
+                            "updated_at": "2026-09-06T04:00:26.000000Z",
                             "effects": [
                                 {
                                     "id": 10396,
@@ -5208,7 +5264,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -5,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5554
                     }
                 ]
             },
@@ -5220,7 +5277,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Incapacitate"
         },
         {
             "spellId": 5587,
@@ -5249,7 +5307,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5581,
@@ -5278,7 +5337,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5326,
@@ -5307,7 +5367,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5666,
@@ -5336,7 +5397,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5574,
@@ -5365,7 +5427,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5557,
@@ -5394,7 +5457,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5734,
@@ -5423,7 +5487,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5578,
@@ -5452,7 +5517,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5579,
@@ -5481,7 +5547,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5580,
@@ -5510,7 +5577,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5585,
@@ -5539,7 +5607,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5554,
@@ -5568,7 +5637,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5575,
@@ -5694,9 +5764,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -5706,7 +5782,7 @@
                             "is_passive": true,
                             "icon_name": "spell_nature_shamanrage.jpg",
                             "created_at": "2026-07-30T14:01:21.000000Z",
-                            "updated_at": "2026-09-03T03:33:46.000000Z",
+                            "updated_at": "2026-09-06T04:00:37.000000Z",
                             "effects": [
                                 {
                                     "id": 10409,
@@ -5728,7 +5804,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -20,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5566
                     }
                 ]
             },
@@ -5740,7 +5817,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Stun"
         },
         {
             "spellId": 5624,
@@ -5769,7 +5847,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5556,
@@ -5798,7 +5877,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5640,
@@ -5879,9 +5959,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -5891,29 +5977,12 @@
                                         "is_passive": true,
                                         "icon_name": "ability_hunter_assassinate.jpg",
                                         "created_at": "2026-07-30T14:01:22.000000Z",
-                                        "updated_at": "2026-09-03T03:33:40.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 10582,
-                                                "spell_id": 5649,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -30000,
-                                                "scaled_value": -30000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:01:22.000000Z",
-                                                "updated_at": "2026-09-02T11:57:39.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:22.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -30,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5649
                                 }
                             ]
                         }
@@ -6320,9 +6389,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -6332,7 +6407,7 @@
                             "is_passive": true,
                             "icon_name": "spell_hunter_focusingshot.jpg",
                             "created_at": "2026-07-30T14:01:22.000000Z",
-                            "updated_at": "2026-09-03T03:33:41.000000Z",
+                            "updated_at": "2026-09-06T04:00:24.000000Z",
                             "effects": [
                                 {
                                     "id": 10590,
@@ -6370,7 +6445,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -2,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5651
                     }
                 ]
             },
@@ -6401,9 +6477,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -6413,7 +6495,7 @@
                             "is_passive": true,
                             "icon_name": "spell_hunter_focusingshot.jpg",
                             "created_at": "2026-07-30T14:01:22.000000Z",
-                            "updated_at": "2026-09-03T03:33:41.000000Z",
+                            "updated_at": "2026-09-06T04:00:24.000000Z",
                             "effects": [
                                 {
                                     "id": 10590,
@@ -6451,7 +6533,8 @@
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
-                        "modifier_unit": "charges"
+                        "modifier_unit": "charges",
+                        "selection_spell_id": 5651
                     }
                 ]
             },
@@ -6462,7 +6545,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5565,
@@ -6491,7 +6575,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5572,
@@ -6520,7 +6605,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5654,
@@ -6549,7 +6635,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5641,
@@ -6643,7 +6730,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5559,
@@ -6672,7 +6760,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5633,
@@ -6701,7 +6790,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5626,
@@ -6730,7 +6820,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5648,
@@ -6759,7 +6850,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 4760,
@@ -6805,7 +6897,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5400,
@@ -6834,7 +6927,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5540,
@@ -6896,7 +6990,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5563,
@@ -6925,7 +7020,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5629,
@@ -6954,7 +7050,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5636,
@@ -7049,7 +7146,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5546,
@@ -7111,7 +7209,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5551,
@@ -7140,7 +7239,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5571,
@@ -7169,7 +7269,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5672,
@@ -7198,7 +7299,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5665,
@@ -7227,7 +7329,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5664,
@@ -7322,7 +7425,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5628,
@@ -7351,7 +7455,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5604,
@@ -7380,7 +7485,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5560,
@@ -7409,7 +7515,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5555,
@@ -7455,7 +7562,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5658,
@@ -7484,7 +7592,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5542,
@@ -7513,7 +7622,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5646,
@@ -7816,7 +7926,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5668,
@@ -7845,7 +7956,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5582,
@@ -7874,7 +7986,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5659,
@@ -7903,7 +8016,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5637,
@@ -7932,7 +8046,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5732,
@@ -7961,7 +8076,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5644,
@@ -8010,9 +8126,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -8022,29 +8144,12 @@
                                         "is_passive": true,
                                         "icon_name": "ability_hunter_assassinate.jpg",
                                         "created_at": "2026-07-30T14:01:22.000000Z",
-                                        "updated_at": "2026-09-03T03:33:40.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 10582,
-                                                "spell_id": 5649,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -30000,
-                                                "scaled_value": -30000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:01:22.000000Z",
-                                                "updated_at": "2026-09-02T11:57:39.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:22.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -30,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5649
                                 }
                             ]
                         }
@@ -8585,7 +8690,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Buff"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5558,
@@ -8614,7 +8720,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5541,
@@ -8647,7 +8754,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5657,
@@ -8676,7 +8784,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5631,
@@ -8705,7 +8814,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5536,
@@ -8734,7 +8844,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Disorient"
         },
         {
             "spellId": 12744,
@@ -8763,7 +8874,8 @@
             "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Incapacitate"
         },
         {
             "spellId": 5561,
@@ -8792,7 +8904,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5635,
@@ -8821,7 +8934,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5625,
@@ -8998,9 +9112,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -9010,29 +9130,12 @@
                                         "is_passive": true,
                                         "icon_name": "ability_hunter_assassinate.jpg",
                                         "created_at": "2026-07-30T14:01:22.000000Z",
-                                        "updated_at": "2026-09-03T03:33:40.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 10582,
-                                                "spell_id": 5649,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -30000,
-                                                "scaled_value": -30000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:01:22.000000Z",
-                                                "updated_at": "2026-09-02T11:57:39.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:22.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -30,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5649
                                 }
                             ]
                         }
@@ -9075,7 +9178,8 @@
                 "offensive": true,
                 "defensive": true,
                 "label": "Mixed"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5564,
@@ -9104,7 +9208,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5594,
@@ -9133,7 +9238,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5583,
@@ -9162,7 +9268,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5660,
@@ -9191,7 +9298,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5588,
@@ -9220,7 +9328,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5733,
@@ -9249,7 +9358,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5599,
@@ -9278,7 +9388,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5570,
@@ -9307,7 +9418,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5639,
@@ -9336,7 +9448,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5627,
@@ -9365,7 +9478,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5656,
@@ -9411,7 +9525,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5549,
@@ -9509,9 +9624,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -9521,7 +9642,7 @@
                             "is_passive": true,
                             "icon_name": "ability_rogue_plunderarmor.jpg",
                             "created_at": "2026-07-30T14:01:21.000000Z",
-                            "updated_at": "2026-09-03T03:33:46.000000Z",
+                            "updated_at": "2026-09-06T04:00:37.000000Z",
                             "effects": [
                                 {
                                     "id": 10402,
@@ -9543,7 +9664,8 @@
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
-                        "modifier_unit": "charges"
+                        "modifier_unit": "charges",
+                        "selection_spell_id": 5560
                     }
                 ]
             },
@@ -9554,7 +9676,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5730,
@@ -9583,7 +9706,8 @@
             "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 12617,
@@ -9612,7 +9736,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5682,
@@ -9641,7 +9766,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5545,
@@ -9766,9 +9892,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -9778,7 +9910,7 @@
                             "is_passive": true,
                             "icon_name": "ability_hunter_traplauncher.jpg",
                             "created_at": "2026-07-30T14:01:21.000000Z",
-                            "updated_at": "2026-09-03T03:33:42.000000Z",
+                            "updated_at": "2026-09-06T04:00:26.000000Z",
                             "effects": [
                                 {
                                     "id": 10396,
@@ -9800,7 +9932,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -5,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5554
                     }
                 ]
             },
@@ -9812,7 +9945,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5562,
@@ -9841,7 +9975,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5676,
@@ -9870,7 +10005,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5667,
@@ -9899,7 +10035,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5566,
@@ -9928,7 +10065,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5593,
@@ -9957,7 +10095,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5605,
@@ -9986,7 +10125,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5576,
@@ -10015,7 +10155,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5548,
@@ -10044,7 +10185,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5539,
@@ -10123,7 +10265,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5645,
@@ -10234,7 +10377,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5569,
@@ -10263,7 +10407,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5650,
@@ -10549,9 +10694,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -10561,7 +10712,7 @@
                             "is_passive": true,
                             "icon_name": "ability_hunter_assassinate.jpg",
                             "created_at": "2026-07-30T14:01:22.000000Z",
-                            "updated_at": "2026-09-03T03:33:40.000000Z",
+                            "updated_at": "2026-09-06T04:00:22.000000Z",
                             "effects": [
                                 {
                                     "id": 10582,
@@ -10583,7 +10734,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 5649
                     }
                 ]
             },
@@ -10599,7 +10751,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Buff"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5638,
@@ -10628,7 +10781,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5600,
@@ -10657,7 +10811,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5678,
@@ -10686,7 +10841,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5677,
@@ -10715,7 +10871,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5684,
@@ -10744,7 +10901,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5679,
@@ -10773,7 +10931,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5568,
@@ -10802,7 +10961,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5673,
@@ -10831,7 +10991,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5647,
@@ -11043,7 +11204,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5227,
@@ -11108,9 +11270,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -11120,29 +11288,12 @@
                                         "is_passive": true,
                                         "icon_name": "ability_hunter_assassinate.jpg",
                                         "created_at": "2026-07-30T14:01:22.000000Z",
-                                        "updated_at": "2026-09-03T03:33:40.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 10582,
-                                                "spell_id": 5649,
-                                                "effect_index": 1,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -30000,
-                                                "scaled_value": -30000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:01:22.000000Z",
-                                                "updated_at": "2026-09-02T11:57:39.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:22.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -30,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 5649
                                 }
                             ]
                         }
@@ -11427,7 +11578,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 5602,
@@ -11456,7 +11608,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5552,
@@ -11485,7 +11638,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5674,
@@ -11514,7 +11668,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 5592,
@@ -11592,7 +11747,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         }
     ]
 }

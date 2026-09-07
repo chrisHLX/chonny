@@ -8,6 +8,7 @@ use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\TalentBuild;
 use App\Models\TalentNodeEntry;
+use App\Support\SpellProfile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 
@@ -53,17 +54,17 @@ class SpecKitComputer
     public function tryReadPrecomputed(Specialization $spec, TalentSelectionService $talentService): ?array
     {
         $class = GameClass::find($spec->class_id);
-        if (!$class) {
+        if (! $class) {
             return null;
         }
 
         $path = base_path("data/spell-kits/{$class->slug}/{$spec->slug}.json");
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return null;
         }
 
         $decoded = json_decode(File::get($path), true);
-        if (!is_array($decoded) || !isset($decoded['entries'], $decoded['spellCacheVersion'], $decoded['codeFingerprint'])) {
+        if (! is_array($decoded) || ! isset($decoded['entries'], $decoded['spellCacheVersion'], $decoded['codeFingerprint'])) {
             return null;
         }
 
@@ -115,34 +116,46 @@ class SpecKitComputer
 
         $bySpellId = collect($entries)->keyBy(fn ($e) => $e['spell']->spell_id);
 
-        $resolved = collect($spellIds)->map(function ($id) use ($bySpellId, $service) {
+        $resolved = collect($spellIds)->map(function ($id) use ($bySpellId) {
             if ($bySpellId->has($id)) {
                 return $bySpellId->get($id);
             }
 
             $patchId = \App\Models\Patch::where('is_current', true)->value('id');
             $spell = Spell::where('patch_id', $patchId)->where('spell_id', $id)->first();
-            if (!$spell) {
+            if (! $spell) {
                 return null;
             }
 
-            return [
-                'spell' => $spell,
-                'category' => $service->categorize($spell),
-                'description' => ['text' => strip_tags($spell->description ?? '')],
-                'modifiers' => [],
-                'cooldown' => ['seconds' => $spell->cooldown_seconds],
-                'charges' => ['charges' => $spell->charges],
-                'isSelected' => true, // unconditional baseline — always "selected", nothing to gate on
-                'source' => 'baseline_core',
-            ];
+            return $this->profileBuilder()->forKitEntry(
+                spell: $spell,
+                category: $this->profileBuilder()->category($spell),
+                description: ['text' => strip_tags($spell->description ?? ''), 'uncertain' => false],
+                formulaModifiers: collect(),
+                modifiers: ['named' => collect(), 'baseline' => collect(), 'potential' => collect()],
+                cooldown: ['seconds' => $spell->cooldown_seconds],
+                charges: ['charges' => $spell->charges],
+                isSelected: true, // unconditional baseline — always "selected", nothing to gate on
+                source: 'baseline_core',
+                isPriority: false,
+                offensiveDefensive: null,
+                // resolvedDrCategory deliberately left unset (= use the spell's own base column).
+                // This branch only ever handles unconditional core-rotation filler that isn't in
+                // the selectable kit at all, so there are no talent selections in scope here to
+                // resolve a conditional dr_category against  14 and inventing one would be worse
+                // than showing the base value.
+            );
         })->filter()->values();
 
         return $resolved->all();
     }
 
     /**
-     * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array, isSelected: bool, source: string}>
+     * @return array<int, SpellProfile> every entry is the one shared spell object — see
+     *                                  App\Support\SpellProfile. It implements ArrayAccess with
+     *                                  exactly the key set this method used to return as a plain
+     *                                  array, so existing blade templates and the on-disk kit
+     *                                  files consume it unchanged.
      */
     public function compute(
         Specialization $spec,
@@ -218,24 +231,24 @@ class SpecKitComputer
                 $modifiers = $modifiersBySpellId[$spell->id];
                 $offDef = $classification['bySpellId'][$spell->spell_id] ?? $classification['byName'][$spell->display_name] ?? null;
 
-                return [
-                    'spell' => $spell,
-                    'category' => $service->categorize($spell),
-                    'description' => $description,
-                    'formulaModifiers' => $description['uncertain'] ? $service->variablesModifiers($spell) : collect(),
-                    'modifiers' => [
+                return $this->profileBuilder()->forKitEntry(
+                    spell: $spell,
+                    category: $this->profileBuilder()->category($spell),
+                    description: $description,
+                    formulaModifiers: $description['uncertain'] ? $service->variablesModifiers($spell) : collect(),
+                    modifiers: [
                         'named' => $this->enrichModifiers($modifiers['named'], $service, $build, $selected, $ranks),
                         'baseline' => $this->enrichModifiers($modifiers['baseline'], $service, $build, $selected, $ranks),
                         'potential' => $this->enrichModifiers($modifiers['potential'], $service, $build, $selected, $ranks),
                     ],
-                    'hasPotentialImprovement' => $modifiers['potential']->isNotEmpty(),
-                    'cooldown' => $service->effectiveCooldown($spell, $build, $selected, $ranks),
-                    'charges' => $service->effectiveCharges($spell, $build, $selected, $ranks),
-                    'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
-                    'source' => $allTalentIds->contains($spell->id) ? 'talent' : ($allPvpIds->contains($spell->id) ? 'pvp_talent' : 'baseline'),
-                    'isPriority' => $priorityBySpellId[$spell->id] ?? false,
-                    'offensiveDefensive' => $offDef,
-                ];
+                    cooldown: $service->effectiveCooldown($spell, $build, $selected, $ranks),
+                    charges: $service->effectiveCharges($spell, $build, $selected, $ranks),
+                    isSelected: $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
+                    source: $allTalentIds->contains($spell->id) ? 'talent' : ($allPvpIds->contains($spell->id) ? 'pvp_talent' : 'baseline'),
+                    isPriority: $priorityBySpellId[$spell->id] ?? false,
+                    offensiveDefensive: $offDef,
+                    resolvedDrCategory: $this->profileBuilder()->resolveDrCategory($spell, $selected),
+                );
             })
             ->all();
     }
@@ -246,14 +259,20 @@ class SpecKitComputer
      */
     private function enrichModifiers(Collection $modifiers, ModuleSpellReferenceService $service, ModuleGameBuild $build, Collection $selected, Collection $ranks): Collection
     {
-        return $modifiers->map(function (array $mod) use ($service, $build, $selected, $ranks) {
-            $mod['description'] = $service->resolveDescription($mod['spell'], $build);
-            $mod['category'] = $service->categorize($mod['spell']);
-            $mod['cooldown'] = $service->effectiveCooldown($mod['spell'], $build, $selected, $ranks);
-
-            return $mod;
-        });
+        return $this->profileBuilder()->enrichModifiers($modifiers, $build, $selected, $ranks);
     }
+
+    /**
+     * Resolved lazily rather than constructor-injected: this class is instantiated directly in a
+     * few places (tests, console commands) that pass their own service instances positionally,
+     * and adding a required constructor argument would break every one of them for no gain.
+     */
+    private function profileBuilder(): SpellProfileBuilder
+    {
+        return $this->profileBuilder ??= app(SpellProfileBuilder::class);
+    }
+
+    private ?SpellProfileBuilder $profileBuilder = null;
 
     private function detectHeroTreeId(Collection $selectedSpellIds): ?int
     {
@@ -277,7 +296,8 @@ class SpecKitComputer
      * fromJsonSafeArray() reverses this exactly, rehydrating real Spell models from one bulk
      * query — nothing downstream (the Blade templates) needs to know this round trip happened.
      *
-     * @param  array<int, array>  $entries  compute()'s own return shape
+     * @param  array<int, SpellProfile>  $entries  compute()'s own return shape (SpellProfile's
+     *                                             ArrayAccess bridge is what lets this read it by key)
      */
     public function toJsonSafeArray(array $entries): array
     {
@@ -291,7 +311,10 @@ class SpecKitComputer
             'cooldown' => $mod['cooldown'],
         ];
 
-        return array_map(function (array $entry) use ($modifierToJson) {
+        // Untyped: $entry is a SpellProfile, which is ArrayAccess — a type PHP's `array`
+        // hint does not accept. Its modifiers stay plain arrays, so $modifierToJson above
+        // keeps its own hint.
+        return array_map(function ($entry) use ($modifierToJson) {
             return [
                 'spellId' => $entry['spell']->id,
                 'category' => $entry['category'],
@@ -309,6 +332,11 @@ class SpecKitComputer
                 'source' => $entry['source'],
                 'isPriority' => $entry['isPriority'],
                 'offensiveDefensive' => $entry['offensiveDefensive'],
+                // The BUILD-RESOLVED dr_category (see SpellProfileBuilder::resolveDrCategory).
+                // Serialized rather than recomputed on read: fromJsonSafeArray() has no talent
+                // selections to resolve against, and this file is already per-spec-and-build by
+                // construction, so the resolved value is exactly as cacheable as 'category' is.
+                'drCategory' => $entry['drCategory'],
             ];
         }, $entries);
     }
@@ -320,7 +348,7 @@ class SpecKitComputer
      * changes at all to consume a precomputed file instead of a live computation.
      *
      * @param  array{entries: array<int, array>}  $decoded  json_decode($file, true)
-     * @return array<int, array>
+     * @return array<int, SpellProfile>
      */
     public function fromJsonSafeArray(array $decoded): array
     {
@@ -358,31 +386,36 @@ class SpecKitComputer
         return array_values(array_filter(array_map(function (array $e) use ($spellsById, $modifierFromJson) {
             $spell = $spellsById->get($e['spellId']);
 
-            if (!$spell) {
+            if (! $spell) {
                 // A spell referenced by a stale precomputed file no longer exists in the current
                 // patch (e.g. removed by a re-import) — drop the entry rather than render on a
                 // null model. Same "degrade, don't crash" posture as spellReferencesCacheIsValid().
                 return null;
             }
 
-            return [
-                'spell' => $spell,
-                'category' => $e['category'],
-                'description' => $e['description'],
-                'formulaModifiers' => collect($e['formulaModifierSpellIds'] ?? [])->map(fn ($id) => $spellsById->get($id))->filter()->values(),
-                'modifiers' => [
+            // Rehydrates to the SAME SpellProfile compute() returns, so a precomputed render and
+            // a live one are indistinguishable to every consumer — that equivalence is the whole
+            // point of the precompute and is asserted directly by SpellProfileTest.
+            return $this->profileBuilder()->forKitEntry(
+                spell: $spell,
+                category: $e['category'],
+                description: $e['description'],
+                formulaModifiers: collect($e['formulaModifierSpellIds'] ?? [])->map(fn ($id) => $spellsById->get($id))->filter()->values(),
+                modifiers: [
                     'named' => collect($e['modifiers']['named'] ?? [])->map($modifierFromJson)->filter(fn ($m) => $m['spell'] !== null)->values(),
                     'baseline' => collect($e['modifiers']['baseline'] ?? [])->map($modifierFromJson)->filter(fn ($m) => $m['spell'] !== null)->values(),
                     'potential' => collect($e['modifiers']['potential'] ?? [])->map($modifierFromJson)->filter(fn ($m) => $m['spell'] !== null)->values(),
                 ],
-                'hasPotentialImprovement' => $e['hasPotentialImprovement'],
-                'cooldown' => $e['cooldown'],
-                'charges' => $e['charges'],
-                'isSelected' => $e['isSelected'],
-                'source' => $e['source'],
-                'isPriority' => $e['isPriority'],
-                'offensiveDefensive' => $e['offensiveDefensive'],
-            ];
+                cooldown: $e['cooldown'],
+                charges: $e['charges'],
+                isSelected: $e['isSelected'],
+                source: $e['source'],
+                isPriority: $e['isPriority'],
+                offensiveDefensive: $e['offensiveDefensive'],
+                // Older kit files predate this key; falling back to the base column reproduces
+                // exactly the pre-2026-09-06 behaviour rather than erroring on a stale file.
+                resolvedDrCategory: $e['drCategory'] ?? $spell->dr_category,
+            );
         }, $entries)));
     }
 }

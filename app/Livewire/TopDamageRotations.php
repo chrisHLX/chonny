@@ -228,7 +228,7 @@ class TopDamageRotations extends Component
             'classSpecs' => $this->classSpecs,
             'rotation' => $this->rotation,
         ])->layout('layouts.app', [
-            'title' => 'WoW Burst Windows — Real Arena Damage Rotations | MindCollector',
+            'title' => 'WoW Top Burst Windows — Real Arena Damage Rotations | MindCollector',
             'description' => 'The single highest-damage burst window per WoW spec, taken straight from real arena logs — the exact cast sequence, anchored on that spec\'s offensive cooldowns.',
         ]);
     }

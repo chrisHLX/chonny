@@ -1,28 +1,146 @@
 {
     "classSlug": "hunter",
     "specSlug": "beast-mastery",
-    "generatedAt": "2026-09-06T03:01:01+00:00",
-    "sourceLengthSeconds": 30,
-    "sourceMatchId": "fa28b9a211917503bc40bcd1edd315c6",
-    "spellIds": [
-        132764,
-        34026,
-        217200,
-        193455,
-        193455,
-        34026,
-        217200,
-        147362,
-        213691,
-        34026,
-        217200,
-        34026,
-        34026,
-        132764,
-        193455,
-        217200
+    "generatedAt": "2026-09-07T00:57:26+00:00",
+    "evidence": {
+        "windows": 1037,
+        "anchoredWindows": 1037,
+        "matches": 200,
+        "killWindows": 204,
+        "gcdSeconds": 1.35,
+        "gcdMeasured": true
+    },
+    "window": {
+        "goLengthSeconds": 15,
+        "goLengthBasis": "buff-duration",
+        "globals": 11,
+        "anchorSpellId": 19574,
+        "commitSpreadSeconds": 6.9,
+        "anchorBuffSeconds": 15,
+        "anchorCooldownSeconds": 90
+    },
+    "sequence": [
+        {
+            "spellId": 187650,
+            "presence": 0.652,
+            "castsPerWindow": 0.65,
+            "medianOffset": -1.4,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "control",
+            "controlTarget": "healer",
+            "controlTargetSource": "measured",
+            "healerShare": 0.896,
+            "targetRatio": 2.69,
+            "targetObservations": 1023,
+            "phase": "setup"
+        },
+        {
+            "spellId": 19574,
+            "presence": 1,
+            "castsPerWindow": 1,
+            "medianOffset": 0,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Mixed",
+            "role": "anchor",
+            "phase": "commit"
+        },
+        {
+            "spellId": 19577,
+            "presence": 0.379,
+            "castsPerWindow": 0.38,
+            "medianOffset": 1.34,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "control",
+            "controlTarget": "healer",
+            "controlTargetSource": "measured",
+            "healerShare": 0.797,
+            "targetRatio": 2.39,
+            "targetObservations": 118,
+            "phase": "commit"
+        },
+        {
+            "spellId": 109248,
+            "presence": 0.289,
+            "castsPerWindow": 0.29,
+            "medianOffset": 1.98,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "control",
+            "controlTarget": "both",
+            "controlTargetSource": "measured",
+            "healerShare": 0.333,
+            "targetRatio": 1,
+            "targetObservations": 867,
+            "phase": "execute"
+        },
+        {
+            "spellId": 217200,
+            "presence": 0.972,
+            "castsPerWindow": 2.39,
+            "medianOffset": 4.37,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Buff",
+            "role": "cooldown",
+            "phase": "execute"
+        },
+        {
+            "spellId": 147362,
+            "presence": 0.394,
+            "castsPerWindow": 0.39,
+            "medianOffset": 4.44,
+            "stacksOnAnotherGlobal": true,
+            "classification": null,
+            "role": "interrupt",
+            "phase": "execute"
+        },
+        {
+            "spellId": 34026,
+            "presence": 0.993,
+            "castsPerWindow": 3.76,
+            "medianOffset": 4.58,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "cooldown",
+            "phase": "execute"
+        },
+        {
+            "spellId": 5116,
+            "presence": 0.293,
+            "castsPerWindow": 0.36,
+            "medianOffset": 6.86,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "control",
+            "controlTarget": "peel",
+            "controlTargetSource": "measured",
+            "healerShare": 0.298,
+            "targetRatio": 0.89,
+            "targetObservations": 665,
+            "phase": "execute"
+        }
     ],
-    "rawStepCount": 27,
-    "filteredStepCount": 25,
-    "truncatedAtRepeat": true
+    "fill": [
+        {
+            "spellId": 193455,
+            "presence": 0.734,
+            "castsPerWindow": 1.42,
+            "medianOffset": 7.98,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "fill"
+        }
+    ],
+    "alsoPressed": [
+        {
+            "spellId": 781,
+            "presence": 0.388,
+            "castsPerWindow": 0.4,
+            "medianOffset": 5.99,
+            "stacksOnAnotherGlobal": true,
+            "classification": null,
+            "role": "other"
+        }
+    ]
 }

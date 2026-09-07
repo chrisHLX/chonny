@@ -36,7 +36,7 @@ function makeSynergiesSpecFixture(Patch $patch, string $className, string $specN
     $node = TalentNode::create(['talent_tree_id' => $tree->id, 'external_node_id' => $spec->id, 'type' => 'ACTIVE', 'max_ranks' => 1]);
     $entry = TalentNodeEntry::create(['talent_node_id' => $node->id, 'spell_id' => $spell->id, 'rank' => 1, 'max_rank' => 1]);
 
-    $service = new TalentSelectionService();
+    $service = new TalentSelectionService;
     $build = $service->getOrCreateDefaultBuild($spec->id, $patch->id);
     $service->saveChoice($build, $node, $entry);
     $service->setDefault($build);
@@ -72,7 +72,7 @@ test('Synergies tab groups CC under "Diminishing Returns Groups" and "Utility", 
     $tree = TalentTree::create(['patch_id' => $patch->id, 'class_id' => $class->id, 'spec_id' => $spec->id, 'type' => 'spec', 'name' => 'Test Spec C', 'external_tree_id' => $spec->id]);
     $nodeRoot = TalentNode::create(['talent_tree_id' => $tree->id, 'external_node_id' => $spec->id * 10 + 2, 'type' => 'ACTIVE', 'max_ranks' => 1, 'pos_x' => 1, 'pos_y' => 0]);
     $entryRoot = TalentNodeEntry::create(['talent_node_id' => $nodeRoot->id, 'spell_id' => $root->id, 'rank' => 1, 'max_rank' => 1]);
-    $service = new TalentSelectionService();
+    $service = new TalentSelectionService;
     $buildC = $service->getOrCreateDefaultBuild($spec->id, $patch->id);
     $service->saveChoice($buildC, $nodeRoot, $entryRoot);
     $service->setDefault($buildC);
@@ -131,7 +131,7 @@ test('Synergies tab pools is_peel and is_interrupt spells independently of dr_ca
     $class = GameClass::create(['game_id' => $game->id, 'name' => 'Test Class E', 'slug' => 'test-class-e']);
     $spec = Specialization::create(['class_id' => $class->id, 'name' => 'Test Spec E', 'slug' => 'test-spec-e']);
     $tree = TalentTree::create(['patch_id' => $patch->id, 'class_id' => $class->id, 'spec_id' => $spec->id, 'type' => 'spec', 'name' => 'Test Spec E', 'external_tree_id' => $spec->id]);
-    $service = new TalentSelectionService();
+    $service = new TalentSelectionService;
     $build = $service->getOrCreateDefaultBuild($spec->id, $patch->id);
     foreach ([$peelSpell, $interruptSpell, $bothSpell] as $i => $spell) {
         $node = TalentNode::create(['talent_tree_id' => $tree->id, 'external_node_id' => 100 + $i, 'type' => 'ACTIVE', 'max_ranks' => 1, 'pos_x' => $i, 'pos_y' => 0]);
@@ -189,7 +189,7 @@ test('a spell owned by a comp member renders that member\'s class name colored w
         ->assertSee('color: '.$rogueColor, false);
 });
 
-test('a Synergies-tab CC card and a peel/interrupt entry both wire up the same click-to-detail modal trigger used on Active Abilities', function () {
+test('a Synergies-tab CC card and a peel/interrupt entry both wire up the shared click-to-detail modal, with no pre-rendered per-spell markup', function () {
     // The spell-detail modal block near the bottom of wow-comps.blade.php already iterates every
     // $comp member's full entry list (Active Abilities, Main Cooldowns, and Synergies-tab spells
     // alike) and keys each hidden content block "m{memberIndex}-s{spellId}" — this test locks in
@@ -206,7 +206,7 @@ test('a Synergies-tab CC card and a peel/interrupt entry both wire up the same c
     $class = GameClass::create(['game_id' => $game->id, 'name' => 'Test Class H', 'slug' => 'test-class-h']);
     $spec = Specialization::create(['class_id' => $class->id, 'name' => 'Test Spec H', 'slug' => 'test-spec-h']);
     $tree = TalentTree::create(['patch_id' => $patch->id, 'class_id' => $class->id, 'spec_id' => $spec->id, 'type' => 'spec', 'name' => 'Test Spec H', 'external_tree_id' => $spec->id]);
-    $service = new TalentSelectionService();
+    $service = new TalentSelectionService;
     $build = $service->getOrCreateDefaultBuild($spec->id, $patch->id);
     foreach ([$stun, $interrupt] as $i => $spell) {
         $node = TalentNode::create(['talent_tree_id' => $tree->id, 'external_node_id' => 300 + $i, 'type' => 'ACTIVE', 'max_ranks' => 1, 'pos_x' => $i, 'pos_y' => 0]);
@@ -217,11 +217,17 @@ test('a Synergies-tab CC card and a peel/interrupt entry both wire up the same c
 
     Livewire::test(WowComps::class)
         ->call('selectSpec', 0, $class->id, $spec->id)
-        ->assertSeeHtml("openSpellId = 'm0-s{$stun->id}'")
-        ->assertSeeHtml("openSpellId = 'm0-s{$interrupt->id}'")
-        // The bottom modal block's own hidden-content x-show for that same key must also be
-        // present — proves no separate modal markup was needed for the Synergies tab.
-        ->assertSeeHtml("openSpellId === 'm0-s{$stun->id}'");
+        // Both entries dispatch to the shared <livewire:spell-detail-modal>, carrying this
+        // member's real class/spec so the modal resolves talent-modified values rather than
+        // base ones.
+        ->assertSeeHtml("show-spell-detail', { spellId: {$stun->id}, classId: {$class->id}, specId: {$spec->id} }")
+        ->assertSeeHtml("show-spell-detail', { spellId: {$interrupt->id}, classId: {$class->id}, specId: {$spec->id} }")
+        // And no per-spell modal markup is pre-rendered anywhere. Until 2026-09-06 this page
+        // emitted one hidden content block per spell, keyed by an Alpine `openSpellId` string —
+        // which both bloated the payload (~2.36MB for a 3-spec render, down to ~0.29MB) and meant
+        // this page silently kept its own older, thinner spell view while every other page moved
+        // to the shared enriched one. Asserting the absence is what stops that reappearing.
+        ->assertDontSeeHtml('openSpellId');
 });
 
 test('the DR-category icon legend shows Blizzard\'s real Stun icon (Concussive Shot), not Cheap Shot', function () {
@@ -238,7 +244,7 @@ test('the DR-category icon legend shows Blizzard\'s real Stun icon (Concussive S
     // A same-name-but-wrong-id "Cheap Shot" row proves the legend isn't just matching by name.
     Spell::create(['patch_id' => $patch->id, 'spell_id' => 1833, 'name' => 'Cheap Shot', 'icon_name' => 'ability_cheapshot.jpg', 'dr_category' => 'Stun']);
 
-    $component = new WowComps();
+    $component = new WowComps;
     $legend = collect($component->getDrCategoryLegendProperty());
 
     $stunEntry = $legend->firstWhere('category', 'Stun');
@@ -273,7 +279,7 @@ test('getSynergiesProperty lists an unchosen CHOICE-node CC sibling under "exclu
     $chosenEntry = TalentNodeEntry::create(['talent_node_id' => $node->id, 'spell_id' => $chosen->id, 'rank' => 1, 'max_rank' => 1]);
     TalentNodeEntry::create(['talent_node_id' => $node->id, 'spell_id' => $notChosen->id, 'rank' => 1, 'max_rank' => 1]);
 
-    $service = new TalentSelectionService();
+    $service = new TalentSelectionService;
     $build = $service->getOrCreateDefaultBuild($spec->id, $patch->id);
     $service->saveChoice($build, $node, $chosenEntry);
     $service->setDefault($build);
@@ -293,4 +299,85 @@ test('getSynergiesProperty lists an unchosen CHOICE-node CC sibling under "exclu
         ->and($excludedRow['mi'])->toBe(0);
 
     $component->assertSee('Not Selected')->assertSee('Passed-Over Silence');
+});
+
+test('a talent-conditional CC is grouped and badged by its BUILD-RESOLVED dr_category, not its base column', function () {
+    // The real shape (2026-09-06): Holy Word: Chastise is curated Incapacitate, but flips to a
+    // Stun once Censure is talented — and Censure is selected in the Holy Priest admin-default
+    // build the site renders, so the flat column was wrong for essentially every viewer. Two
+    // nodes here, both selected, so the conditional genuinely fires through the real
+    // compute() -> SpellProfileBuilder::resolveDrCategory() -> grouping pipeline rather than a
+    // hand-set value.
+    $game = Game::create(['slug' => 'wow', 'name' => 'World of Warcraft']);
+    $patch = Patch::create(['game_id' => $game->id, 'build_version' => '12.0.0', 'is_current' => true]);
+    $class = GameClass::create(['game_id' => $game->id, 'name' => 'Test Class J', 'slug' => 'test-class-j']);
+    $spec = Specialization::create(['class_id' => $class->id, 'name' => 'Test Spec J', 'slug' => 'test-spec-j']);
+
+    $tree = TalentTree::create(['patch_id' => $patch->id, 'class_id' => $class->id, 'spec_id' => $spec->id, 'type' => 'spec', 'name' => 'Test Spec J', 'external_tree_id' => $spec->id]);
+
+    $gating = Spell::create(['patch_id' => $patch->id, 'spell_id' => 200199, 'name' => 'Censure', 'is_passive' => true]);
+    $chastise = Spell::create([
+        'patch_id' => $patch->id, 'spell_id' => 88625, 'name' => 'Holy Word: Chastise',
+        'dr_category' => 'Incapacitate',
+        'conditional_dr_gating_spell_id' => 200199,
+        'conditional_dr_category' => 'Stun',
+        'cooldown_seconds' => 60,
+    ]);
+
+    $service = new TalentSelectionService;
+    $build = $service->getOrCreateDefaultBuild($spec->id, $patch->id);
+
+    foreach ([[910, $chastise], [911, $gating]] as $i => [$externalNodeId, $spell]) {
+        $node = TalentNode::create(['talent_tree_id' => $tree->id, 'external_node_id' => $externalNodeId, 'type' => 'ACTIVE', 'max_ranks' => 1, 'pos_x' => $i, 'pos_y' => 0]);
+        $entry = TalentNodeEntry::create(['talent_node_id' => $node->id, 'spell_id' => $spell->id, 'rank' => 1, 'max_rank' => 1]);
+        $service->saveChoice($build, $node, $entry);
+    }
+    $service->setDefault($build);
+
+    $component = Livewire::test(WowComps::class)->call('selectSpec', 0, $class->id, $spec->id);
+    $synergies = $component->get('synergies');
+
+    expect($synergies['dr_by_id'][$chastise->id])->toBe('Stun')
+        // Both groups exist and Chastise must sit in the DR one; the point is that nothing
+        // grouped it as an Incapacitate while badging it a Stun, or vice versa.
+        ->and($synergies['groups']['Diminishing Returns Groups']->pluck('name')->contains('Holy Word: Chastise'))->toBeTrue();
+
+    // Nothing on the page may still claim Incapacitate for it, and the stored column is untouched.
+    $component->assertSee('Holy Word: Chastise')->assertDontSee('Incapacitate');
+    expect($chastise->fresh()->dr_category)->toBe('Incapacitate');
+});
+
+test('a talent-conditional CC keeps its base dr_category when the gating talent is not selected', function () {
+    $game = Game::create(['slug' => 'wow', 'name' => 'World of Warcraft']);
+    $patch = Patch::create(['game_id' => $game->id, 'build_version' => '12.0.0', 'is_current' => true]);
+    $class = GameClass::create(['game_id' => $game->id, 'name' => 'Test Class K', 'slug' => 'test-class-k']);
+    $spec = Specialization::create(['class_id' => $class->id, 'name' => 'Test Spec K', 'slug' => 'test-spec-k']);
+
+    $tree = TalentTree::create(['patch_id' => $patch->id, 'class_id' => $class->id, 'spec_id' => $spec->id, 'type' => 'spec', 'name' => 'Test Spec K', 'external_tree_id' => $spec->id]);
+
+    // The gating talent EXISTS in the tree but is deliberately never selected.
+    $gating = Spell::create(['patch_id' => $patch->id, 'spell_id' => 200199, 'name' => 'Censure', 'is_passive' => true]);
+    $chastise = Spell::create([
+        'patch_id' => $patch->id, 'spell_id' => 88625, 'name' => 'Holy Word: Chastise',
+        'dr_category' => 'Incapacitate',
+        'conditional_dr_gating_spell_id' => 200199,
+        'conditional_dr_category' => 'Stun',
+        'cooldown_seconds' => 60,
+    ]);
+
+    $service = new TalentSelectionService;
+    $build = $service->getOrCreateDefaultBuild($spec->id, $patch->id);
+
+    $gatingNode = TalentNode::create(['talent_tree_id' => $tree->id, 'external_node_id' => 921, 'type' => 'ACTIVE', 'max_ranks' => 1, 'pos_x' => 1, 'pos_y' => 0]);
+    TalentNodeEntry::create(['talent_node_id' => $gatingNode->id, 'spell_id' => $gating->id, 'rank' => 1, 'max_rank' => 1]);
+
+    $node = TalentNode::create(['talent_tree_id' => $tree->id, 'external_node_id' => 920, 'type' => 'ACTIVE', 'max_ranks' => 1, 'pos_x' => 0, 'pos_y' => 0]);
+    $entry = TalentNodeEntry::create(['talent_node_id' => $node->id, 'spell_id' => $chastise->id, 'rank' => 1, 'max_rank' => 1]);
+    $service->saveChoice($build, $node, $entry);
+    $service->setDefault($build);
+
+    $synergies = Livewire::test(WowComps::class)->call('selectSpec', 0, $class->id, $spec->id)->get('synergies');
+
+    expect($synergies['dr_by_id'][$chastise->id])->toBe('Incapacitate')
+        ->and($synergies['groups']['Diminishing Returns Groups']->pluck('name')->contains('Holy Word: Chastise'))->toBeTrue();
 });

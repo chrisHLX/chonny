@@ -29,49 +29,57 @@
                 "name": "Hammer of Wrath",
                 "spellId": 1241413,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.39
             },
             {
                 "name": "Crusader Strike",
                 "spellId": 1279187,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.83
             },
             {
                 "name": "Cleanse",
                 "spellId": 4987,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.27
             },
             {
                 "name": "Crusader Strike",
                 "spellId": 1279187,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.72
             },
             {
                 "name": "Divine Protection",
                 "spellId": 498,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.13
             },
             {
                 "name": "Hammer of Wrath",
                 "spellId": 1241413,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.59
             },
             {
                 "name": "Crusader Strike",
                 "spellId": 1279187,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8
             },
             {
                 "name": "Hammer of Wrath",
                 "spellId": 1241413,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.95
             }
         ],
         "matchId": "37336633ca4f6cd2b2dd895f89b6e10d",
@@ -811,7 +819,7 @@
                     "pvpTalentId": 277
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:51+00:00"
+            "resolvedAt": "2026-09-06T12:25:35+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-11-0E9F19E7",
@@ -945,7 +953,7 @@
             ],
             "targetClassName": "Mage",
             "targetSpecName": "Fire",
-            "resolvedAt": "2026-09-06T02:57:00+00:00"
+            "resolvedAt": "2026-09-06T12:25:42+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -958,25 +966,29 @@
                     "name": "Divine Steed",
                     "spellId": 190784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.39
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.83
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.91
                 },
                 {
                     "name": "Holy Shock",
                     "spellId": 20473,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.34
                 }
             ],
             "matchId": "716040741b961f3382bb57415ab6bbbc",
@@ -1716,7 +1728,7 @@
                         "pvpTalentId": 269
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0C2268A6",
@@ -1886,7 +1898,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Frost",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "10": {
@@ -1898,37 +1910,43 @@
                     "name": "Divine Steed",
                     "spellId": 190784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.39
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.83
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.91
                 },
                 {
                     "name": "Holy Shock",
                     "spellId": 20473,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.34
                 },
                 {
                     "name": "Sacred Weapon",
                     "spellId": 432472,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.79
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.02
                 }
             ],
             "matchId": "716040741b961f3382bb57415ab6bbbc",
@@ -2668,7 +2686,7 @@
                         "pvpTalentId": 269
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0C2268A6",
@@ -2838,7 +2856,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Frost",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "12": {
@@ -2850,49 +2868,57 @@
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.39
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.83
                 },
                 {
                     "name": "Cleanse",
                     "spellId": 4987,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.27
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.72
                 },
                 {
                     "name": "Divine Protection",
                     "spellId": 498,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.13
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.59
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.95
                 }
             ],
             "matchId": "37336633ca4f6cd2b2dd895f89b6e10d",
@@ -3632,7 +3658,7 @@
                         "pvpTalentId": 277
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E9F19E7",
@@ -3766,7 +3792,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "20": {
@@ -3778,97 +3804,113 @@
                     "name": "Avenging Crusader",
                     "spellId": 216331,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.4
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.65
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.08
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.53
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.96
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.34
                 },
                 {
                     "name": "Divine Steed",
                     "spellId": 190784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.98
                 },
                 {
                     "name": "Holy Shock",
                     "spellId": 20473,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.34
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.79
                 },
                 {
                     "name": "Holy Shock",
                     "spellId": 20473,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.21
                 },
                 {
                     "name": "Blessing of Sacrifice",
                     "spellId": 6940,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.31
                 },
                 {
                     "name": "Holy Light",
                     "spellId": 82326,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.7
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.83
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.21
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.65
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.26
                 }
             ],
             "matchId": "faa6f8771025ea334c80fab8ce6c41a4",
@@ -4608,7 +4650,7 @@
                         "pvpTalentId": 269
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3684-0DC2BFA8",
@@ -4709,7 +4751,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "30": {
@@ -4721,121 +4763,141 @@
                     "name": "Avenging Crusader",
                     "spellId": 216331,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.4
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.65
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.08
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.53
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.96
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.34
                 },
                 {
                     "name": "Divine Steed",
                     "spellId": 190784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.98
                 },
                 {
                     "name": "Holy Shock",
                     "spellId": 20473,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.34
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.79
                 },
                 {
                     "name": "Holy Shock",
                     "spellId": 20473,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.21
                 },
                 {
                     "name": "Blessing of Sacrifice",
                     "spellId": 6940,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.31
                 },
                 {
                     "name": "Holy Light",
                     "spellId": 82326,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.7
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.83
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.21
                 },
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.65
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.26
                 },
                 {
                     "name": "Hammer of Justice",
                     "spellId": 853,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 21.9
                 },
                 {
                     "name": "Judgment",
                     "spellId": 275773,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 25.25
                 },
                 {
                     "name": "Flash of Light",
                     "spellId": 19750,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 27.54
                 },
                 {
                     "name": "Divine Protection",
                     "spellId": 498,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 29.63
                 }
             ],
             "matchId": "faa6f8771025ea334c80fab8ce6c41a4",
@@ -5575,7 +5637,7 @@
                         "pvpTalentId": 269
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3684-0DC2BFA8",
@@ -5676,9 +5738,9 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:52:21+00:00"
+    "generated_at": "2026-09-06T12:22:24+00:00"
 }

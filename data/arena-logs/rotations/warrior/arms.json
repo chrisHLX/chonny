@@ -35,73 +35,85 @@
                 "name": "Mortal Strike",
                 "spellId": 12294,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.54
             },
             {
                 "name": "Mortal Strike",
                 "spellId": 12294,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 1.58
             },
             {
                 "name": "Mortal Strike",
                 "spellId": 12294,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 2.63
             },
             {
                 "name": "Cleave",
                 "spellId": 845,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.68
             },
             {
                 "name": "Colossus Smash",
                 "spellId": 167105,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.7
             },
             {
                 "name": "Sweeping Strikes",
                 "spellId": 260708,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.87
             },
             {
                 "name": "Execute",
                 "spellId": 281000,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 7.41
             },
             {
                 "name": "Mortal Strike",
                 "spellId": 12294,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.43
             },
             {
                 "name": "Spell Reflection",
                 "spellId": 23920,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.59
             },
             {
                 "name": "Execute",
                 "spellId": 281000,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.46
             },
             {
                 "name": "Heroic Strike",
                 "spellId": 1269383,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 10.81
             },
             {
                 "name": "Execute",
                 "spellId": 281000,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.99
             }
         ],
         "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
@@ -778,7 +790,7 @@
                     "pvpTalentId": 403
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:48+00:00"
+            "resolvedAt": "2026-09-06T12:25:32+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-60-0FFBD835",
@@ -992,7 +1004,7 @@
             ],
             "targetClassName": "Death Knight",
             "targetSpecName": "Unholy",
-            "resolvedAt": "2026-09-06T02:56:55+00:00"
+            "resolvedAt": "2026-09-06T12:25:38+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -1005,43 +1017,43 @@
                     "name": "Charge",
                     "spellId": 100,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.37
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Charge",
-                    "spellId": 126664,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 1.17
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.38
                 },
                 {
                     "name": "Bladestorm",
                     "spellId": 446035,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.56
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.12
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.18
                 }
             ],
             "matchId": "56c7ef21579f09e8228a44f95b152a20",
@@ -1718,7 +1730,7 @@
                         "pvpTalentId": 406
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E9F19E7",
@@ -1956,7 +1968,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "10": {
@@ -1968,55 +1980,64 @@
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.41
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.43
                 },
                 {
                     "name": "Spell Reflection",
                     "spellId": 23920,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.59
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.46
                 },
                 {
                     "name": "Heroic Strike",
                     "spellId": 1269383,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.81
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.99
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.16
                 },
                 {
                     "name": "Overpower",
                     "spellId": 7384,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.46
                 },
                 {
                     "name": "Heroic Strike",
                     "spellId": 1269383,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.63
                 }
             ],
             "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
@@ -2693,7 +2714,7 @@
                         "pvpTalentId": 403
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FFBD835",
@@ -2963,7 +2984,7 @@
                 ],
                 "targetClassName": "Death Knight",
                 "targetSpecName": "Unholy",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "12": {
@@ -2975,73 +2996,85 @@
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.54
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.58
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.63
                 },
                 {
                     "name": "Cleave",
                     "spellId": 845,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.68
                 },
                 {
                     "name": "Colossus Smash",
                     "spellId": 167105,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.7
                 },
                 {
                     "name": "Sweeping Strikes",
                     "spellId": 260708,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.87
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.41
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.43
                 },
                 {
                     "name": "Spell Reflection",
                     "spellId": 23920,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.59
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.46
                 },
                 {
                     "name": "Heroic Strike",
                     "spellId": 1269383,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.81
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.99
                 }
             ],
             "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
@@ -3718,7 +3751,7 @@
                         "pvpTalentId": 403
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FFBD835",
@@ -3932,7 +3965,7 @@
                 ],
                 "targetClassName": "Death Knight",
                 "targetSpecName": "Unholy",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "20": {
@@ -3944,121 +3977,141 @@
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.58
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.75
                 },
                 {
                     "name": "Intervene",
                     "spellId": 316531,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.6
                 },
                 {
                     "name": "Bladestorm",
                     "spellId": 446035,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.92
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.44
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.49
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.54
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.58
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.63
                 },
                 {
                     "name": "Cleave",
                     "spellId": 845,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.68
                 },
                 {
                     "name": "Colossus Smash",
                     "spellId": 167105,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.7
                 },
                 {
                     "name": "Sweeping Strikes",
                     "spellId": 260708,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.87
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.41
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.43
                 },
                 {
                     "name": "Spell Reflection",
                     "spellId": 23920,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.59
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.46
                 },
                 {
                     "name": "Heroic Strike",
                     "spellId": 1269383,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.81
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.99
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.16
                 },
                 {
                     "name": "Overpower",
                     "spellId": 7384,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 19.46
                 }
             ],
             "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
@@ -4735,7 +4788,7 @@
                         "pvpTalentId": 403
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FFBD835",
@@ -4953,7 +5006,7 @@
                 ],
                 "targetClassName": "Death Knight",
                 "targetSpecName": "Unholy",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "30": {
@@ -4965,175 +5018,197 @@
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.58
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.75
                 },
                 {
                     "name": "Intervene",
                     "spellId": 316531,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.6
                 },
                 {
                     "name": "Bladestorm",
                     "spellId": 446035,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.92
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.44
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.49
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.54
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.58
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.63
                 },
                 {
                     "name": "Cleave",
                     "spellId": 845,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.68
                 },
                 {
                     "name": "Colossus Smash",
                     "spellId": 167105,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.7
                 },
                 {
                     "name": "Sweeping Strikes",
                     "spellId": 260708,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.87
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.41
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.43
                 },
                 {
                     "name": "Spell Reflection",
                     "spellId": 23920,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.59
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.46
                 },
                 {
                     "name": "Heroic Strike",
                     "spellId": 1269383,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.81
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.99
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.16
                 },
                 {
                     "name": "Overpower",
                     "spellId": 7384,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 19.46
                 },
                 {
                     "name": "Heroic Strike",
                     "spellId": 1269383,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.63
                 },
                 {
                     "name": "Charge",
                     "spellId": 100,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 22.45
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Charge",
-                    "spellId": 126664,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.92
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.1
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.27
                 },
                 {
                     "name": "Heroic Strike",
                     "spellId": 1269383,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.56
                 },
                 {
                     "name": "Mortal Strike",
                     "spellId": 12294,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.74
                 },
                 {
                     "name": "Execute",
                     "spellId": 281000,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.42
                 }
             ],
             "matchId": "6d4f4293cc02956aa39b9a2a2d805a81",
@@ -5810,7 +5885,7 @@
                         "pvpTalentId": 403
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FFBD835",
@@ -6028,9 +6103,9 @@
                 ],
                 "targetClassName": "Death Knight",
                 "targetSpecName": "Unholy",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:56:35+00:00"
+    "generated_at": "2026-09-06T12:25:23+00:00"
 }

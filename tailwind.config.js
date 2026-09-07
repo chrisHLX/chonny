@@ -7,6 +7,15 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        // config/spell_display.php holds the category / DR-category badge maps. Those class
+        // names used to be copy-pasted into the blades and so were picked up by the scan above;
+        // consolidating them into a config file put them somewhere Tailwind does not look by
+        // default, which silently purged `badge-orange` from the build (the only one of the
+        // seven not still referenced literally in some blade) and left every Offensive category
+        // badge and Knockback DR badge rendering with no styling at all. Scanned explicitly so
+        // the file stays a safe place to add a badge — do not remove without moving those maps
+        // back into the templates.
+        './config/spell_display.php',
     ],
     theme: {
         extend: {

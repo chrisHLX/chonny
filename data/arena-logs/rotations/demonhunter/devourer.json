@@ -30,151 +30,99 @@
                 "name": "Reap",
                 "spellId": 1226019,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Reap",
-                "spellId": 1226019,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 0.24
             },
             {
                 "name": "Voidblade",
                 "spellId": 1245414,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.05
             },
             {
                 "name": "Pierce the Veil",
                 "spellId": 1245483,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.05
             },
             {
                 "name": "Reaper's Toll",
                 "spellId": 1245470,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 3.54
             },
             {
                 "name": "Vengeful Retreat",
                 "spellId": 198793,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 3.97
             },
             {
                 "name": "Predator's Wake",
                 "spellId": 1259431,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.47
             },
             {
                 "name": "Reaper's Toll",
                 "spellId": 1245470,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.94
             },
             {
                 "name": "The Hunt",
                 "spellId": 1246169,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 6.04
             },
             {
                 "name": "Vengeful Retreat",
                 "spellId": 198793,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.51
             },
             {
                 "name": "Void Ray",
                 "spellId": 473728,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 7.01
             },
             {
                 "name": "Devour",
                 "spellId": 1217610,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 9.54
             },
             {
                 "name": "Cull",
                 "spellId": 1245453,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Soul Fragment",
-                "spellId": 1223412,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 10.29
             },
             {
                 "name": "Disrupt",
                 "spellId": 183752,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Cull",
-                "spellId": 1245453,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 10.98
             },
             {
                 "name": "Devour",
                 "spellId": 1217610,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.8
             }
         ],
         "matchId": "6a488d754b2fe13862974e7723d2f8f9",
@@ -860,7 +808,7 @@
                     "pvpTalentId": 90
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:49+00:00"
+            "resolvedAt": "2026-09-06T12:25:33+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-11-0EA950DB",
@@ -1038,7 +986,7 @@
             ],
             "targetClassName": "Warlock",
             "targetSpecName": "Affliction",
-            "resolvedAt": "2026-09-06T02:56:56+00:00"
+            "resolvedAt": "2026-09-06T12:25:40+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -1051,73 +999,64 @@
                     "name": "Reaper's Toll",
                     "spellId": 1245470,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.18
                 },
                 {
                     "name": "The Hunt",
                     "spellId": 1246169,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.2
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.2
                 },
                 {
                     "name": "Voidblade",
                     "spellId": 1245414,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.55
                 },
                 {
                     "name": "Pierce the Veil",
                     "spellId": 1245483,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.55
                 },
                 {
                     "name": "Reaper's Toll",
                     "spellId": 1245470,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.05
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.43
                 },
                 {
                     "name": "Void Ray",
                     "spellId": 473728,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 3.23
                 },
                 {
                     "name": "Cull",
                     "spellId": 1245453,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.95
                 }
             ],
             "matchId": "0e63ddfdf9e2ca0ec86def4fb0165f1f",
@@ -1812,7 +1751,7 @@
                         "pvpTalentId": 85
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-5-0A76CC9B",
@@ -2014,7 +1953,7 @@
                 ],
                 "targetClassName": "Rogue",
                 "targetSpecName": "Assassination",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "10": {
@@ -2026,145 +1965,92 @@
                     "name": "Voidblade",
                     "spellId": 1245414,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.05
                 },
                 {
                     "name": "Pierce the Veil",
                     "spellId": 1245483,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.05
                 },
                 {
                     "name": "Reaper's Toll",
                     "spellId": 1245470,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.54
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 0.97
                 },
                 {
                     "name": "Predator's Wake",
                     "spellId": 1259431,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.47
                 },
                 {
                     "name": "Reaper's Toll",
                     "spellId": 1245470,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.94
                 },
                 {
                     "name": "The Hunt",
                     "spellId": 1246169,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 3.04
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.51
                 },
                 {
                     "name": "Void Ray",
                     "spellId": 473728,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 4.01
                 },
                 {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 6.54
                 },
                 {
                     "name": "Cull",
                     "spellId": 1245453,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 7.29
                 },
                 {
                     "name": "Disrupt",
                     "spellId": 183752,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Cull",
-                    "spellId": 1245453,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 7.98
                 },
                 {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Devour",
-                    "spellId": 1217610,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.8
                 }
             ],
             "matchId": "6a488d754b2fe13862974e7723d2f8f9",
@@ -2850,7 +2736,7 @@
                         "pvpTalentId": 90
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0EA950DB",
@@ -3032,7 +2918,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "12": {
@@ -3044,151 +2930,99 @@
                     "name": "Reap",
                     "spellId": 1226019,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reap",
-                    "spellId": 1226019,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 0.24
                 },
                 {
                     "name": "Voidblade",
                     "spellId": 1245414,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.05
                 },
                 {
                     "name": "Pierce the Veil",
                     "spellId": 1245483,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.05
                 },
                 {
                     "name": "Reaper's Toll",
                     "spellId": 1245470,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 3.54
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 3.97
                 },
                 {
                     "name": "Predator's Wake",
                     "spellId": 1259431,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.47
                 },
                 {
                     "name": "Reaper's Toll",
                     "spellId": 1245470,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.94
                 },
                 {
                     "name": "The Hunt",
                     "spellId": 1246169,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 6.04
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.51
                 },
                 {
                     "name": "Void Ray",
                     "spellId": 473728,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 7.01
                 },
                 {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 9.54
                 },
                 {
                     "name": "Cull",
                     "spellId": 1245453,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 10.29
                 },
                 {
                     "name": "Disrupt",
                     "spellId": 183752,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Cull",
-                    "spellId": 1245453,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 10.98
                 },
                 {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.8
                 }
             ],
             "matchId": "6a488d754b2fe13862974e7723d2f8f9",
@@ -3874,7 +3708,7 @@
                         "pvpTalentId": 90
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0EA950DB",
@@ -4052,7 +3886,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "20": {
@@ -4064,235 +3898,134 @@
                     "name": "Consume",
                     "spellId": 473662,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.2
                 },
                 {
                     "name": "Consume",
                     "spellId": 473662,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.7
                 },
                 {
                     "name": "Void Ray",
                     "spellId": 473728,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 1.7
                 },
                 {
                     "name": "Reap",
                     "spellId": 1226019,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reap",
-                    "spellId": 1226019,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 4.24
                 },
                 {
                     "name": "Voidblade",
                     "spellId": 1245414,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.05
                 },
                 {
                     "name": "Pierce the Veil",
                     "spellId": 1245483,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.05
                 },
                 {
                     "name": "Reaper's Toll",
                     "spellId": 1245470,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 7.54
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 7.97
                 },
                 {
                     "name": "Predator's Wake",
                     "spellId": 1259431,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.47
                 },
                 {
                     "name": "Reaper's Toll",
                     "spellId": 1245470,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.94
                 },
                 {
                     "name": "The Hunt",
                     "spellId": 1246169,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 10.04
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.51
                 },
                 {
                     "name": "Void Ray",
                     "spellId": 473728,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.01
                 },
                 {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 13.54
                 },
                 {
                     "name": "Cull",
                     "spellId": 1245453,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 14.29
                 },
                 {
                     "name": "Disrupt",
                     "spellId": 183752,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Cull",
-                    "spellId": 1245453,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 14.98
                 },
                 {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.8
                 },
                 {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Devour",
-                    "spellId": 1217610,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Devour",
-                    "spellId": 1217610,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.22
                 },
                 {
                     "name": "Soul Immolation",
                     "spellId": 1241937,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 19.86
                 }
             ],
             "matchId": "6a488d754b2fe13862974e7723d2f8f9",
@@ -4978,7 +4711,7 @@
                         "pvpTalentId": 90
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0EA950DB",
@@ -5152,7 +4885,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "30": {
@@ -5164,283 +4897,204 @@
                     "name": "Cull",
                     "spellId": 1245453,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.15
                 },
                 {
                     "name": "Voidblade",
                     "spellId": 1245414,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.92
                 },
                 {
                     "name": "Pierce the Veil",
                     "spellId": 1245483,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 0.92
                 },
                 {
                     "name": "Reaper's Toll",
                     "spellId": 1245470,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 1.45
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.07
                 },
                 {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 2.5
                 },
                 {
                     "name": "Cull",
                     "spellId": 1245453,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.27
                 },
                 {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.05
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.56
                 },
                 {
                     "name": "Predator's Wake",
                     "spellId": 1259431,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.76
                 },
                 {
                     "name": "The Hunt",
                     "spellId": 1246169,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.1
                 },
                 {
                     "name": "Reaper's Toll",
                     "spellId": 1245470,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.13
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.36
                 },
                 {
                     "name": "Void Ray",
                     "spellId": 473728,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 7.41
                 },
                 {
                     "name": "Cull",
                     "spellId": 1245453,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.96
                 },
                 {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.18
                 },
                 {
                     "name": "Cull",
                     "spellId": 1245453,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.41
                 },
                 {
                     "name": "Devour",
                     "spellId": 1217610,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.63
                 },
                 {
                     "name": "Cull",
                     "spellId": 1245453,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.93
                 },
                 {
                     "name": "Consume",
                     "spellId": 473662,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 17.16
                 },
                 {
                     "name": "Void Ray",
                     "spellId": 473728,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.65
                 },
                 {
                     "name": "The Hunt",
                     "spellId": 1246167,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.69
                 },
                 {
                     "name": "Hungering Slash",
                     "spellId": 1239123,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 23.14
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.26
                 },
                 {
                     "name": "Reap",
                     "spellId": 1226019,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 24.49
                 },
                 {
                     "name": "Consume",
                     "spellId": 473662,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.72
                 },
                 {
                     "name": "Reap",
                     "spellId": 1226019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.95
                 },
                 {
                     "name": "Void Nova",
                     "spellId": 1234195,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 28.18
                 },
                 {
                     "name": "Consume",
                     "spellId": 473662,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Soul Fragment",
-                    "spellId": 1223412,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.52
                 }
             ],
             "matchId": "4e0c7cc1fbf58a1536c32844c1df4ad0",
@@ -6135,7 +5789,7 @@
                         "pvpTalentId": 91
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3678-0E2DA105",
@@ -6325,9 +5979,9 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Enhancement",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:48:02+00:00"
+    "generated_at": "2026-09-06T12:19:16+00:00"
 }

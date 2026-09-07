@@ -6,15 +6,11 @@
     </div>
 
     @php
-        $categoryBadge = [
-            'Stun' => 'badge-red',
-            'Incapacitate' => 'badge-amber',
-            'Disorient' => 'badge-blue',
-            'Root' => 'badge-green',
-            'Silence' => 'badge-gray',
-            'Knockback' => 'badge-gold',
-            'Disarm' => 'badge-gray',
-        ];
+        // This map is dr_category values, not categorize() values, despite the variable name it
+        // has always had. It was also the one outlier of the four DR maps in this codebase
+        // (Knockback gold-not-orange, Disarm gray-not-gold, no Slow at all), so a Knockback read
+        // as a different colour here than on every other page. Now the shared one.
+        $categoryBadge = config('spell_display.dr_badges');
     @endphp
 
     @foreach ($grouped as $className => $classGroup)

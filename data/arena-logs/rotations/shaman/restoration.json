@@ -21,49 +21,57 @@
                 "name": "Lava Burst",
                 "spellId": 51505,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.76
             },
             {
                 "name": "Healing Stream Totem",
                 "spellId": 5394,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.9
             },
             {
                 "name": "Lightning Bolt",
                 "spellId": 188196,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.89
             },
             {
                 "name": "Lava Burst",
                 "spellId": 51505,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.89
             },
             {
                 "name": "Lava Burst",
                 "spellId": 51505,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 7.57
             },
             {
                 "name": "Lightning Bolt",
                 "spellId": 188196,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.48
             },
             {
                 "name": "Lightning Bolt",
                 "spellId": 188196,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.04
             },
             {
                 "name": "Flame Shock",
                 "spellId": 188389,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 11.04
             }
         ],
         "matchId": "49df547a511ceaa5eb7fd004abe4b81b",
@@ -767,7 +775,7 @@
                     "pvpTalentId": 322
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:52+00:00"
+            "resolvedAt": "2026-09-06T12:25:36+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-76-0C0CF2F4",
@@ -917,7 +925,7 @@
             ],
             "targetClassName": "Hunter",
             "targetSpecName": "Beast Mastery",
-            "resolvedAt": "2026-09-06T02:57:03+00:00"
+            "resolvedAt": "2026-09-06T12:25:44+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -930,25 +938,29 @@
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.41
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.02
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.68
                 },
                 {
                     "name": "Riptide",
                     "spellId": 61295,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.82
                 }
             ],
             "matchId": "ff207427058c3007f7aa8fe720009d4c",
@@ -1652,7 +1664,7 @@
                         "pvpTalentId": 326
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3693-0EE22F62",
@@ -1822,7 +1834,7 @@
                 ],
                 "targetClassName": "Rogue",
                 "targetSpecName": "Assassination",
-                "resolvedAt": "2026-09-06T02:57:03+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "10": {
@@ -1834,37 +1846,43 @@
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.89
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.89
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.57
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.48
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.04
                 },
                 {
                     "name": "Flame Shock",
                     "spellId": 188389,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.04
                 }
             ],
             "matchId": "49df547a511ceaa5eb7fd004abe4b81b",
@@ -2568,7 +2586,7 @@
                         "pvpTalentId": 322
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0C0CF2F4",
@@ -2718,7 +2736,7 @@
                 ],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Beast Mastery",
-                "resolvedAt": "2026-09-06T02:57:03+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "12": {
@@ -2730,49 +2748,57 @@
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.76
                 },
                 {
                     "name": "Healing Stream Totem",
                     "spellId": 5394,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.9
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.89
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.89
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.57
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.48
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.04
                 },
                 {
                     "name": "Flame Shock",
                     "spellId": 188389,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.04
                 }
             ],
             "matchId": "49df547a511ceaa5eb7fd004abe4b81b",
@@ -3476,7 +3502,7 @@
                         "pvpTalentId": 322
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0C0CF2F4",
@@ -3626,7 +3652,7 @@
                 ],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Beast Mastery",
-                "resolvedAt": "2026-09-06T02:57:03+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "20": {
@@ -3638,85 +3664,99 @@
                     "name": "Flame Shock",
                     "spellId": 188389,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.2
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.76
                 },
                 {
                     "name": "Healing Stream Totem",
                     "spellId": 5394,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.9
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.89
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.89
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.57
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.48
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.04
                 },
                 {
                     "name": "Flame Shock",
                     "spellId": 188389,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.04
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.63
                 },
                 {
                     "name": "Unleash Life",
                     "spellId": 73685,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.63
                 },
                 {
                     "name": "Flame Shock",
                     "spellId": 188389,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.04
                 },
                 {
                     "name": "Ancestral Swiftness",
                     "spellId": 443454,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 18.65
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.21
                 }
             ],
             "matchId": "49df547a511ceaa5eb7fd004abe4b81b",
@@ -4420,7 +4460,7 @@
                         "pvpTalentId": 322
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0C0CF2F4",
@@ -4570,7 +4610,7 @@
                 ],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Beast Mastery",
-                "resolvedAt": "2026-09-06T02:57:03+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "30": {
@@ -4582,127 +4622,148 @@
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.5
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.57
                 },
                 {
                     "name": "Flame Shock",
                     "spellId": 188389,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.17
                 },
                 {
                     "name": "Ancestral Swiftness",
                     "spellId": 443454,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.53
                 },
                 {
                     "name": "Healing Wave",
                     "spellId": 77472,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.56
                 },
                 {
                     "name": "Riptide",
                     "spellId": 61295,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.8
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.85
                 },
                 {
                     "name": "Stormstream Totem",
                     "spellId": 1267068,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.85
                 },
                 {
                     "name": "Healing Stream Totem",
                     "spellId": 5394,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.98
                 },
                 {
                     "name": "Riptide",
                     "spellId": 61295,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.98
                 },
                 {
                     "name": "Unleash Life",
                     "spellId": 73685,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.36
                 },
                 {
                     "name": "Healing Wave",
                     "spellId": 77472,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.68
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.99
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.88
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.55
                 },
                 {
                     "name": "Healing Wave",
                     "spellId": 77472,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.87
                 },
                 {
                     "name": "Riptide",
                     "spellId": 61295,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.37
                 },
                 {
                     "name": "Healing Stream Totem",
                     "spellId": 5394,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.74
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.82
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.72
                 },
                 {
                     "name": "Riptide",
                     "spellId": 61295,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.72
                 }
             ],
             "matchId": "16dd7eedd9b8d7f57b5eec8e137b0872",
@@ -5397,7 +5458,7 @@
                         "pvpTalentId": 324
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-57-0D1EF6CC",
@@ -5599,9 +5660,9 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:57:03+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:55:41+00:00"
+    "generated_at": "2026-09-06T12:24:44+00:00"
 }

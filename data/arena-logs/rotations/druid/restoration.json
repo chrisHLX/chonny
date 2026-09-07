@@ -19,43 +19,50 @@
                 "name": "Wrath",
                 "spellId": 5176,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.72
             },
             {
                 "name": "Cat Form",
                 "spellId": 768,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.18
             },
             {
                 "name": "Gladiator's Medallion",
                 "spellId": 336126,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.8
             },
             {
                 "name": "Maim",
                 "spellId": 22570,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.05
             },
             {
                 "name": "Moonkin Form",
                 "spellId": 24858,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 6.04
             },
             {
                 "name": "Convoke the Spirits",
                 "spellId": 391528,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 7.24
             },
             {
                 "name": "Starsurge",
                 "spellId": 197626,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 10.44
             }
         ],
         "matchId": "8beecd8eecd685975e489f55c8a2620c",
@@ -768,7 +775,7 @@
                     "pvpTalentId": 116
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:53+00:00"
+            "resolvedAt": "2026-09-06T12:25:36+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-61-0F40C578",
@@ -918,7 +925,7 @@
             ],
             "targetClassName": "Warlock",
             "targetSpecName": "Affliction",
-            "resolvedAt": "2026-09-06T02:57:03+00:00"
+            "resolvedAt": "2026-09-06T12:25:44+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -931,25 +938,29 @@
                     "name": "Maim",
                     "spellId": 22570,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.05
                 },
                 {
                     "name": "Moonkin Form",
                     "spellId": 24858,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.04
                 },
                 {
                     "name": "Convoke the Spirits",
                     "spellId": 391528,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.24
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 197626,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.44
                 }
             ],
             "matchId": "8beecd8eecd685975e489f55c8a2620c",
@@ -1662,7 +1673,7 @@
                         "pvpTalentId": 116
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0F40C578",
@@ -1820,7 +1831,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:57:03+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "10": {
@@ -1832,43 +1843,50 @@
                     "name": "Wrath",
                     "spellId": 5176,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.69
                 },
                 {
                     "name": "Cat Form",
                     "spellId": 768,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.18
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.8
                 },
                 {
                     "name": "Maim",
                     "spellId": 22570,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.05
                 },
                 {
                     "name": "Moonkin Form",
                     "spellId": 24858,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.04
                 },
                 {
                     "name": "Convoke the Spirits",
                     "spellId": 391528,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.24
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 197626,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.44
                 }
             ],
             "matchId": "8beecd8eecd685975e489f55c8a2620c",
@@ -2581,7 +2599,7 @@
                         "pvpTalentId": 116
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0F40C578",
@@ -2719,7 +2737,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:57:03+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "12": {
@@ -2731,43 +2749,50 @@
                     "name": "Wrath",
                     "spellId": 5176,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.72
                 },
                 {
                     "name": "Cat Form",
                     "spellId": 768,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.18
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.8
                 },
                 {
                     "name": "Maim",
                     "spellId": 22570,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.05
                 },
                 {
                     "name": "Moonkin Form",
                     "spellId": 24858,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.04
                 },
                 {
                     "name": "Convoke the Spirits",
                     "spellId": 391528,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.24
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 197626,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.44
                 }
             ],
             "matchId": "8beecd8eecd685975e489f55c8a2620c",
@@ -3480,7 +3505,7 @@
                         "pvpTalentId": 116
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0F40C578",
@@ -3630,7 +3655,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:57:03+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "20": {
@@ -3642,85 +3667,99 @@
                     "name": "Frenzied Regeneration",
                     "spellId": 22842,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.66
                 },
                 {
                     "name": "Rejuvenation",
                     "spellId": 774,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.86
                 },
                 {
                     "name": "Ironbark",
                     "spellId": 102342,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.41
                 },
                 {
                     "name": "Lifebloom",
                     "spellId": 33763,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.99
                 },
                 {
                     "name": "Swiftmend",
                     "spellId": 18562,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.11
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.69
                 },
                 {
                     "name": "Wrath",
                     "spellId": 5176,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.81
                 },
                 {
                     "name": "Wrath",
                     "spellId": 5176,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.72
                 },
                 {
                     "name": "Cat Form",
                     "spellId": 768,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.18
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.8
                 },
                 {
                     "name": "Maim",
                     "spellId": 22570,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.05
                 },
                 {
                     "name": "Moonkin Form",
                     "spellId": 24858,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.04
                 },
                 {
                     "name": "Convoke the Spirits",
                     "spellId": 391528,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.24
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 197626,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 18.44
                 }
             ],
             "matchId": "8beecd8eecd685975e489f55c8a2620c",
@@ -4433,7 +4472,7 @@
                         "pvpTalentId": 116
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0F40C578",
@@ -4583,7 +4622,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:57:03+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "30": {
@@ -4595,61 +4634,71 @@
                     "name": "Swiftmend",
                     "spellId": 18562,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.11
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.69
                 },
                 {
                     "name": "Wrath",
                     "spellId": 5176,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.81
                 },
                 {
                     "name": "Wrath",
                     "spellId": 5176,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.72
                 },
                 {
                     "name": "Cat Form",
                     "spellId": 768,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.18
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.8
                 },
                 {
                     "name": "Maim",
                     "spellId": 22570,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.05
                 },
                 {
                     "name": "Moonkin Form",
                     "spellId": 24858,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.04
                 },
                 {
                     "name": "Convoke the Spirits",
                     "spellId": 391528,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.24
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 197626,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.44
                 }
             ],
             "matchId": "8beecd8eecd685975e489f55c8a2620c",
@@ -5362,7 +5411,7 @@
                         "pvpTalentId": 116
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0F40C578",
@@ -5500,9 +5549,9 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:57:03+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:49:31+00:00"
+    "generated_at": "2026-09-06T12:20:21+00:00"
 }

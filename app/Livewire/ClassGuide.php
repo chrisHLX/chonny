@@ -6,8 +6,8 @@ use App\Http\Services\ArenaLogService;
 use App\Models\GameClass;
 use App\Models\PageViewEvent;
 use App\Models\Patch;
-use App\Models\Spell;
 use App\Models\Specialization;
+use App\Models\Spell;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Livewire\Component;
@@ -40,8 +40,19 @@ class ClassGuide extends Component
 
     public string $specSlug;
 
-    public function mount(?string $classSlug = null, ?string $specSlug = null): void
+    /**
+     * True when this component is a panel inside App\Livewire\PvpGuides rather than its own
+     * /class-guide page. Suppresses this component's own page header, its spec picker (the
+     * parent owns one) and its copy of the shared spell-detail modal — nothing about how the
+     * playstyle bands or the burst window are computed changes. Standalone /class-guide leaves
+     * it false and is untouched.
+     */
+    public bool $embedded = false;
+
+    public function mount(?string $classSlug = null, ?string $specSlug = null, bool $embedded = false): void
     {
+        $this->embedded = $embedded;
+
         if (! $classSlug || ! $specSlug) {
             $default = $this->firstSpecWithData() ?? $this->firstWowSpec();
 
@@ -226,6 +237,7 @@ class ClassGuide extends Component
             'bands' => $this->talentBands,
             'burst' => $this->burstWindow,
             'picker' => $this->picker,
+            'embedded' => $this->embedded,
         ])->layout('layouts.app', [
             'title' => "{$title} | MindCollector",
             'description' => 'How a WoW arena spec actually plays — the talents top-rated players converge on, which of them earn their slot, and the burst window, all from real archived matches.',

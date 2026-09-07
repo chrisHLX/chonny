@@ -1841,6 +1841,167 @@ php artisan tinker --execute="App\Models\TalentBuild::where('user_id', {id})->wh
 
 **Verified end-to-end:** deleted a test personal build, recreated via `getOrCreateUserBuild()` — new build seeded all 95 of the Balance Druid admin default's choices; simulated swapping one talent via `saveChoice()` — count stayed at 95, not 1. Full test suite: same 12 pre-existing, unrelated failures, zero new regressions.
 
+## One spell object: `SpellProfile`, materialized shape, and `spell_counters` ✓ COMPLETE (2026-09-06)
+
+Direct request, and the diagnosis behind it was correct: the data had been assembled correctly but through a series of separate parts, so "everything we know about Kidney Shot" existed nowhere as a single thing. Four competing definitions of "a spell" had accumulated, and the site-wide detail modal — the exact thing a user clicks — rendered **none** of school, `dr_category`, duration, range, cast type, the `is_*` flags, availability, or counters, despite every one of those already sitting on the row.
+
+### What was actually wrong (measured, not assumed)
+
+| Definition | Had | Missing |
+|---|---|---|
+| `Spell` (Eloquent, 130 lines) | every raw/curated column | nothing derived |
+| `SpecKitComputer::compute()`'s entry (untyped array) | `isPriority`, `offensiveDefensive`, `source`, `isSelected` | `grantsCcImmunity` |
+| `SpellDetailModal::getEntryProperty()` (untyped array) | `grantsCcImmunity` | the other four |
+| `SpecKitComputer::resolveEntriesForSpellIds()`'s fallback | a fifth, thinner shape again | most of it |
+
+`enrichModifiers()` existed byte-identically in two files (the modal's own copy said so in its comment). The category-badge colour map was copy-pasted into **six** blades, the DR-badge map into **four** — and the four had already drifted: `cc-review` rendered Knockback gold and Disarm gray while every other page rendered them orange and gold.
+
+**The structural cause, and the thing to keep in mind for anything added later:** two genuinely different kinds of fact were being treated as one.
+
+- **Build-independent** — school, `dr_category`, duration, mechanic, category, immunities, counters, base cooldown, the `is_*` flags. True for every viewer forever.
+- **Build-dependent** — talent-modified cooldown/charges, resolved description text, which modifiers are active. Genuinely needs a `TalentBuild`.
+
+Build-independent facts were being recomputed through the build-dependent engine on every render. The proof was already sitting in the repo: `materializeSpellShape()` had been writing `spells.category` since 2026-09-03 and **nothing read it** except one `SpellFinder` filter — all five display paths still called `categorize()` live, which is why they each needed eager-loaded effects, a memo table, and a `preloadCategorize()` priming pass to answer a question already answered on disk.
+
+### What was built
+
+- **`App\Support\SpellProfile`** — the one spell object. Build-independent facts read from materialized columns; build-dependent ones nullable and absent (not faked, not zeroed) when there is no spec context, distinguished by `hasBuildContext()`. `traits()` is the single place the "it's a Stun **and** it's Crowd Control" badge row is assembled. **It implements `ArrayAccess` deliberately**, answering exactly the key set the old entry arrays exposed — that bridge is what let this land without rewriting 13 blade templates and invalidating every `data/spell-kits/*.json` in the same change. New code should use the typed properties.
+- **`SpellProfileBuilder`** — the only constructor of a profile. `forDetail()` (one spell; loads counters + availability + the build layer) and `forKitEntry()` (takes already-batched values, so `SpecKitComputer` keeps full ownership of its own preloading — the builder owns the *shape*, not the efficiency strategy). `category()`/`ccImmunity()` read the column first and only fall back to a live computation when it is genuinely null, which it is for every test fixture (the column is only ever written by a real import).
+- **Materialization extended** — `spells.grants_cc_immunity` (JSON) and `grants_school_immunity` written by `materializeSpellShape()`, including the same-name sibling fallback `grantsSchoolImmunityFor()` performs (Cloak of Shadows' castable copy 31224 carries no School Immunity effect at all — it triggers hidden aura 35729, which does).
+- **`spell_counters` + `SpellCounterIndexer`** — "what counters X" as a stored relationship (`Spell::counteredBy()` / `counters()`), not a page-local computation. The matching rules are lifted verbatim from `ClaudesCounters` (including the 2026-09-04 fix that a magic-school CC never enters the dodge/parry roll); what changed is only where they run, and therefore who can ask.
+- **`config/spell_display.php`** — one definition of the category/DR badge maps and the `usable_while_cc` token labels, replacing all ten copies. Aligned to the three already-identical production maps rather than inventing new colours; `cc-review` was the outlier and is now consistent.
+- **`<x-spells.detail>`** — one template rendering a profile, shared verbatim by the modal and the new page. `<livewire:spell-detail-modal>` is now a ~25-line shell that owns no spell logic at all.
+- **`/spell/{id}`** (`App\Livewire\SpellDetail`, route `spell.show`) — a permanent, linkable, indexable page per spell. Optional `?spec=` resolves the build-dependent half, and is **ignored** when the spell isn't actually available to that spec (honouring it would resolve talent-modified numbers against a build that can't cast the spell — output that looks real but isn't). Tracked as `spell_detail` in `Admin\PageUsage::PAGES`. `SpellFinder` rows link to it.
+- **`wow:rebuild-spell-counters`** — refreshes the immunity columns and rebuilds the index without a full re-import. Both steps already run inside every `import:spelldata`; this is the backfill path for an environment that has current spell data but predates the columns, the same role `wow:apply-icon-manifest` plays for `icon_name`.
+
+### Real findings surfaced by the work, worth knowing before trusting counter data
+
+**The raw counter pool was mostly noise, and the "no player-pressed signal exists" gap was closable.** The first index build produced 15,403 rows — Kidney Shot alone resolved to **401** "counters", including Weakened Soul, Echo of Light, Sin and Punishment, a literal `GGO - Test - Void Blink`, and five separate copies of Metamorphosis. That matched the live page exactly (401 = 401, verified before changing anything), so it was not a regression — it was what the page had always been showing, just never looked at in aggregate.
+
+`ClaudesCounters`' own docblock had flagged this as unclosed because "no 'is this genuinely player-pressed' signal is captured anywhere in this schema". It was — as three existing signals nobody had combined: a real cooldown/charges, **or** a real `talent_node_entries` / `pvp_talents` / `verified_override` link. `SpellCounterIndexer::narrowToPressable()` applies it, plus a same-name dedupe using the same tiering `preferSelectedPerName()` already uses. **15,403 → 2,242 rows; Kidney Shot 401 → 41.** The safety property was measured rather than assumed: across the full 407-spell pool the filter drops **zero** spells that have a real cooldown.
+
+**`usable_while` is real data with an ambiguous subject — kept, ranked low, NOT silently dropped.** It was 75% of all rows. Blizzard's own `Allow While Stunned (163)` attribute (read by exact code in `SpellDataFileParser`) is set on Living Bomb, Freezing Trap and Demonic Gateway, where it plainly describes the *aura persisting through* a stun rather than the caster being able to press the button while stunned. The attribute is real; what is ambiguous is what it applies to, and resolving that needs game knowledge, not more parsing. So all four mechanisms are stored, `SpellCounter::MECHANISM_CONFIDENCE` ranks the other three high and this one low, and both the detail view and the counters page separate it behind a labelled caveat. **This is an open question for the domain expert, not a solved problem.**
+
+Post-narrowing, the high-confidence buckets are visibly correct — and correct in a way that would be hard to fake: Kidney Shot (Physical) resolves to Blessing of **Protection**, while Fear (Shadow) resolves to Blessing of **Spellwarding**, split purely by school; Polymorph (Incapacitate) resolves to Berserker Rage / Berserker Shout.
+
+### Two silent-failure bugs the type change exposed — the pattern to watch for
+
+`SpellProfile` is `ArrayAccess`, which PHP's `array` type hint does **not** accept, and one consequence was not a crash:
+
+1. **`ModuleSpellReferenceService::spellReferencesCacheIsValid()` opened with `!is_array($entry)`.** Every cached entry written after this change would have been judged invalid and silently recomputed on every request — a performance cliff with no error anywhere. Fixed by accepting a `SpellProfile` as valid by construction (its constructor is the only way to make one and the fields are declared, so there is no wrong-shape variant to defend against).
+2. **Typed closures**: `fn (array $entry) => ...` in `wow-comps.blade.php` / `claudes-guides.blade.php`, and `array_map(function (array $entry)` in `toJsonSafeArray()`. These *did* fail loudly (25 test failures, then all 40 kit precomputes). The useful part is that a sweep for `array $entry` across `app/` and `resources/views/` correctly distinguished them from the ones operating on modifier / CC-chain arrays, which stay plain and were left alone.
+
+### Verified
+
+Full suite back to the standard **12 pre-existing failures** (see the "Test suite baseline" note), 293 passing, zero new regressions — `ClaudesCountersTest` rewritten against the index preserving every original scenario plus three new ones (pressability, dedupe, stored-vs-live agreement), and a new `SpellProfileTest` (13 cases, including that the modal and the page agree on the same spell). All 40 spell kits regenerated and **precomputed output confirmed identical to a live compute** for Discipline Priest, both as `SpellProfile`. Every page rendered against real data: WowComps (3 specs), Spell Explorer, Spell Finder, Spell Counters, CC Review, Top CC Chains, Claude's Guides, Burst Guides.
+
+### Follow-up: WoW Comps was the one page left behind (2026-09-06)
+
+Reported straight after the above: WoW Comps "not showing the updated data". Traced rather than guessed, and the JSON precompute was NOT at fault — all 40 kit files were fresh (version + fingerprint both matching), and a field-by-field comparison of the precomputed entries against a live `compute()` came back **IDENTICAL** for Discipline Priest, Assassination Rogue, Frost Mage and Balance Druid. The performance work was fine.
+
+The real cause: `wow-comps.blade.php` (and nothing else) still rendered **its own** spell modal — ~160 lines emitting **one hidden content block per spell**, toggled by an Alpine `openSpellId` string. Every other page mounts `<livewire:spell-detail-modal>`, so every other page picked up the enriched view (school, DR category, PvP duration, counters, availability) while this one silently kept the older, thinner one. That is exactly "not showing the updated data", and it was a foreseeable consequence of the note in the earlier section saying WowComps/SpellExplorer "still have their own original, pre-extraction modal implementations — not migrated here."
+
+That template's own comment had already called this out: *"Simplest correct approach for a shape-check page; a production version would swap this for a single dynamically-populated modal instead of rendering one block per spell."*
+
+**Swapped.** All 7 trigger sites now `wire:click="$dispatch('show-spell-detail', {...})"` via one `$openSpell($member, $spellId)` helper defined in the blade's existing top `@php` block, which carries the comp member's real `class`/`spec` id so the modal resolves talent-modified cooldowns rather than base values. Verified across a rendered page: **75 of 75 triggers carry real class/spec context, zero null**.
+
+**It is also a large performance win, which is the thing that made this worth doing rather than just correct:** a 3-spec render went from **2,355,813 bytes (2.36 MB) to 308,430 bytes (0.29 MB) — 87% smaller** — and warm render time from ~913ms to ~480ms. The hidden per-spell blocks were the bulk of that payload, for content a viewer opens at most one of. This is the same class of win as the 2026-09-01 "Buffs & Passives tab removed" measurement, applied to the actual root cause rather than one tab.
+
+Two smaller things fell out of it:
+
+- **The `$hasModal` guard on Burst Window rotation steps is gone.** It existed only because a step whose spell had no pre-rendered block would have opened an empty overlay; the shared modal resolves any spell id straight from the DB, so the filler/proc abilities that used to render as dead `disabled` buttons are now clickable.
+- **Output is emitted with `{!! !!}`, and the helper casts every value to `int` first.** Escaped output does work — a browser decodes `&#039;` back to `'` before Livewire reads the attribute — but it renders unreadable markup and is needless fragility for a string built entirely from database integers.
+
+`SpellExplorer` was checked at the same time and needs nothing: it has no modal at all (it renders descriptions inline via `<x-spells.table>`), so it never showed a stale spell view.
+
+`WowCompsSynergiesTest`'s click-trigger case was rewritten to assert the new dispatch (including the class/spec context) **and** `assertDontSeeHtml('openSpellId')` — asserting the absence is what stops the per-spell pre-render creeping back.
+
+### Deploy — nothing manual, and two deploy-path gaps closed along the way
+
+`cd /var/www/mindcollector && ./deploy.sh`. Nothing else. Answering the question directly: **no,
+none of this needs re-running by hand after future changes.** The immunity columns and the
+`spell_counters` index are written by `materializeSpellShape()`, which every `import:spelldata`
+already calls, which `deploy.sh` now runs itself. `wow:rebuild-spell-counters` is a targeted
+backfill for an environment that has current spell data but predates the columns — it is not part
+of any routine workflow and its own description says so.
+
+Getting there required fixing two real things in the deploy path, both of which predate this work:
+
+- **`import:spelldata`'s patch argument is now optional, and omitting it is the correct default.**
+  A wrong version string never failed — it silently created a new `patches` row and forked every
+  patch-scoped table away from the one the live site reads (this happened for real; see
+  `feedback_patch-version-bump-creates-new-row` in memory). CLAUDE.md's answer had been a warning
+  telling humans to verify the argument by hand every time, and `deploy.sh` refused to automate
+  the import *because of* that risk. `php artisan import:spelldata wow` with no patch argument now
+  resolves the current patch from the DB and refuses to run if there isn't one — the same
+  verification, performed by the command so it cannot be skipped or mistyped. An explicit version
+  still works and still creates a new row when it doesn't match, which is exactly what a genuine
+  patch transition needs; it just can't happen by accident any more.
+- **Every deploy silently invalidated all 40 precomputed spell kits, and nothing regenerated
+  them.** Each kit file embeds `deployedCodeFingerprint()`, and `deploy.sh` writes a new
+  `storage/app/deployed-commit.txt` on every single deploy — so by construction every kit went
+  stale the moment the fingerprint was written. `SpecKitComputer` then falls back to a live
+  recompute, which is safe but, by this repo's own 2026-09-05 profiling, is **6,964ms/3,042
+  queries versus 970ms/146** for a 3-spec WowComps render. Production had been serving that slow
+  path after every deploy since the fingerprint mechanism was introduced. `deploy.sh` now
+  regenerates the kits after writing the fingerprint (or skips it when the import branch runs,
+  since `import:spelldata` already does it as its own final step). **Ordering is load-bearing:
+  kits must be built AFTER the fingerprint write, never before, or they get stamped with the old
+  value and are invalidated seconds later.**
+
+### Not done, deliberately
+
+No page was deleted. `/cc-review` and `/cc-immunity-review` are review tools `/spell-finder` now largely supersedes, and `/class-guide` / `/claudes-guides` / `/burst-guides` overlap — consolidating them is a product decision, deliberately left out of a technical pass. `public/sitemap.xml` is a static 7-URL file and was not extended to per-spell pages.
+
+## Burst-window step extraction: four real bugs found and fixed (2026-09-06)
+
+Reported as "the data sometimes grabs duplicates or passive spells and doesn't gather the proper information." All three symptoms were real, and each traced to a different cause. Everything below was measured against the raw combat logs across all 38 specs before and after, never reasoned about in the abstract.
+
+### 1. The duplicate collapse was order-dependent — 44 windows over-counted
+
+`collapseSubGcdRepeats()` compared each cast only against `$out`'s **last element** — the immediately preceding kept cast, whatever ability that happened to be. So two casts of the same ability the same distance apart were collapsed or kept purely according to whether something else was logged between them, which nothing about the game justifies.
+
+Measured across every spec by re-windowing the raw logs: **44 windows kept more steps than the player actually pressed.** The clearest case is Fire Mage, where the log interleaves Fire Blast and Pyroblast (`A,B,A,B,…`) so neither ability is ever its own predecessor — a 10s window exported **9 Fire Blasts and 9 Pyroblasts against 5 real presses of each**. Assassination Rogue is the same shape at zero distance: every Mutilate press emits **two** `SPELL_CAST_SUCCESS` events at an identical timestamp under different spell_ids (27576 and 1329, both weapons), which collapsed correctly only while nothing sorted between them.
+
+Fixed by keying the last-kept time on the ability **name** rather than on position. `COLLAPSE_SECONDS` is unchanged at 1.0s and no threshold was retuned — this only stops the existing threshold being bypassed. That bar is also comfortably above the game's real floor: measured over **1,760 same-name consecutive pairs**, gaps cluster hard below 0.5s (duplicate log events for one press) and again at 0.75–1.00s (a real hasted GCD), with a clear valley between.
+
+**Result: 44 → 0.** (The audit still flags 2, both confirmed false positives in the audit itself — Ambush's exported offsets are 8.93/9.93/10.93/11.93, exactly 1.000s apart and therefore real presses, while the audit's own raw-gap read of 0.997 fell just under its 1.0s threshold.)
+
+### 2. The exclusion list was keyed on one spell_id per ability, so sibling copies leaked
+
+`AUTO_TRIGGERED_NOT_PRESSED_SPELL_IDS` carried Exterminate as `441426` and Reaver's Glaive as `444686` — but the ids that actually reach the log, and therefore the exported windows, are `441424` and `442294`. Same abilities, different internal copies, so those exclusions never fired: **26 leaked Exterminate steps and 3 Reaver's Glaive** across Blood DK, Frost DK and Havoc.
+
+This is not a new policy, it is the existing one applied consistently: the list's own docblock already does this expansion **by hand** for one entry ("all 4 same-named internal copies excluded together since the archive's canonical-name resolution can pick any of them"). Every other entry just never got the same treatment. `expandExclusionsByName()` now resolves each listed id to its name and excludes every same-named copy in the patch — 16 listed becomes 58 after expansion. Verification still happens per ability exactly as before; this only stops a verified exclusion being defeated by which internal copy Blizzard happened to log, a distinction none of these entries was ever meant to draw. Same "one visible ability, several internal spell_id copies" pattern documented throughout this file.
+
+### 3. Two genuine non-press abilities were being recorded as presses
+
+Both verified to the list's own two-part standard (own description names what produces it; confirmed as a real `SPELL_CAST_SUCCESS,Player-<guid>` event in an archived log):
+
+- **`1223412` Soul Fragment** (Devourer DH) — own description: *"A fragment of your enemy's soul. **Walking into the soul** or casting Reap will collect it…"* A pickup, not a keybind. The single noisiest false step in the dataset: **55 occurrences**, up to 18 in one 30s window.
+- **`228537` Shattered Souls** (Havoc DH) — own description: *"Killing an enemy sometimes creates a Soul Fragment that is consumed **when you approach it**…"* Several same-named copies are literally flagged `is_passive` in spell data; the copies that reach the log are `not_in_spellbook`.
+
+Worth recording: literal `is_passive = true` was checked first as a general filter and is **not** the signal here — zero steps in the whole dataset had it set. `not_in_spellbook` was checked too and is actively unsafe as a filter: it flags real pressed abilities (Wild Charge, Mutilate, Typhoon, Skull Bash, Prowl, Dream Breath) whose *duplicate internal copy* is what the log recorded. Both were ruled out by measurement rather than adopted because they sounded right.
+
+### 4. Four specs were serving three-week-old data from deliberately deleted matches
+
+The worst of the four, and the "doesn't gather the proper information" symptom. When a spec has no matches, `offensive-rotations.php` printed "No windows found" and exited **leaving any previous export on disk**. `all-spec-rotations.php` then found that file, reported it as a successful run ("Warrior Protection 26 windows, 3 kills"), and `RefreshMatchDerived::promoteRotations()` — which was copy-only, and never removed a promoted file whose export had disappeared — copied it into the live site as current.
+
+After the 2026-09-05 archive cull removed the early-expansion matches, **Blood DK, Guardian Druid, Augmentation Evoker and Protection Warrior** had zero matches left. All four had been serving **2026-08-31 burst windows built from matches that were deliberately deleted for being unrepresentative**, with nothing anywhere indicating the data was stale.
+
+Fixed at both ends: the script now deletes its own stale export when it finds no windows, and promotion removes any live rotation file the archive no longer produces (reporting each by name). "No data" is now recorded as absence rather than as silence — a spec with nothing to show shows nothing. Verified that all four degrade cleanly rather than erroring: `/top-damage-rotations`, WoW Comps' Burst Window tab, Burst Guides and `/top-damage-rotations/…/talents` all render normally for a spec with no data.
+
+### 5. Exported steps now carry timing
+
+Steps carried only `name`, `spellId`, `isCc`, `isRepeat` — no timestamp. Nothing downstream could tell a real repeat from a duplicate log event, show the actual cadence of a go, or audit this pipeline's own output without re-parsing and re-windowing the raw logs, which is exactly what finding bug 1 required. The information was already in hand at export and was simply being dropped. Each step now carries `offset` (seconds from window start).
+
+That field immediately paid for itself: the two remaining audit flags above were resolved by reading exported offsets directly instead of re-parsing logs. **One mistake worth recording:** the first version subtracted `$d['start']` from `$step['t']`, producing offsets like `-78293.955` — `t` is *already* relative to the window start by that point. Caught by looking at the regenerated output rather than assuming.
+
+### Verified
+
+Rotation files 38 → 34 (four correctly removed). Windows with steps 190 → 170. Distinct step spell ids 468 → 420. Zero remaining non-press abilities, zero passive steps, zero genuine duplicate over-counts. Full test suite: same 12 pre-existing failures, 293 passing, zero regressions — including `TopDamageRotationsTest`'s hardcoded Subtlety damage figure, which survived the regeneration unchanged.
+
+**Known and deliberately unchanged:** `dropProcRiders()` still drops Windstrike (Enhancement, −9 per window) and Power Word: Radiance (Discipline, −1) below their raw press counts. That is the documented intent of that pass, not a bug — those are proc-triggered casts riding free on another ability.
+
 ## Game Reference Data Import (updated 2026-07-24 — read `game-data.md` for the full document)
 
 Raw WoW reference data (`data/spelldata`, `data/talenttrees`, `data/pvptalents`) pulled from SimulationCraft spell dumps and the Blizzard Game Data API, imported into a relational schema (`spells`, `talent_trees`, `pvp_talents`, etc.) via `php artisan import:spelldata {game} {patch}` (`app/Console/Commands/ImportSpellData.php` + `App\Http\Services\SpellDataFileParser`). The three source folders all join on Blizzard's external `spell_id` — spelldata is the primary source of spell records, talenttrees/pvptalents are structural overlays resolved against it, not independent sources. This is the "Raw Game Data" input referenced in the Canonical Context Module Template section below — it exists to ground/verify expert-dictated module content (e.g. the Feral Druid SimulationCraft cross-check), not to generate modules itself. See `game-data.md` for the full folder-by-folder breakdown, the downstream table mapping, the two global post-import passes (`spell_relationships`, description-reference resolution), and a growing set of dated findings from a deep investigative session (2026-07-24) that the "AI-Assisted Game Data Modeling" note right below this one generalizes into a standing principle — worth reading both together.
@@ -2124,6 +2285,8 @@ Reported live: Restoration Druid showing Berserk (Feral) and Solar Beam (Balance
 **Known separate, pre-existing gap surfaced but NOT part of this bug:** "Inner Light," one of the examples used while verifying this fix, has zero `talent_node_entries` under any of its 6 spell_id copies in the current dataset — not a PvE talent pick at all currently, unaffected by (and unrelated to) this cleanup. Not investigated further; flagged only so it isn't mistaken for a regression from this fix if it comes up again.
 
 ## Censure mistagged as its own Stun; Axe Toss wrongly multi-spec ✓ FIXED (2026-08-17)
+
+> **Partly superseded 2026-09-06** — the conclusion below ("leave Chastise on its flat `dr_category=Incapacitate`, its correct default/majority-case behavior") turned out to be wrong: Censure is SELECTED in the Holy Priest admin-default build, so Incapacitate was wrong for essentially every viewer, not the majority case. `dr_category` is now resolvable per build. See "Talent-conditional `dr_category`" near the end of this file. The Censure-side half of this section (a passive must never carry a `dr_category` of its own) still stands unchanged.
 
 Two independent `cc-synergies-overrides.txt`/`baseline-spec-overrides.txt` curation mistakes, both reported live off the Synergies tab, both fixed the same session.
 
@@ -2442,43 +2605,524 @@ The fixes above resolved the overlap and the hero-tree contamination, but a foll
 
 **Verified against real rendered markup, not just the PHP:** parsed all **120 tree boxes** (40 specs × 3 trees) and asserted per box that right/bottom slack is exactly 0 and that no node is clipped at the left/top — **0 boxes** fail either check. Widest spec fell from 1712px → **1436px** (Restoration Druid) against ~1768px available, so no spec needs the horizontal scrollbar and the trees now sit tight to their content instead of floating inside oversized boxes.
 
-## Burst Guides — a definite, filtered sequence of key presses, one block per spec ✓ COMPLETE (2026-09-04)
+## Burst Guides — rebuilt as a mechanically-grounded, corpus-aggregated plan ✓ COMPLETE (2026-09-06)
 
-Direct design brief: a "Class Guides" block per class showing "a Definite series or combinations of keys (GCDs) to press," derived from Burst Windows — filtered so pure-defensive noise (the brief's own example: a Rogue pressing Evasion to stay in the fight, not to burst) is dropped, while ordinary rotation and Crowd Control on the kill target survive, and the sequence stops "once we start repeating ability sequences" (worked example given: "mutilate mutilate envenom, mutilate mutilate envenom"). Two design forks were resolved via `AskUserQuestion` before building: a new standalone overview page (not a section bolted onto an existing page) and one block per spec, not per class (38 blocks — specs within a class play too differently to collapse to one representative spec).
+`/burst-guides` (`App\Livewire\BurstGuides` → 13 lazy `BurstGuideClassBlock` children) now answers,
+per spec: **how long the go lasts, how many globals fit in it, and what to press in order**, split
+into **Set up → Commit → Execute → Fill**, plus an **Also pressed** list for things that genuinely
+occur in real windows but aren't part of dealing damage. Written by `wow:build-burst-guides` →
+**`App\Http\Services\BurstGuideBuilder`** (new); read that class's docblock for the full derivation.
 
-**"Do we have the component necessary for this built but Not being Used?" — checked before building anything, answer no, but two close-but-not-quite pieces existed:** `isRepeat` (a per-step flag already written by wow-arena-archive's `offensive-rotations.php`) turned out to be a naive "has this spell_id appeared anywhere earlier in the window" dedup flag, not a real cycle-boundary detector — confirmed by reading that script directly, then proven wrong empirically (it would falsely trigger on an ordinary same-builder double-tap, e.g. two Mutilates back-to-back, long before any real "the rotation is looping" moment). And `ArenaLogService::offensiveDefensiveClassification()` (already live, powering WoW Comps' Offensive/Defensive Cooldowns tabs) exists and is directly reused here — the brief's own "why can't we just use offensive cooldowns? We should!" — but on its own it's a static per-spell CD list with no ordering, not a sequence.
+**Why it was rebuilt, in the user's own words: the original "didn't really understand the mechanics
+and relied on examples only."** Both halves were correct, and the failure mode is one this codebase
+is structurally prone to:
 
-**`ArenaLogService::buildBurstGuideSequence(classSlug, specSlug)`** — the real, new logic (see its own extensive docblock for full reasoning):
-- **Source window:** the longest available `topDpsWindowsByLength` entry with steps (30s, not the 12s the rest of the site defaults to) — confirmed empirically before committing to this: tested a real Assassination Rogue's own 6/10/12/20/30s windows against the truncation algorithm below, and only the 30s window ever produced a clean repeat; the other four never did (a 12s window usually just isn't long enough to observe a real loop).
-- **Filter:** a step is dropped only when its spell is classified defensive-only (not also offensive) AND carries no `dr_category`. Validated against two real cases, not just reasoned about: Shadow Priest's real 30s window genuinely contains Fade (defensive-only) woven into it — dropped correctly, while Power Infusion/Voidform/Void Torrent (offensive) and Psychic Scream (CC, no classification needed) all survive. Base rotation abilities (Mutilate, Envenom, Kick, Vanish, racials — anything `offensiveDefensiveClassification()` has no opinion on at all, since that classifier only ever covers CDs with a real offensive/defensive purpose) default to kept, not dropped.
-- **Truncation:** finds the earliest point a 2+-step block repeats back-to-back and stops right after its second occurrence (a lone ability repeating twice, period 1, does NOT count — that's an ordinary double-tap, not "the sequence repeating"). Directly validated against the brief's own worked example: Assassination Rogue's real 30s window, after filtering, truncates to exactly `Kidney Shot → Deathmark → Kingsbane → Envenom → Mutilate → Envenom → Fan of Knives → Mutilate → Mutilate → Envenom → Mutilate → Mutilate → Envenom` — ending on "Mutilate, Mutilate, Envenom" twice in a row, the literal pattern from the brief.
-- **Known, flagged limitation:** "CC only if it's on the kill target" can't currently be verified per step — the raw combat-log extraction upstream (wow-arena-archive's `offensive-rotations.php`) never captured each cast's own destination GUID, only the window's overall damage target. A CC step inside a kill-target-scoped window is presumed, not proven, relevant to that target (e.g. a Blind used to peel the healer mid-window would still be kept). Closing this needs that script's regex extended to capture destGUID per cast — out of this feature's scope, recorded per this project's "flag, don't guess" discipline rather than silently accepted as solved.
+- **"Examples only."** `ArenaLogService::buildBurstGuideSequence()` (2026-09-04, now **deleted**)
+  replayed the single highest-damage 30s window from ONE match, verbatim, minus defensives.
+  Whatever that one player happened to press became the guide — Assassination Rogue's committed
+  output contained a mid-burst re-stealth and ended `Ambush, Ambush, Ambush, Ambush`, because the
+  "stop once a 2+ block repeats" truncation deliberately ignored single-ability repeats and so
+  never fired on that tail.
+- **"Didn't understand the mechanics."** The output was a flat icon strip. A go has structure (set
+  up so the damage can't be healed or escaped → stack cooldowns → spend the window) and two numbers
+  that make it actionable (how long, how many globals), none of which existed.
 
-**Storage, per the brief's own instruction ("For now store the CD's in the Claude class guides folder... then load the files to the page"):** `php artisan wow:build-burst-guides {--only=}` writes `data/claudes-guides/burst-guides/{class}/{spec}.json` — a new subfolder alongside (not replacing) the 11 existing hand-written `{class}/{spec}.json` guides, since this command's output covers every spec with real rotation data (38), independent of whether a hand-written guide exists. Deliberately spell_id-only, same "never freeze what will go stale" discipline as every other file in `data/claudes-guides/` (see that folder's own README, updated same day) — `App\Livewire\BurstGuides` resolves every id live. Zero external calls, pure local computation from data already on disk — unlike `wow:import-murlok-defaults` (which deliberately stays a manual, occasional action to avoid hammering a third-party site), this command has no such concern and defaults to processing every spec.
+**The data that made the fix possible was already on disk and unused.** `{ARENA_LOG_ARCHIVE_PATH}/rotations/{class}/{spec}.jsonl`
+— written by wow-arena-archive's `offensive-rotations.php` — holds **every** window it found,
+200–1900 per spec across dozens of matches, each with a full timestamped cast sequence. Only the
+single best window per length was ever promoted into this repo. The builder streams that corpus
+(line-by-line; one spec's decoded windows exhaust PHP's 128MB default) and reports per-ability
+**presence rate, median offset, and casts per window**, so a step earns its place by being typical
+rather than by appearing once.
 
-**A real, confirmed production-risk bug found before shipping, not after:** the first working version called `SpecKitComputer::resolveEntriesForSpellIds()` — the same live-resolution path `ClaudesGuides` already uses safely for one spec at a time — once per spec across all 38. Measured peak memory: **430MB** for a single page render, comfortably capable of a real 500 on a normal PHP-FPM memory_limit. Traced to `SpecKitComputer::fromJsonSafeArray()`: every precomputed-kit read re-hydrates EVERY spell referenced anywhere in that kit (up to ~591 per spec) as full Eloquent models WITH eager-loaded `effects`/`incomingRelationships.sourceSpell.effects` — correct and necessary for `ClaudesGuides`' single-spec-at-a-time use, but 38x too expensive for a grid page. Fixed with a lightweight direct-JSON reader (now `BurstGuideClassBlock::resolveBurstGuideSteps()`, see the follow-up below) — reads the same precomputed `data/spell-kits/{class}/{spec}.json` file directly as raw JSON (no Eloquent rehydration at all), replicating `tryReadPrecomputed()`'s own validity check (`spellCacheVersion`/`deployedCodeFingerprint` match) by hand, and falls back to a plain `Spell` column read + `categorize()` for anything not in the kit (base rotation) — identical correctness to the heavy path, verified via a direct before/after comparison of resolved cooldown/category values for Assassination Rogue's sequence. **Peak memory: 430MB → 64MB.**
+**Everything is derived; nothing is authored per spec.** The only English on the page explains what
+a phase means, never what a spec should do.
+- **GCD floor measured per spec** from real cast-gap cadence — the method already documented in
+  `data/arena-logs/GCD and Go Analysis.md` (Method 1), including its integer-bucket warning.
+  Cross-validated against that doc's own independently-derived numbers (Subtlety ~1.00s, Frost Mage
+  ~1.15s → this computes 1.00s / 1.10s from the full corpus). Clamped to [0.75, 1.5]; a peak outside
+  that is an artifact, so it reports base 1.5s and flags `gcdMeasured: false` (Devourer DH peaks at
+  0.50s).
+- **Anchor** = the spec's biggest offensive commitment, using the same "MAJOR anchor" bar (cooldown
+  ≥45s, offensive-classified, real cast evidence) `offensive-rotations.php` already uses, **including
+  its progressive 45s → 30s → longest-available fallback** — without that fallback, Restoration
+  Druid/Shaman and Demonology Warlock (longest offensive cooldown 10s/30s/30s) got no guide at all.
+- **Analysis window is uniform (−6s…+20s), deliberately NOT the anchor's duration.** Tried first and
+  wrong: `duration_seconds` is 20s for Avenging Wrath but 2s for The Hunt (a leap's root), 4s for Ray
+  of Frost (a channel), 30s for Army of the Dead (a summon) — anchoring Havoc's analysis to 2s
+  truncated its guide to one ability, Frost Mage's to four.
+- **Phases follow from measured timing** (median offset < −0.5 setup, ≤ 1.5 commit, else execute),
+  which recovers real structure nobody told it to look for: Kidney Shot at −2.0s ahead of Deathmark;
+  Hammer of Justice at −1.3s ahead of Avenging Wrath + Wake of Ashes both at 0.0; Flurry ahead of Ice
+  Lance (the real Frost shatter pairing, from timing alone).
+- **Control placement is this project's own verified rule**, not a new assertion — see
+  "`chain_target` rule articulated": control that breaks on damage can't sit on the target you're
+  damaging, so Stun/Silence label as kill-target and Incapacitate/Disorient as healer.
+- **Window length prefers a real buff duration** among the cooldowns stacked at the start, since that
+  IS the window mechanically — bounded two ways so a duration meaning something else can't be
+  believed: it must not be shorter than the measured commit spread, and must be ≤20s (no real
+  amplification window exceeds that; Avenging Wrath/Incarnation are exactly 20s). Falls back to the
+  measurement otherwise, and stores which basis was used (`goLengthBasis`) so the page can say.
 
-### Follow-up, same day: the 64MB figure was itself misleadingly reported, and the underlying architecture was still wrong — split into a thin parent + 13 lazy-loaded per-class children
+**Four real bugs found and fixed during verification, each by checking output against reality rather
+than by reading the code:**
+1. **Go length was measured across setup presses that happen before the window** — Unholy DK's five
+   negative-offset presses dragged its reported go to 4.0s while its sequence held 11 steps, an
+   incoherent "11 abilities in 3 globals". Now measured from the anchor forward only.
+2. **The window guard depended on the classification's buff-vs-spell split, which is unreliable in
+   both directions** — Shadow Blades (a genuine 16s amplification buff) is labelled "Offensive
+   Spell", while Blade of Justice and Hammer of Wrath (plain damage) are labelled "Offensive Buff".
+   Gating on it cost Subtlety its real 16s window and reported 4s. The two numeric bounds above do
+   the same job without depending on that signal.
+3. **`Health Leech` was missing from the damage-effect detector** — Shadow Word: Madness carries only
+   `Health Leech (9)` / `Periodic Health Leech (53)`, so at 89% presence it was being pushed out of
+   Shadow Priest's damage plan entirely. (The detector deliberately matches specific effect fragments,
+   never a bare `%Damage%`, which would sweep in the far larger `Modify Damage Taken%` / `Absorb
+   Damage` families that describe damage without dealing any.)
+4. **Damaging abilities with no cooldown were labelled "cooldown" when used infrequently** — Frost
+   Mage's Frostbolt. Frequency now only ranks fill, never decides whether something is fill.
 
-Direct, sharp user pushback on the 64MB number: *"64MB to read a block with 10 spells in it?! That's not the right design is it because we are using livewire and loading all specs at once for class guides?"* — correct on both counts, verified rather than defended.
+**A fifth bug was caught by the new test suite, not by inspection: stale guides were never pruned.**
+Blood DK, Guardian Druid, Augmentation Evoker and Protection Warrior lost all their matches in the
+2026-09-05 archive cull, and their rotations were correctly removed then — but their burst guides
+stayed on disk and kept being served, built from deliberately deleted matches. `wow:build-burst-guides`
+now prunes any guide with no promoted rotation, scoped to whatever `--only` narrowed the run to,
+mirroring `RefreshMatchDerived::promoteRotations()`'s own handling of exactly this situation.
 
-**First, the honest number.** The 64MB figure reported above was **peak PROCESS memory** (Laravel + Livewire + the Artisan/tinker test-harness boot), not the page's own cost — measuring baseline memory right after framework boot versus after one real render isolated the actual delta: **~46MB was pure framework/test-harness overhead, present for any page on the site**, and BurstGuides' own incremental cost was **~14MB, producing 1.4MB of HTML across 508 step-cards (38 specs)**. "64MB to read a block with 10 spells" was never an accurate description of what was being measured — confirmed no duplicate-per-card modal blocks either (the WowComps-shaped mistake this project has hit before) — only 2 Livewire component wrappers existed on the whole page (`BurstGuides` + one shared `SpellDetailModal`), so the 1.4MB was genuinely just 508 real ability cards' own markup, not a multiplication bug.
+**Damage-capable detection is what keeps healing and mobility out of the damage plan**, checked
+across same-named sibling spell_id copies (the standard recovery here — Mutilate, Moonfire, Arcane
+Missiles, Frost Strike and Void Volley all carry their damage effect only on a sibling). Verified
+against a deliberately mixed sample: every real damage ability resolves true; Word of Glory, Renewing
+Mist, Soothing Mist, Enveloping Mist, Flash Heal, Power Word: Shield, Eternal Flame, Glide, Roll,
+Blink and Feint all resolve false.
 
-**Second, and the actual point: rendering 508 cards across 38 specs synchronously in one Livewire request, unconditionally, on every page view, is still the wrong shape** — independent of whether the raw number is 64MB or 14MB, real users' browsers were downloading and painting all of it before seeing anything, and every repeat view (even cache-hit) still paid the cost of serializing that much HTML. This is architecturally the same category of problem WowComps' own "Buffs & Passives tab removed for real performance" fix (2026-09-01) already established a precedent for in this codebase — render less at once, not just render it more cheaply.
+**Build-time only, output committed.** The corpus lives in the archive and is not committed here;
+only the small computed result is (spell_ids + measured statistics, never a frozen name/cooldown/
+duration). A spec with no corpus is reported and skipped, never degraded to a weaker source. Runs as
+step 7 of `wow:refresh-match-derived`.
 
-**Fixed by splitting into a thin parent + 13 lazy-loaded children**, using Livewire 3's built-in `#[Lazy]` component loading (available since `livewire/livewire ^3.6`, already in `composer.json` — first real use of this feature anywhere in this codebase):
-- **`App\Livewire\BurstGuides`** (parent) — now does almost nothing: logs the page view, lists which class slugs have burst-guide data on disk (a directory scan + one cheap `GameClass::whereIn(...)->pluck('slug')` query, no spell resolution at all), and mounts one `<livewire:burst-guide-class-block :class-slug="$slug" lazy/>` per class.
-- **`App\Livewire\BurstGuideClassBlock`** (new child, `#[Lazy]`) — carries ALL the real logic previously on the parent (`computeGuide()`/`resolveBurstGuideSteps()`), but scoped to exactly ONE class's 2-4 specs, with its own `placeholder()` (a small skeleton shown on first paint) and its own Redis cache key (`burst_guides:class:{slug}:v{version}:{fingerprint}` — per-class, not one all-classes blob, so viewing one class doesn't invalidate/recompute any other).
-- **Split per CLASS (13), not per SPEC (38)** — deliberate: 38 separate small Livewire requests would be more network overhead for comparatively little extra parallelism benefit over 13.
-- Livewire view template requires exactly one persistent root element even for a component whose visible content is entirely conditional — the child's blade file wraps its whole `@if`/`@endif` in an always-present outer `<div>`, same fix pattern already established for `SpellDetailModal`'s equivalent gotcha.
+**Testing note worth remembering beyond this feature:** in a single PHP process, only the FIRST
+`Livewire::test()` of a given component returns full HTML — subsequent ones return a stub. An initial
+verification harness that looped 13 classes in one process therefore reported Paladin and Priest as
+rendering ~1.1KB of empty output, when a standalone render of either produced a correct 91KB.
+**Verify per-component renders in separate processes**, or that artifact reads as a real page bug.
+Every one of the 13 class blocks was then confirmed to render 51–111KB with zero unresolved names.
 
-**Verified end-to-end, both halves of the split:** initial parent page load (simulating a real browser first paint, lazy loading NOT disabled) — **2MB delta memory, 18.1KB HTML**, confirmed containing zero real spec content (`"Assassination"` absent) since every child is still showing its placeholder. One child loaded with lazy loading explicitly disabled (`Livewire::withoutLazyLoading()`, simulating that child's own deferred follow-up request completing) — **~4MB delta, 106KB HTML**, confirmed containing real, correct content (`"Assassination"`, `"Kingsbane"` both present). The end-to-end user experience: an effectively-instant page paint, followed by 13 small independent background requests instead of one blocking ~14MB/1.4MB render — same total content eventually shown (no scope reduction from the 38-specs-all-shown decision made earlier via `AskUserQuestion`), just no longer paid for synchronously on every view.
+**Verified end-to-end:** all 34 specs build with coherent numbers, and the resulting plans read as
+correct game plans (Assassination: Kidney Shot → Deathmark → Kingsbane → Garrote, fill
+Mutilate/Envenom/Rupture; Retribution: Hammer of Justice → Wake of Ashes + Avenging Wrath together →
+Divine Toll/Hammer of Wrath/Blade of Justice). Full suite: 313 passing, same 12 pre-existing unrelated
+failures, zero new regressions. Spell cache version bumped.
 
-**Tests rewritten to match the split** (`tests/Feature/Livewire/BurstGuidesTest.php`, 4 cases): the parent paints placeholder-only content by default; the parent degrades to its empty state with no real spelldata; a child (with `Livewire::withoutLazyLoading()`) resolves one real committed file to correct, ordered output including duplicate-preservation; a child for a non-existent class renders an empty-but-valid single-root block rather than throwing. Full test suite: same 12 pre-existing, unrelated failures, zero new regressions.
+### Control placement, take two: measured from match data instead of curated (2026-09-06)
 
-**Wired into the standing discipline, not left to go stale silently:** `wow:refresh-match-derived` (see that command's own section above) gained a 7th step running `wow:build-burst-guides` right after rotation promotion — a future match pull can't leave this page's data stale the way earlier gaps in that same orchestrator left CC chains/rotations stale before it existed.
+Two reports — **Solar Beam** (Balance Druid) labelled "on the kill target" when it is a healer
+silence, and **Hunter's Intimidation** labelled the same when it is used to set up a trap on the
+healer — exposed two separate mistakes, and then the fix for them was itself replaced the same day
+on direct instruction: *"I don't really want the curated chain, I was hoping that we could get the
+info by looking at the match data so it can pick these things up automatically."* That is possible,
+and it is now how this works.
 
-**New page:** `/burst-guides`, `App\Livewire\BurstGuides` (thin parent) + `App\Livewire\BurstGuideClassBlock` (lazy-loaded per-class child, see the follow-up above — this is the CURRENT shape, not the original single-component one), nav label "Burst Guides" (placed under Claude's Guides in the WoW nav section) — deliberately named distinctly from both existing "class guide"-shaped pages (`/class-guide` "Class Kits", `/claudes-guides` "Claude's Guides") to avoid any label collision, even though the design brief itself said "Class Guides." Tracked the standard way: `PageViewEvent::log('burst_guides')` in the parent's `mount()`, `'burst_guides' => 'Burst Guides'` added to `Admin\PageUsage::PAGES`. Each spec's chain renders as a horizontally-scrollable row of compact cards (icon + name, category/`dr_category` badge, CD + PvP Duration stats), grouped under a per-class section — click-to-detail reuses the shared `SpellDetailModal` component (`$dispatch('show-spell-detail', {...})`), same convention WoW Comps/Top 10 CC Chains already established, rather than a self-contained inline modal.
+**Mistake 1 — curated ground truth was ignored.** `spells.chain_target` is hand-verified, and Solar
+Beam was ALREADY curated `healer`, Intimidation ALREADY `both`. `BurstGuideBuilder` never read the
+column, deriving from `dr_category` instead.
+
+**Mistake 2 — the derivation read a necessary condition as a prescription.** CLAUDE.md's
+"`chain_target` rule articulated" says control that BREAKS ON DAMAGE cannot be used on the target
+you are damaging, so only Stun and Silence can *ever* be kill-target. That says which control is
+**eligible** for the kill target, never that it **belongs** there. Implemented as "Stun/Silence →
+kill target" it contradicted the curated data flatly: every curated Silence is `healer`, every
+curated Stun is `both`.
+
+**The real fix: measure it.** `App\Http\Services\CcTargetingAnalyzer` + `wow:analyze-cc-targeting`
+scan every archived raw log for control landing on an opposing player, resolve that player's spec
+from the match's own metadata, and report how often each ability is used on the enemy healer. Across
+689 matches that is **110,772 real control applications**, giving a usable sample for **81 of 132**
+CC-tagged spells — four times the curated coverage, with no curation at all. This is direct
+observation (a real player, a real rated match, a real opponent whose spec is recorded), the same
+evidence tier `wow:diff-arena-spells --apply` already writes on, and categorically not the kind of
+indirect structural inference this project has tried and reverted before.
+
+**Normalising against chance is the whole trick.** A 3v3 team is one healer and two damage dealers,
+so control spread evenly lands on the healer a third of the time — measured at exactly 33.3% across
+the archive, though it is computed from each match's own roster rather than assumed. "27% of Kidney
+Shots hit a healer" therefore means it is used on the healer LESS than at random, not that it is a
+badly-used healer ability. Every figure is a ratio against that baseline.
+
+**Two event sources, and the second is load-bearing rather than belt-and-braces.**
+`SPELL_AURA_APPLIED ... DEBUFF` is the primary signal (the control actually landed).
+`SPELL_CAST_SUCCESS` with a player destination is the fallback, needed because ground-targeted zone
+control never applies an aura under its own spell_id: **Solar Beam — the very ability first reported
+— has ZERO aura events across all 689 matches**, and 298 casts. Aura-only it was invisible; with the
+fallback it resolves at 60% healer, 1.8x chance.
+
+**Results on the reported cases, all derived, none curated:** Solar Beam 60% healer (1.80x) →
+healer. Intimidation 80% (2.39x) → healer, confirming the report that it sets up a trap. Freezing
+Trap 90% (2.69x) → healer. Cyclone 50% (1.49x) and Polymorph 48% (1.43x) → healer. Kidney Shot 30%
+(0.89x) and Cheap Shot 27% (0.79x) → both. Garrote 23% (0.68x) → kill target, correctly, since a
+Rogue silences the kill target in an opener — which is exactly why narrowing Silence to "healer"
+would have been the same mistake inverted.
+
+**`dr_category` still constrains the label, because where control LANDS is not where it can be
+HELD.** An AoE cone sweeps whoever is in front of you, so a low healer ratio on a break-on-damage
+category means incidental catching, not "use this on your kill target" — those are labelled peel.
+Root/Slow/Knockback/Disarm are movement control rather than a lock and are only ever healer-directed
+or peel. Only Stun and Silence can be labelled kill-target at all.
+
+**Three-tier precedence, with the tier always visible:** measured → curated `chain_target` (where
+there is no usable sample) → `dr_category` inference (last resort, and it may never assert
+kill-target). The measured healer share travels with the answer and the page shows it — "on their
+healer · healer 60%" is checkable in a way a bare verdict is not.
+
+**Disagreements are reported, not silently overridden.** `wow:analyze-cc-targeting` prints every
+ability where the measurement differs from the curated column. Currently three: Hammer of Justice
+(measured healer at 1.92x, curated `both`), Intimidation (measured healer at 2.39x, curated `both` —
+the data agrees with the bug report, not the curation), and Dragon's Breath (measured peel at 0.66x
+over 805 samples, curated `healer` — a frontal AoE cone that lands on whoever is in front, which is
+a genuinely different question from where you would choose to put it). Worth a look in both
+directions rather than assuming either source wins.
+
+Runs as step 7 of `wow:refresh-match-derived`, before the burst guides that consume it.
+
+**A stale-cache bug closed properly rather than with the usual bump.** The corrected guides did not
+appear on the page: `BurstGuideClassBlock` cached its per-class render under
+`burst_guides:class:{slug}:v{spellCacheVersion}:{fingerprint}`, and rewriting the JSON does not bump
+that counter, so the page kept serving the previous build. The reflex fix — have
+`wow:build-burst-guides` bump the counter itself, as the rest of this file's history keeps
+recommending — was tried and then **reverted, because it is the wrong tool here.** That counter also
+keys all 40 precomputed spell kits, so bumping it to publish a few small JSON files silently
+invalidated every kit and dropped WoW Comps and Spell Explorer onto their slow live-compute fallback
+(6,964ms vs 970ms for a 3-spec render, per this file's own profiling) until something regenerated
+them. That is precisely the ordering hazard already recorded for `deploy.sh`, reintroduced from a
+different direction — and it was caught by checking the kits' own version rather than by anything
+failing.
+
+`BurstGuideClassBlock::guideFilesSignature()` now folds a count-plus-newest-mtime signature of that
+class's own guide files into its cache key, so the two invalidation sources are correctly separated:
+the guide files decide WHICH spells and statistics appear, the spell cache version covers the live
+game data they resolve against, and each invalidates only what it actually affects. No bump needed,
+no collateral damage. **Worth generalising: "bump the spell cache version" is the right answer when
+the underlying spell data changed, and the wrong one when some smaller artifact did — it is a
+global counter, and several unrelated caches ride on it.**
+
+## Talent-conditional `dr_category` ✓ COMPLETE (2026-09-06)
+
+Closes the "conditional-category gap" this file previously logged as open in two places (the
+Censure/Chastise note under "Censure mistagged as its own Stun", and Monk's Disable under "Slow
+category added"). Both were written on the reasoning that `dr_category` is a flat per-spell field
+with no way to say "this becomes a different category when talent X is picked," so the base value
+was left alone as the "correct default/majority-case behavior."
+
+**For Chastise that reasoning was wrong, and it was showing users the wrong answer.** Reported
+live. Holy Word: Chastise incapacitates by default and STUNS once Censure is talented — Blizzard
+encodes the flip explicitly in the spell's own description (`$?s200199[stuns][incapacitates] them
+for $?s200199[$200200d][$200196d]`). Checked the actual build the site renders: **Censure is
+selected in the Holy Priest admin-default `TalentBuild`**, so "Incapacitate" wasn't the majority
+case at all — it was wrong for essentially every viewer. (Both branches were already separately
+curated at their real aura spell_ids, 200196/Incapacitate and 200200/Stun; nothing picked between
+them at display time.)
+
+**Two new hand-curated columns** (migration `2026_09_06_000003`), set together or not at all,
+curated in `cc-synergies-overrides.txt` as fields 11 and 12: `conditional_dr_gating_spell_id` (the
+gating talent's EXTERNAL spell_id) and `conditional_dr_category`. Adding two fields meant inserting
+two empty ones into all 207 existing lines — that file's `name` is a trailing parsed field, not a
+comment marker, so appending is not backward-compatible on its own.
+
+**Resolution is display-only and happens in exactly one place** —
+`SpellProfileBuilder::resolveDrCategory(Spell, Collection $selectedSpellIds)`, surfaced as
+`SpellProfile::drCategory()` (which `traits()` and the `'drCategory'` ArrayAccess key both read).
+`SpecKitComputer::compute()` resolves it against the spec's real selections and serializes it into
+`data/spell-kits/{class}/{spec}.json` alongside `category`; `fromJsonSafeArray()` falls back to the
+base column so a pre-existing stale kit file still renders exactly as it did before. The id spaces
+matter and are easy to get wrong: `selectedSpellIds()` returns INTERNAL `spells.id` values while
+the curated gating column holds Blizzard's EXTERNAL `spell_id`, so the gate resolves through a
+patch-scoped lookup rather than comparing the two directly (the same collision that produced the
+`fetch-spell-icons.php` bug documented earlier in this file).
+
+**`spells.dr_category` itself is never overwritten, and that is the point.** Every
+build-INDEPENDENT consumer keeps reading the base column and is correct to: a real combat log
+already records whichever variant actually landed, under its own distinct aura spell_id. So
+`CcFormulaService`/`FindCcChains`/`SpellCounterIndexer`/`DuelSimulatorService`, `/cc-review`,
+`SpellFinder` (no build context), and WoW Comps' own **Example CC Chains** block (log-derived —
+carries its own comment saying so) are all deliberately untouched. Only the build-aware display
+surfaces changed: WoW Comps' Crowd Control groups/badges/"Not Selected" list (via a new
+`dr_by_id` map on `getSynergiesProperty()` — grouping and badging now read the same resolved
+value, so a spell can't be sorted into one group and badged as another), Burst Guides, Claude's
+Guides, and the spell detail modal/page (free, via `traits()`).
+
+**Scope was measured, not assumed.** All 20 `dr_category` spells whose description carries a
+`$?sNNN[..][..]` talent conditional were read; exactly one is a genuine TYPE FLIP. Two near-misses
+are deliberately NOT curated this way, and the file header records why: **Charge** (Warbringer
+*adds* a stun on top of the root — both apply, so neither replaces the other, and a second
+simultaneous DR category isn't representable) and **Disable** (the talented root only lands on an
+already-snared target — gated on target state, not just the talent, so it remains the open gap).
+
+**Import-time validation**, alongside the existing break-on-damage and passive-`dr_category`
+rules: skips a line with only one of the two columns set or a non-numeric/unknown value; warns
+when the conditional category is identical to the base (a no-op, almost always a copy/paste slip)
+or when the gating spell_id doesn't resolve in this patch (the conditional would sit silently
+inert — exactly the quiet-gap class this file's own header records being bitten by twice).
+
+**Also fixed the same day: Void Nova.** Scanned every selected, non-passive spell across all 40
+specs with a real hard-CC effect but no `dr_category` and a non-CC `category` — 3 hits.
+**Void Nova** (`1234195`, Devourer DH, 45s CD, "stunning your target and all nearby enemies for 2
+sec") was a genuine miss, the same bug Chaos Nova had before its own 2026-09-06 fix: no
+`dr_category`, so `categorize()`'s damage-effect signal won and it showed only under Offensive
+Cooldowns, never Crowd Control. Tagged `Stun` / `pvp_duration_seconds=2.0`. The other two are
+correctly classified as they are: **Metamorphosis** stays Offensive (its own text says players are
+DAZED, not stunned — so it isn't DR-relevant CC in PvP at all, which is a stronger reason than the
+judgment call the 2026-08-28 offensive-wins rework recorded), and **Ice Block**'s "Stun" effect is
+its own self-lockout.
+
+**Worth knowing when reading a bug report about categorization:** there are three independent
+axes, and "shows as offensive" can mean any of them. `spells.category` (`categorize()` — curated
+flags, then Blizzard's `mechanic`, then an effect-string regex) drives the category badge and
+Spell Explorer's tabs. `spells.dr_category` (hand-curated) drives Crowd Control/Synergies and the
+CC chains. `ArenaLogService::offensiveDefensiveClassification()` (arena-log-verified, promoted
+JSON) drives **only** WoW Comps' Offensive/Defensive *Cooldowns* tabs. The first two are welded
+together — `categorizeFromOwnEffects()` returns `'Crowd Control'` for any non-`Slow` `dr_category`
+— but the third is deliberately separate, so a spell legitimately appears as both an offensive
+cooldown and crowd control (Chaos Nova and Void Nova both do).
+
+**Verified end-to-end against the real DB**, not just unit-level: Chastise resolves to `Stun` for
+Holy Priest while its stored column stays `Incapacitate`, and it groups AND badges as Stun on WoW
+Comps; the regenerated `data/spell-kits/priest/holy.json` carries `drCategory: "Stun"` for it;
+Void Nova is `Crowd Control`/`Stun`/2.0s on Devourer; Chaos Nova unchanged on Havoc. Import: 208
+overrides applied, 0 skipped. Full suite: 301 passing (up from 293 — 8 new tests in
+`SpellProfileTest` and `WowCompsSynergiesTest`, covering resolution, the external-vs-internal id
+distinction, that resolving never writes, and the grouping/badge agreement), same 12 pre-existing
+unrelated failures.
+
+## Talent toggles on the spell detail views ✓ COMPLETE (2026-09-06)
+
+Direct follow-up to the talent-conditional `dr_category` work above: a switch per talent that
+affects the spell, defaulting to whatever the resolved build actually selects, so a viewer can
+flick one on or off and watch the numbers move.
+
+**No service-layer computation was added, and that is the point.** `modifiersFor()`,
+`effectiveCooldown()`, `effectiveCharges()` and `resolveDrCategory()` already take
+`$selectedSpellIds` as a parameter — the whole feature is letting the detail view hand them a
+different collection. `SpellProfileBuilder::forDetail()` gained a trailing
+`array $talentOverrides = []` and one private `applyTalentOverrides()`; everything downstream is
+untouched and recomputes correctly for free.
+
+**State is deliberately ephemeral.** `App\Livewire\Concerns\TogglesSpellTalents` (shared by
+`SpellDetailModal` and `SpellDetail` so the two hosts can't drift — the same failure the
+SpellProfile consolidation existed to stop) holds `public array $talentOverrides`. Nothing writes
+to `talent_builds`: this answers "what would this spell do if I took that", not "change my build".
+A viewer's own saved build and the spec's admin default are untouched, which is also what makes
+the feature safe on a public page with no persistence question to answer. The array is SPARSE —
+only explicitly-flipped rows — so an empty array means exactly "the build as it is" and the
+default render path is bit-for-bit what it was before. Clicking a row that already has an override
+REMOVES it rather than storing a redundant entry (an override only ever exists because it
+disagreed with the build, so a second click necessarily returns to the build), which is what keeps
+`hasTalentOverrides()` and the "Reset to build" affordance meaning "you actually changed
+something". `show()`/`close()` both clear overrides, since the modal is mounted once per page and
+reused for every spell on it — including via its own counter chips.
+
+**One real correctness trap, closed rather than discovered later.** A toggle must flip the id
+`modifiersFor()` actually gates on, which is NOT always the modifier's own spell id: when a
+candidate can't be confirmed in the build's trees, `findConfidentSibling()` substitutes a sibling
+for the selection check (real case, Ashamane's Guidance/Incarnation). Keying the toggle on
+`$candidate->id` would have silently done nothing in exactly the cases that fallback exists for.
+`modifiersFor()` now exposes `'selection_spell_id'` on each named/potential entry and the toggle
+keys off that. It is deliberately NOT serialized into `data/spell-kits/*.json` — kit entries never
+reach `talentToggles()` (only the two detail hosts render `<x-spells.detail>`, and both use the
+live `forDetail()` path), so adding it would invalidate all 40 kit files for nothing;
+`toggleRow()` drops a row without one rather than rendering a dead switch.
+
+**UI**: the old "Modifies / Enhances" (selected) and "Could Be Improved By" (not selected) lists
+are merged into one "Talents Affecting This Spell" list, assembled by
+`SpellProfile::talentToggles()`. They were only ever two views of the same question, and once rows
+became toggleable a spell would have jumped between two sections on every click. Active rows sort
+first, then alphabetically, so the list doesn't reorder under the cursor. A row the viewer has
+moved off the build's answer is marked "changed". A modifier appearing more than once (one source,
+several distinct relationship types to the same target — see the 2026-08-02 fix) is still one
+talent and gets one switch. Baseline modifiers are excluded: generic always-on class passives
+aren't talents, so there is nothing to toggle. With no spec context the rows render read-only —
+without a build there is nothing for a talent to be on or off IN, so a switch would be describing
+nothing.
+
+**Switching a talent ON shows it at MAXIMUM rank, and the UI says so.** An untaken talent has no
+rank on file, and `resolveRankAwareMagnitude()`'s existing documented fallback assumes the highest
+available rank rather than showing nothing. No rank is synthesized at the toggle layer — that
+would just duplicate the same decision in a second place — but the row states it plainly instead
+of presenting a max-rank number as if it were the only number.
+
+### The switches change the numbers, not the description text — measured, not assumed
+
+Worth recording, because it looks like a gap and is not. `resolveDescription()`'s Pass 1 resolves
+`$?a<id>/$?s<id>[branch][branch]` conditionals against whether the referenced spell is in the
+spec's **kit**, not whether it is **selected**. That means a talent-gated sentence (Chastise's own
+"stuns/incapacitates") does not respond to the toggle.
+
+Changing it was investigated properly before being ruled out. Across all 40 default builds: 1,450
+conditional tokens are evaluated, and **702 would render a different branch** under selection-based
+gating. Splitting those by what the gate actually is: only **102** are gated on a real talent in
+the spec's own trees; the other **600** are gated on something that is not a talent at all — most
+commonly the spec's own identity passive. Concrete examples from Holy Priest: `Heightened
+Alteration` gated on "Holy Priest" would flip from "Spirit of Redemption" to "**Dispersion**",
+`Perfected Form` from "Apotheosis" to "**Voidform**", `Sustained Potency` likewise. Selection-based
+gating would put Shadow Priest wording on a Holy Priest across hundreds of descriptions.
+
+A narrower "use selection only when the gate is a real talent" rule was also rejected: the same
+scan shows gates like Serendipity and Twilight Equilibrium — genuinely talents — failing the
+talent-tree test because the `$?s` id points at a different internal copy than the one in
+`talent_build_choices`, the same id-collision problem `findConfidentSibling()` exists for. The
+rule's boundary is therefore unreliable in precisely the cases it would need to be exact.
+
+**Pass 1 is left exactly as it is**, and the detail view states the limitation in one line rather
+than leaving a viewer to wonder why the prose didn't move. If this is ever revisited, the fix is
+per-token confidence (does this gate resolve to a confirmed talent in THIS build's trees), not a
+blanket switch — and it needs the 600-token non-talent case handled first.
+
+**Verified end-to-end against the real DB**, not just fixtures: on Holy Priest, Chastise renders 12
+switches and turning Censure off flips the DR badge Stun → Incapacitate live (the two pieces of
+this session's work meeting), with Reset restoring it; on Discipline, turning Improved Fade off
+moves Fade's cooldown 20s → 30s; `/wow-comps` and `/spells` still render unchanged. Tests:
+`tests/Feature/Livewire/SpellTalentTogglesTest.php` (11 cases — defaults, both toggle directions,
+the selection_spell_id keying, that toggling never writes to a build, double-click clearing,
+cross-spell leakage, reset, the standalone page, and the no-spec read-only case). Full suite: 312
+passing (up from 301), same 12 pre-existing unrelated failures.
+
+## Curated CC immunity for PvP talents ✓ COMPLETE (2026-09-07)
+
+Reported live: Fade with Phase Shift, Fists of Fury, Nullifying Shroud and "other CC immunities"
+never appear in counters or immunities. Investigating turned up **four genuinely different causes**,
+not one bug — the counters pipeline itself was fine (Cloak of Shadows resolved 134 rows correctly
+throughout). This section closes the biggest one; the other three are recorded at the bottom.
+
+### Why this could not be derived, measured rather than assumed
+
+Every plausible internal source was checked before accepting that curation was required:
+
+| Source | Coverage of the 220 effect-less PvP talents |
+|---|---|
+| Raw SimC dumps (`data/spelldata/raw/*.txt`) | **0** |
+| Same-name sibling carrying effects | **10** |
+| Display already resolves a cooldown | 16 of 250 |
+
+The zero matters most: this was specifically checked against all **12,468** `Name : X (id=N)` records
+in the raw dumps, on the theory that `regenerate-filtered.php` might be dropping them — which would
+have been a cheap in-house fix. It isn't. **SimC genuinely does not ship PvP talent spells.**
+
+**Blizzard supplies nothing either — confirmed by calling the live API, not by reading docs.**
+`GET /data/wow/spell/{id}` for Phase Shift, Nullifying Shroud, Smoke Bomb and Strangulate returns
+only `id`, `name`, `description`, `media`. No cooldown, no effects, no duration. The PvP talent
+index adds `spell_id`/`spec`/`compatible_slots` and nothing more. **220 of 250 PvP talents have zero
+`spell_effects` rows**, so `ccImmunityGrantedBy()` has literally nothing to read.
+
+**Arena logs were tested for this and REJECTED for cooldowns — do not retry it without reading
+this.** Cast-to-cast minimum interval was validated against **179 spells whose cooldown we already
+know**: median error **−29.6s**, only **11%** within 2s, and **154 of 179 under-estimate**. Three
+confounds, none fixable statistically: duplicate log events (Grounding Totem/Dismantle produce 0.6s
+"intervals"; a 3s floor moved the median only −39.4 → −29.6), real cooldown reduction in play, and
+thin samples (only 25 of 234 have even 3 intervals). Strangulate landing exactly on its known 45.0s
+is **not** representative. What arena logs DO give reliably is which PvP talents are genuinely
+active — **47 of 250 confirmed cast** — which is how the passive/active split below was sized.
+
+### What was built
+
+`cc_immunity_note` (2026-09-02) already existed for exactly this gap, but it is **prose**, so
+nothing could query it: `SpellCounterIndexer` never read it, and **Fade sat curated for five days
+while still producing zero rows in `spell_counters`.** Two new columns are the machine-readable half
+(migration `2026_09_07_000001`, both null for almost every spell):
+
+- **`grants_cc_immunity_override`** (JSON) — mechanic names in the SAME vocabulary as
+  `MECHANIC_IMMUNITY_CODE_MAP` (Stun, Silence, Incapacitate, Fear, Interrupt, Sap), so it unions
+  into `grants_cc_immunity` with no translation layer. Validated at import against
+  `ModuleSpellReferenceService::immunityMechanicNames()` — an unknown name skips the line loudly.
+- **`cc_immunity_gating_spell_id`** — EXTERNAL spell_id of the PvP talent required for the immunity
+  to exist, external for the same reasons `conditional_dr_gating_spell_id` is.
+
+**Gating is the dominant shape here, not an edge case.** Nearly every immunity PvP talent is
+"passive talent X modifies pressed ability Y": Phase Shift/Fade, Glimpse/Vengeful Retreat,
+Nullifying Shroud/Verdant Embrace, Obsidian Mettle/Obsidian Scales, Zen Focus Tea/Thunder Focus Tea,
+Sanctified Ground/Holy Word: Sanctify, The Beast Within/Bestial Wrath, Psychic Shroud/Psychic Scream.
+The immunity is curated onto the ability a player actually **presses**, matching what
+`cc-immunity-overrides.txt`'s header already instructed for the prose note.
+
+`data/spelldata/cc-immunity-overrides.txt` went from 2 columns to
+**`spell_id | mechanics | gating_spell_id | note`** (cheap — it had one data line). **No wildcard,
+deliberately**: Blizzard's text carries real carve-outs (Phase Shift avoids all attacks and spells
+but explicitly NOT interrupts), so an "all CC" value would silently over-claim.
+
+**The actual blocker was the pool QUERY, not the matching logic.**
+`SpellCounterIndexer::buildPools()` selected immunity candidates with
+`whereHas('effects', 'Mechanic Immunity')` — a spell with zero effects could never match no matter
+what was curated. It now unions that with `orWhereNotNull('grants_cc_immunity_override')`, and the
+override branch **deliberately skips `$hygiene`**: that filter stands in for verification, and a
+hand-curated line IS the verification. That is load-bearing, not theoretical — its
+`name not like '%(desc=%'` clause would otherwise drop Evoker's Obsidian Scales (desc=Black) and
+Verdant Embrace (desc=Green), where the suffix is legitimate per-dragonflight-colour naming.
+
+New **`SpellCounter::MECHANISM_IMMUNITY_TALENT`** ('immunity_talent', high confidence, labelled
+"Grants immunity (with PvP talent)") keeps a gated immunity from being presented identically to an
+unconditional one — base Fade is just a threat drop. Omitting them instead was rejected: it would
+drop the most important defensive answers in PvP from the counters list entirely. `mechanism` is a
+plain string column, deliberately not a DB enum, so no migration was needed for the new value.
+
+### Real bug caught during the run
+
+`ccImmunityGrantedBy()` maps off `$spell->effects`, so it returns an **Eloquent** Collection holding
+strings — and `Eloquent\Collection::merge()` calls `getKey()` on every incoming item, throwing
+outright on a plain array of mechanic names. `ccImmunityFor()` calls `->toBase()` first; that call is
+load-bearing, not tidying.
+
+### Verified end-to-end against the real DB
+
+9 lines applied, 0 skipped. `spell_counters` **2,279 → 2,619 rows**. The split reconciles exactly:
+`immunity_talent` = 278 (4 spells × 62 + 3 × 10), and Nimble Brew — the one ungated line, since it is
+cast directly — contributes exactly the +62 that took `immunity_mechanic` 157 → 219. Kidney Shot now
+resolves Fade, Psychic Scream, Vengeful Retreat and Verdant Embrace as talent-gated counters. Cloak
+of Shadows unchanged at 134 (no regression). Rendered live: Fade's page reads *"Grants immunity to:
+Stun, Silence, Incapacitate, Fear (only with the PvP talent below)"* above the note naming Phase
+Shift; Kidney Shot's page carries the new counters bucket. Full suite: **319 passing** (up from 313),
+same 12 pre-existing unrelated failures. Precomputed kits need no regeneration — `grantsCcImmunity`
+is not serialized into them, it is recomputed from the materialized column on rehydration.
+
+Tests: `tests/Feature/Services/CcImmunityOverrideTest.php` (6 cases — effect-less spell becomes a
+counter, gated vs ungated mechanism, union rather than replacement, the `(desc=` hygiene bypass, that
+an override does NOT exempt a spell from `narrowToPressable()`, and that an uncurated spell is
+untouched).
+
+### Deliberately not curated, each checked and rejected with a stated reason
+
+Recorded in the override file itself so they are never re-litigated: **Detainment** (affects the
+IMPRISONED TARGET, not a defensive tool — not a counter to anything), **Enduring Rage** (no immunity
+at all; matched only a naive text scan), **Guardian of the Forgotten Queen** (damage immunity, not CC
+— a damage-immune target can still be stunned), **Blessing of Spellwarding** (already works via real
+School Immunity data; must not be duplicated), **Peaceweaver** (SCHOOL immunity gated on Revival —
+listing mechanics would over-claim, since physical CC still lands), and five snare/movement/knockback
+talents with no mechanic in this vocabulary.
+
+### Still open — the other three causes, and two known gaps
+
+1. **`Fists of Fury`** — a genuinely different cause. It DOES carry `Modify Parry% (47)`, but
+   Blizzard's own data stores `Base Value: 0` (verified in the raw dump — it is a "parry everything
+   frontal" flag, not a percentage) and `buildPools()` requires `base_value > 0`. Only 4 of 33
+   dodge/parry effects dataset-wide have base 0, so this is narrow but real. The `> 0` guard exists
+   to drop noise and must not simply be relaxed.
+2. **`Creature Immunities (147)` is an entire effect type nothing reads.** 25 spells carry it, 8
+   pressable (Bladestorm ×3, Death's Advance, Death Charge, Berserk, Demolish, Tranquility). Its
+   `misc_value`s (1733, 1887, 2071, 2142, 2347, 2421 …) are almost certainly **row IDs into
+   `CreatureImmunities.db2`**, not bitmasks — they cluster in 1733–2421 and are shared consistently
+   across related spells, and SimC prints a bare number without resolving it either. That table is
+   not in this repo, so this is an external-data dependency, not a parsing fix.
+3. **PvP talent cooldowns** — 234 of 250 show no cooldown to a user. Needs external extraction
+   (Wowhead); every internal source is ruled out above. The job is ~4× smaller than "234" though:
+   **131 are passive modifiers that legitimately have no cooldown**, 47 are confirmed active, 72 are
+   unclear. Arena logs are the right *validator* (a scraped CD below any observed interval is
+   provably wrong), never the source.
+4. **`DR_CATEGORY_TO_IMMUNITY_MECHANIC` maps only Stun/Silence/Incapacitate**, so a curated **Fear**
+   immunity displays on the card but does not yet generate a counter row against a Disorient CC —
+   which is why Bestial Wrath correctly shows 0 counters today. Blizzard's "Fear" mechanic and this
+   project's "Disorient" DR category do describe the same real thing, so that mapping is probably
+   correct to add, but it would change counter output for **every** spell and belongs in its own
+   reviewed change.
+5. **Verdant Embrace renders as two copies** on Augmentation/Preservation (360995 with the real 24s
+   cooldown, and 361195). Curation targets 360995. Pre-existing duplicate, unrelated to this work,
+   worth its own look.
 
 ### Ornament Components
 
@@ -2492,3 +3136,221 @@ Direct, sharp user pushback on the 64MB number: *"64MB to read a block with 10 s
 ### Guest Quiz Score Accumulation
 
 Guest quiz uses `$allQuestionResults` (separate from the per-round `$questionResults`) to track answers across all difficulty rounds. `guestScore()` and `buildGuestCompletionStats()` read from `$allQuestionResults`. `$questionResults` is still round-scoped for the wrong-answer display between rounds. `$allQuestionResults` is reset on `retake()`.
+## Spell Counters listed CC that no player presses — narrowed to pressable, both sides ✓ FIXED (2026-09-07)
+
+Reported as a contradiction between two pages: `/spell-counters` had an entry called **Absolute Zero**
+with 44 counters, and WoW Comps' Crowd Control had no such ability for any Frost DK.
+
+**Both pages were right about their own data; the disagreement was real.** Absolute Zero is a Frost DK
+**passive** — *"Frostwyrm's Fury has X% reduced cooldown and Freezes all enemies hit for 3s"* — and the
+thing carrying `dr_category = Stun` is `spell_id 377048`, the 3s **freeze aura** that passive adds to
+Frostwyrm's Fury. Nobody presses it. WoW Comps builds from the spec kit (`SpecKitComputer` → talent
+entries + PvP talents + verified-override baselines + explicit-spec baseline cooldowns), and 377048 is
+in none of them — zero `talent_node_entries`, zero `pvp_talents`, only an ambiguous
+`spec_id = NULL, source = baseline` row. `SpellCounterIndexer::rebuild()` asked a much looser question:
+any spell with a `spell_class_availability` row and a non-null `dr_category`.
+
+### The fix is NOT to untag the aura copies — that was the first instinct and it was wrong
+
+An initial pass classified 66 unreachable tagged spells and prepared to untag ~41 of them as
+"mistagged duplicates." Checking `cc-synergies-overrides.txt` before editing stopped it: those lines
+are **deliberate**, and say so — *"Fear (the REAL aura spell_id — 649 real instances confirmed)"*,
+*"Storm Bolt (the REAL aura spell_id — 643 real instances)"*, and so on. The aura spell_id is what
+`SPELL_AURA_APPLIED` carries in a combat log, so `FindCcChains` (which matches every log spell_id
+against `dr_category`) and `CcTargetingAnalyzer` need it. Untagging would have silently blinded CC-chain
+detection and the healer-targeting analysis. **Read the curation file's own commentary before
+"correcting" curation that looks redundant** — the redundancy is the point on the log-matching side.
+
+So the narrowing happens at the point of use, and the curation is untouched:
+
+- **`SpellCounterIndexer::pressableCcSpells()`** (new, public) runs the existing, already-documented
+  `narrowToPressable()` over the COUNTERED pool as well as the four counter pools. **157 → 105**:
+  ~21 passive-granted auras and defunct records drop out (Master of the Glaive, Grip of the Dead, Void
+  Tendrils, Wave of Debilitation, Mark of Aluneth, …), and ~17 same-name pairs collapse onto their
+  pressable copy (Fear, Intimidation, Storm Bolt, Shockwave, Freezing Trap, Ring of Frost, Capacitor
+  Totem, Holy Word: Chastise ×2, Sigil of Misery, Song of Chi-Ji, Seduction, Axe Toss, Binding Shot,
+  Chaos Nova, Lightning Lasso, Blinding Sleet). A CC that survives with **no** known counter is still
+  listed — "no verified answer" is a real answer this page shows deliberately.
+- **`ClaudesCounters::getCounterableByClassProperty()` now reads that same method.** It had its own
+  parallel `Spell::whereNotNull('dr_category')` query, so fixing only the indexer would have left
+  Absolute Zero *listed* on the page with zero counters — the same reported symptom, minus the rows.
+  One shared definition is what stops the page and the index disagreeing again.
+
+### Second, separate bug found on the way: a duplicate line was silently wiping a curation
+
+`data/spelldata/cc-synergies-overrides.txt` had **two lines for spell_id 100 (Warrior's Charge)** — the
+original `dr_category=Root, is_peel=1` line, and a later `is_mobility`-only line added for the
+2026-09-01 Mobility tab. Every field in that file is written on every run (blank means null/false, not
+"leave alone"), so the second line had been blanking Root and the peel flag ever since: **Charge was
+missing from WoW Comps' Crowd Control while looking correctly curated in the file.** Merged into one
+line, and `ImportSpellData::importCcSynergyOverrides()` now warns on a duplicate spell_id (last line
+still wins — behaviour unchanged, it just cannot happen unnoticed any more).
+
+### Four abilities gained their `dr_category` on the copy players actually press
+
+Narrowing exposed a real gap: for these, the ONLY tagged copy was non-pressable, so they would have
+vanished from the index — and each was already missing from WoW Comps for the same reason. Verified
+before writing (non-passive, reachable in a real spec kit, own description states the CC):
+`370965` The Hunt (Havoc) → Root, `1246167` The Hunt (Devourer) → Root (its text references the same
+root aura id), `116095` Disable (Monk) → **Slow** (its base behaviour; the talented Root is
+target-state-gated and stays the documented open gap), `2484` Earthbind Totem → Slow.
+
+**Confirmed live: Charge (Root), The Hunt (Root) and Disable (Slow) now appear in WoW Comps' Crowd
+Control**, on a real Arms Warrior / Windwalker / Havoc comp. Earthbind Totem is correct in the index but
+still invisible on WoW Comps — it sits in the ambiguous `spec_id = NULL` baseline bucket and needs a
+`baseline-spec-overrides.txt` entry, which is separate per-spec verification.
+
+**Deliberately not done, flagged rather than guessed:** Crippling Poison (its pressable copy is a weapon
+imbue with no cooldown and no kit link, so tagging it would not survive `narrowToPressable()` anyway);
+Consecration's slow (talent-gated, and none of its three tagged copies is a resolvable gating talent id,
+so a `conditional_dr` pair cannot be written honestly); Earthgrab (needs nothing — Earthgrab Totem
+`51485` is already tagged Root with a real cooldown and is visible on all 3 Shaman specs).
+
+**Still open, unchanged by this:** ~15 genuinely pressable CC abilities plus 10 Hunter pet special
+abilities are correctly tagged and carry real cooldowns, but are invisible on WoW Comps because they sit
+in the `spec_id = NULL` baseline bucket with no verified override (Blast Wave, Cripple, Freeze, High
+Explosive Trap, Steel Trap, Acid Spit, Ankle Crack, Dust Cloud, Frost Breath, Furious Bite, Lock Jaw,
+Pin, Talon Rend, Tendon Rip, Web Spray). That is the long-standing baseline-visibility backlog, not a
+mistagging — same one-line-at-a-time verification path as every other entry in that file.
+
+**Verified:** `wow:rebuild-spell-counters` → 1,754 rows across 109 counterable spells (was 2,619 / 157).
+Absolute Zero: 0 counters, absent from the rendered page, `dr_category` still `Stun` so log matching is
+untouched. Kidney Shot 46, Fear 8, Chastise 15, Freezing Trap 17 — unchanged. Full suite: the standard
+12 pre-existing failures plus one confirmed-pre-existing `BurstGuidesTest` case (see below), 320
+passing, zero new regressions.
+
+### ~~Unrelated pre-existing breakage found while running the suite~~ — CORRECTED 2026-09-07, this diagnosis was wrong
+
+**Superseded. Do not act on the paragraph below; it is kept only so the wrong conclusion is not
+re-derived from the same evidence.** It originally read:
+
+> All 34 files under `data/claudes-guides/burst-guides/` have been regenerated to the new
+> `sequence`/`fill`/`alsoPressed` shape with an **empty `spellIds` array**, but
+> `App\Livewire\BurstGuideClassBlock` still resolves its steps from `$decoded['spellIds']` (lines 106,
+> 110, 132) — so every spec `continue`s on empty steps and `/burst-guides` renders nothing for any class.
+> Confirmed pre-existing by stashing every change from this session and re-running `BurstGuidesTest`: it
+> fails identically. Left alone deliberately — this is in-flight 2026-09-06 work, and finishing someone
+> else's half-migrated format was outside what was asked here. The fix is to read the new keys in
+> `BurstGuideClassBlock` (or keep emitting `spellIds` from `BurstGuideBuilder`).
+
+**What actually happened.** `BurstGuideClassBlock` was NOT half-migrated and `/burst-guides` was NOT
+broken. A correct, `sequence`-reading version existed as an uncommitted working-tree change, and a
+concurrent agent session destroyed it with `git checkout -- app/Livewire/BurstGuideClassBlock.php`
+(reverting a botched edit of its own, without checking what else that file was carrying) minutes before
+the suite run above. The revert restored HEAD, which is the old `spellIds` version — so the file really
+did read `spellIds`, and `BurstGuidesTest` really did fail.
+
+**The stash check could not have caught this, which is the lesson worth keeping.** `git stash` of the
+current session's own diff restores the same HEAD file the clobbering had already restored, so
+"stash, re-run, it fails identically" is indistinguishable between *genuinely pre-existing* and
+*another writer reverted it to HEAD moments ago*. When a file's on-disk state contradicts a
+still-uncommitted sibling (here: the blade reading `$s['phases']`, `BurstGuideBuilder` emitting
+`sequence`, `BuildBurstGuides.php:121` referring to a `guideFilesSignature()` that no longer existed),
+treat that contradiction as evidence of a lost edit rather than as in-flight work — and check
+`git status` on the sibling files, not just the failing one.
+
+**Resolved 2026-09-07:** `BurstGuideClassBlock` was reconstructed from the surviving contract — the
+blade's required keys, `BurstGuidesTest`'s asserted shape, the committed JSON schema and the kit-reading
+logic that survived in HEAD. `BurstGuidesTest` now passes in full (5 tests, 3017 assertions), and
+`/burst-guides` renders all specs of every class again. **Do NOT "fix" this by making
+`BurstGuideBuilder` emit `spellIds`** — that suggestion in the superseded paragraph would discard the
+phase/anchor/fill/alsoPressed model the whole 2026-09-06 rebuild is built on.
+
+## PvP Guides — four per-spec pages combined behind one nav link ✓ COMPLETE (2026-09-07)
+
+`/pvp-guides/{classSlug?}/{specSlug?}` (`App\Livewire\PvpGuides`, route `pvp-guides`) — one page per
+class/spec, with a tab bar over the four things this site already knew about a spec:
+
+| tab | panel component | old route / old nav label |
+|---|---|---|
+| `kit` (default) | `ClassGuide` | `/class-guide` — "Class Kits" |
+| `burst` | `BurstGuideClassBlock` | `/burst-guides` — "Burst Guides" |
+| `spells` | `SpellExplorer` | `/spells` — "Spells" |
+| `counters` | `ClaudesCounters` | `/spell-counters` — "Spell Counters" |
+
+Direct request, and the premise was right: all four answer questions about a single class/spec, and
+presenting them as four destinations made the viewer re-pick their spec on each one — through three
+different pickers, at that (ClassGuide's inline pill list, SpellExplorer's grid modal, and no picker at
+all on Burst Guides / Spell Counters, which each listed every class at once).
+
+### The shell owns selection and nothing else
+
+No panel logic was copied into `PvpGuides` and none was reimplemented. Each of the four still computes
+exactly what it computed before; the shell resolves class/spec + the active tab and mounts the real page
+component for that tab as a lazy child. What the panels gained is one flag each:
+
+- **`ClassGuide::$embedded`**, **`SpellExplorer::$embedded`**, **`ClaudesCounters::$embedded`** — suppress
+  that component's own page header, its own picker, its page-level width cap/padding, and its own
+  `<livewire:spell-detail-modal>`. The shell mounts exactly one shared modal; two instances would both
+  answer `show-spell-detail` and render stacked.
+- **`SpellExplorer::mount(?int $classId, ?int $specId, bool $embedded)`** — an explicitly-supplied spec is
+  used verbatim instead of re-deriving the alphabetically-first class. It also skips its own bare
+  `spell_explorer` page-view log in that case; the parent logs its own view, and a second row per landing
+  would inflate that page's count with visits that never opened the Spells tab.
+- **`ClaudesCounters::$onlyClassName`** — scopes the class-grouped list to one class. Applied in
+  `render()`, deliberately NOT inside `getCounterableByClassProperty()`: that method builds the shared
+  index-backed pool and is the piece most likely to change, so keeping the scoping outside it means the
+  two never have to be kept in step.
+- **`BurstGuideClassBlock::$onlySpecSlug`** — renders one spec of the class instead of all of them, and
+  drops the class name/icon header (the shell already carries it). Applied in `render()` so the per-class
+  cache entry stays whole and shared with `/burst-guides`; a spec-scoped view is a filtered read of the
+  same cached payload, never a second, narrower cache entry.
+
+**All four old routes still exist and still render standalone** — deliberately not redirected. They are
+what an existing bookmark, `public/sitemap.xml` and every in-page link still resolve to; only the nav
+changed (four links became one, "PvP Guides", which highlights for any of the five routes).
+
+### Two decisions worth not re-litigating
+
+**`lazy` sits on the child TAG, not `#[Lazy]` on the panel classes.** Three of the four panels are
+genuinely expensive (SpellExplorer resolves a spec's whole kit; ClassGuide reads and hydrates a playstyle
+sample; ClaudesCounters walks the counter index) and only one is on screen at a time, so each panel's
+real work is deferred to its own follow-up request. Putting the class-level attribute on them instead
+would make the standalone pages lazy too — changing behaviour, and every existing `Livewire::test()` of
+them, for a reason that has nothing to do with those pages. Same tag-level pattern
+`burst-guides.blade.php` already uses on `BurstGuideClassBlock` (which does carry `#[Lazy]` for its own,
+separate reason).
+
+**A spec change redirects rather than swapping state in place.** A guide is a thing you send someone a
+link to. `ClassGuide` already worked this way ("one guide per URL", plain `wire:navigate` links), so
+`PvpGuides::selectSpec()` redirects with `navigate: true` and `#[Url(except: DEFAULT_TAB)] $tab` carries
+the open tab through in the query string — the URL always describes what is on screen, and back/forward
+and a pasted link both land exactly where the viewer was.
+
+### Tracking
+
+`pvp_guides` is in `Admin\PageUsage::PAGES` and is logged **attributed** on landing, unlike
+`SpellExplorer`'s bare log: this page's URL names a real class/spec, so every view of it IS a view of
+that spec — the "landed on the alphabetically-first class by default" case that log split exists to
+guard against cannot happen here (the only unnamed entry point redirects before reaching it).
+
+Tab switches log `pvp_guides_tab` with the tab in `slot`, the same partitioned shape as
+`wow_comps_tab`, surfaced by `PageUsage::getPvpGuidesTabBreakdownProperty()` + its own blade section and
+deliberately NOT a `PAGES` entry (it is not a standalone page, and folding it in would give the summary
+a second, double-counted row for the same page). Unlike WoW Comps' Alpine-only tab bar, these tabs are a
+real Livewire round trip on a page that already knows the spec, so no `fetch()` beacon is needed and
+`class_id`/`spec_id` ride along for free. Only a real switch INTO a tab is logged — never a re-click,
+never the tab landed on at page load.
+
+`ClassGuide` still logs its own `class_guide` row when the Kit tab's panel mounts, which is correct and
+was left alone: that metric means "someone looked at this spec's kit", and it still does.
+
+### Landing default deliberately differs from ClassGuide's
+
+`PvpGuides::firstSpecWithData()` requires BOTH an analysed playstyle sample and a burst guide on file;
+`ClassGuide`'s same-named method only requires the playstyle file. With four tabs sharing one landing the
+first impression is of all four at once, and the looser rule lands on Blood Death Knight — a stale
+4-match sample and no burst guide at all, because it was one of the specs whose matches were culled on
+2026-09-05. The stricter rule lands on Frost Death Knight (10 matches, regenerated 2026-09-06).
+
+A tab whose data is missing for the selected spec is marked in the tab bar (`getTabHasDataProperty()`,
+cheap file-existence checks only — never the panel's own computation, which is the whole point of the
+panels being lazy) and the Burst tab explains itself rather than rendering an empty card.
+
+**Verified:** all four tabs render against real data for real specs; exactly one `<h1>` on the page in
+every tab (a panel rendering its own header too would give two); each panel confirmed to drop its header,
+picker and modal when embedded and to keep all three standalone; `/burst-guides` still renders all 3
+Rogue specs with its class header; `/spells` standalone still renders its hero and picker. HTTP smoke
+over all five routes plus `?tab=` variants and an unknown spec (404). Tests:
+`tests/Feature/Livewire/PvpGuidesTest.php` (11 cases). Full suite: 332 passing, the standard 12
+pre-existing failures, zero new regressions.

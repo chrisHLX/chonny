@@ -21,49 +21,57 @@
                 "name": "Holy Word: Chastise",
                 "spellId": 88625,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.77
             },
             {
                 "name": "Psychic Scream",
                 "spellId": 8122,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.38
             },
             {
                 "name": "Prayer of Mending",
                 "spellId": 33076,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.62
             },
             {
                 "name": "Holy Fire",
                 "spellId": 14914,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.79
             },
             {
                 "name": "Holy Fire",
                 "spellId": 14914,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.94
             },
             {
                 "name": "Holy Fire",
                 "spellId": 14914,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.36
             },
             {
                 "name": "Smite",
                 "spellId": 585,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 10.52
             },
             {
                 "name": "Shadow Word: Death",
                 "spellId": 32379,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 11.07
             }
         ],
         "matchId": "82e8e9dd1c52b415e05a1f5a383bf066",
@@ -785,7 +793,7 @@
                     "pvpTalentId": 4
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:51+00:00"
+            "resolvedAt": "2026-09-06T12:25:35+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-11-0DE71122",
@@ -943,7 +951,7 @@
             ],
             "targetClassName": "Rogue",
             "targetSpecName": "Assassination",
-            "resolvedAt": "2026-09-06T02:57:00+00:00"
+            "resolvedAt": "2026-09-06T12:25:42+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -956,25 +964,29 @@
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.79
                 },
                 {
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.94
                 },
                 {
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.36
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.52
                 }
             ],
             "matchId": "82e8e9dd1c52b415e05a1f5a383bf066",
@@ -1696,7 +1708,7 @@
                         "pvpTalentId": 4
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0DE71122",
@@ -1870,7 +1882,7 @@
                 ],
                 "targetClassName": "Rogue",
                 "targetSpecName": "Assassination",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "10": {
@@ -1882,43 +1894,50 @@
                     "name": "Prayer of Mending",
                     "spellId": 33076,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.07
                 },
                 {
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.36
                 },
                 {
                     "name": "Shadow Word: Death",
                     "spellId": 32379,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.69
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.91
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.01
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.13
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.26
                 }
             ],
             "matchId": "bd6e1eefe2fc0426045ee43e587f9e8d",
@@ -2640,7 +2659,7 @@
                         "pvpTalentId": 2
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-104-0E8E8585",
@@ -2785,7 +2804,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "12": {
@@ -2797,49 +2816,57 @@
                     "name": "Holy Word: Chastise",
                     "spellId": 88625,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.77
                 },
                 {
                     "name": "Psychic Scream",
                     "spellId": 8122,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.38
                 },
                 {
                     "name": "Prayer of Mending",
                     "spellId": 33076,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.62
                 },
                 {
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.79
                 },
                 {
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.94
                 },
                 {
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.36
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.52
                 },
                 {
                     "name": "Shadow Word: Death",
                     "spellId": 32379,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.07
                 }
             ],
             "matchId": "82e8e9dd1c52b415e05a1f5a383bf066",
@@ -3561,7 +3588,7 @@
                         "pvpTalentId": 4
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0DE71122",
@@ -3719,7 +3746,7 @@
                 ],
                 "targetClassName": "Rogue",
                 "targetSpecName": "Assassination",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "20": {
@@ -3731,103 +3758,120 @@
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.36
                 },
                 {
                     "name": "Shadow Word: Death",
                     "spellId": 32379,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.69
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.91
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.01
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.13
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.26
                 },
                 {
                     "name": "Prayer of Mending",
                     "spellId": 33076,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.02
                 },
                 {
                     "name": "Purify",
                     "spellId": 527,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.71
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.18
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.28
                 },
                 {
                     "name": "Holy Word: Serenity",
                     "spellId": 2050,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.31
                 },
                 {
                     "name": "Sanctified Ground",
                     "spellId": 289655,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.39
                 },
                 {
                     "name": "Prayer of Mending",
                     "spellId": 33076,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.53
                 },
                 {
                     "name": "Sanctified Ground",
                     "spellId": 289655,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.09
                 },
                 {
                     "name": "Benediction",
                     "spellId": 1262763,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.98
                 },
                 {
                     "name": "Guardian Spirit",
                     "spellId": 47788,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.88
                 },
                 {
                     "name": "Prayer of Mending",
                     "spellId": 33076,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.61
                 }
             ],
             "matchId": "bd6e1eefe2fc0426045ee43e587f9e8d",
@@ -4549,7 +4593,7 @@
                         "pvpTalentId": 2
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-104-0E8E8585",
@@ -4714,7 +4758,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "30": {
@@ -4726,121 +4770,141 @@
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.15
                 },
                 {
                     "name": "Holy Word: Serenity",
                     "spellId": 2050,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.26
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.98
                 },
                 {
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.42
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.46
                 },
                 {
                     "name": "Holy Word: Chastise",
                     "spellId": 88625,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.46
                 },
                 {
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.71
                 },
                 {
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.84
                 },
                 {
                     "name": "Prayer of Mending",
                     "spellId": 33076,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.99
                 },
                 {
                     "name": "Angelic Feather",
                     "spellId": 121536,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.22
                 },
                 {
                     "name": "Purify",
                     "spellId": 527,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.33
                 },
                 {
                     "name": "Prayer of Mending",
                     "spellId": 33076,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.69
                 },
                 {
                     "name": "Angelic Feather",
                     "spellId": 121536,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.94
                 },
                 {
                     "name": "Benediction",
                     "spellId": 1262763,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 20.88
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.56
                 },
                 {
                     "name": "Holy Fire",
                     "spellId": 14914,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.94
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.17
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.56
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.79
                 },
                 {
                     "name": "Prayer of Mending",
                     "spellId": 33076,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.85
                 }
             ],
             "matchId": "805c24dd98effd6082847a0385e46101",
@@ -5562,7 +5626,7 @@
                         "pvpTalentId": 4
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E8EC540",
@@ -5724,9 +5788,9 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Feral",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:53:39+00:00"
+    "generated_at": "2026-09-06T12:23:18+00:00"
 }

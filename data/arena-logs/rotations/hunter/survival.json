@@ -22,73 +22,85 @@
                 "name": "Gladiator's Medallion",
                 "spellId": 336126,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.28
             },
             {
                 "name": "Intimidation",
                 "spellId": 19577,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.97
             },
             {
                 "name": "Takedown",
                 "spellId": 1250646,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.23
             },
             {
                 "name": "Moonlight Chakram",
                 "spellId": 1264949,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.54
             },
             {
                 "name": "Boomstick",
                 "spellId": 1261193,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.9
             },
             {
                 "name": "Kill Command",
                 "spellId": 259489,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 6.8
             },
             {
                 "name": "Survival of the Fittest",
                 "spellId": 264735,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 7.18
             },
             {
                 "name": "Wildfire Bomb",
                 "spellId": 259495,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.07
             },
             {
                 "name": "Camouflage",
                 "spellId": 199483,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.63
             },
             {
                 "name": "Disengage",
                 "spellId": 781,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 9.34
             },
             {
                 "name": "Kill Command",
                 "spellId": 259489,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.8
             },
             {
                 "name": "Raptor Swipe",
                 "spellId": 1262293,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 11.08
             }
         ],
         "matchId": "06ad055a5f3f4aae09863e59268efeb3",
@@ -756,7 +768,7 @@
                     "pvpTalentId": 182
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:54+00:00"
+            "resolvedAt": "2026-09-06T12:25:37+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-61-0FF9B3BA",
@@ -946,7 +958,7 @@
             ],
             "targetClassName": "Druid",
             "targetSpecName": "Restoration",
-            "resolvedAt": "2026-09-06T02:57:04+00:00"
+            "resolvedAt": "2026-09-06T12:25:45+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -959,49 +971,57 @@
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.76
                 },
                 {
                     "name": "Harpoon",
                     "spellId": 190925,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.17
                 },
                 {
                     "name": "Freezing Trap",
                     "spellId": 187650,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.17
                 },
                 {
                     "name": "Berserking",
                     "spellId": 26297,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.01
                 },
                 {
                     "name": "Roar of Rezan",
                     "spellId": 272071,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.01
                 },
                 {
                     "name": "Takedown",
                     "spellId": 1250646,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.41
                 },
                 {
                     "name": "Raptor Strike",
                     "spellId": 186270,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.45
                 },
                 {
                     "name": "Raptor Swipe",
                     "spellId": 1262293,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.5
                 }
             ],
             "matchId": "6d8eeb45b5960b6e2940017efef0b065",
@@ -1660,7 +1680,7 @@
                         "pvpTalentId": 411
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3676-0E21234B",
@@ -1866,7 +1886,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:57:04+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "10": {
@@ -1878,61 +1898,71 @@
                     "name": "Takedown",
                     "spellId": 1250646,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.23
                 },
                 {
                     "name": "Moonlight Chakram",
                     "spellId": 1264949,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.54
                 },
                 {
                     "name": "Boomstick",
                     "spellId": 1261193,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.9
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.8
                 },
                 {
                     "name": "Survival of the Fittest",
                     "spellId": 264735,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.18
                 },
                 {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.07
                 },
                 {
                     "name": "Camouflage",
                     "spellId": 199483,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.63
                 },
                 {
                     "name": "Disengage",
                     "spellId": 781,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.34
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.8
                 },
                 {
                     "name": "Raptor Swipe",
                     "spellId": 1262293,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.08
                 }
             ],
             "matchId": "06ad055a5f3f4aae09863e59268efeb3",
@@ -2600,7 +2630,7 @@
                         "pvpTalentId": 182
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0FF9B3BA",
@@ -2786,7 +2816,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Restoration",
-                "resolvedAt": "2026-09-06T02:57:04+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "12": {
@@ -2798,73 +2828,85 @@
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.28
                 },
                 {
                     "name": "Intimidation",
                     "spellId": 19577,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.97
                 },
                 {
                     "name": "Takedown",
                     "spellId": 1250646,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.23
                 },
                 {
                     "name": "Moonlight Chakram",
                     "spellId": 1264949,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.54
                 },
                 {
                     "name": "Boomstick",
                     "spellId": 1261193,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.9
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.8
                 },
                 {
                     "name": "Survival of the Fittest",
                     "spellId": 264735,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.18
                 },
                 {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.07
                 },
                 {
                     "name": "Camouflage",
                     "spellId": 199483,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.63
                 },
                 {
                     "name": "Disengage",
                     "spellId": 781,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.34
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.8
                 },
                 {
                     "name": "Raptor Swipe",
                     "spellId": 1262293,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.08
                 }
             ],
             "matchId": "06ad055a5f3f4aae09863e59268efeb3",
@@ -3532,7 +3574,7 @@
                         "pvpTalentId": 182
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0FF9B3BA",
@@ -3722,7 +3764,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Restoration",
-                "resolvedAt": "2026-09-06T02:57:04+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "20": {
@@ -3734,109 +3776,127 @@
                     "name": "Raptor Strike",
                     "spellId": 186270,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.42
                 },
                 {
                     "name": "Raptor Swipe",
                     "spellId": 1262293,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.78
                 },
                 {
                     "name": "Raptor Strike",
                     "spellId": 186270,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.04
                 },
                 {
                     "name": "Wing Clip",
                     "spellId": 195645,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.31
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.85
                 },
                 {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.12
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.28
                 },
                 {
                     "name": "Intimidation",
                     "spellId": 19577,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.97
                 },
                 {
                     "name": "Takedown",
                     "spellId": 1250646,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.23
                 },
                 {
                     "name": "Moonlight Chakram",
                     "spellId": 1264949,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.54
                 },
                 {
                     "name": "Boomstick",
                     "spellId": 1261193,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.9
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.8
                 },
                 {
                     "name": "Survival of the Fittest",
                     "spellId": 264735,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.18
                 },
                 {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.07
                 },
                 {
                     "name": "Camouflage",
                     "spellId": 199483,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.63
                 },
                 {
                     "name": "Disengage",
                     "spellId": 781,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.34
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.8
                 },
                 {
                     "name": "Raptor Swipe",
                     "spellId": 1262293,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.08
                 }
             ],
             "matchId": "06ad055a5f3f4aae09863e59268efeb3",
@@ -4504,7 +4564,7 @@
                         "pvpTalentId": 182
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0FF9B3BA",
@@ -4658,7 +4718,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Restoration",
-                "resolvedAt": "2026-09-06T02:57:04+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "30": {
@@ -4670,145 +4730,169 @@
                     "name": "Raptor Swipe",
                     "spellId": 1262293,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.59
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.87
                 },
                 {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.16
                 },
                 {
                     "name": "Raptor Strike",
                     "spellId": 186270,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.42
                 },
                 {
                     "name": "Raptor Swipe",
                     "spellId": 1262293,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.78
                 },
                 {
                     "name": "Raptor Strike",
                     "spellId": 186270,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.04
                 },
                 {
                     "name": "Wing Clip",
                     "spellId": 195645,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.31
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.85
                 },
                 {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.12
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.28
                 },
                 {
                     "name": "Intimidation",
                     "spellId": 19577,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.97
                 },
                 {
                     "name": "Takedown",
                     "spellId": 1250646,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.23
                 },
                 {
                     "name": "Moonlight Chakram",
                     "spellId": 1264949,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.54
                 },
                 {
                     "name": "Boomstick",
                     "spellId": 1261193,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.9
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.8
                 },
                 {
                     "name": "Survival of the Fittest",
                     "spellId": 264735,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 19.18
                 },
                 {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.07
                 },
                 {
                     "name": "Camouflage",
                     "spellId": 199483,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 20.63
                 },
                 {
                     "name": "Disengage",
                     "spellId": 781,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 21.34
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.8
                 },
                 {
                     "name": "Raptor Swipe",
                     "spellId": 1262293,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.08
                 },
                 {
                     "name": "Wildfire Bomb",
                     "spellId": 259495,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.15
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 259489,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.49
                 },
                 {
                     "name": "Raptor Strike",
                     "spellId": 186270,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.82
                 }
             ],
             "matchId": "06ad055a5f3f4aae09863e59268efeb3",
@@ -5476,7 +5560,7 @@
                         "pvpTalentId": 182
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0FF9B3BA",
@@ -5593,9 +5677,9 @@
                 "targetDebuffs": [],
                 "targetClassName": "Druid",
                 "targetSpecName": "Restoration",
-                "resolvedAt": "2026-09-06T02:57:05+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:51:00+00:00"
+    "generated_at": "2026-09-06T12:21:25+00:00"
 }

@@ -106,22 +106,43 @@ echo "    fingerprint above; still the right tool for a DATA-only change (import
 echo "    admin default-build edit) that doesn't involve a code deploy at all."
 php artisan tinker --execute="app(App\Http\Services\TalentSelectionService::class)->bumpSpellCacheVersion(); echo 'Spell cache version now: ' . app(App\Http\Services\TalentSelectionService::class)->spellCacheVersion();"
 
+# --- Spell data derivation -----------------------------------------------------------------
+#
+# Both branches below MUST run after the fingerprint write above, never before: a precomputed
+# kit file embeds the fingerprint it was built against, so building kits first would stamp them
+# with the OLD value and they would be invalidated seconds later by the write above.
+#
+# This used to be a printed reminder telling a human to look up the patch version and run the
+# import by hand, because a wrong version argument silently forks every patch-scoped table
+# rather than failing. That is now impossible to get wrong: `import:spelldata wow` with no patch
+# argument reuses the DB's own current patch and refuses to run if there isn't one, which is the
+# same verification the reminder asked for, performed by the command itself.
 if echo "$CHANGED_FILES" | grep -qE '^data/spelldata/|^database/migrations/.*(spell|talent)'; then
-    echo ""
-    echo "*** data/spelldata/ or a spell/talent-related migration changed in this deploy. ***"
-    echo "*** This script deliberately does NOT run the spell import automatically — the ***"
-    echo "*** patch version argument must be verified against the DB, never hardcoded or  ***"
-    echo "*** guessed (see CLAUDE.md's frozen-patch-string warning). Run by hand:          ***"
-    echo ""
-    echo '    php artisan tinker --execute="echo App\Models\Patch::where(\"is_current\", true)->first()->build_version;"'
-    echo '    php -d memory_limit=512M artisan import:spelldata wow <that-version>'
-    echo ""
+    echo "==> Spell data or a spell/talent migration changed — running the full import."
+    echo "    No patch argument is passed on purpose: the command resolves the current patch"
+    echo "    from the database itself. Never pass a literal version here — a string that"
+    echo "    doesn't match the DB creates a NEW patches row and forks every patch-scoped"
+    echo "    table away from the one the live site reads (this has happened for real)."
+    echo "    A genuine patch transition is a deliberate, separate, manual action."
+    php -d memory_limit=1024M artisan import:spelldata wow
+    # import:spelldata regenerates every spec kit itself as its final step, so the standalone
+    # precompute below would be redundant work on an already-slow deploy.
+else
+    echo "==> Regenerating precomputed spell kits (data/spell-kits/{class}/{spec}.json)."
+    echo "    This is NOT optional housekeeping. Every kit file embeds the deployed-commit"
+    echo "    fingerprint written moments ago, so EVERY deploy invalidates all 40 of them by"
+    echo "    definition. Nothing else regenerates them, and a stale kit silently falls back to"
+    echo "    a live recompute: profiled at 6,964ms/3,042 queries for a 3-spec WowComps render"
+    echo "    versus 970ms/146 with fresh files. Before this step existed, production ran that"
+    echo "    slow path after every single deploy."
+    php -d memory_limit=1024M artisan wow:precompute-spell-kits
 fi
 
 echo "==> Post-deploy smoke test"
 SMOKE_URLS=(
     "https://mindcollector.com/"
     "https://mindcollector.com/wow-comps"
+    "https://mindcollector.com/pvp-guides"
     "https://mindcollector.com/spells"
 )
 SMOKE_FAILED=0

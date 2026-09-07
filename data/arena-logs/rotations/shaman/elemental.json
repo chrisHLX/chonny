@@ -25,91 +25,99 @@
                 "name": "Blood Fury",
                 "spellId": 33697,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.1
             },
             {
                 "name": "Gladiator's Badge",
                 "spellId": 345228,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.11
             },
             {
                 "name": "Bloodlust",
                 "spellId": 204361,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.11
             },
             {
                 "name": "Ascendance",
                 "spellId": 114050,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.04
             },
             {
                 "name": "Tempest",
                 "spellId": 452201,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.29
             },
             {
                 "name": "Nature's Swiftness",
                 "spellId": 378081,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Tempest",
-                "spellId": 452201,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 3.42
             },
             {
                 "name": "Earth Shock",
                 "spellId": 8042,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.27
             },
             {
                 "name": "Lightning Bolt",
                 "spellId": 188196,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.21
             },
             {
                 "name": "Wind Shear",
                 "spellId": 57994,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.45
             },
             {
                 "name": "Earth Shock",
                 "spellId": 8042,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.96
             },
             {
                 "name": "Tempest",
                 "spellId": 452201,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 7.82
             },
             {
                 "name": "Lightning Bolt",
                 "spellId": 188196,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.1
             },
             {
                 "name": "Chain Lightning",
                 "spellId": 188443,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 9.74
             },
             {
                 "name": "Earth Shock",
                 "spellId": 8042,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.3
             }
         ],
         "matchId": "4e3262dc8baacf33c160573b7f742199",
@@ -831,7 +839,7 @@
                     "pvpTalentId": 340
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:49+00:00"
+            "resolvedAt": "2026-09-06T12:25:34+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-76-0BFF96AF",
@@ -1033,7 +1041,7 @@
             ],
             "targetClassName": "Death Knight",
             "targetSpecName": "Unholy",
-            "resolvedAt": "2026-09-06T02:56:57+00:00"
+            "resolvedAt": "2026-09-06T12:25:40+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -1046,61 +1054,64 @@
                     "name": "Spiritwalker's Grace",
                     "spellId": 79206,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.48
                 },
                 {
                     "name": "Stormkeeper",
                     "spellId": 191634,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.9
                 },
                 {
                     "name": "Earth Elemental",
                     "spellId": 198103,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.99
                 },
                 {
                     "name": "Blood Fury",
                     "spellId": 33697,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.07
                 },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.07
                 },
                 {
                     "name": "Bloodlust",
                     "spellId": 204361,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.2
                 },
                 {
                     "name": "Ascendance",
                     "spellId": 114050,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.2
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.08
                 },
                 {
                     "name": "Nature's Swiftness",
                     "spellId": 378081,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tempest",
-                    "spellId": 452201,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 5.26
                 }
             ],
             "matchId": "0247364a3648880b0abd7a02191e8648",
@@ -1822,7 +1833,7 @@
                         "pvpTalentId": 340
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E449E8F",
@@ -1936,7 +1947,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "10": {
@@ -1948,67 +1959,71 @@
                     "name": "Ascendance",
                     "spellId": 114050,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.04
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.29
                 },
                 {
                     "name": "Nature's Swiftness",
                     "spellId": 378081,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tempest",
-                    "spellId": 452201,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 2.42
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.27
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.21
                 },
                 {
                     "name": "Wind Shear",
                     "spellId": 57994,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.45
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.96
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.82
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.1
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.74
                 }
             ],
             "matchId": "4e3262dc8baacf33c160573b7f742199",
@@ -2730,7 +2745,7 @@
                         "pvpTalentId": 340
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0BFF96AF",
@@ -2948,7 +2963,7 @@
                 ],
                 "targetClassName": "Death Knight",
                 "targetSpecName": "Unholy",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "12": {
@@ -2960,91 +2975,99 @@
                     "name": "Blood Fury",
                     "spellId": 33697,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.1
                 },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.11
                 },
                 {
                     "name": "Bloodlust",
                     "spellId": 204361,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.11
                 },
                 {
                     "name": "Ascendance",
                     "spellId": 114050,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.04
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.29
                 },
                 {
                     "name": "Nature's Swiftness",
                     "spellId": 378081,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tempest",
-                    "spellId": 452201,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 3.42
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.27
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.21
                 },
                 {
                     "name": "Wind Shear",
                     "spellId": 57994,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.45
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.96
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.82
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.1
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.74
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.3
                 }
             ],
             "matchId": "4e3262dc8baacf33c160573b7f742199",
@@ -3766,7 +3789,7 @@
                         "pvpTalentId": 340
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0BFF96AF",
@@ -3968,7 +3991,7 @@
                 ],
                 "targetClassName": "Death Knight",
                 "targetSpecName": "Unholy",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "20": {
@@ -3980,133 +4003,148 @@
                     "name": "Stormkeeper",
                     "spellId": 191634,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.24
                 },
                 {
                     "name": "Earth Elemental",
                     "spellId": 198103,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.6
                 },
                 {
                     "name": "Blood Fury",
                     "spellId": 33697,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.1
                 },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.11
                 },
                 {
                     "name": "Bloodlust",
                     "spellId": 204361,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.11
                 },
                 {
                     "name": "Ascendance",
                     "spellId": 114050,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.04
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.29
                 },
                 {
                     "name": "Nature's Swiftness",
                     "spellId": 378081,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tempest",
-                    "spellId": 452201,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 5.42
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.27
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.21
                 },
                 {
                     "name": "Wind Shear",
                     "spellId": 57994,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.45
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.96
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.82
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.1
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.74
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.3
                 },
                 {
                     "name": "Thunderstorm",
                     "spellId": 51490,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.71
                 },
                 {
                     "name": "Gust of Wind",
                     "spellId": 192063,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.87
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.39
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.42
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.42
                 }
             ],
             "matchId": "4e3262dc8baacf33c160573b7f742199",
@@ -4828,7 +4866,7 @@
                         "pvpTalentId": 340
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0BFF96AF",
@@ -5026,7 +5064,7 @@
                 ],
                 "targetClassName": "Death Knight",
                 "targetSpecName": "Unholy",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "30": {
@@ -5038,175 +5076,197 @@
                     "name": "Flame Shock",
                     "spellId": 188389,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.21
                 },
                 {
                     "name": "Lava Burst",
                     "spellId": 51505,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.73
                 },
                 {
                     "name": "Earthgrab Totem",
                     "spellId": 51485,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.73
                 },
                 {
                     "name": "Capacitor Totem",
                     "spellId": 192058,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.1
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.85
                 },
                 {
                     "name": "Flame Shock",
                     "spellId": 188389,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.04
                 },
                 {
                     "name": "Spiritwalker's Grace",
                     "spellId": 79206,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.39
                 },
                 {
                     "name": "Stormkeeper",
                     "spellId": 191634,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.24
                 },
                 {
                     "name": "Earth Elemental",
                     "spellId": 198103,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.6
                 },
                 {
                     "name": "Blood Fury",
                     "spellId": 33697,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.1
                 },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.11
                 },
                 {
                     "name": "Bloodlust",
                     "spellId": 204361,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.11
                 },
                 {
                     "name": "Ascendance",
                     "spellId": 114050,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.04
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.29
                 },
                 {
                     "name": "Nature's Swiftness",
                     "spellId": 378081,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tempest",
-                    "spellId": 452201,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 15.42
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.27
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.21
                 },
                 {
                     "name": "Wind Shear",
                     "spellId": 57994,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.45
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.96
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.82
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.1
                 },
                 {
                     "name": "Chain Lightning",
                     "spellId": 188443,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 21.74
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.3
                 },
                 {
                     "name": "Thunderstorm",
                     "spellId": 51490,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 24.71
                 },
                 {
                     "name": "Gust of Wind",
                     "spellId": 192063,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 25.87
                 },
                 {
                     "name": "Tempest",
                     "spellId": 452201,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.39
                 },
                 {
                     "name": "Lightning Bolt",
                     "spellId": 188196,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.42
                 },
                 {
                     "name": "Earth Shock",
                     "spellId": 8042,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.42
                 }
             ],
             "matchId": "4e3262dc8baacf33c160573b7f742199",
@@ -5928,7 +5988,7 @@
                         "pvpTalentId": 340
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0BFF96AF",
@@ -6094,9 +6154,9 @@
                 ],
                 "targetClassName": "Death Knight",
                 "targetSpecName": "Unholy",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:55:24+00:00"
+    "generated_at": "2026-09-06T12:24:30+00:00"
 }

@@ -25,61 +25,71 @@
                 "name": "Solar Eclipse",
                 "spellId": 1233346,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.46
             },
             {
                 "name": "Incarnation: Chosen of Elune",
                 "spellId": 102560,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.83
             },
             {
                 "name": "Starsurge",
                 "spellId": 78674,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.02
             },
             {
                 "name": "Starsurge",
                 "spellId": 78674,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 2.85
             },
             {
                 "name": "Starsurge",
                 "spellId": 78674,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.41
             },
             {
                 "name": "Starsurge",
                 "spellId": 78674,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.08
             },
             {
                 "name": "Regrowth",
                 "spellId": 8936,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 6.99
             },
             {
                 "name": "Cyclone",
                 "spellId": 33786,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.91
             },
             {
                 "name": "Wrath",
                 "spellId": 190984,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.91
             },
             {
                 "name": "Wrath",
                 "spellId": 190984,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.66
             }
         ],
         "matchId": "6b2773fe3a4da5b303d4016e4691b2cd",
@@ -756,7 +766,7 @@
                     "pvpTalentId": 96
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:48+00:00"
+            "resolvedAt": "2026-09-06T12:25:32+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-11-0E314D5C",
@@ -958,7 +968,7 @@
             ],
             "targetClassName": "Mage",
             "targetSpecName": "Fire",
-            "resolvedAt": "2026-09-06T02:56:55+00:00"
+            "resolvedAt": "2026-09-06T12:25:39+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -971,37 +981,43 @@
                     "name": "Incarnation: Chosen of Elune",
                     "spellId": 102560,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.07
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.81
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.58
                 },
                 {
                     "name": "Starfire",
                     "spellId": 194153,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.71
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.55
                 },
                 {
                     "name": "Starfire",
                     "spellId": 194153,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.4
                 }
             ],
             "matchId": "a8322990885ea11b2e1c2f00eec5e494",
@@ -1678,7 +1694,7 @@
                         "pvpTalentId": 103
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-67-0F355649",
@@ -1840,7 +1856,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Balance",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "10": {
@@ -1852,37 +1868,43 @@
                     "name": "Incarnation: Chosen of Elune",
                     "spellId": 102560,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.07
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.81
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.58
                 },
                 {
                     "name": "Starfire",
                     "spellId": 194153,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.71
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.55
                 },
                 {
                     "name": "Starfire",
                     "spellId": 194153,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.4
                 }
             ],
             "matchId": "a8322990885ea11b2e1c2f00eec5e494",
@@ -2559,7 +2581,7 @@
                         "pvpTalentId": 103
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-67-0F355649",
@@ -2721,7 +2743,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Balance",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "12": {
@@ -2733,61 +2755,71 @@
                     "name": "Solar Eclipse",
                     "spellId": 1233346,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.46
                 },
                 {
                     "name": "Incarnation: Chosen of Elune",
                     "spellId": 102560,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.83
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.02
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.85
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.41
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.08
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.99
                 },
                 {
                     "name": "Cyclone",
                     "spellId": 33786,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.91
                 },
                 {
                     "name": "Wrath",
                     "spellId": 190984,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.91
                 },
                 {
                     "name": "Wrath",
                     "spellId": 190984,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.66
                 }
             ],
             "matchId": "6b2773fe3a4da5b303d4016e4691b2cd",
@@ -3464,7 +3496,7 @@
                         "pvpTalentId": 96
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E314D5C",
@@ -3666,7 +3698,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "20": {
@@ -3678,115 +3710,134 @@
                     "name": "Moonfire",
                     "spellId": 8921,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.14
                 },
                 {
                     "name": "Force of Nature",
                     "spellId": 205636,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.28
                 },
                 {
                     "name": "Solar Beam",
                     "spellId": 78675,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.99
                 },
                 {
                     "name": "Solar Eclipse",
                     "spellId": 1233346,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.46
                 },
                 {
                     "name": "Incarnation: Chosen of Elune",
                     "spellId": 102560,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.83
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.02
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.85
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.41
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.08
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.99
                 },
                 {
                     "name": "Cyclone",
                     "spellId": 33786,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.91
                 },
                 {
                     "name": "Wrath",
                     "spellId": 190984,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.91
                 },
                 {
                     "name": "Wrath",
                     "spellId": 190984,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.66
                 },
                 {
                     "name": "Wrath",
                     "spellId": 190984,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.52
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.69
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 8921,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.58
                 },
                 {
                     "name": "Sunfire",
                     "spellId": 93402,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.45
                 },
                 {
                     "name": "Bear Form",
                     "spellId": 5487,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 18.56
                 },
                 {
                     "name": "Frenzied Regeneration",
                     "spellId": 22842,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 19.45
                 }
             ],
             "matchId": "6b2773fe3a4da5b303d4016e4691b2cd",
@@ -4463,7 +4514,7 @@
                         "pvpTalentId": 96
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E314D5C",
@@ -4645,7 +4696,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "30": {
@@ -4657,157 +4708,183 @@
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.15
                 },
                 {
                     "name": "Cyclone",
                     "spellId": 33786,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.82
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.82
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.43
                 },
                 {
                     "name": "Cyclone",
                     "spellId": 33786,
                     "isCc": true,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.15
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.15
                 },
                 {
                     "name": "Typhoon",
                     "spellId": 61391,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.88
                 },
                 {
                     "name": "Mass Entanglement",
                     "spellId": 102359,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.8
                 },
                 {
                     "name": "Sunfire",
                     "spellId": 93402,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.65
                 },
                 {
                     "name": "Wild Charge",
                     "spellId": 102383,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.98
                 },
                 {
                     "name": "Entangling Roots",
                     "spellId": 339,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.63
                 },
                 {
                     "name": "Wrath",
                     "spellId": 190984,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.67
                 },
                 {
                     "name": "Sunfire",
                     "spellId": 93402,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.53
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 8921,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.39
                 },
                 {
                     "name": "Sunfire",
                     "spellId": 93402,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.25
                 },
                 {
                     "name": "Wrath",
                     "spellId": 190984,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.41
                 },
                 {
                     "name": "Wrath",
                     "spellId": 190984,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.14
                 },
                 {
                     "name": "Solar Eclipse",
                     "spellId": 1233346,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 20.05
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.8
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.81
                 },
                 {
                     "name": "Wrath",
                     "spellId": 190984,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.72
                 },
                 {
                     "name": "Wild Mushroom",
                     "spellId": 88747,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 24.66
                 },
                 {
                     "name": "Sunfire",
                     "spellId": 93402,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.6
                 },
                 {
                     "name": "Wrath",
                     "spellId": 190984,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.37
                 },
                 {
                     "name": "Cyclone",
                     "spellId": 33786,
                     "isCc": true,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.5
                 },
                 {
                     "name": "Starsurge",
                     "spellId": 78674,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.76
                 }
             ],
             "matchId": "d818cec526f8332ca75bff593b66eccc",
@@ -5484,7 +5561,7 @@
                         "pvpTalentId": 103
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-1129-0C1B10D1",
@@ -5694,9 +5771,9 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:49:08+00:00"
+    "generated_at": "2026-09-06T12:20:02+00:00"
 }

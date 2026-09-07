@@ -22,91 +22,99 @@
                 "name": "Feral Frenzy",
                 "spellId": 274837,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.42
             },
             {
                 "name": "Moonfire",
                 "spellId": 155625,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.42
             },
             {
                 "name": "Ferocious Bite",
                 "spellId": 22568,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.31
             },
             {
                 "name": "Moonfire",
                 "spellId": 155625,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 3.31
             },
             {
                 "name": "Regrowth",
                 "spellId": 8936,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.06
             },
             {
                 "name": "Wild Charge",
                 "spellId": 49376,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.23
             },
             {
                 "name": "Maim",
                 "spellId": 22570,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.27
             },
             {
                 "name": "Regrowth",
                 "spellId": 8936,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.25
             },
             {
                 "name": "Rake",
                 "spellId": 1822,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 7.07
             },
             {
                 "name": "Ferocious Bite",
                 "spellId": 22568,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.06
             },
             {
                 "name": "Regrowth",
                 "spellId": 8936,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.07
             },
             {
                 "name": "Moonfire",
                 "spellId": 155625,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.81
             },
             {
                 "name": "Barkskin",
                 "spellId": 22812,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Moonfire",
-                "spellId": 155625,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 10.24
             },
             {
                 "name": "Ferocious Bite",
                 "spellId": 22568,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.32
             }
         ],
         "matchId": "805c24dd98effd6082847a0385e46101",
@@ -819,7 +827,7 @@
                     "pvpTalentId": 123
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:50+00:00"
+            "resolvedAt": "2026-09-06T12:25:34+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-76-0B9E8F66",
@@ -1033,7 +1041,7 @@
             ],
             "targetClassName": "Warrior",
             "targetSpecName": "Arms",
-            "resolvedAt": "2026-09-06T02:56:58+00:00"
+            "resolvedAt": "2026-09-06T12:25:41+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -1046,43 +1054,50 @@
                     "name": "Feral Frenzy",
                     "spellId": 274837,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.42
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.42
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.31
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.31
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.06
                 },
                 {
                     "name": "Wild Charge",
                     "spellId": 49376,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.23
                 },
                 {
                     "name": "Maim",
                     "spellId": 22570,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.27
                 }
             ],
             "matchId": "805c24dd98effd6082847a0385e46101",
@@ -1795,7 +1810,7 @@
                         "pvpTalentId": 123
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0B9E8F66",
@@ -2009,7 +2024,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "10": {
@@ -2021,73 +2036,85 @@
                     "name": "Feral Frenzy",
                     "spellId": 274837,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.42
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.42
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.31
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.31
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.06
                 },
                 {
                     "name": "Wild Charge",
                     "spellId": 49376,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.23
                 },
                 {
                     "name": "Maim",
                     "spellId": 22570,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.27
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.25
                 },
                 {
                     "name": "Rake",
                     "spellId": 1822,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.07
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.06
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.07
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.81
                 }
             ],
             "matchId": "805c24dd98effd6082847a0385e46101",
@@ -2800,7 +2827,7 @@
                         "pvpTalentId": 123
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0B9E8F66",
@@ -3014,7 +3041,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "12": {
@@ -3026,91 +3053,99 @@
                     "name": "Feral Frenzy",
                     "spellId": 274837,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.42
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.42
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.31
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.31
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.06
                 },
                 {
                     "name": "Wild Charge",
                     "spellId": 49376,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.23
                 },
                 {
                     "name": "Maim",
                     "spellId": 22570,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.27
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.25
                 },
                 {
                     "name": "Rake",
                     "spellId": 1822,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.07
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.06
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.07
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.81
                 },
                 {
                     "name": "Barkskin",
                     "spellId": 22812,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Moonfire",
-                    "spellId": 155625,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 10.24
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.32
                 }
             ],
             "matchId": "805c24dd98effd6082847a0385e46101",
@@ -3823,7 +3858,7 @@
                         "pvpTalentId": 123
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0B9E8F66",
@@ -4037,7 +4072,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "20": {
@@ -4049,151 +4084,169 @@
                     "name": "Incarnation: Avatar of Ashamane",
                     "spellId": 102543,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.21
                 },
                 {
                     "name": "Tiger's Fury",
                     "spellId": 5217,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.25
                 },
                 {
                     "name": "Prowl",
                     "spellId": 102547,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.38
                 },
                 {
                     "name": "Rake",
                     "spellId": 1822,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.44
                 },
                 {
                     "name": "Rip",
                     "spellId": 1079,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.43
                 },
                 {
                     "name": "Feral Frenzy",
                     "spellId": 274837,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.42
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.42
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.31
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.31
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.06
                 },
                 {
                     "name": "Wild Charge",
                     "spellId": 49376,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.23
                 },
                 {
                     "name": "Maim",
                     "spellId": 22570,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.27
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.25
                 },
                 {
                     "name": "Rake",
                     "spellId": 1822,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.07
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.06
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.07
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.81
                 },
                 {
                     "name": "Barkskin",
                     "spellId": 22812,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Moonfire",
-                    "spellId": 155625,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 12.24
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.32
                 },
                 {
                     "name": "Shred",
                     "spellId": 5221,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.32
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.32
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.06
                 },
                 {
                     "name": "Rake",
                     "spellId": 1822,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.65
                 },
                 {
                     "name": "Rip",
                     "spellId": 1079,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.65
                 }
             ],
             "matchId": "805c24dd98effd6082847a0385e46101",
@@ -4906,7 +4959,7 @@
                         "pvpTalentId": 123
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0B9E8F66",
@@ -5060,7 +5113,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "30": {
@@ -5072,205 +5125,232 @@
                     "name": "Incarnation: Avatar of Ashamane",
                     "spellId": 102543,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.21
                 },
                 {
                     "name": "Tiger's Fury",
                     "spellId": 5217,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.25
                 },
                 {
                     "name": "Prowl",
                     "spellId": 102547,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.38
                 },
                 {
                     "name": "Rake",
                     "spellId": 1822,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.44
                 },
                 {
                     "name": "Rip",
                     "spellId": 1079,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.43
                 },
                 {
                     "name": "Feral Frenzy",
                     "spellId": 274837,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.42
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.42
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.31
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.31
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.06
                 },
                 {
                     "name": "Wild Charge",
                     "spellId": 49376,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.23
                 },
                 {
                     "name": "Maim",
                     "spellId": 22570,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.27
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.25
                 },
                 {
                     "name": "Rake",
                     "spellId": 1822,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.07
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.06
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.07
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.81
                 },
                 {
                     "name": "Barkskin",
                     "spellId": 22812,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Moonfire",
-                    "spellId": 155625,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 12.24
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.32
                 },
                 {
                     "name": "Shred",
                     "spellId": 5221,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.32
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.32
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.06
                 },
                 {
                     "name": "Rake",
                     "spellId": 1822,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.65
                 },
                 {
                     "name": "Rip",
                     "spellId": 1079,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.65
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.66
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.58
                 },
                 {
                     "name": "Rake",
                     "spellId": 1822,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.54
                 },
                 {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.54
                 },
                 {
                     "name": "Shred",
                     "spellId": 5221,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.77
                 },
                 {
                     "name": "Regrowth",
                     "spellId": 8936,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.78
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.74
                 },
                 {
                     "name": "Typhoon",
                     "spellId": 61391,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 27.71
                 },
                 {
                     "name": "Rake",
                     "spellId": 1822,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.15
                 }
             ],
             "matchId": "805c24dd98effd6082847a0385e46101",
@@ -5983,7 +6063,7 @@
                         "pvpTalentId": 123
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0B9E8F66",
@@ -6137,9 +6217,9 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:49:20+00:00"
+    "generated_at": "2026-09-06T12:20:12+00:00"
 }

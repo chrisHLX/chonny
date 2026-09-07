@@ -1,0 +1,1084 @@
+{
+    "generatedAt": "2026-09-06T19:08:41+00:00",
+    "matches": 689,
+    "landings": 110772,
+    "minSample": 20,
+    "spells": [
+        {
+            "name": "Consecration",
+            "drCategory": "Slow",
+            "spellIds": [
+                204242,
+                290497,
+                420378
+            ],
+            "observations": 14645,
+            "healerShare": 0.174,
+            "expectedShare": 0.333,
+            "ratio": 0.52,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Crippling Poison",
+            "drCategory": "Slow",
+            "spellIds": [
+                3409,
+                115196
+            ],
+            "observations": 6436,
+            "healerShare": 0.185,
+            "expectedShare": 0.334,
+            "ratio": 0.56,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Judgment of Justice",
+            "drCategory": "Slow",
+            "spellIds": [
+                408383
+            ],
+            "observations": 4514,
+            "healerShare": 0.153,
+            "expectedShare": 0.333,
+            "ratio": 0.46,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Garrote",
+            "drCategory": "Silence",
+            "spellIds": [
+                703
+            ],
+            "observations": 2980,
+            "healerShare": 0.227,
+            "expectedShare": 0.333,
+            "ratio": 0.68,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Blaze of Light",
+            "drCategory": "Slow",
+            "spellIds": [
+                356084
+            ],
+            "observations": 2781,
+            "healerShare": 0.171,
+            "expectedShare": 0.333,
+            "ratio": 0.51,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Psychic Scream",
+            "drCategory": "Disorient",
+            "spellIds": [
+                8122
+            ],
+            "observations": 2565,
+            "healerShare": 0.502,
+            "expectedShare": 0.333,
+            "ratio": 1.51,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Cyclone",
+            "drCategory": "Disorient",
+            "spellIds": [
+                33786
+            ],
+            "observations": 2108,
+            "healerShare": 0.499,
+            "expectedShare": 0.334,
+            "ratio": 1.49,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Chilled",
+            "drCategory": "Slow",
+            "spellIds": [
+                205708
+            ],
+            "observations": 1998,
+            "healerShare": 0.147,
+            "expectedShare": 0.333,
+            "ratio": 0.44,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Curse of Exhaustion",
+            "drCategory": "Slow",
+            "spellIds": [
+                334275
+            ],
+            "observations": 1878,
+            "healerShare": 0.243,
+            "expectedShare": 0.333,
+            "ratio": 0.73,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Garrote - Silence",
+            "drCategory": "Silence",
+            "spellIds": [
+                1330
+            ],
+            "observations": 1771,
+            "healerShare": 0.272,
+            "expectedShare": 0.333,
+            "ratio": 0.82,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Hammer of Justice",
+            "drCategory": "Stun",
+            "spellIds": [
+                853
+            ],
+            "observations": 1676,
+            "healerShare": 0.641,
+            "expectedShare": 0.333,
+            "ratio": 1.92,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Cheap Shot",
+            "drCategory": "Stun",
+            "spellIds": [
+                1833
+            ],
+            "observations": 1617,
+            "healerShare": 0.265,
+            "expectedShare": 0.334,
+            "ratio": 0.79,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Master of the Glaive",
+            "drCategory": "Slow",
+            "spellIds": [
+                213405
+            ],
+            "observations": 1523,
+            "healerShare": 0.183,
+            "expectedShare": 0.333,
+            "ratio": 0.55,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Storm Bolt",
+            "drCategory": "Stun",
+            "spellIds": [
+                107570,
+                132169
+            ],
+            "observations": 1508,
+            "healerShare": 0.255,
+            "expectedShare": 0.333,
+            "ratio": 0.76,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Frost Nova",
+            "drCategory": "Root",
+            "spellIds": [
+                122
+            ],
+            "observations": 1432,
+            "healerShare": 0.193,
+            "expectedShare": 0.333,
+            "ratio": 0.58,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Polymorph",
+            "drCategory": "Incapacitate",
+            "spellIds": [
+                118
+            ],
+            "observations": 1374,
+            "healerShare": 0.477,
+            "expectedShare": 0.334,
+            "ratio": 1.43,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Permeating Chill",
+            "drCategory": "Slow",
+            "spellIds": [
+                370898
+            ],
+            "observations": 1370,
+            "healerShare": 0.19,
+            "expectedShare": 0.333,
+            "ratio": 0.57,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Holy Word: Chastise",
+            "drCategory": "Stun",
+            "spellIds": [
+                88625,
+                200196,
+                200200
+            ],
+            "observations": 1310,
+            "healerShare": 0.531,
+            "expectedShare": 0.333,
+            "ratio": 1.59,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Kidney Shot",
+            "drCategory": "Stun",
+            "spellIds": [
+                408
+            ],
+            "observations": 1236,
+            "healerShare": 0.297,
+            "expectedShare": 0.334,
+            "ratio": 0.89,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Fear",
+            "drCategory": "Disorient",
+            "spellIds": [
+                5782,
+                118699
+            ],
+            "observations": 1220,
+            "healerShare": 0.461,
+            "expectedShare": 0.333,
+            "ratio": 1.38,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Mortal Coil",
+            "drCategory": "Incapacitate",
+            "spellIds": [
+                6789
+            ],
+            "observations": 1192,
+            "healerShare": 0.141,
+            "expectedShare": 0.333,
+            "ratio": 0.42,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Howl of Terror",
+            "drCategory": "Disorient",
+            "spellIds": [
+                5484
+            ],
+            "observations": 1148,
+            "healerShare": 0.266,
+            "expectedShare": 0.333,
+            "ratio": 0.8,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Intimidating Shout",
+            "drCategory": "Disorient",
+            "spellIds": [
+                5246
+            ],
+            "observations": 1070,
+            "healerShare": 0.347,
+            "expectedShare": 0.333,
+            "ratio": 1.04,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Shockwave",
+            "drCategory": "Stun",
+            "spellIds": [
+                46968,
+                132168
+            ],
+            "observations": 1041,
+            "healerShare": 0.15,
+            "expectedShare": 0.333,
+            "ratio": 0.45,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Freezing Trap",
+            "drCategory": "Incapacitate",
+            "spellIds": [
+                3355,
+                187650
+            ],
+            "observations": 1023,
+            "healerShare": 0.896,
+            "expectedShare": 0.333,
+            "ratio": 2.69,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Chains of Ice",
+            "drCategory": "Slow",
+            "spellIds": [
+                45524
+            ],
+            "observations": 930,
+            "healerShare": 0.215,
+            "expectedShare": 0.333,
+            "ratio": 0.65,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Leg Sweep",
+            "drCategory": "Stun",
+            "spellIds": [
+                119381
+            ],
+            "observations": 874,
+            "healerShare": 0.296,
+            "expectedShare": 0.333,
+            "ratio": 0.89,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Binding Shot",
+            "drCategory": "Stun",
+            "spellIds": [
+                109248,
+                117526
+            ],
+            "observations": 867,
+            "healerShare": 0.333,
+            "expectedShare": 0.333,
+            "ratio": 1,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Dragon's Breath",
+            "drCategory": "Disorient",
+            "spellIds": [
+                31661
+            ],
+            "observations": 805,
+            "healerShare": 0.22,
+            "expectedShare": 0.334,
+            "ratio": 0.66,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Ice Nova",
+            "drCategory": "Root",
+            "spellIds": [
+                157997
+            ],
+            "observations": 763,
+            "healerShare": 0.164,
+            "expectedShare": 0.333,
+            "ratio": 0.49,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Incapacitating Roar",
+            "drCategory": "Incapacitate",
+            "spellIds": [
+                99
+            ],
+            "observations": 728,
+            "healerShare": 0.372,
+            "expectedShare": 0.333,
+            "ratio": 1.12,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Blinding Light",
+            "drCategory": "Disorient",
+            "spellIds": [
+                105421,
+                115750
+            ],
+            "observations": 679,
+            "healerShare": 0.445,
+            "expectedShare": 0.333,
+            "ratio": 1.33,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Concussive Shot",
+            "drCategory": "Slow",
+            "spellIds": [
+                5116
+            ],
+            "observations": 665,
+            "healerShare": 0.298,
+            "expectedShare": 0.333,
+            "ratio": 0.89,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Scatter Shot",
+            "drCategory": "Incapacitate",
+            "spellIds": [
+                213691
+            ],
+            "observations": 632,
+            "healerShare": 0.168,
+            "expectedShare": 0.333,
+            "ratio": 0.5,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Paralysis",
+            "drCategory": "Incapacitate",
+            "spellIds": [
+                115078
+            ],
+            "observations": 568,
+            "healerShare": 0.711,
+            "expectedShare": 0.333,
+            "ratio": 2.13,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Maim",
+            "drCategory": "Stun",
+            "spellIds": [
+                22570,
+                203123
+            ],
+            "observations": 541,
+            "healerShare": 0.375,
+            "expectedShare": 0.333,
+            "ratio": 1.13,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Disarm",
+            "drCategory": "Disarm",
+            "spellIds": [
+                236077
+            ],
+            "observations": 527,
+            "healerShare": 0.004,
+            "expectedShare": 0.333,
+            "ratio": 0.01,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Mind Control",
+            "drCategory": "Disorient",
+            "spellIds": [
+                605
+            ],
+            "observations": 524,
+            "healerShare": 0.42,
+            "expectedShare": 0.333,
+            "ratio": 1.26,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Dismantle",
+            "drCategory": "Disarm",
+            "spellIds": [
+                207777
+            ],
+            "observations": 500,
+            "healerShare": 0,
+            "expectedShare": 0.333,
+            "ratio": 0,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Silence",
+            "drCategory": "Silence",
+            "spellIds": [
+                15487
+            ],
+            "observations": 481,
+            "healerShare": 0.906,
+            "expectedShare": 0.333,
+            "ratio": 2.72,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Gouge",
+            "drCategory": "Incapacitate",
+            "spellIds": [
+                1776
+            ],
+            "observations": 477,
+            "healerShare": 0.35,
+            "expectedShare": 0.333,
+            "ratio": 1.05,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Grip of the Dead",
+            "drCategory": "Slow",
+            "spellIds": [
+                273977
+            ],
+            "observations": 477,
+            "healerShare": 0.168,
+            "expectedShare": 0.333,
+            "ratio": 0.5,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Blinding Sleet",
+            "drCategory": "Slow",
+            "spellIds": [
+                207167,
+                317898
+            ],
+            "observations": 460,
+            "healerShare": 0.411,
+            "expectedShare": 0.333,
+            "ratio": 1.23,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Sleep Walk",
+            "drCategory": "Disorient",
+            "spellIds": [
+                360806
+            ],
+            "observations": 457,
+            "healerShare": 0.667,
+            "expectedShare": 0.333,
+            "ratio": 2,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Mighty Bash",
+            "drCategory": "Stun",
+            "spellIds": [
+                5211
+            ],
+            "observations": 450,
+            "healerShare": 0.393,
+            "expectedShare": 0.334,
+            "ratio": 1.18,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Rake",
+            "drCategory": "Stun",
+            "spellIds": [
+                163505
+            ],
+            "observations": 436,
+            "healerShare": 0.197,
+            "expectedShare": 0.334,
+            "ratio": 0.59,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Mass Entanglement",
+            "drCategory": "Root",
+            "spellIds": [
+                102359
+            ],
+            "observations": 419,
+            "healerShare": 0.372,
+            "expectedShare": 0.333,
+            "ratio": 1.12,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Terror of the Skies",
+            "drCategory": "Stun",
+            "spellIds": [
+                372245
+            ],
+            "observations": 419,
+            "healerShare": 0.279,
+            "expectedShare": 0.333,
+            "ratio": 0.84,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Hex",
+            "drCategory": "Incapacitate",
+            "spellIds": [
+                51514
+            ],
+            "observations": 397,
+            "healerShare": 0.71,
+            "expectedShare": 0.333,
+            "ratio": 2.13,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Chaos Nova",
+            "drCategory": "Stun",
+            "spellIds": [
+                179057,
+                344867
+            ],
+            "observations": 397,
+            "healerShare": 0.257,
+            "expectedShare": 0.333,
+            "ratio": 0.77,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Disable",
+            "drCategory": "Root",
+            "spellIds": [
+                116706
+            ],
+            "observations": 384,
+            "healerShare": 0.161,
+            "expectedShare": 0.333,
+            "ratio": 0.48,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Entangling Roots",
+            "drCategory": "Root",
+            "spellIds": [
+                339
+            ],
+            "observations": 380,
+            "healerShare": 0.334,
+            "expectedShare": 0.334,
+            "ratio": 1,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Blind",
+            "drCategory": "Disorient",
+            "spellIds": [
+                2094
+            ],
+            "observations": 373,
+            "healerShare": 0.855,
+            "expectedShare": 0.334,
+            "ratio": 2.56,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Chimaeral Sting",
+            "drCategory": "Silence",
+            "spellIds": [
+                356719
+            ],
+            "observations": 340,
+            "healerShare": 0.729,
+            "expectedShare": 0.333,
+            "ratio": 2.19,
+            "source": "cast",
+            "usable": true
+        },
+        {
+            "name": "Glacial Spike",
+            "drCategory": "Slow",
+            "spellIds": [
+                199786
+            ],
+            "observations": 339,
+            "healerShare": 0.027,
+            "expectedShare": 0.333,
+            "ratio": 0.08,
+            "source": "cast",
+            "usable": true
+        },
+        {
+            "name": "Lightning Lasso",
+            "drCategory": "Stun",
+            "spellIds": [
+                305483,
+                305485
+            ],
+            "observations": 314,
+            "healerShare": 0.338,
+            "expectedShare": 0.333,
+            "ratio": 1.01,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Solar Beam",
+            "drCategory": "Silence",
+            "spellIds": [
+                78675
+            ],
+            "observations": 298,
+            "healerShare": 0.601,
+            "expectedShare": 0.333,
+            "ratio": 1.8,
+            "source": "cast",
+            "usable": true
+        },
+        {
+            "name": "Strangulate",
+            "drCategory": "Silence",
+            "spellIds": [
+                47476
+            ],
+            "observations": 291,
+            "healerShare": 0.876,
+            "expectedShare": 0.333,
+            "ratio": 2.63,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Ring of Frost",
+            "drCategory": "Incapacitate",
+            "spellIds": [
+                82691,
+                113724
+            ],
+            "observations": 285,
+            "healerShare": 0.274,
+            "expectedShare": 0.335,
+            "ratio": 0.82,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "The Hunt",
+            "drCategory": "Root",
+            "spellIds": [
+                370970
+            ],
+            "observations": 278,
+            "healerShare": 0.09,
+            "expectedShare": 0.333,
+            "ratio": 0.27,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Seduction",
+            "drCategory": "Disorient",
+            "spellIds": [
+                6358,
+                119909
+            ],
+            "observations": 259,
+            "healerShare": 0.849,
+            "expectedShare": 0.333,
+            "ratio": 2.55,
+            "source": "cast",
+            "usable": true
+        },
+        {
+            "name": "Sap",
+            "drCategory": "Incapacitate",
+            "spellIds": [
+                6770
+            ],
+            "observations": 254,
+            "healerShare": 0.685,
+            "expectedShare": 0.334,
+            "ratio": 2.05,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Song of Chi-Ji",
+            "drCategory": "Disorient",
+            "spellIds": [
+                198898,
+                198909
+            ],
+            "observations": 226,
+            "healerShare": 0.611,
+            "expectedShare": 0.333,
+            "ratio": 1.83,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Imprison",
+            "drCategory": "Incapacitate",
+            "spellIds": [
+                217832
+            ],
+            "observations": 191,
+            "healerShare": 0.592,
+            "expectedShare": 0.333,
+            "ratio": 1.77,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Grapple Weapon",
+            "drCategory": "Disarm",
+            "spellIds": [
+                233759
+            ],
+            "observations": 172,
+            "healerShare": 0,
+            "expectedShare": 0.333,
+            "ratio": 0,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Void Tendrils",
+            "drCategory": "Root",
+            "spellIds": [
+                114404
+            ],
+            "observations": 169,
+            "healerShare": 0.58,
+            "expectedShare": 0.333,
+            "ratio": 1.74,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Thunderstorm",
+            "drCategory": "Knockback",
+            "spellIds": [
+                51490
+            ],
+            "observations": 142,
+            "healerShare": 0.148,
+            "expectedShare": 0.333,
+            "ratio": 0.44,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Absolute Zero",
+            "drCategory": "Stun",
+            "spellIds": [
+                377048
+            ],
+            "observations": 139,
+            "healerShare": 0.345,
+            "expectedShare": 0.333,
+            "ratio": 1.04,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Tar Trap",
+            "drCategory": "Slow",
+            "spellIds": [
+                135299,
+                187699
+            ],
+            "observations": 121,
+            "healerShare": 0.207,
+            "expectedShare": 0.333,
+            "ratio": 0.62,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Wave of Debilitation",
+            "drCategory": "Slow",
+            "spellIds": [
+                453263
+            ],
+            "observations": 121,
+            "healerShare": 0.264,
+            "expectedShare": 0.333,
+            "ratio": 0.79,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Harpoon",
+            "drCategory": "Root",
+            "spellIds": [
+                190925
+            ],
+            "observations": 120,
+            "healerShare": 0.817,
+            "expectedShare": 0.333,
+            "ratio": 2.45,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Intimidation",
+            "drCategory": "Stun",
+            "spellIds": [
+                19577,
+                24394,
+                474421
+            ],
+            "observations": 118,
+            "healerShare": 0.797,
+            "expectedShare": 0.333,
+            "ratio": 2.39,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Landslide",
+            "drCategory": "Root",
+            "spellIds": [
+                355689
+            ],
+            "observations": 117,
+            "healerShare": 0.282,
+            "expectedShare": 0.333,
+            "ratio": 0.85,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Sigil of Misery",
+            "drCategory": "Disorient",
+            "spellIds": [
+                207684,
+                207685
+            ],
+            "observations": 113,
+            "healerShare": 0.345,
+            "expectedShare": 0.333,
+            "ratio": 1.04,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Faerie Swarm",
+            "drCategory": "Disarm",
+            "spellIds": [
+                209749
+            ],
+            "observations": 101,
+            "healerShare": 0.01,
+            "expectedShare": 0.333,
+            "ratio": 0.03,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Void Nova",
+            "drCategory": "Stun",
+            "spellIds": [
+                1234195
+            ],
+            "observations": 97,
+            "healerShare": 0.351,
+            "expectedShare": 0.333,
+            "ratio": 1.05,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Shadowfury",
+            "drCategory": "Stun",
+            "spellIds": [
+                30283
+            ],
+            "observations": 79,
+            "healerShare": 0.215,
+            "expectedShare": 0.333,
+            "ratio": 0.65,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Asphyxiate",
+            "drCategory": "Stun",
+            "spellIds": [
+                221562
+            ],
+            "observations": 70,
+            "healerShare": 0.486,
+            "expectedShare": 0.333,
+            "ratio": 1.46,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Avenger's Shield",
+            "drCategory": "Silence",
+            "spellIds": [
+                31935
+            ],
+            "observations": 34,
+            "healerShare": 0.441,
+            "expectedShare": 0.333,
+            "ratio": 1.32,
+            "source": "cast",
+            "usable": true
+        },
+        {
+            "name": "Cold Feet",
+            "drCategory": "Slow",
+            "spellIds": [
+                1268673
+            ],
+            "observations": 28,
+            "healerShare": 1,
+            "expectedShare": 0.333,
+            "ratio": 3,
+            "source": "aura",
+            "usable": true
+        },
+        {
+            "name": "Axe Toss",
+            "drCategory": "Stun",
+            "spellIds": [
+                89766,
+                119914
+            ],
+            "observations": 28,
+            "healerShare": 0.107,
+            "expectedShare": 0.333,
+            "ratio": 0.32,
+            "source": "cast",
+            "usable": true
+        }
+    ]
+}

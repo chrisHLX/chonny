@@ -1,28 +1,123 @@
 {
     "classSlug": "shaman",
     "specSlug": "restoration",
-    "generatedAt": "2026-09-06T03:01:01+00:00",
-    "sourceLengthSeconds": 30,
-    "sourceMatchId": "16dd7eedd9b8d7f57b5eec8e137b0872",
-    "spellIds": [
-        51505,
-        51505,
-        188389,
-        443454,
-        77472,
-        61295,
-        51505,
-        61295,
-        77472,
-        51505,
-        51505,
-        51505,
-        77472,
-        61295,
-        51505,
-        51505
+    "generatedAt": "2026-09-07T00:57:28+00:00",
+    "evidence": {
+        "windows": 675,
+        "anchoredWindows": 675,
+        "matches": 157,
+        "killWindows": 75,
+        "gcdSeconds": 1,
+        "gcdMeasured": true
+    },
+    "window": {
+        "goLengthSeconds": 6.7,
+        "goLengthBasis": "measured",
+        "globals": 7,
+        "anchorSpellId": 443454,
+        "commitSpreadSeconds": 6.7,
+        "anchorBuffSeconds": null,
+        "anchorCooldownSeconds": 30
+    },
+    "sequence": [
+        {
+            "spellId": 443454,
+            "presence": 1,
+            "castsPerWindow": 1,
+            "medianOffset": 0,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Buff",
+            "role": "anchor",
+            "phase": "commit"
+        },
+        {
+            "spellId": 51505,
+            "presence": 0.593,
+            "castsPerWindow": 1.04,
+            "medianOffset": 5.56,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Spell",
+            "role": "cooldown",
+            "phase": "execute"
+        },
+        {
+            "spellId": 51485,
+            "presence": 0.298,
+            "castsPerWindow": 0.3,
+            "medianOffset": 5.89,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "control",
+            "controlTarget": "peel",
+            "controlTargetSource": "inferred",
+            "phase": "execute"
+        },
+        {
+            "spellId": 470411,
+            "presence": 0.502,
+            "castsPerWindow": 0.6,
+            "medianOffset": 6.72,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "cooldown",
+            "phase": "execute"
+        }
     ],
-    "rawStepCount": 21,
-    "filteredStepCount": 17,
-    "truncatedAtRepeat": true
+    "fill": [],
+    "alsoPressed": [
+        {
+            "spellId": 77472,
+            "presence": 0.981,
+            "castsPerWindow": 1.57,
+            "medianOffset": 0.43,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "other"
+        },
+        {
+            "spellId": 61295,
+            "presence": 0.959,
+            "castsPerWindow": 2.6,
+            "medianOffset": 5.15,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "other"
+        },
+        {
+            "spellId": 1267068,
+            "presence": 0.938,
+            "castsPerWindow": 1.04,
+            "medianOffset": 2.59,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Defensive",
+            "role": "other"
+        },
+        {
+            "spellId": 73685,
+            "presence": 0.618,
+            "castsPerWindow": 0.62,
+            "medianOffset": 4.63,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Defensive",
+            "role": "other"
+        },
+        {
+            "spellId": 5394,
+            "presence": 0.585,
+            "castsPerWindow": 0.71,
+            "medianOffset": 5.22,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Defensive",
+            "role": "other"
+        },
+        {
+            "spellId": 204336,
+            "presence": 0.339,
+            "castsPerWindow": 0.34,
+            "medianOffset": 2.98,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "other"
+        }
+    ]
 }

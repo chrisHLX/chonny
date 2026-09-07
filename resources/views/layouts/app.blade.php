@@ -40,7 +40,7 @@
                         'itemListElement' => [
                             ['@type' => 'SiteNavigationElement', 'position' => 1, 'name' => '3v3 Comp Builder', 'url' => 'https://mindcollector.com/wow-comps'],
                             ['@type' => 'SiteNavigationElement', 'position' => 2, 'name' => 'Spell Explorer', 'url' => 'https://mindcollector.com/spells'],
-                            ['@type' => 'SiteNavigationElement', 'position' => 3, 'name' => 'Burst Windows', 'url' => 'https://mindcollector.com/top-damage-rotations'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 3, 'name' => 'Top Burst Windows', 'url' => 'https://mindcollector.com/top-damage-rotations'],
                             ['@type' => 'SiteNavigationElement', 'position' => 4, 'name' => 'PvP Diagnostic', 'url' => 'https://mindcollector.com/diagnostic'],
                         ],
                     ],

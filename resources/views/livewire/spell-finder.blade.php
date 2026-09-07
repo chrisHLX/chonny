@@ -114,6 +114,7 @@
                             <th class="py-1.5 pr-4">DR Category</th>
                             <th class="py-1.5 pr-4">Cooldown</th>
                             <th class="py-1.5 pr-4">Available to</th>
+                            <th class="py-1.5"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -137,6 +138,18 @@
                                 <td class="py-1.5 pr-4 text-ink-muted">{{ $spell->dr_category ?? '—' }}</td>
                                 <td class="py-1.5 pr-4 text-ink-muted">{{ $spell->cooldown_seconds !== null ? $spell->cooldown_seconds.'s' : '—' }}</td>
                                 <td class="py-1.5 pr-4 text-ink-subtle text-xs max-w-sm truncate" title="{{ $availability }}">{{ $availability ?: '—' }}</td>
+                                {{-- Direct link to the spell's permanent page. The name above opens
+                                     the quick modal; this is the shareable/bookmarkable route to
+                                     the same SpellProfile. --}}
+                                <td class="py-1.5 w-8 text-right">
+                                    <a href="{{ route('spell.show', $spell->id) }}"
+                                       title="Open {{ $spell->display_name }} page"
+                                       class="text-ink-subtle hover:text-gold transition-colors inline-block">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                        </svg>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -23,67 +23,78 @@
                 "name": "Unstable Affliction",
                 "spellId": 1259790,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.54
             },
             {
                 "name": "Unstable Affliction",
                 "spellId": 1259790,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 2.11
             },
             {
                 "name": "Unstable Affliction",
                 "spellId": 1259790,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 3.84
             },
             {
                 "name": "Soul Swap",
                 "spellId": 386951,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.15
             },
             {
                 "name": "Soul Swap Exhale",
                 "spellId": 399685,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.07
             },
             {
                 "name": "Malevolence",
                 "spellId": 442726,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.8
             },
             {
                 "name": "Summon Darkglare",
                 "spellId": 205180,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 6.57
             },
             {
                 "name": "Unstable Affliction",
                 "spellId": 1259790,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.13
             },
             {
                 "name": "Malefic Grasp",
                 "spellId": 1261153,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.32
             },
             {
                 "name": "Unstable Affliction",
                 "spellId": 1259790,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.43
             },
             {
                 "name": "Malefic Grasp",
                 "spellId": 1261153,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.6
             }
         ],
         "matchId": "d36670b741db7165aa0b4dedb347d56c",
@@ -787,7 +798,7 @@
                     "pvpTalentId": 348
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:47+00:00"
+            "resolvedAt": "2026-09-06T12:25:32+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-11-0EA2A758",
@@ -965,7 +976,7 @@
             ],
             "targetClassName": "Evoker",
             "targetSpecName": "Preservation",
-            "resolvedAt": "2026-09-06T02:56:54+00:00"
+            "resolvedAt": "2026-09-06T12:25:38+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -978,43 +989,50 @@
                     "name": "Soul Swap Exhale",
                     "spellId": 399685,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.07
                 },
                 {
                     "name": "Malevolence",
                     "spellId": 442726,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.8
                 },
                 {
                     "name": "Summon Darkglare",
                     "spellId": 205180,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.57
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.13
                 },
                 {
                     "name": "Malefic Grasp",
                     "spellId": 1261153,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.32
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.43
                 },
                 {
                     "name": "Malefic Grasp",
                     "spellId": 1261153,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.6
                 }
             ],
             "matchId": "d36670b741db7165aa0b4dedb347d56c",
@@ -1718,7 +1736,7 @@
                         "pvpTalentId": 348
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:47+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0EA2A758",
@@ -1932,7 +1950,7 @@
                 ],
                 "targetClassName": "Evoker",
                 "targetSpecName": "Preservation",
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "10": {
@@ -1944,61 +1962,71 @@
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.11
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.84
                 },
                 {
                     "name": "Soul Swap",
                     "spellId": 386951,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.15
                 },
                 {
                     "name": "Soul Swap Exhale",
                     "spellId": 399685,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.07
                 },
                 {
                     "name": "Malevolence",
                     "spellId": 442726,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.8
                 },
                 {
                     "name": "Summon Darkglare",
                     "spellId": 205180,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.57
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.13
                 },
                 {
                     "name": "Malefic Grasp",
                     "spellId": 1261153,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.32
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.43
                 },
                 {
                     "name": "Malefic Grasp",
                     "spellId": 1261153,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.6
                 }
             ],
             "matchId": "d36670b741db7165aa0b4dedb347d56c",
@@ -2702,7 +2730,7 @@
                         "pvpTalentId": 348
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:47+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0EA2A758",
@@ -2884,7 +2912,7 @@
                 ],
                 "targetClassName": "Evoker",
                 "targetSpecName": "Preservation",
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "12": {
@@ -2896,67 +2924,78 @@
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.54
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.11
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.84
                 },
                 {
                     "name": "Soul Swap",
                     "spellId": 386951,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.15
                 },
                 {
                     "name": "Soul Swap Exhale",
                     "spellId": 399685,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.07
                 },
                 {
                     "name": "Malevolence",
                     "spellId": 442726,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.8
                 },
                 {
                     "name": "Summon Darkglare",
                     "spellId": 205180,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.57
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.13
                 },
                 {
                     "name": "Malefic Grasp",
                     "spellId": 1261153,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.32
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.43
                 },
                 {
                     "name": "Malefic Grasp",
                     "spellId": 1261153,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.6
                 }
             ],
             "matchId": "d36670b741db7165aa0b4dedb347d56c",
@@ -3660,7 +3699,7 @@
                         "pvpTalentId": 348
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:47+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0EA2A758",
@@ -3838,7 +3877,7 @@
                 ],
                 "targetClassName": "Evoker",
                 "targetSpecName": "Preservation",
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "20": {
@@ -3850,91 +3889,106 @@
                     "name": "Wither",
                     "spellId": 445468,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.47
                 },
                 {
                     "name": "Fear",
                     "spellId": 5782,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.38
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.69
                 },
                 {
                     "name": "Drain Soul",
                     "spellId": 198590,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.68
                 },
                 {
                     "name": "Drain Soul",
                     "spellId": 198590,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.03
                 },
                 {
                     "name": "Haunt",
                     "spellId": 48181,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.2
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.11
                 },
                 {
                     "name": "Wither",
                     "spellId": 445468,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.56
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.19
                 },
                 {
                     "name": "Drain Soul",
                     "spellId": 198590,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.37
                 },
                 {
                     "name": "Fear",
                     "spellId": 5782,
                     "isCc": true,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.34
                 },
                 {
                     "name": "Agony",
                     "spellId": 980,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.34
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.26
                 },
                 {
                     "name": "Fear",
                     "spellId": 5782,
                     "isCc": true,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.39
                 },
                 {
                     "name": "Agony",
                     "spellId": 980,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.39
                 }
             ],
             "matchId": "bea914f9e70a56445c481c134964dc50",
@@ -4638,7 +4692,7 @@
                         "pvpTalentId": 357
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:47+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FD192F4",
@@ -4780,7 +4834,7 @@
                 ],
                 "targetClassName": "Monk",
                 "targetSpecName": "Mistweaver",
-                "resolvedAt": "2026-09-06T02:56:54+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "30": {
@@ -4792,157 +4846,183 @@
                     "name": "Corruption",
                     "spellId": 172,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.64
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.79
                 },
                 {
                     "name": "Drain Soul",
                     "spellId": 198590,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.86
                 },
                 {
                     "name": "Drain Soul",
                     "spellId": 198590,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.81
                 },
                 {
                     "name": "Curse of Tongues",
                     "spellId": 1714,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.82
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.9
                 },
                 {
                     "name": "Curse of Tongues",
                     "spellId": 1714,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.96
                 },
                 {
                     "name": "Curse of Tongues",
                     "spellId": 1714,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.09
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.94
                 },
                 {
                     "name": "Haunt",
                     "spellId": 48181,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.98
                 },
                 {
                     "name": "Drain Soul",
                     "spellId": 198590,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.17
                 },
                 {
                     "name": "Drain Soul",
                     "spellId": 198590,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.61
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.23
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.26
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.37
                 },
                 {
                     "name": "Corruption",
                     "spellId": 172,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.5
                 },
                 {
                     "name": "Agony",
                     "spellId": 980,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 20.52
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.39
                 },
                 {
                     "name": "Agony",
                     "spellId": 980,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.6
                 },
                 {
                     "name": "Corruption",
                     "spellId": 172,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.63
                 },
                 {
                     "name": "Agony",
                     "spellId": 980,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.91
                 },
                 {
                     "name": "Corruption",
                     "spellId": 172,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.96
                 },
                 {
                     "name": "Spell Lock",
                     "spellId": 119910,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 26.93
                 },
                 {
                     "name": "Unstable Affliction",
                     "spellId": 1259790,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.93
                 },
                 {
                     "name": "Haunt",
                     "spellId": 48181,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.97
                 },
                 {
                     "name": "Drain Soul",
                     "spellId": 198590,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.16
                 }
             ],
             "matchId": "4b388c5dc39ff2df76e404710aa50fd1",
@@ -5637,7 +5717,7 @@
                         "pvpTalentId": 352
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:47+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-57-0DE8F834",
@@ -5811,9 +5891,9 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:56:04+00:00"
+    "generated_at": "2026-09-06T12:24:59+00:00"
 }

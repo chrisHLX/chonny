@@ -24,127 +24,92 @@
                 "name": "Scorch",
                 "spellId": 2948,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0
             },
             {
                 "name": "Fire Blast",
                 "spellId": 108853,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.02
             },
             {
                 "name": "Pyroblast",
                 "spellId": 11366,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.22
             },
             {
                 "name": "Alter Time",
                 "spellId": 342245,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.75
             },
             {
                 "name": "Fire Blast",
                 "spellId": 108853,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 1.88
             },
             {
                 "name": "Pyroblast",
                 "spellId": 11366,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 2
             },
             {
                 "name": "Fire Blast",
                 "spellId": 108853,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 3.47
             },
             {
                 "name": "Pyroblast",
                 "spellId": 11366,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 3.75
             },
             {
                 "name": "Fire Blast",
                 "spellId": 108853,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.48
             },
             {
                 "name": "Pyroblast",
                 "spellId": 11366,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.68
             },
             {
                 "name": "Fire Blast",
                 "spellId": 108853,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.37
             },
             {
                 "name": "Pyroblast",
                 "spellId": 11366,
                 "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Fire Blast",
-                "spellId": 108853,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Pyroblast",
-                "spellId": 11366,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Fire Blast",
-                "spellId": 108853,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Pyroblast",
-                "spellId": 11366,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Fire Blast",
-                "spellId": 108853,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Pyroblast",
-                "spellId": 11366,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Fire Blast",
-                "spellId": 108853,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Pyroblast",
-                "spellId": 11366,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.53
             },
             {
                 "name": "Gladiator's Medallion",
                 "spellId": 336126,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 9.67
             }
         ],
         "matchId": "b66d42d86990ac4ff6a11b8ced02060a",
@@ -830,7 +795,7 @@
                     "pvpTalentId": 215
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:50+00:00"
+            "resolvedAt": "2026-09-06T12:25:34+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-11-0B26B699",
@@ -935,7 +900,7 @@
             ],
             "targetClassName": "Monk",
             "targetSpecName": "Windwalker",
-            "resolvedAt": "2026-09-06T02:56:58+00:00"
+            "resolvedAt": "2026-09-06T12:25:41+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -948,61 +913,43 @@
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.47
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.75
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.48
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.68
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.37
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.53
                 }
             ],
             "matchId": "b66d42d86990ac4ff6a11b8ced02060a",
@@ -1688,7 +1635,7 @@
                         "pvpTalentId": 215
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0B26B699",
@@ -1865,7 +1812,7 @@
                 ],
                 "targetClassName": "Monk",
                 "targetSpecName": "Windwalker",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "10": {
@@ -1877,127 +1824,92 @@
                     "name": "Scorch",
                     "spellId": 2948,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.02
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.22
                 },
                 {
                     "name": "Alter Time",
                     "spellId": 342245,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.75
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.88
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.47
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.75
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.48
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.68
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.37
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.53
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.67
                 }
             ],
             "matchId": "b66d42d86990ac4ff6a11b8ced02060a",
@@ -2683,7 +2595,7 @@
                         "pvpTalentId": 215
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0B26B699",
@@ -2788,7 +2700,7 @@
                 ],
                 "targetClassName": "Monk",
                 "targetSpecName": "Windwalker",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "12": {
@@ -2800,127 +2712,92 @@
                     "name": "Scorch",
                     "spellId": 2948,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.02
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.22
                 },
                 {
                     "name": "Alter Time",
                     "spellId": 342245,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.75
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.88
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.47
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.75
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.48
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.68
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.37
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.53
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.67
                 }
             ],
             "matchId": "b66d42d86990ac4ff6a11b8ced02060a",
@@ -3606,7 +3483,7 @@
                         "pvpTalentId": 215
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0B26B699",
@@ -3711,7 +3588,7 @@
                 ],
                 "targetClassName": "Monk",
                 "targetSpecName": "Windwalker",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "20": {
@@ -3723,181 +3600,183 @@
                     "name": "Alter Time",
                     "spellId": 342245,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.2
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.43
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 0.78
                 },
                 {
                     "name": "Polymorph",
                     "spellId": 118,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.35
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.46
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.03
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true,
+                    "offset": 5.39
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.61
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.66
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.84
                 },
                 {
                     "name": "Scorch",
                     "spellId": 2948,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.07
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.07
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.12
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.3
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.18
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.06
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.31
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.85
                 },
                 {
                     "name": "Scorch",
                     "spellId": 2948,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.44
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.49
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.6
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.69
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.76
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.85
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.22
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.94
                 }
             ],
             "matchId": "92de111b84d714898fd66cd24c3158d5",
@@ -4592,7 +4471,7 @@
                         "pvpTalentId": 216
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3676-0DFF15EC",
@@ -4826,7 +4705,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Feral",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "30": {
@@ -4838,247 +4717,260 @@
                     "name": "Combustion",
                     "spellId": 190319,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.35
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.51
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.85
                 },
                 {
                     "name": "Alter Time",
                     "spellId": 342245,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.2
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.42
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.53
                 },
                 {
                     "name": "Polymorph",
                     "spellId": 118,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.35
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.46
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.03
+                },
+                {
+                    "name": "Fire Blast",
+                    "spellId": 108853,
+                    "isCc": false,
+                    "isRepeat": true,
+                    "offset": 6.39
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.61
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.66
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Pyroblast",
-                    "spellId": 11366,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fire Blast",
-                    "spellId": 108853,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.84
                 },
                 {
                     "name": "Scorch",
                     "spellId": 2948,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.07
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.07
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.12
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.3
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.18
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.06
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.31
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.85
                 },
                 {
                     "name": "Scorch",
                     "spellId": 2948,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.44
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.49
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.6
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.69
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.76
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.85
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.22
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.94
                 },
                 {
                     "name": "Blazing Barrier",
                     "spellId": 235313,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 22.1
                 },
                 {
                     "name": "Blink",
                     "spellId": 1953,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 23.5
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.15
                 },
                 {
                     "name": "Counterspell",
                     "spellId": 2139,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 25.39
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.47
                 },
                 {
                     "name": "Fire Blast",
                     "spellId": 108853,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.84
                 },
                 {
                     "name": "Scorch",
                     "spellId": 2948,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.6
                 },
                 {
                     "name": "Pyroblast",
                     "spellId": 11366,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.7
                 }
             ],
             "matchId": "92de111b84d714898fd66cd24c3158d5",
@@ -5773,7 +5665,7 @@
                         "pvpTalentId": 216
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3676-0DFF15EC",
@@ -5995,9 +5887,9 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Feral",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:51:40+00:00"
+    "generated_at": "2026-09-06T12:21:53+00:00"
 }

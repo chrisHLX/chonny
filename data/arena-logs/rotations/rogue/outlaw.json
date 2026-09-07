@@ -30,79 +30,85 @@
                 "name": "Between the Eyes",
                 "spellId": 315341,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.63
             },
             {
                 "name": "Between the Eyes",
                 "spellId": 315341,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 2.23
             },
             {
                 "name": "Pistol Shot",
                 "spellId": 185763,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.03
             },
             {
                 "name": "Kick",
                 "spellId": 1766,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Pistol Shot",
-                "spellId": 185763,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 3.25
             },
             {
                 "name": "Sinister Strike",
                 "spellId": 193315,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.83
             },
             {
                 "name": "Dispatch",
                 "spellId": 2098,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.64
             },
             {
                 "name": "Pistol Shot",
                 "spellId": 185763,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.63
             },
             {
                 "name": "Sinister Strike",
                 "spellId": 193315,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.63
             },
             {
                 "name": "Dispatch",
                 "spellId": 2098,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.5
             },
             {
                 "name": "Pistol Shot",
                 "spellId": 185763,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.51
             },
             {
                 "name": "Dispatch",
                 "spellId": 2098,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.51
             },
             {
                 "name": "Sinister Strike",
                 "spellId": 193315,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.5
             }
         ],
         "matchId": "83eb5878382e51e490378c7fb062600c",
@@ -797,7 +803,7 @@
                     "pvpTalentId": 292
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:52+00:00"
+            "resolvedAt": "2026-09-06T12:25:35+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-3684-0E10184D",
@@ -979,7 +985,7 @@
             ],
             "targetClassName": "Mage",
             "targetSpecName": "Fire",
-            "resolvedAt": "2026-09-06T02:57:01+00:00"
+            "resolvedAt": "2026-09-06T12:25:43+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -992,49 +998,57 @@
                     "name": "Cloak of Shadows",
                     "spellId": 31224,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.1
                 },
                 {
                     "name": "Between the Eyes",
                     "spellId": 315341,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.5
                 },
                 {
                     "name": "Roll the Bones",
                     "spellId": 1214909,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.1
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.9
                 },
                 {
                     "name": "Coup de Grace",
                     "spellId": 441776,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.92
                 },
                 {
                     "name": "Kick",
                     "spellId": 1766,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.97
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.92
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.72
                 }
             ],
             "matchId": "83eb5878382e51e490378c7fb062600c",
@@ -1729,7 +1743,7 @@
                         "pvpTalentId": 292
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3684-0E10184D",
@@ -1922,7 +1936,7 @@
                 "targetDebuffs": [],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "10": {
@@ -1934,79 +1948,92 @@
                     "name": "Between the Eyes",
                     "spellId": 315341,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.41
                 },
                 {
                     "name": "Adrenaline Rush",
                     "spellId": 13750,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.87
                 },
                 {
                     "name": "Cloak of Shadows",
                     "spellId": 31224,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.1
                 },
                 {
                     "name": "Between the Eyes",
                     "spellId": 315341,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.5
                 },
                 {
                     "name": "Roll the Bones",
                     "spellId": 1214909,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.1
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.9
                 },
                 {
                     "name": "Coup de Grace",
                     "spellId": 441776,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.92
                 },
                 {
                     "name": "Kick",
                     "spellId": 1766,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.97
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.92
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.72
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.51
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.94
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.31
                 }
             ],
             "matchId": "83eb5878382e51e490378c7fb062600c",
@@ -2701,7 +2728,7 @@
                         "pvpTalentId": 292
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3684-0E10184D",
@@ -2878,7 +2905,7 @@
                 "targetDebuffs": [],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "12": {
@@ -2890,79 +2917,85 @@
                     "name": "Between the Eyes",
                     "spellId": 315341,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.63
                 },
                 {
                     "name": "Between the Eyes",
                     "spellId": 315341,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.23
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.03
                 },
                 {
                     "name": "Kick",
                     "spellId": 1766,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Pistol Shot",
-                    "spellId": 185763,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 3.25
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.83
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.64
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.63
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.63
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.5
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.51
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.51
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.5
                 }
             ],
             "matchId": "83eb5878382e51e490378c7fb062600c",
@@ -3657,7 +3690,7 @@
                         "pvpTalentId": 292
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3684-0E10184D",
@@ -3839,7 +3872,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "20": {
@@ -3851,127 +3884,148 @@
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.86
                 },
                 {
                     "name": "Kick",
                     "spellId": 1766,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.32
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.85
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.55
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.91
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.91
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.15
                 },
                 {
                     "name": "Adrenaline Rush",
                     "spellId": 13750,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.68
                 },
                 {
                     "name": "Roll the Bones",
                     "spellId": 1214909,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.08
                 },
                 {
                     "name": "Between the Eyes",
                     "spellId": 315341,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.88
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.72
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.52
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.31
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.92
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.72
                 },
                 {
                     "name": "Sprint",
                     "spellId": 2983,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.05
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.58
                 },
                 {
                     "name": "Coup de Grace",
                     "spellId": 441776,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.75
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.75
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.95
                 },
                 {
                     "name": "Kidney Shot",
                     "spellId": 408,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 19.75
                 }
             ],
             "matchId": "83eb5878382e51e490378c7fb062600c",
@@ -4666,7 +4720,7 @@
                         "pvpTalentId": 292
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3684-0E10184D",
@@ -4880,7 +4934,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "30": {
@@ -4892,175 +4946,204 @@
                     "name": "Cloak of Shadows",
                     "spellId": 31224,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.09
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.73
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.74
                 },
                 {
                     "name": "Sprint",
                     "spellId": 2983,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.39
                 },
                 {
                     "name": "Grappling Hook",
                     "spellId": 195457,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.11
                 },
                 {
                     "name": "Coup de Grace",
                     "spellId": 441776,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.45
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.64
                 },
                 {
                     "name": "Shiv",
                     "spellId": 5938,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.86
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.86
                 },
                 {
                     "name": "Kick",
                     "spellId": 1766,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.32
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.85
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.55
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.91
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.91
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.15
                 },
                 {
                     "name": "Adrenaline Rush",
                     "spellId": 13750,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.68
                 },
                 {
                     "name": "Roll the Bones",
                     "spellId": 1214909,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 18.08
                 },
                 {
                     "name": "Between the Eyes",
                     "spellId": 315341,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 18.88
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.72
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.52
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.31
                 },
                 {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.92
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.72
                 },
                 {
                     "name": "Sprint",
                     "spellId": 2983,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.05
                 },
                 {
                     "name": "Pistol Shot",
                     "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.58
                 },
                 {
                     "name": "Coup de Grace",
                     "spellId": 441776,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.75
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.75
                 },
                 {
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.95
                 },
                 {
                     "name": "Kidney Shot",
                     "spellId": 408,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 29.75
                 }
             ],
             "matchId": "83eb5878382e51e490378c7fb062600c",
@@ -5755,7 +5838,7 @@
                         "pvpTalentId": 292
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3684-0E10184D",
@@ -5949,9 +6032,9 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:54:39+00:00"
+    "generated_at": "2026-09-06T12:24:00+00:00"
 }

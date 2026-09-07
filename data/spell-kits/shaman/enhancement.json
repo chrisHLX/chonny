@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-06T02:12:51+00:00",
-    "spellCacheVersion": 4136,
+    "generatedAt": "2026-09-07T01:42:15+00:00",
+    "spellCacheVersion": 4155,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -30,7 +30,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10493,
@@ -59,7 +60,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10627,
@@ -88,7 +90,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10504,
@@ -117,7 +120,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10564,
@@ -198,9 +202,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -210,11 +220,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z"
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -272,9 +283,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -284,11 +301,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z"
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -390,9 +408,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -402,7 +426,7 @@
                             "is_passive": true,
                             "icon_name": "spell_shaman_ancestralawakening.jpg",
                             "created_at": "2026-07-30T14:03:29.000000Z",
-                            "updated_at": "2026-09-03T03:33:43.000000Z",
+                            "updated_at": "2026-09-06T04:00:29.000000Z",
                             "effects": [
                                 {
                                     "id": 19340,
@@ -504,7 +528,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -60,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 10586
                     }
                 ]
             },
@@ -520,7 +545,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 10505,
@@ -549,7 +575,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10589,
@@ -578,7 +605,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10481,
@@ -607,7 +635,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10468,
@@ -684,9 +713,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -696,7 +731,7 @@
                             "is_passive": true,
                             "icon_name": "spell_shaman_astralshift.jpg",
                             "created_at": "2026-07-30T14:03:28.000000Z",
-                            "updated_at": "2026-09-03T03:33:43.000000Z",
+                            "updated_at": "2026-09-06T04:00:29.000000Z",
                             "effects": [
                                 {
                                     "id": 19117,
@@ -734,7 +769,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 10487
                     }
                 ]
             },
@@ -750,7 +786,8 @@
                 "offensive": false,
                 "defensive": true,
                 "label": "Defensive"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 10630,
@@ -779,7 +816,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10490,
@@ -808,7 +846,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10702,
@@ -837,7 +876,8 @@
             "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10471,
@@ -930,9 +970,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -942,7 +988,7 @@
                             "is_passive": true,
                             "icon_name": "spell_nature_brilliance.jpg",
                             "created_at": "2026-07-30T14:03:28.000000Z",
-                            "updated_at": "2026-09-03T03:33:40.000000Z",
+                            "updated_at": "2026-09-06T04:00:22.000000Z",
                             "effects": [
                                 {
                                     "id": 19101,
@@ -967,7 +1013,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -20,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 10479
                     }
                 ]
             },
@@ -979,7 +1026,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Stun"
         },
         {
             "spellId": 10457,
@@ -1379,7 +1427,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10470,
@@ -2003,7 +2052,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10575,
@@ -2032,7 +2082,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10463,
@@ -2078,7 +2129,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10629,
@@ -2124,7 +2176,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10584,
@@ -2153,7 +2206,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10696,
@@ -2182,7 +2236,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10565,
@@ -2586,7 +2641,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Buff"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 10577,
@@ -2632,7 +2688,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10632,
@@ -2661,7 +2718,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10582,
@@ -2726,9 +2784,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -2738,109 +2802,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 19340,
-                                                "spell_id": 10586,
-                                                "effect_index": 1,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19341,
-                                                "spell_id": 10586,
-                                                "effect_index": 2,
-                                                "type": "Dummy",
-                                                "base_value": 100,
-                                                "scaled_value": 100,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": 0.35,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19342,
-                                                "spell_id": 10586,
-                                                "effect_index": 3,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19343,
-                                                "spell_id": 10586,
-                                                "effect_index": 4,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -60000,
-                                                "scaled_value": -60000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19344,
-                                                "spell_id": 10586,
-                                                "effect_index": 5,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Duration",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 1,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19345,
-                                                "spell_id": 10586,
-                                                "effect_index": 6,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Effect 1",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 3,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -2882,9 +2849,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -2894,11 +2867,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z"
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -2956,9 +2930,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -2968,11 +2948,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z"
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -3305,7 +3286,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Buff"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 10476,
@@ -3399,7 +3381,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10456,
@@ -3558,7 +3541,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10460,
@@ -3637,7 +3621,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Root"
         },
         {
             "spellId": 10648,
@@ -3666,7 +3651,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10697,
@@ -3825,7 +3811,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10620,
@@ -3854,7 +3841,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10569,
@@ -3883,7 +3871,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10652,
@@ -3912,7 +3901,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10497,
@@ -3958,7 +3948,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10501,
@@ -3987,7 +3978,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10593,
@@ -4016,7 +4008,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10488,
@@ -4045,7 +4038,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10583,
@@ -4074,7 +4068,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10503,
@@ -4103,7 +4098,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10506,
@@ -4132,7 +4128,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 9895,
@@ -4182,7 +4179,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 10591,
@@ -4420,7 +4418,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10496,
@@ -4449,7 +4448,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10597,
@@ -4495,7 +4495,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10525,
@@ -4590,7 +4591,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10579,
@@ -4623,7 +4625,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 10570,
@@ -4652,7 +4655,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10475,
@@ -4892,7 +4896,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10474,
@@ -4921,7 +4926,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10486,
@@ -4967,7 +4973,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10698,
@@ -4996,7 +5003,8 @@
             "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10472,
@@ -5025,7 +5033,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 9756,
@@ -5297,7 +5306,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10462,
@@ -5390,9 +5400,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -5402,7 +5418,7 @@
                             "is_passive": true,
                             "icon_name": "spell_shaman_hex.jpg",
                             "created_at": "2026-07-30T14:03:28.000000Z",
-                            "updated_at": "2026-09-03T03:33:39.000000Z",
+                            "updated_at": "2026-09-06T04:00:18.000000Z",
                             "effects": [
                                 {
                                     "id": 19099,
@@ -5424,7 +5440,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -15,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 10477
                     }
                 ]
             },
@@ -5436,7 +5453,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Incapacitate"
         },
         {
             "spellId": 10568,
@@ -5515,7 +5533,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10639,
@@ -5544,7 +5563,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10499,
@@ -5573,7 +5593,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10509,
@@ -5602,7 +5623,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10507,
@@ -5631,7 +5653,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10574,
@@ -5660,7 +5683,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10461,
@@ -5837,9 +5861,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -5849,11 +5879,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z"
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -6026,7 +6057,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 10466,
@@ -6648,9 +6680,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": "40 yards",
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Other",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -6660,7 +6698,7 @@
                             "is_passive": true,
                             "icon_name": "spell_fire_ragnaros_lavabolt.jpg",
                             "created_at": "2026-07-30T14:03:29.000000Z",
-                            "updated_at": "2026-09-03T03:33:41.000000Z",
+                            "updated_at": "2026-09-06T04:00:25.000000Z",
                             "effects": [
                                 {
                                     "id": 19312,
@@ -6698,7 +6736,8 @@
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -6,
-                        "modifier_unit": "seconds"
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 10573
                     }
                 ]
             },
@@ -6714,7 +6753,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 10631,
@@ -6743,7 +6783,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10075,
@@ -6805,7 +6846,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": "Stun"
         },
         {
             "spellId": 10587,
@@ -6834,7 +6876,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10645,
@@ -6863,7 +6906,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10566,
@@ -7088,9 +7132,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -7100,11 +7150,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z"
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -7338,9 +7389,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -7350,11 +7407,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z"
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -7524,9 +7582,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -7536,109 +7600,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 19340,
-                                                "spell_id": 10586,
-                                                "effect_index": 1,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19341,
-                                                "spell_id": 10586,
-                                                "effect_index": 2,
-                                                "type": "Dummy",
-                                                "base_value": 100,
-                                                "scaled_value": 100,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": 0.35,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19342,
-                                                "spell_id": 10586,
-                                                "effect_index": 3,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19343,
-                                                "spell_id": 10586,
-                                                "effect_index": 4,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -60000,
-                                                "scaled_value": -60000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19344,
-                                                "spell_id": 10586,
-                                                "effect_index": 5,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Duration",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 1,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19345,
-                                                "spell_id": 10586,
-                                                "effect_index": 6,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Effect 1",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 3,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -8046,7 +8013,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10492,
@@ -8156,7 +8124,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10573,
@@ -8185,7 +8154,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10633,
@@ -8231,7 +8201,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10489,
@@ -8260,7 +8231,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10459,
@@ -8289,7 +8261,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10622,
@@ -8318,7 +8291,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10484,
@@ -8347,7 +8321,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10594,
@@ -8376,7 +8351,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10580,
@@ -8422,7 +8398,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10637,
@@ -8451,7 +8428,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10641,
@@ -8480,7 +8458,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10487,
@@ -8509,7 +8488,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10498,
@@ -8572,7 +8552,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10651,
@@ -8601,7 +8582,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10511,
@@ -8630,7 +8612,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10592,
@@ -8757,7 +8740,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10643,
@@ -8786,7 +8770,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10455,
@@ -8865,7 +8850,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10581,
@@ -8894,7 +8880,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10502,
@@ -8923,7 +8910,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10485,
@@ -8952,7 +8940,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10571,
@@ -8981,7 +8970,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10621,
@@ -9010,7 +9000,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10705,
@@ -9039,7 +9030,8 @@
             "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10465,
@@ -9068,7 +9060,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10478,
@@ -9097,7 +9090,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10510,
@@ -9126,7 +9120,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10483,
@@ -9155,7 +9150,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10467,
@@ -9233,7 +9229,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10646,
@@ -9262,7 +9259,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10585,
@@ -9291,7 +9289,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10479,
@@ -9320,7 +9319,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10701,
@@ -9349,7 +9349,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10626,
@@ -9378,7 +9379,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10599,
@@ -9407,7 +9409,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10590,
@@ -9436,7 +9439,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10595,
@@ -9465,7 +9469,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10572,
@@ -9494,7 +9499,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10619,
@@ -9540,7 +9546,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10576,
@@ -9569,7 +9576,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 9759,
@@ -9618,9 +9626,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -9630,109 +9644,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 19340,
-                                                "spell_id": 10586,
-                                                "effect_index": 1,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19341,
-                                                "spell_id": 10586,
-                                                "effect_index": 2,
-                                                "type": "Dummy",
-                                                "base_value": 100,
-                                                "scaled_value": 100,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": 0.35,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19342,
-                                                "spell_id": 10586,
-                                                "effect_index": 3,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19343,
-                                                "spell_id": 10586,
-                                                "effect_index": 4,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -60000,
-                                                "scaled_value": -60000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19344,
-                                                "spell_id": 10586,
-                                                "effect_index": 5,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Duration",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 1,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19345,
-                                                "spell_id": 10586,
-                                                "effect_index": 6,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Effect 1",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 3,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -9774,9 +9691,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -9786,109 +9709,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 19340,
-                                                "spell_id": 10586,
-                                                "effect_index": 1,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19341,
-                                                "spell_id": 10586,
-                                                "effect_index": 2,
-                                                "type": "Dummy",
-                                                "base_value": 100,
-                                                "scaled_value": 100,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": 0.35,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19342,
-                                                "spell_id": 10586,
-                                                "effect_index": 3,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19343,
-                                                "spell_id": 10586,
-                                                "effect_index": 4,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -60000,
-                                                "scaled_value": -60000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19344,
-                                                "spell_id": 10586,
-                                                "effect_index": 5,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Duration",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 1,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19345,
-                                                "spell_id": 10586,
-                                                "effect_index": 6,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Effect 1",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 3,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -10026,9 +9852,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -10038,11 +9870,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z"
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -10244,9 +10077,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -10256,11 +10095,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z"
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -10784,9 +10624,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": "40 yards",
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Offensive",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -10796,7 +10642,7 @@
                             "is_passive": true,
                             "icon_name": "spell_shaman_focusedstrikes.jpg",
                             "created_at": "2026-07-30T14:03:29.000000Z",
-                            "updated_at": "2026-09-03T03:33:41.000000Z",
+                            "updated_at": "2026-09-06T04:00:24.000000Z",
                             "effects": [
                                 {
                                     "id": 19309,
@@ -10850,14 +10696,16 @@
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
-                        "modifier_unit": "charges"
+                        "modifier_unit": "charges",
+                        "selection_spell_id": 10572
                     }
                 ]
             },
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10634,
@@ -10886,7 +10734,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10567,
@@ -11354,7 +11203,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 10628,
@@ -11383,7 +11233,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10644,
@@ -11412,7 +11263,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10623,
@@ -11458,7 +11310,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10578,
@@ -11487,7 +11340,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10280,
@@ -11730,7 +11584,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Buff"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 10638,
@@ -11759,7 +11614,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10295,
@@ -12335,7 +12191,8 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10508,
@@ -12364,7 +12221,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10586,
@@ -12393,7 +12251,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10598,
@@ -12422,7 +12281,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10482,
@@ -12451,7 +12311,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10704,
@@ -12480,7 +12341,8 @@
             "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10647,
@@ -12509,7 +12371,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10494,
@@ -12538,7 +12401,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10650,
@@ -12567,7 +12431,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10469,
@@ -12596,7 +12461,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10636,
@@ -12642,7 +12508,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10491,
@@ -12671,7 +12538,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10458,
@@ -12734,7 +12602,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10624,
@@ -12763,7 +12632,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10588,
@@ -12792,7 +12662,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10549,
@@ -13068,7 +12939,8 @@
                 "offensive": true,
                 "defensive": false,
                 "label": "Offensive Spell"
-            }
+            },
+            "drCategory": null
         },
         {
             "spellId": 10625,
@@ -13114,7 +12986,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10477,
@@ -13143,7 +13016,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10635,
@@ -13172,7 +13046,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10642,
@@ -13201,7 +13076,8 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10473,
@@ -13312,7 +13188,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10464,
@@ -13390,7 +13267,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10563,
@@ -13501,7 +13379,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10495,
@@ -13530,7 +13409,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 9829,
@@ -13579,9 +13459,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -13591,109 +13477,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 19340,
-                                                "spell_id": 10586,
-                                                "effect_index": 1,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19341,
-                                                "spell_id": 10586,
-                                                "effect_index": 2,
-                                                "type": "Dummy",
-                                                "base_value": 100,
-                                                "scaled_value": 100,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": 0.35,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19342,
-                                                "spell_id": 10586,
-                                                "effect_index": 3,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19343,
-                                                "spell_id": 10586,
-                                                "effect_index": 4,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -60000,
-                                                "scaled_value": -60000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19344,
-                                                "spell_id": 10586,
-                                                "effect_index": 5,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Duration",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 1,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19345,
-                                                "spell_id": 10586,
-                                                "effect_index": 6,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Effect 1",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 3,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -13735,9 +13524,15 @@
                                         "bypasses_active_defense": false,
                                         "silence_immune_by_school": false,
                                         "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
                                         "category": "Other",
                                         "cast_type": "instant",
                                         "chain_target": null,
@@ -13747,109 +13542,12 @@
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
                                         "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-03T03:33:43.000000Z",
-                                        "effects": [
-                                            {
-                                                "id": 19340,
-                                                "spell_id": 10586,
-                                                "effect_index": 1,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19341,
-                                                "spell_id": 10586,
-                                                "effect_index": 2,
-                                                "type": "Dummy",
-                                                "base_value": 100,
-                                                "scaled_value": 100,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": 0.35,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19342,
-                                                "spell_id": 10586,
-                                                "effect_index": 3,
-                                                "type": "Dummy",
-                                                "base_value": 10,
-                                                "scaled_value": 10,
-                                                "misc_value": null,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-08-07T15:40:06.000000Z"
-                                            },
-                                            {
-                                                "id": 19343,
-                                                "spell_id": 10586,
-                                                "effect_index": 4,
-                                                "type": "Add Flat Modifier (107): Spell Cooldown",
-                                                "base_value": -60000,
-                                                "scaled_value": -60000,
-                                                "misc_value": 11,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19344,
-                                                "spell_id": 10586,
-                                                "effect_index": 5,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Duration",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 1,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            },
-                                            {
-                                                "id": 19345,
-                                                "spell_id": 10586,
-                                                "effect_index": 6,
-                                                "type": "Apply Flat Modifier w/ Label (219): Spell Effect 1",
-                                                "base_value": 2000,
-                                                "scaled_value": 2000,
-                                                "misc_value": 3,
-                                                "affected_schools": null,
-                                                "sp_coefficient": null,
-                                                "pvp_coefficient": null,
-                                                "rank_op": null,
-                                                "rank_values": null,
-                                                "created_at": "2026-07-30T14:03:29.000000Z",
-                                                "updated_at": "2026-09-02T11:58:14.000000Z"
-                                            }
-                                        ]
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
-                                    "modifier_unit": "seconds"
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 10586
                                 }
                             ]
                         }
@@ -13989,9 +13687,15 @@
                             "bypasses_active_defense": false,
                             "silence_immune_by_school": false,
                             "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
                             "spell_type": "None",
                             "range_yards": "40 yards",
                             "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
                             "category": "Offensive",
                             "cast_type": "instant",
                             "chain_target": null,
@@ -14001,7 +13705,7 @@
                             "is_passive": true,
                             "icon_name": "spell_shaman_focusedstrikes.jpg",
                             "created_at": "2026-07-30T14:03:29.000000Z",
-                            "updated_at": "2026-09-03T03:33:41.000000Z",
+                            "updated_at": "2026-09-06T04:00:24.000000Z",
                             "effects": [
                                 {
                                     "id": 19309,
@@ -14055,14 +13759,16 @@
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
-                        "modifier_unit": "charges"
+                        "modifier_unit": "charges",
+                        "selection_spell_id": 10572
                     }
                 ]
             },
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         },
         {
             "spellId": 10480,
@@ -14091,7 +13797,8 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": false,
-            "offensiveDefensive": null
+            "offensiveDefensive": null,
+            "drCategory": null
         }
     ]
 }

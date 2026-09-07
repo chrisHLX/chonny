@@ -27,55 +27,64 @@
                 "name": "Void Blast",
                 "spellId": 450215,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.59
             },
             {
                 "name": "Void Blast",
                 "spellId": 450215,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 2.35
             },
             {
                 "name": "Void Blast",
                 "spellId": 450215,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.08
             },
             {
                 "name": "Penance",
                 "spellId": 47540,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.59
             },
             {
                 "name": "Void Shield",
                 "spellId": 1253593,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 6.98
             },
             {
                 "name": "Void Blast",
                 "spellId": 450215,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.74
             },
             {
                 "name": "Void Blast",
                 "spellId": 450215,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.46
             },
             {
                 "name": "Smite",
                 "spellId": 585,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 11.23
             },
             {
                 "name": "Penance",
                 "spellId": 47540,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.63
             }
         ],
         "matchId": "c226a9e83b42968ed59fb61344a00842",
@@ -761,7 +770,7 @@
                     "pvpTalentId": 10
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:49+00:00"
+            "resolvedAt": "2026-09-06T12:25:33+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-11-0E9F19E7",
@@ -967,7 +976,7 @@
             ],
             "targetClassName": "Mage",
             "targetSpecName": "Fire",
-            "resolvedAt": "2026-09-06T02:56:57+00:00"
+            "resolvedAt": "2026-09-06T12:25:40+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -980,7 +989,8 @@
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.44
                 }
             ],
             "matchId": "bce280d98960b6ab096a3d1d3af07b3b",
@@ -1675,7 +1685,7 @@
                         "pvpTalentId": 13
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3676-0EE49F2D",
@@ -1881,7 +1891,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "10": {
@@ -1893,43 +1903,50 @@
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.42
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.19
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.96
                 },
                 {
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.59
                 },
                 {
                     "name": "Void Shield",
                     "spellId": 1253593,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.98
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.74
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.46
                 }
             ],
             "matchId": "c226a9e83b42968ed59fb61344a00842",
@@ -2615,7 +2632,7 @@
                         "pvpTalentId": 10
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E9F19E7",
@@ -2817,7 +2834,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "12": {
@@ -2829,55 +2846,64 @@
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.59
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.35
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.08
                 },
                 {
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.59
                 },
                 {
                     "name": "Void Shield",
                     "spellId": 1253593,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.98
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.74
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.46
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.23
                 },
                 {
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.63
                 }
             ],
             "matchId": "c226a9e83b42968ed59fb61344a00842",
@@ -3563,7 +3589,7 @@
                         "pvpTalentId": 10
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E9F19E7",
@@ -3769,7 +3795,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "20": {
@@ -3781,91 +3807,106 @@
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.34
                 },
                 {
                     "name": "Flash Heal",
                     "spellId": 2061,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.47
                 },
                 {
                     "name": "Flash Heal",
                     "spellId": 2061,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.48
                 },
                 {
                     "name": "Power Word: Shield",
                     "spellId": 17,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.88
                 },
                 {
                     "name": "Mind Blast",
                     "spellId": 8092,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.71
                 },
                 {
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.82
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.59
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.35
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.08
                 },
                 {
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.59
                 },
                 {
                     "name": "Void Shield",
                     "spellId": 1253593,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.98
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.74
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450215,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.46
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 18.23
                 },
                 {
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.63
                 }
             ],
             "matchId": "c226a9e83b42968ed59fb61344a00842",
@@ -4551,7 +4592,7 @@
                         "pvpTalentId": 10
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E9F19E7",
@@ -4745,7 +4786,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Fire",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         },
         "30": {
@@ -4757,127 +4798,148 @@
                     "name": "Mind Blast",
                     "spellId": 8092,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.99
                 },
                 {
                     "name": "Evangelism",
                     "spellId": 472433,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.27
                 },
                 {
                     "name": "Power Infusion",
                     "spellId": 10060,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.66
                 },
                 {
                     "name": "Smite",
                     "spellId": 585,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.24
                 },
                 {
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.24
                 },
                 {
                     "name": "Shadow Word: Death",
                     "spellId": 32379,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.18
                 },
                 {
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.15
                 },
                 {
                     "name": "Psychic Scream",
                     "spellId": 8122,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.67
                 },
                 {
                     "name": "Shadow Word: Pain",
                     "spellId": 589,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.49
                 },
                 {
                     "name": "Dispel Magic",
                     "spellId": 528,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.43
                 },
                 {
                     "name": "Mass Dispel",
                     "spellId": 32375,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.27
                 },
                 {
                     "name": "Shadow Word: Pain",
                     "spellId": 589,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.44
                 },
                 {
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.38
                 },
                 {
                     "name": "Void Shield",
                     "spellId": 1253593,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.48
                 },
                 {
                     "name": "Ultimate Penitence",
                     "spellId": 421453,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.73
                 },
                 {
                     "name": "Shadow Word: Pain",
                     "spellId": 589,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.35
                 },
                 {
                     "name": "Dispel Magic",
                     "spellId": 528,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.49
                 },
                 {
                     "name": "Power Word: Radiance",
                     "spellId": 194509,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 24.6
                 },
                 {
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.74
                 },
                 {
                     "name": "Void Shield",
                     "spellId": 1253593,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.71
                 },
                 {
                     "name": "Penance",
                     "spellId": 47540,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.79
                 }
             ],
             "matchId": "fef5ec993665cce883e4bfe65837c397",
@@ -5572,7 +5634,7 @@
                         "pvpTalentId": 14
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3678-0BFB64D6",
@@ -5641,9 +5703,9 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Fury",
-                "resolvedAt": "2026-09-06T02:56:57+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:53:24+00:00"
+    "generated_at": "2026-09-06T12:23:07+00:00"
 }

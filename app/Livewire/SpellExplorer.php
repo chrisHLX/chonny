@@ -59,13 +59,36 @@ class SpellExplorer extends Component
 
     public ?int $specId = null;
 
-    public function mount(): void
+    /**
+     * True when this component is a panel inside App\Livewire\PvpGuides rather than its own
+     * /spells page. The parent owns the page header and the class/spec picker there, so both are
+     * suppressed to avoid two of each on one page; nothing about how the spell kit itself is
+     * computed or rendered changes. Standalone /spells leaves this false and is untouched.
+     */
+    public bool $embedded = false;
+
+    public function mount(?int $classId = null, ?int $specId = null, bool $embedded = false): void
     {
+        $this->embedded = $embedded;
+
+        // An explicitly-supplied spec (the embedded case) is used verbatim — the caller has
+        // already resolved and validated it, and re-deriving a default here would silently
+        // override the spec the viewer actually picked.
+        if ($specId !== null) {
+            $this->classId = $classId;
+            $this->specId = $specId;
+
+            // No bare page-view log here: the parent page logs its own view, and logging a
+            // second 'spell_explorer' row for every PvP Guides landing would inflate this page's
+            // own view count with visits that never chose to look at spells.
+            return;
+        }
+
         $firstClass = GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))
             ->orderBy('name')
             ->first();
 
-        if (!$firstClass) {
+        if (! $firstClass) {
             return;
         }
 
@@ -121,7 +144,7 @@ class SpellExplorer extends Component
 
     public function getSpecializationsProperty(): Collection
     {
-        if (!$this->classId) {
+        if (! $this->classId) {
             return collect();
         }
 
@@ -141,7 +164,7 @@ class SpellExplorer extends Component
     /** Drives the page's descriptive text — whether the currently-shown kit is this viewer's own saved picks or the spec's admin default. Cheap exists() check, separate from the full resolveActiveBuild() call inside getSpellReferencesProperty() below (that one needs the full build row; this only needs to know which case applies). */
     public function getUsingPersonalBuildProperty(): bool
     {
-        if (!$this->specId || !auth()->check()) {
+        if (! $this->specId || ! auth()->check()) {
             return false;
         }
 
@@ -153,7 +176,7 @@ class SpellExplorer extends Component
      */
     public function getSpellReferencesProperty(): array
     {
-        if (!$this->classId || !$this->specId) {
+        if (! $this->classId || ! $this->specId) {
             return [];
         }
 
@@ -362,6 +385,9 @@ class SpellExplorer extends Component
             'specializations' => $this->specializations,
             'classSpecs' => $this->classSpecs,
             'usingPersonalBuild' => $this->usingPersonalBuild,
+            // Passed explicitly rather than relying on Livewire auto-exposing a public property
+            // as a bare view variable — same reasoning as 'usingPersonalBuild' directly above.
+            'embedded' => $this->embedded,
         ])->layout('layouts.app', [
             'title' => 'WoW Spell Explorer — Talent-Aware Cooldowns & Modifiers | MindCollector',
             'description' => 'Browse any WoW class/spec\'s full spell kit with talent-aware cooldowns, charges, crowd-control categories and every talent that modifies each ability.',

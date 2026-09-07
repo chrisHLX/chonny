@@ -4,7 +4,7 @@
         {{-- Header --}}
         <div>
             <h1 class="text-[17px] font-semibold text-ink">Page Usage</h1>
-            <p class="text-[13px] text-ink-muted mt-0.5">WoW Comps, Spell Explorer, and Burst Windows — page views and which classes/specs actually get looked at.</p>
+            <p class="text-[13px] text-ink-muted mt-0.5">Every tracked WoW page — WoW Comps, Spell Explorer, Top Burst Windows, PvP Guides, Top 10 CC Chains, the per-spell detail page and more — page views and which classes/specs actually get looked at.</p>
         </div>
 
         {{-- ── Summary row ── --}}
@@ -96,6 +96,33 @@
                             </div>
                             <div class="h-1.5 rounded-full bg-surface-2 overflow-hidden">
                                 <div class="h-full rounded-full bg-accent" style="width: {{ round(($row->count / $tabMax) * 100) }}%"></div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+
+        {{-- ── PvP Guides: tab usage ── --}}
+        <div class="linear-card overflow-hidden">
+            <div class="px-5 py-4 border-b border-line">
+                <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider">PvP Guides — tab opens</p>
+                <p class="text-[11px] text-ink-subtle mt-0.5">Which of the four per-spec views people actually switch to. Excludes the tab landed on at page load and re-clicks of the current one.</p>
+            </div>
+
+            @if($pvpGuidesTabBreakdown->isEmpty())
+                <p class="px-5 py-8 text-center text-[13px] text-ink-subtle">No tab opens recorded yet.</p>
+            @else
+                @php $pvpTabMax = $pvpGuidesTabBreakdown->max('count') ?: 1; @endphp
+                <div class="divide-y divide-line">
+                    @foreach($pvpGuidesTabBreakdown as $row)
+                        <div class="px-5 py-3">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <p class="text-[13px] text-ink">{{ $row->label }}</p>
+                                <p class="text-[12px] text-ink-muted">{{ number_format($row->count) }}</p>
+                            </div>
+                            <div class="h-1.5 rounded-full bg-surface-2 overflow-hidden">
+                                <div class="h-full rounded-full bg-accent" style="width: {{ round(($row->count / $pvpTabMax) * 100) }}%"></div>
                             </div>
                         </div>
                     @endforeach

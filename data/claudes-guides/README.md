@@ -118,53 +118,94 @@ treating as a working hypothesis for any future guide in this series — not ass
 law from an eleven-spec sample, but consistent enough across this many independently-picked specs
 to be worth taking seriously rather than dismissing as noise.
 
-## Burst Guides (added 2026-09-04)
+## Burst Guides (added 2026-09-04, rebuilt 2026-09-06)
 
 A second, separate page/subfolder, sharing this parent folder but otherwise independent of the
 eleven hand-written guides above — `/burst-guides`, `App\Livewire\BurstGuides`, reading
-`data/claudes-guides/burst-guides/{class}/{spec}.json`. Direct design brief: "a Definite series
-or combinations of keys (GCDs) to press," one compact block per spec (all 38 with real rotation
-data, not just the 11 with a hand-written guide), computed rather than authored.
+`data/claudes-guides/burst-guides/{class}/{spec}.json`. One plan per spec, for every spec with
+real rotation data (34 currently) rather than only the 11 with a hand-written guide — computed,
+never authored.
 
-**How it's built:** `php artisan wow:build-burst-guides` → `ArenaLogService::
-buildBurstGuideSequence()` — reads each spec's longest available real archived burst window
-(30s, preferred specifically because it gives the truncation step below enough data to actually
-find a repeat), filters out any step classified purely-defensive (via the same Offensive/
-Defensive classification WoW Comps' Cooldowns tabs use) unless it carries a `dr_category`
-(Crowd Control always survives the filter — "if it's part of the burst on the kill target, keep
-it"), then truncates the sequence the moment a 2+-step block repeats back-to-back (matching the
-design brief's own worked example: "mutilate mutilate envenom, mutilate mutilate envenom" —
-confirmed to occur verbatim in Assassination Rogue's own real 30s window once this was built).
-See that method's own docblock for the full design, including one flagged, unsolved limitation:
-"CC only if it's on the kill target" can't currently be verified per step, since the raw combat-
-log extraction upstream (wow-arena-archive's `offensive-rotations.php`) doesn't capture each
-individual cast's own destination — a CC step is presumed, not proven, relevant to the tracked
-target.
+### What it answers
 
-**What's stored vs. resolved live:** each JSON file holds ONLY an ordered `spellIds` list (plus
-computation metadata — source window length, raw/filtered counts, whether it truncated) — never
-a frozen name/cooldown/duration, same discipline as every other file in this folder.
+For a given spec: **how long its go actually lasts, how many globals fit inside it, and what to
+press in order** — grouped into the four things a burst actually consists of:
+
+- **Set up** — what you land before committing, so the damage can't simply be healed or walked
+  away from.
+- **Commit** — the cooldowns you stack together. The window starts here.
+- **Execute** — what you spend the window on.
+- **Fill** — what takes every global left over, with how many times per window it's really used.
+
+Plus **Also pressed** — things that genuinely show up in real windows but aren't part of dealing
+damage (mobility, defensives, utility), surfaced rather than silently dropped.
+
+### How it's built
+
+`php artisan wow:build-burst-guides` → `App\Http\Services\BurstGuideBuilder`. Read that class's
+docblock for the full derivation; the essentials:
+
+- **It aggregates the whole corpus, not one window.** `{ARENA_LOG_ARCHIVE_PATH}/rotations/{class}/
+  {spec}.jsonl` holds every real archived burst window for a spec — 200–1900 of them across dozens
+  of matches. Every figure is a per-ability rate across all of them (how often it appears, its
+  median timing, casts per window), so a step earns its place by being *typical*.
+- **Timing comes from the data.** Each spec's own global cooldown is measured from real cast
+  cadence (the method in `data/arena-logs/GCD and Go Analysis.md`), and every step's position is
+  its median offset from the spec's biggest cooldown. Phases follow from those offsets — nothing
+  assigns them independently.
+- **Window length prefers a real buff duration** from the cooldowns stacked at the start, since
+  that IS the window as a matter of game mechanics — but only when the data doesn't contradict it
+  and it's within a plausible bound, otherwise it falls back to the measured spread. Which basis
+  was used is stored (`goLengthBasis`) and the page says so.
+- **Control placement is measured from real matches**, not curated: `wow:analyze-cc-targeting`
+  scans every archived log for control landing on an opposing player, resolves that player's spec
+  from the match metadata, and reports how often each ability is used on the enemy healer —
+  normalised against chance, because in 3v3 an ability spread evenly hits the healer a third of the
+  time. 110,772 real applications give a usable sample for 81 of 132 CC-tagged spells. The measured
+  share is shown on the card, so the evidence is visible rather than just a verdict. Falls back to
+  the curated `spells.chain_target` where there is no sample, and to a `dr_category` inference
+  beyond that; which tier was used is always marked. `dr_category` still constrains the label —
+  control that breaks on damage can't hold the target you're bursting, so a low healer rate there
+  means incidental AoE catching (peel), never "use it on your kill target".
+- **Nothing is hand-authored per spec.** The only English on the page explains what a phase means,
+  never what a particular spec should do.
+
+**Why it was rebuilt on 2026-09-06.** The original version replayed the single highest-damage
+30-second window from ONE match, minus defensives, truncated the moment a 2+-step block repeated.
+Direct user feedback — that it "didn't really understand the mechanics and relied on examples
+only" — was correct on both counts. One anecdote from one player became the guide (including a
+mid-burst re-stealth), and the truncation rule's blind spot for single-ability repeats left
+Assassination Rogue's committed output ending `Ambush, Ambush, Ambush, Ambush`. The replaced
+implementation, `ArenaLogService::buildBurstGuideSequence()`, was deleted rather than left dead.
+
+**What's stored vs. resolved live:** spell_ids plus measured statistics only (presence, casts per
+window, median offset, role, phase) — never a frozen name, cooldown or duration, same discipline
+as every other file in this folder. `App\Livewire\BurstGuideClassBlock` resolves each id against
+live game data at render time.
+
+**Build-time only.** The corpus it aggregates lives in the arena archive and is deliberately not
+committed here (hundreds of megabytes across 38 specs) — only the small computed result is. A
+spec with no corpus is reported and skipped, never silently degraded to a weaker source. The
+command also prunes guides for specs that no longer have promoted rotation data; without that, the
+four specs culled from the archive on 2026-09-05 kept serving guides built from deleted matches
+(caught by the test suite, not by inspection).
 
 **Page shape — a thin parent + 13 lazy-loaded per-class children, not one all-at-once render**
-(redesigned 2026-09-04, same day as the initial build, after direct user pushback on an
-inflated/misleading memory-cost report — see CLAUDE.md's own dated follow-up for the full trace).
-`App\Livewire\BurstGuides` (the route's component) only lists which class slugs have data on
-disk — no spell resolution at all — and mounts one `<livewire:burst-guide-class-block lazy/>`
-per class (Livewire 3's `#[Lazy]` component loading). `App\Livewire\BurstGuideClassBlock` carries
-the real per-class resolution logic, scoped to just that one class's 2-4 specs, with its own
-Redis cache key (`spellCacheVersion()`/`deployedCodeFingerprint()`-keyed, same invalidation as
-WoW Comps' `wow_spell_references:*`) so viewing one class never invalidates/recomputes another.
-It deliberately does NOT reuse `SpecKitComputer::resolveEntriesForSpellIds()` (the same
-live-resolution path `ClaudesGuides` uses for one spec at a time) — that method's relation-
-hydrating rehydration was measured at ~430MB peak memory when called once per spec across all 38
-specs synchronously, a real production-500 risk. Instead `BurstGuideClassBlock::
-resolveBurstGuideSteps()` reads each spec's precomputed kit file directly as raw JSON (no
-Eloquent rehydration) for the same already-talent-computed cooldown/charges/category numbers.
-End-to-end verified result: an initial page paint of ~2MB/18KB (placeholders only, no real spec
-content yet), followed by 13 small independent background requests (~4MB/~100KB each, varies by
-class) instead of one blocking ~14MB/1.4MB render of all 508 step-cards at once.
+(2026-09-04, after direct user pushback on an inflated/misleading memory-cost report — see
+CLAUDE.md for the full trace). `App\Livewire\BurstGuides` only lists which class slugs have data
+on disk and mounts one `<livewire:burst-guide-class-block lazy/>` per class (Livewire 3's
+`#[Lazy]`). `App\Livewire\BurstGuideClassBlock` carries the real per-class resolution, scoped to
+one class's 2–4 specs, with its own `spellCacheVersion()`/`deployedCodeFingerprint()`-keyed cache
+so viewing one class never invalidates another. It deliberately does NOT reuse
+`SpecKitComputer::resolveEntriesForSpellIds()` — that path's relation-hydrating rehydration was
+measured at ~430MB peak across all specs; it reads each spec's precomputed kit file directly as
+raw JSON for the same already-talent-computed numbers.
 
-**Kept fresh automatically:** `php artisan wow:refresh-match-derived` (see that command's own
-docblock) runs `wow:build-burst-guides` as its final step, right after promoting fresh rotation
-data — a new match pull can never leave this page's data silently stale the way earlier gaps in
-that same orchestrator's history did for CC chains/rotations before it existed.
+**Kept fresh automatically:** `php artisan wow:refresh-match-derived` runs `wow:build-burst-guides`
+as its final step, right after regenerating and promoting rotation data.
+
+**Tested against the committed output.** `BurstGuideBuilder` can't run in CI (no corpus), so
+`tests/Feature/Livewire/BurstGuidesTest.php` asserts the invariants every committed guide must
+satisfy — exactly one anchor, sequence ordered by median offset, phase agreeing with the timing it
+was derived from, globals following from window ÷ GCD, GCD within real bounds, and a minimum
+window count so a guide can never silently regress to an anecdote.

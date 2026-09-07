@@ -1,21 +1,85 @@
-# cc_immunity_note curation — see the 2026_09_02 migration's own docblock for the full
-# rationale. This file exists specifically for PvP-talent-only CC-immunity/usable-while-CC'd
-# facts, which cannot be auto-derived the way spells.usable_while_cc/bypasses_active_defense
-# are for normal baseline/talent abilities (via real Attribute-line flags — see
-# SpellDataFileParser's docblock). Confirmed why: every PvP talent checked (e.g. Phase Shift,
-# spell_id 408557) has ZERO spell_effects rows in this pipeline — PvP talents are description-
-# only data (name/description/spec availability), never full SimC Attributes+Effects dumps like
-# regular abilities get. So for this category specifically, the free-text description is the
-# ONLY source of truth, and it has to be hand-read and hand-transcribed, same discipline as
-# baseline-spec-overrides.txt/cc-synergies-overrides.txt — verify one line at a time, never
-# bulk-guess.
+# CC-immunity curation for spells whose immunity has NO structured source anywhere in this
+# pipeline. See the 2026_09_07 migration's docblock for the full measured rationale; the short
+# version, re-verified 2026-09-07:
 #
-# Format: spell_id | note (free text, may contain most punctuation but NOT a literal "|")
+#   - 220 of 250 PvP talents have ZERO spell_effects rows, so ccImmunityGrantedBy() has nothing
+#     to read. 0 of those 220 appear in the raw SimC dumps at all (checked against all 12,468
+#     `Name : X (id=N)` records) - SimC genuinely does not ship PvP talent spells; this is not
+#     regenerate-filtered.php dropping them. Only 10 of 220 have a same-name sibling with effects.
+#   - Blizzard's own /data/wow/spell/{id} was called live and returns id/name/description/media
+#     only. There is no official structured source to import. The free-text description IS the
+#     source of truth, and it has to be hand-read - one verified line at a time, same discipline
+#     as baseline-spec-overrides.txt and cc-synergies-overrides.txt.
 #
-# spell_id is the REAL spell that carries this behavior — for a passive PvP talent that
-# modifies a different spell's behavior (Phase Shift modifies Fade), the note is attached to
-# the spell whose card a player would actually be looking at when they need this fact, which is
-# usually the modified spell itself, not the talent. State clearly in the note which talent is
-# required, since the base spell alone does NOT have this behavior.
+# FORMAT (4 fields):  spell_id | mechanics | gating_spell_id | note
+#
+#   spell_id         EXTERNAL Blizzard spell_id (matches spells.spell_id) of the spell a player
+#                    actually PRESSES. For the dominant "passive PvP talent modifies a base
+#                    ability" shape, that is the base ability, NOT the talent - a player looking
+#                    for this fact is looking at the ability's card. Pick the copy the site really
+#                    renders (cross-check data/spell-kits/{class}/{spec}.json), not just any
+#                    same-named record.
+#
+#   mechanics        Comma-separated mechanic names from
+#                    ModuleSpellReferenceService::MECHANIC_IMMUNITY_CODE_MAP - exactly one of
+#                    Stun, Silence, Incapacitate, Fear, Interrupt, Sap. Validated at import;
+#                    anything else is warned about and the line skipped, never stored.
+#
+#                    THERE IS NO WILDCARD, deliberately. Blizzard's text carries real carve-outs
+#                    (Phase Shift avoids all attacks and spells but explicitly NOT interrupts), so
+#                    an "all CC" value would silently over-claim. List every mechanic explicitly.
+#
+#                    Only Stun / Silence / Incapacitate currently generate counter rows - those
+#                    are the three DR categories SpellCounterIndexer maps by exact name. Fear and
+#                    Interrupt are still worth recording: they display on the spell card, and they
+#                    are already correct if that map is ever widened. See the note at the bottom.
+#
+#   gating_spell_id  EXTERNAL spell_id of the PvP talent that must be selected for the immunity to
+#                    exist at all. Leave EMPTY when the listed spell grants it on its own.
+#                    External, not the internal PK, for the same reason
+#                    conditional_dr_gating_spell_id is: it is what this file states, what the
+#                    description names, and what survives a re-import unchanged.
+#
+#   note             Free text, last field, may contain anything except a literal pipe character.
+#                    State which talent is required and any carve-out, since the base ability
+#                    alone does NOT have this behaviour.
+#
+# Every line below was read off the gating talent's own in-game description text, quoted in the
+# note. Nothing here is inferred from a name or assumed from similar-looking entries.
 
-586 | With the "Phase Shift" PvP talent known (all 3 Priest specs, spell_id 408557), casting Fade also grants immunity to all attacks and spells for 1 sec. Interrupt effects are not affected by Phase Shift. Base Fade (no talent) has no immunity component — see Attributes-derived data on this spell for its own (none) CC-immunity flags.
+586 | Stun,Silence,Incapacitate,Fear | 408557 | With the "Phase Shift" PvP talent (all 3 Priest specs), casting Fade also steps you into the shadows, avoiding all attacks and spells for 1 sec. Interrupt effects are explicitly NOT affected by Phase Shift, which is why Interrupt is absent above. Base Fade without the talent grants no immunity at all.
+198793 | Stun,Silence,Incapacitate,Fear | 354489 | With the "Glimpse" PvP talent (all 3 Demon Hunter specs), Vengeful Retreat provides immunity to loss of control effects and reduces damage taken by 20% until you land. Base Vengeful Retreat grants no immunity.
+354540 | Stun,Silence,Incapacitate,Fear | | Nimble Brew is itself a Brewmaster PvP talent and is cast directly - no separate gating talent. Douses allies in the target area, preventing the next full loss of control effect within 8 sec. One-shot prevention, not a duration of blanket immunity.
+360995 | Stun,Silence,Incapacitate,Fear | 1241352 | With the "Nullifying Shroud" PvP talent (all 3 Evoker specs), Verdant Embrace wreathes you in arcane energy, preventing the next full loss of control effect against you for 3 sec. One-shot prevention. Curated on spell_id 360995 (the copy carrying the real 24s cooldown) - note a second copy, 361195, also renders on Augmentation/Preservation, which is a separate pre-existing duplicate worth a look.
+363916 | Silence,Interrupt | 378444 | With the "Obsidian Mettle" PvP talent (all 3 Evoker specs), you gain immunity to interrupt, silence and pushback effects while Obsidian Scales is active. Pushback has no mechanic in this vocabulary and is therefore not represented above.
+34861 | Silence,Interrupt | 357481 | With the "Sanctified Ground" PvP talent (Holy Priest), Holy Word: Sanctify blesses the ground so all allies standing within are immune to all silence and interrupt effects for 5 sec. Positional - the immunity only applies while an ally stands in the area.
+19574 | Fear | 356976 | With the "The Beast Within" PvP talent (Beast Mastery Hunter), Bestial Wrath provides immunity to Fear and Horror effects for you and your pets for 8 sec. Horror has no mechanic in this vocabulary and is therefore not represented above.
+116680 | Silence,Interrupt | 468430 | With the "Zen Focus Tea" PvP talent (Mistweaver Monk), Thunder Focus Tea provides immunity to Silence and Interrupt effects for 5 sec.
+8122 | Stun,Silence,Incapacitate,Fear | 1246968 | With the "Psychic Shroud" PvP talent (Holy Priest), when your Psychic Scream affects 1 or more players the next crowd control effect against you is prevented, lasting 6 sec. Conditional on the fear actually landing on at least one player, and a one-shot prevention rather than blanket immunity.
+
+# --- Deliberately NOT curated here, each checked and rejected for a stated reason -------------
+#
+# 205596 Detainment (DH)      - makes the IMPRISONED TARGET immune to damage and healing. That is
+#                               an effect on the victim, not a defensive tool for the caster, so
+#                               it is not a counter to anything and must not be listed.
+# 411764 Enduring Rage (Fury) - no immunity at all; it grants Enrage/Recklessness. Matched only a
+#                               naive "loss of control" text scan.
+# 228049 Guardian of the      - "immune to all damage" is a damage immunity, not CC immunity. A
+#        Forgotten Queen        damage-immune target can still be stunned.
+# 204018 Blessing of          - already works: it carries real School Immunity effect data and
+#        Spellwarding           already resolves as a counter. Do not duplicate it here.
+# 353313 Peaceweaver (MW)     - "immunity to magical damage and harmful effects" is SCHOOL immunity
+#                               (gated on Revival), not mechanic immunity. Listing mechanics would
+#                               over-claim, since physical CC still lands. Needs a school-immunity
+#                               override, which this file does not yet support.
+# Snare / movement / knockback only, no mechanic in this vocabulary:
+#   205629 Demonic Trample, 407581 Icy Feet, 201372 Ride the Wind, 199542 Steed of Glory,
+#   1233429 Price of Progress.
+#
+# --- Known gap, flagged not fixed -------------------------------------------------------------
+# SpellCounterIndexer::DR_CATEGORY_TO_IMMUNITY_MECHANIC maps only Stun/Silence/Incapacitate, so a
+# Fear immunity curated above does not yet produce a counter row against a Disorient-category CC.
+# Blizzard's "Fear" mechanic and this project's "Disorient" DR category do describe the same real
+# thing, so that mapping is probably correct to add - but it would change existing counter output
+# for every spell, not just these, so it belongs in its own reviewed change rather than riding
+# along with this one.

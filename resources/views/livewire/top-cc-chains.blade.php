@@ -4,16 +4,7 @@
     // Same box, same color map as WoW Comps' Crowd Control tab (direct request, 2026-08-31:
     // "can we show the same box for the cc ability as the one in our crowd control tab") — see
     // wow-comps.blade.php's own $drBadge for the source of truth this mirrors.
-    $drBadge = [
-        'Stun' => 'badge-red',
-        'Disorient' => 'badge-blue',
-        'Incapacitate' => 'badge-amber',
-        'Root' => 'badge-green',
-        'Silence' => 'badge-gray',
-        'Knockback' => 'badge-orange',
-        'Disarm' => 'badge-gold',
-        'Slow' => 'badge-gray',
-    ];
+    $drBadge = config('spell_display.dr_badges');
 @endphp
 
 <div class="max-w-6xl mx-auto px-4 py-8 space-y-5">

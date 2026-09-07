@@ -1,8 +1,8 @@
 {
     "class": "warrior",
     "spec": "fury",
-    "windows": 908,
-    "killWindows": 163,
+    "windows": 906,
+    "killWindows": 162,
     "matches": 101,
     "anchors": [
         "Avatar",
@@ -37,67 +37,78 @@
                 "name": "Execute",
                 "spellId": 280735,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.28
             },
             {
                 "name": "Rampage",
                 "spellId": 184367,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.26
             },
             {
                 "name": "Bloodbath",
                 "spellId": 335096,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.24
             },
             {
                 "name": "Crushing Blow",
                 "spellId": 335097,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.38
             },
             {
                 "name": "Execute",
                 "spellId": 280735,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.31
             },
             {
                 "name": "Rampage",
                 "spellId": 184367,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.28
             },
             {
                 "name": "Crushing Blow",
                 "spellId": 335097,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 7.34
             },
             {
                 "name": "Rampage",
                 "spellId": 184367,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.52
             },
             {
                 "name": "Pummel",
                 "spellId": 6552,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 9.41
             },
             {
                 "name": "Rampage",
                 "spellId": 184367,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.71
             },
             {
                 "name": "Crushing Blow",
                 "spellId": 335097,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.68
             }
         ],
         "matchId": "b65a509b7e7986a3714cee8d78768317",
@@ -783,7 +794,7 @@
                     "pvpTalentId": 389
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:50+00:00"
+            "resolvedAt": "2026-09-06T12:25:35+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-60-0FA9081B",
@@ -1013,7 +1024,7 @@
             ],
             "targetClassName": "Shaman",
             "targetSpecName": "Restoration",
-            "resolvedAt": "2026-09-06T02:56:59+00:00"
+            "resolvedAt": "2026-09-06T12:25:42+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -1026,37 +1037,43 @@
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.52
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.51
                 },
                 {
                     "name": "Spell Reflection",
                     "spellId": 23920,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.1
                 },
                 {
                     "name": "Execute",
                     "spellId": 280735,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.44
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.33
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.08
                 }
             ],
             "matchId": "7e20ab98ae881159cf6607a3749c8923",
@@ -1742,7 +1759,7 @@
                         "pvpTalentId": 389
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0B42BC54",
@@ -1908,7 +1925,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Feral",
-                "resolvedAt": "2026-09-06T02:56:59+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "10": {
@@ -1920,55 +1937,64 @@
                     "name": "Bloodbath",
                     "spellId": 335096,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.24
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.38
                 },
                 {
                     "name": "Execute",
                     "spellId": 280735,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.31
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.28
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.34
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.52
                 },
                 {
                     "name": "Pummel",
                     "spellId": 6552,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.41
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.71
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.68
                 }
             ],
             "matchId": "b65a509b7e7986a3714cee8d78768317",
@@ -2654,7 +2680,7 @@
                         "pvpTalentId": 389
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FA9081B",
@@ -2880,7 +2906,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Restoration",
-                "resolvedAt": "2026-09-06T02:56:59+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "12": {
@@ -2892,67 +2918,78 @@
                     "name": "Execute",
                     "spellId": 280735,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.28
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.26
                 },
                 {
                     "name": "Bloodbath",
                     "spellId": 335096,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.24
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.38
                 },
                 {
                     "name": "Execute",
                     "spellId": 280735,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.31
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.28
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.34
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.52
                 },
                 {
                     "name": "Pummel",
                     "spellId": 6552,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.41
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.71
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.68
                 }
             ],
             "matchId": "b65a509b7e7986a3714cee8d78768317",
@@ -3638,7 +3675,7 @@
                         "pvpTalentId": 389
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FA9081B",
@@ -3868,7 +3905,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Restoration",
-                "resolvedAt": "2026-09-06T02:56:59+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "20": {
@@ -3880,115 +3917,134 @@
                     "name": "Thunder Blast",
                     "spellId": 435222,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.14
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.15
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.17
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.16
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.13
                 },
                 {
                     "name": "Shockwave",
                     "spellId": 46968,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.3
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.29
                 },
                 {
                     "name": "Berserker Stance",
                     "spellId": 386196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.47
                 },
                 {
                     "name": "Execute",
                     "spellId": 280735,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.28
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.26
                 },
                 {
                     "name": "Bloodbath",
                     "spellId": 335096,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.24
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.38
                 },
                 {
                     "name": "Execute",
                     "spellId": 280735,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.31
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.28
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.34
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.52
                 },
                 {
                     "name": "Pummel",
                     "spellId": 6552,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.41
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.71
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.68
                 }
             ],
             "matchId": "b65a509b7e7986a3714cee8d78768317",
@@ -4674,7 +4730,7 @@
                         "pvpTalentId": 389
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FA9081B",
@@ -4900,7 +4956,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Restoration",
-                "resolvedAt": "2026-09-06T02:56:59+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "30": {
@@ -4912,217 +4968,253 @@
                     "name": "Impending Victory",
                     "spellId": 202168,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.23
                 },
                 {
                     "name": "Hamstring",
                     "spellId": 1715,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.24
                 },
                 {
                     "name": "Spell Reflection",
                     "spellId": 23920,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.67
                 },
                 {
                     "name": "Pummel",
                     "spellId": 6552,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.89
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.13
                 },
                 {
                     "name": "Avatar",
                     "spellId": 107574,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.63
                 },
                 {
                     "name": "Recklessness",
                     "spellId": 1719,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.72
                 },
                 {
                     "name": "Defensive Stance",
                     "spellId": 386208,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.86
                 },
                 {
                     "name": "Thunder Blast",
                     "spellId": 435222,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.14
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.15
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.17
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.16
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.13
                 },
                 {
                     "name": "Shockwave",
                     "spellId": 46968,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.3
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.29
                 },
                 {
                     "name": "Berserker Stance",
                     "spellId": 386196,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.47
                 },
                 {
                     "name": "Execute",
                     "spellId": 280735,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.28
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.26
                 },
                 {
                     "name": "Bloodbath",
                     "spellId": 335096,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.24
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.38
                 },
                 {
                     "name": "Execute",
                     "spellId": 280735,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.31
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.28
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.34
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.52
                 },
                 {
                     "name": "Pummel",
                     "spellId": 6552,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.41
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.71
                 },
                 {
                     "name": "Crushing Blow",
                     "spellId": 335097,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.68
                 },
                 {
                     "name": "Storm Bolt",
                     "spellId": 107570,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 23.62
                 },
                 {
                     "name": "Thunder Blast",
                     "spellId": 435222,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.59
                 },
                 {
                     "name": "Spell Reflection",
                     "spellId": 23920,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.4
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.56
                 },
                 {
                     "name": "Escape Artist",
                     "spellId": 20589,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 25.75
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.59
                 },
                 {
                     "name": "Thunder Blast",
                     "spellId": 435222,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.57
                 },
                 {
                     "name": "Rampage",
                     "spellId": 184367,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.63
                 },
                 {
                     "name": "Bloodthirst",
                     "spellId": 23881,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 29.58
                 }
             ],
             "matchId": "b65a509b7e7986a3714cee8d78768317",
@@ -5808,7 +5900,7 @@
                         "pvpTalentId": 389
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FA9081B",
@@ -6010,9 +6102,9 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Restoration",
-                "resolvedAt": "2026-09-06T02:56:59+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:56:46+00:00"
+    "generated_at": "2026-09-06T12:25:31+00:00"
 }

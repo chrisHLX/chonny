@@ -20,55 +20,64 @@
                 "name": "Hand of Gul'dan",
                 "spellId": 105174,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.53
             },
             {
                 "name": "Fear",
                 "spellId": 5782,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.02
             },
             {
                 "name": "Power Siphon",
                 "spellId": 264130,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.19
             },
             {
                 "name": "Demonbolt",
                 "spellId": 264178,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.13
             },
             {
                 "name": "Call Dreadstalkers",
                 "spellId": 104316,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 6.76
             },
             {
                 "name": "Soul Rip",
                 "spellId": 410598,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 7.74
             },
             {
                 "name": "Demonbolt",
                 "spellId": 264178,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.81
             },
             {
                 "name": "Hand of Gul'dan",
                 "spellId": 105174,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.71
             },
             {
                 "name": "Demonbolt",
                 "spellId": 264178,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.2
             }
         ],
         "matchId": "d98765ccfd9d1ee33d0fc872aae7b56d",
@@ -754,7 +763,7 @@
                     "pvpTalentId": 371
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:48+00:00"
+            "resolvedAt": "2026-09-06T12:25:33+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-3678-0E2DA105",
@@ -936,7 +945,7 @@
             ],
             "targetClassName": "Shaman",
             "targetSpecName": "Enhancement",
-            "resolvedAt": "2026-09-06T02:56:56+00:00"
+            "resolvedAt": "2026-09-06T12:25:39+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -949,37 +958,43 @@
                     "name": "Fear",
                     "spellId": 5782,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.02
                 },
                 {
                     "name": "Power Siphon",
                     "spellId": 264130,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.19
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.13
                 },
                 {
                     "name": "Call Dreadstalkers",
                     "spellId": 104316,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.76
                 },
                 {
                     "name": "Soul Rip",
                     "spellId": 410598,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.74
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.81
                 }
             ],
             "matchId": "d98765ccfd9d1ee33d0fc872aae7b56d",
@@ -1665,7 +1680,7 @@
                         "pvpTalentId": 371
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3678-0E2DA105",
@@ -1847,7 +1862,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Enhancement",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "10": {
@@ -1859,55 +1874,64 @@
                     "name": "Fear",
                     "spellId": 5782,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.02
                 },
                 {
                     "name": "Power Siphon",
                     "spellId": 264130,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.19
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.13
                 },
                 {
                     "name": "Call Dreadstalkers",
                     "spellId": 104316,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.76
                 },
                 {
                     "name": "Soul Rip",
                     "spellId": 410598,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.74
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.81
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.71
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.2
                 },
                 {
                     "name": "Howl of Terror",
                     "spellId": 5484,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.49
                 }
             ],
             "matchId": "d98765ccfd9d1ee33d0fc872aae7b56d",
@@ -2593,7 +2617,7 @@
                         "pvpTalentId": 371
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3678-0E2DA105",
@@ -2771,7 +2795,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Enhancement",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "12": {
@@ -2783,55 +2807,64 @@
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.53
                 },
                 {
                     "name": "Fear",
                     "spellId": 5782,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.02
                 },
                 {
                     "name": "Power Siphon",
                     "spellId": 264130,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.19
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.13
                 },
                 {
                     "name": "Call Dreadstalkers",
                     "spellId": 104316,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.76
                 },
                 {
                     "name": "Soul Rip",
                     "spellId": 410598,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.74
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.81
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.71
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.2
                 }
             ],
             "matchId": "d98765ccfd9d1ee33d0fc872aae7b56d",
@@ -3517,7 +3550,7 @@
                         "pvpTalentId": 371
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3678-0E2DA105",
@@ -3699,7 +3732,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Enhancement",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "20": {
@@ -3711,103 +3744,120 @@
                     "name": "Summon Demonic Tyrant",
                     "spellId": 265187,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.23
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.23
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.29
                 },
                 {
                     "name": "Mortal Coil",
                     "spellId": 6789,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.37
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.26
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.26
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.94
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.68
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.53
                 },
                 {
                     "name": "Fear",
                     "spellId": 5782,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.02
                 },
                 {
                     "name": "Power Siphon",
                     "spellId": 264130,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.19
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.13
                 },
                 {
                     "name": "Call Dreadstalkers",
                     "spellId": 104316,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.76
                 },
                 {
                     "name": "Soul Rip",
                     "spellId": 410598,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.74
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.81
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.71
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.2
                 }
             ],
             "matchId": "d98765ccfd9d1ee33d0fc872aae7b56d",
@@ -4493,7 +4543,7 @@
                         "pvpTalentId": 371
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3678-0E2DA105",
@@ -4643,7 +4693,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Enhancement",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "30": {
@@ -4655,151 +4705,176 @@
                     "name": "Ruination",
                     "spellId": 434635,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.18
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.18
                 },
                 {
                     "name": "Summon Demonic Tyrant",
                     "spellId": 265187,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.23
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.23
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.29
                 },
                 {
                     "name": "Mortal Coil",
                     "spellId": 6789,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.37
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.26
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.26
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.94
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.68
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.53
                 },
                 {
                     "name": "Fear",
                     "spellId": 5782,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.02
                 },
                 {
                     "name": "Power Siphon",
                     "spellId": 264130,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.19
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.13
                 },
                 {
                     "name": "Call Dreadstalkers",
                     "spellId": 104316,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.76
                 },
                 {
                     "name": "Soul Rip",
                     "spellId": 410598,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.74
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.81
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.71
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.2
                 },
                 {
                     "name": "Howl of Terror",
                     "spellId": 5484,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 22.49
                 },
                 {
                     "name": "Hand of Gul'dan",
                     "spellId": 105174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.23
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 27.43
                 },
                 {
                     "name": "Axe Toss",
                     "spellId": 119914,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 28.33
                 },
                 {
                     "name": "Infernal Bolt",
                     "spellId": 434506,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 28.9
                 },
                 {
                     "name": "Demonbolt",
                     "spellId": 264178,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.9
                 }
             ],
             "matchId": "d98765ccfd9d1ee33d0fc872aae7b56d",
@@ -5485,7 +5560,7 @@
                         "pvpTalentId": 371
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3678-0E2DA105",
@@ -5635,9 +5710,9 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Enhancement",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:56:06+00:00"
+    "generated_at": "2026-09-06T12:25:01+00:00"
 }

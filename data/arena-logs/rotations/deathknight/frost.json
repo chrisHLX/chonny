@@ -27,103 +27,99 @@
                 "name": "Reaper's Mark",
                 "spellId": 439843,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.28
             },
             {
                 "name": "Anti-Magic Shell",
                 "spellId": 410358,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.28
             },
             {
                 "name": "Frostwyrm's Fury",
                 "spellId": 279302,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.64
             },
             {
                 "name": "Obliterate",
                 "spellId": 49020,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Exterminate",
-                "spellId": 441424,
-                "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3
             },
             {
                 "name": "Obliterate",
                 "spellId": 49020,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.16
             },
             {
                 "name": "Strangulate",
                 "spellId": 47476,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.66
             },
             {
                 "name": "Frost Strike",
                 "spellId": 49143,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 5.28
             },
             {
                 "name": "Obliterate",
                 "spellId": 49020,
                 "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Exterminate",
-                "spellId": 441424,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.43
             },
             {
                 "name": "Howling Blast",
                 "spellId": 49184,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 7.54
             },
             {
                 "name": "Death's Advance",
                 "spellId": 48265,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 7.97
             },
             {
                 "name": "Obliterate",
                 "spellId": 49020,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.73
             },
             {
                 "name": "Breath of Sindragosa",
                 "spellId": 1249658,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Exterminate",
-                "spellId": 441424,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 9.1
             },
             {
                 "name": "Frostwyrm's Fury",
                 "spellId": 1265384,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.29
             },
             {
                 "name": "Obliterate",
                 "spellId": 49020,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.18
             }
         ],
         "matchId": "537b6516ed5c47fd499c597219741092",
@@ -809,7 +805,7 @@
                     "pvpTalentId": 53
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:50+00:00"
+            "resolvedAt": "2026-09-06T12:25:34+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-76-05D8CA6E",
@@ -987,7 +983,7 @@
             ],
             "targetClassName": "Priest",
             "targetSpecName": "Shadow",
-            "resolvedAt": "2026-09-06T02:56:58+00:00"
+            "resolvedAt": "2026-09-06T12:25:41+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -1000,73 +996,57 @@
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.03
                 },
                 {
                     "name": "Mind Freeze",
                     "spellId": 47528,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.92
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.18
                 },
                 {
                     "name": "Breath of Sindragosa",
                     "spellId": 1249658,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.99
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.14
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.17
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Obliterate",
-                    "spellId": 49020,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.2
                 },
                 {
                     "name": "Empower Rune Weapon",
                     "spellId": 47568,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.32
                 }
             ],
             "matchId": "8e7aa32f7dbae73b4347ea6c3d0bd8a3",
@@ -1752,7 +1732,7 @@
                         "pvpTalentId": 56
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0BA0A34E",
@@ -1974,7 +1954,7 @@
                 ],
                 "targetClassName": "Priest",
                 "targetSpecName": "Shadow",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "10": {
@@ -1986,97 +1966,92 @@
                     "name": "Anti-Magic Shell",
                     "spellId": 410358,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.28
                 },
                 {
                     "name": "Frostwyrm's Fury",
                     "spellId": 279302,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.64
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.16
                 },
                 {
                     "name": "Strangulate",
                     "spellId": 47476,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.66
                 },
                 {
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.28
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.43
                 },
                 {
                     "name": "Howling Blast",
                     "spellId": 49184,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.54
                 },
                 {
                     "name": "Death's Advance",
                     "spellId": 48265,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.97
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.73
                 },
                 {
                     "name": "Breath of Sindragosa",
                     "spellId": 1249658,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 8.1
                 },
                 {
                     "name": "Frostwyrm's Fury",
                     "spellId": 1265384,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.29
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.18
                 }
             ],
             "matchId": "537b6516ed5c47fd499c597219741092",
@@ -2762,7 +2737,7 @@
                         "pvpTalentId": 53
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-05D8CA6E",
@@ -2944,7 +2919,7 @@
                 ],
                 "targetClassName": "Priest",
                 "targetSpecName": "Shadow",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "12": {
@@ -2956,103 +2931,99 @@
                     "name": "Reaper's Mark",
                     "spellId": 439843,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.28
                 },
                 {
                     "name": "Anti-Magic Shell",
                     "spellId": 410358,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.28
                 },
                 {
                     "name": "Frostwyrm's Fury",
                     "spellId": 279302,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.64
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.16
                 },
                 {
                     "name": "Strangulate",
                     "spellId": 47476,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.66
                 },
                 {
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.28
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.43
                 },
                 {
                     "name": "Howling Blast",
                     "spellId": 49184,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.54
                 },
                 {
                     "name": "Death's Advance",
                     "spellId": 48265,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.97
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.73
                 },
                 {
                     "name": "Breath of Sindragosa",
                     "spellId": 1249658,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 9.1
                 },
                 {
                     "name": "Frostwyrm's Fury",
                     "spellId": 1265384,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.29
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.18
                 }
             ],
             "matchId": "537b6516ed5c47fd499c597219741092",
@@ -3738,7 +3709,7 @@
                         "pvpTalentId": 53
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-05D8CA6E",
@@ -3916,7 +3887,7 @@
                 ],
                 "targetClassName": "Priest",
                 "targetSpecName": "Shadow",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "20": {
@@ -3928,127 +3899,127 @@
                     "name": "Frostwyrm's Fury",
                     "spellId": 279302,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.06
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.97
                 },
                 {
                     "name": "Empower Rune Weapon",
                     "spellId": 47568,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.9
                 },
                 {
                     "name": "Frostwyrm's Fury",
                     "spellId": 1265384,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.25
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.37
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.42
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.45
                 },
                 {
                     "name": "Lichborne",
                     "spellId": 49039,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.47
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.47
                 },
                 {
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.49
                 },
                 {
                     "name": "Mind Freeze",
                     "spellId": 47528,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.12
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.5
                 },
                 {
                     "name": "Empower Rune Weapon",
                     "spellId": 47568,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.91
                 },
                 {
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.77
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.79
                 },
                 {
                     "name": "Howling Blast",
                     "spellId": 49184,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.8
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.59
                 },
                 {
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.83
                 }
             ],
             "matchId": "4499fd4f2f632d1a47b3f37c47bc8d07",
@@ -4734,7 +4705,7 @@
                         "pvpTalentId": 53
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E6AF168",
@@ -4940,7 +4911,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:56:58+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         },
         "30": {
@@ -4952,193 +4923,204 @@
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.97
                 },
                 {
                     "name": "Empower Rune Weapon",
                     "spellId": 47568,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.9
                 },
                 {
                     "name": "Frostwyrm's Fury",
                     "spellId": 1265384,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.25
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.37
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exterminate",
-                    "spellId": 441424,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.42
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.45
                 },
                 {
                     "name": "Lichborne",
                     "spellId": 49039,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.47
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.47
                 },
                 {
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.49
                 },
                 {
                     "name": "Mind Freeze",
                     "spellId": 47528,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.12
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.5
                 },
                 {
                     "name": "Empower Rune Weapon",
                     "spellId": 47568,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.91
                 },
                 {
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.77
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.79
                 },
                 {
                     "name": "Howling Blast",
                     "spellId": 49184,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.8
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.59
                 },
                 {
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.83
                 },
                 {
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.11
                 },
                 {
                     "name": "Death Strike",
                     "spellId": 49998,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 20.38
                 },
                 {
                     "name": "Strangulate",
                     "spellId": 47476,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 20.44
                 },
                 {
                     "name": "Anti-Magic Shell",
                     "spellId": 410358,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 20.89
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.29
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.59
                 },
                 {
                     "name": "Howling Blast",
                     "spellId": 49184,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.88
                 },
                 {
                     "name": "Empower Rune Weapon",
                     "spellId": 47568,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.29
                 },
                 {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.54
                 },
                 {
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.83
                 },
                 {
                     "name": "Mind Freeze",
                     "spellId": 47528,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29
                 },
                 {
                     "name": "Frost Strike",
                     "spellId": 49143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.08
                 }
             ],
             "matchId": "4499fd4f2f632d1a47b3f37c47bc8d07",
@@ -5824,7 +5806,7 @@
                         "pvpTalentId": 53
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:34+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E6AF168",
@@ -6042,9 +6024,9 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Affliction",
-                "resolvedAt": "2026-09-06T02:56:59+00:00"
+                "resolvedAt": "2026-09-06T12:25:41+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:47:42+00:00"
+    "generated_at": "2026-09-06T12:19:01+00:00"
 }

@@ -27,8 +27,11 @@
         ->map(fn ($p) => basename(dirname($p)).'/'.basename($p, '.json'))->flip();
 @endphp
 
-<div class="max-w-5xl mx-auto px-4 py-8 space-y-5">
+{{-- Embedded (a PvP Guides panel) drops the page-level width cap and padding, its own header
+     and its own spec picker — the parent page supplies all three. --}}
+<div class="{{ ($embedded ?? false) ? 'space-y-5' : 'max-w-5xl mx-auto px-4 py-8 space-y-5' }}">
 
+    @unless ($embedded ?? false)
     {{-- Header --}}
     <div class="linear-card px-6 py-5">
         <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">Class Guide</p>
@@ -70,6 +73,7 @@
         </div>
         <p class="text-[10px] text-ink-subtle mt-2 font-mono">• = match sample analysed</p>
     </div>
+    @endunless
 
     @if (!$playstyle)
         <div class="linear-card px-6 py-4 border-l-2 border-line-strong">
@@ -198,5 +202,8 @@
         </details>
     @endif
 
-    <livewire:spell-detail-modal/>
+    {{-- Only one shared modal may exist per page; when embedded, PvP Guides mounts it. --}}
+    @unless ($embedded ?? false)
+        <livewire:spell-detail-modal/>
+    @endunless
 </div>

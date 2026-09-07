@@ -74,7 +74,7 @@ class ImportSpellData extends Command
 {
     protected $signature = 'import:spelldata
         {game : Game slug, e.g. wow}
-        {patch : Patch build version, e.g. 12.0.7.68887}
+        {patch? : Patch build version. OMIT IT to reuse the game\'s existing current patch — that is the correct default for a routine re-import, and the only safe one for an automated caller. See handle()\'s resolution note.}
         {--current : Mark this patch as the current one for the game}
         {--only= : Comma-separated class folder names to limit the import to, e.g. --only=priest}';
 
@@ -177,7 +177,25 @@ class ImportSpellData extends Command
         }
 
         $gameSlug = Str::slug($this->argument('game'));
-        $patchVersion = (string) $this->argument('patch');
+
+        // Patch resolution. Omitting the argument reuses the game's existing current patch, and
+        // that is deliberately the recommended form for any routine re-import.
+        //
+        // A wrong version string here does not fail — it silently CREATES A NEW patches row, and
+        // every patch-scoped table (spells, spell_relationships, talent_*, admin-curated
+        // TalentBuilds, both override files' application, spellbook snapshots) forks away from the
+        // one the live site actually reads. That has happened for real: a session re-derived the
+        // version from CLAUDE.md's own prose, typed a string that did not match the DB, and forked
+        // a stray disconnected patch before it was caught. CLAUDE.md's answer was a warning telling
+        // humans to verify the argument by hand every time; this is the same verification, done by
+        // the command itself so it cannot be skipped or mistyped.
+        //
+        // An explicit version is still accepted and still creates a new row when it does not match
+        // — that is exactly what a genuine patch transition needs, and it stays an explicit,
+        // deliberate act rather than something a caller can do by accident.
+        $patchVersion = $this->argument('patch') !== null
+            ? (string) $this->argument('patch')
+            : null;
         $onlyOption = $this->option('only');
         $only = $onlyOption ? array_map($this->normalizeSlug(...), array_map('trim', explode(',', $onlyOption))) : null;
 
@@ -185,6 +203,19 @@ class ImportSpellData extends Command
             'name' => self::GAME_NAMES[$gameSlug] ?? Str::headline($gameSlug),
         ], 'games');
         $this->info("Game: {$game->name} ({$game->slug})");
+
+        if ($patchVersion === null) {
+            $currentPatch = Patch::where('game_id', $game->id)->where('is_current', true)->first();
+
+            if ($currentPatch === null) {
+                $this->error("No current patch exists for '{$game->slug}' — pass an explicit build version to create the first one, e.g. import:spelldata {$game->slug} 12.0.7.68453 --current");
+
+                return self::FAILURE;
+            }
+
+            $patchVersion = $currentPatch->build_version;
+            $this->comment("No patch argument given — reusing the current patch: {$patchVersion}");
+        }
 
         $patch = $this->upsertTrack(Patch::class, [
             'game_id' => $game->id,
@@ -197,7 +228,7 @@ class ImportSpellData extends Command
         $this->info("Patch: {$patch->build_version}".($patch->fresh()->is_current ? ' (current)' : ''));
 
         $classDataRoot = base_path('data/spelldata/filtered');
-        if (!File::isDirectory($classDataRoot)) {
+        if (! File::isDirectory($classDataRoot)) {
             $this->error("No spelldata directory found at {$classDataRoot}");
 
             return self::FAILURE;
@@ -484,7 +515,7 @@ class ImportSpellData extends Command
                 // are already correctly attributed by classifyFileSource() and skip this.
                 $specIds = match (true) {
                     $source === 'baseline' => $this->resolveBaselineSpecIds($record['class_field'], $class->name, $classSpecs),
-                    !empty($record['free_specs']) => $this->resolveFreeSpecIds($record['free_specs'], $classSpecs),
+                    ! empty($record['free_specs']) => $this->resolveFreeSpecIds($record['free_specs'], $classSpecs),
                     default => [$specId],
                 };
 
@@ -633,7 +664,7 @@ class ImportSpellData extends Command
             foreach ($heroTreeSpecs[$this->normalizeSlug($heroName)] ?? [] as $specName) {
                 $spec = $classSpecs[$specName] ?? null;
 
-                if (!$spec) {
+                if (! $spec) {
                     $this->heroTreeSpecSkips++;
 
                     continue;
@@ -674,7 +705,7 @@ class ImportSpellData extends Command
                 $choices = $rankData['choices'] ?? [$rankData];
 
                 foreach ($choices as $choice) {
-                    if (!isset($choice['spell_id'])) {
+                    if (! isset($choice['spell_id'])) {
                         continue;
                     }
 
@@ -699,7 +730,7 @@ class ImportSpellData extends Command
             // Only 'unlocks' is imported as the structural edge source — 'locked_by' is the
             // same relationship viewed from the other end and is redundant in well-formed data.
             foreach ($nodeData['unlocks'] ?? [] as $targetExternalId) {
-                if (!isset($nodesByExternalId[$targetExternalId])) {
+                if (! isset($nodesByExternalId[$targetExternalId])) {
                     continue;
                 }
 
@@ -720,7 +751,7 @@ class ImportSpellData extends Command
         foreach ($pvpJson['specs'] ?? [] as $specName => $specData) {
             $spec = $classSpecs[$specName] ?? null;
 
-            if (!$spec) {
+            if (! $spec) {
                 $this->warn("  Skipping pvp talents for spec '{$specName}' — no matching specialization imported.");
 
                 continue;
@@ -750,7 +781,7 @@ class ImportSpellData extends Command
                     'source' => 'pvp_talent',
                 ], [], 'spell_class_availability');
 
-                if (!empty($pvpTalent['description'])) {
+                if (! empty($pvpTalent['description'])) {
                     $this->pendingPvpTalentRecords[] = [
                         'spell_id' => $pvpTalent['spell_id'],
                         'description' => $pvpTalent['description'],
@@ -781,7 +812,7 @@ class ImportSpellData extends Command
         foreach ($this->pendingRelationshipRecords as $record) {
             $target = $this->spellIndex[$record['spell_id']] ?? null;
 
-            if (!$target) {
+            if (! $target) {
                 continue;
             }
 
@@ -793,10 +824,10 @@ class ImportSpellData extends Command
             foreach ($sources as $sourceExternalId => $refInfo) {
                 $source = $this->spellIndex[$sourceExternalId] ?? null;
 
-                if (!$source || $source->id === $target->id) {
+                if (! $source || $source->id === $target->id) {
                     $this->relationshipSkips++;
 
-                    if (!$source) {
+                    if (! $source) {
                         Log::warning('ImportSpellData: relationship source spell not found in this patch', [
                             'source_spell_id' => $sourceExternalId,
                             'target_spell_id' => $record['spell_id'],
@@ -818,7 +849,7 @@ class ImportSpellData extends Command
                 // target is a normal, expected pattern, not a duplicate to collapse. Falls back to
                 // a single null-index pass when a ref has no parsed indices at all (unchanged
                 // behavior from before this fix).
-                $effectIndexes = !empty($refInfo['effect_indexes']) ? $refInfo['effect_indexes'] : [null];
+                $effectIndexes = ! empty($refInfo['effect_indexes']) ? $refInfo['effect_indexes'] : [null];
 
                 foreach ($effectIndexes as $effectIndex) {
                     $mapping = $this->modifiesRelationshipMapping($source, $effectIndex);
@@ -884,7 +915,7 @@ class ImportSpellData extends Command
 
         $effect = SpellEffect::where('spell_id', $source->id)->where('effect_index', $effectIndex)->first();
 
-        if (!$effect || $effect->type !== 'Add Flat Modifier (107): Spell Cooldown') {
+        if (! $effect || $effect->type !== 'Add Flat Modifier (107): Spell Cooldown') {
             return $default;
         }
 
@@ -966,10 +997,10 @@ class ImportSpellData extends Command
             $source = $this->spellIndex[$sourceExternalId] ?? null;
             $target = $this->spellIndex[$targetExternalId] ?? null;
 
-            if (!$source || !$target || $source->id === $target->id) {
+            if (! $source || ! $target || $source->id === $target->id) {
                 $this->categoryRelationshipSkips++;
 
-                if (!$source || !$target) {
+                if (! $source || ! $target) {
                     Log::warning('ImportSpellData: category-effect relationship source or target spell not found in this patch', [
                         'source_spell_id' => $sourceExternalId,
                         'source_found' => (bool) $source,
@@ -1040,12 +1071,12 @@ class ImportSpellData extends Command
             'Modify Cooldown Charge (Category)' => [
                 'type' => 'modifies_charges',
                 'value' => $rankScaled ? null : $baseValue,
-                'unit' => (!$rankScaled && $baseValue !== null) ? 'charges' : null,
+                'unit' => (! $rankScaled && $baseValue !== null) ? 'charges' : null,
             ],
             'Modify Recharge Time (Category)' => [
                 'type' => 'modifies_cooldown',
                 'value' => ($rankScaled || $baseValue === null) ? null : $baseValue / 1000,
-                'unit' => (!$rankScaled && $baseValue !== null) ? 'seconds' : null,
+                'unit' => (! $rankScaled && $baseValue !== null) ? 'seconds' : null,
             ],
             'Modify Recharge Time% (Category)', 'Modify Cooldown Time (Category)' => [
                 'type' => 'modifies_cooldown',
@@ -1094,14 +1125,14 @@ class ImportSpellData extends Command
         foreach ($this->pendingRelationshipRecords as $record) {
             $source = $this->spellIndex[$record['spell_id']] ?? null;
 
-            if (!$source) {
+            if (! $source) {
                 continue;
             }
 
             foreach (array_keys($record['replaces_refs']) as $targetExternalId) {
                 $target = $this->spellIndex[$targetExternalId] ?? null;
 
-                if (!$target || $source->id === $target->id) {
+                if (! $target || $source->id === $target->id) {
                     $this->replacesRelationshipSkips++;
 
                     continue;
@@ -1134,13 +1165,13 @@ class ImportSpellData extends Command
         foreach ($this->pendingPvpTalentRecords as $record) {
             $source = $this->spellIndex[$record['spell_id']] ?? null;
 
-            if (!$source) {
+            if (! $source) {
                 $this->pvpTalentRelationshipSkips++;
 
                 continue;
             }
 
-            if (!preg_match_all(
+            if (! preg_match_all(
                 '/([A-Z][\w:\'\- ]*?) cooldown is (reduced|increased) by ([\d.]+)\s*(sec(?:onds)?|%)/i',
                 $record['description'],
                 $matches,
@@ -1157,7 +1188,7 @@ class ImportSpellData extends Command
 
                 $target = $this->resolvePvpTalentTargetSpell($name, $record['class_id']);
 
-                if (!$target || $target->id === $source->id) {
+                if (! $target || $target->id === $source->id) {
                     $this->pvpTalentRelationshipSkips++;
                     Log::warning('ImportSpellData: could not resolve pvp talent cooldown-modifier target spell', [
                         'pvp_talent_spell_id' => $record['spell_id'],
@@ -1218,7 +1249,7 @@ class ImportSpellData extends Command
         foreach ($this->pendingDescriptionRefs as $spellExternalId => $refExternalId) {
             $target = $this->spellIndex[$spellExternalId] ?? null;
 
-            if (!$target) {
+            if (! $target) {
                 continue;
             }
 
@@ -1237,7 +1268,7 @@ class ImportSpellData extends Command
 
                 $next = $this->spellIndex[$current] ?? null;
 
-                if (!$next) {
+                if (! $next) {
                     $resolved = null;
                     break;
                 }
@@ -1259,7 +1290,7 @@ class ImportSpellData extends Command
                 // (after all classes are imported) its description column may already hold a
                 // backfilled value from an earlier iteration of this same loop, or it may still
                 // be a pointer we haven't processed yet. Follow the chain via pendingDescriptionRefs.
-                if (!isset($this->pendingDescriptionRefs[$current])) {
+                if (! isset($this->pendingDescriptionRefs[$current])) {
                     $resolved = null;
                     break;
                 }
@@ -1316,7 +1347,7 @@ class ImportSpellData extends Command
     {
         $path = base_path('data/spelldata/manual-spells.txt');
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return;
         }
 
@@ -1333,7 +1364,7 @@ class ImportSpellData extends Command
 
             $class = GameClass::where('slug', $block['class'])->first();
 
-            if (!$class) {
+            if (! $class) {
                 $this->manualSpellsSkipped++;
                 $this->warn("  Skipping manual-spells.txt block '{$block['name']}' — unknown class slug '{$block['class']}'.");
 
@@ -1415,7 +1446,7 @@ class ImportSpellData extends Command
                 continue;
             }
 
-            if ($current === null || !str_contains($trimmed, ':')) {
+            if ($current === null || ! str_contains($trimmed, ':')) {
                 continue;
             }
 
@@ -1430,7 +1461,7 @@ class ImportSpellData extends Command
     {
         $path = base_path('data/spelldata/baseline-spec-overrides.txt');
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return;
         }
 
@@ -1464,7 +1495,7 @@ class ImportSpellData extends Command
 
             $parts = array_map('trim', explode('|', $line));
 
-            if (count($parts) < 3 || !ctype_digit($parts[0])) {
+            if (count($parts) < 3 || ! ctype_digit($parts[0])) {
                 $this->baselineOverrideSkips++;
                 $this->warn("  Skipping malformed baseline-spec-overrides.txt line: {$line}");
 
@@ -1477,7 +1508,7 @@ class ImportSpellData extends Command
             $class = GameClass::where('slug', $classSlug)->first();
             $spec = $class ? Specialization::where('class_id', $class->id)->where('slug', $specSlug)->first() : null;
 
-            if (!$spell || !$class || !$spec) {
+            if (! $spell || ! $class || ! $spec) {
                 $this->baselineOverrideSkips++;
                 $this->warn("  Skipping unresolved baseline-spec-overrides.txt line (spell/class/spec not found for this patch): {$line}");
 
@@ -1504,7 +1535,7 @@ class ImportSpellData extends Command
             ->with('spell:id,spell_id,name')
             ->get(['id', 'spell_id', 'spec_id'])
             ->each(function (SpellClassAvailability $row) use ($protectedPairs, &$stalePruned) {
-                if (!isset($protectedPairs["{$row->spell_id}:{$row->spec_id}"])) {
+                if (! isset($protectedPairs["{$row->spell_id}:{$row->spec_id}"])) {
                     // Logged before delete — added 2026-08-26 after a full raw-data refresh made a
                     // silent, unauditable prune (11 rows, no record of which) impossible to check
                     // against baseline-spec-overrides.txt's own current content after the fact. A
@@ -1554,12 +1585,23 @@ class ImportSpellData extends Command
     {
         $path = base_path('data/spelldata/cc-synergies-overrides.txt');
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return;
         }
 
         $validDrCategories = ['Stun', 'Disorient', 'Incapacitate', 'Root', 'Silence', 'Knockback', 'Disarm', 'Slow'];
         $validChainTargets = ['healer', 'kill_target', 'both'];
+
+        // Guard against the same spell_id appearing on more than one line. Every field in this
+        // file is written on every run (blank means null/false, not "leave alone"), so a second
+        // line for a spell_id does not merge with the first — it OVERWRITES it, including with
+        // blanks. Confirmed as a real, already-shipped bug on 2026-09-07: Warrior's Charge (100)
+        // had a dr_category=Root/is_peel=1 line from the original DR curation AND a later
+        // is_mobility-only line added for the 2026-09-01 Mobility tab, so its Root and peel flag
+        // had been silently blanked in the DB ever since — Charge was missing from WoW Comps'
+        // Crowd Control despite looking correctly curated in this file. Warn rather than skip:
+        // the last line still wins (unchanged behaviour), but it can no longer happen unnoticed.
+        $seenSpellIds = [];
 
         foreach (File::lines($path) as $line) {
             $line = trim($line);
@@ -1568,9 +1610,9 @@ class ImportSpellData extends Command
                 continue;
             }
 
-            $parts = array_map('trim', explode('|', $line, 11));
+            $parts = array_map('trim', explode('|', $line, 13));
 
-            if (count($parts) < 6 || !ctype_digit($parts[0])) {
+            if (count($parts) < 6 || ! ctype_digit($parts[0])) {
                 $this->ccSynergyOverrideSkips++;
                 $this->warn("  Skipping malformed cc-synergies-overrides.txt line: {$line}");
 
@@ -1578,6 +1620,11 @@ class ImportSpellData extends Command
             }
 
             [$externalSpellId, $drCategory, $chainTarget, $isPeel, $isInterrupt, $pvpDuration] = $parts;
+
+            if (isset($seenSpellIds[$externalSpellId])) {
+                $this->warn("  Duplicate cc-synergies-overrides.txt line for spell_id {$externalSpellId} — the later line overwrites the earlier one field-for-field (blanks included). Merge them into one line.");
+            }
+            $seenSpellIds[$externalSpellId] = true;
             // pairs_with_category — added 2026-08-23, 7th data field. requires_stealth /
             // requires_target_out_of_combat — added 2026-08-23, 8th/9th data fields. is_mobility
             // — added 2026-09-01, 10th data field, same append-only backward-compatible pattern
@@ -1588,31 +1635,37 @@ class ImportSpellData extends Command
             $requiresStealth = $parts[7] ?? '';
             $requiresTargetOutOfCombat = $parts[8] ?? '';
             $isMobility = $parts[9] ?? '';
+            // conditional_dr_gating_spell_id / conditional_dr_category — added 2026-09-06, 11th
+            // and 12th data fields, same append-only backward-compatible pattern as every field
+            // above. See the txt file's own header for what qualifies (a genuine CC TYPE FLIP,
+            // not an additive second CC and not a target-state-gated one).
+            $conditionalGatingSpellId = $parts[10] ?? '';
+            $conditionalDrCategory = $parts[11] ?? '';
 
             $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
 
-            if (!$spell) {
+            if (! $spell) {
                 $this->ccSynergyOverrideSkips++;
                 $this->warn("  Skipping unresolved cc-synergies-overrides.txt line (spell not found for this patch): {$line}");
 
                 continue;
             }
 
-            if ($drCategory !== '' && !in_array($drCategory, $validDrCategories, true)) {
+            if ($drCategory !== '' && ! in_array($drCategory, $validDrCategories, true)) {
                 $this->ccSynergyOverrideSkips++;
                 $this->warn("  Skipping cc-synergies-overrides.txt line with unknown dr_category '{$drCategory}': {$line}");
 
                 continue;
             }
 
-            if ($chainTarget !== '' && !in_array($chainTarget, $validChainTargets, true)) {
+            if ($chainTarget !== '' && ! in_array($chainTarget, $validChainTargets, true)) {
                 $this->ccSynergyOverrideSkips++;
                 $this->warn("  Skipping cc-synergies-overrides.txt line with unknown chain_target '{$chainTarget}': {$line}");
 
                 continue;
             }
 
-            if ($pairsWithCategory !== '' && !in_array($pairsWithCategory, $validDrCategories, true)) {
+            if ($pairsWithCategory !== '' && ! in_array($pairsWithCategory, $validDrCategories, true)) {
                 $this->ccSynergyOverrideSkips++;
                 $this->warn("  Skipping cc-synergies-overrides.txt line with unknown pairs_with_category '{$pairsWithCategory}': {$line}");
 
@@ -1622,7 +1675,7 @@ class ImportSpellData extends Command
             // Standing rule (see CcChainBuilder's class docblock) — kill_target/both may only
             // ever be paired with Stun/Silence, since those are the only categories that don't
             // break on damage. Warn, don't silently accept, if a future edit violates this.
-            if (in_array($chainTarget, ['kill_target', 'both'], true) && !in_array($drCategory, ['Stun', 'Silence'], true)) {
+            if (in_array($chainTarget, ['kill_target', 'both'], true) && ! in_array($drCategory, ['Stun', 'Silence'], true)) {
                 $this->warn("  ⚠ cc-synergies-overrides.txt: chain_target='{$chainTarget}' with dr_category='{$drCategory}' violates the break-on-damage rule (only Stun/Silence may be kill_target/both): {$line}");
             }
 
@@ -1634,6 +1687,45 @@ class ImportSpellData extends Command
             // silently accept — same posture as the break-on-damage rule above, not a hard skip,
             // since this is a strong signal something's wrong rather than an absolute
             // impossibility worth blocking outright.
+            // Both conditional columns are meaningless alone: a gating talent with no alternate
+            // category says nothing, and an alternate category with nothing to gate it on would
+            // silently never apply. Skip the line rather than write half a rule.
+            if (($conditionalGatingSpellId === '') !== ($conditionalDrCategory === '')) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping cc-synergies-overrides.txt line with only one of conditional_dr_gating_spell_id/conditional_dr_category set (both or neither): {$line}");
+
+                continue;
+            }
+
+            if ($conditionalGatingSpellId !== '' && ! ctype_digit($conditionalGatingSpellId)) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping cc-synergies-overrides.txt line with non-numeric conditional_dr_gating_spell_id '{$conditionalGatingSpellId}': {$line}");
+
+                continue;
+            }
+
+            if ($conditionalDrCategory !== '' && ! in_array($conditionalDrCategory, $validDrCategories, true)) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping cc-synergies-overrides.txt line with unknown conditional_dr_category '{$conditionalDrCategory}': {$line}");
+
+                continue;
+            }
+
+            // A conditional that resolves to the same category as the base is a no-op, and almost
+            // always means a copy/paste slip rather than a real flip. Warn rather than skip —
+            // same posture as the two standing-rule checks around it.
+            if ($conditionalDrCategory !== '' && $conditionalDrCategory === $drCategory) {
+                $this->warn("  ⚠ cc-synergies-overrides.txt: conditional_dr_category '{$conditionalDrCategory}' is identical to dr_category, so the conditional can never change anything: {$line}");
+            }
+
+            // The gating talent must be a real spell in this patch, or the conditional could
+            // never fire and would sit silently inert forever (exactly the class of quiet gap
+            // this file's own header records having been bitten by twice already).
+            if ($conditionalGatingSpellId !== ''
+                && ! Spell::where('patch_id', $patch->id)->where('spell_id', (int) $conditionalGatingSpellId)->exists()) {
+                $this->warn("  ⚠ cc-synergies-overrides.txt: conditional_dr_gating_spell_id {$conditionalGatingSpellId} does not resolve to any spell in this patch — the conditional will never fire: {$line}");
+            }
+
             if ($drCategory !== '' && $spell->is_passive) {
                 $this->warn("  ⚠ cc-synergies-overrides.txt: dr_category='{$drCategory}' assigned to a PASSIVE spell ('{$spell->name}') — passives can't be cast/sequenced in a CC chain; this is almost always a sign the tag belongs on an active ability this passive modifies instead: {$line}");
             }
@@ -1648,6 +1740,8 @@ class ImportSpellData extends Command
                 'requires_stealth' => $requiresStealth === '1',
                 'requires_target_out_of_combat' => $requiresTargetOutOfCombat === '1',
                 'is_mobility' => $isMobility === '1',
+                'conditional_dr_gating_spell_id' => $conditionalGatingSpellId !== '' ? (int) $conditionalGatingSpellId : null,
+                'conditional_dr_category' => $conditionalDrCategory !== '' ? $conditionalDrCategory : null,
             ], 'spells');
 
             $this->ccSynergyOverridesApplied++;
@@ -1672,7 +1766,7 @@ class ImportSpellData extends Command
     {
         $path = base_path('data/spelldata/cooldown-scaling-notes.txt');
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return;
         }
 
@@ -1685,7 +1779,7 @@ class ImportSpellData extends Command
 
             $parts = array_map('trim', explode('|', $line, 2));
 
-            if (count($parts) < 2 || !ctype_digit($parts[0]) || $parts[1] === '') {
+            if (count($parts) < 2 || ! ctype_digit($parts[0]) || $parts[1] === '') {
                 $this->cooldownScalingNoteSkips++;
                 $this->warn("  Skipping malformed cooldown-scaling-notes.txt line: {$line}");
 
@@ -1696,7 +1790,7 @@ class ImportSpellData extends Command
 
             $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
 
-            if (!$spell) {
+            if (! $spell) {
                 $this->cooldownScalingNoteSkips++;
                 $this->warn("  Skipping unresolved cooldown-scaling-notes.txt line (spell not found for this patch): {$line}");
 
@@ -1712,20 +1806,33 @@ class ImportSpellData extends Command
      * Reads data/spelldata/cc-immunity-overrides.txt — see that file's own header for the full
      * rationale (PvP talents have zero structured effect data anywhere in this pipeline, so a
      * fact like Phase Shift's "casting Fade grants brief immunity" can only ever be hand-
-     * transcribed from its own description text, never auto-derived). Same two-column
-     * `spell_id | note` shape and same line-parsing structure as importCooldownScalingNotes()
-     * just above — deliberately not merged into that method despite the identical shape, since
-     * the two notes describe conceptually different things (a cooldown-magnitude caveat vs. a
-     * CC-immunity fact) and keeping them in separate files/methods means a future reader
-     * skimming either summary line doesn't have to mentally split one count into two meanings.
+     * transcribed from its own description text, never auto-derived).
+     *
+     * Four columns as of 2026-09-07: `spell_id | mechanics | gating_spell_id | note`. The note
+     * alone (the original two-column shape) could never answer a QUERY — it is prose, so
+     * SpellCounterIndexer could not read it, and Fade, the single curated line in that file for
+     * five days, still produced zero rows in spell_counters. `mechanics` is the machine-readable
+     * half and unions into grants_cc_immunity in materializeSpellShape().
+     *
+     * Every mechanic name is validated against ModuleSpellReferenceService's own immunity
+     * vocabulary before anything is written — an unknown name skips the whole line with a warning
+     * rather than storing an invented mechanic that would then silently generate counter rows.
+     * Same "flag, don't guess" posture as importCcSynergyOverrides()'s break-on-damage and
+     * passive-dr_category guards.
+     *
+     * Deliberately still separate from importCooldownScalingNotes() despite a similar shape: the
+     * two describe conceptually different things, and keeping the counts separate means a reader
+     * skimming either summary line doesn't have to mentally split one number into two meanings.
      */
     private function importCcImmunityOverrides(Patch $patch): void
     {
         $path = base_path('data/spelldata/cc-immunity-overrides.txt');
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return;
         }
+
+        $validMechanics = ModuleSpellReferenceService::immunityMechanicNames();
 
         foreach (File::lines($path) as $line) {
             $line = trim($line);
@@ -1734,27 +1841,63 @@ class ImportSpellData extends Command
                 continue;
             }
 
-            $parts = array_map('trim', explode('|', $line, 2));
+            $parts = array_map('trim', explode('|', $line, 4));
 
-            if (count($parts) < 2 || !ctype_digit($parts[0]) || $parts[1] === '') {
+            if (count($parts) < 4 || ! ctype_digit($parts[0]) || $parts[3] === '') {
                 $this->ccImmunityNoteSkips++;
                 $this->warn("  Skipping malformed cc-immunity-overrides.txt line: {$line}");
 
                 continue;
             }
 
-            [$externalSpellId, $note] = $parts;
+            [$externalSpellId, $mechanicList, $gatingSpellId, $note] = $parts;
 
             $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
 
-            if (!$spell) {
+            if (! $spell) {
                 $this->ccImmunityNoteSkips++;
                 $this->warn("  Skipping unresolved cc-immunity-overrides.txt line (spell not found for this patch): {$line}");
 
                 continue;
             }
 
-            $this->upsertTrack(Spell::class, ['id' => $spell->id], ['cc_immunity_note' => $note], 'spells');
+            $mechanics = collect(explode(',', $mechanicList))
+                ->map(fn ($m) => trim($m))
+                ->filter()
+                ->values();
+
+            $unknown = $mechanics->reject(fn ($m) => in_array($m, $validMechanics, true));
+
+            if ($unknown->isNotEmpty()) {
+                $this->ccImmunityNoteSkips++;
+                $this->warn("  Skipping cc-immunity-overrides.txt line with unknown mechanic(s) [{$unknown->implode(', ')}] — valid names are ".implode(', ', $validMechanics).": {$line}");
+
+                continue;
+            }
+
+            // A gating talent that doesn't resolve would leave the immunity permanently
+            // unreachable while still looking curated, so it fails loudly rather than quietly.
+            if ($gatingSpellId !== '') {
+                if (! ctype_digit($gatingSpellId)) {
+                    $this->ccImmunityNoteSkips++;
+                    $this->warn("  Skipping cc-immunity-overrides.txt line with non-numeric gating_spell_id: {$line}");
+
+                    continue;
+                }
+
+                if (! Spell::where('patch_id', $patch->id)->where('spell_id', (int) $gatingSpellId)->exists()) {
+                    $this->ccImmunityNoteSkips++;
+                    $this->warn("  Skipping cc-immunity-overrides.txt line whose gating talent {$gatingSpellId} is not in this patch: {$line}");
+
+                    continue;
+                }
+            }
+
+            $this->upsertTrack(Spell::class, ['id' => $spell->id], [
+                'cc_immunity_note' => $note,
+                'grants_cc_immunity_override' => $mechanics->isEmpty() ? null : $mechanics->all(),
+                'cc_immunity_gating_spell_id' => $gatingSpellId === '' ? null : (int) $gatingSpellId,
+            ], 'spells');
             $this->ccImmunityNotesApplied++;
         }
     }
@@ -1774,7 +1917,7 @@ class ImportSpellData extends Command
     {
         $path = base_path('data/spelldata/scalar-corrections.txt');
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return;
         }
 
@@ -1791,7 +1934,7 @@ class ImportSpellData extends Command
 
             $parts = array_map('trim', explode('|', $line, 3));
 
-            if (count($parts) < 2 || !ctype_digit($parts[0])) {
+            if (count($parts) < 2 || ! ctype_digit($parts[0])) {
                 $this->scalarCorrectionSkips++;
                 $this->warn("  Skipping malformed scalar-corrections.txt line: {$line}");
 
@@ -1802,7 +1945,7 @@ class ImportSpellData extends Command
 
             $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
 
-            if (!$spell) {
+            if (! $spell) {
                 $this->scalarCorrectionSkips++;
                 $this->warn("  Skipping unresolved scalar-corrections.txt line (spell not found for this patch — this file only patches existing spells, it never creates one): {$line}");
 
@@ -1815,20 +1958,20 @@ class ImportSpellData extends Command
             foreach (explode(',', $fieldsRaw) as $pair) {
                 $pair = trim($pair);
 
-                if ($pair === '' || !str_contains($pair, '=')) {
+                if ($pair === '' || ! str_contains($pair, '=')) {
                     continue;
                 }
 
                 [$field, $value] = array_map('trim', explode('=', $pair, 2));
 
-                if (!in_array($field, $validFields, true)) {
+                if (! in_array($field, $validFields, true)) {
                     $this->warn("  Skipping unknown scalar-corrections.txt field '{$field}': {$line}");
                     $malformed = true;
 
                     continue;
                 }
 
-                if ($field === 'cast_type' && !in_array($value, $validCastTypes, true)) {
+                if ($field === 'cast_type' && ! in_array($value, $validCastTypes, true)) {
                     $this->warn("  Skipping scalar-corrections.txt line with unknown cast_type '{$value}' (must be instant or cast): {$line}");
                     $malformed = true;
 
@@ -1892,7 +2035,7 @@ class ImportSpellData extends Command
         foreach (File::glob($classDir.'/hero-*.txt') as $file) {
             $content = File::get($file);
 
-            if (!preg_match_all('/\(([^)]+)\)\s*\[[^\]]*\btree=hero\b/', $content, $matches)) {
+            if (! preg_match_all('/\(([^)]+)\)\s*\[[^\]]*\btree=hero\b/', $content, $matches)) {
                 continue;
             }
 
@@ -1929,7 +2072,7 @@ class ImportSpellData extends Command
     {
         $path = base_path('data/spelldata/hero-tree-spec-overrides.txt');
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return $result;
         }
 
@@ -1964,7 +2107,7 @@ class ImportSpellData extends Command
 
     private function loadMatchingJson(string $dir, string $classFolderName): ?array
     {
-        if (!File::isDirectory($dir)) {
+        if (! File::isDirectory($dir)) {
             return null;
         }
 
@@ -2007,7 +2150,7 @@ class ImportSpellData extends Command
         $changed = $instance->isDirty();
         $instance->save();
 
-        if (!$existed) {
+        if (! $existed) {
             $this->counts[$table]['created']++;
         } elseif ($changed) {
             $this->counts[$table]['updated']++;
@@ -2102,16 +2245,27 @@ class ImportSpellData extends Command
         $service = app(ModuleSpellReferenceService::class);
         $arenaLogService = app(ArenaLogService::class);
 
-        // --- spells.category / spells.silence_immune_by_school ---
+        // --- spells.category / silence_immune_by_school / grants_cc_immunity / grants_school_immunity ---
+        // All four are build-independent: identical for every viewer, forever. Computing them
+        // here is what lets SpellProfileBuilder read a column instead of re-running the engine on
+        // every render (see that class's category()/ccImmunity() docblocks — spells.category had
+        // been materialized since 2026-09-03 and then ignored by every display path).
         $spells = Spell::where('patch_id', $patch->id)->with('effects')->get();
         $service->preloadCategorize($spells);
         foreach ($spells as $spell) {
             $category = $service->categorize($spell);
-            $silenceImmune = $spell->school === 'Physical' && !$spell->is_passive;
+            $silenceImmune = $spell->school === 'Physical' && ! $spell->is_passive;
+            $ccImmunity = $service->ccImmunityFor($spell)->all();
+            $schoolImmunity = $this->resolveGrantedSchoolImmunity($spell);
 
-            if ($spell->category !== $category || (bool) $spell->silence_immune_by_school !== $silenceImmune) {
+            if ($spell->category !== $category
+                || (bool) $spell->silence_immune_by_school !== $silenceImmune
+                || $spell->grants_cc_immunity !== $ccImmunity
+                || $spell->grants_school_immunity !== $schoolImmunity) {
                 $spell->category = $category;
                 $spell->silence_immune_by_school = $silenceImmune;
+                $spell->grants_cc_immunity = $ccImmunity;
+                $spell->grants_school_immunity = $schoolImmunity;
                 $spell->save();
             }
         }
@@ -2140,7 +2294,7 @@ class ImportSpellData extends Command
 
             foreach ($group as $row) {
                 $spell = $row->spell;
-                if (!$spell) {
+                if (! $spell) {
                     continue;
                 }
 
@@ -2170,6 +2324,44 @@ class ImportSpellData extends Command
                 }
             }
         }
+
+        // --- spell_counters ---
+        // Must run AFTER the grants_* writes above: SpellCounterIndexer reads the same immunity
+        // data those columns store. See that class's docblock for why "what counters X" is a
+        // stored relationship and not a per-request computation.
+        $counterResult = app(\App\Http\Services\SpellCounterIndexer::class)->rebuild($patch);
+        $this->info("  Spell counters: {$counterResult['rows']} row(s) across {$counterResult['counterable']} counterable spell(s).");
+    }
+
+    /**
+     * The raw "Affected School(s)" payload of any School Immunity effect this spell grants —
+     * 'All', or a comma list like 'Arcane, Fire, Frost, Holy, Nature, Shadow'. Null when it
+     * grants none.
+     *
+     * Includes the same same-name sibling fallback ModuleSpellReferenceService::
+     * grantsSchoolImmunityFor() performs, for the same confirmed reason: Cloak of Shadows' own
+     * castable copy (31224) carries no School Immunity effect at all — it triggers a separate
+     * hidden aura record (35729) that does. Without the fallback, the single most recognisable
+     * counter in the game materializes as "grants nothing".
+     */
+    private function resolveGrantedSchoolImmunity(Spell $spell): ?string
+    {
+        $fromOwn = $spell->effects
+            ->firstWhere(fn ($e) => $e->type === 'School Immunity' && $e->affected_schools !== null);
+
+        if ($fromOwn !== null) {
+            return $fromOwn->affected_schools;
+        }
+
+        $sibling = Spell::where('name', $spell->name)
+            ->where('patch_id', $spell->patch_id)
+            ->where('id', '!=', $spell->id)
+            ->with('effects')
+            ->get()
+            ->flatMap(fn (Spell $s) => $s->effects)
+            ->firstWhere(fn ($e) => $e->type === 'School Immunity' && $e->affected_schools !== null);
+
+        return $sibling?->affected_schools;
     }
 
     /**

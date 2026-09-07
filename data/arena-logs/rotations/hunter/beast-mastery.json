@@ -22,61 +22,71 @@
                 "name": "Barbed Shot",
                 "spellId": 217200,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.07
             },
             {
                 "name": "Bestial Wrath",
                 "spellId": 19574,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.48
             },
             {
                 "name": "Kill Command",
                 "spellId": 34026,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.85
             },
             {
                 "name": "Dire Beast",
                 "spellId": 212396,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.85
             },
             {
                 "name": "Barbed Shot",
                 "spellId": 217200,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.42
             },
             {
                 "name": "Kill Command",
                 "spellId": 34026,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.76
             },
             {
                 "name": "Barbed Shot",
                 "spellId": 217200,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 7.1
             },
             {
                 "name": "Kill Command",
                 "spellId": 34026,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.42
             },
             {
                 "name": "Cobra Shot",
                 "spellId": 193455,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 9.76
             },
             {
                 "name": "Kill Command",
                 "spellId": 34026,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.09
             }
         ],
         "matchId": "2ca1457995f3bbdb9154f7b287ff6d33",
@@ -744,7 +754,7 @@
                     "pvpTalentId": 196
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:48+00:00"
+            "resolvedAt": "2026-09-06T12:25:33+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-76-09D11C13",
@@ -914,7 +924,7 @@
             ],
             "targetClassName": "Paladin",
             "targetSpecName": "Retribution",
-            "resolvedAt": "2026-09-06T02:56:55+00:00"
+            "resolvedAt": "2026-09-06T12:25:39+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -927,37 +937,43 @@
                     "name": "Bestial Wrath",
                     "spellId": 19574,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.29
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.4
                 },
                 {
                     "name": "Dire Beast",
                     "spellId": 132764,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.41
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.58
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.8
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.01
                 }
             ],
             "matchId": "913720a4855b89791554b382f1402e27",
@@ -1625,7 +1641,7 @@
                         "pvpTalentId": 412
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-5-0A76CC9B",
@@ -1791,7 +1807,7 @@
                 ],
                 "targetClassName": "Rogue",
                 "targetSpecName": "Assassination",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "10": {
@@ -1803,49 +1819,57 @@
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.85
                 },
                 {
                     "name": "Dire Beast",
                     "spellId": 212396,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.85
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.42
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.76
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.1
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.42
                 },
                 {
                     "name": "Cobra Shot",
                     "spellId": 193455,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.76
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.09
                 }
             ],
             "matchId": "2ca1457995f3bbdb9154f7b287ff6d33",
@@ -2513,7 +2537,7 @@
                         "pvpTalentId": 196
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-09D11C13",
@@ -2691,7 +2715,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "12": {
@@ -2703,61 +2727,71 @@
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.07
                 },
                 {
                     "name": "Bestial Wrath",
                     "spellId": 19574,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.48
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.85
                 },
                 {
                     "name": "Dire Beast",
                     "spellId": 212396,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.85
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.42
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.76
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.1
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.42
                 },
                 {
                     "name": "Cobra Shot",
                     "spellId": 193455,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.76
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.09
                 }
             ],
             "matchId": "2ca1457995f3bbdb9154f7b287ff6d33",
@@ -3425,7 +3459,7 @@
                         "pvpTalentId": 196
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-09D11C13",
@@ -3595,7 +3629,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "20": {
@@ -3607,91 +3641,106 @@
                     "name": "Bestial Wrath",
                     "spellId": 19574,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.48
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.85
                 },
                 {
                     "name": "Dire Beast",
                     "spellId": 212396,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.85
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.42
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.76
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.1
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.42
                 },
                 {
                     "name": "Cobra Shot",
                     "spellId": 193455,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.76
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.09
                 },
                 {
                     "name": "Disengage",
                     "spellId": 781,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.17
                 },
                 {
                     "name": "Mend Pet",
                     "spellId": 136,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.17
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.4
                 },
                 {
                     "name": "Primal Rage",
                     "spellId": 272678,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.81
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.78
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.01
                 }
             ],
             "matchId": "2ca1457995f3bbdb9154f7b287ff6d33",
@@ -4359,7 +4408,7 @@
                         "pvpTalentId": 196
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-09D11C13",
@@ -4529,7 +4578,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "30": {
@@ -4541,163 +4590,190 @@
                     "name": "Dire Beast",
                     "spellId": 132764,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.2
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.46
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.81
                 },
                 {
                     "name": "Cobra Shot",
                     "spellId": 193455,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.14
                 },
                 {
                     "name": "Cobra Shot",
                     "spellId": 193455,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.49
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.03
                 },
                 {
                     "name": "Roar of Sacrifice",
                     "spellId": 53480,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.34
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.55
                 },
                 {
                     "name": "Counter Shot",
                     "spellId": 147362,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.71
                 },
                 {
                     "name": "Scatter Shot",
                     "spellId": 213691,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.57
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.91
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.26
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.62
                 },
                 {
                     "name": "Mend Pet",
                     "spellId": 136,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.94
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.28
                 },
                 {
                     "name": "Dire Beast",
                     "spellId": 132764,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.28
                 },
                 {
                     "name": "Cobra Shot",
                     "spellId": 193455,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.62
                 },
                 {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.92
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.2
                 },
                 {
                     "name": "Freezing Trap",
                     "spellId": 187650,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 22.1
                 },
                 {
                     "name": "Cobra Shot",
                     "spellId": 193455,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.58
                 },
                 {
                     "name": "Binding Shot",
                     "spellId": 109248,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 25.09
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.64
                 },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 27.55
                 },
                 {
                     "name": "Bestial Wrath",
                     "spellId": 19574,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 27.92
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.23
                 },
                 {
                     "name": "Dire Beast",
                     "spellId": 132764,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.57
                 }
             ],
             "matchId": "fa28b9a211917503bc40bcd1edd315c6",
@@ -4860,9 +4936,9 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Balance",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:50:51+00:00"
+    "generated_at": "2026-09-06T12:21:17+00:00"
 }

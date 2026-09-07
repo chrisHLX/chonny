@@ -25,67 +25,78 @@
                 "name": "Kingsbane",
                 "spellId": 385627,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.65
             },
             {
                 "name": "Envenom",
                 "spellId": 32645,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.65
             },
             {
                 "name": "Mutilate",
                 "spellId": 27576,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.65
             },
             {
                 "name": "Mutilate",
                 "spellId": 27576,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 3.66
             },
             {
                 "name": "Cloak of Shadows",
                 "spellId": 31224,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.33
             },
             {
                 "name": "Mutilate",
                 "spellId": 27576,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.79
             },
             {
                 "name": "Envenom",
                 "spellId": 32645,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.79
             },
             {
                 "name": "Mutilate",
                 "spellId": 27576,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.79
             },
             {
                 "name": "Mutilate",
                 "spellId": 27576,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.28
             },
             {
                 "name": "Blind",
                 "spellId": 2094,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 9.89
             },
             {
                 "name": "Mutilate",
                 "spellId": 27576,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.04
             }
         ],
         "matchId": "6b2773fe3a4da5b303d4016e4691b2cd",
@@ -780,7 +791,7 @@
                     "pvpTalentId": 303
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:48+00:00"
+            "resolvedAt": "2026-09-06T12:25:32+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-73-0FD03140",
@@ -1030,7 +1041,7 @@
             ],
             "targetClassName": "Druid",
             "targetSpecName": "Balance",
-            "resolvedAt": "2026-09-06T02:56:55+00:00"
+            "resolvedAt": "2026-09-06T12:25:38+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -1043,37 +1054,43 @@
                     "name": "Kingsbane",
                     "spellId": 385627,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.38
                 },
                 {
                     "name": "Envenom",
                     "spellId": 32645,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.38
                 },
                 {
                     "name": "Vanish",
                     "spellId": 1856,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.86
                 },
                 {
                     "name": "Garrote",
                     "spellId": 703,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.39
                 },
                 {
                     "name": "Envenom",
                     "spellId": 32645,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.4
                 },
                 {
                     "name": "Cheap Shot",
                     "spellId": 1833,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.39
                 }
             ],
             "matchId": "8e3b4d13ced78199c730726e9b89d9e7",
@@ -1768,7 +1785,7 @@
                         "pvpTalentId": 308
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-163-0AA3B3A5",
@@ -1913,7 +1930,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Restoration",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "10": {
@@ -1925,61 +1942,71 @@
                     "name": "Kingsbane",
                     "spellId": 385627,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.65
                 },
                 {
                     "name": "Envenom",
                     "spellId": 32645,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.65
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.65
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.66
                 },
                 {
                     "name": "Cloak of Shadows",
                     "spellId": 31224,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.33
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.79
                 },
                 {
                     "name": "Envenom",
                     "spellId": 32645,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.79
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.79
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.28
                 },
                 {
                     "name": "Blind",
                     "spellId": 2094,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.89
                 }
             ],
             "matchId": "6b2773fe3a4da5b303d4016e4691b2cd",
@@ -2674,7 +2701,7 @@
                         "pvpTalentId": 303
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-73-0FD03140",
@@ -2924,7 +2951,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Balance",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "12": {
@@ -2936,67 +2963,78 @@
                     "name": "Kingsbane",
                     "spellId": 385627,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.65
                 },
                 {
                     "name": "Envenom",
                     "spellId": 32645,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.65
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.65
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.66
                 },
                 {
                     "name": "Cloak of Shadows",
                     "spellId": 31224,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.33
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.79
                 },
                 {
                     "name": "Envenom",
                     "spellId": 32645,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.79
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.79
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.28
                 },
                 {
                     "name": "Blind",
                     "spellId": 2094,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.89
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.04
                 }
             ],
             "matchId": "6b2773fe3a4da5b303d4016e4691b2cd",
@@ -3691,7 +3729,7 @@
                         "pvpTalentId": 303
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-73-0FD03140",
@@ -3941,7 +3979,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Balance",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "20": {
@@ -3953,103 +3991,120 @@
                     "name": "Crimson Tempest",
                     "spellId": 1247227,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.78
                 },
                 {
                     "name": "Garrote",
                     "spellId": 703,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.66
                 },
                 {
                     "name": "Deathmark",
                     "spellId": 360194,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.66
                 },
                 {
                     "name": "Kingsbane",
                     "spellId": 385627,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.65
                 },
                 {
                     "name": "Envenom",
                     "spellId": 32645,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.65
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.65
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.66
                 },
                 {
                     "name": "Cloak of Shadows",
                     "spellId": 31224,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.33
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.79
                 },
                 {
                     "name": "Envenom",
                     "spellId": 32645,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.79
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.79
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.28
                 },
                 {
                     "name": "Blind",
                     "spellId": 2094,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.89
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.04
                 },
                 {
                     "name": "Kidney Shot",
                     "spellId": 408,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.51
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.66
                 },
                 {
                     "name": "Rupture",
                     "spellId": 1943,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 18.74
                 }
             ],
             "matchId": "6b2773fe3a4da5b303d4016e4691b2cd",
@@ -4744,7 +4799,7 @@
                         "pvpTalentId": 303
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-73-0FD03140",
@@ -4994,7 +5049,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Balance",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "30": {
@@ -5006,157 +5061,183 @@
                     "name": "Envenom",
                     "spellId": 32645,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.3
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.25
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.45
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.83
                 },
                 {
                     "name": "Personal Hologram",
                     "spellId": 155111,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.97
                 },
                 {
                     "name": "Vanish",
                     "spellId": 1856,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.97
                 },
                 {
                     "name": "Stealth",
                     "spellId": 115191,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.13
                 },
                 {
                     "name": "Garrote",
                     "spellId": 703,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.91
                 },
                 {
                     "name": "Rupture",
                     "spellId": 1943,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.9
                 },
                 {
                     "name": "Ambush",
                     "spellId": 8676,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.93
                 },
                 {
                     "name": "Ambush",
                     "spellId": 8676,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.93
                 },
                 {
                     "name": "Ambush",
                     "spellId": 8676,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.93
                 },
                 {
                     "name": "Ambush",
                     "spellId": 8676,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.93
                 },
                 {
                     "name": "Kidney Shot",
                     "spellId": 408,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.22
                 },
                 {
                     "name": "Deathmark",
                     "spellId": 360194,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.39
                 },
                 {
                     "name": "Smoke Bomb",
                     "spellId": 212182,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.39
                 },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.87
                 },
                 {
                     "name": "Kingsbane",
                     "spellId": 385627,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.39
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.42
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.42
                 },
                 {
                     "name": "Blind",
                     "spellId": 2094,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 22.41
                 },
                 {
                     "name": "Envenom",
                     "spellId": 32645,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.48
                 },
                 {
                     "name": "Mutilate",
                     "spellId": 27576,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.5
                 },
                 {
                     "name": "Shadowstep",
                     "spellId": 36554,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 25.57
                 },
                 {
                     "name": "Vanish",
                     "spellId": 1856,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.48
                 },
                 {
                     "name": "Garrote",
                     "spellId": 703,
                     "isCc": true,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.3
                 }
             ],
             "matchId": "d631d2a9e48d00c0b5c2d5073dfd8a4f",
@@ -5851,7 +5932,7 @@
                         "pvpTalentId": 308
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0E8E3FF4",
@@ -6041,9 +6122,9 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Fury",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:54:38+00:00"
+    "generated_at": "2026-09-06T12:23:59+00:00"
 }

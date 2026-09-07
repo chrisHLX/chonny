@@ -23,61 +23,71 @@
                 "name": "Rushing Wind Kick",
                 "spellId": 467307,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.4
             },
             {
                 "name": "Thunder Focus Tea",
                 "spellId": 116680,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.82
             },
             {
                 "name": "Rushing Wind Kick",
                 "spellId": 467307,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 2.35
             },
             {
                 "name": "Blackout Kick",
                 "spellId": 100784,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.31
             },
             {
                 "name": "Rushing Wind Kick",
                 "spellId": 467307,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.53
             },
             {
                 "name": "Chi Torpedo",
                 "spellId": 115008,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 7.01
             },
             {
                 "name": "Soothing Mist",
                 "spellId": 115175,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.21
             },
             {
                 "name": "Enveloping Mist",
                 "spellId": 124682,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 9.06
             },
             {
                 "name": "Sheilun's Gift",
                 "spellId": 399491,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 10.36
             },
             {
                 "name": "Detox",
                 "spellId": 115450,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 11.73
             }
         ],
         "matchId": "c18441f05671a3ad02add0fc5b42fe8b",
@@ -799,7 +809,7 @@
                     "pvpTalentId": 238
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:51+00:00"
+            "resolvedAt": "2026-09-06T12:25:35+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-76-0C128558",
@@ -928,7 +938,7 @@
             ],
             "targetClassName": "Druid",
             "targetSpecName": "Feral",
-            "resolvedAt": "2026-09-06T02:57:01+00:00"
+            "resolvedAt": "2026-09-06T12:25:43+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -941,25 +951,29 @@
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.49
                 },
                 {
                     "name": "Leg Sweep",
                     "spellId": 119381,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.37
                 },
                 {
                     "name": "Song of Chi-Ji",
                     "spellId": 198898,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.58
                 },
                 {
                     "name": "Touch of Death",
                     "spellId": 322109,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.99
                 }
             ],
             "matchId": "85cd2227cbf7b301e94e71610658e6eb",
@@ -1681,7 +1695,7 @@
                         "pvpTalentId": 234
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-57-0E073660",
@@ -1811,7 +1825,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Balance",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "10": {
@@ -1823,49 +1837,57 @@
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.4
                 },
                 {
                     "name": "Thunder Focus Tea",
                     "spellId": 116680,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.82
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.35
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.31
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.53
                 },
                 {
                     "name": "Chi Torpedo",
                     "spellId": 115008,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.01
                 },
                 {
                     "name": "Soothing Mist",
                     "spellId": 115175,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.21
                 },
                 {
                     "name": "Enveloping Mist",
                     "spellId": 124682,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.06
                 }
             ],
             "matchId": "c18441f05671a3ad02add0fc5b42fe8b",
@@ -2587,7 +2609,7 @@
                         "pvpTalentId": 238
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0C128558",
@@ -2716,7 +2738,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Feral",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "12": {
@@ -2728,61 +2750,71 @@
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.4
                 },
                 {
                     "name": "Thunder Focus Tea",
                     "spellId": 116680,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.82
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.35
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.31
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.53
                 },
                 {
                     "name": "Chi Torpedo",
                     "spellId": 115008,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.01
                 },
                 {
                     "name": "Soothing Mist",
                     "spellId": 115175,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.21
                 },
                 {
                     "name": "Enveloping Mist",
                     "spellId": 124682,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.06
                 },
                 {
                     "name": "Sheilun's Gift",
                     "spellId": 399491,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.36
                 },
                 {
                     "name": "Detox",
                     "spellId": 115450,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.73
                 }
             ],
             "matchId": "c18441f05671a3ad02add0fc5b42fe8b",
@@ -3504,7 +3536,7 @@
                         "pvpTalentId": 238
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0C128558",
@@ -3633,7 +3665,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Feral",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "20": {
@@ -3645,73 +3677,85 @@
                     "name": "Sheilun's Gift",
                     "spellId": 399491,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.85
                 },
                 {
                     "name": "Paralysis",
                     "spellId": 115078,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.45
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.4
                 },
                 {
                     "name": "Thunder Focus Tea",
                     "spellId": 116680,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.82
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.35
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.31
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.53
                 },
                 {
                     "name": "Chi Torpedo",
                     "spellId": 115008,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.01
                 },
                 {
                     "name": "Soothing Mist",
                     "spellId": 115175,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.21
                 },
                 {
                     "name": "Enveloping Mist",
                     "spellId": 124682,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.06
                 },
                 {
                     "name": "Sheilun's Gift",
                     "spellId": 399491,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.36
                 },
                 {
                     "name": "Detox",
                     "spellId": 115450,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.73
                 }
             ],
             "matchId": "c18441f05671a3ad02add0fc5b42fe8b",
@@ -4433,7 +4477,7 @@
                         "pvpTalentId": 238
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0C128558",
@@ -4603,7 +4647,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Feral",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "30": {
@@ -4615,121 +4659,141 @@
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.4
                 },
                 {
                     "name": "Thunder Focus Tea",
                     "spellId": 116680,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.82
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.35
                 },
                 {
                     "name": "Blackout Kick",
                     "spellId": 100784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.31
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.53
                 },
                 {
                     "name": "Chi Torpedo",
                     "spellId": 115008,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.01
                 },
                 {
                     "name": "Soothing Mist",
                     "spellId": 115175,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.21
                 },
                 {
                     "name": "Enveloping Mist",
                     "spellId": 124682,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.06
                 },
                 {
                     "name": "Sheilun's Gift",
                     "spellId": 399491,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.36
                 },
                 {
                     "name": "Detox",
                     "spellId": 115450,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.73
                 },
                 {
                     "name": "Soothing Mist",
                     "spellId": 115175,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.01
                 },
                 {
                     "name": "Enveloping Mist",
                     "spellId": 124682,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.83
                 },
                 {
                     "name": "Life Cocoon",
                     "spellId": 116849,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 23.9
                 },
                 {
                     "name": "Sheilun's Gift",
                     "spellId": 399491,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.07
                 },
                 {
                     "name": "Chi Torpedo",
                     "spellId": 115008,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.57
                 },
                 {
                     "name": "Thunder Focus Tea",
                     "spellId": 116680,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.74
                 },
                 {
                     "name": "Invoke Chi-Ji, the Red Crane",
                     "spellId": 325197,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 26.08
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.3
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.3
                 },
                 {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.31
                 }
             ],
             "matchId": "c18441f05671a3ad02add0fc5b42fe8b",
@@ -5451,7 +5515,7 @@
                         "pvpTalentId": 238
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-76-0C128558",
@@ -5580,9 +5644,9 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Feral",
-                "resolvedAt": "2026-09-06T02:57:01+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:52:00+00:00"
+    "generated_at": "2026-09-06T12:22:08+00:00"
 }

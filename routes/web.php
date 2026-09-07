@@ -1,43 +1,37 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Models\Concept;
-use App\Models\Question;
-use App\Models\Module;
-use App\Models\User;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ConceptController;
-use App\Http\Controllers\QuestionController;
-
-use App\Http\Controllers\ModuleQuizController;
-use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\AiController;
-use App\Http\Controllers\ReplayController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\StripeWebhookController;
-use App\Http\Controllers\StripeController;
-use App\Http\Controllers\ProficiencyController;
 use App\Http\Controllers\CategoryController;
-use App\Livewire\Admin\ContentManager;
+use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\ConceptController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ModuleQuizController;
+use App\Http\Controllers\PipelineController;
+use App\Http\Controllers\ProficiencyController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\StripeWebhookController;
 use App\Livewire\Admin\ApiUsage;
-use App\Livewire\Admin\WeakAreas;
-use App\Livewire\Admin\LogViewer;
+use App\Livewire\Admin\ContentManager;
 use App\Livewire\Admin\DiagnosticStats;
 use App\Livewire\Admin\GameDataBrowser;
-use App\Livewire\Admin\TalentBuildEditor;
+use App\Livewire\Admin\LogViewer;
 use App\Livewire\Admin\PageUsage;
-use App\Http\Controllers\CollectionController;
-use App\Http\Controllers\PipelineController;
-use App\Http\Controllers\FeedbackController;
-
+use App\Livewire\Admin\TalentBuildEditor;
+use App\Livewire\Admin\WeakAreas;
+use App\Livewire\JobDashboard;
 use App\Livewire\Modules\Building;
 use App\Livewire\Modules\Index;
 use App\Livewire\Modules\Show;
 use App\Livewire\QuizPage;
-use App\Livewire\ModuleSelector;
-use App\Livewire\JobDashboard;
 use App\Livewire\SpellExplorer;
+use App\Models\Module;
+use App\Models\Question;
+use Illuminate\Support\Facades\Route;
 
 // STRIPE
 Route::post('/checkout/session', [StripeController::class, 'create'])
@@ -49,7 +43,6 @@ Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle']);
 // Optional redirect pages
 Route::get('/checkout/success', fn () => view('checkout.success'))->name('checkout.success');
 Route::get('/checkout/cancel', fn () => view('checkout.cancel'))->name('checkout.cancel');
-
 
 Route::get('/', \App\Livewire\WowComps::class);
 
@@ -82,7 +75,6 @@ Route::get('/pipelines/{pipeline}', [PipelineController::class, 'status']);
 Route::get('/next-module/{pipeline}', [PipelineController::class, 'nextModule'])
     ->name('pipelines.next-module');
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -94,17 +86,17 @@ Route::get('/concepts', [ConceptController::class, 'index'])->name('concepts.ind
 Route::get('/concepts/create', [ConceptController::class, 'create'])->name('concepts.create');
 Route::post('/concepts', [ConceptController::class, 'store'])->name('concepts.store');
 
-//questions
+// questions
 Route::get('/questions/quiz', QuizPage::class)->name('questions.quiz.index')->middleware('auth');
-//Route::get('/questions', [QuestionController::class, 'index'])->name('questions.index');
+// Route::get('/questions', [QuestionController::class, 'index'])->name('questions.index');
 Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy')->middleware('auth');
-//Route::get('/questions/quiz', [QuestionController::class, 'quiz'])->name('questions.quiz.index')->middleware('auth');
+// Route::get('/questions/quiz', [QuestionController::class, 'quiz'])->name('questions.quiz.index')->middleware('auth');
 Route::post('/questions/{question}/answer', [QuestionController::class, 'submit'])->name('questions.answer');
 Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
 
-//create and store modules
+// create and store modules
 Route::get('modules', Index::class)->name('modules.index');
-//Route::get('modules', [ModuleController::class, 'index'])->name('modules.index')->middleware('auth');
+// Route::get('modules', [ModuleController::class, 'index'])->name('modules.index')->middleware('auth');
 
 Route::get('/spells', SpellExplorer::class)->name('spells.explore');
 Route::get('/wow-comps', \App\Livewire\WowComps::class)->name('wow-comps');
@@ -119,12 +111,22 @@ Route::get('/top-damage-rotations/{classSlug}/{specSlug}/{length}/talents', \App
 Route::get('/cc-review', \App\Livewire\CcReview::class)->name('cc-review');
 Route::get('/cc-immunity-review', \App\Livewire\CcImmunityReview::class)->name('cc-immunity-review');
 Route::get('/spell-finder', \App\Livewire\SpellFinder::class)->name('spell-finder');
+// One permanent, linkable page per spell. Renders the same <x-spells.detail> the site-wide
+// modal does, from the same SpellProfile — see App\Livewire\SpellDetail.
+Route::get('/spell/{spellId}', \App\Livewire\SpellDetail::class)->whereNumber('spellId')->name('spell.show');
 Route::get('/class-guide/{classSlug?}/{specSlug?}', \App\Livewire\ClassGuide::class)->name('class-guide');
 Route::get('/cc-chains', \App\Livewire\TopCcChains::class)->name('top-cc-chains');
 Route::get('/claudes-guides/{classSlug?}/{specSlug?}', \App\Livewire\ClaudesGuides::class)->name('claudes-guides');
 Route::get('/burst-guides', \App\Livewire\BurstGuides::class)->name('burst-guides');
 Route::get('/spell-counters', \App\Livewire\ClaudesCounters::class)->name('claudes-counters');
 Route::redirect('/claudes-counters', '/spell-counters'); // old URL, kept working for anything already linked/bookmarked to it
+
+// The combined per-spec view over the four routes directly above/around it (class-guide,
+// burst-guides, spells, spell-counters). Those four are deliberately NOT redirected here: each
+// still renders standalone, and each is what an existing bookmark or the sitemap resolves to.
+// See App\Livewire\PvpGuides. `?tab=` selects the panel; spec lives in the path so a guide link
+// always names the spec it opens on.
+Route::get('/pvp-guides/{classSlug?}/{specSlug?}', \App\Livewire\PvpGuides::class)->name('pvp-guides');
 
 Route::get('/modules/manage', [ModuleController::class, 'manage'])->name('modules.manage')->middleware('auth');
 Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules.create')->middleware('auth');
@@ -148,10 +150,10 @@ Route::get('/modules/{module}/export', [ModuleController::class, 'export'])->nam
 Route::post('/modules/explore', [ModuleController::class, 'explore'])->name('modules.explore')->middleware('auth');
 Route::get('/modules/{module}/building', Building::class)->name('modules.building')->middleware('auth');
 
-//Routes can be very temperamental, so we need to create unique routes for each action for example
-//Dont use the same route for both destroy and destroyPage, even if they are similar 
-//Thats why we changed the destroyPage route to be more specific
-//Module Pages
+// Routes can be very temperamental, so we need to create unique routes for each action for example
+// Dont use the same route for both destroy and destroyPage, even if they are similar
+// Thats why we changed the destroyPage route to be more specific
+// Module Pages
 Route::delete('/module-page/{modulePage}', [ModuleController::class, 'destroyPage'])
     ->name('module-page.destroyPage')
     ->middleware('auth');
@@ -159,7 +161,6 @@ Route::delete('/module-page/{modulePage}', [ModuleController::class, 'destroyPag
 Route::post('/modules/{module}/pages/save', [ModuleController::class, 'savePage'])
     ->name('module-pages.save')
     ->middleware('auth');
-
 
 // Module detail page — public, no auth required
 Route::get('/modules/{module}', Show::class)->name('modules.show');
@@ -185,7 +186,6 @@ Route::get('/subjects/by-category/{category}', [CategoryController::class, 'subj
 // Category routes
 // routes/web.php
 
-
 // use this command to create a controller:
 // php artisan make:controller QuestionController --model=Question
 
@@ -206,8 +206,6 @@ Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group
     Route::get('/game-data', GameDataBrowser::class)->name('game-data');
     Route::get('/talent-builds', TalentBuildEditor::class)->name('talent-builds');
 });
-
-
 
 // Feedback
 Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback.create');

@@ -1,20 +1,133 @@
 {
     "classSlug": "mage",
     "specSlug": "fire",
-    "generatedAt": "2026-09-06T03:01:01+00:00",
-    "sourceLengthSeconds": 30,
-    "sourceMatchId": "92de111b84d714898fd66cd24c3158d5",
-    "spellIds": [
-        190319,
-        11366,
-        108853,
-        342245,
-        11366,
-        108853,
-        11366,
-        108853
+    "generatedAt": "2026-09-07T00:57:27+00:00",
+    "evidence": {
+        "windows": 721,
+        "anchoredWindows": 611,
+        "matches": 207,
+        "killWindows": 127,
+        "gcdSeconds": 1.1,
+        "gcdMeasured": true
+    },
+    "window": {
+        "goLengthSeconds": 10,
+        "goLengthBasis": "buff-duration",
+        "globals": 9,
+        "anchorSpellId": 190319,
+        "commitSpreadSeconds": 5.8,
+        "anchorBuffSeconds": 10,
+        "anchorCooldownSeconds": 120
+    },
+    "sequence": [
+        {
+            "spellId": 118,
+            "presence": 0.414,
+            "castsPerWindow": 0.53,
+            "medianOffset": -0.89,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "control",
+            "controlTarget": "healer",
+            "controlTargetSource": "measured",
+            "healerShare": 0.477,
+            "targetRatio": 1.43,
+            "targetObservations": 1374,
+            "phase": "setup"
+        },
+        {
+            "spellId": 190319,
+            "presence": 1,
+            "castsPerWindow": 1,
+            "medianOffset": 0,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Buff",
+            "role": "anchor",
+            "phase": "commit"
+        },
+        {
+            "spellId": 122,
+            "presence": 0.277,
+            "castsPerWindow": 0.29,
+            "medianOffset": 4,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "control",
+            "controlTarget": "peel",
+            "controlTargetSource": "measured",
+            "healerShare": 0.193,
+            "targetRatio": 0.58,
+            "targetObservations": 1432,
+            "phase": "execute"
+        },
+        {
+            "spellId": 108853,
+            "presence": 0.995,
+            "castsPerWindow": 6.1,
+            "medianOffset": 4.62,
+            "stacksOnAnotherGlobal": true,
+            "classification": "Offensive Spell",
+            "role": "cooldown",
+            "phase": "execute"
+        },
+        {
+            "spellId": 2139,
+            "presence": 0.378,
+            "castsPerWindow": 0.38,
+            "medianOffset": 5.78,
+            "stacksOnAnotherGlobal": true,
+            "classification": null,
+            "role": "interrupt",
+            "phase": "execute"
+        }
     ],
-    "rawStepCount": 41,
-    "filteredStepCount": 39,
-    "truncatedAtRepeat": true
+    "fill": [
+        {
+            "spellId": 11366,
+            "presence": 0.987,
+            "castsPerWindow": 6.57,
+            "medianOffset": 5.64,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Spell",
+            "role": "fill"
+        },
+        {
+            "spellId": 2948,
+            "presence": 0.404,
+            "castsPerWindow": 0.51,
+            "medianOffset": 1.03,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "fill"
+        }
+    ],
+    "alsoPressed": [
+        {
+            "spellId": 235313,
+            "presence": 0.481,
+            "castsPerWindow": 0.55,
+            "medianOffset": 6.48,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Defensive",
+            "role": "other"
+        },
+        {
+            "spellId": 1953,
+            "presence": 0.468,
+            "castsPerWindow": 0.61,
+            "medianOffset": 4.85,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Defensive",
+            "role": "other"
+        },
+        {
+            "spellId": 342245,
+            "presence": 0.322,
+            "castsPerWindow": 0.4,
+            "medianOffset": 3.96,
+            "stacksOnAnotherGlobal": true,
+            "classification": null,
+            "role": "other"
+        }
+    ]
 }

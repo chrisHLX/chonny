@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\File;
 use Livewire\Component;
 
 /**
- * "Burst Guides" — a grid of compact, per-spec burst-sequence blocks: a definite, filtered
- * series of real ability presses (offensive cooldowns + Crowd Control on the kill target,
- * ordinary rotation kept, purely-defensive noise dropped), one block per spec that has real
- * rotation data. Reads ONLY data/claudes-guides/burst-guides/{class}/{spec}.json — written by
- * `php artisan wow:build-burst-guides` (see ArenaLogService::buildBurstGuideSequence() for the
- * full filter/truncation design this page is a pure read-and-render layer over).
+ * "Burst Guides" — a grid of compact, per-spec burst plans: for each spec, how long its go
+ * actually lasts, how many globals fit in it, and the phased sequence of presses that fills it
+ * (set up, commit, execute, then fill), every figure aggregated across every real archived burst
+ * window for that spec. Reads ONLY data/claudes-guides/burst-guides/{class}/{spec}.json —
+ * written by `php artisan wow:build-burst-guides` (see App\Http\Services\BurstGuideBuilder for
+ * the full derivation this page is a pure read-and-render layer over).
  *
  * Distinct from the existing Claude's Guides page (/claudes-guides, App\Livewire\ClaudesGuides)
  * — that page is a deep-dive per spec, hand-written, and only covers 11 of the 38 real specs.
- * This page is comprehensive (every spec with rotation data), auto-computed, and deliberately
- * shallow — one block per spec, no prose, matching the design brief's own "that's a simple
- * layout" framing. Both live under data/claudes-guides/ but in separate subfolders and are read
- * by separate, independent page components — neither reads the other's files.
+ * This page is comprehensive (every spec with rotation data), auto-computed, and carries no
+ * hand-written prose at all — the only English on it explains what a phase means, never what a
+ * particular spec should do. Both live under data/claudes-guides/ but in separate subfolders and
+ * are read by separate, independent page components — neither reads the other's files.
  *
  * THIS COMPONENT IS DELIBERATELY THIN — it only ever lists which classes have burst-guide data
  * on disk (a cheap directory scan, no spell resolution at all) and mounts one lazy-loaded
@@ -67,7 +67,7 @@ class BurstGuides extends Component
             'availableClassSlugs' => $this->availableClassSlugs,
         ])->layout('layouts.app', [
             'title' => 'Burst Guides | MindCollector',
-            'description' => 'A definite, filtered sequence of key presses per spec — offensive cooldowns and kill-target crowd control only — derived from real archived burst windows.',
+            'description' => 'How to burst on every WoW arena spec: how long the window lasts, how many globals fit, and what to press in order — aggregated from every real archived burst window.',
         ]);
     }
 }

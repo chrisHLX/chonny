@@ -26,6 +26,8 @@ class Spell extends Model
         'range_yards',
         'is_passive',
         'dr_category',
+        'conditional_dr_gating_spell_id',
+        'conditional_dr_category',
         'cast_type',
         'chain_target',
         'is_peel',
@@ -39,6 +41,10 @@ class Spell extends Model
         'cc_immunity_note',
         'category',
         'silence_immune_by_school',
+        'grants_cc_immunity',
+        'grants_cc_immunity_override',
+        'cc_immunity_gating_spell_id',
+        'grants_school_immunity',
     ];
 
     // Without these, isDirty() falls back to strcmp() for uncast numeric attributes — MySQL
@@ -60,6 +66,8 @@ class Spell extends Model
         'requires_target_out_of_combat' => 'boolean',
         'bypasses_active_defense' => 'boolean',
         'silence_immune_by_school' => 'boolean',
+        'grants_cc_immunity' => 'array',
+        'grants_cc_immunity_override' => 'array',
     ];
 
     public function patch()
@@ -80,6 +88,26 @@ class Spell extends Model
     public function classAvailability()
     {
         return $this->hasMany(SpellClassAvailability::class);
+    }
+
+    /**
+     * Every ability that counters THIS spell — the reverse-lookup half of spell_counters.
+     * Only ever populated for a spell that is itself real CC (has a dr_category); see
+     * SpellCounterIndexer for how each row is derived and what `mechanism` means.
+     *
+     * This exists so "what counters Kidney Shot" is answerable from anywhere (the detail modal,
+     * the detail page, SpellFinder) rather than only from inside ClaudesCounters, which used to
+     * be the sole place in the codebase that could compute it at all.
+     */
+    public function counteredBy()
+    {
+        return $this->hasMany(SpellCounter::class, 'countered_spell_id');
+    }
+
+    /** Every CC ability this spell counters — the forward direction of the same table. */
+    public function counters()
+    {
+        return $this->hasMany(SpellCounter::class, 'counter_spell_id');
     }
 
     public function ccChainExceptions()

@@ -28,61 +28,71 @@
                 "name": "Tentacle Slam",
                 "spellId": 1227280,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.03
             },
             {
                 "name": "Psyfiend",
                 "spellId": 211522,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.94
             },
             {
                 "name": "Shadow Word: Pain",
                 "spellId": 589,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.82
             },
             {
                 "name": "Silence",
                 "spellId": 15487,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.51
             },
             {
                 "name": "Void Volley",
                 "spellId": 1242173,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.4
             },
             {
                 "name": "Void Volley",
                 "spellId": 1242173,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.2
             },
             {
                 "name": "Void Volley",
                 "spellId": 1242173,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.99
             },
             {
                 "name": "Void Torrent",
                 "spellId": 263165,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.8
             },
             {
                 "name": "Shadow Word: Madness",
                 "spellId": 335467,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 9.68
             },
             {
                 "name": "Void Blast",
                 "spellId": 450983,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 11.49
             }
         ],
         "matchId": "20a71ae7db2bc7002c8c948286b04fc8",
@@ -813,7 +823,7 @@
                     "pvpTalentId": 20
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:53+00:00"
+            "resolvedAt": "2026-09-06T12:25:37+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-115-0664E716",
@@ -1039,7 +1049,7 @@
             ],
             "targetClassName": "Warrior",
             "targetSpecName": "Arms",
-            "resolvedAt": "2026-09-06T02:57:04+00:00"
+            "resolvedAt": "2026-09-06T12:25:44+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -1052,25 +1062,29 @@
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.07
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.86
                 },
                 {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.67
                 },
                 {
                     "name": "Mind Blast",
                     "spellId": 8092,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.64
                 }
             ],
             "matchId": "05b8ba657793149ff54fedbeef9a75b9",
@@ -1801,7 +1815,7 @@
                         "pvpTalentId": 20
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-1168-09E99C92",
@@ -1983,7 +1997,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:57:03+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "10": {
@@ -1995,37 +2009,43 @@
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.29
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.09
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.9
                 },
                 {
                     "name": "Void Torrent",
                     "spellId": 263165,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.8
                 },
                 {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.68
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450983,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.49
                 }
             ],
             "matchId": "20a71ae7db2bc7002c8c948286b04fc8",
@@ -2756,7 +2776,7 @@
                         "pvpTalentId": 20
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-115-0664E716",
@@ -2982,7 +3002,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:57:04+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "12": {
@@ -2994,61 +3014,71 @@
                     "name": "Tentacle Slam",
                     "spellId": 1227280,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.03
                 },
                 {
                     "name": "Psyfiend",
                     "spellId": 211522,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.94
                 },
                 {
                     "name": "Shadow Word: Pain",
                     "spellId": 589,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.82
                 },
                 {
                     "name": "Silence",
                     "spellId": 15487,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.51
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.4
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.2
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.99
                 },
                 {
                     "name": "Void Torrent",
                     "spellId": 263165,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.8
                 },
                 {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.68
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450983,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.49
                 }
             ],
             "matchId": "20a71ae7db2bc7002c8c948286b04fc8",
@@ -3779,7 +3809,7 @@
                         "pvpTalentId": 20
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-115-0664E716",
@@ -4005,7 +4035,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:57:04+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "20": {
@@ -4017,91 +4047,106 @@
                     "name": "Tentacle Slam",
                     "spellId": 1227280,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.03
                 },
                 {
                     "name": "Psyfiend",
                     "spellId": 211522,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.94
                 },
                 {
                     "name": "Shadow Word: Pain",
                     "spellId": 589,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.82
                 },
                 {
                     "name": "Silence",
                     "spellId": 15487,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.51
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.4
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.2
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.99
                 },
                 {
                     "name": "Void Torrent",
                     "spellId": 263165,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.8
                 },
                 {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.68
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450983,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.49
                 },
                 {
                     "name": "Tentacle Slam",
                     "spellId": 1227280,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.94
                 },
                 {
                     "name": "Power Word: Shield",
                     "spellId": 17,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16
                 },
                 {
                     "name": "Shadow Word: Pain",
                     "spellId": 589,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.08
                 },
                 {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.18
                 },
                 {
                     "name": "Shadow Word: Pain",
                     "spellId": 589,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.29
                 }
             ],
             "matchId": "20a71ae7db2bc7002c8c948286b04fc8",
@@ -4832,7 +4877,7 @@
                         "pvpTalentId": 20
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-115-0664E716",
@@ -5058,7 +5103,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:57:04+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         },
         "30": {
@@ -5070,169 +5115,197 @@
                     "name": "Voidform",
                     "spellId": 228260,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.06
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.06
                 },
                 {
                     "name": "Tentacle Slam",
                     "spellId": 1227280,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.11
                 },
                 {
                     "name": "Shadow Word: Pain",
                     "spellId": 589,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.18
                 },
                 {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.17
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.16
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.17
                 },
                 {
                     "name": "Angelic Feather",
                     "spellId": 121536,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.95
                 },
                 {
                     "name": "Psychic Scream",
                     "spellId": 8122,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.26
                 },
                 {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.25
                 },
                 {
                     "name": "Silence",
                     "spellId": 15487,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.13
                 },
                 {
                     "name": "Mind Blast",
                     "spellId": 8092,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.36
                 },
                 {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.35
                 },
                 {
                     "name": "Tentacle Slam",
                     "spellId": 1227280,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.4
                 },
                 {
                     "name": "Void Torrent",
                     "spellId": 263165,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 17.42
                 },
                 {
                     "name": "Power Infusion",
                     "spellId": 10060,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 18.41
                 },
                 {
                     "name": "Shadow Word: Death",
                     "spellId": 32379,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 18.55
                 },
                 {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.68
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450983,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 22.61
                 },
                 {
                     "name": "Void Volley",
                     "spellId": 1242173,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.61
                 },
                 {
                     "name": "Psyfiend",
                     "spellId": 211522,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 23.52
                 },
                 {
                     "name": "Tentacle Slam",
                     "spellId": 1227280,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.43
                 },
                 {
                     "name": "Void Blast",
                     "spellId": 450983,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.34
                 },
                 {
                     "name": "Mind Flay",
                     "spellId": 15407,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 26.26
                 },
                 {
                     "name": "Dispel Magic",
                     "spellId": 528,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 27.17
                 },
                 {
                     "name": "Shadow Word: Madness",
                     "spellId": 335467,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.08
                 },
                 {
                     "name": "Mind Flay",
                     "spellId": 15407,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.05
                 }
             ],
             "matchId": "4b388c5dc39ff2df76e404710aa50fd1",
@@ -5945,7 +6018,7 @@
                         "pvpTalentId": 20
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:53+00:00"
+                "resolvedAt": "2026-09-06T12:25:37+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-104-0EED1DA4",
@@ -6107,9 +6180,9 @@
                 ],
                 "targetClassName": "Death Knight",
                 "targetSpecName": "Unholy",
-                "resolvedAt": "2026-09-06T02:57:04+00:00"
+                "resolvedAt": "2026-09-06T12:25:45+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:53:54+00:00"
+    "generated_at": "2026-09-06T12:23:28+00:00"
 }

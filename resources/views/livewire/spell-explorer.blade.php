@@ -29,7 +29,9 @@
         : "Every talent and PvP talent for this spec, tagged by source. Greyed-out \"Not selected\" rows aren't part of this spec's admin-curated default build; cooldowns/charges on selected rows reflect that build's actual picks.";
 @endphp
 
-<div class="max-w-6xl mx-auto px-4 py-8 space-y-5"
+{{-- Embedded (a PvP Guides panel) drops the page-level width cap and padding — the parent
+     already supplies both, and applying them twice indents the panel inside its own page. --}}
+<div class="{{ $embedded ? 'space-y-5' : 'max-w-6xl mx-auto px-4 py-8 space-y-5' }}"
      x-data="{
         classPickerOpen: false,
         pendingSpec: false,
@@ -91,6 +93,11 @@
          closeTalentPicker() now dispatch 'spell-list-refreshed' after every such change; this
          listener re-runs applyFilters() against the freshly-morphed DOM in response. --}}
 
+    {{-- Hero + class/spec picker are the page's own chrome. When this component is a panel
+         inside PvP Guides ($embedded), that page already carries both — rendering them again
+         would put two headers and two pickers on one screen. Everything below them (the filter
+         tabs, the search, the spell table itself) is the actual content and always renders. --}}
+    @unless ($embedded)
     {{-- Hero --}}
     <div class="linear-card relative overflow-hidden">
         <div class="absolute inset-0 opacity-[0.15] pointer-events-none select-none text-gold" aria-hidden="true">
@@ -199,6 +206,8 @@
             </div>
         </div>
     </div>
+
+    @endunless
 
     @if ($specId)
         {{-- Filter tabs + search --}}

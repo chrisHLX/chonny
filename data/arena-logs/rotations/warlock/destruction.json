@@ -22,61 +22,71 @@
                 "name": "Havoc",
                 "spellId": 80240,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.12
             },
             {
                 "name": "Wither",
                 "spellId": 445468,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.21
             },
             {
                 "name": "Mortal Coil",
                 "spellId": 6789,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.09
             },
             {
                 "name": "Malevolence",
                 "spellId": 442726,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.98
             },
             {
                 "name": "Conflagrate",
                 "spellId": 17962,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.8
             },
             {
                 "name": "Conflagrate",
                 "spellId": 17962,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.24
             },
             {
                 "name": "Chaos Bolt",
                 "spellId": 116858,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 7.48
             },
             {
                 "name": "Soul Fire",
                 "spellId": 6353,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.63
             },
             {
                 "name": "Chaos Bolt",
                 "spellId": 116858,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.01
             },
             {
                 "name": "Shadowburn",
                 "spellId": 17877,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 10.01
             }
         ],
         "matchId": "832ad83f40e2a19b9e30e39c1a2583ee",
@@ -753,7 +763,7 @@
                     "pvpTalentId": 365
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:49+00:00"
+            "resolvedAt": "2026-09-06T12:25:33+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-86-0A7E0A33",
@@ -891,7 +901,7 @@
             ],
             "targetClassName": "Warrior",
             "targetSpecName": "Arms",
-            "resolvedAt": "2026-09-06T02:56:56+00:00"
+            "resolvedAt": "2026-09-06T12:25:39+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -904,37 +914,43 @@
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.07
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.07
                 },
                 {
                     "name": "Wither",
                     "spellId": 445468,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.09
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.04
                 },
                 {
                     "name": "Soul Fire",
                     "spellId": 6353,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.73
                 },
                 {
                     "name": "Incinerate",
                     "spellId": 29722,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.73
                 }
             ],
             "matchId": "5fcaa452295d995e646975b8a9d556c0",
@@ -1611,7 +1627,7 @@
                         "pvpTalentId": 365
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0AEA4DAE",
@@ -1793,7 +1809,7 @@
                 ],
                 "targetClassName": "Death Knight",
                 "targetSpecName": "Frost",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "10": {
@@ -1805,49 +1821,57 @@
                     "name": "Mortal Coil",
                     "spellId": 6789,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.09
                 },
                 {
                     "name": "Malevolence",
                     "spellId": 442726,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.98
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.8
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.24
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.48
                 },
                 {
                     "name": "Soul Fire",
                     "spellId": 6353,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.63
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.01
                 },
                 {
                     "name": "Shadowburn",
                     "spellId": 17877,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.01
                 }
             ],
             "matchId": "832ad83f40e2a19b9e30e39c1a2583ee",
@@ -2524,7 +2548,7 @@
                         "pvpTalentId": 365
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-86-0A7E0A33",
@@ -2662,7 +2686,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "12": {
@@ -2674,61 +2698,71 @@
                     "name": "Havoc",
                     "spellId": 80240,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.12
                 },
                 {
                     "name": "Wither",
                     "spellId": 445468,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.21
                 },
                 {
                     "name": "Mortal Coil",
                     "spellId": 6789,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.09
                 },
                 {
                     "name": "Malevolence",
                     "spellId": 442726,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.98
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.8
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.24
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.48
                 },
                 {
                     "name": "Soul Fire",
                     "spellId": 6353,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.63
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.01
                 },
                 {
                     "name": "Shadowburn",
                     "spellId": 17877,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.01
                 }
             ],
             "matchId": "832ad83f40e2a19b9e30e39c1a2583ee",
@@ -3405,7 +3439,7 @@
                         "pvpTalentId": 365
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-86-0A7E0A33",
@@ -3543,7 +3577,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Arms",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "20": {
@@ -3555,109 +3589,127 @@
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.01
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.97
                 },
                 {
                     "name": "Dark Pact",
                     "spellId": 108416,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.29
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.78
                 },
                 {
                     "name": "Incinerate",
                     "spellId": 29722,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.8
                 },
                 {
                     "name": "Fear",
                     "spellId": 5782,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.58
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.18
                 },
                 {
                     "name": "Wither",
                     "spellId": 445468,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.96
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.94
                 },
                 {
                     "name": "Incinerate",
                     "spellId": 29722,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.92
                 },
                 {
                     "name": "Incinerate",
                     "spellId": 29722,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.46
                 },
                 {
                     "name": "Incinerate",
                     "spellId": 29722,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.49
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.49
                 },
                 {
                     "name": "Spell Lock",
                     "spellId": 119910,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.28
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.63
                 },
                 {
                     "name": "Shadowburn",
                     "spellId": 17877,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.55
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.1
                 },
                 {
                     "name": "Incinerate",
                     "spellId": 29722,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.1
                 }
             ],
             "matchId": "17b5c5e6b7a6672c567ddb7cb8ae2800",
@@ -4352,7 +4404,7 @@
                         "pvpTalentId": 362
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3676-0EC57AB2",
@@ -4518,7 +4570,7 @@
                 ],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Marksmanship",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "30": {
@@ -4530,151 +4582,176 @@
                     "name": "Wither",
                     "spellId": 445468,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.15
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.01
                 },
                 {
                     "name": "Malevolence",
                     "spellId": 442726,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.96
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5
                 },
                 {
                     "name": "Mortal Coil",
                     "spellId": 6789,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.89
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.57
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.57
                 },
                 {
                     "name": "Summon Infernal",
                     "spellId": 1122,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.71
                 },
                 {
                     "name": "Wither",
                     "spellId": 445468,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.63
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.68
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.68
                 },
                 {
                     "name": "Incinerate",
                     "spellId": 29722,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.68
                 },
                 {
                     "name": "Soulburn",
                     "spellId": 385899,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.06
                 },
                 {
                     "name": "Demonic Healthstone",
                     "spellId": 452930,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 16.06
                 },
                 {
                     "name": "Incinerate",
                     "spellId": 29722,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.14
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.26
                 },
                 {
                     "name": "Incinerate",
                     "spellId": 29722,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.57
                 },
                 {
                     "name": "Soul Fire",
                     "spellId": 6353,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 23.07
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.8
                 },
                 {
                     "name": "Unending Resolve",
                     "spellId": 104773,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 24.8
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.64
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.64
                 },
                 {
                     "name": "Chaos Bolt",
                     "spellId": 116858,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.61
                 },
                 {
                     "name": "Incinerate",
                     "spellId": 29722,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.68
                 },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.59
                 }
             ],
             "matchId": "b3777265c8c3ab28df4c163af8ffb44d",
@@ -5360,7 +5437,7 @@
                         "pvpTalentId": 359
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-163-0A9D063A",
@@ -5530,9 +5607,9 @@
                 ],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Survival",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:56:11+00:00"
+    "generated_at": "2026-09-06T12:25:06+00:00"
 }

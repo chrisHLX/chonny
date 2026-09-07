@@ -219,7 +219,7 @@ test('wow comps tab beacon records an allowlisted tab and rejects anything else'
         ->and($breakdown->pluck('tab')->contains('not-a-real-tab'))->toBeFalse();
 });
 
-test('admin page usage includes Burst Windows alongside WoW Comps and Spell Explorer', function () {
+test('admin page usage includes Top Burst Windows alongside WoW Comps and Spell Explorer', function () {
     // Regression test for the real gap found 2026-08-23: TopDamageRotations was already calling
     // PageViewEvent::log('top_damage_rotations', ...) from day one, but Admin\PageUsage's PAGES
     // list never learned about the new page, so those events had nowhere to be seen. Adding a
@@ -237,5 +237,5 @@ test('admin page usage includes Burst Windows alongside WoW Comps and Spell Expl
     $topClasses = $component->topClasses['top_damage_rotations'];
     expect($topClasses->first()->name)->toBe('Warrior');
 
-    Livewire::test(PageUsage::class)->assertSee('Burst Windows');
+    Livewire::test(PageUsage::class)->assertSee('Top Burst Windows');
 });

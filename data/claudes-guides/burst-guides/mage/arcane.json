@@ -1,28 +1,128 @@
 {
     "classSlug": "mage",
     "specSlug": "arcane",
-    "generatedAt": "2026-09-06T03:01:01+00:00",
-    "sourceLengthSeconds": 30,
-    "sourceMatchId": "911b77be833306d4347fc312657c568e",
-    "spellIds": [
-        365350,
-        44425,
-        1295924,
-        118,
-        5143,
-        5143,
-        44425,
-        153626,
-        5143,
-        44425,
-        113724,
-        118,
-        118,
-        1295924,
-        5143,
-        44425
+    "generatedAt": "2026-09-07T00:57:26+00:00",
+    "evidence": {
+        "windows": 177,
+        "anchoredWindows": 97,
+        "matches": 41,
+        "killWindows": 31,
+        "gcdSeconds": 1.1,
+        "gcdMeasured": true
+    },
+    "window": {
+        "goLengthSeconds": 6.4,
+        "goLengthBasis": "measured",
+        "globals": 6,
+        "anchorSpellId": 365350,
+        "commitSpreadSeconds": 6.4,
+        "anchorBuffSeconds": null,
+        "anchorCooldownSeconds": 90
+    },
+    "sequence": [
+        {
+            "spellId": 365350,
+            "presence": 1,
+            "castsPerWindow": 1,
+            "medianOffset": 0,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Buff",
+            "role": "anchor",
+            "phase": "commit"
+        },
+        {
+            "spellId": 321507,
+            "presence": 0.732,
+            "castsPerWindow": 0.73,
+            "medianOffset": 1.01,
+            "stacksOnAnotherGlobal": true,
+            "classification": "Offensive Buff",
+            "role": "cooldown",
+            "phase": "commit"
+        },
+        {
+            "spellId": 118,
+            "presence": 0.495,
+            "castsPerWindow": 0.65,
+            "medianOffset": 1.43,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "control",
+            "controlTarget": "healer",
+            "controlTargetSource": "measured",
+            "healerShare": 0.477,
+            "targetRatio": 1.43,
+            "targetObservations": 1374,
+            "phase": "commit"
+        },
+        {
+            "spellId": 2139,
+            "presence": 0.268,
+            "castsPerWindow": 0.27,
+            "medianOffset": 4.33,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "interrupt",
+            "phase": "execute"
+        },
+        {
+            "spellId": 153626,
+            "presence": 0.567,
+            "castsPerWindow": 0.79,
+            "medianOffset": 6.41,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Buff",
+            "role": "cooldown",
+            "phase": "execute"
+        }
     ],
-    "rawStepCount": 23,
-    "filteredStepCount": 23,
-    "truncatedAtRepeat": true
+    "fill": [
+        {
+            "spellId": 5143,
+            "presence": 0.99,
+            "castsPerWindow": 3.07,
+            "medianOffset": 5.26,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "fill"
+        },
+        {
+            "spellId": 44425,
+            "presence": 0.979,
+            "castsPerWindow": 2.69,
+            "medianOffset": 7.34,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "fill"
+        },
+        {
+            "spellId": 1295924,
+            "presence": 0.289,
+            "castsPerWindow": 0.31,
+            "medianOffset": 8.34,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "fill"
+        }
+    ],
+    "alsoPressed": [
+        {
+            "spellId": 235450,
+            "presence": 0.402,
+            "castsPerWindow": 0.48,
+            "medianOffset": 5.58,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Defensive",
+            "role": "other"
+        },
+        {
+            "spellId": 1953,
+            "presence": 0.381,
+            "castsPerWindow": 0.43,
+            "medianOffset": 7.7,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Defensive",
+            "role": "other"
+        }
+    ]
 }

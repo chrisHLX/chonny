@@ -34,115 +34,78 @@
                 "name": "Felblade",
                 "spellId": 213243,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.09
             },
             {
                 "name": "Throw Glaive",
                 "spellId": 185123,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.61
             },
             {
                 "name": "Blade Dance",
                 "spellId": 188499,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Throw Glaive",
-                "spellId": 393035,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Shattered Souls",
-                "spellId": 228537,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Reaver's Glaive",
-                "spellId": 442294,
-                "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.61
             },
             {
                 "name": "Eye Beam",
                 "spellId": 198013,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.76
             },
             {
                 "name": "Consume Magic",
                 "spellId": 278326,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Shattered Souls",
-                "spellId": 228537,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 6.61
             },
             {
                 "name": "Annihilation",
                 "spellId": 201427,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.56
             },
             {
                 "name": "Throw Glaive",
                 "spellId": 185123,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.59
             },
             {
                 "name": "Death Sweep",
                 "spellId": 210152,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Shattered Souls",
-                "spellId": 228537,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 9.59
             },
             {
                 "name": "Throw Glaive",
-                "spellId": 337819,
+                "spellId": 185123,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.62
             },
             {
                 "name": "Death Sweep",
                 "spellId": 210152,
                 "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Shattered Souls",
-                "spellId": 228537,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Throw Glaive",
-                "spellId": 337819,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.62
             },
             {
                 "name": "Immolation Aura",
                 "spellId": 258920,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Shattered Souls",
-                "spellId": 228537,
-                "isCc": false,
-                "isRepeat": true
+                "isRepeat": false,
+                "offset": 11.63
             }
         ],
         "matchId": "3fe679459164452ea8a863b6427b72dc",
@@ -810,7 +773,7 @@
                     "pvpTalentId": 81
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:50+00:00"
+            "resolvedAt": "2026-09-06T12:25:35+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-57-0E2B0796",
@@ -940,7 +903,7 @@
             ],
             "targetClassName": "Mage",
             "targetSpecName": "Frost",
-            "resolvedAt": "2026-09-06T02:57:00+00:00"
+            "resolvedAt": "2026-09-06T12:25:42+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -953,49 +916,50 @@
                     "name": "The Hunt",
                     "spellId": 370965,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.1
                 },
                 {
                     "name": "Eye Beam",
                     "spellId": 198013,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.57
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.44
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.44
                 },
                 {
                     "name": "Throw Glaive",
-                    "spellId": 393035,
+                    "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.57
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Throw Glaive",
-                    "spellId": 393035,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.57
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.77
                 }
             ],
             "matchId": "b65a509b7e7986a3714cee8d78768317",
@@ -1654,7 +1618,7 @@
                         "pvpTalentId": 75
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FA9081B",
@@ -1784,7 +1748,7 @@
                 ],
                 "targetClassName": "Shaman",
                 "targetSpecName": "Restoration",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "10": {
@@ -1796,55 +1760,64 @@
                     "name": "Fel Rush",
                     "spellId": 195072,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.12
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.74
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.81
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.85
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.88
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.91
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.93
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.93
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.94
                 }
             ],
             "matchId": "003877fae58e552faabde85424e0853f",
@@ -2503,7 +2476,7 @@
                         "pvpTalentId": 76
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3723-0A573048",
@@ -2689,7 +2662,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "12": {
@@ -2701,115 +2674,78 @@
                     "name": "Felblade",
                     "spellId": 213243,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.09
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.61
                 },
                 {
                     "name": "Blade Dance",
                     "spellId": 188499,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Throw Glaive",
-                    "spellId": 393035,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reaver's Glaive",
-                    "spellId": 442294,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.61
                 },
                 {
                     "name": "Eye Beam",
                     "spellId": 198013,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.76
                 },
                 {
                     "name": "Consume Magic",
                     "spellId": 278326,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 6.61
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.56
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.59
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 9.59
                 },
                 {
                     "name": "Throw Glaive",
-                    "spellId": 337819,
+                    "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.62
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Throw Glaive",
-                    "spellId": 337819,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.62
                 },
                 {
                     "name": "Immolation Aura",
                     "spellId": 258920,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 11.63
                 }
             ],
             "matchId": "3fe679459164452ea8a863b6427b72dc",
@@ -3477,7 +3413,7 @@
                         "pvpTalentId": 81
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:50+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-57-0E2B0796",
@@ -3607,7 +3543,7 @@
                 ],
                 "targetClassName": "Mage",
                 "targetSpecName": "Frost",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "20": {
@@ -3619,169 +3555,127 @@
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.33
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.36
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.36
                 },
                 {
                     "name": "Throw Glaive",
-                    "spellId": 393035,
+                    "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.39
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Throw Glaive",
-                    "spellId": 393035,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.39
                 },
                 {
                     "name": "The Hunt",
                     "spellId": 370965,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Reaver's Glaive",
-                    "spellId": 442294,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 5.1
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.49
                 },
                 {
                     "name": "Felblade",
                     "spellId": 213243,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.38
                 },
                 {
                     "name": "Consume Magic",
                     "spellId": 278326,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 9.82
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.93
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.93
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 393035,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reaver's Glaive",
-                    "spellId": 442294,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Throw Glaive",
-                    "spellId": 393035,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.28
                 },
                 {
                     "name": "Vengeful Retreat",
                     "spellId": 198793,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.29
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.78
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.41
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.51
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.63
                 },
                 {
                     "name": "Fel Lance",
                     "spellId": 206966,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.97
                 }
             ],
             "matchId": "5541b2136ce1ee0cd43a43e04d9a8917",
@@ -4440,7 +4334,7 @@
                         "pvpTalentId": 81
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3676-0EE85CB8",
@@ -4646,7 +4540,7 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Destruction",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         },
         "30": {
@@ -4658,271 +4552,260 @@
                     "name": "The Hunt",
                     "spellId": 370965,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.47
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "The Hunt",
-                    "spellId": 370966,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 0.86
                 },
                 {
                     "name": "Disrupt",
                     "spellId": 183752,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.09
                 },
                 {
                     "name": "Consuming Fire",
                     "spellId": 456640,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.06
                 },
                 {
                     "name": "Abyssal Gaze",
                     "spellId": 452497,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.29
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.9
                 },
                 {
                     "name": "Consuming Fire",
                     "spellId": 456640,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.34
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.04
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Throw Glaive",
-                    "spellId": 337819,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 6.04
                 },
                 {
                     "name": "Chaos Nova",
                     "spellId": 179057,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.16
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.27
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Throw Glaive",
-                    "spellId": 393035,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.29
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.41
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 393035,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.64
                 },
                 {
                     "name": "Felblade",
                     "spellId": 213243,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.52
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.21
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.31
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.43
                 },
                 {
                     "name": "Consume Magic",
                     "spellId": 278326,
                     "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 328951,
-                    "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.64
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.86
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Throw Glaive",
-                    "spellId": 393035,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.87
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.07
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.27
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.51
                 },
                 {
                     "name": "Fel Rush",
                     "spellId": 195072,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 21.69
                 },
                 {
                     "name": "Felblade",
                     "spellId": 213243,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.86
                 },
                 {
                     "name": "Eye Beam",
                     "spellId": 198013,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 23.33
                 },
                 {
                     "name": "Fel Rush",
                     "spellId": 195072,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.77
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.27
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Throw Glaive",
-                    "spellId": 337819,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.27
                 },
                 {
                     "name": "Annihilation",
                     "spellId": 201427,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.6
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 393035,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shattered Souls",
-                    "spellId": 228537,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.63
                 },
                 {
                     "name": "Essence Break",
                     "spellId": 258860,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 27.7
                 },
                 {
                     "name": "Disrupt",
                     "spellId": 183752,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.67
                 },
                 {
                     "name": "Throw Glaive",
                     "spellId": 185123,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.83
                 },
                 {
                     "name": "Death Sweep",
                     "spellId": 210152,
                     "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Throw Glaive",
-                    "spellId": 393035,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.85
                 },
                 {
                     "name": "Chaos Strike",
                     "spellId": 162794,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 29.97
                 }
             ],
             "matchId": "7067575c4ef3e83705884693b9553758",
@@ -5581,7 +5464,7 @@
                         "pvpTalentId": 75
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:51+00:00"
+                "resolvedAt": "2026-09-06T12:25:35+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3676-0EEA8AF1",
@@ -5755,9 +5638,9 @@
                 ],
                 "targetClassName": "Warlock",
                 "targetSpecName": "Destruction",
-                "resolvedAt": "2026-09-06T02:57:00+00:00"
+                "resolvedAt": "2026-09-06T12:25:42+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:48:30+00:00"
+    "generated_at": "2026-09-06T12:19:36+00:00"
 }

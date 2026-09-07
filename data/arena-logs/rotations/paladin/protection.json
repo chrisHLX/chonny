@@ -30,91 +30,106 @@
                 "name": "Gladiator's Badge",
                 "spellId": 345228,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.08
             },
             {
                 "name": "Divine Toll",
                 "spellId": 375576,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.08
             },
             {
                 "name": "Shield of the Righteous",
                 "spellId": 53600,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.62
             },
             {
                 "name": "Hammer of Wrath",
                 "spellId": 1241413,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 2.24
             },
             {
                 "name": "Avenger's Shield",
                 "spellId": 31935,
                 "isCc": true,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.05
             },
             {
                 "name": "Shield of the Righteous",
                 "spellId": 53600,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 3.63
             },
             {
                 "name": "Hammer of Wrath",
                 "spellId": 1241413,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.16
             },
             {
                 "name": "Consecration",
                 "spellId": 26573,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.96
             },
             {
                 "name": "Blessed Hammer",
                 "spellId": 204019,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 6.05
             },
             {
                 "name": "Hammer of Wrath",
                 "spellId": 1241413,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 7.15
             },
             {
                 "name": "Shield of the Righteous",
                 "spellId": 53600,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 7.87
             },
             {
                 "name": "Blessed Hammer",
                 "spellId": 204019,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 7.97
             },
             {
                 "name": "Blessed Hammer",
                 "spellId": 204019,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 9.08
             },
             {
                 "name": "Consecration",
                 "spellId": 26573,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.18
             },
             {
                 "name": "Hammer of Wrath",
                 "spellId": 1241413,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 11.28
             }
         ],
         "matchId": "7875d43f3306667fe3416aba43c900de",
@@ -827,7 +842,7 @@
                     "pvpTalentId": 263
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:52+00:00"
+            "resolvedAt": "2026-09-06T12:25:36+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-61-0F4DF6FA",
@@ -997,7 +1012,7 @@
             ],
             "targetClassName": "Paladin",
             "targetSpecName": "Retribution",
-            "resolvedAt": "2026-09-06T02:57:02+00:00"
+            "resolvedAt": "2026-09-06T12:25:44+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -1010,55 +1025,64 @@
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.08
                 },
                 {
                     "name": "Divine Toll",
                     "spellId": 375576,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.08
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.62
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.24
                 },
                 {
                     "name": "Avenger's Shield",
                     "spellId": 31935,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.05
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.63
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.16
                 },
                 {
                     "name": "Consecration",
                     "spellId": 26573,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.96
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.05
                 }
             ],
             "matchId": "7875d43f3306667fe3416aba43c900de",
@@ -1771,7 +1795,7 @@
                         "pvpTalentId": 263
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0F4DF6FA",
@@ -1925,7 +1949,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:57:02+00:00"
+                "resolvedAt": "2026-09-06T12:25:43+00:00"
             }
         },
         "10": {
@@ -1937,85 +1961,99 @@
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.04
                 },
                 {
                     "name": "Sentinel",
                     "spellId": 389539,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.55
                 },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.08
                 },
                 {
                     "name": "Divine Toll",
                     "spellId": 375576,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.08
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.62
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.24
                 },
                 {
                     "name": "Avenger's Shield",
                     "spellId": 31935,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.05
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.63
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.16
                 },
                 {
                     "name": "Consecration",
                     "spellId": 26573,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.96
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.05
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.15
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.87
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.97
                 }
             ],
             "matchId": "7875d43f3306667fe3416aba43c900de",
@@ -2728,7 +2766,7 @@
                         "pvpTalentId": 263
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0F4DF6FA",
@@ -2854,7 +2892,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:57:02+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "12": {
@@ -2866,91 +2904,106 @@
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.08
                 },
                 {
                     "name": "Divine Toll",
                     "spellId": 375576,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.08
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.62
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.24
                 },
                 {
                     "name": "Avenger's Shield",
                     "spellId": 31935,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.05
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.63
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.16
                 },
                 {
                     "name": "Consecration",
                     "spellId": 26573,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.96
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.05
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.15
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.87
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.97
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.08
                 },
                 {
                     "name": "Consecration",
                     "spellId": 26573,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.18
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.28
                 }
             ],
             "matchId": "7875d43f3306667fe3416aba43c900de",
@@ -3663,7 +3716,7 @@
                         "pvpTalentId": 263
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-61-0F4DF6FA",
@@ -3833,7 +3886,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:57:02+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "20": {
@@ -3845,163 +3898,183 @@
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.21
                 },
                 {
                     "name": "Divine Toll",
                     "spellId": 375576,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.21
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.66
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.32
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 1.76
                 },
                 {
                     "name": "Avenger's Shield",
                     "spellId": 31935,
                     "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shield of the Righteous",
-                    "spellId": 53600,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 2.12
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.22
                 },
                 {
                     "name": "Consecration",
                     "spellId": 26573,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.04
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.13
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.24
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.44
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.04
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.68
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.13
                 },
                 {
                     "name": "Avenger's Shield",
                     "spellId": 31935,
                     "isCc": true,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.95
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.13
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.31
                 },
                 {
                     "name": "Word of Glory",
                     "spellId": 85673,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.12
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.59
                 },
                 {
                     "name": "Blessing of Freedom",
                     "spellId": 1044,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 13.44
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.55
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.98
                 },
                 {
                     "name": "Consecration",
                     "spellId": 26573,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.64
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.75
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.85
                 },
                 {
                     "name": "Holy Bulwark",
                     "spellId": 432459,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 19.45
                 }
             ],
             "matchId": "7875d43f3306667fe3416aba43c900de",
@@ -4714,7 +4787,7 @@
                         "pvpTalentId": 263
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-127-0AEAF737",
@@ -4892,7 +4965,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Fury",
-                "resolvedAt": "2026-09-06T02:57:02+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         },
         "30": {
@@ -4904,229 +4977,260 @@
                     "name": "Judgment",
                     "spellId": 275779,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.32
                 },
                 {
                     "name": "Blessing of Freedom",
                     "spellId": 1044,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.42
                 },
                 {
                     "name": "Divine Steed",
                     "spellId": 190784,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.75
                 },
                 {
                     "name": "Hammer of Justice",
                     "spellId": 853,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.75
                 },
                 {
                     "name": "Judgment",
                     "spellId": 275779,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 3.86
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.73
                 },
                 {
                     "name": "Consecration",
                     "spellId": 26573,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.07
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.17
                 },
                 {
                     "name": "Blinding Light",
                     "spellId": 115750,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.86
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.95
                 },
                 {
                     "name": "Sentinel",
                     "spellId": 389539,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 9.65
                 },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.21
                 },
                 {
                     "name": "Divine Toll",
                     "spellId": 375576,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.21
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.66
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 11.32
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.76
                 },
                 {
                     "name": "Avenger's Shield",
                     "spellId": 31935,
                     "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shield of the Righteous",
-                    "spellId": 53600,
-                    "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false,
+                    "offset": 12.12
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.22
                 },
                 {
                     "name": "Consecration",
                     "spellId": 26573,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.04
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.13
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.24
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.44
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.04
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.68
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.13
                 },
                 {
                     "name": "Avenger's Shield",
                     "spellId": 31935,
                     "isCc": true,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.95
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.13
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 20.31
                 },
                 {
                     "name": "Word of Glory",
                     "spellId": 85673,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 21.12
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.59
                 },
                 {
                     "name": "Blessing of Freedom",
                     "spellId": 1044,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.44
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.55
                 },
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.98
                 },
                 {
                     "name": "Consecration",
                     "spellId": 26573,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25.64
                 },
                 {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.75
                 },
                 {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.85
                 },
                 {
                     "name": "Holy Bulwark",
                     "spellId": 432459,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 29.45
                 }
             ],
             "matchId": "7875d43f3306667fe3416aba43c900de",
@@ -5839,7 +5943,7 @@
                         "pvpTalentId": 263
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:52+00:00"
+                "resolvedAt": "2026-09-06T12:25:36+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-127-0AEAF737",
@@ -6025,9 +6129,9 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Fury",
-                "resolvedAt": "2026-09-06T02:57:02+00:00"
+                "resolvedAt": "2026-09-06T12:25:44+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:52:22+00:00"
+    "generated_at": "2026-09-06T12:22:26+00:00"
 }

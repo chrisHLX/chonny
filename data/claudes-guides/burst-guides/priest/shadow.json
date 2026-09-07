@@ -1,28 +1,199 @@
 {
     "classSlug": "priest",
     "specSlug": "shadow",
-    "generatedAt": "2026-09-06T03:01:01+00:00",
-    "sourceLengthSeconds": 30,
-    "sourceMatchId": "4b388c5dc39ff2df76e404710aa50fd1",
-    "spellIds": [
-        228260,
-        1242173,
-        1227280,
-        589,
-        335467,
-        1242173,
-        1242173,
-        121536,
-        1242173,
-        8122,
-        335467,
-        15487,
-        8092,
-        335467,
-        1227280,
-        263165
+    "generatedAt": "2026-09-07T00:57:28+00:00",
+    "evidence": {
+        "windows": 431,
+        "anchoredWindows": 264,
+        "matches": 122,
+        "killWindows": 59,
+        "gcdSeconds": 1.1,
+        "gcdMeasured": true
+    },
+    "window": {
+        "goLengthSeconds": 15,
+        "goLengthBasis": "buff-duration",
+        "globals": 14,
+        "anchorSpellId": 10060,
+        "commitSpreadSeconds": 6.9,
+        "anchorBuffSeconds": 15,
+        "anchorCooldownSeconds": 120
+    },
+    "sequence": [
+        {
+            "spellId": 10060,
+            "presence": 1,
+            "castsPerWindow": 1,
+            "medianOffset": 0,
+            "stacksOnAnotherGlobal": true,
+            "classification": "Offensive Buff",
+            "role": "anchor",
+            "phase": "commit"
+        },
+        {
+            "spellId": 228260,
+            "presence": 0.652,
+            "castsPerWindow": 0.65,
+            "medianOffset": 2.43,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Buff",
+            "role": "cooldown",
+            "phase": "execute"
+        },
+        {
+            "spellId": 15487,
+            "presence": 0.72,
+            "castsPerWindow": 0.72,
+            "medianOffset": 4.17,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "control",
+            "controlTarget": "healer",
+            "controlTargetSource": "measured",
+            "healerShare": 0.906,
+            "targetRatio": 2.72,
+            "targetObservations": 481,
+            "phase": "execute"
+        },
+        {
+            "spellId": 1227280,
+            "presence": 0.962,
+            "castsPerWindow": 1.76,
+            "medianOffset": 4.24,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Buff",
+            "role": "cooldown",
+            "phase": "execute"
+        },
+        {
+            "spellId": 263165,
+            "presence": 0.53,
+            "castsPerWindow": 0.53,
+            "medianOffset": 5.13,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Buff",
+            "role": "cooldown",
+            "phase": "execute"
+        },
+        {
+            "spellId": 8122,
+            "presence": 0.538,
+            "castsPerWindow": 0.54,
+            "medianOffset": 5.62,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "control",
+            "controlTarget": "healer",
+            "controlTargetSource": "measured",
+            "healerShare": 0.502,
+            "targetRatio": 1.51,
+            "targetObservations": 2565,
+            "phase": "execute"
+        },
+        {
+            "spellId": 450983,
+            "presence": 0.303,
+            "castsPerWindow": 0.44,
+            "medianOffset": 6.6,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Spell",
+            "role": "cooldown",
+            "phase": "execute"
+        },
+        {
+            "spellId": 8092,
+            "presence": 0.481,
+            "castsPerWindow": 0.76,
+            "medianOffset": 6.92,
+            "stacksOnAnotherGlobal": false,
+            "classification": "Offensive Spell",
+            "role": "cooldown",
+            "phase": "execute"
+        }
     ],
-    "rawStepCount": 28,
-    "filteredStepCount": 28,
-    "truncatedAtRepeat": true
+    "fill": [
+        {
+            "spellId": 589,
+            "presence": 0.939,
+            "castsPerWindow": 2.31,
+            "medianOffset": 5.57,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "fill"
+        },
+        {
+            "spellId": 1242173,
+            "presence": 0.803,
+            "castsPerWindow": 2.04,
+            "medianOffset": 6.87,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "fill"
+        },
+        {
+            "spellId": 335467,
+            "presence": 0.894,
+            "castsPerWindow": 1.8,
+            "medianOffset": 7.11,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "fill"
+        },
+        {
+            "spellId": 34914,
+            "presence": 0.265,
+            "castsPerWindow": 0.32,
+            "medianOffset": 5.28,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "fill"
+        }
+    ],
+    "alsoPressed": [
+        {
+            "spellId": 586,
+            "presence": 0.572,
+            "castsPerWindow": 0.58,
+            "medianOffset": 6.39,
+            "stacksOnAnotherGlobal": true,
+            "classification": "Defensive",
+            "role": "other"
+        },
+        {
+            "spellId": 15286,
+            "presence": 0.53,
+            "castsPerWindow": 0.53,
+            "medianOffset": 1.2,
+            "stacksOnAnotherGlobal": true,
+            "classification": null,
+            "role": "other"
+        },
+        {
+            "spellId": 211522,
+            "presence": 0.428,
+            "castsPerWindow": 0.43,
+            "medianOffset": 5.11,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "other"
+        },
+        {
+            "spellId": 121536,
+            "presence": 0.341,
+            "castsPerWindow": 0.36,
+            "medianOffset": 3.87,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "other"
+        },
+        {
+            "spellId": 17,
+            "presence": 0.333,
+            "castsPerWindow": 0.41,
+            "medianOffset": 7.41,
+            "stacksOnAnotherGlobal": false,
+            "classification": null,
+            "role": "other"
+        }
+    ]
 }

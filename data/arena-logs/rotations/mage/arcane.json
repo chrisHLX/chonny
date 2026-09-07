@@ -24,43 +24,50 @@
                 "name": "Counterspell",
                 "spellId": 2139,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1
             },
             {
                 "name": "Arcane Missiles",
                 "spellId": 5143,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 1.28
             },
             {
                 "name": "Arcane Blast",
                 "spellId": 30451,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.04
             },
             {
                 "name": "Arcane Barrage",
                 "spellId": 44425,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 4.24
             },
             {
                 "name": "Arcane Missiles",
                 "spellId": 5143,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 5.34
             },
             {
                 "name": "Arcane Barrage",
                 "spellId": 44425,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 6.95
             },
             {
                 "name": "Prismatic Barrier",
                 "spellId": 235450,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 8.45
             }
         ],
         "matchId": "9a8ce8e03a83652d5faa8110eb0646d8",
@@ -755,7 +762,7 @@
                     "pvpTalentId": 218
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:48+00:00"
+            "resolvedAt": "2026-09-06T12:25:32+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-57-0E2DA319",
@@ -973,7 +980,7 @@
             ],
             "targetClassName": "Druid",
             "targetSpecName": "Balance",
-            "resolvedAt": "2026-09-06T02:56:55+00:00"
+            "resolvedAt": "2026-09-06T12:25:38+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -986,31 +993,36 @@
                     "name": "Polymorph",
                     "spellId": 118,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.96
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.97
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.38
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.81
                 },
                 {
                     "name": "Arcane Orb",
                     "spellId": 153626,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.93
                 }
             ],
             "matchId": "911b77be833306d4347fc312657c568e",
@@ -1714,7 +1726,7 @@
                         "pvpTalentId": 217
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:47+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FF9ACD2",
@@ -1851,7 +1863,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "10": {
@@ -1863,43 +1875,50 @@
                     "name": "Polymorph",
                     "spellId": 118,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.96
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.97
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.38
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.81
                 },
                 {
                     "name": "Arcane Orb",
                     "spellId": 153626,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.93
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.02
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.44
                 }
             ],
             "matchId": "911b77be833306d4347fc312657c568e",
@@ -2603,7 +2622,7 @@
                         "pvpTalentId": 217
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:47+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FF9ACD2",
@@ -2740,7 +2759,7 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "12": {
@@ -2752,43 +2771,50 @@
                     "name": "Counterspell",
                     "spellId": 2139,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.28
                 },
                 {
                     "name": "Arcane Blast",
                     "spellId": 30451,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.04
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.24
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.34
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.95
                 },
                 {
                     "name": "Prismatic Barrier",
                     "spellId": 235450,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.45
                 }
             ],
             "matchId": "9a8ce8e03a83652d5faa8110eb0646d8",
@@ -3483,7 +3509,7 @@
                         "pvpTalentId": 218
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-57-0E2DA319",
@@ -3701,7 +3727,7 @@
                 ],
                 "targetClassName": "Druid",
                 "targetSpecName": "Balance",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "20": {
@@ -3713,115 +3739,134 @@
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.59
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.7
                 },
                 {
                     "name": "Prismatic Bolt",
                     "spellId": 1295924,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.93
                 },
                 {
                     "name": "Greater Invisibility",
                     "spellId": 110960,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.17
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.39
                 },
                 {
                     "name": "Touch of the Magi",
                     "spellId": 321507,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.32
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.6
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.76
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 9.84
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.9
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.96
                 },
                 {
                     "name": "Alter Time",
                     "spellId": 342245,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 12.56
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 13.02
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.44
                 },
                 {
                     "name": "Alter Time",
                     "spellId": 342247,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 14.91
                 },
                 {
                     "name": "Shimmer",
                     "spellId": 212653,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.98
                 },
                 {
                     "name": "Prismatic Bolt",
                     "spellId": 1295924,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.81
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.91
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.97
                 }
             ],
             "matchId": "8bec46f334f13a1799fdb57f6121b04b",
@@ -4525,7 +4570,7 @@
                         "pvpTalentId": 225
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-5-0A76CC9B",
@@ -4731,7 +4776,7 @@
                 ],
                 "targetClassName": "Rogue",
                 "targetSpecName": "Assassination",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         },
         "30": {
@@ -4743,139 +4788,162 @@
                     "name": "Arcane Surge",
                     "spellId": 365350,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.64
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.64
                 },
                 {
                     "name": "Prismatic Bolt",
                     "spellId": 1295924,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.72
                 },
                 {
                     "name": "Polymorph",
                     "spellId": 118,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.96
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.97
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.38
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.81
                 },
                 {
                     "name": "Arcane Orb",
                     "spellId": 153626,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.93
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.02
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.44
                 },
                 {
                     "name": "Ring of Frost",
                     "spellId": 113724,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.14
                 },
                 {
                     "name": "Polymorph",
                     "spellId": 118,
                     "isCc": true,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.42
                 },
                 {
                     "name": "Polymorph",
                     "spellId": 118,
                     "isCc": true,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.62
                 },
                 {
                     "name": "Prismatic Bolt",
                     "spellId": 1295924,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.44
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 19.48
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.01
                 },
                 {
                     "name": "Arcane Orb",
                     "spellId": 153626,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 22.09
                 },
                 {
                     "name": "Counterspell",
                     "spellId": 2139,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 22.59
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.2
                 },
                 {
                     "name": "Arcane Missiles",
                     "spellId": 5143,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 24.79
                 },
                 {
                     "name": "Arcane Barrage",
                     "spellId": 44425,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.26
                 },
                 {
                     "name": "Prismatic Bolt",
                     "spellId": 1295924,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.23
                 },
                 {
                     "name": "Arcane Orb",
                     "spellId": 153626,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 29.23
                 }
             ],
             "matchId": "911b77be833306d4347fc312657c568e",
@@ -5579,7 +5647,7 @@
                         "pvpTalentId": 217
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:48+00:00"
+                "resolvedAt": "2026-09-06T12:25:32+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-60-0FF9ACD2",
@@ -5700,9 +5768,9 @@
                 ],
                 "targetClassName": "Paladin",
                 "targetSpecName": "Retribution",
-                "resolvedAt": "2026-09-06T02:56:55+00:00"
+                "resolvedAt": "2026-09-06T12:25:38+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:51:03+00:00"
+    "generated_at": "2026-09-06T12:21:27+00:00"
 }

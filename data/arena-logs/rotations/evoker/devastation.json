@@ -22,49 +22,57 @@
                 "name": "Deep Breath",
                 "spellId": 433874,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 0.96
             },
             {
                 "name": "Disintegrate",
                 "spellId": 356995,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.35
             },
             {
                 "name": "Hover",
                 "spellId": 358267,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 3.48
             },
             {
                 "name": "Disintegrate",
                 "spellId": 356995,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 4.8
             },
             {
                 "name": "Living Flame",
                 "spellId": 361469,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": false,
+                "offset": 6.51
             },
             {
                 "name": "Disintegrate",
                 "spellId": 356995,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 7.5
             },
             {
                 "name": "Disintegrate",
                 "spellId": 356995,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 8.75
             },
             {
                 "name": "Disintegrate",
                 "spellId": 356995,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": true,
+                "offset": 10.28
             }
         ],
         "matchId": "6202115d6a2045d395ce2e6dfb69cf0e",
@@ -750,7 +758,7 @@
                     "pvpTalentId": 169
                 }
             ],
-            "resolvedAt": "2026-09-06T02:56:49+00:00"
+            "resolvedAt": "2026-09-06T12:25:33+00:00"
         },
         "mechanics": {
             "targetGuid": "Player-11-0E6F8F80",
@@ -928,7 +936,7 @@
             ],
             "targetClassName": "Hunter",
             "targetSpecName": "Beast Mastery",
-            "resolvedAt": "2026-09-06T02:56:56+00:00"
+            "resolvedAt": "2026-09-06T12:25:39+00:00"
         }
     },
     "topDpsWindowsByLength": {
@@ -941,31 +949,36 @@
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.03
                 },
                 {
                     "name": "Unbound Flame",
                     "spellId": 1292321,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.55
                 },
                 {
                     "name": "Fire Breath",
                     "spellId": 357208,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.73
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 5.48
                 }
             ],
             "matchId": "1989ccac190620394bc7367ef203c727",
@@ -1678,7 +1691,7 @@
                         "pvpTalentId": 165
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3684-0EB3503C",
@@ -1856,7 +1869,7 @@
                 ],
                 "targetClassName": "Priest",
                 "targetSpecName": "Shadow",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "10": {
@@ -1868,49 +1881,57 @@
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.08
                 },
                 {
                     "name": "Azure Sweep",
                     "spellId": 1265872,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.38
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 2.44
                 },
                 {
                     "name": "Gladiator's Medallion",
                     "spellId": 336126,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.58
                 },
                 {
                     "name": "Eternity Surge",
                     "spellId": 359073,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.77
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 6.1
                 },
                 {
                     "name": "Azure Sweep",
                     "spellId": 1265872,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.24
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.4
                 }
             ],
             "matchId": "95dc7672ef98f43366e0f7bf50afec8b",
@@ -2623,7 +2644,7 @@
                         "pvpTalentId": 170
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-5-0E07F1F2",
@@ -2817,7 +2838,7 @@
                 ],
                 "targetClassName": "Warrior",
                 "targetSpecName": "Fury",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "12": {
@@ -2829,49 +2850,57 @@
                     "name": "Deep Breath",
                     "spellId": 433874,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.96
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.35
                 },
                 {
                     "name": "Hover",
                     "spellId": 358267,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.48
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 4.8
                 },
                 {
                     "name": "Living Flame",
                     "spellId": 361469,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.51
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.5
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 8.75
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 10.28
                 }
             ],
             "matchId": "6202115d6a2045d395ce2e6dfb69cf0e",
@@ -3557,7 +3586,7 @@
                         "pvpTalentId": 169
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E6F8F80",
@@ -3735,7 +3764,7 @@
                 ],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Beast Mastery",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "20": {
@@ -3747,103 +3776,120 @@
                     "name": "Tip the Scales",
                     "spellId": 370553,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.43
                 },
                 {
                     "name": "Dragonrage",
                     "spellId": 375087,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.63
                 },
                 {
                     "name": "Hover",
                     "spellId": 358267,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 0.9
                 },
                 {
                     "name": "Eternity Surge",
                     "spellId": 359073,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 1.91
                 },
                 {
                     "name": "Fire Breath",
                     "spellId": 357208,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.41
                 },
                 {
                     "name": "Verdant Embrace",
                     "spellId": 360995,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.77
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 5.05
                 },
                 {
                     "name": "Landslide",
                     "spellId": 358385,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 6.33
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.61
                 },
                 {
                     "name": "Deep Breath",
                     "spellId": 433874,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 8.96
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.35
                 },
                 {
                     "name": "Hover",
                     "spellId": 358267,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 11.48
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.8
                 },
                 {
                     "name": "Living Flame",
                     "spellId": 361469,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 14.51
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 15.5
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 16.75
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 18.28
                 }
             ],
             "matchId": "6202115d6a2045d395ce2e6dfb69cf0e",
@@ -4529,7 +4575,7 @@
                         "pvpTalentId": 169
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-11-0E6F8F80",
@@ -4707,7 +4753,7 @@
                 ],
                 "targetClassName": "Hunter",
                 "targetSpecName": "Beast Mastery",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:39+00:00"
             }
         },
         "30": {
@@ -4719,121 +4765,141 @@
                     "name": "Fire Breath",
                     "spellId": 357208,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 2.08
                 },
                 {
                     "name": "Hover",
                     "spellId": 358267,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.3
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 3.64
                 },
                 {
                     "name": "Azure Sweep",
                     "spellId": 1265872,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 4.89
                 },
                 {
                     "name": "Sleep Walk",
                     "spellId": 360806,
                     "isCc": true,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 7.54
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 7.54
                 },
                 {
                     "name": "Eternity Surge",
                     "spellId": 359073,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 10.49
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 12.77
                 },
                 {
                     "name": "Living Flame",
                     "spellId": 361469,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 15.86
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 17.01
                 },
                 {
                     "name": "Verdant Embrace",
                     "spellId": 360995,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 18.8
                 },
                 {
                     "name": "Obsidian Scales",
                     "spellId": 363916,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 20.18
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 21.03
                 },
                 {
                     "name": "Unbound Flame",
                     "spellId": 1292321,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 22.55
                 },
                 {
                     "name": "Fire Breath",
                     "spellId": 357208,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 23.73
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 25
                 },
                 {
                     "name": "Disintegrate",
                     "spellId": 356995,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 26.48
                 },
                 {
                     "name": "Unbound Flame",
                     "spellId": 1292321,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 27.74
                 },
                 {
                     "name": "Glide",
                     "spellId": 358733,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": false,
+                    "offset": 28.67
                 },
                 {
                     "name": "Unbound Flame",
                     "spellId": 1292321,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": true,
+                    "offset": 28.89
                 }
             ],
             "matchId": "1989ccac190620394bc7367ef203c727",
@@ -5546,7 +5612,7 @@
                         "pvpTalentId": 165
                     }
                 ],
-                "resolvedAt": "2026-09-06T02:56:49+00:00"
+                "resolvedAt": "2026-09-06T12:25:33+00:00"
             },
             "mechanics": {
                 "targetGuid": "Player-3684-0EB3503C",
@@ -5712,9 +5778,9 @@
                 ],
                 "targetClassName": "Priest",
                 "targetSpecName": "Shadow",
-                "resolvedAt": "2026-09-06T02:56:56+00:00"
+                "resolvedAt": "2026-09-06T12:25:40+00:00"
             }
         }
     },
-    "generated_at": "2026-09-06T02:49:33+00:00"
+    "generated_at": "2026-09-06T12:20:23+00:00"
 }

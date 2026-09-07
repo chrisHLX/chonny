@@ -4,14 +4,23 @@
     // $categoryOrder/$categoryAccent (the category-grouped-by-column layout) were removed the
     // same day alongside the Active Abilities tab itself — $categoryBadge below is still used by
     // every remaining tab's per-card badge, just no longer by a full-kit category grouping.
-    $categoryBadge = [
-        'Crowd Control' => 'badge-blue',
-        'Defensive' => 'badge-red',
-        'Mobility' => 'badge-green',
-        'Utility' => 'badge-amber',
-        'Offensive' => 'badge-orange',
-        'Other' => 'badge-gray',
-    ];
+    $categoryBadge = config('spell_display.category_badges');
+    // Opens the shared <livewire:spell-detail-modal> for one spell, carrying this comp
+    // member's class/spec so cooldowns/charges resolve against that spec's real talent build
+    // rather than base values. Replaces the old Alpine `openSpellId` scheme, which needed a
+    // pre-rendered hidden content block per spell — see the note where that block used to be.
+    $openSpell = function ($member, $spellId) {
+        // Every value is cast to int (or the literal `null`) so the call sites below can emit
+        // this unescaped. Escaped output also works — a browser decodes &#039; back to ' before
+        // Livewire reads the attribute — but it renders unreadable markup and is needless
+        // fragility for a string built entirely from database integers.
+        $classId = isset($member['class']->id) ? (int) $member['class']->id : null;
+        $specId = isset($member['spec']->id) ? (int) $member['spec']->id : null;
+
+        return "\$dispatch('show-spell-detail', { spellId: ".(int) $spellId
+            .', classId: '.($classId ?? 'null')
+            .', specId: '.($specId ?? 'null').' })';
+    };
     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
     // Defensive `?? null` reads throughout this file (here and at every other ['cooldown']/
     // ['charges'] access below) — added 2026-08-31 after a real production incident where a
@@ -21,7 +30,10 @@
     // deploy (TalentSelectionService) — this is the second, cheaper layer: even if a
     // malformed entry ever gets served again for any other reason, the page degrades to
     // showing "no cooldown data" instead of a hard 500 for every visitor.
-    $cooldownDisplay = fn (array $entry) => ($entry['cooldown']['seconds'] ?? null) !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
+    // Accepts array OR AppSupportSpellProfile — the latter is ArrayAccess, which PHP's `array`
+    // type hint does not satisfy. Left untyped rather than union-typed so this keeps working if
+    // the entry shape moves again.
+    $cooldownDisplay = fn ($entry) => ($entry['cooldown']['seconds'] ?? null) !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
     // "Last updated" label for arena-log-derived data (Peak Burst) — reads the generated_at
     // stamp offensive-rotations.php now writes into each rotations/{class}/{spec}.json export,
     // so viewers can tell how current the underlying match analysis is (2026-08-24, direct
@@ -51,16 +63,7 @@
         ? [substr($label, 0, -1), 's']
         : [$label, ''];
 
-    $drBadge = [
-        'Stun' => 'badge-red',
-        'Disorient' => 'badge-blue',
-        'Incapacitate' => 'badge-amber',
-        'Root' => 'badge-green',
-        'Silence' => 'badge-gray',
-        'Knockback' => 'badge-orange',
-        'Disarm' => 'badge-gold',
-        'Slow' => 'badge-gray',
-    ];
+    $drBadge = config('spell_display.dr_badges');
     $fmtPvpDuration = fn ($spell) => $spell->pvp_duration_seconds !== null
         ? rtrim(rtrim(number_format((float) $spell->pvp_duration_seconds, 1), '0'), '.').'s'
         : null;
@@ -74,7 +77,6 @@
 @endphp
 
 <div class="max-w-7xl mx-auto px-4 py-8 space-y-5" x-data="{
-        openSpellId: null,
         tab: 'synergies',
         classPickerSlot: null,
         pendingSlot: null,
@@ -427,7 +429,7 @@
                                                 [$cdValue, $cdUnit] = $splitUnit($cooldownDisplay($entry) ?? '—');
                                             @endphp
                                             <button type="button"
-                                                    @click="openSpellId = '{{ $modalKey }}'"
+                                                    wire:click="{!! $openSpell($comp[$row['mi']] ?? null, $spell->id) !!}"
                                                     class="linear-card !p-3 w-44 flex-shrink-0 text-left hover:border-gold/40 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
                                                 <div class="flex items-center gap-2 mb-2">
                                                     <x-spell-icon :spell="$spell" size="w-8 h-8"/>
@@ -505,7 +507,7 @@
                                             [$cdValue, $cdUnit] = $splitUnit($cooldownDisplay($entry) ?? '—');
                                         @endphp
                                         <button type="button"
-                                                @click="openSpellId = '{{ $modalKey }}'"
+                                                wire:click="{!! $openSpell($comp[$row['mi']] ?? null, $spell->id) !!}"
                                                 class="linear-card !p-3 w-44 flex-shrink-0 text-left hover:border-gold/40 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
                                             <div class="flex items-center gap-2 mb-2">
                                                 <x-spell-icon :spell="$spell" size="w-8 h-8"/>
@@ -628,11 +630,11 @@
                         <div class="flex flex-wrap gap-2">
                             @foreach ($synergies['excluded'] as $ex)
                                 <button type="button"
-                                        @click="openSpellId = 'm{{ $ex['mi'] }}-s{{ $ex['spell']->id }}'"
+                                        wire:click="{!! $openSpell($comp[$ex['mi']] ?? null, $ex['spell']->id) !!}"
                                         class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-2 border border-line hover:border-gold/40 transition-colors opacity-70">
                                     <x-spell-icon :spell="$ex['spell']" size="w-5 h-5"/>
                                     <span class="text-[11px] text-ink-muted">{{ $ex['spell']->display_name }}</span>
-                                    <span class="{{ $drBadge[$ex['spell']->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $ex['spell']->dr_category }}</span>
+                                    <span class="{{ $drBadge[$ex['dr']] ?? 'badge-gray' }} !text-[9px]">{{ $ex['dr'] }}</span>
                                     <span class="text-[10px] text-ink-subtle">— {{ $ex['label'] }}</span>
                                 </button>
                             @endforeach
@@ -666,6 +668,13 @@
                      wow:cc-formula's own CLI output is untouched by this — it still prints
                      per-step alternates inline, which is why 'alternates' stays on each sequence
                      entry even though this page no longer renders it. --}}
+                {{-- Everything in this Example CC Chains block reads $spell->dr_category directly,
+                     NOT the build-resolved value the Crowd Control groups below use — deliberate, not an
+                     oversight. These spells come from CcFormulaService's real arena-log corpus, where a
+                     talent-conditional ability was already recorded under whichever variant actually
+                     landed, as its own distinct aura spell_id (Holy Word: Chastise logs as 200196 when it
+                     incapacitated and 200200 when it stunned). Resolving a conditional on top of that
+                     would be re-deciding something the log already settled. --}}
                 @if ($suggestedChain)
                     <div class="linear-card p-4">
                         <p class="text-[11px] uppercase tracking-wide text-gold font-semibold mb-3">Example CC Chains</p>
@@ -839,13 +848,15 @@
                                          category (CC is frequently shortened/reworked in PvP) — both
                                          are shown deliberately, not reconciled. --}}
                                     <button type="button"
-                                            @click="openSpellId = 'm{{ $ownerIndex }}-s{{ $spell->id }}'"
+                                            wire:click="{!! $openSpell($comp[$ownerIndex] ?? null, $spell->id) !!}"
                                             class="linear-card !p-3 w-44 flex-shrink-0 text-left hover:border-gold/40 transition-colors">
                                         <div class="flex items-center gap-2 mb-2">
                                             <x-spell-icon :spell="$spell" size="w-8 h-8"/>
                                             <span class="text-[12px] text-ink font-semibold truncate">{{ $spell->display_name }}</span>
                                         </div>
-                                        <span class="{{ $drBadge[$spell->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $spell->dr_category }}</span>
+                                        {{-- Build-resolved, not $spell->dr_category  14 see WowComps::getSynergiesProperty(). Chastise
+                                             reads Incapacitate or Stun depending on whether this comp's build has Censure. --}}
+                                        <span class="{{ $drBadge[$synergies['dr_by_id'][$spell->id] ?? null] ?? 'badge-gray' }} !text-[9px]">{{ $synergies['dr_by_id'][$spell->id] ?? null }}</span>
                                         <div class="flex items-center gap-3 mt-2.5 pt-2.5 border-t border-line">
                                             <div class="flex flex-col leading-none">
                                                 <span class="text-[9px] uppercase tracking-wider text-ink-subtle font-semibold mb-1">CD</span>
@@ -888,7 +899,7 @@
                                         $flagDurationLabel = $fmtPvpDuration($spell);
                                     @endphp
                                     <button type="button"
-                                            @click="openSpellId = 'm{{ $ownerIndex }}-s{{ $spell->id }}'"
+                                            wire:click="{!! $openSpell($comp[$ownerIndex] ?? null, $spell->id) !!}"
                                             class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-2 border border-line hover:border-gold/40 transition-colors">
                                         <x-spell-icon :spell="$spell" size="w-5 h-5"/>
                                         <span class="text-[11px] text-ink-muted">{{ $spell->display_name }}</span>
@@ -937,7 +948,7 @@
                                 @forelse ($pvpTalentEntries as $entry)
                                     @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
                                     <button type="button"
-                                            @click="openSpellId = '{{ $modalKey }}'"
+                                            wire:click="{!! $openSpell($member, $entry['spell']->id) !!}"
                                             class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
                                         <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
                                         <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
@@ -1049,17 +1060,14 @@
                                                     $isDrDimmed = ($step['isRepeat'] ?? false) && ($step['isCc'] ?? false);
                                                 @endphp
                                                 @if ($stepSpell)
-                                                    {{-- Clickable into the same spell-detail modal every other tab uses, but
-                                                         ONLY when this spell is actually one of this member's own rendered
-                                                         entries — a rotation step can be a filler/proc ability that isn't in
-                                                         the tab's entry list, and keying the modal to a spell with no matching
-                                                         content block would open an empty overlay. --}}
-                                                    @php
-                                                        $hasModal = collect($member['entries'])->contains(fn ($e) => $e['spell']->id === $stepSpell->id);
-                                                    @endphp
+                                                    {{-- Every rotation step is clickable. This used to be gated on the spell
+                                                         appearing in the member's own rendered entries, because a spell with
+                                                         no pre-rendered modal block would have opened an empty overlay; the
+                                                         shared modal resolves any spell id from the database, so the filler
+                                                         and proc abilities that used to be dead buttons now work too. --}}
                                                     <button type="button"
-                                                            @if ($hasModal) @click="openSpellId = 'm{{ $mi }}-s{{ $stepSpell->id }}'" @else disabled @endif
-                                                            class="linear-card !p-2.5 w-36 flex-shrink-0 text-left {{ $hasModal ? 'hover:border-gold/40 transition-colors' : 'cursor-default' }} {{ $isAnchor ? '!border-gold/50' : '' }} {{ $isDrDimmed ? 'opacity-45' : '' }}"
+                                                            wire:click="{!! $openSpell($member, $stepSpell->id) !!}"
+                                                            class="linear-card !p-2.5 w-36 flex-shrink-0 text-left hover:border-gold/40 transition-colors {{ $isAnchor ? '!border-gold/50' : '' }} {{ $isDrDimmed ? 'opacity-45' : '' }}"
                                                             @if ($isDrDimmed) title="Second use of this CC in the same go — diminished (50%)" @endif>
                                                         <div class="flex items-center gap-2">
                                                             <x-spell-icon :spell="$stepSpell" size="w-8 h-8"/>
@@ -1089,168 +1097,20 @@
 
         </div>
 
-        {{-- Spell detail modal — one hidden content block per entry, toggled by openSpellId.
-             Simplest correct approach for a shape-check page; a production version would swap
-             this for a single dynamically-populated modal instead of rendering one block per
-             spell.
+        {{-- Spell detail modal.
+             Until 2026-09-06 this was ~160 lines of markup rendering ONE HIDDEN CONTENT BLOCK
+             PER SPELL, toggled by an Alpine `openSpellId` string — the approach this file's own
+             note already flagged as "simplest correct approach for a shape-check page; a
+             production version would swap this for a single dynamically-populated modal".
 
-             Skip generalized 2026-09-01: originally only skipped PASSIVE entries once Buffs &
-             Passives was removed (a passive's modal was otherwise unreachable). The same day,
-             Active Abilities itself was also removed (direct request, performance) — that tab
-             was the one place every ACTIVE entry was reachable regardless of any other flag, so
-             the skip now applies uniformly to active and passive entries alike: an entry only
-             gets a modal block if it's reachable from one of the tabs that remain. NOT a blanket
-             is_passive check on its own — several tabs can legitimately open a passive entry's
-             modal and must stay reachable: PvP Talents (some real PvP talents are passive stat
-             modifiers, not gated by is_passive at all — see that tab's own filter), Crowd
-             Control/Synergies (dr_category-tagged), and Mobility/Peels/Interrupts (is_mobility/
-             is_peel/is_interrupt-tagged) all pull from this same $comp[i]['entries'] array and
-             key into these same modal blocks. isPriority is kept as a broad safety margin on top
-             of the specific Offensive/Defensive check — slightly more conservative than strictly
-             necessary, but real cast evidence for a spec is a reasonable bar for "worth keeping
-             clickable" regardless of exact tab. --}}
-        <div class="fixed inset-0 z-50 bg-surface-0/80 backdrop-blur-sm flex items-center justify-center p-4"
-             x-show="openSpellId !== null" x-cloak
-             @click.self="openSpellId = null"
-             @keydown.escape.window="openSpellId = null">
-            @foreach ($comp as $mi => $member)
-                @foreach ($member['entries'] as $entry)
-                    @continue(
-                        ($entry['source'] ?? null) !== 'pvp_talent'
-                        && !($entry['isPriority'] ?? false)
-                        && $entry['spell']->dr_category === null
-                        && !$entry['spell']->is_peel
-                        && !$entry['spell']->is_interrupt
-                        && !$entry['spell']->is_mobility
-                    )
-                    @php
-                        $modalKey = "m{$mi}-s{$entry['spell']->id}";
-                        $spell = $entry['spell'];
-                        $cooldown = $entry['cooldown'] ?? ['seconds' => null, 'base_seconds' => null, 'applied' => collect()];
-                        $charges = $entry['charges'] ?? ['charges' => null, 'base_charges' => null, 'applied' => collect()];
-                        $cooldownChanged = $cooldown['seconds'] !== null && $cooldown['base_seconds'] !== null && round($cooldown['seconds'], 2) !== round($cooldown['base_seconds'], 2);
-                        $chargesChanged = $charges['charges'] !== null && $charges['base_charges'] !== null && $charges['charges'] !== $charges['base_charges'];
-                    @endphp
-                    <div x-show="openSpellId === '{{ $modalKey }}'" x-cloak x-data="{ expandedMod: null }"
-                         class="linear-card max-w-md w-full p-5 relative max-h-[85vh] overflow-y-auto"
-                         @click.stop>
-                        <button type="button" @click="openSpellId = null" class="absolute top-3 right-3 text-ink-subtle hover:text-ink">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                        </button>
+             Two things forced the swap. Correctness: the enriched spell view (school, DR
+             category, PvP duration, what counters it, which specs have it) landed in the shared
+             component, so every OTHER page got it while this page silently kept showing the old
+             partial view. Cost: a 3-spec render emitted ~2.36MB of HTML, the bulk of it these
+             hidden blocks, for content a viewer opens at most one of.
 
-                        <div class="flex items-start gap-3 mb-3 pr-6">
-                            <x-spell-icon :spell="$spell" size="w-11 h-11" class="rounded-lg shrink-0"/>
-                            <div class="min-w-0">
-                                <p class="text-[15px] font-semibold text-ink">{{ $spell->display_name }}</p>
-                                <p class="text-[10px] text-ink-subtle font-mono">#{{ $spell->spell_id }}</p>
-                                <span class="{{ $categoryBadge[$entry['category']] ?? 'badge-gray' }} mt-1">{{ $entry['category'] }}</span>
-                            </div>
-                        </div>
-
-                        <p class="text-[13px] text-ink-muted leading-relaxed">{{ $entry['description']['text'] ?: 'No description available.' }}</p>
-
-                        @if ($entry['description']['uncertain'])
-                            <p class="text-[10px] text-ink-subtle italic mt-1.5">Some values above vary by condition or aren't fully known — check in-game.</p>
-                        @endif
-                        @if (!empty($entry['formulaModifiers']) && $entry['formulaModifiers']->isNotEmpty())
-                            <p class="text-[10px] text-ink-subtle mt-1.5"><span class="font-semibold">Scales with:</span> {{ $entry['formulaModifiers']->pluck('display_name')->implode(', ') }}</p>
-                        @endif
-
-                        <div class="flex items-center gap-4 text-[12px] mt-3 pt-3 border-t border-line">
-                            <div>
-                                <span class="text-ink-subtle">Cooldown</span>
-                                <span class="text-ink font-semibold ml-1">{{ $cooldownDisplay($entry) ?? '—' }}</span>
-                                @if ($cooldownChanged)
-                                    <span class="text-[10px] text-ink-subtle line-through ml-1">{{ $fmtSeconds($cooldown['base_seconds']) }}</span>
-                                @endif
-                            </div>
-                            @if ($charges['charges'] !== null && $charges['charges'] > 1)
-                                <div>
-                                    <span class="text-ink-subtle">Charges</span>
-                                    <span class="text-ink font-semibold ml-1">{{ $charges['charges'] }}</span>
-                                    @if ($chargesChanged)
-                                        <span class="text-[10px] text-ink-subtle line-through ml-1">{{ $charges['base_charges'] }}</span>
-                                    @endif
-                                </div>
-                            @endif
-                        </div>
-
-                        @if ($entry['modifiers']['named']->isNotEmpty())
-                            <div class="mt-3 pt-3 border-t border-line">
-                                <p class="text-[10px] uppercase tracking-wide text-ink-subtle font-semibold mb-1.5">Modifies / Enhances</p>
-                                @foreach ($entry['modifiers']['named'] as $mod)
-                                    @php
-                                        $modId = $mod['spell']->id;
-                                        $modCooldown = $mod['cooldown'] ?? ['seconds' => null, 'base_seconds' => null, 'applied' => collect()];
-                                        $modCooldownDisplay = $modCooldown['seconds'] !== null ? $fmtSeconds($modCooldown['seconds']) : null;
-                                    @endphp
-                                    <div class="mb-1 last:mb-0">
-                                        <button type="button"
-                                                @click="expandedMod = expandedMod === {{ $modId }} ? null : {{ $modId }}"
-                                                class="w-full flex items-center gap-1.5 text-left py-0.5 -mx-1 px-1 rounded hover:bg-surface-2 transition-colors">
-                                            <svg class="w-3 h-3 text-ink-subtle flex-shrink-0 transition-transform" :class="expandedMod === {{ $modId }} && 'rotate-90'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                            </svg>
-                                            <x-spell-icon :spell="$mod['spell']" size="w-5 h-5" />
-                                            <span class="text-[12px] text-ink-muted flex-1 truncate">{{ $mod['spell']->display_name }}</span>
-                                        </button>
-                                        <div x-show="expandedMod === {{ $modId }}" x-cloak x-collapse
-                                             class="ml-[18px] pl-2.5 border-l border-line mt-1 mb-1.5">
-                                            <span class="{{ $categoryBadge[$mod['category']] ?? 'badge-gray' }} mb-1">{{ $mod['category'] }}</span>
-                                            <p class="text-[11px] text-ink-muted leading-relaxed mt-1">{{ $mod['description']['text'] ?: 'No description available.' }}</p>
-                                            @if ($modCooldownDisplay)
-                                                <p class="text-[10px] text-ink-subtle mt-1"><span class="font-semibold">Cooldown</span> {{ $modCooldownDisplay }}</p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-
-                        {{-- "Could be improved by" — same 'potential' bucket as
-                             SpellDetailModal's own copy of this section (see
-                             ModuleSpellReferenceService::modifiersFor()'s docblock, 2026-09-01).
-                             Motivating case: a Mobility-tab spell whose CD-reducing talent isn't
-                             in the resolved build (default builds are curated for damage, not
-                             mobility) previously gave no indication such a talent even exists. --}}
-                        @if (!empty($entry['modifiers']['potential']) && $entry['modifiers']['potential']->isNotEmpty())
-                            <div class="mt-3 pt-3 border-t border-line">
-                                <p class="text-[10px] uppercase tracking-wide text-gold/80 font-semibold mb-1">Could Be Improved By</p>
-                                <p class="text-[10px] text-ink-subtle mb-1.5">Not currently selected in this build:</p>
-                                @foreach ($entry['modifiers']['potential'] as $mod)
-                                    @php
-                                        $potModId = 'p'.$mod['spell']->id;
-                                        $magParts = [];
-                                        if (($mod['modifier_value'] ?? null) !== null && ($mod['modifier_unit'] ?? null)) {
-                                            $magParts[] = 'up to '.$mod['modifier_value'].' '.$mod['modifier_unit'];
-                                        }
-                                    @endphp
-                                    <div class="mb-1 last:mb-0">
-                                        <button type="button"
-                                                @click="expandedMod = expandedMod === '{{ $potModId }}' ? null : '{{ $potModId }}'"
-                                                class="w-full flex items-center gap-1.5 text-left py-0.5 -mx-1 px-1 rounded hover:bg-surface-2 transition-colors opacity-80">
-                                            <svg class="w-3 h-3 text-ink-subtle flex-shrink-0 transition-transform" :class="expandedMod === '{{ $potModId }}' && 'rotate-90'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                            </svg>
-                                            <x-spell-icon :spell="$mod['spell']" size="w-5 h-5" class="grayscale"/>
-                                            <span class="text-[12px] text-ink-muted flex-1 truncate">{{ $mod['spell']->display_name }}</span>
-                                            @if ($magParts)
-                                                <span class="text-[10px] text-gold/70 font-mono">{{ implode(', ', $magParts) }}</span>
-                                            @endif
-                                        </button>
-                                        <div x-show="expandedMod === '{{ $potModId }}'" x-cloak x-collapse
-                                             class="ml-[18px] pl-2.5 border-l border-line mt-1 mb-1.5">
-                                            <span class="{{ $categoryBadge[$mod['category']] ?? 'badge-gray' }} mb-1">{{ $mod['category'] }}</span>
-                                            <p class="text-[11px] text-ink-muted leading-relaxed mt-1">{{ $mod['description']['text'] ?: 'No description available.' }}</p>
-                                            <p class="text-[10px] text-ink-subtle italic mt-1">A talent, not currently taken — take it to apply this.</p>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
-                @endforeach
-            @endforeach
-        </div>
+             The shared component resolves the one clicked spell on demand from the same
+             SpellProfile every other page uses, so this page can never drift from them again. --}}
+        <livewire:spell-detail-modal/>
     @endif
 </div>

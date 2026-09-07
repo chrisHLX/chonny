@@ -78,22 +78,22 @@ class ModuleSpellReferenceService
 
     /**
      * @var array<string, Collection<int, int>> keyed by treeIds (comma-joined) — the set of
-     * spell_ids that ARE a talent pick in those trees, bulk-fetched once. See
-     * talentPickSpellIdsFor() / isConfidentlyInBuild()'s "bulk-preload" fix, 2026-09-01.
+     *                                          spell_ids that ARE a talent pick in those trees, bulk-fetched once. See
+     *                                          talentPickSpellIdsFor() / isConfidentlyInBuild()'s "bulk-preload" fix, 2026-09-01.
      */
     private array $talentPickSpellIdsMemo = [];
 
     /**
      * @var array<string, Collection<int, int>> keyed by "{classId}:{specId}" — the set of
-     * spell_ids explicitly available to that class/spec, bulk-fetched once. See
-     * classAvailabilitySpellIdsFor().
+     *                                          spell_ids explicitly available to that class/spec, bulk-fetched once. See
+     *                                          classAvailabilitySpellIdsFor().
      */
     private array $classAvailabilitySpellIdsMemo = [];
 
     /**
      * @var array<int, Collection<int, int>> keyed by classId — the set of spell_ids available
-     * to that class at all (any spec_id, including class-wide NULL rows), bulk-fetched once.
-     * See classSpellIdsFor() / resolveKitContext()'s "own-class?" check.
+     *                                       to that class at all (any spec_id, including class-wide NULL rows), bulk-fetched once.
+     *                                       See classSpellIdsFor() / resolveKitContext()'s "own-class?" check.
      */
     private array $classSpellIdsMemo = [];
 
@@ -105,22 +105,22 @@ class ModuleSpellReferenceService
 
     /**
      * @var array<string, Collection<int, Spell>> keyed by "{classId}:{specId}:{heroTreeId}" —
-     * see kitSpellsFor(). Full Spell rows (all columns — not a trimmed id/name/description
-     * select, since a text-scan match's Spell object is handed straight into $classify() and
-     * from there into every downstream caller that needs cooldown/charges/dr_category/etc.
-     * columns, same as a structurally-found candidate).
+     *                                            see kitSpellsFor(). Full Spell rows (all columns — not a trimmed id/name/description
+     *                                            select, since a text-scan match's Spell object is handed straight into $classify() and
+     *                                            from there into every downstream caller that needs cooldown/charges/dr_category/etc.
+     *                                            columns, same as a structurally-found candidate).
      */
     private array $kitSpellsMemo = [];
 
     /**
      * @var array<string, array{named: Collection, baseline: Collection, potential: Collection}>
-     * keyed by "{spell->id}:{contextKey}:{selectionSignature}" — see modifiersFor()'s own
-     * docblock ("recomputed 2-3x per spell" fix, 2026-09-01). Found via a real profiling pass:
-     * effectiveCooldown()/effectiveCharges() each call modifiersFor() fresh via
-     * effectiveScalarValue(), so a single main entry's cooldown+charges alone already invoked it
-     * 3 TIMES (once directly in the caller's own per-entry loop, once via each of those two
-     * methods) with byte-for-byte identical inputs — confirmed: 696 effectiveCooldown/Charges
-     * calls for only 181 distinct spells in one spec's render.
+     *                                                                                           keyed by "{spell->id}:{contextKey}:{selectionSignature}" — see modifiersFor()'s own
+     *                                                                                           docblock ("recomputed 2-3x per spell" fix, 2026-09-01). Found via a real profiling pass:
+     *                                                                                           effectiveCooldown()/effectiveCharges() each call modifiersFor() fresh via
+     *                                                                                           effectiveScalarValue(), so a single main entry's cooldown+charges alone already invoked it
+     *                                                                                           3 TIMES (once directly in the caller's own per-entry loop, once via each of those two
+     *                                                                                           methods) with byte-for-byte identical inputs — confirmed: 696 effectiveCooldown/Charges
+     *                                                                                           calls for only 181 distinct spells in one spec's render.
      *
      * REAL BUG, caught and fixed 2026-09-01, same day: this memo was originally keyed by
      * spl_object_id($selectedSpellIds)/spl_object_id($selectedRanks) instead of their actual
@@ -522,7 +522,7 @@ class ModuleSpellReferenceService
             // $candidate as its 'spell' (still carries the real modifier_value/relationship_type);
             // only the SELECTION check below uses the sibling's id instead.
             $selectionCheckSpell = $candidate;
-            if (!$this->isConfidentlyInBuild($candidate, $context['class_id'], $context['spec_id'], $treeIds)) {
+            if (! $this->isConfidentlyInBuild($candidate, $context['class_id'], $context['spec_id'], $treeIds)) {
                 $selectionCheckSpell = $this->findConfidentSibling($candidate, $context['class_id'], $context['spec_id'], $treeIds);
                 if ($selectionCheckSpell === null) {
                     // Ambiguous class-wide tag, not an actual talent in this build's trees (and no
@@ -532,7 +532,14 @@ class ModuleSpellReferenceService
                 }
             }
 
-            if (!$selectedSpellIds->contains($selectionCheckSpell->id)) {
+            // The id the gate below actually tests — usually $candidate's own, but a sibling when
+            // the fallback above kicked in. Exposed on the entry (2026-09-06) so a caller driving
+            // selection from outside, like the detail view's talent toggles, flips the id this
+            // check reads rather than $candidate->id, which would silently do nothing in exactly
+            // the cases the sibling fallback exists for.
+            $entry['selection_spell_id'] = $selectionCheckSpell->id;
+
+            if (! $selectedSpellIds->contains($selectionCheckSpell->id)) {
                 // Not currently selected — a real, structurally-confirmed modifier, just not
                 // applying right now. Kept in 'potential' (see docblock above) rather than
                 // 'named', so the numeric math (effectiveCooldown()/effectiveCharges(), which
@@ -548,7 +555,7 @@ class ModuleSpellReferenceService
         foreach ($spell->incomingRelationships as $rel) {
             $source = $rel->sourceSpell;
 
-            if (!$source || !$kitIds->contains($source->id)) {
+            if (! $source || ! $kitIds->contains($source->id)) {
                 continue;
             }
 
@@ -668,7 +675,7 @@ class ModuleSpellReferenceService
 
         $effect = $this->findEffectByIndex($source, $rel->effect_index);
 
-        if (!$effect || $effect->rank_op === null || empty($effect->rank_values)) {
+        if (! $effect || $effect->rank_op === null || empty($effect->rank_values)) {
             return [null, null];
         }
 
@@ -795,7 +802,7 @@ class ModuleSpellReferenceService
         $duration = $spell->duration_seconds !== null ? (float) $spell->duration_seconds : null;
 
         $applyCandidate = function (?Spell $candidate) use (&$seconds, &$charges, &$duration): void {
-            if (!$candidate) {
+            if (! $candidate) {
                 return;
             }
             if ($seconds === null && $candidate->cooldown_seconds !== null) {
@@ -842,7 +849,7 @@ class ModuleSpellReferenceService
      */
     private function findDescriptionReferencedSpells(Spell $spell): array
     {
-        if (!$spell->description) {
+        if (! $spell->description) {
             return [];
         }
 
@@ -977,6 +984,52 @@ class ModuleSpellReferenceService
         return $spell->effects
             ->filter(fn ($e) => $e->type === 'Mechanic Immunity' && $e->misc_value !== null)
             ->map(fn ($e) => self::MECHANIC_IMMUNITY_CODE_MAP[$e->misc_value] ?? "Unknown mechanic (code {$e->misc_value})")
+            ->unique()
+            ->values();
+    }
+
+    /**
+     * The real mechanic names MECHANIC_IMMUNITY_CODE_MAP can produce — the single vocabulary any
+     * curated immunity override has to be written in, so the two sources union cleanly with no
+     * translation layer between them.
+     *
+     * Exposed so ImportSpellData can validate data/spelldata/cc-immunity-overrides.txt against
+     * this map rather than keeping a second hand-copied list that could silently drift from it.
+     *
+     * @return array<int, string>
+     */
+    public static function immunityMechanicNames(): array
+    {
+        return array_values(self::MECHANIC_IMMUNITY_CODE_MAP);
+    }
+
+    /**
+     * Everything this spell grants immunity to: its own 'Mechanic Immunity' effects UNION any
+     * hand-curated override.
+     *
+     * The union is the whole point — the two sources answer the same question for disjoint sets
+     * of spells. Effects cover normal abilities; the override covers the 220 of 250 PvP talents
+     * that have no effect rows at all and no structured source anywhere (measured 2026-09-07; see
+     * the 2026_09_07 migration docblock). A spell can legitimately have both, so neither replaces
+     * the other.
+     *
+     * Deliberately NOT gated on cc_immunity_gating_spell_id. What a spell CAN grant is a
+     * build-independent fact about the spell, which is what makes materializing it correct and
+     * what spell_counters is built on; whether a given viewer has the gating talent is a
+     * display-time question, answered separately by SpellProfile against the active build.
+     *
+     * @return Collection<int, string>
+     */
+    public function ccImmunityFor(Spell $spell): Collection
+    {
+        // toBase() is load-bearing, not tidying: ccImmunityGrantedBy() maps off $spell->effects,
+        // so it hands back an ELOQUENT Collection that happens to hold strings, and
+        // Eloquent\Collection::merge() calls getKey() on every incoming item — it throws outright
+        // on a plain array of mechanic names. Demoting to a base collection first is what makes
+        // the union legal.
+        return $this->ccImmunityGrantedBy($spell)
+            ->toBase()
+            ->merge($spell->grants_cc_immunity_override ?? [])
             ->unique()
             ->values();
     }
@@ -1374,36 +1427,65 @@ class ModuleSpellReferenceService
      */
     public function spellReferencesCacheIsValid(mixed $value, bool $requireEnrichedModifiers = false): bool
     {
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             return false;
         }
 
         try {
             foreach ($value as $entry) {
-                if (!is_array($entry) || !array_key_exists('cooldown', $entry) || !array_key_exists('charges', $entry)) {
-                    return false;
-                }
-
-                if (!$requireEnrichedModifiers) {
-                    continue;
-                }
-
-                foreach (['named', 'baseline'] as $bucket) {
-                    $modifiers = $entry['modifiers'][$bucket] ?? null;
-
-                    if ($modifiers === null) {
+                // A SpellProfile carries cooldown/charges by construction — its constructor is
+                // the only way to make one and the fields are declared, so there is no "wrong
+                // shape" variant to defend against. Checked explicitly because the plain
+                // is_array() test below is false for an object: without this, every cached entry
+                // written after the 2026-09-06 consolidation would be judged invalid and silently
+                // recomputed on every request. That is a performance cliff, not a crash, so it
+                // would not have surfaced as an error anywhere.
+                if ($entry instanceof \App\Support\SpellProfile) {
+                    if (! $requireEnrichedModifiers) {
                         continue;
                     }
 
-                    foreach ($modifiers as $mod) {
-                        if (!is_array($mod) || !array_key_exists('cooldown', $mod)) {
-                            return false;
-                        }
+                    if (! $this->modifiersAreEnriched($entry['modifiers'] ?? null)) {
+                        return false;
                     }
+
+                    continue;
+                }
+
+                if (! is_array($entry) || ! array_key_exists('cooldown', $entry) || ! array_key_exists('charges', $entry)) {
+                    return false;
+                }
+
+                if (! $requireEnrichedModifiers) {
+                    continue;
+                }
+
+                if (! $this->modifiersAreEnriched($entry['modifiers'] ?? null)) {
+                    return false;
                 }
             }
         } catch (\Throwable) {
             return false;
+        }
+
+        return true;
+    }
+
+    /** True when every named/baseline modifier carries the enriched 'cooldown' key. */
+    private function modifiersAreEnriched(mixed $modifiers): bool
+    {
+        foreach (['named', 'baseline'] as $bucket) {
+            $bucketModifiers = $modifiers[$bucket] ?? null;
+
+            if ($bucketModifiers === null) {
+                continue;
+            }
+
+            foreach ($bucketModifiers as $mod) {
+                if (! is_array($mod) || ! array_key_exists('cooldown', $mod)) {
+                    return false;
+                }
+            }
         }
 
         return true;
@@ -1650,7 +1732,7 @@ class ModuleSpellReferenceService
      */
     private function logGapOnce(string $key, string $message, array $context): void
     {
-        $cacheKey = 'mspell-ref-gap:' . $key;
+        $cacheKey = 'mspell-ref-gap:'.$key;
         if (Cache::has($cacheKey)) {
             return;
         }
@@ -1974,7 +2056,7 @@ class ModuleSpellReferenceService
      */
     private function resolveChainedConditional(string $token, Collection $kitIds, bool &$uncertain, Spell $spell): string
     {
-        if (!preg_match('/^\$\?(?:\(([^)]*)\)|([^\[\]()]*))\[([^\[\]]*)\](.*)$/s', $token, $m)) {
+        if (! preg_match('/^\$\?(?:\(([^)]*)\)|([^\[\]()]*))\[([^\[\]]*)\](.*)$/s', $token, $m)) {
             $uncertain = true;
 
             return '(varies by condition — check in-game)';
@@ -1999,7 +2081,7 @@ class ModuleSpellReferenceService
                 return $branch;
             }
 
-            if (!preg_match('/^\?(?:\(([^)]*)\)|([^\[\]()]*))\[([^\[\]]*)\](.*)$/s', $rest, $m)) {
+            if (! preg_match('/^\?(?:\(([^)]*)\)|([^\[\]()]*))\[([^\[\]]*)\](.*)$/s', $rest, $m)) {
                 break;
             }
 
@@ -2042,16 +2124,16 @@ class ModuleSpellReferenceService
                 $term = substr($term, 1);
             }
 
-            if (!preg_match('/^[as](\d+)$/', $term, $m)) {
+            if (! preg_match('/^[as](\d+)$/', $term, $m)) {
                 return null;
             }
 
             $other = $this->findSpellBySpellId((int) $m[1], null);
             $known = $other !== null && $kitIds->contains($other->id);
-            $results[] = $negate ? !$known : $known;
+            $results[] = $negate ? ! $known : $known;
         }
 
-        return $operator === '&' ? !in_array(false, $results, true) : in_array(true, $results, true);
+        return $operator === '&' ? ! in_array(false, $results, true) : in_array(true, $results, true);
     }
 
     /**
@@ -2105,7 +2187,7 @@ class ModuleSpellReferenceService
      */
     public function variablesModifiers(Spell $spell): Collection
     {
-        if (!$spell->variables) {
+        if (! $spell->variables) {
             return collect();
         }
 
@@ -2165,7 +2247,7 @@ class ModuleSpellReferenceService
         if (preg_match('/^(\d+)(s(\d+)|d)$/', $token, $m)) {
             $other = $this->findSpellBySpellId((int) $m[1], $spell->patch_id);
 
-            if (!$other) {
+            if (! $other) {
                 return null;
             }
 
@@ -2294,7 +2376,7 @@ class ModuleSpellReferenceService
     {
         $effect = $this->findEffectByIndex($spell, $index);
 
-        if (!$effect || $effect->sp_coefficient === null) {
+        if (! $effect || $effect->sp_coefficient === null) {
             return null;
         }
 
@@ -2319,7 +2401,7 @@ class ModuleSpellReferenceService
     {
         $expr = trim($expr);
 
-        if ($expr === '' || !preg_match('/^[\d.\s+\-*\/()]+$/', $expr)) {
+        if ($expr === '' || ! preg_match('/^[\d.\s+\-*\/()]+$/', $expr)) {
             return null;
         }
 
@@ -2387,7 +2469,7 @@ class ModuleSpellReferenceService
                 return $val;
             }
 
-            if ($tok === null || !is_numeric($tok)) {
+            if ($tok === null || ! is_numeric($tok)) {
                 return null;
             }
             $next();
