@@ -38,7 +38,30 @@ use Illuminate\Support\Str;
  */
 class TalentSelectionService
 {
+    /**
+     * Per-request memoisation for the four spec-scoped lookups below.
+     *
+     * These are pure functions of a spec id (plus the current patch and a committed text file),
+     * none of which change during a request, but nothing cached them — so every caller paid the
+     * full query chain again. preferTalentLinkedCopy() calls two of them per spell, and
+     * ArenaLogService::resolveWindowSteps() calls that once per step, so rendering one Burst
+     * Windows page ran the same handful of queries ~116 times over: 2,023 queries for a single
+     * page, of which 465 were `select * from classes where id = ?`.
+     *
+     * Keyed by spec id and never invalidated within a request. Safe because all four describe
+     * imported talent-TREE structure and a curated exclusions file, not a user's build choices —
+     * saveChoice() and friends write talent_build_choices, which none of these read.
+     */
+    private array $patchIdForSpecMemo = [];
+
+    private array $allTalentSpellIdsMemo = [];
+
+    private array $allPvpTalentSpellIdsMemo = [];
+
+    private array $excludedTalentSpellIdsMemo = [];
+
     private const SPELL_CACHE_VERSION_TABLE = 'wow_spell_cache_state';
+
     private const SPELL_CACHE_VERSION_ROW_ID = 1;
 
     /**
@@ -128,7 +151,7 @@ class TalentSelectionService
     {
         $path = storage_path('app/deployed-commit.txt');
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return 'dev';
         }
 
@@ -202,7 +225,7 @@ class TalentSelectionService
     /** Flattens both PvE and PvP picks into one set of Spell ids — what gets fed into ModuleSpellReferenceService. */
     public function selectedSpellIds(TalentBuild $build): Collection
     {
-        if (!$build->exists) {
+        if (! $build->exists) {
             return collect();
         }
 
@@ -243,7 +266,7 @@ class TalentSelectionService
      */
     public function selectedRanks(TalentBuild $build): Collection
     {
-        if (!$build->exists) {
+        if (! $build->exists) {
             return collect();
         }
 
@@ -315,9 +338,13 @@ class TalentSelectionService
      */
     public function allTalentSpellIds(int $specId): Collection
     {
+        if (isset($this->allTalentSpellIdsMemo[$specId])) {
+            return $this->allTalentSpellIdsMemo[$specId];
+        }
+
         $spec = Specialization::find($specId);
-        if (!$spec) {
-            return collect();
+        if (! $spec) {
+            return $this->allTalentSpellIdsMemo[$specId] = collect();
         }
 
         $patchId = $this->currentPatchIdForSpec($specId);
@@ -339,7 +366,7 @@ class TalentSelectionService
         // Narrows OUT the hand-verified spec-exclusion list — see excludedTalentSpellIds()'s
         // docblock. Deliberately applied here, not at each caller, so every consumer
         // (WowComps/SpellExplorer's computeSpellReferences*()) gets the correction automatically.
-        return $spellIds->diff($this->excludedTalentSpellIds($spec));
+        return $this->allTalentSpellIdsMemo[$specId] = $spellIds->diff($this->excludedTalentSpellIds($spec));
     }
 
     /**
@@ -355,15 +382,19 @@ class TalentSelectionService
      */
     private function excludedTalentSpellIds(Specialization $spec): Collection
     {
+        if (isset($this->excludedTalentSpellIdsMemo[$spec->id])) {
+            return $this->excludedTalentSpellIdsMemo[$spec->id];
+        }
+
         $path = base_path('data/spelldata/talent-spec-exclusions.txt');
 
-        if (!File::exists($path)) {
-            return collect();
+        if (! File::exists($path)) {
+            return $this->excludedTalentSpellIdsMemo[$spec->id] = collect();
         }
 
         $class = GameClass::find($spec->class_id);
-        if (!$class) {
-            return collect();
+        if (! $class) {
+            return $this->excludedTalentSpellIdsMemo[$spec->id] = collect();
         }
 
         $patchId = $this->currentPatchIdForSpec($spec->id);
@@ -376,7 +407,7 @@ class TalentSelectionService
             }
 
             $parts = array_map('trim', explode('|', $line));
-            if (count($parts) < 3 || !ctype_digit($parts[0])) {
+            if (count($parts) < 3 || ! ctype_digit($parts[0])) {
                 continue;
             }
 
@@ -388,10 +419,10 @@ class TalentSelectionService
         }
 
         if ($externalIds === []) {
-            return collect();
+            return $this->excludedTalentSpellIdsMemo[$spec->id] = collect();
         }
 
-        return Spell::where('patch_id', $patchId)->whereIn('spell_id', $externalIds)->pluck('id');
+        return $this->excludedTalentSpellIdsMemo[$spec->id] = Spell::where('patch_id', $patchId)->whereIn('spell_id', $externalIds)->pluck('id');
     }
 
     /**
@@ -405,9 +436,13 @@ class TalentSelectionService
      */
     public function allPvpTalentSpellIds(int $specId): Collection
     {
+        if (isset($this->allPvpTalentSpellIdsMemo[$specId])) {
+            return $this->allPvpTalentSpellIdsMemo[$specId];
+        }
+
         $patchId = $this->currentPatchIdForSpec($specId);
 
-        return PvpTalent::where('spec_id', $specId)
+        return $this->allPvpTalentSpellIdsMemo[$specId] = PvpTalent::where('spec_id', $specId)
             ->where('patch_id', $patchId)
             ->pluck('spell_id')
             ->unique()
@@ -692,7 +727,7 @@ class TalentSelectionService
     {
         return $spells->groupBy('name')
             ->map(function (Collection $group) use ($selectedSpellIds) {
-                $visible = $group->filter(fn (Spell $s) => !$s->is_passive && !$s->not_in_spellbook);
+                $visible = $group->filter(fn (Spell $s) => ! $s->is_passive && ! $s->not_in_spellbook);
                 $candidates = $visible->isNotEmpty() ? $visible : $group;
 
                 return $candidates->first(fn (Spell $s) => $selectedSpellIds->contains($s->id))
@@ -723,7 +758,7 @@ class TalentSelectionService
      */
     public function resolvedDescriptionsFor(TalentBuild $build): Collection
     {
-        if (!$build->exists || !$build->spellbook_snapshot_id) {
+        if (! $build->exists || ! $build->spellbook_snapshot_id) {
             return collect();
         }
 
@@ -789,7 +824,7 @@ class TalentSelectionService
             ->where('is_default', true)
             ->first();
 
-        if (!$default) {
+        if (! $default) {
             return;
         }
 
@@ -837,12 +872,12 @@ class TalentSelectionService
      * side effect of the click, not its source of truth — $rankByNodeId is always
      * TalentSelector's own $chosenEntries, converted to ranks, for exactly this reason.
      *
-     * @param Collection<int, TalentNode> $treeNodes every node belonging to the tree being
-     *   checked — already loaded by the caller (TalentSelector's classTalentNodes/
-     *   specTalentNodes/heroTalentNodes), so this needs no query of its own.
-     * @param Collection<int, int> $rankByNodeId talent_node_id => rank currently invested
-     *   (TalentBuildChoice.rank is the real rank number, not "1 per node" — a node invested at
-     *   rank 2 counts as 2 points, matching how the game itself counts multi-rank investment)
+     * @param  Collection<int, TalentNode>  $treeNodes  every node belonging to the tree being
+     *                                                  checked — already loaded by the caller (TalentSelector's classTalentNodes/
+     *                                                  specTalentNodes/heroTalentNodes), so this needs no query of its own.
+     * @param  Collection<int, int>  $rankByNodeId  talent_node_id => rank currently invested
+     *                                              (TalentBuildChoice.rank is the real rank number, not "1 per node" — a node invested at
+     *                                              rank 2 counts as 2 points, matching how the game itself counts multi-rank investment)
      */
     public function pointsSpentInTree(Collection $treeNodes, Collection $rankByNodeId): int
     {
@@ -865,7 +900,7 @@ class TalentSelectionService
      */
     public function isNodeGateLocked(TalentNode $node, Collection $treeNodes, Collection $rankByNodeId): bool
     {
-        if ($node->display_row === null || !in_array($node->talentTree->type, ['class', 'spec'], true)) {
+        if ($node->display_row === null || ! in_array($node->talentTree->type, ['class', 'spec'], true)) {
             return false;
         }
 
@@ -890,7 +925,7 @@ class TalentSelectionService
      * incorrectly lock a node reachable from either branch. A node with zero incoming edges (a
      * root of its tree) is never prerequisite-locked.
      *
-     * @param Collection<int, int> $rankByNodeId talent_node_id => rank currently invested
+     * @param  Collection<int, int>  $rankByNodeId  talent_node_id => rank currently invested
      */
     public function isNodePrerequisiteLocked(TalentNode $node, Collection $rankByNodeId): bool
     {
@@ -900,14 +935,14 @@ class TalentSelectionService
             return false;
         }
 
-        return !$prerequisiteNodeIds->contains(fn ($id) => $rankByNodeId->get($id, 0) > 0);
+        return ! $prerequisiteNodeIds->contains(fn ($id) => $rankByNodeId->get($id, 0) > 0);
     }
 
     /**
      * Combines both lock mechanics — the one check a picker's click-handler/render should use.
      *
-     * @param Collection<int, TalentNode> $treeNodes
-     * @param Collection<int, int> $rankByNodeId
+     * @param  Collection<int, TalentNode>  $treeNodes
+     * @param  Collection<int, int>  $rankByNodeId
      */
     public function isNodeLocked(TalentNode $node, Collection $treeNodes, Collection $rankByNodeId): bool
     {
@@ -1045,7 +1080,7 @@ class TalentSelectionService
         foreach (GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))->get() as $class) {
             $classTree = TalentTree::where('class_id', $class->id)->where('type', 'class')->first();
 
-            if (!$classTree) {
+            if (! $classTree) {
                 continue;
             }
 
@@ -1181,8 +1216,8 @@ class TalentSelectionService
                         $spellA = $entriesByNode[$a->id]->first()->spell;
                         $spellB = $entriesByNode[$b->id]->first()->spell;
 
-                        $visibleA = !$spellA->not_in_spellbook;
-                        $visibleB = !$spellB->not_in_spellbook;
+                        $visibleA = ! $spellA->not_in_spellbook;
+                        $visibleB = ! $spellB->not_in_spellbook;
                         if ($visibleA !== $visibleB) {
                             return $visibleA ? -1 : 1;
                         }
@@ -1297,7 +1332,7 @@ class TalentSelectionService
     {
         $build = TalentBuild::where('module_id', $module->id)->first();
 
-        if (!$build || ($build->choices()->doesntExist() && $build->pvpChoices()->doesntExist())) {
+        if (! $build || ($build->choices()->doesntExist() && $build->pvpChoices()->doesntExist())) {
             return null;
         }
 
@@ -1329,7 +1364,7 @@ class TalentSelectionService
     /** Deletes any saved PvE choices for the given node ids — used when switching hero tree, so a choice from the previously-selected hero tree doesn't keep silently counting as "selected" after the UI stops showing it. */
     public function pruneNodeChoices(TalentBuild $build, array $nodeIds): void
     {
-        if (!$build->exists || $nodeIds === []) {
+        if (! $build->exists || $nodeIds === []) {
             return;
         }
 
@@ -1363,12 +1398,16 @@ class TalentSelectionService
 
     private function currentPatchIdForSpec(int $specId): ?int
     {
-        $gameId = Specialization::find($specId)?->game()?->id;
-
-        if (!$gameId) {
-            return null;
+        if (array_key_exists($specId, $this->patchIdForSpecMemo)) {
+            return $this->patchIdForSpecMemo[$specId];
         }
 
-        return Patch::where('game_id', $gameId)->where('is_current', true)->value('id');
+        $gameId = Specialization::find($specId)?->game()?->id;
+
+        if (! $gameId) {
+            return $this->patchIdForSpecMemo[$specId] = null;
+        }
+
+        return $this->patchIdForSpecMemo[$specId] = Patch::where('game_id', $gameId)->where('is_current', true)->value('id');
     }
 }
