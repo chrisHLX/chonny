@@ -180,7 +180,11 @@ SMOKE_URLS=(
 )
 SMOKE_FAILED=0
 for url in "${SMOKE_URLS[@]}"; do
-    code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "$url" || echo "000")
+    # -L follows redirects and reports the FINAL status. Without it a route that legitimately
+    # redirects reads as a failure: /pvp-guides 302s to a default class/spec by design, which
+    # tripped this check on 2026-09-07. Following it is also the better signal — it verifies
+    # the destination actually renders, not merely that a redirect was issued.
+    code=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 20 "$url" || echo "000")
     echo "    ${code}  ${url}"
     if [[ "$code" != "200" ]]; then
         SMOKE_FAILED=1
