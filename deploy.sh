@@ -22,7 +22,11 @@
 #
 set -euo pipefail
 
-cd "$(dirname "$0")"
+# Resolve this script absolutely BEFORE the cd, so the stage-2 exec below cannot be broken by a
+# relative $0 (e.g. `bash ../mindcollector/deploy.sh`) once the working directory has moved.
+SELF="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
+
+cd "$(dirname "$SELF")"
 
 FORCE=0
 if [[ "${1:-}" == "--force" ]]; then
@@ -30,7 +34,8 @@ if [[ "${1:-}" == "--force" ]]; then
 fi
 
 LOG_DIR="storage/logs"
-LOG_FILE="${LOG_DIR}/deploy-$(date +%Y%m%d-%H%M%S).log"
+# Reused across the stage-2 exec handoff below so one deploy still produces exactly one log.
+LOG_FILE="${LOG_FILE:-${LOG_DIR}/deploy-$(date +%Y%m%d-%H%M%S).log}"
 mkdir -p "$LOG_DIR"
 
 # Every echo below also lands in the timestamped log file — this IS the "detailed live run
@@ -38,21 +43,49 @@ mkdir -p "$LOG_DIR"
 # disk instead of only ever existing in a terminal scrollback that's gone the moment it's closed.
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-echo "=== Deploy started $(date -u +"%Y-%m-%dT%H:%M:%SZ") ==="
-
-BEFORE_COMMIT=$(git rev-parse HEAD)
-echo "Current commit: ${BEFORE_COMMIT}"
-
-echo "==> git pull"
-git pull
-
-AFTER_COMMIT=$(git rev-parse HEAD)
-
-if [[ "$BEFORE_COMMIT" == "$AFTER_COMMIT" && "$FORCE" -eq 0 ]]; then
-    echo "==> Already up to date (${AFTER_COMMIT:0:7}) — nothing to deploy. Use --force to re-run the safety-net steps anyway."
-    echo "=== Deploy finished (no-op) $(date -u +"%Y-%m-%dT%H:%M:%SZ") ==="
-    exit 0
+if [[ "${DEPLOY_STAGE:-1}" == "1" ]]; then
+    echo "=== Deploy started $(date -u +"%Y-%m-%dT%H:%M:%SZ") ==="
 fi
+
+# --- Self-stability guard ------------------------------------------------------------------
+#
+# Bash reads a script incrementally by byte offset, so a `git pull` that rewrites THIS file
+# mid-run leaves execution continuing at the old offset inside the new bytes — silently running
+# a spliced mix of both versions, with no error anywhere.
+#
+# This is not hypothetical. On 2026-09-07 a deploy that changed deploy.sh reported success and
+# exited 0 while never running the npm build or the spell import, and used the PREVIOUS smoke-URL
+# list. Production was left with new code and a new schema but an empty spell_counters table and
+# a stale CSS bundle — the badge-orange fix in that same deploy was not actually live.
+#
+# Fix: do the pull, then hand off with `exec` to the freshly-pulled file, which bash re-reads
+# from byte 0. Stage 2 gets the commit range through the environment.
+if [[ "${DEPLOY_STAGE:-1}" == "1" ]]; then
+    BEFORE_COMMIT=$(git rev-parse HEAD)
+    echo "Current commit: ${BEFORE_COMMIT}"
+
+    # Machine-generated artifacts that this script itself rewrites later in the run (kits embed
+    # the deployed-commit fingerprint, so they differ from the committed copies by design). They
+    # are tracked, so without this a pull aborts with "local changes would be overwritten" —
+    # discarding them is safe precisely because the run regenerates them from scratch.
+    git checkout -- data/spell-kits/ 2>/dev/null || true
+    git checkout -- deploy.sh 2>/dev/null || true
+
+    echo "==> git pull"
+    git pull
+
+    AFTER_COMMIT=$(git rev-parse HEAD)
+
+    if [[ "$BEFORE_COMMIT" == "$AFTER_COMMIT" && "$FORCE" -eq 0 ]]; then
+        echo "==> Already up to date (${AFTER_COMMIT:0:7}) — nothing to deploy. Use --force to re-run the safety-net steps anyway."
+        echo "=== Deploy finished (no-op) $(date -u +"%Y-%m-%dT%H:%M:%SZ") ==="
+        exit 0
+    fi
+
+    export DEPLOY_STAGE=2 BEFORE_COMMIT AFTER_COMMIT LOG_FILE
+    exec bash "$SELF" "$@"
+fi
+
 
 echo "==> Deploying ${BEFORE_COMMIT:0:7} -> ${AFTER_COMMIT:0:7}"
 CHANGED_FILES=$(git diff --name-only "$BEFORE_COMMIT" "$AFTER_COMMIT" || true)
