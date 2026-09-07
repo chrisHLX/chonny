@@ -375,17 +375,11 @@
                  its own owner (class/spec) label — same "don't group by column, let each card
                  say who it belongs to" pattern as the Synergies boxes. --}}
             @php
-                $cooldownFloorExceptions = [
-                    'offensive' => \App\Livewire\WowComps::OFFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS,
-                    'defensive' => \App\Livewire\WowComps::DEFENSIVE_COOLDOWN_FLOOR_EXCEPTIONS,
-                ];
+                // Extracted to App\Support\CooldownTabs 2026-09-08 so the user guide builder's
+                // "go" palette asks the same question instead of reimplementing it — the rule and
+                // its reviewed constants are unchanged and still documented on WowComps.
                 $offDefFilter = fn (string $direction) => fn ($e) =>
-                    ($e['isPriority'] ?? false)
-                    && ($e['offensiveDefensive'][$direction] ?? false)
-                    && (
-                        ($e['cooldown']['seconds'] ?? 0) >= \App\Livewire\WowComps::MIN_COOLDOWN_TAB_SECONDS
-                        || array_key_exists($e['spell']->spell_id, $cooldownFloorExceptions[$direction])
-                    );
+                    \App\Support\CooldownTabs::isEntry($e, $direction);
             @endphp
             @foreach (['offensive' => 'Offensive', 'defensive' => 'Defensive'] as $direction => $directionLabel)
                 @php

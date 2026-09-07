@@ -132,3 +132,22 @@
     font-size: 0.8125rem;
 }
 .ordering-item:active { cursor: grabbing; }
+
+/* Rendered Markdown in a user-authored guide section. Scoped to its own class rather than a
+   global `prose` so it can never restyle the site's own content; the input is untrusted, so the
+   renderer already strips raw HTML (see UserGuideSection::bodyHtml()) and only these tags survive. */
+.prose-guide h1, .prose-guide h2, .prose-guide h3 {
+    @apply text-ink font-semibold mt-4 mb-1.5;
+}
+.prose-guide h1 { @apply text-[17px]; }
+.prose-guide h2 { @apply text-[15px]; }
+.prose-guide h3 { @apply text-[14px]; }
+.prose-guide p { @apply mb-2 leading-relaxed; }
+.prose-guide ul { @apply list-disc pl-5 mb-2 space-y-1; }
+.prose-guide ol { @apply list-decimal pl-5 mb-2 space-y-1; }
+.prose-guide a { @apply text-gold underline; }
+.prose-guide strong { @apply text-ink font-semibold; }
+.prose-guide em { @apply italic; }
+.prose-guide code { @apply text-gold bg-gold-subtle px-1 py-0.5 rounded text-[0.9em]; }
+.prose-guide blockquote { @apply border-l-2 border-line-gold pl-3 text-ink-subtle italic my-2; }
+.prose-guide hr { @apply border-line my-4; }

@@ -46,6 +46,9 @@ class PageUsage extends Component
         'claudes_counters' => 'Spell Counters',
         'burst_guides' => 'Burst Guides',
         'pvp_guides' => 'PvP Guides',
+        'guides_index' => 'My Guides',
+        'guide_builder' => 'Guide Builder',
+        'guide_show' => 'Shared Guide (read)',
     ];
 
     /**

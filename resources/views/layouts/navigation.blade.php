@@ -78,6 +78,13 @@
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                 Top 10 CC Chains
             </a>
+            @auth
+            <a href="{{ route('guides.index') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('guides.*') ? 'active !text-accent' : '' }}">
+                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                My Guides
+            </a>
+            @endauth
         </div>
 
         @can('admin')

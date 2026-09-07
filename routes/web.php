@@ -207,6 +207,19 @@ Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group
     Route::get('/talent-builds', TalentBuildEditor::class)->name('talent-builds');
 });
 
+// ------- User-authored guides -------
+Route::middleware('auth')->prefix('guides')->name('guides.')->group(function () {
+    Route::get('/', \App\Livewire\Guides\Index::class)->name('index');
+    Route::get('/{guide}/edit', \App\Livewire\Guides\Builder::class)->name('edit');
+});
+
+// The shared read view lives under /g/{username}/ — its OWN namespace, deliberately not alongside
+// /burst-guides, /claudes-guides or /pvp-guides. Those are derived from real match evidence; this
+// is one player's own plan, and naming the author in the URL is the cheapest possible way to keep
+// the two trust tiers from being mistaken for each other. Not auth-gated: a public guide is
+// readable by anyone, and Guides\Show decides access per guide.
+Route::get('/g/{username}/{guide}', \App\Livewire\Guides\Show::class)->name('guides.show');
+
 // Feedback
 Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback.create');
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');

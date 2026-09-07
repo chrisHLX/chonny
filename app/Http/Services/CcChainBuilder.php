@@ -54,7 +54,6 @@ class CcChainBuilder
      * section. Check this before adding any new kill_target/both classification.
      */
 
-
     /**
      * Retail's flat PvP CC duration ceiling — sourced from Icy Veins, confirmed by the domain
      * expert as a "solid, patch-note-confirmed mechanic": every CC effect is clamped to this many
@@ -70,7 +69,7 @@ class CcChainBuilder
 
     /**
      * @param  Collection<int, Spell>  $spells  must all share the same chain_target already —
-     *                                           this method does not group by chain_target itself.
+     *                                          this method does not group by chain_target itself.
      * @return array<int, array{spell: Spell, dr_applied: bool, dr_reason: ?string, dr_percentage: int, dr_immune: bool}>
      */
     public function buildChain(Collection $spells): array
@@ -95,32 +94,105 @@ class CcChainBuilder
                 ? $this->pickOpener($candidates)
                 : $this->pickNext($candidates);
 
-            $seen = $seenCategories[$next->dr_category] ?? null;
-            $drApplied = $seen !== null && $seen['name'] !== $next->name;
-            $drReason = $drApplied
-                ? "shares {$next->dr_category} category with {$seen['name']}"
-                : null;
-
-            $occurrence = ($seen['count'] ?? 0) + 1;
-            $drPercentage = match (min($occurrence, 3)) {
-                1 => 100,
-                2 => 50,
-                default => 0,
-            };
-
-            $chain[] = [
-                'spell' => $next,
-                'dr_applied' => $drApplied,
-                'dr_reason' => $drReason,
-                'dr_percentage' => $drPercentage,
-                'dr_immune' => $drPercentage === 0,
-            ];
-            $seenCategories[$next->dr_category] = ['name' => $seen['name'] ?? $next->name, 'count' => $occurrence];
+            $chain[] = $this->annotate($next, $seenCategories);
 
             $remaining = $remaining->reject(fn (Spell $s) => $s->id === $next->id)->values();
         }
 
         return $chain;
+    }
+
+    /**
+     * Apply the same diminishing-returns bookkeeping to a chain the CALLER has already ordered,
+     * without resequencing anything.
+     *
+     * buildChain() above answers "given this pool of CC, what is a good order?" — it picks an
+     * opener and sequences the rest by rules 1-3. That is exactly wrong for a user-authored chain,
+     * where the order IS the content: silently reordering an author's chain would discard the
+     * thing they were trying to express, and would make the DR feedback describe a chain they
+     * never wrote. This method answers the other question — "given the order I chose, what
+     * actually diminishes?" — and is what the guide builder validates against.
+     *
+     * Rule 4 still holds and is the whole point: DR is computed against ANY earlier entry sharing
+     * the same dr_category, not just the immediately-preceding one, so an author who separates two
+     * Stuns with a Fear still sees the second Stun land at 50%.
+     *
+     * A spell with a null dr_category is passed through un-diminished rather than being bucketed
+     * with every other uncategorised spell (PHP would coerce a null array key to "", quietly
+     * treating "we haven't curated this yet" as a shared DR category). Callers should be filtering
+     * to curated CC before they get here; this guard means a later curation gap degrades to "no
+     * DR claim made" instead of a confidently wrong one.
+     *
+     * @param  Collection<int, Spell>  $spells  in the author's own order, not resorted
+     * @return array<int, array{spell: Spell, dr_applied: bool, dr_reason: ?string, dr_percentage: int, dr_immune: bool}>
+     */
+    public function annotateChain(Collection $spells): array
+    {
+        $seenCategories = [];
+        $chain = [];
+
+        // A plain loop, deliberately not ->map(): annotate() takes $seenCategories by reference to
+        // carry the running tally forward, and a PHP arrow function captures by VALUE with no way
+        // to opt out — every step would have received a pristine empty tally and nothing would
+        // ever have diminished. This is the same by-value capture that silently broke
+        // ModuleSpellReferenceService::safeEval()'s tokeniser (see its 2026-08-10 fix); it was
+        // caught here by a test asserting a repeated Stun falls to 50%.
+        foreach ($spells as $spell) {
+            $chain[] = $this->annotate($spell, $seenCategories);
+        }
+
+        return $chain;
+    }
+
+    /**
+     * One entry's DR verdict, advancing the running per-category tally.
+     *
+     * Extracted from buildChain()'s loop so the sequencing path and the annotate-an-existing-order
+     * path can never drift apart on the DR maths — that maths was already corrected once
+     * (2026-08-11: two diminished steps then immunity, not a 3-step falloff) and having it written
+     * out twice is how a future correction gets applied to only one of them.
+     *
+     * dr_applied is deliberately false when the SAME spell repeats: dr_reason exists to explain a
+     * non-obvious collision between two different abilities, and "Kidney Shot is diminished by
+     * Kidney Shot" is noise. dr_percentage still falls to 50/0 in that case, so it — not
+     * dr_applied — is the field to drive a UI warning off.
+     *
+     * @param  array<string, array{name: string, count: int}>  $seenCategories  mutated in place
+     * @return array{spell: Spell, dr_applied: bool, dr_reason: ?string, dr_percentage: int, dr_immune: bool}
+     */
+    private function annotate(Spell $spell, array &$seenCategories): array
+    {
+        $category = $spell->dr_category;
+
+        if ($category === null) {
+            return [
+                'spell' => $spell,
+                'dr_applied' => false,
+                'dr_reason' => null,
+                'dr_percentage' => 100,
+                'dr_immune' => false,
+            ];
+        }
+
+        $seen = $seenCategories[$category] ?? null;
+        $drApplied = $seen !== null && $seen['name'] !== $spell->name;
+        $occurrence = ($seen['count'] ?? 0) + 1;
+
+        $drPercentage = match (min($occurrence, 3)) {
+            1 => 100,
+            2 => 50,
+            default => 0,
+        };
+
+        $seenCategories[$category] = ['name' => $seen['name'] ?? $spell->name, 'count' => $occurrence];
+
+        return [
+            'spell' => $spell,
+            'dr_applied' => $drApplied,
+            'dr_reason' => $drApplied ? "shares {$category} category with {$seen['name']}" : null,
+            'dr_percentage' => $drPercentage,
+            'dr_immune' => $drPercentage === 0,
+        ];
     }
 
     /**

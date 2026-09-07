@@ -3354,3 +3354,491 @@ Rogue specs with its class header; `/spells` standalone still renders its hero a
 over all five routes plus `?tab=` variants and an unknown spec (404). Tests:
 `tests/Feature/Livewire/PvpGuidesTest.php` (11 cases). Full suite: 332 passing, the standard 12
 pre-existing failures, zero new regressions.
+
+## User-authored guides — step 1: persistence layer, no UI ✓ COMPLETE (2026-09-07)
+
+First slice of a player-facing builder for burst guides and CC chains (drag spells onto a canvas,
+WordPress-style). This step is schema + models + enums only — deliberately nothing user-facing, so
+the ownership, cascade and id-space decisions are locked in before any UI depends on them.
+
+**Framing that matters for every later step: this is NOT "letting users edit burst guides."** The
+derived guides have no database representation at all — a burst guide is one JSON file per spec
+under `data/claudes-guides/burst-guides/`, a CC chain is an array of timestamped steps under
+`data/arena-logs/cc-chains/`, and both are regenerated wholesale by `wow:refresh-match-derived`.
+There is no row, no id, no owner and no draft state to extend. So `user_guides` is a **parallel,
+owned artifact type** that happens to render through the same spell components. The corpus stays
+read-only and machine-generated; nothing in this feature writes to it.
+
+**What was already in place, and is why this slice was small** (surveyed before writing anything):
+`SpellProfile`/`SpellProfileBuilder` is already the one spell object and implements `ArrayAccess`;
+`SpecKitComputer::tryReadPrecomputed()` + the 40 `data/spell-kits/*.json` files already answer
+"every spell this spec can press, categorised, with icons and cooldowns" (that IS the builder's
+palette, cached); `<x-spells.detail>`/`SpellDetailModal` already render a spell; SortableJS is
+already bundled with a working Livewire+Alpine pattern in QuizRunner's ordering question; and
+`TalentBuild` is already a user-owned artifact composed of game reference data. `CcChainBuilder`
+has been dormant since the 2026-08-16 Synergies redesign and is the ready-made validator for a
+user-authored chain.
+
+**Files:** migrations `2026_09_07_000002_create_user_guides_table` /
+`_000003_create_user_guide_blocks_table`; `App\Models\UserGuide` / `UserGuideBlock`;
+`App\Enums\UserGuideType` / `UserGuideStatus` / `UserGuideBlockType`; `User::guides()`.
+Tests: `tests/Feature/UserGuideSchemaTest.php` (14 cases).
+
+### Decisions encoded in the schema — each is a real choice, not a default
+
+- **A spell block stores Blizzard's EXTERNAL spell id, never `spells.id`** — payload key is
+  literally `external_spell_id` so a wrong write is obvious at the call site. `spells.id` is an
+  internal auto-increment key, patch-scoped, reassigned on a patch bump; this codebase has been
+  bitten by that exact collision twice (`fetch-spell-icons.php` querying `spells.spell_id` with
+  `spells.id` values and silently matching ~50 of ~3,400 rows; `conditional_dr_gating_spell_id`
+  needing the same distinction documented). Both failures were silent — wrong data resolved
+  cleanly. A guide is long-lived content that must survive patches. Read it via
+  `UserGuideBlock::externalSpellId()`, not by reaching into `payload`.
+- **`type`, `status` and `block_type` are plain string columns, never DB enums** — same reason
+  `spell_counters.mechanism` is: a MySQL `ALTER TABLE ... MODIFY COLUMN` on an enum is invalid on
+  SQLite, and `phpunit.xml` runs the whole suite against in-memory SQLite. Extending the `source`
+  enum on `spell_class_availability` this way broke every test in the suite on 2026-08-06. Values
+  are governed by PHP enums, cast on the model, and a test asserts the raw column is a string.
+- **`patch_id` nulls out on delete rather than cascading** — a deliberate divergence from
+  `talent_builds`, which cascade-deletes with its patch. `patch_id` records what the author was
+  looking at, and is never how a block's ability is resolved, so deleting a patch must not destroy
+  user content. Covered by its own test.
+- **`class_id` and `spec_id` are both nullable.** A burst guide is meaningless without one owning
+  spec (globals, GCD and go length are all per-spec facts), but a real CC chain routinely spans a
+  whole comp — the corpus records `distinctCasters` and a per-step `sourceSpecSlug` for exactly
+  that reason. A schema-level NOT NULL would make the more interesting half unrepresentable, so
+  the conditional rule lives in `UserGuideType::requiresSpec()` / `UserGuide::isMissingRequiredSpec()`
+  and is enforced in the app layer where it can actually be conditional.
+- **`position` is indexed but NOT uniquely constrained per guide.** Persisting a drag result
+  rewrites the whole run of positions one row at a time; a unique index would reject that on the
+  first transient collision unless every save were shuffled through a temporary offset. A test
+  exercises a reorder that passes through a duplicate position deliberately — do not "tidy" this
+  into a unique index.
+- **The slug never regenerates on rename.** It is the public URL; silently moving a shared guide
+  because its author fixed a typo would break every existing link. Generation otherwise mirrors
+  `ModulePage::booted()` (suffix on collision rather than failing the insert).
+- **Three publication states, not `Module`'s bare `published` boolean** — `draft` / `published` /
+  `unlisted`. Unlisted is link-only and excluded from listings, which is what `TalentBuild`'s
+  generated-but-unrouted `share_slug` was reaching for and never got.
+- **`payload` is schemaless JSON rather than a column per block type**, because the block
+  vocabulary is expected to grow (target marker, timing offset, opponent-spec condition) and each
+  addition would otherwise be a migration adding columns null for every existing row. What is NOT
+  flexible is what may go in it: **references and free text only, never a resolved name, cooldown
+  or duration** — the same rule the Spells reference section already follows, for the same reason
+  (frozen prose goes stale on a patch with nothing to catch it, and looks healthy while doing it).
+
+### The open product decision, deliberately not settled by this step
+
+Everything else on this site earns credibility from being derived from real match evidence and
+never guessed. A player-written guide is the opposite trust tier by construction, so it must never
+be presentable as a derived one — separate route namespace, provenance marker on every block. Cheap
+now, expensive once guides exist and are linked. The genuinely interesting mitigation, which no
+generic page builder could do and every input for which is already in the database: **audit user
+content against the derived corpus** ("eleven globals in a twelve-second window", "this ability
+isn't in this spec's kit", "step three is diminished by step one").
+
+### Verified
+
+Migrate → rollback → re-migrate clean on real dev MySQL, in both directions and for both tables.
+Resulting DDL inspected directly and confirmed: `varchar` (not enum) for all three type columns,
+`SET NULL` on class/spec/patch, `CASCADE` on user and guide, unique slug, non-unique position.
+Full suite: 350 passing, the standard 12 pre-existing failures (Auth/recaptcha + `LearningPathTest`),
+zero new regressions. Pint clean.
+
+**Next:** step 2 is the builder itself, CC chains first — narrower vocabulary than burst guides,
+and `CcChainBuilder` already validates the result, so the first slice ships with real feedback
+rather than a blank canvas. Then read/share views, then burst guides with the window audit.
+
+## User-authored guides — step 2: the CC chain builder ✓ COMPLETE (2026-09-07)
+
+The authoring canvas on top of step 1's schema. `/guides` (author's own list, `Guides\Index`) and
+`/guides/{guide}/edit` (`Guides\ChainBuilder`), both auth-only. Drag abilities out of a per-spec
+palette into an ordered chain and see what actually diminishes as you go.
+
+CC chains first, deliberately: narrower vocabulary than a burst guide (a chain is a list of control
+abilities; a burst guide also needs phases, globals and a go length), and `CcChainBuilder` already
+knew the DR rules — so the first slice ships with real feedback instead of a blank canvas. Burst
+guides are step 4.
+
+**Files:** `App\Livewire\Guides\Index` / `Guides\ChainBuilder` + their blades;
+`App\Http\Services\UserGuideChainService`; `CcChainBuilder::annotateChain()`;
+`resources/js/sortable.js` (optional handle); routes under a `guides.` name prefix; two
+`Admin\PageUsage::PAGES` entries (`guides_index`, `guide_chain_builder`); a nav link behind
+`@auth`. Tests: `tests/Feature/Livewire/GuideChainBuilderTest.php` (19 cases).
+
+### `annotateChain()` — why `buildChain()` could not simply be reused
+
+`CcChainBuilder::buildChain()` **reorders its input**: it picks an opener by rule 1 and sequences
+the rest. That is the right answer for the Synergies tab, which is handed a pool of CC and asked
+what a good order looks like. It is exactly wrong for a user-authored chain, where **the order is
+the content** — silently resequencing an author's chain would discard the thing they were trying to
+express, and the DR feedback would then describe a chain they never wrote.
+
+New `annotateChain(Collection $spells): array` walks the caller's order untouched and applies the
+same DR bookkeeping. The bookkeeping itself was extracted out of `buildChain()`'s loop into a
+shared private `annotate()` so the two paths cannot drift on the maths — that maths has already
+been corrected once (2026-08-11: two diminished steps then immunity, not a 3-step falloff), and
+having it written out twice is how a future correction gets applied to only one of them.
+`buildChain()`'s behaviour is unchanged; its own 3 tests still pass untouched.
+
+One deliberate addition inside `annotate()`: a spell with a **null `dr_category` is passed through
+un-diminished** rather than participating in the tally. PHP coerces a null array key to `""`, so
+without the guard every uncurated spell would share one bucket and the second would be reported as
+diminished by the first — a confident, wrong claim generated purely by a curation gap.
+
+**A documented trap recurred here and was caught by a test, not by review.** The first version of
+`annotateChain()` was `$spells->map(fn ($s) => $this->annotate($s, $seenCategories))`. PHP arrow
+functions capture by **value** with no way to opt out, so every step received a pristine empty
+tally and nothing ever diminished — the identical failure mode already documented for
+`ModuleSpellReferenceService::safeEval()`'s `$peek` (2026-08-10), where it silently truncated every
+multi-term expression. Now a plain `foreach`, with a comment saying why it is not a `->map()`. The
+test that caught it asserts a repeated Stun falls to 50%.
+
+### The `wire:ignore` decision — the opposite call from QuizRunner, on purpose
+
+CLAUDE.md's standing note on the quiz ordering question says to put `wire:ignore` on a SortableJS
+list. **This builder deliberately does not**, and copying that pattern here would break it.
+
+The two lists are authoritative in different places. The quiz list is CLIENT-authoritative between
+renders — the browser holds the answer until submit, so Livewire re-diffing it would destroy the
+user's arrangement, and `wire:ignore` is what prevents that. This list is SERVER-authoritative:
+every drop immediately calls `reorder()`, positions are written to the database, and the re-render
+that follows produces the order the DOM is already in. `wire:ignore` here would instead freeze the
+list against add and remove, which is the common way this pattern gets copied wrong.
+
+The rule the two genuinely share, and the one that matters: **never read the DOM to decide what to
+persist.** `reorder()` takes block ids and re-derives order from them.
+
+`resources/js/sortable.js`'s `x-sortable` directive now accepts an optional handle selector
+(`x-sortable=".chain-handle"`), defaulting to `.ordering-item` so the quiz is byte-for-byte
+unaffected.
+
+### `UserGuideChainService` — one resolution path, shared with step 3
+
+Lives as a service rather than in the component because the public read view (step 3) must render a
+chain identically to how its author saw it while writing it. Two implementations would drift, and
+the first symptom would be a guide that validates clean in the editor and shows different DR
+numbers to a reader.
+
+- **`palette(Specialization $spec)`** reuses `SpellCounterIndexer::pressableCcSpells()` rather than
+  filtering `dr_category IS NOT NULL` directly. Those are not the same question: many curated
+  `dr_category` rows sit on passive-granted aura copies nobody casts (Absolute Zero's freeze aura is
+  tagged Stun and is not a keybind), which is exactly what made `/spell-counters` list 157
+  "counterable" abilities before the 2026-09-07 narrowing. An author must not be able to drag an
+  ability that does not exist as a button. Spell-id sources are the documented-safe per-spec ones
+  only (`allTalentSpellIds` / `allPvpTalentSpellIds` / `verifiedBaselineAbilityIds` /
+  `explicitBaselineCooldownAbilityIds`) — never `alwaysAvailableAbilityIds()`, per its own
+  DO-NOT-WIRE-IN docblock. Grouping uses `SpellProfile::drCategory()`, so the talent-conditional
+  case lands correctly (Holy Word: Chastise groups under Stun for Holy Priest, where Censure is in
+  the default build).
+- **`resolve(UserGuide $guide)`** batches one kit read per distinct source spec. This is why each
+  spell block stores `source_spec_id` alongside `external_spell_id`: a chain spans a comp, and
+  resolving every step against one spec would produce talent-aware cooldowns from the wrong build —
+  wrong in the way that looks completely fine.
+- **Unresolvable blocks are KEPT, not dropped** — a deliberate difference from
+  `ClaudesGuides::resolveSpellEntries()`, which silently drops an id with no match in the current
+  kit. That is right for a hand-authored site guide (better a short list than a broken row) and
+  wrong here: this is somebody's own saved content, and quietly removing a step they wrote is
+  indistinguishable from data loss. An unresolved block comes back `unresolved => true` and renders
+  as "Ability no longer found … your step was kept so you can replace it". It is also excluded from
+  the DR tally rather than counted as an unknown category, so it cannot shift the verdict on the
+  steps around it.
+
+### Every mutation is ownership-scoped, and tested for it
+
+`mount()` 403s a guide the viewer does not own and 404s a burst guide (wrong canvas).
+`removeBlock()`/`setNote()` resolve through `ownedBlock()`, which filters on `user_guide_id`.
+`reorder()` validates every incoming id against the guide's own rows and appends anything omitted
+after the ids it did receive — so a partial or tampered list degrades to a partial reorder instead
+of dropping steps. `addSpell()` only accepts an id the currently selected palette actually offers,
+so a hand-crafted call cannot attach an arbitrary spell, including one that is not crowd control.
+`Index::delete()` scopes through `auth()->user()->guides()`. There is a test per rule, each using a
+second guide owned by the *same* author — the case a naive `where('id', ...)` would pass.
+
+`patch_id` is stamped on first real edit rather than at creation, so an abandoned empty draft never
+claims to describe a patch.
+
+### Verified
+
+Against the real dev database, not fixtures: palettes resolve correctly per spec (Subtlety Rogue 6
+abilities across Stun/Incapacitate/Disorient/Disarm; Frost Mage 6 across
+Incapacitate/Disorient/Root/Slow; Holy Priest 4), and a real cross-spec chain — Kidney Shot
+(Subtlety) → Polymorph (Frost Mage) → Cheap Shot (Subtlety) — resolves each step against its own
+caster's build with correct cooldowns and correctly reports Cheap Shot at **50%**, proving DR
+reaches back past the intervening Incapacitate. A deliberately bad spell id in the same chain came
+back kept-and-flagged rather than vanishing.
+
+19 tests including real HTTP renders of both pages (a `Livewire::test()` renders the component in
+isolation and cannot catch a broken layout, a bad route helper in the nav, or a guest reaching an
+author-only page), plus a check that a guide is addressed by slug and an id in the URL 404s. Full
+suite: 366 passing, the standard 12 pre-existing failures, zero new regressions. Pint clean, assets
+rebuilt.
+
+### Still open
+
+No public read view yet — nothing user-authored is reachable without being signed in as its author,
+which is intentional: publishing before the trust-tier separation is decided (separate route
+namespace, provenance marking on every block) is the ordering that makes it expensive to retrofit.
+`UserGuideStatus::Published` is settable and currently only affects the author's own listing.
+Step 3 is that read/share view; step 4 is burst guides plus the window audit.
+
+## User-authored guides — comps, both guide types, and real duration/frequency maths ✓ COMPLETE (2026-09-08)
+
+Direct follow-up to step 2, same day it shipped: a guide should be authorable as a CC chain **or**
+a full "go", for a comp of **up to three specs** (2v2 or 3v3), and should compute **how much
+control actually survives diminishing returns** and **how often the whole thing is available
+again**. All three landed together because they are one feature — a go's cadence is a property of
+the comp, not of a spec.
+
+`Guides\ChainBuilder` is now `Guides\Builder` (it builds both types, and sharing a name with the
+`CcChainBuilder` SERVICE was actively confusing). Route/tracking slug `guide_chain_builder` →
+`guide_builder`.
+
+### The roster: a schema reversal, made deliberately rather than papered over
+
+Step 1 gave `user_guides` a single nullable `spec_id`/`class_id`, with a docblock arguing a chain
+"may span a comp and have neither". That was right about the problem and wrong about the shape: a
+nullable single spec can record that a guide ISN'T scoped to one spec, but not WHICH three specs it
+IS scoped to — which is exactly what a comp guide is.
+
+Rather than leave a half-used column and derive the roster elsewhere (the dangling-field pattern
+this codebase has had to clean up before — see `recommended_module`), **the columns were dropped**
+and `user_guide_members` (guide, position, spec) became the single source of truth. Nothing was in
+production and one dev row existed, so it is a straight replacement, not a data migration.
+
+- **Bracket is derived, never stored** — 2 members = 2v2, 3 = 3v3, null below that. A stored
+  bracket is a second thing to keep in sync that can immediately disagree with the roster it
+  describes.
+- **`position` IS uniquely constrained here**, unlike `user_guide_blocks.position`. A roster slot is
+  assigned, not dragged, so there is no transient mid-rewrite duplicate to protect — the opposite
+  call from blocks, for a stated reason rather than by accident.
+- **No unique constraint on (guide, spec)** — a real 3v3 can run two of the same spec. Tested.
+- `isMissingRequiredSpec()` → `hasRoster()`. A guide with no comp has no kit to draw from, is
+  necessarily empty, and cannot be published; that guard is in the component, since the schema
+  cannot express "at least one row in a related table".
+- **Removing a comp member deliberately KEEPS steps already authored from it.** They still name a
+  real ability belonging to a real spec, and deleting somebody's authored steps as a side effect of
+  editing the roster would be a destructive surprise — same reasoning as keeping unresolvable
+  blocks. Tested.
+
+Block payload is unchanged: a step still records `source_spec_id`, not a member position. Attributing
+to a slot instead would break the moment a member is swapped, and the spec is the fact that actually
+matters for resolving the ability.
+
+### Two guide types, two palettes, one shared definition of "cooldown"
+
+A CC chain offers control only. A **go** additionally offers each member's real offensive
+cooldowns, because a go is the coordinated thing — the control that creates the window and the
+damage that spends it.
+
+"Offensive cooldown" is **not** re-derived here. The predicate that backs WoW Comps' Offensive /
+Defensive Cooldowns tabs (arena-log-verified `offensiveDefensive` classification + `isPriority` +
+the reviewed `MIN_COOLDOWN_TAB_SECONDS` floor and its two named exception lists) was extracted from
+`wow-comps.blade.php` into **`App\Support\CooldownTabs::isEntry()`**, and both callers now ask the
+same question. The constants stay on `WowComps`, where they are documented and where CLAUDE.md
+references them by name.
+
+**Verified the extraction changed nothing**, rather than assuming: the old inline closure and the
+new helper were run against **12,264 entry/direction pairs** across every precomputed spec kit —
+zero mismatches. `/wow-comps`, `/spells` and `/burst-guides` all still render 200.
+
+An ability that is both CC and an offensive cooldown stays in its DR group and is not listed twice
+— where it lands is the more useful fact, and duplicating it would let an author add the same
+ability from two places without noticing.
+
+### The two numbers
+
+**`UserGuideChainService::metrics()`**, and both are deliberately conservative about what they claim.
+
+- **Control after DR** — each control step's hand-verified `pvp_duration_seconds` multiplied by the
+  DR percentage the chain's own earlier steps have already applied. Worked example, verified live:
+  Kidney Shot 5s + Polymorph 6s + Cheap Shot (4s at 50%) 2s = **13.0s**.
+  - It is a **sum of control spent, not a wall-clock lock**, and the UI says so. Two abilities on
+    different targets, or one landed while another is running, do not add up in real time.
+  - Steps with no verified duration are **counted and reported, never guessed and never silently
+    zeroed** — a total that quietly omitted a third of the chain would be worse than no total.
+    Coverage was measured before building this: **79%** of per-spec CC palette entries have a
+    curated PvP duration (Rogue specs 100%, Brewmaster Monk worst at 2 of 6). `duration_seconds` is
+    never substituted — it is confirmed unreliable for PvP (Polymorph's PvE tooltip reads 60s
+    against a real 6s).
+  - Returns null rather than 0.0 when nothing contributed: "no step has a verified duration" and
+    "this controls for zero seconds" are different statements.
+- **Available every** — the **longest** cooldown in the guide, since the whole thing repeats only as
+  often as its slowest piece returns, and the gating ability is named. Cooldowns come from the
+  resolved kit entry, so they are talent-aware and benefit from sibling recovery. Verified live: an
+  RMD go gated at **120s by Power Infusion**, with the one cooldown-less step (Polymorph) excluded
+  and counted rather than treated as zero.
+
+DR annotation now runs over **control steps only** — a damage cooldown has no `dr_category` and must
+not consume a slot in the tally, and an unresolved block cannot diminish anything. Both are skipped
+rather than counted as an unknown category, so neither can shift the verdict on the control steps
+around them.
+
+### A real Blade gotcha worth remembering
+
+The builder view failed to compile with `unexpected token "endif"` despite every directive count
+balancing. Cause: **a Blade directive immediately preceded by a word character is not compiled as a
+directive at all** — Blade's matcher is guarded by `\B`, so `...diminished@endif` and `...s@if (` in
+inline text passed through as literal text while their partners compiled, unbalancing the block. The
+directive counts balanced precisely because one `@if` and one `@endif` were both being ignored, in
+different places. Both were restructured into `@php`-computed strings with a comment saying why. If
+a Blade file ever throws an unbalanced-directive error while the counts look fine, check for
+directives glued to the end of a word.
+
+### Verified
+
+23 builder tests + 16 schema tests, including: both types opening, roster assign/replace/remove,
+slot-bounds rejection, bracket derivation, the same-spec-twice case, publish blocked without a
+roster, and steps surviving member removal. Palette contents and metrics cannot be asserted under
+SQLite (spells only ever come from `import:spelldata`), so they are verified against the live
+database instead — full 3v3 go above, plus confirmation that the same spec's **chain** palette
+contains no offensive-cooldown group.
+
+Migration up/rollback/up clean on real MySQL. Full suite: **375 passing**, the standard 12
+pre-existing failures, zero new regressions.
+
+**One self-inflicted mess worth recording:** Pint was run as `./vendor/bin/pint app/` and reformatted
+**138 unrelated files**, burying the real diff. Reverted everything except the three genuinely-changed
+tracked files and re-ran Pint scoped to this work's own files. Always pass Pint an explicit file list
+in this repo.
+
+### Still open
+
+No public read view — publishing still only affects the author's own listing. Step 3 is that
+read/share view, where the trust-tier separation (own route namespace, provenance marking) gets
+decided. `duration_seconds`-only specs (Brewmaster, Fury/Arms Warrior) will show a partial control
+total until more `pvp_duration_seconds` values are curated; the UI names how many steps are
+uncounted rather than hiding it.
+
+## User-authored guides — sections, VS columns, prose, and sharing ✓ COMPLETE (2026-09-08)
+
+A guide is no longer one flat sequence. It now holds any number of named sections — several chains,
+several gos, prose, and an opponent's expected defensives beside the go that forces them — and can
+be published publicly at a shareable URL or privately to named people.
+
+**Routes:** `/guides` (own list + shared with you), `/guides/{slug}/edit` (builder),
+`/g/{username}/{slug}` (`Guides\Show`, the read view). **Files:** `UserGuideSection` +
+`UserGuideSectionKind`, `UserGuideVisibility`, `Guides\Show`, `<x-guides.section-steps>` /
+`<x-guides.metrics>`, three migrations, `.prose-guide` styles. Tests: `GuideBuilderTest` (32),
+`UserGuideSchemaTest` (21).
+
+### Sections, and the third change to user_guides in two days
+
+`user_guides.type` is **dropped**. It recorded whether a guide was a chain or a go; a guide can now
+be both at once, so kind belongs to the SECTION — which is also the thing that decides what the
+palette offers. Leaving a guide-level type would have made it a label free to disagree with its own
+contents. Two earlier reversals on this table (`spec_id` → roster, and this) were both the same
+shape: a column that was correct for the feature as described and wrong once the next requirement
+arrived. Recorded plainly rather than smoothed over — nothing was in production, and the alternative
+was a half-used column and a derived second source of truth.
+
+`user_guide_blocks.user_guide_id` is dropped too: blocks hang off sections, and a direct guide id
+would be a second path to the same fact. Ownership checks are now a join through the section, which
+is the point — one path cannot disagree with itself.
+
+**Layout is (row, column), not a flat position.** `row` orders sections down the page; `column`
+places two side by side. That is what makes VS work — your go on the left, the defensives you are
+trying to force on the right, read across rather than one after the other. A flat position cannot
+express "these two are the same moment". `(guide, row, column)` is uniquely constrained, unlike
+block position, because a section is placed rather than dragged through transient duplicates.
+`moveSection()` moves a whole row, both columns together, and renumbers through a parking value
+because a direct swap would collide with that constraint mid-update.
+
+### DR is tallied PER SECTION, never across the guide
+
+The correctness call this whole feature turns on. Two chains in one guide are two separate
+attempts — a different go, a different game, or an alternative the author is writing down beside
+the first. Carrying a tally across would report the second chain's opener as already diminished:
+wrong, and wrong in a way that would push authors to split guides they should keep together.
+`UserGuideChainService::resolve()` therefore takes a **section**, not a guide. Verified live: an
+opener go ending in a DR'd Cheap Shot (50%), followed by a second chain whose Kidney Shot is back
+at **100%**.
+
+### VS sections
+
+A section with `opponent_spec_id` set draws its palette from **that spec's defensive cooldowns**
+(`CooldownTabs::isEntry($e, 'defensive')` — the same arena-log-verified rule WoW Comps' Defensive
+tab uses) instead of from the author's own comp. Verified live: a Holy Paladin opponent offers
+Divine Shield, Blessing of Protection/Freedom/Sacrifice/Spellwarding, Divine Protection, Holy
+Bulwark, Lay on Hands. Control time is not computed for these (defensives are not CC), but
+frequency is — it answers the genuinely useful inverse, how often they can answer at all.
+
+Changing the opponent, or clearing a comp slot, deliberately KEEPS steps already authored from it —
+same reasoning as keeping unresolvable blocks. Silently deleting somebody's work as a side effect
+of an unrelated edit is a destructive surprise.
+
+### Publishing: status and visibility are two axes, not one column
+
+`status` (draft | published) answers "has the author finished". `visibility` (public | invited)
+answers "who may read it". The old `unlisted` status was a visibility value hiding in a status
+column and is gone. **Publishing is one decision and going public is a second, separate one** —
+`visibility` defaults to `invited`, so a guide can never become world-readable by accident.
+
+`UserGuide::isReadableBy()` is the single gate: the author always; nobody else reads a draft; a
+published guide is world-readable only if its visibility says so, otherwise it needs a row in
+`user_guide_viewers`. Every combination is asserted rather than reasoned about.
+
+**A missing guide and a forbidden one both 404**, deliberately. A 403 confirms the guide exists,
+which for a private guide leaks that this person wrote something at this URL.
+
+`user_guide_viewers` references a real `users` row rather than an email string, so access cannot
+outlive an account and there is no pending-invite state to reconcile. **Sharing with someone who
+has not signed up is not supported**, and the form says so rather than accepting an address that
+will never resolve.
+
+### /g/{username}/{slug}, and a new users.username
+
+`name` could not carry this: free text, not unique, and a display name people expect to change
+without breaking saved links. `users.username` is nullable + unique, backfilled from existing names
+by the migration, and assigned on demand by `User::resolveUsername()` when a guide is first
+published — so no existing account is blocked behind a profile step nobody has been asked to
+complete. The email local-part is deliberately never used as a fallback source; it would leak part
+of an address into a public URL.
+
+**Guide slugs are now unique PER AUTHOR**, not globally — the username namespaces the URL, and a
+global unique meant the second person to write "RMD opener" silently got `rmd-opener-1` because a
+stranger had taken it. `Show::mount()` verifies the username in the URL actually owns the guide;
+without that check any username would serve any author's guide.
+
+**The read view states its own provenance in its first line** ("Player-written guide") and again at
+the foot ("Written by a player, not derived from match data"), and lives under its own `/g/` route
+namespace rather than beside `/burst-guides` or `/pvp-guides`. This is the trust-tier separation the
+step-1 notes flagged as cheap now and expensive to retrofit: everything else on this site earns
+credibility from being derived from real match evidence, and a player's plan rendering with the same
+framing would spend that credibility. Asserted by a test, so it cannot be quietly dropped.
+
+### Prose sections
+
+Markdown, rendered through `Str::markdown(..., html_input => 'strip', allow_unsafe_links => false)`
+— the exact settings ModulePage and SubjectContent already use. That matters more here: a ModulePage
+is written by the site owner, this is written by any signed-in user and shown to other people.
+Verified that `<script>` is stripped and `javascript:` links are refused. Styles are scoped to
+`.prose-guide` rather than a global `prose` class so user content can never restyle the site.
+`bodyHtml()` returns empty for a non-text section even if a body somehow exists.
+
+### Shared rendering
+
+`<x-guides.section-steps>` and `<x-guides.metrics>` are used by BOTH the builder and the read view.
+The service's docblock promises a reader sees exactly what the author saw; two copies of that markup
+would eventually make that untrue, which is the same duplication that cost this codebase six copies
+of the category badge map before `config/spell_display.php`.
+
+### Verified
+
+Live, against real data: a 3v3 RMD-vs-Holy-Paladin guide with a go (control 13.0s, gated 90s by
+Shadow Blades), a parallel VS column of the Paladin's defensives (gated 300s by Divine Shield), a
+second chain whose DR correctly resets, and a prose section with markup stripped. Public URL
+resolves as `/g/vs-verify/rmd-vs-holy-paladin`.
+
+53 tests across the two files, including access control for every author/status/visibility
+combination, wrong-username 404, section ownership scoping, and the row-move behaviour. Migrations
+up/rollback/up clean on real MySQL. Full suite: **389 passing**, the standard 12 pre-existing
+failures, zero new regressions. `/wow-comps` still 200 after the shared-predicate extraction.
+
+### Still open
+
+No site-wide browse of public guides — a public guide is reachable by its link, which is the
+author's decision per guide; listing everyone's guides beside the derived ones is a separate product
+decision and is not implied by "let people share a link". No invite for people without an account.
+No section duplication or cross-section step moves. `sitemap.xml` is unchanged: public user guides
+are deliberately not advertised there yet.

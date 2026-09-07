@@ -3,11 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Http\Services\CreditService;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Http\Services\CreditService;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -73,7 +73,7 @@ class User extends Authenticatable implements MustVerifyEmail
                 'last_time_spent',
                 'last_answer',
                 'last_answer_correct',
-                'consecutive_fails'
+                'consecutive_fails',
             ])
             ->withTimestamps();
     }
@@ -119,6 +119,46 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(UserAxisMastery::class);
     }
 
+    /** Guides this user has authored, drafts included. */
+    public function guides()
+    {
+        return $this->hasMany(UserGuide::class);
+    }
+
+    /** Private guides other people have explicitly shared with this user. */
+    public function sharedGuides()
+    {
+        return $this->belongsToMany(UserGuide::class, 'user_guide_viewers')->withTimestamps();
+    }
+
+    /**
+     * This account's public handle, assigning one on first use if it has none.
+     *
+     * Every account predates the username column and no signup step collects one yet (see the
+     * add_username_to_users migration), so a handle is derived from the display name the first
+     * time something actually needs it — publishing a guide — rather than blocking on a profile
+     * step nobody has been asked to complete. Uniqueness is resolved by suffixing, the same way
+     * guide slugs are.
+     */
+    public function resolveUsername(): string
+    {
+        if (filled($this->username)) {
+            return $this->username;
+        }
+
+        $base = \Illuminate\Support\Str::slug($this->name ?? '') ?: 'player';
+        $candidate = $base;
+        $n = 1;
+
+        while (static::where('username', $candidate)->whereKeyNot($this->id)->exists()) {
+            $candidate = $base.'-'.$n++;
+        }
+
+        $this->forceFill(['username' => $candidate])->save();
+
+        return $candidate;
+    }
+
     public function hasVerifiedEmail(): bool
     {
         if (! app()->isProduction()) {
@@ -146,6 +186,4 @@ class User extends Authenticatable implements MustVerifyEmail
             );
         });
     }
-
-
 }
