@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Patch;
 use App\Models\TalentBuild;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -39,7 +40,11 @@ class ExportDefaultTalents extends Command
     {
         $path = $this->option('path') ?: base_path('data/spelldata/default-talent-builds.txt');
 
+        // Current patch only - see the note in PrecomputeSpellKits. Without this, a database with
+        // two patch rows exports every spec twice, so the committed file that
+        // wow:apply-default-talents replays carries a duplicate, stale entry per spec.
         $builds = TalentBuild::where('is_default', true)
+            ->where('patch_id', Patch::where('is_current', true)->value('id'))
             ->with([
                 'specialization.gameClass',
                 'choices.chosenEntry.spell',
@@ -77,7 +82,7 @@ class ExportDefaultTalents extends Command
             foreach ($build->choices->sortBy(fn ($c) => $c->chosenEntry?->spell?->display_name ?? '') as $choice) {
                 $spell = $choice->chosenEntry?->spell;
 
-                if (!$spell) {
+                if (! $spell) {
                     continue;
                 }
 
@@ -88,7 +93,7 @@ class ExportDefaultTalents extends Command
             foreach ($build->pvpChoices->sortBy(fn ($c) => $c->pvpTalent?->spell?->display_name ?? '') as $pvpChoice) {
                 $spell = $pvpChoice->pvpTalent?->spell;
 
-                if (!$spell) {
+                if (! $spell) {
                     continue;
                 }
 

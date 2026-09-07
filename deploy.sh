@@ -171,6 +171,16 @@ else
     php -d memory_limit=1024M artisan wow:precompute-spell-kits
 fi
 
+echo "==> Applying the committed icon manifest (data/spelldata/icon-manifest.json)."
+echo "    Fills spells/classes/specs icon_name from the committed manifest wherever it is still"
+echo "    NULL. Zero Blizzard API calls, idempotent, and cheap. It lives here because the icon"
+echo "    FILES and the manifest travel in git while icon_name is a database column, so a fresh"
+echo "    environment — or any spell added since the last run — has the file on disk and no row"
+echo "    pointing at it. import:spelldata does NOT do this. Skipping it is invisible until"
+echo "    someone notices blank icons: on 2026-09-07 production had 4,914 current-patch spells"
+echo "    whose icon was sitting on disk, unreferenced, because this had never been run there."
+php artisan wow:apply-icon-manifest
+
 echo "==> Post-deploy smoke test"
 SMOKE_URLS=(
     "https://mindcollector.com/"

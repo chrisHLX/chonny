@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\GameClass;
 use App\Models\ModuleGameBuild;
+use App\Models\Patch;
 use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\TalentBuild;
@@ -110,7 +111,16 @@ class SpecKitComputer
         $entries = $this->tryReadPrecomputed($spec, $talentService);
 
         if ($entries === null) {
-            $defaultBuild = TalentBuild::where('spec_id', $spec->id)->where('is_default', true)->first();
+            // Scoped to the CURRENT patch. talent_builds is patch-scoped, so a database holding
+            // more than one patch row has one admin-default build per spec PER PATCH, and an
+            // unfiltered first() returns whichever has the lower id - the OLDEST patch. Local dev
+            // has a single patch, so this read correctly by accident there, while production (two
+            // patch rows since 2026-08-18) built all 40 of its spec kits from a stale build.
+            // TalentSelectionService already filters by patch everywhere; these callers did not.
+            $defaultBuild = TalentBuild::where('spec_id', $spec->id)
+                ->where('patch_id', Patch::where('is_current', true)->value('id'))
+                ->where('is_default', true)
+                ->first();
             $entries = $this->compute($spec, $defaultBuild, $service, $talentService);
         }
 

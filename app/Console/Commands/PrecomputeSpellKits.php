@@ -6,6 +6,7 @@ use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\SpecKitComputer;
 use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
+use App\Models\Patch;
 use App\Models\Specialization;
 use App\Models\TalentBuild;
 use Illuminate\Console\Command;
@@ -125,15 +126,25 @@ class PrecomputeSpellKits extends Command
 
         foreach ($specs as $spec) {
             $class = $spec->gameClass ?? GameClass::find($spec->class_id);
-            if (!$class) {
+            if (! $class) {
                 continue;
             }
 
-            $defaultBuild = TalentBuild::where('spec_id', $spec->id)->where('is_default', true)->first();
+            // Scoped to the CURRENT patch. talent_builds is patch-scoped, so a database holding
+            // more than one patch row has one admin-default build per spec PER PATCH, and an
+            // unfiltered first() returns whichever has the lower id - the OLDEST patch. Local dev
+            // has a single patch, so this read correctly by accident there, while production (two
+            // patch rows since 2026-08-18) built all 40 of its spec kits from a stale build.
+            // TalentSelectionService already filters by patch everywhere; these callers did not.
+            $defaultBuild = TalentBuild::where('spec_id', $spec->id)
+                ->where('patch_id', Patch::where('is_current', true)->value('id'))
+                ->where('is_default', true)
+                ->first();
 
-            if (!$defaultBuild) {
+            if (! $defaultBuild) {
                 $this->line("  {$class->name}/{$spec->name}: no admin-default build yet, skipped.");
                 $skippedNoDefault++;
+
                 continue;
             }
 
@@ -153,7 +164,7 @@ class PrecomputeSpellKits extends Command
                     json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
                 );
 
-                $this->info("  {$class->name}/{$spec->name}: {$dir}/{$spec->slug}.json (" . count($entries) . ' entries)');
+                $this->info("  {$class->name}/{$spec->name}: {$dir}/{$spec->slug}.json (".count($entries).' entries)');
                 $written++;
             } catch (\Throwable $e) {
                 $this->error("  {$class->name}/{$spec->name}: FAILED — {$e->getMessage()}");
