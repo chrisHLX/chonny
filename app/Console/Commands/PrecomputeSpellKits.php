@@ -10,6 +10,7 @@ use App\Models\Specialization;
 use App\Models\TalentBuild;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Process;
 
 /**
  * Precomputes every spec's full spell kit (every real talent, PvP talent, and baseline ability —
@@ -82,6 +83,42 @@ class PrecomputeSpellKits extends Command
         }
 
         $specs = $query->get();
+
+        // Each spec is computed in its OWN php process unless exactly one was named.
+        //
+        // A whole-sweep run accumulates memory across specs and reproducibly dies partway: on
+        // 2026-09-07 production OOMed at the 1GB limit deploy.sh passes, after 36 of 40 specs,
+        // leaving the same four (Unholy DK, Vengeance DH, Survival Hunter, Windwalker Monk)
+        // stale on EVERY deploy — and a stale kit silently falls back to a live recompute
+        // (6,964ms/3,042 queries versus 970ms/146 for a 3-spec WowComps render). Run one at a
+        // time those same four succeed, so this is accumulation across the loop, not any one
+        // spec being too big.
+        //
+        // Same fix, and the same reason, as RefreshMatchDerived::callArtisan(): a fresh process
+        // per unit of work, so peak memory is one spec's worth rather than forty.
+        if (! ($classSlug && $specSlug)) {
+            $written = 0;
+            $failed = 0;
+
+            foreach ($specs as $spec) {
+                $class = $spec->gameClass ?? GameClass::find($spec->class_id);
+                if (! $class) {
+                    continue;
+                }
+
+                $result = Process::timeout(0)->run(
+                    ['php', '-d', 'memory_limit=1024M', base_path('artisan'), 'wow:precompute-spell-kits', $class->slug, $spec->slug],
+                    fn (string $type, string $output) => $this->output->write($output)
+                );
+
+                $result->successful() ? $written++ : $failed++;
+            }
+
+            $this->info("Done. {$written} spec(s) written, {$failed} failed.");
+
+            return $failed > 0 ? self::FAILURE : self::SUCCESS;
+        }
+
         $written = 0;
         $skippedNoDefault = 0;
         $failed = 0;
