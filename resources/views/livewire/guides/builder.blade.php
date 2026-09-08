@@ -9,7 +9,7 @@
     $isPublished = $guide->status === UserGuideStatus::Published;
 @endphp
 
-<div class="max-w-7xl mx-auto px-4 py-8" x-data="{ noteFor: null, paletteFor: null }">
+<div class="max-w-7xl mx-auto px-4 py-8" x-data="{ noteFor: null }">
 
     {{-- Header ------------------------------------------------------------------- --}}
     <div class="flex items-start justify-between gap-6 mb-6">
@@ -21,14 +21,18 @@
                 <span class="badge-blue ml-2">{{ $bracket }}</span>
             @endif
 
+            {{-- .blur, not .live.debounce: a debounce still fires a full component re-render
+                 mid-sentence every 600ms, which is felt directly as the field stuttering while
+                 you type. Nothing on the page derives from the title, so there is nothing to keep
+                 live — it saves when you click away, and the "Saved" stamp still confirms it. --}}
             <input type="text"
-                   wire:model.live.debounce.600ms="title"
+                   wire:model.blur="title"
                    maxlength="120"
                    placeholder="Name this guide"
                    class="form-input mt-2 w-full font-display text-2xl bg-transparent border-0 border-b border-line rounded-none px-0 focus:ring-0 focus:border-gold">
 
             <input type="text"
-                   wire:model.live.debounce.600ms="summary"
+                   wire:model.blur="summary"
                    maxlength="500"
                    placeholder="What is this guide for? (optional)"
                    class="form-input mt-2 w-full text-[14px] bg-transparent border-0 px-0 focus:ring-0 text-ink-muted">
@@ -59,13 +63,35 @@
 
             <div class="flex flex-wrap gap-2 mb-3">
                 @foreach (UserGuideVisibility::cases() as $option)
+                    @php $noGuild = $option === UserGuideVisibility::Guild && $this->myGuilds->isEmpty(); @endphp
                     <button type="button" wire:click="setVisibility('{{ $option->value }}')"
-                            class="px-3 py-2 rounded border text-left transition-colors {{ $guide->visibility === $option ? 'border-line-gold bg-gold-subtle' : 'border-line hover:border-line-strong' }}">
+                            @disabled($noGuild)
+                            class="px-3 py-2 rounded border text-left transition-colors {{ $guide->visibility === $option ? 'border-line-gold bg-gold-subtle' : 'border-line hover:border-line-strong' }} {{ $noGuild ? 'opacity-50 cursor-not-allowed' : '' }}">
                         <span class="block text-[13px] font-medium text-ink">{{ $option->label() }}</span>
-                        <span class="block text-[11px] text-ink-subtle">{{ $option->description() }}</span>
+                        <span class="block text-[11px] text-ink-subtle">
+                            {{ $noGuild ? 'Join or create a guild first.' : $option->description() }}
+                        </span>
                     </button>
                 @endforeach
             </div>
+
+            {{-- Which guild. Only shown when it is actually a choice — with one guild the
+                 visibility button already adopted it, and a picker with a single option is noise. --}}
+            @if ($guide->visibility === UserGuideVisibility::Guild && $this->myGuilds->count() > 1)
+                <div class="flex flex-wrap gap-2 mb-3">
+                    @foreach ($this->myGuilds as $g)
+                        <button type="button" wire:click="setGuild({{ $g->id }})"
+                                class="px-2.5 py-1.5 rounded border text-[12px] transition-colors {{ $guide->guild_id === $g->id ? 'border-line-gold bg-gold-subtle text-gold' : 'border-line text-ink-muted hover:border-line-strong' }}">
+                            {{ $g->name }}
+                        </button>
+                    @endforeach
+                </div>
+            @elseif ($guide->visibility === UserGuideVisibility::Guild && $guide->guild)
+                <p class="text-[12px] text-ink-muted mb-3">
+                    Shared with <a href="{{ route('guilds.show', $guide->guild) }}" wire:navigate
+                                   class="text-gold hover:text-gold-light">{{ $guide->guild->name }}</a>.
+                </p>
+            @endif
 
             @if ($guide->visibility === UserGuideVisibility::Public)
                 @if ($url = $guide->publicUrl())
@@ -130,7 +156,7 @@
             </div>
 
             <div class="grid sm:grid-cols-[1fr_auto_1fr] items-center gap-3">
-                <x-guides.member-slot :member="$this->members->firstWhere('position', 0)" :slot="0"
+                <x-guides.member-slot :member="$this->members->firstWhere('position', 0)" :position="0"
                                       :class-colors="$classColors" label="Your spec" wire:key="slot-0"/>
 
                 <span class="text-[12px] text-ink-subtle text-center sm:px-2">vs</span>
@@ -169,11 +195,38 @@
 
             <div class="grid sm:grid-cols-3 gap-3">
                 @for ($slot = 0; $slot < $guide->maxMembers(); $slot++)
-                    <x-guides.member-slot :member="$this->members->firstWhere('position', $slot)" :slot="$slot"
+                    <x-guides.member-slot :member="$this->members->firstWhere('position', $slot)" :position="$slot"
                                           :class-colors="$classColors" wire:key="slot-{{ $slot }}"/>
                 @endfor
             </div>
         </div>
+
+        {{-- The enemy team. Optional: a guide about your own opener is still a good guide, so
+             this stays collapsed until asked for rather than presenting three empty slots as
+             something you owe the page. --}}
+        @if ($guide->maxEnemies() > 0)
+            <div class="linear-card p-4 mb-6" x-data="{ open: {{ $this->enemies->isNotEmpty() ? 'true' : 'false' }} }">
+                <div class="flex items-baseline justify-between gap-4">
+                    <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Playing against</h2>
+                    <button type="button" x-on:click="open = !open" class="text-[12px] text-ink-subtle hover:text-gold transition-colors">
+                        <span x-show="!open">+ Name the enemy team</span>
+                        <span x-show="open" x-cloak>Hide</span>
+                    </button>
+                </div>
+
+                <p class="text-[12px] text-ink-subtle mt-1" x-show="open" x-cloak>
+                    Makes this a matchup guide. Their defensives fill the VS columns, and a phase
+                    can be aimed at one of them by name.
+                </p>
+
+                <div class="grid sm:grid-cols-3 gap-3 mt-3" x-show="open" x-cloak>
+                    @for ($slot = 0; $slot < $guide->maxEnemies(); $slot++)
+                        <x-guides.member-slot :member="$this->enemies->firstWhere('position', $slot)" :position="$slot"
+                                              side="enemy" :class-colors="$classColors" wire:key="enemy-slot-{{ $slot }}"/>
+                    @endfor
+                </div>
+            </div>
+        @endif
     @endif
 
     {{-- Talent tree for one comp slot ---------------------------------------------
@@ -183,7 +236,7 @@
          the id is #[Locked], and openTalents() has already confirmed the guide belongs to this
          author), so there is no save step and nothing to keep in sync. --}}
     @if ($editingTalentsFor !== null)
-        @php $talentMember = $this->members->firstWhere('position', $editingTalentsFor); @endphp
+        @php $talentMember = $this->editingTalentsMember; @endphp
         @if ($talentMember && $talentMember->specialization && $talentMember->talent_build_id)
             <div class="fixed inset-0 z-50 flex items-start justify-center p-4 overflow-y-auto"
                  style="background: rgba(9,9,13,0.86)" wire:key="talents-{{ $talentMember->id }}">
@@ -203,7 +256,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-2 shrink-0">
-                            <button type="button" wire:click="resetTalents({{ $editingTalentsFor }})"
+                            <button type="button" wire:click="resetTalents({{ $editingTalentsFor }}, '{{ $editingTalentsSide }}')"
                                     class="btn-ghost text-[12px]">Use the default build</button>
                             <button type="button" wire:click="closeTalents" class="btn-primary text-[12px]">Done</button>
                         </div>
@@ -239,7 +292,13 @@
             <div class="linear-card max-w-3xl w-full mt-10 p-5">
                 <div class="flex items-baseline justify-between mb-4">
                     <h3 class="text-[15px] font-semibold text-ink">
-                        {{ $isOpponent ? 'Who are you up against?' : 'Choose a spec' }}
+                        @if ($isOpponent)
+                            Who are you up against?
+                        @elseif ($pickingSide === 'enemy')
+                            Add to the enemy team
+                        @else
+                            Choose a spec
+                        @endif
                     </h3>
                     <button type="button" wire:click="{{ $closeAction }}" class="btn-ghost">Close</button>
                 </div>
@@ -333,18 +392,30 @@
                         <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :editable="true"/>
 
                         {{-- Palette, opened per section so the page isn't three palettes deep --}}
-                        <button type="button"
-                                x-on:click="paletteFor = (paletteFor === {{ $section->id }} ? null : {{ $section->id }})"
-                                class="btn-ghost w-full mt-3 text-[12px]">
-                            <span x-show="paletteFor !== {{ $section->id }}">+ Add an ability</span>
-                            <span x-show="paletteFor === {{ $section->id }}" x-cloak>Close</span>
+                        <div class="flex items-center gap-2 mt-3">
+                        <button type="button" wire:click="addPhase({{ $section->id }})"
+                                class="btn-ghost text-[12px] shrink-0"
+                                title="Group the steps that follow, and say who they are aimed at">
+                            + Phase
                         </button>
+                        <button type="button" wire:click="togglePalette({{ $section->id }})"
+                                wire:loading.attr="disabled" wire:target="togglePalette({{ $section->id }})"
+                                class="btn-ghost w-full text-[12px]">
+                            <span wire:loading.remove wire:target="togglePalette({{ $section->id }})">
+                                {{ $openPaletteFor === $section->id ? 'Close' : '+ Add an ability' }}
+                            </span>
+                            <span wire:loading wire:target="togglePalette({{ $section->id }})">Loading kit&hellip;</span>
+                        </button>
+                        </div>
 
                         {{-- `search` is scoped to this palette's own x-data so two open palettes
                              filter independently. Purely client-side: the palette is already
                              rendered, so filtering it must not cost a Livewire round trip. --}}
-                        <div x-show="paletteFor === {{ $section->id }}" x-cloak class="mt-3 border-t border-line pt-3"
-                             x-data="{ search: '' }">
+                        {{-- Only the OPEN section's palette is built. Rendering all of them and
+                             hiding the rest with x-show cost ~270ms and ~50 queries per section on
+                             every round trip, palette-related or not — see Builder::$openPaletteFor. --}}
+                        @if ($openPaletteFor === $section->id)
+                        <div class="mt-3 border-t border-line pt-3" x-data="{ search: '' }">
                             @php $palette = $this->paletteFor($section->id); @endphp
 
                             @if ($palette->isEmpty())
@@ -407,6 +478,7 @@
                                 </div>
                             @endif
                         </div>
+                        @endif
                     @endif
                 </div>
             @endforeach

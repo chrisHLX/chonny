@@ -313,3 +313,437 @@ test('a defensives section in a class guide inherits the guide opponent, and in 
 
     expect($comp->sections()->latest('id')->first()->opponent_spec_id)->toBeNull();
 });
+
+/*
+ * The comp-slot buttons, asserted as RENDERED MARKUP.
+ *
+ * Every other test here reaches the slot actions by calling them with an argument
+ * (->call('openMemberPicker', 0)), which is exactly why a real bug shipped undetected: the
+ * component's prop was named 'slot', which is RESERVED in a Blade component (Laravel injects the
+ * component's slot content under that name and it wins over a same-named prop), so :slot="0"
+ * rendered as an empty string and every button emitted openMemberPicker() with no argument at
+ * all — a BindingResolutionException on a required int the moment anyone clicked it.
+ *
+ * A direct ->call() can never catch that. These assert the argument actually reaches the markup.
+ */
+
+test('an empty comp slot renders its own index into the picker button', function () {
+    $f = guideFixture();
+    $f['member']->delete();
+
+    $html = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])->html();
+
+    // The side argument is part of the call now, so capture the index specifically.
+    preg_match_all('/wire:click="openMemberPicker\((\d*),\s*.([a-z]+).\)"/', $html, $m);
+
+    expect($m[1])->not->toBeEmpty()
+        ->and($m[1])->each->not->toBe('');           // the actual regression
+
+    // Three of your own slots and three enemy ones, each numbered from 0 on its own side —
+    // which is exactly why position is unique per (guide, SIDE) rather than per guide.
+
+    expect(array_slice($m[1], 0, 3))->toBe(['0', '1', '2'])
+        ->and(array_slice($m[2], 0, 3))->toBe(['team', 'team', 'team'])
+        ->and(array_slice($m[1], 3, 3))->toBe(['0', '1', '2'])
+        ->and(array_slice($m[2], 3, 3))->toBe(['enemy', 'enemy', 'enemy']);
+});
+
+test('a filled comp slot renders its own index into the talents and clear buttons', function () {
+    $f = guideFixture();
+
+    $html = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])->html();
+
+    preg_match_all('/wire:click="(?:openTalents|removeMember)\((\d*),\s*.([a-z]+).\)"/', $html, $m);
+
+    expect($m[1])->toHaveCount(2)
+        ->and($m[1])->each->toBe('0')
+        ->and($m[2])->each->toBe('team');
+});
+
+test('a class guide renders one slot and never offers a second', function () {
+    $f = guideFixture();
+    $f['guide']->update(['type' => UserGuideType::ClassGuide]);
+    $f['member']->delete();
+
+    $html = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])->html();
+
+    preg_match_all('/wire:click="openMemberPicker\((\d*),\s*.([a-z]+).\)"/', $html, $m);
+
+    // One comp slot, and no enemy slots at all: a class guide already names its single opponent
+    // on the guide itself, so a second way to say the same thing would only confuse.
+    expect($m[1])->toBe(['0'])
+        ->and($m[2])->toBe(['team']);
+});
+
+/*
+ * The palette's baseline sources.
+ *
+ * These assert behaviour that must hold whatever data is loaded. The real payoff — that a Rogue
+ * class guide can name Rupture, Envenom and Mutilate — needs a talent tree, arena-log priority
+ * flags and real availability rows, none of which a fixture has, so it is verified against the
+ * live database by hand (see the section in CLAUDE.md).
+ */
+
+test('explicitBaselineAbilityIds applies no cooldown floor, and never touches the ambiguous bucket', function () {
+    $f = guideFixture();
+    $ts = app(App\Http\Services\TalentSelectionService::class);
+
+    $make = function (string $name, int $externalId, ?float $cd, ?int $specId) use ($f) {
+        $spell = App\Models\Spell::create([
+            'patch_id' => $f['patch']->id,
+            'spell_id' => $externalId,
+            'name' => $name,
+            'cooldown_seconds' => $cd,
+            'is_passive' => false,
+            'not_in_spellbook' => false,
+        ]);
+
+        App\Models\SpellClassAvailability::create([
+            'spell_id' => $spell->id,
+            'class_id' => $f['class']->id,
+            'spec_id' => $specId,
+            'source' => 'baseline',
+            'patch_id' => $f['patch']->id,
+        ]);
+
+        return $spell;
+    };
+
+    $finisher = $make('Fixture Finisher', 900001, null, $f['spec']->id);   // no cooldown, explicit spec
+    $cooldown = $make('Fixture Cooldown', 900002, 30.0, $f['spec']->id);   // has one, explicit spec
+    $ambiguous = $make('Fixture Ambiguous', 900003, null, null);           // the spec_id = NULL bucket
+
+    $ids = $ts->explicitBaselineAbilityIds($f['class']->id, $f['spec']->id);
+
+    // The whole point: a cooldown-less ability is still a real button.
+    expect($ids)->toContain($finisher->id)
+        ->and($ids)->toContain($cooldown->id)
+        // Never the ambiguous bucket — the one that put Mind Sear on Discipline Priest.
+        ->and($ids)->not->toContain($ambiguous->id);
+
+    // The narrower sibling still applies its floor, so the two remain genuinely different
+    // questions rather than one having quietly become the other.
+    $withFloor = $ts->explicitBaselineCooldownAbilityIds($f['class']->id, $f['spec']->id);
+    expect($withFloor)->toContain($cooldown->id)
+        ->and($withFloor)->not->toContain($finisher->id);
+});
+
+test('the accessibility auto-cast button is never offered as an ability', function () {
+    $f = guideFixture();
+
+    // Blizzard tags Single-Button Assistant to all 40 specs with a real, explicit baseline row,
+    // so it passes every structural test a genuine ability passes.
+    $spell = App\Models\Spell::create([
+        'patch_id' => $f['patch']->id,
+        'spell_id' => 1229376,
+        'name' => 'Single-Button Assistant',
+        'is_passive' => false,
+        'not_in_spellbook' => false,
+    ]);
+
+    App\Models\SpellClassAvailability::create([
+        'spell_id' => $spell->id,
+        'class_id' => $f['class']->id,
+        'spec_id' => $f['spec']->id,
+        'source' => 'baseline',
+        'patch_id' => $f['patch']->id,
+    ]);
+
+    expect(app(App\Http\Services\TalentSelectionService::class)
+        ->explicitBaselineAbilityIds($f['class']->id, $f['spec']->id))
+        ->not->toContain($spell->id);
+});
+
+/*
+ * The palette is built only for the section that is open.
+ *
+ * It used to be rendered for every section and hidden with Alpine x-show, so a three-section
+ * guide paid ~810ms and ~150 queries of palette work on EVERY round trip — including ones that
+ * had nothing to do with palettes. Measured 2026-09-08: the initial render was 1,059ms/172
+ * queries/279KB and renaming the guide cost 1,575ms/195 queries. Rendering only the open one
+ * took those to 30ms/12 queries/20KB and 134ms/26 queries.
+ *
+ * Asserted through the rendered markup rather than by timing: a duration assertion would be
+ * flaky, but "is the markup for a closed section's palette present at all" is exact, and it is
+ * the thing that actually regresses if someone moves this back behind an x-show.
+ */
+
+test('no palette is built until a section is opened', function () {
+    $f = guideFixture();
+    $section = UserGuideSection::create([
+        'user_guide_id' => $f['guide']->id,
+        'kind' => UserGuideSectionKind::Sequence,
+        'row' => 0, 'column' => 0, 'title' => 'Opener',
+    ]);
+
+    $component = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()]);
+
+    expect($component->get('openPaletteFor'))->toBeNull();
+    expect($component->html())->not->toContain('addSpell(');
+
+    $component->call('togglePalette', $section->id);
+    expect($component->get('openPaletteFor'))->toBe($section->id);
+
+    // Clicking the same section again closes it rather than rebuilding.
+    $component->call('togglePalette', $section->id);
+    expect($component->get('openPaletteFor'))->toBeNull();
+});
+
+test('only one section palette is open at a time', function () {
+    $f = guideFixture();
+    $a = UserGuideSection::create(['user_guide_id' => $f['guide']->id, 'kind' => UserGuideSectionKind::Sequence, 'row' => 0, 'column' => 0, 'title' => 'A']);
+    $b = UserGuideSection::create(['user_guide_id' => $f['guide']->id, 'kind' => UserGuideSectionKind::Sequence, 'row' => 1, 'column' => 0, 'title' => 'B']);
+
+    $component = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->call('togglePalette', $a->id)
+        ->call('togglePalette', $b->id);
+
+    expect($component->get('openPaletteFor'))->toBe($b->id);
+    expect($component->html())->not->toContain('addSpell('.$a->id.',');
+});
+
+test('a section belonging to someone else cannot be opened', function () {
+    $f = guideFixture();
+
+    $other = UserGuide::create([
+        'user_id' => User::factory()->create()->id,
+        'type' => UserGuideType::Comp,
+        'status' => 'draft', 'visibility' => 'invited', 'title' => 'Theirs',
+    ]);
+    $theirSection = UserGuideSection::create([
+        'user_guide_id' => $other->id,
+        'kind' => UserGuideSectionKind::Sequence,
+        'row' => 0, 'column' => 0, 'title' => 'Theirs',
+    ]);
+
+    $component = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->call('togglePalette', $theirSection->id);
+
+    expect($component->get('openPaletteFor'))->toBeNull();
+});
+
+test('the title and summary save on blur rather than re-rendering mid-sentence', function () {
+    $f = guideFixture();
+
+    // A debounced live binding re-renders the whole component every 600ms while typing, which is
+    // felt as the field stuttering. Nothing on the page derives from either field.
+    $html = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])->html();
+
+    expect($html)->toContain('wire:model.blur="title"')
+        ->and($html)->toContain('wire:model.blur="summary"')
+        ->and($html)->not->toContain('debounce.600ms="title"');
+
+    // Still actually saves.
+    Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->set('title', 'Renamed on blur');
+
+    expect($f['guide']->fresh()->title)->toBe('Renamed on blur');
+});
+
+/**
+ * Cache payload shape — a production memory limit, not a preference.
+ *
+ * Production runs PHP with memory_limit=128M on a 1 vCPU / 2GB box. Caching kit entries as live
+ * objects costs 6.4MB per spec to serialize (a Spell model and its relations is 5.3KB of each
+ * ~6.6KB entry), and RedisStore::serialize() holds that whole string alongside the objects — so a
+ * 3-spec comp guide whose members each name their own talent build died with an out-of-memory
+ * fatal at that exact limit, reproducibly. Storing the compact toJsonSafeArray() shape instead
+ * (the same representation the 40 precomputed kit files use) is 296KB, and the palette caches the
+ * grouping as bare spell ids (2KB) rather than the entries.
+ *
+ * This asserts the SHAPE that keeps it small, because the failure it prevents only reproduces
+ * under a real memory limit with real spell data — which a fixture cannot provide.
+ */
+test('kit and palette caches store compact shapes, never live models', function () {
+    $service = new ReflectionClass(App\Http\Services\UserGuideChainService::class);
+
+    $specEntries = $service->getMethod('specEntries');
+    $source = implode("\n", array_slice(
+        file($service->getFileName()),
+        $specEntries->getStartLine() - 1,
+        $specEntries->getEndLine() - $specEntries->getStartLine() + 1
+    ));
+
+    // The entries go in via toJsonSafeArray() and come back via fromJsonSafeArray().
+    expect($source)->toContain('toJsonSafeArray')
+        ->and($source)->toContain('fromJsonSafeArray');
+
+    $groupsFor = $service->getMethod('groupsFor');
+    $groupsSource = implode("\n", array_slice(
+        file($service->getFileName()),
+        $groupsFor->getStartLine() - 1,
+        $groupsFor->getEndLine() - $groupsFor->getStartLine() + 1
+    ));
+
+    // The palette caches ids and rehydrates, rather than caching the entries a second time.
+    expect($groupsSource)->toContain("\$e['spell']->id")
+        ->and($groupsSource)->toContain('specEntries');
+});
+
+test('a cached kit round-trips without losing anything the guide depends on', function () {
+    $kits = app(App\Http\Services\SpecKitComputer::class);
+
+    // An empty kit is the degenerate case the guide must survive: a spec with nothing resolved
+    // must come back as nothing, not as a broken entry.
+    expect($kits->fromJsonSafeArray(['entries' => $kits->toJsonSafeArray([])]))->toBe([]);
+
+    // toJsonSafeArray() deliberately does NOT tolerate nulls, and does not need to: both callers
+    // (PrecomputeSpellKits and specEntries()) feed it resolveEntriesForSpellIds()/compute(),
+    // which already ->filter()->values() their own output. Asserted so that contract is visible
+    // rather than assumed — if a future caller can produce holes, it must filter them first.
+    $method = new ReflectionMethod(App\Http\Services\SpecKitComputer::class, 'resolveEntriesForSpellIds');
+    $source = implode('', array_slice(
+        file($method->getFileName()),
+        $method->getStartLine() - 1,
+        $method->getEndLine() - $method->getStartLine() + 1
+    ));
+    expect($source)->toContain('->filter()->values()');
+})->group('kit-roundtrip');
+
+/*
+ * The enemy team, and phases.
+ *
+ * These are the two things that turn a list of abilities into a matchup plan, so what is asserted
+ * is the behaviour that makes them trustworthy: that the two sides of the roster stay separate,
+ * that a phase can only be aimed at somebody actually in the guide, and that a phase never
+ * pretends to be a step.
+ */
+
+test('the two sides of the roster are independent and each numbers from zero', function () {
+    $f = guideFixture();
+    $f['guide']->update(['type' => UserGuideType::Comp]);
+    $other = Specialization::create(['class_id' => $f['class']->id, 'name' => 'Outlaw', 'slug' => 'outlaw']);
+
+    $c = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->call('openMemberPicker', 0, 'enemy')
+        ->call('setMember', $other->id);
+
+    $guide = $f['guide']->fresh();
+
+    // Slot 0 now exists on BOTH sides without colliding — the whole reason the unique key moved.
+    expect($guide->members()->count())->toBe(1)
+        ->and($guide->enemies()->count())->toBe(1)
+        ->and($guide->members()->first()->position)->toBe(0)
+        ->and($guide->enemies()->first()->position)->toBe(0)
+        ->and($guide->hasEnemies())->toBeTrue();
+
+    // The picker resets to the author's own side, so the next pick cannot land on the enemy by
+    // accident.
+    expect($c->get('pickingSide'))->toBe('team');
+
+    // Clearing one side leaves the other alone.
+    $c->call('removeMember', 0, 'enemy');
+    expect($f['guide']->fresh()->enemies()->count())->toBe(0)
+        ->and($f['guide']->fresh()->members()->count())->toBe(1);
+});
+
+test('a class guide has no enemy slots at all', function () {
+    $f = guideFixture();
+    $f['guide']->update(['type' => UserGuideType::ClassGuide]);
+    $other = Specialization::create(['class_id' => $f['class']->id, 'name' => 'Outlaw', 'slug' => 'outlaw']);
+
+    // It already names its single opponent on the guide itself; a second way to say the same
+    // thing would only be confusing, so the cap is zero and a tampered call does nothing.
+    expect($f['guide']->maxEnemies())->toBe(0);
+
+    Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->call('openMemberPicker', 0, 'enemy')
+        ->call('setMember', $other->id);
+
+    expect($f['guide']->fresh()->enemies()->count())->toBe(0);
+});
+
+test('the enemy team does not count toward the bracket or the roster guard', function () {
+    $f = guideFixture();
+    $f['guide']->update(['type' => UserGuideType::Comp]);
+    $f['member']->delete();
+
+    UserGuideMember::create([
+        'user_guide_id' => $f['guide']->id,
+        'side' => 'enemy', 'position' => 0, 'spec_id' => $f['spec']->id,
+    ]);
+
+    // An enemy is not your comp: a guide with only opposition still has nothing to draw a palette
+    // from, and must not be publishable or labelled a bracket.
+    $guide = $f['guide']->fresh();
+    expect($guide->hasRoster())->toBeFalse()
+        ->and($guide->bracket())->toBeNull()
+        ->and($guide->members()->count())->toBe(0);
+});
+
+test('a phase groups the steps after it without becoming one', function () {
+    $f = guideFixture();
+    $section = UserGuideSection::create([
+        'user_guide_id' => $f['guide']->id,
+        'kind' => UserGuideSectionKind::Sequence,
+        'row' => 0, 'column' => 0, 'title' => 'Opener',
+    ]);
+
+    $c = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->call('addPhase', $section->id);
+
+    $phase = $section->blocks()->first();
+    expect($phase->block_type)->toBe(App\Enums\UserGuideBlockType::Phase)
+        ->and($phase->text())->toBe('New phase')
+        // A phase references no spell, so it can never be reported as a broken ability.
+        ->and($phase->block_type->referencesSpell())->toBeFalse();
+
+    $c->call('setPhaseName', $phase->id, 'Setup')
+        ->call('setPhaseTarget', $phase->id, 'healer');
+
+    $phase->refresh();
+    expect($phase->text())->toBe('Setup')
+        ->and($phase->phaseTarget())->toBe(App\Enums\UserGuidePhaseTarget::Healer);
+
+    // A blank name falls back rather than leaving an unlabelled divider.
+    $c->call('setPhaseName', $phase->id, '   ');
+    expect($phase->fresh()->text())->toBe('New phase');
+
+    // An unknown role clears the target rather than storing something nothing can render.
+    $c->call('setPhaseTarget', $phase->id, 'not-a-role');
+    expect($phase->fresh()->phaseTarget())->toBeNull();
+});
+
+test('a phase can only be aimed at a spec that is actually on the enemy team', function () {
+    $f = guideFixture();
+    $f['guide']->update(['type' => UserGuideType::Comp]);
+    $enemy = Specialization::create(['class_id' => $f['class']->id, 'name' => 'Outlaw', 'slug' => 'outlaw']);
+    $stranger = Specialization::create(['class_id' => $f['class']->id, 'name' => 'Combat', 'slug' => 'combat']);
+
+    UserGuideMember::create([
+        'user_guide_id' => $f['guide']->id,
+        'side' => 'enemy', 'position' => 0, 'spec_id' => $enemy->id,
+    ]);
+
+    $section = UserGuideSection::create([
+        'user_guide_id' => $f['guide']->id,
+        'kind' => UserGuideSectionKind::Sequence,
+        'row' => 0, 'column' => 0, 'title' => 'Opener',
+    ]);
+
+    $c = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->call('addPhase', $section->id);
+    $phase = $section->blocks()->first();
+
+    $c->call('setPhaseTarget', $phase->id, 'spec:'.$enemy->id);
+    expect($phase->fresh()->phaseTargetSpecId())->toBe($enemy->id);
+
+    // A spec nobody in this guide is playing is refused outright, rather than rendering a chip
+    // for someone who is not in the match.
+    $c->call('setPhaseTarget', $phase->id, 'spec:'.$stranger->id);
+    expect($phase->fresh()->phaseTargetSpecId())->toBeNull();
+});
+
+test('phases are refused on a section that is not a sequence', function () {
+    $f = guideFixture();
+    $text = UserGuideSection::create([
+        'user_guide_id' => $f['guide']->id,
+        'kind' => UserGuideSectionKind::Text,
+        'row' => 0, 'column' => 0, 'title' => 'Notes',
+    ]);
+
+    Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->call('addPhase', $text->id);
+
+    expect($text->blocks()->count())->toBe(0);
+});

@@ -154,6 +154,18 @@ class UserGuideChainService
      */
     public function resolve(UserGuideSection $section): array
     {
+        // Memoised because metrics() is resolve() plus arithmetic, and the builder asks for both
+        // per section on every render — so every block query, entry resolution and DR annotation
+        // was being done exactly twice. Per-request only, which is the correct lifetime: adding a
+        // step must change what the next render resolves.
+        return $this->resolveMemo[$section->id] ??= $this->computeResolve($section);
+    }
+
+    /** @var array<int, array> section id => resolved steps, this request only */
+    private array $resolveMemo = [];
+
+    private function computeResolve(UserGuideSection $section): array
+    {
         $blocks = $section->blocks()->get();
         if ($blocks->isEmpty()) {
             return [];
@@ -330,11 +342,30 @@ class UserGuideChainService
     private function paletteSpecs(UserGuideSection $section): Collection
     {
         if ($section->kind->usesOpponent()) {
-            // A class guide names one opponent for the whole guide, so a Defensives section in one
-            // falls back to it rather than making the author pick the same spec again per section.
-            // A comp guide has no guide-level opponent, so this is null there and the section's own
-            // pick is the only answer — which is the point of a comp guide's VS columns.
-            $opponent = $section->opponentSpec ?? $section->guide->opponentSpec;
+            // Narrowest wins, and each step is a deliberate answer to a different question:
+            //
+            //   1. the section's OWN opponent  - "this column is about their healer specifically"
+            //   2. the guide's ENEMY TEAM      - the whole comp you are playing against, so a VS
+            //                                    column can hold a full 3v3 rather than one spec
+            //   3. a class guide's single opponent - "Rogue vs Disc", named once for the guide so
+            //      the author is not asked for the same spec again in every section
+            //
+            // A section that names nobody used to fall straight through to empty on a comp guide,
+            // which is exactly what made a VS column single-spec by construction.
+            if ($section->opponentSpec) {
+                return collect([$section->opponentSpec->loadMissing('gameClass')]);
+            }
+
+            $enemies = $section->guide->enemies()->with('specialization.gameClass')->get()
+                ->map(fn ($m) => $m->specialization)
+                ->filter()
+                ->values();
+
+            if ($enemies->isNotEmpty()) {
+                return $enemies;
+            }
+
+            $opponent = $section->guide->opponentSpec;
 
             return $opponent ? collect([$opponent->loadMissing('gameClass')]) : collect();
         }
@@ -346,7 +377,65 @@ class UserGuideChainService
     }
 
     /** @return Collection<string, Collection<int, mixed>> */
+    /**
+     * Cached across requests, not just memoised within one — but ONLY THE SHAPE.
+     *
+     * Everything below is a pure function of (spec, talent build, section SHAPE) — never of the
+     * section's own blocks, its title, or which guide it belongs to. So two sections in the same
+     * guide, and two different authors' guides using the same spec, share one entry. Worth
+     * caching because it is the last real cost in an ability click: ~270ms and ~50 queries per
+     * spec-set on a warm Redis, paid again on every round trip, since a Livewire request has no
+     * memo from the last one.
+     *
+     * WHAT IS CACHED IS A LIST OF SPELL IDS PER GROUP, NOT THE ENTRIES THEMSELVES, and that is
+     * not a micro-optimisation — the first version of this cached the entries and was fatal in
+     * production. One spec's entries serialize to 6.4MB (each entry is ~6.6KB, of which 5.3KB is
+     * the Spell model and its relations); the same grouping as bare ids is 2.0KB. Production runs
+     * PHP with memory_limit=128M, and a 3-spec comp guide whose members all name their own talent
+     * build reproducibly died inside RedisStore::serialize() — serialize() needs the whole string
+     * in memory alongside the live objects, on top of the identical payload specEntries() is
+     * already caching. Measured at prod's exact limit before this rewrite: one spec peaked at
+     * 76MB, three specs OOMed outright.
+     *
+     * Rehydration is free: specEntries() is already loaded on this path anyway, so the ids are
+     * mapped straight back through it. An id that no longer resolves (a patch removed the spell)
+     * is dropped rather than rendering broken, and a group left empty disappears with it.
+     */
     private function groupsFor(UserGuideSection $section, Specialization $spec, Patch $patch, ?TalentBuild $build = null): Collection
+    {
+        $key = sprintf(
+            'guide_palette:%d:%s:%s:%s:v%s:%s',
+            $spec->id,
+            $build === null ? 'default' : $build->id.'@'.($build->updated_at?->timestamp ?? 0),
+            $section->kind->usesOpponent() ? 'opp' : 'own',
+            $section->guide->type->usesWholeKit() ? 'whole' : 'cds',
+            $this->talents->spellCacheVersion(),
+            $this->talents->deployedCodeFingerprint(),
+        );
+
+        $shape = Cache::remember(
+            $key,
+            now()->addDay(),
+            fn () => $this->computeGroupsFor($section, $spec, $patch, $build)
+                ->map(fn (Collection $entries) => $entries->map(fn ($e) => $e['spell']->id)->all())
+                ->all()
+        );
+
+        if ($shape === []) {
+            return collect();
+        }
+
+        $byId = $this->specEntries($spec, $build)->keyBy(fn ($e) => $e['spell']->id);
+
+        return collect($shape)
+            ->map(fn (array $ids) => collect($ids)
+                ->map(fn (int $id) => $byId->get($id))
+                ->filter()
+                ->values())
+            ->filter(fn (Collection $entries) => $entries->isNotEmpty());
+    }
+
+    private function computeGroupsFor(UserGuideSection $section, Specialization $spec, Patch $patch, ?TalentBuild $build = null): Collection
     {
         $entries = $this->specEntries($spec, $build);
 
@@ -397,8 +486,9 @@ class UserGuideChainService
         // other in the 3v3 2v2 guide section, that's for a different type of guide"). A rotation
         // or technique guide is built out of exactly those abilities, so it gets them.
         if ($section->guide->type->usesWholeKit()) {
+            $explicitBaseline = $this->explicitBaselineSpellIds($spec);
             $utility = $remaining
-                ->filter(fn ($e) => $this->isPressable($e))
+                ->filter(fn ($e) => $this->isPressable($e, $explicitBaseline))
                 ->sortBy(fn ($e) => $e->displayName())
                 ->values();
 
@@ -420,14 +510,23 @@ class UserGuideChainService
      * `Not In Spellbook (143)` (`spells.not_in_spellbook`, which flags internal data-carrier
      * copies of a visible ability).
      *
-     * Deliberately NOT also requiring a cooldown: plenty of real, pressed abilities have none
-     * (Frostbolt, Mind Control, an interrupt-free filler), and a cooldown gate would quietly hide
-     * exactly the rotational abilities a class guide is written about. `isPriority` (the
-     * arena-log "this spec actually presses this" signal) was considered as a third gate and
-     * rejected for the same reason in reverse — a spec with a thin match sample would lose most
-     * of its palette, and absence of log evidence is not evidence the button does not exist.
+     * Those two alone are not enough, which is why the cooldown/charges/isPriority test below
+     * exists: Blizzard does not flag every passive as passive, and the naive rule let 23 entries
+     * into Subtlety's Utility group that are plainly not buttons (Control is King, Dagger in the
+     * Dark, Silhouette, Thief's Bargain).
+     *
+     * $explicitBaseline IS THE ESCAPE HATCH, and it is provenance rather than another heuristic.
+     * Those false positives are all TALENTS. An ability holding a baseline
+     * spell_class_availability row that names THIS EXACT SPEC, is not passive and is not flagged
+     * Not In Spellbook is Blizzard stating outright that it is a real spellbook button, so it
+     * needs no further proof — and demanding one is what hid a Rogue's Rupture, Envenom and
+     * Mutilate from a class guide, since a finisher has no cooldown, no charges, and (on a spec
+     * with a thin match sample) no arena-log priority flag either. Absence of log evidence is not
+     * evidence the button does not exist.
+     *
+     * @param  Collection<int, int>|null  $explicitBaseline  spell ids, see explicitBaselineSpellIds()
      */
-    private function isPressable(mixed $entry): bool
+    private function isPressable(mixed $entry, ?Collection $explicitBaseline = null): bool
     {
         $spell = $entry['spell'];
 
@@ -435,9 +534,26 @@ class UserGuideChainService
             return false;
         }
 
+        if ($explicitBaseline !== null && $explicitBaseline->contains($spell->id)) {
+            return true;
+        }
+
         return ($entry['cooldown']['seconds'] ?? null) !== null
             || ($entry['charges']['charges'] ?? null) !== null
             || ($entry['isPriority'] ?? false);
+    }
+
+    /** @var array<int, Collection<int, int>> spec id => explicit-baseline spell ids */
+    private array $explicitBaselineMemo = [];
+
+    /**
+     * The spec's own explicitly-tagged baseline abilities — never the `spec_id = NULL` bucket,
+     * which is the ambiguous one this codebase has repeatedly been burned by.
+     */
+    private function explicitBaselineSpellIds(Specialization $spec): Collection
+    {
+        return $this->explicitBaselineMemo[$spec->id]
+            ??= $this->talents->explicitBaselineAbilityIds($spec->class_id, $spec->id);
     }
 
     /**
@@ -521,26 +637,48 @@ class UserGuideChainService
 
         $spellIds = $this->kitSpells($spec)->pluck('spell_id')->all();
 
-        if ($build === null) {
-            return $this->specEntriesMemo[$memoKey] = collect(
-                $this->kits->resolveEntriesForSpellIds($spellIds, $spec, $this->spellReferences, $this->talents)
+        // The no-build path is cached too, and that is not redundant with the precomputed kit
+        // behind it. resolveEntriesForSpellIds() falls back to a full live compute() whenever the
+        // kit file is stale, and a stale file is the NORMAL state right after any import, deploy
+        // or spell-cache bump — measured 2026-09-08 with all 40 kits one version behind: 9,545ms
+        // and 4,290 queries per palette build, against 376ms and 87 with a fresh file. Leaving
+        // this uncached is what turned a routine, self-correcting staleness into a 25x
+        // site-feel regression that reported as "clicking an ability does nothing".
+        $key = $build === null
+            ? sprintf(
+                'guide_kit:%d:default:v%s:%s',
+                $spec->id,
+                $this->talents->spellCacheVersion(),
+                $this->talents->deployedCodeFingerprint(),
+            )
+            : sprintf(
+                'guide_kit:%d:build%d:%s:v%s:%s',
+                $spec->id,
+                $build->id,
+                $build->updated_at?->timestamp ?? 0,
+                $this->talents->spellCacheVersion(),
+                $this->talents->deployedCodeFingerprint(),
             );
-        }
 
-        $key = sprintf(
-            'guide_kit:%d:build%d:%s:v%s:%s',
-            $spec->id,
-            $build->id,
-            $build->updated_at?->timestamp ?? 0,
-            $this->talents->spellCacheVersion(),
-            $this->talents->deployedCodeFingerprint(),
-        );
-
-        return $this->specEntriesMemo[$memoKey] = collect(Cache::remember(
+        // STORED IN THE COMPACT JSON-SAFE SHAPE, NOT AS LIVE OBJECTS. Serializing the entries
+        // directly costs 6.4MB per spec (a Spell model and its relations is 5.3KB of each ~6.6KB
+        // entry); toJsonSafeArray() — the same representation the 40 precomputed kit files
+        // already use — is 296KB, 22x smaller, and rehydrates in ~80ms. Production runs
+        // memory_limit=128M, and serialize() holds the whole string alongside the live objects,
+        // so a 3-spec comp guide whose members each name their own talent build reproducibly
+        // died inside RedisStore::serialize() at that limit. Verified at prod's exact 128M
+        // before and after.
+        $cached = Cache::remember(
             $key,
             now()->addDay(),
-            fn () => $this->kits->resolveEntriesForSpellIds($spellIds, $spec, $this->spellReferences, $this->talents, $build)
-        ));
+            fn () => $this->kits->toJsonSafeArray(
+                $this->kits->resolveEntriesForSpellIds($spellIds, $spec, $this->spellReferences, $this->talents, $build)
+            )
+        );
+
+        return $this->specEntriesMemo[$memoKey] = collect(
+            $this->kits->fromJsonSafeArray(['entries' => $cached])
+        );
     }
 
     private array $kitSpellsMemo = [];
@@ -560,7 +698,12 @@ class UserGuideChainService
         $ids = $this->talents->allTalentSpellIds($spec->id)
             ->merge($this->talents->allPvpTalentSpellIds($spec->id))
             ->merge($this->talents->verifiedBaselineAbilityIds($spec->id))
-            ->merge($this->talents->explicitBaselineCooldownAbilityIds($spec->class_id, $spec->id))
+            // Not explicitBaselineCooldownAbilityIds(): that one's >=10s floor is written for
+            // WoW Comps' cooldown tabs, and reusing it here silently answered a different
+            // question — it dropped every cooldown-less core ability, which is why a class guide
+            // could not name Rupture. See that method's sibling for why explicit-spec_id-only is
+            // safe without curation.
+            ->merge($this->talents->explicitBaselineAbilityIds($spec->class_id, $spec->id))
             ->unique()
             ->values();
 

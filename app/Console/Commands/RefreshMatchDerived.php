@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Concerns\RegeneratesSpellKits;
 use App\Http\Services\TalentSelectionService;
 use App\Models\Specialization;
 use Illuminate\Console\Command;
@@ -84,6 +85,8 @@ use Illuminate\Support\Facades\Process;
  */
 class RefreshMatchDerived extends Command
 {
+    use RegeneratesSpellKits;
+
     protected $signature = 'wow:refresh-match-derived
         {--skip-cc-chains : Skip step 1 (wow:find-cc-chains --json)}
         {--skip-rotations : Skip steps 2-5 (burst-window regeneration + talent/mechanics enrichment)}
@@ -137,6 +140,7 @@ class RefreshMatchDerived extends Command
         $talentService->bumpSpellCacheVersion();
         $this->newLine();
         $this->info('Spell cache version bumped — every already-cached page will pick up today\'s data on next load.');
+        $this->regenerateSpellKits();
 
         $this->newLine();
         $this->warn('Tier 2 — deliberately NOT run automatically (both require human review before going live, see this command\'s own docblock):');

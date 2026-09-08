@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Concerns\RegeneratesSpellKits;
 use App\Http\Services\ArenaLogService;
 use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\SpellDataFileParser;
@@ -26,7 +27,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Str;
 use JsonException;
 
@@ -72,6 +72,8 @@ use JsonException;
  */
 class ImportSpellData extends Command
 {
+    use RegeneratesSpellKits;
+
     protected $signature = 'import:spelldata
         {game : Game slug, e.g. wow}
         {patch? : Patch build version. OMIT IT to reuse the game\'s existing current patch — that is the correct default for a routine re-import, and the only safe one for an automated caller. See handle()\'s resolution note.}
@@ -312,25 +314,11 @@ class ImportSpellData extends Command
         // Redis cache keys off, rather than trying to enumerate which specs are affected.
         app(TalentSelectionService::class)->bumpSpellCacheVersion();
 
-        // Regenerate every spec's precomputed kit file (data/spell-kits/{class}/{spec}.json) now
-        // that the version counter above has moved — added 2026-09-05 after a real, confirmed
-        // gap: this step never ran automatically, so a version bump here silently invalidated
-        // every one of those 40 files (each one embeds the version/fingerprint it was built
-        // against) with nothing ever regenerating them. WowComps/SpellExplorer both fall back to
-        // a slow live-compute-and-cache path when the file is stale, which is safe but far more
-        // expensive — confirmed via direct profiling: a 3-spec WowComps render dropped from
-        // 6,964ms/3,042 queries to 970ms/146 once its specs' files were fresh again. Checked
-        // right before this fix shipped: 37 of the 40 files were stale, from spell-data changes
-        // made across several import runs with nobody remembering to run the precompute command
-        // after any of them. Shelled out as its own subprocess (same pattern as
-        // RefreshMatchDerived::callArtisan()) rather than an in-process $this->call() — this
-        // command computes a full kit for all 40 specs, and running it inside this already-heavy
-        // process risked compounding memory usage the same way that class's own docblock
-        // documents for its own multi-step orchestration.
-        Process::timeout(0)->run(
-            ['php', '-d', 'memory_limit=1024M', base_path('artisan'), 'wow:precompute-spell-kits'],
-            fn (string $type, string $output) => $this->output->write($output)
-        );
+        // The version bump above invalidated all 40 precomputed kit files; the shared concern
+        // regenerates them. See RegeneratesSpellKits for why this is not inlined here — it was,
+        // and being the only one of five bump sites that did it is exactly how the whole site
+        // ended up on the slow path twice.
+        $this->regenerateSpellKits();
 
         $this->printSummary();
         $this->runSpellbookDiffCheck();

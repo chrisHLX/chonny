@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserGuideMemberSide;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,12 +16,14 @@ class UserGuideMember extends Model
 
     protected $fillable = [
         'user_guide_id',
+        'side',
         'position',
         'spec_id',
         'talent_build_id',
     ];
 
     protected $casts = [
+        'side' => UserGuideMemberSide::class,
         'position' => 'integer',
     ];
 

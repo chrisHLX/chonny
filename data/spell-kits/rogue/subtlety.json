@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-07T09:59:25+00:00",
-    "spellCacheVersion": 4155,
+    "generatedAt": "2026-09-08T04:47:59+00:00",
+    "spellCacheVersion": 10,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -135,7 +135,10 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
+                    }
+                ],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 9703,
                         "relationship_type": "modifies",
@@ -152,11 +155,9 @@
                             "applied": []
                         }
                     }
-                ],
-                "baseline": [],
-                "potential": []
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -167,7 +168,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -197,7 +198,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -227,7 +228,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -243,41 +244,6 @@
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
-                    {
-                        "spellId": 9348,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Blinds the target, causing it to wander disoriented for 60. Damage may interrupt the effect. Limit 1.",
-                            "uncertain": false
-                        },
-                        "category": "Crowd Control",
-                        "cooldown": {
-                            "seconds": 120,
-                            "base_seconds": 120,
-                            "applied": []
-                        }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 9553,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Blind has -50% reduced cooldown, -70% reduced duration, and applies to all nearby enemies.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
                     {
                         "spellId": 9636,
                         "relationship_type": "modifies",
@@ -311,6 +277,22 @@
                         }
                     },
                     {
+                        "spellId": 9348,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Blinds the target, causing it to wander disoriented for 60. Damage may interrupt the effect. Limit 1.",
+                            "uncertain": false
+                        },
+                        "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": 120,
+                            "base_seconds": 120,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9563,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -320,6 +302,25 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
+                "baseline": [],
+                "potential": [
+                    {
+                        "spellId": 9553,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Blind has -50% reduced cooldown, -70% reduced duration, and applies to all nearby enemies.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -373,9 +374,9 @@
                     },
                     {
                         "spellId": 9081,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": 1,
-                        "modifier_unit": "charges",
+                        "relationship_type": "bypasses_cooldown",
+                        "modifier_value": null,
+                        "modifier_unit": null,
                         "description": {
                             "text": "After using Vanish or Shadow Dance, your next Cheap Shot is free and ignores its cooldown.",
                             "uncertain": false
@@ -389,9 +390,9 @@
                     },
                     {
                         "spellId": 9081,
-                        "relationship_type": "bypasses_cooldown",
-                        "modifier_value": null,
-                        "modifier_unit": null,
+                        "relationship_type": "modifies_charges",
+                        "modifier_value": 1,
+                        "modifier_unit": "charges",
                         "description": {
                             "text": "After using Vanish or Shadow Dance, your next Cheap Shot is free and ignores its cooldown.",
                             "uncertain": false
@@ -465,9 +466,58 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 20,
+                            "seconds": 24,
                             "base_seconds": 20,
-                            "applied": []
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 9436,
+                                        "patch_id": 1,
+                                        "spell_id": 470678,
+                                        "name": "The First Dance",
+                                        "school": "Physical",
+                                        "description": "Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": false,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": true,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": false,
+                                        "icon_name": "236279.jpg",
+                                        "created_at": "2026-08-03T12:23:13.000000Z",
+                                        "updated_at": "2026-09-08T00:14:04.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": 4,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 9704
+                                }
+                            ]
                         }
                     },
                     {
@@ -538,8 +588,8 @@
                             "is_mobility": false,
                             "is_passive": false,
                             "icon_name": "132092.jpg",
-                            "created_at": "2026-07-30T14:02:59.000000Z",
-                            "updated_at": "2026-09-06T04:00:21.000000Z",
+                            "created_at": "2026-08-03T12:23:11.000000Z",
+                            "updated_at": "2026-09-08T00:14:01.000000Z",
                             "effects": [
                                 {
                                     "id": 16731,
@@ -554,8 +604,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:02:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:11.000000Z",
+                                    "updated_at": "2026-09-08T00:05:00.000000Z"
                                 },
                                 {
                                     "id": 16732,
@@ -570,8 +620,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:02:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:11.000000Z",
+                                    "updated_at": "2026-09-08T00:05:00.000000Z"
                                 },
                                 {
                                     "id": 16733,
@@ -586,8 +636,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:02:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:11.000000Z",
+                                    "updated_at": "2026-09-08T00:05:00.000000Z"
                                 }
                             ]
                         },
@@ -658,7 +708,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -688,7 +738,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -703,24 +753,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
-                    {
-                        "spellId": 9590,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Evasion reduces magical damage taken by 15%. Cloak of Shadows reduces physical damage taken by 20%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ],
+                "named": [],
                 "baseline": [],
                 "potential": [
                     {
@@ -730,6 +763,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Cloak of Shadows duration increased by 2 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9590,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Evasion reduces magical damage taken by 15%. Cloak of Shadows reduces physical damage taken by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -816,7 +865,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -846,7 +895,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -906,7 +955,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -1003,18 +1052,18 @@
                         }
                     },
                     {
-                        "spellId": 9344,
+                        "spellId": 9358,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lash out at your target and 2 additional nearby enemies, inflicting 2 Shadow damage and causing them to Bleed for (varies) damage over 14. -100% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.",
+                            "text": "Unseen Blade and Secret Technique increase the damage of your finishing moves by 4% for 12. Max (varies) stacks.",
                             "uncertain": true
                         },
-                        "category": "Offensive",
+                        "category": "Other",
                         "cooldown": {
-                            "seconds": 45,
-                            "base_seconds": 45,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -1041,6 +1090,54 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Your finishing moves deal 6% increased damage.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9408,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your auto-attacks, Unseen Blade, and Coup de Grace also strike up to 7 nearby enemies for 50% of normal damage while Flawless Form is active.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9633,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your auto-attacks, Unseen Blade, and Coup de Grace also strike up to 7 nearby enemies for 50% of normal damage while Flawless Form is active.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9637,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 5 stacks of Flawless Form.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1080,9 +1177,58 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 20,
+                            "seconds": 24,
                             "base_seconds": 20,
-                            "applied": []
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 9436,
+                                        "patch_id": 1,
+                                        "spell_id": 470678,
+                                        "name": "The First Dance",
+                                        "school": "Physical",
+                                        "description": "Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": false,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": true,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": false,
+                                        "icon_name": "236279.jpg",
+                                        "created_at": "2026-08-03T12:23:13.000000Z",
+                                        "updated_at": "2026-09-08T00:14:04.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": 4,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 9704
+                                }
+                            ]
                         }
                     },
                     {
@@ -1134,18 +1280,18 @@
                         }
                     },
                     {
-                        "spellId": 9358,
+                        "spellId": 9344,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unseen Blade and Secret Technique increase the damage of your finishing moves by 4% for 12. Max (varies) stacks.",
+                            "text": "Lash out at your target and 2 additional nearby enemies, inflicting 2 Shadow damage and causing them to Bleed for (varies) damage over 14. -100% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.",
                             "uncertain": true
                         },
-                        "category": "Other",
+                        "category": "Offensive",
                         "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
+                            "seconds": 45,
+                            "base_seconds": 45,
                             "applied": []
                         }
                     },
@@ -1156,22 +1302,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Shadow Dance additionally increases the damage of your next Eviscerate or Black Powder by 15%.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9408,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your auto-attacks, Unseen Blade, and Coup de Grace also strike up to 7 nearby enemies for 50% of normal damage while Flawless Form is active.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1204,38 +1334,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9633,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your auto-attacks, Unseen Blade, and Coup de Grace also strike up to 7 nearby enemies for 50% of normal damage while Flawless Form is active.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9637,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 5 stacks of Flawless Form.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1510,7 +1608,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -1555,7 +1653,9 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
+                "named": [],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 9400,
                         "relationship_type": "mentions",
@@ -1588,11 +1688,9 @@
                             "applied": []
                         }
                     }
-                ],
-                "baseline": [],
-                "potential": []
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -1603,7 +1701,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -1738,7 +1836,9 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
+                "named": [],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 9394,
                         "relationship_type": "mentions",
@@ -1931,11 +2031,9 @@
                             "applied": []
                         }
                     }
-                ],
-                "baseline": [],
-                "potential": []
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -1946,7 +2044,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -2113,7 +2211,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -2173,7 +2271,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -2233,7 +2331,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -2449,22 +2547,6 @@
                         }
                     },
                     {
-                        "spellId": 9590,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Evasion reduces magical damage taken by 15%. Cloak of Shadows reduces physical damage taken by 20%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9056,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -2483,6 +2565,22 @@
                 ],
                 "baseline": [],
                 "potential": [
+                    {
+                        "spellId": 9590,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Evasion reduces magical damage taken by 15%. Cloak of Shadows reduces physical damage taken by 20%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
                     {
                         "spellId": 9632,
                         "relationship_type": "mentions",
@@ -2629,18 +2727,18 @@
                         }
                     },
                     {
-                        "spellId": 9344,
+                        "spellId": 9358,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lash out at your target and 2 additional nearby enemies, inflicting 2 Shadow damage and causing them to Bleed for (varies) damage over 14. -100% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.",
+                            "text": "Unseen Blade and Secret Technique increase the damage of your finishing moves by 4% for 12. Max (varies) stacks.",
                             "uncertain": true
                         },
-                        "category": "Offensive",
+                        "category": "Other",
                         "cooldown": {
-                            "seconds": 45,
-                            "base_seconds": 45,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -2741,45 +2839,13 @@
                         }
                     },
                     {
-                        "spellId": 9400,
+                        "spellId": 9637,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9425,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9596,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
-                            "uncertain": true
+                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 5 stacks of Flawless Form.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2883,9 +2949,58 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 20,
+                            "seconds": 24,
                             "base_seconds": 20,
-                            "applied": []
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 9436,
+                                        "patch_id": 1,
+                                        "spell_id": 470678,
+                                        "name": "The First Dance",
+                                        "school": "Physical",
+                                        "description": "Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": false,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": true,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": false,
+                                        "icon_name": "236279.jpg",
+                                        "created_at": "2026-08-03T12:23:13.000000Z",
+                                        "updated_at": "2026-09-08T00:14:04.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": 4,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 9704
+                                }
+                            ]
                         }
                     },
                     {
@@ -2937,18 +3052,18 @@
                         }
                     },
                     {
-                        "spellId": 9358,
+                        "spellId": 9344,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unseen Blade and Secret Technique increase the damage of your finishing moves by 4% for 12. Max (varies) stacks.",
+                            "text": "Lash out at your target and 2 additional nearby enemies, inflicting 2 Shadow damage and causing them to Bleed for (varies) damage over 14. -100% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.",
                             "uncertain": true
                         },
-                        "category": "Other",
+                        "category": "Offensive",
                         "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
+                            "seconds": 45,
+                            "base_seconds": 45,
                             "applied": []
                         }
                     },
@@ -3001,6 +3116,22 @@
                         }
                     },
                     {
+                        "spellId": 9400,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9413,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -3033,6 +3164,38 @@
                         }
                     },
                     {
+                        "spellId": 9425,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9596,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "When you consume the final Deathstalker's Mark from a target or your target dies, gain 30 Energy and Darkest Night, causing your next (varies by condition — check in-game) cast with 5 or more combo points to critically strike, deal 35% additional damage, and apply 3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active. (varies by condition — check in-game) cast with Darkest Night does not consume a stack of active Deathstalker's Marks.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9597,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -3042,22 +3205,6 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9637,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 5 stacks of Flawless Form.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -3366,8 +3513,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_rogue_ghostpirate.jpg",
-                            "created_at": "2026-07-30T14:03:06.000000Z",
-                            "updated_at": "2026-09-06T04:00:33.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:07:09.000000Z",
                             "effects": [
                                 {
                                     "id": 17542,
@@ -3382,8 +3529,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:06.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },
@@ -3445,13 +3592,29 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 9600,
+                        "spellId": 9285,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) and (varies by condition — check in-game) deal (varies by condition — check in-game)% additional damage while (varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9346,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3515,6 +3678,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Find Weakness causes your attacks to ignore an additional 20% armor.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9713,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3633,38 +3812,6 @@
                             "uncertain": true
                         },
                         "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9285,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9346,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -3832,6 +3979,22 @@
                         }
                     },
                     {
+                        "spellId": 9600,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "(varies by condition — check in-game) and (varies by condition — check in-game) deal (varies by condition — check in-game)% additional damage while (varies by condition — check in-game).",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9693,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -3841,22 +4004,6 @@
                             "uncertain": true
                         },
                         "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9713,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -3906,7 +4053,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -3921,25 +4068,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 9362,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
+                "named": [
                     {
                         "spellId": 9408,
                         "relationship_type": "mentions",
@@ -3950,38 +4079,6 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9413,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9414,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -4020,6 +4117,57 @@
                             "applied": []
                         }
                     }
+                ],
+                "baseline": [],
+                "potential": [
+                    {
+                        "spellId": 9362,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9413,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9414,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
                 ]
             },
             "hasPotentialImprovement": true,
@@ -4033,7 +4181,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4123,7 +4271,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4282,38 +4430,6 @@
                         }
                     },
                     {
-                        "spellId": 9570,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9703,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your weapon poisons have 10% increased application chance and now deal damage as Shadow instead of Nature. Shadow damage increased by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9712,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -4378,13 +4494,29 @@
                         }
                     },
                     {
-                        "spellId": 9468,
+                        "spellId": 9285,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next (varies by condition — check in-game) is increased by 50%(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9346,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4426,12 +4558,12 @@
                         }
                     },
                     {
-                        "spellId": 9261,
+                        "spellId": 9356,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 1% damage as Shadow, fading by 0.1% per sec.",
+                            "text": "Gloomblade and Shadowstrike now also strike with an Unseen Blade dealing 10,000 damage. Targets struck are Fazed for 10. Fazed enemies take 5% more damage from you and cannot parry your attacks. This effect may occur once every 20.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4442,12 +4574,12 @@
                         }
                     },
                     {
-                        "spellId": 9262,
+                        "spellId": 9407,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 1% damage as Shadow, fading by 0.1% per sec.",
+                            "text": "Gloomblade and Shadowstrike now also strike with an Unseen Blade dealing 10,000 damage. Targets struck are Fazed for 10. Fazed enemies take 5% more damage from you and cannot parry your attacks. This effect may occur once every 20.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4458,15 +4590,15 @@
                         }
                     },
                     {
-                        "spellId": 9601,
+                        "spellId": 9624,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next (varies by condition — check in-game) is increased by 50%(varies by condition — check in-game).",
-                            "uncertain": true
+                            "text": "Gloomblade and Shadowstrike now also strike with an Unseen Blade dealing 10,000 damage. Targets struck are Fazed for 10. Fazed enemies take 5% more damage from you and cannot parry your attacks. This effect may occur once every 20.",
+                            "uncertain": false
                         },
-                        "category": "Other",
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -4490,15 +4622,15 @@
                         }
                     },
                     {
-                        "spellId": 9714,
+                        "spellId": 9713,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 50% damage as Shadow, fading by 2.8% per sec.",
+                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
                             "uncertain": false
                         },
-                        "category": "Offensive",
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -4552,9 +4684,58 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 20,
+                            "seconds": 24,
                             "base_seconds": 20,
-                            "applied": []
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 9436,
+                                        "patch_id": 1,
+                                        "spell_id": 470678,
+                                        "name": "The First Dance",
+                                        "school": "Physical",
+                                        "description": "Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": false,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": true,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": false,
+                                        "icon_name": "236279.jpg",
+                                        "created_at": "2026-08-03T12:23:13.000000Z",
+                                        "updated_at": "2026-09-08T00:14:04.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": 4,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 9704
+                                }
+                            ]
                         }
                     },
                     {
@@ -4574,12 +4755,28 @@
                         }
                     },
                     {
-                        "spellId": 9285,
+                        "spellId": 9570,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
+                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9703,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your weapon poisons have 10% increased application chance and now deal damage as Shadow instead of Nature. Shadow damage increased by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4590,13 +4787,13 @@
                         }
                     },
                     {
-                        "spellId": 9346,
+                        "spellId": 9468,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
-                            "uncertain": false
+                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next (varies by condition — check in-game) is increased by 50%(varies by condition — check in-game).",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4622,12 +4819,12 @@
                         }
                     },
                     {
-                        "spellId": 9356,
+                        "spellId": 9261,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gloomblade and Shadowstrike now also strike with an Unseen Blade dealing 10,000 damage. Targets struck are Fazed for 10. Fazed enemies take 5% more damage from you and cannot parry your attacks. This effect may occur once every 20.",
+                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 1% damage as Shadow, fading by 0.1% per sec.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4638,12 +4835,12 @@
                         }
                     },
                     {
-                        "spellId": 9407,
+                        "spellId": 9262,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gloomblade and Shadowstrike now also strike with an Unseen Blade dealing 10,000 damage. Targets struck are Fazed for 10. Fazed enemies take 5% more damage from you and cannot parry your attacks. This effect may occur once every 20.",
+                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 1% damage as Shadow, fading by 0.1% per sec.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4702,15 +4899,15 @@
                         }
                     },
                     {
-                        "spellId": 9624,
+                        "spellId": 9601,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gloomblade and Shadowstrike now also strike with an Unseen Blade dealing 10,000 damage. Targets struck are Fazed for 10. Fazed enemies take 5% more damage from you and cannot parry your attacks. This effect may occur once every 20.",
-                            "uncertain": false
+                            "text": "When you consume an application of Deathstalker's Mark, the damage of your next (varies by condition — check in-game) is increased by 50%(varies by condition — check in-game).",
+                            "uncertain": true
                         },
-                        "category": "Offensive",
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -4718,15 +4915,15 @@
                         }
                     },
                     {
-                        "spellId": 9713,
+                        "spellId": 9714,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
+                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 50% damage as Shadow, fading by 2.8% per sec.",
                             "uncertain": false
                         },
-                        "category": "Other",
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -4795,38 +4992,6 @@
                         }
                     },
                     {
-                        "spellId": 9570,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9703,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your weapon poisons have 10% increased application chance and now deal damage as Shadow instead of Nature. Shadow damage increased by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9712,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -4873,10 +5038,7 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
+                    },
                     {
                         "spellId": 9285,
                         "relationship_type": "modifies",
@@ -4909,6 +5071,41 @@
                             "applied": []
                         }
                     }
+                ],
+                "baseline": [],
+                "potential": [
+                    {
+                        "spellId": 9570,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9703,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your weapon poisons have 10% increased application chance and now deal damage as Shadow instead of Nature. Shadow damage increased by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
                 ]
             },
             "hasPotentialImprovement": true,
@@ -4922,7 +5119,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": {
@@ -4959,22 +5156,6 @@
                         }
                     },
                     {
-                        "spellId": 9570,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9275,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -4992,9 +5173,26 @@
                     }
                 ],
                 "baseline": [],
-                "potential": []
+                "potential": [
+                    {
+                        "spellId": 9570,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": 25,
                 "base_seconds": 25,
@@ -5065,7 +5263,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5095,7 +5293,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5414,22 +5612,6 @@
                         }
                     },
                     {
-                        "spellId": 9344,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Lash out at your target and 2 additional nearby enemies, inflicting 2 Shadow damage and causing them to Bleed for (varies) damage over 14. -100% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 45,
-                            "base_seconds": 45,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9489,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -5491,9 +5673,58 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 20,
+                            "seconds": 24,
                             "base_seconds": 20,
-                            "applied": []
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 9436,
+                                        "patch_id": 1,
+                                        "spell_id": 470678,
+                                        "name": "The First Dance",
+                                        "school": "Physical",
+                                        "description": "Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": false,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": true,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": false,
+                                        "icon_name": "236279.jpg",
+                                        "created_at": "2026-08-03T12:23:13.000000Z",
+                                        "updated_at": "2026-09-08T00:14:04.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": 4,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 9704
+                                }
+                            ]
                         }
                     },
                     {
@@ -5509,6 +5740,22 @@
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9344,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Lash out at your target and 2 additional nearby enemies, inflicting 2 Shadow damage and causing them to Bleed for (varies) damage over 14. -100% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": 45,
+                            "base_seconds": 45,
                             "applied": []
                         }
                     },
@@ -5571,7 +5818,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5601,7 +5848,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5631,7 +5878,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5661,7 +5908,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5721,7 +5968,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5931,7 +6178,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -6008,7 +6255,10 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
+                    }
+                ],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 9703,
                         "relationship_type": "modifies",
@@ -6025,74 +6275,6 @@
                             "applied": []
                         }
                     },
-                    {
-                        "spellId": 9543,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Attack with your poisoned blades, dealing (varies) Physical damage, dispelling all enrage effects and applying a concentrated form of your Crippling Poison, reducing movement speed by -70% for 5. Your Nature and Bleed damage done to the target is increased by 30% for 8. The target's healing received is reduced by (varies)% for 8. Awards 1 combo (varies):points;.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 15,
-                            "base_seconds": 30,
-                            "applied": [
-                                {
-                                    "spell": {
-                                        "id": 9584,
-                                        "patch_id": 1,
-                                        "spell_id": 1267182,
-                                        "name": "Toxic Stiletto",
-                                        "school": "Physical",
-                                        "description": "Shiv's Energy cost is reduced by $s1, its cooldown is reduced by ${-$s2/1000} sec, and its range is increased by $s3 yds.",
-                                        "variables": null,
-                                        "charges": null,
-                                        "cooldown_seconds": null,
-                                        "cooldown_scaling_note": null,
-                                        "duration_seconds": null,
-                                        "pvp_duration_seconds": null,
-                                        "pairs_with_category": null,
-                                        "requires_stealth": false,
-                                        "requires_target_out_of_combat": false,
-                                        "not_in_spellbook": true,
-                                        "mechanic": null,
-                                        "usable_while_cc": null,
-                                        "bypasses_active_defense": false,
-                                        "silence_immune_by_school": false,
-                                        "cc_immunity_note": null,
-                                        "grants_cc_immunity_override": null,
-                                        "cc_immunity_gating_spell_id": null,
-                                        "grants_cc_immunity": [],
-                                        "grants_school_immunity": null,
-                                        "spell_type": "None",
-                                        "range_yards": null,
-                                        "dr_category": null,
-                                        "conditional_dr_gating_spell_id": null,
-                                        "conditional_dr_category": null,
-                                        "category": "Other",
-                                        "cast_type": "instant",
-                                        "chain_target": null,
-                                        "is_peel": false,
-                                        "is_interrupt": false,
-                                        "is_mobility": false,
-                                        "is_passive": true,
-                                        "icon_name": "ability_rogue_poisonedknife.jpg",
-                                        "created_at": "2026-07-30T14:03:07.000000Z",
-                                        "updated_at": "2026-09-06T04:00:41.000000Z"
-                                    },
-                                    "relationship_type": "modifies_cooldown",
-                                    "modifier_value": -15,
-                                    "modifier_unit": "seconds",
-                                    "selection_spell_id": 9584
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
                     {
                         "spellId": 9220,
                         "relationship_type": "mentions",
@@ -6152,7 +6334,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -6212,7 +6394,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -6242,7 +6424,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -6392,7 +6574,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -6527,25 +6709,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 8993,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Allows the use of Stealth abilities, grants the combat benefits of Stealth, and drastically reduces threat for 6. Effect not broken from taking damage or attacking.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 20,
-                            "base_seconds": 20,
-                            "applied": []
-                        }
-                    },
+                "named": [
                     {
                         "spellId": 9636,
                         "relationship_type": "modifies",
@@ -6592,6 +6756,74 @@
                             "seconds": null,
                             "base_seconds": null,
                             "applied": []
+                        }
+                    }
+                ],
+                "baseline": [],
+                "potential": [
+                    {
+                        "spellId": 8993,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Allows the use of Stealth abilities, grants the combat benefits of Stealth, and drastically reduces threat for 6. Effect not broken from taking damage or attacking.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": 24,
+                            "base_seconds": 20,
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 9436,
+                                        "patch_id": 1,
+                                        "spell_id": 470678,
+                                        "name": "The First Dance",
+                                        "school": "Physical",
+                                        "description": "Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": false,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": true,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": false,
+                                        "icon_name": "236279.jpg",
+                                        "created_at": "2026-08-03T12:23:13.000000Z",
+                                        "updated_at": "2026-09-08T00:14:04.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": 4,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 9704
+                                }
+                            ]
                         }
                     }
                 ]
@@ -6734,18 +6966,18 @@
                         }
                     },
                     {
-                        "spellId": 9344,
+                        "spellId": 9358,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lash out at your target and 2 additional nearby enemies, inflicting 2 Shadow damage and causing them to Bleed for (varies) damage over 14. -100% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.",
+                            "text": "Unseen Blade and Secret Technique increase the damage of your finishing moves by 4% for 12. Max (varies) stacks.",
                             "uncertain": true
                         },
-                        "category": "Offensive",
+                        "category": "Other",
                         "cooldown": {
-                            "seconds": 45,
-                            "base_seconds": 45,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -6796,25 +7028,57 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [
+                    },
                     {
-                        "spellId": 8979,
-                        "relationship_type": "modifies_charges",
+                        "spellId": 9629,
+                        "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "",
+                            "text": "Secret Technique has -10% reduced cooldown and allows your next 2 strikes of Unseen Blade to ignore its cooldown.",
                             "uncertain": false
                         },
-                        "category": "Offensive",
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
                             "applied": []
                         }
                     },
+                    {
+                        "spellId": 9627,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Secret Technique applies Fazed to any targets struck.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9630,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Unseen Blade and Secret Technique increase the damage of your finishing moves by 4% for 12. Max (varies) stacks.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
+                "baseline": [
                     {
                         "spellId": 8979,
                         "relationship_type": "hasted_cooldown",
@@ -6876,9 +7140,58 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 20,
+                            "seconds": 24,
                             "base_seconds": 20,
-                            "applied": []
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 9436,
+                                        "patch_id": 1,
+                                        "spell_id": 470678,
+                                        "name": "The First Dance",
+                                        "school": "Physical",
+                                        "description": "Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": false,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": true,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": false,
+                                        "icon_name": "236279.jpg",
+                                        "created_at": "2026-08-03T12:23:13.000000Z",
+                                        "updated_at": "2026-09-08T00:14:04.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": 4,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 9704
+                                }
+                            ]
                         }
                     },
                     {
@@ -6898,82 +7211,18 @@
                         }
                     },
                     {
-                        "spellId": 9358,
+                        "spellId": 9344,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unseen Blade and Secret Technique increase the damage of your finishing moves by 4% for 12. Max (varies) stacks.",
+                            "text": "Lash out at your target and 2 additional nearby enemies, inflicting 2 Shadow damage and causing them to Bleed for (varies) damage over 14. -100% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.",
                             "uncertain": true
                         },
-                        "category": "Other",
+                        "category": "Offensive",
                         "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9629,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Secret Technique has -10% reduced cooldown and allows your next 2 strikes of Unseen Blade to ignore its cooldown.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9629,
-                        "relationship_type": "modifies_cooldown",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Secret Technique has -10% reduced cooldown and allows your next 2 strikes of Unseen Blade to ignore its cooldown.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9627,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Secret Technique applies Fazed to any targets struck.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9630,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Unseen Blade and Secret Technique increase the damage of your finishing moves by 4% for 12. Max (varies) stacks.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
+                            "seconds": 45,
+                            "base_seconds": 45,
                             "applied": []
                         }
                     }
@@ -7024,7 +7273,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -7063,22 +7312,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Your abilities deal 5% increased magic damage.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9703,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your weapon poisons have 10% increased application chance and now deal damage as Shadow instead of Nature. Shadow damage increased by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7137,41 +7370,6 @@
                         }
                     },
                     {
-                        "spellId": 9399,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After (varies by condition — check in-game) expires, gain (varies by condition — check in-game)% increased (varies by condition — check in-game) damage for 30.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9594,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After (varies by condition — check in-game) expires, gain (varies by condition — check in-game)% increased (varies by condition — check in-game) damage for 30.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
-                    {
                         "spellId": 9359,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7197,6 +7395,57 @@
                             "uncertain": true
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
+                "baseline": [],
+                "potential": [
+                    {
+                        "spellId": 9703,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your weapon poisons have 10% increased application chance and now deal damage as Shadow instead of Nature. Shadow damage increased by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9399,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After (varies by condition — check in-game) expires, gain (varies by condition — check in-game)% increased (varies by condition — check in-game) damage for 30.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9594,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After (varies by condition — check in-game) expires, gain (varies by condition — check in-game)% increased (varies by condition — check in-game) damage for 30.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -7275,6 +7524,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Find Weakness increases the damage of finishing moves by 5%. Shadow Dance increases the damage of finishing moves by 5%. Shadow Blades increases the damage of finishing moves by 5%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9436,
+                        "relationship_type": "modifies_cooldown",
+                        "modifier_value": 4,
+                        "modifier_unit": "seconds",
+                        "description": {
+                            "text": "Remaining out of combat for 6 increases the duration of your next Shadow Dance by 4 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7381,54 +7646,6 @@
                         }
                     },
                     {
-                        "spellId": 9250,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9261,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 1% damage as Shadow, fading by 0.1% per sec.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9262,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 1% damage as Shadow, fading by 0.1% per sec.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9275,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7451,6 +7668,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "After activating Shadow Dance, your next $@switch<4>[attack][4 attacks] that $@switch<4>[generates][generate] combo points $@switch<4>[deals][deal] 35% increased damage.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9435,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Remaining out of combat for 6 increases the duration of your next Shadow Dance by 4 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7573,6 +7806,22 @@
                         }
                     },
                     {
+                        "spellId": 9704,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Remaining out of combat for 6 increases the duration of your next Shadow Dance by 4 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9710,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7589,22 +7838,6 @@
                         }
                     },
                     {
-                        "spellId": 9714,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 50% damage as Shadow, fading by 2.8% per sec.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9716,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7612,22 +7845,6 @@
                         "description": {
                             "text": "While Shadow Dance is active, each different attack that generates or spends combo points lashes out at the target, dealing (varies) Shadow damage.",
                             "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9717,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
-                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7672,15 +7889,47 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 9436,
-                        "relationship_type": "modifies_cooldown",
-                        "modifier_value": 4,
-                        "modifier_unit": "seconds",
+                        "spellId": 9250,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
                         "description": {
-                            "text": "Remaining out of combat for 6 increases the duration of your next Shadow Dance by 4 sec.",
+                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
                             "uncertain": false
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9261,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 1% damage as Shadow, fading by 0.1% per sec.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9262,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 1% damage as Shadow, fading by 0.1% per sec.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -7720,22 +7969,6 @@
                         }
                     },
                     {
-                        "spellId": 9435,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Remaining out of combat for 6 increases the duration of your next Shadow Dance by 4 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9597,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7745,22 +7978,6 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9704,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Remaining out of combat for 6 increases the duration of your next Shadow Dance by 4 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -7782,14 +7999,129 @@
                             "base_seconds": 20,
                             "applied": []
                         }
+                    },
+                    {
+                        "spellId": 9714,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After Shadow Dance ends, Gloomblade and Shuriken Storm deal an additional 50% damage as Shadow, fading by 2.8% per sec.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9717,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
                     }
                 ]
             },
             "hasPotentialImprovement": true,
             "cooldown": {
-                "seconds": 20,
+                "seconds": 24,
                 "base_seconds": 20,
-                "applied": []
+                "applied": [
+                    {
+                        "spell": {
+                            "id": 9436,
+                            "patch_id": 1,
+                            "spell_id": 470678,
+                            "name": "The First Dance",
+                            "school": "Physical",
+                            "description": "Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.",
+                            "variables": null,
+                            "charges": null,
+                            "cooldown_seconds": null,
+                            "cooldown_scaling_note": null,
+                            "duration_seconds": null,
+                            "pvp_duration_seconds": null,
+                            "pairs_with_category": null,
+                            "requires_stealth": false,
+                            "requires_target_out_of_combat": false,
+                            "not_in_spellbook": false,
+                            "mechanic": null,
+                            "usable_while_cc": null,
+                            "bypasses_active_defense": false,
+                            "silence_immune_by_school": true,
+                            "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
+                            "spell_type": "None",
+                            "range_yards": null,
+                            "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
+                            "category": "Other",
+                            "cast_type": "instant",
+                            "chain_target": null,
+                            "is_peel": false,
+                            "is_interrupt": false,
+                            "is_mobility": false,
+                            "is_passive": false,
+                            "icon_name": "236279.jpg",
+                            "created_at": "2026-08-03T12:23:13.000000Z",
+                            "updated_at": "2026-09-08T00:14:04.000000Z",
+                            "effects": [
+                                {
+                                    "id": 17295,
+                                    "spell_id": 9436,
+                                    "effect_index": 1,
+                                    "type": "Add Flat Modifier (107): Spell Duration",
+                                    "base_value": 4000,
+                                    "scaled_value": 4000,
+                                    "misc_value": 1,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": 0.66667,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-08-03T12:23:13.000000Z",
+                                    "updated_at": "2026-09-08T00:09:27.000000Z"
+                                },
+                                {
+                                    "id": 17296,
+                                    "spell_id": 9436,
+                                    "effect_index": 2,
+                                    "type": "Add Flat Modifier (107): Spell Cooldown",
+                                    "base_value": 4000,
+                                    "scaled_value": 4000,
+                                    "misc_value": 11,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": null,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-08-03T12:23:13.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
+                                }
+                            ]
+                        },
+                        "relationship_type": "modifies_cooldown",
+                        "modifier_value": 4,
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 9704
+                    }
+                ]
             },
             "charges": {
                 "charges": 2,
@@ -7835,8 +8167,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "warrior_doubletime.jpg",
-                            "created_at": "2026-07-30T14:03:10.000000Z",
-                            "updated_at": "2026-09-06T04:00:31.000000Z",
+                            "created_at": "2026-08-03T12:23:15.000000Z",
+                            "updated_at": "2026-09-08T00:07:08.000000Z",
                             "effects": [
                                 {
                                     "id": 17809,
@@ -7851,8 +8183,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:10.000000Z",
-                                    "updated_at": "2026-09-02T11:58:09.000000Z"
+                                    "created_at": "2026-08-03T12:23:15.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },
@@ -7994,7 +8326,7 @@
             "drCategory": null
         },
         {
-            "spellId": 25434,
+            "spellId": 13561,
             "category": "Mobility",
             "description": {
                 "text": "Step through the shadows to appear behind your target and gain 70% increased movement speed for 3 sec. If you already know Shadowstep, instead gain 1 additional charge of Shadowstep.",
@@ -8020,22 +8352,6 @@
                         }
                     },
                     {
-                        "spellId": 9595,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Each time you consume a stack of Deathstalker's Mark, reduce the cooldown of Shadowstep by 3 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9702,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -8050,10 +8366,7 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
+                    },
                     {
                         "spellId": 9745,
                         "relationship_type": "mentions",
@@ -8061,6 +8374,25 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Shadowstep's cooldown is reduced by 67% when cast on a friendly target.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
+                "baseline": [],
+                "potential": [
+                    {
+                        "spellId": 9595,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Each time you consume a stack of Deathstalker's Mark, reduce the cooldown of Shadowstep by 3 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8164,22 +8496,6 @@
                         }
                     },
                     {
-                        "spellId": 9570,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9275,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -8212,12 +8528,28 @@
                         }
                     },
                     {
-                        "spellId": 9584,
-                        "relationship_type": "modifies_charges",
+                        "spellId": 9285,
+                        "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shiv's Energy cost is reduced by -20, its cooldown is reduced by 15 sec, and its range is increased by 3 yds.",
+                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9346,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8290,37 +8622,70 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 20,
+                            "seconds": 24,
                             "base_seconds": 20,
-                            "applied": []
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 9436,
+                                        "patch_id": 1,
+                                        "spell_id": 470678,
+                                        "name": "The First Dance",
+                                        "school": "Physical",
+                                        "description": "Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": false,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": true,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": false,
+                                        "icon_name": "236279.jpg",
+                                        "created_at": "2026-08-03T12:23:13.000000Z",
+                                        "updated_at": "2026-09-08T00:14:04.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": 4,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 9704
+                                }
+                            ]
                         }
                     },
                     {
-                        "spellId": 9285,
+                        "spellId": 9570,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
+                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
                             "uncertain": false
                         },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9346,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Gloomblade, Shuriken Storm, and Shadowstrike have 10% increased damage while Find Weakness is active.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -8374,8 +8739,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_rogue_poisonedknife.jpg",
-                            "created_at": "2026-07-30T14:03:07.000000Z",
-                            "updated_at": "2026-09-06T04:00:41.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:07:16.000000Z",
                             "effects": [
                                 {
                                     "id": 17553,
@@ -8390,8 +8755,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:07.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 },
                                 {
                                     "id": 17554,
@@ -8406,8 +8771,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:07.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 },
                                 {
                                     "id": 17555,
@@ -8422,8 +8787,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:07.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },
@@ -8533,7 +8898,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8610,7 +8975,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8640,7 +9005,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8670,7 +9035,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8686,6 +9051,38 @@
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
+                    {
+                        "spellId": 9359,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Activating Shadow Blades creates a cloud of smoke for 6, allowing attacks from within the cloud to apply Fazed, stacking up to (varies) additional (varies):times;. Effect persists for 6 sec after leaving the cloud.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9638,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Activating Shadow Blades creates a cloud of smoke for 6, allowing attacks from within the cloud to apply Fazed, stacking up to (varies) additional (varies):times;. Effect persists for 6 sec after leaving the cloud.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
                     {
                         "spellId": 9738,
                         "relationship_type": "mentions",
@@ -8759,8 +9156,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "236216.jpg",
-                                        "created_at": "2026-07-30T14:02:57.000000Z",
-                                        "updated_at": "2026-09-06T04:00:16.000000Z"
+                                        "created_at": "2026-08-03T12:23:10.000000Z",
+                                        "updated_at": "2026-09-08T00:14:01.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -8823,46 +9220,14 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "236216.jpg",
-                                        "created_at": "2026-07-30T14:02:57.000000Z",
-                                        "updated_at": "2026-09-06T04:00:16.000000Z"
+                                        "created_at": "2026-08-03T12:23:10.000000Z",
+                                        "updated_at": "2026-09-08T00:14:01.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
                                     "modifier_unit": "seconds"
                                 }
                             ]
-                        }
-                    },
-                    {
-                        "spellId": 9359,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Activating Shadow Blades creates a cloud of smoke for 6, allowing attacks from within the cloud to apply Fazed, stacking up to (varies) additional (varies):times;. Effect persists for 6 sec after leaving the cloud.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9638,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Activating Shadow Blades creates a cloud of smoke for 6, allowing attacks from within the cloud to apply Fazed, stacking up to (varies) additional (varies):times;. Effect persists for 6 sec after leaving the cloud.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
                         }
                     },
                     {
@@ -8894,7 +9259,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -9119,8 +9484,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_rogue_sprint.jpg",
-                            "created_at": "2026-07-30T14:03:06.000000Z",
-                            "updated_at": "2026-09-06T04:00:21.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:06:59.000000Z",
                             "effects": [
                                 {
                                     "id": 17510,
@@ -9135,8 +9500,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:06.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },
@@ -9345,22 +9710,6 @@
                         }
                     },
                     {
-                        "spellId": 9250,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9264,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -9471,22 +9820,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 9717,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ],
                 "baseline": [],
@@ -9577,8 +9910,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "ability_rogue_sprint.jpg",
-                                        "created_at": "2026-07-30T14:03:06.000000Z",
-                                        "updated_at": "2026-09-06T04:00:21.000000Z"
+                                        "created_at": "2026-08-03T12:23:14.000000Z",
+                                        "updated_at": "2026-09-08T00:06:59.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -9631,9 +9964,58 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 20,
+                            "seconds": 24,
                             "base_seconds": 20,
-                            "applied": []
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 9436,
+                                        "patch_id": 1,
+                                        "spell_id": 470678,
+                                        "name": "The First Dance",
+                                        "school": "Physical",
+                                        "description": "Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": false,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": true,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": false,
+                                        "icon_name": "236279.jpg",
+                                        "created_at": "2026-08-03T12:23:13.000000Z",
+                                        "updated_at": "2026-09-08T00:14:04.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": 4,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 9704
+                                }
+                            ]
                         }
                     },
                     {
@@ -9647,9 +10029,58 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 20,
+                            "seconds": 24,
                             "base_seconds": 20,
-                            "applied": []
+                            "applied": [
+                                {
+                                    "spell": {
+                                        "id": 9436,
+                                        "patch_id": 1,
+                                        "spell_id": 470678,
+                                        "name": "The First Dance",
+                                        "school": "Physical",
+                                        "description": "Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.",
+                                        "variables": null,
+                                        "charges": null,
+                                        "cooldown_seconds": null,
+                                        "cooldown_scaling_note": null,
+                                        "duration_seconds": null,
+                                        "pvp_duration_seconds": null,
+                                        "pairs_with_category": null,
+                                        "requires_stealth": false,
+                                        "requires_target_out_of_combat": false,
+                                        "not_in_spellbook": false,
+                                        "mechanic": null,
+                                        "usable_while_cc": null,
+                                        "bypasses_active_defense": false,
+                                        "silence_immune_by_school": true,
+                                        "cc_immunity_note": null,
+                                        "grants_cc_immunity_override": null,
+                                        "cc_immunity_gating_spell_id": null,
+                                        "grants_cc_immunity": [],
+                                        "grants_school_immunity": null,
+                                        "spell_type": "None",
+                                        "range_yards": null,
+                                        "dr_category": null,
+                                        "conditional_dr_gating_spell_id": null,
+                                        "conditional_dr_category": null,
+                                        "category": "Other",
+                                        "cast_type": "instant",
+                                        "chain_target": null,
+                                        "is_peel": false,
+                                        "is_interrupt": false,
+                                        "is_mobility": false,
+                                        "is_passive": false,
+                                        "icon_name": "236279.jpg",
+                                        "created_at": "2026-08-03T12:23:13.000000Z",
+                                        "updated_at": "2026-09-08T00:14:04.000000Z"
+                                    },
+                                    "relationship_type": "modifies_cooldown",
+                                    "modifier_value": 4,
+                                    "modifier_unit": "seconds",
+                                    "selection_spell_id": 9704
+                                }
+                            ]
                         }
                     },
                     {
@@ -9717,6 +10148,22 @@
                         }
                     },
                     {
+                        "spellId": 9250,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9263,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -9771,6 +10218,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Shuriken Storm damage is increased by 100% while Stealthed.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9717,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9959,7 +10422,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -10079,7 +10542,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -10250,7 +10713,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -10355,24 +10818,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
-                    {
-                        "spellId": 8950,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "The current party or raid member becomes the target of your Tricks of the Trade, increasing you and the target's damage by (varies)%. The threat caused by your next attack and all actions taken for (varies) afterwards will be transferred to the target.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 30,
-                            "base_seconds": 30,
-                            "applied": []
-                        }
-                    }
-                ],
+                "named": [],
                 "baseline": [],
                 "potential": [
                     {
@@ -10388,6 +10834,22 @@
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 8950,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "The current party or raid member becomes the target of your Tricks of the Trade, increasing you and the target's damage by (varies)%. The threat caused by your next attack and all actions taken for (varies) afterwards will be transferred to the target.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": 30,
+                            "base_seconds": 30,
                             "applied": []
                         }
                     },
@@ -10499,9 +10961,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
+                "named": [
                     {
                         "spellId": 9356,
                         "relationship_type": "mentions",
@@ -10526,22 +10986,6 @@
                         "description": {
                             "text": "Unseen Blade and Secret Technique increase the damage of your finishing moves by 4% for 12. Max (varies) stacks.",
                             "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9362,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
-                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10576,38 +11020,6 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9413,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9414,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -10654,22 +11066,6 @@
                         "description": {
                             "text": "Slice and Dice grants 10% additional attack speed and gives your auto-attacks a chance to refresh your opportunity to strike with Unseen Blade.",
                             "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9632,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every (varies) sec.",
-                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10742,6 +11138,73 @@
                             "applied": []
                         }
                     }
+                ],
+                "baseline": [],
+                "potential": [
+                    {
+                        "spellId": 9362,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9413,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9414,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After 4 strikes with Unseen Blade, your next Eviscerate will be performed as a Coup de Grace, functioning as if it had consumed 5 additional combo points, and granting you 200 stacks of Flawless Form.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9632,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every (varies) sec.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
                 ]
             },
             "hasPotentialImprovement": true,
@@ -10755,7 +11218,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -10785,7 +11248,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -10859,22 +11322,6 @@
                             "uncertain": false
                         },
                         "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9250,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -10960,22 +11407,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 9717,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ],
                 "baseline": [],
@@ -10997,6 +11428,22 @@
                         }
                     },
                     {
+                        "spellId": 9250,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9711,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -11006,6 +11453,22 @@
                             "uncertain": false
                         },
                         "category": "Defensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9717,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have 100% increased chance to critically strike.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -11080,8 +11543,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_vanish.jpg",
-                            "created_at": "2026-07-30T14:03:06.000000Z",
-                            "updated_at": "2026-09-06T04:00:29.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:07:06.000000Z",
                             "effects": [
                                 {
                                     "id": 17537,
@@ -11096,8 +11559,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:06.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },

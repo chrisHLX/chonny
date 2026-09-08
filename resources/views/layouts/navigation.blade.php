@@ -78,11 +78,23 @@
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                 Top 10 CC Chains
             </a>
+            {{-- Public: a player guide is readable without an account, so the browse listing
+                 must be reachable without one too. --}}
+            <a href="{{ route('guides.browse') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('guides.browse') ? 'active !text-accent' : '' }}">
+                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                Player Guides
+            </a>
             @auth
             <a href="{{ route('guides.index') }}"
-               class="sidebar-item text-[12px] {{ request()->routeIs('guides.*') ? 'active !text-accent' : '' }}">
+               class="sidebar-item text-[12px] {{ request()->routeIs('guides.index') || request()->routeIs('guides.edit') ? 'active !text-accent' : '' }}">
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                 My Guides
+            </a>
+            <a href="{{ route('guilds.index') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('guilds.*') ? 'active !text-accent' : '' }}">
+                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                Guilds
             </a>
             @endauth
         </div>

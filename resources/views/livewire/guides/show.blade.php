@@ -63,6 +63,26 @@
                 @endif
             @endforeach
 
+            {{-- A comp guide's opposition, on the same line, so the matchup reads left to right
+                 the way people say it out loud: "RMD vs TSG". --}}
+            @if ($this->enemies->isNotEmpty())
+                <span class="text-[12px] text-ink-subtle px-1">vs</span>
+                @foreach ($this->enemies as $enemy)
+                    @if ($enemy->specialization)
+                        @php $ec = $classColors[$enemy->specialization->gameClass?->slug] ?? '#8A8A9A'; @endphp
+                        <div class="flex items-center gap-2" wire:key="e-{{ $enemy->id }}">
+                            <x-spec-icon :spec="$enemy->specialization" size="w-9 h-9"/>
+                            <div>
+                                <p class="text-[13px] font-medium leading-tight" style="color: {{ $ec }}">
+                                    {{ $enemy->specialization->name }}
+                                </p>
+                                <p class="text-[11px] text-ink-subtle leading-tight">{{ $enemy->specialization->gameClass?->name }}</p>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            @endif
+
             {{-- A class guide reads "you vs them" — the same shape its title has. Rendered inside
                  the roster row rather than as a separate block so the matchup is one line. --}}
             @if ($guide->isClassGuide() && $guide->opponentSpec)
@@ -134,6 +154,96 @@
         are computed from MindCollector's own game data; the plan itself, and the order of it, is this
         author's.
     </p>
+
+    {{-- Rating and comments ------------------------------------------------------
+         Below the guide, never above it: the content is what someone came for, and a rating
+         widget at the top asks for a judgement before they have read anything. --}}
+    <div class="mt-8 pt-6 border-t border-line grid lg:grid-cols-[280px_1fr] gap-8">
+        <div>
+            <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-2">Rating</h2>
+
+            <div class="flex items-baseline gap-2">
+                @if ($guide->rating_avg !== null)
+                    <span class="font-display text-3xl text-gold tabular-nums">{{ number_format((float) $guide->rating_avg, 1) }}</span>
+                    <span class="text-[11.5px] text-ink-subtle tabular-nums">
+                        {{ $guide->rating_count }} {{ Str::plural('rating', $guide->rating_count) }}
+                    </span>
+                @else
+                    <span class="text-[13px] text-ink-subtle">Not rated yet</span>
+                @endif
+            </div>
+
+            @auth
+                @if (! $guide->isOwnedBy(auth()->user()))
+                    <div class="flex items-center gap-1 mt-3">
+                        @for ($v = 1; $v <= 5; $v++)
+                            <button type="button" wire:click="rate({{ $v }})"
+                                    title="{{ $v }} out of 5"
+                                    class="w-8 h-8 rounded border transition-colors tabular-nums text-[13px]
+                                           {{ $myRating >= $v
+                                              ? 'border-line-gold bg-gold-subtle text-gold'
+                                              : 'border-line text-ink-subtle hover:border-line-gold hover:text-gold' }}">
+                                {{ $v }}
+                            </button>
+                        @endfor
+                    </div>
+                    <p class="text-[11px] text-ink-subtle mt-1.5">
+                        {{ $myRating ? 'Your rating — click another to change it.' : 'Rate this guide.' }}
+                    </p>
+                @else
+                    <p class="text-[11.5px] text-ink-subtle mt-3">You cannot rate your own guide.</p>
+                @endif
+            @else
+                <p class="text-[11.5px] text-ink-subtle mt-3">
+                    <a href="{{ route('login') }}" class="text-gold hover:text-gold-light">Sign in</a> to rate this guide.
+                </p>
+            @endauth
+
+            @if ($feedbackError)
+                <p class="text-[11.5px] text-red-400 mt-2">{{ $feedbackError }}</p>
+            @endif
+        </div>
+
+        <div>
+            <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-3">
+                Comments
+                <span class="text-ink-subtle font-normal tabular-nums">({{ $this->comments->count() }})</span>
+            </h2>
+
+            @auth
+                <div class="mb-4">
+                    <textarea wire:model="comment" rows="3" maxlength="1000"
+                              placeholder="Does this still work? What would you change?"
+                              class="form-textarea w-full text-[13.5px]"></textarea>
+                    <div class="flex justify-end mt-2">
+                        <button type="button" wire:click="postComment" class="btn-primary text-[12px]">Post</button>
+                    </div>
+                </div>
+            @endauth
+
+            @forelse ($this->comments as $c)
+                <div class="border-b border-line py-3" wire:key="c-{{ $c->id }}">
+                    <div class="flex items-baseline justify-between gap-3">
+                        <p class="text-[12px] text-ink">
+                            {{ $c->user?->username ?? 'unknown' }}
+                            <span class="text-ink-subtle ml-1">{{ $c->created_at?->diffForHumans() }}</span>
+                        </p>
+                        @auth
+                            @if ($c->user_id === auth()->id() || $guide->isOwnedBy(auth()->user()))
+                                <button type="button" wire:click="deleteComment({{ $c->id }})"
+                                        class="text-[11px] text-ink-subtle hover:text-red-400 transition-colors shrink-0">Delete</button>
+                            @endif
+                        @endauth
+                    </div>
+                    {{-- Plain text, deliberately: this is written by anyone, so the safest render
+                         is the one with no markup surface at all. --}}
+                    <p class="text-[13.5px] text-ink-muted mt-1 whitespace-pre-line">{{ $c->body }}</p>
+                </div>
+            @empty
+                <p class="text-[13px] text-ink-subtle">No comments yet.</p>
+            @endforelse
+        </div>
+    </div>
 
     <livewire:spell-detail-modal/>
 </div>

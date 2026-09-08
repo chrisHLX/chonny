@@ -686,6 +686,59 @@ class TalentSelectionService
     }
 
     /**
+     * Blizzard's own accessibility auto-cast button. It carries a real, explicit
+     * spell_class_availability row for ALL 40 specs (spell_id 1229376), so it passes every
+     * structural test a genuine baseline ability passes and there is no data signal that
+     * separates it — it is excluded by name because it is not an ability anyone writes a guide
+     * about, not because the data is wrong.
+     */
+    private const NON_ABILITY_BASELINE_SPELL_IDS = [1229376];
+
+    /**
+     * Every EXPLICITLY spec-tagged baseline ability, with no cooldown floor — a spec's whole
+     * pressable baseline kit, including its core rotation.
+     *
+     * The sibling above answers a narrower question, and its own ">= 10s or Sleep/Disorient"
+     * filter is correct there: it feeds WoW Comps' Offensive/Defensive COOLDOWNS tabs, where a
+     * rotational builder would be clutter (see WowComps::MIN_COOLDOWN_TAB_SECONDS and its audit).
+     *
+     * That floor silently became the answer to a different question when the user-guide palette
+     * reused it, and it is why a class guide could not name Rupture: Rupture (1943), Envenom
+     * (32645) and Mutilate (1329) all carry a real, unambiguous `spec_id = 30` row, and were
+     * dropped for the sole reason that a finisher has no cooldown. Measured 2026-09-08 across all
+     * 40 specs: 111 unambiguous abilities missing, every spec affected — Chaos Strike, Soul
+     * Cleave, Festering Strike, Wrath, Starfall, Multi-Shot, Backstab, Sinister Strike.
+     *
+     * SAFE BECAUSE IT IS EXPLICIT-spec_id ONLY, and that distinction is the whole point. It never
+     * touches the `spec_id = NULL` bucket — the structurally ambiguous one that put Mind Sear on
+     * Discipline Priest in 2026-08-06 and got alwaysAvailableAbilityIds() permanently benched. A
+     * row naming this exact spec is Blizzard stating the fact outright, so this needs no
+     * verification pass and no baseline-spec-overrides.txt line.
+     *
+     * @return Collection<int, int> spell ids
+     */
+    public function explicitBaselineAbilityIds(int $classId, int $specId): Collection
+    {
+        $patchId = $this->currentPatchIdForSpec($specId);
+
+        return Spell::where('patch_id', $patchId)
+            ->whereHas('classAvailability', function ($q) use ($classId, $specId) {
+                $q->where('class_id', $classId)
+                    ->where('spec_id', $specId)
+                    ->where('source', 'baseline');
+            })
+            ->where('is_passive', false)
+            ->where('not_in_spellbook', false)
+            ->where('name', 'not like', '%(desc=%')
+            ->whereNotIn('spell_id', self::NON_ABILITY_BASELINE_SPELL_IDS)
+            ->get()
+            ->groupBy('name')
+            ->map(fn (Collection $group) => $group->sortBy('spell_id')->first())
+            ->pluck('id')
+            ->values();
+    }
+
+    /**
      * Collapses a fetched Spell collection to one entry per distinct name — the final pass
      * needed on top of alwaysAvailableAbilityIds()'s own internal dedup, added 2026-08-06 after
      * confirming its dedup alone wasn't enough: "Mindbender" and "Bestial Wrath" still rendered

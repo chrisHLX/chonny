@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Concerns\RegeneratesSpellKits;
 use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\SpellCounterIndexer;
 use App\Http\Services\TalentSelectionService;
@@ -29,6 +30,8 @@ use Illuminate\Console\Command;
  */
 class RebuildSpellCounters extends Command
 {
+    use RegeneratesSpellKits;
+
     protected $signature = 'wow:rebuild-spell-counters {--patch= : build_version to target (defaults to the current patch)}';
 
     protected $description = 'Backfill only — refresh the immunity columns and rebuild spell_counters (import:spelldata already does both)';
@@ -78,6 +81,7 @@ class RebuildSpellCounters extends Command
         // embed the version they were built against — same reason import:spelldata bumps it.
         $talentService->bumpSpellCacheVersion();
         $this->comment('Spell cache version bumped.');
+        $this->regenerateSpellKits();
 
         return self::SUCCESS;
     }

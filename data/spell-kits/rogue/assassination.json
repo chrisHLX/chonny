@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-07T09:58:15+00:00",
-    "spellCacheVersion": 4155,
+    "generatedAt": "2026-09-08T04:45:46+00:00",
+    "spellCacheVersion": 10,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -74,6 +74,22 @@
             "modifiers": {
                 "named": [
                     {
+                        "spellId": 8975,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Exploits the vulnerability of foes with less than 35% health, dealing -100 Physical damage to the target. Mutilate has a 25% chance to make your next Blindside free and usable on any target, regardless of their health. Awards 430,023 combo (varies):points;.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9564,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -90,12 +106,12 @@
                         }
                     },
                     {
-                        "spellId": 9570,
+                        "spellId": 9473,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
+                            "text": "All damage you deal is increased by 10% while Deathmark is active.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -106,12 +122,12 @@
                         }
                     },
                     {
-                        "spellId": 9473,
-                        "relationship_type": "modifies",
+                        "spellId": 8856,
+                        "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "All damage you deal is increased by 10% while Deathmark is active.",
+                            "text": "Ambush and Mutilate have a 10% chance to make your next Ambush free and usable without Stealth. Chance increased to 20% if the target is under 35% health.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -238,22 +254,6 @@
                         }
                     },
                     {
-                        "spellId": 8975,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Exploits the vulnerability of foes with less than 35% health, dealing -100 Physical damage to the target. Mutilate has a 25% chance to make your next Blindside free and usable on any target, regardless of their health. Awards 430,023 combo (varies):points;.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9566,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -270,6 +270,22 @@
                         }
                     },
                     {
+                        "spellId": 9570,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9468,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -279,22 +295,6 @@
                             "uncertain": true
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 8856,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Ambush and Mutilate have a 10% chance to make your next Ambush free and usable without Stealth. Chance increased to 20% if the target is under 35% health.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -537,6 +537,38 @@
                             "base_seconds": null,
                             "applied": []
                         }
+                    },
+                    {
+                        "spellId": 9248,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Coats your weapons with a Lethal Poison that lasts for 12. Each strike has a (varies)% chance to poison the enemy, dealing 35 Nature damage and applying Amplifying Poison for 12. Envenom can consume 10 stacks of Amplifying Poison to deal 35% increased damage. Max (varies) stacks.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9290,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Coats your weapons with a Lethal Poison that lasts for 12. Each strike has a (varies)% chance to poison the enemy, dealing 35 Nature damage and applying Amplifying Poison for 12. Envenom can consume 10 stacks of Amplifying Poison to deal 35% increased damage. Max (varies) stacks.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
                     }
                 ],
                 "baseline": [],
@@ -604,38 +636,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 9248,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Coats your weapons with a Lethal Poison that lasts for 12. Each strike has a (varies)% chance to poison the enemy, dealing 35 Nature damage and applying Amplifying Poison for 12. Envenom can consume 10 stacks of Amplifying Poison to deal 35% increased damage. Max (varies) stacks.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9290,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Coats your weapons with a Lethal Poison that lasts for 12. Each strike has a (varies)% chance to poison the enemy, dealing 35 Nature damage and applying Amplifying Poison for 12. Envenom can consume 10 stacks of Amplifying Poison to deal 35% increased damage. Max (varies) stacks.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ]
             },
@@ -650,7 +650,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -869,6 +869,38 @@
             "modifiers": {
                 "named": [
                     {
+                        "spellId": 8966,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Exploits the vulnerability of foes with less than 35% health, dealing 20 Physical damage to the target. Mutilate has a 25% chance to make your next Blindside free and usable on any target, regardless of their health. Awards 1 combo (varies):points;.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 8975,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Exploits the vulnerability of foes with less than 35% health, dealing -100 Physical damage to the target. Mutilate has a 25% chance to make your next Blindside free and usable on any target, regardless of their health. Awards 430,023 combo (varies):points;.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9282,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -934,38 +966,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 8966,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Exploits the vulnerability of foes with less than 35% health, dealing 20 Physical damage to the target. Mutilate has a 25% chance to make your next Blindside free and usable on any target, regardless of their health. Awards 1 combo (varies):points;.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 8975,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Exploits the vulnerability of foes with less than 35% health, dealing -100 Physical damage to the target. Mutilate has a 25% chance to make your next Blindside free and usable on any target, regardless of their health. Awards 430,023 combo (varies):points;.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ]
             },
@@ -995,9 +995,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
+                "named": [
                     {
                         "spellId": 8966,
                         "relationship_type": "mentions",
@@ -1030,9 +1028,11 @@
                             "applied": []
                         }
                     }
-                ]
+                ],
+                "baseline": [],
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -1043,7 +1043,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -1416,7 +1416,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -1601,22 +1601,6 @@
                         }
                     },
                     {
-                        "spellId": 9570,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9304,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -1758,6 +1742,22 @@
                             "uncertain": true
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9570,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -2110,7 +2110,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -2150,7 +2150,7 @@
             "spellId": 8887,
             "category": "Offensive",
             "description": {
-                "text": "Finishing moves have a 3% chance per combo point spent to increase your chance to critically strike by 6% for 6 sec.",
+                "text": "Finishing moves have a 3% chance per combo point spent to increase your chance to critically strike by 6% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2170,7 +2170,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -2500,7 +2500,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -3699,6 +3699,22 @@
                             "base_seconds": null,
                             "applied": []
                         }
+                    },
+                    {
+                        "spellId": 9739,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Finishing move that empowers your weapons with energy to perform a deadly attack.\r\n\r\nYou leap into the air and Eviscerate your target on the way back down, with such force that it has a 15% stronger effect.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
                     }
                 ],
                 "baseline": [
@@ -3874,22 +3890,6 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9739,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Finishing move that empowers your weapons with energy to perform a deadly attack.\r\n\r\nYou leap into the air and Eviscerate your target on the way back down, with such force that it has a 15% stronger effect.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -4326,8 +4326,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_rogue_ghostpirate.jpg",
-                            "created_at": "2026-07-30T14:03:06.000000Z",
-                            "updated_at": "2026-09-06T04:00:33.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:07:09.000000Z",
                             "effects": [
                                 {
                                     "id": 17542,
@@ -4342,8 +4342,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:06.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },
@@ -4582,22 +4582,6 @@
                             "uncertain": false
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9570,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -4961,6 +4945,22 @@
                         }
                     },
                     {
+                        "spellId": 9570,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 8893,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -5179,7 +5179,9 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
+                "named": [],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 9570,
                         "relationship_type": "modifies",
@@ -5196,11 +5198,9 @@
                             "applied": []
                         }
                     }
-                ],
-                "baseline": [],
-                "potential": []
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": 25,
                 "base_seconds": 25,
@@ -5899,22 +5899,6 @@
                         }
                     },
                     {
-                        "spellId": 9570,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9281,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -6057,22 +6041,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 9581,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Kingsbane supercharges 1 combo (varies):points;. Damaging finishing moves consume a supercharged combo point to function as if they spent 2 additional combo (varies):points;.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ],
                 "baseline": [
@@ -6143,6 +6111,22 @@
                         }
                     },
                     {
+                        "spellId": 9570,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 8893,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -6184,6 +6168,22 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9581,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Kingsbane supercharges 1 combo (varies):points;. Damaging finishing moves consume a supercharged combo point to function as if they spent 2 additional combo (varies):points;.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -6313,7 +6313,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -6780,8 +6780,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "ability_rogue_poisonedknife.jpg",
-                                        "created_at": "2026-07-30T14:03:07.000000Z",
-                                        "updated_at": "2026-09-06T04:00:41.000000Z"
+                                        "created_at": "2026-08-03T12:23:14.000000Z",
+                                        "updated_at": "2026-09-08T00:07:16.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -15,
@@ -7245,7 +7245,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -7618,7 +7618,7 @@
             "drCategory": null
         },
         {
-            "spellId": 25434,
+            "spellId": 13561,
             "category": "Mobility",
             "description": {
                 "text": "Step through the shadows to appear behind your target and gain 70% increased movement speed for 3 sec. If you already know Shadowstep, instead gain 1 additional charge of Shadowstep.",
@@ -7788,22 +7788,6 @@
                         }
                     },
                     {
-                        "spellId": 9570,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9473,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -7813,22 +7797,6 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9584,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Shiv's Energy cost is reduced by -20, its cooldown is reduced by 15 sec, and its range is increased by 3 yds.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -7904,6 +7872,22 @@
                         }
                     },
                     {
+                        "spellId": 9570,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Critical strike chance increased by 1%. Critical strike damage bonus of your attacks that generate combo points increased by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9205,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7966,8 +7950,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_rogue_poisonedknife.jpg",
-                            "created_at": "2026-07-30T14:03:07.000000Z",
-                            "updated_at": "2026-09-06T04:00:41.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:07:16.000000Z",
                             "effects": [
                                 {
                                     "id": 17553,
@@ -7982,8 +7966,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:07.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 },
                                 {
                                     "id": 17554,
@@ -7998,8 +7982,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:07.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 },
                                 {
                                     "id": 17555,
@@ -8014,8 +7998,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:07.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },
@@ -8268,22 +8252,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 9562,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Slice and Dice heals you for up to 1% of your maximum health per (varies) sec.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ],
                 "baseline": [],
@@ -8314,6 +8282,22 @@
                             "uncertain": true
                         },
                         "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9562,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Slice and Dice heals you for up to 1% of your maximum health per (varies) sec.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -8557,8 +8541,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_rogue_sprint.jpg",
-                            "created_at": "2026-07-30T14:03:06.000000Z",
-                            "updated_at": "2026-09-06T04:00:21.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:06:59.000000Z",
                             "effects": [
                                 {
                                     "id": 17510,
@@ -8573,8 +8557,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:06.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },
@@ -8645,6 +8629,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Garrotes applied from stealth or during the Improved Garrote window silence their target for 5 sec. Enemies silenced by Garrote deal -15% reduced damage for 5.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 8856,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Ambush and Mutilate have a 10% chance to make your next Ambush free and usable without Stealth. Chance increased to 20% if the target is under 35% health.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8770,22 +8770,6 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 8856,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Ambush and Mutilate have a 10% chance to make your next Ambush free and usable without Stealth. Chance increased to 20% if the target is under 35% health.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 8898,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -8903,8 +8887,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "ability_rogue_sprint.jpg",
-                                        "created_at": "2026-07-30T14:03:06.000000Z",
-                                        "updated_at": "2026-09-06T04:00:21.000000Z"
+                                        "created_at": "2026-08-03T12:23:14.000000Z",
+                                        "updated_at": "2026-09-08T00:06:59.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -9127,7 +9111,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -9642,7 +9626,7 @@
             "drCategory": null
         },
         {
-            "spellId": 12686,
+            "spellId": 13510,
             "category": "Other",
             "description": {
                 "text": "Envenom's damage is increased by 18%, but its duration is reduced by 2 sec.",
@@ -9665,7 +9649,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -9800,8 +9784,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_vanish.jpg",
-                            "created_at": "2026-07-30T14:03:06.000000Z",
-                            "updated_at": "2026-09-06T04:00:29.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:07:06.000000Z",
                             "effects": [
                                 {
                                     "id": 17537,
@@ -9816,8 +9800,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:06.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },

@@ -3,6 +3,8 @@
 namespace App\Livewire\Guides;
 
 use App\Enums\UserGuideBlockType;
+use App\Enums\UserGuideMemberSide;
+use App\Enums\UserGuidePhaseTarget;
 use App\Enums\UserGuideSectionKind;
 use App\Enums\UserGuideStatus;
 use App\Enums\UserGuideVisibility;
@@ -54,14 +56,52 @@ class Builder extends Component
     /** Which comp slot the "add a member" picker is filling, or null when closed. */
     public ?int $pickingSlot = null;
 
+    /**
+     * Which SIDE that picker is filling — your comp or the enemy team. Held separately from the
+     * slot because slot 0 exists on both sides and is a different slot on each.
+     */
+    public string $pickingSide = 'team';
+
     /** Which section's opponent picker is open, or null when closed. */
     public ?int $pickingOpponentFor = null;
 
     /** Which comp slot's talent tree is open, or null when closed. */
     public ?int $editingTalentsFor = null;
 
+    /** Which side that slot belongs to — both teams have a slot 0. */
+    public string $editingTalentsSide = 'team';
+
     /** Whether the class guide's single-opponent picker is open. */
     public bool $pickingGuideOpponent = false;
+
+    /**
+     * Which section's ability palette is open, or null when none is.
+     *
+     * SERVER-SIDE ON PURPOSE, and it used to be an Alpine-only `x-show`. Building one palette
+     * costs ~270ms and ~50 queries per request (it is memoised per request, but every Livewire
+     * round trip is a fresh request), and the old markup built one for EVERY section and then
+     * hid all but one with CSS. So a three-section guide paid ~810ms and ~150 queries of palette
+     * work on every single interaction — including ones with nothing to do with palettes.
+     * Measured 2026-09-08: renaming the guide, which does no data work at all, cost 1,575ms and
+     * 195 queries. That is the "lag when you do things" report, and it scaled with section count.
+     *
+     * Same fix and same reasoning as the WoW Comps spell modal (2026-09-06), which rendered one
+     * hidden block per spell and dropped 87% of its payload by rendering only the open one.
+     *
+     * The trade is deliberate: opening a palette now costs a round trip instead of being
+     * instant. That request is doing the real work, it happens far less often than typing or
+     * reordering, and it is the one interaction where a brief wait reads as loading rather than
+     * as lag. Searching WITHIN an open palette stays purely client-side — see the blade.
+     */
+    public ?int $openPaletteFor = null;
+
+    /** Open a section's palette, or close it if it is already the open one. */
+    public function togglePalette(int $sectionId): void
+    {
+        $this->openPaletteFor = $this->openPaletteFor === $sectionId
+            ? null
+            : ($this->ownedSection($sectionId) ? $sectionId : null);
+    }
 
     public string $shareEmail = '';
 
@@ -92,6 +132,13 @@ class Builder extends Component
         return $this->guide->members()->with('specialization.gameClass')->get();
     }
 
+    /** The comp being played against, if the author has named one. */
+    #[Computed]
+    public function enemies()
+    {
+        return $this->guide->enemies()->with('specialization.gameClass')->get();
+    }
+
     /**
      * Sections grouped into rows, so the view can render a row's two columns side by side.
      *
@@ -110,7 +157,9 @@ class Builder extends Component
         $svc = app(UserGuideChainService::class);
         $out = [];
 
-        foreach ($this->guide->sections()->get() as $section) {
+        // $this->rows is already loaded with its relations; re-querying sections here meant a
+        // second identical read on every render.
+        foreach ($this->rows->flatten(1) as $section) {
             if (! $section->kind->isSequence()) {
                 continue;
             }
@@ -131,11 +180,53 @@ class Builder extends Component
         return app(UserGuideChainService::class)->health($this->guide, $this->resolved);
     }
 
+    /** @var array<int, \Illuminate\Support\Collection> section id => palette, this request only */
+    private array $paletteMemo = [];
+
+    /**
+     * Memoised because one click asks for the same palette several times over: addSpell()
+     * validates against it, then the re-render asks again for every open section. Measured
+     * 2026-09-08 at 376ms and 87 queries per build, so a 3-section guide paid ~1.5s of duplicate
+     * work per ability added — a large part of the "I click it three times and then three
+     * abilities appear" report.
+     *
+     * NOT a #[Computed]: those key on nothing but the property name, and this takes an argument.
+     * Per-request only, which is the correct lifetime — a palette must reflect a talent change
+     * made moments ago in the same session.
+     */
     public function paletteFor(int $sectionId)
     {
+        if (isset($this->paletteMemo[$sectionId])) {
+            return $this->paletteMemo[$sectionId];
+        }
+
         $section = $this->ownedSection($sectionId);
 
-        return $section ? app(UserGuideChainService::class)->palette($section) : collect();
+        return $this->paletteMemo[$sectionId] = $section
+            ? app(UserGuideChainService::class)->palette($section)
+            : collect();
+    }
+
+    /** The roster row whose talent tree is currently open, on whichever side it belongs to. */
+    #[Computed]
+    public function editingTalentsMember()
+    {
+        if ($this->editingTalentsFor === null) {
+            return null;
+        }
+
+        $rows = $this->editingTalentsSide === UserGuideMemberSide::Enemy->value
+            ? $this->enemies
+            : $this->members;
+
+        return $rows->firstWhere('position', $this->editingTalentsFor);
+    }
+
+    /** The author's own guilds, for the sharing picker. */
+    #[Computed]
+    public function myGuilds()
+    {
+        return auth()->user()->guilds()->get();
     }
 
     #[Computed]
@@ -146,12 +237,19 @@ class Builder extends Component
 
     // ---------------------------------------------------------------- the comp
 
-    public function openMemberPicker(int $slot): void
+    public function openMemberPicker(int $slot, string $side = 'team'): void
     {
-        // Bounded by THIS guide's own cap, not the table's maximum: a class guide has one slot, and
-        // accepting slot 1 or 2 there would let a tampered request build a comp inside it.
-        if ($slot >= 0 && $slot < $this->guide->maxMembers()) {
+        $sideEnum = UserGuideMemberSide::tryFrom($side);
+        if ($sideEnum === null) {
+            return;
+        }
+
+        // Bounded by THIS guide's own cap FOR THIS SIDE, not the table's maximum: a class guide
+        // has one comp slot and no enemy slots at all, and accepting slot 1 or 2 there would let a
+        // tampered request build a comp inside it.
+        if ($slot >= 0 && $slot < $this->guide->maxSlotsFor($sideEnum)) {
             $this->pickingSlot = $slot;
+            $this->pickingSide = $sideEnum->value;
         }
     }
 
@@ -203,16 +301,19 @@ class Builder extends Component
     public function setMember(int $specId): void
     {
         $slot = $this->pickingSlot;
-        if ($slot === null || $slot >= $this->guide->maxMembers() || ! Specialization::whereKey($specId)->exists()) {
+        $side = UserGuideMemberSide::tryFrom($this->pickingSide) ?? UserGuideMemberSide::Team;
+
+        if ($slot === null || $slot >= $this->guide->maxSlotsFor($side) || ! Specialization::whereKey($specId)->exists()) {
             return;
         }
 
         UserGuideMember::updateOrCreate(
-            ['user_guide_id' => $this->guide->id, 'position' => $slot],
+            ['user_guide_id' => $this->guide->id, 'side' => $side->value, 'position' => $slot],
             ['spec_id' => $specId],
         );
 
         $this->pickingSlot = null;
+        $this->pickingSide = UserGuideMemberSide::Team->value;
         $this->refreshGuide();
     }
 
@@ -224,10 +325,24 @@ class Builder extends Component
      * the roster would be a destructive surprise — the same reasoning that keeps unresolvable
      * blocks rather than dropping them.
      */
-    public function removeMember(int $position): void
+    public function removeMember(int $position, string $side = 'team'): void
     {
-        $this->guide->members()->where('position', $position)->delete();
+        $this->rosterQuery($side)->where('position', $position)->delete();
         $this->refreshGuide();
+    }
+
+    /** One side's roster rows, or an always-empty query for a side this guide does not have. */
+    private function rosterQuery(string $side)
+    {
+        $sideEnum = UserGuideMemberSide::tryFrom($side);
+
+        if ($sideEnum === null || $this->guide->maxSlotsFor($sideEnum) === 0) {
+            return $this->guide->members()->whereRaw('1 = 0');
+        }
+
+        return $sideEnum === UserGuideMemberSide::Enemy
+            ? $this->guide->enemies()
+            : $this->guide->members();
     }
 
     /**
@@ -238,9 +353,9 @@ class Builder extends Component
      * an untouched slot keeps resolving through the spec's admin default, which is the honest
      * answer for "the author did not say".
      */
-    public function openTalents(int $slot): void
+    public function openTalents(int $slot, string $side = 'team'): void
     {
-        $member = $this->guide->members()->where('position', $slot)->first();
+        $member = $this->rosterQuery($side)->where('position', $slot)->first();
 
         if (! $member || ! $member->spec_id) {
             return;
@@ -249,6 +364,7 @@ class Builder extends Component
         app(TalentSelectionService::class)->getOrCreateGuideMemberBuild($member);
 
         $this->editingTalentsFor = $slot;
+        $this->editingTalentsSide = $member->side->value;
         $this->refreshGuide();
     }
 
@@ -269,9 +385,9 @@ class Builder extends Component
      * different states, and an empty one would resolve every ability to its untalented numbers
      * instead of the meta default, which is not what "reset" should mean.
      */
-    public function resetTalents(int $slot): void
+    public function resetTalents(int $slot, string $side = 'team'): void
     {
-        $member = $this->guide->members()->where('position', $slot)->first();
+        $member = $this->rosterQuery($side)->where('position', $slot)->first();
         $build = $member?->talentBuild;
 
         if ($build === null) {
@@ -459,6 +575,86 @@ class Builder extends Component
      * would produce confident, wrong numbers. Stored as a reference (a specializations row id,
      * stable reference data and not patch-scoped), never a resolved class or spec name.
      */
+    /**
+     * Start a new phase inside a sequence — "Setup, on their healer", "Go, on the kill target".
+     *
+     * A phase is a DIVIDER, not a container: it is an ordinary block in the same ordered list, and
+     * the spell blocks after it belong to it until the next one. That is what lets a phase be
+     * dragged, renamed and deleted with the machinery the list already has — no nesting, no second
+     * ownership path, and reorder() keeps taking a flat list of block ids.
+     *
+     * It also carries the only thing a flat list could never say: WHO the steps are aimed at. Two
+     * controls on different targets do not diminish each other, so a section's control total is
+     * only readable once the plan says where each part lands.
+     */
+    public function addPhase(int $sectionId): void
+    {
+        $section = $this->ownedSection($sectionId);
+
+        if (! $section || ! $section->kind->isSequence()) {
+            return;
+        }
+
+        UserGuideBlock::create([
+            'user_guide_section_id' => $section->id,
+            'block_type' => UserGuideBlockType::Phase,
+            'position' => ($section->blocks()->max('position') ?? -1) + 1,
+            'payload' => ['name' => 'New phase', 'target' => null, 'target_spec_id' => null],
+        ]);
+
+        $this->refreshGuide();
+    }
+
+    /** Rename a phase. Blank falls back to a placeholder rather than an unlabelled divider. */
+    public function setPhaseName(int $blockId, string $name): void
+    {
+        $block = $this->ownedBlock($blockId);
+
+        if (! $block || $block->block_type !== UserGuideBlockType::Phase) {
+            return;
+        }
+
+        $block->update(['payload' => array_merge($block->payload ?? [], [
+            'name' => mb_substr(trim($name), 0, 60) ?: 'New phase',
+        ])]);
+
+        $this->refreshGuide();
+    }
+
+    /**
+     * Aim a phase at a role ("kill_target"), at a specific enemy spec ("spec:12"), or at nobody.
+     *
+     * One control instead of two, because they answer the same question and offering both invites
+     * a phase that names a role AND a contradicting spec. A spec is only accepted if it is
+     * actually on this guide's enemy team — otherwise a tampered request could point a phase at
+     * an arbitrary specialization row.
+     */
+    public function setPhaseTarget(int $blockId, string $target): void
+    {
+        $block = $this->ownedBlock($blockId);
+
+        if (! $block || $block->block_type !== UserGuideBlockType::Phase) {
+            return;
+        }
+
+        $role = null;
+        $specId = null;
+
+        if (str_starts_with($target, 'spec:')) {
+            $candidate = (int) substr($target, 5);
+            $specId = $this->guide->enemies()->where('spec_id', $candidate)->exists() ? $candidate : null;
+        } else {
+            $role = UserGuidePhaseTarget::tryFrom($target)?->value;
+        }
+
+        $block->update(['payload' => array_merge($block->payload ?? [], [
+            'target' => $role,
+            'target_spec_id' => $specId,
+        ])]);
+
+        $this->refreshGuide();
+    }
+
     public function addSpell(int $sectionId, int $externalSpellId, int $specId): void
     {
         $section = $this->ownedSection($sectionId);
@@ -470,7 +666,7 @@ class Builder extends Component
         // not be able to attach an arbitrary spell id, one belonging to a spec outside the comp,
         // an offensive cooldown to a plain chain, or one of your own abilities to the opponent's
         // defensives.
-        $offered = app(UserGuideChainService::class)->palette($section)
+        $offered = $this->paletteFor($section->id)
             ->filter(fn (array $s) => $s['spec']->id === $specId)
             ->flatMap(fn (array $s) => $s['groups']->flatten(1))
             ->contains(fn ($entry) => (int) $entry['spell']->spell_id === $externalSpellId);
@@ -607,7 +803,34 @@ class Builder extends Component
             return;
         }
 
-        $this->guide->update(['visibility' => $value]);
+        // Guild visibility needs a guild to be visible TO. Rather than refuse the click, adopt
+        // the author's only guild when there is exactly one (the overwhelmingly common case), and
+        // otherwise leave guild_id for setGuild() to fill — the picker appears alongside.
+        if ($value === UserGuideVisibility::Guild && $this->guide->guild_id === null) {
+            $guilds = auth()->user()->guilds()->get();
+
+            if ($guilds->count() === 1) {
+                $this->guide->guild_id = $guilds->first()->id;
+            } elseif ($guilds->isEmpty()) {
+                // Nothing to share with, so this would silently make the guide unreadable by
+                // anyone but its author. Say so instead of accepting it.
+                return;
+            }
+        }
+
+        $this->guide->visibility = $value;
+        $this->guide->save();
+        $this->refreshGuide();
+    }
+
+    /** Point a guild-visible guide at one of YOUR guilds. Never one you are not in. */
+    public function setGuild(int $guildId): void
+    {
+        if (! auth()->user()->guilds()->whereKey($guildId)->exists()) {
+            return;
+        }
+
+        $this->guide->update(['guild_id' => $guildId]);
         $this->refreshGuide();
     }
 
@@ -692,9 +915,27 @@ class Builder extends Component
         }
 
         $this->guide->save();
+
+        // The comp key is denormalised from the roster, so it has to be rebuilt wherever the
+        // roster can have changed. Doing it here rather than at each call site means a future
+        // roster action cannot forget — and it is a no-op when nothing moved.
+        $this->guide->syncCompKey();
+
         $this->guide->refresh();
 
-        unset($this->rows, $this->resolved, $this->members, $this->viewers, $this->health);
+        unset(
+            $this->rows,
+            $this->resolved,
+            $this->members,
+            $this->enemies,
+            $this->editingTalentsMember,
+            $this->viewers,
+            $this->health,
+        );
+
+        // The palette memo is keyed by section and lives for the request, so a roster or talent
+        // change made earlier in THIS request must not be served from it afterwards.
+        $this->paletteMemo = [];
         $this->markSaved();
     }
 

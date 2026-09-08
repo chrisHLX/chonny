@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-07T09:58:08+00:00",
-    "spellCacheVersion": 4155,
+    "generatedAt": "2026-09-08T04:45:36+00:00",
+    "spellCacheVersion": 10,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -809,9 +809,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
+                "named": [
                     {
                         "spellId": 11512,
                         "relationship_type": "modifies",
@@ -828,9 +826,11 @@
                             "applied": []
                         }
                     }
-                ]
+                ],
+                "baseline": [],
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -841,7 +841,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -1078,6 +1078,22 @@
                         }
                     },
                     {
+                        "spellId": 10738,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases Wither damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10745,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -1132,6 +1148,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10712,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Seed of Corruption now embeds demon seeds into 2 additional nearby enemies at 50% effectiveness.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1206,6 +1238,22 @@
                         }
                     },
                     {
+                        "spellId": 10733,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Reduces the cast time of Seed of Corruption by 0 sec and increases its damage by 5%.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10734,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -1228,6 +1276,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Damage dealt by Drain Soul has a 10% chance to make your next Unstable Affliction or Seed of Corruption cost no Soul Shards and cast instantly.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10739,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases damage dealt by Seed of Corruption to its host by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1482,70 +1546,6 @@
                         }
                     },
                     {
-                        "spellId": 10738,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases Corruption damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10712,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Seed of Corruption now embeds demon seeds into 2 additional nearby enemies at 50% effectiveness.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10733,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Reduces the cast time of Seed of Corruption by 0 sec and increases its damage by 5%.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10739,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases damage dealt by Seed of Corruption to its host by 50%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10933,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -1658,7 +1658,7 @@
                         }
                     },
                     {
-                        "spellId": 12713,
+                        "spellId": 13608,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1701,9 +1701,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
+                "named": [
                     {
                         "spellId": 11524,
                         "relationship_type": "modifies",
@@ -1720,9 +1718,11 @@
                             "applied": []
                         }
                     }
-                ]
+                ],
+                "baseline": [],
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": 60,
                 "base_seconds": 60,
@@ -2238,14 +2238,17 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
+                    }
+                ],
+                "baseline": [],
+                "potential": [
                     {
-                        "spellId": 12714,
+                        "spellId": 13608,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
+                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels -10% faster and deals 15% increased damage.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2254,17 +2257,14 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
+                    },
                     {
-                        "spellId": 12713,
+                        "spellId": 13609,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels -10% faster and deals 15% increased damage.",
+                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2562,6 +2562,22 @@
                         }
                     },
                     {
+                        "spellId": 11683,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Conjure a Shadow Rift at the target location lasting 2 sec. Enemy players within the rift when it expires are teleported to your Demonic Circle.\r\n\r\nMust be within 40 yds of your Demonic Circle to cast.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 11685,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -2579,26 +2595,9 @@
                     }
                 ],
                 "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 11683,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Conjure a Shadow Rift at the target location lasting 2 sec. Enemy players within the rift when it expires are teleported to your Demonic Circle.\r\n\r\nMust be within 40 yds of your Demonic Circle to cast.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ]
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -3473,7 +3472,7 @@
                         }
                     },
                     {
-                        "spellId": 12713,
+                        "spellId": 13608,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3694,22 +3693,6 @@
                         }
                     },
                     {
-                        "spellId": 10741,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp $@spelldesc1261153",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 11333,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -3732,38 +3715,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Damage dealt by Drain Soul has a 10% chance to make your next Unstable Affliction or Seed of Corruption cost no Soul Shards and cast instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11470,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp $@spelldesc1261153",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12714,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3826,12 +3777,60 @@
                         }
                     },
                     {
+                        "spellId": 10741,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp $@spelldesc1261153",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10933,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
                             "text": "Shadow Bolt damage increases the duration of your Corruption and Agony on the target by 2 sec. Drain Life and Drain Soul damage increases the duration of your Corruption and Agony on the target by 1 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 11470,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp $@spelldesc1261153",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 13609,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4034,7 +4033,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4134,8 +4133,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_shadowfury.jpg",
-                                        "created_at": "2026-07-30T14:03:43.000000Z",
-                                        "updated_at": "2026-09-06T04:00:42.000000Z"
+                                        "created_at": "2026-08-03T12:23:32.000000Z",
+                                        "updated_at": "2026-09-08T00:07:17.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -5,
@@ -4415,8 +4414,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_impphaseshift.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:30.000000Z",
+                            "created_at": "2026-08-03T12:23:32.000000Z",
+                            "updated_at": "2026-09-08T00:07:06.000000Z",
                             "effects": [
                                 {
                                     "id": 20937,
@@ -4431,8 +4430,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -4481,8 +4480,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_demonhunter_infernalchains.jpg",
-                            "created_at": "2026-07-30T14:03:45.000000Z",
-                            "updated_at": "2026-09-06T04:00:35.000000Z",
+                            "created_at": "2026-08-03T12:23:33.000000Z",
+                            "updated_at": "2026-09-08T00:07:11.000000Z",
                             "effects": [
                                 {
                                     "id": 21255,
@@ -4497,8 +4496,8 @@
                                     "pvp_coefficient": 0.33333,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:45.000000Z",
-                                    "updated_at": "2026-09-07T01:29:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:33.000000Z",
+                                    "updated_at": "2026-09-08T00:09:32.000000Z"
                                 }
                             ]
                         },
@@ -4604,7 +4603,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5082,22 +5081,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 12714,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ],
                 "baseline": [
@@ -5198,6 +5181,22 @@
                             "base_seconds": null,
                             "applied": []
                         }
+                    },
+                    {
+                        "spellId": 13609,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
                     }
                 ]
             },
@@ -5223,7 +5222,7 @@
             "drCategory": null
         },
         {
-            "spellId": 12713,
+            "spellId": 13608,
             "category": "Other",
             "description": {
                 "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels -10% faster and deals 15% increased damage.",
@@ -5357,8 +5356,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_shadowfury.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:42.000000Z",
+                            "created_at": "2026-08-03T12:23:32.000000Z",
+                            "updated_at": "2026-09-08T00:07:17.000000Z",
                             "effects": [
                                 {
                                     "id": 20969,
@@ -5373,8 +5372,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20970,
@@ -5389,8 +5388,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20971,
@@ -5405,8 +5404,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20972,
@@ -5421,8 +5420,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -5505,7 +5504,7 @@
             "drCategory": null
         },
         {
-            "spellId": 12714,
+            "spellId": 13609,
             "category": "Other",
             "description": {
                 "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
@@ -5528,7 +5527,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5866,7 +5865,10 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
+                    }
+                ],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 11419,
                         "relationship_type": "mentions",
@@ -5900,7 +5902,7 @@
                         }
                     },
                     {
-                        "spellId": 12714,
+                        "spellId": 13609,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5915,11 +5917,9 @@
                             "applied": []
                         }
                     }
-                ],
-                "baseline": [],
-                "potential": []
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -5930,7 +5930,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -6274,7 +6274,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -6297,6 +6297,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Critical strikes from your Agony, Wither, and Unstable Affliction have a chance to grant Nightfall.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10738,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases Wither damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6420,26 +6436,9 @@
                     }
                 ],
                 "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 10738,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases Corruption damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ]
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -6520,7 +6519,7 @@
             "spellId": 10738,
             "category": "Other",
             "description": {
-                "text": "Increases Corruption damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
+                "text": "Increases Wither damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6540,7 +6539,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -6750,7 +6749,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -7023,6 +7022,22 @@
                         }
                     },
                     {
+                        "spellId": 10733,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Reduces the cast time of Seed of Corruption by 0 sec and increases its damage by 5%.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 11417,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -7045,6 +7060,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Damage dealt by Drain Soul has a 10% chance to make your next Unstable Affliction or Seed of Corruption cost no Soul Shards and cast instantly.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10712,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Seed of Corruption now embeds demon seeds into 2 additional nearby enemies at 50% effectiveness.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7117,6 +7148,38 @@
                             "base_seconds": null,
                             "applied": []
                         }
+                    },
+                    {
+                        "spellId": 10738,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases Wither damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10739,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases damage dealt by Seed of Corruption to its host by 50%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
                     }
                 ],
                 "baseline": [
@@ -7171,76 +7234,12 @@
                         }
                     },
                     {
-                        "spellId": 10733,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Reduces the cast time of Seed of Corruption by 0 sec and increases its damage by 5%.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 11661,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
                             "text": "Increases the damage of Unstable Affliction by 8% and Seed of Corruption by 4%. This effect is doubled while Malevolence is active.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10712,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Seed of Corruption now embeds demon seeds into 2 additional nearby enemies at 50% effectiveness.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10738,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases Corruption damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10739,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases damage dealt by Seed of Corruption to its host by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7293,7 +7292,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -7413,7 +7412,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -7494,8 +7493,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_shadowfury.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:42.000000Z",
+                            "created_at": "2026-08-03T12:23:32.000000Z",
+                            "updated_at": "2026-09-08T00:07:17.000000Z",
                             "effects": [
                                 {
                                     "id": 20969,
@@ -7510,8 +7509,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20970,
@@ -7526,8 +7525,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20971,
@@ -7542,8 +7541,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20972,
@@ -7558,8 +7557,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -7778,7 +7777,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 12713,
+                        "spellId": 13608,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8121,7 +8120,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -8277,7 +8276,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8382,24 +8381,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
-                    {
-                        "spellId": 10746,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases the duration of Summon Darkglare by 5 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ],
+                "named": [],
                 "baseline": [],
                 "potential": [
                     {
@@ -8412,6 +8394,22 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10746,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases the duration of Summon Darkglare by 5 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -8501,8 +8499,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_impphaseshift.jpg",
-                                        "created_at": "2026-07-30T14:03:43.000000Z",
-                                        "updated_at": "2026-09-06T04:00:30.000000Z"
+                                        "created_at": "2026-08-03T12:23:32.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -8549,8 +8547,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "ability_demonhunter_infernalchains.jpg",
-                                        "created_at": "2026-07-30T14:03:45.000000Z",
-                                        "updated_at": "2026-09-06T04:00:35.000000Z"
+                                        "created_at": "2026-08-03T12:23:33.000000Z",
+                                        "updated_at": "2026-09-08T00:07:11.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -90,
@@ -8645,8 +8643,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_impphaseshift.jpg",
-                                        "created_at": "2026-07-30T14:03:43.000000Z",
-                                        "updated_at": "2026-09-06T04:00:30.000000Z"
+                                        "created_at": "2026-08-03T12:23:32.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -8693,8 +8691,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "ability_demonhunter_infernalchains.jpg",
-                                        "created_at": "2026-07-30T14:03:45.000000Z",
-                                        "updated_at": "2026-09-06T04:00:35.000000Z"
+                                        "created_at": "2026-08-03T12:23:33.000000Z",
+                                        "updated_at": "2026-09-08T00:07:11.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -90,
@@ -8779,7 +8777,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -9724,6 +9722,22 @@
                         }
                     },
                     {
+                        "spellId": 10738,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases Wither damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10745,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -10089,22 +10103,6 @@
                             "uncertain": false
                         },
                         "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10738,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases Corruption damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,

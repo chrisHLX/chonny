@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-07T09:58:51+00:00",
-    "spellCacheVersion": 4155,
+    "generatedAt": "2026-09-08T04:46:54+00:00",
+    "spellCacheVersion": 10,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -951,7 +951,7 @@
             "drCategory": null
         },
         {
-            "spellId": 12741,
+            "spellId": 13550,
             "category": "Other",
             "description": {
                 "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
@@ -1183,6 +1183,22 @@
                         }
                     },
                     {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 12410,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -1315,22 +1331,6 @@
                         }
                     },
                     {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12245,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -1340,22 +1340,6 @@
                             "uncertain": true
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -1685,6 +1669,22 @@
                             "uncertain": true
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -2032,22 +2032,6 @@
                         }
                     },
                     {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12245,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -2057,22 +2041,6 @@
                             "uncertain": true
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -2363,7 +2331,7 @@
             "drCategory": null
         },
         {
-            "spellId": 12743,
+            "spellId": 13552,
             "category": "Other",
             "description": {
                 "text": "Whirlwind deals 50% additional damage when it hits only a single target.",
@@ -2536,9 +2504,9 @@
                     },
                     {
                         "spellId": 12347,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": 1,
-                        "modifier_unit": "charges",
+                        "relationship_type": "modifies_cooldown",
+                        "modifier_value": -3,
+                        "modifier_unit": "seconds",
                         "description": {
                             "text": "Charge gains 1 additional charge and its cooldown is reduced by 3 sec.",
                             "uncertain": false
@@ -2552,9 +2520,9 @@
                     },
                     {
                         "spellId": 12347,
-                        "relationship_type": "modifies_cooldown",
-                        "modifier_value": -3,
-                        "modifier_unit": "seconds",
+                        "relationship_type": "modifies_charges",
+                        "modifier_value": 1,
+                        "modifier_unit": "charges",
                         "description": {
                             "text": "Charge gains 1 additional charge and its cooldown is reduced by 3 sec.",
                             "uncertain": false
@@ -2647,7 +2615,23 @@
                         }
                     },
                     {
-                        "spellId": 12728,
+                        "spellId": 12519,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Intervene now has 2 charges and reduces the ally's damage taken by 20% for 5 sec.\r\n\r\nIntervene's cooldown is increased by 10 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 13537,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2873,22 +2857,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 12519,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Intervene now has 2 charges and reduces the ally's damage taken by 20% for 5 sec.\r\n\r\nIntervene's cooldown is increased by 10 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ]
             },
@@ -2937,8 +2905,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "inv_misc_horn_04.jpg",
-                            "created_at": "2026-07-30T14:03:58.000000Z",
-                            "updated_at": "2026-09-06T04:00:15.000000Z",
+                            "created_at": "2026-08-03T12:23:40.000000Z",
+                            "updated_at": "2026-09-08T00:06:55.000000Z",
                             "effects": [
                                 {
                                     "id": 22427,
@@ -2953,8 +2921,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:58.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:08.000000Z"
                                 },
                                 {
                                     "id": 22428,
@@ -2969,8 +2937,8 @@
                                     "pvp_coefficient": 0.8,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:58.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:08.000000Z"
                                 }
                             ]
                         },
@@ -3025,8 +2993,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "inv_misc_horn_04.jpg",
-                            "created_at": "2026-07-30T14:03:58.000000Z",
-                            "updated_at": "2026-09-06T04:00:15.000000Z",
+                            "created_at": "2026-08-03T12:23:40.000000Z",
+                            "updated_at": "2026-09-08T00:06:55.000000Z",
                             "effects": [
                                 {
                                     "id": 22427,
@@ -3041,8 +3009,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:58.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:08.000000Z"
                                 },
                                 {
                                     "id": 22428,
@@ -3057,8 +3025,8 @@
                                     "pvp_coefficient": 0.8,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:58.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:08.000000Z"
                                 }
                             ]
                         },
@@ -3383,22 +3351,6 @@
                     },
                     {
                         "spellId": 11818,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11818,
                         "relationship_type": "hasted_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3531,8 +3483,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "warrior_wild_strike.jpg",
-                            "created_at": "2026-07-30T14:04:00.000000Z",
-                            "updated_at": "2026-09-06T04:00:29.000000Z",
+                            "created_at": "2026-08-03T12:23:41.000000Z",
+                            "updated_at": "2026-09-08T00:07:06.000000Z",
                             "effects": [
                                 {
                                     "id": 22589,
@@ -3547,8 +3499,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:04:00.000000Z",
-                                    "updated_at": "2026-09-02T11:58:25.000000Z"
+                                    "created_at": "2026-08-03T12:23:41.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 }
                             ]
                         },
@@ -4969,6 +4921,22 @@
                             "base_seconds": null,
                             "applied": []
                         }
+                    },
+                    {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
                     }
                 ],
                 "baseline": [
@@ -5085,38 +5053,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ]
             },
@@ -5147,22 +5083,6 @@
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
-                    {
-                        "spellId": 12350,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Reduces the cooldown of Heroic Leap by 15 sec and Heroic Leap also increases your movement speed by 70% for 3.",
-                            "uncertain": false
-                        },
-                        "category": "Mobility",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
                     {
                         "spellId": 12350,
                         "relationship_type": "modifies_cooldown",
@@ -5261,8 +5181,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_heroicleap.jpg",
-                            "created_at": "2026-07-30T14:03:58.000000Z",
-                            "updated_at": "2026-09-06T04:00:18.000000Z",
+                            "created_at": "2026-08-03T12:23:40.000000Z",
+                            "updated_at": "2026-09-08T00:06:57.000000Z",
                             "effects": [
                                 {
                                     "id": 22434,
@@ -5277,8 +5197,8 @@
                                     "pvp_coefficient": 0.7,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:58.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:08.000000Z"
                                 },
                                 {
                                     "id": 22435,
@@ -5293,8 +5213,8 @@
                                     "pvp_coefficient": 0.7,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:58.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:08.000000Z"
                                 }
                             ]
                         },
@@ -5439,6 +5359,22 @@
                         }
                     },
                     {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 11856,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -5562,38 +5498,6 @@
                         "description": {
                             "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
                             "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5904,6 +5808,57 @@
                         }
                     },
                     {
+                        "spellId": 12388,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Unleash a series of 4 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within (varies) yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12446,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Stormstrike or Nature damage your abilities deal is increased by 5%. Stormstrike damage ignores Armor. Thunder Clap damage increased by 10%, no longer costs Rage, and now generates 8 Rage. Improved Whirlwind, Meat Cleaver, Storm of Blood, and Barbaric Training affect Thunder Clap in addition to Whirlwind.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
+                "baseline": [],
+                "potential": [
+                    {
+                        "spellId": 12211,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "When (varies by condition — check in-game) 3 or more targets(varies by condition — check in-game) you have a (varies by condition — check in-game)% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 12301,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -5968,22 +5923,6 @@
                         }
                     },
                     {
-                        "spellId": 12388,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Unleash a series of 4 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within (varies) yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12414,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -6000,63 +5939,28 @@
                         }
                     },
                     {
-                        "spellId": 12446,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Stormstrike or Nature damage your abilities deal is increased by 5%. Stormstrike damage ignores Armor. Thunder Clap damage increased by 10%, no longer costs Rage, and now generates 8 Rage. Improved Whirlwind, Meat Cleaver, Storm of Blood, and Barbaric Training affect Thunder Clap in addition to Whirlwind.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12736,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Unleash a series of 5 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within (varies) yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 12211,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "When (varies by condition — check in-game) 3 or more targets(varies by condition — check in-game) you have a (varies by condition — check in-game)% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12464,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
                             "text": "When (varies by condition — check in-game) 3 or more targets(varies by condition — check in-game) you have a (varies by condition — check in-game)% chance to unleash a flurry of steel, striking all nearby enemies for 8 Physical damage and applying Overwhelmed. Deals reduced damage beyond 8 targets.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 13545,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Unleash a series of 5 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within (varies) yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6095,22 +5999,6 @@
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
-                    {
-                        "spellId": 12373,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
-                            "uncertain": true
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
                     {
                         "spellId": 12373,
                         "relationship_type": "modifies_cooldown",
@@ -6176,22 +6064,6 @@
                 "named": [
                     {
                         "spellId": 12373,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
-                            "uncertain": true
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12373,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6221,10 +6093,7 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
+                    },
                     {
                         "spellId": 12519,
                         "relationship_type": "mentions",
@@ -6241,9 +6110,11 @@
                             "applied": []
                         }
                     }
-                ]
+                ],
+                "baseline": [],
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": 30,
                 "base_seconds": 30,
@@ -6368,8 +6239,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_warrior_commandingshout.jpg",
-                            "created_at": "2026-07-30T14:03:59.000000Z",
-                            "updated_at": "2026-09-06T04:00:33.000000Z",
+                            "created_at": "2026-08-03T12:23:40.000000Z",
+                            "updated_at": "2026-09-08T00:07:09.000000Z",
                             "effects": [
                                 {
                                     "id": 22518,
@@ -6384,8 +6255,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22519,
@@ -6400,8 +6271,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22520,
@@ -6416,8 +6287,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22521,
@@ -6432,8 +6303,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22522,
@@ -6448,8 +6319,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22523,
@@ -6464,8 +6335,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-08-07T17:36:59.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-08-03T12:23:40.000000Z"
                                 }
                             ]
                         },
@@ -6931,6 +6802,22 @@
                         }
                     },
                     {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 12525,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7038,38 +6925,6 @@
                         "description": {
                             "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
                             "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7834,7 +7689,7 @@
                         }
                     },
                     {
-                        "spellId": 12728,
+                        "spellId": 13537,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7854,22 +7709,6 @@
                     {
                         "spellId": 11815,
                         "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11818,
-                        "relationship_type": "modifies_charges",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
@@ -8033,8 +7872,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "warrior_wild_strike.jpg",
-                            "created_at": "2026-07-30T14:04:00.000000Z",
-                            "updated_at": "2026-09-06T04:00:29.000000Z",
+                            "created_at": "2026-08-03T12:23:41.000000Z",
+                            "updated_at": "2026-09-08T00:07:06.000000Z",
                             "effects": [
                                 {
                                     "id": 22589,
@@ -8049,8 +7888,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:04:00.000000Z",
-                                    "updated_at": "2026-09-02T11:58:25.000000Z"
+                                    "created_at": "2026-08-03T12:23:41.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 }
                             ]
                         },
@@ -8563,22 +8402,6 @@
                         }
                     },
                     {
-                        "spellId": 12414,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "While Improved Whirlwind is active, Rampage's final strike slams the ground, dealing 5 Physical damage to all enemies within (varies) yds of your target. Deals reduced damage beyond 5 targets",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12417,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -8604,22 +8427,6 @@
                             "uncertain": false
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12736,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Unleash a series of 5 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within (varies) yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -8727,6 +8534,22 @@
                         }
                     },
                     {
+                        "spellId": 12414,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "While Improved Whirlwind is active, Rampage's final strike slams the ground, dealing 5 Physical damage to all enemies within (varies) yds of your target. Deals reduced damage beyond 5 targets",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 12419,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -8768,6 +8591,22 @@
                             "uncertain": true
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 13545,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Unleash a series of 5 brutal strikes for a total of 22.4 Physical damage. While Improved Whirlwind is active, Rampage's final strike deals 5 Physical damage to all enemies within (varies) yds of your target. Deals reduced damage beyond 5 targets. Enrages you.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -8847,7 +8686,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -9292,15 +9131,15 @@
                         }
                     },
                     {
-                        "spellId": 12742,
-                        "relationship_type": "mentions",
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
                             "uncertain": true
                         },
-                        "category": "Other",
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -9408,31 +9247,15 @@
                         }
                     },
                     {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
+                        "spellId": 13550,
+                        "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
                             "uncertain": true
                         },
-                        "category": "Offensive",
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -9440,12 +9263,12 @@
                         }
                     },
                     {
-                        "spellId": 12741,
+                        "spellId": 13551,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9468,7 +9291,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -9558,7 +9381,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -9716,6 +9539,22 @@
                         }
                     },
                     {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 12325,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -9864,38 +9703,6 @@
                         }
                     },
                     {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12518,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -10007,6 +9814,22 @@
                             "base_seconds": null,
                             "applied": []
                         }
+                    },
+                    {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
                     }
                 ],
                 "baseline": [
@@ -10100,38 +9923,6 @@
                         "description": {
                             "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
                             "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10321,22 +10112,6 @@
                 "named": [
                     {
                         "spellId": 12373,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
-                            "uncertain": true
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12373,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -10370,22 +10145,6 @@
                 ],
                 "baseline": [],
                 "potential": [
-                    {
-                        "spellId": 11886,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Spell Reflection reflects the next 2 incoming spells cast on you and reflected spells deal 100% extra damage to the attacker. Spell Reflection's cooldown is increased by 10 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
                     {
                         "spellId": 11886,
                         "relationship_type": "modifies_cooldown",
@@ -10638,6 +10397,22 @@
                         }
                     },
                     {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 12320,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -10754,22 +10529,6 @@
                         }
                     },
                     {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12444,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": 10,
@@ -10798,22 +10557,6 @@
                         "cooldown": {
                             "seconds": 90,
                             "base_seconds": 90,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -10883,7 +10626,7 @@
             "drCategory": null
         },
         {
-            "spellId": 12742,
+            "spellId": 13551,
             "category": "Other",
             "description": {
                 "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
@@ -10923,7 +10666,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -11313,6 +11056,22 @@
                         }
                     },
                     {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 12197,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -11493,22 +11252,6 @@
                         }
                     },
                     {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12193,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -11521,22 +11264,6 @@
                         "cooldown": {
                             "seconds": 6,
                             "base_seconds": 6,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -11682,6 +11409,22 @@
                         }
                     },
                     {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 12384,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -11769,22 +11512,6 @@
                         "description": {
                             "text": "Casting Avatar grants you 2 charges of Thunder Blast and resets the cooldown of Thunder Clap. While Avatar is not active, Lightning Strikes have a 10% chance to grant you Avatar for 4 secs. Thunder Blast Your next Thunder Clap becomes a Thunder Blast that deals Stormstrike damage.",
                             "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12742,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
-                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11894,22 +11621,6 @@
                         }
                     },
                     {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12193,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -11926,15 +11637,15 @@
                         }
                     },
                     {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
+                        "spellId": 13550,
+                        "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
                             "uncertain": true
                         },
-                        "category": "Offensive",
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -11942,12 +11653,12 @@
                         }
                     },
                     {
-                        "spellId": 12741,
+                        "spellId": 13551,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12351,6 +12062,22 @@
                         }
                     },
                     {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 12325,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -12490,38 +12217,6 @@
                         "description": {
                             "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
                             "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12370,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 3,
-                            "base_seconds": 3,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {

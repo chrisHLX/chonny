@@ -63,6 +63,18 @@ enum UserGuideType: string
         return $this === self::ClassGuide;
     }
 
+    /**
+     * How many ENEMY slots this guide offers.
+     *
+     * A comp guide is a matchup between two teams, so it gets a full opposing comp. A class guide
+     * already names its single opponent on the guide itself ("Rogue vs Disc") and would only be
+     * made more confusing by a second way to say the same thing.
+     */
+    public function maxEnemies(): int
+    {
+        return $this === self::Comp ? 3 : 0;
+    }
+
     /** Whether this guide names a single opponent for the whole guide ("Rogue vs Disc"). */
     public function hasGuideOpponent(): bool
     {

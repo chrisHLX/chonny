@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-07T09:59:07+00:00",
-    "spellCacheVersion": 4155,
+    "generatedAt": "2026-09-08T04:47:26+00:00",
+    "spellCacheVersion": 10,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -80,6 +80,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Adrenaline Rush magnifies your precision and power, increasing the damage your combo point generating abilities and finishers deal by 20%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9486,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -259,22 +275,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Adrenaline Rush's duration is increased by 4 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9486,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -487,7 +487,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -520,6 +520,22 @@
                         }
                     },
                     {
+                        "spellId": 9005,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Damage increased by 5%. Blade Flurry deals 10% additional damage to nearby enemies.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9550,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -529,6 +545,22 @@
                             "uncertain": false
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9649,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Critical strikes with Between the Eyes deal 2.5 times normal damage.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -600,22 +632,6 @@
                         }
                     },
                     {
-                        "spellId": 9675,
-                        "relationship_type": "modifies_cooldown",
-                        "modifier_value": -8,
-                        "modifier_unit": "seconds",
-                        "description": {
-                            "text": "The cooldown of Between the Eyes is reduced by 8 sec. Between the Eyes increases your damage dealt by an additional 1%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9483,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -654,6 +670,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Your finishing moves deal 10% increased damage.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9486,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -844,44 +876,12 @@
                 ],
                 "potential": [
                     {
-                        "spellId": 9005,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
+                        "spellId": 9675,
+                        "relationship_type": "modifies_cooldown",
+                        "modifier_value": -8,
+                        "modifier_unit": "seconds",
                         "description": {
-                            "text": "Damage increased by 5%. Blade Flurry deals 10% additional damage to nearby enemies.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9649,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Critical strikes with Between the Eyes deal 2.5 times normal damage.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9486,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
+                            "text": "The cooldown of Between the Eyes is reduced by 8 sec. Between the Eyes increases your damage dealt by an additional 1%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -959,108 +959,9 @@
             },
             "hasPotentialImprovement": true,
             "cooldown": {
-                "seconds": 37,
+                "seconds": 45,
                 "base_seconds": 45,
-                "applied": [
-                    {
-                        "spell": {
-                            "id": 9675,
-                            "patch_id": 1,
-                            "spell_id": 1259480,
-                            "name": "Fast Action",
-                            "school": "Physical",
-                            "description": "The cooldown of Between the Eyes is reduced by ${-$s1/1000} sec. Between the Eyes increases your damage dealt by an additional $s2%.",
-                            "variables": null,
-                            "charges": null,
-                            "cooldown_seconds": null,
-                            "cooldown_scaling_note": null,
-                            "duration_seconds": null,
-                            "pvp_duration_seconds": null,
-                            "pairs_with_category": null,
-                            "requires_stealth": false,
-                            "requires_target_out_of_combat": false,
-                            "not_in_spellbook": true,
-                            "mechanic": null,
-                            "usable_while_cc": null,
-                            "bypasses_active_defense": false,
-                            "silence_immune_by_school": false,
-                            "cc_immunity_note": null,
-                            "grants_cc_immunity_override": null,
-                            "cc_immunity_gating_spell_id": null,
-                            "grants_cc_immunity": [],
-                            "grants_school_immunity": null,
-                            "spell_type": "None",
-                            "range_yards": null,
-                            "dr_category": null,
-                            "conditional_dr_gating_spell_id": null,
-                            "conditional_dr_category": null,
-                            "category": "Other",
-                            "cast_type": "instant",
-                            "chain_target": null,
-                            "is_peel": false,
-                            "is_interrupt": false,
-                            "is_mobility": false,
-                            "is_passive": true,
-                            "icon_name": "inv_musket_02.jpg",
-                            "created_at": "2026-07-30T14:03:09.000000Z",
-                            "updated_at": "2026-09-06T04:00:40.000000Z",
-                            "effects": [
-                                {
-                                    "id": 17719,
-                                    "spell_id": 9675,
-                                    "effect_index": 1,
-                                    "type": "Add Flat Modifier (107): Spell Cooldown",
-                                    "base_value": -8000,
-                                    "scaled_value": -8000,
-                                    "misc_value": 11,
-                                    "affected_schools": null,
-                                    "sp_coefficient": null,
-                                    "pvp_coefficient": null,
-                                    "rank_op": null,
-                                    "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:09.000000Z",
-                                    "updated_at": "2026-09-02T11:58:09.000000Z"
-                                },
-                                {
-                                    "id": 23202,
-                                    "spell_id": 9675,
-                                    "effect_index": 2,
-                                    "type": "Add Flat Modifier (107): Spell Effect 2",
-                                    "base_value": 1,
-                                    "scaled_value": 1,
-                                    "misc_value": 12,
-                                    "affected_schools": null,
-                                    "sp_coefficient": null,
-                                    "pvp_coefficient": null,
-                                    "rank_op": null,
-                                    "rank_values": null,
-                                    "created_at": "2026-08-12T21:09:52.000000Z",
-                                    "updated_at": "2026-09-02T11:58:09.000000Z"
-                                },
-                                {
-                                    "id": 23203,
-                                    "spell_id": 9675,
-                                    "effect_index": 3,
-                                    "type": "Add Flat Modifier (107): Spell Effect 3",
-                                    "base_value": 1,
-                                    "scaled_value": 1,
-                                    "misc_value": 23,
-                                    "affected_schools": null,
-                                    "sp_coefficient": null,
-                                    "pvp_coefficient": null,
-                                    "rank_op": null,
-                                    "rank_values": null,
-                                    "created_at": "2026-08-12T21:09:52.000000Z",
-                                    "updated_at": "2026-09-02T11:58:09.000000Z"
-                                }
-                            ]
-                        },
-                        "relationship_type": "modifies_cooldown",
-                        "modifier_value": -8,
-                        "modifier_unit": "seconds",
-                        "selection_spell_id": 9675
-                    }
-                ]
+                "applied": []
             },
             "charges": {
                 "charges": null,
@@ -1130,6 +1031,86 @@
                         "cooldown": {
                             "seconds": 180,
                             "base_seconds": 180,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9654,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Blade Flurry strikes 3 additional enemies and its duration is increased by 3 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9662,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Blade Flurry's initial damage is increased by 100% and generates 1 (varies) point:combo points; per target struck, but its Energy cost is increased by 30.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9674,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Blade Flurry causes your attacks to hit nearby enemies for an additional 8% of their normal damage.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9486,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9005,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Damage increased by 5%. Blade Flurry deals 10% additional damage to nearby enemies.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -1249,38 +1230,6 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 9654,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Blade Flurry strikes 3 additional enemies and its duration is increased by 3 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9662,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Blade Flurry's initial damage is increased by 100% and generates 1 (varies) point:combo points; per target struck, but its Energy cost is increased by 30.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9620,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -1288,38 +1237,6 @@
                         "description": {
                             "text": "(varies by condition — check in-game) causes an additional (varies by condition — check in-game) damage dealt to be dealt to affected enemies.",
                             "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9674,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Blade Flurry causes your attacks to hit nearby enemies for an additional 8% of their normal damage.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9486,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
-                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1338,22 +1255,6 @@
                             "uncertain": false
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9005,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Damage increased by 5%. Blade Flurry deals 10% additional damage to nearby enemies.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -1426,6 +1327,22 @@
                         }
                     },
                     {
+                        "spellId": 9486,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9685,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -1444,22 +1361,6 @@
                 ],
                 "baseline": [],
                 "potential": [
-                    {
-                        "spellId": 9486,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
                     {
                         "spellId": 8957,
                         "relationship_type": "mentions",
@@ -1542,22 +1443,6 @@
                         }
                     },
                     {
-                        "spellId": 9265,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Exploits the vulnerability of foes with less than (varies)% health, dealing 430,023 Physical damage to the target. Mutilate has a (varies)% chance to make your next Blindside free and usable on any target, regardless of their health. Awards (varies) combo (varies):points;.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9282,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -1616,6 +1501,22 @@
                         "description": {
                             "text": "Blind has -50% reduced cooldown, -70% reduced duration, and applies to all nearby enemies.",
                             "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9265,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Exploits the vulnerability of foes with less than (varies)% health, dealing 430,023 Physical damage to the target. Mutilate has a (varies)% chance to make your next Blindside free and usable on any target, regardless of their health. Awards (varies) combo (varies):points;.",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1989,7 +1890,7 @@
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
-                974
+                97
             ],
             "modifiers": {
                 "named": [],
@@ -2400,6 +2301,38 @@
                             "base_seconds": null,
                             "applied": []
                         }
+                    },
+                    {
+                        "spellId": 9536,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "When you deal the killing blow to a target that yields experience or honor, the cooldown of Crimson Vial is reduced by 15 sec and your next use heals 5% of your health instantly.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9588,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "When you deal the killing blow to a target that yields experience or honor, the cooldown of Crimson Vial is reduced by 15 sec and your next use heals 5% of your health instantly.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
                     }
                 ],
                 "baseline": [],
@@ -2421,22 +2354,6 @@
                         }
                     },
                     {
-                        "spellId": 9536,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "When you deal the killing blow to a target that yields experience or honor, the cooldown of Crimson Vial is reduced by 15 sec and your next use heals 5% of your health instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9537,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -2449,22 +2366,6 @@
                         "cooldown": {
                             "seconds": 30,
                             "base_seconds": 30,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9588,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "When you deal the killing blow to a target that yields experience or honor, the cooldown of Crimson Vial is reduced by 15 sec and your next use heals 5% of your health instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
                             "applied": []
                         }
                     }
@@ -2545,7 +2446,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -2665,7 +2566,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -2862,7 +2763,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -3429,7 +3330,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -3686,8 +3587,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_rogue_ghostpirate.jpg",
-                            "created_at": "2026-07-30T14:03:06.000000Z",
-                            "updated_at": "2026-09-06T04:00:33.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:07:09.000000Z",
                             "effects": [
                                 {
                                     "id": 17542,
@@ -3702,8 +3603,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:06.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },
@@ -4149,7 +4050,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4180,17 +4081,14 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
+                    },
                     {
-                        "spellId": 9652,
-                        "relationship_type": "modifies_charges",
+                        "spellId": 9486,
+                        "relationship_type": "modifies_charge_rate",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Grappling Hook by 15 sec.",
+                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4199,7 +4097,10 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
+                    }
+                ],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 9652,
                         "relationship_type": "modifies_cooldown",
@@ -4207,22 +4108,6 @@
                         "modifier_unit": "seconds",
                         "description": {
                             "text": "Reduces the cooldown of Grappling Hook by 15 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9613,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Grappling Hook may be used a second time within 3 with no cooldown, but its total cooldown is increased by 5 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4271,38 +4156,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Grappling Hook may be used a second time within 3 with no cooldown, but its total cooldown is increased by 5 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9486,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9486,
-                        "relationship_type": "modifies_charge_rate",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4428,8 +4281,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "inv_ragnaros_heart_shadowflame.jpg",
-                            "created_at": "2026-07-30T14:03:06.000000Z",
-                            "updated_at": "2026-09-06T04:00:31.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:07:08.000000Z",
                             "effects": [
                                 {
                                     "id": 17539,
@@ -4444,8 +4297,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:06.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 },
                                 {
                                     "id": 17540,
@@ -4460,8 +4313,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:06.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },
@@ -4622,7 +4475,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4772,7 +4625,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4939,10 +4792,7 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
+                    },
                     {
                         "spellId": 9486,
                         "relationship_type": "modifies",
@@ -4958,7 +4808,10 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
+                    }
+                ],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 8957,
                         "relationship_type": "mentions",
@@ -5243,6 +5096,22 @@
                         }
                     },
                     {
+                        "spellId": 9486,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9586,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -5309,22 +5178,6 @@
                 ],
                 "baseline": [],
                 "potential": [
-                    {
-                        "spellId": 9486,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
                     {
                         "spellId": 8957,
                         "relationship_type": "mentions",
@@ -5768,25 +5621,6 @@
                         }
                     },
                     {
-                        "spellId": 9543,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Attack with your poisoned blades, dealing (varies) Physical damage, dispelling all enrage effects and applying a concentrated form of your Crippling Poison, reducing movement speed by -70% for 5. Your Nature and Bleed damage done to the target is increased by 30% for 8. The target's healing received is reduced by (varies)% for 8. Awards 1 combo (varies):points;.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 30,
-                            "base_seconds": 30,
-                            "applied": []
-                        }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
-                    {
                         "spellId": 9565,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -5801,7 +5635,10 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
+                    }
+                ],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 9614,
                         "relationship_type": "modifies",
@@ -5944,22 +5781,6 @@
                         }
                     },
                     {
-                        "spellId": 9659,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Using Pistol Shot with Opportunity has a 30% chance to make your next Ambush usable without Stealth. Chance to trigger this effect matches the chance for Sinister Strike to grant Opportunity. Ambush damage increased by 80%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9660,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -5967,22 +5788,6 @@
                         "description": {
                             "text": "When you gain Opportunity, gain 1 additional (varies):charges;. Max 6 charges. Pistol Shot consumes 1 additional (varies):charges; of Opportunity to fire 1 additional (varies):bullets;. Additional shots deal 20% reduced damage.",
                             "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9666,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Ambush has a chance to grant Opportunity. Chance to trigger this effect is 100% of the chance for Sinister Strike to grant Opportunity. Energy cost of Ambush reduced by -5.",
-                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6082,6 +5887,38 @@
                         "description": {
                             "text": "Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade. This effect may only occur once every (varies) sec.",
                             "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9659,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Using Pistol Shot with Opportunity has a 30% chance to make your next Ambush usable without Stealth. Chance to trigger this effect matches the chance for Sinister Strike to grant Opportunity. Ambush damage increased by 80%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9666,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Ambush has a chance to grant Opportunity. Chance to trigger this effect is 100% of the chance for Sinister Strike to grant Opportunity. Energy cost of Ambush reduced by -5.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6438,6 +6275,22 @@
                         }
                     },
                     {
+                        "spellId": 9486,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9080,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -6460,6 +6313,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Activating Adrenaline Rush improves the result of your next Roll the Bones by one level.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9658,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Roll the Bones has a 20% increased chance of granting more powerful results.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6505,44 +6374,12 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 9486,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 8957,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
                             "text": "Finishing moves reduce the remaining cooldown of many Rogue skills by 1 sec per combo point spent. Affected skills: Adrenaline Rush, Between the Eyes, Blade Flurry, Blade Rush, Grappling Hook, Keep it Rolling, Killing Spree, Roll the Bones, and Sprint.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9658,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Roll the Bones has a 20% increased chance of granting more powerful results.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6655,7 +6492,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -6692,7 +6529,7 @@
             "drCategory": null
         },
         {
-            "spellId": 25434,
+            "spellId": 13561,
             "category": "Mobility",
             "description": {
                 "text": "Step through the shadows to appear behind your target and gain 70% increased movement speed for 3 sec. If you already know Shadowstep, instead gain 1 additional charge of Shadowstep.",
@@ -6814,6 +6651,22 @@
                         }
                     },
                     {
+                        "spellId": 9005,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Damage increased by 5%. Blade Flurry deals 10% additional damage to nearby enemies.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 9137,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -6914,22 +6767,6 @@
                 ],
                 "potential": [
                     {
-                        "spellId": 9005,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Damage increased by 5%. Blade Flurry deals 10% additional damage to nearby enemies.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 9127,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -6940,73 +6777,8 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 37,
+                            "seconds": 45,
                             "base_seconds": 45,
-                            "applied": [
-                                {
-                                    "spell": {
-                                        "id": 9675,
-                                        "patch_id": 1,
-                                        "spell_id": 1259480,
-                                        "name": "Fast Action",
-                                        "school": "Physical",
-                                        "description": "The cooldown of Between the Eyes is reduced by ${-$s1/1000} sec. Between the Eyes increases your damage dealt by an additional $s2%.",
-                                        "variables": null,
-                                        "charges": null,
-                                        "cooldown_seconds": null,
-                                        "cooldown_scaling_note": null,
-                                        "duration_seconds": null,
-                                        "pvp_duration_seconds": null,
-                                        "pairs_with_category": null,
-                                        "requires_stealth": false,
-                                        "requires_target_out_of_combat": false,
-                                        "not_in_spellbook": true,
-                                        "mechanic": null,
-                                        "usable_while_cc": null,
-                                        "bypasses_active_defense": false,
-                                        "silence_immune_by_school": false,
-                                        "cc_immunity_note": null,
-                                        "grants_cc_immunity_override": null,
-                                        "cc_immunity_gating_spell_id": null,
-                                        "grants_cc_immunity": [],
-                                        "grants_school_immunity": null,
-                                        "spell_type": "None",
-                                        "range_yards": null,
-                                        "dr_category": null,
-                                        "conditional_dr_gating_spell_id": null,
-                                        "conditional_dr_category": null,
-                                        "category": "Other",
-                                        "cast_type": "instant",
-                                        "chain_target": null,
-                                        "is_peel": false,
-                                        "is_interrupt": false,
-                                        "is_mobility": false,
-                                        "is_passive": true,
-                                        "icon_name": "inv_musket_02.jpg",
-                                        "created_at": "2026-07-30T14:03:09.000000Z",
-                                        "updated_at": "2026-09-06T04:00:40.000000Z"
-                                    },
-                                    "relationship_type": "modifies_cooldown",
-                                    "modifier_value": -8,
-                                    "modifier_unit": "seconds",
-                                    "selection_spell_id": 9675
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "spellId": 9584,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Shiv's Energy cost is reduced by -20, its cooldown is reduced by 15 sec, and its range is increased by 3 yds.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -7073,7 +6845,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -7356,6 +7128,22 @@
                             "base_seconds": null,
                             "applied": []
                         }
+                    },
+                    {
+                        "spellId": 9486,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
                     }
                 ],
                 "baseline": [],
@@ -7367,22 +7155,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Sprint has -50% reduced cooldown and -50% reduced duration.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9486,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After spending 200 combo points, if you spend no combo points for 4, abilities affected by Restless Blades will cool down 200% faster for 5 or until you spend a combo point.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7455,8 +7227,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_rogue_sprint.jpg",
-                            "created_at": "2026-07-30T14:03:06.000000Z",
-                            "updated_at": "2026-09-06T04:00:21.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:06:59.000000Z",
                             "effects": [
                                 {
                                     "id": 17510,
@@ -7471,8 +7243,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:06.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },
@@ -7543,22 +7315,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Abilities requiring Stealth can be used for 0.5 sec after Stealth breaks. Combat benefits requiring Stealth persist for an additional 0.5 sec after Stealth breaks.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9659,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Using Pistol Shot with Opportunity has a 30% chance to make your next Ambush usable without Stealth. Chance to trigger this effect matches the chance for Sinister Strike to grant Opportunity. Ambush damage increased by 80%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7641,8 +7397,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "ability_rogue_sprint.jpg",
-                                        "created_at": "2026-07-30T14:03:06.000000Z",
-                                        "updated_at": "2026-09-06T04:00:21.000000Z"
+                                        "created_at": "2026-08-03T12:23:14.000000Z",
+                                        "updated_at": "2026-09-08T00:06:59.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -7697,6 +7453,22 @@
                         "cooldown": {
                             "seconds": 2,
                             "base_seconds": 2,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9659,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Using Pistol Shot with Opportunity has a 30% chance to make your next Ambush usable without Stealth. Chance to trigger this effect matches the chance for Sinister Strike to grant Opportunity. Ambush damage increased by 80%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -7818,58 +7590,9 @@
                         },
                         "category": "Offensive",
                         "cooldown": {
-                            "seconds": 37,
+                            "seconds": 45,
                             "base_seconds": 45,
-                            "applied": [
-                                {
-                                    "spell": {
-                                        "id": 9675,
-                                        "patch_id": 1,
-                                        "spell_id": 1259480,
-                                        "name": "Fast Action",
-                                        "school": "Physical",
-                                        "description": "The cooldown of Between the Eyes is reduced by ${-$s1/1000} sec. Between the Eyes increases your damage dealt by an additional $s2%.",
-                                        "variables": null,
-                                        "charges": null,
-                                        "cooldown_seconds": null,
-                                        "cooldown_scaling_note": null,
-                                        "duration_seconds": null,
-                                        "pvp_duration_seconds": null,
-                                        "pairs_with_category": null,
-                                        "requires_stealth": false,
-                                        "requires_target_out_of_combat": false,
-                                        "not_in_spellbook": true,
-                                        "mechanic": null,
-                                        "usable_while_cc": null,
-                                        "bypasses_active_defense": false,
-                                        "silence_immune_by_school": false,
-                                        "cc_immunity_note": null,
-                                        "grants_cc_immunity_override": null,
-                                        "cc_immunity_gating_spell_id": null,
-                                        "grants_cc_immunity": [],
-                                        "grants_school_immunity": null,
-                                        "spell_type": "None",
-                                        "range_yards": null,
-                                        "dr_category": null,
-                                        "conditional_dr_gating_spell_id": null,
-                                        "conditional_dr_category": null,
-                                        "category": "Other",
-                                        "cast_type": "instant",
-                                        "chain_target": null,
-                                        "is_peel": false,
-                                        "is_interrupt": false,
-                                        "is_mobility": false,
-                                        "is_passive": true,
-                                        "icon_name": "inv_musket_02.jpg",
-                                        "created_at": "2026-07-30T14:03:09.000000Z",
-                                        "updated_at": "2026-09-06T04:00:40.000000Z"
-                                    },
-                                    "relationship_type": "modifies_cooldown",
-                                    "modifier_value": -8,
-                                    "modifier_unit": "seconds",
-                                    "selection_spell_id": 9675
-                                }
-                            ]
+                            "applied": []
                         }
                     }
                 ]
@@ -8379,7 +8102,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8816,8 +8539,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_vanish.jpg",
-                            "created_at": "2026-07-30T14:03:06.000000Z",
-                            "updated_at": "2026-09-06T04:00:29.000000Z",
+                            "created_at": "2026-08-03T12:23:14.000000Z",
+                            "updated_at": "2026-09-08T00:07:06.000000Z",
                             "effects": [
                                 {
                                     "id": 17537,
@@ -8832,8 +8555,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:06.000000Z",
-                                    "updated_at": "2026-09-02T11:58:08.000000Z"
+                                    "created_at": "2026-08-03T12:23:14.000000Z",
+                                    "updated_at": "2026-09-08T00:05:01.000000Z"
                                 }
                             ]
                         },
@@ -8904,7 +8627,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,

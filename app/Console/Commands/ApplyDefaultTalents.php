@@ -2,12 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Concerns\RegeneratesSpellKits;
 use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
 use App\Models\Patch;
 use App\Models\PvpTalent;
-use App\Models\Spell;
 use App\Models\Specialization;
+use App\Models\Spell;
 use App\Models\TalentNodeEntry;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -34,6 +35,8 @@ use Illuminate\Support\Facades\File;
  */
 class ApplyDefaultTalents extends Command
 {
+    use RegeneratesSpellKits;
+
     protected $signature = 'wow:apply-default-talents {--path= : Override the input path (used by tests)}';
 
     protected $description = 'Reproduces admin-default TalentBuilds from the committed default-talent-builds.txt — no Blizzard/murlok.io calls.';
@@ -42,7 +45,7 @@ class ApplyDefaultTalents extends Command
     {
         $path = $this->option('path') ?: base_path('data/spelldata/default-talent-builds.txt');
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             $this->error("File not found at {$path}. Run wow:export-default-talents on an environment with the builds you want first, then commit the generated file.");
 
             return self::FAILURE;
@@ -60,7 +63,7 @@ class ApplyDefaultTalents extends Command
 
             $parts = array_map('trim', explode('|', $line));
 
-            if (count($parts) < 4 || !in_array($parts[2], ['pve', 'pvp'], true) || !ctype_digit($parts[3])) {
+            if (count($parts) < 4 || ! in_array($parts[2], ['pve', 'pvp'], true) || ! ctype_digit($parts[3])) {
                 $this->warn("  Skipping malformed default-talent-builds.txt line: {$line}");
 
                 continue;
@@ -87,7 +90,7 @@ class ApplyDefaultTalents extends Command
             $class = GameClass::where('slug', $classSlug)->first();
             $spec = $class ? Specialization::where('class_id', $class->id)->where('slug', $specSlug)->first() : null;
 
-            if (!$class || !$spec) {
+            if (! $class || ! $spec) {
                 $this->warn("  Skipping {$classSlug}/{$specSlug}: class or spec not found.");
 
                 continue;
@@ -95,7 +98,7 @@ class ApplyDefaultTalents extends Command
 
             $patchId = Patch::where('game_id', $class->game_id)->where('is_current', true)->value('id');
 
-            if (!$patchId) {
+            if (! $patchId) {
                 $this->warn("  Skipping {$classSlug}/{$specSlug}: no current patch found.");
 
                 continue;
@@ -108,7 +111,7 @@ class ApplyDefaultTalents extends Command
             foreach ($pveEntries as [$spellId, $rank]) {
                 $spell = Spell::where('patch_id', $patchId)->where('spell_id', $spellId)->first();
 
-                if (!$spell) {
+                if (! $spell) {
                     $this->warn("  Skipping {$classSlug}/{$specSlug} pve spell_id={$spellId}: not found for the current patch.");
                     $choicesSkipped++;
 
@@ -119,7 +122,7 @@ class ApplyDefaultTalents extends Command
                 $entryQuery = $rank === null ? $entryQuery : $entryQuery->where('rank', $rank);
                 $entry = $entryQuery->orderBy('id')->first();
 
-                if (!$entry) {
+                if (! $entry) {
                     $this->warn("  Skipping {$classSlug}/{$specSlug} pve spell_id={$spellId} rank={$rank}: no matching talent_node_entry for the current patch.");
                     $choicesSkipped++;
 
@@ -136,7 +139,7 @@ class ApplyDefaultTalents extends Command
                 $spell = Spell::where('patch_id', $patchId)->where('spell_id', $spellId)->first();
                 $pvpTalent = $spell ? PvpTalent::where('spec_id', $spec->id)->where('patch_id', $patchId)->where('spell_id', $spell->id)->first() : null;
 
-                if (!$pvpTalent) {
+                if (! $pvpTalent) {
                     $this->warn("  Skipping {$classSlug}/{$specSlug} pvp spell_id={$spellId}: no matching pvp_talent for the current patch.");
                     $choicesSkipped++;
 
@@ -147,7 +150,7 @@ class ApplyDefaultTalents extends Command
                 $choicesApplied++;
             }
 
-            if (!empty($resolvedPvpIds)) {
+            if (! empty($resolvedPvpIds)) {
                 $talentService->syncPvpChoices($build, $resolvedPvpIds);
             }
 
@@ -155,6 +158,7 @@ class ApplyDefaultTalents extends Command
         }
 
         $talentService->bumpSpellCacheVersion();
+        $this->regenerateSpellKits();
 
         $this->info("Applied {$buildsWritten} default build(s), {$choicesApplied} picks applied, {$choicesSkipped} skipped (see warnings above).");
         $this->info('No Blizzard API or murlok.io calls were made.');

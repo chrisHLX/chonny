@@ -49,6 +49,9 @@ class PageUsage extends Component
         'guides_index' => 'My Guides',
         'guide_builder' => 'Guide Builder',
         'guide_show' => 'Shared Guide (read)',
+        'guides_browse' => 'Player Guides (browse)',
+        'guilds_index' => 'Guilds',
+        'guild_show' => 'Guild (read)',
     ];
 
     /**

@@ -120,6 +120,18 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /** Guides this user has authored, drafts included. */
+    /** Guilds this user belongs to, including ones they own. */
+    public function guilds()
+    {
+        return $this->belongsToMany(Guild::class)->withPivot('role')->withTimestamps()->orderBy('name');
+    }
+
+    /** Guilds this user created. */
+    public function ownedGuilds()
+    {
+        return $this->hasMany(Guild::class, 'owner_id');
+    }
+
     public function guides()
     {
         return $this->hasMany(UserGuide::class);

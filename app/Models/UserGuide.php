@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserGuideMemberSide;
 use App\Enums\UserGuideStatus;
 use App\Enums\UserGuideType;
 use App\Enums\UserGuideVisibility;
@@ -25,6 +26,7 @@ class UserGuide extends Model
 {
     protected $fillable = [
         'user_id',
+        'guild_id',
         'type',
         'opponent_spec_id',
         'status',
@@ -93,10 +95,42 @@ class UserGuide extends Model
     /**
      * The comp this guide is written for, in slot order. Two or three specs for a comp guide;
      * exactly one — the spec the guide is about — for a class guide.
+     *
+     * The author's OWN comp. Deliberately still called members() and still scoped to one side, so
+     * every existing caller — the bracket, the palette, the roster guards — keeps meaning exactly
+     * what it meant before the enemy team existed, rather than silently starting to include it.
      */
     public function members()
     {
-        return $this->hasMany(UserGuideMember::class)->orderBy('position');
+        return $this->hasMany(UserGuideMember::class)
+            ->where('side', UserGuideMemberSide::Team->value)
+            ->orderBy('position');
+    }
+
+    /**
+     * The comp being played against — what makes a guide a MATCHUP rather than just a rotation.
+     *
+     * Same table, same slots, same talent builds as your own comp, so "their Priest is running
+     * Ultimate Penitence" is expressible. Empty for a guide with no named opposition, which stays
+     * a perfectly good guide.
+     */
+    public function enemies()
+    {
+        return $this->hasMany(UserGuideMember::class)
+            ->where('side', UserGuideMemberSide::Enemy->value)
+            ->orderBy('position');
+    }
+
+    /** Every roster row, both sides — for eager loading and cascade-shaped work only. */
+    public function roster()
+    {
+        return $this->hasMany(UserGuideMember::class)->orderBy('side')->orderBy('position');
+    }
+
+    /** Whether an enemy team has been named at all. */
+    public function hasEnemies(): bool
+    {
+        return $this->enemies()->exists();
     }
 
     /**
@@ -118,6 +152,18 @@ class UserGuide extends Model
     public function maxMembers(): int
     {
         return $this->type->maxMembers();
+    }
+
+    /** How many enemy slots this guide has — see UserGuideType::maxEnemies(). */
+    public function maxEnemies(): int
+    {
+        return $this->type->maxEnemies();
+    }
+
+    /** Slot count for one side, so callers do not branch on the side themselves. */
+    public function maxSlotsFor(UserGuideMemberSide $side): int
+    {
+        return $side === UserGuideMemberSide::Enemy ? $this->maxEnemies() : $this->maxMembers();
     }
 
     /** Sections in page order: down by row, then left to right. */
@@ -153,11 +199,32 @@ class UserGuide extends Model
         );
     }
 
-    /** Guides that may appear in a public listing. Private ones never do, published or not. */
+    /** Guides that may appear in a public listing. Private and guild ones never do. */
     public function scopeListed(Builder $query): Builder
     {
         return $query->where('status', UserGuideStatus::Published->value)
             ->where('visibility', UserGuideVisibility::Public->value);
+    }
+
+    /**
+     * Public guides written for exactly this comp, best first.
+     *
+     * Deliberately an equality test on the denormalised key rather than a join over the roster:
+     * this runs on /wow-comps, and the whole point of the feature is to surface a handful of good
+     * guides rather than every guide anyone has ever written.
+     *
+     * Unrated guides sort last rather than first — a NULL average is "nobody has said", which is
+     * weaker evidence than a low score, but it must not outrank a guide people actually liked.
+     */
+    public function scopeForComp(Builder $query, array $specIds): Builder
+    {
+        $key = self::compKeyFor($specIds);
+
+        return $query->listed()
+            ->when($key === null, fn (Builder $q) => $q->whereRaw('1 = 0'))
+            ->where('comp_key', $key)
+            ->orderByRaw('rating_avg IS NULL, rating_avg DESC')
+            ->orderByDesc('rating_count');
     }
 
     /**
@@ -205,6 +272,72 @@ class UserGuide extends Model
      * listing — asks the same question rather than each assembling its own combination of status
      * and visibility.
      */
+    /** The guild this guide is shared with, when its visibility says so. */
+    public function guild()
+    {
+        return $this->belongsTo(Guild::class);
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(UserGuideRating::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(UserGuideComment::class)->orderBy('created_at');
+    }
+
+    /**
+     * Recompute the denormalised rating from the ratings table.
+     *
+     * Called on every rating write. user_guide_ratings stays the source of truth; these two
+     * columns exist so "the best guides for this comp" is an ORDER BY on an indexed value rather
+     * than an aggregate over a join, on a page (/wow-comps) that is already the heaviest on the
+     * site.
+     */
+    public function recalculateRating(): void
+    {
+        $this->forceFill([
+            'rating_count' => $this->ratings()->count(),
+            'rating_avg' => $this->ratings()->avg('value'),
+        ])->save();
+    }
+
+    /**
+     * The guide's comp as a sorted, hyphen-joined list of spec ids ("3-17-24"), or null when it
+     * has no roster yet.
+     *
+     * SORTED, so the same three specs always produce the same key however the author ordered
+     * their slots — a comp is a set, not an ordering, and "Rogue/Mage/Priest" must match
+     * "Priest/Rogue/Mage". Built from the author's OWN side only: a guide is filed under the comp
+     * it teaches, not the one it is played against.
+     */
+    public function compKeyFromRoster(): ?string
+    {
+        $ids = $this->members()->pluck('spec_id')->filter()->unique()->sort()->values();
+
+        return $ids->isEmpty() ? null : $ids->implode('-');
+    }
+
+    /** Rebuild comp_key after a roster change. Cheap, and always safe to call. */
+    public function syncCompKey(): void
+    {
+        $key = $this->compKeyFromRoster();
+
+        if ($this->comp_key !== $key) {
+            $this->forceFill(['comp_key' => $key])->save();
+        }
+    }
+
+    /** The same key for an arbitrary set of spec ids, so a lookup can be built the same way. */
+    public static function compKeyFor(array $specIds): ?string
+    {
+        $ids = collect($specIds)->filter()->unique()->sort()->values();
+
+        return $ids->isEmpty() ? null : $ids->implode('-');
+    }
+
     public function isReadableBy(?User $user): bool
     {
         if ($this->isOwnedBy($user)) {
@@ -216,6 +349,15 @@ class UserGuide extends Model
         }
 
         if ($this->visibility === UserGuideVisibility::Public) {
+            return true;
+        }
+
+        // A guild-visible guide whose guild has been deleted falls through to the explicit-viewer
+        // check below rather than becoming unreadable or public — the author's intent survives if
+        // the guild is ever recreated, and nothing leaks in the meantime.
+        if ($this->visibility === UserGuideVisibility::Guild
+            && $this->guild
+            && $this->guild->hasMember($user)) {
             return true;
         }
 

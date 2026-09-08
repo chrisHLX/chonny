@@ -12,8 +12,10 @@ use App\Models\PageViewEvent;
 use App\Models\Patch;
 use App\Models\Specialization;
 use App\Models\Spell;
+use App\Models\UserGuide;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 /**
@@ -130,6 +132,9 @@ class WowComps extends Component
      * burst cooldowns; only 25 of 188 defensive-priority entries fell under 25s at all,
      * against 69 of 218 on the offensive side).
      */
+    /** How many player guides the comp listing shows. A shortlist, not a directory. */
+    public const MAX_COMP_GUIDES = 5;
+
     public const MIN_COOLDOWN_TAB_SECONDS = 25;
 
     /**
@@ -356,6 +361,33 @@ class WowComps extends Component
         $this->slots[$index]['specId'] = $specId;
 
         $this->logSlotSelection($index);
+    }
+
+    /**
+     * The best player-written guides for exactly the comp currently in the slots.
+     *
+     * The point of the feature is "a handful of good ones", not "everything anyone wrote": this is
+     * the heaviest page on the site, and a list of forty mediocre guides helps nobody. So it is
+     * capped, ranked by rating, and only ever shows PUBLIC published guides — guild and private
+     * guides are absent entirely rather than shown-but-locked, which would leak their titles.
+     *
+     * One indexed equality test on user_guides.comp_key rather than a join over every guide's
+     * roster; see that column's migration for why it is denormalised. Returns nothing until all
+     * three slots are filled, because a partial comp is not a comp.
+     */
+    #[Computed]
+    public function guides()
+    {
+        $specIds = collect($this->slots)->pluck('specId')->filter()->values();
+
+        if ($specIds->count() < count($this->slots)) {
+            return collect();
+        }
+
+        return UserGuide::forComp($specIds->all())
+            ->with(['user', 'members.specialization.gameClass', 'enemies.specialization.gameClass'])
+            ->limit(self::MAX_COMP_GUIDES)
+            ->get();
     }
 
     /**

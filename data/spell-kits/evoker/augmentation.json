@@ -1,10 +1,10 @@
 {
-    "generatedAt": "2026-09-07T09:58:16+00:00",
-    "spellCacheVersion": 4155,
+    "generatedAt": "2026-09-08T04:45:48+00:00",
+    "spellCacheVersion": 10,
     "codeFingerprint": "dev",
     "entries": [
         {
-            "spellId": 4062,
+            "spellId": 3188,
             "category": "Other",
             "description": {
                 "text": "Eruption reduces the remaining cooldown of Upheaval by 1 sec.",
@@ -34,7 +34,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4512,
+            "spellId": 3639,
             "category": "Other",
             "description": {
                 "text": "Hover gains 1 additional charge.",
@@ -64,7 +64,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4061,
+            "spellId": 3187,
             "category": "Other",
             "description": {
                 "text": "Prescience has a 35% chance to grant Essence Burst.",
@@ -87,14 +87,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4518,
+            "spellId": 3645,
             "category": "Other",
             "description": {
                 "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
@@ -124,7 +124,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4085,
+            "spellId": 3211,
             "category": "Other",
             "description": {
                 "text": "The range of your helpful magics is increased by 5 yards.",
@@ -154,7 +154,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4058,
+            "spellId": 3184,
             "category": "Other",
             "description": {
                 "text": "Obsidian Scales activates Black Attunement, and amplifies it to increase maximum health by 4% for 12. Hover activates Bronze Attunement, and amplifies it to increase movement speed by 25% for 4.",
@@ -177,14 +177,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4546,
+            "spellId": 3673,
             "category": "Other",
             "description": {
                 "text": "Your healing done and healing received are increased by 2%.",
@@ -214,7 +214,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4066,
+            "spellId": 3192,
             "category": "Other",
             "description": {
                 "text": "Conjure a pair of Weyrnstones, one for your target ally and one for yourself. Only one ally may bear your Weyrnstone at a time. A Weyrnstone can be activated by the bearer to transport them to the other Weyrnstone's location, if they are within 100 yds.",
@@ -226,7 +226,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4113,
+                        "spellId": 3239,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -242,7 +242,7 @@
                         }
                     },
                     {
-                        "spellId": 4252,
+                        "spellId": 3379,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -258,7 +258,7 @@
                         }
                     },
                     {
-                        "spellId": 4551,
+                        "spellId": 3678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -274,7 +274,7 @@
                         }
                     },
                     {
-                        "spellId": 4293,
+                        "spellId": 3420,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -309,7 +309,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4534,
+            "spellId": 3661,
             "category": "Other",
             "description": {
                 "text": "Fire Breath's damage over time lasts 4 sec longer.",
@@ -339,7 +339,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4144,
+            "spellId": 3270,
             "category": "Other",
             "description": {
                 "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by -15% for 3,600.",
@@ -369,7 +369,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4043,
+            "spellId": 3169,
             "category": "Offensive",
             "description": {
                 "text": "Protect an ally with explosive dragonscales, increasing their Armor by 20% of your own. Melee attacks against the target cause 1 scale to explode, dealing (varies) Volcanic damage to enemies near them. This damage can only occur every few sec. Blistering Scales can only be placed on one target at a time. Casts on your enemy's target if they have one.",
@@ -377,28 +377,11 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
-                    {
-                        "spellId": 4057,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Blistering Scales no longer loses charges and deals 20% more damage.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ],
+                "named": [],
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4113,
+                        "spellId": 3239,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -414,7 +397,7 @@
                         }
                     },
                     {
-                        "spellId": 4252,
+                        "spellId": 3379,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -430,7 +413,7 @@
                         }
                     },
                     {
-                        "spellId": 4292,
+                        "spellId": 3419,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -446,7 +429,7 @@
                         }
                     },
                     {
-                        "spellId": 4551,
+                        "spellId": 3678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -462,7 +445,7 @@
                         }
                     },
                     {
-                        "spellId": 4293,
+                        "spellId": 3420,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -478,7 +461,23 @@
                         }
                     },
                     {
-                        "spellId": 4085,
+                        "spellId": 3183,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Blistering Scales no longer loses charges and deals 20% more damage.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3211,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -506,7 +505,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": {
@@ -517,14 +516,14 @@
             "drCategory": null
         },
         {
-            "spellId": 4629,
+            "spellId": 3756,
             "category": "Offensive",
             "description": {
                 "text": "(varies by condition — check in-game) marks your primary target for destruction for the next 6. You and your allies have a chance to trigger a Bombardment when attacking marked targets, dealing (varies) Volcanic damage split amongst all nearby enemies.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
-                4642
+                3769
             ],
             "modifiers": {
                 "named": [],
@@ -542,14 +541,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4700,
+            "spellId": 3827,
             "category": "Other",
             "description": {
                 "text": "Casting Ebon Might grants 2 charges of Burnout, reducing the cast time of Living Flame by 100%.",
@@ -579,7 +578,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4521,
+            "spellId": 3648,
             "category": "Other",
             "description": {
                 "text": "Emerald Blossom heals 2 additional allies.",
@@ -609,7 +608,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4052,
+            "spellId": 3178,
             "category": "Mobility",
             "description": {
                 "text": "Fly to the targeted location, exposing a Temporal Wound on enemies in your path for 10 and granting Ebon Might for 5 sec. Removes roots and grants immunity to movement impairing and loss of control effects while flying. Temporal Wound 15% of damage dealt by allies affected by Ebon Might is copied as additional Arcane damage to enemies after 10. Damage is reduced if Ebon Might affects more than 2 other allies.",
@@ -632,14 +631,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4528,
+            "spellId": 3655,
             "category": "Defensive",
             "description": {
                 "text": "Cauterize an ally's wounds, removing all Bleed, Poison, Curse, and Disease effects. Heals for ≈350% of Spell Power upon removing any effect.",
@@ -651,7 +650,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4085,
+                        "spellId": 3211,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -679,7 +678,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": {
@@ -690,7 +689,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4699,
+            "spellId": 3826,
             "category": "Other",
             "description": {
                 "text": "Trap the enemy in a time loop for 5 sec. Afterwards, they are returned to their previous location and health. Cannot reduce an enemy's health below 20%.",
@@ -720,7 +719,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4071,
+            "spellId": 3197,
             "category": "Defensive",
             "description": {
                 "text": "When allies deal damage with Temporal Wounds, they gain a shield for 100% of the damage dealt. Absorption cannot exceed 30% of your maximum health.",
@@ -743,14 +742,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4088,
+            "spellId": 3214,
             "category": "Other",
             "description": {
                 "text": "Motes of Possibility may now grant Prescience to allies and have a 10% increased chance to activate.",
@@ -780,10 +779,40 @@
             "drCategory": null
         },
         {
-            "spellId": 4533,
+            "spellId": 3660,
             "category": "Other",
             "description": {
                 "text": "Tail Swipe's cooldown is reduced by 2 min.",
+                "uncertain": false
+            },
+            "formulaModifierSpellIds": [],
+            "modifiers": {
+                "named": [],
+                "baseline": [],
+                "potential": []
+            },
+            "hasPotentialImprovement": false,
+            "cooldown": {
+                "seconds": null,
+                "base_seconds": null,
+                "applied": []
+            },
+            "charges": {
+                "charges": null,
+                "base_charges": null,
+                "applied": []
+            },
+            "isSelected": true,
+            "source": "talent",
+            "isPriority": false,
+            "offensiveDefensive": null,
+            "drCategory": null
+        },
+        {
+            "spellId": 3770,
+            "category": "Other",
+            "description": {
+                "text": "While flying during Breath of Eons you are assisted by a squadron of Dracthyr who assault enemies with Pyre, dealing 1.2 Fire damage to nearby enemies up to 8 times.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -810,37 +839,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4643,
-            "category": "Other",
-            "description": {
-                "text": "While flying during Breath of Eons you are assisted by a squadron of Dracthyr who assault enemies with Pyre, dealing 1.2 Fire damage to nearby enemies up to 8 times.",
-                "uncertain": false
-            },
-            "formulaModifierSpellIds": [],
-            "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": []
-            },
-            "hasPotentialImprovement": false,
-            "cooldown": {
-                "seconds": null,
-                "base_seconds": null,
-                "applied": []
-            },
-            "charges": {
-                "charges": null,
-                "base_charges": null,
-                "applied": []
-            },
-            "isSelected": true,
-            "source": "talent",
-            "isPriority": false,
-            "offensiveDefensive": null,
-            "drCategory": null
-        },
-        {
-            "spellId": 4644,
+            "spellId": 3771,
             "category": "Other",
             "description": {
                 "text": "(varies by condition — check in-game) strikes 1 additional (varies):targets;.",
@@ -863,14 +862,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4053,
+            "spellId": 3179,
             "category": "Defensive",
             "description": {
                 "text": "Fatal attacks are diverted into a nearby timeline, preventing the damage, and your death, in this one. The release of temporal energy restores (varies) health to you, and (varies) to -1 nearby allies, over 9. Healing starts high and declines over the duration. May only occur once every 360.",
@@ -880,7 +879,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4092,
+                        "spellId": 3218,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -917,7 +916,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4637,
+            "spellId": 3764,
             "category": "Other",
             "description": {
                 "text": "Bombardments have a chance to generate Essence Burst.",
@@ -947,7 +946,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4693,
+            "spellId": 3820,
             "category": "Other",
             "description": {
                 "text": "Deep Breath forms curtains of fire, preventing line of sight to enemies outside its walls and burning enemies who walk through them for 2,736 Fire damage. Lasts 6 sec.",
@@ -977,7 +976,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4051,
+            "spellId": 3177,
             "category": "Other",
             "description": {
                 "text": "Learn to attune yourself to the essence of the Black or Bronze Dragonflights: Black Attunement: You and your 4 nearest allies have 2% increased maximum health. Bronze Attunement:You and your 4 nearest allies have 10% increased movement speed.",
@@ -1007,7 +1006,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4545,
+            "spellId": 3672,
             "category": "Other",
             "description": {
                 "text": "Your Stamina is increased by 6%.",
@@ -1037,7 +1036,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4084,
+            "spellId": 3210,
             "category": "Other",
             "description": {
                 "text": "Emerald Blossom no longer has a cooldown, deals 35% increased healing, and increases the duration of your active Ebon Might effects by 1 sec, but costs 3 Essence.",
@@ -1067,7 +1066,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4701,
+            "spellId": 3828,
             "category": "Other",
             "description": {
                 "text": "Verdant Embrace tethers you to an ally, increasing movement speed by 40% and slowing and siphoning 475 life from enemies who come in contact with the tether.\r\n\r\nThe tether lasts up to 10 sec or until you move more than 30 yards away from your ally.",
@@ -1097,7 +1096,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4089,
+            "spellId": 3215,
             "category": "Other",
             "description": {
                 "text": "Breath of Eons summons a version of you from the future to assist you in battle, lasting 20. Your duplicate casts Eruption, Fire Breath, and Upheaval.",
@@ -1107,7 +1106,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4479,
+                        "spellId": 3606,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1126,7 +1125,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4090,
+                        "spellId": 3216,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1142,7 +1141,7 @@
                         }
                     },
                     {
-                        "spellId": 4091,
+                        "spellId": 3217,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1177,21 +1176,21 @@
             "drCategory": null
         },
         {
-            "spellId": 4047,
+            "spellId": 3173,
             "category": "Offensive",
             "description": {
                 "text": "Increase all damage dealing allies' primary stat by (varies)% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
-                4348
+                3475
             ],
             "modifiers": {
                 "named": [],
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4113,
+                        "spellId": 3239,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1207,7 +1206,7 @@
                         }
                     },
                     {
-                        "spellId": 4252,
+                        "spellId": 3379,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1223,7 +1222,7 @@
                         }
                     },
                     {
-                        "spellId": 4264,
+                        "spellId": 3391,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1239,7 +1238,7 @@
                         }
                     },
                     {
-                        "spellId": 4292,
+                        "spellId": 3419,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1255,7 +1254,7 @@
                         }
                     },
                     {
-                        "spellId": 4551,
+                        "spellId": 3678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1271,7 +1270,7 @@
                         }
                     },
                     {
-                        "spellId": 4293,
+                        "spellId": 3420,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1287,7 +1286,7 @@
                         }
                     },
                     {
-                        "spellId": 4085,
+                        "spellId": 3211,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1315,7 +1314,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": {
@@ -1326,7 +1325,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4078,
+            "spellId": 3204,
             "category": "Other",
             "description": {
                 "text": "Azure Strike deals 15% increased damage and has a 10% chance per target hit to echo, casting again.",
@@ -1356,7 +1355,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4540,
+            "spellId": 3667,
             "category": "Other",
             "description": {
                 "text": "Living Flame deals 3% more damage and healing.",
@@ -1379,14 +1378,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4048,
+            "spellId": 3174,
             "category": "Offensive",
             "description": {
                 "text": "Cause a violent eruption beneath an enemy's feet, dealing ≈280% of Spell Power Volcanic damage split between them and nearby enemies. Increases the duration of your active Ebon Might effects by 1 sec.",
@@ -1396,23 +1395,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4516,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Disintegrate channels -20% faster(varies by condition — check in-game).",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4250,
+                        "spellId": 3377,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1428,23 +1411,7 @@
                         }
                     },
                     {
-                        "spellId": 4263,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increase all damage dealing allies' primary stat by (varies)% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 30,
-                            "base_seconds": 30,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4056,
+                        "spellId": 3182,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1460,39 +1427,7 @@
                         }
                     },
                     {
-                        "spellId": 4411,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Take in a deep breath and fly to the targeted location, spewing molten cinders dealing (varies) Volcanic damage to enemies in your path. Removes all root effects. You are immune to movement impairing and loss of control effects while flying. Increases the duration of your active Ebon Might effects by 5 sec.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4413,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "For each second you are in combat, Azure Strike, Living Flame, and (varies by condition — check in-game) deal 1% increased damage, up to 50%.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4443,
+                        "spellId": 3570,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1508,7 +1443,7 @@
                         }
                     },
                     {
-                        "spellId": 4479,
+                        "spellId": 3606,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1522,27 +1457,11 @@
                             "base_seconds": 120,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 4645,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Essence abilities deal 15% additional damage.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ],
                 "baseline": [
                     {
-                        "spellId": 4265,
+                        "spellId": 3392,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1558,7 +1477,7 @@
                         }
                     },
                     {
-                        "spellId": 4476,
+                        "spellId": 3603,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1576,7 +1495,7 @@
                 ],
                 "potential": [
                     {
-                        "spellId": 4113,
+                        "spellId": 3239,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1592,7 +1511,7 @@
                         }
                     },
                     {
-                        "spellId": 4252,
+                        "spellId": 3379,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1608,7 +1527,23 @@
                         }
                     },
                     {
-                        "spellId": 4551,
+                        "spellId": 3390,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increase all damage dealing allies' primary stat by (varies)% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": 30,
+                            "base_seconds": 30,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1624,7 +1559,7 @@
                         }
                     },
                     {
-                        "spellId": 4293,
+                        "spellId": 3420,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1652,14 +1587,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4045,
+            "spellId": 3171,
             "category": "Other",
             "description": {
                 "text": "Essence Burst stacks 2 times.",
@@ -1689,7 +1624,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4049,
+            "spellId": 3175,
             "category": "Other",
             "description": {
                 "text": "Your Living Flame has a 20% chance, and your Azure Strike has a 15% chance, to make your next Eruption or Emerald Blossom cost no Essence. Stacks (varies) times.",
@@ -1699,7 +1634,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4045,
+                        "spellId": 3171,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1715,7 +1650,7 @@
                         }
                     },
                     {
-                        "spellId": 4046,
+                        "spellId": 3172,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1731,7 +1666,23 @@
                         }
                     },
                     {
-                        "spellId": 4064,
+                        "spellId": 3187,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Prescience has a 35% chance to grant Essence Burst.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3190,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1747,7 +1698,7 @@
                         }
                     },
                     {
-                        "spellId": 4067,
+                        "spellId": 3193,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1763,7 +1714,7 @@
                         }
                     },
                     {
-                        "spellId": 4298,
+                        "spellId": 3425,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1780,42 +1731,9 @@
                     }
                 ],
                 "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 4061,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Prescience has a 35% chance to grant Essence Burst.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4637,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Bombardments have a chance to generate Essence Burst.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ]
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -1833,7 +1751,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4511,
+            "spellId": 3638,
             "category": "Utility",
             "description": {
                 "text": "Expunge toxins affecting an ally, removing all Poison effects.",
@@ -1845,7 +1763,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4085,
+                        "spellId": 3211,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1873,14 +1791,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4636,
+            "spellId": 3763,
             "category": "Other",
             "description": {
                 "text": "Essence abilities extend Bombardments by 1 sec.",
@@ -1903,14 +1821,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4535,
+            "spellId": 3662,
             "category": "Other",
             "description": {
                 "text": "Hover lasts 4 sec longer.",
@@ -1940,7 +1858,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4538,
+            "spellId": 3665,
             "category": "Other",
             "description": {
                 "text": "While above 75% health, your movement speed is increased by 10%.",
@@ -1970,7 +1888,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4083,
+            "spellId": 3209,
             "category": "Offensive",
             "description": {
                 "text": "Prescience grants the ally a chance for their spells and abilities to echo their damage or healing, dealing 15% of the amount again.",
@@ -1993,27 +1911,29 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4105,
+            "spellId": 3231,
             "category": "Offensive",
             "description": {
                 "text": "Inhale, stoking your inner flame. Release to exhale, burning enemies in a cone in front of you for (varies) Fire damage, reduced beyond 5 targets. Increases the duration of your active Ebon Might effects by 2 sec. Empowering causes more of the damage to be dealt immediately instead of over time. I:   Deals (varies) damage instantly and (varies) over (varies) sec. II:  Deals (varies) damage instantly and (varies) over (varies) sec. III: Deals (varies) damage instantly and (varies) over (varies) sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
-                4534,
-                4623
+                3661,
+                3750
             ],
             "modifiers": {
-                "named": [
+                "named": [],
+                "baseline": [],
+                "potential": [
                     {
-                        "spellId": 4519,
+                        "spellId": 3646,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2029,23 +1949,7 @@
                         }
                     },
                     {
-                        "spellId": 4263,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increase all damage dealing allies' primary stat by (varies)% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 30,
-                            "base_seconds": 30,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4263,
+                        "spellId": 3390,
                         "relationship_type": "modifies_charge_rate",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2061,42 +1965,7 @@
                         }
                     },
                     {
-                        "spellId": 4054,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 180,
-                            "base_seconds": 180,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4054,
-                        "relationship_type": "modifies_charge_rate",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 180,
-                            "base_seconds": 180,
-                            "applied": []
-                        }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 4065,
+                        "spellId": 3191,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2112,23 +1981,23 @@
                         }
                     },
                     {
-                        "spellId": 4080,
-                        "relationship_type": "modifies_charges",
+                        "spellId": 3180,
+                        "relationship_type": "modifies_charge_rate",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
                             "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
+                            "seconds": 180,
+                            "base_seconds": 180,
                             "applied": []
                         }
                     },
                     {
-                        "spellId": 4080,
+                        "spellId": 3206,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2167,7 +2036,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4543,
+            "spellId": 3670,
             "category": "Other",
             "description": {
                 "text": "Renewing Blaze restores you more quickly, causing damage you take to be healed back over 4 sec.",
@@ -2197,7 +2066,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4065,
+            "spellId": 3191,
             "category": "Other",
             "description": {
                 "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level -20% faster.",
@@ -2227,40 +2096,10 @@
             "drCategory": null
         },
         {
-            "spellId": 4537,
+            "spellId": 3664,
             "category": "Other",
             "description": {
                 "text": "Landslide's cooldown is reduced by 30 sec, and it can withstand 200% more damage before breaking.",
-                "uncertain": false
-            },
-            "formulaModifierSpellIds": [],
-            "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": []
-            },
-            "hasPotentialImprovement": false,
-            "cooldown": {
-                "seconds": null,
-                "base_seconds": null,
-                "applied": []
-            },
-            "charges": {
-                "charges": null,
-                "base_charges": null,
-                "applied": []
-            },
-            "isSelected": false,
-            "source": "talent",
-            "isPriority": false,
-            "offensiveDefensive": null,
-            "drCategory": null
-        },
-        {
-            "spellId": 4633,
-            "category": "Other",
-            "description": {
-                "text": "Obsidian Scales reduces damage taken by an additional 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2287,7 +2126,37 @@
             "drCategory": null
         },
         {
-            "spellId": 4513,
+            "spellId": 3760,
+            "category": "Other",
+            "description": {
+                "text": "Obsidian Scales reduces damage taken by an additional 10%.",
+                "uncertain": false
+            },
+            "formulaModifierSpellIds": [],
+            "modifiers": {
+                "named": [],
+                "baseline": [],
+                "potential": []
+            },
+            "hasPotentialImprovement": false,
+            "cooldown": {
+                "seconds": null,
+                "base_seconds": null,
+                "applied": []
+            },
+            "charges": {
+                "charges": null,
+                "base_charges": null,
+                "applied": []
+            },
+            "isSelected": false,
+            "source": "talent",
+            "isPriority": false,
+            "offensiveDefensive": null,
+            "drCategory": null
+        },
+        {
+            "spellId": 3640,
             "category": "Other",
             "description": {
                 "text": "Wing Buffet's cooldown is reduced by 2 min.",
@@ -2317,7 +2186,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4046,
+            "spellId": 3172,
             "category": "Other",
             "description": {
                 "text": "Essence Burst has a 20% chance to not be consumed.",
@@ -2347,20 +2216,20 @@
             "drCategory": null
         },
         {
-            "spellId": 4113,
+            "spellId": 3239,
             "category": "Mobility",
             "description": {
                 "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
-                4535,
-                4292
+                3662,
+                3419
             ],
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4535,
+                        "spellId": 3662,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2376,39 +2245,7 @@
                         }
                     },
                     {
-                        "spellId": 4054,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 180,
-                            "base_seconds": 180,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4054,
-                        "relationship_type": "modifies_charge_rate",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 180,
-                            "base_seconds": 180,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4512,
+                        "spellId": 3639,
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
                         "modifier_unit": "charges",
@@ -2424,12 +2261,12 @@
                         }
                     },
                     {
-                        "spellId": 4641,
+                        "spellId": 3184,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Breath of Eons resets a charge of Hover.",
+                            "text": "Obsidian Scales activates Black Attunement, and amplifies it to increase maximum health by 4% for 12. Hover activates Bronze Attunement, and amplifies it to increase movement speed by 25% for 4.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2440,7 +2277,39 @@
                         }
                     },
                     {
-                        "spellId": 4695,
+                        "spellId": 3340,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Hover increases your movement speed by 70% for the first 4.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": 35,
+                            "base_seconds": 35,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3668,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Hover increases your movement speed by 70% for the first 4.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": 35,
+                            "base_seconds": 35,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3822,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2459,39 +2328,23 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4640,
-                        "relationship_type": "modifies",
+                        "spellId": 3180,
+                        "relationship_type": "modifies_charge_rate",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Hovering, damage taken from area of effect attacks is reduced by 10%.",
+                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
                             "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
+                            "seconds": 180,
+                            "base_seconds": 180,
                             "applied": []
                         }
                     },
                     {
-                        "spellId": 4080,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4080,
+                        "spellId": 3206,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2507,23 +2360,7 @@
                         }
                     },
                     {
-                        "spellId": 4218,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by -15% for 3,600.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 15,
-                            "base_seconds": 15,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4218,
+                        "spellId": 3345,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2535,54 +2372,6 @@
                         "cooldown": {
                             "seconds": 15,
                             "base_seconds": 15,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4058,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Obsidian Scales activates Black Attunement, and amplifies it to increase maximum health by 4% for 12. Hover activates Bronze Attunement, and amplifies it to increase movement speed by 25% for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4213,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Hover increases your movement speed by 70% for the first 4.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 35,
-                            "base_seconds": 35,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4541,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Hover increases your movement speed by 70% for the first 4.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 35,
-                            "base_seconds": 35,
                             "applied": []
                         }
                     }
@@ -2600,7 +2389,7 @@
                 "applied": [
                     {
                         "spell": {
-                            "id": 4512,
+                            "id": 3639,
                             "patch_id": 1,
                             "spell_id": 365933,
                             "name": "Aerial Mastery",
@@ -2638,12 +2427,12 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_evoker_aerialmastery.jpg",
-                            "created_at": "2026-07-30T14:01:01.000000Z",
-                            "updated_at": "2026-09-06T04:00:28.000000Z",
+                            "created_at": "2026-08-03T12:22:22.000000Z",
+                            "updated_at": "2026-09-08T00:07:05.000000Z",
                             "effects": [
                                 {
-                                    "id": 8727,
-                                    "spell_id": 4512,
+                                    "id": 7094,
+                                    "spell_id": 3639,
                                     "effect_index": 1,
                                     "type": "Modify Cooldown Charge (Category)",
                                     "base_value": 1,
@@ -2654,15 +2443,15 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:01:01.000000Z",
-                                    "updated_at": "2026-09-02T11:57:33.000000Z"
+                                    "created_at": "2026-08-03T12:22:22.000000Z",
+                                    "updated_at": "2026-09-07T23:52:46.000000Z"
                                 }
                             ]
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
                         "modifier_unit": "charges",
-                        "selection_spell_id": 4512
+                        "selection_spell_id": 3639
                     }
                 ]
             },
@@ -2673,7 +2462,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4067,
+            "spellId": 3193,
             "category": "Other",
             "description": {
                 "text": "Essence Burst reduces the cast time of Eruption by -40% and increases its damage by 20%.",
@@ -2703,7 +2492,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4087,
+            "spellId": 3213,
             "category": "Other",
             "description": {
                 "text": "Breath of Eons reduces the Essence cost of your next 6 Eruptions by -1.",
@@ -2733,7 +2522,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4092,
+            "spellId": 3218,
             "category": "Other",
             "description": {
                 "text": "Defy Fate healing increased by 100% and its cooldown is reduced by 1 min.",
@@ -2763,21 +2552,19 @@
             "drCategory": null
         },
         {
-            "spellId": 4074,
+            "spellId": 3200,
             "category": "Offensive",
             "description": {
                 "text": "Fire Breath grants the inferno's blessing for 8 to you and a nearby ally, giving their damaging attacks and spells a high chance to deal an additional (varies) Fire damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
-                4093
+                3219
             ],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
+                "named": [
                     {
-                        "spellId": 4093,
+                        "spellId": 3219,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2793,7 +2580,7 @@
                         }
                     },
                     {
-                        "spellId": 4318,
+                        "spellId": 3445,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2809,7 +2596,7 @@
                         }
                     },
                     {
-                        "spellId": 4319,
+                        "spellId": 3446,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2824,9 +2611,11 @@
                             "applied": []
                         }
                     }
-                ]
+                ],
+                "baseline": [],
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -2837,14 +2626,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4539,
+            "spellId": 3666,
             "category": "Defensive",
             "description": {
                 "text": "Magic damage taken reduced by -2%.",
@@ -2874,7 +2663,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4536,
+            "spellId": 3663,
             "category": "Other",
             "description": {
                 "text": "Essence regenerates 5% faster.",
@@ -2904,7 +2693,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4547,
+            "spellId": 3674,
             "category": "Other",
             "description": {
                 "text": "Your Living Flame and Emerald Blossom are 30% more effective on yourself.",
@@ -2934,7 +2723,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4544,
+            "spellId": 3671,
             "category": "Offensive",
             "description": {
                 "text": "Your Magic damage done is increased by 2%.",
@@ -2964,7 +2753,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4080,
+            "spellId": 3206,
             "category": "Other",
             "description": {
                 "text": "The cooldowns of your spells are reduced by -10%.",
@@ -2994,7 +2783,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4507,
+            "spellId": 3223,
             "category": "Crowd Control",
             "description": {
                 "text": "Conjure a path of shifting stone towards the target location, rooting enemies for 15. Damage may cancel the effect.",
@@ -3004,26 +2793,9 @@
             "modifiers": {
                 "named": [],
                 "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 4537,
-                        "relationship_type": "modifies_cooldown",
-                        "modifier_value": -30,
-                        "modifier_unit": "seconds",
-                        "description": {
-                            "text": "Landslide's cooldown is reduced by 30 sec, and it can withstand 200% more damage before breaking.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ]
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": 90,
                 "base_seconds": 90,
@@ -3035,13 +2807,13 @@
                 "applied": []
             },
             "isSelected": true,
-            "source": "talent",
+            "source": "baseline",
             "isPriority": true,
             "offensiveDefensive": null,
-            "drCategory": null
+            "drCategory": "Root"
         },
         {
-            "spellId": 4517,
+            "spellId": 3644,
             "category": "Other",
             "description": {
                 "text": "Fire Breath causes your next Living Flame to strike 1 additional target per empower level.",
@@ -3064,14 +2836,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4145,
+            "spellId": 3271,
             "category": "Defensive",
             "description": {
                 "text": "Send a flickering flame towards your target, (varies by condition — check in-game)",
@@ -3081,7 +2853,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4049,
+                        "spellId": 3175,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3097,7 +2869,7 @@
                         }
                     },
                     {
-                        "spellId": 4117,
+                        "spellId": 3243,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3113,7 +2885,7 @@
                         }
                     },
                     {
-                        "spellId": 4118,
+                        "spellId": 3244,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3129,7 +2901,7 @@
                         }
                     },
                     {
-                        "spellId": 4130,
+                        "spellId": 3256,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3145,7 +2917,7 @@
                         }
                     },
                     {
-                        "spellId": 4164,
+                        "spellId": 3290,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3161,7 +2933,55 @@
                         }
                     },
                     {
-                        "spellId": 4250,
+                        "spellId": 3302,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Fire Breath causes your next Living Flame to strike 1 additional target per empower level.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3303,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Fire Breath causes your next Living Flame to strike 1 additional target per empower level.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3311,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Store 20% of your effective healing, up to (varies). Your next damaging Living Flame consumes all stored healing to increase its damage dealt.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3377,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3177,7 +2997,7 @@
                         }
                     },
                     {
-                        "spellId": 4351,
+                        "spellId": 3478,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3193,7 +3013,7 @@
                         }
                     },
                     {
-                        "spellId": 4372,
+                        "spellId": 3499,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3209,90 +3029,7 @@
                         }
                     },
                     {
-                        "spellId": 4413,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "For each second you are in combat, Azure Strike, Living Flame, and (varies by condition — check in-game) deal 1% increased damage, up to 50%.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4547,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your Living Flame and Emerald Blossom are 30% more effective on yourself.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4638,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Entering combat grants a charge of Burnout, causing your next Living Flame to cast instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4639,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "For each second you are in combat, Azure Strike, Living Flame, and (varies by condition — check in-game) deal 1% increased damage, up to 15%.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 4059,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "When cast at an enemy, Living Flame strikes 1 additional enemy for 100% damage.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4176,
+                        "spellId": 3644,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3308,23 +3045,7 @@
                         }
                     },
                     {
-                        "spellId": 4177,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Fire Breath causes your next Living Flame to strike 1 additional target per empower level.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4185,
+                        "spellId": 3653,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3340,71 +3061,7 @@
                         }
                     },
                     {
-                        "spellId": 4206,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4517,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Fire Breath causes your next Living Flame to strike 1 additional target per empower level.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4518,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4526,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Store 20% of your effective healing, up to (varies). Your next damaging Living Flame consumes all stored healing to increase its damage dealt.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4540,
+                        "spellId": 3667,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3420,7 +3077,74 @@
                         }
                     },
                     {
-                        "spellId": 4700,
+                        "spellId": 3674,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your Living Flame and Emerald Blossom are 30% more effective on yourself.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
+                "baseline": [],
+                "potential": [
+                    {
+                        "spellId": 3185,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "When cast at an enemy, Living Flame strikes 1 additional enemy for 100% damage.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3333,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3645,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3827,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3455,7 +3179,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4542,
+            "spellId": 3669,
             "category": "Other",
             "description": {
                 "text": "Green spells restore 5% more health.",
@@ -3485,7 +3209,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4628,
+            "spellId": 3755,
             "category": "Other",
             "description": {
                 "text": "Breath of Eons can now be steered in your desired direction. In addition, Breath of Eons burns targets for (varies) Volcanic damage over 12.(varies by condition — check in-game)",
@@ -3508,14 +3232,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4630,
+            "spellId": 3757,
             "category": "Other",
             "description": {
                 "text": "Empower spells cause your next Disintegrate to strike up to 3 targets. When striking fewer than 3 targets, Disintegrate damage is increased by 10% for each missing target.",
@@ -3523,24 +3247,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
-                    {
-                        "spellId": 4644,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "(varies by condition — check in-game) strikes 1 additional (varies):targets;.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ],
+                "named": [],
                 "baseline": [],
                 "potential": []
             },
@@ -3562,7 +3269,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4631,
+            "spellId": 3758,
             "category": "Other",
             "description": {
                 "text": "Empower spells cause your next Eruption to strike up to 3 targets. When striking less than 3 targets, Eruption damage is increased by 10% for each missing target.",
@@ -3585,14 +3292,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4632,
+            "spellId": 3759,
             "category": "Offensive",
             "description": {
                 "text": "Breath of Eons causes enemies to take 20% increased damage from Bombardments and Essence abilities for 12.(varies by condition — check in-game)",
@@ -3615,14 +3322,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4634,
+            "spellId": 3761,
             "category": "Offensive",
             "description": {
                 "text": "Knocking enemies up or backwards reduces their damage done to you by 15% for 8.",
@@ -3652,10 +3359,40 @@
             "drCategory": null
         },
         {
-            "spellId": 4642,
+            "spellId": 3769,
             "category": "Other",
             "description": {
                 "text": "Black spells deal 20% increased damage.",
+                "uncertain": false
+            },
+            "formulaModifierSpellIds": [],
+            "modifiers": {
+                "named": [],
+                "baseline": [],
+                "potential": []
+            },
+            "hasPotentialImprovement": false,
+            "cooldown": {
+                "seconds": null,
+                "base_seconds": null,
+                "applied": []
+            },
+            "charges": {
+                "charges": null,
+                "base_charges": null,
+                "applied": []
+            },
+            "isSelected": false,
+            "source": "talent",
+            "isPriority": false,
+            "offensiveDefensive": null,
+            "drCategory": null
+        },
+        {
+            "spellId": 3219,
+            "category": "Other",
+            "description": {
+                "text": "Inferno's Blessing's damage is increased by 40%, and your effects that extend Ebon Might also extend Inferno's Blessing.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3682,37 +3419,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4093,
-            "category": "Other",
-            "description": {
-                "text": "Inferno's Blessing's damage is increased by 40%, and your effects that extend Ebon Might also extend Inferno's Blessing.",
-                "uncertain": false
-            },
-            "formulaModifierSpellIds": [],
-            "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": []
-            },
-            "hasPotentialImprovement": false,
-            "cooldown": {
-                "seconds": null,
-                "base_seconds": null,
-                "applied": []
-            },
-            "charges": {
-                "charges": null,
-                "base_charges": null,
-                "applied": []
-            },
-            "isSelected": false,
-            "source": "talent",
-            "isPriority": false,
-            "offensiveDefensive": null,
-            "drCategory": null
-        },
-        {
-            "spellId": 4075,
+            "spellId": 3201,
             "category": "Defensive",
             "description": {
                 "text": "When cast, Blistering Scales grants the target a shield that absorbs up to (varies) damage for 30 based on their missing health. Lower health targets gain a larger shield.",
@@ -3735,14 +3442,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4064,
+            "spellId": 3190,
             "category": "Other",
             "description": {
                 "text": "Consuming Essence Burst grants you 5% Intellect for 6. Stacks up to (varies) times.",
@@ -3772,7 +3479,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4068,
+            "spellId": 3194,
             "category": "Other",
             "description": {
                 "text": "Eruption has a 25% chance to form a mote of diverted essence near you. Allies who comes in contact with the mote gain a random buff from your arsenal.",
@@ -3782,7 +3489,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4088,
+                        "spellId": 3214,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3819,7 +3526,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4516,
+            "spellId": 3643,
             "category": "Other",
             "description": {
                 "text": "Disintegrate channels -20% faster(varies by condition — check in-game).",
@@ -3849,7 +3556,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4640,
+            "spellId": 3767,
             "category": "Other",
             "description": {
                 "text": "While Hovering, damage taken from area of effect attacks is reduced by 10%.",
@@ -3879,7 +3586,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4694,
+            "spellId": 3821,
             "category": "Other",
             "description": {
                 "text": "Verdant Embrace wreathes you in arcane energy, preventing the next full loss of control effect against you. Lasts 3 sec.",
@@ -3902,14 +3609,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4532,
+            "spellId": 3659,
             "category": "Other",
             "description": {
                 "text": "Obsidian Scales has an additional charge.",
@@ -3939,7 +3646,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4698,
+            "spellId": 3825,
             "category": "Other",
             "description": {
                 "text": "While Obsidian Scales is active you gain immunity to interrupt, silence, and pushback effects.",
@@ -3969,7 +3676,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4510,
+            "spellId": 3637,
             "category": "Defensive",
             "description": {
                 "text": "Reinforce your scales, reducing damage taken by -30% and causing you to be healed over 8 equal to the damage it prevented. Lasts 12.",
@@ -3979,55 +3686,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4633,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Obsidian Scales reduces damage taken by an additional 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4054,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 180,
-                            "base_seconds": 180,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4054,
-                        "relationship_type": "modifies_charge_rate",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 180,
-                            "base_seconds": 180,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4532,
+                        "spellId": 3659,
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
                         "modifier_unit": "charges",
@@ -4046,7 +3705,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4292,
+                        "spellId": 3419,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4062,23 +3721,23 @@
                         }
                     },
                     {
-                        "spellId": 4080,
-                        "relationship_type": "modifies_charges",
+                        "spellId": 3180,
+                        "relationship_type": "modifies_charge_rate",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
                             "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
+                            "seconds": 180,
+                            "base_seconds": 180,
                             "applied": []
                         }
                     },
                     {
-                        "spellId": 4080,
+                        "spellId": 3206,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4107,7 +3766,7 @@
                 "applied": [
                     {
                         "spell": {
-                            "id": 4532,
+                            "id": 3659,
                             "patch_id": 1,
                             "spell_id": 375406,
                             "name": "Obsidian Bulwark",
@@ -4145,12 +3804,12 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "inv_shield_1h_revenantfire_d_01.jpg",
-                            "created_at": "2026-07-30T14:01:01.000000Z",
-                            "updated_at": "2026-09-06T04:00:28.000000Z",
+                            "created_at": "2026-08-03T12:22:23.000000Z",
+                            "updated_at": "2026-09-08T00:07:05.000000Z",
                             "effects": [
                                 {
-                                    "id": 8778,
-                                    "spell_id": 4532,
+                                    "id": 7145,
+                                    "spell_id": 3659,
                                     "effect_index": 1,
                                     "type": "Modify Cooldown Charge (Category)",
                                     "base_value": 1,
@@ -4161,19 +3820,19 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:01:01.000000Z",
-                                    "updated_at": "2026-09-02T11:57:33.000000Z"
+                                    "created_at": "2026-08-03T12:22:23.000000Z",
+                                    "updated_at": "2026-09-07T23:52:46.000000Z"
                                 }
                             ]
                         },
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
                         "modifier_unit": "charges",
-                        "selection_spell_id": 4532
+                        "selection_spell_id": 3659
                     }
                 ]
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": {
@@ -4184,7 +3843,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4638,
+            "spellId": 3765,
             "category": "Other",
             "description": {
                 "text": "Entering combat grants a charge of Burnout, causing your next Living Flame to cast instantly.",
@@ -4207,14 +3866,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4525,
+            "spellId": 3652,
             "category": "Utility",
             "description": {
                 "text": "Let out a bone-shaking roar at enemies in a cone in front of you, increasing the duration of crowd controls that affect them by 50% in the next 10. Removes 1 Enrage effect from each enemy.",
@@ -4222,11 +3881,9 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
+                "named": [
                     {
-                        "spellId": 4529,
+                        "spellId": 3656,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
@@ -4241,27 +3898,129 @@
                             "applied": []
                         }
                     }
-                ]
+                ],
+                "baseline": [],
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
-                "seconds": 120,
+                "seconds": 90,
                 "base_seconds": 120,
-                "applied": []
+                "applied": [
+                    {
+                        "spell": {
+                            "id": 3656,
+                            "patch_id": 1,
+                            "spell_id": 374346,
+                            "name": "Overawe",
+                            "school": "Physical",
+                            "description": "Oppressing Roar removes $372048s1 Enrage effect from each enemy, and its cooldown is reduced by ${$s3/-1000} sec.",
+                            "variables": null,
+                            "charges": null,
+                            "cooldown_seconds": null,
+                            "cooldown_scaling_note": null,
+                            "duration_seconds": null,
+                            "pvp_duration_seconds": null,
+                            "pairs_with_category": null,
+                            "requires_stealth": false,
+                            "requires_target_out_of_combat": false,
+                            "not_in_spellbook": true,
+                            "mechanic": null,
+                            "usable_while_cc": null,
+                            "bypasses_active_defense": false,
+                            "silence_immune_by_school": false,
+                            "cc_immunity_note": null,
+                            "grants_cc_immunity_override": null,
+                            "cc_immunity_gating_spell_id": null,
+                            "grants_cc_immunity": [],
+                            "grants_school_immunity": null,
+                            "spell_type": "None",
+                            "range_yards": null,
+                            "dr_category": null,
+                            "conditional_dr_gating_spell_id": null,
+                            "conditional_dr_category": null,
+                            "category": "Other",
+                            "cast_type": "instant",
+                            "chain_target": null,
+                            "is_peel": false,
+                            "is_interrupt": false,
+                            "is_mobility": false,
+                            "is_passive": true,
+                            "icon_name": "ability_evoker_oppressingroar2.jpg",
+                            "created_at": "2026-08-03T12:22:23.000000Z",
+                            "updated_at": "2026-09-08T00:07:05.000000Z",
+                            "effects": [
+                                {
+                                    "id": 7140,
+                                    "spell_id": 3656,
+                                    "effect_index": 1,
+                                    "type": "Dummy",
+                                    "base_value": 20,
+                                    "scaled_value": 20,
+                                    "misc_value": null,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": null,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-08-03T12:22:23.000000Z",
+                                    "updated_at": "2026-08-03T12:22:23.000000Z"
+                                },
+                                {
+                                    "id": 7141,
+                                    "spell_id": 3656,
+                                    "effect_index": 2,
+                                    "type": "Override Action Spell (Misc w/ Base) (332): Oppressing Roar overrides Oppressing Roar",
+                                    "base_value": 406971,
+                                    "scaled_value": 406971,
+                                    "misc_value": 372048,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": null,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-08-03T12:22:23.000000Z",
+                                    "updated_at": "2026-09-07T23:52:46.000000Z"
+                                },
+                                {
+                                    "id": 7142,
+                                    "spell_id": 3656,
+                                    "effect_index": 3,
+                                    "type": "Add Flat Modifier (107): Spell Cooldown",
+                                    "base_value": -30000,
+                                    "scaled_value": -30000,
+                                    "misc_value": 11,
+                                    "affected_schools": null,
+                                    "sp_coefficient": null,
+                                    "pvp_coefficient": null,
+                                    "rank_op": null,
+                                    "rank_values": null,
+                                    "created_at": "2026-08-03T12:22:23.000000Z",
+                                    "updated_at": "2026-09-07T23:52:46.000000Z"
+                                }
+                            ],
+                            "incoming_relationships": []
+                        },
+                        "relationship_type": "modifies_cooldown",
+                        "modifier_value": -30,
+                        "modifier_unit": "seconds",
+                        "selection_spell_id": 3656
+                    }
+                ]
             },
             "charges": {
                 "charges": null,
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4529,
+            "spellId": 3656,
             "category": "Other",
             "description": {
                 "text": "Oppressing Roar removes 1 Enrage effect from each enemy, and its cooldown is reduced by 30 sec.",
@@ -4284,14 +4043,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4073,
+            "spellId": 3199,
             "category": "Other",
             "description": {
                 "text": "Breath of Eons casts an Eruption at the first 3 enemies struck. These Eruptions have a 100% chance to create a Mote of Possibility.",
@@ -4321,7 +4080,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4549,
+            "spellId": 3676,
             "category": "Defensive",
             "description": {
                 "text": "Emerald Blossom and Verdant Embrace instantly heal you for 2 when cast.",
@@ -4344,14 +4103,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4072,
+            "spellId": 3198,
             "category": "Other",
             "description": {
                 "text": "Breath of Eons reduces enemies' movement speed by -70%, and reduces their attack speed by -50%, for 10.",
@@ -4381,7 +4140,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4060,
+            "spellId": 3186,
             "category": "Other",
             "description": {
                 "text": "Breath of Eons grants you Fury of the Aspects for 15 sec after you land, without causing Exhaustion.",
@@ -4411,7 +4170,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4553,
+            "spellId": 3680,
             "category": "Other",
             "description": {
                 "text": "Source of Magic increases the target's healing and damage done by 3%.",
@@ -4441,7 +4200,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4044,
+            "spellId": 3170,
             "category": "Other",
             "description": {
                 "text": "Increases your maximum Essence to 6.",
@@ -4471,7 +4230,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4069,
+            "spellId": 3195,
             "category": "Other",
             "description": {
                 "text": "Grant an ally the gift of foresight, increasing their critical strike chance by 3% and occasionally copying their damage and healing spells at 15% power for 18. Affects the nearest ally within 25 yds, preferring damage dealers with their cooldowns active, if you do not have an ally targeted.",
@@ -4479,44 +4238,11 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
-                    {
-                        "spellId": 4054,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 180,
-                            "base_seconds": 180,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4054,
-                        "relationship_type": "modifies_charge_rate",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 180,
-                            "base_seconds": 180,
-                            "applied": []
-                        }
-                    }
-                ],
+                "named": [],
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4292,
+                        "spellId": 3419,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4532,7 +4258,7 @@
                         }
                     },
                     {
-                        "spellId": 4551,
+                        "spellId": 3678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4548,7 +4274,7 @@
                         }
                     },
                     {
-                        "spellId": 4293,
+                        "spellId": 3420,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4564,7 +4290,7 @@
                         }
                     },
                     {
-                        "spellId": 4085,
+                        "spellId": 3211,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4580,23 +4306,23 @@
                         }
                     },
                     {
-                        "spellId": 4080,
-                        "relationship_type": "modifies_charges",
+                        "spellId": 3180,
+                        "relationship_type": "modifies_charge_rate",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
                             "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
+                            "seconds": 180,
+                            "base_seconds": 180,
                             "applied": []
                         }
                     },
                     {
-                        "spellId": 4080,
+                        "spellId": 3206,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4624,14 +4350,14 @@
                 "base_charges": 2,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4077,
+            "spellId": 3203,
             "category": "Other",
             "description": {
                 "text": "Your effects that extend Ebon Might also extend Symbiotic Bloom.",
@@ -4661,7 +4387,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4515,
+            "spellId": 3642,
             "category": "Other",
             "description": {
                 "text": "Azure Strike damages 1 additional (varies):enemies;.",
@@ -4684,14 +4410,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4059,
+            "spellId": 3185,
             "category": "Other",
             "description": {
                 "text": "When cast at an enemy, Living Flame strikes 1 additional enemy for 100% damage.",
@@ -4721,7 +4447,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4042,
+            "spellId": 3168,
             "category": "Utility",
             "description": {
                 "text": "Interrupt an enemy's spellcasting and prevent any spell from that school of magic from being cast for 6.",
@@ -4751,7 +4477,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4070,
+            "spellId": 3196,
             "category": "Other",
             "description": {
                 "text": "Each time Blistering Scales explodes it deals 15% more damage for 12, stacking (varies) times.",
@@ -4781,7 +4507,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4524,
+            "spellId": 3651,
             "category": "Other",
             "description": {
                 "text": "You may reactivate Breath of Eons within 3 sec after landing to travel back in time to your takeoff location.",
@@ -4811,7 +4537,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4645,
+            "spellId": 3772,
             "category": "Other",
             "description": {
                 "text": "Essence abilities deal 15% additional damage.",
@@ -4834,14 +4560,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4057,
+            "spellId": 3183,
             "category": "Other",
             "description": {
                 "text": "Blistering Scales no longer loses charges and deals 20% more damage.",
@@ -4864,14 +4590,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4550,
+            "spellId": 3677,
             "category": "Other",
             "description": {
                 "text": "Your Leech is increased by 2%.",
@@ -4901,7 +4627,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4530,
+            "spellId": 3657,
             "category": "Other",
             "description": {
                 "text": "Obsidian Scales surrounds you with a Renewing Blaze, causing 100% of the damage it prevented to be healed back over 8.",
@@ -4913,7 +4639,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4292,
+                        "spellId": 3419,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4941,14 +4667,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4520,
+            "spellId": 3647,
             "category": "Other",
             "description": {
                 "text": "Swoop to an ally and fly with them to the target location. Clears movement impairing effects from you and your ally.",
@@ -4958,7 +4684,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4174,
+                        "spellId": 3300,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4974,7 +4700,7 @@
                         }
                     },
                     {
-                        "spellId": 4522,
+                        "spellId": 3649,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5011,7 +4737,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4055,
+            "spellId": 3181,
             "category": "Other",
             "description": {
                 "text": "Eruption deals 30% more damage per enemy struck, up to 150%.",
@@ -5041,7 +4767,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4086,
+            "spellId": 3212,
             "category": "Other",
             "description": {
                 "text": "Upheaval causes an aftershock at its location, dealing 30% of its damage 2 additional (varies):times;.",
@@ -5071,14 +4797,14 @@
             "drCategory": null
         },
         {
-            "spellId": 4526,
+            "spellId": 3653,
             "category": "Other",
             "description": {
                 "text": "Store 20% of your effective healing, up to (varies). Your next damaging Living Flame consumes all stored healing to increase its damage dealt.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
-                974
+                97
             ],
             "modifiers": {
                 "named": [],
@@ -5096,14 +4822,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4696,
+            "spellId": 3823,
             "category": "Other",
             "description": {
                 "text": "Fire Breath burns away 2 beneficial Magic effects from all targets.",
@@ -5126,14 +4852,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4692,
+            "spellId": 3819,
             "category": "Other",
             "description": {
                 "text": "Landslide causes enemies who are mid-air to be slammed to the ground, stunning them for 4 sec and Landslide's cooldown is reduced by 15 sec.",
@@ -5163,7 +4889,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4508,
+            "spellId": 3635,
             "category": "Crowd Control",
             "description": {
                 "text": "Disorient an enemy for 20, causing them to sleep walk towards you. Damage has a chance to awaken them.",
@@ -5175,7 +4901,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4113,
+                        "spellId": 3239,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5191,7 +4917,7 @@
                         }
                     },
                     {
-                        "spellId": 4252,
+                        "spellId": 3379,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5207,7 +4933,7 @@
                         }
                     },
                     {
-                        "spellId": 4551,
+                        "spellId": 3678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5223,7 +4949,7 @@
                         }
                     },
                     {
-                        "spellId": 4293,
+                        "spellId": 3420,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5258,7 +4984,7 @@
             "drCategory": "Disorient"
         },
         {
-            "spellId": 4641,
+            "spellId": 3768,
             "category": "Other",
             "description": {
                 "text": "Breath of Eons resets a charge of Hover.",
@@ -5281,14 +5007,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4514,
+            "spellId": 3641,
             "category": "Offensive",
             "description": {
                 "text": "Redirect your excess magic to a friendly healer for 3,600. When you cast an empowered spell, you restore 0.3% of their maximum mana per empower level. Limit 1.",
@@ -5298,7 +5024,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4553,
+                        "spellId": 3680,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5317,7 +5043,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4292,
+                        "spellId": 3419,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5333,7 +5059,7 @@
                         }
                     },
                     {
-                        "spellId": 4085,
+                        "spellId": 3211,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5361,14 +5087,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4551,
+            "spellId": 3678,
             "category": "Utility",
             "description": {
                 "text": "Evoke a paradox for you and a friendly healer, allowing casting while moving and increasing the range of most spells by 100% for 10. Affects the nearest healer within (varies) yds, if you do not have a healer targeted.",
@@ -5378,39 +5104,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4054,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 180,
-                            "base_seconds": 180,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4054,
-                        "relationship_type": "modifies_charge_rate",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 180,
-                            "base_seconds": 180,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4512,
+                        "spellId": 3639,
                         "relationship_type": "modifies_charges",
                         "modifier_value": 1,
                         "modifier_unit": "charges",
@@ -5429,7 +5123,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4292,
+                        "spellId": 3419,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5445,23 +5139,23 @@
                         }
                     },
                     {
-                        "spellId": 4080,
-                        "relationship_type": "modifies_charges",
+                        "spellId": 3180,
+                        "relationship_type": "modifies_charge_rate",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
                             "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
+                            "seconds": 180,
+                            "base_seconds": 180,
                             "applied": []
                         }
                     },
                     {
-                        "spellId": 4080,
+                        "spellId": 3206,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5477,23 +5171,7 @@
                         }
                     },
                     {
-                        "spellId": 4218,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by -15% for 3,600.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": 15,
-                            "base_seconds": 15,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4218,
+                        "spellId": 3345,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5528,7 +5206,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4552,
+            "spellId": 3679,
             "category": "Offensive",
             "description": {
                 "text": "While flying during Breath of Eons, 100% of damage you would take is instead dealt over 10.",
@@ -5558,7 +5236,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4555,
+            "spellId": 3682,
             "category": "Other",
             "description": {
                 "text": "Glide speed and height increased by 10%.",
@@ -5588,7 +5266,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4697,
+            "spellId": 3824,
             "category": "Other",
             "description": {
                 "text": "Grab an enemy and fly with them to the target location.",
@@ -5618,7 +5296,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4076,
+            "spellId": 3202,
             "category": "Other",
             "description": {
                 "text": "Emerald Blossom increases targets' healing received by 3% for 10.",
@@ -5630,7 +5308,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4077,
+                        "spellId": 3203,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5665,7 +5343,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4541,
+            "spellId": 3668,
             "category": "Other",
             "description": {
                 "text": "Hover increases your movement speed by 70% for the first 4.",
@@ -5688,14 +5366,14 @@
                 "base_charges": 1,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4063,
+            "spellId": 3189,
             "category": "Other",
             "description": {
                 "text": "Upheaval deals 50% increased damage to the primary target, and launches them higher.",
@@ -5725,7 +5403,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4523,
+            "spellId": 3650,
             "category": "Other",
             "description": {
                 "text": "Breath of Eons stuns enemies for 3.",
@@ -5755,7 +5433,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4184,
+            "spellId": 3310,
             "category": "Crowd Control",
             "description": {
                 "text": "Breath of Eons stuns enemies for 3.",
@@ -5785,7 +5463,7 @@
             "drCategory": "Stun"
         },
         {
-            "spellId": 4054,
+            "spellId": 3180,
             "category": "Other",
             "description": {
                 "text": "Surge forward in time, causing your cooldowns to recover 1,000% faster for 2.",
@@ -5795,7 +5473,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4081,
+                        "spellId": 3207,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5814,7 +5492,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4113,
+                        "spellId": 3239,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5830,7 +5508,7 @@
                         }
                     },
                     {
-                        "spellId": 4252,
+                        "spellId": 3379,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5846,7 +5524,7 @@
                         }
                     },
                     {
-                        "spellId": 4551,
+                        "spellId": 3678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5862,7 +5540,7 @@
                         }
                     },
                     {
-                        "spellId": 4293,
+                        "spellId": 3420,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5878,7 +5556,7 @@
                         }
                     },
                     {
-                        "spellId": 4080,
+                        "spellId": 3206,
                         "relationship_type": "replaces",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5906,14 +5584,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4531,
+            "spellId": 3658,
             "category": "Other",
             "description": {
                 "text": "Bend time, allowing you and your allies within (varies) yds to cast their major movement ability once in the next 10, even if it is on cooldown.",
@@ -5943,7 +5621,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4702,
+            "spellId": 3829,
             "category": "Other",
             "description": {
                 "text": "Freeze an ally's timestream for 5 sec. While frozen in time they are invulnerable, cannot act, and auras do not progress.\r\n\r\nYou may reactivate Time Stop to end this effect early.",
@@ -5966,14 +5644,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4079,
+            "spellId": 3205,
             "category": "Other",
             "description": {
                 "text": "Enchant an ally to appear out of sync with the normal flow of time, reducing threat they generate by -30% for 3,600. Less effective on tank-specialized allies. May only be placed on one target at a time.",
@@ -5985,7 +5663,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4292,
+                        "spellId": 3419,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6020,7 +5698,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4519,
+            "spellId": 3646,
             "category": "Other",
             "description": {
                 "text": "Compress time to make your next empowered spell cast instantly at its maximum empower level.",
@@ -6050,7 +5728,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4081,
+            "spellId": 3207,
             "category": "Other",
             "description": {
                 "text": "Time Skip channels for 1 sec longer.",
@@ -6080,7 +5758,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4522,
+            "spellId": 3649,
             "category": "Other",
             "description": {
                 "text": "Rescue increases movement speed by 100% and allows spells to be cast while moving for 3.",
@@ -6110,7 +5788,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4695,
+            "spellId": 3822,
             "category": "Other",
             "description": {
                 "text": "Hover prevents movement speed from being reduced below 100%.",
@@ -6140,7 +5818,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4554,
+            "spellId": 3681,
             "category": "Offensive",
             "description": {
                 "text": "Direct damage from Fire Breath consumes absorb shields from enemies, dealing ≈1,200% of Spell Power additional Spellfrost damage to them.",
@@ -6170,7 +5848,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4639,
+            "spellId": 3766,
             "category": "Other",
             "description": {
                 "text": "For each second you are in combat, Azure Strike, Living Flame, and (varies by condition — check in-game) deal 1% increased damage, up to 15%.",
@@ -6193,14 +5871,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4082,
+            "spellId": 3208,
             "category": "Other",
             "description": {
                 "text": "Upheaval cannot be interrupted, and has an additional 10% chance to critically strike.",
@@ -6230,7 +5908,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4050,
+            "spellId": 3176,
             "category": "Offensive",
             "description": {
                 "text": "Gather earthen power beneath your enemy's feet and send them hurtling upwards, dealing ≈430% of Spell Power Volcanic damage to the target and nearby enemies. Increases the duration of your active Ebon Might effects by 2 sec. Empowering expands the area of effect. I:   3 yd radius. II:  6 yd radius. III: 9 yd radius.",
@@ -6238,9 +5916,11 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
+                "named": [],
+                "baseline": [],
+                "potential": [
                     {
-                        "spellId": 4519,
+                        "spellId": 3646,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6256,7 +5936,7 @@
                         }
                     },
                     {
-                        "spellId": 4263,
+                        "spellId": 3390,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6270,12 +5950,9 @@
                             "base_seconds": 30,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
+                    },
                     {
-                        "spellId": 4065,
+                        "spellId": 3191,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6291,7 +5968,7 @@
                         }
                     },
                     {
-                        "spellId": 4082,
+                        "spellId": 3208,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6319,7 +5996,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": {
@@ -6330,7 +6007,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4125,
+            "spellId": 3251,
             "category": "Defensive",
             "description": {
                 "text": "Fly to an ally and heal them for ≈1,375.4% of Spell Power, or heal yourself for the same amount.",
@@ -6340,7 +6017,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 4546,
+                        "spellId": 3673,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6354,59 +6031,11 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 4247,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Emerald Blossom and Verdant Embrace instantly heal you for 2 when cast.",
-                            "uncertain": false
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4549,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Emerald Blossom and Verdant Embrace instantly heal you for 2 when cast.",
-                            "uncertain": false
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 4694,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Verdant Embrace wreathes you in arcane energy, preventing the next full loss of control effect against you. Lasts 3 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ],
                 "baseline": [
                     {
-                        "spellId": 4265,
+                        "spellId": 3392,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6424,7 +6053,7 @@
                 ],
                 "potential": [
                     {
-                        "spellId": 4085,
+                        "spellId": 3211,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6440,7 +6069,7 @@
                         }
                     },
                     {
-                        "spellId": 4206,
+                        "spellId": 3333,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6456,7 +6085,23 @@
                         }
                     },
                     {
-                        "spellId": 4309,
+                        "spellId": 3374,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Emerald Blossom and Verdant Embrace instantly heal you for 2 when cast.",
+                            "uncertain": false
+                        },
+                        "category": "Defensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3436,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6472,7 +6117,7 @@
                         }
                     },
                     {
-                        "spellId": 4518,
+                        "spellId": 3645,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6488,7 +6133,39 @@
                         }
                     },
                     {
-                        "spellId": 4701,
+                        "spellId": 3676,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Emerald Blossom and Verdant Embrace instantly heal you for 2 when cast.",
+                            "uncertain": false
+                        },
+                        "category": "Defensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3821,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Verdant Embrace wreathes you in arcane energy, preventing the next full loss of control effect against you. Lasts 3 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 3828,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6523,7 +6200,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4509,
+            "spellId": 3636,
             "category": "Other",
             "description": {
                 "text": "Fly to an ally and heal them for ≈1,375.4% of Spell Power, or heal yourself for the same amount.",
@@ -6535,7 +6212,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4085,
+                        "spellId": 3211,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6570,7 +6247,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4056,
+            "spellId": 3182,
             "category": "Other",
             "description": {
                 "text": "Eruption's Essence cost is reduced by -1.",
@@ -6600,7 +6277,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4548,
+            "spellId": 3675,
             "category": "Other",
             "description": {
                 "text": "Wing Buffet and Tail Swipe knock enemies further and daze them, reducing movement speed by 70% for 4 sec.",
@@ -6630,7 +6307,7 @@
             "drCategory": null
         },
         {
-            "spellId": 4635,
+            "spellId": 3762,
             "category": "Other",
             "description": {
                 "text": "(varies by condition — check in-game) reduces the remaining cooldown of (varies by condition — check in-game) by (varies by condition — check in-game) sec for each target struck.",
@@ -6653,14 +6330,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 4527,
+            "spellId": 3654,
             "category": "Mobility",
             "description": {
                 "text": "Conjure an updraft to lift you and your 4 nearest allies within (varies) yds into the air, reducing damage taken from area-of-effect attacks by -20% and increasing movement speed by 30% for 8.",
@@ -6672,7 +6349,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 4292,
+                        "spellId": 3419,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6700,7 +6377,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,

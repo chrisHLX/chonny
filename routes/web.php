@@ -213,6 +213,17 @@ Route::middleware('auth')->prefix('guides')->name('guides.')->group(function () 
     Route::get('/{guide}/edit', \App\Livewire\Guides\Builder::class)->name('edit');
 });
 
+// Browse: the only place public guides are listed. Deliberately NOT auth-gated — a public guide
+// is public, and requiring an account to look at one would defeat the point of publishing.
+Route::get('/browse-guides', \App\Livewire\Guides\Browse::class)->name('guides.browse');
+
+// ------- Guilds -------
+// Index is auth-only (it is "your guilds"); the guild page itself is not, because its URL is the
+// invite and someone following it may not have an account yet. Guilds\Show decides what a
+// non-member may see.
+Route::middleware('auth')->get('/guilds', \App\Livewire\Guilds\Index::class)->name('guilds.index');
+Route::get('/guilds/{guild}', \App\Livewire\Guilds\Show::class)->name('guilds.show');
+
 // The shared read view lives under /g/{username}/ — its OWN namespace, deliberately not alongside
 // /burst-guides, /claudes-guides or /pvp-guides. Those are derived from real match evidence; this
 // is one player's own plan, and naming the author in the URL is the cheapest possible way to keep

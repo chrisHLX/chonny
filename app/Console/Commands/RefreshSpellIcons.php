@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Concerns\RegeneratesSpellKits;
 use App\Http\Services\TalentSelectionService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Process;
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Process;
  */
 class RefreshSpellIcons extends Command
 {
+    use RegeneratesSpellKits;
+
     protected $signature = 'wow:refresh-icons';
 
     protected $description = 'Fetches any missing spell icons and bumps the spell cache version so they show up immediately.';
@@ -30,7 +33,7 @@ class RefreshSpellIcons extends Command
                 $this->output->write($output);
             });
 
-        if (!$result->successful()) {
+        if (! $result->successful()) {
             $this->error('fetch-spell-icons.php reported a failure — see output above. Cache version was NOT bumped.');
 
             return self::FAILURE;
@@ -39,6 +42,7 @@ class RefreshSpellIcons extends Command
         $talentService->bumpSpellCacheVersion();
         $this->newLine();
         $this->info('Spell cache version bumped — new icons will show up on next page load.');
+        $this->regenerateSpellKits();
 
         return self::SUCCESS;
     }

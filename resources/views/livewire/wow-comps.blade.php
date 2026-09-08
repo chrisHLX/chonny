@@ -1105,6 +1105,36 @@
 
              The shared component resolves the one clicked spell on demand from the same
              SpellProfile every other page uses, so this page can never drift from them again. --}}
+        {{-- Player guides for exactly this comp ---------------------------------------
+             A shortlist, not a directory: WowComps::MAX_COMP_GUIDES capped and ranked by rating,
+             because forty mediocre guides help nobody and this is the heaviest page on the site.
+             One indexed lookup on user_guides.comp_key — see that column's migration.
+
+             Placed below the tabs rather than inside one so it is visible whichever tab the
+             viewer is on: somebody who has just read this comp's burst window is exactly the
+             person who wants to know whether a player wrote it up. --}}
+        @if ($this->guides->isNotEmpty())
+            <div class="mt-8">
+                <div class="flex items-baseline justify-between gap-4 mb-3">
+                    <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">
+                        Player guides for this comp
+                    </h2>
+                    <a href="{{ route('guides.browse') }}" wire:navigate
+                       class="text-[12px] text-ink-subtle hover:text-gold transition-colors">Browse all &rarr;</a>
+                </div>
+
+                <p class="text-[12px] text-ink-subtle mb-3 max-w-2xl">
+                    Written by players, not derived from match data — a different kind of claim from
+                    everything above.
+                </p>
+
+                @foreach ($this->guides as $playerGuide)
+                    <x-guides.card :guide="$playerGuide" :compact="true"
+                                   :class-colors="config('wow_classes.colors', [])"/>
+                @endforeach
+            </div>
+        @endif
+
         <livewire:spell-detail-modal/>
     @endif
 </div>
