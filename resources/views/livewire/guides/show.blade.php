@@ -22,6 +22,10 @@
                 by <span class="text-ink">{{ $guide->user?->username ?? $guide->user?->name }}</span>
                 @if ($bracket = $guide->bracket())
                     &middot; {{ $bracket }}
+                @elseif ($guide->isClassGuide())
+                    {{-- A class guide has no bracket by design (see UserGuide::bracket()), so it
+                         says what it actually is instead of leaving the reader to infer it. --}}
+                    &middot; Class guide
                 @endif
                 &middot; updated {{ $guide->updated_at->diffForHumans() }}
             </p>
@@ -58,8 +62,26 @@
                     </div>
                 @endif
             @endforeach
+
+            {{-- A class guide reads "you vs them" — the same shape its title has. Rendered inside
+                 the roster row rather than as a separate block so the matchup is one line. --}}
+            @if ($guide->isClassGuide() && $guide->opponentSpec)
+                @php $oc = $classColors[$guide->opponentSpec->gameClass?->slug] ?? '#8A8A9A'; @endphp
+                <span class="text-[12px] text-ink-subtle px-1">vs</span>
+                <div class="flex items-center gap-2">
+                    <x-spec-icon :spec="$guide->opponentSpec" size="w-9 h-9"/>
+                    <div>
+                        <p class="text-[13px] font-medium leading-tight" style="color: {{ $oc }}">
+                            {{ $guide->opponentSpec->name }}
+                        </p>
+                        <p class="text-[11px] text-ink-subtle leading-tight">{{ $guide->opponentSpec->gameClass?->name }}</p>
+                    </div>
+                </div>
+            @endif
         </div>
     @endif
+
+    <x-guides.health :health="$this->health"/>
 
     {{-- Sections ------------------------------------------------------------------ --}}
     @forelse ($this->rows as $rowIndex => $rowSections)
@@ -72,7 +94,12 @@
                 @endphp
                 <div class="linear-card p-5" wire:key="section-{{ $section->id }}">
                     <div class="mb-3">
-                        <span class="badge-gold">{{ $section->kind->label() }}</span>
+                        {{-- No badge on a sequence: with one sequence kind the label would say
+                             "Sequence" on almost every section, which tells a reader nothing the
+                             author's own title does not say better. --}}
+                        @unless ($section->kind === UserGuideSectionKind::Sequence)
+                            <span class="badge-gold">{{ $section->kind->label() }}</span>
+                        @endunless
                         <h2 class="text-[17px] font-semibold text-ink mt-1.5">{{ $section->title }}</h2>
 
                         @if ($section->kind->usesOpponent() && $opponent)

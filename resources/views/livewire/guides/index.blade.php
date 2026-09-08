@@ -15,9 +15,13 @@
             </p>
         </div>
 
+        {{-- Two buttons, and they choose the one thing that genuinely cannot change later: whether
+             this guide is about a team or about a single spec. (The earlier pair, "New go" and
+             "New CC chain", chose a section kind — a distinction that turned out not to exist; see
+             App\Enums\UserGuideSectionKind.) --}}
         <div class="flex flex-col gap-2 shrink-0">
-            <button type="button" wire:click="create('go')" class="btn-primary">New go</button>
-            <button type="button" wire:click="create('chain')" class="btn-secondary">New CC chain</button>
+            <button type="button" wire:click="create('comp')" class="btn-primary">New comp guide</button>
+            <button type="button" wire:click="create('class')" class="btn-secondary">New class guide</button>
         </div>
     </div>
 
@@ -26,14 +30,15 @@
             <x-mc-icon name="icon-lightning-circle" class="w-10 h-10 text-gold/40 mx-auto mb-4"/>
             <h2 class="text-[16px] font-semibold text-ink mb-2">Nothing here yet</h2>
             <p class="text-[14px] text-ink-muted max-w-lg mx-auto mb-6">
-                Pick a comp, then build the order you'd actually press things in. A guide can hold
-                several chains and gos, matchup notes, and a VS column for the defensives you're
-                trying to force. We work out how much control survives diminishing returns and how
-                often you can run it again.
+                Two kinds. A <span class="text-ink">comp guide</span> is a 2v2 or 3v3 team &mdash; the
+                opener, the go, and a VS column for the defensives you're trying to force. A
+                <span class="text-ink">class guide</span> is one spec: a rotation, a technique, or a
+                specific matchup like Rogue vs Disc. Either way we work out how much control survives
+                diminishing returns and how often you can run it again.
             </p>
             <div class="flex items-center justify-center gap-2">
-                <button type="button" wire:click="create('go')" class="btn-primary">Start a go</button>
-                <button type="button" wire:click="create('chain')" class="btn-secondary">Start a chain</button>
+                <button type="button" wire:click="create('comp')" class="btn-primary">Start a comp guide</button>
+                <button type="button" wire:click="create('class')" class="btn-secondary">Start a class guide</button>
             </div>
         </div>
     @else

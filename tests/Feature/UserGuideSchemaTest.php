@@ -43,7 +43,7 @@ function makeGuide(User $user, string $title = 'Test guide'): UserGuide
     return UserGuide::create(['user_id' => $user->id, 'title' => $title]);
 }
 
-function makeSection(UserGuide $guide, UserGuideSectionKind $kind = UserGuideSectionKind::Chain, int $row = 0, int $column = 0): UserGuideSection
+function makeSection(UserGuide $guide, UserGuideSectionKind $kind = UserGuideSectionKind::Sequence, int $row = 0, int $column = 0): UserGuideSection
 {
     return UserGuideSection::create([
         'user_guide_id' => $guide->id,
@@ -312,7 +312,7 @@ test('section markdown renders but strips raw HTML and unsafe links', function (
 
 test('a sequence section never renders a body even if one somehow exists', function () {
     $f = makeGuideFixtures();
-    $section = makeSection(makeGuide($f['user']), UserGuideSectionKind::Chain);
+    $section = makeSection(makeGuide($f['user']), UserGuideSectionKind::Sequence);
     $section->update(['body' => '**should not render**']);
 
     expect($section->fresh()->bodyHtml())->toBe('');

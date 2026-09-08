@@ -5,23 +5,35 @@ namespace App\Enums;
 /**
  * What one section of a guide is.
  *
- * Replaces the guide-level UserGuideType (removed 2026-09-08): a guide can hold several chains, a
- * go, some prose and an opponent's defensives all at once, so "what kind of thing is this" is a
+ * Replaces the guide-level UserGuideType (removed 2026-09-08): a guide can hold several sequences,
+ * some prose and an opponent's defensives all at once, so "what kind of thing is this" is a
  * property of the section, not the guide. It is also the thing that decides which abilities the
  * section's palette offers, which is why it lives next to the section it governs.
  *
- * Stored as a plain string column, never a DB enum — see the user_guides migration for why.
+ * WHY `Chain` AND `Go` COLLAPSED INTO ONE `Sequence` (2026-09-08, direct report: "they are both
+ * the same thing"). They were: both an ordered list of abilities, both DR-tallied, both rendered
+ * by the same component. The only difference in code was that a Go's palette also offered
+ * offensive cooldowns — so the choice made at creation time silently decided which half of your
+ * own kit you were allowed to reach for, and there was no way to convert one into the other
+ * afterwards. An author who started a "chain" and then wanted to add the damage it sets up had to
+ * delete it and start again.
+ *
+ * Now there is one sequence kind whose palette offers the whole pressable kit, and what a section
+ * IS is carried by its title — which the author writes anyway, and which says far more than
+ * "chain" or "go" ever did ("Opener into trap", "Kidney into Convoke", "Peel when Sub goes"). The
+ * thing that actually distinguishes one guide from another is its comp, not its section types.
+ *
+ * Stored as a plain string column, never a DB enum — see the user_guides migration for why. The
+ * retired 'chain' and 'go' values were migrated to 'sequence' in place; see
+ * 2026_09_08_000004_merge_guide_chain_and_go_sections.
  */
 enum UserGuideSectionKind: string
 {
-    /** Control only. Palette: the comp's pressable crowd control. */
-    case Chain = 'chain';
-
     /**
-     * A coordinated go: the control that creates the window and the damage that spends it.
-     * Palette: the comp's crowd control plus its real offensive cooldowns.
+     * An ordered run of abilities: control, the damage it sets up, the defensive you weave in,
+     * the utility that makes it work. Palette: everything pressable in the author's own comp.
      */
-    case Go = 'go';
+    case Sequence = 'sequence';
 
     /**
      * What you are trying to force out of the opponent. Palette: the DEFENSIVE cooldowns of the
@@ -36,10 +48,19 @@ enum UserGuideSectionKind: string
     public function label(): string
     {
         return match ($this) {
-            self::Chain => 'CC chain',
-            self::Go => 'Go',
+            self::Sequence => 'Sequence',
             self::Defensives => 'Defensives to force',
             self::Text => 'Notes',
+        };
+    }
+
+    /** One line of "what is this for", shown beside the add button. */
+    public function hint(): string
+    {
+        return match ($this) {
+            self::Sequence => 'An ordered run of abilities — a go, a chain, an opener, a rotation.',
+            self::Defensives => "A named opponent's defensive cooldowns, so you can plan what to force.",
+            self::Text => 'Free notes in Markdown.',
         };
     }
 
@@ -55,15 +76,9 @@ enum UserGuideSectionKind: string
         return $this === self::Defensives;
     }
 
-    /** Whether the palette should include offensive cooldowns alongside control. */
-    public function includesOffensive(): bool
-    {
-        return $this === self::Go;
-    }
-
     /** Whether diminishing returns and control time mean anything for this section. */
     public function tracksControl(): bool
     {
-        return $this === self::Chain || $this === self::Go;
+        return $this === self::Sequence;
     }
 }

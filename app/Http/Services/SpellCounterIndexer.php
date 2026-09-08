@@ -351,10 +351,19 @@ class SpellCounterIndexer
             ->filter(fn (Spell $s) => $s->cooldown_seconds !== null || $s->charges !== null || $linked->has($s->id))
             ->groupBy(fn (Spell $s) => $s->display_name)
             ->map(fn (Collection $copies) => $copies
+                // TWO-ARGUMENT COMPARATORS, not one-argument value extractors. Collection::sortBy()
+                // given an ARRAY calls each closure as $fn($a, $b) and uses the return value as the
+                // comparison result directly (Collection::sortByMany) — a one-arg closure returning
+                // a rank therefore silently sorts by nonsense, because "0" reads as "equal" and any
+                // rank of 1 reads as "a is greater" regardless of what $b is. This block WAS written
+                // in the one-arg form and was picking the wrong copy; found 2026-09-08 while adding
+                // the guide palette's own same-name dedupe. Every other array-form sortBy in this
+                // codebase (BurstGuideBuilder, CcChainBuilder, DuelSimulatorService, SpellProfile)
+                // already uses the two-arg form — this one was the outlier.
                 ->sortBy([
-                    fn (Spell $s) => $s->cooldown_seconds !== null ? 0 : 1,
-                    fn (Spell $s) => $linked->has($s->id) ? 0 : 1,
-                    fn (Spell $s) => $s->id,
+                    fn (Spell $a, Spell $b) => ($a->cooldown_seconds !== null ? 0 : 1) <=> ($b->cooldown_seconds !== null ? 0 : 1),
+                    fn (Spell $a, Spell $b) => ($linked->has($a->id) ? 0 : 1) <=> ($linked->has($b->id) ? 0 : 1),
+                    fn (Spell $a, Spell $b) => $a->id <=> $b->id,
                 ])
                 ->first())
             ->values();

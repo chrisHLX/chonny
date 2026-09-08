@@ -14,6 +14,7 @@ use App\Models\TalentNodeEdge;
 use App\Models\TalentNodeEntry;
 use App\Models\TalentTree;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 /**
@@ -43,6 +44,20 @@ class TalentSelector extends Component
     public int $specId;
 
     public bool $isDefaultEditor = false;
+
+    /**
+     * Edit one specific, caller-nominated build instead of the viewer's own or the admin default
+     * (added 2026-09-08 for the user-guide builder, where a guide's comp slot names the talents
+     * that guide is written for — see the add_talent_build_to_user_guide_members migration).
+     *
+     * #[Locked] IS LOAD-BEARING, NOT DECORATION. Livewire public properties are client-mutable by
+     * default, so without it anyone could point this component at any build id in the database and
+     * rewrite it — including an admin default or another author's guide. Locked means the value can
+     * only ever be the one the server passed at mount, and the mounting page (Guides\Builder) has
+     * already checked the guide belongs to the current user.
+     */
+    #[Locked]
+    public ?int $buildId = null;
 
     /**
      * View-only mode (added 2026-08-28) — mounts the exact same grid/lock/tooltip rendering the
@@ -117,8 +132,8 @@ class TalentSelector extends Component
 
     /**
      * @param  ?array<int,int>  $presetChosenEntries  readOnly mode only — talent_node_id =>
-     *         chosen talent_node_entry id, e.g. from ArenaLogService::resolveCombatantTalents()'s
-     *         `nodeId`/`entryId` fields. Ignored (never read) unless $readOnly is true.
+     *                                                chosen talent_node_entry id, e.g. from ArenaLogService::resolveCombatantTalents()'s
+     *                                                `nodeId`/`entryId` fields. Ignored (never read) unless $readOnly is true.
      * @param  ?array<int,int>  $presetPvpTalentIds  readOnly mode only — pvp_talents.id list.
      */
     public function mount(
@@ -129,12 +144,14 @@ class TalentSelector extends Component
         bool $readOnly = false,
         ?array $presetChosenEntries = null,
         ?array $presetPvpTalentIds = null,
+        ?int $buildId = null,
     ): void {
         $this->specId = $specId;
         $this->isDefaultEditor = $isDefaultEditor;
         $this->moduleHeroTreeId = $moduleHeroTreeId;
         $this->layout = $layout;
         $this->readOnly = $readOnly;
+        $this->buildId = $buildId;
 
         if ($readOnly) {
             // Deliberately bypasses resolveActiveBuild() entirely — a read-only view shows
@@ -149,10 +166,15 @@ class TalentSelector extends Component
         }
 
         $service = app(TalentSelectionService::class);
-        $user = $isDefaultEditor ? null : auth()->user();
-        $build = $service->resolveActiveBuild($user, $specId);
 
-        if (!$build->exists) {
+        // A nominated build is used verbatim — it is the thing being edited, so falling back to
+        // the viewer's own build or the spec's default would edit the wrong row.
+        $build = $this->nominatedBuild() ?? $service->resolveActiveBuild(
+            $isDefaultEditor ? null : auth()->user(),
+            $specId
+        );
+
+        if (! $build->exists) {
             $this->heroTreeId = $moduleHeroTreeId;
 
             return;
@@ -232,7 +254,7 @@ class TalentSelector extends Component
             // swapping a CHOICE node's already-invested pick between its two options (that isn't
             // new investment, just changing which spell the existing point buys), matching
             // cycleNode()'s equivalent $currentRank === 0 check below.
-            if (!isset($this->chosenEntries[$nodeId]) && $this->isNodeLocked(TalentNode::with('talentTree')->findOrFail($nodeId))) {
+            if (! isset($this->chosenEntries[$nodeId]) && $this->isNodeLocked(TalentNode::with('talentTree')->findOrFail($nodeId))) {
                 return;
             }
 
@@ -349,7 +371,7 @@ class TalentSelector extends Component
             return;
         }
 
-        if (!$spec || !$patchId) {
+        if (! $spec || ! $patchId) {
             $this->importError = 'No current patch data is imported for this specialization yet.';
 
             return;
@@ -381,7 +403,7 @@ class TalentSelector extends Component
      */
     public function applyImport(): void
     {
-        if ($this->readOnly || !$this->importPreview) {
+        if ($this->readOnly || ! $this->importPreview) {
             return;
         }
 
@@ -424,16 +446,33 @@ class TalentSelector extends Component
             return;
         }
 
-        if (!$this->isDefaultEditor && !auth()->check()) {
+        if (! $this->isDefaultEditor && ! auth()->check()) {
             return;
         }
 
         $service = app(TalentSelectionService::class);
-        $build = $this->isDefaultEditor
-            ? $service->getOrCreateDefaultBuild($this->specId)
-            : $service->getOrCreateUserBuild(auth()->user(), $this->specId);
+        $build = $this->nominatedBuild()
+            ?? ($this->isDefaultEditor
+                ? $service->getOrCreateDefaultBuild($this->specId)
+                : $service->getOrCreateUserBuild(auth()->user(), $this->specId));
 
         $callback($service, $build);
+    }
+
+    /**
+     * The specific build this selector was mounted against, if any.
+     *
+     * Re-checks the spec on every read rather than trusting $buildId alone: #[Locked] guarantees
+     * the id is the one the server supplied, and this guarantees that build is actually for the
+     * spec being edited, so a mounting bug cannot write one spec's picks onto another spec's row.
+     */
+    private function nominatedBuild(): ?TalentBuild
+    {
+        if ($this->buildId === null) {
+            return null;
+        }
+
+        return TalentBuild::where('id', $this->buildId)->where('spec_id', $this->specId)->first();
     }
 
     public function getSelectedSpellIdsProperty(): Collection
@@ -467,7 +506,7 @@ class TalentSelector extends Component
     {
         $spellId = $entry->spell_id;
 
-        if (!array_key_exists($spellId, $this->resolvedDescriptionCache)) {
+        if (! array_key_exists($spellId, $this->resolvedDescriptionCache)) {
             $build = new ModuleGameBuild([
                 'class_id' => $this->specialization?->class_id,
                 'specialization_id' => $this->specId,
@@ -488,7 +527,7 @@ class TalentSelector extends Component
 
     private function loadTreeNodes(?TalentTree $tree): Collection
     {
-        if (!$tree) {
+        if (! $tree) {
             return collect();
         }
 
@@ -503,7 +542,7 @@ class TalentSelector extends Component
             ->each(fn (TalentNode $n) => $n->setRelation('talentTree', $tree));
     }
 
-    /** @var ?Collection<int, int> talent_node_id => rank, memoized per render/action from $chosenEntries */
+    /** @var ?Collection<int, int> talent_node_id => rank, memoized per render/action from */
     private ?Collection $rankByNodeIdCache = null;
 
     /**
@@ -591,7 +630,7 @@ class TalentSelector extends Component
         $spec = $this->specialization;
         $patchId = $this->currentPatchId();
 
-        if (!$spec || !$patchId) {
+        if (! $spec || ! $patchId) {
             return null;
         }
 
@@ -607,7 +646,7 @@ class TalentSelector extends Component
         $spec = $this->specialization;
         $patchId = $this->currentPatchId();
 
-        if ($nodes->isEmpty() || !$spec || !$patchId) {
+        if ($nodes->isEmpty() || ! $spec || ! $patchId) {
             return $nodes;
         }
 
@@ -641,7 +680,7 @@ class TalentSelector extends Component
     {
         $patchId = $this->currentPatchId();
 
-        if (!$patchId) {
+        if (! $patchId) {
             return null;
         }
 
@@ -657,7 +696,7 @@ class TalentSelector extends Component
         $spec = $this->specialization;
         $patchId = $this->currentPatchId();
 
-        if ($nodes->isEmpty() || !$spec || !$patchId) {
+        if ($nodes->isEmpty() || ! $spec || ! $patchId) {
             return $nodes;
         }
 
@@ -699,7 +738,7 @@ class TalentSelector extends Component
         $spec = $this->specialization;
         $patchId = $this->currentPatchId();
 
-        if (!$spec || !$patchId) {
+        if (! $spec || ! $patchId) {
             return collect();
         }
 
@@ -751,7 +790,7 @@ class TalentSelector extends Component
     {
         $patchId = $this->currentPatchId();
 
-        if (!$patchId) {
+        if (! $patchId) {
             return collect();
         }
 

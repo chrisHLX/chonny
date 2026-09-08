@@ -6,10 +6,13 @@ use App\Enums\UserGuideBlockType;
 use App\Models\Patch;
 use App\Models\Specialization;
 use App\Models\Spell;
+use App\Models\TalentBuild;
+use App\Models\UserGuide;
 use App\Models\UserGuideBlock;
 use App\Models\UserGuideSection;
 use App\Support\CooldownTabs;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Turns one ability sequence — a chain, a go, or an opponent's defensives — into renderable data:
@@ -43,6 +46,8 @@ class UserGuideChainService
 
     private const DEFENSIVE_GROUP = 'Defensive cooldowns';
 
+    private const UTILITY_GROUP = 'Utility & other';
+
     public function __construct(
         private SpecKitComputer $kits,
         private ModuleSpellReferenceService $spellReferences,
@@ -56,10 +61,15 @@ class UserGuideChainService
      *
      * Which specs are offered depends on the section's kind, and this is the whole point of the VS
      * layout: a Defensives section draws from its OPPONENT's kit, every other kind draws from the
-     * author's own comp. A go additionally offers each member's real offensive cooldowns, because
-     * a go is the coordinated thing — the control that creates the window and the damage that
-     * spends it — and authoring one without the damage half would just be a chain with a
-     * different name.
+     * author's own comp.
+     *
+     * A SEQUENCE OFFERS THE WHOLE PRESSABLE KIT, not a filtered slice of it (2026-09-08). It used
+     * to offer control only, plus offensive cooldowns if the section had been created as a "go" —
+     * so the kind chosen at creation time silently decided which half of your own class you were
+     * allowed to reach for, with no way to change your mind afterwards. That filtering was the
+     * only real difference between the two kinds, and removing it is what let them merge. The
+     * grouping survives and does the same job better: control first, by DR category, then the
+     * offensive and defensive cooldowns, then everything else that is a real button.
      *
      * @return Collection<int, array{spec: Specialization, groups: Collection<string, Collection<int, mixed>>}>
      */
@@ -77,10 +87,49 @@ class UserGuideChainService
         return $this->paletteSpecs($section)
             ->map(fn (Specialization $spec) => [
                 'spec' => $spec,
-                'groups' => $this->groupsFor($section, $spec, $patch),
+                'groups' => $this->groupsFor($section, $spec, $patch, $this->buildForSpec($section, $spec->id)),
             ])
             ->filter(fn (array $s) => $s['groups']->isNotEmpty())
             ->values();
+    }
+
+    /**
+     * The talent build a spec is being played with in this guide, or null to use the spec's
+     * admin-curated default.
+     *
+     * Only ever the author's OWN comp. A Defensives section's opponent is not in the guide's
+     * roster and has no build of its own here, which is correct: you do not know what your
+     * opponent talented, and inventing an answer would be worse than showing the meta default.
+     *
+     * A comp with the same spec in two slots (a mirror double-DPS) resolves to the first slot's
+     * build. Steps record only which SPEC they came from, not which slot, so the two are already
+     * indistinguishable downstream — a per-slot answer would need the block payload to carry the
+     * member, which is a bigger change than this is worth until someone actually writes a guide
+     * where the two copies run different talents.
+     */
+    private function buildForSpec(UserGuideSection $section, int $specId): ?TalentBuild
+    {
+        if ($section->kind->usesOpponent()) {
+            return null;
+        }
+
+        return $this->memberBuilds($section)->get($specId);
+    }
+
+    /** @var array<int, Collection<int, TalentBuild>> guide id => spec id => build */
+    private array $memberBuildsMemo = [];
+
+    /** @return Collection<int, TalentBuild> keyed by spec id; a member with no build is absent. */
+    private function memberBuilds(UserGuideSection $section): Collection
+    {
+        $guideId = (int) $section->user_guide_id;
+
+        return $this->memberBuildsMemo[$guideId] ??= $section->guide->members()
+            ->with('talentBuild')
+            ->get()
+            ->filter(fn ($m) => $m->talentBuild !== null)
+            ->keyBy('spec_id')
+            ->map(fn ($m) => $m->talentBuild);
     }
 
     /**
@@ -111,7 +160,7 @@ class UserGuideChainService
         }
 
         $specs = collect();
-        $entriesByExternalId = $this->resolveEntriesForBlocks($blocks, $specs);
+        $entriesByExternalId = $this->resolveEntriesForBlocks($blocks, $specs, $section);
 
         // Only control steps take part in the tally: a damage or defensive cooldown has no
         // dr_category and must not consume a slot, and an unresolved block cannot diminish
@@ -221,11 +270,71 @@ class UserGuideChainService
         ];
     }
 
+    /**
+     * What has drifted under this guide since it was written — the guide-level view of a fact the
+     * per-step rendering already shows one step at a time.
+     *
+     * WHY A GUIDE NEEDS THIS AT ALL. Steps store Blizzard's external spell id and are re-resolved
+     * against the CURRENT patch on every single render, never against the patch the guide was
+     * authored on (user_guides.patch_id is informational and nothing reads it to resolve
+     * anything). So a patch that retunes a cooldown, changes a talent, or flips a DR category is
+     * picked up automatically and silently — which is the right default, because the alternative
+     * is a guide confidently showing numbers that stopped being true. The one case that cannot be
+     * handled silently is a spell id that no longer exists at all: the step is KEPT and rendered
+     * as "Ability no longer found" so the author can replace it, rather than being deleted, which
+     * would be indistinguishable from data loss.
+     *
+     * This method exists because that per-step marker is only visible to somebody already
+     * scrolling the guide. An author who published six months ago has no reason to open it again,
+     * so the count is surfaced at the top instead.
+     *
+     * Takes the already-computed resolve() output rather than recomputing it — both the builder
+     * and the public page have it in hand, and resolving twice per render to count something would
+     * double the cost of the page for a banner.
+     *
+     * @param  array<int, array{steps: array, metrics: array}>  $resolved  keyed by section id
+     * @return array{unresolved:int, sections:array<int,string>, authored_patch:?string, current_patch:?string, patch_changed:bool}
+     */
+    public function health(UserGuide $guide, array $resolved): array
+    {
+        $unresolved = 0;
+        $sections = [];
+
+        foreach ($guide->sections as $section) {
+            $count = collect($resolved[$section->id]['steps'] ?? [])
+                ->filter(fn (array $s) => $s['unresolved'])
+                ->count();
+
+            if ($count > 0) {
+                $unresolved += $count;
+                $sections[$section->id] = $section->title;
+            }
+        }
+
+        $authored = $guide->patch?->build_version;
+        $current = Patch::where('is_current', true)->value('build_version');
+
+        return [
+            'unresolved' => $unresolved,
+            'sections' => $sections,
+            'authored_patch' => $authored,
+            'current_patch' => $current,
+            // Only ever true when the guide actually recorded a patch. A guide with none was
+            // never really authored against one (patch_id is set on first real edit), and
+            // claiming it is out of date would be inventing a fact.
+            'patch_changed' => $authored !== null && $current !== null && $authored !== $current,
+        ];
+    }
+
     /** Which specs a section's palette draws from — the opponent's, or the author's own comp. */
     private function paletteSpecs(UserGuideSection $section): Collection
     {
         if ($section->kind->usesOpponent()) {
-            $opponent = $section->opponentSpec;
+            // A class guide names one opponent for the whole guide, so a Defensives section in one
+            // falls back to it rather than making the author pick the same spec again per section.
+            // A comp guide has no guide-level opponent, so this is null there and the section's own
+            // pick is the only answer — which is the point of a comp guide's VS columns.
+            $opponent = $section->opponentSpec ?? $section->guide->opponentSpec;
 
             return $opponent ? collect([$opponent->loadMissing('gameClass')]) : collect();
         }
@@ -237,9 +346,9 @@ class UserGuideChainService
     }
 
     /** @return Collection<string, Collection<int, mixed>> */
-    private function groupsFor(UserGuideSection $section, Specialization $spec, Patch $patch): Collection
+    private function groupsFor(UserGuideSection $section, Specialization $spec, Patch $patch, ?TalentBuild $build = null): Collection
     {
-        $entries = $this->specEntries($spec);
+        $entries = $this->specEntries($spec, $build);
 
         if ($section->kind->usesOpponent()) {
             $defensives = $entries
@@ -251,6 +360,7 @@ class UserGuideChainService
         }
 
         $ccSpellIds = $this->pressableCcSpellIds($spec, $patch);
+        $entries = $this->onePerDisplayName($entries);
 
         $groups = $entries
             ->filter(fn ($e) => $ccSpellIds->contains($e['spell']->id))
@@ -261,22 +371,110 @@ class UserGuideChainService
             ->sortBy(fn ($g, $category) => $this->categoryRank($category))
             ->map(fn (Collection $g) => $g->sortBy(fn ($e) => $e->displayName())->values());
 
-        if ($section->kind->includesOffensive()) {
-            $offensive = $entries
-                // A CC ability that is also an offensive cooldown stays in its DR group — where it
-                // lands is the more useful fact, and listing it twice would let an author add the
-                // same ability from two places without noticing.
-                ->reject(fn ($e) => $ccSpellIds->contains($e['spell']->id))
-                ->filter(fn ($e) => CooldownTabs::isEntry($e, 'offensive'))
+        // Every ability is offered exactly once, in the most informative group it qualifies for:
+        // control beats cooldown, and offensive beats defensive for the handful classified as
+        // both. Listing one ability twice would let an author add it from two places without
+        // noticing, and would make the palette look bigger than the kit actually is.
+        $claimed = $ccSpellIds->flip();
+        $remaining = $entries->reject(fn ($e) => $claimed->has($e['spell']->id));
+
+        foreach ([self::OFFENSIVE_GROUP => 'offensive', self::DEFENSIVE_GROUP => 'defensive'] as $label => $direction) {
+            $matched = $remaining
+                ->filter(fn ($e) => CooldownTabs::isEntry($e, $direction))
                 ->sortBy(fn ($e) => $e->displayName())
                 ->values();
 
-            if ($offensive->isNotEmpty()) {
-                $groups = $groups->put(self::OFFENSIVE_GROUP, $offensive);
+            if ($matched->isNotEmpty()) {
+                $groups = $groups->put($label, $matched);
+                $claimed = $claimed->union($matched->pluck('spell.id')->flip());
+                $remaining = $remaining->reject(fn ($e) => $claimed->has($e['spell']->id));
+            }
+        }
+
+        // CLASS GUIDES ONLY. A 3v3 go is control and cooldowns; listing every filler, poison and
+        // movement ability alongside them made the comp palette harder to use for no gain, which
+        // was the direct report that split the two guide types apart ("we don't need utility or
+        // other in the 3v3 2v2 guide section, that's for a different type of guide"). A rotation
+        // or technique guide is built out of exactly those abilities, so it gets them.
+        if ($section->guide->type->usesWholeKit()) {
+            $utility = $remaining
+                ->filter(fn ($e) => $this->isPressable($e))
+                ->sortBy(fn ($e) => $e->displayName())
+                ->values();
+
+            if ($utility->isNotEmpty()) {
+                $groups = $groups->put(self::UTILITY_GROUP, $utility);
             }
         }
 
         return $groups;
+    }
+
+    /**
+     * Whether an entry is a real button rather than a passive the kit happens to contain.
+     *
+     * A spec's kit is mostly passive talent modifiers — Improved Fade does not go in a sequence,
+     * it changes what Fade does. Two signals, both already trusted elsewhere in this codebase and
+     * neither invented here: Blizzard's own `Passive (6)` attribute (`spells.is_passive`, the same
+     * flag <x-spells.table> splits Active Abilities from Buffs & Passives on) and
+     * `Not In Spellbook (143)` (`spells.not_in_spellbook`, which flags internal data-carrier
+     * copies of a visible ability).
+     *
+     * Deliberately NOT also requiring a cooldown: plenty of real, pressed abilities have none
+     * (Frostbolt, Mind Control, an interrupt-free filler), and a cooldown gate would quietly hide
+     * exactly the rotational abilities a class guide is written about. `isPriority` (the
+     * arena-log "this spec actually presses this" signal) was considered as a third gate and
+     * rejected for the same reason in reverse — a spec with a thin match sample would lose most
+     * of its palette, and absence of log evidence is not evidence the button does not exist.
+     */
+    private function isPressable(mixed $entry): bool
+    {
+        $spell = $entry['spell'];
+
+        if ($spell->is_passive || $spell->not_in_spellbook) {
+            return false;
+        }
+
+        return ($entry['cooldown']['seconds'] ?? null) !== null
+            || ($entry['charges']['charges'] ?? null) !== null
+            || ($entry['isPriority'] ?? false);
+    }
+
+    /**
+     * Collapse same-named copies of one ability to a single palette entry.
+     *
+     * A spec's kit routinely holds several `spells` rows sharing one display name — the pattern
+     * documented all over this codebase (Penance, Ultimate Penitence, Smoke Bomb, Garrote), where
+     * one copy carries the real cooldown and the others are internal data carriers. Without this
+     * the palette offered "Thistle Tea" twice, and listed Smoke Bomb and Secret Technique under
+     * both a cooldown group and Utility, because the id-based grouping saw genuinely different
+     * spells. An author picking the wrong copy would then get a step with no cooldown for an
+     * ability that plainly has one.
+     *
+     * Preference order matches the tiering TalentSelectionService::preferSelectedPerName() and
+     * ModuleSpellReferenceService::resolveSpellByName() already use: a copy with real cooldown
+     * data first, then one this spec's build actually has selected, then the lowest id so the
+     * result is deterministic rather than dependent on query order.
+     *
+     * @param  Collection<int, mixed>  $entries
+     * @return Collection<int, mixed>
+     */
+    private function onePerDisplayName(Collection $entries): Collection
+    {
+        // Two-argument comparators — see the note in SpellCounterIndexer::narrowToPressable(). The
+        // one-argument form silently sorts by nonsense here, and did: it kept Secret Technique's
+        // effect-less internal copy over the real 25s-cooldown ability, which then failed the
+        // offensive-cooldown test and vanished from the palette entirely.
+        return $entries
+            ->groupBy(fn ($e) => $e->displayName())
+            ->map(fn (Collection $copies) => $copies->sortBy([
+                fn ($a, $b) => (($a['cooldown']['seconds'] ?? null) !== null ? 0 : 1)
+                    <=> (($b['cooldown']['seconds'] ?? null) !== null ? 0 : 1),
+                fn ($a, $b) => (($a['isPriority'] ?? false) ? 0 : 1) <=> (($b['isPriority'] ?? false) ? 0 : 1),
+                fn ($a, $b) => (($a['isSelected'] ?? false) ? 0 : 1) <=> (($b['isSelected'] ?? false) ? 0 : 1),
+                fn ($a, $b) => $a['spell']->id <=> $b['spell']->id,
+            ])->first())
+            ->values();
     }
 
     /**
@@ -297,16 +495,52 @@ class UserGuideChainService
     /** Every kit entry for a spec, memoised per request — the palette asks for this repeatedly. */
     private array $specEntriesMemo = [];
 
-    private function specEntries(Specialization $spec): Collection
+    /**
+     * Every kit entry for a spec, resolved against $build's talents when one is given.
+     *
+     * A guide comp slot may name the build it is actually playing (user_guide_members
+     * .talent_build_id), and when it does, every cooldown, charge count and talent-conditional DR
+     * category on this spec's abilities has to be computed against THAT build — a guide that says
+     * "Fade, 20s" because its author took Improved Fade must not show 30s because the admin
+     * default build did not.
+     *
+     * A build-specific resolution cannot use the precomputed spell kit (written per spec against
+     * the admin default), so it is a live compute — measured elsewhere in this codebase at several
+     * seconds for a handful of specs. Cached on the build's own id and updated_at, so editing
+     * talents invalidates it immediately and nothing else does, plus the same spellCacheVersion/
+     * deployedCodeFingerprint keys every other spell cache here uses. The memo below still applies
+     * within one request; this cache is what stops every page load paying for it again.
+     */
+    private function specEntries(Specialization $spec, ?TalentBuild $build = null): Collection
     {
-        return $this->specEntriesMemo[$spec->id] ??= collect(
-            $this->kits->resolveEntriesForSpellIds(
-                $this->kitSpells($spec)->pluck('spell_id')->all(),
-                $spec,
-                $this->spellReferences,
-                $this->talents,
-            )
+        $memoKey = $spec->id.':'.($build?->id ?? 0);
+
+        if (isset($this->specEntriesMemo[$memoKey])) {
+            return $this->specEntriesMemo[$memoKey];
+        }
+
+        $spellIds = $this->kitSpells($spec)->pluck('spell_id')->all();
+
+        if ($build === null) {
+            return $this->specEntriesMemo[$memoKey] = collect(
+                $this->kits->resolveEntriesForSpellIds($spellIds, $spec, $this->spellReferences, $this->talents)
+            );
+        }
+
+        $key = sprintf(
+            'guide_kit:%d:build%d:%s:v%s:%s',
+            $spec->id,
+            $build->id,
+            $build->updated_at?->timestamp ?? 0,
+            $this->talents->spellCacheVersion(),
+            $this->talents->deployedCodeFingerprint(),
         );
+
+        return $this->specEntriesMemo[$memoKey] = collect(Cache::remember(
+            $key,
+            now()->addDay(),
+            fn () => $this->kits->resolveEntriesForSpellIds($spellIds, $spec, $this->spellReferences, $this->talents, $build)
+        ));
     }
 
     private array $kitSpellsMemo = [];
@@ -369,7 +603,7 @@ class UserGuideChainService
      * @param  Collection<int, Specialization>  $specs  filled in place, spec id => Specialization
      * @return array<int, mixed> external spell_id => entry
      */
-    private function resolveEntriesForBlocks(Collection $blocks, Collection $specs): array
+    private function resolveEntriesForBlocks(Collection $blocks, Collection $specs, ?UserGuideSection $section = null): array
     {
         $resolved = [];
 
@@ -388,7 +622,11 @@ class UserGuideChainService
                 continue;
             }
 
-            foreach ($this->kits->resolveEntriesForSpellIds($externalIds, $spec, $this->spellReferences, $this->talents) as $entry) {
+            // Same build the palette offered this spec's abilities from, so a step's numbers do
+            // not change the moment it stops being a palette preview and becomes a saved step.
+            $build = $section !== null ? $this->buildForSpec($section, (int) $specId) : null;
+
+            foreach ($this->kits->resolveEntriesForSpellIds($externalIds, $spec, $this->spellReferences, $this->talents, $build) as $entry) {
                 $resolved[$entry['spell']->spell_id] = $entry;
             }
         }

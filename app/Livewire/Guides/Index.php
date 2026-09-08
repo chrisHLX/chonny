@@ -4,6 +4,7 @@ namespace App\Livewire\Guides;
 
 use App\Enums\UserGuideSectionKind;
 use App\Enums\UserGuideStatus;
+use App\Enums\UserGuideType;
 use App\Enums\UserGuideVisibility;
 use App\Models\PageViewEvent;
 use App\Models\UserGuide;
@@ -59,28 +60,28 @@ class Index extends Component
      * default. The placeholder title is what the slug is generated from, and the slug never changes
      * afterwards (see UserGuide::booted()), so it is written to be a reasonable permanent URL.
      */
-    public function create(string $kind)
+    public function create(string $type)
     {
-        $sectionKind = UserGuideSectionKind::tryFrom($kind);
-        if ($sectionKind === null) {
+        $guideType = UserGuideType::tryFrom($type);
+        if ($guideType === null) {
             return null;
         }
 
         $guide = UserGuide::create([
             'user_id' => auth()->id(),
+            'type' => $guideType,
             'status' => UserGuideStatus::Draft,
             'visibility' => UserGuideVisibility::Invited,
-            'title' => match ($sectionKind) {
-                UserGuideSectionKind::Go => 'Untitled go',
-                UserGuideSectionKind::Chain => 'Untitled CC chain',
-                default => 'Untitled guide',
-            },
+            'title' => $guideType === UserGuideType::ClassGuide ? 'Untitled class guide' : 'Untitled comp guide',
         ]);
 
+        // One starter sequence, so the builder opens on something to fill in rather than an empty
+        // page. Its title differs by type only because the two are answering different questions —
+        // it is an ordinary section either way, renamable and deletable like any other.
         UserGuideSection::create([
             'user_guide_id' => $guide->id,
-            'kind' => $sectionKind,
-            'title' => $sectionKind->label(),
+            'kind' => UserGuideSectionKind::Sequence,
+            'title' => $guideType === UserGuideType::ClassGuide ? 'The sequence' : 'The opener',
             'row' => 0,
             'column' => 0,
         ]);

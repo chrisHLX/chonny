@@ -16,6 +16,7 @@ use App\Models\TalentNode;
 use App\Models\TalentNodeEntry;
 use App\Models\TalentTree;
 use App\Models\User;
+use App\Models\UserGuideMember;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -812,6 +813,44 @@ class TalentSelectionService
         ]);
 
         $this->seedFromDefaultBuild($build, $specId, $patchId);
+
+        return $build;
+    }
+
+    /**
+     * The talent build backing one guide comp slot, created on first use.
+     *
+     * user_id NULL + is_default FALSE, the same combination module-linked builds use — invisible
+     * to resolveActiveBuild()'s personal lookup (which filters on user_id) and to its
+     * admin-default lookup (which filters on is_default), so a guide's build can never leak onto
+     * WoW Comps, Spell Explorer or another guide. Seeded from the spec's admin default so an
+     * author starts from the meta build and changes what they actually play differently, rather
+     * than from an empty tree.
+     *
+     * The member row is updated in the same call, so a caller cannot end up with an orphaned
+     * build that nothing points at.
+     */
+    public function getOrCreateGuideMemberBuild(UserGuideMember $member, ?int $patchId = null): TalentBuild
+    {
+        if ($member->talentBuild) {
+            return $member->talentBuild;
+        }
+
+        $patchId ??= $this->currentPatchIdForSpec($member->spec_id);
+
+        $build = TalentBuild::create([
+            'user_id' => null,
+            'spec_id' => $member->spec_id,
+            'patch_id' => $patchId,
+            'is_default' => false,
+            'name' => 'Guide build',
+            'share_slug' => (string) Str::uuid(),
+        ]);
+
+        $this->seedFromDefaultBuild($build, $member->spec_id, $patchId);
+
+        $member->forceFill(['talent_build_id' => $build->id])->save();
+        $member->setRelation('talentBuild', $build);
 
         return $build;
     }

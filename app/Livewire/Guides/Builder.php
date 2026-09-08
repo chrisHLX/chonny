@@ -6,6 +6,7 @@ use App\Enums\UserGuideBlockType;
 use App\Enums\UserGuideSectionKind;
 use App\Enums\UserGuideStatus;
 use App\Enums\UserGuideVisibility;
+use App\Http\Services\TalentSelectionService;
 use App\Http\Services\UserGuideChainService;
 use App\Models\GameClass;
 use App\Models\PageViewEvent;
@@ -55,6 +56,12 @@ class Builder extends Component
 
     /** Which section's opponent picker is open, or null when closed. */
     public ?int $pickingOpponentFor = null;
+
+    /** Which comp slot's talent tree is open, or null when closed. */
+    public ?int $editingTalentsFor = null;
+
+    /** Whether the class guide's single-opponent picker is open. */
+    public bool $pickingGuideOpponent = false;
 
     public string $shareEmail = '';
 
@@ -117,6 +124,13 @@ class Builder extends Component
         return $out;
     }
 
+    /** What has drifted under this guide since it was written — see UserGuideChainService::health(). */
+    #[Computed]
+    public function health(): array
+    {
+        return app(UserGuideChainService::class)->health($this->guide, $this->resolved);
+    }
+
     public function paletteFor(int $sectionId)
     {
         $section = $this->ownedSection($sectionId);
@@ -134,9 +148,46 @@ class Builder extends Component
 
     public function openMemberPicker(int $slot): void
     {
-        if ($slot >= 0 && $slot < UserGuideMember::MAX_MEMBERS) {
+        // Bounded by THIS guide's own cap, not the table's maximum: a class guide has one slot, and
+        // accepting slot 1 or 2 there would let a tampered request build a comp inside it.
+        if ($slot >= 0 && $slot < $this->guide->maxMembers()) {
             $this->pickingSlot = $slot;
         }
+    }
+
+    /** Open the picker for a class guide's single opponent ("Rogue vs Disc"). */
+    public function openGuideOpponentPicker(): void
+    {
+        if ($this->guide->type->hasGuideOpponent()) {
+            $this->pickingGuideOpponent = true;
+        }
+    }
+
+    public function closeGuideOpponentPicker(): void
+    {
+        $this->pickingGuideOpponent = false;
+    }
+
+    /**
+     * Name the opponent this class guide is written against.
+     *
+     * Steps already added are deliberately kept, same as every other roster edit here — they name
+     * real abilities, and a corrected opponent should not silently delete authored work.
+     */
+    public function setGuideOpponent(int $specId): void
+    {
+        if ($this->guide->type->hasGuideOpponent() && Specialization::whereKey($specId)->exists()) {
+            $this->guide->update(['opponent_spec_id' => $specId]);
+        }
+
+        $this->pickingGuideOpponent = false;
+        $this->refreshGuide();
+    }
+
+    public function clearGuideOpponent(): void
+    {
+        $this->guide->update(['opponent_spec_id' => null]);
+        $this->refreshGuide();
     }
 
     public function closeMemberPicker(): void
@@ -152,7 +203,7 @@ class Builder extends Component
     public function setMember(int $specId): void
     {
         $slot = $this->pickingSlot;
-        if ($slot === null || ! Specialization::whereKey($specId)->exists()) {
+        if ($slot === null || $slot >= $this->guide->maxMembers() || ! Specialization::whereKey($specId)->exists()) {
             return;
         }
 
@@ -179,6 +230,63 @@ class Builder extends Component
         $this->refreshGuide();
     }
 
+    /**
+     * Open the talent tree for one comp slot, creating that slot's own build on first use.
+     *
+     * The build is created here rather than when the member is added, so a guide that never
+     * touches talents never accumulates a build row it does not use — and, more importantly, so
+     * an untouched slot keeps resolving through the spec's admin default, which is the honest
+     * answer for "the author did not say".
+     */
+    public function openTalents(int $slot): void
+    {
+        $member = $this->guide->members()->where('position', $slot)->first();
+
+        if (! $member || ! $member->spec_id) {
+            return;
+        }
+
+        app(TalentSelectionService::class)->getOrCreateGuideMemberBuild($member);
+
+        $this->editingTalentsFor = $slot;
+        $this->refreshGuide();
+    }
+
+    public function closeTalents(): void
+    {
+        $this->editingTalentsFor = null;
+
+        // The tree wrote straight to the build, so every cached palette and every resolved step
+        // for this guide is now stale. Dropping the computed properties is what makes the change
+        // visible the moment the tree closes rather than on the next full page load.
+        $this->refreshGuide();
+    }
+
+    /**
+     * Drop a slot back to the spec's admin-curated default build.
+     *
+     * Deletes the guide's own build row rather than emptying it: an empty build and "no build" are
+     * different states, and an empty one would resolve every ability to its untalented numbers
+     * instead of the meta default, which is not what "reset" should mean.
+     */
+    public function resetTalents(int $slot): void
+    {
+        $member = $this->guide->members()->where('position', $slot)->first();
+        $build = $member?->talentBuild;
+
+        if ($build === null) {
+            return;
+        }
+
+        // Order matters: clear the reference first, so a failure deleting the build cannot leave
+        // the member pointing at a row that no longer exists.
+        $member->forceFill(['talent_build_id' => null])->save();
+        $build->delete();
+
+        $this->editingTalentsFor = null;
+        $this->refreshGuide();
+    }
+
     // ------------------------------------------------------------- the sections
 
     /** Append a new full-width section at the bottom of the page. */
@@ -198,9 +306,22 @@ class Builder extends Component
             'title' => $this->defaultTitleFor($sectionKind),
             'row' => $row,
             'column' => 0,
+            'opponent_spec_id' => $this->inheritedOpponentFor($sectionKind),
         ]);
 
         $this->refreshGuide();
+    }
+
+    /**
+     * A Defensives section in a class guide starts pointed at the guide's own opponent, since the
+     * author has already said who they are writing against. Null everywhere else — a comp guide's
+     * VS columns are per-section on purpose, and a section may not carry an opponent at all.
+     */
+    private function inheritedOpponentFor(UserGuideSectionKind $kind): ?int
+    {
+        return $kind->usesOpponent() && $this->guide->type->hasGuideOpponent()
+            ? $this->guide->opponent_spec_id
+            : null;
     }
 
     /**
@@ -227,6 +348,7 @@ class Builder extends Component
             'title' => $this->defaultTitleFor($sectionKind),
             'row' => $row,
             'column' => 1,
+            'opponent_spec_id' => $this->inheritedOpponentFor($sectionKind),
         ]);
 
         $this->refreshGuide();
@@ -536,8 +658,10 @@ class Builder extends Component
     private function defaultTitleFor(UserGuideSectionKind $kind): string
     {
         return match ($kind) {
-            UserGuideSectionKind::Chain => 'CC chain',
-            UserGuideSectionKind::Go => 'The go',
+            // Deliberately generic and obviously a placeholder. A sequence's title is now the
+            // thing that says what it is (see UserGuideSectionKind), so seeding it with a
+            // confident-sounding "The go" would invite authors to leave it alone.
+            UserGuideSectionKind::Sequence => 'Untitled sequence',
             UserGuideSectionKind::Defensives => 'Defensives to force',
             UserGuideSectionKind::Text => 'Notes',
         };
@@ -570,7 +694,7 @@ class Builder extends Component
         $this->guide->save();
         $this->guide->refresh();
 
-        unset($this->rows, $this->resolved, $this->members, $this->viewers);
+        unset($this->rows, $this->resolved, $this->members, $this->viewers, $this->health);
         $this->markSaved();
     }
 

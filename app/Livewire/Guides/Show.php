@@ -78,6 +78,13 @@ class Show extends Component
         return $out;
     }
 
+    /** What has drifted under this guide since it was written — see UserGuideChainService::health(). */
+    #[Computed]
+    public function health(): array
+    {
+        return app(UserGuideChainService::class)->health($this->guide, $this->resolved);
+    }
+
     public function render()
     {
         $comp = $this->members

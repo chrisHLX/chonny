@@ -66,7 +66,7 @@ function makeChainGuide(User $user): UserGuide
     return UserGuide::create(['user_id' => $user->id, 'title' => 'Test guide']);
 }
 
-function addSection(UserGuide $guide, UserGuideSectionKind $kind = UserGuideSectionKind::Chain, int $row = 0, int $column = 0): UserGuideSection
+function addSection(UserGuide $guide, UserGuideSectionKind $kind = UserGuideSectionKind::Sequence, int $row = 0, int $column = 0): UserGuideSection
 {
     return UserGuideSection::create([
         'user_guide_id' => $guide->id,
@@ -134,7 +134,7 @@ test('sections are added, renamed, reordered as whole rows, and deleted', functi
 
     $c = Livewire::actingAs($user)->test(Builder::class, ['guide' => $guide]);
 
-    $c->call('addSection', 'chain')->call('addSection', 'go')->call('addSection', 'text');
+    $c->call('addSection', 'sequence')->call('addSection', 'sequence')->call('addSection', 'text');
     expect($guide->sections()->pluck('row')->all())->toBe([0, 1, 2]);
 
     $go = $guide->sections()->where('row', 1)->first();
@@ -147,7 +147,7 @@ test('sections are added, renamed, reordered as whole rows, and deleted', functi
 
     expect($guide->sections()->where('row', 0)->count())->toBe(2)
         ->and($guide->sections()->where('row', 0)->where('column', 1)->first()->kind)->toBe(UserGuideSectionKind::Defensives)
-        ->and($guide->sections()->where('row', 1)->first()->kind)->toBe(UserGuideSectionKind::Chain);
+        ->and($guide->sections()->where('row', 1)->first()->kind)->toBe(UserGuideSectionKind::Sequence);
 
     $c->call('deleteSection', $go->id);
     expect($guide->sections()->count())->toBe(3);
@@ -158,7 +158,7 @@ test('a row never holds more than two sections', function () {
     $guide = makeChainGuide($user);
 
     $c = Livewire::actingAs($user)->test(Builder::class, ['guide' => $guide]);
-    $c->call('addSection', 'chain')
+    $c->call('addSection', 'sequence')
         ->call('addParallelSection', 0, 'defensives')
         ->call('addParallelSection', 0, 'text');
 
@@ -197,7 +197,7 @@ test('only a text section stores a body', function () {
     $user = User::factory()->create();
     $guide = makeChainGuide($user);
     $text = addSection($guide, UserGuideSectionKind::Text, row: 0);
-    $chain = addSection($guide, UserGuideSectionKind::Chain, row: 1);
+    $chain = addSection($guide, UserGuideSectionKind::Sequence, row: 1);
 
     $c = Livewire::actingAs($user)->test(Builder::class, ['guide' => $guide]);
     $c->call('setSectionBody', $text->id, '**Kill the healer**')
@@ -210,7 +210,7 @@ test('only a text section stores a body', function () {
 test('an opponent can only be set on a VS section', function () {
     $user = User::factory()->create();
     $guide = makeChainGuide($user);
-    $chain = addSection($guide, UserGuideSectionKind::Chain, row: 0);
+    $chain = addSection($guide, UserGuideSectionKind::Sequence, row: 0);
     $vs = addSection($guide, UserGuideSectionKind::Defensives, row: 1);
     $spec = guideTestSpec();
 
@@ -231,7 +231,7 @@ test('reorder only ever touches blocks belonging to the section being edited', f
     $user = User::factory()->create();
     $guide = makeChainGuide($user);
     $section = addSection($guide, row: 0);
-    $otherSection = addSection($guide, UserGuideSectionKind::Go, row: 1);
+    $otherSection = addSection($guide, UserGuideSectionKind::Sequence, row: 1);
 
     $a = addBlock($section, 0, 408);
     $b = addBlock($section, 1, 118);
@@ -470,13 +470,13 @@ test('the read view says plainly that it is player-written', function () {
 test('creating a guide from the index lands on a draft with a starter section', function () {
     $user = User::factory()->create();
 
-    Livewire::actingAs($user)->test(Index::class)->call('create', 'go')->assertRedirect();
+    Livewire::actingAs($user)->test(Index::class)->call('create', 'comp')->assertRedirect();
 
     $guide = UserGuide::first();
     expect($guide->user_id)->toBe($user->id)
         ->and($guide->status)->toBe(UserGuideStatus::Draft)
         ->and($guide->sections()->count())->toBe(1)
-        ->and($guide->sections()->first()->kind)->toBe(UserGuideSectionKind::Go);
+        ->and($guide->sections()->first()->kind)->toBe(UserGuideSectionKind::Sequence);
 });
 
 test('an unknown section kind creates nothing', function () {

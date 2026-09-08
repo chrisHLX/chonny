@@ -3842,3 +3842,225 @@ author's decision per guide; listing everyone's guides beside the derived ones i
 decision and is not implied by "let people share a link". No invite for people without an account.
 No section duplication or cross-section step moves. `sitemap.xml` is unchanged: public user guides
 are deliberately not advertised there yet.
+
+## User guides: Chain + Go merged, whole-kit palette, per-member talents ✓ COMPLETE (2026-09-08)
+
+Three changes to the user-authored guide builder, all from one report: *"where we create the guide
+at the start where it says Go or add cc chain, they are both the same thing but what's unique about
+them is comp"*, plus *"a class guide which instead allows the user to select what talents are played
+then create rotation blocks, cc blocks, utility etc… whatever pressable ability is related to the
+class"*.
+
+### `Chain` + `Go` collapsed into one `Sequence` kind
+
+They were the same construct: both an ordered list of abilities, both DR-tallied, both rendered by
+the same component. The only difference in code was `includesOffensive()` — a Go's palette also
+offered offensive cooldowns. So the choice made at creation time silently decided which half of your
+own kit you could reach for, with no way to convert one into the other afterwards; an author who
+started a "chain" and then wanted the damage it sets up had to delete it and start again.
+
+`UserGuideSectionKind` is now `Sequence | Defensives | Text`. Existing rows migrated in place
+(`2026_09_08_000004`, a plain UPDATE — `kind` is a string column, not a DB enum, which is why this
+needed no schema change and behaves identically on MySQL and the SQLite the suite runs on).
+Deliberately irreversible: rolling back would have to invent which of the two retired kinds each
+section had been, and a section that now mixes control and damage is not expressible in the old
+vocabulary at all. `Defensives` stays because it is genuinely different — it draws from an
+**opponent's** kit, not yours.
+
+What a section IS is now carried by its author-written title, which says far more than "chain" or
+"go" ever did ("Opener into trap", "Kidney into Convoke"). The `Sequence` badge is therefore not
+rendered — it would read "Sequence" on nearly every section — and the default title is a plainly
+placeholder "Untitled sequence" rather than a confident-sounding "The go" that invites authors to
+leave it alone. `Guides\Index`'s two create buttons ("New go" / "New CC chain") became one.
+
+### The palette offers the whole pressable kit
+
+`UserGuideChainService::groupsFor()` now groups every kit entry into: control by DR category →
+Offensive cooldowns → Defensive cooldowns → **Utility & other** (new). Each ability appears exactly
+once, in the most informative group it qualifies for. A search box was added to the palette, since
+it is now large enough to need one.
+
+**"Pressable" is two already-trusted signals plus a real-button test**, not a new invention:
+Blizzard's own `Passive (6)` (`spells.is_passive`) and `Not In Spellbook (143)`
+(`spells.not_in_spellbook`), then `cooldown OR charges OR isPriority`. Measured against Subtlety
+Rogue before and after: the naive not-passive-only rule let 23 entries into Utility including
+Control is King, Dagger in the Dark, Silhouette and Thief's Bargain — passive talents Blizzard does
+not flag as passive. With the third test it is 11-12, every one a genuine button. A cooldown-only
+gate was rejected in the other direction: it would hide Eviscerate, Gloomblade and Frostbolt, which
+are exactly what a class guide is written about. `isPriority` alone was rejected too — a spec with a
+thin match sample would lose most of its palette, and absence of log evidence is not evidence the
+button does not exist.
+
+### Per-member talent builds
+
+`user_guide_members.talent_build_id` (nullable, `2026_09_08_000005`). Null is the normal state and
+resolves exactly as before — through the spec's admin-curated default — so every existing guide is
+untouched and authors opt in only when they care.
+
+**Per member, not per author.** `talent_builds` already has a personal build keyed
+`(user_id, spec_id)`, uniquely constrained, and reusing it would have been free. It is the wrong
+shape: two guides for the same spec are routinely about different builds, and sharing one would mean
+editing talents in one guide silently rewrote every other guide that author had written for that
+spec — the two-sources-of-truth trap this file keeps recording.
+
+The build is created with `user_id NULL` + `is_default FALSE`, the same combination module-linked
+builds use, which is invisible to both of `resolveActiveBuild()`'s lookups (one filters `user_id`,
+the other `is_default`) — so a guide's build can never leak onto WoW Comps, Spell Explorer or another
+author's guide. Seeded from the spec's admin default, so an author starts from the meta build and
+changes what they play differently. `resetTalents()` **deletes** the row rather than emptying it:
+an empty build resolves every ability to its untalented numbers, where "reset" has to mean "back to
+the default".
+
+The editor is `<livewire:talent-selector>` — the real talent calculator the admin default-build
+editor already mounts, not a second implementation. It gained a third persist mode, `#[Locked] public
+?int $buildId`. **The `#[Locked]` is load-bearing**: Livewire public properties are client-mutable by
+default, so without it anyone could point the selector at any build id in the database, including an
+admin default. `nominatedBuild()` additionally re-checks the build is for the spec being edited.
+
+`SpecKitComputer::resolveEntriesForSpellIds()` gained an optional `?TalentBuild $build`, which
+deliberately **skips the precomputed kit** (written per spec against the admin default, so it would
+confidently answer for the wrong talents). That makes it a live compute, cached in
+`UserGuideChainService::specEntries()` on the build's own id + `updated_at` so editing talents
+invalidates immediately and nothing else does.
+
+Verified end-to-end against real data: Discipline Priest's Fade reads **20s** with no guide build
+(the admin default has Improved Fade at rank 2), the guide build seeds with 99 choices, and removing
+Improved Fade from it moves Fade to **30s** — the guide's own talents genuinely drive every number.
+`resolveActiveBuild()` confirmed still returning the admin default, not the guide's build.
+
+### What a patch does to a saved guide — and the new banner
+
+Answering the question directly, because it was worth checking rather than assuming: **guides
+self-update, and cannot silently lose steps.** Blocks store Blizzard's external spell id, and are
+re-resolved against the CURRENT patch on every render (`user_guides.patch_id` is informational;
+nothing reads it to resolve anything). Three outcomes:
+
+1. **Still in the spec's kit** → fully talent-aware entry. A retuned cooldown, a changed talent or a
+   flipped conditional DR category is picked up automatically. Nothing to do.
+2. **Still a real spell but no longer in the kit** → `baseline_core` fallback: real name, icon and
+   base cooldown, no talent modifiers.
+3. **Spell id gone entirely** → the step is KEPT and rendered as "Ability no longer found" so the
+   author can replace it. Deleting it would be indistinguishable from data loss.
+
+The gap was that (3) is only visible to someone already scrolling the guide. `health()` +
+`<x-guides.health>` now surface it at the top of both the builder and the public page: a count and
+which sections, or — when everything still resolves — a quieter "written on patch X, you're on Y;
+the numbers are live but the plan hasn't been reviewed". A guide with no recorded patch is never
+called stale, since `patch_id` is only set on first real edit.
+
+### `Collection::sortBy()` with an array of closures — a real shipped bug this surfaced
+
+**In the array form, Laravel calls each closure as a two-argument COMPARATOR `$fn($a, $b)` and uses
+the return value directly** (`Collection::sortByMany`). A one-argument closure returning a rank
+therefore sorts by nonsense: `0` reads as "equal" and any rank of `1` reads as "a is greater",
+regardless of `$b`.
+
+`SpellCounterIndexer::narrowToPressable()` was written in the one-argument form — the same-name
+dedupe that decides which internal copy of an ability the whole counter index is built from. Four
+other array-form `sortBy` call sites in this codebase (`BurstGuideBuilder`, `CcChainBuilder`,
+`DuelSimulatorService`, `SpellProfile`) already use the correct two-argument form; this one was the
+outlier, and I nearly copied it into the guide palette.
+
+Impact, measured by snapshotting `spell_counters` before and after: **362 of 1,754 rows changed
+copy.** Every spot-checked case moved to the id this codebase's own documentation names as canonical
+— Freezing Trap `321165 → 187651`, Divine Protection `403876 → 498`, Bestial Wrath `186254 → 19574`,
+Bristling Fur `204031 → 155835`, Demonic Gateway `113890 → 113886`. The clearest: **Seduction
+`119909 → 6358`**, where the old pick had *no cooldown at all* despite the sort's stated intent being
+"prefer a copy with a real cooldown". Re-run `wow:rebuild-spell-counters` (or any
+`import:spelldata`) on any environment carrying the old index.
+
+**Worth generalising: when writing a multi-key `sortBy` here, use `fn ($a, $b) => x <=> y`.** A
+single-closure `sortBy` is a value extractor; the array form is not.
+
+**Verified:** `tests/Feature/Livewire/GuideSequenceAndTalentsTest.php` (10 cases — retired kinds
+rejected, guide build privacy, reset semantics, ownership, the `#[Locked]` tamper case, unresolved
+steps reported not dropped, patch staleness). Existing `GuideBuilderTest`/`UserGuideSchemaTest`
+updated to the merged kind, 53 passing. Full suite: 399 passing, the standard 12 pre-existing
+failures, zero new regressions.
+
+**Not built:** a comp with the same spec in two slots resolves both to the first slot's build (steps
+record only which spec they came from, not which slot, so the two are already indistinguishable
+downstream). Blizzard talent-string import into a guide build works through the selector's existing
+import panel, but there is no guide-level "paste your loadout" shortcut.
+
+## Two guide types: comp and class ✓ COMPLETE (2026-09-08)
+
+Direct report, same day as the whole-kit palette below it: *"we don't need utility or other in the
+3v3 2v2 guide section, that's for a different type of guide, class guide or something else, it's too
+complicated having everything in there… 2 types of guides, the arena comps one and an individual
+class one. The current arena one is already good… but there currently isn't an option to make a
+specific targeted 1v1 or class guide like rogue vs disc etc or rogue rotation or how to get pollies
+as mage, and they require a different type of layout."*
+
+Both halves were right, and they are the same problem: the whole-kit palette was correct for a
+rotation guide and wrong for a 3v3 go, so the palette change had to come with the guide type that
+justifies it.
+
+### `UserGuideType` — and why this is not the dropped `type` column returning
+
+`user_guides.type` (`comp` | `class`, `2026_09_08_000006`), defaulting to `comp` so every existing
+guide behaves exactly as it did. **This is a different axis from the `type` column that
+create_user_guide_sections_table dropped hours earlier, not a reversal of it.** That one recorded
+whether a guide was a chain or a go — wrong, because one guide can hold both, which is why that axis
+moved to the section and the two kinds then merged entirely. This one records the roster shape, which
+genuinely cannot vary within a guide: a guide is either about a team or about a single spec.
+
+| | Comp guide | Class guide |
+|---|---|---|
+| Roster | up to 3 specs | exactly 1 — the spec it is about |
+| Opponent | per-section (the VS columns) | one for the whole guide, optional |
+| Palette | control + offensive/defensive cooldowns | **plus Utility & other** |
+| `bracket()` | 2v2 / 3v3 | always null |
+
+`UserGuide::$attributes` sets `type` to `comp` **on the model, not only as the column default** — a
+column default is applied by the database and is not reflected on the in-memory model `create()`
+returns, and `UserGuideChainService::groupsFor()` calls `$section->guide->type->usesWholeKit()`
+straight on it. Without the model-level default that is a fatal error on the first render of a brand
+new guide, and only on the first render, which is exactly when a test reloading the row would stop
+reproducing it. Caught by the type test, not by inspection.
+
+### Utility is gated on the guide type, not removed
+
+`UserGuideChainService::groupsFor()` still builds the Utility group, but only when
+`$guide->type->usesWholeKit()`. Measured on the same two shapes: a Disc + Boomy + Assa comp guide
+offers Stun/Silence/Incapacitate/Disorient/Root/Knockback/Disarm + 12 offensive + 10 defensive and
+**no Utility**; a Sub Rogue class guide offers its control, 4 offensive, 5 defensive **and 12
+Utility** (Kick, Shadowstep, Shiv, Sprint, Stealth, Vanish, Eviscerate, Gloomblade…). The pressability
+rule itself is unchanged — see the section below for how it was derived.
+
+### The class-guide layout
+
+`user_guides.opponent_spec_id` is the one opponent a class guide is written against ("Rogue vs
+Disc"), null for a rotation or technique guide. Deliberately a column rather than a second
+`user_guide_members` row: that table is "the comp this guide is written for", and putting an enemy in
+it would quietly break every roster query — the bracket, the palette, the listing's spec icons. Also
+deliberately not a Defensives section's own `opponent_spec_id`, which is per-section by design: a
+class guide should not make its author name the same opponent again for every section they add, so
+`paletteSpecs()` falls back to the guide's opponent and `addSection()` seeds new Defensives sections
+from it (`inheritedOpponentFor()`). A comp guide has no guide-level opponent, so both are no-ops
+there and its VS columns keep working exactly as before.
+
+The builder's roster area branches on type over one shared `<x-guides.member-slot>` (extracted so the
+two layouts cannot drift): a comp guide renders three equal slots under "The comp"; a class guide
+renders "Your spec — vs — Opponent (optional)" under "The matchup", the shape its own title has. The
+spec picker modal is shared three ways (comp slot, per-section VS opponent, guide-level opponent) —
+only the heading and the two handler names differ. `openMemberPicker()`/`setMember()` bound on
+`$guide->maxMembers()` rather than the table constant, so a tampered request naming slot 1 in a class
+guide does nothing instead of building a comp inside it.
+
+The index now offers "New comp guide" / "New class guide" — two buttons that choose the one thing
+that cannot change later, replacing the pair that chose a section kind (a distinction that turned out
+not to exist).
+
+**Verified against the real published guide** ("Boomy rogue disc", Disc + Boomy + Assa): still
+`type=comp`, still 3v3, and its builder and public page both render with zero Utility entries. Both
+new layouts rendered and checked. Tests: 4 new cases in
+`tests/Feature/Livewire/GuideSequenceAndTalentsTest.php` (roster caps and the out-of-range slot,
+bracket suppression, guide-level opponent refused on a comp guide, Defensives inheritance in both
+directions); 67 passing across the three guide suites. Full suite: 403 passing, the standard 12
+pre-existing failures, zero new regressions.
+
+**Not built:** the class guide's opponent has no talent build of its own — `paletteSpecs()` resolves
+it through the spec's admin default, matching the existing reasoning that you do not know what your
+opponent talented and inventing an answer is worse than showing the meta. A class guide and a comp
+guide cannot be converted into one another after creation.

@@ -103,12 +103,22 @@ class SpecKitComputer
      *
      * An id resolving through neither path is silently dropped, never shown/used broken.
      *
+     * $build overrides which talents the entries are resolved against — passed by the user-guide
+     * builder, where a guide names the build its comp is actually playing rather than inheriting
+     * the spec's admin default. It deliberately SKIPS the precomputed kit, which is written per
+     * spec against that admin default and would silently answer for the wrong talents; a caller
+     * supplying a build is asking a question the precompute cannot answer. That makes it a live
+     * compute, so callers are expected to cache the result themselves (UserGuideChainService keys
+     * its cache on the build's own id and updated_at).
+     *
      * @param  array<int, int>  $spellIds  external spell_id values
      * @return array<int, array> a subset of compute()'s own entry shape
      */
-    public function resolveEntriesForSpellIds(array $spellIds, Specialization $spec, ModuleSpellReferenceService $service, TalentSelectionService $talentService): array
+    public function resolveEntriesForSpellIds(array $spellIds, Specialization $spec, ModuleSpellReferenceService $service, TalentSelectionService $talentService, ?TalentBuild $build = null): array
     {
-        $entries = $this->tryReadPrecomputed($spec, $talentService);
+        $entries = $build !== null
+            ? $this->compute($spec, $build, $service, $talentService)
+            : $this->tryReadPrecomputed($spec, $talentService);
 
         if ($entries === null) {
             // Scoped to the CURRENT patch. talent_builds is patch-scoped, so a database holding

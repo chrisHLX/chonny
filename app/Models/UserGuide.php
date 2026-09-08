@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\UserGuideStatus;
+use App\Enums\UserGuideType;
 use App\Enums\UserGuideVisibility;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,8 @@ class UserGuide extends Model
 {
     protected $fillable = [
         'user_id',
+        'type',
+        'opponent_spec_id',
         'status',
         'visibility',
         'patch_id',
@@ -33,8 +36,22 @@ class UserGuide extends Model
     ];
 
     protected $casts = [
+        'type' => UserGuideType::class,
         'status' => UserGuideStatus::class,
         'visibility' => UserGuideVisibility::class,
+    ];
+
+    /**
+     * A guide is a comp guide unless it says otherwise — set HERE and not only as the column
+     * default, because a column default is applied by the database and is NOT reflected on the
+     * in-memory model a create() returns. Without this, a freshly-created guide has `type = null`
+     * for the rest of the request, and UserGuideChainService::groupsFor() calls
+     * `$section->guide->type->usesWholeKit()` straight on it. That is a fatal error on the very
+     * first render of a new guide, and it would only appear once the row was reloaded from the
+     * database — which is exactly when a test would stop reproducing it.
+     */
+    protected $attributes = [
+        'type' => UserGuideType::Comp->value,
     ];
 
     /**
@@ -73,10 +90,34 @@ class UserGuide extends Model
         return $this->belongsTo(User::class);
     }
 
-    /** The comp this guide is written for, in slot order. One to three specs. */
+    /**
+     * The comp this guide is written for, in slot order. Two or three specs for a comp guide;
+     * exactly one — the spec the guide is about — for a class guide.
+     */
     public function members()
     {
         return $this->hasMany(UserGuideMember::class)->orderBy('position');
+    }
+
+    /**
+     * The single opponent a class guide is written against ("Rogue vs Disc"), or null for a
+     * rotation or technique guide with no opponent. Never set on a comp guide, whose opponents are
+     * per-section instead.
+     */
+    public function opponentSpec()
+    {
+        return $this->belongsTo(Specialization::class, 'opponent_spec_id');
+    }
+
+    public function isClassGuide(): bool
+    {
+        return $this->type === UserGuideType::ClassGuide;
+    }
+
+    /** How many comp slots this guide has — see UserGuideType::maxMembers(). */
+    public function maxMembers(): int
+    {
+        return $this->type->maxMembers();
     }
 
     /** Sections in page order: down by row, then left to right. */
@@ -127,6 +168,12 @@ class UserGuide extends Model
      */
     public function bracket(): ?string
     {
+        // A class guide is never a bracket, however many rows its roster happens to have — it is
+        // about one spec, and labelling it "2v2" because an opponent exists would be wrong.
+        if ($this->isClassGuide()) {
+            return null;
+        }
+
         return match ($this->members()->count()) {
             2 => '2v2',
             3 => '3v3',

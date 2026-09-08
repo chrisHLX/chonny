@@ -17,6 +17,7 @@ class UserGuideMember extends Model
         'user_guide_id',
         'position',
         'spec_id',
+        'talent_build_id',
     ];
 
     protected $casts = [
@@ -31,5 +32,15 @@ class UserGuideMember extends Model
     public function specialization()
     {
         return $this->belongsTo(Specialization::class, 'spec_id');
+    }
+
+    /**
+     * The talents this member is playing, or null to fall back to the spec's admin-curated
+     * default. See the add_talent_build_to_user_guide_members migration for why the build belongs
+     * to the member rather than to the author.
+     */
+    public function talentBuild()
+    {
+        return $this->belongsTo(TalentBuild::class, 'talent_build_id');
     }
 }

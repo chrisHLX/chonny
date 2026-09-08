@@ -116,51 +116,132 @@
         </div>
     @endif
 
-    {{-- Comp roster -------------------------------------------------------------- --}}
-    <div class="linear-card p-4 mb-6">
-        <div class="flex items-baseline justify-between gap-4 mb-3">
-            <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">The comp</h2>
-            <span class="text-[12px] text-ink-subtle">Up to {{ UserGuideMember::MAX_MEMBERS }} &mdash; two for 2v2, three for 3v3</span>
-        </div>
+    <x-guides.health :health="$this->health" :editable="true"/>
 
-        <div class="grid sm:grid-cols-3 gap-3">
-            @for ($slot = 0; $slot < UserGuideMember::MAX_MEMBERS; $slot++)
-                @php $member = $this->members->firstWhere('position', $slot); @endphp
-                <div wire:key="slot-{{ $slot }}" class="border border-line rounded p-3 bg-surface-2">
-                    @if ($member && $member->specialization)
-                        @php $color = $classColors[$member->specialization->gameClass?->slug] ?? '#8A8A9A'; @endphp
+    {{-- Roster ---------------------------------------------------------------------
+         Two layouts over the same slot card. A comp guide is a team, so it is a row of three
+         equal slots. A class guide is one spec and (optionally) one opponent, so it reads across
+         as "you vs them" — the shape the guide's own title has ("Rogue vs Disc"). --}}
+    @if ($guide->isClassGuide())
+        <div class="linear-card p-4 mb-6">
+            <div class="flex items-baseline justify-between gap-4 mb-3">
+                <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">The matchup</h2>
+                <span class="text-[12px] text-ink-subtle">One spec &mdash; add an opponent only if the guide is about a matchup</span>
+            </div>
+
+            <div class="grid sm:grid-cols-[1fr_auto_1fr] items-center gap-3">
+                <x-guides.member-slot :member="$this->members->firstWhere('position', 0)" :slot="0"
+                                      :class-colors="$classColors" label="Your spec" wire:key="slot-0"/>
+
+                <span class="text-[12px] text-ink-subtle text-center sm:px-2">vs</span>
+
+                <div class="border border-line rounded p-3 bg-surface-2">
+                    <p class="text-[10px] uppercase tracking-[0.13em] text-ink-subtle mb-2">Opponent &mdash; optional</p>
+                    @if ($guide->opponentSpec)
+                        @php $oc = $classColors[$guide->opponentSpec->gameClass?->slug] ?? '#8A8A9A'; @endphp
                         <div class="flex items-center gap-2.5">
-                            <x-spec-icon :spec="$member->specialization" size="w-9 h-9"/>
+                            <x-spec-icon :spec="$guide->opponentSpec" size="w-9 h-9"/>
                             <div class="flex-1 min-w-0">
-                                <p class="text-[13px] font-medium truncate" style="color: {{ $color }}">{{ $member->specialization->name }}</p>
-                                <p class="text-[11px] text-ink-subtle truncate">{{ $member->specialization->gameClass?->name }}</p>
+                                <p class="text-[13px] font-medium truncate" style="color: {{ $oc }}">{{ $guide->opponentSpec->name }}</p>
+                                <p class="text-[11px] text-ink-subtle truncate">{{ $guide->opponentSpec->gameClass?->name }}</p>
                             </div>
-                            <button type="button" wire:click="removeMember({{ $slot }})"
+                            <button type="button" wire:click="clearGuideOpponent"
                                     class="text-[11px] text-ink-subtle hover:text-red-400 transition-colors">Clear</button>
                         </div>
+                        <p class="mt-2 text-[11px] text-ink-subtle">
+                            A &ldquo;defensives to force&rdquo; section will use this automatically.
+                        </p>
                     @else
-                        <button type="button" wire:click="openMemberPicker({{ $slot }})"
+                        <button type="button" wire:click="openGuideOpponentPicker"
                                 class="w-full h-full min-h-[52px] flex items-center justify-center gap-2 text-[13px] text-ink-subtle hover:text-gold transition-colors">
-                            <span class="text-[16px] leading-none">+</span> Add a spec
+                            <span class="text-[16px] leading-none">+</span> Name an opponent
                         </button>
                     @endif
                 </div>
-            @endfor
+            </div>
         </div>
-    </div>
+    @else
+        <div class="linear-card p-4 mb-6">
+            <div class="flex items-baseline justify-between gap-4 mb-3">
+                <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">The comp</h2>
+                <span class="text-[12px] text-ink-subtle">Up to {{ $guide->maxMembers() }} &mdash; two for 2v2, three for 3v3</span>
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-3">
+                @for ($slot = 0; $slot < $guide->maxMembers(); $slot++)
+                    <x-guides.member-slot :member="$this->members->firstWhere('position', $slot)" :slot="$slot"
+                                          :class-colors="$classColors" wire:key="slot-{{ $slot }}"/>
+                @endfor
+            </div>
+        </div>
+    @endif
+
+    {{-- Talent tree for one comp slot ---------------------------------------------
+         The real talent calculator, not a second implementation of one — the same
+         <livewire:talent-selector> the admin default-build editor and the read-only Burst Window
+         view both mount. It writes straight to this slot's own build (see its $buildId docblock:
+         the id is #[Locked], and openTalents() has already confirmed the guide belongs to this
+         author), so there is no save step and nothing to keep in sync. --}}
+    @if ($editingTalentsFor !== null)
+        @php $talentMember = $this->members->firstWhere('position', $editingTalentsFor); @endphp
+        @if ($talentMember && $talentMember->specialization && $talentMember->talent_build_id)
+            <div class="fixed inset-0 z-50 flex items-start justify-center p-4 overflow-y-auto"
+                 style="background: rgba(9,9,13,0.86)" wire:key="talents-{{ $talentMember->id }}">
+                <div class="linear-card w-full max-w-[1400px] my-8 p-5">
+                    <div class="flex items-start justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            <x-spec-icon :spec="$talentMember->specialization" size="w-8 h-8"/>
+                            <div class="min-w-0">
+                                <h2 class="font-display text-[18px] text-ink truncate">
+                                    {{ $talentMember->specialization->name }}
+                                    {{ $talentMember->specialization->gameClass?->name }} talents
+                                </h2>
+                                <p class="text-[11.5px] text-ink-muted">
+                                    What this guide is written for. Cooldowns, charges and DR categories
+                                    everywhere in the guide follow these picks.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button type="button" wire:click="resetTalents({{ $editingTalentsFor }})"
+                                    class="btn-ghost text-[12px]">Use the default build</button>
+                            <button type="button" wire:click="closeTalents" class="btn-primary text-[12px]">Done</button>
+                        </div>
+                    </div>
+
+                    <livewire:talent-selector
+                        :spec-id="$talentMember->specialization->id"
+                        :build-id="$talentMember->talent_build_id"
+                        layout="grid"
+                        :key="'guide-talents-'.$talentMember->id.'-'.$talentMember->talent_build_id"/>
+                </div>
+            </div>
+        @endif
+    @endif
 
     {{-- Spec / opponent picker modal ---------------------------------------------- --}}
-    @if ($pickingSlot !== null || $pickingOpponentFor !== null)
-        @php $isOpponent = $pickingOpponentFor !== null; @endphp
+    @if ($pickingSlot !== null || $pickingOpponentFor !== null || $pickingGuideOpponent)
+        @php
+            // Three things use the same grid: a comp slot, a comp guide's per-section VS opponent,
+            // and a class guide's single guide-level opponent. Only the close/select handlers and
+            // the heading differ, so they share the markup rather than three near-identical modals.
+            $isOpponent = $pickingOpponentFor !== null || $pickingGuideOpponent;
+            $closeAction = $pickingGuideOpponent
+                ? 'closeGuideOpponentPicker'
+                : ($pickingOpponentFor !== null ? 'closeOpponentPicker' : 'closeMemberPicker');
+            $selectAction = $pickingGuideOpponent
+                ? 'setGuideOpponent'
+                : ($pickingOpponentFor !== null ? 'setOpponent' : 'setMember');
+        @endphp
         <div class="fixed inset-0 z-50 flex items-start justify-center p-4 overflow-y-auto"
              style="background: rgba(9,9,13,.82)"
-             wire:click.self="{{ $isOpponent ? 'closeOpponentPicker' : 'closeMemberPicker' }}">
+             wire:click.self="{{ $closeAction }}">
             <div class="linear-card max-w-3xl w-full mt-10 p-5">
                 <div class="flex items-baseline justify-between mb-4">
                     <h3 class="text-[15px] font-semibold text-ink">
                         {{ $isOpponent ? 'Who are you up against?' : 'Choose a spec' }}
                     </h3>
-                    <button type="button" wire:click="{{ $isOpponent ? 'closeOpponentPicker' : 'closeMemberPicker' }}" class="btn-ghost">Close</button>
+                    <button type="button" wire:click="{{ $closeAction }}" class="btn-ghost">Close</button>
                 </div>
 
                 <div class="grid sm:grid-cols-2 gap-4 max-h-[65vh] overflow-y-auto pr-1">
@@ -170,7 +251,7 @@
                             <p class="text-[11px] uppercase tracking-wider font-semibold mb-1.5" style="color: {{ $color }}">{{ $class->name }}</p>
                             <div class="flex flex-wrap gap-1.5">
                                 @foreach ($class->specializations as $spec)
-                                    <button type="button" wire:click="{{ $isOpponent ? 'setOpponent' : 'setMember' }}({{ $spec->id }})"
+                                    <button type="button" wire:click="{{ $selectAction }}({{ $spec->id }})"
                                             class="flex items-center gap-1.5 px-2 py-1.5 rounded border border-line hover:border-line-gold hover:bg-gold-subtle transition-colors">
                                         <x-spec-icon :spec="$spec" size="w-6 h-6"/>
                                         <span class="text-[12px] text-ink">{{ $spec->name }}</span>
@@ -197,7 +278,12 @@
 
                     <div class="flex items-start gap-2 mb-3">
                         <div class="flex-1 min-w-0">
+                            {{-- No badge on a sequence: with one sequence kind the label would say
+                             "Sequence" on almost every section, which tells a reader nothing the
+                             author's own title does not say better. --}}
+                        @unless ($section->kind === UserGuideSectionKind::Sequence)
                             <span class="badge-gold">{{ $section->kind->label() }}</span>
+                        @endunless
                             <input type="text"
                                    value="{{ $section->title }}"
                                    maxlength="120"
@@ -254,7 +340,11 @@
                             <span x-show="paletteFor === {{ $section->id }}" x-cloak>Close</span>
                         </button>
 
-                        <div x-show="paletteFor === {{ $section->id }}" x-cloak class="mt-3 border-t border-line pt-3">
+                        {{-- `search` is scoped to this palette's own x-data so two open palettes
+                             filter independently. Purely client-side: the palette is already
+                             rendered, so filtering it must not cost a Livewire round trip. --}}
+                        <div x-show="paletteFor === {{ $section->id }}" x-cloak class="mt-3 border-t border-line pt-3"
+                             x-data="{ search: '' }">
                             @php $palette = $this->paletteFor($section->id); @endphp
 
                             @if ($palette->isEmpty())
@@ -266,6 +356,10 @@
                                     @endif
                                 </p>
                             @else
+                                <input type="text" x-model="search"
+                                       placeholder="Search this kit&hellip;"
+                                       class="form-input !text-[12px] !py-1.5 w-full mb-3">
+
                                 <div class="flex flex-col gap-4 max-h-[420px] overflow-y-auto pr-1">
                                     @foreach ($palette as $group)
                                         @php
@@ -281,12 +375,19 @@
                                             </div>
 
                                             @foreach ($group['groups'] as $groupName => $entries)
-                                                <div class="mb-2.5">
+                                                {{-- A group hides itself when nothing inside it
+                                                     matches, so searching does not leave a page of
+                                                     empty headings behind. --}}
+                                                <div class="mb-2.5"
+                                                     data-search-group="{{ Str::lower($groupName.' '.$entries->map(fn ($e) => $e->displayName())->implode(' ')) }}"
+                                                     x-show="search === '' || $el.dataset.searchGroup.includes(search.toLowerCase())">
                                                     <span class="{{ $drBadge[$groupName] ?? 'badge-gray' }}">{{ $groupName }}</span>
                                                     <div class="grid sm:grid-cols-2 gap-1 mt-1.5">
                                                         @foreach ($entries as $entry)
                                                             <button type="button"
                                                                     wire:key="pe-{{ $section->id }}-{{ $entry['spell']->id }}"
+                                                                    data-search="{{ Str::lower($entry->displayName().' '.$groupName) }}"
+                                                                    x-show="search === '' || $el.dataset.search.includes(search.toLowerCase())"
                                                                     wire:click="addSpell({{ $section->id }}, {{ $entry['spell']->spell_id }}, {{ $pSpec->id }})"
                                                                     class="flex items-center gap-2 p-1.5 rounded border border-transparent hover:border-line-gold hover:bg-gold-subtle text-left transition-colors">
                                                                 <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
@@ -331,10 +432,12 @@
     {{-- Add a section -------------------------------------------------------------- --}}
     <div class="linear-card p-4">
         <p class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-3">Add a section</p>
-        <div class="flex flex-wrap gap-2">
+        <div class="grid sm:grid-cols-3 gap-2">
             @foreach ($sectionKinds as $kind)
-                <button type="button" wire:click="addSection('{{ $kind->value }}')" class="btn-ghost text-[12.5px]">
-                    + {{ $kind->label() }}
+                <button type="button" wire:click="addSection('{{ $kind->value }}')"
+                        class="text-left border border-line rounded p-3 hover:border-line-gold hover:bg-gold-subtle transition-colors">
+                    <span class="block text-[13px] text-ink font-medium">+ {{ $kind->label() }}</span>
+                    <span class="block text-[11px] text-ink-subtle mt-0.5">{{ $kind->hint() }}</span>
                 </button>
             @endforeach
         </div>
