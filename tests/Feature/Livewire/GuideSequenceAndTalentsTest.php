@@ -557,27 +557,31 @@ test('the title and summary save on blur rather than re-rendering mid-sentence',
 test('kit and palette caches store compact shapes, never live models', function () {
     $service = new ReflectionClass(App\Http\Services\UserGuideChainService::class);
 
-    $specEntries = $service->getMethod('specEntries');
-    $source = implode("\n", array_slice(
-        file($service->getFileName()),
-        $specEntries->getStartLine() - 1,
-        $specEntries->getEndLine() - $specEntries->getStartLine() + 1
-    ));
+    $sourceOf = function (string $method) use ($service): string {
+        $m = $service->getMethod($method);
 
-    // The entries go in via toJsonSafeArray() and come back via fromJsonSafeArray().
-    expect($source)->toContain('toJsonSafeArray')
-        ->and($source)->toContain('fromJsonSafeArray');
+        return implode("\n", array_slice(
+            file($service->getFileName()),
+            $m->getStartLine() - 1,
+            $m->getEndLine() - $m->getStartLine() + 1
+        ));
+    };
 
-    $groupsFor = $service->getMethod('groupsFor');
-    $groupsSource = implode("\n", array_slice(
-        file($service->getFileName()),
-        $groupsFor->getStartLine() - 1,
-        $groupsFor->getEndLine() - $groupsFor->getStartLine() + 1
-    ));
+    // specEntriesRaw() owns the Cache::remember, so it is the method that decides what is
+    // WRITTEN — and it must hand over toJsonSafeArray()'s compact shape, never live entries.
+    // (Split out of specEntries() on 2026-09-08 so a section can filter the cached array down to
+    // the handful of entries it needs before hydrating any of them.)
+    expect($sourceOf('specEntriesRaw'))->toContain('Cache::remember')
+        ->and($sourceOf('specEntriesRaw'))->toContain('toJsonSafeArray');
+
+    // Both read paths rehydrate through fromJsonSafeArray(): the whole kit for the palette, and
+    // a filtered subset for a section's own steps.
+    expect($sourceOf('specEntries'))->toContain('fromJsonSafeArray')
+        ->and($sourceOf('specEntriesForSpellIds'))->toContain('fromJsonSafeArray');
 
     // The palette caches ids and rehydrates, rather than caching the entries a second time.
-    expect($groupsSource)->toContain("\$e['spell']->id")
-        ->and($groupsSource)->toContain('specEntries');
+    expect($sourceOf('groupsFor'))->toContain("\$e['spell']->id")
+        ->and($sourceOf('groupsFor'))->toContain('specEntries');
 });
 
 test('a cached kit round-trips without losing anything the guide depends on', function () {
@@ -588,25 +592,33 @@ test('a cached kit round-trips without losing anything the guide depends on', fu
     expect($kits->fromJsonSafeArray(['entries' => $kits->toJsonSafeArray([])]))->toBe([]);
 
     // toJsonSafeArray() deliberately does NOT tolerate nulls, and does not need to: both callers
-    // (PrecomputeSpellKits and specEntries()) feed it resolveEntriesForSpellIds()/compute(),
-    // which already ->filter()->values() their own output. Asserted so that contract is visible
-    // rather than assumed — if a future caller can produce holes, it must filter them first.
+    // (PrecomputeSpellKits and specEntriesRaw()) feed it resolveEntriesForSpellIds()/compute(),
+    // which already filter their own output. Asserted so that contract is visible rather than
+    // assumed — if a future caller can produce holes, it must filter them first.
+    //
+    // Whitespace is normalised before matching: this is a source assertion standing in for a
+    // property that needs real spell data to exercise, and it should fail when the filtering
+    // goes away, not when the call is wrapped across lines.
     $method = new ReflectionMethod(App\Http\Services\SpecKitComputer::class, 'resolveEntriesForSpellIds');
-    $source = implode('', array_slice(
+    $source = preg_replace('/\s+/', '', implode('', array_slice(
         file($method->getFileName()),
         $method->getStartLine() - 1,
         $method->getEndLine() - $method->getStartLine() + 1
-    ));
+    )));
     expect($source)->toContain('->filter()->values()');
+
+    // The hole resolveEntriesForSpellIds() has to filter is a real one, not hypothetical: an id
+    // with no spell in this patch resolves to null, and baselineCoreEntry() is where that null
+    // comes from. Asserted for real rather than by reading the source.
+    expect($kits->baselineCoreEntry(999999999))->toBeNull();
 })->group('kit-roundtrip');
 
 /*
- * The enemy team, and phases.
+ * The enemy team.
  *
- * These are the two things that turn a list of abilities into a matchup plan, so what is asserted
- * is the behaviour that makes them trustworthy: that the two sides of the roster stay separate,
- * that a phase can only be aimed at somebody actually in the guide, and that a phase never
- * pretends to be a step.
+ * This is what turns a list of abilities into a matchup plan, so what is asserted is the
+ * behaviour that makes it trustworthy: that the two sides of the roster stay separate, and that
+ * each numbers its own slots from zero.
  */
 
 test('the two sides of the roster are independent and each numbers from zero', function () {
@@ -671,79 +683,14 @@ test('the enemy team does not count toward the bracket or the roster guard', fun
         ->and($guide->members()->count())->toBe(0);
 });
 
-test('a phase groups the steps after it without becoming one', function () {
-    $f = guideFixture();
-    $section = UserGuideSection::create([
-        'user_guide_id' => $f['guide']->id,
-        'kind' => UserGuideSectionKind::Sequence,
-        'row' => 0, 'column' => 0, 'title' => 'Opener',
-    ]);
-
-    $c = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
-        ->call('addPhase', $section->id);
-
-    $phase = $section->blocks()->first();
-    expect($phase->block_type)->toBe(App\Enums\UserGuideBlockType::Phase)
-        ->and($phase->text())->toBe('New phase')
-        // A phase references no spell, so it can never be reported as a broken ability.
-        ->and($phase->block_type->referencesSpell())->toBeFalse();
-
-    $c->call('setPhaseName', $phase->id, 'Setup')
-        ->call('setPhaseTarget', $phase->id, 'healer');
-
-    $phase->refresh();
-    expect($phase->text())->toBe('Setup')
-        ->and($phase->phaseTarget())->toBe(App\Enums\UserGuidePhaseTarget::Healer);
-
-    // A blank name falls back rather than leaving an unlabelled divider.
-    $c->call('setPhaseName', $phase->id, '   ');
-    expect($phase->fresh()->text())->toBe('New phase');
-
-    // An unknown role clears the target rather than storing something nothing can render.
-    $c->call('setPhaseTarget', $phase->id, 'not-a-role');
-    expect($phase->fresh()->phaseTarget())->toBeNull();
-});
-
-test('a phase can only be aimed at a spec that is actually on the enemy team', function () {
-    $f = guideFixture();
-    $f['guide']->update(['type' => UserGuideType::Comp]);
-    $enemy = Specialization::create(['class_id' => $f['class']->id, 'name' => 'Outlaw', 'slug' => 'outlaw']);
-    $stranger = Specialization::create(['class_id' => $f['class']->id, 'name' => 'Combat', 'slug' => 'combat']);
-
-    UserGuideMember::create([
-        'user_guide_id' => $f['guide']->id,
-        'side' => 'enemy', 'position' => 0, 'spec_id' => $enemy->id,
-    ]);
-
-    $section = UserGuideSection::create([
-        'user_guide_id' => $f['guide']->id,
-        'kind' => UserGuideSectionKind::Sequence,
-        'row' => 0, 'column' => 0, 'title' => 'Opener',
-    ]);
-
-    $c = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
-        ->call('addPhase', $section->id);
-    $phase = $section->blocks()->first();
-
-    $c->call('setPhaseTarget', $phase->id, 'spec:'.$enemy->id);
-    expect($phase->fresh()->phaseTargetSpecId())->toBe($enemy->id);
-
-    // A spec nobody in this guide is playing is refused outright, rather than rendering a chip
-    // for someone who is not in the match.
-    $c->call('setPhaseTarget', $phase->id, 'spec:'.$stranger->id);
-    expect($phase->fresh()->phaseTargetSpecId())->toBeNull();
-});
-
-test('phases are refused on a section that is not a sequence', function () {
-    $f = guideFixture();
-    $text = UserGuideSection::create([
-        'user_guide_id' => $f['guide']->id,
-        'kind' => UserGuideSectionKind::Text,
-        'row' => 0, 'column' => 0, 'title' => 'Notes',
-    ]);
-
-    Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
-        ->call('addPhase', $text->id);
-
-    expect($text->blocks()->count())->toBe(0);
+/*
+ * Phase blocks were removed on 2026-09-08 — they were a divider you could name and aim at a
+ * target, and in practice they did not work the way the layout needed. The three tests that
+ * covered addPhase()/setPhaseName()/setPhaseTarget() went with them; what remains is one
+ * assertion that the vocabulary itself no longer offers the case, so a re-add is a deliberate
+ * decision rather than something that creeps back in through a copied payload.
+ */
+test('the block vocabulary no longer contains a phase', function () {
+    expect(collect(App\Enums\UserGuideBlockType::cases())->pluck('value')->all())
+        ->not->toContain('phase');
 });

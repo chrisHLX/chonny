@@ -21,6 +21,19 @@ use RuntimeException;
  */
 class ImportMurlokDefaults extends Command
 {
+    /**
+     * THE SIXTH BUMP SITE that concern's docblock predicted, found 2026-09-08 with the live
+     * version at 4156 against kit files still stamped 10 — every one of the 40 stale, so every
+     * page on the site was silently on the ~25x live-compute path.
+     *
+     * This command never calls bumpSpellCacheVersion() itself, which is exactly why it was
+     * missed: MurlokTalentImportService::apply() routes each pick through
+     * TalentSelectionService::saveChoice(), and that bumps whenever the build is_default — so one
+     * `--all --apply` run bumps roughly ninety times per spec, ~3,500 times in total, and left
+     * every file behind it invalid. Regenerating once at the end covers both paths.
+     */
+    use \App\Console\Concerns\RegeneratesSpellKits;
+
     protected $signature = 'wow:import-murlok-defaults
         {spec? : Specialization name, e.g. "Discipline" — omit when using --all}
         {bracket=3v3 : murlok bracket segment — 2v2, 3v3, solo-shuffle, blitz, rbg}
@@ -38,7 +51,7 @@ class ImportMurlokDefaults extends Command
             return $this->handleAll($murlok, $talentService, $bracket);
         }
 
-        if (!$this->argument('spec')) {
+        if (! $this->argument('spec')) {
             $this->error('The spec argument is required unless --all is passed.');
 
             return self::FAILURE;
@@ -46,11 +59,17 @@ class ImportMurlokDefaults extends Command
 
         $spec = $this->resolveSpec();
 
-        if (!$spec) {
+        if (! $spec) {
             return self::FAILURE;
         }
 
-        return $this->importOne($murlok, $talentService, $spec, $bracket, verbose: true) ? self::SUCCESS : self::FAILURE;
+        $ok = $this->importOne($murlok, $talentService, $spec, $bracket, verbose: true);
+
+        if ($ok && $this->option('apply')) {
+            $this->regenerateSpellKits();
+        }
+
+        return $ok ? self::SUCCESS : self::FAILURE;
     }
 
     /**
@@ -75,7 +94,7 @@ class ImportMurlokDefaults extends Command
 
         foreach ($specs as $i => $spec) {
             $label = "{$spec->gameClass->name} / {$spec->name}";
-            $this->line("[".($i + 1)."/{$specs->count()}] {$label}...");
+            $this->line('['.($i + 1)."/{$specs->count()}] {$label}...");
 
             $results[] = $this->importOne($murlok, $talentService, $spec, $bracket, verbose: false, label: $label);
 
@@ -111,6 +130,13 @@ class ImportMurlokDefaults extends Command
         $this->line('');
         $this->info(collect($results)->where('ok', true)->count()." / {$specs->count()} succeeded.");
 
+        // Once, after the whole sweep — not per spec. Every applied spec has already bumped the
+        // shared version ~90 times by this point, so regenerating mid-loop would just be
+        // invalidated again by the next spec.
+        if ($this->option('apply') && collect($results)->where('ok', true)->isNotEmpty()) {
+            $this->regenerateSpellKits();
+        }
+
         return $failed->isEmpty() ? self::SUCCESS : self::FAILURE;
     }
 
@@ -138,13 +164,13 @@ class ImportMurlokDefaults extends Command
         if ($verbose) {
             $this->line('');
             $this->line("URL: {$preview['url']}");
-            $this->line("Hero tree resolved: ".($preview['heroTreeName'] ?? '— not matched, see warnings below —'));
+            $this->line('Hero tree resolved: '.($preview['heroTreeName'] ?? '— not matched, see warnings below —'));
             $this->line("Class talents selected: {$preview['classNodesSelected']} / {$preview['classNodesTotal']} nodes");
             $this->line("Spec talents selected: {$preview['specNodesSelected']} / {$preview['specNodesTotal']} nodes");
             $this->line("Hero talents selected: {$preview['heroNodesSelected']} / {$preview['heroNodesTotal']} nodes");
             $this->line('PvP talents selected: '.(empty($preview['pvpTalentsSelected']) ? '(none)' : implode(', ', $preview['pvpTalentsSelected'])));
 
-            if (!empty($preview['unmatchedNames'])) {
+            if (! empty($preview['unmatchedNames'])) {
                 $this->line('');
                 $this->warn('Unmatched (present in one source, not the other — not applied to anything):');
                 foreach ($preview['unmatchedNames'] as $name) {
@@ -153,7 +179,7 @@ class ImportMurlokDefaults extends Command
             }
         }
 
-        if (!$this->option('apply')) {
+        if (! $this->option('apply')) {
             if ($verbose) {
                 $this->line('');
                 $this->comment('Preview only — re-run with --apply to write this to the spec\'s default TalentBuild.');

@@ -1,10 +1,10 @@
 {
-    "generatedAt": "2026-09-08T04:45:59+00:00",
-    "spellCacheVersion": 10,
+    "generatedAt": "2026-09-08T11:06:50+00:00",
+    "spellCacheVersion": 4156,
     "codeFingerprint": "dev",
     "entries": [
         {
-            "spellId": 876,
+            "spellId": 1750,
             "category": "Offensive",
             "description": {
                 "text": "Sprout an additional limb, pulling enemies further than 8 yds from you every (varies) sec. The same enemy can only be pulled once every 4.",
@@ -15,7 +15,7 @@
                 "named": [],
                 "baseline": [
                     {
-                        "spellId": 98,
+                        "spellId": 975,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -51,7 +51,7 @@
             "drCategory": null
         },
         {
-            "spellId": 897,
+            "spellId": 1771,
             "category": "Other",
             "description": {
                 "text": "Reduces the cooldown of Anti-Magic Shell by 20 sec and increases its duration and amount absorbed by 40%.",
@@ -81,20 +81,20 @@
             "drCategory": null
         },
         {
-            "spellId": 19,
+            "spellId": 896,
             "category": "Defensive",
             "description": {
                 "text": "Surrounds you in an Anti-Magic Shell for 5, absorbing up to (varies) magic damage and preventing application of harmful magical effects.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
-                897,
-                922
+                1771,
+                1796
             ],
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 897,
+                        "spellId": 1771,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -20,
                         "modifier_unit": "seconds",
@@ -110,7 +110,7 @@
                         }
                     },
                     {
-                        "spellId": 927,
+                        "spellId": 1801,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -126,7 +126,7 @@
                         }
                     },
                     {
-                        "spellId": 930,
+                        "spellId": 1804,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": 20,
                         "modifier_unit": "seconds",
@@ -142,7 +142,7 @@
                         }
                     },
                     {
-                        "spellId": 494,
+                        "spellId": 1373,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -158,7 +158,7 @@
                         }
                     },
                     {
-                        "spellId": 867,
+                        "spellId": 1741,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -174,7 +174,7 @@
                         }
                     },
                     {
-                        "spellId": 929,
+                        "spellId": 1803,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -188,28 +188,12 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 1075,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Anti-Magic Shell is now usable on allies and its cooldown is reduced by 10 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ],
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 21,
+                        "spellId": 898,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -225,7 +209,7 @@
                         }
                     },
                     {
-                        "spellId": 580,
+                        "spellId": 1459,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -241,7 +225,7 @@
                         }
                     },
                     {
-                        "spellId": 606,
+                        "spellId": 1485,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -256,7 +240,7 @@
                             "applied": [
                                 {
                                     "spell": {
-                                        "id": 897,
+                                        "id": 1771,
                                         "patch_id": 1,
                                         "spell_id": 205727,
                                         "name": "Anti-Magic Barrier",
@@ -294,17 +278,17 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_antimagicshell.jpg",
-                                        "created_at": "2026-08-03T12:21:56.000000Z",
-                                        "updated_at": "2026-09-08T00:06:58.000000Z"
+                                        "created_at": "2026-07-30T14:00:15.000000Z",
+                                        "updated_at": "2026-09-06T04:00:19.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -20,
                                     "modifier_unit": "seconds",
-                                    "selection_spell_id": 897
+                                    "selection_spell_id": 1771
                                 },
                                 {
                                     "spell": {
-                                        "id": 930,
+                                        "id": 1804,
                                         "patch_id": 1,
                                         "spell_id": 457574,
                                         "name": "Unyielding Will",
@@ -342,19 +326,19 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_nethercloak.jpg",
-                                        "created_at": "2026-08-03T12:21:57.000000Z",
-                                        "updated_at": "2026-09-08T00:07:12.000000Z"
+                                        "created_at": "2026-07-30T14:00:15.000000Z",
+                                        "updated_at": "2026-09-06T04:00:36.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": 20,
                                     "modifier_unit": "seconds",
-                                    "selection_spell_id": 930
+                                    "selection_spell_id": 1804
                                 }
                             ]
                         }
                     },
                     {
-                        "spellId": 607,
+                        "spellId": 1486,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -369,7 +353,7 @@
                             "applied": [
                                 {
                                     "spell": {
-                                        "id": 897,
+                                        "id": 1771,
                                         "patch_id": 1,
                                         "spell_id": 205727,
                                         "name": "Anti-Magic Barrier",
@@ -407,17 +391,17 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_antimagicshell.jpg",
-                                        "created_at": "2026-08-03T12:21:56.000000Z",
-                                        "updated_at": "2026-09-08T00:06:58.000000Z"
+                                        "created_at": "2026-07-30T14:00:15.000000Z",
+                                        "updated_at": "2026-09-06T04:00:19.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -20,
                                     "modifier_unit": "seconds",
-                                    "selection_spell_id": 897
+                                    "selection_spell_id": 1771
                                 },
                                 {
                                     "spell": {
-                                        "id": 930,
+                                        "id": 1804,
                                         "patch_id": 1,
                                         "spell_id": 457574,
                                         "name": "Unyielding Will",
@@ -455,24 +439,40 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_nethercloak.jpg",
-                                        "created_at": "2026-08-03T12:21:57.000000Z",
-                                        "updated_at": "2026-09-08T00:07:12.000000Z"
+                                        "created_at": "2026-07-30T14:00:15.000000Z",
+                                        "updated_at": "2026-09-06T04:00:36.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": 20,
                                     "modifier_unit": "seconds",
-                                    "selection_spell_id": 930
+                                    "selection_spell_id": 1804
                                 }
                             ]
                         }
                     },
                     {
-                        "spellId": 981,
+                        "spellId": 1855,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
                             "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by -10% for 6.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 1949,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Anti-Magic Shell is now usable on allies and its cooldown is reduced by 10 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -491,7 +491,7 @@
                 "applied": [
                     {
                         "spell": {
-                            "id": 897,
+                            "id": 1771,
                             "patch_id": 1,
                             "spell_id": 205727,
                             "name": "Anti-Magic Barrier",
@@ -529,12 +529,12 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_antimagicshell.jpg",
-                            "created_at": "2026-08-03T12:21:56.000000Z",
-                            "updated_at": "2026-09-08T00:06:58.000000Z",
+                            "created_at": "2026-07-30T14:00:15.000000Z",
+                            "updated_at": "2026-09-06T04:00:19.000000Z",
                             "effects": [
                                 {
-                                    "id": 1652,
-                                    "spell_id": 897,
+                                    "id": 3287,
+                                    "spell_id": 1771,
                                     "effect_index": 1,
                                     "type": "Add Flat Modifier (107): Spell Cooldown",
                                     "base_value": -20000,
@@ -545,12 +545,12 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-08-03T12:21:56.000000Z",
-                                    "updated_at": "2026-09-07T23:52:39.000000Z"
+                                    "created_at": "2026-07-30T14:00:15.000000Z",
+                                    "updated_at": "2026-09-02T11:57:13.000000Z"
                                 },
                                 {
-                                    "id": 1653,
-                                    "spell_id": 897,
+                                    "id": 3288,
+                                    "spell_id": 1771,
                                     "effect_index": 2,
                                     "type": "Add Percent Modifier (108): Spell Duration",
                                     "base_value": 40,
@@ -561,12 +561,12 @@
                                     "pvp_coefficient": 0.5,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-08-03T12:21:56.000000Z",
-                                    "updated_at": "2026-09-07T23:52:39.000000Z"
+                                    "created_at": "2026-07-30T14:00:15.000000Z",
+                                    "updated_at": "2026-09-02T11:57:13.000000Z"
                                 },
                                 {
-                                    "id": 1654,
-                                    "spell_id": 897,
+                                    "id": 3289,
+                                    "spell_id": 1771,
                                     "effect_index": 3,
                                     "type": "Dummy",
                                     "base_value": 40,
@@ -577,19 +577,19 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-08-03T12:21:56.000000Z",
-                                    "updated_at": "2026-08-03T12:21:56.000000Z"
+                                    "created_at": "2026-07-30T14:00:15.000000Z",
+                                    "updated_at": "2026-08-07T15:38:30.000000Z"
                                 }
                             ]
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -20,
                         "modifier_unit": "seconds",
-                        "selection_spell_id": 897
+                        "selection_spell_id": 1771
                     },
                     {
                         "spell": {
-                            "id": 930,
+                            "id": 1804,
                             "patch_id": 1,
                             "spell_id": 457574,
                             "name": "Unyielding Will",
@@ -627,12 +627,12 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_nethercloak.jpg",
-                            "created_at": "2026-08-03T12:21:57.000000Z",
-                            "updated_at": "2026-09-08T00:07:12.000000Z",
+                            "created_at": "2026-07-30T14:00:15.000000Z",
+                            "updated_at": "2026-09-06T04:00:36.000000Z",
                             "effects": [
                                 {
-                                    "id": 1724,
-                                    "spell_id": 930,
+                                    "id": 3359,
+                                    "spell_id": 1804,
                                     "effect_index": 1,
                                     "type": "Proc Trigger Spell (42): Unyielding Will",
                                     "base_value": 15,
@@ -643,12 +643,12 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-08-03T12:21:57.000000Z",
-                                    "updated_at": "2026-08-03T12:21:57.000000Z"
+                                    "created_at": "2026-07-30T14:00:15.000000Z",
+                                    "updated_at": "2026-08-07T15:38:30.000000Z"
                                 },
                                 {
-                                    "id": 1725,
-                                    "spell_id": 930,
+                                    "id": 3360,
+                                    "spell_id": 1804,
                                     "effect_index": 2,
                                     "type": "Add Flat Modifier (107): Spell Cooldown",
                                     "base_value": 20000,
@@ -659,15 +659,15 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-08-03T12:21:57.000000Z",
-                                    "updated_at": "2026-09-07T23:52:39.000000Z"
+                                    "created_at": "2026-07-30T14:00:15.000000Z",
+                                    "updated_at": "2026-09-02T11:57:14.000000Z"
                                 }
                             ]
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": 20,
                         "modifier_unit": "seconds",
-                        "selection_spell_id": 930
+                        "selection_spell_id": 1804
                     }
                 ]
             },
@@ -687,7 +687,7 @@
             "drCategory": null
         },
         {
-            "spellId": 894,
+            "spellId": 1768,
             "category": "Defensive",
             "description": {
                 "text": "Places an Anti-Magic Zone for 6, reducing the magic damage taken by party or raid members by (varies)%.",
@@ -697,7 +697,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 914,
+                        "spellId": 1788,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
@@ -713,7 +713,7 @@
                         }
                     },
                     {
-                        "spellId": 27,
+                        "spellId": 904,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -729,7 +729,7 @@
                         }
                     },
                     {
-                        "spellId": 102,
+                        "spellId": 979,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -744,7 +744,7 @@
                             "applied": [
                                 {
                                     "spell": {
-                                        "id": 914,
+                                        "id": 1788,
                                         "patch_id": 1,
                                         "spell_id": 374383,
                                         "name": "Assimilation",
@@ -782,19 +782,19 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_deathknight_antimagiczone.jpg",
-                                        "created_at": "2026-08-03T12:21:56.000000Z",
-                                        "updated_at": "2026-09-08T00:07:05.000000Z"
+                                        "created_at": "2026-07-30T14:00:15.000000Z",
+                                        "updated_at": "2026-09-06T04:00:28.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
                                     "modifier_unit": "seconds",
-                                    "selection_spell_id": 914
+                                    "selection_spell_id": 1788
                                 }
                             ]
                         }
                     },
                     {
-                        "spellId": 450,
+                        "spellId": 1328,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -820,7 +820,7 @@
                 "applied": [
                     {
                         "spell": {
-                            "id": 914,
+                            "id": 1788,
                             "patch_id": 1,
                             "spell_id": 374383,
                             "name": "Assimilation",
@@ -858,12 +858,12 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_deathknight_antimagiczone.jpg",
-                            "created_at": "2026-08-03T12:21:56.000000Z",
-                            "updated_at": "2026-09-08T00:07:05.000000Z",
+                            "created_at": "2026-07-30T14:00:15.000000Z",
+                            "updated_at": "2026-09-06T04:00:28.000000Z",
                             "effects": [
                                 {
-                                    "id": 1699,
-                                    "spell_id": 914,
+                                    "id": 3334,
+                                    "spell_id": 1788,
                                     "effect_index": 1,
                                     "type": "Add Flat Modifier (107): Spell Cooldown",
                                     "base_value": -60000,
@@ -874,12 +874,12 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-08-03T12:21:56.000000Z",
-                                    "updated_at": "2026-09-07T23:52:39.000000Z"
+                                    "created_at": "2026-07-30T14:00:15.000000Z",
+                                    "updated_at": "2026-09-02T11:57:14.000000Z"
                                 },
                                 {
-                                    "id": 1700,
-                                    "spell_id": 914,
+                                    "id": 3335,
+                                    "spell_id": 1788,
                                     "effect_index": 2,
                                     "type": "Add Flat Modifier (107): Spell Duration",
                                     "base_value": 2000,
@@ -890,15 +890,15 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-08-03T12:21:56.000000Z",
-                                    "updated_at": "2026-09-07T23:52:39.000000Z"
+                                    "created_at": "2026-07-30T14:00:15.000000Z",
+                                    "updated_at": "2026-09-02T11:57:14.000000Z"
                                 }
                             ]
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -60,
                         "modifier_unit": "seconds",
-                        "selection_spell_id": 914
+                        "selection_spell_id": 1788
                     }
                 ]
             },
@@ -918,7 +918,7 @@
             "drCategory": null
         },
         {
-            "spellId": 903,
+            "spellId": 1777,
             "category": "Crowd Control",
             "description": {
                 "text": "Lifts the enemy target off the ground, crushing their throat with dark energy and stunning them for 5.",
@@ -948,7 +948,7 @@
             "drCategory": "Stun"
         },
         {
-            "spellId": 914,
+            "spellId": 1788,
             "category": "Other",
             "description": {
                 "text": "The cooldown of Anti-Magic Zone is reduced by 60 sec and its duration is increased by 2 sec.",
@@ -978,7 +978,7 @@
             "drCategory": null
         },
         {
-            "spellId": 982,
+            "spellId": 1856,
             "category": "Other",
             "description": {
                 "text": "Blood Boil deals 30% increased damage, and is now Shadowfrost. Shadowfrost damage applies 2 stacks to Reaper's Mark and 4 stacks when it is a critical strike.",
@@ -1008,7 +1008,7 @@
             "drCategory": null
         },
         {
-            "spellId": 900,
+            "spellId": 1774,
             "category": "Crowd Control",
             "description": {
                 "text": "Targets in a cone in front of you are blinded, causing them to wander disoriented for 5. Damage may cancel the effect. When Blinding Sleet ends, enemies are slowed by -50% for 6.",
@@ -1018,7 +1018,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 344,
+                        "spellId": 1222,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1055,7 +1055,7 @@
             "drCategory": "Disorient"
         },
         {
-            "spellId": 845,
+            "spellId": 1719,
             "category": "Offensive",
             "description": {
                 "text": "Deals (varies) Shadow damage and infects all enemies within (varies) yds with Blood Plague. Blood Plague $@spelldesc55078",
@@ -1065,7 +1065,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 451,
+                        "spellId": 1329,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1081,7 +1081,7 @@
                         }
                     },
                     {
-                        "spellId": 495,
+                        "spellId": 1374,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1097,7 +1097,7 @@
                         }
                     },
                     {
-                        "spellId": 816,
+                        "spellId": 1692,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1113,7 +1113,7 @@
                         }
                     },
                     {
-                        "spellId": 264,
+                        "spellId": 1142,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1129,7 +1129,7 @@
                         }
                     },
                     {
-                        "spellId": 817,
+                        "spellId": 1693,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1145,7 +1145,7 @@
                         }
                     },
                     {
-                        "spellId": 857,
+                        "spellId": 1731,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1161,7 +1161,7 @@
                         }
                     },
                     {
-                        "spellId": 885,
+                        "spellId": 1759,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1177,7 +1177,7 @@
                         }
                     },
                     {
-                        "spellId": 886,
+                        "spellId": 1760,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1195,7 +1195,7 @@
                 ],
                 "baseline": [
                     {
-                        "spellId": 101,
+                        "spellId": 978,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1211,7 +1211,7 @@
                         }
                     },
                     {
-                        "spellId": 784,
+                        "spellId": 1660,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1227,7 +1227,23 @@
                         }
                     },
                     {
-                        "spellId": 98,
+                        "spellId": 975,
+                        "relationship_type": "modifies_charges",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 975,
                         "relationship_type": "hasted_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1245,7 +1261,7 @@
                 ],
                 "potential": [
                     {
-                        "spellId": 40,
+                        "spellId": 917,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1261,7 +1277,7 @@
                         }
                     },
                     {
-                        "spellId": 982,
+                        "spellId": 1856,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1277,7 +1293,7 @@
                         }
                     },
                     {
-                        "spellId": 802,
+                        "spellId": 1678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1293,7 +1309,7 @@
                         }
                     },
                     {
-                        "spellId": 590,
+                        "spellId": 1469,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1328,7 +1344,7 @@
             "drCategory": null
         },
         {
-            "spellId": 933,
+            "spellId": 1807,
             "category": "Other",
             "description": {
                 "text": "While you are below 50% health, your Ghoul sacrifices 4% of its maximum health to heal you for (varies)% of your maximum health every sec.",
@@ -1351,14 +1367,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 917,
+            "spellId": 1791,
             "category": "Defensive",
             "description": {
                 "text": "When you fall below 30% health you drain -10 health from nearby enemies, the damage you take is reduced by -10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
@@ -1388,7 +1404,7 @@
             "drCategory": null
         },
         {
-            "spellId": 867,
+            "spellId": 1741,
             "category": "Other",
             "description": {
                 "text": "Anti-Magic Shell heals you for 100% of the damage it absorbs.",
@@ -1418,7 +1434,7 @@
             "drCategory": null
         },
         {
-            "spellId": 877,
+            "spellId": 1751,
             "category": "Offensive",
             "description": {
                 "text": "When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for 8, increasing your Parry by 5%. Deals 20 Shadow damage every (varies) sec to enemies within (varies) yds. Every time it deals damage you gain 2 Runic Power, up to a maximum of 10 Runic Power. Deals reduced damage beyond 8 targets.",
@@ -1428,7 +1444,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 790,
+                        "spellId": 1666,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1444,7 +1460,7 @@
                         }
                     },
                     {
-                        "spellId": 791,
+                        "spellId": 1667,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1460,7 +1476,7 @@
                         }
                     },
                     {
-                        "spellId": 792,
+                        "spellId": 1668,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1476,7 +1492,7 @@
                         }
                     },
                     {
-                        "spellId": 878,
+                        "spellId": 1752,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1513,7 +1529,7 @@
             "drCategory": null
         },
         {
-            "spellId": 909,
+            "spellId": 1783,
             "category": "Other",
             "description": {
                 "text": "Increases Leech by 3%.",
@@ -1543,7 +1559,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1012,
+            "spellId": 1886,
             "category": "Defensive",
             "description": {
                 "text": "While you are within your Death and Decay, your physical damage taken is reduced by 8% and your chance to gain Vampiric Strike is increased by 5%.",
@@ -1566,14 +1582,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 1074,
+            "spellId": 1948,
             "category": "Other",
             "description": {
                 "text": "Death Strike reduces all Physical damage taken by 25% for 4 sec.",
@@ -1603,7 +1619,7 @@
             "drCategory": null
         },
         {
-            "spellId": 875,
+            "spellId": 1749,
             "category": "Other",
             "description": {
                 "text": "Parrying an attack grants you a charge of Bloodied Blade, increasing your Strength by 0.5%, up to (varies)% for 15. At (varies) stacks, your next parry consumes all charges to unleash a Heart Strike at 300% effectiveness, and increases your Strength by 10% for 6.",
@@ -1613,7 +1629,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 665,
+                        "spellId": 1544,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1629,7 +1645,7 @@
                         }
                     },
                     {
-                        "spellId": 666,
+                        "spellId": 1545,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1666,7 +1682,7 @@
             "drCategory": null
         },
         {
-            "spellId": 869,
+            "spellId": 1743,
             "category": "Other",
             "description": {
                 "text": "While Blood Shield is active, you deal 8% increased damage and damage taken is reduced by -4%.",
@@ -1696,7 +1712,7 @@
             "drCategory": null
         },
         {
-            "spellId": 851,
+            "spellId": 1725,
             "category": "Other",
             "description": {
                 "text": "Your auto attacks have a chance to summon a Bloodworm. Bloodworms deal minor damage to your target for 15 and then burst, healing you for 15% of your missing health. If you drop below 50% health, your Bloodworms will immediately burst and heal you.",
@@ -1706,7 +1722,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 150,
+                        "spellId": 1028,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1743,7 +1759,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1015,
+            "spellId": 1889,
             "category": "Other",
             "description": {
                 "text": "Icebound Fortitude reduces all damage you take by up to an additional 20% based on your missing health. Killing an enemy that yields experience or honor reduces the cooldown of Icebound Fortitude by 3 sec.",
@@ -1773,7 +1789,7 @@
             "drCategory": null
         },
         {
-            "spellId": 887,
+            "spellId": 1761,
             "category": "Offensive",
             "description": {
                 "text": "While Blood Shield is active, taking direct damage reflects 65 Shadow damage back to the attacker. Blood Shield can now absorb up to 65% of your maximum health.",
@@ -1803,7 +1819,7 @@
             "drCategory": null
         },
         {
-            "spellId": 885,
+            "spellId": 1759,
             "category": "Other",
             "description": {
                 "text": "Heart Strike has a chance to make your next Blood Boil empowered, dealing 50% increased damage and echoing after 3 sec.",
@@ -1833,7 +1849,7 @@
             "drCategory": null
         },
         {
-            "spellId": 873,
+            "spellId": 1747,
             "category": "Other",
             "description": {
                 "text": "When you would pull an enemy generate 1 charge of Bone Shield. Bone Shield $@spelldesc195181",
@@ -1863,7 +1879,7 @@
             "drCategory": null
         },
         {
-            "spellId": 915,
+            "spellId": 1789,
             "category": "Defensive",
             "description": {
                 "text": "Your diseases have a chance to weaken your enemy causing your attacks against them to deal 6% increased damage for 5.",
@@ -1893,7 +1909,7 @@
             "drCategory": null
         },
         {
-            "spellId": 874,
+            "spellId": 1748,
             "category": "Other",
             "description": {
                 "text": "Consumption now contributes to your Mastery: Blood Shield. Each time an enemy strikes your Blood Shield, the cooldown of Consumption has chance to be reset.",
@@ -1923,7 +1939,7 @@
             "drCategory": null
         },
         {
-            "spellId": 906,
+            "spellId": 1780,
             "category": "Other",
             "description": {
                 "text": "Heart Strike hits up to 3 additional enemies while you remain in Death and Decay. When leaving your Death and Decay you retain its bonus effects for 4 sec.",
@@ -1953,7 +1969,7 @@
             "drCategory": null
         },
         {
-            "spellId": 871,
+            "spellId": 1745,
             "category": "Other",
             "description": {
                 "text": "Enemies affected by Blood Plague take 5% increased damage from you and Death Strike increases the damage of your Blood Plague by 10% for 15, stacking up to (varies) times.",
@@ -1983,7 +1999,7 @@
             "drCategory": null
         },
         {
-            "spellId": 918,
+            "spellId": 1792,
             "category": "Other",
             "description": {
                 "text": "Successfully interrupting an enemy with Mind Freeze grants 10 Runic Power and reduces its cooldown by 3 sec.",
@@ -2013,7 +2029,7 @@
             "drCategory": null
         },
         {
-            "spellId": 879,
+            "spellId": 1753,
             "category": "Offensive",
             "description": {
                 "text": "Empower the runes in your weapon, reducing the damage you take over the duration and unleashing a devastating attack that deals -5 Shadow damage and consumes up to 75% of your Blood Plague instantly from enemies in front of you. I: Consumes up to 25% of your Blood Plague. While empowering, your damage taken is reduced by 5% and an additional 8 sec after empowering. II: Consumes up to 50% of your Blood Plague. While empowering, your damage taken is reduced by 10% and an additional 4 sec after empowering. III: Consumes up to 75% of your Blood Plague. While empowering, your damage taken is reduced by 15% and an additional 2 sec after empowering.",
@@ -2025,7 +2041,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 874,
+                        "spellId": 1748,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2053,7 +2069,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": {
@@ -2064,7 +2080,7 @@
             "drCategory": null
         },
         {
-            "spellId": 895,
+            "spellId": 1769,
             "category": "Crowd Control",
             "description": {
                 "text": "Dominates the target undead creature up to level 91, forcing it to do your bidding for 300.",
@@ -2087,14 +2103,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 884,
+            "spellId": 1758,
             "category": "Offensive",
             "description": {
                 "text": "While Dancing Rune Weapon is active, Parrying an attack has a 100% chance to make your next Heart Strike cost no Runes and deal 150% increased damage.",
@@ -2124,7 +2140,7 @@
             "drCategory": null
         },
         {
-            "spellId": 844,
+            "spellId": 1718,
             "category": "Defensive",
             "description": {
                 "text": "Summons a rune weapon for 8 that mirrors your melee attacks and bolsters your defenses. While active, you gain 30% parry chance.",
@@ -2134,7 +2150,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 865,
+                        "spellId": 1739,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
@@ -2150,7 +2166,7 @@
                         }
                     },
                     {
-                        "spellId": 866,
+                        "spellId": 1740,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2166,7 +2182,7 @@
                         }
                     },
                     {
-                        "spellId": 479,
+                        "spellId": 1357,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2182,7 +2198,7 @@
                         }
                     },
                     {
-                        "spellId": 555,
+                        "spellId": 1434,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2198,7 +2214,7 @@
                         }
                     },
                     {
-                        "spellId": 558,
+                        "spellId": 1437,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2214,7 +2230,7 @@
                         }
                     },
                     {
-                        "spellId": 559,
+                        "spellId": 1438,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2230,7 +2246,7 @@
                         }
                     },
                     {
-                        "spellId": 739,
+                        "spellId": 1615,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2246,7 +2262,7 @@
                         }
                     },
                     {
-                        "spellId": 740,
+                        "spellId": 1616,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2261,7 +2277,7 @@
                             "applied": [
                                 {
                                     "spell": {
-                                        "id": 865,
+                                        "id": 1739,
                                         "patch_id": 1,
                                         "spell_id": 377637,
                                         "name": "Insatiable Blade",
@@ -2299,19 +2315,19 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "70_inscription_vantus_rune_nightmare.jpg",
-                                        "created_at": "2026-08-03T12:21:56.000000Z",
-                                        "updated_at": "2026-09-08T00:07:05.000000Z"
+                                        "created_at": "2026-07-30T14:00:15.000000Z",
+                                        "updated_at": "2026-09-06T04:00:29.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -30,
                                     "modifier_unit": "seconds",
-                                    "selection_spell_id": 865
+                                    "selection_spell_id": 1739
                                 }
                             ]
                         }
                     },
                     {
-                        "spellId": 790,
+                        "spellId": 1666,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2327,7 +2343,7 @@
                         }
                     },
                     {
-                        "spellId": 791,
+                        "spellId": 1667,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2343,7 +2359,7 @@
                         }
                     },
                     {
-                        "spellId": 811,
+                        "spellId": 1687,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2359,7 +2375,7 @@
                         }
                     },
                     {
-                        "spellId": 836,
+                        "spellId": 1712,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2375,7 +2391,7 @@
                         }
                     },
                     {
-                        "spellId": 877,
+                        "spellId": 1751,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2391,7 +2407,7 @@
                         }
                     },
                     {
-                        "spellId": 884,
+                        "spellId": 1758,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2407,7 +2423,7 @@
                         }
                     },
                     {
-                        "spellId": 1018,
+                        "spellId": 1892,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2423,7 +2439,7 @@
                         }
                     },
                     {
-                        "spellId": 1020,
+                        "spellId": 1894,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2439,7 +2455,7 @@
                         }
                     },
                     {
-                        "spellId": 1025,
+                        "spellId": 1899,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2455,7 +2471,7 @@
                         }
                     },
                     {
-                        "spellId": 1069,
+                        "spellId": 1943,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2474,7 +2490,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 803,
+                        "spellId": 1679,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2490,7 +2506,7 @@
                         }
                     },
                     {
-                        "spellId": 882,
+                        "spellId": 1756,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2506,7 +2522,7 @@
                         }
                     },
                     {
-                        "spellId": 883,
+                        "spellId": 1757,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2522,7 +2538,7 @@
                         }
                     },
                     {
-                        "spellId": 989,
+                        "spellId": 1863,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2546,7 +2562,7 @@
                 "applied": [
                     {
                         "spell": {
-                            "id": 865,
+                            "id": 1739,
                             "patch_id": 1,
                             "spell_id": 377637,
                             "name": "Insatiable Blade",
@@ -2584,12 +2600,12 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "70_inscription_vantus_rune_nightmare.jpg",
-                            "created_at": "2026-08-03T12:21:56.000000Z",
-                            "updated_at": "2026-09-08T00:07:05.000000Z",
+                            "created_at": "2026-07-30T14:00:15.000000Z",
+                            "updated_at": "2026-09-06T04:00:29.000000Z",
                             "effects": [
                                 {
-                                    "id": 1584,
-                                    "spell_id": 865,
+                                    "id": 3219,
+                                    "spell_id": 1739,
                                     "effect_index": 1,
                                     "type": "Add Flat Modifier (107): Spell Cooldown",
                                     "base_value": -30000,
@@ -2600,12 +2616,12 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-08-03T12:21:56.000000Z",
-                                    "updated_at": "2026-09-07T23:52:39.000000Z"
+                                    "created_at": "2026-07-30T14:00:15.000000Z",
+                                    "updated_at": "2026-09-02T11:57:13.000000Z"
                                 },
                                 {
-                                    "id": 1585,
-                                    "spell_id": 865,
+                                    "id": 3220,
+                                    "spell_id": 1739,
                                     "effect_index": 2,
                                     "type": "Dummy (3)",
                                     "base_value": 5,
@@ -2616,15 +2632,15 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-08-03T12:21:56.000000Z",
-                                    "updated_at": "2026-08-03T12:21:56.000000Z"
+                                    "created_at": "2026-07-30T14:00:15.000000Z",
+                                    "updated_at": "2026-07-30T14:00:15.000000Z"
                                 }
                             ]
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
-                        "selection_spell_id": 865
+                        "selection_spell_id": 1739
                     }
                 ]
             },
@@ -2644,7 +2660,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1073,
+            "spellId": 1947,
             "category": "Other",
             "description": {
                 "text": "Places a dark ward on an enemy player that persists for 12 sec, triggering when the enemy next spends mana on a spell, and allowing the Death Knight to unleash an exact duplicate of that spell.",
@@ -2674,7 +2690,7 @@
             "drCategory": null
         },
         {
-            "spellId": 976,
+            "spellId": 1850,
             "category": "Other",
             "description": {
                 "text": "Marrowrend and Heart Strike have a 25% chance to grant 3 stacks of Icy Talons and increase its maximum stacks by the same amount for 6 sec. Runic Power spending abilities count as Shadowfrost while Icy Talons is active.",
@@ -2704,7 +2720,7 @@
             "drCategory": null
         },
         {
-            "spellId": 880,
+            "spellId": 1754,
             "category": "Other",
             "description": {
                 "text": "Death Strike hits an additional 2 enemies at (varies)% effectiveness.",
@@ -2734,7 +2750,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1070,
+            "spellId": 1944,
             "category": "Other",
             "description": {
                 "text": "Chains 3 enemies together, dealing 10.5 Shadow damage and causing 20% of all damage taken to also be received by the others in the chain. Lasts for 10 sec.",
@@ -2764,7 +2780,7 @@
             "drCategory": null
         },
         {
-            "spellId": 931,
+            "spellId": 1805,
             "category": "Other",
             "description": {
                 "text": "The cooldown of Death Pact is reduced by 30 sec, and you receive 50% increased healing while its healing absorb is active.",
@@ -2794,7 +2810,7 @@
             "drCategory": null
         },
         {
-            "spellId": 932,
+            "spellId": 1806,
             "category": "Other",
             "description": {
                 "text": "Raise Ally costs 30 less Runic Power.",
@@ -2817,14 +2833,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 891,
+            "spellId": 1765,
             "category": "Defensive",
             "description": {
                 "text": "Create a death pact that heals you for 50% of your maximum health, but absorbs incoming healing equal to 30% of your max health for 15.",
@@ -2834,7 +2850,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 931,
+                        "spellId": 1805,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
@@ -2853,7 +2869,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 984,
+                        "spellId": 1858,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2877,7 +2893,7 @@
                 "applied": [
                     {
                         "spell": {
-                            "id": 931,
+                            "id": 1805,
                             "patch_id": 1,
                             "spell_id": 1266818,
                             "name": "Death Defiance",
@@ -2915,12 +2931,12 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_nature_shamanrage.jpg",
-                            "created_at": "2026-08-03T12:21:57.000000Z",
-                            "updated_at": "2026-09-08T00:07:16.000000Z",
+                            "created_at": "2026-07-30T14:00:15.000000Z",
+                            "updated_at": "2026-09-06T04:00:41.000000Z",
                             "effects": [
                                 {
-                                    "id": 1726,
-                                    "spell_id": 931,
+                                    "id": 3361,
+                                    "spell_id": 1805,
                                     "effect_index": 1,
                                     "type": "Add Flat Modifier (107): Spell Cooldown",
                                     "base_value": -30000,
@@ -2931,12 +2947,12 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-08-03T12:21:57.000000Z",
-                                    "updated_at": "2026-09-07T23:52:39.000000Z"
+                                    "created_at": "2026-07-30T14:00:15.000000Z",
+                                    "updated_at": "2026-09-02T11:57:14.000000Z"
                                 },
                                 {
-                                    "id": 1727,
-                                    "spell_id": 931,
+                                    "id": 3362,
+                                    "spell_id": 1805,
                                     "effect_index": 2,
                                     "type": "Add Flat Modifier (107): Spell Effect 4",
                                     "base_value": 50,
@@ -2947,15 +2963,15 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-08-03T12:21:57.000000Z",
-                                    "updated_at": "2026-09-07T23:52:39.000000Z"
+                                    "created_at": "2026-07-30T14:00:15.000000Z",
+                                    "updated_at": "2026-09-02T11:57:14.000000Z"
                                 }
                             ]
                         },
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
-                        "selection_spell_id": 931
+                        "selection_spell_id": 1805
                     }
                 ]
             },
@@ -2975,7 +2991,7 @@
             "drCategory": null
         },
         {
-            "spellId": 893,
+            "spellId": 1767,
             "category": "Offensive",
             "description": {
                 "text": "Focuses dark power into a strike that deals (varies) Physical damage and heals you for 20% of all damage taken in the last 5 sec, minimum 7% of maximum health.",
@@ -2985,7 +3001,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 212,
+                        "spellId": 1090,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3001,7 +3017,7 @@
                         }
                     },
                     {
-                        "spellId": 264,
+                        "spellId": 1142,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3017,7 +3033,7 @@
                         }
                     },
                     {
-                        "spellId": 858,
+                        "spellId": 1732,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3033,7 +3049,7 @@
                         }
                     },
                     {
-                        "spellId": 913,
+                        "spellId": 1787,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3049,7 +3065,7 @@
                         }
                     },
                     {
-                        "spellId": 451,
+                        "spellId": 1329,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3065,7 +3081,7 @@
                         }
                     },
                     {
-                        "spellId": 495,
+                        "spellId": 1374,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3081,7 +3097,7 @@
                         }
                     },
                     {
-                        "spellId": 641,
+                        "spellId": 1520,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3097,7 +3113,7 @@
                         }
                     },
                     {
-                        "spellId": 880,
+                        "spellId": 1754,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3113,7 +3129,7 @@
                         }
                     },
                     {
-                        "spellId": 268,
+                        "spellId": 1146,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3129,7 +3145,7 @@
                         }
                     },
                     {
-                        "spellId": 453,
+                        "spellId": 1331,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3145,7 +3161,7 @@
                         }
                     },
                     {
-                        "spellId": 454,
+                        "spellId": 1332,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3161,7 +3177,7 @@
                         }
                     },
                     {
-                        "spellId": 496,
+                        "spellId": 1375,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3177,7 +3193,7 @@
                         }
                     },
                     {
-                        "spellId": 547,
+                        "spellId": 1426,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3193,7 +3209,7 @@
                         }
                     },
                     {
-                        "spellId": 563,
+                        "spellId": 1442,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3209,7 +3225,7 @@
                         }
                     },
                     {
-                        "spellId": 800,
+                        "spellId": 1676,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3225,7 +3241,7 @@
                         }
                     },
                     {
-                        "spellId": 855,
+                        "spellId": 1729,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3241,7 +3257,7 @@
                         }
                     },
                     {
-                        "spellId": 857,
+                        "spellId": 1731,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3257,7 +3273,7 @@
                         }
                     },
                     {
-                        "spellId": 871,
+                        "spellId": 1745,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3273,7 +3289,7 @@
                         }
                     },
                     {
-                        "spellId": 881,
+                        "spellId": 1755,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3289,7 +3305,7 @@
                         }
                     },
                     {
-                        "spellId": 917,
+                        "spellId": 1791,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3305,7 +3321,7 @@
                         }
                     },
                     {
-                        "spellId": 1009,
+                        "spellId": 1883,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3321,7 +3337,7 @@
                         }
                     },
                     {
-                        "spellId": 1013,
+                        "spellId": 1887,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3337,7 +3353,7 @@
                         }
                     },
                     {
-                        "spellId": 1074,
+                        "spellId": 1948,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3355,7 +3371,7 @@
                 ],
                 "baseline": [
                     {
-                        "spellId": 98,
+                        "spellId": 975,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3371,7 +3387,7 @@
                         }
                     },
                     {
-                        "spellId": 101,
+                        "spellId": 978,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3387,7 +3403,7 @@
                         }
                     },
                     {
-                        "spellId": 784,
+                        "spellId": 1660,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3405,7 +3421,7 @@
                 ],
                 "potential": [
                     {
-                        "spellId": 40,
+                        "spellId": 917,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3421,7 +3437,7 @@
                         }
                     },
                     {
-                        "spellId": 802,
+                        "spellId": 1678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3437,7 +3453,7 @@
                         }
                     },
                     {
-                        "spellId": 991,
+                        "spellId": 1865,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3453,7 +3469,7 @@
                         }
                     },
                     {
-                        "spellId": 63,
+                        "spellId": 940,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3469,7 +3485,7 @@
                         }
                     },
                     {
-                        "spellId": 1022,
+                        "spellId": 1896,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3504,7 +3520,7 @@
             "drCategory": null
         },
         {
-            "spellId": 907,
+            "spellId": 1781,
             "category": "Other",
             "description": {
                 "text": "Death's Advance, Death and Decay, and Death Grip have 1 additional charge.",
@@ -3534,7 +3550,7 @@
             "drCategory": null
         },
         {
-            "spellId": 977,
+            "spellId": 1851,
             "category": "Other",
             "description": {
                 "text": "Reduces the cooldowns of Lichborne and Raise Dead by 30 sec.",
@@ -3564,7 +3580,7 @@
             "drCategory": null
         },
         {
-            "spellId": 905,
+            "spellId": 1779,
             "category": "Other",
             "description": {
                 "text": "Increases the range of Death Grip by 10 yds. Killing an enemy that yields experience or honor resets the cooldown of Death Grip.",
@@ -3594,7 +3610,7 @@
             "drCategory": null
         },
         {
-            "spellId": 991,
+            "spellId": 1865,
             "category": "Other",
             "description": {
                 "text": "(varies by condition — check in-game)",
@@ -3624,7 +3640,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1072,
+            "spellId": 1946,
             "category": "Other",
             "description": {
                 "text": "All enemies within 8 yards slowly decay, losing up to 3% of their max health every 2 sec. Max 5 stacks. Lasts 6 sec.",
@@ -3654,7 +3670,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1023,
+            "spellId": 1897,
             "category": "Offensive",
             "description": {
                 "text": "Death and Decay deals its damage 100% faster.",
@@ -3677,14 +3693,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 989,
+            "spellId": 1863,
             "category": "Other",
             "description": {
                 "text": "Reaper's Mark deals 5% increased damage. Casting (varies by condition — check in-game) grants (varies by condition — check in-game) (varies):stacks; of Exterminate with (varies by condition — check in-game)% first scythe and (varies by condition — check in-game)% second scythe effectiveness.",
@@ -3714,7 +3730,7 @@
             "drCategory": null
         },
         {
-            "spellId": 923,
+            "spellId": 1797,
             "category": "Offensive",
             "description": {
                 "text": "Your ghoul's attacks have a chance to apply Enfeeble, reducing the enemies movement speed by -30% and the damage they deal to you by -12% for 6.",
@@ -3724,7 +3740,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 500,
+                        "spellId": 1379,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3740,7 +3756,7 @@
                         }
                     },
                     {
-                        "spellId": 501,
+                        "spellId": 1380,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3777,7 +3793,7 @@
             "drCategory": null
         },
         {
-            "spellId": 866,
+            "spellId": 1740,
             "category": "Other",
             "description": {
                 "text": "Summons 1 additional copy of Dancing Rune Weapon and increases its duration by 4 sec.",
@@ -3807,7 +3823,7 @@
             "drCategory": null
         },
         {
-            "spellId": 981,
+            "spellId": 1855,
             "category": "Other",
             "description": {
                 "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by -10% for 6.",
@@ -3837,7 +3853,7 @@
             "drCategory": null
         },
         {
-            "spellId": 985,
+            "spellId": 1859,
             "category": "Offensive",
             "description": {
                 "text": "After Reaper's Mark explodes, your next 2 (varies):Marrowrends; cost 1 (varies):Runes; and summon 2 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
@@ -3849,7 +3865,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 988,
+                        "spellId": 1862,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3865,7 +3881,7 @@
                         }
                     },
                     {
-                        "spellId": 986,
+                        "spellId": 1860,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3881,7 +3897,7 @@
                         }
                     },
                     {
-                        "spellId": 989,
+                        "spellId": 1863,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3897,7 +3913,7 @@
                         }
                     },
                     {
-                        "spellId": 990,
+                        "spellId": 1864,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3932,7 +3948,7 @@
             "drCategory": null
         },
         {
-            "spellId": 854,
+            "spellId": 1728,
             "category": "Other",
             "description": {
                 "text": "Each charge of Bone Shield increases your maximum health by 1%.",
@@ -3962,7 +3978,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1013,
+            "spellId": 1887,
             "category": "Other",
             "description": {
                 "text": "Essence of the Blood Queen stacks 2 additional times and increases the damage of your Death Coil and Death Strike by 5% per stack.",
@@ -3973,7 +3989,7 @@
                 "named": [],
                 "baseline": [
                     {
-                        "spellId": 101,
+                        "spellId": 978,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4009,7 +4025,7 @@
             "drCategory": null
         },
         {
-            "spellId": 990,
+            "spellId": 1864,
             "category": "Other",
             "description": {
                 "text": "The effectiveness of Permafrost is increased by (varies by condition — check in-game)%(varies by condition — check in-game) Permafrost $@spelldesc207200",
@@ -4039,7 +4055,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1018,
+            "spellId": 1892,
             "category": "Other",
             "description": {
                 "text": "While Dancing Rune Weapon is active you gain Gift of the San'layn. Gift of the San'layn increases the effectiveness of your Essence of the Blood Queen by 200%, and Vampiric Strike replaces your Heart Strike for the duration.",
@@ -4049,7 +4065,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 555,
+                        "spellId": 1434,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4086,7 +4102,7 @@
             "drCategory": null
         },
         {
-            "spellId": 922,
+            "spellId": 1796,
             "category": "Defensive",
             "description": {
                 "text": "Absorbs are 15% more effective on you.",
@@ -4116,7 +4132,7 @@
             "drCategory": null
         },
         {
-            "spellId": 847,
+            "spellId": 1721,
             "category": "Crowd Control",
             "description": {
                 "text": "Shadowy tendrils coil around all enemies within (varies) yards of a hostile or friendly target, pulling them to the target's location and Silencing them for 3.",
@@ -4146,7 +4162,7 @@
             "drCategory": "Knockback"
         },
         {
-            "spellId": 975,
+            "spellId": 1849,
             "category": "Other",
             "description": {
                 "text": "Reaper's Mark initial strike grants $?a137008][3 charges of Bone Shield][Killing Machine]. Reaper's Mark explosion deals up to 30% increased damage based on your target's missing health.",
@@ -4176,7 +4192,7 @@
             "drCategory": null
         },
         {
-            "spellId": 904,
+            "spellId": 1778,
             "category": "Other",
             "description": {
                 "text": "Defile reduces the movement speed of enemies within its area by 90%, decaying by 10% every sec.",
@@ -4206,7 +4222,7 @@
             "drCategory": null
         },
         {
-            "spellId": 853,
+            "spellId": 1727,
             "category": "Offensive",
             "description": {
                 "text": "Instantly strike the target and 1 other nearby enemy, causing 120 Physical damage, and reducing enemies' movement speed by -20% for 8 Generates 5 bonus Runic Power, plus 2 Runic Power per additional enemy struck.",
@@ -4216,7 +4232,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 451,
+                        "spellId": 1329,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4232,7 +4248,7 @@
                         }
                     },
                     {
-                        "spellId": 862,
+                        "spellId": 1736,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4248,7 +4264,7 @@
                         }
                     },
                     {
-                        "spellId": 495,
+                        "spellId": 1374,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4264,7 +4280,7 @@
                         }
                     },
                     {
-                        "spellId": 547,
+                        "spellId": 1426,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4280,7 +4296,7 @@
                         }
                     },
                     {
-                        "spellId": 555,
+                        "spellId": 1434,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4296,7 +4312,23 @@
                         }
                     },
                     {
-                        "spellId": 563,
+                        "spellId": 1352,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Heart Strike heals you for 0% health for each enemy hit while affected by Blood Plague.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 1442,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4312,7 +4344,7 @@
                         }
                     },
                     {
-                        "spellId": 661,
+                        "spellId": 1540,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4328,7 +4360,7 @@
                         }
                     },
                     {
-                        "spellId": 665,
+                        "spellId": 1544,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4344,7 +4376,7 @@
                         }
                     },
                     {
-                        "spellId": 666,
+                        "spellId": 1545,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4360,7 +4392,7 @@
                         }
                     },
                     {
-                        "spellId": 816,
+                        "spellId": 1692,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4376,7 +4408,7 @@
                         }
                     },
                     {
-                        "spellId": 817,
+                        "spellId": 1693,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4392,7 +4424,7 @@
                         }
                     },
                     {
-                        "spellId": 856,
+                        "spellId": 1730,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4408,7 +4440,23 @@
                         }
                     },
                     {
-                        "spellId": 875,
+                        "spellId": 1738,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Heart Strike heals you for 0.3% health for each enemy hit while affected by Blood Plague.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 1749,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4424,7 +4472,7 @@
                         }
                     },
                     {
-                        "spellId": 884,
+                        "spellId": 1758,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4440,7 +4488,7 @@
                         }
                     },
                     {
-                        "spellId": 885,
+                        "spellId": 1759,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4456,7 +4504,7 @@
                         }
                     },
                     {
-                        "spellId": 906,
+                        "spellId": 1780,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4472,7 +4520,7 @@
                         }
                     },
                     {
-                        "spellId": 1009,
+                        "spellId": 1883,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4488,7 +4536,7 @@
                         }
                     },
                     {
-                        "spellId": 1017,
+                        "spellId": 1891,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4504,7 +4552,7 @@
                         }
                     },
                     {
-                        "spellId": 1018,
+                        "spellId": 1892,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4522,7 +4570,7 @@
                 ],
                 "baseline": [
                     {
-                        "spellId": 98,
+                        "spellId": 975,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4538,7 +4586,7 @@
                         }
                     },
                     {
-                        "spellId": 101,
+                        "spellId": 978,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4554,7 +4602,7 @@
                         }
                     },
                     {
-                        "spellId": 784,
+                        "spellId": 1660,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4572,7 +4620,7 @@
                 ],
                 "potential": [
                     {
-                        "spellId": 40,
+                        "spellId": 917,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4588,7 +4636,7 @@
                         }
                     },
                     {
-                        "spellId": 802,
+                        "spellId": 1678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4604,7 +4652,7 @@
                         }
                     },
                     {
-                        "spellId": 803,
+                        "spellId": 1679,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4620,23 +4668,7 @@
                         }
                     },
                     {
-                        "spellId": 474,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Heart Strike heals you for 0% health for each enemy hit while affected by Blood Plague.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 592,
+                        "spellId": 1471,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4652,7 +4684,7 @@
                         }
                     },
                     {
-                        "spellId": 593,
+                        "spellId": 1472,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4668,23 +4700,7 @@
                         }
                     },
                     {
-                        "spellId": 864,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Heart Strike heals you for 0.3% health for each enemy hit while affected by Blood Plague.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 976,
+                        "spellId": 1850,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4719,7 +4735,7 @@
             "drCategory": null
         },
         {
-            "spellId": 856,
+            "spellId": 1730,
             "category": "Other",
             "description": {
                 "text": "Your Heart Strike generates 2 additional Runic Power per target hit.",
@@ -4749,7 +4765,7 @@
             "drCategory": null
         },
         {
-            "spellId": 857,
+            "spellId": 1731,
             "category": "Other",
             "description": {
                 "text": "Each enemy hit by Blood Boil increases the damage and healing done by your next Death Strike by 8%, stacking up to (varies) times.",
@@ -4779,7 +4795,7 @@
             "drCategory": null
         },
         {
-            "spellId": 924,
+            "spellId": 1798,
             "category": "Crowd Control",
             "description": {
                 "text": "Chains of Ice now also roots enemies for 4 but its cooldown is increased to 12 sec.",
@@ -4802,14 +4818,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 892,
+            "spellId": 1766,
             "category": "Defensive",
             "description": {
                 "text": "Your blood freezes, granting immunity to Stun effects and reducing all damage you take by -30% for 8.",
@@ -4819,7 +4835,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 1015,
+                        "spellId": 1889,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4860,7 +4876,7 @@
             "drCategory": null
         },
         {
-            "spellId": 896,
+            "spellId": 1770,
             "category": "Offensive",
             "description": {
                 "text": "Your Runic Power spending abilities increase your melee attack speed by 6% for 10, stacking up to (varies) times.",
@@ -4872,7 +4888,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 592,
+                        "spellId": 1471,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4888,7 +4904,7 @@
                         }
                     },
                     {
-                        "spellId": 593,
+                        "spellId": 1472,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4904,7 +4920,7 @@
                         }
                     },
                     {
-                        "spellId": 976,
+                        "spellId": 1850,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -4939,7 +4955,7 @@
             "drCategory": null
         },
         {
-            "spellId": 861,
+            "spellId": 1735,
             "category": "Other",
             "description": {
                 "text": "Bone Shield increases your Haste by 10% and it can stack 2 additional times.",
@@ -4969,7 +4985,7 @@
             "drCategory": null
         },
         {
-            "spellId": 913,
+            "spellId": 1787,
             "category": "Other",
             "description": {
                 "text": "Death Strike's cost is reduced by 5, and its healing is increased by 15%.",
@@ -4999,7 +5015,7 @@
             "drCategory": null
         },
         {
-            "spellId": 862,
+            "spellId": 1736,
             "category": "Other",
             "description": {
                 "text": "Heart Strike damage increased by 15%.",
@@ -5029,7 +5045,7 @@
             "drCategory": null
         },
         {
-            "spellId": 859,
+            "spellId": 1733,
             "category": "Other",
             "description": {
                 "text": "Vampiric Blood's healing and absorb amount is increased by 5% and duration by 2 sec.",
@@ -5059,7 +5075,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1017,
+            "spellId": 1891,
             "category": "Defensive",
             "description": {
                 "text": "Vampiric Strike and Heart Strike cause your targets to take 1% increased Shadow damage, up to (varies)% for 15. Vampiric Strike benefits from Incite Terror at 400% effectiveness.",
@@ -5069,7 +5085,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 661,
+                        "spellId": 1540,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5106,7 +5122,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1026,
+            "spellId": 1900,
             "category": "Other",
             "description": {
                 "text": "Blood Plague deals up to 30% increased damage based on the target's missing health.",
@@ -5136,7 +5152,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1016,
+            "spellId": 1890,
             "category": "Offensive",
             "description": {
                 "text": "When Vampiric Strike damages an enemy affected by your Blood Plague, it extends the duration of the disease by (varies by condition — check in-game) sec(varies by condition — check in-game)",
@@ -5146,7 +5162,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 811,
+                        "spellId": 1687,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5162,7 +5178,7 @@
                         }
                     },
                     {
-                        "spellId": 836,
+                        "spellId": 1712,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5180,7 +5196,7 @@
                 ],
                 "baseline": [
                     {
-                        "spellId": 101,
+                        "spellId": 978,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5216,7 +5232,7 @@
             "drCategory": null
         },
         {
-            "spellId": 865,
+            "spellId": 1739,
             "category": "Other",
             "description": {
                 "text": "Dancing Rune Weapon's cooldown is reduced by 30 sec and now generates 5 Bone Shield charges.",
@@ -5246,7 +5262,7 @@
             "drCategory": null
         },
         {
-            "spellId": 921,
+            "spellId": 1795,
             "category": "Offensive",
             "description": {
                 "text": "Your auto-attacks reduce the target's auto-attack speed by -5% for 30, stacking up to (varies) times.",
@@ -5276,7 +5292,7 @@
             "drCategory": null
         },
         {
-            "spellId": 868,
+            "spellId": 1742,
             "category": "Other",
             "description": {
                 "text": "Blood Shield's duration is increased by 2 sec and it absorbs 20% more damage.",
@@ -5306,7 +5322,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1069,
+            "spellId": 1943,
             "category": "Other",
             "description": {
                 "text": "Reduces the cooldown of Dancing Rune Weapon by 50% and its duration by 25%.",
@@ -5336,7 +5352,7 @@
             "drCategory": null
         },
         {
-            "spellId": 864,
+            "spellId": 1738,
             "category": "Other",
             "description": {
                 "text": "Heart Strike heals you for 0.3% health for each enemy hit while affected by Blood Plague.",
@@ -5359,14 +5375,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 881,
+            "spellId": 1755,
             "category": "Other",
             "description": {
                 "text": "Death Strike heals for an additional 20% of its healing over 5.",
@@ -5396,7 +5412,7 @@
             "drCategory": null
         },
         {
-            "spellId": 920,
+            "spellId": 1794,
             "category": "Other",
             "description": {
                 "text": "Death's Advance grants an additional 25% movement speed over the first 3. Movement speed while using Price of Progress is increased by 5%.",
@@ -5426,7 +5442,7 @@
             "drCategory": null
         },
         {
-            "spellId": 850,
+            "spellId": 1724,
             "category": "Offensive",
             "description": {
                 "text": "Smash the target, dealing (varies) Physical damage and generating 3 charges of Bone Shield. Bone Shield $@spelldesc195181",
@@ -5436,7 +5452,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 451,
+                        "spellId": 1329,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5452,7 +5468,7 @@
                         }
                     },
                     {
-                        "spellId": 495,
+                        "spellId": 1374,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5470,7 +5486,7 @@
                 ],
                 "baseline": [
                     {
-                        "spellId": 98,
+                        "spellId": 975,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5486,7 +5502,7 @@
                         }
                     },
                     {
-                        "spellId": 101,
+                        "spellId": 978,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5502,7 +5518,7 @@
                         }
                     },
                     {
-                        "spellId": 784,
+                        "spellId": 1660,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5520,7 +5536,7 @@
                 ],
                 "potential": [
                     {
-                        "spellId": 40,
+                        "spellId": 917,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5536,7 +5552,7 @@
                         }
                     },
                     {
-                        "spellId": 584,
+                        "spellId": 1463,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5552,7 +5568,7 @@
                         }
                     },
                     {
-                        "spellId": 620,
+                        "spellId": 1499,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5568,7 +5584,7 @@
                         }
                     },
                     {
-                        "spellId": 802,
+                        "spellId": 1678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5584,7 +5600,7 @@
                         }
                     },
                     {
-                        "spellId": 585,
+                        "spellId": 1464,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5600,7 +5616,7 @@
                         }
                     },
                     {
-                        "spellId": 586,
+                        "spellId": 1465,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5616,7 +5632,7 @@
                         }
                     },
                     {
-                        "spellId": 592,
+                        "spellId": 1471,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5632,7 +5648,7 @@
                         }
                     },
                     {
-                        "spellId": 593,
+                        "spellId": 1472,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5648,7 +5664,7 @@
                         }
                     },
                     {
-                        "spellId": 976,
+                        "spellId": 1850,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5664,7 +5680,7 @@
                         }
                     },
                     {
-                        "spellId": 985,
+                        "spellId": 1859,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5680,7 +5696,7 @@
                         }
                     },
                     {
-                        "spellId": 988,
+                        "spellId": 1862,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5715,7 +5731,7 @@
             "drCategory": null
         },
         {
-            "spellId": 889,
+            "spellId": 1763,
             "category": "Utility",
             "description": {
                 "text": "Smash the target's mind with cold, interrupting spellcasting and preventing any spell in that school from being cast for 5.",
@@ -5725,7 +5741,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 481,
+                        "spellId": 1360,
                         "relationship_type": "modifies_charges",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5741,7 +5757,7 @@
                         }
                     },
                     {
-                        "spellId": 918,
+                        "spellId": 1792,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5778,7 +5794,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1071,
+            "spellId": 1945,
             "category": "Other",
             "description": {
                 "text": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
@@ -5808,7 +5824,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1010,
+            "spellId": 1884,
             "category": "Defensive",
             "description": {
                 "text": "Raise Ally revives players at full health and grants you and your ally an absorb shield equal to 20% of your maximum health.",
@@ -5838,7 +5854,7 @@
             "drCategory": null
         },
         {
-            "spellId": 928,
+            "spellId": 1802,
             "category": "Defensive",
             "description": {
                 "text": "Magic damage taken is reduced by -8% and the duration of harmful Magic effects against you are reduced by -35%.",
@@ -5868,7 +5884,7 @@
             "drCategory": null
         },
         {
-            "spellId": 927,
+            "spellId": 1801,
             "category": "Other",
             "description": {
                 "text": "Anti-Magic Shell increases healing received by 15%.",
@@ -5898,7 +5914,7 @@
             "drCategory": null
         },
         {
-            "spellId": 855,
+            "spellId": 1729,
             "category": "Other",
             "description": {
                 "text": "While you have at least 5 Bone Shield charges, the cost of Death Strike is reduced by 0 Runic Power. Additionally, your maximum Runic Power is increased by 10.",
@@ -5928,7 +5944,7 @@
             "drCategory": null
         },
         {
-            "spellId": 984,
+            "spellId": 1858,
             "category": "Other",
             "description": {
                 "text": "When you suffer a damaging effect equal to 25% of your maximum health, you instantly cast Death Pact at 50% effectiveness. May only occur every 2 min. When a Reaper's Mark explodes, the cooldowns of this effect and Death Pact are reduced by 5 sec.",
@@ -5958,7 +5974,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1021,
+            "spellId": 1895,
             "category": "Other",
             "description": {
                 "text": "You store 10% of all Shadow damage dealt into your Blood Beast to explode for additional damage when it expires.",
@@ -5969,7 +5985,7 @@
                 "named": [],
                 "baseline": [
                     {
-                        "spellId": 101,
+                        "spellId": 978,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6005,7 +6021,7 @@
             "drCategory": null
         },
         {
-            "spellId": 901,
+            "spellId": 1775,
             "category": "Other",
             "description": {
                 "text": "Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
@@ -6017,7 +6033,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 990,
+                        "spellId": 1864,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6052,7 +6068,7 @@
             "drCategory": null
         },
         {
-            "spellId": 863,
+            "spellId": 1737,
             "category": "Defensive",
             "description": {
                 "text": "When Crimson Scourge is consumed, damage taken is reduced by -4% for 10.",
@@ -6082,7 +6098,7 @@
             "drCategory": null
         },
         {
-            "spellId": 886,
+            "spellId": 1760,
             "category": "Other",
             "description": {
                 "text": "Your Blood Plague critical hits have a chance to reduce the cooldown of your Blood Boil by 0.3 sec.",
@@ -6112,7 +6128,7 @@
             "drCategory": null
         },
         {
-            "spellId": 724,
+            "spellId": 1600,
             "category": "Other",
             "description": {
                 "text": "You sacrifice 1% of your health every (varies) sec and in exchange you cannot be slowed below 90% of normal speed, and you are immune to forced movement effects and knockbacks. Lasts (varies).",
@@ -6122,7 +6138,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 1011,
+                        "spellId": 1885,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6159,7 +6175,7 @@
             "drCategory": null
         },
         {
-            "spellId": 908,
+            "spellId": 1782,
             "category": "Other",
             "description": {
                 "text": "Chains of Ice affects 1 additional nearby enemy.",
@@ -6189,7 +6205,7 @@
             "drCategory": null
         },
         {
-            "spellId": 848,
+            "spellId": 1722,
             "category": "Defensive",
             "description": {
                 "text": "An unholy pact that prevents fatal damage, instead absorbing incoming healing equal to the damage prevented, lasting 3. If any healing absorption remains when this effect expires, you will die. This effect may only occur every 240.",
@@ -6219,7 +6235,7 @@
             "drCategory": null
         },
         {
-            "spellId": 888,
+            "spellId": 1762,
             "category": "Other",
             "description": {
                 "text": "Raises a geist to fight by your side.  You can have a maximum of one geist at a time. Lasts 60.",
@@ -6231,7 +6247,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 977,
+                        "spellId": 1851,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
@@ -6247,7 +6263,7 @@
                         }
                     },
                     {
-                        "spellId": 576,
+                        "spellId": 1455,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6263,7 +6279,7 @@
                         }
                     },
                     {
-                        "spellId": 577,
+                        "spellId": 1456,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6279,7 +6295,7 @@
                         }
                     },
                     {
-                        "spellId": 587,
+                        "spellId": 1466,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6314,7 +6330,7 @@
             "drCategory": null
         },
         {
-            "spellId": 849,
+            "spellId": 1723,
             "category": "Other",
             "description": {
                 "text": "Your Blood Plague and Death and Decay deal damage 15% more often. Additionally, your Blood Plague leeches 85% more Health.",
@@ -6344,7 +6360,7 @@
             "drCategory": null
         },
         {
-            "spellId": 979,
+            "spellId": 1853,
             "category": "Offensive",
             "description": {
                 "text": "Viciously slice into the soul of your enemy, dealing 40 Shadowfrost damage and applying Reaper's Mark. Each time you deal Shadow or Frost damage, add a stack of Reaper's Mark. After 12 or reaching (varies) stacks, the mark explodes, dealing 40 damage per stack. Reaper's Mark travels to an unmarked enemy nearby if the target dies.",
@@ -6354,7 +6370,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 451,
+                        "spellId": 1329,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6370,7 +6386,7 @@
                         }
                     },
                     {
-                        "spellId": 495,
+                        "spellId": 1374,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6388,7 +6404,7 @@
                 ],
                 "baseline": [
                     {
-                        "spellId": 101,
+                        "spellId": 978,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6404,7 +6420,7 @@
                         }
                     },
                     {
-                        "spellId": 784,
+                        "spellId": 1660,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6422,7 +6438,7 @@
                 ],
                 "potential": [
                     {
-                        "spellId": 40,
+                        "spellId": 917,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6438,7 +6454,7 @@
                         }
                     },
                     {
-                        "spellId": 802,
+                        "spellId": 1678,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6454,7 +6470,7 @@
                         }
                     },
                     {
-                        "spellId": 564,
+                        "spellId": 1443,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6470,7 +6486,7 @@
                         }
                     },
                     {
-                        "spellId": 565,
+                        "spellId": 1444,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6486,7 +6502,7 @@
                         }
                     },
                     {
-                        "spellId": 566,
+                        "spellId": 1445,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6502,7 +6518,7 @@
                         }
                     },
                     {
-                        "spellId": 567,
+                        "spellId": 1446,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6518,7 +6534,7 @@
                         }
                     },
                     {
-                        "spellId": 568,
+                        "spellId": 1447,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6534,7 +6550,7 @@
                         }
                     },
                     {
-                        "spellId": 570,
+                        "spellId": 1449,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6550,7 +6566,7 @@
                         }
                     },
                     {
-                        "spellId": 582,
+                        "spellId": 1461,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6566,7 +6582,7 @@
                         }
                     },
                     {
-                        "spellId": 584,
+                        "spellId": 1463,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6582,7 +6598,7 @@
                         }
                     },
                     {
-                        "spellId": 585,
+                        "spellId": 1464,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6598,7 +6614,7 @@
                         }
                     },
                     {
-                        "spellId": 586,
+                        "spellId": 1465,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6614,7 +6630,7 @@
                         }
                     },
                     {
-                        "spellId": 588,
+                        "spellId": 1467,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6630,7 +6646,7 @@
                         }
                     },
                     {
-                        "spellId": 589,
+                        "spellId": 1468,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6646,7 +6662,7 @@
                         }
                     },
                     {
-                        "spellId": 590,
+                        "spellId": 1469,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6662,7 +6678,7 @@
                         }
                     },
                     {
-                        "spellId": 620,
+                        "spellId": 1499,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6678,7 +6694,7 @@
                         }
                     },
                     {
-                        "spellId": 645,
+                        "spellId": 1524,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6694,7 +6710,7 @@
                         }
                     },
                     {
-                        "spellId": 646,
+                        "spellId": 1525,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6710,7 +6726,7 @@
                         }
                     },
                     {
-                        "spellId": 677,
+                        "spellId": 1556,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6726,7 +6742,7 @@
                         }
                     },
                     {
-                        "spellId": 975,
+                        "spellId": 1849,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6742,7 +6758,7 @@
                         }
                     },
                     {
-                        "spellId": 978,
+                        "spellId": 1852,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6758,7 +6774,7 @@
                         }
                     },
                     {
-                        "spellId": 980,
+                        "spellId": 1854,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6774,7 +6790,7 @@
                         }
                     },
                     {
-                        "spellId": 982,
+                        "spellId": 1856,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6790,7 +6806,7 @@
                         }
                     },
                     {
-                        "spellId": 984,
+                        "spellId": 1858,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6806,7 +6822,7 @@
                         }
                     },
                     {
-                        "spellId": 985,
+                        "spellId": 1859,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6822,7 +6838,7 @@
                         }
                     },
                     {
-                        "spellId": 987,
+                        "spellId": 1861,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6838,7 +6854,7 @@
                         }
                     },
                     {
-                        "spellId": 988,
+                        "spellId": 1862,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6854,7 +6870,7 @@
                         }
                     },
                     {
-                        "spellId": 989,
+                        "spellId": 1863,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6870,7 +6886,7 @@
                         }
                     },
                     {
-                        "spellId": 991,
+                        "spellId": 1865,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -6909,7 +6925,7 @@
             "drCategory": null
         },
         {
-            "spellId": 988,
+            "spellId": 1862,
             "category": "Other",
             "description": {
                 "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Marrowrends empowered by Exterminate is reduced by -1.",
@@ -6939,7 +6955,7 @@
             "drCategory": null
         },
         {
-            "spellId": 852,
+            "spellId": 1726,
             "category": "Other",
             "description": {
                 "text": "Reduces the cooldown on Vampiric Blood by 2 sec per 10 Runic Power spent.",
@@ -6969,7 +6985,7 @@
             "drCategory": null
         },
         {
-            "spellId": 860,
+            "spellId": 1734,
             "category": "Other",
             "description": {
                 "text": "While Crimson Scourge is active, your next Death and Decay heals you for 1 health per Bone Shield charge and you immediately gain 10 Runic Power.",
@@ -6999,7 +7015,7 @@
             "drCategory": null
         },
         {
-            "spellId": 155,
+            "spellId": 1033,
             "category": "Defensive",
             "description": {
                 "text": "Your Death's Due rots enemies each time it deals damage, absorbing healing equal to 100% of damage dealt.",
@@ -7029,7 +7045,7 @@
             "drCategory": null
         },
         {
-            "spellId": 983,
+            "spellId": 1857,
             "category": "Defensive",
             "description": {
                 "text": "Each Rune spent reduces the magic damage you take by 0% and each Rune generated reduces the physical damage you take by 0% for 5, up to (varies) times.",
@@ -7059,7 +7075,7 @@
             "drCategory": null
         },
         {
-            "spellId": 916,
+            "spellId": 1790,
             "category": "Other",
             "description": {
                 "text": "Consuming a Rune has a chance to increase your Strength by 3% for 8.",
@@ -7089,7 +7105,7 @@
             "drCategory": null
         },
         {
-            "spellId": 899,
+            "spellId": 1773,
             "category": "Other",
             "description": {
                 "text": "Auto attacks have a chance to generate 3 Runic Power.",
@@ -7119,7 +7135,7 @@
             "drCategory": null
         },
         {
-            "spellId": 925,
+            "spellId": 1799,
             "category": "Defensive",
             "description": {
                 "text": "Your chance to be critically struck is reduced by -3% and your Armor is increased by 6%.",
@@ -7149,7 +7165,7 @@
             "drCategory": null
         },
         {
-            "spellId": 878,
+            "spellId": 1752,
             "category": "Other",
             "description": {
                 "text": "When Blood Mist ends it deals 2 Shadow damage to (varies) nearby enemies, healing you for (varies)% of the damage dealt. The damage is increased by 2% for every 1 Runic Power spent while Blood Mist was active.",
@@ -7179,7 +7195,7 @@
             "drCategory": null
         },
         {
-            "spellId": 870,
+            "spellId": 1744,
             "category": "Other",
             "description": {
                 "text": "You deal 6% more damage and receive 5% more healing while standing in your Death and Decay.",
@@ -7209,7 +7225,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1022,
+            "spellId": 1896,
             "category": "Other",
             "description": {
                 "text": "Your Death Coil and Death Strike have a 15% increased chance to trigger Vampiric Strike when damaging enemies below 35% health.",
@@ -7239,7 +7255,7 @@
             "drCategory": null
         },
         {
-            "spellId": 978,
+            "spellId": 1852,
             "category": "Offensive",
             "description": {
                 "text": "When Reaper's Mark explodes, it deals 10% of the damage dealt to nearby enemies.",
@@ -7251,7 +7267,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 677,
+                        "spellId": 1556,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7267,7 +7283,7 @@
                         }
                     },
                     {
-                        "spellId": 987,
+                        "spellId": 1861,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7302,7 +7318,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1075,
+            "spellId": 1949,
             "category": "Other",
             "description": {
                 "text": "Anti-Magic Shell is now usable on allies and its cooldown is reduced by 10 sec.",
@@ -7325,14 +7341,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 1068,
+            "spellId": 1942,
             "category": "Crowd Control",
             "description": {
                 "text": "Shadowy tendrils constrict an enemy's throat, silencing them for 4 sec.",
@@ -7362,7 +7378,7 @@
             "drCategory": "Silence"
         },
         {
-            "spellId": 926,
+            "spellId": 1800,
             "category": "Offensive",
             "description": {
                 "text": "When you would pull an enemy, the damage they deal to you is reduced by -6% for 6.",
@@ -7385,14 +7401,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 910,
+            "spellId": 1784,
             "category": "Defensive",
             "description": {
                 "text": "Damage taken from area of effect attacks reduced by -3%. When suffering a loss of control effect, this bonus is increased by an additional -6% for 6.",
@@ -7422,7 +7438,7 @@
             "drCategory": null
         },
         {
-            "spellId": 987,
+            "spellId": 1861,
             "category": "Other",
             "description": {
                 "text": "If no enemies are struck by Soul Rupture, you gain 10% Strength for 8. Wave of Souls is 100% more effective on the main target of your Reaper's Mark.",
@@ -7452,7 +7468,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1020,
+            "spellId": 1894,
             "category": "Offensive",
             "description": {
                 "text": "Dancing Rune Weapon summons a Blood Beast to attack your enemy for 10. Each time the Blood Beast attacks, it stores a portion of the damage dealt. When the Blood Beast dies, it explodes, dealing 15% of the damage accumulated to nearby enemies and healing the Death Knight for the same amount. Deals reduced damage beyond 8 targets.",
@@ -7482,7 +7498,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1024,
+            "spellId": 1898,
             "category": "Other",
             "description": {
                 "text": "Essence of the Blood Queen additionally increases your Mastery by (varies by condition — check in-game)% per stack. (varies by condition — check in-game) increased damage.",
@@ -7512,7 +7528,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1025,
+            "spellId": 1899,
             "category": "Offensive",
             "description": {
                 "text": "Vampiric Strike increases the damage of (varies by condition — check in-game) by (varies by condition — check in-game)% for 8.(varies by condition — check in-game)",
@@ -7542,7 +7558,7 @@
             "drCategory": null
         },
         {
-            "spellId": 872,
+            "spellId": 1746,
             "category": "Other",
             "description": {
                 "text": "After Vampiric Blood expires, you absorb damage equal to 6 times the damage your Blood Plague dealt during Vampiric Blood.",
@@ -7572,7 +7588,7 @@
             "drCategory": null
         },
         {
-            "spellId": 911,
+            "spellId": 1785,
             "category": "Other",
             "description": {
                 "text": "Increases the effectiveness of your Runeforge effects by 20%.",
@@ -7602,7 +7618,7 @@
             "drCategory": null
         },
         {
-            "spellId": 919,
+            "spellId": 1793,
             "category": "Other",
             "description": {
                 "text": "Increases Lichborne duration by 2 sec and reduces the cooldown by 30 sec.",
@@ -7632,7 +7648,7 @@
             "drCategory": null
         },
         {
-            "spellId": 912,
+            "spellId": 1786,
             "category": "Offensive",
             "description": {
                 "text": "Increases Haste by 2%.",
@@ -7662,7 +7678,7 @@
             "drCategory": null
         },
         {
-            "spellId": 930,
+            "spellId": 1804,
             "category": "Defensive",
             "description": {
                 "text": "Anti-Magic Shell now removes all harmful magical effects when activated, but its cooldown is increased by 20 sec.",
@@ -7692,7 +7708,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1014,
+            "spellId": 1888,
             "category": "Other",
             "description": {
                 "text": "Your Leech is increased by 2%. While Lichborne is active, the Leech bonus of this effect is increased by 100%, and it affects 4 allies within 12 yds.",
@@ -7704,7 +7720,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 552,
+                        "spellId": 1431,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7739,7 +7755,7 @@
             "drCategory": null
         },
         {
-            "spellId": 846,
+            "spellId": 1720,
             "category": "Defensive",
             "description": {
                 "text": "Embrace your undeath, increasing your maximum health by 30% and increasing all healing and absorbs received by 30% for 10.",
@@ -7749,7 +7765,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 859,
+                        "spellId": 1733,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7765,7 +7781,7 @@
                         }
                     },
                     {
-                        "spellId": 852,
+                        "spellId": 1726,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7781,7 +7797,7 @@
                         }
                     },
                     {
-                        "spellId": 872,
+                        "spellId": 1746,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7800,7 +7816,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 385,
+                        "spellId": 1263,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7839,7 +7855,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1011,
+            "spellId": 1885,
             "category": "Mobility",
             "description": {
                 "text": "Death's Advance and Wraith Walk movement speed bonuses are increased by 10%. Activating Death's Advance or Wraith Walk increases 4 nearby allies movement speed by 20% for 5.",
@@ -7869,7 +7885,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1009,
+            "spellId": 1883,
             "category": "Offensive",
             "description": {
                 "text": "Your Death Coil and Death Strike have a 25% chance to make your next Heart Strike become Vampiric Strike. Vampiric Strike heals you for 1% of your maximum health and grants you Essence of the Blood Queen, increasing your Haste by 1%, up to (varies)% for 20.",
@@ -7879,7 +7895,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 546,
+                        "spellId": 1425,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7895,7 +7911,7 @@
                         }
                     },
                     {
-                        "spellId": 547,
+                        "spellId": 1426,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7911,7 +7927,7 @@
                         }
                     },
                     {
-                        "spellId": 554,
+                        "spellId": 1433,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7927,7 +7943,7 @@
                         }
                     },
                     {
-                        "spellId": 555,
+                        "spellId": 1434,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7943,7 +7959,7 @@
                         }
                     },
                     {
-                        "spellId": 560,
+                        "spellId": 1439,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7959,7 +7975,7 @@
                         }
                     },
                     {
-                        "spellId": 563,
+                        "spellId": 1442,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7975,7 +7991,7 @@
                         }
                     },
                     {
-                        "spellId": 661,
+                        "spellId": 1540,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -7991,7 +8007,7 @@
                         }
                     },
                     {
-                        "spellId": 664,
+                        "spellId": 1543,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8007,7 +8023,7 @@
                         }
                     },
                     {
-                        "spellId": 730,
+                        "spellId": 1606,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8023,7 +8039,7 @@
                         }
                     },
                     {
-                        "spellId": 811,
+                        "spellId": 1687,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8039,7 +8055,7 @@
                         }
                     },
                     {
-                        "spellId": 836,
+                        "spellId": 1712,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8055,7 +8071,23 @@
                         }
                     },
                     {
-                        "spellId": 1016,
+                        "spellId": 1886,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "While you are within your Death and Decay, your physical damage taken is reduced by 8% and your chance to gain Vampiric Strike is increased by 5%.",
+                            "uncertain": false
+                        },
+                        "category": "Defensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 1890,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8071,7 +8103,7 @@
                         }
                     },
                     {
-                        "spellId": 1017,
+                        "spellId": 1891,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8087,7 +8119,7 @@
                         }
                     },
                     {
-                        "spellId": 1018,
+                        "spellId": 1892,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8103,7 +8135,7 @@
                         }
                     },
                     {
-                        "spellId": 1025,
+                        "spellId": 1899,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8119,7 +8151,7 @@
                         }
                     },
                     {
-                        "spellId": 1026,
+                        "spellId": 1900,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8137,7 +8169,7 @@
                 ],
                 "baseline": [
                     {
-                        "spellId": 101,
+                        "spellId": 978,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8155,23 +8187,7 @@
                 ],
                 "potential": [
                     {
-                        "spellId": 1012,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "While you are within your Death and Decay, your physical damage taken is reduced by 8% and your chance to gain Vampiric Strike is increased by 5%.",
-                            "uncertain": false
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 1022,
+                        "spellId": 1896,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8206,7 +8222,7 @@
             "drCategory": null
         },
         {
-            "spellId": 929,
+            "spellId": 1803,
             "category": "Other",
             "description": {
                 "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by -50%.",
@@ -8236,7 +8252,7 @@
             "drCategory": null
         },
         {
-            "spellId": 890,
+            "spellId": 1764,
             "category": "Defensive",
             "description": {
                 "text": "Stamina increased by 20%. Damage taken reduced by (varies)%.",
@@ -8266,7 +8282,7 @@
             "drCategory": null
         },
         {
-            "spellId": 1019,
+            "spellId": 1893,
             "category": "Other",
             "description": {
                 "text": "When Crimson Scourge is consumed, you gain 10% Strength for 12.",
@@ -8296,7 +8312,7 @@
             "drCategory": null
         },
         {
-            "spellId": 858,
+            "spellId": 1732,
             "category": "Other",
             "description": {
                 "text": "Death Strike's healing is increased by 5% and grants you 15% Leech for 8.",
@@ -8326,7 +8342,7 @@
             "drCategory": null
         },
         {
-            "spellId": 980,
+            "spellId": 1854,
             "category": "Offensive",
             "description": {
                 "text": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 5 Shadowfrost damage both ways to all enemies caught in its path. Wave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15, stacking up to 2 times, and it is always a critical strike on its way back.",
@@ -8338,7 +8354,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 564,
+                        "spellId": 1443,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8354,7 +8370,7 @@
                         }
                     },
                     {
-                        "spellId": 566,
+                        "spellId": 1445,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8370,7 +8386,7 @@
                         }
                     },
                     {
-                        "spellId": 588,
+                        "spellId": 1467,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8386,7 +8402,7 @@
                         }
                     },
                     {
-                        "spellId": 589,
+                        "spellId": 1468,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8402,7 +8418,7 @@
                         }
                     },
                     {
-                        "spellId": 645,
+                        "spellId": 1524,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8418,7 +8434,7 @@
                         }
                     },
                     {
-                        "spellId": 646,
+                        "spellId": 1525,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8434,7 +8450,7 @@
                         }
                     },
                     {
-                        "spellId": 677,
+                        "spellId": 1556,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8450,7 +8466,7 @@
                         }
                     },
                     {
-                        "spellId": 987,
+                        "spellId": 1861,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8485,7 +8501,7 @@
             "drCategory": null
         },
         {
-            "spellId": 898,
+            "spellId": 1772,
             "category": "Defensive",
             "description": {
                 "text": "Damage taken below 30% Health is reduced by 20%.",
@@ -8515,7 +8531,7 @@
             "drCategory": null
         },
         {
-            "spellId": 986,
+            "spellId": 1860,
             "category": "Other",
             "description": {
                 "text": "Blood Plague deals its damage 100% faster, and the second scythe of Exterminate applies Blood Plague.",
@@ -8545,7 +8561,7 @@
             "drCategory": null
         },
         {
-            "spellId": 902,
+            "spellId": 1776,
             "category": "Mobility",
             "description": {
                 "text": "Embrace the power of the Shadowlands, removing all root effects and increasing your movement speed by 70% for 4. Taking any action cancels the effect. While active, your movement speed cannot be reduced below 170%.",
@@ -8555,7 +8571,7 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 1011,
+                        "spellId": 1885,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8571,7 +8587,7 @@
                         }
                     },
                     {
-                        "spellId": 550,
+                        "spellId": 1429,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8589,7 +8605,7 @@
                 ],
                 "baseline": [
                     {
-                        "spellId": 98,
+                        "spellId": 975,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,

@@ -136,38 +136,56 @@ class SpecKitComputer
 
         $bySpellId = collect($entries)->keyBy(fn ($e) => $e['spell']->spell_id);
 
-        $resolved = collect($spellIds)->map(function ($id) use ($bySpellId) {
-            if ($bySpellId->has($id)) {
-                return $bySpellId->get($id);
-            }
-
-            $patchId = \App\Models\Patch::where('is_current', true)->value('id');
-            $spell = Spell::where('patch_id', $patchId)->where('spell_id', $id)->first();
-            if (! $spell) {
-                return null;
-            }
-
-            return $this->profileBuilder()->forKitEntry(
-                spell: $spell,
-                category: $this->profileBuilder()->category($spell),
-                description: ['text' => strip_tags($spell->description ?? ''), 'uncertain' => false],
-                formulaModifiers: collect(),
-                modifiers: ['named' => collect(), 'baseline' => collect(), 'potential' => collect()],
-                cooldown: ['seconds' => $spell->cooldown_seconds],
-                charges: ['charges' => $spell->charges],
-                isSelected: true, // unconditional baseline — always "selected", nothing to gate on
-                source: 'baseline_core',
-                isPriority: false,
-                offensiveDefensive: null,
-                // resolvedDrCategory deliberately left unset (= use the spell's own base column).
-                // This branch only ever handles unconditional core-rotation filler that isn't in
-                // the selectable kit at all, so there are no talent selections in scope here to
-                // resolve a conditional dr_category against  14 and inventing one would be worse
-                // than showing the base value.
-            );
-        })->filter()->values();
+        $resolved = collect($spellIds)
+            ->map(fn ($id) => $bySpellId->get($id) ?? $this->baselineCoreEntry((int) $id))
+            ->filter()
+            ->values();
 
         return $resolved->all();
+    }
+
+    /**
+     * One external spell_id that is NOT in the spec's selectable kit, resolved to a minimal entry
+     * straight off the spell's own columns — the "unconditional core rotation" case described at
+     * length on resolveEntriesForSpellIds() above (Envenom, Mutilate, Rupture: real buttons with
+     * no talent pick behind them, so compute() never had reason to include them).
+     *
+     * EXTRACTED SO THERE IS ONE DEFINITION. UserGuideChainService resolves a guide's blocks
+     * against its own cached whole-kit read rather than calling resolveEntriesForSpellIds() per
+     * render, and needs the identical fallback for the same ids — a second copy would drift, and
+     * the first symptom would be the same ability rendering differently in the builder and on the
+     * published page.
+     *
+     * Returns null for an id with no spell in the current patch at all; callers treat that as
+     * unresolved rather than rendering it broken.
+     */
+    public function baselineCoreEntry(int $externalSpellId): ?SpellProfile
+    {
+        $patchId = Patch::where('is_current', true)->value('id');
+        $spell = Spell::where('patch_id', $patchId)->where('spell_id', $externalSpellId)->first();
+
+        if (! $spell) {
+            return null;
+        }
+
+        return $this->profileBuilder()->forKitEntry(
+            spell: $spell,
+            category: $this->profileBuilder()->category($spell),
+            description: ['text' => strip_tags($spell->description ?? ''), 'uncertain' => false],
+            formulaModifiers: collect(),
+            modifiers: ['named' => collect(), 'baseline' => collect(), 'potential' => collect()],
+            cooldown: ['seconds' => $spell->cooldown_seconds],
+            charges: ['charges' => $spell->charges],
+            isSelected: true, // unconditional baseline — always "selected", nothing to gate on
+            source: 'baseline_core',
+            isPriority: false,
+            offensiveDefensive: null,
+            // resolvedDrCategory deliberately left unset (= use the spell's own base column).
+            // This branch only ever handles unconditional core-rotation filler that isn't in
+            // the selectable kit at all, so there are no talent selections in scope here to
+            // resolve a conditional dr_category against — inventing one would be worse than
+            // showing the base value.
+        );
     }
 
     /**

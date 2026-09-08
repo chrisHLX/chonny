@@ -4064,3 +4064,96 @@ pre-existing failures, zero new regressions.
 it through the spec's admin default, matching the existing reasoning that you do not know what your
 opponent talented and inventing an answer is worse than showing the meta. A class guide and a comp
 guide cannot be converted into one another after creation.
+
+## Guide builder: ~80x faster, and phases removed ✓ COMPLETE (2026-09-08)
+
+Reported as "really clunky and slow… I'm not sure if this is because of a bug or the design". It was
+a bug, and the previously-documented caching work had defended the wrong path. Measured before
+touching anything, against the real dev database:
+
+| action | before | after |
+|---|---|---|
+| open the builder | 6,218ms / 5,429 queries | 80ms / 70 |
+| rename a section | 6,411ms / 5,435 queries | 88ms / 76 |
+| open an ability palette | 11,954ms / 10,077 queries | 79ms / 73 |
+
+**Renaming a section cost 6.4 seconds and 5,435 queries** — an action that touches no ability at
+all. That is the shape that identified the cause: the cost was in the render, not in the edit.
+
+### Root cause: `resolve()` bypassed the cache `palette()` had
+
+`UserGuideChainService::palette()` was already fast (259ms/63 queries, cached). The whole cost was
+`resolve()` — 4,708ms and 4,574 queries for ONE five-step section, and identical on a second pass
+because nothing cached it. Every query traced to `SpecKitComputer::compute()`.
+
+`resolveEntriesForBlocks()` called `SpecKitComputer::resolveEntriesForSpellIds()` directly.
+**That method has no cache of its own**: it computes the spec's WHOLE kit and then narrows it to
+the ids asked for. It only avoids the live compute when a precomputed kit file happens to be fresh
+— and **all 40 were stale** (stamped version 10 against a live 4156), which is the normal state
+this file already documents. `specEntries()` existed to defend exactly this and was only ever used
+by the palette. Fixed by routing block resolution through it; ids not in the kit fall back to the
+new `SpecKitComputer::baselineCoreEntry()`, extracted from `resolveEntriesForSpellIds()` so the two
+paths share one definition rather than drifting.
+
+Two smaller wins on top, both measured: `specEntries()` was resolving `kitSpells()` (~50 queries)
+eagerly when it is only ever an INPUT to building the cache entry, so every cache hit paid for the
+miss path's homework — moved inside the `Cache::remember` closure. And `specEntriesForSpellIds()`
+now filters the cached array to the entries a section actually needs BEFORE hydrating: the payload
+is the entire kit (164 entries / 256KB for Discipline, ~40ms to rehydrate into Spell models with
+relations), and a five-step section was rebuilding roughly fifty times the objects it used, per
+spec, per request. Filtering is deliberately done on the cached array rather than by adding an
+external id to the cached shape — that shape is shared with the 40 on-disk kit files.
+
+**Verified behaviour-preserving, not just faster**: dumped every resolved step, every metric and
+every palette for both guides before and after the change — byte-for-byte identical.
+
+### The sixth bump site — why the kits were stale
+
+`RegeneratesSpellKits`'s docblock predicted this ("adding a sixth means calling one method rather
+than remembering a rationale") and a sixth had arrived: **`wow:import-murlok-defaults`**. It never
+calls `bumpSpellCacheVersion()` itself, which is why it was missed —
+`MurlokTalentImportService::apply()` routes each pick through `TalentSelectionService::saveChoice()`,
+which bumps whenever the build is_default. One `--all --apply` run bumps ~90 times per spec, ~3,500
+in total, and left all 40 files invalid with nothing regenerating them. It now uses the concern,
+regenerating once after the whole sweep rather than per spec (mid-loop would be invalidated by the
+next spec anyway). The 40 stale files were regenerated as a one-off; that speeds up WoW Comps,
+Spell Explorer and every other kit consumer too, not just guides.
+
+### Phases removed
+
+`UserGuideBlockType::Phase`, `UserGuidePhaseTarget`, `Builder::addPhase()/setPhaseName()/
+setPhaseTarget()`, `UserGuideBlock::phaseTarget()/phaseTargetSpecId()`, the divider markup in
+`<x-guides.section-steps>` and the "+ Phase" button are all gone; the one phase row in the dev
+database was deleted (the enum case no longer exists, so it would throw on hydration). Every step
+in a sequence is now a real ability, so the step counter and the list index stay in step. The three
+tests that covered the phase methods went with them, replaced by one asserting the vocabulary no
+longer offers the case — so a re-add is a deliberate decision rather than something that creeps
+back in through a copied payload.
+
+### Two source-assertion tests needed re-pointing, not weakening
+
+`kit and palette caches store compact shapes` and `a cached kit round-trips` both assert on method
+SOURCE TEXT, standing in for properties that need real spell data (a production memory limit, and
+`toJsonSafeArray()`'s intolerance of nulls). Splitting `specEntries()` into `specEntries()` +
+`specEntriesRaw()` broke the first, and wrapping a call across lines broke the second. Re-pointed
+at the methods that now hold the code, with whitespace normalised before matching so formatting
+cannot fail them again, plus one genuinely behavioural assertion added
+(`baselineCoreEntry()` returns null for an unknown id — the hole the filtering exists to remove).
+
+Full suite: 432 passing, the same 12 pre-existing failures. Every affected page smoke-tested over
+real HTTP (`/guides`, the builder, the public `/g/{user}/{slug}` read view, `/wow-comps`, `/spells`,
+`/burst-guides`, `/spell-counters`) — all 200.
+
+### Do not benchmark a Livewire builder against the real database
+
+Recorded because it cost real user data. The first benchmark called `addSpell`/`removeBlock` on
+guide 2 to time them, cleaning up with `removeBlock` on `orderByDesc('id')->limit(2)`. That cleanup
+did not stay balanced across runs, and it deleted the five real steps of that guide's "The Opener"
+section. They were recovered in full from the MySQL ROW binlog's DELETE before-images
+(`mysqlbinlog --read-from-remote-server`, since the data directory is not readable directly) and
+restored with their original ids, positions and timestamps — but only because binary logging
+happened to be on.
+
+**Benchmark read-only paths against real data; anything that writes gets a throwaway guide.**
+Rendering, `resolve()`, `metrics()` and `palette()` are all read-only and are enough to measure
+this component — the write actions were never where the time was.

@@ -23,13 +23,6 @@ enum UserGuideBlockType: string
      */
     case Spell = 'spell';
 
-    /**
-     * A named stage of the guide, used to group the spell blocks that follow it. Mirrors the
-     * setup/commit/execute/fill phases the derived burst guides already compute.
-     * payload: { "name": string }
-     */
-    case Phase = 'phase';
-
     /** A section heading. payload: { "text": string } */
     case Heading = 'heading';
 
@@ -40,7 +33,6 @@ enum UserGuideBlockType: string
     {
         return match ($this) {
             self::Spell => 'Ability',
-            self::Phase => 'Phase',
             self::Heading => 'Heading',
             self::Note => 'Note',
         };

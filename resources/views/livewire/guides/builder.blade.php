@@ -215,8 +215,7 @@
                 </div>
 
                 <p class="text-[12px] text-ink-subtle mt-1" x-show="open" x-cloak>
-                    Makes this a matchup guide. Their defensives fill the VS columns, and a phase
-                    can be aimed at one of them by name.
+                    Makes this a matchup guide — their defensives fill the VS columns.
                 </p>
 
                 <div class="grid sm:grid-cols-3 gap-3 mt-3" x-show="open" x-cloak>
@@ -393,11 +392,6 @@
 
                         {{-- Palette, opened per section so the page isn't three palettes deep --}}
                         <div class="flex items-center gap-2 mt-3">
-                        <button type="button" wire:click="addPhase({{ $section->id }})"
-                                class="btn-ghost text-[12px] shrink-0"
-                                title="Group the steps that follow, and say who they are aimed at">
-                            + Phase
-                        </button>
                         <button type="button" wire:click="togglePalette({{ $section->id }})"
                                 wire:loading.attr="disabled" wire:target="togglePalette({{ $section->id }})"
                                 class="btn-ghost w-full text-[12px]">

@@ -631,11 +631,73 @@ class UserGuideChainService
     {
         $memoKey = $spec->id.':'.($build?->id ?? 0);
 
+        return $this->specEntriesMemo[$memoKey] ??= collect(
+            $this->kits->fromJsonSafeArray(['entries' => $this->specEntriesRaw($spec, $build)])
+        );
+    }
+
+    /**
+     * A section's blocks resolved WITHOUT hydrating the spec's whole kit.
+     *
+     * The cached payload is the entire kit — 164 entries and 256KB for Discipline — and
+     * fromJsonSafeArray() turns every one of them back into a Spell model with its effects and
+     * incoming relationships (~40ms and a batched read per spec). A five-step section needs three
+     * of those entries, so a render was rebuilding roughly fifty times the objects it went on to
+     * use, once per spec, on every request.
+     *
+     * Filtering happens on the CACHED ARRAY, before hydration, which is the only place it saves
+     * anything. It costs one cheap id lookup: the array is keyed by internal spells.id while a
+     * block stores Blizzard's external spell_id, and translating the handful of ids we want is far
+     * less work than hydrating the entries we don't. Deliberately NOT solved by adding the external
+     * id to the cached shape — that shape is shared with the 40 precomputed kit files on disk, so
+     * changing it would invalidate all of them for a saving this achieves without touching them.
+     *
+     * Falls through to the full hydration when it is already memoised for this spec, since the
+     * palette on an open section has paid for it anyway and a second partial pass would be waste.
+     *
+     * @param  array<int, int>  $externalSpellIds
+     * @return Collection<int, mixed> keyed by external spell_id
+     */
+    private function specEntriesForSpellIds(Specialization $spec, ?TalentBuild $build, array $externalSpellIds): Collection
+    {
+        $memoKey = $spec->id.':'.($build?->id ?? 0);
+
         if (isset($this->specEntriesMemo[$memoKey])) {
-            return $this->specEntriesMemo[$memoKey];
+            return $this->specEntriesMemo[$memoKey]->keyBy(fn ($e) => $e['spell']->spell_id);
         }
 
-        $spellIds = $this->kitSpells($spec)->pluck('spell_id')->all();
+        $wanted = Spell::where('patch_id', $this->currentPatchId())
+            ->whereIn('spell_id', $externalSpellIds)
+            ->pluck('id')
+            ->flip();
+
+        $subset = array_values(array_filter(
+            $this->specEntriesRaw($spec, $build),
+            fn (array $e) => $wanted->has($e['spellId'] ?? 0)
+        ));
+
+        return collect($this->kits->fromJsonSafeArray(['entries' => $subset]))
+            ->keyBy(fn ($e) => $e['spell']->spell_id);
+    }
+
+    private ?int $currentPatchIdMemo = null;
+
+    private function currentPatchId(): ?int
+    {
+        return $this->currentPatchIdMemo ??= Patch::where('is_current', true)->value('id');
+    }
+
+    /** @var array<string, array> the cached JSON-safe kit payload, before hydration */
+    private array $specEntriesRawMemo = [];
+
+    /** @return array<int, array> the cached JSON-safe entries for a spec+build */
+    private function specEntriesRaw(Specialization $spec, ?TalentBuild $build = null): array
+    {
+        $memoKey = $spec->id.':'.($build?->id ?? 0);
+
+        if (isset($this->specEntriesRawMemo[$memoKey])) {
+            return $this->specEntriesRawMemo[$memoKey];
+        }
 
         // The no-build path is cached too, and that is not redundant with the precomputed kit
         // behind it. resolveEntriesForSpellIds() falls back to a full live compute() whenever the
@@ -668,16 +730,23 @@ class UserGuideChainService
         // so a 3-spec comp guide whose members each name their own talent build reproducibly
         // died inside RedisStore::serialize() at that limit. Verified at prod's exact 128M
         // before and after.
-        $cached = Cache::remember(
+        // kitSpells() IS RESOLVED INSIDE THE CLOSURE, not before it. It is four separate
+        // per-spec id lookups plus a Spell read (~50 queries), and it is only ever an INPUT to
+        // building the cache entry — on a hit, which is the overwhelmingly common case, nothing
+        // needs it. Computing it eagerly meant every cache hit still paid for the miss path's
+        // homework.
+        return $this->specEntriesRawMemo[$memoKey] = Cache::remember(
             $key,
             now()->addDay(),
             fn () => $this->kits->toJsonSafeArray(
-                $this->kits->resolveEntriesForSpellIds($spellIds, $spec, $this->spellReferences, $this->talents, $build)
+                $this->kits->resolveEntriesForSpellIds(
+                    $this->kitSpells($spec)->pluck('spell_id')->all(),
+                    $spec,
+                    $this->spellReferences,
+                    $this->talents,
+                    $build,
+                )
             )
-        );
-
-        return $this->specEntriesMemo[$memoKey] = collect(
-            $this->kits->fromJsonSafeArray(['entries' => $cached])
         );
     }
 
@@ -742,6 +811,21 @@ class UserGuideChainService
      * against ITS OWN spec — resolving them all against one spec would produce talent-aware
      * cooldowns from the wrong build, which is the kind of wrong that looks completely fine.
      *
+     * RESOLVED THROUGH specEntries(), NOT SpecKitComputer::resolveEntriesForSpellIds() DIRECTLY,
+     * and that is the difference between a builder that feels instant and one that does not.
+     * That method has no cache of its own: it computes the spec's WHOLE kit and then narrows it
+     * to the handful of ids asked for, so calling it per section per render meant a full live
+     * compute() every time — including on a plain rename, which touches no ability at all. It
+     * only avoids that when a precomputed kit file happens to be fresh, and a stale file is the
+     * NORMAL state after any import, deploy or spell-cache bump (measured 2026-09-08 with all 40
+     * kits stale: 4,708ms and 4,574 queries to resolve ONE five-step section, unchanged on a
+     * second pass because nothing cached it). specEntries() computes the same kit once and caches
+     * it, so a resolve is now a lookup in an already-loaded collection.
+     *
+     * An id that is not in the kit falls back to SpecKitComputer::baselineCoreEntry() — the same
+     * fallback resolveEntriesForSpellIds() applies, shared rather than reimplemented, so an
+     * unconditional core ability (Envenom, Rupture) still renders with a real name and icon.
+     *
      * @param  Collection<int, UserGuideBlock>  $blocks
      * @param  Collection<int, Specialization>  $specs  filled in place, spec id => Specialization
      * @return array<int, mixed> external spell_id => entry
@@ -753,7 +837,9 @@ class UserGuideChainService
         $spellBlocks = $blocks->filter(fn (UserGuideBlock $b) => $b->block_type === UserGuideBlockType::Spell);
 
         foreach ($spellBlocks->groupBy(fn (UserGuideBlock $b) => (int) ($b->payload['source_spec_id'] ?? 0)) as $specId => $group) {
-            $spec = $specId > 0 ? Specialization::with('gameClass')->find($specId) : null;
+            // Memoised: a guide's sections draw from the same three specs over and over, so this
+            // was re-reading the same rows once per section per render.
+            $spec = $specId > 0 ? $this->specById((int) $specId) : null;
             if (! $spec) {
                 continue;
             }
@@ -769,12 +855,26 @@ class UserGuideChainService
             // not change the moment it stops being a palette preview and becomes a saved step.
             $build = $section !== null ? $this->buildForSpec($section, (int) $specId) : null;
 
-            foreach ($this->kits->resolveEntriesForSpellIds($externalIds, $spec, $this->spellReferences, $this->talents, $build) as $entry) {
-                $resolved[$entry['spell']->spell_id] = $entry;
+            $byExternalId = $this->specEntriesForSpellIds($spec, $build, $externalIds);
+
+            foreach ($externalIds as $externalId) {
+                $entry = $byExternalId->get($externalId) ?? $this->kits->baselineCoreEntry((int) $externalId);
+
+                if ($entry !== null) {
+                    $resolved[$entry['spell']->spell_id] = $entry;
+                }
             }
         }
 
         return $resolved;
+    }
+
+    /** @var array<int, ?Specialization> spec id => spec, this request only */
+    private array $specByIdMemo = [];
+
+    private function specById(int $specId): ?Specialization
+    {
+        return $this->specByIdMemo[$specId] ??= Specialization::with('gameClass')->find($specId);
     }
 
     /** The Spell behind a block, or null for a non-spell block or one that no longer resolves. */

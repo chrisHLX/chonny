@@ -4,7 +4,6 @@ namespace App\Livewire\Guides;
 
 use App\Enums\UserGuideBlockType;
 use App\Enums\UserGuideMemberSide;
-use App\Enums\UserGuidePhaseTarget;
 use App\Enums\UserGuideSectionKind;
 use App\Enums\UserGuideStatus;
 use App\Enums\UserGuideVisibility;
@@ -575,86 +574,6 @@ class Builder extends Component
      * would produce confident, wrong numbers. Stored as a reference (a specializations row id,
      * stable reference data and not patch-scoped), never a resolved class or spec name.
      */
-    /**
-     * Start a new phase inside a sequence — "Setup, on their healer", "Go, on the kill target".
-     *
-     * A phase is a DIVIDER, not a container: it is an ordinary block in the same ordered list, and
-     * the spell blocks after it belong to it until the next one. That is what lets a phase be
-     * dragged, renamed and deleted with the machinery the list already has — no nesting, no second
-     * ownership path, and reorder() keeps taking a flat list of block ids.
-     *
-     * It also carries the only thing a flat list could never say: WHO the steps are aimed at. Two
-     * controls on different targets do not diminish each other, so a section's control total is
-     * only readable once the plan says where each part lands.
-     */
-    public function addPhase(int $sectionId): void
-    {
-        $section = $this->ownedSection($sectionId);
-
-        if (! $section || ! $section->kind->isSequence()) {
-            return;
-        }
-
-        UserGuideBlock::create([
-            'user_guide_section_id' => $section->id,
-            'block_type' => UserGuideBlockType::Phase,
-            'position' => ($section->blocks()->max('position') ?? -1) + 1,
-            'payload' => ['name' => 'New phase', 'target' => null, 'target_spec_id' => null],
-        ]);
-
-        $this->refreshGuide();
-    }
-
-    /** Rename a phase. Blank falls back to a placeholder rather than an unlabelled divider. */
-    public function setPhaseName(int $blockId, string $name): void
-    {
-        $block = $this->ownedBlock($blockId);
-
-        if (! $block || $block->block_type !== UserGuideBlockType::Phase) {
-            return;
-        }
-
-        $block->update(['payload' => array_merge($block->payload ?? [], [
-            'name' => mb_substr(trim($name), 0, 60) ?: 'New phase',
-        ])]);
-
-        $this->refreshGuide();
-    }
-
-    /**
-     * Aim a phase at a role ("kill_target"), at a specific enemy spec ("spec:12"), or at nobody.
-     *
-     * One control instead of two, because they answer the same question and offering both invites
-     * a phase that names a role AND a contradicting spec. A spec is only accepted if it is
-     * actually on this guide's enemy team — otherwise a tampered request could point a phase at
-     * an arbitrary specialization row.
-     */
-    public function setPhaseTarget(int $blockId, string $target): void
-    {
-        $block = $this->ownedBlock($blockId);
-
-        if (! $block || $block->block_type !== UserGuideBlockType::Phase) {
-            return;
-        }
-
-        $role = null;
-        $specId = null;
-
-        if (str_starts_with($target, 'spec:')) {
-            $candidate = (int) substr($target, 5);
-            $specId = $this->guide->enemies()->where('spec_id', $candidate)->exists() ? $candidate : null;
-        } else {
-            $role = UserGuidePhaseTarget::tryFrom($target)?->value;
-        }
-
-        $block->update(['payload' => array_merge($block->payload ?? [], [
-            'target' => $role,
-            'target_spec_id' => $specId,
-        ])]);
-
-        $this->refreshGuide();
-    }
-
     public function addSpell(int $sectionId, int $externalSpellId, int $specId): void
     {
         $section = $this->ownedSection($sectionId);
