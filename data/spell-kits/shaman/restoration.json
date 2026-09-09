@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:39:26+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:50+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -185,7 +185,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by -10%.",
+                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by 10%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -363,7 +363,7 @@
             "spellId": 10504,
             "category": "Other",
             "description": {
-                "text": "Enemies within 10 yds of your Frost Shock are snared by -30%.",
+                "text": "Enemies within 10 yds of your Frost Shock are snared by 30%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -393,7 +393,7 @@
             "spellId": 10660,
             "category": "Offensive",
             "description": {
-                "text": "Immediately heals for ≈1,287.7% of Spell Power split between allies within (varies) yds and transforms into a Water Ascendant for 15. While ascended, Chain Heal jumps to 3 additional allies with 10% healing reduced for all jumps, Healing Wave always critical heals and heals 1 additional (varies):allies; at 50% effectiveness, and the mana cost of Chain Heal and Healing Wave is reduced by -25%.",
+                "text": "Immediately heals for ≈1,287.7% of Spell Power split between allies within (varies) yds and transforms into a Water Ascendant for 15. While ascended, Chain Heal jumps to 3 additional allies with 10% healing reduced for all jumps, Healing Wave always critical heals and heals 1 additional (varies):allies; at 50% effectiveness, and the mana cost of Chain Heal and Healing Wave is reduced by 25%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -472,7 +472,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -538,7 +538,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -739,7 +739,7 @@
             "spellId": 10481,
             "category": "Other",
             "description": {
-                "text": "Astral Shift reduces damage taken by an additional -20%.",
+                "text": "Astral Shift reduces damage taken by an additional 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -769,7 +769,7 @@
             "spellId": 10468,
             "category": "Defensive",
             "description": {
-                "text": "Shift partially into the elemental planes, taking -40% less damage for 12.",
+                "text": "Shift partially into the elemental planes, taking 40% less damage for 12.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -800,7 +800,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Astral Shift reduces damage taken by an additional -20%.",
+                            "text": "Astral Shift reduces damage taken by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1255,7 +1255,7 @@
             "spellId": 10457,
             "category": "Defensive",
             "description": {
-                "text": "Heals the friendly target for 50, then jumps up to 40 yards to heal the -1 most injured nearby allies. Healing is reduced by 30% with each jump.",
+                "text": "Heals the friendly target for 50, then jumps up to 40 yards to heal the (varies) most injured nearby allies. Healing is reduced by 30% with each jump.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1283,7 +1283,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Riptide grants -20 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by -20%. Can accumulate up to (varies) stacks.",
+                            "text": "Casting Riptide grants 20 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by 20%. Can accumulate up to (varies) stacks.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1299,7 +1299,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash elemental forces of Life, healing a friendly target for ≈1,220% of Spell Power. Increases the healing of your next Riptide, Chain Heal, or Healing Wave by 25% and reduces its cast time by -30%.",
+                            "text": "Unleash elemental forces of Life, healing a friendly target for ≈1,220% of Spell Power. Increases the healing of your next Riptide, Chain Heal, or Healing Wave by 25% and reduces its cast time by 30%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1459,7 +1459,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by -10%.",
+                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by 10%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1475,7 +1475,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the mana cost of Healing Wave by -15% and the mana cost of Chain Heal by -15%.",
+                            "text": "Reduces the mana cost of Healing Wave by 15% and the mana cost of Chain Heal by 15%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1603,7 +1603,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Riptide grants 1 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by -20%. Can accumulate up to (varies) stacks.",
+                            "text": "Casting Riptide grants 1 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by 20%. Can accumulate up to (varies) stacks.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1735,7 +1735,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Immediately heals for ≈1,287.7% of Spell Power split between allies within (varies) yds and transforms into a Water Ascendant for 15. While ascended, Chain Heal jumps to 3 additional allies with 10% healing reduced for all jumps, Healing Wave always critical heals and heals 1 additional (varies):allies; at 50% effectiveness, and the mana cost of Chain Heal and Healing Wave is reduced by -25%.",
+                            "text": "Immediately heals for ≈1,287.7% of Spell Power split between allies within (varies) yds and transforms into a Water Ascendant for 15. While ascended, Chain Heal jumps to 3 additional allies with 10% healing reduced for all jumps, Healing Wave always critical heals and heals 1 additional (varies):allies; at 50% effectiveness, and the mana cost of Chain Heal and Healing Wave is reduced by 25%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2420,7 +2420,7 @@
             "spellId": 10688,
             "category": "Other",
             "description": {
-                "text": "Reduces the mana cost of Healing Wave by -15% and the mana cost of Chain Heal by -15%.",
+                "text": "Reduces the mana cost of Healing Wave by 15% and the mana cost of Chain Heal by 15%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2759,7 +2759,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Earth Shield reduces damage taken by -3% and its healing is increased by up to 150% as its target's health decreases. Maximum benefit is reached below 50% health.",
+                            "text": "Earth Shield reduces damage taken by 3% and its healing is increased by up to 150% as its target's health decreases. Maximum benefit is reached below 50% health.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3031,7 +3031,7 @@
             "spellId": 10666,
             "category": "Other",
             "description": {
-                "text": "Earth Shield reduces damage taken by -3% and its healing is increased by up to 150% as its target's health decreases. Maximum benefit is reached below 50% health.",
+                "text": "Earth Shield reduces damage taken by 3% and its healing is increased by up to 150% as its target's health decreases. Maximum benefit is reached below 50% health.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3061,7 +3061,7 @@
             "spellId": 10460,
             "category": "Crowd Control",
             "description": {
-                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within (varies) yards for 8. Enemies previously rooted by the totem instead suffer -50% movement speed reduction.",
+                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within (varies) yards for 8. Enemies previously rooted by the totem instead suffer 50% movement speed reduction.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3368,7 +3368,7 @@
             "spellId": 10501,
             "category": "Defensive",
             "description": {
-                "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by -6% for 3.",
+                "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by 6% for 3.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3428,7 +3428,7 @@
             "spellId": 10488,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all magic damage taken by -8%.",
+                "text": "Reduces all magic damage taken by 8%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3991,7 +3991,7 @@
             "spellId": 10475,
             "category": "Offensive",
             "description": {
-                "text": "Chills the target with frost, causing ≈72.5% of Spell Power Frost damage and reducing the target's movement speed by -50% for 6.",
+                "text": "Chills the target with frost, causing ≈72.5% of Spell Power Frost damage and reducing the target's movement speed by 50% for 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4103,7 +4103,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies within -30 yds of your Frost Shock are snared by -30%.",
+                            "text": "Enemies within 30 yds of your Frost Shock are snared by 30%.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -4119,7 +4119,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies within -30 yds of your Frost Shock are snared by -30%.",
+                            "text": "Enemies within 30 yds of your Frost Shock are snared by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4151,7 +4151,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies within 10 yds of your Frost Shock are snared by -30%.",
+                            "text": "Enemies within 10 yds of your Frost Shock are snared by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4327,7 +4327,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and -5% damage reduction every (varies) sec, stacking up to (varies) times.",
+                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -4343,7 +4343,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and -5% damage reduction every (varies) sec, stacking up to (varies) times.",
+                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -4375,7 +4375,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and -5% damage reduction every (varies) sec, stacking up to (varies) times.",
+                            "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -5104,7 +5104,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by -6% for 3.",
+                            "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by 6% for 3.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -5120,7 +5120,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by -6% for 3.",
+                            "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by 6% for 3.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -6106,7 +6106,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by -10%.",
+                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by 10%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7012,7 +7012,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by -10%.",
+                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by 10%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8725,7 +8725,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by -10%.",
+                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by 10%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9682,7 +9682,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by -10%.",
+                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by 10%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9698,7 +9698,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by -10%.",
+                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by 10%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9762,7 +9762,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Riptide grants -20 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by -20%. Can accumulate up to (varies) stacks.",
+                            "text": "Casting Riptide grants 20 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by 20%. Can accumulate up to (varies) stacks.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10050,7 +10050,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Riptide grants 1 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by -20%. Can accumulate up to (varies) stacks.",
+                            "text": "Casting Riptide grants 1 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by 20%. Can accumulate up to (varies) stacks.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10066,7 +10066,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash elemental forces of Life, healing a friendly target for ≈1,220% of Spell Power. Increases the healing of your next Riptide, Chain Heal, or Healing Wave by 25% and reduces its cast time by -30%.",
+                            "text": "Unleash elemental forces of Life, healing a friendly target for ≈1,220% of Spell Power. Increases the healing of your next Riptide, Chain Heal, or Healing Wave by 25% and reduces its cast time by 30%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10796,7 +10796,7 @@
             "spellId": 10658,
             "category": "Defensive",
             "description": {
-                "text": "Summons a totem at the target location for 6, which reduces damage taken by all party and raid members within (varies) yards by -10%. Immediately and every (varies) sec, the health of all affected players is redistributed evenly.",
+                "text": "Summons a totem at the target location for 6, which reduces damage taken by all party and raid members within (varies) yards by 10%. Immediately and every (varies) sec, the health of all affected players is redistributed evenly.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10840,7 +10840,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The Spirit Link Totem reduces damage taken by all party and raid members within (varies) yards by -10%. Every (varies) sec, the health of all affected players is redistributed, such that each player ends up with the same percentage of their maximum health.",
+                            "text": "The Spirit Link Totem reduces damage taken by all party and raid members within (varies) yards by 10%. Every (varies) sec, the health of all affected players is redistributed, such that each player ends up with the same percentage of their maximum health.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10888,7 +10888,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spirit Link Totem reduces damage taken by an additional -5%, and it restores 15 health to all nearby allies 1 (varies):seconds; after it is dropped. Healing reduced beyond 5 targets.",
+                            "text": "Spirit Link Totem reduces damage taken by an additional 5%, and it restores 15 health to all nearby allies 1 (varies):seconds; after it is dropped. Healing reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -11038,7 +11038,7 @@
             "spellId": 10478,
             "category": "Defensive",
             "description": {
-                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and -5% damage reduction every (varies) sec, stacking up to (varies) times.",
+                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to (varies) times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11301,7 +11301,7 @@
             "spellId": 10678,
             "category": "Defensive",
             "description": {
-                "text": "Spirit Link Totem reduces damage taken by an additional -5%, and it restores 15 health to all nearby allies 1 (varies):seconds; after it is dropped. Healing reduced beyond 5 targets.",
+                "text": "Spirit Link Totem reduces damage taken by an additional 5%, and it restores 15 health to all nearby allies 1 (varies):seconds; after it is dropped. Healing reduced beyond 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12754,7 +12754,7 @@
             "spellId": 10654,
             "category": "Other",
             "description": {
-                "text": "Casting Riptide grants 1 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by -20%. Can accumulate up to (varies) stacks.",
+                "text": "Casting Riptide grants 1 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by 20%. Can accumulate up to (varies) stacks.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12766,7 +12766,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Riptide grants -20 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by -20%. Can accumulate up to (varies) stacks.",
+                            "text": "Casting Riptide grants 20 (varies):stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by 20%. Can accumulate up to (varies) stacks.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13262,7 +13262,7 @@
             "spellId": 10656,
             "category": "Defensive",
             "description": {
-                "text": "Unleash elemental forces of Life, healing a friendly target for ≈1,220% of Spell Power. Increases the healing of your next Riptide, Chain Heal, or Healing Wave by 25% and reduces its cast time by -30%.",
+                "text": "Unleash elemental forces of Life, healing a friendly target for ≈1,220% of Spell Power. Increases the healing of your next Riptide, Chain Heal, or Healing Wave by 25% and reduces its cast time by 30%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -13937,7 +13937,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by -15% for 12.",
+                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by 15% for 12.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -13953,7 +13953,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by -15% for 12.",
+                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by 15% for 12.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -14407,7 +14407,7 @@
             "spellId": 10616,
             "category": "Other",
             "description": {
-                "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by -10%.",
+                "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by 10%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14437,7 +14437,7 @@
             "spellId": 10480,
             "category": "Defensive",
             "description": {
-                "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by -15% for 12.",
+                "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by 15% for 12.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

@@ -1,13 +1,13 @@
 {
-    "generatedAt": "2026-09-09T11:38:42+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:08+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 11523,
             "category": "Defensive",
             "description": {
-                "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by -4% for 10.",
+                "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by 4% for 10.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -247,7 +247,7 @@
             "spellId": 11592,
             "category": "Other",
             "description": {
-                "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by -30%. Maximum 4 charges.",
+                "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by 30%. Maximum 4 charges.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -525,7 +525,7 @@
             "spellId": 11539,
             "category": "Other",
             "description": {
-                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing their casting time of all spells by -100% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
+                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing their casting time of all spells by 100% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -555,7 +555,7 @@
             "spellId": 11449,
             "category": "Offensive",
             "description": {
-                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing the time between their attacks by -100% and reducing their critical strike chance by -10% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
+                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing the time between their attacks by 100% and reducing their critical strike chance by 10% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -800,7 +800,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by -20%.",
+                            "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1009,7 +1009,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by -30%. Maximum -30 charges.",
+                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by 30%. Maximum 30 charges.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1073,7 +1073,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon Infernal reduces the Soul Shard cost of your next -10 casts of Chaos Bolt, Shadowburn, or Rain of Fire by 1.",
+                            "text": "Summon Infernal reduces the Soul Shard cost of your next 10 casts of Chaos Bolt, Shadowburn, or Rain of Fire by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1185,7 +1185,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by -20%.",
+                            "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1281,7 +1281,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Triggers an explosion on the target, dealing 5 Fire damage. Reduces the cast time of your next Incinerate or Chaos Bolt by -30% for 10. Generates 5 Soul Shard Fragments.",
+                            "text": "Triggers an explosion on the target, dealing 5 Fire damage. Reduces the cast time of your next Incinerate or Chaos Bolt by 30% for 10. Generates 5 Soul Shard Fragments.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1297,7 +1297,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by -30%. Maximum -30 charges.",
+                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by 30%. Maximum 30 charges.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1425,7 +1425,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Chaos Bolt damage by -100% and Chaos Bolt now has a 25% chance to make your next Incinerate instant.",
+                            "text": "Increases Chaos Bolt damage by 100% and Chaos Bolt now has a 25% chance to make your next Incinerate instant.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1441,7 +1441,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Critical strikes dealt by Chaos Bolt, Conflagrate, or Incinerate have a -100% chance to make your next cast of Shadowburn within 30 cost no Soul Shards and usable on any target regardless of health.",
+                            "text": "Critical strikes dealt by Chaos Bolt, Conflagrate, or Incinerate have a 100% chance to make your next cast of Shadowburn within 30 cost no Soul Shards and usable on any target regardless of health.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1457,7 +1457,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Triggers an explosion on the target, dealing 5 Fire damage. Reduces the cast time of your next Incinerate or Chaos Bolt by -30% for 10. Generates 5 Soul Shard Fragments.",
+                            "text": "Triggers an explosion on the target, dealing 5 Fire damage. Reduces the cast time of your next Incinerate or Chaos Bolt by 30% for 10. Generates 5 Soul Shard Fragments.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1523,7 +1523,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by -30%. Maximum 4 charges.",
+                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by 30%. Maximum 4 charges.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1831,7 +1831,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demonic Art increases the damage of your next Chaos Bolt, Rain of Fire, or Shadowburn by 20% and reduces its cast time by -50%. Casting Chaos Bolt reduces the duration of Diabolic Ritual by 1 additional sec.",
+                            "text": "Demonic Art increases the damage of your next Chaos Bolt, Rain of Fire, or Shadowburn by 20% and reduces its cast time by 50%. Casting Chaos Bolt reduces the duration of Diabolic Ritual by 1 additional sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1954,7 +1954,7 @@
             "spellId": 11588,
             "category": "Offensive",
             "description": {
-                "text": "Triggers an explosion on the target, dealing 5 Fire damage. Reduces the cast time of your next Incinerate or Chaos Bolt by -30% for 10. Generates 5 Soul Shard Fragments.",
+                "text": "Triggers an explosion on the target, dealing 5 Fire damage. Reduces the cast time of your next Incinerate or Chaos Bolt by 30% for 10. Generates 5 Soul Shard Fragments.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2062,7 +2062,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by -20%.",
+                            "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2158,7 +2158,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by -30%. Maximum -30 charges.",
+                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by 30%. Maximum 30 charges.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2174,7 +2174,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by -30%. Maximum -30 charges.",
+                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by 30%. Maximum 30 charges.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2190,7 +2190,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Critical strikes dealt by Chaos Bolt, Conflagrate, or Incinerate have a -100% chance to make your next cast of Shadowburn within 30 cost no Soul Shards and usable on any target regardless of health.",
+                            "text": "Critical strikes dealt by Chaos Bolt, Conflagrate, or Incinerate have a 100% chance to make your next cast of Shadowburn within 30 cost no Soul Shards and usable on any target regardless of health.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2206,7 +2206,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by -30%. Maximum 4 charges.",
+                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by 30%. Maximum 4 charges.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2551,7 +2551,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cast time of Soulstone and Create Healthstone by -50%.",
+                            "text": "Reduces the cast time of Soulstone and Create Healthstone by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2616,7 +2616,7 @@
             "spellId": 11509,
             "category": "Utility",
             "description": {
-                "text": "Reduces the target's movement speed by -50% for 12. Curses: A warlock can only have one Curse active per target.",
+                "text": "Reduces the target's movement speed by 50% for 12. Curses: A warlock can only have one Curse active per target.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2663,7 +2663,7 @@
             "spellId": 11317,
             "category": "Offensive",
             "description": {
-                "text": "Increases the time between an enemy's attacks by -20% and the casting time of all spells by -30% for 120. Curses: A warlock can only have one Curse active per target.",
+                "text": "Increases the time between an enemy's attacks by 20% and the casting time of all spells by 30% for 120. Curses: A warlock can only have one Curse active per target.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2727,7 +2727,7 @@
             "spellId": 11494,
             "category": "Other",
             "description": {
-                "text": "Forces the target to speak in Demonic, increasing the casting time of all spells by -30% for 60. Curses: A warlock can only have one Curse active per target.",
+                "text": "Forces the target to speak in Demonic, increasing the casting time of all spells by 30% for 60. Curses: A warlock can only have one Curse active per target.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2739,7 +2739,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at -20% effectiveness.",
+                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3008,7 +3008,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by -4% for 10.",
+                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by 4% for 10.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3040,7 +3040,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by -4% for 10.",
+                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by 4% for 10.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3340,7 +3340,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by -4% for 10.",
+                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by 4% for 10.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3388,7 +3388,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by -4% for 10.",
+                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by 4% for 10.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3407,7 +3407,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the range of your Demonic Gateway by 20 yards, and reduces the cast time by -30%. Reduces the time between how often players can take your Demonic Gateway by -30 sec.",
+                            "text": "Increases the range of your Demonic Gateway by 20 yards, and reduces the cast time by 30%. Reduces the time between how often players can take your Demonic Gateway by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3507,7 +3507,7 @@
             "spellId": 11522,
             "category": "Other",
             "description": {
-                "text": "Reduces the chance you will be critically struck by -2%. All damage your primary demon takes is reduced by -8%.",
+                "text": "Reduces the chance you will be critically struck by 2%. All damage your primary demon takes is reduced by 8%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3537,7 +3537,7 @@
             "spellId": 11621,
             "category": "Other",
             "description": {
-                "text": "Increases how quickly Rain of Fire deals damage by -25% and how quickly your Infernal's Immolation deals damage by -10%.",
+                "text": "Increases how quickly Rain of Fire deals damage by 25% and how quickly your Infernal's Immolation deals damage by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3766,7 +3766,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demonic Art increases the damage of your next Chaos Bolt, Rain of Fire, or Shadowburn by 20% and reduces its cast time by -50%. Casting Chaos Bolt reduces the duration of Diabolic Ritual by 1 additional sec.",
+                            "text": "Demonic Art increases the damage of your next Chaos Bolt, Rain of Fire, or Shadowburn by 20% and reduces its cast time by 50%. Casting Chaos Bolt reduces the duration of Diabolic Ritual by 1 additional sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3924,7 +3924,7 @@
             "spellId": 11612,
             "category": "Other",
             "description": {
-                "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by -20%.",
+                "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4252,7 +4252,7 @@
             "spellId": 11508,
             "category": "Other",
             "description": {
-                "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by -90%.",
+                "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by 90%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4744,7 +4744,7 @@
             "spellId": 10978,
             "category": "Other",
             "description": {
-                "text": "Increases the range of your Demonic Gateway by 20 yards, and reduces the cast time by -30%. Reduces the time between how often players can take your Demonic Gateway by -30 sec.",
+                "text": "Increases the range of your Demonic Gateway by 20 yards, and reduces the cast time by 30%. Reduces the time between how often players can take your Demonic Gateway by 30 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4917,7 +4917,7 @@
             "spellId": 11653,
             "category": "Other",
             "description": {
-                "text": "Wither deals 30% increased periodic damage but its duration is -15% shorter.",
+                "text": "Wither deals 30% increased periodic damage but its duration is 15% shorter.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5283,7 +5283,7 @@
             "spellId": 11659,
             "category": "Other",
             "description": {
-                "text": "Sacrifice -10% of your maximum health. Soul Leech now absorbs an additional 15% of your maximum health.",
+                "text": "Sacrifice 10% of your maximum health. Soul Leech now absorbs an additional 15% of your maximum health.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6360,7 +6360,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon Infernal reduces the Soul Shard cost of your next -10 casts of Chaos Bolt, Shadowburn, or Rain of Fire by 1.",
+                            "text": "Summon Infernal reduces the Soul Shard cost of your next 10 casts of Chaos Bolt, Shadowburn, or Rain of Fire by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6376,7 +6376,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases how quickly Rain of Fire deals damage by -25% and how quickly your Infernal's Immolation deals damage by -10%.",
+                            "text": "Increases how quickly Rain of Fire deals damage by 25% and how quickly your Infernal's Immolation deals damage by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6491,7 +6491,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rain of Fire has a -100% chance to reduce the cost of your next Rain of Fire within 8 by (varies)%.",
+                            "text": "Rain of Fire has a 100% chance to reduce the cost of your next Rain of Fire within 8 by (varies)%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6571,7 +6571,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demonic Art increases the damage of your next Chaos Bolt, Rain of Fire, or Shadowburn by 20% and reduces its cast time by -50%. Casting Chaos Bolt reduces the duration of Diabolic Ritual by 1 additional sec.",
+                            "text": "Demonic Art increases the damage of your next Chaos Bolt, Rain of Fire, or Shadowburn by 20% and reduces its cast time by 50%. Casting Chaos Bolt reduces the duration of Diabolic Ritual by 1 additional sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7017,7 +7017,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon Infernal reduces the Soul Shard cost of your next -10 casts of Chaos Bolt, Shadowburn, or Rain of Fire by 1.",
+                            "text": "Summon Infernal reduces the Soul Shard cost of your next 10 casts of Chaos Bolt, Shadowburn, or Rain of Fire by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7113,7 +7113,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Critical strikes dealt by Chaos Bolt, Conflagrate, or Incinerate have a -100% chance to make your next cast of Shadowburn within 30 cost no Soul Shards and usable on any target regardless of health.",
+                            "text": "Critical strikes dealt by Chaos Bolt, Conflagrate, or Incinerate have a 100% chance to make your next cast of Shadowburn within 30 cost no Soul Shards and usable on any target regardless of health.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7405,7 +7405,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demonic Art increases the damage of your next Chaos Bolt, Rain of Fire, or Shadowburn by 20% and reduces its cast time by -50%. Casting Chaos Bolt reduces the duration of Diabolic Ritual by 1 additional sec.",
+                            "text": "Demonic Art increases the damage of your next Chaos Bolt, Rain of Fire, or Shadowburn by 20% and reduces its cast time by 50%. Casting Chaos Bolt reduces the duration of Diabolic Ritual by 1 additional sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7643,7 +7643,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by -30%. Maximum -30 charges.",
+                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by 30%. Maximum 30 charges.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7739,7 +7739,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by -20%.",
+                            "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7755,7 +7755,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by -30%. Maximum -30 charges.",
+                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by 30%. Maximum 30 charges.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7771,7 +7771,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by -30%. Maximum 4 charges.",
+                            "text": "Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by 30%. Maximum 4 charges.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8035,7 +8035,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sacrifice -10% of your maximum health. Soul Leech now absorbs an additional 15% of your maximum health.",
+                            "text": "Sacrifice 10% of your maximum health. Soul Leech now absorbs an additional 15% of your maximum health.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8186,7 +8186,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Forces the target to speak in Demonic, increasing the casting time of all spells by -30% for 60. Curses: A warlock can only have one Curse active per target.",
+                            "text": "Forces the target to speak in Demonic, increasing the casting time of all spells by 30% for 60. Curses: A warlock can only have one Curse active per target.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8205,7 +8205,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the time between an enemy's attacks by -20% and the casting time of all spells by -30% for 120. Curses: A warlock can only have one Curse active per target.",
+                            "text": "Increases the time between an enemy's attacks by 20% and the casting time of all spells by 30% for 120. Curses: A warlock can only have one Curse active per target.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8284,7 +8284,7 @@
             "spellId": 11507,
             "category": "Other",
             "description": {
-                "text": "Unending Resolve reduces damage taken by an additional -15%.",
+                "text": "Unending Resolve reduces damage taken by an additional 15%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8326,7 +8326,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by -90%.",
+                            "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by 90%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8653,7 +8653,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by -90%.",
+                            "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by 90%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8768,7 +8768,7 @@
             "spellId": 11524,
             "category": "Other",
             "description": {
-                "text": "Reduces the cast time of Soulstone and Create Healthstone by -50%.",
+                "text": "Reduces the cast time of Soulstone and Create Healthstone by 50%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8798,7 +8798,7 @@
             "spellId": 11510,
             "category": "Other",
             "description": {
-                "text": "Your primary pets gain a bonus effect. Imp: Successful Singe Magic casts grant the target -4% damage reduction for 5. Voidwalker: Reduces the cooldown of Shadow Bulwark by 0 sec. Felhunter: Reduces the cooldown of Devour Magic by 0 sec. Sayaad: Reduces the cooldown of Seduction by 0 sec and causes the target to walk faster towards the demon.",
+                "text": "Your primary pets gain a bonus effect. Imp: Successful Singe Magic casts grant the target 4% damage reduction for 5. Voidwalker: Reduces the cooldown of Shadow Bulwark by 0 sec. Felhunter: Reduces the cooldown of Devour Magic by 0 sec. Sayaad: Reduces the cooldown of Seduction by 0 sec and causes the target to walk faster towards the demon.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8875,7 +8875,7 @@
             "spellId": 11640,
             "category": "Other",
             "description": {
-                "text": "Demonic Art increases the damage of your next Chaos Bolt, Rain of Fire, or Shadowburn by 20% and reduces its cast time by -50%. Casting Chaos Bolt reduces the duration of Diabolic Ritual by 1 additional sec.",
+                "text": "Demonic Art increases the damage of your next Chaos Bolt, Rain of Fire, or Shadowburn by 20% and reduces its cast time by 50%. Casting Chaos Bolt reduces the duration of Diabolic Ritual by 1 additional sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8905,7 +8905,7 @@
             "spellId": 10825,
             "category": "Defensive",
             "description": {
-                "text": "Hardens your skin, reducing all damage you take by -25% and granting immunity to interrupt, silence, and pushback effects for 8.",
+                "text": "Hardens your skin, reducing all damage you take by 25% and granting immunity to interrupt, silence, and pushback effects for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8917,7 +8917,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unending Resolve reduces damage taken by an additional -15%.",
+                            "text": "Unending Resolve reduces damage taken by an additional 15%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8933,7 +8933,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at -20% effectiveness.",
+                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9241,7 +9241,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by -20%.",
+                            "text": "Increases the damage done by your Fire spells by 2% and reduces the cast time of your Incinerate spell by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9273,7 +9273,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Burns the enemy's soul, dealing -100 Fire damage and applying Wither. Generates 1 Soul Shard.",
+                            "text": "Burns the enemy's soul, dealing 100 Fire damage and applying Wither. Generates 1 Soul Shard.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -9949,7 +9949,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither deals 30% increased periodic damage but its duration is -15% shorter.",
+                            "text": "Wither deals 30% increased periodic damage but its duration is 15% shorter.",
                             "uncertain": false
                         },
                         "category": "Other",

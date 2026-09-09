@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:39:16+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:41+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -411,7 +411,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon an effigy of Chi-Ji for 20 that kicks up -33 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 2%.",
+                            "text": "Summon an effigy of Chi-Ji for 20 that kicks up 33 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 2%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -539,7 +539,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by -20%.",
+                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 20%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1004,7 +1004,7 @@
             "spellId": 7481,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all damage taken by -3%.",
+                "text": "Reduces all damage taken by 3%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1095,7 +1095,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive -15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
+                            "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive 15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -1175,7 +1175,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive -15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
+                            "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive 15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -1322,7 +1322,7 @@
             "spellId": 7601,
             "category": "Other",
             "description": {
-                "text": "When activated, Yu'lon and Chi-Ji apply Chi Cocoons to 5 targets within (varies) yds, absorbing (varies) damage for 10. Chi-Ji grants 4 stacks of Teachings of the Monastery when invoked. Yu'lon reduces the cast speed of Enveloping Mist by -30%.",
+                "text": "When activated, Yu'lon and Chi-Ji apply Chi Cocoons to 5 targets within (varies) yds, absorbing (varies) damage for 10. Chi-Ji grants 4 stacks of Teachings of the Monastery when invoked. Yu'lon reduces the cast speed of Enveloping Mist by 30%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2356,7 +2356,7 @@
             "spellId": 7502,
             "category": "Other",
             "description": {
-                "text": "Targets you Roll through are snared by -40% for 5.",
+                "text": "Targets you Roll through are snared by 40% for 5.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2368,7 +2368,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional -20%.",
+                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2662,7 +2662,7 @@
             "spellId": 7468,
             "category": "Utility",
             "description": {
-                "text": "Reduces the target's movement speed by -50% for 15, duration refreshed by your melee attacks.",
+                "text": "Reduces the target's movement speed by 50% for 15, duration refreshed by your melee attacks.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2674,7 +2674,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional -20%.",
+                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2743,7 +2743,7 @@
             "spellId": 7483,
             "category": "Other",
             "description": {
-                "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by -6%.",
+                "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by 6%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2833,7 +2833,7 @@
             "spellId": 7632,
             "category": "Other",
             "description": {
-                "text": "Sheilun's Gift's healing is increased by 20% and its cast time is reduced by -100%, but it now only heals a single ally.",
+                "text": "Sheilun's Gift's healing is increased by 20% and its cast time is reduced by 100%, but it now only heals a single ally.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2893,7 +2893,7 @@
             "spellId": 7622,
             "category": "Other",
             "description": {
-                "text": "Mana Tea now channels -50% faster and generates 20% more Mana.",
+                "text": "Mana Tea now channels 50% faster and generates 20% more Mana.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3013,7 +3013,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by -20%.",
+                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 20%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3079,7 +3079,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon an effigy of Chi-Ji for 20 that kicks up -33 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 2%.",
+                            "text": "Summon an effigy of Chi-Ji for 20 that kicks up 33 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 2%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3175,7 +3175,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When activated, Yu'lon and Chi-Ji apply Chi Cocoons to 5 targets within (varies) yds, absorbing (varies) damage for 10. Chi-Ji grants 4 stacks of Teachings of the Monastery when invoked. Yu'lon reduces the cast speed of Enveloping Mist by -30%.",
+                            "text": "When activated, Yu'lon and Chi-Ji apply Chi Cocoons to 5 targets within (varies) yds, absorbing (varies) damage for 10. Chi-Ji grants 4 stacks of Teachings of the Monastery when invoked. Yu'lon reduces the cast speed of Enveloping Mist by 30%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3191,7 +3191,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by -50% and channel Soothing Mist from you onto up to 5 allies at 30% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
+                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by 50% and channel Soothing Mist from you onto up to 5 allies at 30% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3401,7 +3401,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When activated, Yu'lon and Chi-Ji apply Chi Cocoons to 5 targets within (varies) yds, absorbing (varies) damage for 10. Chi-Ji grants 4 stacks of Teachings of the Monastery when invoked. Yu'lon reduces the cast speed of Enveloping Mist by -30%.",
+                            "text": "When activated, Yu'lon and Chi-Ji apply Chi Cocoons to 5 targets within (varies) yds, absorbing (varies) damage for 10. Chi-Ji grants 4 stacks of Teachings of the Monastery when invoked. Yu'lon reduces the cast speed of Enveloping Mist by 30%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3497,7 +3497,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by -50% and channel Soothing Mist from you onto up to 5 allies at 20% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
+                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by 50% and channel Soothing Mist from you onto up to 5 allies at 20% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4150,7 +4150,7 @@
             "spellId": 7513,
             "category": "Defensive",
             "description": {
-                "text": "You gain a bonus effect based on your current health. Above 90% health: Movement speed increased by 5%. This bonus stacks with similar effects. Between 90% and 35% health: Damage taken reduced by -5%. Below 35% health: Healing received increased by 10%.",
+                "text": "You gain a bonus effect based on your current health. Above 90% health: Movement speed increased by 5%. This bonus stacks with similar effects. Between 90% and 35% health: Damage taken reduced by 5%. Below 35% health: Healing received increased by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4371,7 +4371,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional -10% while Fortifying Brew is active.",
+                            "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional 10% while Fortifying Brew is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5528,7 +5528,7 @@
             "spellId": 7600,
             "category": "Defensive",
             "description": {
-                "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by -20%.",
+                "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 20%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6360,7 +6360,7 @@
             "spellId": 7488,
             "category": "Other",
             "description": {
-                "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional -10% while Fortifying Brew is active.",
+                "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional 10% while Fortifying Brew is active.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6480,7 +6480,7 @@
             "spellId": 7538,
             "category": "Defensive",
             "description": {
-                "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive -15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
+                "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive 15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7318,7 +7318,7 @@
             "spellId": 6660,
             "category": "Other",
             "description": {
-                "text": "Consumes 1 stack of Mana Tea per (varies) sec to restore 6,480 Mana. Can be cast while moving, but movement speed is reduced by -40% while channeling.",
+                "text": "Consumes 1 stack of Mana Tea per (varies) sec to restore 6,480 Mana. Can be cast while moving, but movement speed is reduced by 40% while channeling.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7330,7 +7330,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mana Tea now channels -50% faster and generates 20% more Mana.",
+                            "text": "Mana Tea now channels 50% faster and generates 20% more Mana.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7381,7 +7381,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consumes 1 stack of Mana Tea per (varies) sec to restore 2 Mana. Can be cast while moving, but movement speed is reduced by -40% while channeling.",
+                            "text": "Consumes 1 stack of Mana Tea per (varies) sec to restore 2 Mana. Can be cast while moving, but movement speed is reduced by 40% while channeling.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7461,7 +7461,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consumes 1 stack of Mana Tea per (varies) sec to restore 6,480 Mana. Can be cast while moving, but movement speed is reduced by -40% while channeling.",
+                            "text": "Consumes 1 stack of Mana Tea per (varies) sec to restore 6,480 Mana. Can be cast while moving, but movement speed is reduced by 40% while channeling.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7648,7 +7648,7 @@
             "spellId": 7505,
             "category": "Offensive",
             "description": {
-                "text": "Increases your Physical damage done by 5% and Avoidance increased by -2%.",
+                "text": "Increases your Physical damage done by 5% and Avoidance increased by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8640,7 +8640,7 @@
             "spellId": 7508,
             "category": "Other",
             "description": {
-                "text": "The duration of snare effects on you is reduced by -20%.",
+                "text": "The duration of snare effects on you is reduced by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8818,7 +8818,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by -20%.",
+                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 20%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9325,7 +9325,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by -20%.",
+                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 20%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10180,7 +10180,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by -100%.",
+                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by 100%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10196,7 +10196,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by -100%.",
+                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by 100%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10276,7 +10276,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon an effigy of Chi-Ji for 20 that kicks up -33 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 2%.",
+                            "text": "Summon an effigy of Chi-Ji for 20 that kicks up 33 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 2%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10340,7 +10340,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by -50% and channel Soothing Mist from you onto up to 5 allies at 30% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
+                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by 50% and channel Soothing Mist from you onto up to 5 allies at 30% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10468,7 +10468,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by -20%.",
+                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 20%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10566,7 +10566,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by -50% and channel Soothing Mist from you onto up to 5 allies at 20% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
+                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by 50% and channel Soothing Mist from you onto up to 5 allies at 20% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13484,7 +13484,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by -100%.",
+                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by 100%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -13500,7 +13500,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by -100%.",
+                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by 100%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -16176,7 +16176,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by -20%.",
+                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 20%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -16370,7 +16370,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sheilun's Gift's healing is increased by 20% and its cast time is reduced by -100%, but it now only heals a single ally.",
+                            "text": "Sheilun's Gift's healing is increased by 20% and its cast time is reduced by 100%, but it now only heals a single ally.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -17154,7 +17154,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by -20%.",
+                            "text": "Summon an effigy of Chi-Ji for 25 that kicks up 3 Gust of Mists when you Blackout Kick, Rising Sun Kick, or Spinning Crane Kick, healing up to 2 allies for (varies). Chi-Ji's presence makes you immune to movement impairing effects, makes Enveloping Mist instant cast, and reduces the mana cost of Enveloping Mist by 20%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -17220,7 +17220,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by -6%.",
+                            "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by 6%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -17300,7 +17300,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by -50% and channel Soothing Mist from you onto up to 5 allies at 30% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
+                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by 50% and channel Soothing Mist from you onto up to 5 allies at 30% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -17348,7 +17348,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by -50% and channel Soothing Mist from you onto up to 5 allies at 20% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
+                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by 50% and channel Soothing Mist from you onto up to 5 allies at 20% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -17673,7 +17673,7 @@
             "spellId": 7514,
             "category": "Other",
             "description": {
-                "text": "Transcendence: Transfer snares targets within (varies) yds by -70% for 4 when cast.",
+                "text": "Transcendence: Transfer snares targets within (varies) yds by 70% for 4 when cast.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -17703,7 +17703,7 @@
             "spellId": 7634,
             "category": "Other",
             "description": {
-                "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by -50% and channel Soothing Mist from you onto up to 5 allies at 20% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
+                "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by 50% and channel Soothing Mist from you onto up to 5 allies at 20% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -17715,7 +17715,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by -50% and channel Soothing Mist from you onto up to 5 allies at 30% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
+                            "text": "Rising Sun Kick and Vivify have a chance to activate Spiritfont, causing your next Enveloping Mist's cast time to be reduced by 50% and channel Soothing Mist from you onto up to 5 allies at 30% effectiveness for 8. If Spiritfont's Soothing Mists heal a full health target, they will jump to another injured ally or split its healing into your remaining Soothing Mists.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -19929,7 +19929,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transcendence: Transfer snares targets within (varies) yds by -70% for 4 when cast.",
+                            "text": "Transcendence: Transfer snares targets within (varies) yds by 70% for 4 when cast.",
                             "uncertain": true
                         },
                         "category": "Utility",
@@ -19961,7 +19961,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transcendence: Transfer snares targets within (varies) yds by -70% for 4 when cast.",
+                            "text": "Transcendence: Transfer snares targets within (varies) yds by 70% for 4 when cast.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -20341,7 +20341,7 @@
             "spellId": 7509,
             "category": "Other",
             "description": {
-                "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional -20%.",
+                "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

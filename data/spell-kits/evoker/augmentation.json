@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:38:30+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:54:55+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -97,7 +97,7 @@
             "spellId": 4518,
             "category": "Other",
             "description": {
-                "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
+                "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by 40%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -342,7 +342,7 @@
             "spellId": 4144,
             "category": "Other",
             "description": {
-                "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by -15% for 3,600.",
+                "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by 15% for 3,600.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -873,7 +873,7 @@
             "spellId": 4053,
             "category": "Defensive",
             "description": {
-                "text": "Fatal attacks are diverted into a nearby timeline, preventing the damage, and your death, in this one. The release of temporal energy restores (varies) health to you, and (varies) to -1 nearby allies, over 9. Healing starts high and declines over the duration. May only occur once every 360.",
+                "text": "Fatal attacks are diverted into a nearby timeline, preventing the damage, and your death, in this one. The release of temporal energy restores (varies) health to you, and (varies) to (varies) nearby allies, over 9. Healing starts high and declines over the duration. May only occur once every 360.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1401,7 +1401,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Disintegrate channels -20% faster(varies by condition — check in-game).",
+                            "text": "Disintegrate channels 20% faster(varies by condition — check in-game).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1449,7 +1449,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Eruption's Essence cost is reduced by -1.",
+                            "text": "Eruption's Essence cost is reduced by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1497,7 +1497,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Breath of Eons reduces the Essence cost of your next -1 Eruptions by -1.",
+                            "text": "Breath of Eons reduces the Essence cost of your next 1 Eruptions by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1752,7 +1752,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Essence Burst reduces the cast time of Eruption by -40% and increases its damage by 20%.",
+                            "text": "Essence Burst reduces the cast time of Eruption by 40% and increases its damage by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2101,7 +2101,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level -20% faster.",
+                            "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level 20% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2117,7 +2117,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "The cooldowns of your spells are reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2133,7 +2133,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "The cooldowns of your spells are reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2200,7 +2200,7 @@
             "spellId": 4065,
             "category": "Other",
             "description": {
-                "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level -20% faster.",
+                "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level 20% faster.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2480,7 +2480,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "The cooldowns of your spells are reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2496,7 +2496,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "The cooldowns of your spells are reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2512,7 +2512,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by -15% for 3,600.",
+                            "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by 15% for 3,600.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2528,7 +2528,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by -15% for 3,600.",
+                            "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by 15% for 3,600.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2677,7 +2677,7 @@
             "spellId": 4067,
             "category": "Other",
             "description": {
-                "text": "Essence Burst reduces the cast time of Eruption by -40% and increases its damage by 20%.",
+                "text": "Essence Burst reduces the cast time of Eruption by 40% and increases its damage by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2707,7 +2707,7 @@
             "spellId": 4087,
             "category": "Other",
             "description": {
-                "text": "Breath of Eons reduces the Essence cost of your next 6 Eruptions by -1.",
+                "text": "Breath of Eons reduces the Essence cost of your next 6 Eruptions by 1.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2848,7 +2848,7 @@
             "spellId": 4539,
             "category": "Defensive",
             "description": {
-                "text": "Magic damage taken reduced by -2%.",
+                "text": "Magic damage taken reduced by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2968,7 +2968,7 @@
             "spellId": 4080,
             "category": "Other",
             "description": {
-                "text": "The cooldowns of your spells are reduced by -10%.",
+                "text": "The cooldowns of your spells are reduced by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3151,7 +3151,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Living Flame has a -100% chance, and Reversion has a -100% chance to make your next Essence ability free. Stacks (varies) times.",
+                            "text": "Living Flame has a 100% chance, and Reversion has a 100% chance to make your next Essence ability free. Stacks (varies) times.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3346,7 +3346,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
+                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by 40%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3378,7 +3378,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
+                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by 40%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3823,7 +3823,7 @@
             "spellId": 4516,
             "category": "Other",
             "description": {
-                "text": "Disintegrate channels -20% faster(varies by condition — check in-game).",
+                "text": "Disintegrate channels 20% faster(varies by condition — check in-game).",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3973,7 +3973,7 @@
             "spellId": 4510,
             "category": "Defensive",
             "description": {
-                "text": "Reinforce your scales, reducing damage taken by -30% and causing you to be healed over 8 equal to the damage it prevented. Lasts 12.",
+                "text": "Reinforce your scales, reducing damage taken by 30% and causing you to be healed over 8 equal to the damage it prevented. Lasts 12.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4068,7 +4068,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "The cooldowns of your spells are reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4084,7 +4084,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "The cooldowns of your spells are reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4356,7 +4356,7 @@
             "spellId": 4072,
             "category": "Other",
             "description": {
-                "text": "Breath of Eons reduces enemies' movement speed by -70%, and reduces their attack speed by -50%, for 10.",
+                "text": "Breath of Eons reduces enemies' movement speed by 70%, and reduces their attack speed by 50%, for 10.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4587,7 +4587,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "The cooldowns of your spells are reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4603,7 +4603,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "The cooldowns of your spells are reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5452,7 +5452,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "The cooldowns of your spells are reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5468,7 +5468,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "The cooldowns of your spells are reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5484,7 +5484,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by -15% for 3,600.",
+                            "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by 15% for 3,600.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5500,7 +5500,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by -15% for 3,600.",
+                            "text": "Weave the threads of time, reducing the cooldown of a major movement ability for all party and raid members by 15% for 3,600.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5885,7 +5885,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldowns of your spells are reduced by -10%.",
+                            "text": "The cooldowns of your spells are reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5978,7 +5978,7 @@
             "spellId": 4079,
             "category": "Other",
             "description": {
-                "text": "Enchant an ally to appear out of sync with the normal flow of time, reducing threat they generate by -30% for 3,600. Less effective on tank-specialized allies. May only be placed on one target at a time.",
+                "text": "Enchant an ally to appear out of sync with the normal flow of time, reducing threat they generate by 30% for 3,600. Less effective on tank-specialized allies. May only be placed on one target at a time.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6282,7 +6282,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level -20% faster.",
+                            "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level 20% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6447,7 +6447,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
+                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by 40%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6479,7 +6479,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
+                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by 40%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6575,7 +6575,7 @@
             "spellId": 4056,
             "category": "Other",
             "description": {
-                "text": "Eruption's Essence cost is reduced by -1.",
+                "text": "Eruption's Essence cost is reduced by 1.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6665,7 +6665,7 @@
             "spellId": 4527,
             "category": "Mobility",
             "description": {
-                "text": "Conjure an updraft to lift you and your 4 nearest allies within (varies) yds into the air, reducing damage taken from area-of-effect attacks by -20% and increasing movement speed by 30% for 8.",
+                "text": "Conjure an updraft to lift you and your 4 nearest allies within (varies) yds into the air, reducing damage taken from area-of-effect attacks by 20% and increasing movement speed by 30% for 8.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

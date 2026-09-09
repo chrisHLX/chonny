@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:39:22+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:47+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -97,7 +97,7 @@
             "spellId": 8744,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all damage you take by -30% for 12. While Ardent Defender is active, the next attack that would otherwise kill you will instead bring you to 20% of your maximum health.",
+                "text": "Reduces all damage you take by 30% for 12. While Ardent Defender is active, the next attack that would otherwise kill you will instead bring you to 20% of your maximum health.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -109,7 +109,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Ardent Defender, and Lay on Hands by -30%.",
+                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Ardent Defender, and Lay on Hands by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -141,7 +141,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces all damage you take by -30% for (varies). While Ardent Defender is active, the next attack that would otherwise kill you will instead bring you to 20% of your maximum health.",
+                            "text": "Reduces all damage you take by 30% for (varies). While Ardent Defender is active, the next attack that would otherwise kill you will instead bring you to 20% of your maximum health.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -157,7 +157,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ardent Defender increases your maximum health by -30% for its duration, and its effect is no longer canceled when you take fatal damage.",
+                            "text": "Ardent Defender increases your maximum health by 30% for its duration, and its effect is no longer canceled when you take fatal damage.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -335,7 +335,7 @@
             "spellId": 8745,
             "category": "Crowd Control",
             "description": {
-                "text": "Hurls your shield at an enemy target, dealing (varies) Holy damage, interrupting and silencing the non-Player target for 3, and then jumping to -1 additional nearby enemies.  Shields you for 8, absorbing 75% as much damage as it dealt. Deals 0.1 additional damage to all enemies within (varies) yds of each target hit.",
+                "text": "Hurls your shield at an enemy target, dealing (varies) Holy damage, interrupting and silencing the non-Player target for 3, and then jumping to (varies) additional nearby enemies.  Shields you for 8, absorbing 75% as much damage as it dealt. Deals 0.1 additional damage to all enemies within (varies) yds of each target hit.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -929,7 +929,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by -2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
+                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1393,7 +1393,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath and Sentinel have -50% reduced cooldown and -40% reduced duration.",
+                            "text": "Avenging Wrath and Sentinel have 50% reduced cooldown and 40% reduced duration.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1441,7 +1441,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fear duration on you reduced by -20%. This effect is increased to -60% during Avenging Wrath.",
+                            "text": "Fear duration on you reduced by 20%. This effect is increased to 60% during Avenging Wrath.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1525,7 +1525,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by -2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
+                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1876,7 +1876,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Blessed Hammer causes enemies struck to deal -10% reduced damage to you for 8.",
+                            "text": "Your Blessed Hammer causes enemies struck to deal 10% reduced damage to you for 8.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1940,7 +1940,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Blessed Hammer causes enemies struck to deal -10% reduced damage to you for 8.",
+                            "text": "Your Blessed Hammer causes enemies struck to deal 10% reduced damage to you for 8.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -2143,7 +2143,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by -15%. These effects linger for 8 after the Blessing ends.",
+                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by 15%. These effects linger for 8 after the Blessing ends.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2341,7 +2341,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by -15%. These effects linger for 8 after the Blessing ends.",
+                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by 15%. These effects linger for 8 after the Blessing ends.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2357,7 +2357,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have -15% reduced cooldown.",
+                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2373,7 +2373,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have -15% reduced cooldown.",
+                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2573,7 +2573,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by -15%. These effects linger for 8 after the Blessing ends.",
+                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by 15%. These effects linger for 8 after the Blessing ends.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2951,7 +2951,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by -15%. These effects linger for 8 after the Blessing ends.",
+                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by 15%. These effects linger for 8 after the Blessing ends.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2967,7 +2967,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have -15% reduced cooldown.",
+                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2983,7 +2983,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have -15% reduced cooldown.",
+                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3446,7 +3446,7 @@
             "spellId": 8580,
             "category": "Other",
             "description": {
-                "text": "Your Consecration is 15% larger, and enemies within it have -50% reduced movement speed.",
+                "text": "Your Consecration is 15% larger, and enemies within it have 50% reduced movement speed.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3476,7 +3476,7 @@
             "spellId": 7737,
             "category": "Offensive",
             "description": {
-                "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over 12 to enemies who enter the area and reducing their movement speed by -50%. Limit 1.",
+                "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over 12 to enemies who enter the area and reducing their movement speed by 50%. Limit 1.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3568,7 +3568,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Consecration is 15% larger, and enemies within it have -50% reduced movement speed.",
+                            "text": "Your Consecration is 15% larger, and enemies within it have 50% reduced movement speed.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3600,7 +3600,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in your Consecration and for 4 sec after leaving it, your damage taken is reduced by -5%.",
+                            "text": "While in your Consecration and for 4 sec after leaving it, your damage taken is reduced by 5%.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3652,7 +3652,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown reduced by -50%.",
+                            "text": "Cooldown reduced by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4378,7 +4378,7 @@
             "spellId": 8621,
             "category": "Other",
             "description": {
-                "text": "Divine Steed's cooldown is reduced by -20%, but its duration is reduced by -40%.",
+                "text": "Divine Steed's cooldown is reduced by 20%, but its duration is reduced by 40%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4535,7 +4535,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Divine Steed's cooldown is reduced by -20%, but its duration is reduced by -40%.",
+                            "text": "Divine Steed's cooldown is reduced by 20%, but its duration is reduced by 40%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4551,7 +4551,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Divine Steed's cooldown is reduced by -20%, but its duration is reduced by -40%.",
+                            "text": "Divine Steed's cooldown is reduced by 20%, but its duration is reduced by 40%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4760,7 +4760,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4808,7 +4808,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4940,7 +4940,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by -2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
+                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5541,7 +5541,7 @@
             "spellId": 8603,
             "category": "Other",
             "description": {
-                "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by -15%. These effects linger for 8 after the Blessing ends.",
+                "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by 15%. These effects linger for 8 after the Blessing ends.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5738,7 +5738,7 @@
             "spellId": 8634,
             "category": "Other",
             "description": {
-                "text": "Fear duration on you reduced by -20%. This effect is increased to -60% during Avenging Wrath.",
+                "text": "Fear duration on you reduced by 20%. This effect is increased to 60% during Avenging Wrath.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5955,7 +5955,7 @@
             "spellId": 8656,
             "category": "Other",
             "description": {
-                "text": "The cooldown of Holy Armaments is reduced by -20%.",
+                "text": "The cooldown of Holy Armaments is reduced by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6198,7 +6198,7 @@
             "spellId": 8748,
             "category": "Defensive",
             "description": {
-                "text": "Empowers you with the spirit of ancient kings, reducing all damage you take by -50% for 8.",
+                "text": "Empowers you with the spirit of ancient kings, reducing all damage you take by 50% for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6939,7 +6939,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Blessed Hammer causes enemies struck to deal -10% reduced damage to you for 8.",
+                            "text": "Your Blessed Hammer causes enemies struck to deal 10% reduced damage to you for 8.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6955,7 +6955,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by -2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
+                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7083,7 +7083,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Blessed Hammer causes enemies struck to deal -10% reduced damage to you for 8.",
+                            "text": "Your Blessed Hammer causes enemies struck to deal 10% reduced damage to you for 8.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7343,7 +7343,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by -2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
+                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7949,7 +7949,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Holy Armaments is reduced by -20%.",
+                            "text": "The cooldown of Holy Armaments is reduced by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7965,7 +7965,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Holy Armaments is reduced by -20%.",
+                            "text": "The cooldown of Holy Armaments is reduced by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8242,7 +8242,7 @@
             "spellId": 8788,
             "category": "Other",
             "description": {
-                "text": "Shield of the Righteous reduces magical damage taken by -12%.",
+                "text": "Shield of the Righteous reduces magical damage taken by 12%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8918,7 +8918,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by -2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
+                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9659,7 +9659,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Ardent Defender, and Lay on Hands by -30%.",
+                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Ardent Defender, and Lay on Hands by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9742,7 +9742,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have -15% reduced cooldown.",
+                            "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10286,7 +10286,7 @@
             "spellId": 8597,
             "category": "Defensive",
             "description": {
-                "text": "Speed increased by 2% and damage taken from area of effect attacks reduced by -2%.",
+                "text": "Speed increased by 2% and damage taken from area of effect attacks reduced by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10569,7 +10569,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by -2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
+                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10863,7 +10863,7 @@
             "spellId": 8752,
             "category": "Other",
             "description": {
-                "text": "Avenging Wrath and Sentinel have -50% reduced cooldown and -40% reduced duration.",
+                "text": "Avenging Wrath and Sentinel have 50% reduced cooldown and 40% reduced duration.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11270,7 +11270,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Holy Armaments is reduced by -20%.",
+                            "text": "The cooldown of Holy Armaments is reduced by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11286,7 +11286,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Holy Armaments is reduced by -20%.",
+                            "text": "The cooldown of Holy Armaments is reduced by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11594,7 +11594,7 @@
             "spellId": 8605,
             "category": "Defensive",
             "description": {
-                "text": "Armor increased by 10%, Stamina increased by 5% and damage taken from area of effect attacks reduced by -3%.",
+                "text": "Armor increased by 10%, Stamina increased by 5% and damage taken from area of effect attacks reduced by 3%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11671,7 +11671,7 @@
             "spellId": 8766,
             "category": "Defensive",
             "description": {
-                "text": "While in your Consecration and for 4 sec after leaving it, your damage taken is reduced by -5%.",
+                "text": "While in your Consecration and for 4 sec after leaving it, your damage taken is reduced by 5%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11761,7 +11761,7 @@
             "spellId": 8758,
             "category": "Offensive",
             "description": {
-                "text": "Your Blessed Hammer causes enemies struck to deal -10% reduced damage to you for 8.",
+                "text": "Your Blessed Hammer causes enemies struck to deal 10% reduced damage to you for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11928,7 +11928,7 @@
             "spellId": 8772,
             "category": "Offensive",
             "description": {
-                "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by -2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
+                "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -11942,7 +11942,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avenging Wrath and Sentinel have -50% reduced cooldown and -40% reduced duration.",
+                            "text": "Avenging Wrath and Sentinel have 50% reduced cooldown and 40% reduced duration.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -12151,7 +12151,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -12215,7 +12215,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -12279,7 +12279,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shield of the Righteous reduces magical damage taken by -12%.",
+                            "text": "Shield of the Righteous reduces magical damage taken by 12%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -12347,7 +12347,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over (varies) to enemies who enter the area and reducing their movement speed by -50%. Limit 1.",
+                            "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over (varies) to enemies who enter the area and reducing their movement speed by 50%. Limit 1.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -12395,7 +12395,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by -2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
+                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12728,7 +12728,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Ardent Defender, and Lay on Hands by -30%.",
+                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Ardent Defender, and Lay on Hands by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13096,7 +13096,7 @@
             "spellId": 8616,
             "category": "Other",
             "description": {
-                "text": "The duration of stun effects on you is reduced by -20%.",
+                "text": "The duration of stun effects on you is reduced by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -13260,7 +13260,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Turn Evil's cast time is reduced by -100%.",
+                            "text": "Turn Evil's cast time is reduced by 100%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13369,7 +13369,7 @@
             "spellId": 8574,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Ardent Defender, and Lay on Hands by -30%.",
+                "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Ardent Defender, and Lay on Hands by 30%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -13489,7 +13489,7 @@
             "spellId": 8762,
             "category": "Other",
             "description": {
-                "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have -15% reduced cooldown.",
+                "text": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -13697,7 +13697,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13713,7 +13713,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every -100 Shields of the Righteous make your next Word of Glory cost no Holy Power. Maximum (varies) stacks.",
+                            "text": "Every 100 Shields of the Righteous make your next Word of Glory cost no Holy Power. Maximum (varies) stacks.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13745,7 +13745,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -14037,7 +14037,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over (varies) to enemies who enter the area and reducing their movement speed by -50%. Limit 1.",
+                            "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over (varies) to enemies who enter the area and reducing their movement speed by 50%. Limit 1.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -14053,7 +14053,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by -2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
+                            "text": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20. After (varies) sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec. While active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14292,7 +14292,7 @@
             "spellId": 8677,
             "category": "Other",
             "description": {
-                "text": "When Empyrean Hammer critically strikes, 50% of its damage is dealt to nearby enemies. Enemies hit by this effect deal -5% reduced damage to you for 8.",
+                "text": "When Empyrean Hammer critically strikes, 50% of its damage is dealt to nearby enemies. Enemies hit by this effect deal 5% reduced damage to you for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -14322,7 +14322,7 @@
             "spellId": 8612,
             "category": "Other",
             "description": {
-                "text": "Turn Evil's cast time is reduced by -100%.",
+                "text": "Turn Evil's cast time is reduced by 100%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

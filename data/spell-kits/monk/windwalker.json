@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:39:43+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:56:08+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -281,7 +281,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chi costs are reduced by -1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
+                            "text": "Chi costs are reduced by 1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -754,7 +754,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blackout Kick costs -2 fewer Chi.",
+                            "text": "Blackout Kick costs 2 fewer Chi.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1151,7 +1151,7 @@
             "spellId": 7481,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all damage taken by -3%.",
+                "text": "Reduces all damage taken by 3%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1242,7 +1242,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive -15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
+                            "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive 15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -1322,7 +1322,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive -15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
+                            "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive 15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -1770,7 +1770,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Roll is decreased by -10%.",
+                            "text": "The cooldown of Roll is decreased by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1786,7 +1786,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Roll is decreased by -10%.",
+                            "text": "The cooldown of Roll is decreased by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2180,7 +2180,7 @@
             "spellId": 7584,
             "category": "Other",
             "description": {
-                "text": "The cooldown of Roll is decreased by -10%.",
+                "text": "The cooldown of Roll is decreased by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2424,7 +2424,7 @@
             "spellId": 7502,
             "category": "Other",
             "description": {
-                "text": "Targets you Roll through are snared by -40% for 5.",
+                "text": "Targets you Roll through are snared by 40% for 5.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2436,7 +2436,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional -20%.",
+                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2722,7 +2722,7 @@
             "spellId": 7468,
             "category": "Utility",
             "description": {
-                "text": "Reduces the target's movement speed by -50% for 15, duration refreshed by your melee attacks. Targets already snared will be rooted for 8 instead.",
+                "text": "Reduces the target's movement speed by 50% for 15, duration refreshed by your melee attacks. Targets already snared will be rooted for 8 instead.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2734,7 +2734,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional -20%.",
+                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2956,7 +2956,7 @@
             "spellId": 7483,
             "category": "Other",
             "description": {
-                "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by -6%.",
+                "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by 6%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3353,7 +3353,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chi costs are reduced by -1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
+                            "text": "Chi costs are reduced by 1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3842,7 +3842,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fists of Fury's Chi cost is reduced by -1, but its damage is reduced by -10%.",
+                            "text": "Fists of Fury's Chi cost is reduced by 1, but its damage is reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4253,7 +4253,7 @@
             "spellId": 7513,
             "category": "Defensive",
             "description": {
-                "text": "You gain a bonus effect based on your current health. Above 90% health: Movement speed increased by 5%. This bonus stacks with similar effects. Between 90% and 35% health: Damage taken reduced by -5%. Below 35% health: Healing received increased by 10%.",
+                "text": "You gain a bonus effect based on your current health. Above 90% health: Movement speed increased by 5%. This bonus stacks with similar effects. Between 90% and 35% health: Damage taken reduced by 5%. Below 35% health: Healing received increased by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4421,7 +4421,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chi costs are reduced by -1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
+                            "text": "Chi costs are reduced by 1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4619,7 +4619,7 @@
             "spellId": 6648,
             "category": "Crowd Control",
             "description": {
-                "text": "Soar forward through the air at high speed for 1.5. If used again while active, you will land, reducing the movement speed of enemies within (varies) yds by -70% for 4.",
+                "text": "Soar forward through the air at high speed for 1.5. If used again while active, you will land, reducing the movement speed of enemies within (varies) yds by 70% for 4.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4631,7 +4631,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chi costs are reduced by -1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
+                            "text": "Chi costs are reduced by 1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4812,7 +4812,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional -10% while Fortifying Brew is active.",
+                            "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional 10% while Fortifying Brew is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5520,7 +5520,7 @@
             "spellId": 7688,
             "category": "Other",
             "description": {
-                "text": "Fists of Fury's Chi cost is reduced by -1, but its damage is reduced by -10%.",
+                "text": "Fists of Fury's Chi cost is reduced by 1, but its damage is reduced by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5899,7 +5899,7 @@
             "spellId": 7666,
             "category": "Other",
             "description": {
-                "text": "Increases maximum Energy by 30. Tiger Palm's Energy cost reduced by -5.",
+                "text": "Increases maximum Energy by 30. Tiger Palm's Energy cost reduced by 5.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6253,7 +6253,7 @@
             "spellId": 7488,
             "category": "Other",
             "description": {
-                "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional -10% while Fortifying Brew is active.",
+                "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional 10% while Fortifying Brew is active.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6343,7 +6343,7 @@
             "spellId": 7538,
             "category": "Defensive",
             "description": {
-                "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive -15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
+                "text": "You heal for 10% of your maximum health instantly when you activate Celestial Conduit and receive 15% less damage for its duration. This effect lingers for an additional 8 after Celestial Conduit ends.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7016,7 +7016,7 @@
             "spellId": 7505,
             "category": "Offensive",
             "description": {
-                "text": "Increases your Physical damage done by 5% and Avoidance increased by -2%.",
+                "text": "Increases your Physical damage done by 5% and Avoidance increased by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7882,7 +7882,7 @@
             "spellId": 7578,
             "category": "Defensive",
             "description": {
-                "text": "When you dodge or parry an attack, reduce all damage taken by -10% for the next 6.",
+                "text": "When you dodge or parry an attack, reduce all damage taken by 10% for the next 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8002,7 +8002,7 @@
             "spellId": 7508,
             "category": "Other",
             "description": {
-                "text": "The duration of snare effects on you is reduced by -20%.",
+                "text": "The duration of snare effects on you is reduced by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8468,7 +8468,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strike of the Windlord and Whirling Dragon Punch grant -1 stacks of Teachings of the Monastery. Teachings of the Monastery can now stack up to 8 times.",
+                            "text": "Strike of the Windlord and Whirling Dragon Punch grant 1 stacks of Teachings of the Monastery. Teachings of the Monastery can now stack up to 8 times.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8500,7 +8500,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chi costs are reduced by -1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
+                            "text": "Chi costs are reduced by 1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8631,7 +8631,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by -100%.",
+                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by 100%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8647,7 +8647,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by -100%.",
+                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by 100%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -9739,7 +9739,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Roll is decreased by -10%.",
+                            "text": "The cooldown of Roll is decreased by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9755,7 +9755,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Roll is decreased by -10%.",
+                            "text": "The cooldown of Roll is decreased by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10001,7 +10001,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Targets you Roll through are snared by -40% for 5.",
+                            "text": "Targets you Roll through are snared by 40% for 5.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10017,7 +10017,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Targets you Roll through are snared by -40% for 5.",
+                            "text": "Targets you Roll through are snared by 40% for 5.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -10081,7 +10081,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Targets you Roll through are snared by -40% for 5.",
+                            "text": "Targets you Roll through are snared by 40% for 5.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10471,7 +10471,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strike of the Windlord and Whirling Dragon Punch grant -1 stacks of Teachings of the Monastery. Teachings of the Monastery can now stack up to 8 times.",
+                            "text": "Strike of the Windlord and Whirling Dragon Punch grant 1 stacks of Teachings of the Monastery. Teachings of the Monastery can now stack up to 8 times.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10503,7 +10503,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chi costs are reduced by -1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
+                            "text": "Chi costs are reduced by 1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10634,7 +10634,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by -100%.",
+                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by 100%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10650,7 +10650,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by -100%.",
+                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by 100%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -11318,7 +11318,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chi costs are reduced by -1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
+                            "text": "Chi costs are reduced by 1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -11436,7 +11436,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Soar forward through the air at high speed for 1.5. If used again while active, you will land, reducing the movement speed of enemies within (varies) yds by -70% for 4.",
+                            "text": "Soar forward through the air at high speed for 1.5. If used again while active, you will land, reducing the movement speed of enemies within (varies) yds by 70% for 4.",
                             "uncertain": true
                         },
                         "category": "Crowd Control",
@@ -11659,7 +11659,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by -6%.",
+                            "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by 6%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11846,7 +11846,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chi costs are reduced by -1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
+                            "text": "Chi costs are reduced by 1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -11993,7 +11993,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your spells and abilities have a chance to make your next Spinning Crane Kick deal an additional -2% damage.",
+                            "text": "Your spells and abilities have a chance to make your next Spinning Crane Kick deal an additional 2% damage.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -12222,7 +12222,7 @@
             "spellId": 7514,
             "category": "Other",
             "description": {
-                "text": "Transcendence: Transfer snares targets within (varies) yds by -70% for 4 when cast.",
+                "text": "Transcendence: Transfer snares targets within (varies) yds by 70% for 4 when cast.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12770,7 +12770,7 @@
             "spellId": 7662,
             "category": "Offensive",
             "description": {
-                "text": "Strike with both fists at all enemies in front of you, dealing 0 Physical damage and reducing movement speed by -50% for 6. Deals reduced damage to secondary targets.",
+                "text": "Strike with both fists at all enemies in front of you, dealing 0 Physical damage and reducing movement speed by 50% for 6. Deals reduced damage to secondary targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12798,7 +12798,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chi costs are reduced by -1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
+                            "text": "Chi costs are reduced by 1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -12913,7 +12913,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strike of the Windlord and Whirling Dragon Punch grant -1 stacks of Teachings of the Monastery. Teachings of the Monastery can now stack up to 8 times.",
+                            "text": "Strike of the Windlord and Whirling Dragon Punch grant 1 stacks of Teachings of the Monastery. Teachings of the Monastery can now stack up to 8 times.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13425,7 +13425,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strike of the Windlord and Whirling Dragon Punch grant -1 stacks of Teachings of the Monastery. Teachings of the Monastery can now stack up to 8 times.",
+                            "text": "Strike of the Windlord and Whirling Dragon Punch grant 1 stacks of Teachings of the Monastery. Teachings of the Monastery can now stack up to 8 times.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13774,7 +13774,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases maximum Energy by 30. Tiger Palm's Energy cost reduced by -5.",
+                            "text": "Increases maximum Energy by 30. Tiger Palm's Energy cost reduced by 5.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13854,7 +13854,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chi costs are reduced by -1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
+                            "text": "Chi costs are reduced by 1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -14001,7 +14001,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While out of combat, your Chi balances to -100 instead of depleting to empty. Your stamina is increased by 5% and every (varies) sec, your next Tiger Palm also casts Expel Harm. Expel Harm $@spelldesc451968",
+                            "text": "While out of combat, your Chi balances to 100 instead of depleting to empty. Your stamina is increased by 5% and every (varies) sec, your next Tiger Palm also casts Expel Harm. Expel Harm $@spelldesc451968",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -14801,7 +14801,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transcendence: Transfer snares targets within (varies) yds by -70% for 4 when cast.",
+                            "text": "Transcendence: Transfer snares targets within (varies) yds by 70% for 4 when cast.",
                             "uncertain": true
                         },
                         "category": "Utility",
@@ -14849,7 +14849,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transcendence: Transfer snares targets within (varies) yds by -70% for 4 when cast.",
+                            "text": "Transcendence: Transfer snares targets within (varies) yds by 70% for 4 when cast.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -15790,7 +15790,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strike of the Windlord and Whirling Dragon Punch grant -1 stacks of Teachings of the Monastery. Teachings of the Monastery can now stack up to 8 times.",
+                            "text": "Strike of the Windlord and Whirling Dragon Punch grant 1 stacks of Teachings of the Monastery. Teachings of the Monastery can now stack up to 8 times.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -16183,7 +16183,7 @@
             "spellId": 7509,
             "category": "Other",
             "description": {
-                "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional -20%.",
+                "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -16487,7 +16487,7 @@
             "spellId": 7686,
             "category": "Offensive",
             "description": {
-                "text": "Chi costs are reduced by -1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
+                "text": "Chi costs are reduced by 1 and Blackout Kick reduces the cooldown of affected abilities by an additional 1 sec for 15. Activating Zenith resets the remaining cooldown on Rising Sun Kick.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

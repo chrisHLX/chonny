@@ -4415,3 +4415,89 @@ committed artifact — the same shape as burst windows embedding their talent bu
 its analysis. A page that reads the archive at render time works flawlessly on every dev machine and is
 silently broken for every real user. `TopCcChainsTest` now forces the archive to be absent rather than
 trusting a normal dev run, because a normal dev run structurally cannot catch this.
+
+## Duplicate CC steps collapsed their DR verdict; reduction prose rendered a doubled minus (2026-09-10)
+
+Two reports, two unrelated causes, both real.
+
+### Two Cyclones in a row were BOTH badged as diminished
+
+The DR maths was never wrong. `UserGuideChainService::computeResolve()` keyed the verdicts coming back
+from `CcChainBuilder::annotateChain()` by **spell id**:
+
+```php
+$annotations = collect($this->chains->annotateChain($controlSpells))->keyBy(fn ($a) => $a['spell']->id);
+```
+
+Two steps using the same ability produce two annotations with the same key, so `keyBy` kept only the
+last — and BOTH blocks then looked up that one entry and rendered the second occurrence's 50%. Using an
+ability twice is a legitimate thing to author, so resolution is now keyed by **block id**, zipped
+positionally against the ordered control blocks (`annotateChain()` preserves the caller's order, which is
+its whole contract).
+
+It also **understated the section total**: the first Cyclone was billed at the second's 50%, so a
+6s + 6s-at-50% chain reported 6.0s of control instead of 9.0s. `metrics()` is `resolve()` plus arithmetic,
+so it inherited the collapse rather than having a second bug.
+
+Three regression tests in `GuideBuilderTest` (adjacent repeat, repeat separated by another step, and the
+control-time total), each confirmed to fail against the old code with the reported symptom.
+
+### "Reduces all damage you take by -40%"
+
+Blizzard stores a reduction as a **negative base value** (`Modify Damage Taken%: -40`) and carries the
+direction in the prose around the token, so a signed render duplicates it. `resolveDescription()`'s Pass 3
+now renders a bare token's **magnitude**. Measured across the current patch: **1,069 spells** were
+affected — Shield Wall, Barkskin, Pain Suppression, Divine Protection, Spell Reflection, Ardent Defender.
+
+The rule is pinned to checkable in-game tooltips rather than inferred: **Hamstring** (own effect base −50)
+reads "reducing the enemy's movement speed by 50%", and **Whiplash** (base −50) reads "reducing movement
+speed by 50%". It is not about the word "reduces" — **Curse of Tongues** (base −30) reads "increasing the
+casting time of all spells by 30%", the inverse framing of the same negative value. It also repairs the 12
+spells whose prose writes a RANGE as `$s1-$s2%` (Chaos Theory, Flurry Strikes), which rendered "14--30%".
+
+**Deliberately NOT applied to Pass 2's `${...}` arithmetic, and that boundary is load-bearing:** 392
+expressions in this patch flip the sign explicitly (`${$81281s2*-1}`, `${$m1/-1000}`, `${-$s1-$465s2}`), so
+dropping it there would invert every one of them. Verified after the change that Aura Mastery still reads
+"increased to 12%" and Demonic Circle "by 5 sec". Same bare-in-prose-only boundary the coefficient fallback
+already draws.
+
+### Bundled: a 0-substituted token used as a MINUEND
+
+Pass 2 substitutes an unresolvable token as `0` and poisons the expression to `(varies)` only when 0 would
+annihilate a product or break a division. `0` is not the identity for a minuend either: `${$x1-1}`
+collapsed to `0-1` and rendered a confident **"jumping to -1 additional nearby enemies"** (Avenger's
+Shield), "once every -1 sec" (Earth Shield), "up to -3 nearby targets" (Blade Flurry) — 34 more spells.
+`$x` (chain targets), `$u` (max stacks) and `$i` are not captured in this schema at all, so there is
+nothing to resolve them to and `(varies)` is the honest answer. A 0 **subtrahend** (`$d-$s1`) is still
+genuinely safe and is deliberately still allowed through, with its own test.
+
+### The precomputed kits carry resolved description text — regenerate them, this is not optional
+
+`data/spell-kits/*/*.json` embeds `description.text`, so all 40 committed kits held the stale prose and
+WoW Comps / Spell Explorer / PvP Guides kept serving it after the code was correct. **1,386 stray-minus
+fragments across the 40 kits before, 2 after.** `deploy.sh` regenerates them on live; locally it is
+`wow:precompute-spell-kits`.
+
+**Ordering, again:** the kits embed `spellCacheVersion`, so generating them and THEN bumping the counter
+stamps them with the old value and invalidates them seconds later — the same trap already recorded for
+`deploy.sh`'s fingerprint write. Bump first, generate second.
+
+### Two measurement mistakes worth not repeating
+
+- **`spellId` in `data/spell-kits/*.json` is the INTERNAL `spells.id`, not Blizzard's external
+  `spell_id`** (`SpecKitComputer::toJsonSafeArray()` writes `$entry['spell']->id`). A reachability check
+  that compared it against `spells.spell_id` found zero overlap and reported "no user-facing spell is
+  affected", which was wrong — grepping the regenerated kit files directly is the honest measure. Same
+  internal-vs-external collision that produced the `fetch-spell-icons.php` bug.
+- A scan for `-\d` flags a prose RANGE ("14-30%") as a negative. Require a non-digit before the minus.
+
+### Still open: ~9 spells whose Pass 2 arithmetic RESULT is negative
+
+`${$s1/10}` with a negative `$s1` (Astral Communion "maximum Astral Power by -15"), `${$m1/-1000}` with a
+positive `$m1` (Bounding Stride "cooldown of Heroic Leap by -0.1 sec"), Scintillating Moonlight, Death and
+Decay, Immolation Aura. **Deliberately not fixed by absolute-valuing the arithmetic result**: their
+magnitudes are wrong too (a 0.1-second cooldown reduction is not a real value either), so this is a
+wrong-effect/sibling-recovery resolution problem, not a sign problem — absing would turn a visible minus
+into a plausible-looking wrong number, which is strictly worse. Also note `Nature's Balance` resolves
+against a **Hidden** internal record (`279649`, effect −100, `Resource: astral_power`) while the real
+talent (`202430`) carries +10, which is the shape to look for if this is picked up.

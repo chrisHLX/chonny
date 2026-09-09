@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:38:56+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:21+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -135,7 +135,7 @@
             "spellId": 6464,
             "category": "Defensive",
             "description": {
-                "text": "Reduces magic damage taken by -4%.",
+                "text": "Reduces magic damage taken by 4%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -666,7 +666,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The bonuses provided by your Barrier spells persist at -15% effectiveness for an additional (varies by condition — check in-game) after your Barrier is removed.(varies by condition — check in-game)",
+                            "text": "The bonuses provided by your Barrier spells persist at 15% effectiveness for an additional (varies by condition — check in-game) after your Barrier is removed.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -682,7 +682,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The bonuses provided by your Barrier spells persist at -15% effectiveness for an additional (varies by condition — check in-game) after your Barrier is removed.(varies by condition — check in-game)",
+                            "text": "The bonuses provided by your Barrier spells persist at 15% effectiveness for an additional (varies by condition — check in-game) after your Barrier is removed.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1024,7 +1024,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Combustion is not active, damage from Ignite has a small chance to make your next Scorch instant, deal 100% increased damage, and deal damage as though your target was below -100% health.",
+                            "text": "While Combustion is not active, damage from Ignite has a small chance to make your next Scorch instant, deal 100% increased damage, and deal damage as though your target was below 100% health.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1040,7 +1040,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Combustion expires, all of your active Ignites explode, dealing -100% of their remaining damage.",
+                            "text": "When Combustion expires, all of your active Ignites explode, dealing 100% of their remaining damage.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1203,7 +1203,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by -70% for 6.",
+                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1251,7 +1251,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by -70% for 6.",
+                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2133,7 +2133,7 @@
             "spellId": 6626,
             "category": "Other",
             "description": {
-                "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by -70% for 6.",
+                "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3501,7 +3501,7 @@
             "spellId": 6519,
             "category": "Other",
             "description": {
-                "text": "The cast time of Pyroblast and Flamestrike is reduced by -20%.",
+                "text": "The cast time of Pyroblast and Flamestrike is reduced by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3717,7 +3717,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cast time of Pyroblast and Flamestrike is reduced by -20%.",
+                            "text": "The cast time of Pyroblast and Flamestrike is reduced by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4667,7 +4667,7 @@
             "spellId": 6580,
             "category": "Offensive",
             "description": {
-                "text": "Launches a bolt of frostfire at the enemy, causing ≈259.4% of Spell Power Frostfire damage, slowing movement speed by -50%, and causing an additional (varies) Frostfire damage over 8.",
+                "text": "Launches a bolt of frostfire at the enemy, causing ≈259.4% of Spell Power Frostfire damage, slowing movement speed by 50%, and causing an additional (varies) Frostfire damage over 8.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4679,7 +4679,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If you have not cast Fireball for 8, your next Fireball will deal 70% increased damage with a -40% reduced cast time.",
+                            "text": "If you have not cast Fireball for 8, your next Fireball will deal 70% increased damage with a 40% reduced cast time.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4695,7 +4695,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "If you have not cast Fireball for 8, your next Fireball will deal -41% increased damage with a (varies)% reduced cast time.",
+                            "text": "If you have not cast Fireball for 8, your next Fireball will deal 41% increased damage with a (varies)% reduced cast time.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4762,7 +4762,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frostfire Bolt's cast time is reduced by -10%.",
+                            "text": "Frostfire Bolt's cast time is reduced by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4778,7 +4778,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for -100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4810,7 +4810,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for -100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4937,7 +4937,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for -100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4953,7 +4953,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for -100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
+                            "text": "Casting Frostfire spells has a 60% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal 60% increased damage, explode for 100% of its damage to nearby enemies. Damage reduced beyond 5 targets.(varies by condition — check in-game)",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5363,7 +5363,7 @@
             "spellId": 6441,
             "category": "Defensive",
             "description": {
-                "text": "Shields you with ice, absorbing (varies) damage and increasing your armor by (varies)% for 60. Melee attacks against you reduce the attacker's movement speed by -50%.",
+                "text": "Shields you with ice, absorbing (varies) damage and increasing your armor by (varies)% for 60. Melee attacks against you reduce the attacker's movement speed by 50%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5506,7 +5506,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ice Block now reduces all damage taken by -70% for 6 but no longer grants Immunity, prevents movement, attacks, or casting spells. Does not incur the Global Cooldown.",
+                            "text": "Ice Block now reduces all damage taken by 70% for 6 but no longer grants Immunity, prevents movement, attacks, or casting spells. Does not incur the Global Cooldown.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -5716,7 +5716,7 @@
             "spellId": 6470,
             "category": "Crowd Control",
             "description": {
-                "text": "Ice Block now reduces all damage taken by -70% for 6 but no longer grants Immunity, prevents movement, attacks, or casting spells. Does not incur the Global Cooldown.",
+                "text": "Ice Block now reduces all damage taken by 70% for 6 but no longer grants Immunity, prevents movement, attacks, or casting spells. Does not incur the Global Cooldown.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5728,7 +5728,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your blood runs cold, reducing all damage you take by -70% for 6. While Ice Cold is active, you heal for 40% of your maximum health over the duration. Causes Hypothermia, preventing you from recasting Ice Cold for 30.",
+                            "text": "Your blood runs cold, reducing all damage you take by 70% for 6. While Ice Cold is active, you heal for 40% of your maximum health over the duration. Causes Hypothermia, preventing you from recasting Ice Cold for 30.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -6568,7 +6568,7 @@
             "spellId": 6454,
             "category": "Other",
             "description": {
-                "text": "Prismatic Barrier gains an additional charge and further reduces magic damage taken by -5%.",
+                "text": "Prismatic Barrier gains an additional charge and further reduces magic damage taken by 5%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6658,7 +6658,7 @@
             "spellId": 12638,
             "category": "Defensive",
             "description": {
-                "text": "Damage taken from area of effect attacks reduced by -4%.",
+                "text": "Damage taken from area of effect attacks reduced by 4%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8275,7 +8275,7 @@
             "spellId": 6452,
             "category": "Defensive",
             "description": {
-                "text": "Shields you with an arcane force, absorbing (varies) damage and reducing magic damage taken by -15% for 60. The duration of harmful Magic effects against you is reduced by -25%.",
+                "text": "Shields you with an arcane force, absorbing (varies) damage and reducing magic damage taken by 15% for 60. The duration of harmful Magic effects against you is reduced by 25%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8306,7 +8306,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Prismatic Barrier gains an additional charge and further reduces magic damage taken by -5%.",
+                            "text": "Prismatic Barrier gains an additional charge and further reduces magic damage taken by 5%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8469,7 +8469,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cast time of Pyroblast and Flamestrike is reduced by -20%.",
+                            "text": "The cast time of Pyroblast and Flamestrike is reduced by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9090,7 +9090,7 @@
             "spellId": 6446,
             "category": "Crowd Control",
             "description": {
-                "text": "Summons a Ring of Frost for 10 at the target location. Enemies entering the ring are incapacitated for 10. Limit 10 targets. When the incapacitate expires, enemies are slowed by -65% for 4.",
+                "text": "Summons a Ring of Frost for 10 at the target location. Enemies entering the ring are incapacitated for 10. Limit 10 targets. When the incapacitate expires, enemies are slowed by 65% for 4.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9118,7 +9118,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a Ring of Frost for 10 at the target location. Enemies entering the ring are incapacitated for 10. Limit 10 targets. When the incapacitate expires, enemies are slowed by -65% for 4.",
+                            "text": "Summons a Ring of Frost for 10 at the target location. Enemies entering the ring are incapacitated for 10. Limit 10 targets. When the incapacitate expires, enemies are slowed by 65% for 4.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -9250,7 +9250,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a Ring of Frost for (varies) at the target location. Enemies entering the ring are incapacitated for 10. Limit 10 targets. When the incapacitate expires, enemies are slowed by -65% for 4.",
+                            "text": "Summons a Ring of Frost for (varies) at the target location. Enemies entering the ring are incapacitated for 10. Limit 10 targets. When the incapacitate expires, enemies are slowed by 65% for 4.",
                             "uncertain": true
                         },
                         "category": "Crowd Control",
@@ -9266,7 +9266,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a Ring of Frost for 10 at the target location. Enemies entering the ring are incapacitated for 10. Limit 10 targets. When the incapacitate expires, enemies are slowed by -65% for 4.",
+                            "text": "Summons a Ring of Frost for 10 at the target location. Enemies entering the ring are incapacitated for 10. Limit 10 targets. When the incapacitate expires, enemies are slowed by 65% for 4.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -9332,7 +9332,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summons a Ring of Frost for 4 at the target location. Enemies entering the ring are incapacitated for 10. Limit 10 targets. When the incapacitate expires, enemies are slowed by -65% for 4.",
+                            "text": "Summons a Ring of Frost for 4 at the target location. Enemies entering the ring are incapacitated for 10. Limit 10 targets. When the incapacitate expires, enemies are slowed by 65% for 4.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -9668,7 +9668,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Combustion is not active, damage from Ignite has a small chance to make your next Scorch instant, deal 100% increased damage, and deal damage as though your target was below -100% health.",
+                            "text": "While Combustion is not active, damage from Ignite has a small chance to make your next Scorch instant, deal 100% increased damage, and deal damage as though your target was below 100% health.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9974,7 +9974,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by -70% for 6.",
+                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10006,7 +10006,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by -70% for 6.",
+                            "text": "After casting (varies by condition — check in-game), your next Shimmer will cause a Blast Wave at your previous location, dealing 50 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10857,7 +10857,7 @@
             "spellId": 6585,
             "category": "Other",
             "description": {
-                "text": "Frostfire Bolt's cast time is reduced by -10%.",
+                "text": "Frostfire Bolt's cast time is reduced by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

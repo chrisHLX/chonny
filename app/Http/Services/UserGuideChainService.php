@@ -195,19 +195,38 @@ class UserGuideChainService
         // dr_category and must not consume a slot, and an unresolved block cannot diminish
         // anything. Both are skipped rather than counted as an unknown category, so neither can
         // shift the verdict on the control steps around them.
-        $controlSpells = $blocks
-            ->map(fn (UserGuideBlock $b) => $this->spellFor($b, $entriesByExternalId))
-            ->filter(fn (?Spell $s) => $s !== null && ($entriesByExternalId[$s->spell_id] ?? null)?->drCategory() !== null)
-            ->values();
+        //
+        // The verdicts come back keyed by BLOCK id, never by spell id. An author can legitimately
+        // use the same ability twice in one chain, and keying by spell collapses those two steps
+        // onto a single annotation (last write wins) — so BOTH occurrences render the second
+        // one's diminished verdict. Reported live 2026-09-10: two Cyclones in a row each showed
+        // 50%, instead of 100% then 50%, which also understated the section's control time by
+        // half a Cyclone. annotateChain() preserves the caller's order, so the nth verdict
+        // belongs to the nth control block.
+        $controlBlockIds = [];
+        $controlSpells = collect();
 
-        $annotations = collect($this->chains->annotateChain($controlSpells))
-            ->keyBy(fn (array $a) => $a['spell']->id);
+        foreach ($blocks as $block) {
+            $spell = $this->spellFor($block, $entriesByExternalId);
+
+            if ($spell === null || ($entriesByExternalId[$spell->spell_id] ?? null)?->drCategory() === null) {
+                continue;
+            }
+
+            $controlBlockIds[] = $block->id;
+            $controlSpells->push($spell);
+        }
+
+        $annotations = [];
+        foreach ($this->chains->annotateChain($controlSpells) as $i => $annotation) {
+            $annotations[$controlBlockIds[$i]] = $annotation;
+        }
 
         return $blocks->map(function (UserGuideBlock $block) use ($entriesByExternalId, $annotations, $specs) {
             $externalId = $block->externalSpellId();
             $entry = $externalId !== null ? ($entriesByExternalId[$externalId] ?? null) : null;
             $spell = $this->spellFor($block, $entriesByExternalId);
-            $dr = $spell !== null ? ($annotations[$spell->id] ?? null) : null;
+            $dr = $annotations[$block->id] ?? null;
 
             return [
                 'block' => $block,

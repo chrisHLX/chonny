@@ -2052,7 +2052,18 @@ class ModuleSpellReferenceService
 
                         // 0 annihilates a product and breaks division-by; it's the identity for
                         // an additive term or a dividend.
-                        if ($prevOp === '*' || $prevOp === '/' || $nextOp === '*') {
+                        //
+                        // It is NOT the identity for a MINUEND either — "$x1-1" collapses to
+                        // "0-1" and renders a confident "-1". Found 2026-09-10 while fixing the
+                        // signed-reduction prose below: this is what was left rendering "jumping
+                        // to -1 additional nearby enemies" (Avenger's Shield), "once every -1
+                        // sec" (Earth Shield) and "strikes up to -3 nearby targets" (Blade
+                        // Flurry). The tokens involved ($x chain-targets, $u max-stacks, $i
+                        // targets) aren't captured in this schema at all, so there is nothing to
+                        // resolve them to — "(varies)" is the honest answer, and a negative count
+                        // of targets is the confidently-wrong one. A 0 SUBTRAHEND ("$d-$s1" where
+                        // $s1 is null) stays safe and is deliberately still allowed through.
+                        if ($prevOp === '*' || $prevOp === '/' || $nextOp === '*' || $nextOp === '-') {
                             $poisoned = true;
                         }
 
@@ -2081,13 +2092,35 @@ class ModuleSpellReferenceService
         );
 
         // Pass 3: remaining bare tokens ($s1, $d, $<id>s1, $<id>d) outside any braces.
+        //
+        // A bare token in prose renders its MAGNITUDE, never its sign — Blizzard stores a
+        // reduction as a negative base value ("Modify Damage Taken%: -40") and carries the
+        // direction in the prose around the token, so a signed render duplicates it: "Reduces
+        // damage taken by -40%". Reported live 2026-09-10 on Bladestorm's damage reduction and
+        // measured across the current patch: 1,069 spells were rendering a stray minus, Shield
+        // Wall, Barkskin, Pain Suppression, Divine Protection, Spell Reflection and Ardent
+        // Defender among them.
+        //
+        // Two independently-checkable in-game tooltips pin the rule down rather than leaving it
+        // inferred: Hamstring (own effect base -50) reads "reducing the enemy's movement speed by
+        // 50%", and Whiplash (base -50) reads "reducing movement speed by 50%". The same holds
+        // when the prose inverts the framing — Curse of Tongues (base -30) reads "increasing the
+        // casting time of all spells by 30%", so this is about the sign living in the prose, not
+        // about the word "reduces" specifically. It also repairs the 12 spells whose prose writes
+        // a RANGE as "$s1-$s2%" (Chaos Theory, Flurry Strikes), where a signed second token
+        // rendered "14--30%".
+        //
+        // DELIBERATELY NOT APPLIED TO PASS 2's ${...} arithmetic, where the sign is load-bearing:
+        // 392 expressions in this patch flip it explicitly ("${$81281s2*-1}", "${$m1/-1000}",
+        // "${-$s1-$465s2}"), and dropping it there would invert every one of them. Same bare-in-
+        // prose-only boundary the coefficient fallback just below already draws.
         $text = preg_replace_callback(
             '/\$(\d*[a-zA-Z]+\d*)/',
             function ($m) use (&$uncertain, $spell) {
                 $value = $this->resolveValueToken($m[1], $spell);
 
                 if ($value !== null) {
-                    return $this->formatNumber($value);
+                    return $this->formatNumber(abs($value));
                 }
 
                 // Coefficient fallback (2026-08-02) — only for a bare bs-token directly in

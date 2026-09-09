@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:39:24+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:48+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -219,7 +219,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by -50%.",
+                            "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -400,7 +400,7 @@
             "spellId": 12370,
             "category": "Offensive",
             "description": {
-                "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -430,7 +430,7 @@
             "spellId": 12497,
             "category": "Defensive",
             "description": {
-                "text": "When your health is brought below 30%, you take -80% less damage for 8 and healing you receive is increased by 100%. Cannot occur more than once every 180.",
+                "text": "When your health is brought below 30%, you take 80% less damage for 8 and healing you receive is increased by 100%. Cannot occur more than once every 180.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -490,7 +490,7 @@
             "spellId": 12275,
             "category": "Other",
             "description": {
-                "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by -50% on group members within (varies) yds.",
+                "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by 50% on group members within (varies) yds.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -520,7 +520,7 @@
             "spellId": 12367,
             "category": "Defensive",
             "description": {
-                "text": "Go berserk, removing and granting immunity to Fear, Sap, and Incapacitate effects for 6. Also remove fear effects from and reduce the duration of the next crowd control effect within 5 by -50% on group members within (varies) yds.",
+                "text": "Go berserk, removing and granting immunity to Fear, Sap, and Incapacitate effects for 6. Also remove fear effects from and reduce the duration of the next crowd control effect within 5 by 50% on group members within (varies) yds.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -532,7 +532,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of Berserker Rage is reduced by -50% and Berseker Rage removes all movement speed-impairing effects.",
+                            "text": "Cooldown of Berserker Rage is reduced by 50% and Berseker Rage removes all movement speed-impairing effects.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -551,7 +551,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by -50% on group members within (varies) yds.",
+                            "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by 50% on group members within (varies) yds.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -588,7 +588,7 @@
             "spellId": 12371,
             "category": "Offensive",
             "description": {
-                "text": "An aggressive combat state that increases the damage of your auto-attacks by 15%, your auto-attack speed by 3%, and reduces the duration of Fear, Sap and Incapacitate effects on you by -10%. Lasts until canceled.",
+                "text": "An aggressive combat state that increases the damage of your auto-attacks by 15%, your auto-attack speed by 3%, and reduces the duration of Fear, Sap and Incapacitate effects on you by 10%. Lasts until canceled.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -768,7 +768,7 @@
             "spellId": 12425,
             "category": "Other",
             "description": {
-                "text": "Shockwave's stun duration is increased by 1 sec and reduces the movement speed of affected enemies by -40% for 3 after the stun ends.",
+                "text": "Shockwave's stun duration is increased by 1 sec and reduces the movement speed of affected enemies by 40% for 3 after the stun ends.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1328,7 +1328,7 @@
             "spellId": 12352,
             "category": "Other",
             "description": {
-                "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional -20%.",
+                "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1682,7 +1682,7 @@
             "spellId": 12372,
             "category": "Offensive",
             "description": {
-                "text": "A defensive combat state that reduces all damage you take by -15% and all magic damage you take by an additional (varies)%. When an attack deals 20% or more of your maximum health in damage, that damage is reduced by 15%. Lasts until canceled.",
+                "text": "A defensive combat state that reduces all damage you take by 15% and all magic damage you take by an additional (varies)%. When an attack deals 20% or more of your maximum health in damage, that damage is reduced by 15%. Lasts until canceled.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1694,7 +1694,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Defensive Stance reduces damage taken by an additional -6%.",
+                            "text": "Defensive Stance reduces damage taken by an additional 6%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1710,7 +1710,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Defensive Stance additionally reduces magic damage you take by -8%.",
+                            "text": "Defensive Stance additionally reduces magic damage you take by 8%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1762,7 +1762,7 @@
             "spellId": 12431,
             "category": "Defensive",
             "description": {
-                "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1809,7 +1809,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1825,7 +1825,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1841,7 +1841,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2020,7 +2020,7 @@
             "spellId": 12474,
             "category": "Offensive",
             "description": {
-                "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by -25% for 8. Generates 0 Rage.",
+                "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2607,7 +2607,7 @@
             "spellId": 12379,
             "category": "Other",
             "description": {
-                "text": "Cooldown of Berserker Rage is reduced by -50% and Berseker Rage removes all movement speed-impairing effects.",
+                "text": "Cooldown of Berserker Rage is reduced by 50% and Berseker Rage removes all movement speed-impairing effects.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2667,7 +2667,7 @@
             "spellId": 12501,
             "category": "Other",
             "description": {
-                "text": "Defensive Stance additionally reduces magic damage you take by -8%.",
+                "text": "Defensive Stance additionally reduces magic damage you take by 8%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3017,7 +3017,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3138,7 +3138,7 @@
             "spellId": 12373,
             "category": "Defensive",
             "description": {
-                "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3168,7 +3168,7 @@
             "spellId": 12503,
             "category": "Defensive",
             "description": {
-                "text": "Damage you take from area of effect attacks is reduced by -2%. Spell Reflection reduces magic damage taken by an additional -10%.",
+                "text": "Damage you take from area of effect attacks is reduced by 2%. Spell Reflection reduces magic damage taken by an additional 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3297,7 +3297,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3346,7 +3346,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by -25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3394,7 +3394,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3478,7 +3478,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3526,7 +3526,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You deal 5% more damage and take -5% less damage. Size increased by 5%.",
+                            "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3729,7 +3729,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3745,7 +3745,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3780,7 +3780,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3825,7 +3825,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3841,7 +3841,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3876,7 +3876,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -3925,7 +3925,7 @@
             "spellId": 12338,
             "category": "Crowd Control",
             "description": {
-                "text": "Causes the targeted enemy to cower in fear while all enemies within (varies) yards flee from you and their movement speed is reduced by -70% for 8. Damage may cancel the effect.",
+                "text": "Causes the targeted enemy to cower in fear while all enemies within (varies) yards flee from you and their movement speed is reduced by 70% for 8. Damage may cancel the effect.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4213,7 +4213,7 @@
             "spellId": 12451,
             "category": "Defensive",
             "description": {
-                "text": "Physical damage taken reduced by -2%. Thunder Blast reduces damage you take by -8% for 5.",
+                "text": "Physical damage taken reduced by 2%. Thunder Blast reduces damage you take by 8% for 5.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4521,7 +4521,7 @@
             "spellId": 12427,
             "category": "Offensive",
             "description": {
-                "text": "You deal 5% more damage and take -5% less damage. Size increased by 5%.",
+                "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4844,7 +4844,7 @@
             "spellId": 12341,
             "category": "Utility",
             "description": {
-                "text": "Snares all enemies within (varies) yards, reducing their movement speed by -70% for 8. Spurs all allies within (varies) yards, increasing their movement speed by 30% for 4.",
+                "text": "Snares all enemies within (varies) yards, reducing their movement speed by 70% for 8. Spurs all allies within (varies) yards, increasing their movement speed by 30% for 4.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5026,7 +5026,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -5077,7 +5077,7 @@
             "spellId": 12483,
             "category": "Offensive",
             "description": {
-                "text": "Shield Slam deals 15% increased damage and reduces enemies' damage against you by -3% for 9. Multiple punishments may overlap.",
+                "text": "Shield Slam deals 15% increased damage and reduces enemies' damage against you by 3% for 9. Multiple punishments may overlap.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5089,7 +5089,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shield Slam deals -3% increased damage and reduces enemies' damage against you by -3% for 9. Multiple punishments may overlap.",
+                            "text": "Shield Slam deals 3% increased damage and reduces enemies' damage against you by 3% for 9. Multiple punishments may overlap.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5390,7 +5390,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by -25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5454,7 +5454,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5618,7 +5618,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5666,7 +5666,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You deal 5% more damage and take -5% less damage. Size increased by 5%.",
+                            "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5837,7 +5837,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by -25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5901,7 +5901,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6129,7 +6129,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6177,7 +6177,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You deal 5% more damage and take -5% less damage. Size increased by 5%.",
+                            "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6490,7 +6490,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by -25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6538,7 +6538,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6654,7 +6654,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6702,7 +6702,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You deal 5% more damage and take -5% less damage. Size increased by 5%.",
+                            "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6832,7 +6832,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6881,7 +6881,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by -25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6929,7 +6929,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shield Slam deals 15% increased damage and reduces enemies' damage against you by -3% for 9. Multiple punishments may overlap.",
+                            "text": "Shield Slam deals 15% increased damage and reduces enemies' damage against you by 3% for 9. Multiple punishments may overlap.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7009,7 +7009,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7089,7 +7089,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shield Slam deals -3% increased damage and reduces enemies' damage against you by -3% for 9. Multiple punishments may overlap.",
+                            "text": "Shield Slam deals 3% increased damage and reduces enemies' damage against you by 3% for 9. Multiple punishments may overlap.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7349,7 +7349,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7397,7 +7397,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You deal 5% more damage and take -5% less damage. Size increased by 5%.",
+                            "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7720,7 +7720,7 @@
             "spellId": 12473,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all damage you take by -40% for 8.",
+                "text": "Reduces all damage you take by 40% for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7732,7 +7732,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -7748,7 +7748,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -7863,7 +7863,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8096,7 +8096,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by -25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8160,7 +8160,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8292,7 +8292,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8340,7 +8340,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shockwave's stun duration is increased by 1 sec and reduces the movement speed of affected enemies by -40% for 3 after the stun ends.",
+                            "text": "Shockwave's stun duration is increased by 1 sec and reduces the movement speed of affected enemies by 40% for 3 after the stun ends.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8356,7 +8356,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You deal 5% more damage and take -5% less damage. Size increased by 5%.",
+                            "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8404,7 +8404,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shockwave's stun duration is increased by 0 sec and reduces the movement speed of affected enemies by -40% for 3 after the stun ends.",
+                            "text": "Shockwave's stun duration is increased by 0 sec and reduces the movement speed of affected enemies by 40% for 3 after the stun ends.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8483,7 +8483,7 @@
             "spellId": 12342,
             "category": "Defensive",
             "description": {
-                "text": "Raise your (varies by condition — check in-game), reflecting the next 2 spells cast on you and reducing magic damage you take by -20% for 5.",
+                "text": "Raise your (varies by condition — check in-game), reflecting the next 2 spells cast on you and reducing magic damage you take by 20% for 5.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8495,7 +8495,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8511,7 +8511,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8578,7 +8578,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8626,7 +8626,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damage you take from area of effect attacks is reduced by -2%. Spell Reflection reduces magic damage taken by an additional -10%.",
+                            "text": "Damage you take from area of effect attacks is reduced by 2%. Spell Reflection reduces magic damage taken by an additional 10%.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -8765,7 +8765,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by -25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8813,7 +8813,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8829,7 +8829,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8945,7 +8945,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8993,7 +8993,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You deal 5% more damage and take -5% less damage. Size increased by 5%.",
+                            "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -9279,7 +9279,7 @@
             "spellId": 12438,
             "category": "Other",
             "description": {
-                "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by -50%.",
+                "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by 50%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9610,7 +9610,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take -10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9689,7 +9689,7 @@
             "spellId": 12192,
             "category": "Offensive",
             "description": {
-                "text": "Blasts all enemies within (varies) yards for 435,222 Stormstrike damage, roots them for 4, and reduces their movement speed by -20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
+                "text": "Blasts all enemies within (varies) yards for 435,222 Stormstrike damage, roots them for 4, and reduces their movement speed by 20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9701,7 +9701,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by -25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9733,7 +9733,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional -20%.",
+                            "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9781,7 +9781,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -9845,7 +9845,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Physical damage taken reduced by -2%. Thunder Blast reduces damage you take by -8% for 5.",
+                            "text": "Physical damage taken reduced by 2%. Thunder Blast reduces damage you take by 8% for 5.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -9893,7 +9893,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Physical damage taken reduced by -2%. Thunder Blast reduces damage you take by -8% for 5.",
+                            "text": "Physical damage taken reduced by 2%. Thunder Blast reduces damage you take by 8% for 5.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -10009,7 +10009,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10057,7 +10057,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You deal 5% more damage and take -5% less damage. Size increased by 5%.",
+                            "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10170,7 +10170,7 @@
             "spellId": 12339,
             "category": "Offensive",
             "description": {
-                "text": "Blasts all enemies within (varies) yards for -20 Physical damage, roots them for 4, and reduces their movement speed by -20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
+                "text": "Blasts all enemies within (varies) yards for 20 Physical damage, roots them for 4, and reduces their movement speed by 20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10182,7 +10182,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by -25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10214,7 +10214,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional -20%.",
+                            "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10262,7 +10262,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10406,7 +10406,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by -50%.",
+                            "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10634,7 +10634,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10682,7 +10682,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You deal 5% more damage and take -5% less damage. Size increased by 5%.",
+                            "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10931,7 +10931,7 @@
             "spellId": 12362,
             "category": "Offensive",
             "description": {
-                "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10961,7 +10961,7 @@
             "spellId": 12505,
             "category": "Other",
             "description": {
-                "text": "Defensive Stance reduces damage taken by an additional -6%.",
+                "text": "Defensive Stance reduces damage taken by an additional 6%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11170,7 +11170,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by -25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11218,7 +11218,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -11334,7 +11334,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -11382,7 +11382,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You deal 5% more damage and take -5% less damage. Size increased by 5%.",
+                            "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                             "uncertain": false
                         },
                         "category": "Offensive",

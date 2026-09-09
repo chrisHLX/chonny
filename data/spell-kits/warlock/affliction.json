@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:38:23+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:54:49+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -37,7 +37,7 @@
             "spellId": 11523,
             "category": "Defensive",
             "description": {
-                "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by -4% for 10.",
+                "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by 4% for 10.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -79,7 +79,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Agony, Wither, and Unstable Affliction deal damage -10% faster.",
+                            "text": "Your Agony, Wither, and Unstable Affliction deal damage 10% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -684,7 +684,7 @@
             "spellId": 11539,
             "category": "Other",
             "description": {
-                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing their casting time of all spells by -100% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
+                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing their casting time of all spells by 100% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -714,7 +714,7 @@
             "spellId": 11449,
             "category": "Offensive",
             "description": {
-                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing the time between their attacks by -100% and reducing their critical strike chance by -10% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
+                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing the time between their attacks by 100% and reducing their critical strike chance by 10% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -955,7 +955,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Agony, Wither, and Unstable Affliction deal damage -10% faster.",
+                            "text": "Your Agony, Wither, and Unstable Affliction deal damage 10% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1019,7 +1019,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corruption deals damage -25% faster and Haunt grants Nightfall.",
+                            "text": "Corruption deals damage 25% faster and Haunt grants Nightfall.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1115,7 +1115,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
+                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1131,7 +1131,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1243,7 +1243,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1307,7 +1307,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1339,7 +1339,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1355,7 +1355,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1663,7 +1663,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels -10% faster and deals 15% increased damage.",
+                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels 10% faster and deals 15% increased damage.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1710,7 +1710,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cast time of Soulstone and Create Healthstone by -50%.",
+                            "text": "Reduces the cast time of Soulstone and Create Healthstone by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1743,7 +1743,7 @@
             "spellId": 10715,
             "category": "Other",
             "description": {
-                "text": "Your Agony, Wither, and Unstable Affliction deal damage -10% faster.",
+                "text": "Your Agony, Wither, and Unstable Affliction deal damage 10% faster.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1836,7 +1836,7 @@
             "spellId": 11509,
             "category": "Utility",
             "description": {
-                "text": "Reduces the target's movement speed by -50% for 12. Curses: A warlock can only have one Curse active per target.",
+                "text": "Reduces the target's movement speed by 50% for 12. Curses: A warlock can only have one Curse active per target.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1883,7 +1883,7 @@
             "spellId": 11317,
             "category": "Offensive",
             "description": {
-                "text": "Increases the time between an enemy's attacks by -20% and the casting time of all spells by -30% for 120. Curses: A warlock can only have one Curse active per target.",
+                "text": "Increases the time between an enemy's attacks by 20% and the casting time of all spells by 30% for 120. Curses: A warlock can only have one Curse active per target.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1947,7 +1947,7 @@
             "spellId": 11494,
             "category": "Other",
             "description": {
-                "text": "Forces the target to speak in Demonic, increasing the casting time of all spells by -30% for 60. Curses: A warlock can only have one Curse active per target.",
+                "text": "Forces the target to speak in Demonic, increasing the casting time of all spells by 30% for 60. Curses: A warlock can only have one Curse active per target.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1978,7 +1978,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at -20% effectiveness.",
+                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2027,7 +2027,7 @@
             "spellId": 10756,
             "category": "Offensive",
             "description": {
-                "text": "Increases the time between an enemy's attacks by -20% for 120. Curses: A warlock can only have one Curse active per target.",
+                "text": "Increases the time between an enemy's attacks by 20% for 120. Curses: A warlock can only have one Curse active per target.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2074,7 +2074,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the time between an enemy's attacks by -20% and the casting time of all spells by -30% for 120. Curses: A warlock can only have one Curse active per target.",
+                            "text": "Increases the time between an enemy's attacks by 20% and the casting time of all spells by 30% for 120. Curses: A warlock can only have one Curse active per target.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -2090,7 +2090,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at -20% effectiveness.",
+                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2264,7 +2264,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels -10% faster and deals 15% increased damage.",
+                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels 10% faster and deals 15% increased damage.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2519,7 +2519,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by -4% for 10.",
+                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by 4% for 10.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -2551,7 +2551,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by -4% for 10.",
+                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by 4% for 10.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -2835,7 +2835,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by -4% for 10.",
+                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by 4% for 10.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -2883,7 +2883,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by -4% for 10.",
+                            "text": "Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by 4% for 10.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -2902,7 +2902,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the range of your Demonic Gateway by 20 yards, and reduces the cast time by -30%. Reduces the time between how often players can take your Demonic Gateway by -30 sec.",
+                            "text": "Increases the range of your Demonic Gateway by 20 yards, and reduces the cast time by 30%. Reduces the time between how often players can take your Demonic Gateway by 30 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3002,7 +3002,7 @@
             "spellId": 11522,
             "category": "Other",
             "description": {
-                "text": "Reduces the chance you will be critically struck by -2%. All damage your primary demon takes is reduced by -8%.",
+                "text": "Reduces the chance you will be critically struck by 2%. All damage your primary demon takes is reduced by 8%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3044,7 +3044,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3156,7 +3156,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3478,7 +3478,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels -10% faster and deals 15% increased damage.",
+                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels 10% faster and deals 15% increased damage.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3555,7 +3555,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3603,7 +3603,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3619,7 +3619,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4264,7 +4264,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Soul Anathema damage increased by 25% and is dealt -20% faster. Consuming Nightfall activates Shared Fate or Feast of Souls.",
+                            "text": "Soul Anathema damage increased by 25% and is dealt 20% faster. Consuming Nightfall activates Shared Fate or Feast of Souls.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4329,7 +4329,7 @@
             "spellId": 11508,
             "category": "Other",
             "description": {
-                "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by -90%.",
+                "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by 90%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4767,7 +4767,7 @@
             "spellId": 10978,
             "category": "Other",
             "description": {
-                "text": "Increases the range of your Demonic Gateway by 20 yards, and reduces the cast time by -30%. Reduces the time between how often players can take your Demonic Gateway by -30 sec.",
+                "text": "Increases the range of your Demonic Gateway by 20 yards, and reduces the cast time by 30%. Reduces the time between how often players can take your Demonic Gateway by 30 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4970,7 +4970,7 @@
             "spellId": 11653,
             "category": "Other",
             "description": {
-                "text": "Wither deals 30% increased periodic damage but its duration is -15% shorter.",
+                "text": "Wither deals 30% increased periodic damage but its duration is 15% shorter.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5000,7 +5000,7 @@
             "spellId": 10708,
             "category": "Offensive",
             "description": {
-                "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
+                "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5044,7 +5044,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5060,7 +5060,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5076,7 +5076,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corruption deals damage -25% faster and Haunt grants Nightfall.",
+                            "text": "Corruption deals damage 25% faster and Haunt grants Nightfall.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5229,7 +5229,7 @@
             "spellId": 12713,
             "category": "Other",
             "description": {
-                "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels -10% faster and deals 15% increased damage.",
+                "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels 10% faster and deals 15% increased damage.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5482,7 +5482,7 @@
             "spellId": 11659,
             "category": "Other",
             "description": {
-                "text": "Sacrifice -10% of your maximum health. Soul Leech now absorbs an additional 15% of your maximum health.",
+                "text": "Sacrifice 10% of your maximum health. Soul Leech now absorbs an additional 15% of your maximum health.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5632,7 +5632,7 @@
             "spellId": 10721,
             "category": "Other",
             "description": {
-                "text": "Reduces the cast time of Shadow Bolt by -15% and increases its damage by 40%.",
+                "text": "Reduces the cast time of Shadow Bolt by 15% and increases its damage by 40%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5829,7 +5829,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5845,7 +5845,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5861,7 +5861,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6288,7 +6288,7 @@
             "spellId": 10710,
             "category": "Other",
             "description": {
-                "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6396,7 +6396,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Soul Anathema damage increased by 25% and is dealt -20% faster. Consuming Nightfall activates Shared Fate or Feast of Souls.",
+                            "text": "Soul Anathema damage increased by 25% and is dealt 20% faster. Consuming Nightfall activates Shared Fate or Feast of Souls.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6412,7 +6412,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corruption deals damage -25% faster and Haunt grants Nightfall.",
+                            "text": "Corruption deals damage 25% faster and Haunt grants Nightfall.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6824,7 +6824,7 @@
             "spellId": 11670,
             "category": "Other",
             "description": {
-                "text": "Soul Anathema damage increased by 25% and is dealt -20% faster. Consuming Nightfall activates Shared Fate or Feast of Souls.",
+                "text": "Soul Anathema damage increased by 25% and is dealt 20% faster. Consuming Nightfall activates Shared Fate or Feast of Souls.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6944,7 +6944,7 @@
             "spellId": 11671,
             "category": "Other",
             "description": {
-                "text": "Corruption deals damage -25% faster and Haunt grants Nightfall.",
+                "text": "Corruption deals damage 25% faster and Haunt grants Nightfall.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7032,7 +7032,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7367,7 +7367,7 @@
             "spellId": 10742,
             "category": "Offensive",
             "description": {
-                "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Wither over its duration.",
+                "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7679,7 +7679,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Soul Anathema damage increased by 25% and is dealt -20% faster. Consuming Nightfall activates Shared Fate or Feast of Souls.",
+                            "text": "Soul Anathema damage increased by 25% and is dealt 20% faster. Consuming Nightfall activates Shared Fate or Feast of Souls.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7788,7 +7788,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels -10% faster and deals 15% increased damage.",
+                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels 10% faster and deals 15% increased damage.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7865,7 +7865,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Soul Anathema damage increased by 25% and is dealt -20% faster. Consuming Nightfall activates Shared Fate or Feast of Souls.",
+                            "text": "Soul Anathema damage increased by 25% and is dealt 20% faster. Consuming Nightfall activates Shared Fate or Feast of Souls.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8043,7 +8043,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sacrifice -10% of your maximum health. Soul Leech now absorbs an additional 15% of your maximum health.",
+                            "text": "Sacrifice 10% of your maximum health. Soul Leech now absorbs an additional 15% of your maximum health.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8178,7 +8178,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Forces the target to speak in Demonic, increasing the casting time of all spells by -30% for 60. Curses: A warlock can only have one Curse active per target.",
+                            "text": "Forces the target to speak in Demonic, increasing the casting time of all spells by 30% for 60. Curses: A warlock can only have one Curse active per target.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8197,7 +8197,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the time between an enemy's attacks by -20% for 120. Curses: A warlock can only have one Curse active per target.",
+                            "text": "Increases the time between an enemy's attacks by 20% for 120. Curses: A warlock can only have one Curse active per target.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8213,7 +8213,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases the time between an enemy's attacks by -20% and the casting time of all spells by -30% for 120. Curses: A warlock can only have one Curse active per target.",
+                            "text": "Increases the time between an enemy's attacks by 20% and the casting time of all spells by 30% for 120. Curses: A warlock can only have one Curse active per target.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8322,7 +8322,7 @@
             "spellId": 11507,
             "category": "Other",
             "description": {
-                "text": "Unending Resolve reduces damage taken by an additional -15%.",
+                "text": "Unending Resolve reduces damage taken by an additional 15%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8458,7 +8458,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by -90%.",
+                            "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by 90%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8604,7 +8604,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by -90%.",
+                            "text": "Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by 90%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8768,7 +8768,7 @@
             "spellId": 11524,
             "category": "Other",
             "description": {
-                "text": "Reduces the cast time of Soulstone and Create Healthstone by -50%.",
+                "text": "Reduces the cast time of Soulstone and Create Healthstone by 50%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8798,7 +8798,7 @@
             "spellId": 11510,
             "category": "Other",
             "description": {
-                "text": "Your primary pets gain a bonus effect. Imp: Successful Singe Magic casts grant the target -4% damage reduction for 5. Voidwalker: Reduces the cooldown of Shadow Bulwark by 0 sec. Felhunter: Reduces the cooldown of Devour Magic by 0 sec. Sayaad: Reduces the cooldown of Seduction by 0 sec and causes the target to walk faster towards the demon.",
+                "text": "Your primary pets gain a bonus effect. Imp: Successful Singe Magic casts grant the target 4% damage reduction for 5. Voidwalker: Reduces the cooldown of Shadow Bulwark by 0 sec. Felhunter: Reduces the cooldown of Devour Magic by 0 sec. Sayaad: Reduces the cooldown of Seduction by 0 sec and causes the target to walk faster towards the demon.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8875,7 +8875,7 @@
             "spellId": 10825,
             "category": "Defensive",
             "description": {
-                "text": "Hardens your skin, reducing all damage you take by -25% and granting immunity to interrupt, silence, and pushback effects for 8.",
+                "text": "Hardens your skin, reducing all damage you take by 25% and granting immunity to interrupt, silence, and pushback effects for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8887,7 +8887,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unending Resolve reduces damage taken by an additional -15%.",
+                            "text": "Unending Resolve reduces damage taken by an additional 15%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8922,7 +8922,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at -20% effectiveness.",
+                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8987,7 +8987,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Agony, Wither, and Unstable Affliction deal damage -10% faster.",
+                            "text": "Your Agony, Wither, and Unstable Affliction deal damage 10% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9594,7 +9594,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Agony, Wither, and Unstable Affliction deal damage -10% faster.",
+                            "text": "Your Agony, Wither, and Unstable Affliction deal damage 10% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9658,7 +9658,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Corruption deals damage -25% faster and Haunt grants Nightfall.",
+                            "text": "Corruption deals damage 25% faster and Haunt grants Nightfall.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9770,7 +9770,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
+                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9786,7 +9786,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9850,7 +9850,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9914,7 +9914,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9930,7 +9930,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel -50% faster while affected.",
+                            "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9946,7 +9946,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and -1 enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10286,7 +10286,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wither deals 30% increased periodic damage but its duration is -15% shorter.",
+                            "text": "Wither deals 30% increased periodic damage but its duration is 15% shorter.",
                             "uncertain": false
                         },
                         "category": "Other",

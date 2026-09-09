@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:38:44+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:09+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -37,7 +37,7 @@
             "spellId": 4518,
             "category": "Other",
             "description": {
-                "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
+                "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by 40%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -204,7 +204,7 @@
             "spellId": 4587,
             "category": "Other",
             "description": {
-                "text": "Disintegrate deals damage -25% more often, but deals -10% less damage.",
+                "text": "Disintegrate deals damage 25% more often, but deals 10% less damage.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -771,7 +771,7 @@
             "spellId": 4612,
             "category": "Other",
             "description": {
-                "text": "Fire Breath (varies by condition — check in-game) maximum empower level -20% faster.",
+                "text": "Fire Breath (varies by condition — check in-game) maximum empower level 20% faster.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1450,7 +1450,7 @@
             "spellId": 4104,
             "category": "Offensive",
             "description": {
-                "text": "Tear into an enemy with a blast of blue magic, inflicting (varies) Spellfrost damage over 3, and slowing their movement speed by -50% for 3.",
+                "text": "Tear into an enemy with a blast of blue magic, inflicting (varies) Spellfrost damage over 3, and slowing their movement speed by 50% for 3.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1462,7 +1462,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Disintegrate channels -20% faster(varies by condition — check in-game).",
+                            "text": "Disintegrate channels 20% faster(varies by condition — check in-game).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1526,7 +1526,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Deep Breath reduces the Essence costs of your next -1 Disintegrates and Pyres by -1. Stacks up to (varies) times.",
+                            "text": "Deep Breath reduces the Essence costs of your next 1 Disintegrates and Pyres by 1. Stacks up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1574,7 +1574,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Deep Breath reduces the Essence cost of your next -1 Eruptions by -1.",
+                            "text": "Deep Breath reduces the Essence cost of your next 1 Eruptions by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1590,7 +1590,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Disintegrate deals damage -25% more often, but deals -10% less damage.",
+                            "text": "Disintegrate deals damage 25% more often, but deals 10% less damage.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2181,7 +2181,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level -20% faster.",
+                            "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level 20% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2477,7 +2477,7 @@
             "spellId": 4560,
             "category": "Other",
             "description": {
-                "text": "After casting -6 Pyres, your next Pyre will explode into a Firestorm. Firestorm $@spelldesc368847",
+                "text": "After casting 6 Pyres, your next Pyre will explode into a Firestorm. Firestorm $@spelldesc368847",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2538,7 +2538,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level -20% faster.",
+                            "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level 20% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2557,7 +2557,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fire Breath (varies by condition — check in-game) maximum empower level -20% faster.",
+                            "text": "Fire Breath (varies by condition — check in-game) maximum empower level 20% faster.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2702,7 +2702,7 @@
             "spellId": 4586,
             "category": "Other",
             "description": {
-                "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level -20% faster.",
+                "text": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level 20% faster.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2762,7 +2762,7 @@
             "spellId": 4621,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) -15% more often.",
+                "text": "(varies by condition — check in-game) 15% more often.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3160,7 +3160,7 @@
             "spellId": 4562,
             "category": "Other",
             "description": {
-                "text": "Deep Breath reduces the Essence costs of your next 4 Disintegrates and Pyres by -1. Stacks up to (varies) times.",
+                "text": "Deep Breath reduces the Essence costs of your next 4 Disintegrates and Pyres by 1. Stacks up to (varies) times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3190,7 +3190,7 @@
             "spellId": 4539,
             "category": "Defensive",
             "description": {
-                "text": "Magic damage taken reduced by -2%.",
+                "text": "Magic damage taken reduced by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3668,7 +3668,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
+                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by 40%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3684,7 +3684,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fire Breath damage has -100% chance to cause your next Living Flame to be instant cast, stacking (varies) times.",
+                            "text": "Fire Breath damage has 100% chance to cause your next Living Flame to be instant cast, stacking (varies) times.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3732,7 +3732,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by -40%.",
+                            "text": "Casting Emerald Blossom or Verdant Embrace reduces the cast time of your next Living Flame by 40%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4172,7 +4172,7 @@
             "spellId": 4516,
             "category": "Other",
             "description": {
-                "text": "Disintegrate channels -20% faster(varies by condition — check in-game).",
+                "text": "Disintegrate channels 20% faster(varies by condition — check in-game).",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4322,7 +4322,7 @@
             "spellId": 4510,
             "category": "Defensive",
             "description": {
-                "text": "Reinforce your scales, reducing damage taken by -30% and causing you to be healed over 8 equal to the damage it prevented. Lasts 12.",
+                "text": "Reinforce your scales, reducing damage taken by 30% and causing you to be healed over 8 equal to the damage it prevented. Lasts 12.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4857,7 +4857,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Deep Breath reduces the Essence costs of your next -1 Disintegrates and Pyres by -1. Stacks up to (varies) times.",
+                            "text": "Deep Breath reduces the Essence costs of your next 1 Disintegrates and Pyres by 1. Stacks up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6657,7 +6657,7 @@
             "spellId": 4527,
             "category": "Mobility",
             "description": {
-                "text": "Conjure an updraft to lift you and your 4 nearest allies within (varies) yds into the air, reducing damage taken from area-of-effect attacks by -20% and increasing movement speed by 30% for 8.",
+                "text": "Conjure an updraft to lift you and your 4 nearest allies within (varies) yds into the air, reducing damage taken from area-of-effect attacks by 20% and increasing movement speed by 30% for 8.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:38:52+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:17+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -97,7 +97,7 @@
             "spellId": 10504,
             "category": "Other",
             "description": {
-                "text": "Enemies within 10 yds of your Frost Shock are snared by -30%.",
+                "text": "Enemies within 10 yds of your Frost Shock are snared by 30%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -127,7 +127,7 @@
             "spellId": 10564,
             "category": "Offensive",
             "description": {
-                "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -171,7 +171,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -253,7 +253,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -354,7 +354,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
+                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -615,7 +615,7 @@
             "spellId": 10481,
             "category": "Other",
             "description": {
-                "text": "Astral Shift reduces damage taken by an additional -20%.",
+                "text": "Astral Shift reduces damage taken by an additional 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -645,7 +645,7 @@
             "spellId": 10468,
             "category": "Defensive",
             "description": {
-                "text": "Shift partially into the elemental planes, taking -40% less damage for 12.",
+                "text": "Shift partially into the elemental planes, taking 40% less damage for 12.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -676,7 +676,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Astral Shift reduces damage taken by an additional -20%.",
+                            "text": "Astral Shift reduces damage taken by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1038,7 +1038,7 @@
             "spellId": 10457,
             "category": "Defensive",
             "description": {
-                "text": "Heals the friendly target for 50, then jumps up to 40 yards to heal the -1 most injured nearby allies. Healing is reduced by 30% with each jump.",
+                "text": "Heals the friendly target for 50, then jumps up to 40 yards to heal the (varies) most injured nearby allies. Healing is reduced by 30% with each jump.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1098,7 +1098,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maelstrom Weapon can now stack -10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
+                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1451,7 +1451,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1627,7 +1627,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1643,7 +1643,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1659,7 +1659,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1675,7 +1675,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1707,7 +1707,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1755,7 +1755,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1787,7 +1787,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2653,7 +2653,7 @@
             "spellId": 10577,
             "category": "Other",
             "description": {
-                "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
+                "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2758,7 +2758,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2824,7 +2824,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2906,7 +2906,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3248,7 +3248,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
+                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3556,7 +3556,7 @@
             "spellId": 10460,
             "category": "Crowd Control",
             "description": {
-                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within (varies) yards for 8. Enemies previously rooted by the totem instead suffer -50% movement speed reduction.",
+                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within (varies) yards for 8. Enemies previously rooted by the totem instead suffer 50% movement speed reduction.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3963,7 +3963,7 @@
             "spellId": 10501,
             "category": "Defensive",
             "description": {
-                "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by -6% for 3.",
+                "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by 6% for 3.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4023,7 +4023,7 @@
             "spellId": 10488,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all magic damage taken by -8%.",
+                "text": "Reduces all magic damage taken by 8%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4670,7 +4670,7 @@
             "spellId": 10475,
             "category": "Offensive",
             "description": {
-                "text": "Chills the target with frost, causing ≈72.5% of Spell Power Frost damage and reducing the target's movement speed by -50% for 6.",
+                "text": "Chills the target with frost, causing ≈72.5% of Spell Power Frost damage and reducing the target's movement speed by 50% for 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4846,7 +4846,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies within -30 yds of your Frost Shock are snared by -30%.",
+                            "text": "Enemies within 30 yds of your Frost Shock are snared by 30%.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -4862,7 +4862,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies within -30 yds of your Frost Shock are snared by -30%.",
+                            "text": "Enemies within 30 yds of your Frost Shock are snared by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4878,7 +4878,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies within 10 yds of your Frost Shock are snared by -30%.",
+                            "text": "Enemies within 10 yds of your Frost Shock are snared by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5124,7 +5124,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maelstrom Weapon can now stack -10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
+                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6924,7 +6924,7 @@
             "spellId": 10566,
             "category": "Other",
             "description": {
-                "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6968,7 +6968,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6984,7 +6984,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7096,7 +7096,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7112,7 +7112,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7290,7 +7290,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maelstrom Weapon can now stack -10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
+                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7306,7 +7306,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7322,7 +7322,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7370,7 +7370,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7436,7 +7436,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7484,7 +7484,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7564,7 +7564,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7969,7 +7969,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
+                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8282,7 +8282,7 @@
             "spellId": 10622,
             "category": "Defensive",
             "description": {
-                "text": "Lightning Shield reduces the damage you take by -3%.",
+                "text": "Lightning Shield reduces the damage you take by 3%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8384,7 +8384,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maelstrom Weapon can now stack -10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
+                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9081,7 +9081,7 @@
             "spellId": 10478,
             "category": "Defensive",
             "description": {
-                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and -5% damage reduction every (varies) sec, stacking up to (varies) times.",
+                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to (varies) times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9460,7 +9460,7 @@
             "spellId": 10595,
             "category": "Other",
             "description": {
-                "text": "Critical strikes of your Nature abilities reduce the target's movement speed by -60% for 5.",
+                "text": "Critical strikes of your Nature abilities reduce the target's movement speed by 60% for 5.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9609,7 +9609,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9675,7 +9675,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9837,7 +9837,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10063,7 +10063,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10597,7 +10597,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
+                            "text": "Each stack of Maelstrom Weapon consumed has a 0.6% chance to activate Ascendance for 6 sec. Ascendance Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11652,7 +11652,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by -20% and increases its damage by 20%.",
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12056,7 +12056,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Astral Shift reduces damage taken by an additional -20%.",
+                            "text": "Astral Shift reduces damage taken by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13242,7 +13242,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by -15% for 12.",
+                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by 15% for 12.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -13258,7 +13258,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by -15% for 12.",
+                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by 15% for 12.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -13447,7 +13447,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13513,7 +13513,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -13796,7 +13796,7 @@
             "spellId": 10480,
             "category": "Defensive",
             "description": {
-                "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by -15% for 12.",
+                "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by 15% for 12.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

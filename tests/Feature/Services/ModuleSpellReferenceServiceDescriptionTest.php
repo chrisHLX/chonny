@@ -323,3 +323,81 @@ test('resolveDescription consumes a trailing ".N" precision suffix after ${...}'
     // formatNumber() renders the whole value.
     expect($result['text'])->toBe('Reduces the cooldown by 3 sec.');
 });
+
+test('a bare token in prose renders its magnitude, so a stored reduction is not double-signed', function () {
+    // Blizzard stores a reduction as a negative base value and carries the direction in the prose
+    // around the token, so a signed render duplicates it ("by -40%"). Reported live 2026-09-10 on
+    // Bladestorm; measured at 1,069 spells across the current patch, Shield Wall / Barkskin /
+    // Pain Suppression / Divine Protection among them.
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 40, 'Reduces all damage you take by $s1%.');
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'base_value' => -40, 'scaled_value' => -40]);
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Reduces all damage you take by 40%.');
+});
+
+test('the magnitude rule holds when the prose inverts the framing', function () {
+    // Curse of Tongues' real shape: "Modify Casting Speed%: -30" rendered as "increasing the
+    // casting time ... by 30%". The sign lives in the prose, not in the word "reduces".
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 41, 'Increasing the casting time of all spells by $s1%.');
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'base_value' => -30, 'scaled_value' => -30]);
+
+    expect(app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build'])['text'])
+        ->toBe('Increasing the casting time of all spells by 30%.');
+});
+
+test('a prose range written as $sN-$sM is not corrupted into a double minus', function () {
+    // Chaos Theory / Flurry Strikes shape — 12 spells write a range this way, and a signed second
+    // token rendered "14--30%".
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 42, 'Gains a $s1-$s2% increased critical strike chance.');
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'base_value' => 14, 'scaled_value' => 14]);
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 2, 'base_value' => -30, 'scaled_value' => -30]);
+
+    expect(app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build'])['text'])
+        ->toBe('Gains a 14-30% increased critical strike chance.');
+});
+
+test('${...} arithmetic keeps the sign, because Blizzard flips it explicitly', function () {
+    // 392 expressions in the current patch flip the sign themselves ("${$s1*-1}",
+    // "${$m1/-1000}"). Dropping the sign inside the arithmetic would invert every one of them,
+    // which is why the magnitude rule above is deliberately bare-token-only.
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 43, 'Reduces the cooldown by ${$s1/-1000} sec.');
+    SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'base_value' => -5000, 'scaled_value' => -5000]);
+
+    expect(app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build'])['text'])
+        ->toBe('Reduces the cooldown by 5 sec.');
+});
+
+test('an unresolvable token used as a minuend is (varies), not a confident negative', function () {
+    // "$x1-1" collapsed to "0-1" and rendered "jumping to -1 additional nearby enemies"
+    // (Avenger's Shield). $x/$u/$i aren't captured in this schema, so there is nothing to resolve
+    // them to and a negative count of targets is the confidently-wrong answer.
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 44, 'Jumping to ${$x1-1} additional nearby enemies.');
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Jumping to (varies) additional nearby enemies.')
+        ->and($result['uncertain'])->toBeTrue();
+});
+
+test('an unresolvable token used as a subtrahend stays safe and still resolves', function () {
+    // The other side of the same expression is genuinely identity-safe: "$d-$s1" with a missing
+    // $s1 is still the duration, so it must not be poisoned along with the minuend case.
+    $fixture = makeDescriptionFixture();
+    $spell = Spell::create([
+        'patch_id' => $fixture['patch']->id, 'spell_id' => 45,
+        'name' => 'Test Spell', 'description' => 'Lasts ${$d-$s9} sec.', 'duration_seconds' => 12,
+    ]);
+    SpellClassAvailability::create([
+        'spell_id' => $spell->id, 'class_id' => $fixture['class']->id, 'spec_id' => $fixture['spec']->id, 'source' => 'baseline',
+    ]);
+
+    expect(app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build'])['text'])
+        ->toBe('Lasts 12 sec.');
+});

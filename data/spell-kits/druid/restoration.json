@@ -1,13 +1,13 @@
 {
-    "generatedAt": "2026-09-09T11:39:29+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:53+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 3973,
             "category": "Other",
             "description": {
-                "text": "While you have at least 5 Rejuvenations active, Regrowth's cost is reduced by -60% and critical chance is increased by 60%.",
+                "text": "While you have at least 5 Rejuvenations active, Regrowth's cost is reduced by 60% and critical chance is increased by 60%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -67,7 +67,7 @@
             "spellId": 3584,
             "category": "Defensive",
             "description": {
-                "text": "Shapeshift into an Ancient of Lore, preventing all crowd control effects, reducing damage taken by -30%, and granting you access to Blossom Burst and Mass Blooming. Reduces movement speed. Lasts 12. Blossom Burst: $@spelldesc473919 Mass Blooming: $@spelldesc474149",
+                "text": "Shapeshift into an Ancient of Lore, preventing all crowd control effects, reducing damage taken by 30%, and granting you access to Blossom Burst and Mass Blooming. Reduces movement speed. Lasts 12. Blossom Burst: $@spelldesc473919 Mass Blooming: $@spelldesc474149",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -165,7 +165,7 @@
             "spellId": 2959,
             "category": "Defensive",
             "description": {
-                "text": "Your skin becomes as tough as bark, reducing all damage you take by -20%, increasing healing received by 20%, and preventing damage from delaying your spellcasts. Lasts 8. Usable while stunned, frozen, incapacitated, feared, or asleep, and in all shapeshift forms.",
+                "text": "Your skin becomes as tough as bark, reducing all damage you take by 20%, increasing healing received by 20%, and preventing damage from delaying your spellcasts. Lasts 8. Usable while stunned, frozen, incapacitated, feared, or asleep, and in all shapeshift forms.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -209,7 +209,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Survival Instincts and Barkskin reduce damage taken by an additional -10%.",
+                            "text": "Survival Instincts and Barkskin reduce damage taken by an additional 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -293,7 +293,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Barkskin or Ironbark sprouts thorns on (varies by condition — check in-game) for 12. When victim to melee attacks, thorns deals ≈114% of Spell Power Nature damage back to the attacker. Attackers also have their movement speed reduced by -50% for 4.",
+                            "text": "Casting Barkskin or Ironbark sprouts thorns on (varies by condition — check in-game) for 12. When victim to melee attacks, thorns deals ≈114% of Spell Power Nature damage back to the attacker. Attackers also have their movement speed reduced by 50% for 4.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -325,7 +325,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Barkskin or Ironbark sprouts thorns on (varies by condition — check in-game) for 12. When victim to melee attacks, thorns deals ≈114% of Spell Power Nature damage back to the attacker. Attackers also have their movement speed reduced by -50% for 4.",
+                            "text": "Casting Barkskin or Ironbark sprouts thorns on (varies by condition — check in-game) for 12. When victim to melee attacks, thorns deals ≈114% of Spell Power Nature damage back to the attacker. Attackers also have their movement speed reduced by 50% for 4.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -541,7 +541,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wrath and Shred transfer -100% of their damage and Starfire and Swipe transfer 50% of their damage into healing onto a nearby ally. This effect is increased by -100% while Call of the Elder Druid is active.",
+                            "text": "Wrath and Shred transfer 100% of their damage and Starfire and Swipe transfer 50% of their damage into healing onto a nearby ally. This effect is increased by 100% while Call of the Elder Druid is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -655,7 +655,7 @@
             "spellId": 3993,
             "category": "Other",
             "description": {
-                "text": "Incarnation: Tree of Life During Incarnation: Tree of Life, you summon a Grove Guardian every (varies) sec. The cooldown of Incarnation: Tree of Life is reduced by 5 sec when Grove Guardians fade. Convoke the Spirits Convoke the Spirits' cooldown is reduced by 0% and its duration and number of spells cast is reduced by -25%. Convoke the Spirits has an increased chance to use an exceptional spell or ability.",
+                "text": "Incarnation: Tree of Life During Incarnation: Tree of Life, you summon a Grove Guardian every (varies) sec. The cooldown of Incarnation: Tree of Life is reduced by 5 sec when Grove Guardians fade. Convoke the Spirits Convoke the Spirits' cooldown is reduced by 0% and its duration and number of spells cast is reduced by 25%. Convoke the Spirits has an increased chance to use an exceptional spell or ability.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -817,7 +817,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Convoke the Spirits' cooldown is reduced by 0% and its duration and number of spells cast is reduced by -25% Convoke the Spirits has an increased chance to use an exceptional spell or ability.",
+                            "text": "Convoke the Spirits' cooldown is reduced by 0% and its duration and number of spells cast is reduced by 25% Convoke the Spirits has an increased chance to use an exceptional spell or ability.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -849,7 +849,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Incarnation: Tree of Life During Incarnation: Tree of Life, you summon a Grove Guardian every (varies) sec. The cooldown of Incarnation: Tree of Life is reduced by 5 sec when Grove Guardians fade. Convoke the Spirits Convoke the Spirits' cooldown is reduced by 0% and its duration and number of spells cast is reduced by -25%. Convoke the Spirits has an increased chance to use an exceptional spell or ability.",
+                            "text": "Incarnation: Tree of Life During Incarnation: Tree of Life, you summon a Grove Guardian every (varies) sec. The cooldown of Incarnation: Tree of Life is reduced by 5 sec when Grove Guardians fade. Convoke the Spirits Convoke the Spirits' cooldown is reduced by 0% and its duration and number of spells cast is reduced by 25%. Convoke the Spirits has an increased chance to use an exceptional spell or ability.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -958,7 +958,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1406,7 +1406,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Grove Guardians, Efflorescence, and your other summons heal for -33% more.",
+                            "text": "Grove Guardians, Efflorescence, and your other summons heal for 33% more.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -1586,7 +1586,7 @@
             "spellId": 3984,
             "category": "Defensive",
             "description": {
-                "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for -50.",
+                "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for 50.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1690,7 +1690,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2150,7 +2150,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2854,7 +2854,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Grove Guardians, Efflorescence, and your other summons heal for -33% more.",
+                            "text": "Grove Guardians, Efflorescence, and your other summons heal for 33% more.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -2998,7 +2998,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Incarnation: Tree of Life During Incarnation: Tree of Life, you summon a Grove Guardian every (varies) sec. The cooldown of Incarnation: Tree of Life is reduced by 5 sec when Grove Guardians fade. Convoke the Spirits Convoke the Spirits' cooldown is reduced by 0% and its duration and number of spells cast is reduced by -25%. Convoke the Spirits has an increased chance to use an exceptional spell or ability.",
+                            "text": "Incarnation: Tree of Life During Incarnation: Tree of Life, you summon a Grove Guardian every (varies) sec. The cooldown of Incarnation: Tree of Life is reduced by 5 sec when Grove Guardians fade. Convoke the Spirits Convoke the Spirits' cooldown is reduced by 0% and its duration and number of spells cast is reduced by 25%. Convoke the Spirits has an increased chance to use an exceptional spell or ability.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3276,7 +3276,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3944,7 +3944,7 @@
             "spellId": 3960,
             "category": "Defensive",
             "description": {
-                "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by -20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
+                "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by 20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4055,7 +4055,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Barkskin or Ironbark sprouts thorns on (varies by condition — check in-game) for 12. When victim to melee attacks, thorns deals ≈114% of Spell Power Nature damage back to the attacker. Attackers also have their movement speed reduced by -50% for 4.",
+                            "text": "Casting Barkskin or Ironbark sprouts thorns on (varies by condition — check in-game) for 12. When victim to melee attacks, thorns deals ≈114% of Spell Power Nature damage back to the attacker. Attackers also have their movement speed reduced by 50% for 4.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4087,7 +4087,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Barkskin or Ironbark sprouts thorns on (varies by condition — check in-game) for 12. When victim to melee attacks, thorns deals ≈114% of Spell Power Nature damage back to the attacker. Attackers also have their movement speed reduced by -50% for 4.",
+                            "text": "Casting Barkskin or Ironbark sprouts thorns on (varies by condition — check in-game) for 12. When victim to melee attacks, thorns deals ≈114% of Spell Power Nature damage back to the attacker. Attackers also have their movement speed reduced by 50% for 4.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4236,7 +4236,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4472,7 +4472,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by -20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
+                            "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by 20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -4554,7 +4554,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4878,7 +4878,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5145,7 +5145,7 @@
             "spellId": 3997,
             "category": "Other",
             "description": {
-                "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5205,7 +5205,7 @@
             "spellId": 3790,
             "category": "Other",
             "description": {
-                "text": "You gain a bonus while in each form inspired by the breadth of your Druidic knowledge: No Form: 4% Magic Damage Cat Form: 4% Stamina Bear Form: 5% Movement Speed Moonkin Form: -3% Area damage taken reduction",
+                "text": "You gain a bonus while in each form inspired by the breadth of your Druidic knowledge: No Form: 4% Magic Damage Cat Form: 4% Stamina Bear Form: 5% Movement Speed Moonkin Form: 3% Area damage taken reduction",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5341,7 +5341,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5488,7 +5488,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6150,7 +6150,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You gain a bonus while in each form inspired by the breadth of your Druidic knowledge: No Form: 4% Magic Damage Cat Form: 4% Stamina Bear Form: 5% Movement Speed Moonkin Form: -3% Area damage taken reduction",
+                            "text": "You gain a bonus while in each form inspired by the breadth of your Druidic knowledge: No Form: 4% Magic Damage Cat Form: 4% Stamina Bear Form: 5% Movement Speed Moonkin Form: 3% Area damage taken reduction",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6513,7 +6513,7 @@
             "spellId": 3781,
             "category": "Other",
             "description": {
-                "text": "Survival Instincts and Barkskin reduce damage taken by an additional -10%.",
+                "text": "Survival Instincts and Barkskin reduce damage taken by an additional 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7089,7 +7089,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7285,7 +7285,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7723,7 +7723,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by -20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
+                            "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by 20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -7821,7 +7821,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While you have at least -60 Rejuvenations active, Regrowth's cost is reduced by -60% and critical chance is increased by 60%.",
+                            "text": "While you have at least 60 Rejuvenations active, Regrowth's cost is reduced by 60% and critical chance is increased by 60%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7837,7 +7837,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8287,7 +8287,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While you have at least 5 Rejuvenations active, Regrowth's cost is reduced by -60% and critical chance is increased by 60%.",
+                            "text": "While you have at least 5 Rejuvenations active, Regrowth's cost is reduced by 60% and critical chance is increased by 60%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8419,7 +8419,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8499,7 +8499,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for -50.",
+                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for 50.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -8515,7 +8515,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for -50.",
+                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for 50.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -8563,7 +8563,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for -50.",
+                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for 50.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -8628,7 +8628,7 @@
             "spellId": 3730,
             "category": "Defensive",
             "description": {
-                "text": "Heals the target for (varies) over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by -30%.",
+                "text": "Heals the target for (varies) over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by 30%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -8658,7 +8658,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by -20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
+                            "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by 20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8772,7 +8772,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8884,7 +8884,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While you have at least -60 Rejuvenations active, Regrowth's cost is reduced by -60% and critical chance is increased by 60%.",
+                            "text": "While you have at least 60 Rejuvenations active, Regrowth's cost is reduced by 60% and critical chance is increased by 60%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9062,7 +9062,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While you have at least 5 Rejuvenations active, Regrowth's cost is reduced by -60% and critical chance is increased by 60%.",
+                            "text": "While you have at least 5 Rejuvenations active, Regrowth's cost is reduced by 60% and critical chance is increased by 60%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9194,7 +9194,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9274,7 +9274,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals the target for (varies) over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by -30%.",
+                            "text": "Heals the target for (varies) over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by 30%.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9370,7 +9370,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for -50.",
+                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for 50.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -9386,7 +9386,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for -50.",
+                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for 50.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -9402,7 +9402,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ysera's Gift now heals every 4 sec and its healing is increased by -1,000% for each of your active Rejuvenations.",
+                            "text": "Ysera's Gift now heals every 4 sec and its healing is increased by 1,000% for each of your active Rejuvenations.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9514,7 +9514,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for -50.",
+                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for 50.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -9563,7 +9563,7 @@
             "spellId": 3068,
             "category": "Defensive",
             "description": {
-                "text": "Heals the target for (varies) over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by -30%.",
+                "text": "Heals the target for (varies) over 12. You can apply Rejuvenation twice to the same target. Tree of Life: Healing increased by 40% and Mana cost reduced by 30%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -9593,7 +9593,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by -20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
+                            "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by 20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9707,7 +9707,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9823,7 +9823,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10168,7 +10168,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10364,7 +10364,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10648,7 +10648,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11049,7 +11049,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11129,7 +11129,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wrath, Starsurge, and Starfire damage increased by 5%.  Starsurge's cooldown is reduced by 4 sec and its mana cost is reduced by -50%.",
+                            "text": "Wrath, Starsurge, and Starfire damage increased by 5%.  Starsurge's cooldown is reduced by 4 sec and its mana cost is reduced by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11193,7 +11193,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wrath and Shred transfer -100% of their damage and Starfire and Swipe transfer 50% of their damage into healing onto a nearby ally. This effect is increased by -100% while Call of the Elder Druid is active.",
+                            "text": "Wrath and Shred transfer 100% of their damage and Starfire and Swipe transfer 50% of their damage into healing onto a nearby ally. This effect is increased by 100% while Call of the Elder Druid is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11469,7 +11469,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11518,7 +11518,7 @@
             "spellId": 3783,
             "category": "Other",
             "description": {
-                "text": "Wrath, Starsurge, and Starfire damage increased by 5%.  Starsurge's cooldown is reduced by 4 sec and its mana cost is reduced by -50%.",
+                "text": "Wrath, Starsurge, and Starfire damage increased by 5%.  Starsurge's cooldown is reduced by 4 sec and its mana cost is reduced by 50%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11624,7 +11624,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11672,7 +11672,7 @@
                         "modifier_value": -4,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Wrath, Starsurge, and Starfire damage increased by 5%.  Starsurge's cooldown is reduced by 4 sec and its mana cost is reduced by -50%.",
+                            "text": "Wrath, Starsurge, and Starfire damage increased by 5%.  Starsurge's cooldown is reduced by 4 sec and its mana cost is reduced by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -12076,7 +12076,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -12413,7 +12413,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12817,7 +12817,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13130,7 +13130,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wrath and Shred transfer -100% of their damage and Starfire and Swipe transfer 50% of their damage into healing onto a nearby ally. This effect is increased by -100% while Call of the Elder Druid is active.",
+                            "text": "Wrath and Shred transfer 100% of their damage and Starfire and Swipe transfer 50% of their damage into healing onto a nearby ally. This effect is increased by 100% while Call of the Elder Druid is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13306,7 +13306,7 @@
             "spellId": 3737,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all damage taken by -4%.",
+                "text": "Reduces all damage taken by 4%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -13336,7 +13336,7 @@
             "spellId": 3605,
             "category": "Other",
             "description": {
-                "text": "Casting Barkskin or Ironbark sprouts thorns on (varies by condition — check in-game) for 12. When victim to melee attacks, thorns deals ≈114% of Spell Power Nature damage back to the attacker. Attackers also have their movement speed reduced by -50% for 4.",
+                "text": "Casting Barkskin or Ironbark sprouts thorns on (varies by condition — check in-game) for 12. When victim to melee attacks, thorns deals ≈114% of Spell Power Nature damage back to the attacker. Attackers also have their movement speed reduced by 50% for 4.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -13804,7 +13804,7 @@
             "spellId": 3754,
             "category": "Crowd Control",
             "description": {
-                "text": "Blasts targets within 0 yards in front of you with a violent Typhoon, knocking them back and reducing their movement speed by -50% for 6. Usable in all shapeshift forms.",
+                "text": "Blasts targets within 0 yards in front of you with a violent Typhoon, knocking them back and reducing their movement speed by 50% for 6. Usable in all shapeshift forms.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -13832,7 +13832,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blasts targets within 0 yards in front of you with a violent Typhoon, knocking them back and reducing their movement speed by -50% for 6. Usable in all shapeshift forms.",
+                            "text": "Blasts targets within 0 yards in front of you with a violent Typhoon, knocking them back and reducing their movement speed by 50% for 6. Usable in all shapeshift forms.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -14006,7 +14006,7 @@
             "spellId": 3749,
             "category": "Crowd Control",
             "description": {
-                "text": "Conjures a vortex of wind for 10 at the destination, reducing the movement speed of all enemies within (varies) yards by -50%. The first time an enemy attempts to leave the vortex, winds will pull that enemy back to its center. Usable in all shapeshift forms.",
+                "text": "Conjures a vortex of wind for 10 at the destination, reducing the movement speed of all enemies within (varies) yards by 50%. The first time an enemy attempts to leave the vortex, winds will pull that enemy back to its center. Usable in all shapeshift forms.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14358,7 +14358,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by -20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
+                            "text": "The target's skin becomes as tough as Ironwood, reducing damage taken by 20% and increasing healing from your heal over time effects by (varies)% for 12. Allies protected by your Ironbark also receive 75% of the healing from each of your active Rejuvenations.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -14440,7 +14440,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -14814,7 +14814,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -14878,7 +14878,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for -50.",
+                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for 50.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -14894,7 +14894,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for -50.",
+                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for 50.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -14958,7 +14958,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for -50.",
+                            "text": "Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for 50.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -15231,7 +15231,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by -30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
+                            "text": "Abilities not associated with your specialization are substantially empowered for 45. Balance: Cast time of Balance spells reduced by 30% and damage increased by 20%. Feral: Gain 1 Combo Point every (varies) sec while in Cat Form and Physical damage increased by 20%. Guardian: Bear Form gives an additional 20% Stamina, multiple uses of Ironfur may overlap, and Frenzied Regeneration has 2 charges.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -15311,7 +15311,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wrath, Starsurge, and Starfire damage increased by 5%.  Starsurge's cooldown is reduced by 4 sec and its mana cost is reduced by -50%.",
+                            "text": "Wrath, Starsurge, and Starfire damage increased by 5%.  Starsurge's cooldown is reduced by 4 sec and its mana cost is reduced by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -15375,7 +15375,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wrath and Shred transfer -100% of their damage and Starfire and Swipe transfer 50% of their damage into healing onto a nearby ally. This effect is increased by -100% while Call of the Elder Druid is active.",
+                            "text": "Wrath and Shred transfer 100% of their damage and Starfire and Swipe transfer 50% of their damage into healing onto a nearby ally. This effect is increased by 100% while Call of the Elder Druid is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -15667,7 +15667,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your damage over time effects deal their damage -25% faster, and your healing over time effects heal -5% faster.",
+                            "text": "Your damage over time effects deal their damage 25% faster, and your healing over time effects heal 5% faster.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -15763,7 +15763,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Ysera's Gift now heals every 4 sec and its healing is increased by -1,000% for each of your active Rejuvenations.",
+                            "text": "Ysera's Gift now heals every 4 sec and its healing is increased by 1,000% for each of your active Rejuvenations.",
                             "uncertain": false
                         },
                         "category": "Other",

@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:38:50+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:15+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -125,7 +125,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by -10%.",
+                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by 10%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -286,7 +286,7 @@
             "spellId": 10504,
             "category": "Other",
             "description": {
-                "text": "Enemies within 10 yds of your Frost Shock are snared by -30%.",
+                "text": "Enemies within 10 yds of your Frost Shock are snared by 30%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -344,7 +344,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -410,7 +410,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by -60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
+                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -646,7 +646,7 @@
             "spellId": 10481,
             "category": "Other",
             "description": {
-                "text": "Astral Shift reduces damage taken by an additional -20%.",
+                "text": "Astral Shift reduces damage taken by an additional 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -676,7 +676,7 @@
             "spellId": 10468,
             "category": "Defensive",
             "description": {
-                "text": "Shift partially into the elemental planes, taking -40% less damage for 12.",
+                "text": "Shift partially into the elemental planes, taking 40% less damage for 12.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -707,7 +707,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Astral Shift reduces damage taken by an additional -20%.",
+                            "text": "Astral Shift reduces damage taken by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1145,7 +1145,7 @@
             "spellId": 10457,
             "category": "Defensive",
             "description": {
-                "text": "Heals the friendly target for 50, then jumps up to 40 yards to heal the -1 most injured nearby allies. Healing is reduced by 30% with each jump.",
+                "text": "Heals the friendly target for 50, then jumps up to 40 yards to heal the (varies) most injured nearby allies. Healing is reduced by 30% with each jump.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1269,7 +1269,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by -10%.",
+                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by 10%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1754,7 +1754,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by -15%.",
+                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by 15%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2738,7 +2738,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the Maelstrom cost of Earth Shock and Earthquake by -5. Reduces the Maelstrom cost of Elemental Blast by -10.",
+                            "text": "Reduces the Maelstrom cost of Earth Shock and Earthquake by 5. Reduces the Maelstrom cost of Elemental Blast by 10.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2959,7 +2959,7 @@
             "spellId": 10460,
             "category": "Crowd Control",
             "description": {
-                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within (varies) yards for 8. Enemies previously rooted by the totem instead suffer -50% movement speed reduction.",
+                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within (varies) yards for 8. Enemies previously rooted by the totem instead suffer 50% movement speed reduction.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3229,7 +3229,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the Maelstrom cost of Earth Shock and Earthquake by -5. Reduces the Maelstrom cost of Elemental Blast by -10.",
+                            "text": "Reduces the Maelstrom cost of Earth Shock and Earthquake by 5. Reduces the Maelstrom cost of Elemental Blast by 10.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3876,7 +3876,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the Maelstrom cost of Earth Shock and Earthquake by -5. Reduces the Maelstrom cost of Elemental Blast by -10.",
+                            "text": "Reduces the Maelstrom cost of Earth Shock and Earthquake by 5. Reduces the Maelstrom cost of Elemental Blast by 10.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4168,7 +4168,7 @@
             "spellId": 10501,
             "category": "Defensive",
             "description": {
-                "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by -6% for 3.",
+                "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by 6% for 3.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4305,7 +4305,7 @@
             "spellId": 10488,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all magic damage taken by -8%.",
+                "text": "Reduces all magic damage taken by 8%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4425,7 +4425,7 @@
             "spellId": 10531,
             "category": "Other",
             "description": {
-                "text": "Reduces the Maelstrom cost of Earth Shock and Earthquake by -5. Reduces the Maelstrom cost of Elemental Blast by -10.",
+                "text": "Reduces the Maelstrom cost of Earth Shock and Earthquake by 5. Reduces the Maelstrom cost of Elemental Blast by 10.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4744,7 +4744,7 @@
             "spellId": 10475,
             "category": "Offensive",
             "description": {
-                "text": "Chills the target with frost, causing ≈72.5% of Spell Power Frost damage and reducing the target's movement speed by -50% for 6. Generates 10 Maelstrom.",
+                "text": "Chills the target with frost, causing ≈72.5% of Spell Power Frost damage and reducing the target's movement speed by 50% for 6. Generates 10 Maelstrom.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4936,7 +4936,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies within -30 yds of your Frost Shock are snared by -30%.",
+                            "text": "Enemies within 30 yds of your Frost Shock are snared by 30%.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -4952,7 +4952,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies within -30 yds of your Frost Shock are snared by -30%.",
+                            "text": "Enemies within 30 yds of your Frost Shock are snared by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4984,7 +4984,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies within 10 yds of your Frost Shock are snared by -30%.",
+                            "text": "Enemies within 10 yds of your Frost Shock are snared by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5309,7 +5309,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by -6% for 3.",
+                            "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by 6% for 3.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -5325,7 +5325,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by -6% for 3.",
+                            "text": "Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by 6% for 3.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -6010,7 +6010,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by -10%.",
+                            "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by 10%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7441,7 +7441,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by -15%.",
+                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by 15%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8413,7 +8413,7 @@
             "spellId": 10622,
             "category": "Defensive",
             "description": {
-                "text": "Lightning Shield reduces the damage you take by -3%.",
+                "text": "Lightning Shield reduces the damage you take by 3%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8487,7 +8487,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by -10%.",
+                            "text": "(varies by condition — check in-game)Increases the chance for Lava Surge to occur by 10%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9274,7 +9274,7 @@
             "spellId": 10478,
             "category": "Defensive",
             "description": {
-                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and -5% damage reduction every (varies) sec, stacking up to (varies) times.",
+                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to (varies) times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9597,7 +9597,7 @@
             "spellId": 10540,
             "category": "Other",
             "description": {
-                "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by -15%.",
+                "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by 15%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10464,7 +10464,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by -15%.",
+                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by 15%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10702,7 +10702,7 @@
             "spellId": 9785,
             "category": "Crowd Control",
             "description": {
-                "text": "Calls down a bolt of lightning, dealing ≈15.2% of Spell Power Nature damage to all enemies within (varies) yards, reducing their movement speed by -40% for 5, and knocking them upward. Usable while stunned.",
+                "text": "Calls down a bolt of lightning, dealing ≈15.2% of Spell Power Nature damage to all enemies within (varies) yards, reducing their movement speed by 40% for 5, and knocking them upward. Usable while stunned.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11696,7 +11696,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by -15% for 12.",
+                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by 15% for 12.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -11712,7 +11712,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by -15% for 12.",
+                            "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by 15% for 12.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -11826,7 +11826,7 @@
             "spellId": 10616,
             "category": "Other",
             "description": {
-                "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by -10%.",
+                "text": "The cast times of (varies by condition — check in-game) Lava Burst are reduced by 10%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11856,7 +11856,7 @@
             "spellId": 10480,
             "category": "Defensive",
             "description": {
-                "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by -15% for 12.",
+                "text": "Interrupting a spell with Wind Shear reduces all spell damage taken by 15% for 12.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

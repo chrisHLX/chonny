@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:38:46+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:11+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -204,7 +204,7 @@
             "spellId": 1994,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all damage taken by -25% for 10.",
+                "text": "Reduces all damage taken by 25% for 10.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1544,7 +1544,7 @@
             "spellId": 2674,
             "category": "Defensive",
             "description": {
-                "text": "Interrupting a spell with Disrupt decreases your magic damage taken by -15% for 12.",
+                "text": "Interrupting a spell with Disrupt decreases your magic damage taken by 15% for 12.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2550,7 +2550,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Interrupting a spell with Disrupt decreases your magic damage taken by -15% for 12.",
+                            "text": "Interrupting a spell with Disrupt decreases your magic damage taken by 15% for 12.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -2582,7 +2582,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Interrupting a spell with Disrupt decreases your magic damage taken by -15% for 12.",
+                            "text": "Interrupting a spell with Disrupt decreases your magic damage taken by 15% for 12.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -4235,7 +4235,7 @@
             "spellId": 2654,
             "category": "Defensive",
             "description": {
-                "text": "Reduces magic damage taken by -3%.",
+                "text": "Reduces magic damage taken by 3%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4689,7 +4689,7 @@
             "spellId": 2655,
             "category": "Other",
             "description": {
-                "text": "Throw Glaive has 2 charges and snares all enemies hit by -50% for 6.",
+                "text": "Throw Glaive has 2 charges and snares all enemies hit by 50% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4946,7 +4946,7 @@
             "spellId": 2798,
             "category": "Other",
             "description": {
-                "text": "Each stack of Voidfall grants -2% reduced damage taken.",
+                "text": "Each stack of Voidfall grants 2% reduced damage taken.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6987,7 +6987,7 @@
             "spellId": 2712,
             "category": "Other",
             "description": {
-                "text": "Void Metamorphosis requires -15 less souls. Your Fury drains 25% faster while in Void Metamorphosis.",
+                "text": "Void Metamorphosis requires 15 less souls. Your Fury drains 25% faster while in Void Metamorphosis.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8321,7 +8321,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Throw Glaive has 2 charges and snares all enemies hit by -50% for 6.",
+                            "text": "Throw Glaive has 2 charges and snares all enemies hit by 50% for 6.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8337,7 +8337,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw Glaive has 2 charges and snares all enemies hit by -50% for 6.",
+                            "text": "Throw Glaive has 2 charges and snares all enemies hit by 50% for 6.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -8725,7 +8725,7 @@
             "spellId": 2650,
             "category": "Other",
             "description": {
-                "text": "Vengeful Retreat reduces the movement speed of all nearby enemies by -70% for 3.",
+                "text": "Vengeful Retreat reduces the movement speed of all nearby enemies by 70% for 3.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8755,7 +8755,7 @@
             "spellId": 2636,
             "category": "Offensive",
             "description": {
-                "text": "Remove all snares and vault away. Nearby enemies take 100 Physical damage and have their movement speed reduced by -70% for 3. Generates 80 Fury over 10 if you damage an enemy.",
+                "text": "Remove all snares and vault away. Nearby enemies take 100 Physical damage and have their movement speed reduced by 70% for 3. Generates 80 Fury over 10 if you damage an enemy.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8783,7 +8783,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Vengeful Retreat reduces the movement speed of all nearby enemies by -70% for 3.",
+                            "text": "Vengeful Retreat reduces the movement speed of all nearby enemies by 70% for 3.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8896,7 +8896,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Void Metamorphosis requires -15 less souls. Your Fury drains 25% faster while in Void Metamorphosis.",
+                            "text": "Void Metamorphosis requires 15 less souls. Your Fury drains 25% faster while in Void Metamorphosis.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10651,7 +10651,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each stack of Voidfall grants -2% reduced damage taken.",
+                            "text": "Each stack of Voidfall grants 2% reduced damage taken.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10912,7 +10912,7 @@
             "spellId": 2804,
             "category": "Offensive",
             "description": {
-                "text": "(varies by condition — check in-game) Nova slows enemies by 60% and reduces attack and cast speed by -15% for 5 after its stun fades.",
+                "text": "(varies by condition — check in-game) Nova slows enemies by 60% and reduces attack and cast speed by 15% for 5 after its stun fades.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

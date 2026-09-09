@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:39:11+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:36+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -221,7 +221,7 @@
             "spellId": 776,
             "category": "Utility",
             "description": {
-                "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by -70%.",
+                "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by 70%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -300,7 +300,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your healing is increased by -100% while Apotheosis is active. Casting Apotheosis causes your next (varies) Prayer of Healing casts to be instant and heal for 25% more.",
+                            "text": "Your healing is increased by 100% while Apotheosis is active. Casting Apotheosis causes your next (varies) Prayer of Healing casts to be instant and heal for 25% more.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -391,7 +391,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by -70%.",
+                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by 70%.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -407,7 +407,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by -5%.",
+                            "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by 5%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -471,7 +471,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the mana cost of Flash Heal by -15%.",
+                            "text": "Reduces the mana cost of Flash Heal by 15%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1240,7 +1240,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the mana cost of Purify and Mass Dispel by -50% and Dispel Magic by -10%.",
+                            "text": "Reduces the mana cost of Purify and Mass Dispel by 50% and Dispel Magic by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1670,7 +1670,7 @@
             "spellId": 805,
             "category": "Other",
             "description": {
-                "text": "Reduces the mana cost of Prayer of Healing by -15%.",
+                "text": "Reduces the mana cost of Prayer of Healing by 15%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2141,7 +2141,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fade reduces damage you take by -10%.",
+                            "text": "Fade reduces damage you take by 10%.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -2342,7 +2342,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by -70%.",
+                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by 70%.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -2358,7 +2358,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by -5%.",
+                            "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by 5%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2422,7 +2422,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the mana cost of Flash Heal by -15%.",
+                            "text": "Reduces the mana cost of Flash Heal by 15%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2486,7 +2486,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) on yourself reduces all damage you take by -10% for 10.",
+                            "text": "Casting (varies by condition — check in-game) on yourself reduces all damage you take by 10% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -2502,7 +2502,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces your target's physical damage taken by -5% for 15 after a critical heal with (varies by condition — check in-game).",
+                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with (varies by condition — check in-game).",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -2518,7 +2518,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost -50% less mana. Stacks to (varies).",
+                            "text": "Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost 50% less mana. Stacks to (varies).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2534,7 +2534,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting (varies by condition — check in-game) on yourself reduces all damage you take by -10% for 10.",
+                            "text": "Casting (varies by condition — check in-game) on yourself reduces all damage you take by 10% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -2566,7 +2566,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces your target's physical damage taken by -5% for 15 after a critical heal with (varies by condition — check in-game).",
+                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with (varies by condition — check in-game).",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -2861,7 +2861,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Flash Heal reduces the cast time of your next Prayer of Healing within 20 by -30% and increases its healing done by 18%. Can accumulate up to (varies) charges.",
+                            "text": "Flash Heal reduces the cast time of your next Prayer of Healing within 20 by 30% and increases its healing done by 18%. Can accumulate up to (varies) charges.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2941,7 +2941,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Flash Heal reduces the cast time of your next Prayer of Healing within 20 by -30% and increases its healing done by 18%. Can accumulate up to (varies) charges.",
+                            "text": "Flash Heal reduces the cast time of your next Prayer of Healing within 20 by 30% and increases its healing done by 18%. Can accumulate up to (varies) charges.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3688,7 +3688,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Halo damage reduces enemy movement speed by -5% for 5, stacking up to (varies) times.",
+                            "text": "Halo damage reduces enemy movement speed by 5% for 5, stacking up to (varies) times.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3741,7 +3741,7 @@
             "spellId": 806,
             "category": "Other",
             "description": {
-                "text": "Reduces the mana cost of Flash Heal by -15%.",
+                "text": "Reduces the mana cost of Flash Heal by 15%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4626,7 +4626,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by -70%.",
+                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by 70%.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -5114,7 +5114,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by -70%.",
+                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by 70%.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -5882,7 +5882,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by -70%.",
+                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by 70%.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -6138,7 +6138,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces your target's physical damage taken by -5% for 15 after a critical heal with (varies by condition — check in-game).",
+                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with (varies by condition — check in-game).",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6186,7 +6186,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces your target's physical damage taken by -5% for 15 after a critical heal with (varies by condition — check in-game).",
+                            "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with (varies by condition — check in-game).",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6852,7 +6852,7 @@
             "spellId": 647,
             "category": "Defensive",
             "description": {
-                "text": "Reduces your target's physical damage taken by -5% for 15 after a critical heal with (varies by condition — check in-game).",
+                "text": "Reduces your target's physical damage taken by 5% for 15 after a critical heal with (varies by condition — check in-game).",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7538,7 +7538,7 @@
             "spellId": 788,
             "category": "Other",
             "description": {
-                "text": "Flash Heal reduces the cast time of your next Prayer of Healing within 20 by -30% and increases its healing done by 18%. Can accumulate up to (varies) charges.",
+                "text": "Flash Heal reduces the cast time of your next Prayer of Healing within 20 by 30% and increases its healing done by 18%. Can accumulate up to (varies) charges.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7610,7 +7610,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the mana cost of Purify and Mass Dispel by -50% and Dispel Magic by -10%.",
+                            "text": "Reduces the mana cost of Purify and Mass Dispel by 50% and Dispel Magic by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7662,7 +7662,7 @@
             "spellId": 635,
             "category": "Other",
             "description": {
-                "text": "Reduces the mana cost of Purify and Mass Dispel by -50% and Dispel Magic by -10%.",
+                "text": "Reduces the mana cost of Purify and Mass Dispel by 50% and Dispel Magic by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8426,7 +8426,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by -70%.",
+                            "text": "Gain a charge of your Holy Words, and enter a pure Holy form for 20, increasing the cooldown reductions to your Holy Words by 200% and reducing their cost by 70%.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -8442,7 +8442,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by -5%.",
+                            "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by 5%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8522,7 +8522,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost -50% less mana. Stacks to (varies).",
+                            "text": "Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost 50% less mana. Stacks to (varies).",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8820,7 +8820,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Flash Heal reduces the cast time of your next Prayer of Healing within 20 by -30% and increases its healing done by 18%. Can accumulate up to (varies) charges.",
+                            "text": "Flash Heal reduces the cast time of your next Prayer of Healing within 20 by 30% and increases its healing done by 18%. Can accumulate up to (varies) charges.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8852,7 +8852,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your healing is increased by -100% while Apotheosis is active. Casting Apotheosis causes your next (varies) Prayer of Healing casts to be instant and heal for 25% more.",
+                            "text": "Your healing is increased by 100% while Apotheosis is active. Casting Apotheosis causes your next (varies) Prayer of Healing casts to be instant and heal for 25% more.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8868,7 +8868,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the mana cost of Prayer of Healing by -15%.",
+                            "text": "Reduces the mana cost of Prayer of Healing by 15%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8948,7 +8948,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Flash Heal reduces the cast time of your next Prayer of Healing within 20 by -30% and increases its healing done by 18%. Can accumulate up to (varies) charges.",
+                            "text": "Flash Heal reduces the cast time of your next Prayer of Healing within 20 by 30% and increases its healing done by 18%. Can accumulate up to (varies) charges.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9974,7 +9974,7 @@
             "spellId": 630,
             "category": "Defensive",
             "description": {
-                "text": "Casting (varies by condition — check in-game) on yourself reduces all damage you take by -10% for 10.",
+                "text": "Casting (varies by condition — check in-game) on yourself reduces all damage you take by 10% for 10.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10350,7 +10350,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the mana cost of Purify and Mass Dispel by -50% and Dispel Magic by -10%.",
+                            "text": "Reduces the mana cost of Purify and Mass Dispel by 50% and Dispel Magic by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10942,7 +10942,7 @@
             "spellId": 723,
             "category": "Other",
             "description": {
-                "text": "Halo damage reduces enemy movement speed by -5% for 5, stacking up to (varies) times.",
+                "text": "Halo damage reduces enemy movement speed by 5% for 5, stacking up to (varies) times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11002,7 +11002,7 @@
             "spellId": 645,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all magic damage taken by -3%.",
+                "text": "Reduces all magic damage taken by 3%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11220,7 +11220,7 @@
             "spellId": 627,
             "category": "Other",
             "description": {
-                "text": "Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost -50% less mana. Stacks to (varies).",
+                "text": "Your healing spells and Smite have a 8% chance to make your next (varies by condition — check in-game) or Prayer of Healing instant and cost 50% less mana. Stacks to (varies).",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11438,7 +11438,7 @@
             "spellId": 639,
             "category": "Defensive",
             "description": {
-                "text": "Fade reduces damage you take by -10%.",
+                "text": "Fade reduces damage you take by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11665,7 +11665,7 @@
             "spellId": 641,
             "category": "Other",
             "description": {
-                "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by -5%.",
+                "text": "While above 75% health, the cast time of your (varies by condition — check in-game) reduced by 5%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

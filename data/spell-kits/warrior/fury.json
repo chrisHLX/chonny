@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:39:02+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:27+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -111,7 +111,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by -50%.",
+                            "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -292,7 +292,7 @@
             "spellId": 12370,
             "category": "Offensive",
             "description": {
-                "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -397,7 +397,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Go berserk, removing and granting immunity to Fear, Sap, and Incapacitate effects for 6. Also remove fear effects from and reduce the duration of the next crowd control effect within 5 by -50% on group members within (varies) yds.",
+                            "text": "Go berserk, removing and granting immunity to Fear, Sap, and Incapacitate effects for 6. Also remove fear effects from and reduce the duration of the next crowd control effect within 5 by 50% on group members within (varies) yds.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -448,7 +448,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of Berserker Rage is reduced by -50% and Berseker Rage removes all movement speed-impairing effects.",
+                            "text": "Cooldown of Berserker Rage is reduced by 50% and Berseker Rage removes all movement speed-impairing effects.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -485,7 +485,7 @@
             "spellId": 12275,
             "category": "Other",
             "description": {
-                "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by -50% on group members within (varies) yds.",
+                "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by 50% on group members within (varies) yds.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -515,7 +515,7 @@
             "spellId": 12367,
             "category": "Defensive",
             "description": {
-                "text": "Go berserk, removing and granting immunity to Fear, Sap, and Incapacitate effects for 6. Also remove fear effects from and reduce the duration of the next crowd control effect within 5 by -50% on group members within (varies) yds.",
+                "text": "Go berserk, removing and granting immunity to Fear, Sap, and Incapacitate effects for 6. Also remove fear effects from and reduce the duration of the next crowd control effect within 5 by 50% on group members within (varies) yds.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -561,7 +561,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of Berserker Rage is reduced by -50% and Berseker Rage removes all movement speed-impairing effects.",
+                            "text": "Cooldown of Berserker Rage is reduced by 50% and Berseker Rage removes all movement speed-impairing effects.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -577,7 +577,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by -50% on group members within (varies) yds.",
+                            "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by 50% on group members within (varies) yds.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -614,7 +614,7 @@
             "spellId": 12371,
             "category": "Offensive",
             "description": {
-                "text": "An aggressive combat state that increases the damage of your auto-attacks by 15%, your auto-attack speed by 3%, and reduces the duration of Fear, Sap and Incapacitate effects on you by -10%. Lasts until canceled.",
+                "text": "An aggressive combat state that increases the damage of your auto-attacks by 15%, your auto-attack speed by 3%, and reduces the duration of Fear, Sap and Incapacitate effects on you by 10%. Lasts until canceled.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1304,7 +1304,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1320,7 +1320,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1761,7 +1761,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces damage taken by -30% and Bloodthirst restores an additional 20% health for 8. Usable while stunned or incapacitated.",
+                            "text": "Reduces damage taken by 30% and Bloodthirst restores an additional 20% health for 8. Usable while stunned or incapacitated.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -2021,7 +2021,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -2037,7 +2037,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3145,7 +3145,7 @@
             "spellId": 12352,
             "category": "Other",
             "description": {
-                "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional -20%.",
+                "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3773,7 +3773,7 @@
             "spellId": 12372,
             "category": "Offensive",
             "description": {
-                "text": "A defensive combat state that reduces all damage you take by -15% and all damage you deal by -10%. When an attack deals 20% or more of your maximum health in damage, that damage is reduced by 15%. Lasts until canceled.",
+                "text": "A defensive combat state that reduces all damage you take by 15% and all damage you deal by 10%. When an attack deals 20% or more of your maximum health in damage, that damage is reduced by 15%. Lasts until canceled.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4046,7 +4046,7 @@
             "spellId": 12387,
             "category": "Defensive",
             "description": {
-                "text": "Reduces damage taken by -30% and Bloodthirst restores an additional 20% health for 8. Usable while stunned or incapacitated.",
+                "text": "Reduces damage taken by 30% and Bloodthirst restores an additional 20% health for 8. Usable while stunned or incapacitated.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4074,7 +4074,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -4559,7 +4559,7 @@
             "spellId": 12379,
             "category": "Other",
             "description": {
-                "text": "Cooldown of Berserker Rage is reduced by -50% and Berseker Rage removes all movement speed-impairing effects.",
+                "text": "Cooldown of Berserker Rage is reduced by 50% and Berseker Rage removes all movement speed-impairing effects.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4919,7 +4919,7 @@
             "spellId": 11743,
             "category": "Offensive",
             "description": {
-                "text": "Maims the enemy for (varies) Physical damage, reducing movement speed by -50% for 15.",
+                "text": "Maims the enemy for (varies) Physical damage, reducing movement speed by 50% for 15.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5079,7 +5079,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5095,7 +5095,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5328,7 +5328,7 @@
             "spellId": 12373,
             "category": "Defensive",
             "description": {
-                "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5564,7 +5564,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5580,7 +5580,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6105,7 +6105,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6121,7 +6121,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6184,7 +6184,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6200,7 +6200,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -6268,7 +6268,7 @@
             "spellId": 12338,
             "category": "Crowd Control",
             "description": {
-                "text": "Causes the targeted enemy to cower in fear while all enemies within (varies) yards flee from you and their movement speed is reduced by -70% for 8. Damage may cancel the effect.",
+                "text": "Causes the targeted enemy to cower in fear while all enemies within (varies) yards flee from you and their movement speed is reduced by 70% for 8. Damage may cancel the effect.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6556,7 +6556,7 @@
             "spellId": 12451,
             "category": "Defensive",
             "description": {
-                "text": "Physical damage taken reduced by -2%. Thunder Blast reduces damage you take by -8% for 5.",
+                "text": "Physical damage taken reduced by 2%. Thunder Blast reduces damage you take by 8% for 5.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7041,7 +7041,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7057,7 +7057,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7260,7 +7260,7 @@
             "spellId": 12341,
             "category": "Utility",
             "description": {
-                "text": "Snares all enemies within (varies) yards, reducing their movement speed by -70% for 8. Spurs all allies within (varies) yards, increasing their movement speed by 30% for 4.",
+                "text": "Snares all enemies within (varies) yards, reducing their movement speed by 70% for 8. Spurs all allies within (varies) yards, increasing their movement speed by 30% for 4.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7382,7 +7382,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9403,7 +9403,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -9419,7 +9419,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -9859,7 +9859,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -9875,7 +9875,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10104,7 +10104,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10120,7 +10120,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10319,7 +10319,7 @@
             "spellId": 12342,
             "category": "Defensive",
             "description": {
-                "text": "Raise your (varies by condition — check in-game), reflecting the next 2 spells cast on you and reducing magic damage you take by -20% for 5.",
+                "text": "Raise your (varies by condition — check in-game), reflecting the next 2 spells cast on you and reducing magic damage you take by 20% for 5.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10331,7 +10331,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10347,7 +10347,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10617,7 +10617,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by -10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
+                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -10749,7 +10749,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10765,7 +10765,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -10969,7 +10969,7 @@
             "spellId": 12438,
             "category": "Other",
             "description": {
-                "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by -50%.",
+                "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by 50%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11200,7 +11200,7 @@
             "spellId": 12192,
             "category": "Offensive",
             "description": {
-                "text": "Blasts all enemies within (varies) yards for 435,222 Stormstrike damage, roots them for 4, and reduces their movement speed by -20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
+                "text": "Blasts all enemies within (varies) yards for 435,222 Stormstrike damage, roots them for 4, and reduces their movement speed by 20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11244,7 +11244,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional -20%.",
+                            "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11324,7 +11324,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Physical damage taken reduced by -2%. Thunder Blast reduces damage you take by -8% for 5.",
+                            "text": "Physical damage taken reduced by 2%. Thunder Blast reduces damage you take by 8% for 5.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -11372,7 +11372,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Physical damage taken reduced by -2%. Thunder Blast reduces damage you take by -8% for 5.",
+                            "text": "Physical damage taken reduced by 2%. Thunder Blast reduces damage you take by 8% for 5.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -11488,7 +11488,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -11504,7 +11504,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -11585,7 +11585,7 @@
             "spellId": 12339,
             "category": "Offensive",
             "description": {
-                "text": "Blasts all enemies within (varies) yards for -20 Physical damage, roots them for 4, and reduces their movement speed by -20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
+                "text": "Blasts all enemies within (varies) yards for 20 Physical damage, roots them for 4, and reduces their movement speed by 20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11629,7 +11629,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional -20%.",
+                            "text": "Thunder Clap's radius is increased by 50% and it reduces affected target's movement speed by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11725,7 +11725,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by -50%.",
+                            "text": "Avatar increases the damage of Thunder Clap by 50% and reduces its cooldown by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11889,7 +11889,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -11905,7 +11905,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -11986,7 +11986,7 @@
             "spellId": 12362,
             "category": "Offensive",
             "description": {
-                "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -12196,7 +12196,7 @@
             "spellId": 12390,
             "category": "Other",
             "description": {
-                "text": "You take -10% reduced damage while Enrage is active.",
+                "text": "You take 10% reduced damage while Enrage is active.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -12494,7 +12494,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by -2%.",
+                            "text": "While wielding two-handed weapons your damage is increased by 3% and damage taken from area of effect attacks is reduced by 2%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -12510,7 +12510,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by -10%. Lasts until canceled.",
+                            "text": "A balanced combat state that increases the critical strike chance of your abilities by 3%, the critical strike damage of your abilities by 3%, and reduces the duration of movement impairing effects by 10%. Lasts until canceled.",
                             "uncertain": false
                         },
                         "category": "Offensive",

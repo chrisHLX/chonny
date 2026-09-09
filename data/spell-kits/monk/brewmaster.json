@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:38:39+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:04+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -593,7 +593,7 @@
             "spellId": 7404,
             "category": "Offensive",
             "description": {
-                "text": "Breathe fire on targets in front of you, causing (varies) Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking (varies) Fire damage and dealing -5% reduced damage to you for 12.",
+                "text": "Breathe fire on targets in front of you, causing (varies) Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking (varies) Fire damage and dealing 5% reduced damage to you for 12.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1088,7 +1088,7 @@
             "spellId": 7481,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all damage taken by -3%.",
+                "text": "Reduces all damage taken by 3%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1176,7 +1176,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by -20%.",
+                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1192,7 +1192,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by -20%.",
+                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1705,7 +1705,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by -20%.",
+                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1721,7 +1721,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by -20%.",
+                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2415,7 +2415,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Roll is decreased by -10%.",
+                            "text": "The cooldown of Roll is decreased by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2431,7 +2431,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Roll is decreased by -10%.",
+                            "text": "The cooldown of Roll is decreased by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2738,7 +2738,7 @@
             "spellId": 7584,
             "category": "Other",
             "description": {
-                "text": "The cooldown of Roll is decreased by -10%.",
+                "text": "The cooldown of Roll is decreased by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2798,7 +2798,7 @@
             "spellId": 7502,
             "category": "Other",
             "description": {
-                "text": "Targets you Roll through are snared by -40% for 5.",
+                "text": "Targets you Roll through are snared by 40% for 5.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2812,7 +2812,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional -20%.",
+                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3031,7 +3031,7 @@
             "spellId": 7468,
             "category": "Utility",
             "description": {
-                "text": "Reduces the target's movement speed by -50% for 15, duration refreshed by your melee attacks.",
+                "text": "Reduces the target's movement speed by 50% for 15, duration refreshed by your melee attacks.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3079,7 +3079,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional -20%.",
+                            "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3292,7 +3292,7 @@
             "spellId": 7483,
             "category": "Other",
             "description": {
-                "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by -6%.",
+                "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by 6%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3489,7 +3489,7 @@
             "spellId": 7420,
             "category": "Offensive",
             "description": {
-                "text": "Hurls a flaming keg at the target location, dealing (varies) Fire damage to nearby enemies, causing your attacks against them to deal (varies) additional Fire damage, and causing their melee attacks to deal -100% reduced damage for the next 3. Resets the cooldown of Keg Smash.",
+                "text": "Hurls a flaming keg at the target location, dealing (varies) Fire damage to nearby enemies, causing your attacks against them to deal (varies) additional Fire damage, and causing their melee attacks to deal 100% reduced damage for the next 3. Resets the cooldown of Keg Smash.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3850,7 +3850,7 @@
             "spellId": 7513,
             "category": "Defensive",
             "description": {
-                "text": "You gain a bonus effect based on your current health. Above 90% health: Movement speed increased by 5%. This bonus stacks with similar effects. Between 90% and 35% health: Damage taken reduced by -5%. Below 35% health: Healing received increased by 10%.",
+                "text": "You gain a bonus effect based on your current health. Above 90% health: Movement speed increased by 5%. This bonus stacks with similar effects. Between 90% and 35% health: Damage taken reduced by 5%. Below 35% health: Healing received increased by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4069,7 +4069,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional -10% while Fortifying Brew is active.",
+                            "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional 10% while Fortifying Brew is active.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4956,7 +4956,7 @@
             "spellId": 7488,
             "category": "Other",
             "description": {
-                "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional -10% while Fortifying Brew is active.",
+                "text": "Increases your maximum health by an additional 10% and your damage taken is reduced by an additional 10% while Fortifying Brew is active.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4986,7 +4986,7 @@
             "spellId": 7451,
             "category": "Other",
             "description": {
-                "text": "Crackling Jade Lightning deals its damage in -75% less time, costs -75% less Energy, and strikes 4 additional targets, but has a 60 sec cooldown.",
+                "text": "Crackling Jade Lightning deals its damage in 75% less time, costs 75% less Energy, and strikes 4 additional targets, but has a 60 sec cooldown.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5076,7 +5076,7 @@
             "spellId": 7408,
             "category": "Offensive",
             "description": {
-                "text": "Smash a keg of brew, dealing (varies) Physical damage to your primary target and (varies) Physical damage to all other enemies within (varies) yds, and reducing their movement speed by -20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
+                "text": "Smash a keg of brew, dealing (varies) Physical damage to your primary target and (varies) Physical damage to all other enemies within (varies) yds, and reducing their movement speed by 20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -5154,7 +5154,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Breathe fire on targets in front of you, causing (varies) Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking (varies) Fire damage and dealing -5% reduced damage to you for 12.",
+                            "text": "Breathe fire on targets in front of you, causing (varies) Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking (varies) Fire damage and dealing 5% reduced damage to you for 12.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5282,7 +5282,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Breathe fire on targets in front of you, causing (varies) Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking (varies) Fire damage and dealing -5% reduced damage to you for 12.",
+                            "text": "Breathe fire on targets in front of you, causing (varies) Fire damage. Deals reduced damage to secondary targets. Targets affected by Keg Smash will also burn, taking (varies) Fire damage and dealing 5% reduced damage to you for 12.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5590,7 +5590,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a flaming keg at the target location, dealing (varies) Fire damage to nearby enemies, causing your attacks against them to deal (varies) additional Fire damage, and causing their melee attacks to deal -100% reduced damage for the next (varies). Resets the cooldown of Keg Smash.",
+                            "text": "Hurls a flaming keg at the target location, dealing (varies) Fire damage to nearby enemies, causing your attacks against them to deal (varies) additional Fire damage, and causing their melee attacks to deal 100% reduced damage for the next (varies). Resets the cooldown of Keg Smash.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5670,7 +5670,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a flaming keg at the target location, dealing (varies) Fire damage to nearby enemies, causing your attacks against them to deal (varies) additional Fire damage, and causing their melee attacks to deal -100% reduced damage for the next 3. Resets the cooldown of Keg Smash.",
+                            "text": "Hurls a flaming keg at the target location, dealing (varies) Fire damage to nearby enemies, causing your attacks against them to deal (varies) additional Fire damage, and causing their melee attacks to deal 100% reduced damage for the next 3. Resets the cooldown of Keg Smash.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5966,7 +5966,7 @@
             "spellId": 7419,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by -20%.",
+                "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6166,7 +6166,7 @@
             "spellId": 7505,
             "category": "Offensive",
             "description": {
-                "text": "Increases your Physical damage done by 5% and Avoidance increased by -2%.",
+                "text": "Increases your Physical damage done by 5% and Avoidance increased by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6994,7 +6994,7 @@
             "spellId": 7578,
             "category": "Defensive",
             "description": {
-                "text": "When you dodge or parry an attack, reduce all damage taken by -10% for the next 6.",
+                "text": "When you dodge or parry an attack, reduce all damage taken by 10% for the next 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7249,7 +7249,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by -20%.",
+                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7265,7 +7265,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by -20%.",
+                            "text": "Reduces the cooldown of Purifying Brew, Celestial Brew, and Celestial Infusion by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7606,7 +7606,7 @@
             "spellId": 7508,
             "category": "Other",
             "description": {
-                "text": "The duration of snare effects on you is reduced by -20%.",
+                "text": "The duration of snare effects on you is reduced by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8132,7 +8132,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by -100%.",
+                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by 100%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8148,7 +8148,7 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by -100%.",
+                            "text": "Rising Sun Kick and Rushing Wind Kick have a chance to cause their next cast to ignore their cooldown and reduce their mana cost by 100%.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8743,7 +8743,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Smash a keg of brew, dealing (varies) Physical damage to your primary target and (varies) Physical damage to all other enemies within (varies) yds, and reducing their movement speed by -20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
+                            "text": "Smash a keg of brew, dealing (varies) Physical damage to your primary target and (varies) Physical damage to all other enemies within (varies) yds, and reducing their movement speed by 20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8775,7 +8775,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Smash a keg of brew, dealing (varies) Physical damage to your primary target and (varies) Physical damage to all other enemies within (varies) yds, and reducing their movement speed by -20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
+                            "text": "Smash a keg of brew, dealing (varies) Physical damage to your primary target and (varies) Physical damage to all other enemies within (varies) yds, and reducing their movement speed by 20% for 15. Deals reduced damage beyond 5 targets. Grants Shuffle for 5 sec and reduces the remaining cooldown on your Brews by 3 sec.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9032,7 +9032,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by -6%.",
+                            "text": "Reduces all damage taken by you and your target while channeling Soothing Mists by 6%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9270,7 +9270,7 @@
             "spellId": 7514,
             "category": "Other",
             "description": {
-                "text": "Transcendence: Transfer snares targets within (varies) yds by -70% for 4 when cast.",
+                "text": "Transcendence: Transfer snares targets within (varies) yds by 70% for 4 when cast.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10536,7 +10536,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transcendence: Transfer snares targets within (varies) yds by -70% for 4 when cast.",
+                            "text": "Transcendence: Transfer snares targets within (varies) yds by 70% for 4 when cast.",
                             "uncertain": true
                         },
                         "category": "Utility",
@@ -10600,7 +10600,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transcendence: Transfer snares targets within (varies) yds by -70% for 4 when cast.",
+                            "text": "Transcendence: Transfer snares targets within (varies) yds by 70% for 4 when cast.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11014,7 +11014,7 @@
             "spellId": 7509,
             "category": "Other",
             "description": {
-                "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional -20%.",
+                "text": "The range of Disable is increased by 5 yds. The duration of Crashing Momentum is increased by 3 sec and its snare now reduces movement speed by an additional 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

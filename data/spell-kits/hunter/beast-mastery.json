@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:38:35+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:00+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -561,7 +561,7 @@
             "spellId": 4842,
             "category": "Defensive",
             "description": {
-                "text": "Causes all spells and attacks to miss and reduces all damage you take by -30% for 8, but you cannot attack.",
+                "text": "Causes all spells and attacks to miss and reduces all damage you take by 30% for 8, but you cannot attack.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -640,7 +640,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damage taken during Aspect of the Turtle is reduced by an additional -20%.",
+                            "text": "Damage taken during Aspect of the Turtle is reduced by an additional 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2835,7 +2835,7 @@
             "spellId": 5543,
             "category": "Crowd Control",
             "description": {
-                "text": "Fires a magical projectile, tethering the enemy and any other enemies within 5 yds for 10, stunning them for 3 if they move more than 5 yds from the arrow. Targets stunned by Binding Shot deal -10% less damage to you for 8 after the effect ends.",
+                "text": "Fires a magical projectile, tethering the enemy and any other enemies within 5 yds for 10, stunning them for 3 if they move more than 5 yds from the arrow. Targets stunned by Binding Shot deal 10% less damage to you for 8 after the effect ends.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2847,7 +2847,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fires a magical projectile, tethering the enemy and any other enemies within 5 yds for 10, stunning them for 3 if they move more than 5 yds from the arrow. Targets stunned by Binding Shot deal -10% less damage to you for 8 after the effect ends.",
+                            "text": "Fires a magical projectile, tethering the enemy and any other enemies within 5 yds for 10, stunning them for 3 if they move more than 5 yds from the arrow. Targets stunned by Binding Shot deal 10% less damage to you for 8 after the effect ends.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -2863,7 +2863,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fires a magical projectile, tethering the enemy and any other enemies within 5 yds for 3, stunning them for 3 if they move more than 5 yds from the arrow. Targets stunned by Binding Shot deal -10% less damage to you for 8 after the effect ends.",
+                            "text": "Fires a magical projectile, tethering the enemy and any other enemies within 5 yds for 3, stunning them for 3 if they move more than 5 yds from the arrow. Targets stunned by Binding Shot deal 10% less damage to you for 8 after the effect ends.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -3940,7 +3940,7 @@
             "spellId": 5507,
             "category": "Other",
             "description": {
-                "text": "Cobra Shot Focus cost reduced by -5. Cobra Shot damage increased by 10%.",
+                "text": "Cobra Shot Focus cost reduced by 5. Cobra Shot damage increased by 10%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4165,7 +4165,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Dazes the target, slowing movement speed by -50% for 6. Cobra Shot will increase the duration of Concussive Shot on the target by 0 sec.",
+                            "text": "Dazes the target, slowing movement speed by 50% for 6. Cobra Shot will increase the duration of Concussive Shot on the target by 0 sec.",
                             "uncertain": true
                         },
                         "category": "Utility",
@@ -4313,7 +4313,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Cobra Shot Focus cost reduced by -5. Cobra Shot damage increased by 10%.",
+                            "text": "Cobra Shot Focus cost reduced by 5. Cobra Shot damage increased by 10%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4458,7 +4458,7 @@
             "spellId": 5584,
             "category": "Other",
             "description": {
-                "text": "When your Freezing Trap breaks, the victim's movement speed is reduced by -70% for 4.",
+                "text": "When your Freezing Trap breaks, the victim's movement speed is reduced by 70% for 4.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4565,7 +4565,7 @@
             "spellId": 5537,
             "category": "Utility",
             "description": {
-                "text": "Dazes the target, slowing movement speed by -50% for 6. Cobra Shot will increase the duration of Concussive Shot on the target by 0 sec.",
+                "text": "Dazes the target, slowing movement speed by 50% for 6. Cobra Shot will increase the duration of Concussive Shot on the target by 0 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4722,7 +4722,7 @@
             "spellId": 5589,
             "category": "Other",
             "description": {
-                "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move -40% slower until they move 8 yards away.",
+                "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move 40% slower until they move 8 yards away.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5335,7 +5335,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move -40% slower until they move -40 yards away.",
+                            "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move 40% slower until they move 40 yards away.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5351,7 +5351,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move -40% slower until they move -40 yards away.",
+                            "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move 40% slower until they move 40 yards away.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5367,7 +5367,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move -40% slower until they move -40 yards away.",
+                            "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move 40% slower until they move 40 yards away.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -5383,7 +5383,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move -40% slower until they move -40 yards away.",
+                            "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move 40% slower until they move 40 yards away.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5399,7 +5399,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, casting Disengage releases a fan of daggers, dealing (varies) shadow damage over time and reducing affected target's movement speed by -30%.",
+                            "text": "While in combat, casting Disengage releases a fan of daggers, dealing (varies) shadow damage over time and reducing affected target's movement speed by 30%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5415,7 +5415,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move -40% slower until they move 8 yards away.",
+                            "text": "While in combat, Disengage will chain the closest target to the ground, causing them to move 40% slower until they move 8 yards away.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5431,7 +5431,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, Disengage releases a fan of shadow daggers, dealing (varies) Shadow damage per second and reducing affected target's movement speed by -30% for 6.",
+                            "text": "While in combat, Disengage releases a fan of shadow daggers, dealing (varies) Shadow damage per second and reducing affected target's movement speed by 30% for 6.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6115,7 +6115,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your Freezing Trap breaks, the victim's movement speed is reduced by -70% for 4.",
+                            "text": "When your Freezing Trap breaks, the victim's movement speed is reduced by 70% for 4.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6342,7 +6342,7 @@
             "spellId": 5587,
             "category": "Defensive",
             "description": {
-                "text": "Your pet protects you at all times, reducing the damage you take by -3%. Your pet receives 100% of the damage it mitigates.",
+                "text": "Your pet protects you at all times, reducing the damage you take by 3%. Your pet receives 100% of the damage it mitigates.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6604,7 +6604,7 @@
             "spellId": 5557,
             "category": "Defensive",
             "description": {
-                "text": "Damage taken from area of effect attacks reduced by -5%.",
+                "text": "Damage taken from area of effect attacks reduced by 5%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7014,7 +7014,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Spotting Eagle descends from the skies, stunning your target for 5. Targets stunned by Intimidation deal -10% less damage to you for 8 after the effect ends. This ability does not require line of sight when used against players.",
+                            "text": "Your Spotting Eagle descends from the skies, stunning your target for 5. Targets stunned by Intimidation deal 10% less damage to you for 8 after the effect ends. This ability does not require line of sight when used against players.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -8783,7 +8783,7 @@
                         "modifier_value": -5,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "When Misdirection targets your pet, it reduces the damage they take by -50% for 5. The cooldown of Misdirection is reduced by 5 sec.",
+                            "text": "When Misdirection targets your pet, it reduces the damage they take by 50% for 5. The cooldown of Misdirection is reduced by 5 sec.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -8799,7 +8799,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Misdirection targets your pet, it reduces the damage they take by -50% for 5. The cooldown of Misdirection is reduced by 0.1 sec.",
+                            "text": "When Misdirection targets your pet, it reduces the damage they take by 50% for 5. The cooldown of Misdirection is reduced by 0.1 sec.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -9001,7 +9001,7 @@
             "spellId": 5571,
             "category": "Defensive",
             "description": {
-                "text": "When Misdirection targets your pet, it reduces the damage they take by -50% for 5. The cooldown of Misdirection is reduced by 5 sec.",
+                "text": "When Misdirection targets your pet, it reduces the damage they take by 50% for 5. The cooldown of Misdirection is reduced by 5 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9395,7 +9395,7 @@
             "spellId": 5541,
             "category": "Defensive",
             "description": {
-                "text": "Instructs your pet to protect a friendly target, reducing their damage taken by -15%, but 50% of all damage taken by that target is transferred to your pet. Lasts 10 or until your pet's health drops below 25%.",
+                "text": "Instructs your pet to protect a friendly target, reducing their damage taken by 15%, but 50% of all damage taken by that target is transferred to your pet. Lasts 10 or until your pet's health drops below 25%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9639,7 +9639,7 @@
             "spellId": 5594,
             "category": "Offensive",
             "description": {
-                "text": "While in combat, Disengage releases a fan of shadow daggers, dealing (varies) Shadow damage per second and reducing affected target's movement speed by -30% for 6.",
+                "text": "While in combat, Disengage releases a fan of shadow daggers, dealing (varies) Shadow damage per second and reducing affected target's movement speed by 30% for 6.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9759,7 +9759,7 @@
             "spellId": 5583,
             "category": "Other",
             "description": {
-                "text": "Damage taken during Aspect of the Turtle is reduced by an additional -20%.",
+                "text": "Damage taken during Aspect of the Turtle is reduced by an additional 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10114,7 +10114,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Dazes the target, slowing movement speed by -50% for 6. Cobra Shot will increase the duration of Concussive Shot on the target by 0 sec.",
+                            "text": "Dazes the target, slowing movement speed by 50% for 6. Cobra Shot will increase the duration of Concussive Shot on the target by 0 sec.",
                             "uncertain": true
                         },
                         "category": "Utility",
@@ -10575,7 +10575,7 @@
             "spellId": 5549,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all damage you and your pet take by -30% for 6.",
+                "text": "Reduces all damage you and your pet take by 30% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10805,7 +10805,7 @@
             "spellId": 5545,
             "category": "Other",
             "description": {
-                "text": "Hurls a tar trap to the target location that creates a 8 yd radius pool of tar around itself for 30 when the first enemy approaches. All enemies have -50% reduced movement speed while in the area of effect. Limit 1. Trap will exist for 60.",
+                "text": "Hurls a tar trap to the target location that creates a 8 yd radius pool of tar around itself for 30 when the first enemy approaches. All enemies have 50% reduced movement speed while in the area of effect. Limit 1. Trap will exist for 60.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10833,7 +10833,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Place a tar trap that creates a slick around itself for 30 when the first enemy approaches it. All enemies within 10 yards will be slowed by -50% while in the area of effect. Trap will exist for 60.",
+                            "text": "Place a tar trap that creates a slick around itself for 30 when the first enemy approaches it. All enemies within 10 yards will be slowed by 50% while in the area of effect. Trap will exist for 60.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -10849,7 +10849,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a tar trap to the target location that creates a 8 yd radius pool of tar around itself for 30 when the first enemy approaches. All enemies have -50% reduced movement speed while in the area of effect. Limit 8. Trap will exist for 60.",
+                            "text": "Hurls a tar trap to the target location that creates a 8 yd radius pool of tar around itself for 30 when the first enemy approaches. All enemies have 50% reduced movement speed while in the area of effect. Limit 8. Trap will exist for 60.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10865,7 +10865,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a tar trap to the target location that creates a 8 yd radius pool of tar around itself for 30 when the first enemy approaches. All enemies have -50% reduced movement speed while in the area of effect. Limit 8. Trap will exist for 60.",
+                            "text": "Hurls a tar trap to the target location that creates a 8 yd radius pool of tar around itself for 30 when the first enemy approaches. All enemies have 50% reduced movement speed while in the area of effect. Limit 8. Trap will exist for 60.",
                             "uncertain": false
                         },
                         "category": "Other",

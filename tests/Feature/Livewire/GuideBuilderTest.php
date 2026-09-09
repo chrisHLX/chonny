@@ -5,6 +5,7 @@ use App\Enums\UserGuideSectionKind;
 use App\Enums\UserGuideStatus;
 use App\Enums\UserGuideVisibility;
 use App\Http\Services\CcChainBuilder;
+use App\Http\Services\UserGuideChainService;
 use App\Livewire\Guides\Builder;
 use App\Livewire\Guides\Index;
 use App\Livewire\Guides\Show;
@@ -553,4 +554,74 @@ test('an uncurated spell is passed through instead of being bucketed with other 
 
 test('annotateChain on an empty chain returns nothing rather than erroring', function () {
     expect(app(CcChainBuilder::class)->annotateChain(new Collection))->toBe([]);
+});
+
+test('the same ability used twice diminishes only the second occurrence', function () {
+    // Reported live 2026-09-10: two Cyclones in a row were BOTH badged as diminished. The DR
+    // maths was right — computeResolve() keyed the verdicts by spell id, so the two steps
+    // collapsed onto one annotation (last write wins) and both rendered the second one's 50%.
+    // Resolution has to key by block, because a repeat is a legitimate thing to author.
+    $spec = guideTestSpec();
+    makeGuideCcSpell('Cyclone', 'Disorient', 33786);
+
+    $section = addSection(makeChainGuide(User::factory()->create()));
+    foreach ([0, 1] as $position) {
+        UserGuideBlock::create([
+            'user_guide_section_id' => $section->id,
+            'position' => $position,
+            'block_type' => UserGuideBlockType::Spell,
+            'payload' => ['external_spell_id' => 33786, 'source_spec_id' => $spec->id],
+        ]);
+    }
+
+    $steps = app(UserGuideChainService::class)->resolve($section->fresh());
+
+    expect($steps)->toHaveCount(2)
+        ->and($steps[0]['dr']['dr_percentage'])->toBe(100)
+        ->and($steps[1]['dr']['dr_percentage'])->toBe(50);
+});
+
+test('a repeated ability separated by another step still only diminishes the later one', function () {
+    // The keying bug was independent of adjacency: any two steps sharing a spell id collapsed,
+    // however far apart they sat.
+    $spec = guideTestSpec();
+    makeGuideCcSpell('Cyclone', 'Disorient', 33786);
+    makeGuideCcSpell('Kidney Shot', 'Stun', 408);
+
+    $section = addSection(makeChainGuide(User::factory()->create()));
+    foreach ([[0, 33786], [1, 408], [2, 33786]] as [$position, $externalId]) {
+        UserGuideBlock::create([
+            'user_guide_section_id' => $section->id,
+            'position' => $position,
+            'block_type' => UserGuideBlockType::Spell,
+            'payload' => ['external_spell_id' => $externalId, 'source_spec_id' => $spec->id],
+        ]);
+    }
+
+    $steps = app(UserGuideChainService::class)->resolve($section->fresh());
+
+    expect(array_column(array_column($steps, 'dr'), 'dr_percentage'))->toBe([100, 100, 50]);
+});
+
+test('control time counts both occurrences of a repeated ability, at their own percentages', function () {
+    // The collapsed verdict also understated the section total: the first Cyclone was billed at
+    // the second one's 50%, losing half a Cyclone of control.
+    $spec = guideTestSpec();
+    Spell::create([
+        'patch_id' => guideTestPatch()->id, 'spell_id' => 33786, 'name' => 'Cyclone',
+        'dr_category' => 'Disorient', 'cast_type' => 'instant', 'pvp_duration_seconds' => 6,
+    ]);
+
+    $section = addSection(makeChainGuide(User::factory()->create()));
+    foreach ([0, 1] as $position) {
+        UserGuideBlock::create([
+            'user_guide_section_id' => $section->id,
+            'position' => $position,
+            'block_type' => UserGuideBlockType::Spell,
+            'payload' => ['external_spell_id' => 33786, 'source_spec_id' => $spec->id],
+        ]);
+    }
+
+    // 6s at full, then 6s at 50% — not 3 + 3.
+    expect(app(UserGuideChainService::class)->metrics($section->fresh())['control_seconds'])->toBe(9.0);
 });

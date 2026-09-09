@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:38:36+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:02+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -179,7 +179,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by -50%.",
+                            "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by 50%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -214,7 +214,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by -10% for 6.",
+                            "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by 10% for 6.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -460,7 +460,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by -10% for 6.",
+                            "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by 10% for 6.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1019,7 +1019,7 @@
             "spellId": 1774,
             "category": "Crowd Control",
             "description": {
-                "text": "Targets in a cone in front of you are blinded, causing them to wander disoriented for 5. Damage may cancel the effect. When Blinding Sleet ends, enemies are slowed by -50% for 6.",
+                "text": "Targets in a cone in front of you are blinded, causing them to wander disoriented for 5. Damage may cancel the effect. When Blinding Sleet ends, enemies are slowed by 50% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1031,7 +1031,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Targets in a cone in front of you are blinded, causing them to wander disoriented for 6. Damage may cancel the effect. When Blinding Sleet ends, enemies are slowed by -50% for 6.",
+                            "text": "Targets in a cone in front of you are blinded, causing them to wander disoriented for 6. Damage may cancel the effect. When Blinding Sleet ends, enemies are slowed by 50% for 6.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -1385,7 +1385,7 @@
             "spellId": 1791,
             "category": "Defensive",
             "description": {
-                "text": "When you fall below 30% health you drain -10 health from nearby enemies, the damage you take is reduced by -10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
+                "text": "When you fall below 30% health you drain 10 health from nearby enemies, the damage you take is reduced by 10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1693,7 +1693,7 @@
             "spellId": 1743,
             "category": "Other",
             "description": {
-                "text": "While Blood Shield is active, you deal 8% increased damage and damage taken is reduced by -4%.",
+                "text": "While Blood Shield is active, you deal 8% increased damage and damage taken is reduced by 4%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2040,7 +2040,7 @@
             "spellId": 1753,
             "category": "Offensive",
             "description": {
-                "text": "Empower the runes in your weapon, reducing the damage you take over the duration and unleashing a devastating attack that deals -5 Shadow damage and consumes up to 75% of your Blood Plague instantly from enemies in front of you. I: Consumes up to 25% of your Blood Plague. While empowering, your damage taken is reduced by 5% and an additional 8 sec after empowering. II: Consumes up to 50% of your Blood Plague. While empowering, your damage taken is reduced by 10% and an additional 4 sec after empowering. III: Consumes up to 75% of your Blood Plague. While empowering, your damage taken is reduced by 15% and an additional 2 sec after empowering.",
+                "text": "Empower the runes in your weapon, reducing the damage you take over the duration and unleashing a devastating attack that deals 5 Shadow damage and consumes up to 75% of your Blood Plague instantly from enemies in front of you. I: Consumes up to 25% of your Blood Plague. While empowering, your damage taken is reduced by 5% and an additional 8 sec after empowering. II: Consumes up to 50% of your Blood Plague. While empowering, your damage taken is reduced by 10% and an additional 4 sec after empowering. III: Consumes up to 75% of your Blood Plague. While empowering, your damage taken is reduced by 15% and an additional 2 sec after empowering.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3017,7 +3017,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While you have at least -50 Bone Shield charges, the cost of Death Strike is reduced by 0 Runic Power. Additionally, your maximum Runic Power is increased by 0.",
+                            "text": "While you have at least 50 Bone Shield charges, the cost of Death Strike is reduced by 0 Runic Power. Additionally, your maximum Runic Power is increased by 0.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3113,7 +3113,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you fall below -10% health you drain -10 health from nearby enemies, the damage you take is reduced by -10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
+                            "text": "When you fall below 10% health you drain 10 health from nearby enemies, the damage you take is reduced by 10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3161,7 +3161,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you fall below -10% health you drain -10 health from nearby enemies, the damage you take is reduced by -10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
+                            "text": "When you fall below 10% health you drain 10 health from nearby enemies, the damage you take is reduced by 10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3177,7 +3177,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you fall below -10% health you drain -10 health from nearby enemies, the damage you take is reduced by -10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
+                            "text": "When you fall below 10% health you drain 10 health from nearby enemies, the damage you take is reduced by 10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3321,7 +3321,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you fall below 30% health you drain -10 health from nearby enemies, the damage you take is reduced by -10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
+                            "text": "When you fall below 30% health you drain 10 health from nearby enemies, the damage you take is reduced by 10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3744,7 +3744,7 @@
             "spellId": 1797,
             "category": "Offensive",
             "description": {
-                "text": "Your ghoul's attacks have a chance to apply Enfeeble, reducing the enemies movement speed by -30% and the damage they deal to you by -12% for 6.",
+                "text": "Your ghoul's attacks have a chance to apply Enfeeble, reducing the enemies movement speed by 30% and the damage they deal to you by 12% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3756,7 +3756,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your ghouls attacks have a chance to apply Enfeeble reducing the enemies movement speed by -30% and the damage they deal to you by $-12% for 6.",
+                            "text": "Your ghouls attacks have a chance to apply Enfeeble reducing the enemies movement speed by 30% and the damage they deal to you by $12% for 6.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3772,7 +3772,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your ghouls attacks have a chance to apply Enfeeble reducing the enemies movement speed by -30% and the damage they deal to you by $-12% for 6.",
+                            "text": "Your ghouls attacks have a chance to apply Enfeeble reducing the enemies movement speed by 30% and the damage they deal to you by $12% for 6.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3837,7 +3837,7 @@
             "spellId": 1855,
             "category": "Other",
             "description": {
-                "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by -10% for 6.",
+                "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by 10% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3881,7 +3881,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Marrowrends empowered by Exterminate is reduced by -1.",
+                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Marrowrends empowered by Exterminate is reduced by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4236,7 +4236,7 @@
             "spellId": 1727,
             "category": "Offensive",
             "description": {
-                "text": "Instantly strike the target and 1 other nearby enemy, causing 120 Physical damage, and reducing enemies' movement speed by -20% for 8 Generates 5 bonus Runic Power, plus 2 Runic Power per additional enemy struck.",
+                "text": "Instantly strike the target and 1 other nearby enemy, causing 120 Physical damage, and reducing enemies' movement speed by 20% for 8 Generates 5 bonus Runic Power, plus 2 Runic Power per additional enemy struck.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4839,7 +4839,7 @@
             "spellId": 1766,
             "category": "Defensive",
             "description": {
-                "text": "Your blood freezes, granting immunity to Stun effects and reducing all damage you take by -30% for 8.",
+                "text": "Your blood freezes, granting immunity to Stun effects and reducing all damage you take by 30% for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5276,7 +5276,7 @@
             "spellId": 1795,
             "category": "Offensive",
             "description": {
-                "text": "Your auto-attacks reduce the target's auto-attack speed by -5% for 30, stacking up to (varies) times.",
+                "text": "Your auto-attacks reduce the target's auto-attack speed by 5% for 30, stacking up to (varies) times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5568,7 +5568,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Marrowrends; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Marrowrends; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5584,7 +5584,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Marrowrends; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Marrowrends; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5616,7 +5616,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Marrowrends; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Marrowrends; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5632,7 +5632,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Marrowrends; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Marrowrends; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5712,7 +5712,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Marrowrends empowered by Exterminate is reduced by -1.",
+                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Marrowrends empowered by Exterminate is reduced by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5868,7 +5868,7 @@
             "spellId": 1802,
             "category": "Defensive",
             "description": {
-                "text": "Magic damage taken is reduced by -8% and the duration of harmful Magic effects against you are reduced by -35%.",
+                "text": "Magic damage taken is reduced by 8% and the duration of harmful Magic effects against you are reduced by 35%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6082,7 +6082,7 @@
             "spellId": 1737,
             "category": "Defensive",
             "description": {
-                "text": "When Crimson Scourge is consumed, damage taken is reduced by -4% for 10.",
+                "text": "When Crimson Scourge is consumed, damage taken is reduced by 4% for 10.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6582,7 +6582,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When Reaper's Mark explodes, it deals -5% of the damage dealt to nearby enemies.",
+                            "text": "When Reaper's Mark explodes, it deals 5% of the damage dealt to nearby enemies.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6598,7 +6598,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Marrowrends; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Marrowrends; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6614,7 +6614,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Marrowrends; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Marrowrends; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6630,7 +6630,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Marrowrends; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Marrowrends; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6694,7 +6694,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Marrowrends; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Marrowrends; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 100 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 100 Shadowfrost damage and applies Blood Plague. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6870,7 +6870,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Marrowrends empowered by Exterminate is reduced by -1.",
+                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Marrowrends empowered by Exterminate is reduced by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6939,7 +6939,7 @@
             "spellId": 1862,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Marrowrends empowered by Exterminate is reduced by -1.",
+                "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Marrowrends empowered by Exterminate is reduced by 1.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7149,7 +7149,7 @@
             "spellId": 1799,
             "category": "Defensive",
             "description": {
-                "text": "Your chance to be critically struck is reduced by -3% and your Armor is increased by 6%.",
+                "text": "Your chance to be critically struck is reduced by 3% and your Armor is increased by 6%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7392,7 +7392,7 @@
             "spellId": 1800,
             "category": "Offensive",
             "description": {
-                "text": "When you would pull an enemy, the damage they deal to you is reduced by -6% for 6.",
+                "text": "When you would pull an enemy, the damage they deal to you is reduced by 6% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7422,7 +7422,7 @@
             "spellId": 1784,
             "category": "Defensive",
             "description": {
-                "text": "Damage taken from area of effect attacks reduced by -3%. When suffering a loss of control effect, this bonus is increased by an additional -6% for 6.",
+                "text": "Damage taken from area of effect attacks reduced by 3%. When suffering a loss of control effect, this bonus is increased by an additional 6% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8236,7 +8236,7 @@
             "spellId": 1803,
             "category": "Other",
             "description": {
-                "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by -50%.",
+                "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by 50%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

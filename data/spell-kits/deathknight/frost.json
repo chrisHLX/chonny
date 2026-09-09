@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:38:58+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:23+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -165,7 +165,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by -10% for 6.",
+                            "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by 10% for 6.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -313,7 +313,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by -50%.",
+                            "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by 50%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -329,7 +329,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by -10% for 6.",
+                            "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by 10% for 6.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -955,7 +955,7 @@
             "spellId": 1774,
             "category": "Crowd Control",
             "description": {
-                "text": "Targets in a cone in front of you are blinded, causing them to wander disoriented for 5. Damage may cancel the effect. When Blinding Sleet ends, enemies are slowed by -50% for 6.",
+                "text": "Targets in a cone in front of you are blinded, causing them to wander disoriented for 5. Damage may cancel the effect. When Blinding Sleet ends, enemies are slowed by 50% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -967,7 +967,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Targets in a cone in front of you are blinded, causing them to wander disoriented for 6. Damage may cancel the effect. When Blinding Sleet ends, enemies are slowed by -50% for 6.",
+                            "text": "Targets in a cone in front of you are blinded, causing them to wander disoriented for 6. Damage may cancel the effect. When Blinding Sleet ends, enemies are slowed by 50% for 6.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -1032,7 +1032,7 @@
             "spellId": 1791,
             "category": "Defensive",
             "description": {
-                "text": "When you fall below 30% health you drain -10 health from nearby enemies, the damage you take is reduced by -10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
+                "text": "When you fall below 30% health you drain 10 health from nearby enemies, the damage you take is reduced by 10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1122,7 +1122,7 @@
             "spellId": 1828,
             "category": "Offensive",
             "description": {
-                "text": "Consuming Killing Machine grants 1% critical strike chance for 10, stacking up to -1 times. At -1 stacks your next Killing Machine consumes the stacks and grants you 10% increased Frost damage for 10.",
+                "text": "Consuming Killing Machine grants 1% critical strike chance for 10, stacking up to (varies) times. At (varies) stacks your next Killing Machine consumes the stacks and grants you 10% increased Frost damage for 10.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1267,7 +1267,7 @@
             "spellId": 885,
             "category": "Utility",
             "description": {
-                "text": "Shackles the target and 1 nearby enemy with frozen chains, reducing movement speed by -70% for 8.",
+                "text": "Shackles the target and 1 nearby enemy with frozen chains, reducing movement speed by 70% for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1346,7 +1346,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by -40% for 4. Deals reduced damage beyond -40 targets.",
+                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 40 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1362,7 +1362,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing (varies) Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by -40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
+                            "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing (varies) Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by 40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1378,7 +1378,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by -40% for 4. Deals reduced damage beyond 8 targets.",
+                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1681,7 +1681,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Defile reduces the movement speed of enemies within its area by -90%, decaying by 10% every sec.",
+                            "text": "Defile reduces the movement speed of enemies within its area by 90%, decaying by 10% every sec.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -1697,7 +1697,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Defile reduces the movement speed of enemies within its area by -90%, decaying by 10% every sec.",
+                            "text": "Defile reduces the movement speed of enemies within its area by 90%, decaying by 10% every sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1844,7 +1844,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing (varies) Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by -40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
+                            "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing (varies) Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by 40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2348,7 +2348,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you fall below -10% health you drain -10 health from nearby enemies, the damage you take is reduced by -10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
+                            "text": "When you fall below 10% health you drain 10 health from nearby enemies, the damage you take is reduced by 10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -2380,7 +2380,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you fall below -10% health you drain -10 health from nearby enemies, the damage you take is reduced by -10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
+                            "text": "When you fall below 10% health you drain 10 health from nearby enemies, the damage you take is reduced by 10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -2396,7 +2396,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you fall below -10% health you drain -10 health from nearby enemies, the damage you take is reduced by -10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
+                            "text": "When you fall below 10% health you drain 10 health from nearby enemies, the damage you take is reduced by 10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -2412,7 +2412,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you fall below 30% health you drain -10 health from nearby enemies, the damage you take is reduced by -10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
+                            "text": "When you fall below 30% health you drain 10 health from nearby enemies, the damage you take is reduced by 10% and your Death Strike cost is reduced by 10 for 8. Can only occur every 120.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -3089,7 +3089,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3105,7 +3105,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3443,7 +3443,7 @@
             "spellId": 1797,
             "category": "Offensive",
             "description": {
-                "text": "Your ghoul's attacks have a chance to apply Enfeeble, reducing the enemies movement speed by -30% and the damage they deal to you by -12% for 6.",
+                "text": "Your ghoul's attacks have a chance to apply Enfeeble, reducing the enemies movement speed by 30% and the damage they deal to you by 12% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3457,7 +3457,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your ghouls attacks have a chance to apply Enfeeble reducing the enemies movement speed by -30% and the damage they deal to you by $-12% for 6.",
+                            "text": "Your ghouls attacks have a chance to apply Enfeeble reducing the enemies movement speed by 30% and the damage they deal to you by $12% for 6.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3473,7 +3473,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your ghouls attacks have a chance to apply Enfeeble reducing the enemies movement speed by -30% and the damage they deal to you by $-12% for 6.",
+                            "text": "Your ghouls attacks have a chance to apply Enfeeble reducing the enemies movement speed by 30% and the damage they deal to you by $12% for 6.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3536,7 +3536,7 @@
             "spellId": 1855,
             "category": "Other",
             "description": {
-                "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by -10% for 6.",
+                "text": "When an enemy deals direct damage to your Anti-Magic Shell, their cast speed is reduced by 10% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3566,7 +3566,7 @@
             "spellId": 1464,
             "category": "Offensive",
             "description": {
-                "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3742,7 +3742,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Obliterates and Frostscythes empowered by Exterminate is reduced by -1.",
+                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Obliterates and Frostscythes empowered by Exterminate is reduced by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3911,7 +3911,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3927,7 +3927,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4500,7 +4500,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4564,7 +4564,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4724,7 +4724,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 2 (varies):Obliterates; or (varies):Frostscythes; cost 1 (varies):Runes; and summon 2 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 2 (varies):Obliterates; or (varies):Frostscythes; cost 1 (varies):Runes; and summon 2 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4840,7 +4840,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Drain the warmth of life from all nearby enemies within (varies) yards, dealing (varies) Frost damage over 8 and reducing their movement speed by -20%.",
+                            "text": "Drain the warmth of life from all nearby enemies within (varies) yards, dealing (varies) Frost damage over 8 and reducing their movement speed by 20%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4856,7 +4856,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4872,7 +4872,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Drain the warmth of life from all nearby enemies within (varies) yards, dealing (varies) Frost damage over 12 and reducing their movement speed by -20%.",
+                            "text": "Drain the warmth of life from all nearby enemies within (varies) yards, dealing (varies) Frost damage over 12 and reducing their movement speed by 20%.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4904,7 +4904,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4920,7 +4920,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4936,7 +4936,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by -40% for 4. Deals reduced damage beyond -40 targets.",
+                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 40 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4952,7 +4952,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4968,7 +4968,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Obliterates and Frostscythes empowered by Exterminate is reduced by -1.",
+                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Obliterates and Frostscythes empowered by Exterminate is reduced by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5000,7 +5000,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by -40% for 4. Deals reduced damage beyond 8 targets.",
+                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5049,7 +5049,7 @@
             "spellId": 1820,
             "category": "Offensive",
             "description": {
-                "text": "Summons a frostwyrm who breathes on all enemies within 40 yd in front of you, dealing 40 Frost damage, stunning enemies for 3, and slowing movement speed by -50% for 10.",
+                "text": "Summons a frostwyrm who breathes on all enemies within 40 yd in front of you, dealing 40 Frost damage, stunning enemies for 3, and slowing movement speed by 50% for 10.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5514,7 +5514,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5530,7 +5530,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6057,7 +6057,7 @@
             "spellId": 1766,
             "category": "Defensive",
             "description": {
-                "text": "Your blood freezes, granting immunity to Stun effects and reducing all damage you take by -30% for 8.",
+                "text": "Your blood freezes, granting immunity to Stun effects and reducing all damage you take by 30% for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6385,7 +6385,7 @@
             "spellId": 1795,
             "category": "Offensive",
             "description": {
-                "text": "Your auto-attacks reduce the target's auto-attack speed by -5% for 30, stacking up to (varies) times.",
+                "text": "Your auto-attacks reduce the target's auto-attack speed by 5% for 30, stacking up to (varies) times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -6427,7 +6427,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6443,7 +6443,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6475,7 +6475,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consuming Killing Machine grants 1% critical strike chance for 10, stacking up to -1 times. At -1 stacks your next Killing Machine consumes the stacks and grants you 1% increased Frost damage for 10.",
+                            "text": "Consuming Killing Machine grants 1% critical strike chance for 10, stacking up to (varies) times. At (varies) stacks your next Killing Machine consumes the stacks and grants you 1% increased Frost damage for 10.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6491,7 +6491,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consuming Killing Machine grants 1% critical strike chance for 10, stacking up to -1 times. At -1 stacks your next Killing Machine consumes the stacks and grants you 1% increased Frost damage for 10.",
+                            "text": "Consuming Killing Machine grants 1% critical strike chance for 10, stacking up to (varies) times. At (varies) stacks your next Killing Machine consumes the stacks and grants you 1% increased Frost damage for 10.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6651,7 +6651,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consuming Killing Machine grants 1% critical strike chance for 10, stacking up to -1 times. At -1 stacks your next Killing Machine consumes the stacks and grants you 10% increased Frost damage for 10.",
+                            "text": "Consuming Killing Machine grants 1% critical strike chance for 10, stacking up to (varies) times. At (varies) stacks your next Killing Machine consumes the stacks and grants you 10% increased Frost damage for 10.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6763,7 +6763,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 2 (varies):Obliterates; or (varies):Frostscythes; cost 1 (varies):Runes; and summon 2 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 2 (varies):Obliterates; or (varies):Frostscythes; cost 1 (varies):Runes; and summon 2 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6814,7 +6814,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6830,7 +6830,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6846,7 +6846,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6862,7 +6862,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7198,7 +7198,7 @@
             "spellId": 1802,
             "category": "Defensive",
             "description": {
-                "text": "Magic damage taken is reduced by -8% and the duration of harmful Magic effects against you are reduced by -35%.",
+                "text": "Magic damage taken is reduced by 8% and the duration of harmful Magic effects against you are reduced by 35%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7289,7 +7289,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7353,7 +7353,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7545,7 +7545,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 2 (varies):Obliterates; or (varies):Frostscythes; cost 1 (varies):Runes; and summon 2 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 2 (varies):Obliterates; or (varies):Frostscythes; cost 1 (varies):Runes; and summon 2 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7629,7 +7629,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7645,7 +7645,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7677,7 +7677,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7693,7 +7693,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7725,7 +7725,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by -40% for 4. Deals reduced damage beyond -40 targets.",
+                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 40 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7821,7 +7821,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Obliterates and Frostscythes empowered by Exterminate is reduced by -1.",
+                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Obliterates and Frostscythes empowered by Exterminate is reduced by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7853,7 +7853,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by -40% for 4. Deals reduced damage beyond 8 targets.",
+                            "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8160,7 +8160,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8176,7 +8176,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a -100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
+                            "text": "During Pillar of Frost, Frost Strike, Glacial Advance, and Howling Blast always grant Killing Machine and have a 100% chance to generate a Rune. Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8948,7 +8948,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next 2 (varies):Obliterates; or (varies):Frostscythes; cost 1 (varies):Runes; and summon 2 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 2 (varies):Obliterates; or (varies):Frostscythes; cost 1 (varies):Runes; and summon 2 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9112,7 +9112,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9128,7 +9128,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9144,7 +9144,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9160,7 +9160,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After Reaper's Mark explodes, your next -50 (varies):Obliterates; or (varies):Frostscythes; cost -50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for -50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for -50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
+                            "text": "After Reaper's Mark explodes, your next 50 (varies):Obliterates; or (varies):Frostscythes; cost 50 (varies):Runes; and summon 100 (varies):scythes; to strike your enemies. The first scythe strikes your target for 50 Shadowfrost damage (varies by condition — check in-game) the second scythe strikes all enemies around your target for 50 Shadowfrost damage(varies by condition — check in-game). Deals reduced damage beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9192,7 +9192,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Obliterates and Frostscythes empowered by Exterminate is reduced by -1.",
+                            "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Obliterates and Frostscythes empowered by Exterminate is reduced by 1.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9229,7 +9229,7 @@
             "spellId": 1862,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Obliterates and Frostscythes empowered by Exterminate is reduced by -1.",
+                "text": "Reduces the cooldown of Reaper's Mark by 15 sec, but the amount of Obliterates and Frostscythes empowered by Exterminate is reduced by 1.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9259,7 +9259,7 @@
             "spellId": 1021,
             "category": "Offensive",
             "description": {
-                "text": "Drain the warmth of life from all nearby enemies within (varies) yards, dealing (varies) Frost damage over 8 and reducing their movement speed by -20%.",
+                "text": "Drain the warmth of life from all nearby enemies within (varies) yards, dealing (varies) Frost damage over 8 and reducing their movement speed by 20%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9593,7 +9593,7 @@
             "spellId": 1866,
             "category": "Other",
             "description": {
-                "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing (varies) Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by -40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
+                "text": "Spending Runes has a chance to call forth the aid of a Horsemen for 10. Mograine Casts Death and Decay at his location that follows his position and extends the duration of your diseases by 1 sec whenever it deals damage. Whitemane Casts Undeath on your target dealing (varies) Shadowfrost damage per stack every (varies) sec, for 24. Each time Undeath deals damage it gains a stack. Cannot be refreshed. Trollbane Casts Chains of Ice on your target slowing their movement speed by 40% and increasing the damage they take from you by 5% for 8 sec. Nazgrim While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by 5%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9803,7 +9803,7 @@
             "spellId": 1799,
             "category": "Defensive",
             "description": {
-                "text": "Your chance to be critically struck is reduced by -3% and your Armor is increased by 6%.",
+                "text": "Your chance to be critically struck is reduced by 3% and your Armor is increased by 6%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10046,7 +10046,7 @@
             "spellId": 1800,
             "category": "Offensive",
             "description": {
-                "text": "When you would pull an enemy, the damage they deal to you is reduced by -6% for 6.",
+                "text": "When you would pull an enemy, the damage they deal to you is reduced by 6% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10076,7 +10076,7 @@
             "spellId": 1784,
             "category": "Defensive",
             "description": {
-                "text": "Damage taken from area of effect attacks reduced by -3%. When suffering a loss of control effect, this bonus is increased by an additional -6% for 6.",
+                "text": "Damage taken from area of effect attacks reduced by 3%. When suffering a loss of control effect, this bonus is increased by an additional 6% for 6.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -10183,7 +10183,7 @@
             "spellId": 1878,
             "category": "Offensive",
             "description": {
-                "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by -40% for 4. Deals reduced damage beyond 8 targets.",
+                "text": "Obliterate and Frostscythe shatter Trollbane's Chains of Ice when hit, dealing (varies) Shadowfrost damage to nearby enemies, and slowing them by 40% for 4. Deals reduced damage beyond 8 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10363,7 +10363,7 @@
             "spellId": 1803,
             "category": "Other",
             "description": {
-                "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by -50%.",
+                "text": "Casting Anti-Magic Shell grants (varies) nearby allies a Lesser Anti-Magic Shell that Absorbs up to (varies) magic damage and reduces the duration of harmful Magic effects against them by 50%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

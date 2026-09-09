@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T11:39:09+00:00",
-    "spellCacheVersion": 4159,
+    "generatedAt": "2026-09-09T21:55:34+00:00",
+    "spellCacheVersion": 4160,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -427,7 +427,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -721,7 +721,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Avenging Wrath calls upon the Light to empower you, causing your next Holy Light to be instant cast and cost -50% less mana.",
+                            "text": "Activating Avenging Wrath calls upon the Light to empower you, causing your next Holy Light to be instant cast and cost 50% less mana.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -769,7 +769,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Fear duration on you reduced by -20%. This effect is increased to -60% during Avenging Wrath.",
+                            "text": "Fear duration on you reduced by 20%. This effect is increased to 60% during Avenging Wrath.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -801,7 +801,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Activating Avenging Wrath calls upon the Light to empower you, causing your next Holy Light to be instant cast and cost -50% less mana.",
+                            "text": "Activating Avenging Wrath calls upon the Light to empower you, causing your next Holy Light to be instant cast and cost 50% less mana.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1531,7 +1531,7 @@
             "spellId": 8736,
             "category": "Defensive",
             "description": {
-                "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 30 yds that causes your direct healing on others to also heal that ally for 10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 30 yds if it heals a target past maximum health or if an ally drops below -5% health.",
+                "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 30 yds that causes your direct healing on others to also heal that ally for 10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 30 yds if it heals a target past maximum health or if an ally drops below 5% health.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -1559,7 +1559,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for -10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below -5% health.",
+                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for 10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below 5% health.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -1575,7 +1575,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies) sec or when Beacon of the Savior transfers to a new injured target, they are granted an absorb shield that prevents the next 50 damage and reduces damage taken by -10% for 15. Beacon of the Savior now additionally follows the target of your Holy Light and Flash of Light spells once every (varies) sec.",
+                            "text": "Every (varies) sec or when Beacon of the Savior transfers to a new injured target, they are granted an absorb shield that prevents the next 50 damage and reduces damage taken by 10% for 15. Beacon of the Savior now additionally follows the target of your Holy Light and Flash of Light spells once every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1591,7 +1591,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for -10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below -5% health.",
+                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for 10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below 5% health.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -1607,7 +1607,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for -10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below -5% health.",
+                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for 10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below 5% health.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -1623,7 +1623,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for -10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below -5% health.",
+                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for 10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below 5% health.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -1658,7 +1658,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies) sec or when Beacon of the Savior transfers to a new injured target, they are granted an absorb shield that prevents the next 50 damage and reduces damage taken by -10% for 15. Beacon of the Savior now additionally follows the target of your Holy Light and Flash of Light spells once every (varies) sec.",
+                            "text": "Every (varies) sec or when Beacon of the Savior transfers to a new injured target, they are granted an absorb shield that prevents the next 50 damage and reduces damage taken by 10% for 15. Beacon of the Savior now additionally follows the target of your Holy Light and Flash of Light spells once every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1986,7 +1986,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by -15%. These effects linger for 8 after the Blessing ends.",
+                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by 15%. These effects linger for 8 after the Blessing ends.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2200,7 +2200,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by -15%. These effects linger for 8 after the Blessing ends.",
+                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by 15%. These effects linger for 8 after the Blessing ends.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2400,7 +2400,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by -15%. These effects linger for 8 after the Blessing ends.",
+                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by 15%. These effects linger for 8 after the Blessing ends.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2746,7 +2746,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by -15%. These effects linger for 8 after the Blessing ends.",
+                            "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by 15%. These effects linger for 8 after the Blessing ends.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3269,7 +3269,7 @@
             "spellId": 8072,
             "category": "Other",
             "description": {
-                "text": "Interrupt and Silence effects on party and raid members within (varies) yds are -30% shorter. Fear effects are also reduced.",
+                "text": "Interrupt and Silence effects on party and raid members within (varies) yds are 30% shorter. Fear effects are also reduced.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3349,7 +3349,7 @@
             "spellId": 8580,
             "category": "Other",
             "description": {
-                "text": "Your Consecration is 15% larger, and enemies within it have -50% reduced movement speed.",
+                "text": "Your Consecration is 15% larger, and enemies within it have 50% reduced movement speed.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3379,7 +3379,7 @@
             "spellId": 7737,
             "category": "Offensive",
             "description": {
-                "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over 12 to enemies who enter the area and reducing their movement speed by -50%. Limit 1.",
+                "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over 12 to enemies who enter the area and reducing their movement speed by 50%. Limit 1.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3407,7 +3407,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Consecration is 15% larger, and enemies within it have -50% reduced movement speed.",
+                            "text": "Your Consecration is 15% larger, and enemies within it have 50% reduced movement speed.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4196,7 +4196,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Dawnlight reduces the movement speed of enemies by -50% and increases the movement speed of allies by 20%.",
+                            "text": "Dawnlight reduces the movement speed of enemies by 50% and increases the movement speed of allies by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4305,7 +4305,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4337,7 +4337,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4369,7 +4369,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Denounce deals 1 damage to its first target struck. Denounce now has a -100% chance to activate Divine Purpose if talented.",
+                            "text": "Denounce deals 1 damage to its first target struck. Denounce now has a 100% chance to activate Divine Purpose if talented.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4535,7 +4535,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over (varies) to enemies who enter the area and reducing their movement speed by -50%. Limit 1.",
+                            "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over (varies) to enemies who enter the area and reducing their movement speed by 50%. Limit 1.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -4778,7 +4778,7 @@
             "spellId": 7723,
             "category": "Defensive",
             "description": {
-                "text": "Party and raid members within (varies) yds are bolstered by their devotion, reducing damage taken by -3%.",
+                "text": "Party and raid members within (varies) yds are bolstered by their devotion, reducing damage taken by 3%.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4924,7 +4924,7 @@
             "spellId": 8739,
             "category": "Other",
             "description": {
-                "text": "The mana cost of Holy Light is reduced by -10% and its cast time is reduced by -15%.",
+                "text": "The mana cost of Holy Light is reduced by 10% and its cast time is reduced by 15%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5106,7 +5106,7 @@
             "spellId": 7724,
             "category": "Defensive",
             "description": {
-                "text": "Reduces all damage you take by -20% for 8. Usable while stunned.",
+                "text": "Reduces all damage you take by 20% for 8. Usable while stunned.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5118,7 +5118,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Divine Protection, and Lay on Hands by -30%.",
+                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Divine Protection, and Lay on Hands by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5250,7 +5250,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Denounce deals 1 damage to its first target struck. Denounce now has a -100% chance to activate Divine Purpose if talented.",
+                            "text": "Denounce deals 1 damage to its first target struck. Denounce now has a 100% chance to activate Divine Purpose if talented.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5452,7 +5452,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Divine Protection, and Lay on Hands by -30%.",
+                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Divine Protection, and Lay on Hands by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5556,7 +5556,7 @@
             "spellId": 8621,
             "category": "Other",
             "description": {
-                "text": "Divine Steed's cooldown is reduced by -20%, but its duration is reduced by -40%.",
+                "text": "Divine Steed's cooldown is reduced by 20%, but its duration is reduced by 40%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5649,7 +5649,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Divine Steed's cooldown is reduced by -20%, but its duration is reduced by -40%.",
+                            "text": "Divine Steed's cooldown is reduced by 20%, but its duration is reduced by 40%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5665,7 +5665,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Divine Steed's cooldown is reduced by -20%, but its duration is reduced by -40%.",
+                            "text": "Divine Steed's cooldown is reduced by 20%, but its duration is reduced by 40%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5810,7 +5810,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5858,7 +5858,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7267,7 +7267,7 @@
             "spellId": 8603,
             "category": "Other",
             "description": {
-                "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by -15%. These effects linger for 8 after the Blessing ends.",
+                "text": "Blessing of Freedom increases the target's movement speed by 30%. Blessing of Spellwarding and Blessing of Sacrifice reduce the target's damage taken by 15%. These effects linger for 8 after the Blessing ends.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7415,7 +7415,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7447,7 +7447,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7463,7 +7463,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Denounce deals 1 damage to its first target struck. Denounce now has a -100% chance to activate Divine Purpose if talented.",
+                            "text": "Denounce deals 1 damage to its first target struck. Denounce now has a 100% chance to activate Divine Purpose if talented.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7479,7 +7479,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Word of Glory and Light of Dawn now convert -15% of their healing into an absorb shield instead.",
+                            "text": "Word of Glory and Light of Dawn now convert 15% of their healing into an absorb shield instead.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -7597,7 +7597,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over (varies) to enemies who enter the area and reducing their movement speed by -50%. Limit 1.",
+                            "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over (varies) to enemies who enter the area and reducing their movement speed by 50%. Limit 1.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -7851,7 +7851,7 @@
             "spellId": 8634,
             "category": "Other",
             "description": {
-                "text": "Fear duration on you reduced by -20%. This effect is increased to -60% during Avenging Wrath.",
+                "text": "Fear duration on you reduced by 20%. This effect is increased to 60% during Avenging Wrath.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7955,7 +7955,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The healing of your next Holy Light or Flash of Light is increased by 20% and its mana cost is reduced by -100%.",
+                            "text": "The healing of your next Holy Light or Flash of Light is increased by 20% and its mana cost is reduced by 100%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8003,7 +8003,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for -10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below -5% health.",
+                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for 10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below 5% health.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -8147,7 +8147,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies) sec or when Beacon of the Savior transfers to a new injured target, they are granted an absorb shield that prevents the next 50 damage and reduces damage taken by -10% for 15. Beacon of the Savior now additionally follows the target of your Holy Light and Flash of Light spells once every (varies) sec.",
+                            "text": "Every (varies) sec or when Beacon of the Savior transfers to a new injured target, they are granted an absorb shield that prevents the next 50 damage and reduces damage taken by 10% for 15. Beacon of the Savior now additionally follows the target of your Holy Light and Flash of Light spells once every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8395,7 +8395,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "-514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
+                            "text": "514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8459,7 +8459,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Every (varies) sec or when Beacon of the Savior transfers to a new injured target, they are granted an absorb shield that prevents the next 50 damage and reduces damage taken by -10% for 15. Beacon of the Savior now additionally follows the target of your Holy Light and Flash of Light spells once every (varies) sec.",
+                            "text": "Every (varies) sec or when Beacon of the Savior transfers to a new injured target, they are granted an absorb shield that prevents the next 50 damage and reduces damage taken by 10% for 15. Beacon of the Savior now additionally follows the target of your Holy Light and Flash of Light spells once every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -8508,7 +8508,7 @@
             "spellId": 8656,
             "category": "Other",
             "description": {
-                "text": "The cooldown of Holy Armaments is reduced by -20%.",
+                "text": "The cooldown of Holy Armaments is reduced by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9140,7 +9140,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment heals you for -30 and its mana cost is reduced by -30%. 50% of overhealing from this effect is transferred onto 2 allies within (varies) yds.",
+                            "text": "Judgment heals you for 30 and its mana cost is reduced by 30%. 50% of overhealing from this effect is transferred onto 2 allies within (varies) yds.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -9452,7 +9452,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "-514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
+                            "text": "514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -9617,7 +9617,7 @@
             "spellId": 8735,
             "category": "Other",
             "description": {
-                "text": "Activating Avenging Wrath calls upon the Light to empower you, causing your next Holy Light to be instant cast and cost -50% less mana.",
+                "text": "Activating Avenging Wrath calls upon the Light to empower you, causing your next Holy Light to be instant cast and cost 50% less mana.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9850,7 +9850,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Holy Armaments is reduced by -20%.",
+                            "text": "The cooldown of Holy Armaments is reduced by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -9866,7 +9866,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "The cooldown of Holy Armaments is reduced by -20%.",
+                            "text": "The cooldown of Holy Armaments is reduced by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11400,7 +11400,7 @@
             "spellId": 8644,
             "category": "Other",
             "description": {
-                "text": "Dawnlight reduces the movement speed of enemies by -50% and increases the movement speed of allies by 20%.",
+                "text": "Dawnlight reduces the movement speed of enemies by 50% and increases the movement speed of allies by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -11562,7 +11562,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Infusion of Light has 1 additional charge and its effects are increased by -30%.",
+                            "text": "Infusion of Light has 1 additional charge and its effects are increased by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11784,7 +11784,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11800,7 +11800,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11912,7 +11912,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment heals you for -30 and its mana cost is reduced by -30%. 50% of overhealing from this effect is transferred onto 2 allies within (varies) yds.",
+                            "text": "Judgment heals you for 30 and its mana cost is reduced by 30%. 50% of overhealing from this effect is transferred onto 2 allies within (varies) yds.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -12234,7 +12234,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment heals you for -30 and its mana cost is reduced by -30%. 50% of overhealing from this effect is transferred onto 2 allies within (varies) yds.",
+                            "text": "Judgment heals you for 30 and its mana cost is reduced by 30%. 50% of overhealing from this effect is transferred onto 2 allies within (varies) yds.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -12250,7 +12250,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Judgment heals you for -30 and its mana cost is reduced by -30%. 50% of overhealing from this effect is transferred onto 2 allies within (varies) yds.",
+                            "text": "Judgment heals you for 30 and its mana cost is reduced by 30%. 50% of overhealing from this effect is transferred onto 2 allies within (varies) yds.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -12820,7 +12820,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "-514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
+                            "text": "514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -13269,7 +13269,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Divine Protection, and Lay on Hands by -30%.",
+                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Divine Protection, and Lay on Hands by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13301,7 +13301,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lay on Hands' cooldown is reduced by -40% and restores 5% of your Mana.",
+                            "text": "Lay on Hands' cooldown is reduced by 40% and restores 5% of your Mana.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13523,7 +13523,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13555,7 +13555,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -13571,7 +13571,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Denounce deals 1 damage to its first target struck. Denounce now has a -100% chance to activate Divine Purpose if talented.",
+                            "text": "Denounce deals 1 damage to its first target struck. Denounce now has a 100% chance to activate Divine Purpose if talented.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -13587,7 +13587,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Word of Glory and Light of Dawn now convert -15% of their healing into an absorb shield instead.",
+                            "text": "Word of Glory and Light of Dawn now convert 15% of their healing into an absorb shield instead.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -13603,7 +13603,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for -10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below -5% health.",
+                            "text": "While in combat, apply a Beacon of the Savior to the lowest health ally within 50 yds that causes your direct healing on others to also heal that ally for 10% of the amount healed. Beacon of the Savior transfers to the lowest health ally within 50 yds if it heals a target past maximum health or if an ally drops below 5% health.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -13667,7 +13667,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Word of Glory and Light of Dawn now convert -15% of their healing into an absorb shield instead.",
+                            "text": "Word of Glory and Light of Dawn now convert 15% of their healing into an absorb shield instead.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -14011,7 +14011,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "-514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
+                            "text": "514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -14027,7 +14027,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "-514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
+                            "text": "514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -14646,7 +14646,7 @@
             "spellId": 8597,
             "category": "Defensive",
             "description": {
-                "text": "Speed increased by 2% and damage taken from area of effect attacks reduced by -2%.",
+                "text": "Speed increased by 2% and damage taken from area of effect attacks reduced by 2%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -15560,7 +15560,7 @@
             "spellId": 8605,
             "category": "Defensive",
             "description": {
-                "text": "Armor increased by 10%, Stamina increased by 5% and damage taken from area of effect attacks reduced by -3%.",
+                "text": "Armor increased by 10%, Stamina increased by 5% and damage taken from area of effect attacks reduced by 3%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -15851,7 +15851,7 @@
             "spellId": 8733,
             "category": "Defensive",
             "description": {
-                "text": "Word of Glory and Light of Dawn now convert -15% of their healing into an absorb shield instead.",
+                "text": "Word of Glory and Light of Dawn now convert 15% of their healing into an absorb shield instead.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -15923,7 +15923,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Divine Protection, and Lay on Hands by -30%.",
+                            "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Divine Protection, and Lay on Hands by 30%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -16198,7 +16198,7 @@
             "spellId": 8616,
             "category": "Other",
             "description": {
-                "text": "The duration of stun effects on you is reduced by -20%.",
+                "text": "The duration of stun effects on you is reduced by 20%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -16318,7 +16318,7 @@
             "spellId": 8717,
             "category": "Other",
             "description": {
-                "text": "Lay on Hands' cooldown is reduced by -40% and restores 5% of your Mana.",
+                "text": "Lay on Hands' cooldown is reduced by 40% and restores 5% of your Mana.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -16348,7 +16348,7 @@
             "spellId": 8725,
             "category": "Defensive",
             "description": {
-                "text": "Judgment heals you for -30 and its mana cost is reduced by -30%. 50% of overhealing from this effect is transferred onto 2 allies within (varies) yds.",
+                "text": "Judgment heals you for 30 and its mana cost is reduced by 30%. 50% of overhealing from this effect is transferred onto 2 allies within (varies) yds.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -16392,7 +16392,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Turn Evil's cast time is reduced by -100%.",
+                            "text": "Turn Evil's cast time is reduced by 100%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -16531,7 +16531,7 @@
             "spellId": 8574,
             "category": "Other",
             "description": {
-                "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Divine Protection, and Lay on Hands by -30%.",
+                "text": "Reduces the cooldown of your Divine Shield, Shield of Vengeance, Divine Protection, and Lay on Hands by 30%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -16799,7 +16799,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 15% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -16831,7 +16831,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Holy Power spending abilities have a -100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
+                            "text": "Holy Power spending abilities have a 100% chance to make your next Holy Power spending ability free and deal 10% increased damage and healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -16847,7 +16847,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Denounce deals 1 damage to its first target struck. Denounce now has a -100% chance to activate Divine Purpose if talented.",
+                            "text": "Denounce deals 1 damage to its first target struck. Denounce now has a 100% chance to activate Divine Purpose if talented.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -16863,7 +16863,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Word of Glory and Light of Dawn now convert -15% of their healing into an absorb shield instead.",
+                            "text": "Word of Glory and Light of Dawn now convert 15% of their healing into an absorb shield instead.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -16975,7 +16975,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Word of Glory and Light of Dawn now convert -15% of their healing into an absorb shield instead.",
+                            "text": "Word of Glory and Light of Dawn now convert 15% of their healing into an absorb shield instead.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -17157,7 +17157,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over (varies) to enemies who enter the area and reducing their movement speed by -50%. Limit 1.",
+                            "text": "Consecrates the land beneath you, causing ${(varies)*1.05} Radiant damage over (varies) to enemies who enter the area and reducing their movement speed by 50%. Limit 1.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -17351,7 +17351,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "-514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
+                            "text": "514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -17367,7 +17367,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "-514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
+                            "text": "514.4% of Word of Glory and Light of Dawn's healing is converted into Holy damage that strikes a nearby enemy.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -17478,7 +17478,7 @@
             "spellId": 8612,
             "category": "Other",
             "description": {
-                "text": "Turn Evil's cast time is reduced by -100%.",
+                "text": "Turn Evil's cast time is reduced by 100%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
