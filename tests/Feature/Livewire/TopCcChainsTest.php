@@ -57,3 +57,56 @@ test('orders chains by duration descending, caps at TOP_N, and leaks no real cha
         expect($html)->not->toContain($name);
     }
 });
+
+/**
+ * The production regression this page actually shipped with (fixed 2026-09-09).
+ *
+ * data/arena-logs/metadata/*.json is GITIGNORED, so a live server has none of it. The comp used
+ * to be resolved at render time from that metadata, which meant on production every chain
+ * resolved to no comp at all — so the page fell back to "whoever cast a step in this one chain"
+ * (as few as ONE spec) and the unique-comp dedupe silently did nothing, because an empty comp key
+ * is deliberately never deduped on. Locally it looked perfect, because the archive IS present
+ * here — which is exactly why this test forces the archive to be missing rather than trusting a
+ * normal dev run.
+ *
+ * Reproduced before the fix under these conditions: 5 of 10 chains showed fewer than 3 specs and
+ * 3 rows were the same comp. The comp now comes from the `attackingComp` field persisted into the
+ * corpus at generation time by wow:find-cc-chains, so it does not need the archive at all.
+ */
+test('resolves a full 3-spec comp and unique comps with NO arena log archive present', function () {
+    if (File::glob(base_path('data/arena-logs/cc-chains/*/*.json')) === []) {
+        $this->markTestSkipped('No cc-chains data on disk for this environment.');
+    }
+
+    $game = Game::create(['slug' => 'wow', 'name' => 'World of Warcraft']);
+    Patch::create(['game_id' => $game->id, 'build_version' => '0.0.0-test', 'is_current' => true]);
+
+    // Point the archive at a directory that genuinely has no metadata in it — this is what
+    // production looks like, not an artificial edge case.
+    $empty = storage_path('framework/testing/empty-archive-'.uniqid());
+    File::ensureDirectoryExists($empty);
+    config(['arena_logs.archive_path' => $empty]);
+
+    $chains = Livewire::test(TopCcChains::class)->instance()->chains;
+
+    expect($chains)->not->toBeEmpty();
+
+    $compKeys = [];
+
+    foreach ($chains as $chain) {
+        // A real 3v3 comp, every time — never "whoever happened to cast a step in this chain".
+        expect($chain['casters'])->toHaveCount(3);
+
+        $compKeys[] = collect($chain['casters'])
+            ->map(fn ($c) => $c['classSlug'].'/'.$c['specSlug'])
+            ->sort()
+            ->implode('|');
+    }
+
+    // Order-independent, so two chains by the same three specs collapse regardless of who cast
+    // first. Duplicates of the same spec within one comp are preserved on purpose (a real 3v3 can
+    // run two of the same spec), which is why this compares full lists rather than a set.
+    expect($compKeys)->toEqual(array_values(array_unique($compKeys)));
+
+    File::deleteDirectory($empty);
+});

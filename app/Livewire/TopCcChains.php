@@ -7,6 +7,7 @@ use App\Models\PageViewEvent;
 use App\Models\Patch;
 use App\Models\Specialization;
 use App\Models\Spell;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Livewire\Component;
 
@@ -41,23 +42,44 @@ use Livewire\Component;
  *
  * **Comp resolution + uniqueness (added 2026-09-06)** — direct follow-up request: "show unique
  * comps... and always the 3 classes that are in the same team," reporting that the flat top 10
- * had been showing the same comp (by spec) more than once. Two changes, both via
- * `ArenaLogService::resolveOpposingTeamSpecs()`:
- *   1. Each chain's `casters` field is now the REAL, full attacking-team roster (up to 3 real
- *      teammates), resolved from the match's own metadata via `reaction` (the same team-
- *      discriminating field `analyzeKillCausally()`'s roster already relies on) — not just
- *      whoever happened to cast a step recorded in THIS chain. Falls back to the old per-step-
- *      derived list only if roster resolution fails entirely (missing metadata, healer name not
- *      found — a real but rare data gap), so the page never regresses to showing nothing.
- *   2. Chains are walked in duration-descending order and deduped by comp (the resolved roster's
- *      spec set, order-independent) — the first chain seen for a given comp is the longest one,
- *      so a comp that appears many times in the archive still only ever occupies one of the 10
- *      slots, giving the requested variety instead of e.g. the same Shadow Priest/Restoration
- *      Shaman pairing or two separate RMD chains both showing up.
+ * had been showing the same comp (by spec) more than once. Two rules:
+ *   1. Each chain's `casters` field is the REAL, full attacking-team roster (up to 3 real
+ *      teammates, duplicates of the same spec preserved — a real 3v3 can run two of one spec) —
+ *      not just whoever happened to cast a step recorded in THIS chain.
+ *   2. Chains are walked in duration-descending order and deduped by comp (the roster's spec set,
+ *      order-independent) — the first chain seen for a given comp is the longest one, so a comp
+ *      that appears many times in the archive still only ever occupies one of the 10 slots.
+ *
+ * **Both rules were silently dead in production until 2026-09-09, and this is the thing to
+ * remember about this page.** They were originally implemented by calling
+ * `ArenaLogService::resolveOpposingTeamSpecs()` at RENDER time, which reads
+ * `{archive}/metadata/{matchId}.json` — and `data/arena-logs/metadata/*` is GITIGNORED, so a
+ * live server has none of it. Every chain therefore resolved to no comp at all on production:
+ * `casters` fell back to the per-step-derived list (as few as ONE spec) and the dedupe no-opped,
+ * because an empty comp key is deliberately never deduped on. Locally it looked perfect, because
+ * the archive IS present here. Reported as the page having "lost" constraints it appeared to have.
+ *
+ * Measured under a forced no-archive run before the fix: 5 of 10 chains showed fewer than 3 specs
+ * and 3 rows were the same comp. After: 0 and 0.
+ *
+ * The comp is now resolved ONCE, at generation time, by `wow:find-cc-chains` (see
+ * `FindCcChains::opposingTeamSpecs()`) and persisted into each chain record as `attackingComp`,
+ * so the live site never needs the raw archive to answer "which comp landed this". The
+ * render-time call survives only as a fallback for a chain file generated before that field
+ * existed, on a machine that has the archive; it must not become the primary path again.
+ *
+ * The general rule this is an instance of: the raw arena-log archive is a BUILD-TIME input, never
+ * a runtime dependency. Anything a page needs from it has to be baked into a committed artifact —
+ * the same shape as burst windows embedding their talent build and playstyle embedding its
+ * analysis. A regression test forces the archive to be absent rather than trusting a dev run,
+ * because a normal dev run cannot see this class of bug.
  */
 class TopCcChains extends Component
 {
     public const TOP_N = 10;
+
+    /** Memo for the archive-backed fallback path only; never touched in production. */
+    private ?Collection $specsByExternalId = null;
 
     public function mount(): void
     {
@@ -92,10 +114,43 @@ class TopCcChains extends Component
         return $newest ? \Carbon\Carbon::createFromTimestamp($newest) : null;
     }
 
+    /**
+     * The real, full attacking team for one chain (up to 3 real teammates, duplicates of the
+     * same spec preserved — a real 3v3 can run two of the same spec).
+     *
+     * Reads the `attackingComp` field `wow:find-cc-chains --json` now persists into the corpus
+     * at generation time. **That stored field is the only path that works in production**, and
+     * that is why it exists: metadata/*.json is gitignored, so a live server has none of it, and
+     * the previous render-time `ArenaLogService::resolveOpposingTeamSpecs()` call silently
+     * returned [] for every chain there — which both dropped the page back to "whoever cast a
+     * step in this one chain" and disabled the unique-comp dedupe (an empty comp key can't be
+     * deduped on). Locally it looked perfect, because the archive is present here. Reported
+     * 2026-09-09 as the page having "lost" constraints it appeared to have.
+     *
+     * The live-resolution call is kept ONLY as a fallback for a chain file generated before that
+     * field existed, on a machine that does have the archive. It is never reached on production
+     * and must not become the primary path again.
+     *
+     * @return array<int, array{classSlug: string, specSlug: string}>
+     */
+    private function attackingCompFor(array $chain): array
+    {
+        $stored = $chain['attackingComp'] ?? null;
+        if (is_array($stored) && $stored !== []) {
+            return $stored;
+        }
+
+        return app(ArenaLogService::class)->resolveOpposingTeamSpecs(
+            $chain['matchId'] ?? '',
+            $chain['healerName'] ?? '',
+            $this->specsByExternalId ??= Specialization::with('gameClass')->get()->keyBy('external_spec_id'),
+        );
+    }
+
     public function getChainsProperty(): array
     {
         $patch = Patch::where('is_current', true)->first();
-        if (!$patch) {
+        if (! $patch) {
             return [];
         }
 
@@ -114,7 +169,7 @@ class TopCcChains extends Component
             $spec = $specsBySlug->get("{$classSlug}/{$specSlug}");
 
             $chains = json_decode(File::get($file), true);
-            if (!is_array($chains)) {
+            if (! is_array($chains)) {
                 continue;
             }
 
@@ -133,9 +188,6 @@ class TopCcChains extends Component
         // unique comps are found), and skip any chain whose comp we've already used. This is
         // what "always show the 3 real teammates, and don't repeat a comp" actually means in
         // practice: the FIRST (= longest) chain seen for a given comp wins that comp's slot.
-        $arenaLogService = app(ArenaLogService::class);
-        $specsByExternalId = Specialization::with('gameClass')->get()->keyBy('external_spec_id');
-
         $seenCompKeys = [];
         $top = collect();
 
@@ -144,16 +196,18 @@ class TopCcChains extends Component
                 break;
             }
 
-            $roster = $arenaLogService->resolveOpposingTeamSpecs($chain['matchId'] ?? '', $chain['healerName'] ?? '', $specsByExternalId);
+            $roster = $this->attackingCompFor($chain);
 
             $compKey = collect($roster)
                 ->map(fn ($r) => "{$r['classSlug']}/{$r['specSlug']}")
                 ->sort()
+                ->values()
                 ->implode('|');
 
-            // An empty compKey means roster resolution found nothing at all (missing metadata,
-            // renamed/unmatched healer) — too unreliable to dedupe on, so every such chain is
-            // treated as its own unique slot rather than silently collapsed together.
+            // An empty compKey means the comp genuinely couldn't be resolved (a pre-2026-09-09
+            // chain file with no stored attackingComp, and no archive on this machine to fall
+            // back to) — too unreliable to dedupe on, so every such chain is treated as its own
+            // unique slot rather than silently collapsed together.
             if ($compKey !== '' && in_array($compKey, $seenCompKeys, true)) {
                 continue;
             }
@@ -233,14 +287,14 @@ class TopCcChains extends Component
             // metadata, unmatched healer name) so the page never shows zero casters. Never
             // includes a real player name either way.
             $roster = $chain['__roster'] ?? [];
-            $casters = !empty($roster)
+            $casters = ! empty($roster)
                 ? collect($roster)->map(fn ($r) => [
                     'classSlug' => $r['classSlug'],
                     'specSlug' => $r['specSlug'],
                     'spec' => $specsBySlug->get("{$r['classSlug']}/{$r['specSlug']}"),
                 ])->values()->all()
                 : collect($chain['steps'])
-                    ->filter(fn ($s) => !empty($s['sourceClassSlug']) && !empty($s['sourceSpecSlug']))
+                    ->filter(fn ($s) => ! empty($s['sourceClassSlug']) && ! empty($s['sourceSpecSlug']))
                     ->unique(fn ($s) => $s['sourceClassSlug'].'/'.$s['sourceSpecSlug'])
                     ->map(fn ($s) => [
                         'classSlug' => $s['sourceClassSlug'],

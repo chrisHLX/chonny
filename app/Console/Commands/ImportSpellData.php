@@ -162,6 +162,10 @@ class ImportSpellData extends Command
 
     private int $cooldownScalingNotesApplied = 0;
 
+    private int $schoolImmunityOverrideSkips = 0;
+
+    private int $schoolImmunityOverridesApplied = 0;
+
     private int $ccImmunityNoteSkips = 0;
 
     private int $ccImmunityNotesApplied = 0;
@@ -260,6 +264,7 @@ class ImportSpellData extends Command
         $this->importCcSynergyOverrides($patch);
         $this->importCooldownScalingNotes($patch);
         $this->importCcImmunityOverrides($patch);
+        $this->importSchoolImmunityOverrides($patch);
         $this->importScalarCorrections($patch);
 
         // Retroactive cleanup for stale class-tree talent nodes that duplicate a spec-tree
@@ -1812,6 +1817,89 @@ class ImportSpellData extends Command
      * two describe conceptually different things, and keeping the counts separate means a reader
      * skimming either summary line doesn't have to mentally split one number into two meanings.
      */
+    /**
+     * Reads data/spelldata/school-immunity-overrides.txt — see that file's own header, and the
+     * 2026_09_09 migration's docblock, for the measured rationale.
+     *
+     * Writes spells.school_immunity_override, which REPLACES the effect-derived "Affected
+     * School(s)" answer outright for that one spell (it does not merge with it). The literal
+     * value `None` stores an empty string, which is how a curator says "grants no school immunity
+     * at all" as distinct from omitting the line entirely (which leaves the derived answer alone).
+     *
+     * Runs unconditionally, independent of --only, same "always run this defensive pass"
+     * precedent as importBaselineSpecOverrides()/importCcImmunityOverrides() either side of it.
+     * A malformed line, an unresolvable spell_id, or an unknown school name warns and skips —
+     * never guesses, never partially applies.
+     */
+    private function importSchoolImmunityOverrides(Patch $patch): void
+    {
+        $path = base_path('data/spelldata/school-immunity-overrides.txt');
+
+        if (! File::exists($path)) {
+            return;
+        }
+
+        $validSchools = ModuleSpellReferenceService::immunitySchoolNames();
+
+        foreach (File::lines($path) as $line) {
+            $line = trim($line);
+
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+
+            $parts = array_map('trim', explode('|', $line, 3));
+
+            if (count($parts) < 3 || ! ctype_digit($parts[0]) || $parts[1] === '' || $parts[2] === '') {
+                $this->schoolImmunityOverrideSkips++;
+                $this->warn("  Skipping malformed school-immunity-overrides.txt line: {$line}");
+
+                continue;
+            }
+
+            [$externalSpellId, $schoolList, $note] = $parts;
+
+            $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
+
+            if (! $spell) {
+                $this->schoolImmunityOverrideSkips++;
+                $this->warn("  Skipping unresolved school-immunity-overrides.txt line (spell not found for this patch): {$line}");
+
+                continue;
+            }
+
+            if (strcasecmp($schoolList, 'None') === 0) {
+                $this->upsertTrack(Spell::class, ['id' => $spell->id], [
+                    'school_immunity_override' => '',
+                ], 'spells');
+                $this->schoolImmunityOverridesApplied++;
+
+                continue;
+            }
+
+            $schools = collect(explode(',', $schoolList))
+                ->map(fn ($x) => trim($x))
+                ->filter()
+                ->values();
+
+            $unknown = $schools->reject(fn ($x) => in_array($x, $validSchools, true));
+
+            if ($unknown->isNotEmpty()) {
+                $this->schoolImmunityOverrideSkips++;
+                $this->warn("  Skipping school-immunity-overrides.txt line with unknown school(s) [{$unknown->implode(', ')}] — valid names are ".implode(', ', $validSchools).", or None: {$line}");
+
+                continue;
+            }
+
+            // Stored in the same shape spell_effects.affected_schools uses, so every existing
+            // reader (which does a substring match against a school name) keeps working unchanged.
+            $this->upsertTrack(Spell::class, ['id' => $spell->id], [
+                'school_immunity_override' => $schools->implode(', '),
+            ], 'spells');
+            $this->schoolImmunityOverridesApplied++;
+        }
+    }
+
     private function importCcImmunityOverrides(Patch $patch): void
     {
         $path = base_path('data/spelldata/cc-immunity-overrides.txt');
@@ -2204,6 +2292,10 @@ class ImportSpellData extends Command
             $this->comment("Cooldown scaling notes: {$this->cooldownScalingNotesApplied} applied, {$this->cooldownScalingNoteSkips} skipped (see warnings above).");
         }
 
+        if ($this->schoolImmunityOverridesApplied > 0 || $this->schoolImmunityOverrideSkips > 0) {
+            $this->comment("School immunity overrides (hand-curated): {$this->schoolImmunityOverridesApplied} applied, {$this->schoolImmunityOverrideSkips} skipped (see warnings above).");
+        }
+
         if ($this->ccImmunityNotesApplied > 0 || $this->ccImmunityNoteSkips > 0) {
             $this->comment("CC immunity notes (PvP-talent-only, hand-curated): {$this->ccImmunityNotesApplied} applied, {$this->ccImmunityNoteSkips} skipped (see warnings above).");
         }
@@ -2322,34 +2414,18 @@ class ImportSpellData extends Command
     }
 
     /**
-     * The raw "Affected School(s)" payload of any School Immunity effect this spell grants —
-     * 'All', or a comma list like 'Arcane, Fire, Frost, Holy, Nature, Shadow'. Null when it
-     * grants none.
+     * The raw "Affected School(s)" payload this spell grants — 'All', or a comma list like
+     * 'Arcane, Fire, Frost, Holy, Nature, Shadow'. Null when it grants none.
      *
-     * Includes the same same-name sibling fallback ModuleSpellReferenceService::
-     * grantsSchoolImmunityFor() performs, for the same confirmed reason: Cloak of Shadows' own
-     * castable copy (31224) carries no School Immunity effect at all — it triggers a separate
-     * hidden aura record (35729) that does. Without the fallback, the single most recognisable
-     * counter in the game materializes as "grants nothing".
+     * Delegates to ModuleSpellReferenceService::grantedSchoolImmunityFor(), which is now the one
+     * implementation (2026-09-09). This method's body used to be a verbatim copy of that logic,
+     * duplicated again into RebuildSpellCounters — three copies of one rule, which is how the
+     * column this writes and the answer SpellCounterIndexer acts on could silently disagree.
+     * Keeping the wrapper only so the call site above reads the same as it always did.
      */
     private function resolveGrantedSchoolImmunity(Spell $spell): ?string
     {
-        $fromOwn = $spell->effects
-            ->firstWhere(fn ($e) => $e->type === 'School Immunity' && $e->affected_schools !== null);
-
-        if ($fromOwn !== null) {
-            return $fromOwn->affected_schools;
-        }
-
-        $sibling = Spell::where('name', $spell->name)
-            ->where('patch_id', $spell->patch_id)
-            ->where('id', '!=', $spell->id)
-            ->with('effects')
-            ->get()
-            ->flatMap(fn (Spell $s) => $s->effects)
-            ->firstWhere(fn ($e) => $e->type === 'School Immunity' && $e->affected_schools !== null);
-
-        return $sibling?->affected_schools;
+        return app(ModuleSpellReferenceService::class)->grantedSchoolImmunityFor($spell);
     }
 
     /**

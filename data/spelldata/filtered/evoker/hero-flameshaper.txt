@@ -1,5 +1,5 @@
 # Evoker — Flameshaper Hero Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69283 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Enkindle (desc=Red) (id=444016) [Spell Family (224), Passive, Hidden] 
@@ -11,6 +11,7 @@ Labels           : 16: Class Spells
                  : 292
                  : 1216: Evoker Spells
                  : 3022
+                 : 7156
 Proc Chance      : 100%
 Proc Flags       : Magic Heal, Magic Hostile Spell, Periodic
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
@@ -61,7 +62,8 @@ Effects          :
                    Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
                    Modified By: Preservation Evoker (356810 effect#17)
 #4 (id=1275546)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 150 | Scaled Value: 150 | Target: Self (1)
+                   Base Value: 150 | Scaled Value: 150 | PvP Coefficient: 1.33333 | Target: Self (1)
+Hotfixed         : PvP Coefficient (1 -> 1.33333)
 #5 (id=1275591)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
 #6 (id=1278179)  : Apply Aura (6) | Dummy (4)
@@ -118,6 +120,7 @@ Labels           : 16: Class Spells
                  : 292
                  : 1216: Evoker Spells
                  : 3022
+                 : 7155
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1141486)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
@@ -213,7 +216,7 @@ Effects          :
 Description      : $?c1[Fire Breath deals its damage][Fire Breath and Dream Breath deal their damage and healing] $s1% more often.
 
 Name             : Legacy of the Lifebinder (desc=Red) (id=1264269) [Spell Family (224), Passive, Hidden] 
-Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Talent Entry     : Flameshaper (Devastation, Preservation) [free=(Devastation, Preservation), tree=hero, row=1, col=3, max_rank=1, req_points=0]
 Class            : Evoker
 School           : Physical
 Spell Type       : None

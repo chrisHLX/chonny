@@ -1,5 +1,5 @@
 # Shaman — Farseer Hero Talents
-# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69283 Live)
+# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Elemental Reverb (id=443418) [Spell Family (11), Passive, Hidden] 
@@ -111,16 +111,19 @@ Labels           : 16: Class Spells
                  : 24: Shaman Spells
                  : 292
                  : 3022
+                 : 7165: Elemental Shaman (1231772 effect#10)
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Display Cast Time (441)
 Effects          :
 #1 (id=1139362)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
                    Base Value: -15000 | Scaled Value: -15000 | Misc Value: 1 | Misc Value 2: 3449 (Label) | Target: Self (1)
                    Affected Spells (Label): Nature's Guardian (445698)
+                   Modified By: Elemental Shaman (1231772 effect#10)
 #2 (id=1142679)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 #3 (id=1177797)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
-                   Base Value: 50 | Scaled Value: 50 | Misc Value: 12 | Misc Value 2: 4016 (Label) | Target: Self (1)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 12 | Misc Value 2: 4016 (Label) | Target: Self (1)
                    Affected Spells (Label): Nature's Guardian (30884)
+Hotfixed         : Base Value (50 -> 25)
 Description      : Reduces the cooldown of Nature's Guardian by ${$s1/-1000} sec and causes it to heal for an additional $s2% of your maximum health.
 
 Name             : Heed My Call (id=443444) [Spell Family (11), Passive, Hidden] 
@@ -206,8 +209,8 @@ Effects          :
                    Family Flags: 20, 83, 98, 108
 #2 (id=1144457)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 0.8 | Target: Self (1)
-                   Affected Spells: Chain Heal (1064), Healing Wave (77472), Downpour (207778), Downpour (462603)
-                   Family Flags: 8, 33, 80
+                   Affected Spells: Chain Heal (1064), Healing Surge (8004), Healing Wave (77472), Downpour (207778), Downpour (462603)
+                   Family Flags: 7, 8, 33, 80
 Description      : $?a137040[Increases the damage of Earth Shock, Elemental Blast, and Earthquake by $s1%.
 
 Increases the healing of Healing Surge and Chain Heal by $s2%.][Increases the healing done by Healing Wave, Downpour, and Chain Heal by $s2%.]
@@ -254,7 +257,7 @@ Effects          :
 Description      : Your Ancestors' spells are $s1% more powerful.
 
 Name             : Call of the Ancestors (id=443450) [Spell Family (11), Passive, Hidden] 
-Talent Entry     : Farseer (Elemental, Restoration) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Farseer (Elemental, Restoration) [free=(Elemental, Restoration), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Shaman
 School           : Physical
 Spell Type       : None

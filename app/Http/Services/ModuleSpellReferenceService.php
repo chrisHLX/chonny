@@ -1004,6 +1004,23 @@ class ModuleSpellReferenceService
     }
 
     /**
+     * The valid spell-school names, as they appear in spell_effects.affected_schools. Used to
+     * validate data/spelldata/school-immunity-overrides.txt at import so a typo can never be
+     * stored as a school nothing will ever match.
+     *
+     * `All` is deliberately absent: it is a wildcard the effect data uses, not a school, and
+     * grantedSchoolImmunityFor() already treats it as "everything". A curator stating a real
+     * all-schools immunity should list the schools, or leave the line out and let the effect data
+     * say it.
+     *
+     * @return array<int, string>
+     */
+    public static function immunitySchoolNames(): array
+    {
+        return ['Physical', 'Holy', 'Fire', 'Nature', 'Frost', 'Shadow', 'Arcane'];
+    }
+
+    /**
      * Everything this spell grants immunity to: its own 'Mechanic Immunity' effects UNION any
      * hand-curated override.
      *
@@ -1065,18 +1082,49 @@ class ModuleSpellReferenceService
             return false;
         }
 
-        $matches = function (Collection $effects) use ($school) {
-            return $effects->contains(function ($e) use ($school) {
-                if ($e->type !== 'School Immunity' || $e->affected_schools === null) {
-                    return false;
-                }
+        $granted = $this->grantedSchoolImmunityFor($spell);
 
-                return $e->affected_schools === 'All' || str_contains($e->affected_schools, $school);
-            });
-        };
+        if ($granted === null || $granted === '') {
+            return false;
+        }
 
-        if ($matches($spell->effects)) {
-            return true;
+        return $granted === 'All' || str_contains($granted, $school);
+    }
+
+    /**
+     * The schools this spell really grants immunity to, as an "Affected School(s)"-shaped string
+     * ('All', or a comma-separated list), or null when it grants none.
+     *
+     * THE SINGLE SOURCE OF TRUTH for that question. It used to be answered by three separate
+     * implementations — this class's own effect+sibling scan, plus a private
+     * resolveGrantedSchoolImmunity() duplicated verbatim into BOTH ImportSpellData and
+     * RebuildSpellCounters — which is exactly the drift risk this codebase keeps having to clean
+     * up. Both commands now delegate here (2026-09-09), so the column they materialize and the
+     * answer the counter indexer acts on cannot disagree.
+     *
+     * Resolution order:
+     *   1. spells.school_immunity_override — hand-curated, REPLACES the derived answer outright.
+     *      An empty string means a curator explicitly said "no school immunity at all", which is
+     *      why the null-vs-empty distinction is preserved rather than collapsed.
+     *   2. the spell's own School Immunity effects.
+     *   3. a same-named sibling's — the standard recovery here, needed because the pressable copy
+     *      of an ability often carries none of its own (Cloak of Shadows' castable 31224 triggers
+     *      hidden aura 35729, which is where the effects live).
+     *
+     * Step 1 exists because step 3 is indiscriminate: it inherits ALL of a sibling's school
+     * immunity effects, including ones that are implementation artifacts rather than defensive
+     * windows. See the 2026_09_09 migration docblock for the measured Cloak of Shadows case.
+     */
+    public function grantedSchoolImmunityFor(Spell $spell): ?string
+    {
+        if ($spell->school_immunity_override !== null) {
+            return $spell->school_immunity_override;
+        }
+
+        $fromOwn = $this->mergeSchoolImmunityEffects($spell->effects);
+
+        if ($fromOwn !== null) {
+            return $fromOwn;
         }
 
         $siblingEffects = Spell::where('name', $spell->name)
@@ -1084,9 +1132,43 @@ class ModuleSpellReferenceService
             ->where('id', '!=', $spell->id)
             ->with('effects')
             ->get()
-            ->flatMap(fn (Spell $sibling) => $sibling->effects);
+            ->flatMap(fn (Spell $s) => $s->effects);
 
-        return $matches($siblingEffects);
+        return $this->mergeSchoolImmunityEffects($siblingEffects);
+    }
+
+    /**
+     * Merge every School Immunity effect in a set into ONE "Affected School(s)" string.
+     *
+     * Merging, not first-match, is load-bearing: a spell routinely splits its immunity across
+     * several effects because Blizzard's school mask is per-effect. Ice Block carries `Physical`
+     * AND `All`; Divine Shield carries `All` AND the six magic schools; Cloak of Shadows'
+     * hidden aura carries the six magic schools AND `Physical`. Reading only the first would
+     * make Ice Block immune to physical damage alone — silently wrong, and wrong in a direction
+     * nothing would flag.
+     *
+     * @param  Collection<int, mixed>  $effects
+     */
+    private function mergeSchoolImmunityEffects(Collection $effects): ?string
+    {
+        $relevant = $effects->filter(
+            fn ($e) => $e->type === 'School Immunity' && $e->affected_schools !== null
+        );
+
+        if ($relevant->isEmpty()) {
+            return null;
+        }
+
+        if ($relevant->contains(fn ($e) => $e->affected_schools === 'All')) {
+            return 'All';
+        }
+
+        return $relevant
+            ->flatMap(fn ($e) => array_map('trim', explode(',', $e->affected_schools)))
+            ->filter()
+            ->unique()
+            ->values()
+            ->implode(', ');
     }
 
     /**

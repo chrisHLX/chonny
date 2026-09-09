@@ -1,5 +1,5 @@
 # Death Knight — Unholy Spec Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69283 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
 # 41 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Army of the Dead (id=42650) [Spell Family (15)] 
@@ -582,12 +582,14 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1158791)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
-                   Affected Spells: Blood Plague (55078), Frost Fever (55095), Virulent Plague (191587), Virulent Eruption (191685), Festering Wound (194311), Dread Plague (1240996), Virulent Plague (Erupt) (1241167), Dread Plague (Erupt) (1241171), Dread Plague (1242564), Consumption (1263872)
-                   Family Flags: 40, 41, 57, 58, 93, 119
+                   Affected Spells: Blood Plague (55078), Frost Fever (55095), Virulent Plague (191587), Virulent Eruption (191685), Festering Wound (194311), Dread Plague (1240996), Dread Plague (1242564), Consumption (1263872)
+                   Family Flags: 40, 57, 58, 93, 119
+Hotfixed         : Affects Spells
 #2 (id=1158792)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Blood Plague (55078), Frost Fever (55095), Virulent Plague (191587), Virulent Eruption (191685), Festering Wound (194311), Dread Plague (1240996), Virulent Plague (Erupt) (1241167), Dread Plague (Erupt) (1241171), Dread Plague (1242564), Consumption (1263872)
-                   Family Flags: 40, 41, 57, 58, 93, 119
+                   Affected Spells: Blood Plague (55078), Frost Fever (55095), Virulent Plague (191587), Virulent Eruption (191685), Festering Wound (194311), Dread Plague (1240996), Dread Plague (1242564), Consumption (1263872)
+                   Family Flags: 40, 57, 58, 93, 119
+Hotfixed         : Affects Spells
 #3 (id=1158793)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 7 | Target: Self (1)
                    Affected Spells: Blood Plague (55078), Frost Fever (55095), Virulent Plague (191587), Virulent Eruption (191685), Festering Wound (194311), Dread Plague (1240996), Virulent Plague (Erupt) (1241167), Dread Plague (Erupt) (1241171), Dread Plague (1242564), Consumption (1263872)

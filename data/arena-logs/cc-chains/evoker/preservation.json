@@ -4,6 +4,20 @@
         "healerName": "\u00dfoa-MoonGuard-US",
         "durationSeconds": 21.09,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 75696.485,
@@ -67,6 +81,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 19.82,
         "distinctCasters": 3,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 9488.687,
@@ -130,6 +158,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 14.6,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 2994.445,
@@ -182,6 +224,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 14.59,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 6587.563,
@@ -234,6 +290,20 @@
         "healerName": "Murglurglmr-Tichondrius-US",
         "durationSeconds": 14.48,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            },
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 75234.459,
@@ -275,6 +345,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 14.22,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "fury"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            }
+        ],
         "steps": [
             {
                 "start": 80166.084,
@@ -316,6 +400,20 @@
         "healerName": "Vaporx-Illidan-US",
         "durationSeconds": 14.2,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 83361.653,
@@ -368,6 +466,20 @@
         "healerName": "Mocass\u00een-Terenas-US",
         "durationSeconds": 13.3,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 80384.865,
@@ -409,6 +521,20 @@
         "healerName": "Drafira-Ysondre-EU",
         "durationSeconds": 12.77,
         "distinctCasters": 3,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            }
+        ],
         "steps": [
             {
                 "start": 3142.5842,
@@ -461,6 +587,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 12.73,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            },
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "hunter",
+                "specSlug": "marksmanship"
+            }
+        ],
         "steps": [
             {
                 "start": 79936.228,
@@ -502,6 +642,20 @@
         "healerName": "Vaporx-Illidan-US",
         "durationSeconds": 12.71,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            },
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 67300.784,
@@ -554,6 +708,20 @@
         "healerName": "Dilfspice-Stormrage-US",
         "durationSeconds": 12.44,
         "distinctCasters": 3,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            }
+        ],
         "steps": [
             {
                 "start": 68593.941,
@@ -606,6 +774,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 12.22,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 3032.753,
@@ -658,6 +840,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 12.2,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 6625.931,
@@ -710,6 +906,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 11.61,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "feral"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "demonhunter",
+                "specSlug": "devourer"
+            }
+        ],
         "steps": [
             {
                 "start": 77617.655,
@@ -740,6 +950,20 @@
         "healerName": "Anaegnir-Tichondrius-US",
         "durationSeconds": 11.35,
         "distinctCasters": 3,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            }
+        ],
         "steps": [
             {
                 "start": 42397.7949,
@@ -781,6 +1005,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 11.22,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "frost"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            }
+        ],
         "steps": [
             {
                 "start": 77869.561,
@@ -822,6 +1060,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 11.22,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 3097.704,
@@ -863,6 +1115,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 11.2,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 6690.839,
@@ -904,6 +1170,20 @@
         "healerName": "Buffdemoxd-Illidan-US",
         "durationSeconds": 11.13,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            },
+            {
+                "classSlug": "hunter",
+                "specSlug": "survival"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 69890.098,
@@ -945,6 +1225,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 11.04,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 86386.255,
@@ -986,6 +1280,20 @@
         "healerName": "Faffytwo-Illidan-US",
         "durationSeconds": 11.03,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            }
+        ],
         "steps": [
             {
                 "start": 73945.441,
@@ -1016,6 +1324,20 @@
         "healerName": "Ifly-Archimonde-US",
         "durationSeconds": 11.01,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            },
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 68465.285,
@@ -1057,6 +1379,20 @@
         "healerName": "Faffytwo-Illidan-US",
         "durationSeconds": 10.75,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            }
+        ],
         "steps": [
             {
                 "start": 74010.497,
@@ -1087,6 +1423,20 @@
         "healerName": "Dilfspice-Stormrage-US",
         "durationSeconds": 10.74,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            }
+        ],
         "steps": [
             {
                 "start": 68503.412,
@@ -1128,6 +1478,20 @@
         "healerName": "Drafira-Ysondre-EU",
         "durationSeconds": 10.73,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            }
+        ],
         "steps": [
             {
                 "start": 3450.0152,
@@ -1169,6 +1533,20 @@
         "healerName": "Murglurglmr-Tichondrius-US",
         "durationSeconds": 10.57,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            },
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 75115.117,
@@ -1199,6 +1577,20 @@
         "healerName": "Risingbadge-Tichondrius-US",
         "durationSeconds": 10.49,
         "distinctCasters": 3,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            }
+        ],
         "steps": [
             {
                 "start": 78323.749,
@@ -1251,6 +1643,20 @@
         "healerName": "Damantis-Tichondrius-US",
         "durationSeconds": 10.29,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 83486.132,
@@ -1292,6 +1698,20 @@
         "healerName": "Faffytwo-Illidan-US",
         "durationSeconds": 10.28,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 76919.445,
@@ -1333,6 +1753,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 10.09,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "frost"
+            }
+        ],
         "steps": [
             {
                 "start": 85346.628,
@@ -1363,6 +1797,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 10.06,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 86287.527,
@@ -1404,6 +1852,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 9.78,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            },
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "hunter",
+                "specSlug": "marksmanship"
+            }
+        ],
         "steps": [
             {
                 "start": 79904.563,
@@ -1456,6 +1918,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 9.74,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 78197.148,
@@ -1486,6 +1962,20 @@
         "healerName": "Xraidrrz-Area52-US",
         "durationSeconds": 9.59,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "fury"
+            }
+        ],
         "steps": [
             {
                 "start": 82518.926,
@@ -1538,6 +2028,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 9.42,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 740.694,
@@ -1579,6 +2083,20 @@
         "healerName": "Xraidrrz-Area52-US",
         "durationSeconds": 9.41,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "fury"
+            }
+        ],
         "steps": [
             {
                 "start": 82436.937,
@@ -1609,6 +2127,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 9.36,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 69.363,
@@ -1650,6 +2182,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 9.24,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 8494.252,
@@ -1680,6 +2226,20 @@
         "healerName": "Faffytwo-Illidan-US",
         "durationSeconds": 9.22,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            }
+        ],
         "steps": [
             {
                 "start": 73918.183,
@@ -1710,6 +2270,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 9.21,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 86318.803,
@@ -1751,6 +2325,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 9.11,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 1737.204,
@@ -1792,6 +2380,20 @@
         "healerName": "Drafira-Ysondre-EU",
         "durationSeconds": 9.02,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            }
+        ],
         "steps": [
             {
                 "start": 3114.7732,
@@ -1822,6 +2424,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 8.96,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 652.013,
@@ -1863,6 +2479,20 @@
         "healerName": "Faffytwo-Illidan-US",
         "durationSeconds": 8.92,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 81028.675,
@@ -1915,6 +2545,20 @@
         "healerName": "Faffytwo-Illidan-US",
         "durationSeconds": 8.84,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 77428.711,
@@ -1967,6 +2611,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 8.66,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 78304.496,
@@ -2008,6 +2666,20 @@
         "healerName": "Faffytwo-Illidan-US",
         "durationSeconds": 8.64,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 76953.562,
@@ -2038,6 +2710,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 8.55,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "fury"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            }
+        ],
         "steps": [
             {
                 "start": 80096.681,
@@ -2068,6 +2754,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 8.53,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 7243.91,
@@ -2109,6 +2809,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 8.52,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 78230.993,
@@ -2139,6 +2853,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 8.51,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 3650.775,
@@ -2180,6 +2908,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 8.5,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "shadow"
+            }
+        ],
         "steps": [
             {
                 "start": 81027.593,
@@ -2221,6 +2963,20 @@
         "healerName": "Dragonz-Drak'thul-US",
         "durationSeconds": 8.4,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 78161.627,
@@ -2262,6 +3018,20 @@
         "healerName": "Dilfspice-Stormrage-US",
         "durationSeconds": 8.2,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            }
+        ],
         "steps": [
             {
                 "start": 68552.867,
@@ -2292,6 +3062,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 8.18,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "deathknight",
+                "specSlug": "unholy"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 78960.817,
@@ -2322,6 +3106,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 8.17,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "deathknight",
+                "specSlug": "unholy"
+            }
+        ],
         "steps": [
             {
                 "start": 78955.872,
@@ -2352,6 +3150,20 @@
         "healerName": "Drafira-Ysondre-EU",
         "durationSeconds": 8.16,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "arcane"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "feral"
+            }
+        ],
         "steps": [
             {
                 "start": 3960.8662,
@@ -2382,6 +3194,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 8.13,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 86187.817,
@@ -2423,6 +3249,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 8.1,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 914.289,
@@ -2453,6 +3293,20 @@
         "healerName": "Drafira-Ysondre-EU",
         "durationSeconds": 8.02,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            }
+        ],
         "steps": [
             {
                 "start": 3531.6652,
@@ -2483,6 +3337,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 8.01,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 78466.525,
@@ -2513,6 +3381,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 7.99,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 78348.077,
@@ -2543,6 +3425,20 @@
         "healerName": "Walf-BurningLegion-US",
         "durationSeconds": 7.98,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            },
+            {
+                "classSlug": "deathknight",
+                "specSlug": "unholy"
+            }
+        ],
         "steps": [
             {
                 "start": 80396.344,
@@ -2573,6 +3469,20 @@
         "healerName": "Mocass\u00een-Terenas-US",
         "durationSeconds": 7.95,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 79947.514,
@@ -2603,6 +3513,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 7.83,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 86121.917,
@@ -2633,6 +3557,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 7.82,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "windwalker"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "demonhunter",
+                "specSlug": "havoc"
+            }
+        ],
         "steps": [
             {
                 "start": 4467.339,
@@ -2663,6 +3601,20 @@
         "healerName": "Mocass\u00een-Terenas-US",
         "durationSeconds": 7.75,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            }
+        ],
         "steps": [
             {
                 "start": 69948.376,
@@ -2704,6 +3656,20 @@
         "healerName": "Mocass\u00een-Terenas-US",
         "durationSeconds": 7.75,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 80750.044,
@@ -2745,6 +3711,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 7.61,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 78259.227,
@@ -2775,6 +3755,20 @@
         "healerName": "Vaporx-Illidan-US",
         "durationSeconds": 7.41,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            },
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 67237.103,
@@ -2816,6 +3810,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 7.4,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 9422.904,
@@ -2846,6 +3854,20 @@
         "healerName": "Drcornman-Illidan-US",
         "durationSeconds": 7.38,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 82427.996,
@@ -2876,6 +3898,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 7.34,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "hunter",
+                "specSlug": "survival"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            }
+        ],
         "steps": [
             {
                 "start": 78603.293,
@@ -2906,6 +3942,20 @@
         "healerName": "Faffytwo-Illidan-US",
         "durationSeconds": 7.34,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 77398.641,
@@ -2936,6 +3986,20 @@
         "healerName": "Mocass\u00een-Terenas-US",
         "durationSeconds": 7.33,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 79890.75,
@@ -2966,6 +4030,20 @@
         "healerName": "Faffytwo-Illidan-US",
         "durationSeconds": 7.32,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 80998.671,
@@ -2996,6 +4074,20 @@
         "healerName": "Drafira-Ysondre-EU",
         "durationSeconds": 7.28,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            }
+        ],
         "steps": [
             {
                 "start": 3582.5572,
@@ -3026,6 +4118,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 7.1,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "frost"
+            }
+        ],
         "steps": [
             {
                 "start": 85302.174,
@@ -3056,6 +4162,20 @@
         "healerName": "Vaporx-Illidan-US",
         "durationSeconds": 7.08,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 83336.115,
@@ -3086,6 +4206,20 @@
         "healerName": "Dilfspice-Stormrage-US",
         "durationSeconds": 7.05,
         "distinctCasters": 3,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            }
+        ],
         "steps": [
             {
                 "start": 68443.763,
@@ -3127,6 +4261,20 @@
         "healerName": "Dragonz-Drak'thul-US",
         "durationSeconds": 7.04,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 78198.213,
@@ -3157,6 +4305,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 7.02,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 872.328,
@@ -3198,6 +4360,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 7,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 816.065,
@@ -3228,6 +4404,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 7,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 848.257,
@@ -3258,6 +4448,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 6.86,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "shadow"
+            },
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "feral"
+            }
+        ],
         "steps": [
             {
                 "start": 79616.784,
@@ -3288,6 +4492,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 6.74,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "frost"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            }
+        ],
         "steps": [
             {
                 "start": 77906.931,
@@ -3329,6 +4547,20 @@
         "healerName": "Ifly-Archimonde-US",
         "durationSeconds": 6.73,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 68729.315,
@@ -3359,6 +4591,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 6.69,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "fury"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            }
+        ],
         "steps": [
             {
                 "start": 80323.48,
@@ -3389,6 +4635,20 @@
         "healerName": "Vaporx-Illidan-US",
         "durationSeconds": 6.67,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            },
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 67268.426,
@@ -3419,6 +4679,20 @@
         "healerName": "\u00dfoa-MoonGuard-US",
         "durationSeconds": 6.65,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 75745.869,
@@ -3449,6 +4723,20 @@
         "healerName": "Mws-Azralon-US",
         "durationSeconds": 6.64,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 83679.037,
@@ -3479,6 +4767,20 @@
         "healerName": "Mutations-Deathwing-US",
         "durationSeconds": 6.63,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 83311.372,
@@ -3520,6 +4822,20 @@
         "healerName": "Drafira-Ysondre-EU",
         "durationSeconds": 6.61,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            }
+        ],
         "steps": [
             {
                 "start": 3076.0982,
@@ -3550,6 +4866,20 @@
         "healerName": "Faffytwo-Illidan-US",
         "durationSeconds": 6.45,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 76966.669,
@@ -3580,6 +4910,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 6.25,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "shadow"
+            }
+        ],
         "steps": [
             {
                 "start": 81130.526,
@@ -3610,6 +4954,20 @@
         "healerName": "Mws-Azralon-US",
         "durationSeconds": 6.25,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 83736.669,
@@ -3640,6 +4998,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 6.19,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "shadow"
+            }
+        ],
         "steps": [
             {
                 "start": 79343.94,
@@ -3670,6 +5042,20 @@
         "healerName": "\u00dfoa-MoonGuard-US",
         "durationSeconds": 6.18,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 75773.111,
@@ -3700,6 +5086,20 @@
         "healerName": "Dilfspice-Stormrage-US",
         "durationSeconds": 6.1,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            }
+        ],
         "steps": [
             {
                 "start": 68422.244,
@@ -3730,6 +5130,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 6.09,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 5177.575,
@@ -3760,6 +5174,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 6.07,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 8770.782,
@@ -3790,6 +5218,20 @@
         "healerName": "Dilfspice-Stormrage-US",
         "durationSeconds": 6.07,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            }
+        ],
         "steps": [
             {
                 "start": 68520.023,
@@ -3820,6 +5262,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 6.05,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "windwalker"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "demonhunter",
+                "specSlug": "havoc"
+            }
+        ],
         "steps": [
             {
                 "start": 4420.54,
@@ -3850,6 +5306,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 6.02,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 9410.078,
@@ -3880,6 +5350,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 6.01,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "frost"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            }
+        ],
         "steps": [
             {
                 "start": 77936.636,
@@ -3910,6 +5394,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 5.94,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 78412.066,
@@ -3940,6 +5438,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.85,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 7280.207,
@@ -3970,6 +5482,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.84,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 3687.048,
@@ -4000,6 +5526,20 @@
         "healerName": "Sanddor-Area52-US",
         "durationSeconds": 5.77,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "deathknight",
+                "specSlug": "frost"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            }
+        ],
         "steps": [
             {
                 "start": 76642.329,
@@ -4041,6 +5581,20 @@
         "healerName": "Vaporx-Illidan-US",
         "durationSeconds": 5.77,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            },
+            {
+                "classSlug": "monk",
+                "specSlug": "windwalker"
+            },
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 72645.946,
@@ -4082,6 +5636,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.77,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 6660.423,
@@ -4112,6 +5680,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.76,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 3067.299,
@@ -4142,6 +5724,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.66,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 3618.988,
@@ -4172,6 +5768,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.64,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 7212.142,
@@ -4202,6 +5812,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.62,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 8784.419,
@@ -4232,6 +5856,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.6,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 7890.313,
@@ -4262,6 +5900,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.58,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 5191.232,
@@ -4292,6 +5944,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 5.57,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "hunter",
+                "specSlug": "survival"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            }
+        ],
         "steps": [
             {
                 "start": 78670.667,
@@ -4322,6 +5988,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.55,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 4297.136,
@@ -4352,6 +6032,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.53,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 8689.668,
@@ -4382,6 +6076,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5.53,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 5096.465,
@@ -4412,6 +6120,20 @@
         "healerName": "Mws-Azralon-US",
         "durationSeconds": 5.51,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 83651.821,
@@ -4442,6 +6164,20 @@
         "healerName": "Vaporx-Illidan-US",
         "durationSeconds": 5.5,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            },
+            {
+                "classSlug": "monk",
+                "specSlug": "windwalker"
+            },
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 72694.503,
@@ -4472,6 +6208,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 5.48,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 9386.875,
@@ -4513,6 +6263,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 5.47,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "hunter",
+                "specSlug": "survival"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            }
+        ],
         "steps": [
             {
                 "start": 78636.499,
@@ -4543,6 +6307,20 @@
         "healerName": "Drafira-Ysondre-EU",
         "durationSeconds": 5.45,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            }
+        ],
         "steps": [
             {
                 "start": 3572.8572,
@@ -4573,6 +6351,20 @@
         "healerName": "Drafira-Ysondre-EU",
         "durationSeconds": 5.43,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            }
+        ],
         "steps": [
             {
                 "start": 3504.7622,
@@ -4603,6 +6395,20 @@
         "healerName": "Murglurglmr-Tichondrius-US",
         "durationSeconds": 5.39,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            },
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 75173.555,
@@ -4644,6 +6450,20 @@
         "healerName": "Kurvoker-Sargeras-US",
         "durationSeconds": 5.33,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            }
+        ],
         "steps": [
             {
                 "start": 71090.433,
@@ -4674,6 +6494,20 @@
         "healerName": "Dilfspice-Stormrage-US",
         "durationSeconds": 5.33,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            }
+        ],
         "steps": [
             {
                 "start": 68468.512,
@@ -4704,6 +6538,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 5.23,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            },
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "hunter",
+                "specSlug": "marksmanship"
+            }
+        ],
         "steps": [
             {
                 "start": 79866.988,
@@ -4734,6 +6582,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 5.05,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "fury"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            }
+        ],
         "steps": [
             {
                 "start": 80061.178,
@@ -4764,6 +6626,20 @@
         "healerName": "Risingbadge-Tichondrius-US",
         "durationSeconds": 5,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            }
+        ],
         "steps": [
             {
                 "start": 78434.15,
@@ -4805,6 +6681,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 5,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "windwalker"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "demonhunter",
+                "specSlug": "havoc"
+            }
+        ],
         "steps": [
             {
                 "start": 4430.876,
@@ -4835,6 +6725,20 @@
         "healerName": "Risingbadge-Tichondrius-US",
         "durationSeconds": 4.87,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            }
+        ],
         "steps": [
             {
                 "start": 78374.676,
@@ -4876,6 +6780,20 @@
         "healerName": "\u00dfoa-MoonGuard-US",
         "durationSeconds": 4.87,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 75733.641,
@@ -4906,6 +6824,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 4.85,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 86354.187,
@@ -4936,6 +6868,20 @@
         "healerName": "Risingbadge-Tichondrius-US",
         "durationSeconds": 4.69,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 4252.262,
@@ -4966,6 +6912,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 4.64,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 9560.802,
@@ -5007,6 +6967,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 4.63,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 9588.005,
@@ -5037,6 +7011,20 @@
         "healerName": "Mocass\u00een-Terenas-US",
         "durationSeconds": 4.49,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 79992.624,
@@ -5067,6 +7055,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 4.46,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 86154.578,
@@ -5097,6 +7099,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 4.29,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 9461.499,
@@ -5127,6 +7143,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 4.26,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 7175.455,
@@ -5168,6 +7198,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 4.21,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 3582.319,
@@ -5209,6 +7253,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 4.04,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 7350.557,
@@ -5239,6 +7297,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 4.02,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "shadow"
+            }
+        ],
         "steps": [
             {
                 "start": 79374.434,
@@ -5269,6 +7341,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 4.02,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 3757.426,
@@ -5299,6 +7385,20 @@
         "healerName": "Danxy-Illidan-US",
         "durationSeconds": 4.02,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            }
+        ],
         "steps": [
             {
                 "start": 71946.589,
@@ -5340,6 +7440,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 4.01,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "deathknight",
+                "specSlug": "unholy"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 79025.542,
@@ -5370,6 +7484,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 4,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "deathknight",
+                "specSlug": "unholy"
+            }
+        ],
         "steps": [
             {
                 "start": 79020.585,
@@ -5400,6 +7528,20 @@
         "healerName": "Mutations-Deathwing-US",
         "durationSeconds": 4,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 83271.558,
@@ -5430,6 +7572,20 @@
         "healerName": "Walf-BurningLegion-US",
         "durationSeconds": 3.99,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "balance"
+            },
+            {
+                "classSlug": "deathknight",
+                "specSlug": "unholy"
+            }
+        ],
         "steps": [
             {
                 "start": 80425.911,
@@ -5460,6 +7616,20 @@
         "healerName": "Drafira-Ysondre-EU",
         "durationSeconds": 3.93,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "arcane"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "feral"
+            }
+        ],
         "steps": [
             {
                 "start": 3896.7362,
@@ -5501,6 +7671,20 @@
         "healerName": "Anaegnir-Tichondrius-US",
         "durationSeconds": 3.87,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "hunter",
+                "specSlug": "beast-mastery"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            }
+        ],
         "steps": [
             {
                 "start": 42374.4989,
@@ -5531,6 +7715,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 3.7,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 3790.316,
@@ -5561,6 +7759,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 3.69,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 7383.481,
@@ -5591,6 +7803,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 3.68,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            }
+        ],
         "steps": [
             {
                 "start": 688.301,
@@ -5621,6 +7847,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 3.58,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "deathknight",
+                "specSlug": "unholy"
+            }
+        ],
         "steps": [
             {
                 "start": 78979.976,
@@ -5651,6 +7891,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 3.55,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "deathknight",
+                "specSlug": "unholy"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 78984.956,
@@ -5681,6 +7935,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 3.5,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "frost"
+            }
+        ],
         "steps": [
             {
                 "start": 85382.407,
@@ -5711,6 +7979,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 3.36,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 1715.059,
@@ -5741,6 +8023,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 3.35,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "windwalker"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "demonhunter",
+                "specSlug": "havoc"
+            }
+        ],
         "steps": [
             {
                 "start": 4512.356,
@@ -5771,6 +8067,20 @@
         "healerName": "Mocass\u00een-Terenas-US",
         "durationSeconds": 3.2,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 80084.693,
@@ -5801,6 +8111,20 @@
         "healerName": "Nscyclonexd-WyrmrestAccord-US",
         "durationSeconds": 3.16,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 8562.612,
@@ -5831,6 +8155,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 3.11,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 8673.42,
@@ -5861,6 +8199,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 3.07,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "feral"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "demonhunter",
+                "specSlug": "devourer"
+            }
+        ],
         "steps": [
             {
                 "start": 77634.696,
@@ -5891,6 +8243,20 @@
         "healerName": "Kurvoker-Sargeras-US",
         "durationSeconds": 3,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            }
+        ],
         "steps": [
             {
                 "start": 71160.931,
@@ -5921,6 +8287,20 @@
         "healerName": "Vaporx-Illidan-US",
         "durationSeconds": 3,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            },
+            {
+                "classSlug": "monk",
+                "specSlug": "windwalker"
+            },
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 72725.687,
@@ -5951,6 +8331,20 @@
         "healerName": "Zaegorn-Stormreaver-US",
         "durationSeconds": 2.98,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "assassination"
+            }
+        ],
         "steps": [
             {
                 "start": 5080.254,
@@ -5981,6 +8375,20 @@
         "healerName": "Dragonz-Drak'thul-US",
         "durationSeconds": 2.96,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "fire"
+            },
+            {
+                "classSlug": "rogue",
+                "specSlug": "subtlety"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            }
+        ],
         "steps": [
             {
                 "start": 78189.362,
@@ -6011,6 +8419,20 @@
         "healerName": "Drafira-Ysondre-EU",
         "durationSeconds": 2.95,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "mage",
+                "specSlug": "arcane"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "discipline"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "feral"
+            }
+        ],
         "steps": [
             {
                 "start": 3996.1202,
@@ -6041,6 +8463,20 @@
         "healerName": "Vaporx-Illidan-US",
         "durationSeconds": 2.67,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "warlock",
+                "specSlug": "affliction"
+            },
+            {
+                "classSlug": "monk",
+                "specSlug": "windwalker"
+            },
+            {
+                "classSlug": "shaman",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 72797.988,
@@ -6071,6 +8507,20 @@
         "healerName": "Mocass\u00een-Terenas-US",
         "durationSeconds": 1.69,
         "distinctCasters": 1,
+        "attackingComp": [
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "priest",
+                "specSlug": "holy"
+            },
+            {
+                "classSlug": "warlock",
+                "specSlug": "destruction"
+            }
+        ],
         "steps": [
             {
                 "start": 80182.848,
@@ -6101,6 +8551,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 1.35,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "deathknight",
+                "specSlug": "unholy"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            }
+        ],
         "steps": [
             {
                 "start": 78937.995,
@@ -6131,6 +8595,20 @@
         "healerName": "Alysrazor-WyrmrestAccord-US",
         "durationSeconds": 1.34,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "druid",
+                "specSlug": "restoration"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "deathknight",
+                "specSlug": "unholy"
+            }
+        ],
         "steps": [
             {
                 "start": 78933.055,
@@ -6161,6 +8639,20 @@
         "healerName": "Massivefart-Blade'sEdge-US",
         "durationSeconds": 0.82,
         "distinctCasters": 2,
+        "attackingComp": [
+            {
+                "classSlug": "monk",
+                "specSlug": "mistweaver"
+            },
+            {
+                "classSlug": "warrior",
+                "specSlug": "arms"
+            },
+            {
+                "classSlug": "paladin",
+                "specSlug": "retribution"
+            }
+        ],
         "steps": [
             {
                 "start": 80172.831,

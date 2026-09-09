@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-08T11:07:41+00:00",
-    "spellCacheVersion": 4156,
+    "generatedAt": "2026-09-09T11:39:29+00:00",
+    "spellCacheVersion": 4159,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -2379,6 +2379,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "Magic",
                             "range_yards": null,
                             "dr_category": null,
@@ -4146,6 +4147,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -4505,6 +4507,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -4663,7 +4666,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "2% of Lifebloom's final bloom heals up to 6 injured allies within (varies) yds.",
+                            "text": "2% of Lifebloom's final bloom heals up to 5 injured allies within (varies) yds.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5003,7 +5006,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "20% of Lifebloom's final bloom heals up to 6 injured allies within (varies) yds.",
+                            "text": "24% of Lifebloom's final bloom heals up to 5 injured allies within (varies) yds.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6262,7 +6265,7 @@
             "spellId": 4006,
             "category": "Other",
             "description": {
-                "text": "Regrowth heals all other allies with Regrowth for 20% of its healing.",
+                "text": "Regrowth heals all other allies with Regrowth for 10% of its healing.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7755,6 +7758,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -8204,6 +8208,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -8526,7 +8531,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Regrowth heals all other allies with Regrowth for 20% of its healing.",
+                            "text": "Regrowth heals all other allies with Regrowth for 10% of its healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8590,7 +8595,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Regrowth heals all other allies with Regrowth for 20% of its healing.",
+                            "text": "Regrowth heals all other allies with Regrowth for 10% of its healing.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8688,6 +8693,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -8977,6 +8983,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -9621,6 +9628,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -10908,6 +10916,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -12127,6 +12136,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -12947,6 +12957,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -13051,6 +13062,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -13521,7 +13533,7 @@
             "spellId": 3956,
             "category": "Defensive",
             "description": {
-                "text": "Heals all allies within (varies) yards for (varies) over 6. Extends the duration of all your heal over time effects by 60 sec every (varies) sec. Healing decreased beyond 5 targets. Roots form around you while channeling, absorbing up to 60% of your health in damage and preventing knockbacks.",
+                "text": "Heals all allies within (varies) yards for (varies) over 6. Extends the duration of all your heal over time effects by 2 sec every (varies) sec. Healing decreased beyond 5 targets. Roots form around you while channeling, absorbing up to 60% of your health in damage and preventing knockbacks.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -14381,6 +14393,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -14622,6 +14635,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -14988,6 +15002,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,

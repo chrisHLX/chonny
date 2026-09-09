@@ -1,0 +1,54 @@
+# School-immunity curation — the authoritative "Affected School(s)" list for a spell whose
+# effect-derived school immunity is WRONG. Read the 2026_09_09 migration's docblock for the full
+# measured rationale; the short version:
+#
+#   Some School Immunity effects in Blizzard's own data are implementation artifacts rather than
+#   defensive windows a player experiences. The clearest case is a brief hidden aura used to PURGE
+#   existing debuffs (attribute `Immunity Purges Effect (47)`), which has to name the schools it
+#   purges — and that is not the same statement as "you are immune to this school".
+#
+#   Nothing structural separates the two: same spell, same duration, same aura type, same target;
+#   only the school mask differs and both masks are individually legitimate. So this is a game-
+#   knowledge fact, curated one verified line at a time — the same discipline as
+#   baseline-spec-overrides.txt, cc-synergies-overrides.txt and cc-immunity-overrides.txt.
+#
+# FORMAT (3 fields):  spell_id | schools | note
+#
+#   spell_id   EXTERNAL Blizzard spell_id (matches spells.spell_id) of the copy the site actually
+#              RENDERS and uses as a counter — normally the pressable one with the real cooldown,
+#              not the hidden internal copy that happens to carry the effects. Cross-check against
+#              data/spell-kits/{class}/{spec}.json if unsure.
+#
+#   schools    Comma-separated school names, or the single value `All`. Valid names:
+#              Physical, Holy, Fire, Nature, Frost, Shadow, Arcane. Validated at import — an
+#              unknown name warns and the line is SKIPPED, never stored. This value REPLACES the
+#              effect-derived list outright (it does not merge with it), so list every school the
+#              immunity really covers.
+#
+#              To state "this spell grants no school immunity at all", use the literal value
+#              `None`. That is different from omitting the line, which leaves the effect-derived
+#              answer in place.
+#
+#   note       Free text, last field, may contain anything except a literal pipe character. Say
+#              what the real in-game behaviour is and why the raw effect data disagrees.
+#
+# Every line below was read off the spell's own raw effect data and reconciled against real,
+# well-established game behaviour. Nothing here is inferred from a name or assumed from a
+# similar-looking entry.
+
+31224 | Arcane, Fire, Frost, Holy, Nature, Shadow | Cloak of Shadows is magic-only. Its hidden 1s aura (35729) carries a second School Immunity effect for Physical purely because that aura is how the debuff PURGE is implemented (attribute `Immunity Purges Effect (47)`), not because Cloak grants physical immunity. Without this line Cloak claimed to counter 38 Physical-school CC abilities including Kidney Shot, Cheap Shot, Blind, Sap and Gouge. The lasting magic immunity a player experiences lives on this pressable copy as `Modify Attacker Spell Hit Chance: -200`; its only Physical-flavoured effect is a `Modify Damage Taken%` of base 0, i.e. nothing.
+
+# --- Deliberately NOT overridden, each checked and rejected for a stated reason ---------------
+#
+# 45438  Ice Block          - `Physical` + `All` is CORRECT; Ice Block really is immune to
+#                             everything. Structurally identical to Cloak, behaviourally not.
+# 642    Divine Shield      - `All` + magic is CORRECT for the same reason.
+# 1022   Blessing of        - `Physical` only, and that is exactly right.
+#        Protection
+# 204018 Blessing of        - magic only, exactly right.
+#        Spellwarding
+# 201453 Metamorphosis      - a 1s `All` aura, same purge-burst shape as Cloak's, but it is not
+#        (Demon Hunter)       currently producing a wrong counter claim that anyone has reported,
+#                             and unlike Cloak there is no second effect to keep. Left alone
+#                             rather than curated speculatively; revisit if it surfaces.
+# 336748 Craven Strategem   - 0.1s magic-only purge burst. Same reasoning as Metamorphosis.

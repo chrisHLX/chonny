@@ -1,9 +1,9 @@
 # Death Knight — Rider of the Apocalypse Hero Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69283 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Rider's Champion (id=444005) [Spell Family (15), Passive] 
-Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [free=(Frost, Unholy), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Death Knight
 School           : Physical
 Spell Type       : None
@@ -93,11 +93,11 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1140296)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
-                   Affected Spells: Death Coil (47632), Frost Strike (49143), Frost Fever (55095), Frost Strike Off-Hand (66196), Virulent Plague (191587), Virulent Eruption (191685), Festering Wound (194311), Frost Strike (222026), Frost Strike (325464), Frostbane (1228443), Dread Plague (1240996), Dread Plague (Erupt) (1241171), Necrotic Coil (1242172), Necrotic Coil (1242178), Dread Plague (1242564)
+                   Affected Spells: Death Coil (47632), Frost Strike (49143), Frost Fever (55095), Frost Strike Off-Hand (66196), Virulent Plague (191587), Virulent Eruption (191685), Festering Wound (194311), Frost Strike (222026), Frost Strike (325464), Frostbane (1228443), Dread Plague (1240996), Necrotic Coil (1242172), Necrotic Coil (1242178), Dread Plague (1242564)
                    Family Flags: 34, 40, 58, 64, 110, 119
 #2 (id=1140714)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Death Coil (47632), Frost Strike (49143), Blood Plague (55078), Frost Fever (55095), Frost Strike Off-Hand (66196), Virulent Plague (191587), Virulent Eruption (191685), Festering Wound (194311), Frost Strike (222026), Frost Strike (325464), Frostbane (1228443), Dread Plague (1240996), Dread Plague (Erupt) (1241171), Necrotic Coil (1242172), Necrotic Coil (1242178), Dread Plague (1242564), Consumption (1263872)
+                   Affected Spells: Death Coil (47632), Frost Strike (49143), Blood Plague (55078), Frost Fever (55095), Frost Strike Off-Hand (66196), Virulent Plague (191587), Virulent Eruption (191685), Festering Wound (194311), Frost Strike (222026), Frost Strike (325464), Frostbane (1228443), Dread Plague (1240996), Necrotic Coil (1242172), Necrotic Coil (1242178), Dread Plague (1242564), Consumption (1263872)
                    Family Flags: 34, 40, 57, 58, 64, 110, 119
 Description      : The damage of your diseases and $?a137006[Frost Strike][Death Coil] are increased by $s1%.
 

@@ -45,6 +45,7 @@ class Spell extends Model
         'grants_cc_immunity_override',
         'cc_immunity_gating_spell_id',
         'grants_school_immunity',
+        'school_immunity_override',
     ];
 
     // Without these, isDirty() falls back to strcmp() for uncast numeric attributes — MySQL

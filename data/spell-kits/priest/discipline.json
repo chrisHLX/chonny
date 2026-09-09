@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-08T11:07:01+00:00",
-    "spellCacheVersion": 4156,
+    "generatedAt": "2026-09-09T11:38:48+00:00",
+    "spellCacheVersion": 4159,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -251,7 +251,7 @@
             "spellId": 669,
             "category": "Defensive",
             "description": {
-                "text": "Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for 15. Your spell damage heals all targets affected by Atonement for 32% of the damage done. Healing is reduced when healing more than 5 targets.",
+                "text": "Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for 15. Your spell damage heals all targets affected by Atonement for 46% of the damage done. Healing is reduced when healing more than 5 targets.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -762,7 +762,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Mind Blast upgrades your next Power Word: Shield to Void Shield. Void Shield now reflects 15% of damage taken to enemies, causing Atonement healing.",
+                            "text": "Casting Mind Blast upgrades your next Power Word: Shield to Void Shield. Void Shield now reflects 10% of damage taken to enemies, causing Atonement healing.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -2363,6 +2363,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": null,
                             "range_yards": null,
                             "dr_category": null,
@@ -2632,6 +2633,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -4098,6 +4100,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -4164,6 +4167,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -4236,6 +4240,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -5042,7 +5047,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Mind Blast upgrades your next Power Word: Shield to Void Shield. Void Shield now reflects 15% of damage taken to enemies, causing Atonement healing.",
+                            "text": "Casting Mind Blast upgrades your next Power Word: Shield to Void Shield. Void Shield now reflects 10% of damage taken to enemies, causing Atonement healing.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5134,6 +5139,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -5203,8 +5209,8 @@
                                     "spell_id": 95,
                                     "effect_index": 4,
                                     "type": "Add Percent Modifier (108): Spell Direct Amount",
-                                    "base_value": -12,
-                                    "scaled_value": 78,
+                                    "base_value": -65,
+                                    "scaled_value": 25,
                                     "misc_value": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
@@ -5212,15 +5218,15 @@
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-07-30T13:49:23.000000Z",
-                                    "updated_at": "2026-09-05T03:00:16.000000Z"
+                                    "updated_at": "2026-09-09T11:27:38.000000Z"
                                 },
                                 {
                                     "id": 179,
                                     "spell_id": 95,
                                     "effect_index": 5,
                                     "type": "Add Percent Modifier (108): Spell Periodic Amount",
-                                    "base_value": -12,
-                                    "scaled_value": 78,
+                                    "base_value": -65,
+                                    "scaled_value": 25,
                                     "misc_value": 22,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
@@ -5228,15 +5234,15 @@
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-07-30T13:49:23.000000Z",
-                                    "updated_at": "2026-09-05T03:00:16.000000Z"
+                                    "updated_at": "2026-09-09T11:27:38.000000Z"
                                 },
                                 {
                                     "id": 180,
                                     "spell_id": 95,
                                     "effect_index": 6,
                                     "type": "Modify Pet Damage Done%",
-                                    "base_value": -12,
-                                    "scaled_value": 78,
+                                    "base_value": -65,
+                                    "scaled_value": 25,
                                     "misc_value": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
@@ -5244,15 +5250,15 @@
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-07-30T13:49:23.000000Z",
-                                    "updated_at": "2026-09-05T03:00:16.000000Z"
+                                    "updated_at": "2026-09-09T11:27:38.000000Z"
                                 },
                                 {
                                     "id": 181,
                                     "spell_id": 95,
                                     "effect_index": 7,
                                     "type": "Modify Guardian Damage Done%",
-                                    "base_value": -12,
-                                    "scaled_value": 78,
+                                    "base_value": -65,
+                                    "scaled_value": 25,
                                     "misc_value": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
@@ -5260,7 +5266,7 @@
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-07-30T13:49:23.000000Z",
-                                    "updated_at": "2026-09-05T03:00:16.000000Z"
+                                    "updated_at": "2026-09-09T11:27:38.000000Z"
                                 },
                                 {
                                     "id": 182,
@@ -5507,8 +5513,8 @@
                                     "spell_id": 95,
                                     "effect_index": 23,
                                     "type": "Add Percent Modifier (108): Spell Direct Amount",
-                                    "base_value": -33,
-                                    "scaled_value": -33,
+                                    "base_value": -20,
+                                    "scaled_value": -20,
                                     "misc_value": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
@@ -5516,7 +5522,7 @@
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-07-30T13:49:24.000000Z",
-                                    "updated_at": "2026-09-05T03:00:16.000000Z"
+                                    "updated_at": "2026-09-09T11:27:38.000000Z"
                                 },
                                 {
                                     "id": 198,
@@ -6301,6 +6307,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -7364,6 +7371,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -7903,6 +7911,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": null,
                                         "range_yards": null,
                                         "dr_category": null,
@@ -8077,7 +8086,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for 15. Your spell damage heals all targets affected by Atonement for 32% of the damage done. Healing is reduced when healing more than 5 targets.",
+                            "text": "Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for 15. Your spell damage heals all targets affected by Atonement for 46% of the damage done. Healing is reduced when healing more than 5 targets.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -8258,6 +8267,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -8645,7 +8655,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for 15. Your spell damage heals all targets affected by Atonement for 32% of the damage done. Healing is reduced when healing more than 5 targets.",
+                            "text": "Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for 15. Your spell damage heals all targets affected by Atonement for 46% of the damage done. Healing is reduced when healing more than 5 targets.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -8873,7 +8883,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Mind Blast upgrades your next Power Word: Shield to Void Shield. Void Shield now reflects 15% of damage taken to enemies, causing Atonement healing.",
+                            "text": "Casting Mind Blast upgrades your next Power Word: Shield to Void Shield. Void Shield now reflects 10% of damage taken to enemies, causing Atonement healing.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -8949,6 +8959,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -9370,6 +9381,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -10183,7 +10195,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for 15. Your spell damage heals all targets affected by Atonement for 32% of the damage done. Healing is reduced when healing more than 5 targets.",
+                            "text": "Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for 15. Your spell damage heals all targets affected by Atonement for 46% of the damage done. Healing is reduced when healing more than 5 targets.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -12811,7 +12823,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Mind Blast upgrades your next Power Word: Shield to Void Shield. Void Shield now reflects 15% of damage taken to enemies, causing Atonement healing.",
+                            "text": "Casting Mind Blast upgrades your next Power Word: Shield to Void Shield. Void Shield now reflects 10% of damage taken to enemies, causing Atonement healing.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -12855,6 +12867,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,

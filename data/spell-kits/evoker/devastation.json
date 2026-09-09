@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-08T11:06:57+00:00",
-    "spellCacheVersion": 4156,
+    "generatedAt": "2026-09-09T11:38:44+00:00",
+    "spellCacheVersion": 4159,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -1275,6 +1275,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -1347,6 +1348,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -3106,6 +3108,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -3412,6 +3415,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -4397,6 +4401,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -4570,6 +4575,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -6531,7 +6537,7 @@
             "spellId": 4509,
             "category": "Other",
             "description": {
-                "text": "Fly to an ally and heal them for ≈1,375.4% of Spell Power, or heal yourself for the same amount.",
+                "text": "Fly to an ally and heal them for ≈1,719% of Spell Power, or heal yourself for the same amount.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

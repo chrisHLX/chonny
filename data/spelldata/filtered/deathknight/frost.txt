@@ -1,5 +1,5 @@
 # Death Knight — Frost Spec Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69283 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
 # 41 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Empower Rune Weapon (id=47568) [Spell Family (15)] 
@@ -121,9 +121,11 @@ Family Flags     : 33, 43, 120
 Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No Redirection (35), No Reflection (39), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Allow While Not Shapeshifted (caster form) (83), Do Not Display Range (126), No Aura Log (202), Do Not Auto Select Target with Initiates Combat (220), Missile Speed is Delay (in sec) (292), Use Spell Base Level For Scaling (332), Enforce Facing on Primary Target Only (351), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=41295)    : School Damage (2): frost
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 0.440712 | PvP Coefficient: 0.65 | Radius: 0 - 10 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 0.506819 | PvP Coefficient: 0.65 | Radius: 0 - 10 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+Hotfixed         : AP Coefficient (0.440712 -> 0.506819)
 #2 (id=869186)   : Dummy (3)
-                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+                   Base Value: 15 | Scaled Value: 15 | Target: Targeted Enemy (6)
+Hotfixed         : Base Value (0 -> 15)
 Description      : Blast the target with a frigid wind, dealing ${$s1*$<CAP>/$AP} $?s204088[Frost damage and applying Frost Fever to the target.][Frost damage to that foe, and reduced damage to all other enemies within $237680A1 yards, infecting all targets with Frost Fever.]
 
 $@spellicon55095 |cFFFFFFFF$@spellname55095|r

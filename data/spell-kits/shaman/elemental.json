@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-08T11:07:03+00:00",
-    "spellCacheVersion": 4156,
+    "generatedAt": "2026-09-09T11:38:50+00:00",
+    "spellCacheVersion": 4159,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -379,6 +379,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -444,6 +445,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -553,6 +555,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -764,6 +767,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -1081,6 +1085,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -5415,6 +5420,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -5657,6 +5663,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -6230,6 +6237,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -6327,6 +6335,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -6586,6 +6595,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -6716,6 +6726,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -8237,7 +8248,24 @@
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
-                "baseline": [],
+                "baseline": [
+                    {
+                        "spellId": 10414,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Elemental Shaman baseline passive",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
                 "potential": []
             },
             "hasPotentialImprovement": false,
@@ -8267,7 +8295,24 @@
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
-                "baseline": [],
+                "baseline": [
+                    {
+                        "spellId": 10414,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Elemental Shaman baseline passive",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
                 "potential": []
             },
             "hasPotentialImprovement": false,
@@ -9648,7 +9693,24 @@
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
-                "baseline": [],
+                "baseline": [
+                    {
+                        "spellId": 10414,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Elemental Shaman baseline passive",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
                 "potential": []
             },
             "hasPotentialImprovement": false,

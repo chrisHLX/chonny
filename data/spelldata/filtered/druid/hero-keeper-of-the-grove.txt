@@ -1,5 +1,5 @@
 # Druid — Keeper of the Grove Hero Talents
-# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69283 Live)
+# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Treants of the Moon (id=428544) [Spell Family (7), Passive] 
@@ -182,8 +182,9 @@ Effects          :
                    Base Value: 6 | Scaled Value: 6 | Misc Value: 32 | Misc Value 2: 4081 (Label) | Target: Self (1)
                    Affected Spells (Label): Whirling Stars (468743)
 #5 (id=1293034)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
-                   Base Value: 6 | Scaled Value: 6 | Misc Value: 12 | Misc Value 2: 3042 (Label) | Target: Self (1)
+                   Base Value: 6 | Scaled Value: 6 | PvP Coefficient: 0.666667 | Misc Value: 12 | Misc Value 2: 3042 (Label) | Target: Self (1)
                    Affected Spells (Label): Reforestation (392356)
+Hotfixed         : PvP Coefficient (1 -> 0.666667)
 Description      : $?c1[Orbital Strike damage increased by $s3%, and damage of Stellar Flares it applies increased by $s2%.
 
 Whirling Stars increases the haste you gain during ][]$?c1&s394013[Incarnation: Chosen of Elune]?c1[Celestial Alignment][]$?c1[ by an additional $s4%.][Reforestation grants Tree of Life for $s5 additional sec.]
@@ -224,7 +225,7 @@ Effects          :
 Description      : Your Regrowth protects you, reducing damage you take by $s1% while your Regrowth is on you.
 
 Name             : Dream Surge (id=433831) [Spell Family (7), Passive] 
-Talent Entry     : Keeper of the Grove (Balance, Restoration) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Keeper of the Grove (Balance, Restoration) [free=(Balance, Restoration), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Druid
 School           : Physical
 Spell Type       : None

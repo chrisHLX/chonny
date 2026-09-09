@@ -4274,3 +4274,144 @@ so during the round trip the page looked inert. It now always says which of the 
 Full suite: 436 passing, the same 12 pre-existing failures. Three new regression tests cover the
 de-duplication ordering (including that a cooldown still wins when neither copy is CC, the original
 Secret Technique case) and the aura exclusion.
+
+## Arena log match search is DISCONTINUED upstream — every search-based puller is dead (2026-09-09)
+
+Found while acting on a routine "pull 100 more high-rated matches" request. `wow:pull-latest-matches`
+reported `Page 0: feed returned no usable matches — stopping.` with 0 feed entries scanned. That is
+not a bug in this codebase, not a rate limit, and not transient. Calling
+`https://wowarenalogs.com/api/graphql` directly returns HTTP 200 with a GraphQL error carrying
+`"code": "SEARCH_DISABLED"` and this message:
+
+> Automated scraping of search results has driven our hosting costs up sharply, so match search is
+> discontinued until we can find a way to prevent it. Your own uploaded matches and any match shared
+> with you by link are still available.
+
+**Do not try to work around this.** It is an explicit, deliberate anti-scraping measure by the site
+owner, stated in the error itself. Retrying, reshaping the query, spoofing headers, or pacing requests
+to evade it are all off the table — the correct response is to stop pulling and say so.
+
+**What this breaks (everything routed through `ArenaLogService::searchLatestMatches()` /
+`latestMatches`):** `wow:pull-latest-matches`, `wow:pull-scarce-specs`, `wow:discover-all-specs`,
+`wow:pull-low-rated-spec`, `wow:discover-spec-spells`. All of them now report "no usable matches"
+rather than failing loudly, because the pullers treat an empty feed as "recent window exhausted" —
+the right reading when search worked, and now indistinguishable from "search is gone". Worth turning
+into a loud, specific error if anyone touches these again.
+
+**What still works, unchanged:** the 689 matches already in the archive, and therefore every
+match-derived surface built from them — `wow:refresh-match-derived` and all of its steps (CC chains,
+burst windows + talents + mechanics, playstyle, spell cache), `wow:find-cc-chains`,
+`wow:analyze-cc-targeting`, `wow:find-cc-duration`, `wow:extract-arena-spells`. The archive is a fixed
+corpus now, not a growing one. The 2026-09-05 cull already removed the oldest 500 matches as
+unrepresentative and there is no way to re-pull them, so **do not cull the archive again** without
+accepting that the loss is permanent.
+
+**Still-open routes to new match data, none built:** the error states that "your own uploaded matches
+and any match shared with you by link are still available", so a per-match fetch by id may still work
+(`wow:pull-comp-log` takes one — untested against the new policy), and uploading your own logs through
+the WoWArenaLogs client remains a legitimate first-party path. Both are opt-in, small-volume and
+human-driven, which is the opposite of what was disabled.
+
+## `spells.school_immunity_override` — Cloak of Shadows was countering 38 physical CC abilities (2026-09-09)
+
+Reported: Cloak of Shadows "seems to be showing up as an immunity to physical abilities but it's only
+magic". Confirmed real, and larger than it sounds — Cloak claimed to counter **38 Physical-school CC
+abilities** in `spell_counters`, including Kidney Shot, Cheap Shot, Blind, Sap, Gouge, Mighty Bash and
+Shockwave.
+
+**The raw data genuinely says Physical, and that is the trap.** Cloak's pressable copy (31224) carries
+no School Immunity effect at all; it triggers hidden aura 35729, which carries TWO —
+`Misc 0x7e` → `Arcane, Fire, Frost, Holy, Nature, Shadow`, and `Misc 0x1` → `Physical`. That aura lasts
+**1 second** and has the attribute `Immunity Purges Effect (47)`: it is how Blizzard implements Cloak's
+debuff PURGE, not a defensive window. The lasting magic immunity a player actually experiences lives on
+31224 as `Modify Attacker Spell Hit Chance: -200`, and 31224's only Physical-flavoured effect is a
+`Modify Damage Taken%` of base **0** — i.e. nothing.
+
+**No structural signal separates the two effects; several were tried and rejected.** Same spell, same
+duration, same aura type, same target — only the school mask differs, and both masks are individually
+legitimate. A duration rule ("a sub-2s school immunity is a purge artifact") does catch the Physical
+effect, but it also catches the magic one on the very same aura, which would delete Cloak's real and
+important answer to Fear/Polymorph. Structurally Cloak is indistinguishable from Ice Block (`Physical`
++ `All`) and Divine Shield (`All` + magic), which genuinely are immune to everything. So this is a
+game-knowledge fact, curated one verified line at a time.
+
+**`data/spelldata/school-immunity-overrides.txt`** (format `spell_id | schools | note`, plus a literal
+`None` to state "grants no school immunity at all") writes `spells.school_immunity_override`, applied by
+`ImportSpellData::importSchoolImmunityOverrides()` and validated against
+`ModuleSpellReferenceService::immunitySchoolNames()`. The override REPLACES the effect-derived list
+outright rather than merging with it. `cc-immunity-overrides.txt` had already predicted this exact gap —
+it rejects Peaceweaver with "Needs a school-immunity override, which this file does not yet support".
+Cloak is the second real case, and Peaceweaver becomes curatable whenever someone verifies it.
+
+**Two further bugs fixed alongside, both found by tracing rather than patching the symptom:**
+- **Three copies of one rule.** `resolveGrantedSchoolImmunity()` was duplicated verbatim into BOTH
+  `ImportSpellData` and `RebuildSpellCounters`, separate again from
+  `ModuleSpellReferenceService::grantsSchoolImmunityFor()`'s own scan — so the column being materialized
+  and the answer `SpellCounterIndexer` acts on could silently drift. All three now delegate to one new
+  `ModuleSpellReferenceService::grantedSchoolImmunityFor()`.
+- **First-match instead of merge.** Both command copies used `firstWhere(...)`, taking only the FIRST
+  School Immunity effect. A spell routinely splits its immunity across several effects, because the
+  school mask is per-effect: Ice Block carries `Physical` AND `All`; Divine Shield carries `All` AND the
+  six magic schools. Reading only the first would materialize Ice Block as physical-immune ONLY —
+  silently wrong, with nothing to flag it. `mergeSchoolImmunityEffects()` now unions them (`All` wins).
+
+**Verified against the real DB in both directions:** Cloak 89 → **51 counters, 0 physical**, now exactly
+matching Blessing of Spellwarding (51/0) — an independent cross-check, since both are magic-only. Ice
+Block and Divine Shield keep all **94 (38 physical)**; Blessing of Protection keeps **38, all physical**.
+Total `spell_counters` 1,754 → 1,714.
+
+## `SpellProfile::talentToggles()` dedupes by name, not selection id (2026-09-09)
+
+Reported: on the PvP Guides counters tab, Monk abilities "like nimble brew or thunder focus tea seem to
+have multiple duplicate talents enhancing or modifying". Real — **Mistweaver's Thunder Focus Tea rendered
+33 switches for 12 real talents**: Heart of the Jade Serpent x10, Aspect of Harmony x8, Secret Infusion
+x5, Yu'lon's Whisper x3.
+
+One real talent is routinely implemented as many internal spell_id copies — the same "one visible ability,
+several internal copies" shape documented all over this file. The existing `->unique('selectionSpellId')`
+had the right INTENT ("it is still ONE talent, so it gets one switch") but the wrong key: **with** a build
+to resolve against, `findConfidentSibling()` collapses those copies and the two keys agree; **without**
+one they do not. The counters tab is exactly that case — `claudes-counters.blade.php` dispatches
+`show-spell-detail` with no `classId`/`specId`, deliberately, being a mixed-context page (same precedent
+as `Admin\CcReview`). The same spell under a real Mistweaver build rendered 14 clean rows the whole time,
+which is why this was invisible from every spec-scoped page.
+
+Now keyed on `display_name`, and deduped AFTER the sort so the kept row is the ACTIVE one when a talent
+has both an active and an inactive copy — that row carries the `selection_spell_id` a toggle has to flip
+to actually change anything. Verified: no-context 33 → **12** (the real count); Mistweaver-context
+unchanged at **14**.
+
+For any future report of this shape: a duplicate that only appears on a page with **no** spec context is
+almost always this, and the fix belongs at the display layer — the raw `modifiers` buckets legitimately
+carry one entry per real relationship and are not what needs deduping.
+
+## Top 10 CC Chains: the comp is resolved at generation time, not render time (2026-09-09)
+
+Reported as the page having "lost" its constraints — no longer showing the 3 specs in the comp ("even if
+only one player did the chain"), and repeating the same comp instead of showing 10 unique ones. Both rules
+were still in the code and worked perfectly in local dev, which is exactly what made this hard to see.
+
+**Root cause: `data/arena-logs/metadata/*` is GITIGNORED, so production has none of it.** The comp was
+resolved at RENDER time by `ArenaLogService::resolveOpposingTeamSpecs()`, which reads
+`{archive}/metadata/{matchId}.json`. On live that returned `[]` for every chain, so `casters` fell back to
+the per-step-derived list (as few as ONE spec) and the unique-comp dedupe silently no-opped — an empty
+comp key is deliberately never deduped on. Measured under a forced no-archive run before the fix: **5 of
+10 chains showed fewer than 3 specs, and 3 rows were the same comp**. After: **0 and 0**.
+
+`wow:find-cc-chains` now resolves the attacking team once, at generation time
+(`FindCcChains::opposingTeamSpecs()`, straight off the roster it already builds from metadata) and
+persists it into each chain record as `attackingComp`; `TopCcChains::attackingCompFor()` reads that field
+first. The render-time call survives only as a fallback for a chain file generated before the field
+existed, on a machine that has the archive — it must not become the primary path again. Identical
+class/spec pairs are deliberately NOT deduped inside a comp: a real 3v3 can run two of the same spec, and
+collapsing them would report a 2-man team.
+
+**Regenerating the corpus is required for this fix to take effect** (`wow:find-cc-chains --json`, or
+`wow:refresh-match-derived`) — the code change alone does nothing for chain files that predate it.
+
+**The general rule this is an instance of, worth applying to anything new: the raw arena-log archive is a
+BUILD-TIME input, never a runtime dependency.** Anything a page needs from it must be baked into a
+committed artifact — the same shape as burst windows embedding their talent build and playstyle embedding
+its analysis. A page that reads the archive at render time works flawlessly on every dev machine and is
+silently broken for every real user. `TopCcChainsTest` now forces the archive to be absent rather than
+trusting a normal dev run, because a normal dev run structurally cannot catch this.

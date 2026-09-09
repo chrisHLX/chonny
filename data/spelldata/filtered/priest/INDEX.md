@@ -243,7 +243,6 @@ One line per spell record; each lists every file it appears in.
 - **Grim Deliverance (id=1298779) [Spell Family (6), Passive, Hidden]** — `discipline.txt`
 - **Guardian Angel (id=200209) [Spell Family (6), Passive, Hidden]** — `holy.txt`
 - **Guardian Faerie (desc=Night Fae) (id=327694) [Spell Family (6)]** — `baseline.txt`
-- **Guardian of the Forgotten Queen (id=228048) [Spell Family (6)]** — `baseline.txt`
 - **Guardian Spirit (id=47788) [Spell Family (6)]** — `holy.txt`
 - **Guardian Spirit (id=48153) [Spell Family (6)]** — `baseline.txt`
 - **Guiding Light (id=1248423) [Spell Family (6), Passive]** — `hero-oracle.txt`

@@ -1,5 +1,5 @@
 # Warrior — Arms Spec Talents
-# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69283 Live)
+# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
 # 44 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Cleave (id=845) [Spell Family (4)] 
@@ -249,6 +249,7 @@ Effects          :
 Description      : If Cleave or Whirlwind hits $s1 or more targets you also Slam your primary target. This Slam deals $s2% additional damage.
 
 Name             : Bladestorm (id=227847) [Spell Family (4)] 
+Hotfixed         : Attributes
 Talent Entry     : Fury [tree=spec, row=10, col=6, max_rank=1, req_points=20, select_idx=200]
                  : Arms [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=100]
 Class            : Warrior
@@ -266,7 +267,7 @@ Labels           : 16: Class Spells
                  : 690: Major Cooldowns
 Affecting Spells : Recklessness (1719 effects: #7, #8), Warrior (137047 effect#2), Fury Warrior (137050 effect#8), Unrelenting Onslaught (444780 effect#4), Arms Warrior (1256919 effect#3), Fury Warrior (1257520 effect#3)
 Family Flags     : 8, 46
-Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Immunities (29), No Skill Increase (36), Initiates Combat (Enables Auto-Attack) (41), No Threat (42), Immunity Purges Effect (47), Requires Main-Hand Weapon (106), Extra Initial Period (169), Spell Haste Affects Periodic (173), Not In Spellbook Until Learned (269), Haste Affects Duration (273), Allow Defense While Channeling (338), Allow Class Ability Procs (416)
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Immunities (29), No Skill Increase (36), Initiates Combat (Enables Auto-Attack) (41), No Threat (42), Immunity Purges Effect (47), Requires Main-Hand Weapon (106), Extra Initial Period (169), Spell Haste Affects Periodic (173), Not In Spellbook Until Learned (269), Haste Affects Duration (273), Allow Defense While Channeling (338), Allow Class Ability Procs (416), Important Spell (491)
 Effects          :
 #1 (id=342669)   : Apply Aura (6) | Periodic Trigger Spell (23): Bladestorm every 1 seconds
                    Base Value: 8 | Scaled Value: 8 | Trigger Spell: 50622 | Target: Self (1)

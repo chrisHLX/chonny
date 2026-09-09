@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-08T11:07:37+00:00",
-    "spellCacheVersion": 4156,
+    "generatedAt": "2026-09-09T11:39:24+00:00",
+    "spellCacheVersion": 4159,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -1710,7 +1710,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Defensive Stance additionally reduces magic damage you take by -6%.",
+                            "text": "Defensive Stance additionally reduces magic damage you take by -8%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2667,7 +2667,7 @@
             "spellId": 12501,
             "category": "Other",
             "description": {
-                "text": "Defensive Stance additionally reduces magic damage you take by -6%.",
+                "text": "Defensive Stance additionally reduces magic damage you take by -8%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3061,6 +3061,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -4015,6 +4016,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -7921,6 +7923,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -8009,6 +8012,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -9049,6 +9053,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -9441,6 +9446,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -9554,6 +9560,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,

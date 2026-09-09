@@ -214,14 +214,30 @@ final class SpellProfile implements ArrayAccess
             ->map(fn (array $m) => $this->toggleRow($m, true))
             ->merge(collect($this->modifiers['potential'] ?? [])->map(fn (array $m) => $this->toggleRow($m, false)))
             ->filter(fn (?array $row) => $row !== null)
-            // A modifier can legitimately appear more than once (one source, several distinct
-            // relationship types to the same target — see modifiersFor()'s 2026-08-02 fix); it is
-            // still ONE talent, so it gets one switch.
-            ->unique('selectionSpellId')
             ->sortBy([
                 fn (array $a, array $b) => ($b['isActive'] <=> $a['isActive']),
                 fn (array $a, array $b) => strcmp($a['spell']->display_name, $b['spell']->display_name),
             ])
+            // A modifier can legitimately appear more than once (one source, several distinct
+            // relationship types to the same target — see modifiersFor()'s 2026-08-02 fix); it is
+            // still ONE talent, so it gets one switch.
+            //
+            // Keyed on DISPLAY NAME, not selection_spell_id (fixed 2026-09-09). One real talent is
+            // routinely implemented as many internal spell_id copies — the same "one visible
+            // ability, several internal copies" shape documented all over this codebase — and a
+            // selection_spell_id key gives each copy its own switch. With a build to resolve
+            // against, findConfidentSibling() collapses them and the two keys agree; WITHOUT one
+            // they do not, which is exactly the case the counters tab hits (it dispatches
+            // show-spell-detail with no class/spec, deliberately, being a mixed-context page).
+            // Measured there before the fix: Mistweaver's Thunder Focus Tea rendered 36 switches
+            // for 12 real talents — Heart of the Jade Serpent x10, Aspect of Harmony x8, Secret
+            // Infusion x5 — while the same spell under a real Mistweaver build rendered 14 clean
+            // rows. Reported 2026-09-09 as "multiple duplicate talents enhancing or modifying".
+            //
+            // Deduped AFTER the sort, so the kept row is the active one when a talent has both an
+            // active and an inactive copy — that row carries the selection_spell_id a toggle has
+            // to flip to actually change anything.
+            ->unique(fn (array $row) => $row['spell']->display_name)
             ->values();
 
         return $rows->all();

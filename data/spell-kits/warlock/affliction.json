@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-08T11:06:36+00:00",
-    "spellCacheVersion": 4156,
+    "generatedAt": "2026-09-09T11:38:23+00:00",
+    "spellCacheVersion": 4159,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -911,7 +911,7 @@
             "spellId": 10749,
             "category": "Offensive",
             "description": {
-                "text": "Corrupts the target, causing ≈35.1% of Spell Power Shadow damage and ≈33.1% of Spell Power Shadow damage every (varies) sec.",
+                "text": "Corrupts the target, causing ≈40.3% of Spell Power Shadow damage and ≈38% of Spell Power Shadow damage every (varies) sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -4121,6 +4121,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -4402,6 +4403,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -4468,6 +4470,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -4498,7 +4501,7 @@
                                     "rank_op": null,
                                     "rank_values": null,
                                     "created_at": "2026-07-30T14:03:45.000000Z",
-                                    "updated_at": "2026-09-07T01:29:14.000000Z"
+                                    "updated_at": "2026-09-09T11:36:17.000000Z"
                                 }
                             ]
                         },
@@ -5344,6 +5347,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -7481,6 +7485,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -8488,6 +8493,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -8536,6 +8542,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -8632,6 +8639,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -8680,6 +8688,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -9202,7 +9211,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 10% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 20,680 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 10% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 24,816 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9218,7 +9227,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 517 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 620.4 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9234,7 +9243,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 267,289 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9250,7 +9259,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 267,289 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9266,7 +9275,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 267,289 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9282,7 +9291,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 267,289 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9298,7 +9307,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 267,289 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",

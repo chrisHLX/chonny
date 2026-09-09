@@ -1,5 +1,5 @@
 # Monk — Brewmaster Spec Talents
-# Extracted verbatim from monk.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69283 Live)
+# Extracted verbatim from monk.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
 # 56 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Breath of Fire (id=115181) [Spell Family (53)] 
@@ -360,7 +360,7 @@ Family Flags     : 53, 75
 Attributes       : Not Shapeshifted (16), Aura Points On Client (268), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=810869)   : Apply Aura (6) | Absorb Damage (69)
-                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 56.7 | Misc Value: 0x7f | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 68.04 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
 #2 (id=834949)   : Apply Aura (6) | Modify Healing Taken% from Caster's Spells (283)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
@@ -938,7 +938,7 @@ Family Flags     : 53, 75
 Attributes       : Not Shapeshifted (16), Aura Points On Client (268), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1239822)  : Apply Aura (6) | Absorb Damage (69)
-                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 56.7 | Misc Value: 0x7f | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 68.04 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
 #2 (id=1239823)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)

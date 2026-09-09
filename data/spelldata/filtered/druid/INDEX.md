@@ -574,6 +574,8 @@ One line per spell record; each lists every file it appears in.
 - **Lightning Reflexes (id=231065) [Spell Family (7), Passive]** — `baseline.txt`
 - **Limb from Limb (id=1271540) [Spell Family (7), Passive]** — `hero-druid-of-the-claw.txt`
 - **Lingering Healing (id=231040) [Spell Family (7), Passive]** — `class-talents.txt`
+- **Listener (id=1308448) [Spell Family (7), Hidden]** — `baseline.txt`
+- **Listener (id=1308653) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Liveliness (id=426702) [Spell Family (7), Passive]** — `restoration.txt`
 - **Lively Spirit (id=279646) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Lively Spirit (id=279647) [Spell Family (7), Hidden]** — `baseline.txt`

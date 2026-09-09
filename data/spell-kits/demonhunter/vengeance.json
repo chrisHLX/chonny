@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-08T11:07:54+00:00",
-    "spellCacheVersion": 4156,
+    "generatedAt": "2026-09-09T11:39:41+00:00",
+    "spellCacheVersion": 4159,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -619,7 +619,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -5 targets.",
+                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -6 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1470,6 +1470,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -2605,7 +2606,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -5 targets.",
+                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -6 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -2893,6 +2894,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -2981,6 +2983,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -3260,7 +3263,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -5 targets.",
+                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -6 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3725,7 +3728,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Frailty now also reduces all damage you take from afflicted targets by -5%.",
+                            "text": "Frailty now also reduces all damage you take from afflicted targets by -6%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5018,6 +5021,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -5131,6 +5135,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -5768,6 +5773,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": "100 yards",
                             "dr_category": null,
@@ -6690,6 +6696,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -7250,6 +7257,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -7315,6 +7323,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -7373,6 +7382,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -7600,6 +7610,7 @@
                             "cc_immunity_gating_spell_id": null,
                             "grants_cc_immunity": [],
                             "grants_school_immunity": null,
+                            "school_immunity_override": null,
                             "spell_type": "None",
                             "range_yards": null,
                             "dr_category": null,
@@ -7910,7 +7921,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -5 targets.",
+                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -6 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8105,7 +8116,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -5 targets.",
+                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -6 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8137,7 +8148,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -5 targets.",
+                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -6 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8895,6 +8906,7 @@
                                         "cc_immunity_gating_spell_id": null,
                                         "grants_cc_immunity": [],
                                         "grants_school_immunity": null,
+                                        "school_immunity_override": null,
                                         "spell_type": "None",
                                         "range_yards": null,
                                         "dr_category": null,
@@ -10274,7 +10286,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -5 targets.",
+                            "text": "Consume up to (varies) Soul Fragments then explode, dealing 20 Fire damage to nearby enemies, increased by 10% per fragment consumed. Deals reduced damage beyond -6 targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10427,7 +10439,7 @@
             "spellId": 2834,
             "category": "Other",
             "description": {
-                "text": "Frailty now also reduces all damage you take from afflicted targets by -5%.",
+                "text": "Frailty now also reduces all damage you take from afflicted targets by -6%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

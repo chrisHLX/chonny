@@ -125,7 +125,7 @@ class FindCcChains extends Command
     {
         $patch = Patch::where('is_current', true)->first();
 
-        if (!$patch) {
+        if (! $patch) {
             $this->error('No current patch on file.');
 
             return self::FAILURE;
@@ -141,7 +141,7 @@ class FindCcChains extends Command
         $includeUtility = (bool) $this->option('include-utility');
         $ccSpells = Spell::where('patch_id', $patch->id)
             ->whereNotNull('dr_category')
-            ->when(!$includeUtility, fn ($q) => $q->whereIn('dr_category', self::HARD_CC_CATEGORIES))
+            ->when(! $includeUtility, fn ($q) => $q->whereIn('dr_category', self::HARD_CC_CATEGORIES))
             ->get();
         $ccByCategory = $ccSpells
             ->reject(fn (Spell $s) => in_array($s->spell_id, self::CC_CHAIN_EXCLUDED_SPELL_IDS, true))
@@ -181,7 +181,7 @@ class FindCcChains extends Command
             $matchId = basename($file, '.log.gz');
             $metaPath = $arenaLogService->metadataPath($matchId);
 
-            if (!File::exists($metaPath)) {
+            if (! File::exists($metaPath)) {
                 continue;
             }
 
@@ -208,9 +208,11 @@ class FindCcChains extends Command
                 $windows = $this->mergeIntoChains($intervals, $gapTolerance);
                 $healerInfo = $roster[$healerGuid];
 
-                if (!$healerInfo['classSlug'] || !$healerInfo['specSlug']) {
+                if (! $healerInfo['classSlug'] || ! $healerInfo['specSlug']) {
                     continue;
                 }
+
+                $attackingComp = $this->opposingTeamSpecs($roster, $healerInfo['reaction']);
 
                 foreach ($windows as $chain) {
                     if (count($chain['steps']) < $minAbilities) {
@@ -223,6 +225,7 @@ class FindCcChains extends Command
                         'healerName' => $healerInfo['name'],
                         'durationSeconds' => round($chain['end'] - $chain['start'], 2),
                         'distinctCasters' => count(array_unique(array_column($chain['steps'], 'source'))),
+                        'attackingComp' => $attackingComp,
                         'steps' => $chain['steps'],
                     ];
                 }
@@ -241,6 +244,48 @@ class FindCcChains extends Command
     }
 
     /**
+     * The real, full attacking team for one healer — every player NOT on the healer's own
+     * `reaction` side, as class/spec pairs. Resolved HERE, at generation time, and persisted
+     * into each chain record so the live site never needs the raw archive to answer "which comp
+     * landed this".
+     *
+     * That persistence is the whole point (fixed 2026-09-09): metadata/*.json is gitignored, so
+     * production has none of it. TopCcChains used to resolve this at RENDER time via
+     * ArenaLogService::resolveOpposingTeamSpecs(), which silently returned [] for every chain on
+     * live — collapsing the page back to "whoever cast a step in this one chain" and disabling
+     * the unique-comp dedupe entirely (an empty comp key can't be deduped on), while looking
+     * completely correct in local dev where the archive IS present.
+     *
+     * Deliberately does NOT dedupe identical class/spec pairs: a real 3v3 can run two of the
+     * same spec, and collapsing them would report a 2-man comp for a real 3-man team. Capped at
+     * 3 (the bracket size) so a stray extra unit can't inflate a comp.
+     *
+     * @param  array<string, array{name: string, reaction: mixed, classSlug: ?string, specSlug: ?string, label: ?string, isHealer: bool}>  $roster
+     * @return array<int, array{classSlug: string, specSlug: string}>
+     */
+    private function opposingTeamSpecs(array $roster, mixed $healerReaction): array
+    {
+        $comp = [];
+
+        foreach ($roster as $player) {
+            if (($player['reaction'] ?? null) === $healerReaction) {
+                continue;
+            }
+            if (! $player['classSlug'] || ! $player['specSlug']) {
+                continue;
+            }
+
+            $comp[] = ['classSlug' => $player['classSlug'], 'specSlug' => $player['specSlug']];
+
+            if (count($comp) >= 3) {
+                break;
+            }
+        }
+
+        return $comp;
+    }
+
+    /**
      * @param  array<int, array<string, mixed>>  $units
      * @param  array<string, ?Specialization>  $specCache  keyed by external_spec_id, memoized across matches
      * @return array<string, array{name: string, reaction: mixed, classSlug: ?string, specSlug: ?string, label: ?string, isHealer: bool}>
@@ -250,13 +295,13 @@ class FindCcChains extends Command
         $roster = [];
 
         foreach ($units as $u) {
-            if (!str_starts_with($u['id'] ?? '', 'Player-') || !isset($u['spec']) || (int) $u['spec'] === 0) {
+            if (! str_starts_with($u['id'] ?? '', 'Player-') || ! isset($u['spec']) || (int) $u['spec'] === 0) {
                 continue;
             }
 
             $extSpecId = (int) $u['spec'];
 
-            if (!array_key_exists($extSpecId, $specCache)) {
+            if (! array_key_exists($extSpecId, $specCache)) {
                 $specCache[$extSpecId] = Specialization::with('gameClass')->where('external_spec_id', $extSpecId)->first();
             }
 
@@ -284,7 +329,7 @@ class FindCcChains extends Command
      *
      * @param  array<string, array<string, mixed>>  $roster
      * @param  array<int, string>  $ccByCategory  spell_id => dr_category (already excludes
-     *   CC_CHAIN_EXCLUDED_SPELL_IDS — see that constant's own docblock)
+     *                                            CC_CHAIN_EXCLUDED_SPELL_IDS — see that constant's own docblock)
      * @param  array<int, string>  $namesBySpellId  spell_id => real English display name
      * @return array<string, array<int, array{start: float, end: float, name: string, spellId: int, drCategory: string, source: string}>>
      */
@@ -306,19 +351,19 @@ class FindCcChains extends Command
         foreach ($matches as $m) {
             $spellId = (int) $m[5];
 
-            if (!isset($ccByCategory[$spellId])) {
+            if (! isset($ccByCategory[$spellId])) {
                 continue;
             }
 
             $dest = $m[4];
 
-            if (!isset($roster[$dest]) || !$roster[$dest]['isHealer']) {
+            if (! isset($roster[$dest]) || ! $roster[$dest]['isHealer']) {
                 continue;
             }
 
             $source = $m[3];
 
-            if (!isset($roster[$source])) {
+            if (! isset($roster[$source])) {
                 continue;
             }
 
@@ -458,7 +503,7 @@ class FindCcChains extends Command
             if ($writeJson) {
                 $jsonPath = "{$dir}/{$specSlug}.json";
                 File::put($jsonPath, json_encode(array_values($chains), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-                $this->info("Wrote {$jsonPath} — ".count($chains)." chain(s) (full set, not just the --top slice)");
+                $this->info("Wrote {$jsonPath} — ".count($chains).' chain(s) (full set, not just the --top slice)');
             }
         }
     }
@@ -467,7 +512,7 @@ class FindCcChains extends Command
     {
         // Same date-agnostic time-of-day parse as FindCcDuration — only relative diffs within
         // one match matter, and no match in this project's data runs past midnight.
-        if (!preg_match('/(\d{1,2}):(\d{2}):(\d{2})\.(\d+)/', trim($raw), $m)) {
+        if (! preg_match('/(\d{1,2}):(\d{2}):(\d{2})\.(\d+)/', trim($raw), $m)) {
             return 0.0;
         }
 

@@ -86,23 +86,12 @@ class RebuildSpellCounters extends Command
         return self::SUCCESS;
     }
 
-    /** Mirrors ImportSpellData::resolveGrantedSchoolImmunity() — see that method for the sibling-fallback reasoning. */
+    /**
+     * Delegates to ModuleSpellReferenceService::grantedSchoolImmunityFor() — the single
+     * implementation as of 2026-09-09. This used to be a verbatim third copy of that rule.
+     */
     private function resolveGrantedSchoolImmunity(Spell $spell): ?string
     {
-        $fromOwn = $spell->effects
-            ->firstWhere(fn ($e) => $e->type === 'School Immunity' && $e->affected_schools !== null);
-
-        if ($fromOwn !== null) {
-            return $fromOwn->affected_schools;
-        }
-
-        return Spell::where('name', $spell->name)
-            ->where('patch_id', $spell->patch_id)
-            ->where('id', '!=', $spell->id)
-            ->with('effects')
-            ->get()
-            ->flatMap(fn (Spell $s) => $s->effects)
-            ->firstWhere(fn ($e) => $e->type === 'School Immunity' && $e->affected_schools !== null)
-            ?->affected_schools;
+        return app(ModuleSpellReferenceService::class)->grantedSchoolImmunityFor($spell);
     }
 }

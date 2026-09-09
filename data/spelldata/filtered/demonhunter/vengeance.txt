@@ -1,5 +1,5 @@
 # Demon Hunter — Vengeance Spec Talents
-# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69283 Live)
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
 # 45 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Sigil of Silence (id=202137) [Spell Family (107)] 
@@ -304,7 +304,8 @@ Effects          :
 #1 (id=715329)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 #2 (id=1028405)  : Apply Aura (6) | Dummy (4)
-                   Base Value: -5 | Scaled Value: -5 | Target: Self (1)
+                   Base Value: -6 | Scaled Value: -6 | Target: Self (1)
+Hotfixed         : Base Value (-5 -> -6)
 Description      : Frailty now also reduces all damage you take from afflicted targets by $s2%.
 
 Name             : Perfectly Balanced Glaive (id=320387) [Spell Family (107), Passive] 
@@ -633,9 +634,10 @@ Effects          :
 #2 (id=1028375)  : Apply Aura (6) | Dummy (4)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 #3 (id=1273895)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
-                   Base Value: -5 | Scaled Value: -5 | Misc Value: 23 | Target: Self (1)
+                   Base Value: -6 | Scaled Value: -6 | Misc Value: 23 | Target: Self (1)
                    Affected Spells: Frailty (247456)
                    Family Flags: 93
+Hotfixed         : Base Value (-5 -> -6)
 #4 (id=1273896)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
                    Base Value: 6 | Scaled Value: 6 | Misc Value: 32 | Target: Self (1)
                    Affected Spells: Frailty (247456)
