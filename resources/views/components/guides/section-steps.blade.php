@@ -92,6 +92,19 @@
                             @if ($entry['cooldown']['seconds'] ?? null)
                                 <span class="text-[11px] text-ink-subtle tabular-nums">{{ (int) $entry['cooldown']['seconds'] }}s CD</span>
                             @endif
+
+                            {{-- The precondition, on the step itself. These abilities read as ordinary
+                                 CC with a duration, and a plan that chains one mid-go is simply not
+                                 castable — Rake only stuns from stealth, Sap additionally needs the
+                                 TARGET out of combat. Curated (spells.requires_stealth /
+                                 requires_target_out_of_combat), never guessed; see
+                                 cc-synergies-overrides.txt for why Cheap Shot deliberately carries
+                                 neither. --}}
+                            @if ($entry['spell']->requires_target_out_of_combat)
+                                <span class="badge-blue" title="Requires stealth, and the target must be out of combat — realistically an opener.">Stealth + target OOC</span>
+                            @elseif ($entry['spell']->requires_stealth)
+                                <span class="badge-blue" title="Only applies its crowd control while you are stealthed.">From stealth</span>
+                            @endif
                         </div>
 
                         <p class="text-[11px] mt-0.5" style="color: {{ $stepColor }}">

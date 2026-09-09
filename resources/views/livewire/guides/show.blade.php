@@ -155,47 +155,44 @@
         author's.
     </p>
 
-    {{-- Rating and comments ------------------------------------------------------
-         Below the guide, never above it: the content is what someone came for, and a rating
-         widget at the top asks for a judgement before they have read anything. --}}
+    {{-- Feedback and comments ----------------------------------------------------
+         Below the guide, never above it: the content is what someone came for, and asking for a
+         verdict at the top asks for one before they have read anything. --}}
     <div class="mt-8 pt-6 border-t border-line grid lg:grid-cols-[280px_1fr] gap-8">
         <div>
-            <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-2">Rating</h2>
+            <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-2">Was this useful?</h2>
 
-            <div class="flex items-baseline gap-2">
-                @if ($guide->rating_avg !== null)
-                    <span class="font-display text-3xl text-gold tabular-nums">{{ number_format((float) $guide->rating_avg, 1) }}</span>
-                    <span class="text-[11.5px] text-ink-subtle tabular-nums">
-                        {{ $guide->rating_count }} {{ Str::plural('rating', $guide->rating_count) }}
-                    </span>
-                @else
-                    <span class="text-[13px] text-ink-subtle">Not rated yet</span>
-                @endif
+            <div class="flex items-center gap-4">
+                <span class="flex items-baseline gap-1.5">
+                    <span class="font-display text-3xl text-gold tabular-nums">{{ $guide->like_count }}</span>
+                    <span class="text-[11.5px] text-ink-subtle">{{ Str::plural('like', $guide->like_count) }}</span>
+                </span>
+                <span class="flex items-baseline gap-1.5">
+                    <span class="font-display text-xl text-ink-muted tabular-nums">{{ $guide->view_count }}</span>
+                    <span class="text-[11.5px] text-ink-subtle">{{ Str::plural('view', $guide->view_count) }}</span>
+                </span>
             </div>
 
             @auth
                 @if (! $guide->isOwnedBy(auth()->user()))
-                    <div class="flex items-center gap-1 mt-3">
-                        @for ($v = 1; $v <= 5; $v++)
-                            <button type="button" wire:click="rate({{ $v }})"
-                                    title="{{ $v }} out of 5"
-                                    class="w-8 h-8 rounded border transition-colors tabular-nums text-[13px]
-                                           {{ $myRating >= $v
-                                              ? 'border-line-gold bg-gold-subtle text-gold'
-                                              : 'border-line text-ink-subtle hover:border-line-gold hover:text-gold' }}">
-                                {{ $v }}
-                            </button>
-                        @endfor
-                    </div>
+                    <button type="button" wire:click="toggleLike"
+                            wire:loading.attr="disabled" wire:target="toggleLike"
+                            class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded border text-[12.5px] transition-colors
+                                   {{ $liked ? 'border-line-gold bg-gold-subtle text-gold' : 'border-line text-ink-muted hover:border-line-gold hover:text-gold' }}">
+                        <svg class="w-4 h-4" fill="{{ $liked ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="2" viewBox="0 0 20 20">
+                            <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
+                        </svg>
+                        {{ $liked ? 'Liked' : 'Like this guide' }}
+                    </button>
                     <p class="text-[11px] text-ink-subtle mt-1.5">
-                        {{ $myRating ? 'Your rating — click another to change it.' : 'Rate this guide.' }}
+                        {{ $liked ? 'Click again to take it back.' : 'One click — it helps other people find it.' }}
                     </p>
                 @else
-                    <p class="text-[11.5px] text-ink-subtle mt-3">You cannot rate your own guide.</p>
+                    <p class="text-[11.5px] text-ink-subtle mt-3">You cannot like your own guide.</p>
                 @endif
             @else
                 <p class="text-[11.5px] text-ink-subtle mt-3">
-                    <a href="{{ route('login') }}" class="text-gold hover:text-gold-light">Sign in</a> to rate this guide.
+                    <a href="{{ route('login') }}" class="text-gold hover:text-gold-light">Sign in</a> to like this guide.
                 </p>
             @endauth
 

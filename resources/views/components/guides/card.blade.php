@@ -6,7 +6,6 @@
 @php
     $roster = $guide->relationLoaded('members') ? $guide->members : $guide->members()->get();
     $enemy = $guide->relationLoaded('enemies') ? $guide->enemies : $guide->enemies()->get();
-    $rating = $guide->rating_avg !== null ? number_format((float) $guide->rating_avg, 1) : null;
 @endphp
 
 <a href="{{ $guide->publicUrl() ?? '#' }}" wire:navigate
@@ -22,7 +21,12 @@
             @endif
 
             {{-- The comp, and who it is against. Icons rather than names: this is a listing, and a
-                 reader scanning for their own comp recognises the icons faster than the words. --}}
+                 reader scanning for their own comp recognises the icons faster than the words.
+
+                 The enemy side is LABELLED ("vs" plus the spec names underneath), not just six
+                 icons in a row. Unlabelled, a matchup guide reads as a six-person comp, and the
+                 half that makes it a matchup — the thing someone is most likely searching for —
+                 is the half that was hardest to see. --}}
             <div class="flex items-center gap-1.5 mt-2 flex-wrap">
                 @foreach ($roster as $m)
                     @if ($m->specialization)
@@ -31,7 +35,7 @@
                 @endforeach
 
                 @if ($enemy->isNotEmpty())
-                    <span class="text-[11px] text-ink-subtle px-0.5">vs</span>
+                    <span class="text-[11px] text-ink-subtle px-1 font-medium">vs</span>
                     @foreach ($enemy as $e)
                         @if ($e->specialization)
                             <x-spec-icon :spec="$e->specialization" size="w-6 h-6"/>
@@ -44,6 +48,12 @@
                 @endif
             </div>
 
+            @if ($enemy->isNotEmpty())
+                <p class="text-[11px] text-ink-subtle mt-1">
+                    vs {{ $enemy->map(fn ($e) => trim(($e->specialization?->name ?? '').' '.($e->specialization?->gameClass?->name ?? '')))->filter()->implode(' / ') }}
+                </p>
+            @endif
+
             @if ($showAuthor)
                 <p class="text-[11px] text-ink-subtle mt-1.5">
                     by {{ $guide->user?->username ?? 'unknown' }}
@@ -54,17 +64,24 @@
             @endif
         </div>
 
-        {{-- Rating, and the count beside it. An average with no count is not a claim anyone can
-             weigh — 5.0 from one person is not 5.0 from forty. --}}
-        <div class="shrink-0 text-right">
-            @if ($rating)
-                <p class="font-display text-[17px] text-gold tabular-nums leading-none">{{ $rating }}</p>
-                <p class="text-[10.5px] text-ink-subtle mt-0.5 tabular-nums">
-                    {{ $guide->rating_count }} {{ Str::plural('rating', $guide->rating_count) }}
-                </p>
-            @else
-                <p class="text-[10.5px] text-ink-subtle">Not rated yet</p>
-            @endif
+        {{-- Likes and views. Deliberately no "not liked yet" placeholder where "Not rated yet"
+             used to sit: on an arena site "rating" reads as Current Rating, so that line looked
+             like a claim about the team rather than about the guide. Two plain counts say what
+             they mean and cannot be misread. --}}
+        <div class="shrink-0 text-right flex sm:flex-col items-center sm:items-end gap-3 sm:gap-0.5">
+            <span class="flex items-center gap-1 text-[11px] text-ink-subtle tabular-nums" title="{{ $guide->like_count }} {{ Str::plural('like', $guide->like_count) }}">
+                <svg class="w-3.5 h-3.5 {{ $guide->like_count > 0 ? 'text-gold' : '' }}" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
+                </svg>
+                {{ $guide->like_count }}
+            </span>
+            <span class="flex items-center gap-1 text-[11px] text-ink-subtle tabular-nums" title="{{ $guide->view_count }} {{ Str::plural('view', $guide->view_count) }}">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+                {{ $guide->view_count }}
+            </span>
         </div>
     </div>
 </a>

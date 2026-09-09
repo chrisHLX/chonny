@@ -7,7 +7,7 @@ use App\Models\PageViewEvent;
 use App\Models\User;
 use App\Models\UserGuide;
 use App\Models\UserGuideComment;
-use App\Models\UserGuideRating;
+use App\Models\UserGuideLike;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -46,11 +46,10 @@ class Show extends Component
 
         PageViewEvent::log('guide_show');
 
-        if (auth()->check()) {
-            $this->myRating = (int) $this->guide->ratings()
-                ->where('user_id', auth()->id())
-                ->value('value');
-        }
+        // Counted once per reader per day, and never for the author — see recordView().
+        $this->guide->recordView(auth()->user(), session()->getId());
+
+        $this->liked = $this->guide->likedBy(auth()->user());
     }
 
     #[Computed]
@@ -100,52 +99,59 @@ class Show extends Component
         return app(UserGuideChainService::class)->health($this->guide, $this->resolved);
     }
 
-    // ---------------------------------------------------------------- rating
+    // ---------------------------------------------------------------- likes
 
-    public int $myRating = 0;
+    public bool $liked = false;
 
     public string $comment = '';
 
     public ?string $feedbackError = null;
 
     /**
-     * Rate this guide 1-5.
+     * Like this guide, or take it back.
      *
-     * You cannot rate your own guide. That is not politeness — the listing on /wow-comps ranks by
-     * this number, so self-rating is the cheapest possible way to game which guides other people
-     * are shown, and an author rating their own work carries no information anyway.
+     * You cannot like your own guide. That is not politeness — the listing on /wow-comps ranks by
+     * this number, so self-liking is the cheapest possible way to game which guides other people
+     * are shown, and an author endorsing their own work carries no information anyway.
      *
-     * updateOrCreate against the (guide, user) unique key, so re-rating moves your score instead
-     * of stacking another vote.
+     * A toggle rather than a one-way vote: a reader who changes their mind should be able to
+     * withdraw it, and the alternative is a number that can only ever go up.
      */
-    public function rate(int $value): void
+    public function toggleLike(): void
     {
         $this->feedbackError = null;
 
         if (! auth()->check()) {
-            $this->feedbackError = 'Sign in to rate this guide.';
+            $this->feedbackError = 'Sign in to like this guide.';
 
             return;
         }
 
         if ($this->guide->isOwnedBy(auth()->user())) {
-            $this->feedbackError = 'You cannot rate your own guide.';
+            $this->feedbackError = 'You cannot like your own guide.';
 
             return;
         }
 
-        if ($value < UserGuideRating::MIN || $value > UserGuideRating::MAX) {
-            return;
+        $existing = UserGuideLike::where('user_guide_id', $this->guide->id)
+            ->where('user_id', auth()->id())
+            ->first();
+
+        if ($existing) {
+            $existing->delete();
+            $this->liked = false;
+        } else {
+            // firstOrCreate, not create: the (guide, user) unique key is the real guard, and a
+            // double-submitted click should be a no-op rather than an integrity-constraint error.
+            UserGuideLike::firstOrCreate([
+                'user_guide_id' => $this->guide->id,
+                'user_id' => auth()->id(),
+            ]);
+            $this->liked = true;
         }
 
-        UserGuideRating::updateOrCreate(
-            ['user_guide_id' => $this->guide->id, 'user_id' => auth()->id()],
-            ['value' => $value],
-        );
-
-        $this->guide->recalculateRating();
+        $this->guide->syncLikeCount();
         $this->guide->refresh();
-        $this->myRating = $value;
     }
 
     /** Post a comment. Plain text, never Markdown — see UserGuideComment. */

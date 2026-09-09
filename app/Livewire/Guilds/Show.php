@@ -66,7 +66,7 @@ class Show extends Component
             ->where('status', UserGuideStatus::Published->value)
             ->whereIn('visibility', [UserGuideVisibility::Guild->value, UserGuideVisibility::Public->value])
             ->with(['user', 'members.specialization.gameClass', 'enemies.specialization.gameClass'])
-            ->orderByRaw('rating_avg IS NULL, rating_avg DESC')
+            ->orderByDesc('like_count')
             ->orderByDesc('updated_at')
             ->get();
     }

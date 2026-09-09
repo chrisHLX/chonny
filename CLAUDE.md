@@ -4159,3 +4159,118 @@ happened to be on.
 **Benchmark read-only paths against real data; anything that writes gets a throwaway guide.**
 Rendering, `resolve()`, `metrics()` and `palette()` are all read-only and are enough to measure
 this component — the write actions were never where the time was.
+
+## Guide builder: ten reported issues from real use ✓ COMPLETE (2026-09-09)
+
+A list gathered by the site owner while actually writing guides. Recorded together because several
+turned out to share a cause, and one corrected an answer given earlier in the same session.
+
+### The two data bugs — and a wrong diagnosis worth recording
+
+**Rake's stun was genuinely missing from the palette, and my first answer was wrong.** The report
+was "no rake (3s stun) available as CC". I checked the reporter's comp, saw Balance Druid rather
+than Feral, and said Rake was correctly Feral-only. That was true and not the point: Rake was
+missing from **Feral's** palette too.
+
+The cause is `onePerDisplayName()`, which collapses same-named `spells` rows to one. Rake is two:
+`1822`, the damaging ability a Feral presses constantly, and `163505`, the stun it applies from
+stealth — and only `163505` carries `dr_category`. Neither has a cooldown, so the cooldown
+comparator tied and `isPriority` decided it: `1822` is all over the arena logs, `163505` is not.
+The damage copy won, the survivor had no `dr_category`, and the ability disappeared from crowd
+control rather than appearing in it. Fixed by making **a curated `dr_category` the first
+comparator**: losing the CC classification is strictly worse than losing a cooldown number, and it
+costs nothing, because `resolveBaseCooldownCharges()` already recovers a missing cooldown from a
+same-named sibling. Ties (Fear's two tagged rows) fall through to the existing tests unchanged.
+
+**Garrote appeared twice** — `703` (the pressed ability, 6s cooldown) and `1330` (the silence aura
+its own description points at). Both must stay curated: a combat log records the AURA, so
+`FindCcChains::CC_CHAIN_EXCLUDED_SPELL_IDS` keeps `1330` and drops `703`; a palette offers BUTTONS
+and must do the exact opposite. Added `UserGuideChainService::PALETTE_EXCLUDED_CC_SPELL_IDS`, the
+mirror image of that constant. Named explicitly rather than inferred from the naming convention —
+across all 162 CC-tagged spells in the patch, "Garrote - Silence" is the ONLY name of that shape,
+so a pattern rule would be one instance dressed up as a rule.
+
+**A stale cache hid both fixes after the code was already correct**, costing a round of debugging
+aimed at the wrong layer. `guide_palette:` is keyed on `spellCacheVersion` + `deployedCodeFingerprint`,
+and neither moves when the grouping LOGIC changes — the first counts data edits, the second only
+changes on a real deploy. Added `PALETTE_SHAPE_VERSION`, bumped when `computeGroupsFor()` changes
+which ability lands in which group. Deliberately NOT solved with `bumpSpellCacheVersion()`: that
+counter also keys all 40 precomputed kits, so using it to publish a palette change would drop WoW
+Comps and Spell Explorer onto their slow path for nothing — the same over-invalidation trap already
+recorded for the burst guides.
+
+**Stealth conditions were already modelled and simply never shown.** `spells.requires_stealth` /
+`requires_target_out_of_combat` exist and `CcFormulaService` uses them; the guide builder did not.
+Now badged on both the palette entry (before you pick) and the step (after), so a plan that chains
+Rake mid-go reads as the impossible thing it is. **No new tagging was added**, because
+`cc-synergies-overrides.txt` already records a direct domain-expert correction that Cheap Shot
+deliberately carries neither flag (Shadow Dance re-enters stealth on demand, so it is not
+opener-only). That reasoning applies identically to Garrote, so reversing it was left to the expert
+rather than assumed — reading the curation file first is what stopped a wrong "fix" here, the same
+way it did for Kidney Shot.
+
+### Rating replaced with views and likes
+
+"Rating" is an overloaded word on an arena site, where it already means Current Rating — a card
+reading "Not rated yet" next to a 3v3 comp reads as a claim about the team. The 1-5 star system
+(table, `rating_avg`/`rating_count`, the rate widget, the browse sort) is **dropped**, not left
+inert, following the `recommended_module` precedent. Replaced by `view_count` + `like_count` and a
+`user_guide_likes` table, both denormalised for the same reason the rating columns were: they are
+read on every card of every listing and written far less often.
+
+Views are counted **once per reader per day** (cache-keyed, guests included by session id) and
+**never for the author** — an author reloading their own guide while writing it would otherwise be
+its biggest audience. Ordering is likes first, views as the tie-break: views alone rank whatever
+got linked the most, likes alone leave every new guide tied on zero.
+
+### Slugs now say what the guide is
+
+Every guide was living at `/g/{user}/untitled-guide`, because the slug is generated at row-creation
+time — before there is a title or a single spec — and deliberately never regenerates on rename,
+since moving a URL people hold breaks their links. That rule protects a PUBLISHED guide and is
+pointless for a draft nobody has a link to. New `published_at` marks the difference, and
+`descriptiveSlug()` composes title + comp + opponent at first publish only:
+`the-opener-discipline-balance-assassination-vs-discipline-frost-subtlety`. Verified that a later
+unpublish/republish leaves it alone. **`publish()` redirects afterwards**, and that is not optional:
+the builder is route-bound on the slug, so changing it without moving the browser leaves the address
+bar on a slug that no longer resolves — fine until the author hits refresh and gets a 404.
+
+### Perceived speed, and why there is no Save button
+
+The report was that clicking an ability felt like nothing happened, then three appeared at once.
+Given the choice between honest feedback and a true optimistic insert, the reporter chose honest:
+the clicked ability now spins and disables via `wire:target` naming that **exact call, params
+included** (targeting the bare method spins every button in the kit), and a skeleton row lands in
+the list immediately. The skeleton is deliberately NOT the real row — cooldown, DR percentage and
+every FOLLOWING step's percentage are computed server-side, so a "real" optimistic row would show
+numbers that change a moment later, and a step that silently re-rates itself is worse than one that
+takes an extra beat.
+
+A **Save button was asked for and deliberately not built**. Every action already writes
+immediately; a Save button would promise a step that does not exist and imply work is at risk until
+pressed. What was actually missing is the confirmation — the old stamp only appeared AFTER a write,
+so during the round trip the page looked inert. It now always says which of the two is happening:
+"Saving…" or "All changes saved".
+
+### The rest
+
+- **Enemy team**: says outright that blank is a finished state ("Optional — leave blank for a
+  general guide"), rather than three empty slots reading as something you owe the page.
+- **Mobile**: the My Guides row was one flex row holding icons, title and three `shrink-0` buttons;
+  below ~640px the buttons refused to yield and the title was crushed. Actions now get their own
+  row on a narrow screen. The browse filters stack too, now that there are four.
+- **"Playing against" is findable**: shown on the card (icons plus the spec names, so a matchup
+  guide does not read as a six-person comp) and on the My Guides row, plus a NEW "Against {class}"
+  filter on browse. Kept as its own control rather than folded into the class filter, which is
+  documented as meaning "guides for PLAYING a Rogue" — "playing" and "beating" are different
+  searches that name the same class.
+- **VS-team performance**: measured, and it costs nothing — 97ms with a 3-spec enemy team against
+  104ms without, within noise. The earlier caching work had already removed what the reporter felt.
+- **Never being logged out**: not a bug. "Remember me" was ticked, and Laravel's remember cookie
+  defaults to 576,000 minutes (~400 days), so it silently re-authenticates after the 2-hour session
+  expires. Now `config('auth.remember_days')`, default 30, overridable with `AUTH_REMEMBER_DAYS`.
+  Existing remember cookies keep their old expiry until those people next sign in.
+
+Full suite: 436 passing, the same 12 pre-existing failures. Three new regression tests cover the
+de-duplication ordering (including that a cooldown still wins when neither copy is CC, the original
+Secret Technique case) and the aura exclusion.

@@ -189,45 +189,62 @@ test('the comp key is order-independent and built from the author own side only'
     expect($guide->fresh()->comp_key)->toBe(UserGuide::compKeyFor([$a->id, $b->id, $c->id]));
 });
 
-test('the comp listing ranks by rating and puts unrated guides last', function () {
+test('the comp listing ranks by likes, then views', function () {
     $f = discoveryFixture();
 
     $best = discoveryGuide($f['author'], $f['specs'], ['title' => 'Best']);
     $mid = discoveryGuide($f['author'], $f['specs'], ['title' => 'Mid']);
-    discoveryGuide($f['author'], $f['specs'], ['title' => 'Unrated']);
+    $read = discoveryGuide($f['author'], $f['specs'], ['title' => 'ReadNotLiked']);
+    discoveryGuide($f['author'], $f['specs'], ['title' => 'Unseen']);
 
-    $best->forceFill(['rating_avg' => 4.8, 'rating_count' => 10])->save();
-    $mid->forceFill(['rating_avg' => 2.2, 'rating_count' => 10])->save();
+    $best->forceFill(['like_count' => 12, 'view_count' => 40])->save();
+    $mid->forceFill(['like_count' => 3, 'view_count' => 900])->save();
 
-    // "Nobody has said" is weaker evidence than a low score, but it must not outrank a guide
-    // people actually liked.
+    // Views are the tie-break, never the lead: 900 views does not outrank 12 likes...
+    // ...but among guides nobody has liked, the one people actually read comes first.
+    $read->forceFill(['like_count' => 0, 'view_count' => 50])->save();
+
     expect(UserGuide::forComp(collect($f['specs'])->pluck('id')->all())->pluck('title')->all())
-        ->toBe(['Best', 'Mid', 'Unrated']);
+        ->toBe(['Best', 'Mid', 'ReadNotLiked', 'Unseen']);
 });
 
-test('a rating is one per person and updates rather than stacking', function () {
+test('a like is one per person and toggles rather than stacking', function () {
     $f = discoveryFixture();
     $guide = discoveryGuide($f['author'], $f['specs']);
 
-    showComponent($f['other'], $guide->fresh())->call('rate', 5);
-    expect($guide->fresh()->rating_count)->toBe(1)
-        ->and((float) $guide->fresh()->rating_avg)->toBe(5.0);
+    showComponent($f['other'], $guide->fresh())->call('toggleLike');
+    expect($guide->fresh()->like_count)->toBe(1);
 
-    // Re-rating moves your score; it does not add a second vote.
-    showComponent($f['other'], $guide->fresh())->call('rate', 1);
-    expect($guide->fresh()->rating_count)->toBe(1)
-        ->and((float) $guide->fresh()->rating_avg)->toBe(1.0);
+    // Clicking again takes it back; it does not add a second vote.
+    showComponent($f['other'], $guide->fresh())->call('toggleLike');
+    expect($guide->fresh()->like_count)->toBe(0);
 });
 
-test('an author cannot rate their own guide', function () {
+test('an author cannot like their own guide', function () {
     $f = discoveryFixture();
     $guide = discoveryGuide($f['author'], $f['specs']);
 
-    // Self-rating is the cheapest way to game which guides other people are shown.
-    $c = showComponent($f['author'], $guide)->call('rate', 5);
+    // Self-liking is the cheapest way to game which guides other people are shown.
+    $c = showComponent($f['author'], $guide)->call('toggleLike');
 
-    expect($guide->fresh()->rating_count)->toBe(0)
+    expect($guide->fresh()->like_count)->toBe(0)
         ->and($c->get('feedbackError'))->not->toBeNull();
+});
+
+test('a view is counted once per reader and never for the author', function () {
+    $f = discoveryFixture();
+    $guide = discoveryGuide($f['author'], $f['specs']);
+
+    // The author reloading their own guide while writing it must not become its audience.
+    showComponent($f['author'], $guide->fresh());
+    expect($guide->fresh()->view_count)->toBe(0);
+
+    showComponent($f['other'], $guide->fresh());
+    expect($guide->fresh()->view_count)->toBe(1);
+
+    // A refresh is the same person, not a second reader.
+    showComponent($f['other'], $guide->fresh());
+    expect($guide->fresh()->view_count)->toBe(1);
 });
 
 test('comments render as plain text and can be removed by their author or the guide author', function () {

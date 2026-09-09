@@ -48,6 +48,23 @@ class UserGuideChainService
 
     private const UTILITY_GROUP = 'Utility & other';
 
+    /**
+     * Bump when computeGroupsFor() changes WHICH abilities land in WHICH group.
+     *
+     * The palette cache is keyed on spellCacheVersion + deployedCodeFingerprint, and neither moves
+     * when the grouping LOGIC changes — the first counts data edits, the second only changes on a
+     * real deploy, so in development a shape change is served from a stale entry indefinitely and
+     * looks like the change simply did not work. That is exactly what happened on 2026-09-09: both
+     * the Garrote de-duplication and Rake's stun were invisible after the code was correct, which
+     * cost a round of debugging aimed at the wrong layer.
+     *
+     * Deliberately NOT solved by calling bumpSpellCacheVersion(): that counter also keys all 40
+     * precomputed spell kits, so using it to publish a change to one palette would drop WoW Comps
+     * and Spell Explorer onto their slow live-compute path for no reason — the same
+     * over-invalidation trap already recorded for the burst guides.
+     */
+    private const PALETTE_SHAPE_VERSION = 3;
+
     public function __construct(
         private SpecKitComputer $kits,
         private ModuleSpellReferenceService $spellReferences,
@@ -404,7 +421,8 @@ class UserGuideChainService
     private function groupsFor(UserGuideSection $section, Specialization $spec, Patch $patch, ?TalentBuild $build = null): Collection
     {
         $key = sprintf(
-            'guide_palette:%d:%s:%s:%s:v%s:%s',
+            'guide_palette:s%d:%d:%s:%s:%s:v%s:%s',
+            self::PALETTE_SHAPE_VERSION,
             $spec->id,
             $build === null ? 'default' : $build->id.'@'.($build->updated_at?->timestamp ?? 0),
             $section->kind->usesOpponent() ? 'opp' : 'own',
@@ -584,6 +602,26 @@ class UserGuideChainService
         return $entries
             ->groupBy(fn ($e) => $e->displayName())
             ->map(fn (Collection $copies) => $copies->sortBy([
+                // A CURATED dr_category WINS EVERYTHING ELSE, and this comparator is why Rake's
+                // stun was missing from Feral's palette entirely — reported 2026-09-09 as "no rake
+                // (3s stun) available as CC".
+                //
+                // Rake is two rows: 1822, the damaging ability a Feral presses constantly, and
+                // 163505, the stun it applies from stealth — which is the row carrying
+                // dr_category. NEITHER has a cooldown, so the cooldown comparator tied, and
+                // isPriority then decided it: 1822 is all over the arena logs and 163505 is not,
+                // so the damage copy won, the survivor had no dr_category, and the ability
+                // disappeared from crowd control rather than appearing in it.
+                //
+                // Losing the CC classification is a strictly worse error than losing a cooldown
+                // number, and it costs nothing to avoid: ModuleSpellReferenceService::
+                // resolveBaseCooldownCharges() already recovers a missing cooldown from a
+                // same-named sibling, so preferring the tagged copy keeps the number too. Ties
+                // (both copies tagged, e.g. Fear's two rows) fall through to the tests below
+                // unchanged.
+                fn ($a, $b) => (($a['spell']->dr_category !== null) ? 0 : 1)
+                    <=> (($b['spell']->dr_category !== null) ? 0 : 1),
+                // Two-argument comparators — see the note in SpellCounterIndexer::narrowToPressable().
                 fn ($a, $b) => (($a['cooldown']['seconds'] ?? null) !== null ? 0 : 1)
                     <=> (($b['cooldown']['seconds'] ?? null) !== null ? 0 : 1),
                 fn ($a, $b) => (($a['isPriority'] ?? false) ? 0 : 1) <=> (($b['isPriority'] ?? false) ? 0 : 1),
@@ -787,13 +825,33 @@ class UserGuideChainService
      * player can press; narrowing both sides to one shared definition is what fixed it on
      * 2026-09-07. An author must not be able to drag an ability that does not exist as a button.
      */
+    /**
+     * Aura copies that are correctly CC-tagged but are NOT a button, so an author must not be
+     * offered them next to the ability they actually press.
+     *
+     * THE MIRROR IMAGE OF FindCcChains::CC_CHAIN_EXCLUDED_SPELL_IDS, and the same underlying
+     * fact read from the other side. Garrote is two rows: 703 is the pressed ability (6s
+     * cooldown, and its own description reads "Silences the target for $1330d when used from
+     * Stealth"), and 1330 is the silence aura that line points at. A combat log records the
+     * AURA, so the chain finder keeps 1330 and drops 703; a palette offers BUTTONS, so it keeps
+     * 703 and drops 1330. Both rows must stay curated — neither side can untag the other's.
+     *
+     * Named explicitly rather than inferred from the " - " naming convention: across all 162
+     * CC-tagged spells in the current patch, "Garrote - Silence" is the ONLY name of that shape,
+     * so a pattern rule would be one instance dressed up as a rule. A list of one, with the
+     * reason attached, is the honest version.
+     */
+    private const PALETTE_EXCLUDED_CC_SPELL_IDS = [1330]; // Garrote - Silence — press "Garrote" (703)
+
     private function pressableCcSpellIds(Specialization $spec, Patch $patch): Collection
     {
         $kitIds = $this->kitSpells($spec)->pluck('id');
 
         return $kitIds->isEmpty()
             ? collect()
-            : $this->counters->pressableCcSpells($patch, $kitIds)->pluck('id');
+            : $this->counters->pressableCcSpells($patch, $kitIds)
+                ->reject(fn (Spell $s) => in_array((int) $s->spell_id, self::PALETTE_EXCLUDED_CC_SPELL_IDS, true))
+                ->pluck('id');
     }
 
     private function categoryRank(string $category): int

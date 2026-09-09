@@ -27,7 +27,7 @@ class Index extends Component
     {
         return auth()->user()
             ->guides()
-            ->with(['members.specialization.gameClass', 'sections'])
+            ->with(['members.specialization.gameClass', 'enemies.specialization.gameClass', 'sections'])
             ->orderByDesc('updated_at')
             ->get();
     }

@@ -694,3 +694,84 @@ test('the block vocabulary no longer contains a phase', function () {
     expect(collect(App\Enums\UserGuideBlockType::cases())->pluck('value')->all())
         ->not->toContain('phase');
 });
+
+/*
+ * Same-name de-duplication in the palette.
+ *
+ * An ability is routinely several `spells` rows, and the palette shows one of them. Which one it
+ * picks is not cosmetic: pick wrong and the ability either disappears from crowd control or
+ * appears twice, and both were live bugs reported from real use on 2026-09-09.
+ */
+
+/** Build a real kit entry for a synthetic spell, the same shape computeGroupsFor() sorts. */
+function paletteEntryFor(array $spellAttributes, bool $isPriority = false, ?float $cooldown = null)
+{
+    $patch = Patch::where('is_current', true)->first();
+
+    $spell = App\Models\Spell::create(array_merge([
+        'patch_id' => $patch->id,
+        'spell_id' => random_int(100000, 999999),
+        'name' => 'Rake',
+        'cooldown_seconds' => $cooldown,
+    ], $spellAttributes));
+
+    return app(App\Http\Services\SpellProfileBuilder::class)->forKitEntry(
+        spell: $spell,
+        category: $spell->dr_category !== null ? 'Crowd Control' : 'Offensive',
+        description: ['text' => '', 'uncertain' => false],
+        formulaModifiers: collect(),
+        modifiers: ['named' => collect(), 'baseline' => collect(), 'potential' => collect()],
+        cooldown: ['seconds' => $cooldown],
+        charges: ['charges' => null],
+        isSelected: true,
+        source: 'talent',
+        isPriority: $isPriority,
+        offensiveDefensive: null,
+    );
+}
+
+test('the copy carrying a curated dr_category survives de-duplication', function () {
+    guideFixture();
+
+    // Rake, exactly as the real data has it: the damaging ability a Feral presses constantly
+    // (all over the arena logs, so isPriority) and the stun it applies from stealth (the row that
+    // actually carries dr_category). NEITHER has a cooldown, which is what let isPriority decide
+    // it before this was fixed — the damage copy won, the survivor had no dr_category, and Rake
+    // vanished from crowd control entirely.
+    $damage = paletteEntryFor(['dr_category' => null], isPriority: true);
+    $stun = paletteEntryFor(['dr_category' => 'Stun', 'requires_stealth' => true]);
+
+    $method = new ReflectionMethod(App\Http\Services\UserGuideChainService::class, 'onePerDisplayName');
+    $kept = $method->invoke(app(App\Http\Services\UserGuideChainService::class), collect([$damage, $stun]));
+
+    expect($kept)->toHaveCount(1)
+        ->and($kept->first()['spell']->id)->toBe($stun['spell']->id)
+        ->and($kept->first()['spell']->dr_category)->toBe('Stun');
+});
+
+test('a cooldown still wins when neither copy is crowd control', function () {
+    guideFixture();
+
+    // The original reason this sort exists (Secret Technique's effect-less internal copy beating
+    // the real ability) must keep working — the dr_category test above it is a tie for both.
+    $hidden = paletteEntryFor(['name' => 'Secret Technique', 'dr_category' => null]);
+    $real = paletteEntryFor(['name' => 'Secret Technique', 'dr_category' => null], cooldown: 25.0);
+
+    $method = new ReflectionMethod(App\Http\Services\UserGuideChainService::class, 'onePerDisplayName');
+    $kept = $method->invoke(app(App\Http\Services\UserGuideChainService::class), collect([$hidden, $real]));
+
+    expect($kept)->toHaveCount(1)
+        ->and($kept->first()['spell']->id)->toBe($real['spell']->id);
+});
+
+test('the palette never offers an aura copy of an ability you press', function () {
+    // Garrote is two curated rows and BOTH must stay tagged: a combat log records the aura (1330),
+    // so FindCcChains keeps that one and drops 703, while a palette offers buttons and must do the
+    // exact opposite. Asserted as a constant rather than through a full palette build, which needs
+    // real imported spell data.
+    $c = new ReflectionClass(App\Http\Services\UserGuideChainService::class);
+    $excluded = $c->getConstant('PALETTE_EXCLUDED_CC_SPELL_IDS');
+
+    expect($excluded)->toContain(1330)
+        ->and($excluded)->not->toContain(703);
+});

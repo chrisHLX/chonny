@@ -55,6 +55,18 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
+        // "Remember me" is why a session appears never to end. SESSION_LIFETIME is 120 minutes,
+        // but the remember cookie re-authenticates silently after it expires, and Laravel's
+        // default for that cookie is 576,000 minutes — roughly 400 days. Reported 2026-09-09 as
+        // "I don't seem to be getting logged out, even after 8 hours", which is exactly what a
+        // 400-day cookie does; it is working as designed, the design is just far longer than
+        // anyone expects. 30 days keeps the convenience the checkbox is for while meaning a
+        // forgotten login on a shared machine eventually lapses. Change AUTH_REMEMBER_DAYS in
+        // .env rather than editing this line.
+        Auth::guard()->setRememberDuration(
+            (int) config('auth.remember_days', 30) * 60 * 24
+        );
+
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 

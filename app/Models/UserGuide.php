@@ -8,6 +8,7 @@ use App\Enums\UserGuideType;
 use App\Enums\UserGuideVisibility;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 /**
@@ -35,12 +36,14 @@ class UserGuide extends Model
         'title',
         'slug',
         'summary',
+        'published_at',
     ];
 
     protected $casts = [
         'type' => UserGuideType::class,
         'status' => UserGuideStatus::class,
         'visibility' => UserGuideVisibility::class,
+        'published_at' => 'datetime',
     ];
 
     /**
@@ -69,17 +72,83 @@ class UserGuide extends Model
     {
         static::creating(function (self $guide) {
             if (empty($guide->slug)) {
-                $base = Str::slug($guide->title ?? 'guide') ?: 'guide';
-                $slug = $base;
-                $counter = 1;
-
-                while (self::where('user_id', $guide->user_id)->where('slug', $slug)->exists()) {
-                    $slug = $base.'-'.$counter++;
-                }
-
-                $guide->slug = $slug;
+                $guide->slug = $guide->uniqueSlugFrom(Str::slug($guide->title ?? 'guide') ?: 'guide');
             }
         });
+    }
+
+    /**
+     * Make a slug base unique within this author, matching the composite unique key.
+     *
+     * A stranger having written "RMD opener" must not push this author onto "rmd-opener-1".
+     */
+    public function uniqueSlugFrom(string $base): string
+    {
+        $base = trim($base, '-') ?: 'guide';
+        $slug = $base;
+        $counter = 1;
+
+        while (self::where('user_id', $this->user_id)
+            ->where('slug', $slug)
+            ->whereKeyNot($this->getKey() ?? 0)
+            ->exists()) {
+            $slug = $base.'-'.$counter++;
+        }
+
+        return $slug;
+    }
+
+    /**
+     * A slug that says what the guide is, for the address bar and for search.
+     *
+     * The problem this solves: the slug is generated when the row is created, which is before the
+     * author has typed a title or picked a single spec — so real guides were living at
+     * /g/chris/untitled-guide, which tells a reader nothing and tells a search engine less.
+     *
+     * Built from the title AND the comp, because neither alone is enough. Titles repeat heavily
+     * ("The Opener" is the obvious name for half of all guides) and would collide into
+     * the-opener-1, the-opener-2 — informative to nobody. The comp is what actually distinguishes
+     * them and is also what people search for, so "the-opener-disc-boomy-assa" beats both halves
+     * on its own. A named enemy team is appended, since "rmd-vs-rmp" IS the query someone types.
+     *
+     * Capped at 80 characters on a word boundary: long slugs are not an SEO problem in themselves,
+     * but a slug nobody can read back over voice or fit in a chat line is a usability one, and
+     * three full "specialization + class" pairs on both sides runs past 120.
+     */
+    public function descriptiveSlug(): string
+    {
+        $specNames = fn ($rows) => collect($rows)
+            ->map(fn ($m) => $m->specialization?->name)
+            ->filter()
+            ->values();
+
+        $title = Str::slug($this->title ?? '');
+
+        // "Untitled guide" and friends carry no information, so they are dropped rather than
+        // baked into the URL — the comp then leads, which is the more useful half anyway.
+        if (Str::startsWith($title, 'untitled')) {
+            $title = '';
+        }
+
+        $parts = array_filter([
+            $title,
+            Str::slug($specNames($this->members()->with('specialization')->get())->implode(' ')),
+        ]);
+
+        $enemies = $specNames($this->enemies()->with('specialization')->get());
+        if ($enemies->isNotEmpty()) {
+            $parts[] = 'vs-'.Str::slug($enemies->implode(' '));
+        } elseif ($this->opponentSpec) {
+            $parts[] = 'vs-'.Str::slug($this->opponentSpec->name);
+        }
+
+        $base = implode('-', $parts);
+
+        if (strlen($base) > 80) {
+            $base = Str::beforeLast(substr($base, 0, 81), '-');
+        }
+
+        return $this->uniqueSlugFrom($base ?: (Str::slug($this->title ?? '') ?: 'guide'));
     }
 
     public function getRouteKeyName(): string
@@ -213,8 +282,10 @@ class UserGuide extends Model
      * this runs on /wow-comps, and the whole point of the feature is to surface a handful of good
      * guides rather than every guide anyone has ever written.
      *
-     * Unrated guides sort last rather than first — a NULL average is "nobody has said", which is
-     * weaker evidence than a low score, but it must not outrank a guide people actually liked.
+     * Likes first, views as the tie-break. Views alone would rank whatever has been linked the
+     * most rather than what people found useful, and likes alone leave every new guide tied on
+     * zero with nothing to separate them — a guide nobody has liked yet but forty people have
+     * read is still the better of two unliked guides.
      */
     public function scopeForComp(Builder $query, array $specIds): Builder
     {
@@ -223,8 +294,8 @@ class UserGuide extends Model
         return $query->listed()
             ->when($key === null, fn (Builder $q) => $q->whereRaw('1 = 0'))
             ->where('comp_key', $key)
-            ->orderByRaw('rating_avg IS NULL, rating_avg DESC')
-            ->orderByDesc('rating_count');
+            ->orderByDesc('like_count')
+            ->orderByDesc('view_count');
     }
 
     /**
@@ -278,9 +349,14 @@ class UserGuide extends Model
         return $this->belongsTo(Guild::class);
     }
 
-    public function ratings()
+    public function likes()
     {
-        return $this->hasMany(UserGuideRating::class);
+        return $this->hasMany(UserGuideLike::class);
+    }
+
+    public function likedBy(?User $user): bool
+    {
+        return $user !== null && $this->likes()->where('user_id', $user->id)->exists();
     }
 
     public function comments()
@@ -289,19 +365,47 @@ class UserGuide extends Model
     }
 
     /**
-     * Recompute the denormalised rating from the ratings table.
+     * Recompute the denormalised like count from the likes table.
      *
-     * Called on every rating write. user_guide_ratings stays the source of truth; these two
-     * columns exist so "the best guides for this comp" is an ORDER BY on an indexed value rather
-     * than an aggregate over a join, on a page (/wow-comps) that is already the heaviest on the
-     * site.
+     * Called on every like write. user_guide_likes stays the source of truth; the column exists
+     * so "the best guides for this comp" is an ORDER BY on an indexed value rather than an
+     * aggregate over a join, on a page (/wow-comps) that is already the heaviest on the site.
      */
-    public function recalculateRating(): void
+    public function syncLikeCount(): void
     {
-        $this->forceFill([
-            'rating_count' => $this->ratings()->count(),
-            'rating_avg' => $this->ratings()->avg('value'),
-        ])->save();
+        $this->forceFill(['like_count' => $this->likes()->count()])->save();
+    }
+
+    /**
+     * Count one view, without a write on every single page load.
+     *
+     * Deduplicated per viewer per guide per day, in the cache rather than a table: the honest
+     * question a view count answers is "how many people looked at this", and counting a refresh
+     * or a back-button as a new reader answers a different, more flattering one. A table of view
+     * events would answer it more precisely, but it grows without bound for a number that is only
+     * ever rendered as a rough total.
+     *
+     * Guests are counted too (keyed on session id) — most readers of a public guide will not be
+     * logged in, and a count that ignored them would be wrong in the direction that makes the
+     * feature useless. The author's own views are NOT counted: an author reloading their own
+     * guide while writing it would otherwise be its biggest audience.
+     *
+     * Uses an atomic increment, so two readers landing at once cannot lose one of the two.
+     */
+    public function recordView(?User $viewer, string $sessionId): void
+    {
+        if ($this->isOwnedBy($viewer)) {
+            return;
+        }
+
+        $who = $viewer?->id ? 'u'.$viewer->id : 's'.$sessionId;
+        $key = "guide_view:{$this->id}:{$who}";
+
+        if (! Cache::add($key, 1, now()->addDay())) {
+            return;
+        }
+
+        static::whereKey($this->id)->increment('view_count');
     }
 
     /**

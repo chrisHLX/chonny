@@ -50,9 +50,29 @@
                 @endunless
             @endif
 
-            @if ($savedAt)
-                <span class="text-[11px] text-ink-subtle" wire:key="saved-{{ $savedAt }}">Saved {{ $savedAt }}</span>
-            @endif
+            {{-- WHY THIS IS AN INDICATOR AND NOT A SAVE BUTTON. Every action here already writes
+                 immediately — there is no unsaved state to flush — so a Save button would promise
+                 a step that does not exist and imply work is at risk until you press it, which is
+                 the opposite of true. What was actually missing is the confirmation: the old
+                 stamp only ever appeared AFTER a write, so during the round trip the page looked
+                 inert and you could not tell whether a click had registered. This says which of
+                 the two is happening, always. --}}
+            <span class="flex items-center gap-1.5 text-[11px]" wire:key="save-state">
+                <span wire:loading class="flex items-center gap-1.5 text-gold">
+                    <svg class="w-3 h-3 animate-spin" viewBox="0 0 24 24" fill="none">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                        <path class="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z"/>
+                    </svg>
+                    Saving&hellip;
+                </span>
+                <span wire:loading.remove class="text-ink-subtle">
+                    @if ($savedAt)
+                        <span class="text-green-400">&check;</span> All changes saved &middot; {{ $savedAt }}
+                    @else
+                        Changes save automatically
+                    @endif
+                </span>
+            </span>
         </div>
     </div>
 
@@ -214,8 +234,16 @@
                     </button>
                 </div>
 
+                {{-- Says outright that blank is a valid, finished state. Without this the empty
+                     slots read as something you still owe the page, when a general opener guide
+                     is a perfectly good guide. --}}
+                <p class="text-[12px] text-ink-subtle mt-1" x-show="!open">
+                    Optional — leave blank for a general guide that works against any team.
+                </p>
+
                 <p class="text-[12px] text-ink-subtle mt-1" x-show="open" x-cloak>
-                    Makes this a matchup guide — their defensives fill the VS columns.
+                    Naming a team makes this a matchup guide — their defensives fill the VS columns,
+                    and people can find it by searching for that comp. Leave it blank for a general guide.
                 </p>
 
                 <div class="grid sm:grid-cols-3 gap-3 mt-3" x-show="open" x-cloak>
@@ -390,6 +418,27 @@
 
                         <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :editable="true"/>
 
+                        {{-- A placeholder row lands in the list the instant an ability is clicked,
+                             so the plan visibly grows on the click rather than after the round trip.
+                             DELIBERATELY A SKELETON, NOT THE REAL ROW: the cooldown, the DR
+                             percentage and every following step's percentage are all computed
+                             server-side, so rendering a "real" row here would show numbers that
+                             change a moment later — and a step that silently re-rates itself is
+                             worse than one that takes an extra beat to appear. wire:target is the
+                             bare method name here (not the exact call as on the palette buttons)
+                             because this row answers "is something being added", whichever ability
+                             it was. --}}
+                        <div wire:loading.flex wire:target="addSpell" wire:key="pending-{{ $section->id }}"
+                             class="items-center gap-3 p-2.5 mt-2 rounded border border-dashed border-line-gold bg-surface-2/60">
+                            <span class="w-4 shrink-0"></span>
+                            <span class="w-8 h-8 rounded bg-surface-3 animate-pulse shrink-0"></span>
+                            <span class="flex-1 min-w-0">
+                                <span class="block h-3 w-32 rounded bg-surface-3 animate-pulse"></span>
+                                <span class="block h-2.5 w-20 rounded bg-surface-3 animate-pulse mt-1.5"></span>
+                            </span>
+                            <span class="text-[11px] text-gold shrink-0">Adding&hellip;</span>
+                        </div>
+
                         {{-- Palette, opened per section so the page isn't three palettes deep --}}
                         <div class="flex items-center gap-2 mt-3">
                         <button type="button" wire:click="togglePalette({{ $section->id }})"
@@ -449,18 +498,42 @@
                                                     <span class="{{ $drBadge[$groupName] ?? 'badge-gray' }}">{{ $groupName }}</span>
                                                     <div class="grid sm:grid-cols-2 gap-1 mt-1.5">
                                                         @foreach ($entries as $entry)
+                                                            @php $addCall = 'addSpell('.$section->id.', '.$entry['spell']->spell_id.', '.$pSpec->id.')'; @endphp
+                                                            {{-- wire:target names this EXACT call, params included, so only the
+                                                                 ability you clicked reacts — targeting the bare method would spin
+                                                                 every button in the kit at once. --}}
                                                             <button type="button"
                                                                     wire:key="pe-{{ $section->id }}-{{ $entry['spell']->id }}"
                                                                     data-search="{{ Str::lower($entry->displayName().' '.$groupName) }}"
                                                                     x-show="search === '' || $el.dataset.search.includes(search.toLowerCase())"
-                                                                    wire:click="addSpell({{ $section->id }}, {{ $entry['spell']->spell_id }}, {{ $pSpec->id }})"
-                                                                    class="flex items-center gap-2 p-1.5 rounded border border-transparent hover:border-line-gold hover:bg-gold-subtle text-left transition-colors">
-                                                                <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
+                                                                    wire:click="{{ $addCall }}"
+                                                                    wire:loading.attr="disabled"
+                                                                    wire:target="{{ $addCall }}"
+                                                                    class="group flex items-center gap-2 p-1.5 rounded border border-transparent hover:border-line-gold hover:bg-gold-subtle text-left transition-colors disabled:opacity-50 disabled:cursor-wait">
+                                                                <span class="relative shrink-0">
+                                                                    <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
+                                                                    <span wire:loading wire:target="{{ $addCall }}"
+                                                                          class="absolute inset-0 flex items-center justify-center rounded bg-surface-0/70">
+                                                                        <svg class="w-3.5 h-3.5 animate-spin text-gold" viewBox="0 0 24 24" fill="none">
+                                                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                                                                            <path class="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z"/>
+                                                                        </svg>
+                                                                    </span>
+                                                                </span>
                                                                 <span class="flex-1 min-w-0">
                                                                     <span class="block text-[12.5px] text-ink truncate">{{ $entry->displayName() }}</span>
-                                                                    @if ($entry['cooldown']['seconds'] ?? null)
-                                                                        <span class="block text-[10.5px] text-ink-subtle tabular-nums">{{ (int) $entry['cooldown']['seconds'] }}s CD</span>
-                                                                    @endif
+                                                                    <span class="flex items-center gap-1.5">
+                                                                        @if ($entry['cooldown']['seconds'] ?? null)
+                                                                            <span class="text-[10.5px] text-ink-subtle tabular-nums">{{ (int) $entry['cooldown']['seconds'] }}s CD</span>
+                                                                        @endif
+                                                                        {{-- Shown before the pick, not after: knowing Sap needs the
+                                                                             target out of combat matters while you are choosing. --}}
+                                                                        @if ($entry['spell']->requires_target_out_of_combat)
+                                                                            <span class="text-[10px] text-violet" title="Requires stealth, and the target must be out of combat — realistically an opener.">stealth + OOC</span>
+                                                                        @elseif ($entry['spell']->requires_stealth)
+                                                                            <span class="text-[10px] text-violet" title="Only applies its crowd control while you are stealthed.">from stealth</span>
+                                                                        @endif
+                                                                    </span>
                                                                 </span>
                                                             </button>
                                                         @endforeach

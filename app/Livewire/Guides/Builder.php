@@ -697,6 +697,21 @@ class Builder extends Component
      * built from it. Doing it here rather than at signup means no existing account is blocked
      * behind a profile step nobody has been asked to complete.
      */
+    /**
+     * Publish, and on the FIRST publish only, give the guide a slug that says what it is.
+     *
+     * The slug is generated at row-creation time, before there is a title or a comp, so a real
+     * guide would otherwise keep living at /g/chris/untitled-guide forever — the slug deliberately
+     * never regenerates on rename, because moving a URL people already hold breaks their links.
+     * That rule protects a PUBLISHED guide; a draft has no such links to protect, which is exactly
+     * why this is the last safe moment to rebuild it. published_at is what marks the difference,
+     * so a later unpublish/republish leaves the URL alone.
+     *
+     * REDIRECTS AFTERWARDS, and that is not optional: this component is route-bound on the slug
+     * (/guides/{guide}/edit), so changing it without moving the browser leaves the address bar
+     * pointing at a slug that no longer resolves — the page would look fine until the author hit
+     * refresh and got a 404.
+     */
     public function publish(): void
     {
         if (! $this->guide->hasRoster()) {
@@ -705,7 +720,24 @@ class Builder extends Component
 
         auth()->user()->resolveUsername();
 
-        $this->guide->update(['status' => UserGuideStatus::Published]);
+        $firstPublish = $this->guide->published_at === null;
+
+        $this->guide->update([
+            'status' => UserGuideStatus::Published,
+            'published_at' => $this->guide->published_at ?? now(),
+        ]);
+
+        if ($firstPublish) {
+            $newSlug = $this->guide->descriptiveSlug();
+
+            if ($newSlug !== $this->guide->slug) {
+                $this->guide->update(['slug' => $newSlug]);
+                $this->redirect(route('guides.edit', $this->guide->fresh()), navigate: true);
+
+                return;
+            }
+        }
+
         $this->refreshGuide();
     }
 

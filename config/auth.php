@@ -20,6 +20,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | "Remember Me" Duration
+    |--------------------------------------------------------------------------
+    |
+    | How long the remember cookie keeps someone signed in after their session
+    | itself has expired (SESSION_LIFETIME, 120 minutes). Laravel's own default
+    | is 576,000 minutes — about 400 days — which is why the site appeared never
+    | to log anyone out. Applied in LoginRequest::authenticate().
+    |
+    */
+
+    'remember_days' => (int) env('AUTH_REMEMBER_DAYS', 30),
+
+    /*
+    |--------------------------------------------------------------------------
     | Authentication Guards
     |--------------------------------------------------------------------------
     |

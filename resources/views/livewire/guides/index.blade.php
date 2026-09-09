@@ -44,53 +44,81 @@
     @else
         <div class="flex flex-col gap-2">
             @foreach ($this->guides as $guide)
-                <div class="linear-card p-4 flex items-center gap-4" wire:key="guide-{{ $guide->id }}">
-                    <div class="flex items-center gap-1.5 shrink-0">
-                        @forelse ($guide->members as $member)
-                            @if ($member->specialization)
-                                <x-spec-icon :spec="$member->specialization" size="w-8 h-8"/>
-                            @endif
-                        @empty
-                            <span class="w-8 h-8 rounded-md border border-dashed border-line-strong"></span>
-                        @endforelse
-                    </div>
+                {{-- STACKS ON MOBILE. This was one flex row holding the comp icons, the title and
+                     three shrink-0 buttons; below ~640px the buttons refused to give up any width
+                     and the title was crushed into a few characters — reported as "the text gets
+                     squeezed in", worst on a 3v3 where six icons compete with it. The actions get
+                     their own row on a narrow screen and only sit inline once there is room. --}}
+                <div class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4" wire:key="guide-{{ $guide->id }}">
+                    <div class="flex items-center gap-3 min-w-0 flex-1">
+                        <div class="flex items-center gap-1.5 shrink-0">
+                            @forelse ($guide->members as $member)
+                                @if ($member->specialization)
+                                    <x-spec-icon :spec="$member->specialization" size="w-8 h-8"/>
+                                @endif
+                            @empty
+                                <span class="w-8 h-8 rounded-md border border-dashed border-line-strong"></span>
+                            @endforelse
 
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2.5 flex-wrap">
-                            <a href="{{ route('guides.edit', $guide->slug) }}" wire:navigate
-                               class="text-[15px] font-semibold text-ink hover:text-gold transition-colors truncate">
-                                {{ $guide->title }}
-                            </a>
-
-                            @if ($guide->status === UserGuideStatus::Published)
-                                <span class="badge-green">Published</span>
-                                <span class="{{ $guide->visibility === UserGuideVisibility::Public ? 'badge-blue' : 'badge-gray' }}">
-                                    {{ $guide->visibility->label() }}
-                                </span>
-                            @else
-                                <span class="badge-gray">Draft</span>
+                            {{-- The enemy team, on the row where an author picks a guide out of a
+                                 list. Without it, two matchup guides for the same comp are
+                                 indistinguishable until you open them. --}}
+                            @if ($guide->enemies->isNotEmpty())
+                                <span class="text-[10px] text-ink-subtle px-0.5">vs</span>
+                                @foreach ($guide->enemies as $e)
+                                    @if ($e->specialization)
+                                        <x-spec-icon :spec="$e->specialization" size="w-6 h-6"/>
+                                    @endif
+                                @endforeach
                             @endif
                         </div>
 
-                        <p class="text-[12px] text-ink-subtle mt-1">
-                            {{ $guide->sections->count() }} {{ Str::plural('section', $guide->sections->count()) }}
-                            @if ($bracket = $guide->bracket())
-                                &middot; {{ $bracket }}
-                            @endif
-                            &middot; edited {{ $guide->updated_at->diffForHumans() }}
-                        </p>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2.5 flex-wrap">
+                                <a href="{{ route('guides.edit', $guide->slug) }}" wire:navigate
+                                   class="text-[15px] font-semibold text-ink hover:text-gold transition-colors truncate">
+                                    {{ $guide->title }}
+                                </a>
+
+                                @if ($guide->status === UserGuideStatus::Published)
+                                    <span class="badge-green">Published</span>
+                                    <span class="{{ $guide->visibility === UserGuideVisibility::Public ? 'badge-blue' : 'badge-gray' }}">
+                                        {{ $guide->visibility->label() }}
+                                    </span>
+                                @else
+                                    <span class="badge-gray">Draft</span>
+                                @endif
+                            </div>
+
+                            <p class="text-[12px] text-ink-subtle mt-1">
+                                {{ $guide->sections->count() }} {{ Str::plural('section', $guide->sections->count()) }}
+                                @if ($bracket = $guide->bracket())
+                                    &middot; {{ $bracket }}
+                                @endif
+                                &middot; edited {{ $guide->updated_at->diffForHumans() }}
+                                {{-- Only once it is public: a draft's counters are always zero,
+                                     and printing two zeroes reads as failure rather than as
+                                     "nobody could have seen this yet". --}}
+                                @if ($guide->status === UserGuideStatus::Published)
+                                    &middot; {{ $guide->view_count }} {{ Str::plural('view', $guide->view_count) }}
+                                    &middot; {{ $guide->like_count }} {{ Str::plural('like', $guide->like_count) }}
+                                @endif
+                            </p>
+                        </div>
                     </div>
 
-                    @if ($guide->status === UserGuideStatus::Published && $url = $guide->publicUrl())
-                        <a href="{{ $url }}" wire:navigate class="btn-ghost shrink-0">View</a>
-                    @endif
+                    <div class="flex items-center gap-2 shrink-0">
+                        @if ($guide->status === UserGuideStatus::Published && $url = $guide->publicUrl())
+                            <a href="{{ $url }}" wire:navigate class="btn-ghost shrink-0">View</a>
+                        @endif
 
-                    <a href="{{ route('guides.edit', $guide->slug) }}" wire:navigate class="btn-ghost shrink-0">Edit</a>
+                        <a href="{{ route('guides.edit', $guide->slug) }}" wire:navigate class="btn-ghost shrink-0">Edit</a>
 
-                    <button type="button"
-                            wire:click="delete({{ $guide->id }})"
-                            wire:confirm="Delete &quot;{{ $guide->title }}&quot;? This can't be undone."
-                            class="btn-danger shrink-0">Delete</button>
+                        <button type="button"
+                                wire:click="delete({{ $guide->id }})"
+                                wire:confirm="Delete &quot;{{ $guide->title }}&quot;? This can't be undone."
+                                class="btn-danger shrink-0">Delete</button>
+                    </div>
                 </div>
             @endforeach
         </div>
