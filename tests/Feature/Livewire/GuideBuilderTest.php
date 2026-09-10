@@ -625,3 +625,111 @@ test('control time counts both occurrences of a repeated ability, at their own p
     // 6s at full, then 6s at 50% — not 3 + 3.
     expect(app(UserGuideChainService::class)->metrics($section->fresh())['control_seconds'])->toBe(9.0);
 });
+
+test('moving a section up swaps it with the section directly above, not the top of the guide', function () {
+    // The pre-existing reorder test above uses three rows, where the SMALLEST row above a section
+    // and the NEAREST row above it are the same row — so it could never catch this. Reported live
+    // 2026-09-10: a note moved up flew to the top of the guide and swapped with whatever was
+    // there, because UserGuide::sections() carries its own ->orderBy('row') and orderBy() appends
+    // rather than replaces, leaving the intended `row desc` dead behind a leading `row asc`.
+    $guide = makeChainGuide(User::factory()->create());
+
+    foreach (['Opener', 'Offensive CDs', 'Priest CC chain', 'Defensives', 'Strat'] as $row => $title) {
+        addSection($guide, UserGuideSectionKind::Sequence, $row)->update(['title' => $title]);
+    }
+
+    $strat = $guide->sections()->where('row', 4)->first();
+
+    Livewire::actingAs($guide->user)->test(Builder::class, ['guide' => $guide])
+        ->call('moveSection', $strat->id, -1);
+
+    expect($guide->sections()->orderBy('row')->pluck('title')->all())
+        ->toBe(['Opener', 'Offensive CDs', 'Priest CC chain', 'Strat', 'Defensives']);
+});
+
+test('moving up and down are inverses of each other', function () {
+    $guide = makeChainGuide(User::factory()->create());
+    foreach (['A', 'B', 'C', 'D'] as $row => $title) {
+        addSection($guide, UserGuideSectionKind::Sequence, $row)->update(['title' => $title]);
+    }
+
+    $d = $guide->sections()->where('row', 3)->first();
+    $c = Livewire::actingAs($guide->user)->test(Builder::class, ['guide' => $guide]);
+
+    $c->call('moveSection', $d->id, -1);
+    expect($guide->sections()->orderBy('row')->pluck('title')->all())->toBe(['A', 'B', 'D', 'C']);
+
+    $c->call('moveSection', $d->id, 1);
+    expect($guide->sections()->orderBy('row')->pluck('title')->all())->toBe(['A', 'B', 'C', 'D']);
+});
+
+test('a move still finds its neighbour across a gap left by a deleted row', function () {
+    // The live guide that surfaced this has no row 5 — deleteSection does not renumber, which is
+    // fine, but the neighbour lookup has to step over the hole rather than stopping at it.
+    $guide = makeChainGuide(User::factory()->create());
+    foreach ([0 => 'A', 1 => 'B', 2 => 'C', 4 => 'D', 6 => 'E'] as $row => $title) {
+        addSection($guide, UserGuideSectionKind::Sequence, $row)->update(['title' => $title]);
+    }
+
+    $e = $guide->sections()->where('row', 6)->first();
+
+    Livewire::actingAs($guide->user)->test(Builder::class, ['guide' => $guide])
+        ->call('moveSection', $e->id, -1);
+
+    expect($guide->sections()->orderBy('row')->pluck('title')->all())->toBe(['A', 'B', 'C', 'E', 'D']);
+});
+
+test('a rename or body edit that changes nothing does not write', function () {
+    // These fire from a blur on the section card, so they used to run on every click of the card's
+    // own move/delete buttons — a write and a full re-render for an edit that never happened.
+    $guide = makeChainGuide(User::factory()->create());
+    $section = addSection($guide, UserGuideSectionKind::Text);
+    $section->update(['title' => 'Opener', 'body' => 'Sap the healer.']);
+
+    $before = $section->fresh()->updated_at;
+
+    Livewire::actingAs($guide->user)->test(Builder::class, ['guide' => $guide])
+        ->call('renameSection', $section->id, '  Opener  ')
+        ->call('setSectionBody', $section->id, 'Sap the healer.');
+
+    expect($section->fresh()->updated_at->eq($before))->toBeTrue();
+});
+
+test('a rename or body edit that does change something still writes', function () {
+    $guide = makeChainGuide(User::factory()->create());
+    $section = addSection($guide, UserGuideSectionKind::Text);
+    $section->update(['title' => 'Opener', 'body' => 'Sap the healer.']);
+
+    Livewire::actingAs($guide->user)->test(Builder::class, ['guide' => $guide])
+        ->call('renameSection', $section->id, 'Opener go')
+        ->call('setSectionBody', $section->id, 'Blind the healer.');
+
+    expect($section->fresh()->title)->toBe('Opener go')
+        ->and($section->fresh()->body)->toBe('Blind the healer.');
+});
+
+test('the delete prompt only mentions steps for a section that has them', function () {
+    $guide = makeChainGuide(User::factory()->create());
+    addSection($guide, UserGuideSectionKind::Text, row: 0)->update(['title' => 'Opener']);
+    addSection($guide, UserGuideSectionKind::Sequence, row: 1)->update(['title' => 'The go']);
+
+    $html = Livewire::actingAs($guide->user)->test(Builder::class, ['guide' => $guide])->html();
+
+    expect($html)->toContain('Delete &quot;Opener&quot;?')
+        ->and($html)->toContain('Delete &quot;The go&quot; and its steps?');
+});
+
+test('a row is keyed by the sections in it, so a reorder moves cards instead of rewriting them', function () {
+    $guide = makeChainGuide(User::factory()->create());
+    $a = addSection($guide, UserGuideSectionKind::Text, row: 0);
+    $b = addSection($guide, UserGuideSectionKind::Sequence, row: 1);
+
+    $c = Livewire::actingAs($guide->user)->test(Builder::class, ['guide' => $guide]);
+    expect($c->html())->toContain('wire:key="row-'.$a->id.'"')->toContain('wire:key="row-'.$b->id.'"');
+
+    // The key must follow the section, not the slot it happens to sit in.
+    $c->call('moveSection', $b->id, -1);
+    $html = $c->html();
+
+    expect(strpos($html, 'wire:key="row-'.$b->id.'"'))->toBeLessThan(strpos($html, 'wire:key="row-'.$a->id.'"'));
+});

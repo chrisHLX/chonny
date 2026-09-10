@@ -130,8 +130,15 @@
                                        maxlength="280"
                                        placeholder="When does this step apply?"
                                        class="form-input w-full text-[13px]"
-                                       x-on:keydown.enter.prevent="$wire.setNote({{ $block->id }}, $event.target.value); noteFor = null"
-                                       x-on:blur="$wire.setNote({{ $block->id }}, $event.target.value); noteFor = null">
+                                       {{-- Saving is on `change` (fires only when the value really
+                                            changed) and closing is on `blur`, rather than doing
+                                            both on blur — so dismissing this input without editing
+                                            it costs no round trip and no re-render. `change` is
+                                            specified to fire before `blur`, so the save still
+                                            lands before the input closes. --}}
+                                       x-on:keydown.enter.prevent="$event.target.blur()"
+                                       x-on:change="$wire.setNote({{ $block->id }}, $event.target.value)"
+                                       x-on:blur="noteFor = null">
                             </div>
                         @endif
                     </div>

@@ -4501,3 +4501,69 @@ wrong-effect/sibling-recovery resolution problem, not a sign problem — absing 
 into a plausible-looking wrong number, which is strictly worse. Also note `Nature's Balance` resolves
 against a **Hidden** internal record (`279649`, effect −100, `Resource: astral_power`) while the real
 talent (`202430`) carries +10, which is the shape to look for if this is picked up.
+
+## Guide sections: "move up" jumped to the top of the guide (2026-09-10)
+
+Reported as notes bugging out when moved — "one note will move up but then the other will move down",
+and never landing directly above the block above it. That description is exactly what the bug does.
+
+**`Builder::moveSection()` used `orderBy()` on a relation that already carries its own ordering.**
+`UserGuide::sections()` is declared `->orderBy('row')->orderBy('column')`, and Eloquent's `orderBy()`
+**appends**. So the neighbour lookup for a move UP really asked for:
+
+```sql
+ORDER BY row asc, column asc, row desc   -- the leading `row asc` decides everything
+```
+
+The trailing `row desc` is dead, so it selected the **smallest** row above the section rather than the
+**nearest** one — a section moved up flew straight to row 0 and swapped with whatever was there. With
+two Notes sections in a guide that reads precisely as "one note went up, the other went down". Moving
+DOWN was accidentally correct the entire time: appending `row asc` to `row asc` is a no-op, and the
+smallest row below IS the nearest one. Fixed with `reorder()`, which replaces the ordering instead of
+adding to it.
+
+**Why the existing test missed it:** `sections are added, renamed, reordered as whole rows, and
+deleted` does call `moveSection(..., -1)` — but on a guide with three rows, where the smallest row
+above a section and the nearest row above it are the same row. A fixture has to have at least two rows
+above the one being moved for the two to differ. The new tests use five.
+
+**Checked for other instances of the same trap, found none:** six relations in `app/Models` carry a
+baked-in `orderBy` (`UserGuide::sections/members/comments`, `UserGuideSection::blocks`,
+`Guild::users`, `User::guilds`), and `moveSection()` was the only call site anywhere that re-ordered
+one of them. Worth re-running that grep if another ordered relation is added — **`orderBy()` on an
+already-ordered relation is silently a no-op, not an override.**
+
+### The delete report: no server-side fault found, and what was changed anyway
+
+Reported alongside it: the "Opener" note on the live guide (`user_guides` 6, section 17) could not be
+deleted. **`deleteSection()` is provably fine** — it is ownership-scoped, kind-agnostic, covered by
+tests, and reproducing the live guide's exact shape (9 sections, and the row-5 gap it really has)
+deletes that section cleanly. The section is also demonstrably writable from the browser: its
+`updated_at` moves when the author interacts with the card.
+
+The only thing between the click and the server is `wire:confirm`, which is a native `confirm()`
+(`livewire.js`: `if (confirm(message)) action(); else instead()`). A browser that has been told to
+suppress dialogs — Chrome offers exactly that checkbox after repeated dialogs, which fighting the move
+bug above would produce — returns `false` from every subsequent `confirm()`, and the delete is
+silently blocked for the life of that tab. That is consistent with every fact here, but it is a
+hypothesis, not something that could be confirmed from this side; **a reload or a fresh tab is the test.**
+
+Three real fragilities in the same area were fixed regardless:
+
+- **`x-on:blur` → `x-on:change`** on the section title, the note body, and the per-step note input.
+  `change` fires on blur only when the value actually changed, so clicking a button on a card no
+  longer fires a save-and-full-re-render for an edit that never happened — a re-render that rebuilt
+  the very buttons being clicked, in between mousedown and mouseup. The per-step note input keeps
+  `blur` for closing itself and moves only the save to `change`; `change` is specified to fire before
+  `blur`, so the save still lands first.
+- **`renameSection()`/`setSectionBody()`/`setNote()` return early when nothing changed.** They were
+  writing on every blur, which is why a section's `updated_at` moved when the author had only clicked
+  on the card. (This trims the write, not the re-render — any Livewire action re-renders; the `change`
+  binding above is what removes the round trip entirely.)
+- **The row `wire:key` was the row NUMBER**, i.e. the one value a reorder changes. The row nodes
+  therefore stayed put while morph swapped their contents, rebuilding cards in place rather than
+  moving them — the shape of problem where an `<input>`/`<textarea>` shows a stale value because its
+  `value` property has diverged from its HTML attribute. Now keyed by the ids of the sections in the
+  row. `$rowIndex` is still the row number and is still needed by `addParallelSection()`.
+
+The delete prompt also no longer claims a Notes section has steps to lose.

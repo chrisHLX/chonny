@@ -353,8 +353,16 @@
 
     {{-- Sections ------------------------------------------------------------------ --}}
     @forelse ($this->rows as $rowIndex => $rowSections)
-        @php $isSplit = $rowSections->count() > 1; @endphp
-        <div class="grid {{ $isSplit ? 'lg:grid-cols-2' : 'grid-cols-1' }} gap-4 mb-4" wire:key="row-{{ $rowIndex }}">
+        @php
+            $isSplit = $rowSections->count() > 1;
+            // Keyed by the sections IN the row, not by the row NUMBER. The row number is the one
+            // thing a reorder changes, so keying on it meant the row nodes stayed put while morph
+            // swapped their contents — the cards get rebuilt in place instead of moving, which is
+            // both wasteful and the shape of problem where an <input>/<textarea> keeps a stale
+            // value because its `value` property has diverged from its HTML attribute.
+            $rowKey = 'row-'.$rowSections->pluck('id')->implode('-');
+        @endphp
+        <div class="grid {{ $isSplit ? 'lg:grid-cols-2' : 'grid-cols-1' }} gap-4 mb-4" wire:key="{{ $rowKey }}">
             @foreach ($rowSections as $section)
                 @php
                     $data = $this->resolved[$section->id] ?? null;
@@ -370,11 +378,16 @@
                         @unless ($section->kind === UserGuideSectionKind::Sequence)
                             <span class="badge-gold">{{ $section->kind->label() }}</span>
                         @endunless
+                            {{-- x-on:change, NOT x-on:blur. `change` fires on blur only when the
+                                 value actually changed, so clicking a button on this card no
+                                 longer fires a save-and-re-render for an edit that never
+                                 happened — which re-rendered the very buttons being clicked,
+                                 between mousedown and mouseup. --}}
                             <input type="text"
                                    value="{{ $section->title }}"
                                    maxlength="120"
                                    class="form-input mt-1.5 w-full text-[15px] font-semibold bg-transparent border-0 border-b border-line rounded-none px-0 focus:ring-0 focus:border-gold"
-                                   x-on:blur="$wire.renameSection({{ $section->id }}, $event.target.value)"
+                                   x-on:change="$wire.renameSection({{ $section->id }}, $event.target.value)"
                                    x-on:keydown.enter.prevent="$event.target.blur()">
 
                             @if ($section->kind->usesOpponent())
@@ -397,8 +410,11 @@
                                     class="text-ink-subtle hover:text-gold transition-colors px-1" title="Move up">&uarr;</button>
                             <button type="button" wire:click="moveSection({{ $section->id }}, 1)"
                                     class="text-ink-subtle hover:text-gold transition-colors px-1" title="Move down">&darr;</button>
+                            {{-- The prompt names what is actually at stake: a Notes section has no
+                                 steps, and telling someone their steps are about to go is both
+                                 wrong and alarming. --}}
                             <button type="button" wire:click="deleteSection({{ $section->id }})"
-                                    wire:confirm="Delete &quot;{{ $section->title }}&quot; and its steps?"
+                                    wire:confirm="Delete &quot;{{ $section->title }}&quot;{{ $section->kind->isSequence() ? ' and its steps' : '' }}?"
                                     class="text-ink-subtle hover:text-red-400 transition-colors px-1" title="Delete section">&times;</button>
                         </div>
                     </div>
@@ -407,7 +423,7 @@
                         <textarea rows="6" maxlength="20000"
                                   placeholder="Markdown supported — **bold**, lists, headings."
                                   class="form-textarea w-full text-[13.5px]"
-                                  x-on:blur="$wire.setSectionBody({{ $section->id }}, $event.target.value)">{{ $section->body }}</textarea>
+                                  x-on:change="$wire.setSectionBody({{ $section->id }}, $event.target.value)">{{ $section->body }}</textarea>
                         @if (filled($section->body))
                             <div class="prose-guide mt-3 text-[13.5px] text-ink-muted">{!! $section->bodyHtml() !!}</div>
                         @endif

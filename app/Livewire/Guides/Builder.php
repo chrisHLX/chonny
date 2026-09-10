@@ -478,7 +478,12 @@ class Builder extends Component
             return;
         }
 
-        $section->update(['title' => mb_substr($title, 0, 120)]);
+        $title = mb_substr($title, 0, 120);
+        if ($title === $section->title) {
+            return;
+        }
+
+        $section->update(['title' => $title]);
         $this->refreshGuide();
     }
 
@@ -489,7 +494,12 @@ class Builder extends Component
             return;
         }
 
-        $section->update(['body' => mb_substr($body, 0, 20000) ?: null]);
+        $body = mb_substr($body, 0, 20000) ?: null;
+        if ($body === $section->body) {
+            return;
+        }
+
+        $section->update(['body' => $body]);
         $this->refreshGuide();
     }
 
@@ -529,6 +539,16 @@ class Builder extends Component
      * separating the go from the defensives it is trying to force would be meaningless. Rows are
      * renumbered through a temporary out-of-range value because (guide, row, column) is uniquely
      * constrained and a direct swap would collide mid-update.
+     *
+     * The target lookup MUST use reorder(), not orderBy(). UserGuide::sections() carries its own
+     * ->orderBy('row')->orderBy('column'), and orderBy() APPENDS — so "move up" was really asking
+     * for `ORDER BY row asc, column asc, row desc`, where the leading `row asc` already decides
+     * everything and the trailing `row desc` is dead. It therefore picked the SMALLEST row above
+     * the section instead of the nearest one, and a section moved up flew straight to the top of
+     * the guide, swapping with whatever was row 0. Reported live 2026-09-10 as "one note moves up
+     * and the other moves down" — which is exactly what a top-to-middle swap looks like. Moving
+     * DOWN was accidentally right the whole time, because appending `row asc` to `row asc` is a
+     * no-op and the smallest row below IS the nearest one.
      */
     public function moveSection(int $sectionId, int $direction): void
     {
@@ -539,7 +559,7 @@ class Builder extends Component
 
         $target = $this->guide->sections()
             ->where('row', $direction < 0 ? '<' : '>', $section->row)
-            ->orderBy('row', $direction < 0 ? 'desc' : 'asc')
+            ->reorder('row', $direction < 0 ? 'desc' : 'asc')
             ->value('row');
 
         if ($target === null) {
@@ -663,6 +683,10 @@ class Builder extends Component
             unset($payload['note']);
         } else {
             $payload['note'] = mb_substr($note, 0, 280);
+        }
+
+        if ($payload === $block->payload) {
+            return;
         }
 
         $block->update(['payload' => $payload]);
