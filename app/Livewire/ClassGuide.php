@@ -240,7 +240,7 @@ class ClassGuide extends Component
             'embedded' => $this->embedded,
         ])->layout('layouts.app', [
             'title' => "{$title} | MindCollector",
-            'description' => 'How a WoW arena spec actually plays — the talents top-rated players converge on, which of them earn their slot, and the burst window, all from real archived matches.',
+            'description' => 'The talents top-rated players run for each WoW arena spec, which picks pull their weight, and how the spec bursts. Built from high-rated arena matches.',
         ]);
     }
 }

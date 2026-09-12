@@ -121,7 +121,7 @@
                     </div>
 
                     @if ($chain['distinctCasters'])
-                        <p class="text-[10px] text-ink-subtle/70 mt-3">Of the {{ count($chain['casters']) }} team members above, {{ $chain['distinctCasters'] }} actually landed a CC step recorded in this exact chain.</p>
+                        <p class="text-[10px] text-ink-subtle/70 mt-3">{{ $chain['distinctCasters'] }} of the {{ count($chain['casters']) }} players above landed crowd control in this chain.</p>
                     @endif
                 </div>
             @endforeach

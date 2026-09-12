@@ -71,7 +71,7 @@
             <a href="{{ route('pvp-guides') }}"
                class="sidebar-item text-[12px] {{ request()->routeIs('pvp-guides') || request()->routeIs('class-guide') || request()->routeIs('burst-guides') || request()->routeIs('claudes-counters') || request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                PvP Guides
+                Class Guides
             </a>
             <a href="{{ route('top-cc-chains') }}"
                class="sidebar-item text-[12px] {{ request()->routeIs('top-cc-chains') ? 'active !text-accent' : '' }}">

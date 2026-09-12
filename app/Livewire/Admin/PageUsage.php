@@ -45,7 +45,7 @@ class PageUsage extends Component
         'claudes_guides' => "Claude's Guides",
         'claudes_counters' => 'Spell Counters',
         'burst_guides' => 'Burst Guides',
-        'pvp_guides' => 'PvP Guides',
+        'pvp_guides' => 'Class Guides',
         'guides_index' => 'My Guides',
         'guide_builder' => 'Guide Builder',
         'guide_show' => 'Shared Guide (read)',
@@ -69,7 +69,7 @@ class PageUsage extends Component
      */
     private const PVP_GUIDES_TAB_LABELS = [
         'kit' => 'Class Kit',
-        'burst' => 'Burst Guide',
+        'burst' => 'Offensive Kit',
         'spells' => 'Spells',
         'counters' => 'Counters',
     ];

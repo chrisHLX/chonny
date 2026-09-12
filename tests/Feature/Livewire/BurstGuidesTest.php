@@ -37,7 +37,7 @@ test('the parent page paints instantly with placeholders only — no real spec c
     $component = Livewire::test(BurstGuides::class);
     $html = $component->html();
 
-    expect($html)->toContain('Burst Guides');
+    expect($html)->toContain('Offensive Kits');
     // A real spec name should NOT appear on first paint — only after a child's deferred load.
     expect($html)->not->toContain('Assassination');
 });
@@ -49,7 +49,7 @@ test('with no real spelldata in the DB, the parent shows the empty state rather 
     $component = Livewire::test(BurstGuides::class);
 
     expect($component->instance()->availableClassSlugs)->toBe([]);
-    expect($component->html())->toContain('No burst guides on file yet');
+    expect($component->html())->toContain('No offensive kits available yet');
 });
 
 test('a real, deferred child block resolves a committed guide into ordered phases, fill and live spell data', function () {

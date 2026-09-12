@@ -109,7 +109,7 @@
         <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">WoW Comps</p>
         <h1 class="font-display text-[26px] font-bold text-ink leading-tight mt-0.5">{{ $compTitle }}</h1>
         <p class="text-[12px] text-ink-muted mt-1">
-            {{ $compSubtitle ?: "Pick a class + spec for each slot to compare spell kits side by side." }}
+            {{ $compSubtitle ?: "Pick a spec for each slot to compare your team's spells, cooldowns and crowd control side by side." }}
         </p>
 
         {{-- Common picks — one-click starter comps (WowComps::PRESET_COMPS). Clicking one loads
@@ -402,7 +402,7 @@
                 <div x-show="tab === '{{ $direction }}'" x-cloak>
                     @if ($odByMember->isEmpty())
                         <p class="text-[12px] text-ink-subtle px-1 py-4 text-center">
-                            No arena-log-verified {{ strtolower($directionLabel) }} cooldowns for any selected spec yet — try Active Abilities for the full kit.
+                            No {{ strtolower($directionLabel) }} cooldowns recorded for these specs yet. Check Active Abilities for the full kit.
                         </p>
                     @else
                         <div class="space-y-4">
@@ -480,7 +480,7 @@
             <div x-show="tab === 'mobility'" x-cloak>
                 @if ($mobilityByMember->isEmpty())
                     <p class="text-[12px] text-ink-subtle px-1 py-4 text-center">
-                        No hand-curated mobility abilities found for any selected spec yet.
+                        No mobility abilities listed for these specs yet.
                     </p>
                 @else
                     <div class="space-y-4">
@@ -727,7 +727,7 @@
                                             <div class="mt-3 pt-3 border-t border-line">
                                                 @if ($chain['killTarget'])
                                                     @php $kt = $chain['killTarget']; @endphp
-                                                    <p class="text-[11px] text-ink-muted mb-1.5">Also available to lock the kill target (left over after the sequence above; doesn't break on damage):</p>
+                                                    <p class="text-[11px] text-ink-muted mb-1.5">Also available on the kill target (won't break on damage):</p>
                                                     @if ($kt['requirementNote'])
                                                         @php $ktNote = $kt['requirementNote']; @endphp
                                                         <p class="text-[11px] text-ink-subtle italic mb-1.5">
@@ -752,9 +752,9 @@
                                         </div>
 
                                         <div class="md:border-l md:border-line md:pl-4" x-data="{ expandedLeftoverCategory: null }">
-                                            <p class="text-[11px] text-ink-muted mb-2">Leftover CC (genuine chain candidates not used above):</p>
+                                            <p class="text-[11px] text-ink-muted mb-2">Other CC you can chain:</p>
                                             @if (empty($chain['leftover']))
-                                                <p class="text-[11px] text-ink-subtle">Nothing left over — every hard-CC option in this comp is already accounted for above.</p>
+                                                <p class="text-[11px] text-ink-subtle">Every hard CC in this comp is already used above.</p>
                                             @else
                                                 @php
                                                     $leftoverCategoryOrder = ['Stun', 'Silence', 'Incapacitate', 'Disorient'];
@@ -989,7 +989,9 @@
                 <div class="linear-card p-4">
                     <p class="text-[12px] text-ink-muted leading-relaxed">
                         <span class="text-amber-400 font-semibold">Preview / in development.</span>
-                        The single highest-damage real 12-second burst window found for this spec, shown as a real example — not a "most common" claim. Scans each real match's <span class="text-ink font-semibold">entire</span> timeline (not boxed inside any one cooldown's usage) for the densest 12s stretch of real damage against one real target that also contains one of this spec's own offensive cooldowns, then shows only that window's real cast sequence. Gold-bordered steps are a real offensive cooldown. This is one real thing that really happened, in the order it was actually pressed — make of it what you will.
+                        The hardest-hitting 12-second burst we've recorded for each spec in this comp, with the
+                        exact order the abilities were pressed. Gold-bordered steps are offensive cooldowns.
+                        It's one strong example from a real match, not the only way to play it.
                     </p>
                 </div>
 
@@ -1021,7 +1023,7 @@
                                      a real burst window isn't misreported as missing. --}}
                                 <p class="text-[12px] text-ink-subtle italic">Loading burst window…</p>
                             @elseif (!$rot || empty($rot['topDpsWindow']))
-                                <p class="text-[12px] text-ink-subtle italic">Not enough match evidence for a burst window on this spec yet.</p>
+                                <p class="text-[12px] text-ink-subtle italic">Not enough recorded matches for this spec yet.</p>
                             @else
                                 @php $topDps = $rot['topDpsWindow']; $rotUpdated = $fmtRotationDate($rot['generated_at'] ?? null); @endphp
                                     <div>
@@ -1124,8 +1126,7 @@
                 </div>
 
                 <p class="text-[12px] text-ink-subtle mb-3 max-w-2xl">
-                    Written by players, not derived from match data — a different kind of claim from
-                    everything above.
+                    Openers and game plans written by players who run this comp.
                 </p>
 
                 @foreach ($this->guides as $playerGuide)

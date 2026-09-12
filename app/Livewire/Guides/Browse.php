@@ -66,7 +66,7 @@ class Browse extends Component
     {
         $query = UserGuide::query()
             ->listed()
-            ->with(['user', 'authorCharacter', 'members.specialization.gameClass', 'enemies.specialization.gameClass'])
+            ->with(['user', 'authorCharacter.gameClass', 'members.specialization.gameClass', 'enemies.specialization.gameClass'])
             ->withCount('comments');
 
         if ($this->search !== '') {
@@ -119,8 +119,8 @@ class Browse extends Component
     public function render()
     {
         return view('livewire.guides.browse')->layout('layouts.app', [
-            'title' => 'Player guides | MindCollector',
-            'description' => 'Arena guides written by players — comps, openers and matchups, from the people who play them.',
+            'title' => 'MindCollector Player Guides',
+            'description' => 'Arena openers, kill setups and matchup plans from World of Warcraft players. Create a free account to plan and share your own.',
         ]);
     }
 }

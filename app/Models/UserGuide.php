@@ -172,6 +172,29 @@ class UserGuide extends Model
     }
 
     /**
+     * Who the guide is by, as readers see it: the signing character as "Name-Realm" when the
+     * author signed it with one, otherwise their MindCollector username. One definition, so the
+     * listing card, the guide page and "My Guides" can never name the same author differently.
+     *
+     * Guarded on the column so an unsigned guide never costs a query on pages that did not
+     * eager-load the relation.
+     */
+    public function authorLabel(): string
+    {
+        $character = $this->battlenet_character_id ? $this->authorCharacter : null;
+
+        return $character?->fullName() ?? $this->user?->username ?? $this->user?->name ?? 'unknown';
+    }
+
+    /** The signing character's class colour, or null for an unsigned guide. */
+    public function authorColor(): ?string
+    {
+        $character = $this->battlenet_character_id ? $this->authorCharacter : null;
+
+        return $character ? (config('wow_classes.colors')[$character->gameClass?->slug] ?? null) : null;
+    }
+
+    /**
      * The comp this guide is written for, in slot order. Two or three specs for a comp guide;
      * exactly one — the spec the guide is about — for a class guide.
      *

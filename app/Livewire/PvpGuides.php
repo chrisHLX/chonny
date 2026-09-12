@@ -55,10 +55,10 @@ class PvpGuides extends Component
      * to the default rather than rendering an empty page.
      */
     public const TABS = [
-        'kit' => ['label' => 'Class Kit', 'blurb' => 'What top-rated players actually take, and which picks earn their slot.'],
-        'burst' => ['label' => 'Burst Guide', 'blurb' => 'How long the go lasts, how many globals fit, and what to press in order.'],
-        'spells' => ['label' => 'Spells', 'blurb' => 'Every talent and PvP talent, with talent-aware cooldowns and what modifies each.'],
-        'counters' => ['label' => 'Counters', 'blurb' => "This class's crowd control, and what actually answers each piece of it."],
+        'kit' => ['label' => 'Class Kit', 'blurb' => 'The talents top-rated players run, and which picks pull their weight.'],
+        'burst' => ['label' => 'Offensive Kit', 'blurb' => 'How long your go lasts, how many globals fit in it, and the order to press them.'],
+        'spells' => ['label' => 'Spells', 'blurb' => 'Every talent and PvP talent, with cooldowns adjusted for your build.'],
+        'counters' => ['label' => 'Counters', 'blurb' => 'Your crowd control, and what the other team can use to answer it.'],
     ];
 
     public const DEFAULT_TAB = 'kit';
@@ -268,7 +268,7 @@ class PvpGuides extends Component
 
     public function render()
     {
-        $name = $this->spec && $this->class ? "{$this->spec->name} {$this->class->name}" : 'PvP Guides';
+        $name = $this->spec && $this->class ? "{$this->spec->name} {$this->class->name}" : 'Class Guides';
         $tabLabel = self::TABS[$this->tab]['label'] ?? '';
 
         return view('livewire.pvp-guides', [
@@ -278,8 +278,8 @@ class PvpGuides extends Component
             'tabs' => self::TABS,
             'tabHasData' => $this->tabHasData,
         ])->layout('layouts.app', [
-            'title' => "{$name} PvP Guide - {$tabLabel} | MindCollector",
-            'description' => "Everything MindCollector knows about {$name} in arena: the talents top players converge on, how its burst window is actually played, its full spell kit with talent-aware cooldowns, and what counters its crowd control.",
+            'title' => "{$name} Class Guide - {$tabLabel} | MindCollector",
+            'description' => "{$name} arena guide: the talents top players run, how to line up your burst, your full spell kit with build-adjusted cooldowns, and what counters your crowd control.",
         ]);
     }
 }

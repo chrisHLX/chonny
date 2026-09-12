@@ -2,12 +2,32 @@
 
 <div class="max-w-5xl mx-auto px-4 py-8">
     <div class="mb-6">
-        <p class="text-[11px] uppercase tracking-[0.13em] text-gold mb-1">Player guides</p>
-        <h1 class="font-display text-3xl text-ink">Written by players</h1>
-        <p class="text-[13.5px] text-ink-muted mt-1 max-w-2xl">
-            Comps, openers and matchups, written by the people who play them. Distinct from
-            the guides derived from real match data elsewhere on this site.
+        <h1 class="font-display text-3xl text-ink">MindCollector Player Guides</h1>
+        <p class="text-[14px] text-ink-muted mt-2 max-w-2xl">
+            Openers, kill setups and matchup plans from arena players who run them. Filter by the
+            class you play or the team you're up against.
         </p>
+    </div>
+
+    {{-- Sign-up / start-a-guide panel. Guests are pitched the account; signed-in players go
+         straight to the builder. --}}
+    <div class="linear-card border-line-gold p-5 mb-6 flex flex-col md:flex-row md:items-center gap-4">
+        <div class="flex-1 min-w-0">
+            <h2 class="text-[15px] font-semibold text-ink">Plan your games before you queue</h2>
+            <p class="text-[13px] text-ink-muted mt-1 max-w-2xl">
+                Build guides for your own comp. Map out your opener and CC chain, line up cooldowns
+                with your teammates, and work out what to do in the matchups that keep beating you.
+                Keep a plan private, share it with your team, or publish it here.
+            </p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+            @auth
+                <a href="{{ route('guides.index') }}" wire:navigate class="btn-primary">Start a guide</a>
+            @else
+                <a href="{{ route('register') }}" class="btn-primary">Create a free account</a>
+                <a href="{{ route('login') }}" class="btn-ghost">Log in</a>
+            @endauth
+        </div>
     </div>
 
     <div class="linear-card p-4 mb-6">

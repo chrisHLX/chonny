@@ -25,8 +25,8 @@
     // applyFilters() looks for, never existed in the DOM at all. Extracting to a plain variable
     // here removes the fragile nested-quote pattern from the component tag entirely.
     $spellsTableDescription = $usingPersonalBuild
-        ? "Every talent and PvP talent for this spec, tagged by source. Greyed-out \"Not selected\" rows aren't part of your own saved build; cooldowns/charges on selected rows reflect your actual picks."
-        : "Every talent and PvP talent for this spec, tagged by source. Greyed-out \"Not selected\" rows aren't part of this spec's admin-curated default build; cooldowns/charges on selected rows reflect that build's actual picks.";
+        ? "Every talent and PvP talent for this spec. Greyed-out rows aren't in your build; cooldowns and charges on the rest reflect the talents you've picked."
+        : "Every talent and PvP talent for this spec. Greyed-out rows aren't in the standard build top players run; cooldowns and charges on the rest reflect that build.";
 @endphp
 
 {{-- Embedded (a PvP Guides panel) drops the page-level width cap and padding — the parent

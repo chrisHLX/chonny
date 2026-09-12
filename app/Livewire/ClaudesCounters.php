@@ -147,7 +147,7 @@ class ClaudesCounters extends Component
             'embedded' => $this->embedded,
         ])->layout('layouts.app', [
             'title' => 'Spell Counters | MindCollector',
-            'description' => 'Every real crowd-control ability in the game, grouped by class, alongside what actually counters it — immunity cooldowns, school immunities, and real dodge/parry counters.',
+            'description' => 'Every crowd-control ability in WoW arena, grouped by class, with the abilities that counter it: immunities, school immunities, dodges and parries.',
         ]);
     }
 }

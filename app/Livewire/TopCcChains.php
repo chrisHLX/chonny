@@ -323,7 +323,7 @@ class TopCcChains extends Component
             'lastUpdated' => $this->lastUpdated,
         ])->layout('layouts.app', [
             'title' => 'Top 10 CC Chains — Longest Real WoW Arena CC Chains | MindCollector',
-            'description' => 'The 10 longest real crowd-control chains on file across every WoW arena healer spec, taken straight from real archived matches.',
+            'description' => 'The 10 longest crowd-control chains recorded in WoW arena, and the comps that landed them.',
         ]);
     }
 }

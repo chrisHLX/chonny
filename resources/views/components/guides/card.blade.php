@@ -61,7 +61,7 @@
 
             @if ($showAuthor)
                 <p class="text-[11px] text-ink-subtle mt-1.5">
-                    by {{ $guide->user?->username ?? 'unknown' }}
+                    by <span @if ($c = $guide->authorColor()) style="color: {{ $c }}" @endif>{{ $guide->authorLabel() }}</span>
                     @if ($authorExp)
                         <span class="text-gold tabular-nums">&middot; {{ $authorExp['rating'] }} exp</span>
                     @endif

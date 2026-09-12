@@ -19,9 +19,9 @@
             <h1 class="font-display text-3xl text-ink" style="text-wrap: balance">{{ $guide->title }}</h1>
 
             <p class="text-[13px] text-ink-muted mt-2">
-                by <span class="text-ink">{{ $guide->user?->username ?? $guide->user?->name }}</span>
+                by <span class="text-ink" @if ($c = $guide->authorColor()) style="color: {{ $c }}" @endif>{{ $guide->authorLabel() }}</span>
                 @if ($this->authorCharacter && ($exp = $this->authorCharacter->bestExp()))
-                    <span class="text-gold tabular-nums" title="{{ $this->authorCharacter->fullName() }}'s highest {{ $exp['bracket'] }} rating">&middot; {{ $exp['rating'] }} exp</span>
+                    <span class="text-gold tabular-nums" title="Highest {{ $exp['bracket'] }} rating reached">&middot; {{ $exp['rating'] }} exp</span>
                 @endif
                 @if ($bracket = $guide->bracket())
                     &middot; {{ $bracket }}

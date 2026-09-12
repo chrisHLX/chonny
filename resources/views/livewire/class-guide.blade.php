@@ -34,13 +34,13 @@
     @unless ($embedded ?? false)
     {{-- Header --}}
     <div class="linear-card px-6 py-5">
-        <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">Class Guide</p>
+        <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">Class Kit</p>
         <h1 class="font-display text-[28px] font-bold leading-tight mt-1" style="color: {{ $classColor }}">
             {{ $pageTitle }}
         </h1>
         <p class="text-[12.5px] text-ink-muted mt-1.5 max-w-2xl">
-            How this spec actually plays, read from real archived arena matches: the talents top-rated
-            players converge on, which of them earn their slot in-game, and the burst window.
+            The talents top-rated players run for this spec, which picks pull their weight in real games,
+            and how its burst plays out.
         </p>
         @if ($ratingLine)
             <p class="text-[11px] font-mono text-ink-subtle mt-2">{{ $ratingLine }}</p>
@@ -78,9 +78,8 @@
     @if (!$playstyle)
         <div class="linear-card px-6 py-4 border-l-2 border-line-strong">
             <p class="text-[12.5px] text-ink-muted">
-                No match sample has been analysed for this spec yet — showing the burst window only.
-                Run <code class="font-mono text-[11px] text-ink bg-surface-2 px-1.5 py-0.5 rounded">php artisan wow:analyze-spec-playstyle {{ $class?->slug }} {{ $spec?->slug }}</code>
-                to populate the rest.
+                We haven't recorded enough high-rated {{ $spec?->name }} matches to break down its talents yet,
+                so only its burst window is shown for now.
             </p>
         </div>
     @endif

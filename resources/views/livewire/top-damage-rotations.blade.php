@@ -30,7 +30,8 @@
         <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">Top Burst Windows</p>
         <h1 class="font-display text-[26px] font-bold text-ink leading-tight mt-0.5">{{ $pageTitle }}</h1>
         <p class="text-[12px] text-ink-muted mt-1">
-            The single highest-damage real burst window found for a spec at a chosen length — a real example, not a "most common" claim. Same data and method as WoW Comps' Burst Window tab, just pick your own class/spec and time window here.
+            The hardest-hitting burst we've recorded for each spec, at the window length you choose. See the
+            exact cast order, the talents the player used, and what was already active when the go started.
         </p>
     </div>
 
@@ -244,7 +245,8 @@
                     </div>
                 </div>
                 <p class="text-[11px] text-ink-muted mb-3 leading-relaxed">
-                    The real talents selected by the player in this exact match — not a curated default build. Only 3 PvP talent slots are shown: real rated arena only ever fills 3 of the 4 possible slots.
+                    The talents this player had selected in this match. Three PvP talent slots are shown
+                    because rated arena fills three of the four.
                 </p>
 
                 {{-- Simplified 2026-09-01, direct request: the full per-talent chip grid moved
@@ -276,7 +278,8 @@
                     </button>
                     <p class="text-[13px] font-semibold text-ink mb-1">Talent List</p>
                     <p class="text-[11px] text-ink-muted mb-3 leading-relaxed">
-                        A readable copy of the talents above — not yet a real in-game importable code. Use "View in Talent Calculator" for a visual, browsable view of the same build.
+                        A plain-text copy of the talents above. It isn't an in-game import code; use
+                        View in Talent Calculator to browse the build.
                     </p>
                     <textarea readonly rows="10"
                               x-ref="talentListText"
@@ -323,7 +326,8 @@
                     @endif
                 </div>
                 <p class="text-[11px] text-ink-muted mb-4 leading-relaxed">
-                    Real facts from this exact match — what the champion and target actually had active the moment this window began. The cast sequence above only ever shows what was pressed inside the window itself; this is everything already in play going into it.
+                    What the player and their target already had active when this window started. The cast
+                    sequence above only covers what was pressed during the window.
                 </p>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">

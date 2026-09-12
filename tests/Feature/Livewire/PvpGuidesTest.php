@@ -43,7 +43,7 @@ test('it renders one header, one spec, and the four tabs', function () {
     expect(substr_count($html, '<h1'))->toBe(1);
     expect($html)->toContain('Subtlety')->toContain('Rogue');
 
-    foreach (['Class Kit', 'Burst Guide', 'Spells', 'Counters'] as $label) {
+    foreach (['Class Kit', 'Offensive Kit', 'Spells', 'Counters'] as $label) {
         expect($html)->toContain($label);
     }
 });

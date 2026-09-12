@@ -14,13 +14,13 @@
     <div class="linear-card px-6 py-5">
         <div class="flex items-start justify-between gap-4 flex-wrap">
             <div class="min-w-0">
-                <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">PvP Guides</p>
+                <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">Class Guides</p>
                 <h1 class="font-display text-[28px] font-bold leading-tight mt-1" style="color: {{ $classColor }}">
                     {{ $spec?->name }} {{ $class?->name }}
                 </h1>
                 <p class="text-[12.5px] text-ink-muted mt-1.5 max-w-2xl">
-                    Everything this site knows about one spec, in one place - read from real archived arena
-                    matches and from live patch data, never hand-written per spec.
+                    The talents top players run, how to line up your burst, your full spell kit, and what
+                    answers your crowd control. Built from high-rated arena matches and current patch data.
                 </p>
             </div>
 
@@ -96,8 +96,8 @@
             @else
                 <div class="linear-card px-6 py-5">
                     <p class="text-[12.5px] text-ink-muted">
-                        No burst guide on file for {{ $spec?->name }} {{ $class?->name }} yet - a guide is only
-                        built for a spec that has real archived burst windows to aggregate.
+                        We don't have enough recorded {{ $spec?->name }} {{ $class?->name }} matches to build
+                        its offensive kit yet. Check back as more games come in.
                     </p>
                 </div>
             @endif

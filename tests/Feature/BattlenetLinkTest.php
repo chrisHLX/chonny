@@ -480,6 +480,18 @@ test('a reader sees the signing character\'s exp, and gear on request', function
         ->assertSee('Gladiator Helm');
 });
 
+test('a signed guide is credited to the character and realm, an unsigned one to the username', function () {
+    bnetWorld();
+    $author = User::factory()->create(['username' => 'writer']);
+    $character = ownedCharacter($author, ['name' => 'Signer', 'realm_name' => 'Bleeding Hollow']);
+
+    $signed = UserGuide::create(['user_id' => $author->id, 'title' => 'A', 'battlenet_character_id' => $character->id]);
+    $unsigned = UserGuide::create(['user_id' => $author->id, 'title' => 'B']);
+
+    expect($signed->authorLabel())->toBe('Signer-BleedingHollow')
+        ->and($unsigned->authorLabel())->toBe('writer');
+});
+
 test('an unsigned guide shows no character at all', function () {
     bnetWorld();
     $author = User::factory()->create(['username' => 'writer']);

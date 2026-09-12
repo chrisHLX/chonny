@@ -66,8 +66,8 @@ class BurstGuides extends Component
         return view('livewire.burst-guides', [
             'availableClassSlugs' => $this->availableClassSlugs,
         ])->layout('layouts.app', [
-            'title' => 'Burst Guides | MindCollector',
-            'description' => 'How to burst on every WoW arena spec: how long the window lasts, how many globals fit, and what to press in order — aggregated from every real archived burst window.',
+            'title' => 'Offensive Kits | MindCollector',
+            'description' => 'How to burst as every WoW arena spec: how long your go lasts, how many globals fit, and the order to press them. Built from hundreds of recorded arena matches.',
         ]);
     }
 }

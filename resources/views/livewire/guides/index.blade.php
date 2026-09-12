@@ -140,7 +140,7 @@
                         <div class="flex-1 min-w-0">
                             <p class="text-[15px] font-semibold text-ink truncate">{{ $guide->title }}</p>
                             <p class="text-[12px] text-ink-subtle mt-1">
-                                by {{ $guide->user?->username ?? $guide->user?->name }}
+                                by {{ $guide->authorLabel() }}
                                 &middot; updated {{ $guide->updated_at->diffForHumans() }}
                             </p>
                         </div>
