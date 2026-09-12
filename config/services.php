@@ -54,6 +54,25 @@ return [
         'key' => env('GEMINI_API_KEY'),
     ],
 
+    // Battle.net OAuth (account linking) + the WoW profile API. The same client the data scripts
+    // (fetch-talent-trees.php, fetch-spell-icons.php) already use — its Redirect URLs in the
+    // Blizzard developer portal must include this app's /auth/battlenet/callback, exactly.
+    'battlenet' => [
+        'client_id' => env('BLIZZARD_CLIENT_ID'),
+        'client_secret' => env('BLIZZARD_CLIENT_SECRET'),
+
+        // Leave unset to use this app's own callback route URL. Set it when the registered URL
+        // differs from what route() builds (a proxy, a different local domain).
+        'redirect' => env('BATTLENET_REDIRECT_URI'),
+
+        // China is omitted: it runs its own OAuth host and API, and nothing here is built for it.
+        'regions' => ['us', 'eu', 'kr', 'tw'],
+
+        // Characters below this level get their list entry only, no detail sync — they cannot
+        // have rated PvP history, and a large account has many of them.
+        'detail_min_level' => 70,
+    ],
+
     'discord' => [
         'feedback_webhook_url' => env('DISCORD_FEEDBACK_WEBHOOK_URL'),
     ],

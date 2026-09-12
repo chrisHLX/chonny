@@ -66,7 +66,7 @@ class Browse extends Component
     {
         $query = UserGuide::query()
             ->listed()
-            ->with(['user', 'members.specialization.gameClass', 'enemies.specialization.gameClass'])
+            ->with(['user', 'authorCharacter', 'members.specialization.gameClass', 'enemies.specialization.gameClass'])
             ->withCount('comments');
 
         if ($this->search !== '') {

@@ -137,6 +137,18 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(UserGuide::class);
     }
 
+    /** The linked Battle.net account, if any — see create_battlenet_tables. */
+    public function battlenetAccount()
+    {
+        return $this->hasOne(BattlenetAccount::class);
+    }
+
+    /** Every character on the linked Battle.net account. */
+    public function battlenetCharacters()
+    {
+        return $this->hasManyThrough(BattlenetCharacter::class, BattlenetAccount::class);
+    }
+
     /** Private guides other people have explicitly shared with this user. */
     public function sharedGuides()
     {

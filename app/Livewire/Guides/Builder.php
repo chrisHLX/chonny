@@ -7,12 +7,15 @@ use App\Enums\UserGuideMemberSide;
 use App\Enums\UserGuideSectionKind;
 use App\Enums\UserGuideStatus;
 use App\Enums\UserGuideVisibility;
+use App\Http\Services\CharacterTalentResolver;
 use App\Http\Services\TalentSelectionService;
 use App\Http\Services\UserGuideChainService;
 use App\Models\GameClass;
 use App\Models\PageViewEvent;
 use App\Models\Patch;
 use App\Models\Specialization;
+use App\Models\TalentBuildChoice;
+use App\Models\TalentNodeEntry;
 use App\Models\User;
 use App\Models\UserGuide;
 use App\Models\UserGuideBlock;
@@ -232,6 +235,115 @@ class Builder extends Component
     public function viewers()
     {
         return $this->guide->viewers()->orderBy('name')->get();
+    }
+
+    // ---------------------------------------------------------------- written as
+
+    /**
+     * The author's own characters this guide can be signed with, best exp first. Only characters
+     * high enough to have been detail-synced — a level 20 alt has no exp to show a reader.
+     */
+    #[Computed]
+    public function myCharacters()
+    {
+        return auth()->user()->battlenetCharacters()
+            ->where('battlenet_characters.level', '>=', (int) config('services.battlenet.detail_min_level', 70))
+            ->with(['gameClass', 'specialization.gameClass'])
+            ->get()
+            ->sortBy([
+                fn ($a, $b) => ($b->bestExp()['rating'] ?? 0) <=> ($a->bestExp()['rating'] ?? 0),
+                fn ($a, $b) => $b->level <=> $a->level,
+            ])
+            ->values();
+    }
+
+    /** Whether the author has linked Battle.net at all — decides what the "Written as" card says. */
+    #[Computed]
+    public function hasBattlenet(): bool
+    {
+        return auth()->user()->battlenetAccount()->exists();
+    }
+
+    /** Blizzard spec ids the signing character has a talent build on file for. */
+    #[Computed]
+    public function authorCharacterSpecs(): array
+    {
+        return collect($this->guide->authorCharacter?->talents ?? [])
+            ->pluck('spec_external_id')
+            ->map(fn ($id) => (int) $id)
+            ->all();
+    }
+
+    /**
+     * Sign the guide with one of your characters, or clear it with null.
+     *
+     * Ownership is checked through the author's OWN Battle.net account rather than trusting the id:
+     * signing a guide with somebody else's character would put their name on a page they never
+     * agreed to.
+     */
+    public function setAuthorCharacter(?int $characterId = null): void
+    {
+        if ($characterId !== null && ! auth()->user()->battlenetCharacters()
+            ->where('battlenet_characters.id', $characterId)->exists()) {
+            return;
+        }
+
+        $this->guide->update(['battlenet_character_id' => $characterId]);
+        $this->guide->unsetRelation('authorCharacter');
+        unset($this->authorCharacterSpecs);
+        $this->markSaved();
+    }
+
+    /**
+     * Replace a comp slot's talents with the signing character's real in-game build for that spec.
+     *
+     * The character's build is resolved onto the current patch by CharacterTalentResolver, the same
+     * resolution the guide page renders it through, and REPLACES the slot's choices rather than
+     * merging — a merge of two complete builds is neither of them. Written directly rather than
+     * through saveChoice(): that clears same-position "sibling" nodes as it goes, which is right for
+     * one click at a time but could drop a genuine pick partway through copying a whole build the
+     * game itself already validated.
+     *
+     * Talents the current patch's data does not have are simply absent, exactly as on the character
+     * page, which names them.
+     */
+    public function useCharacterTalents(int $slot): void
+    {
+        $member = $this->rosterQuery('team')->where('position', $slot)->with('specialization')->first();
+        $character = $this->guide->authorCharacter;
+
+        if (! $member?->specialization || ! $character?->isOwnedBy(auth()->user())) {
+            return;
+        }
+
+        $view = app(CharacterTalentResolver::class)
+            ->forCharacter($character, $member->specialization->external_spec_id);
+
+        if (! $view || $view['spec']?->id !== $member->spec_id || $view['chosenEntries'] === []) {
+            return;
+        }
+
+        $talents = app(TalentSelectionService::class);
+        $build = $talents->getOrCreateGuideMemberBuild($member);
+        $ranks = TalentNodeEntry::whereIn('id', array_values($view['chosenEntries']))->pluck('rank', 'id');
+
+        DB::transaction(function () use ($build, $view, $ranks, $talents) {
+            $build->choices()->delete();
+
+            foreach ($view['chosenEntries'] as $nodeId => $entryId) {
+                TalentBuildChoice::create([
+                    'talent_build_id' => $build->id,
+                    'talent_node_id' => $nodeId,
+                    'chosen_entry_id' => $entryId,
+                    'rank' => $ranks[$entryId] ?? 1,
+                ]);
+            }
+
+            $talents->syncPvpChoices($build, $view['pvpTalentIds']);
+            $build->touch();
+        });
+
+        $this->refreshGuide();
     }
 
     // ---------------------------------------------------------------- the comp

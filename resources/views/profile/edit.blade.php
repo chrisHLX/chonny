@@ -15,6 +15,12 @@
 
             <div class="linear-card p-6">
                 <div class="max-w-xl">
+                    @include('profile.partials.battlenet-link')
+                </div>
+            </div>
+
+            <div class="linear-card p-6">
+                <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>

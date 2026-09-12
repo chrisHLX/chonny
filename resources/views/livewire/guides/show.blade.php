@@ -20,6 +20,9 @@
 
             <p class="text-[13px] text-ink-muted mt-2">
                 by <span class="text-ink">{{ $guide->user?->username ?? $guide->user?->name }}</span>
+                @if ($this->authorCharacter && ($exp = $this->authorCharacter->bestExp()))
+                    <span class="text-gold tabular-nums" title="{{ $this->authorCharacter->fullName() }}'s highest {{ $exp['bracket'] }} rating">&middot; {{ $exp['rating'] }} exp</span>
+                @endif
                 @if ($bracket = $guide->bracket())
                     &middot; {{ $bracket }}
                 @elseif ($guide->isClassGuide())
@@ -96,6 +99,40 @@
                         </p>
                         <p class="text-[11px] text-ink-subtle leading-tight">{{ $guide->opponentSpec->gameClass?->name }}</p>
                     </div>
+                </div>
+            @endif
+        </div>
+    @endif
+
+    {{-- The character the author signed this guide with ----------------------------
+         Their choice, per guide: exp and this season's ratings up front, gear and the real talent
+         build one click away. Everything here is read from Blizzard, not typed by the author. --}}
+    @if ($author = $this->authorCharacter)
+        <div class="linear-card p-4 mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                <div class="flex-1 min-w-0">
+                    <p class="text-[10px] uppercase tracking-[0.13em] text-ink-subtle mb-2">Written as</p>
+                    <x-battlenet.character-summary :character="$author"/>
+                </div>
+                <button type="button" wire:click="toggleAuthorBuild" class="btn-ghost shrink-0 self-start">
+                    {{ $showAuthorBuild ? 'Hide gear & talents' : 'Show gear & talents' }}
+                </button>
+            </div>
+
+            @if ($showAuthorBuild)
+                <div class="mt-5 pt-5 border-t border-line space-y-6">
+                    <div>
+                        <h3 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-3">Gear</h3>
+                        <x-battlenet.gear :equipment="$author->equipment ?? []"/>
+                    </div>
+                    <div>
+                        <h3 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-3">Talents</h3>
+                        <x-battlenet.talent-build :view="$this->authorTalentView"
+                                                  :key="'author-talents-'.$guide->id.'-'.($this->authorTalentView['spec']->id ?? 'none')"/>
+                    </div>
+                    @if ($author->synced_at)
+                        <p class="text-[11px] text-ink-subtle">From Battle.net, updated {{ $author->synced_at->diffForHumans() }}.</p>
+                    @endif
                 </div>
             @endif
         </div>

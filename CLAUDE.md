@@ -1161,7 +1161,7 @@ Populates a spec's admin-curated default `TalentBuild` (`is_default = true`, sam
 
 **Why not the obvious approaches — both real dead ends, not just inconvenient:**
 - Murlok's per-character "Copy talents" button (the actual Blizzard export string) is generated client-side by a **WebAssembly module** (`wasm_exec.js`) — nothing in the raw HTTP response contains it. Getting it would require driving a real headless browser (not available in this environment) or reverse-engineering the compiled WASM.
-- Going straight to **Blizzard's own Character Specializations API** (read a top-rated character's talents directly, official/licensed data) is blocked at the source: that endpoint's `loadouts` field has been confirmed broken/missing since patch 11.2, unresolved as of the most recent Blizzard forum activity found. This is the actual reason murlok itself needs a player-run addon (`MurlokExport`) for character-specific data — even they can't pull it from Blizzard's API anymore.
+- Going straight to **Blizzard's own Character Specializations API** (read a top-rated character's talents directly, official/licensed data) is blocked at the source: that endpoint's `loadouts` field has been confirmed broken/missing since patch 11.2, unresolved as of the most recent Blizzard forum activity found. This is the actual reason murlok itself needs a player-run addon (`MurlokExport`) for character-specific data — even they can't pull it from Blizzard's API anymore. **Superseded 2026-09-12: `loadouts` is back** — confirmed live on a real level-90 character, every spec returns its saved loadouts with `talent_loadout_code` plus structured `selected_{class,spec,hero}_talents`. See "Battle.net account linking" below, which is built on it. Whether that makes a per-character top-player importer viable (instead of murlok's aggregated heatmap) is untested.
 
 **What is scrapable, and what this reads instead:** murlok's per-spec/bracket **guide** page (e.g. `murlok.io/death-knight/unholy/3v3` — not a character page) is plain server-rendered HTML: a heatmap of pick counts (0–50, "top 50 players in this spec/bracket") per talent, plus a labeled hero-tree section and a flat PvP-talents section. No WASM involved, confirmed via direct `curl` before any code was written.
 
@@ -4567,3 +4567,131 @@ Three real fragilities in the same area were fixed regardless:
   row. `$rowIndex` is still the row number and is still needed by `addParallelSection()`.
 
 The delete prompt also no longer claims a Notes section has steps to lose.
+
+## Battle.net account linking, character exp, and signing guides ✓ COMPLETE (2026-09-12)
+
+A player links their Battle.net account (profile page, `/characters`, or the guide builder) and
+gets their WoW characters with **exp**, this season's **ratings**, **gear** and each spec's
+**talent build**. A guide can then be **signed with one of their characters**: readers see its exp
+in the byline and listings, and can expand its gear and real talent build on the guide page.
+
+**Files:** `BattlenetClient` (every Blizzard HTTP call), `BattlenetCharacterSyncService` (list
+reconciliation + detail sync + pure parsers), `CharacterTalentResolver`, `BattlenetController`
+(`/auth/battlenet`, `/callback`, `DELETE` unlink), `SyncBattlenetCharacter` job,
+`Battlenet\Characters` (`/characters`) + `Battlenet\CharacterShow` (`/characters/{id}`),
+`<x-battlenet.character-summary|gear|talent-build>`, `battlenet:sync-characters` command, migrations
+`2026_09_12_000001/2`. Tests: `tests/Feature/BattlenetLinkTest.php` (18).
+
+### Everything below was read off the live API before it was built, not assumed
+
+A client-credentials probe of a real level-90 character (2026-09-12):
+- **Every character profile endpoint is public** — summary, `achievements/statistics`,
+  `achievements`, `pvp-summary`, `pvp-bracket/{key}`, `specializations`, `equipment` all 200 on the
+  APP token. That is the design's foundation: the player's own token is only needed for the
+  character LIST (`/profile/user/wow`), so a character refreshes without them logging in again.
+- **"Exp" is a real Blizzard number**: statistic **595** "Highest 3v3 personal rating", **370**
+  "Highest 2v2 personal rating" (lifetime best), plus 838/837 arenas played/won. Matched by id.
+  No Solo Shuffle equivalent exists — the best PvP **rank title** from `achievements` ("Rival II:
+  Midnight Season 1") covers shuffle/blitz history instead. Only the tier ORDER is encoded
+  (`RANK_TIERS`); no rating threshold is ever printed. The name regex requires a colon or end after
+  the rank word, which is what keeps "Legend of the Past" / "Legendary Research" out — both real,
+  completed achievements on the test character.
+- **Talent loadouts are back** (they had been missing since 11.2 — see the murlok section's
+  correction). Each pick is `{id: NODE id, rank, tooltip: {talent.id, spell.id}}`. Node ids matched
+  `external_node_id` **77/77**; talent ids match `external_talent_id`; PvP `talent.id` matches
+  `pvp_talents.external_pvp_talent_id`.
+- **The talent export string is stored but deliberately NOT decoded.** `BlizzardTalentStringCodec`
+  misread the same real string — 49 picks, a wrong class/spec/hero split (23/8/18 vs the true
+  31/29/14), 4 unresolvable nodes. The structured picks are the reliable source; do not "simplify"
+  this to decoding `loadout_code`.
+- Bracket responses for Shuffle/Blitz carry `specialization.id`; an unplayed bracket is a clean 404.
+
+### Decisions worth not re-litigating
+
+- **No token is ever stored.** Battle.net issues no refresh tokens, so a stored access token is a
+  24h secret with nothing to renew it. The user token lives only inside the callback request.
+  Refreshing the character LIST therefore is a re-link (Blizzard skips the consent screen the second
+  time); refreshing a CHARACTER never is.
+- **Both sides of the link are unique** (`user_id`, `battlenet_id`). The second is the one that
+  matters: without it, two MindCollector accounts could claim the same characters and sign guides
+  as them. Tested.
+- **The account's list is authoritative for ownership** — a re-link deletes characters no longer on
+  it, and a guide signed with one keeps the guide and loses the signature (`nullOnDelete`). The list
+  is fetched in full BEFORE anything is written, and any non-404 region failure throws, so a
+  partial list can never delete real characters.
+- **OAuth `state`** is random, session-held, and `pull()`ed — a callback cannot be completed on
+  someone else's session, or replayed.
+- **Snapshots store Blizzard's EXTERNAL ids and resolve at render time**, the same rule guide blocks
+  follow: this database's talent rows are patch-scoped and reassigned on a patch bump.
+- **Plain HTTP, no Socialite** — same precedent as the recaptcha check.
+
+### `CharacterTalentResolver` — two real-data traps it handles
+
+1. **Node ids are only unique within a tree**, and known import artefacts put copies of a node in
+   more than one of a spec's trees (hero-into-spec bloat, the same id across a class's trees). Each
+   pick carries its own tree, so it matches only that tree — and a hero pick only the hero tree the
+   character actually selected. Within that, entry evidence is taken most-specific first: talent id
+   at the rank → talent id → spell id → (single-spell node only) by rank. A CHOICE node never
+   falls through to "the first entry".
+2. **Two false alarms that looked like missing talents**, traced before fixing the count: node
+   `99820` is the empty hero-tree **selector** (no entries here or in Blizzard's response) — skipped,
+   not reported; and Midnight's progressive nodes (Forbidden Knowledge: one node, three entries,
+   three picks) collapse to one, since the calculator holds one entry per node. After both: 74/74,
+   73/73, 57/57 across the test character's three specs, 3/3 PvP each.
+
+Anything genuinely unmatched is **named on the page** ("Not in our talent data yet"), never dropped.
+
+### Performance — concurrent reads (`characterMany` / `gameDataMany` / `downloadMany`)
+
+Blizzard answers each request in ~0.8s. Sequential, a first sync (6 profile reads + brackets + 15
+item-media lookups + 15 icon downloads) took **34.9s**; a warm one **7.5s**. With `Http::pool` for
+every set of independent reads: **3.6s cold (39 requests), 2.5s warm (9)**, measured live. A pooled
+request that drops its connection or hits a 401 falls back to the one-at-a-time path, which retries.
+
+### Gear icons are self-hosted, like spell icons
+
+`storage/app/public/item-icons/{filename}` (gitignored — per-environment, grows with what players
+wear), media lookup cached 30 days per item. Blizzard's inline tooltip markup (`|A:atlas|a`,
+`|T..|t`, `|c..|r`) is stripped from enchant text. Shirt and tabard are dropped.
+
+### Display choices
+
+- A current bracket at rating **0** is hidden even with games in it (real case: one Blitz game
+  lost). Blizzard's number is truthful, but a "0" beside a name reads as broken data.
+- Characters below `services.battlenet.detail_min_level` (70) get their list row only — no detail
+  sync, hidden behind a toggle.
+- Signing is **opt-in per guide** and the only way a character's name reaches another person's
+  screen. `/characters/{id}` is owner-only and 404s for anyone else. Guide readers see the signing
+  character through the guide's own access rules; the gear/talent panel is server-toggled so the
+  calculator (~320KB of markup) is only built for readers who ask.
+- "Use {name}'s talents" on a comp slot copies the signing character's real build into that slot's
+  guide build — **replacing**, not merging, and written directly rather than through
+  `saveChoice()` (whose same-position sibling clearing is right per click but could drop a genuine
+  pick mid-copy of a build the game already validated). Your own comp only.
+
+### Setup required per environment — nothing works until these are done
+
+1. **Register the redirect URL** on the Blizzard client (the same `BLIZZARD_CLIENT_ID` the data
+   scripts use) at develop.battle.net → your client → Redirect URLs, exactly:
+   `https://mindcollector.com/auth/battlenet/callback` AND
+   `https://www.mindcollector.com/auth/battlenet/callback` (checked 2026-09-12: `www` serves the
+   site directly with no redirect to the bare domain, and the callback URL is built from whichever
+   host the player is on), plus local `http://chonny.test/auth/battlenet/callback` (Herd's `.test`
+   TLD; the site is not `herd secure`d). If the portal refuses a plain-http URL, `herd secure
+   chonny` and register the https form instead. A mismatch shows as an error on Blizzard's own
+   sign-in page, before any login.
+   `BATTLENET_REDIRECT_URI` overrides the URL `route()` builds, for when they differ.
+2. `php artisan migrate` (two additive migrations).
+3. A queue worker (detail syncs are queued). Without one, each row's **Refresh** syncs inline and the
+   page stops polling after 10 minutes.
+4. `php artisan storage:link` (already required for spell icons).
+
+### Not built
+
+- **China** (separate OAuth host and API).
+- **Automatic rating refresh** — production runs no scheduler. `battlenet:sync-characters
+  --stale-hours=24` is the manual lever, and the thing to schedule if one is ever set up.
+- **A public character page.** Deliberately: a character is only visible through a guide its owner
+  signed with it.
+- **Shuffle exp** as a number — Blizzard exposes no lifetime-best shuffle statistic; the rank title
+  is the stand-in.

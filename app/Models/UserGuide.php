@@ -28,6 +28,7 @@ class UserGuide extends Model
     protected $fillable = [
         'user_id',
         'guild_id',
+        'battlenet_character_id',
         'type',
         'opponent_spec_id',
         'status',
@@ -159,6 +160,15 @@ class UserGuide extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * The author's own character this guide is "written as", when they chose one. Opt-in, and the
+     * only way a character's name reaches a page other people can read.
+     */
+    public function authorCharacter()
+    {
+        return $this->belongsTo(BattlenetCharacter::class, 'battlenet_character_id');
     }
 
     /**

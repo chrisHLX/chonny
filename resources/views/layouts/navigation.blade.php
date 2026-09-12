@@ -96,6 +96,11 @@
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                 Guilds
             </a>
+            <a href="{{ route('characters.index') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('characters.*') ? 'active !text-accent' : '' }}">
+                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                My Characters
+            </a>
             @endauth
         </div>
 

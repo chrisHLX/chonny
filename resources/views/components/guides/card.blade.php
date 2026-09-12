@@ -6,6 +6,11 @@
 @php
     $roster = $guide->relationLoaded('members') ? $guide->members : $guide->members()->get();
     $enemy = $guide->relationLoaded('enemies') ? $guide->enemies : $guide->enemies()->get();
+
+    // The signing character's exp, when the author signed the guide — the one fact about an author
+    // a reader scanning a listing actually wants. Guarded on the column so an unsigned guide never
+    // costs a query here, on pages that do not eager-load the relation.
+    $authorExp = $guide->battlenet_character_id ? $guide->authorCharacter?->bestExp() : null;
 @endphp
 
 <a href="{{ $guide->publicUrl() ?? '#' }}" wire:navigate
@@ -57,6 +62,9 @@
             @if ($showAuthor)
                 <p class="text-[11px] text-ink-subtle mt-1.5">
                     by {{ $guide->user?->username ?? 'unknown' }}
+                    @if ($authorExp)
+                        <span class="text-gold tabular-nums">&middot; {{ $authorExp['rating'] }} exp</span>
+                    @endif
                     @isset($guide->comments_count)
                         &middot; {{ $guide->comments_count }} {{ Str::plural('comment', $guide->comments_count) }}
                     @endisset

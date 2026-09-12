@@ -213,6 +213,17 @@ Route::middleware('auth')->prefix('guides')->name('guides.')->group(function () 
     Route::get('/{guide}/edit', \App\Livewire\Guides\Builder::class)->name('edit');
 });
 
+// ------- Battle.net link + your characters -------
+// Owner-only. A character's name only ever reaches another person's screen through a guide its
+// owner explicitly attributed to it — see UserGuide::authorCharacter().
+Route::middleware('auth')->group(function () {
+    Route::get('/auth/battlenet', [\App\Http\Controllers\BattlenetController::class, 'redirect'])->name('battlenet.redirect');
+    Route::get('/auth/battlenet/callback', [\App\Http\Controllers\BattlenetController::class, 'callback'])->name('battlenet.callback');
+    Route::delete('/auth/battlenet', [\App\Http\Controllers\BattlenetController::class, 'destroy'])->name('battlenet.unlink');
+    Route::get('/characters', \App\Livewire\Battlenet\Characters::class)->name('characters.index');
+    Route::get('/characters/{character}', \App\Livewire\Battlenet\CharacterShow::class)->whereNumber('character')->name('characters.show');
+});
+
 // Browse: the only place public guides are listed. Deliberately NOT auth-gated — a public guide
 // is public, and requiring an account to look at one would defeat the point of publishing.
 Route::get('/browse-guides', \App\Livewire\Guides\Browse::class)->name('guides.browse');

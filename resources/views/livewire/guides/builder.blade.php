@@ -162,6 +162,55 @@
         </div>
     @endif
 
+    {{-- Written as -------------------------------------------------------------------
+         Opt-in: sign the guide with one of your own characters, and readers see its exp,
+         ratings, gear and talents. Nothing is shown until you pick one. --}}
+    <div class="linear-card p-4 mb-6">
+        <div class="flex items-baseline justify-between gap-4 mb-3">
+            <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Written as</h2>
+            <span class="text-[12px] text-ink-subtle">Optional &mdash; readers see this character's exp, gear and talents</span>
+        </div>
+
+        @if (! $this->hasBattlenet)
+            <p class="text-[13px] text-ink-muted">
+                <a href="{{ route('battlenet.redirect') }}" class="text-gold hover:text-gold-light">Link Battle.net</a>
+                to sign this guide with one of your characters.
+            </p>
+        @elseif ($this->myCharacters->isEmpty())
+            <p class="text-[13px] text-ink-muted">
+                No characters at level {{ config('services.battlenet.detail_min_level', 70) }}+ on your linked account.
+                <a href="{{ route('characters.index') }}" wire:navigate class="text-gold hover:text-gold-light">Your characters</a>
+            </p>
+        @else
+            <div class="flex flex-wrap gap-2">
+                <button type="button" wire:click="setAuthorCharacter(null)"
+                        class="px-3 py-2 rounded border text-[12.5px] transition-colors {{ $guide->battlenet_character_id === null ? 'border-line-gold bg-gold-subtle text-ink' : 'border-line text-ink-muted hover:border-line-strong' }}">
+                    Don't sign it
+                </button>
+
+                @foreach ($this->myCharacters as $character)
+                    @php
+                        $picked = $guide->battlenet_character_id === $character->id;
+                        $exp = $character->bestExp();
+                        $cc = $classColors[$character->gameClass?->slug] ?? '#8A8A9A';
+                    @endphp
+                    <button type="button" wire:click="setAuthorCharacter({{ $character->id }})" wire:key="author-{{ $character->id }}"
+                            class="flex items-center gap-2 px-2.5 py-1.5 rounded border text-left transition-colors {{ $picked ? 'border-line-gold bg-gold-subtle' : 'border-line hover:border-line-strong' }}">
+                        @if ($character->specialization)
+                            <x-spec-icon :spec="$character->specialization" size="w-7 h-7"/>
+                        @endif
+                        <span>
+                            <span class="block text-[12.5px] font-medium leading-tight" style="color: {{ $cc }}">{{ $character->name }}</span>
+                            <span class="block text-[10.5px] text-ink-subtle leading-tight">
+                                {{ $character->realm_name }}@if ($exp) &middot; <span class="text-gold tabular-nums">{{ $exp['rating'] }}</span> exp @endif
+                            </span>
+                        </span>
+                    </button>
+                @endforeach
+            </div>
+        @endif
+    </div>
+
     <x-guides.health :health="$this->health" :editable="true"/>
 
     {{-- Roster ---------------------------------------------------------------------
@@ -177,7 +226,8 @@
 
             <div class="grid sm:grid-cols-[1fr_auto_1fr] items-center gap-3">
                 <x-guides.member-slot :member="$this->members->firstWhere('position', 0)" :position="0"
-                                      :class-colors="$classColors" label="Your spec" wire:key="slot-0"/>
+                                      :class-colors="$classColors" label="Your spec" wire:key="slot-0"
+                                      :character-name="$guide->authorCharacter?->name" :character-specs="$this->authorCharacterSpecs"/>
 
                 <span class="text-[12px] text-ink-subtle text-center sm:px-2">vs</span>
 
@@ -216,7 +266,8 @@
             <div class="grid sm:grid-cols-3 gap-3">
                 @for ($slot = 0; $slot < $guide->maxMembers(); $slot++)
                     <x-guides.member-slot :member="$this->members->firstWhere('position', $slot)" :position="$slot"
-                                          :class-colors="$classColors" wire:key="slot-{{ $slot }}"/>
+                                          :class-colors="$classColors" wire:key="slot-{{ $slot }}"
+                                          :character-name="$guide->authorCharacter?->name" :character-specs="$this->authorCharacterSpecs"/>
                 @endfor
             </div>
         </div>

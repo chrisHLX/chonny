@@ -2,7 +2,7 @@
      the component's slot content under that name, which wins over a same-named prop). A :slot="0"
      prop therefore renders as an empty string, and wire:click="openMemberPicker()" reaches Livewire
      with no argument -- a BindingResolutionException on a required int, at runtime only. --}}
-@props(['member', 'position', 'side' => 'team', 'classColors' => [], 'label' => null])
+@props(['member', 'position', 'side' => 'team', 'classColors' => [], 'label' => null, 'characterName' => null, 'characterSpecs' => []])
 
 {{-- One comp slot: the spec, and which talents it is playing. Shared by both guide layouts —
      a comp guide renders three of these, a class guide one — so the two cannot drift apart. --}}
@@ -34,6 +34,16 @@
                 &#9675; Using the default build &mdash; choose talents
             @endif
         </button>
+
+        {{-- The guide's signing character plays this spec: offer its real in-game build. Your own
+             comp only — the character is yours, not the enemy's. --}}
+        @if ($side === 'team' && $characterName && in_array($member->specialization->external_spec_id, $characterSpecs, true))
+            <button type="button" wire:click="useCharacterTalents({{ $position }})"
+                    wire:confirm="Replace this slot's talents with {{ $characterName }}'s current build?"
+                    class="mt-1 w-full text-left text-[11px] text-violet hover:text-violet-hover transition-colors">
+                &#8635; Use {{ $characterName }}&rsquo;s talents
+            </button>
+        @endif
     @else
         <button type="button" wire:click="openMemberPicker({{ $position }}, '{{ $side }}')"
                 class="w-full h-full min-h-[52px] flex items-center justify-center gap-2 text-[13px] text-ink-subtle hover:text-gold transition-colors">

@@ -52,6 +52,8 @@ class PageUsage extends Component
         'guides_browse' => 'Player Guides (browse)',
         'guilds_index' => 'Guilds',
         'guild_show' => 'Guild (read)',
+        'battlenet_characters' => 'Your Characters',
+        'battlenet_character' => 'Character Detail',
     ];
 
     /**

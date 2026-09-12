@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Guides;
 
+use App\Http\Services\CharacterTalentResolver;
 use App\Http\Services\UserGuideChainService;
 use App\Models\PageViewEvent;
 use App\Models\User;
@@ -69,6 +70,47 @@ class Show extends Component
     public function enemies()
     {
         return $this->guide->enemies()->with('specialization.gameClass')->get();
+    }
+
+    // ---------------------------------------------------------- the signing character
+
+    /**
+     * Whether the author's character card is expanded to gear and talents. Server-side, so the
+     * talent calculator — the heaviest thing on this page — is only built for readers who ask.
+     */
+    public bool $showAuthorBuild = false;
+
+    /** The character the author signed this guide with, if any. Opt-in per guide. */
+    #[Computed]
+    public function authorCharacter()
+    {
+        return $this->guide->authorCharacter()->with(['gameClass', 'specialization.gameClass'])->first();
+    }
+
+    /**
+     * The signing character's talents — for the spec this guide is about when the character has a
+     * build for it, otherwise its active spec. A Subtlety guide signed by a Rogue should show the
+     * Subtlety build even if the character logged out as Assassination.
+     */
+    #[Computed]
+    public function authorTalentView(): ?array
+    {
+        $character = $this->authorCharacter;
+
+        if (! $character || ! $this->showAuthorBuild) {
+            return null;
+        }
+
+        $guideSpecs = $this->members->map(fn ($m) => $m->specialization?->external_spec_id)->filter();
+        $match = collect($character->talents ?? [])->first(fn ($t) => $guideSpecs->contains($t['spec_external_id']));
+
+        return app(CharacterTalentResolver::class)->forCharacter($character, $match['spec_external_id'] ?? null);
+    }
+
+    public function toggleAuthorBuild(): void
+    {
+        $this->showAuthorBuild = ! $this->showAuthorBuild;
+        unset($this->authorTalentView);
     }
 
     /** Resolved steps + metrics per section — the same service the builder renders through. */
