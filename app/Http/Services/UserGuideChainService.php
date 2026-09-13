@@ -183,7 +183,9 @@ class UserGuideChainService
 
     private function computeResolve(UserGuideSection $section): array
     {
-        $blocks = $section->blocks()->get();
+        // addedBy is loaded with the blocks so crediting a collaborator's step costs one query for
+        // the whole section rather than one per step.
+        $blocks = $section->blocks()->with('addedBy:id,name,username')->get();
         if ($blocks->isEmpty()) {
             return [];
         }

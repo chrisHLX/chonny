@@ -155,7 +155,7 @@
             {{-- Actions --}}
             <div class="flex flex-col gap-2 pt-1">
                 @if (!$guestMode)
-                    <a href="{{ route('dashboard') }}"
+                    <a href="{{ route('training') }}"
                        class="inline-flex items-center justify-center gap-2 w-full py-2.5 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
                         Continue Learning
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

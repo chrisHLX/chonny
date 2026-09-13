@@ -228,6 +228,27 @@ class WowComps extends Component
     public function mount(): void
     {
         PageViewEvent::log('wow_comps');
+
+        // A link can open straight into one of the common comps (/wow-comps?preset=jungle) — the
+        // home page's comp shortcuts use it. Only a known preset key does anything; following the
+        // link is a real choice of that comp, so it goes through applyPreset() and is counted like
+        // clicking the button on this page, never like a default landing.
+        $preset = request()->query('preset');
+
+        if (is_string($preset) && isset(self::PRESET_COMPS[$preset])) {
+            $this->applyPreset($preset);
+        }
+    }
+
+    /**
+     * The common comps as label + spec models, for other pages to link into (the home page).
+     * Same resolution and same "drop a preset whose specs aren't seeded" rule as the buttons here.
+     *
+     * @return array<int, array{key: string, label: string, specs: array<int, Specialization>}>
+     */
+    public static function presetLinks(): array
+    {
+        return (new self)->getPresetsProperty();
     }
 
     /**

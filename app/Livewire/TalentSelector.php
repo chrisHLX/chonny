@@ -67,7 +67,8 @@ class TalentSelector extends Component
      * default, so without it anyone could point this component at any build id in the database and
      * rewrite it — including an admin default or another author's guide. Locked means the value can
      * only ever be the one the server passed at mount, and the mounting page (Guides\Builder) has
-     * already checked the guide belongs to the current user.
+     * already checked the current user may edit the guide — its author, or a friend/guildmate the
+     * author opened it to (UserGuide::isEditableBy()).
      */
     #[Locked]
     public ?int $buildId = null;

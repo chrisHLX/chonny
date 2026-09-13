@@ -74,7 +74,7 @@ test('shows the exhausted-content card, not the generic practice-goal fallback, 
         'completed_at'     => now(),
     ]);
 
-    $response = $this->actingAs($user)->get('/dashboard?category_id=' . $category->id . '&subject_id=' . $subject->id);
+    $response = $this->actingAs($user)->get('/training?category_id=' . $category->id . '&subject_id=' . $subject->id);
 
     $response->assertOk();
     // false = don't HTML-escape the search string: the blade text is static (never passed
@@ -89,7 +89,7 @@ test('does not show the exhausted-content card when no next-step system has ever
 
     completeDiagnosticFor($user, $subject);
 
-    $response = $this->actingAs($user)->get('/dashboard?category_id=' . $category->id . '&subject_id=' . $subject->id);
+    $response = $this->actingAs($user)->get('/training?category_id=' . $category->id . '&subject_id=' . $subject->id);
 
     $response->assertOk();
     $response->assertDontSee("You've completed everything available here", false);
@@ -112,7 +112,7 @@ test('an active pending step takes priority over the exhausted-content card', fu
         'instructions'     => 'Start here.',
     ]);
 
-    $response = $this->actingAs($user)->get('/dashboard?category_id=' . $category->id . '&subject_id=' . $subject->id);
+    $response = $this->actingAs($user)->get('/training?category_id=' . $category->id . '&subject_id=' . $subject->id);
 
     $response->assertOk();
     $response->assertSee('Zerg Basics');

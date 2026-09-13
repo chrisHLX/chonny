@@ -33,6 +33,9 @@ class UserGuide extends Model
         'opponent_spec_id',
         'status',
         'visibility',
+        'friends_can_edit',
+        'guild_can_edit',
+        'last_edited_by_user_id',
         'patch_id',
         'title',
         'slug',
@@ -45,6 +48,8 @@ class UserGuide extends Model
         'status' => UserGuideStatus::class,
         'visibility' => UserGuideVisibility::class,
         'published_at' => 'datetime',
+        'friends_can_edit' => 'boolean',
+        'guild_can_edit' => 'boolean',
     ];
 
     /**
@@ -368,6 +373,122 @@ class UserGuide extends Model
     }
 
     /**
+     * Who may change this guide's content — its comp, sections, steps, notes and title.
+     *
+     * The author always. Beyond that, only through the two switches the author controls (see the
+     * add_collaboration_to_user_guides migration): a FRIEND of the author when friends_can_edit is
+     * on, and a member of the guide's guild when guild_can_edit is on. Both follow membership live,
+     * so unfriending someone or removing them from the guild ends their access immediately.
+     *
+     * Editing is not owning. Publishing, who can read it, signing it with a character, deleting it
+     * and these switches themselves stay with the author — see Builder::authorOnly().
+     */
+    public function isEditableBy(?User $user): bool
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        if ($this->isOwnedBy($user)) {
+            return true;
+        }
+
+        if ($this->friends_can_edit && $user->friendIds()->contains($this->user_id)) {
+            return true;
+        }
+
+        return $this->guild_can_edit
+            && $this->guild_id !== null
+            && $this->guild?->hasMember($user);
+    }
+
+    /** Someone who may edit this guide but did not write it. */
+    public function isCollaborator(?User $user): bool
+    {
+        return ! $this->isOwnedBy($user) && $this->isEditableBy($user);
+    }
+
+    /**
+     * Guides this player may edit but does not own — the "shared with you to edit" list.
+     *
+     * The same two rules as isEditableBy(), as a query: a friend's guide with friends_can_edit on,
+     * or a guide in one of their guilds with guild_can_edit on.
+     */
+    public function scopeEditableByCollaborator(Builder $query, User $user): Builder
+    {
+        $friendIds = $user->friendIds();
+        $guildIds = $user->guilds()->pluck('guilds.id');
+
+        return $query->where('user_id', '!=', $user->id)
+            ->where(fn (Builder $q) => $q
+                ->where(fn (Builder $f) => $f->where('friends_can_edit', true)->whereIn('user_id', $friendIds))
+                ->orWhere(fn (Builder $g) => $g->where('guild_can_edit', true)->whereIn('guild_id', $guildIds)));
+    }
+
+    /** Whoever last changed anything in this guide. */
+    public function lastEditor()
+    {
+        return $this->belongsTo(User::class, 'last_edited_by_user_id');
+    }
+
+    /**
+     * Everyone who has put something into this guide — the author first, then anyone who added a
+     * section or a step, or last edited one. Only people who actually contributed, never everyone
+     * who COULD edit, so turning on "friends can edit" does not list twenty names on a guide one
+     * person wrote.
+     *
+     * @return \Illuminate\Support\Collection<int, User>
+     */
+    public function contributors(): \Illuminate\Support\Collection
+    {
+        $sectionIds = $this->sections()->pluck('id');
+
+        $ids = collect([$this->user_id])
+            ->merge(UserGuideSection::whereIn('id', $sectionIds)->pluck('created_by_user_id'))
+            ->merge(UserGuideSection::whereIn('id', $sectionIds)->pluck('updated_by_user_id'))
+            ->merge(UserGuideBlock::whereIn('user_guide_section_id', $sectionIds)->pluck('added_by_user_id'))
+            ->filter()
+            ->unique()
+            ->values();
+
+        $users = User::whereIn('id', $ids)->get()->keyBy('id');
+
+        return $ids->map(fn ($id) => $users->get($id))->filter()->values();
+    }
+
+    /**
+     * Start a new draft with one starter section, for this player. The one way a guide is created,
+     * shared by My Guides and the home page so the two cannot start guides differently.
+     *
+     * The starter section exists so the builder never opens on a blank page with no obvious first
+     * move. The placeholder title is what the slug is generated from, and a draft's slug is rebuilt
+     * from the title and comp on first publish (see descriptiveSlug()), so it need not be good.
+     */
+    public static function startDraft(User $user, UserGuideType $type): self
+    {
+        $guide = self::create([
+            'user_id' => $user->id,
+            'type' => $type,
+            'status' => UserGuideStatus::Draft,
+            'visibility' => UserGuideVisibility::Invited,
+            'last_edited_by_user_id' => $user->id,
+            'title' => $type === UserGuideType::ClassGuide ? 'Untitled class guide' : 'Untitled comp guide',
+        ]);
+
+        UserGuideSection::create([
+            'user_guide_id' => $guide->id,
+            'kind' => \App\Enums\UserGuideSectionKind::Sequence,
+            'title' => $type === UserGuideType::ClassGuide ? 'The sequence' : 'The opener',
+            'row' => 0,
+            'column' => 0,
+            'created_by_user_id' => $user->id,
+            'updated_by_user_id' => $user->id,
+        ]);
+
+        return $guide;
+    }
+
+    /**
      * Who may read this guide.
      *
      * Three gates, in order: the author always can; nobody else can read a draft; and a published
@@ -427,7 +548,9 @@ class UserGuide extends Model
      */
     public function recordView(?User $viewer, string $sessionId): void
     {
-        if ($this->isOwnedBy($viewer)) {
+        // Anyone who can edit it is working on it, not reading it — a collaborator reloading the
+        // guide while writing it must not count as an audience any more than the author does.
+        if ($this->isEditableBy($viewer)) {
             return;
         }
 
@@ -477,7 +600,9 @@ class UserGuide extends Model
 
     public function isReadableBy(?User $user): bool
     {
-        if ($this->isOwnedBy($user)) {
+        // Anyone who may edit it may read it, drafts included — a collaborator working on an
+        // unpublished guide needs to see the page they are building.
+        if ($this->isEditableBy($user)) {
             return true;
         }
 

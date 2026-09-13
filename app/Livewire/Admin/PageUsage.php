@@ -35,6 +35,8 @@ class PageUsage extends Component
      * never added here, so its views were being recorded with nowhere to see them.
      */
     private const PAGES = [
+        'home' => 'Home (signed-in landing)',
+        'friends' => 'Friends',
         'spell_detail' => 'Spell Detail',
         'spell_explorer' => 'Spell Explorer',
         'wow_comps' => 'WoW Comps',

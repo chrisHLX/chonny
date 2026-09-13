@@ -3,6 +3,7 @@
 namespace App\Livewire\Guides;
 
 use App\Http\Services\CharacterTalentResolver;
+use App\Http\Services\FriendshipService;
 use App\Http\Services\UserGuideChainService;
 use App\Models\PageViewEvent;
 use App\Models\User;
@@ -10,6 +11,7 @@ use App\Models\UserGuide;
 use App\Models\UserGuideComment;
 use App\Models\UserGuideLike;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 /**
@@ -23,9 +25,10 @@ use Livewire\Component;
  * the page names its author, and the page says plainly that this is one player's plan rather than
  * measured data. That separation is cheap now and expensive to retrofit once guides are linked.
  *
- * Access is decided entirely by UserGuide::isReadableBy() — the author, anyone for a public
- * published guide, and only explicitly invited accounts for a private one. A draft is visible to
- * nobody but its author, so an unfinished guide cannot leak through a guessed URL.
+ * Access is decided entirely by UserGuide::isReadableBy() — the author and anyone they let edit
+ * it, anyone for a public published guide, and only explicitly invited accounts for a private one.
+ * A draft is visible to nobody but the people working on it, so an unfinished guide cannot leak
+ * through a guessed URL.
  */
 class Show extends Component
 {
@@ -56,7 +59,39 @@ class Show extends Component
     #[Computed]
     public function rows()
     {
-        return $this->guide->sections()->with('opponentSpec.gameClass')->get()->groupBy('row');
+        return $this->guide->sections()
+            ->with(['opponentSpec.gameClass', 'updatedBy:id,name,username'])
+            ->get()
+            ->groupBy('row');
+    }
+
+    /** Everyone who put something into the guide — see UserGuide::contributors(). */
+    #[Computed]
+    public function contributors()
+    {
+        return $this->guide->contributors();
+    }
+
+    /** What happened when the reader asked to befriend the author, for the confirmation line. */
+    #[Locked]
+    public ?string $friendRequestSent = null;
+
+    /** Ask the author to be friends — the reader's way to connect from the guide itself. */
+    public function addAuthorAsFriend(FriendshipService $service): void
+    {
+        $author = $this->guide->user;
+
+        if (! auth()->check() || ! $author) {
+            return;
+        }
+
+        $this->friendRequestSent = match ($service->request(auth()->user(), $author)) {
+            'accepted' => 'You\'re friends now',
+            'sent', 'already_sent' => 'Friend request sent',
+            default => null,
+        };
+
+        auth()->user()->forgetFriendCache();
     }
 
     #[Computed]

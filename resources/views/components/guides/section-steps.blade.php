@@ -1,4 +1,4 @@
-@props(['steps', 'section', 'editable' => false])
+@props(['steps', 'section', 'editable' => false, 'ownerId' => null])
 
 @php
     // One definition of how a step renders, shared by the builder and the public read view — the
@@ -109,6 +109,12 @@
 
                         <p class="text-[11px] mt-0.5" style="color: {{ $stepColor }}">
                             {{ $stepSpec?->name }} {{ $stepSpec?->gameClass?->name }}
+                            {{-- Credit a step to whoever added it, when that was not the guide's
+                                 author — the "whose sequence is this" answer on a guide several
+                                 people work on. Silent on a guide one person wrote. --}}
+                            @if (($adder = $block->relationLoaded('addedBy') ? $block->addedBy : null) && $ownerId !== null && $adder->id !== $ownerId)
+                                <span class="text-ink-subtle">&middot; added by <span class="text-violet">{{ $adder->id === auth()->id() ? 'you' : '@'.$adder->handle() }}</span></span>
+                            @endif
                         </p>
 
                         @if ($dr['dr_reason'] ?? null)

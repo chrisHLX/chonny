@@ -24,7 +24,21 @@ class UserGuideSection extends Model
         'column',
         'opponent_spec_id',
         'body',
+        'created_by_user_id',
+        'updated_by_user_id',
     ];
+
+    /** Who added this section. See add_collaboration_to_user_guides. */
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by_user_id');
+    }
+
+    /** Who last changed it — renamed it, reordered it, or added, removed or annotated a step. */
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by_user_id');
+    }
 
     protected $casts = [
         'kind' => UserGuideSectionKind::class,

@@ -26,7 +26,17 @@ class UserGuideBlock extends Model
         'position',
         'block_type',
         'payload',
+        'added_by_user_id',
     ];
+
+    /**
+     * Who put this step in the guide. A real column, not part of the payload — see the
+     * add_collaboration_to_user_guides migration for why attribution never goes in there.
+     */
+    public function addedBy()
+    {
+        return $this->belongsTo(User::class, 'added_by_user_id');
+    }
 
     protected $casts = [
         'block_type' => UserGuideBlockType::class,

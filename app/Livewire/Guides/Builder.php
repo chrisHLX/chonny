@@ -44,6 +44,17 @@ use Livewire\Component;
  * trusting an id from the client. Blocks no longer carry a guide id of their own (they hang off a
  * section), so that check is a join — deliberately, since one path to a fact cannot disagree with
  * itself.
+ *
+ * TWO LEVELS OF ACCESS (2026-09-13). Anyone UserGuide::isEditableBy() allows — the author, and a
+ * friend or guildmate when the author switched that on — may change the guide's CONTENT: the comp,
+ * talents, sections, steps, notes, title. Only the AUTHOR may change what the guide IS to other
+ * people: publishing, who can read it, who can edit it, and which character it is signed as.
+ * Those methods start with authorOnly(), which is checked on the server on every call; hiding the
+ * buttons in the view is presentation, not the guard.
+ *
+ * EVERY CONTENT WRITE IS ATTRIBUTED. A new step records who added it, a section records who created
+ * it and who last changed it, and the guide records who last edited anything — so a guide several
+ * people work on shows whose sequence is whose. See add_collaboration_to_user_guides.
  */
 class Builder extends Component
 {
@@ -111,7 +122,7 @@ class Builder extends Component
 
     public function mount(UserGuide $guide): void
     {
-        abort_unless($guide->isOwnedBy(auth()->user()), 403);
+        abort_unless($guide->isEditableBy(auth()->user()), 403);
 
         $this->guide = $guide;
         $this->title = $guide->title;
@@ -149,7 +160,24 @@ class Builder extends Component
     #[Computed]
     public function rows()
     {
-        return $this->guide->sections()->with('opponentSpec.gameClass')->get()->groupBy('row');
+        return $this->guide->sections()
+            ->with(['opponentSpec.gameClass', 'updatedBy:id,name,username'])
+            ->get()
+            ->groupBy('row');
+    }
+
+    /** Whether the person editing is the guide's author, or a friend/guildmate helping. */
+    #[Computed]
+    public function isAuthor(): bool
+    {
+        return $this->guide->isOwnedBy(auth()->user());
+    }
+
+    /** Everyone who has actually put something into this guide — see UserGuide::contributors(). */
+    #[Computed]
+    public function contributors()
+    {
+        return $this->guide->contributors();
     }
 
     /** Resolved steps + metrics per section id, so the view asks the service once per section. */
@@ -283,6 +311,10 @@ class Builder extends Component
      */
     public function setAuthorCharacter(?int $characterId = null): void
     {
+        if (! $this->authorOnly()) {
+            return;
+        }
+
         if ($characterId !== null && ! auth()->user()->battlenetCharacters()
             ->where('battlenet_characters.id', $characterId)->exists()) {
             return;
@@ -534,6 +566,8 @@ class Builder extends Component
             'row' => $row,
             'column' => 0,
             'opponent_spec_id' => $this->inheritedOpponentFor($sectionKind),
+            'created_by_user_id' => auth()->id(),
+            'updated_by_user_id' => auth()->id(),
         ]);
 
         $this->refreshGuide();
@@ -576,6 +610,8 @@ class Builder extends Component
             'row' => $row,
             'column' => 1,
             'opponent_spec_id' => $this->inheritedOpponentFor($sectionKind),
+            'created_by_user_id' => auth()->id(),
+            'updated_by_user_id' => auth()->id(),
         ]);
 
         $this->refreshGuide();
@@ -595,7 +631,7 @@ class Builder extends Component
             return;
         }
 
-        $section->update(['title' => $title]);
+        $section->update(['title' => $title, 'updated_by_user_id' => auth()->id()]);
         $this->refreshGuide();
     }
 
@@ -611,7 +647,7 @@ class Builder extends Component
             return;
         }
 
-        $section->update(['body' => $body]);
+        $section->update(['body' => $body, 'updated_by_user_id' => auth()->id()]);
         $this->refreshGuide();
     }
 
@@ -637,7 +673,7 @@ class Builder extends Component
         $section = $this->pickingOpponentFor ? $this->ownedSection($this->pickingOpponentFor) : null;
 
         if ($section && Specialization::whereKey($specId)->exists()) {
-            $section->update(['opponent_spec_id' => $specId]);
+            $section->update(['opponent_spec_id' => $specId, 'updated_by_user_id' => auth()->id()]);
         }
 
         $this->pickingOpponentFor = null;
@@ -734,14 +770,23 @@ class Builder extends Component
                 'external_spell_id' => $externalSpellId,
                 'source_spec_id' => $specId,
             ],
+            'added_by_user_id' => auth()->id(),
         ]);
 
+        $this->touchSection($section);
         $this->refreshGuide();
     }
 
     public function removeBlock(int $blockId): void
     {
-        $this->ownedBlock($blockId)?->delete();
+        $block = $this->ownedBlock($blockId);
+
+        if ($block) {
+            $section = $block->section;
+            $block->delete();
+            $this->touchSection($section);
+        }
+
         $this->refreshGuide();
     }
 
@@ -769,6 +814,11 @@ class Builder extends Component
 
         $final = $ordered->merge($blocks->keys()->diff($ordered)->values());
 
+        // A drop that lands every step where it already was is not an edit — do not credit one.
+        if ($final->values()->all() === $blocks->sortBy('position')->keys()->values()->all()) {
+            return;
+        }
+
         DB::transaction(function () use ($final, $section) {
             foreach ($final as $position => $id) {
                 UserGuideBlock::where('id', $id)
@@ -777,6 +827,7 @@ class Builder extends Component
             }
         });
 
+        $this->touchSection($section);
         $this->refreshGuide();
     }
 
@@ -802,6 +853,7 @@ class Builder extends Component
         }
 
         $block->update(['payload' => $payload]);
+        $this->touchSection($block->section);
         $this->refreshGuide();
     }
 
@@ -815,13 +867,19 @@ class Builder extends Component
         }
 
         // Slug is intentionally not regenerated — see UserGuide::booted().
-        $this->guide->update(['title' => mb_substr($title, 0, 120)]);
+        $this->guide->update([
+            'title' => mb_substr($title, 0, 120),
+            'last_edited_by_user_id' => auth()->id(),
+        ]);
         $this->markSaved();
     }
 
     public function updatedSummary(): void
     {
-        $this->guide->update(['summary' => mb_substr(trim($this->summary), 0, 500) ?: null]);
+        $this->guide->update([
+            'summary' => mb_substr(trim($this->summary), 0, 500) ?: null,
+            'last_edited_by_user_id' => auth()->id(),
+        ]);
         $this->markSaved();
     }
 
@@ -850,7 +908,7 @@ class Builder extends Component
      */
     public function publish(): void
     {
-        if (! $this->guide->hasRoster()) {
+        if (! $this->authorOnly() || ! $this->guide->hasRoster()) {
             return;
         }
 
@@ -879,6 +937,10 @@ class Builder extends Component
 
     public function unpublish(): void
     {
+        if (! $this->authorOnly()) {
+            return;
+        }
+
         $this->guide->update(['status' => UserGuideStatus::Draft]);
         $this->refreshGuide();
     }
@@ -886,7 +948,7 @@ class Builder extends Component
     public function setVisibility(string $visibility): void
     {
         $value = UserGuideVisibility::tryFrom($visibility);
-        if ($value === null) {
+        if ($value === null || ! $this->authorOnly()) {
             return;
         }
 
@@ -913,11 +975,56 @@ class Builder extends Component
     /** Point a guild-visible guide at one of YOUR guilds. Never one you are not in. */
     public function setGuild(int $guildId): void
     {
-        if (! auth()->user()->guilds()->whereKey($guildId)->exists()) {
+        if (! $this->authorOnly() || ! auth()->user()->guilds()->whereKey($guildId)->exists()) {
             return;
         }
 
         $this->guide->update(['guild_id' => $guildId]);
+        $this->refreshGuide();
+    }
+
+    /**
+     * Let the author's friends edit this guide, or stop them. Author only.
+     *
+     * Follows friendship live (see UserGuide::isEditableBy()): nobody is listed here, so there is
+     * nothing to keep in step when a friend is added or removed.
+     */
+    public function setFriendsCanEdit(bool $on): void
+    {
+        if (! $this->authorOnly()) {
+            return;
+        }
+
+        $this->guide->update(['friends_can_edit' => $on]);
+        $this->refreshGuide();
+    }
+
+    /**
+     * Let the guide's guild edit it, or stop them. Author only.
+     *
+     * Needs a guild to mean anything. With no guild on the guide yet, adopt the author's only
+     * guild when there is exactly one (the common case, same as setVisibility()), and otherwise
+     * refuse — the view shows the guild picker instead, and switching this on for a guide with no
+     * guild would look like it worked while granting nobody anything.
+     */
+    public function setGuildCanEdit(bool $on): void
+    {
+        if (! $this->authorOnly()) {
+            return;
+        }
+
+        if ($on && $this->guide->guild_id === null) {
+            $guilds = $this->myGuilds;
+
+            if ($guilds->count() !== 1) {
+                return;
+            }
+
+            $this->guide->guild_id = $guilds->first()->id;
+        }
+
+        $this->guide->guild_can_edit = $on;
+        $this->guide->save();
         $this->refreshGuide();
     }
 
@@ -931,6 +1038,10 @@ class Builder extends Component
      */
     public function shareWith(): void
     {
+        if (! $this->authorOnly()) {
+            return;
+        }
+
         $this->shareError = null;
         $email = trim($this->shareEmail);
 
@@ -959,6 +1070,10 @@ class Builder extends Component
 
     public function unshare(int $userId): void
     {
+        if (! $this->authorOnly()) {
+            return;
+        }
+
         $this->guide->viewers()->detach($userId);
         $this->refreshGuide();
     }
@@ -993,6 +1108,22 @@ class Builder extends Component
             ->first();
     }
 
+    /**
+     * The server-side guard for everything only the author may do — publishing, reading access,
+     * edit access and the signing character. A collaborator's request for any of these does
+     * nothing; hiding the controls in the view is only presentation.
+     */
+    private function authorOnly(): bool
+    {
+        return $this->guide->isOwnedBy(auth()->user());
+    }
+
+    /** Credit a change inside a section to whoever made it. */
+    private function touchSection(?UserGuideSection $section): void
+    {
+        $section?->forceFill(['updated_by_user_id' => auth()->id()])->save();
+    }
+
     private function refreshGuide(): void
     {
         // patch_id records what the author was looking at, and is set on first real edit rather
@@ -1001,6 +1132,7 @@ class Builder extends Component
             $this->guide->patch_id = Patch::where('is_current', true)->value('id');
         }
 
+        $this->guide->last_edited_by_user_id = auth()->id();
         $this->guide->save();
 
         // The comp key is denormalised from the roster, so it has to be rebuilt wherever the
@@ -1018,6 +1150,7 @@ class Builder extends Component
             $this->editingTalentsMember,
             $this->viewers,
             $this->health,
+            $this->contributors,
         );
 
         // The palette memo is keyed by section and lives for the request, so a roster or talent

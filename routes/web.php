@@ -59,7 +59,15 @@ Route::get('/privacy', function () {
 })->name('privacy');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Where every sign-in lands: the arena side of the site (guides, comps, friends). The route
+    // keeps its old name and path so the many redirects and bookmarks to it still work.
+    Route::get('/dashboard', \App\Livewire\Home::class)->name('dashboard');
+
+    // The learning profile that used to BE the dashboard — diagnostic, concept mastery, quizzes.
+    // Unchanged, one link away from Home. See App\Livewire\Home's docblock.
+    Route::get('/training', [DashboardController::class, 'index'])->name('training');
+
+    Route::get('/friends', \App\Livewire\Friends::class)->name('friends.index');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -211,6 +219,17 @@ Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group
 Route::middleware('auth')->prefix('guides')->name('guides.')->group(function () {
     Route::get('/', \App\Livewire\Guides\Index::class)->name('index');
     Route::get('/{guide}/edit', \App\Livewire\Guides\Builder::class)->name('edit');
+
+    // Start a guide from anywhere — the mobile nav's Build button posts here. POST, never a link:
+    // a GET that creates rows would create one every time a browser prefetched it.
+    Route::post('/new/{type}', function (string $type) {
+        $guideType = \App\Enums\UserGuideType::tryFrom($type);
+        abort_if($guideType === null, 404);
+
+        $guide = \App\Models\UserGuide::startDraft(auth()->user(), $guideType);
+
+        return redirect()->route('guides.edit', ['guide' => $guide->slug]);
+    })->middleware('throttle:20,1')->name('create');
 });
 
 // ------- Battle.net link + your characters -------

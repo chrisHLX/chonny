@@ -124,6 +124,50 @@
         </div>
     @endif
 
+    {{-- Guides other players have opened up to you for editing — a friend's with "friends can
+         edit" on, or one in your guild with "guild can edit" on. Edit links, drafts included:
+         helping someone finish a guide is the point. --}}
+    @if ($this->collaborating->isNotEmpty())
+        <div class="mt-10">
+            <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-1">You can help edit</h2>
+            <p class="text-[12.5px] text-ink-subtle mb-3">Friends and guildmates who opened their guides to you. Anything you add is credited to you.</p>
+            <div class="flex flex-col gap-2">
+                @foreach ($this->collaborating as $guide)
+                    <div class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4" wire:key="collab-{{ $guide->id }}">
+                        <div class="flex items-center gap-3 min-w-0 flex-1">
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                @forelse ($guide->members as $member)
+                                    @if ($member->specialization)
+                                        <x-spec-icon :spec="$member->specialization" size="w-8 h-8"/>
+                                    @endif
+                                @empty
+                                    <span class="w-8 h-8 rounded-md border border-dashed border-line-strong"></span>
+                                @endforelse
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <a href="{{ route('guides.edit', $guide->slug) }}" wire:navigate
+                                       class="text-[15px] font-semibold text-ink hover:text-gold transition-colors truncate">{{ $guide->title }}</a>
+                                    <span class="{{ $guide->status === UserGuideStatus::Published ? 'badge-green' : 'badge-gray' }}">
+                                        {{ $guide->status === UserGuideStatus::Published ? 'Published' : 'Draft' }}
+                                    </span>
+                                </div>
+                                <p class="text-[12px] text-ink-subtle mt-1">
+                                    by {{ $guide->user?->handle() }}
+                                    @if ($guide->lastEditor && $guide->lastEditor->id !== $guide->user_id)
+                                        &middot; last edited by {{ $guide->lastEditor->id === auth()->id() ? 'you' : $guide->lastEditor->handle() }}
+                                    @endif
+                                    &middot; {{ $guide->updated_at->diffForHumans() }}
+                                </p>
+                            </div>
+                        </div>
+                        <a href="{{ route('guides.edit', $guide->slug) }}" wire:navigate class="btn-secondary shrink-0 self-start sm:self-auto">Edit</a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     @if ($this->shared->isNotEmpty())
         <div class="mt-10">
             <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-3">Shared with you</h2>

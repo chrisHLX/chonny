@@ -75,7 +75,7 @@ class NextStepReflection extends Component
             ->exists();
 
         if ($hasSuccessor || $concluded) {
-            $this->redirect(route('dashboard'));
+            $this->redirect(route('training'));
         }
     }
 

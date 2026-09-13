@@ -352,7 +352,7 @@ test('dashboard load completes an active module step and surfaces the freshly ge
 
     $user->modules()->attach($module->id, ['status' => 'completed']);
 
-    $response = $this->actingAs($user)->get(route('dashboard', [
+    $response = $this->actingAs($user)->get(route('training', [
         'category_id' => $subject->category_id,
         'subject_id'  => $subject->id,
     ]));

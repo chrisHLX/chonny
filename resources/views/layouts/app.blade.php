@@ -101,7 +101,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                     </button>
-                    <a href="{{ auth()->check() ? route_with_context('dashboard') : route('modules.index') }}"
+                    <a href="{{ auth()->check() ? route('dashboard') : url('/') }}"
                        class="flex items-center gap-1.5 hover:opacity-90 transition-opacity">
                         <svg class="w-5 h-5 text-gold shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20 3 L35 11.5 L35 28.5 L20 37 L5 28.5 L5 11.5 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
@@ -114,10 +114,14 @@
                     </a>
                 </div>
 
-                <main class="flex-1 overflow-y-auto">
+                {{-- Bottom padding on phones clears the tab bar below, so the last thing on a page
+                     can always be scrolled into view above it. --}}
+                <main class="flex-1 overflow-y-auto pb-20 sm:pb-0">
                     {{ $slot }}
                 </main>
             </div>
+
+            @include('layouts.mobile-tab-bar')
         </div>
 
         <!-- Page transition loader -->

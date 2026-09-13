@@ -156,6 +156,64 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Ids of every player this one is friends with (accepted only — a pending request grants
+     * nothing). Memoised on the instance because the nav, the home page and every guide permission
+     * check on a page all ask it, and a friendship does not change mid-request except through
+     * FriendshipService, which callers follow with a fresh model or forgetFriendCache().
+     */
+    public function friendIds(): \Illuminate\Support\Collection
+    {
+        return $this->friendIdsMemo ??= Friendship::accepted()
+            ->involving($this->id)
+            ->get(['requester_id', 'addressee_id'])
+            ->map(fn (Friendship $f) => $f->otherUserId($this->id))
+            ->values();
+    }
+
+    private ?\Illuminate\Support\Collection $friendIdsMemo = null;
+
+    private ?int $pendingFriendRequestsMemo = null;
+
+    public function forgetFriendCache(): void
+    {
+        $this->friendIdsMemo = null;
+        $this->pendingFriendRequestsMemo = null;
+    }
+
+    /** Accepted friends, as users, in name order. */
+    public function friends()
+    {
+        return static::whereIn('id', $this->friendIds())->orderBy('name');
+    }
+
+    public function isFriendsWith(?User $other): bool
+    {
+        return $other !== null && $other->id !== $this->id && $this->friendIds()->contains($other->id);
+    }
+
+    /** Requests other players have sent to this one and are waiting on. */
+    public function incomingFriendRequests()
+    {
+        return Friendship::pending()->where('addressee_id', $this->id)->with('requester')->latest();
+    }
+
+    /** How many requests are waiting — the nav badge. Memoised for the same reason as friendIds(). */
+    public function pendingFriendRequestCount(): int
+    {
+        return $this->pendingFriendRequestsMemo ??= Friendship::pending()->where('addressee_id', $this->id)->count();
+    }
+
+    /**
+     * How this player is named to other players: their handle, which is also what a friend types
+     * to add them. Falls back to the display name only for an account that has never needed a
+     * handle yet (see resolveUsername()).
+     */
+    public function handle(): string
+    {
+        return $this->username ?: ($this->name ?: 'player');
+    }
+
+    /**
      * This account's public handle, assigning one on first use if it has none.
      *
      * Every account predates the username column and no signup step collects one yet (see the

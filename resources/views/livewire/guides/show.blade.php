@@ -33,18 +33,46 @@
                 &middot; updated {{ $guide->updated_at->diffForHumans() }}
             </p>
 
+            {{-- Everyone who actually worked on it, when that was more than the author — a guide a
+                 team wrote together should say so. --}}
+            @if ($this->contributors->count() > 1)
+                <p class="text-[12px] text-ink-subtle mt-1.5">
+                    With help from
+                    @foreach ($this->contributors->where('id', '!=', $guide->user_id) as $person)
+                        <span class="text-violet">&#64;{{ $person->handle() }}</span>@if (! $loop->last), @endif
+                    @endforeach
+                </p>
+            @endif
+
             @if ($guide->summary)
                 <p class="text-[15px] text-ink-muted mt-3 max-w-prose">{{ $guide->summary }}</p>
             @endif
         </div>
 
         <div class="flex flex-col items-end gap-2 shrink-0">
-            @if ($guide->isOwnedBy(auth()->user()))
+            {{-- Edit for anyone allowed to — the author, or a friend/guildmate they opened it to. --}}
+            @if ($guide->isEditableBy(auth()->user()))
                 <a href="{{ route('guides.edit', $guide->slug) }}" wire:navigate class="btn-ghost">Edit</a>
-                @if ($guide->visibility === UserGuideVisibility::Invited)
+                @if ($guide->isOwnedBy(auth()->user()) && $guide->visibility === UserGuideVisibility::Invited)
                     <span class="badge-gray">Private</span>
                 @endif
             @endif
+
+            {{-- The reader's way to connect with the author. Hidden on your own guide and once
+                 you're friends; shows the pending state rather than a second button. --}}
+            @auth
+                @if (! $guide->isOwnedBy(auth()->user()) && $guide->user)
+                    @if (auth()->user()->isFriendsWith($guide->user))
+                        <span class="text-[11.5px] text-ink-subtle">Friends with &#64;{{ $guide->user->handle() }}</span>
+                    @elseif ($friendRequestSent)
+                        <span class="text-[11.5px] text-green-400">{{ $friendRequestSent }}</span>
+                    @else
+                        <button type="button" wire:click="addAuthorAsFriend" class="btn-ghost text-[12px]">
+                            + Add &#64;{{ $guide->user->handle() }}
+                        </button>
+                    @endif
+                @endif
+            @endauth
         </div>
     </div>
 
@@ -158,6 +186,7 @@
                             <span class="badge-gold">{{ $section->kind->label() }}</span>
                         @endunless
                         <h2 class="text-[17px] font-semibold text-ink mt-1.5">{{ $section->title }}</h2>
+                        <x-guides.section-credit :section="$section" :owner-id="$guide->user_id"/>
 
                         @if ($section->kind->usesOpponent() && $opponent)
                             <div class="flex items-center gap-1.5 mt-1.5">
@@ -177,7 +206,7 @@
                         @if ($data)
                             <x-guides.metrics :metrics="$data['metrics']" :tracks-control="$section->kind->tracksControl()"/>
                         @endif
-                        <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section"/>
+                        <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :owner-id="$guide->user_id"/>
                     @endif
                 </div>
             @endforeach

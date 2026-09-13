@@ -2,13 +2,10 @@
 
 namespace App\Livewire\Guides;
 
-use App\Enums\UserGuideSectionKind;
 use App\Enums\UserGuideStatus;
 use App\Enums\UserGuideType;
-use App\Enums\UserGuideVisibility;
 use App\Models\PageViewEvent;
 use App\Models\UserGuide;
-use App\Models\UserGuideSection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -43,6 +40,20 @@ class Index extends Component
             ->get();
     }
 
+    /**
+     * Other players' guides this one may edit — a friend's with "friends can edit" on, or one in
+     * their guild with "guild can edit" on. Drafts included: helping somebody finish a guide is
+     * the point. Rows are edit links, not read links.
+     */
+    #[Computed]
+    public function collaborating()
+    {
+        return UserGuide::editableByCollaborator(auth()->user())
+            ->with(['user', 'members.specialization.gameClass', 'lastEditor'])
+            ->orderByDesc('updated_at')
+            ->get();
+    }
+
     public function mount(): void
     {
         PageViewEvent::log('guides_index');
@@ -67,24 +78,7 @@ class Index extends Component
             return null;
         }
 
-        $guide = UserGuide::create([
-            'user_id' => auth()->id(),
-            'type' => $guideType,
-            'status' => UserGuideStatus::Draft,
-            'visibility' => UserGuideVisibility::Invited,
-            'title' => $guideType === UserGuideType::ClassGuide ? 'Untitled class guide' : 'Untitled comp guide',
-        ]);
-
-        // One starter sequence, so the builder opens on something to fill in rather than an empty
-        // page. Its title differs by type only because the two are answering different questions —
-        // it is an ordinary section either way, renamable and deletable like any other.
-        UserGuideSection::create([
-            'user_guide_id' => $guide->id,
-            'kind' => UserGuideSectionKind::Sequence,
-            'title' => $guideType === UserGuideType::ClassGuide ? 'The sequence' : 'The opener',
-            'row' => 0,
-            'column' => 0,
-        ]);
+        $guide = UserGuide::startDraft(auth()->user(), $guideType);
 
         return $this->redirectRoute('guides.edit', ['guide' => $guide->slug], navigate: true);
     }
