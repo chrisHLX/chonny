@@ -58,7 +58,13 @@ Route::get('/privacy', function () {
     return view('privacy');
 })->name('privacy');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+// No 'verified' middleware, deliberately (2026-09-14). It used to sit on this group, so on
+// production (User::hasVerifiedEmail() only bypasses the check outside production) every email
+// sign-up's first screen was a "please verify" wall — while the guide builder, the thing Home
+// exists to promote, never required verification at all. An unconfirmed account now gets in and
+// sees a "confirm your email" banner (layouts.app) instead. The email still matters for password
+// reset, which is why the banner stays until it is confirmed.
+Route::middleware('auth')->group(function () {
     // Where every sign-in lands: the arena side of the site (guides, comps, friends). The route
     // keeps its old name and path so the many redirects and bookmarks to it still work.
     Route::get('/dashboard', \App\Livewire\Home::class)->name('dashboard');

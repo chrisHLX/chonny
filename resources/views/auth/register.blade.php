@@ -1,9 +1,20 @@
 <x-guest-layout>
-    <div class="flex items-start gap-2.5 mb-5 px-3 py-2.5 rounded-md bg-gold-subtle border border-line-gold">
+    {{-- Says what the account is FOR before asking for anything. The dev notice below used to be
+         the first thing here and said features "may change or reset" — the wrong thing to tell
+         someone about to spend an evening writing a plan, and not true of saved guides. --}}
+    <div class="mb-5">
+        <h1 class="font-display text-[22px] text-ink leading-tight">Plan your arena games</h1>
+        <p class="text-[13px] text-ink-muted mt-1.5 leading-snug">
+            Build your opener and your go from real spell data, see what survives diminishing
+            returns, and share the plan with the people you queue with. Free.
+        </p>
+    </div>
+
+    <div class="flex items-start gap-2.5 mb-5 px-3 py-2 rounded-md bg-gold-subtle border border-line-gold">
         <x-mc-icon name="icon-flask" class="w-4 h-4 text-gold shrink-0 mt-0.5"/>
         <p class="text-[12px] text-ink-muted leading-snug">
-            <span class="text-gold font-semibold">Actively in development.</span>
-            Expect rough edges, and features may change or reset while we build.
+            <span class="text-gold font-semibold">Early days.</span>
+            Expect rough edges &mdash; and tell us what's missing.
         </p>
     </div>
 

@@ -144,7 +144,9 @@ class BattlenetController extends Controller
         $request->session()->forget(self::PENDING_KEY);
         $count = $this->queueDetailSyncs($account);
 
-        return redirect()->route('characters.index')->with('battlenet_status',
+        // Home, not My Characters: a new player signed up to plan games, and Home is where the
+        // first guide gets started. Their characters show on Home's own Battle.net card.
+        return redirect()->route('dashboard')->with('battlenet_status',
             "Welcome to MindCollector, {$user->name}. We're fetching ratings, gear and talents for {$count} "
             .Str::plural('character', $count).' now.');
     }
@@ -183,7 +185,7 @@ class BattlenetController extends Controller
 
             $count = $this->queueDetailSyncs($this->sync->linkAccount($account->user, $token, $info));
 
-            return redirect()->intended(route('characters.index'))
+            return redirect()->intended(route('dashboard'))
                 ->with('battlenet_status', "Signed in as {$info['battletag']}. Refreshing {$count} "
                     .Str::plural('character', $count).'.');
         }

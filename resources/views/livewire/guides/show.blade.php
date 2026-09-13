@@ -221,6 +221,26 @@
         author's.
     </p>
 
+    {{-- Signed-out readers only, and only here, after the guide: a shared guide link is how most
+         people first arrive, and someone who has just read one is the person most likely to want
+         to write their own. Nothing else on the page told them they could. --}}
+    @guest
+        <div class="linear-card border-line-gold p-5 mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+            <div class="flex-1 min-w-0">
+                <h2 class="text-[15px] font-semibold text-ink">Build your own game plan</h2>
+                <p class="text-[13px] text-ink-muted mt-1 max-w-prose">
+                    Pick your comp and drag in the abilities you'd press. MindCollector works out how
+                    long the control lasts after diminishing returns and how often you can run it again.
+                    Free, and private until you publish it.
+                </p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="{{ route('register') }}" class="btn-primary">Create a free account</a>
+                <a href="{{ route('login') }}" class="btn-ghost">Sign in</a>
+            </div>
+        </div>
+    @endguest
+
     {{-- Feedback and comments ----------------------------------------------------
          Below the guide, never above it: the content is what someone came for, and asking for a
          verdict at the top asks for one before they have read anything. --}}

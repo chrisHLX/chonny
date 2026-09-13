@@ -3,23 +3,95 @@
 
     $classColors = config('wow_classes.colors', []);
     $me = auth()->user();
+
+    // First run: no guide of their own yet. Most of this page is built for someone who has
+    // already written something and has people to share it with — for a brand-new account that
+    // meant "Welcome back", three equal cards, and a column of empty friend/guild blocks. So the
+    // first visit leads with the one thing the account is for, and shows a real plan to copy.
+    $firstRun = $this->myGuides->isEmpty();
+    $example = $firstRun ? $this->popularGuides->first() : null;
 @endphp
 
 <div class="max-w-6xl mx-auto px-4 py-6 sm:py-8">
+
+    {{-- Arrivals from a redirect: Battle.net sign-in/sign-up, and the email-confirmation link. --}}
+    @if (session('battlenet_status'))
+        <div class="linear-card border-[#148EFF]/40 px-4 py-2.5 mb-5 text-[13px] text-ink">{{ session('battlenet_status') }}</div>
+    @endif
+    @if (request()->boolean('verified'))
+        <div class="linear-card border-green-500/40 px-4 py-2.5 mb-5 text-[13px] text-ink">Email confirmed. Thanks.</div>
+    @endif
 
     {{-- Greeting --}}
     <div class="mb-6">
         <p class="text-[11px] uppercase tracking-[0.16em] text-gold font-medium mb-1.5">MindCollector</p>
         <h1 class="font-display text-[26px] sm:text-3xl text-ink leading-tight">
-            Welcome back, {{ $me->name }}
+            {{ $firstRun ? 'Welcome' : 'Welcome back' }}, {{ $me->name }}
         </h1>
         <p class="text-[13.5px] text-ink-muted mt-1.5 max-w-prose">
-            Plan your opener and your go with the people you queue with, then share it.
+            @if ($firstRun)
+                Turn a matchup into a plan you can actually play, instead of trying to hold it all in your head.
+            @else
+                Plan your opener and your go with the people you queue with, then share it.
+            @endif
         </p>
     </div>
 
-    {{-- The three things to do ------------------------------------------------------ --}}
-    <div class="grid gap-3 md:grid-cols-3 mb-8">
+    @if ($firstRun)
+        {{-- First run: one thing to do, explained once ----------------------------------- --}}
+        <div class="linear-card border-line-gold relative overflow-hidden p-5 sm:p-7 mb-6">
+            <x-ornament.corner position="tr" class="absolute top-3 right-3 w-10 h-10 text-gold/20"/>
+
+            <h2 class="font-display text-[22px] sm:text-[26px] text-ink leading-tight">Build your first game plan</h2>
+            <p class="text-[13.5px] text-ink-muted mt-2 max-w-2xl">
+                Pick your comp, then drag in the abilities you'd actually press. MindCollector works
+                out how long the control lasts after diminishing returns and how often you can run it
+                again, from the game's own spell data.
+            </p>
+
+            {{-- What a plan is made of. Prompts, not section types: a guide has one sequence kind
+                 (see UserGuideSectionKind) and the author's own titles say which is which. --}}
+            <div class="grid sm:grid-cols-3 gap-3 mt-5">
+                <div class="border-l-2 border-gold/60 pl-3">
+                    <p class="text-[13px] font-semibold text-ink">The opener</p>
+                    <p class="text-[12px] text-ink-muted mt-0.5">The CC chain that sets up your first kill attempt.</p>
+                </div>
+                <div class="border-l-2 border-gold/60 pl-3">
+                    <p class="text-[13px] font-semibold text-ink">The go</p>
+                    <p class="text-[12px] text-ink-muted mt-0.5">Cooldowns and control stacked into one window.</p>
+                </div>
+                <div class="border-l-2 border-gold/60 pl-3">
+                    <p class="text-[13px] font-semibold text-ink">Their answers</p>
+                    <p class="text-[12px] text-ink-muted mt-0.5">The defensives you need them to spend first.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 mt-6">
+                <button type="button" wire:click="createGuide('comp')" class="btn-primary justify-center">Plan a 3v3 or 2v2</button>
+                <button type="button" wire:click="createGuide('class')" class="btn-secondary justify-center">Write a class guide</button>
+                <span class="text-[12px] text-ink-subtle sm:ml-2">Private until you publish it.</span>
+            </div>
+
+            @if ($example && ($exampleUrl = $example->publicUrl()))
+                <a href="{{ $exampleUrl }}" wire:navigate
+                   class="inline-flex items-center gap-2 mt-5 text-[12.5px] text-ink-muted hover:text-gold transition-colors">
+                    <span class="flex items-center gap-0.5">
+                        @foreach ($example->members as $member)
+                            @if ($member->specialization)
+                                <x-spec-icon :spec="$member->specialization" size="w-5 h-5"/>
+                            @endif
+                        @endforeach
+                    </span>
+                    See one another player wrote: <span class="text-ink">&ldquo;{{ $example->title }}&rdquo;</span> &rarr;
+                </a>
+            @endif
+        </div>
+    @endif
+
+    {{-- The three things to do ------------------------------------------------------
+         On a first visit the guide card is already the hero above, so only the other two show. --}}
+    <div class="grid gap-3 {{ $firstRun ? 'md:grid-cols-2' : 'md:grid-cols-3' }} mb-8">
+        @unless ($firstRun)
 
         {{-- Build a guide: the primary action, so it carries the gold. --}}
         <div class="linear-card p-5 flex flex-col border-line-gold relative overflow-hidden">
@@ -43,6 +115,7 @@
                 </a>
             @endif
         </div>
+        @endunless
 
         {{-- Battle.net --}}
         <div class="linear-card p-5 flex flex-col">
@@ -121,7 +194,8 @@
         {{-- Main column ------------------------------------------------------------- --}}
         <div class="lg:col-span-2 space-y-8 min-w-0">
 
-            {{-- Your guides --}}
+            {{-- Your guides (on a first visit there are none, and the hero above already says so) --}}
+            @unless ($firstRun)
             <section>
                 <div class="flex items-baseline justify-between gap-4 mb-3">
                     <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Your guides</h2>
@@ -154,6 +228,7 @@
                     </div>
                 @endforelse
             </section>
+            @endunless
 
             {{-- You can help edit --}}
             @if ($this->collaborating->isNotEmpty())
@@ -180,6 +255,12 @@
                 </section>
             @endif
 
+            @if ($firstRun)
+                <x-home.popular-guides :guides="$this->popularGuides" :class-colors="$classColors"
+                                       heading="Plans other players have written"
+                                       intro="Open one to see what a finished plan looks like."/>
+            @endif
+
             {{-- From your friends and guilds --}}
             <section>
                 <div class="flex items-baseline justify-between gap-4 mb-3">
@@ -201,18 +282,10 @@
                 @endforelse
             </section>
 
-            {{-- Popular --}}
-            @if ($this->popularGuides->isNotEmpty())
-                <section>
-                    <div class="flex items-baseline justify-between gap-4 mb-3">
-                        <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Popular player guides</h2>
-                        <a href="{{ route('guides.browse') }}" wire:navigate class="text-[12px] text-ink-subtle hover:text-gold">Browse all &rarr;</a>
-                    </div>
-                    @foreach ($this->popularGuides as $guide)
-                        <x-guides.card :guide="$guide" :class-colors="$classColors" :compact="true" wire:key="pop-{{ $guide->id }}"/>
-                    @endforeach
-                </section>
-            @endif
+            {{-- Popular (on a first visit it sits above the friends block instead) --}}
+            @unless ($firstRun)
+                <x-home.popular-guides :guides="$this->popularGuides" :class-colors="$classColors"/>
+            @endunless
         </div>
 
         {{-- Side column ------------------------------------------------------------- --}}

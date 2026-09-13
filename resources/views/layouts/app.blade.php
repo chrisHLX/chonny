@@ -12,10 +12,10 @@
         @php
             $seoTitle = trim($title ?? '') !== ''
                 ? $title
-                : 'MindCollector — WoW Arena PvP: Comps, Burst Windows & Spell Data';
+                : 'MindCollector — WoW Arena Game Plans, Comps & Spell Data';
             $seoDescription = trim($description ?? '') !== ''
                 ? $description
-                : 'Build 3v3 arena comps and compare full spell kits side by side — crowd-control chains, burst windows, cooldowns, PvP talents and talent-aware spell data for every class and spec.';
+                : 'Plan your WoW arena games: build your opener, your go and the defensives you need to force from real spell data — CC chains, diminishing returns, cooldowns and counters for every spec — and share the plan with your team.';
             $seoImage = url($ogImage ?? '/android-chrome-512x512.png');
             $seoCanonical = url()->to(request()->getPathInfo());
 
@@ -32,16 +32,16 @@
                         '@type' => 'WebSite',
                         'name' => 'MindCollector',
                         'url' => 'https://mindcollector.com/',
-                        'description' => 'WoW arena PvP comp builder, burst-window analysis and talent-aware spell data.',
+                        'description' => 'WoW arena game plans built from real spell data: opener and go planning, 3v3 comp comparison, CC chains, cooldowns and counters.',
                     ],
                     [
                         '@type' => 'ItemList',
                         'name' => 'MindCollector sections',
                         'itemListElement' => [
-                            ['@type' => 'SiteNavigationElement', 'position' => 1, 'name' => '3v3 Comp Builder', 'url' => 'https://mindcollector.com/wow-comps'],
-                            ['@type' => 'SiteNavigationElement', 'position' => 2, 'name' => 'Spell Explorer', 'url' => 'https://mindcollector.com/spells'],
-                            ['@type' => 'SiteNavigationElement', 'position' => 3, 'name' => 'Top Burst Windows', 'url' => 'https://mindcollector.com/top-damage-rotations'],
-                            ['@type' => 'SiteNavigationElement', 'position' => 4, 'name' => 'PvP Diagnostic', 'url' => 'https://mindcollector.com/diagnostic'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 1, 'name' => 'Player Guides', 'url' => 'https://mindcollector.com/browse-guides'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 2, 'name' => '3v3 Comp Builder', 'url' => 'https://mindcollector.com/wow-comps'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 3, 'name' => 'Class Guides', 'url' => 'https://mindcollector.com/pvp-guides'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 4, 'name' => 'Spell Explorer', 'url' => 'https://mindcollector.com/spells'],
                         ],
                     ],
                 ],
@@ -117,6 +117,32 @@
                 {{-- Bottom padding on phones clears the tab bar below, so the last thing on a page
                      can always be scrolled into view above it. --}}
                 <main class="flex-1 overflow-y-auto pb-20 sm:pb-0">
+                    {{-- Replaces the "verify your email" wall that used to stand in front of Home (see
+                         the note on the auth route group in routes/web.php). Asks, never blocks.
+                         Uses hasVerifiedEmail() itself, so it follows the same rule the wall did and
+                         never shows outside production, where that check is bypassed. --}}
+                    @auth
+                        @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
+                            <div class="border-b border-line-gold bg-gold-subtle px-4 py-2.5">
+                                <div class="max-w-6xl mx-auto flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px]">
+                                    <span class="text-ink">
+                                        Confirm your email &mdash; we sent a link to
+                                        <span class="font-medium">{{ auth()->user()->email }}</span>.
+                                        <span class="text-ink-muted">You'll need it to reset your password.</span>
+                                    </span>
+                                    @if (session('status') === 'verification-link-sent')
+                                        <span class="text-green-400">New link sent.</span>
+                                    @else
+                                        <form method="POST" action="{{ route('verification.send') }}">
+                                            @csrf
+                                            <button type="submit" class="text-gold hover:text-gold-light underline underline-offset-2">Send it again</button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
+                    @endauth
+
                     {{ $slot }}
                 </main>
             </div>

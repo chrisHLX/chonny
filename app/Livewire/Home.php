@@ -24,6 +24,13 @@ use Livewire\Component;
  * builder — then what the player's friends and guilds are writing, because the site is meant to
  * feel like a place players share plans, not a reference they read alone. On a phone this is also
  * the page that has to work without the sidebar, so every destination on it is a real link.
+ *
+ * FIRST RUN (2026-09-14): a player with no guide of their own gets a different top of the page —
+ * one "Build your first game plan" block, a link to the most-liked public guide as an example,
+ * and other players' plans above the friends block. The regular layout assumes someone who has
+ * already written something and has people to share it with, and for a brand-new account that
+ * meant "Welcome back", three equal cards, and a column of empty social blocks. The switch is
+ * computed in the view from myGuides, so nothing is stored.
  */
 class Home extends Component
 {

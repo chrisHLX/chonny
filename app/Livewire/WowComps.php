@@ -901,8 +901,8 @@ class WowComps extends Component
             'drCategoryLegend' => $this->drCategoryLegend,
             'offensiveRotations' => $this->offensiveRotations,
         ])->layout('layouts.app', [
-            'title' => 'MindCollector — WoW 3v3 Arena Comp Builder & Spell Kit Comparison',
-            'description' => 'Build a 3v3 arena team and compare every class and spec\'s full spell kit side by side — crowd-control chains, cooldowns, PvP talents, burst windows and talent-aware spell data.',
+            'title' => 'MindCollector — WoW 3v3 Arena Comp Builder & Game Plans',
+            'description' => 'Build a 3v3 arena team and compare every spec\'s spell kit side by side — crowd-control chains, cooldowns, burst windows and counters — then turn it into a game plan you can share with your team.',
         ]);
     }
 }

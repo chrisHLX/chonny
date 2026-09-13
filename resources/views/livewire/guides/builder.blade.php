@@ -106,208 +106,6 @@
         </div>
     @endif
 
-    {{-- Who can edit. The author's two switches, shown for drafts too — collaborating on a guide
-         before anyone else can read it is the common case. --}}
-    @if ($this->isAuthor)
-        <div class="linear-card p-4 mb-6">
-            <div class="flex items-baseline justify-between gap-4 mb-3 flex-wrap">
-                <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Who can edit this</h2>
-                <a href="{{ route('friends.index') }}" wire:navigate class="text-[12px] text-ink-subtle hover:text-gold">Manage friends &rarr;</a>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-2">
-                <button type="button" wire:click="setFriendsCanEdit({{ $guide->friends_can_edit ? 'false' : 'true' }})"
-                        class="flex items-start gap-3 px-3 py-2.5 rounded border text-left transition-colors {{ $guide->friends_can_edit ? 'border-line-gold bg-gold-subtle' : 'border-line hover:border-line-strong' }}">
-                    <span class="mt-0.5 w-4 h-4 rounded border shrink-0 flex items-center justify-center {{ $guide->friends_can_edit ? 'border-gold bg-gold text-surface-0' : 'border-line-strong' }}">
-                        @if ($guide->friends_can_edit) <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg> @endif
-                    </span>
-                    <span>
-                        <span class="block text-[13px] font-medium text-ink">My friends can edit</span>
-                        <span class="block text-[11px] text-ink-subtle">
-                            @php $friendCount = auth()->user()->friendIds()->count(); @endphp
-                            {{ $friendCount === 0 ? 'You have no friends added yet.' : $friendCount.' '.Str::plural('friend', $friendCount).' — follows your friends list.' }}
-                        </span>
-                    </span>
-                </button>
-
-                @php $noGuild = $this->myGuilds->isEmpty(); @endphp
-                <button type="button" wire:click="setGuildCanEdit({{ $guide->guild_can_edit ? 'false' : 'true' }})"
-                        @disabled($noGuild || (! $guide->guild_can_edit && $guide->guild_id === null && $this->myGuilds->count() > 1))
-                        class="flex items-start gap-3 px-3 py-2.5 rounded border text-left transition-colors {{ $guide->guild_can_edit ? 'border-line-gold bg-gold-subtle' : 'border-line hover:border-line-strong' }} {{ $noGuild ? 'opacity-50 cursor-not-allowed' : '' }}">
-                    <span class="mt-0.5 w-4 h-4 rounded border shrink-0 flex items-center justify-center {{ $guide->guild_can_edit ? 'border-gold bg-gold text-surface-0' : 'border-line-strong' }}">
-                        @if ($guide->guild_can_edit) <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg> @endif
-                    </span>
-                    <span>
-                        <span class="block text-[13px] font-medium text-ink">My guild can edit</span>
-                        <span class="block text-[11px] text-ink-subtle">
-                            @if ($noGuild)
-                                Join or create a guild first.
-                            @elseif ($guide->guild)
-                                Members of {{ $guide->guild->name }}.
-                            @elseif ($this->myGuilds->count() > 1)
-                                Pick which guild below first.
-                            @else
-                                Members of {{ $this->myGuilds->first()->name }}.
-                            @endif
-                        </span>
-                    </span>
-                </button>
-            </div>
-
-            {{-- Which guild, when the author is in more than one — the same guild_id a
-                 guild-visible guide is shared with, so a guide never names two guilds. --}}
-            @if ($this->myGuilds->count() > 1)
-                <div class="flex flex-wrap items-center gap-2 mt-3">
-                    <span class="text-[11px] text-ink-subtle">Guild:</span>
-                    @foreach ($this->myGuilds as $g)
-                        <button type="button" wire:click="setGuild({{ $g->id }})" wire:key="edit-guild-{{ $g->id }}"
-                                class="px-2.5 py-1 rounded border text-[12px] transition-colors {{ $guide->guild_id === $g->id ? 'border-line-gold bg-gold-subtle text-gold' : 'border-line text-ink-muted hover:border-line-strong' }}">
-                            {{ $g->name }}
-                        </button>
-                    @endforeach
-                </div>
-            @endif
-        </div>
-    @endif
-
-    {{-- Sharing ------------------------------------------------------------------ --}}
-    @if ($isPublished && $this->isAuthor)
-        <div class="linear-card p-4 mb-6">
-            <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-3">Who can read this</h2>
-
-            <div class="flex flex-wrap gap-2 mb-3">
-                @foreach (UserGuideVisibility::cases() as $option)
-                    @php $noGuild = $option === UserGuideVisibility::Guild && $this->myGuilds->isEmpty(); @endphp
-                    <button type="button" wire:click="setVisibility('{{ $option->value }}')"
-                            @disabled($noGuild)
-                            class="px-3 py-2 rounded border text-left transition-colors {{ $guide->visibility === $option ? 'border-line-gold bg-gold-subtle' : 'border-line hover:border-line-strong' }} {{ $noGuild ? 'opacity-50 cursor-not-allowed' : '' }}">
-                        <span class="block text-[13px] font-medium text-ink">{{ $option->label() }}</span>
-                        <span class="block text-[11px] text-ink-subtle">
-                            {{ $noGuild ? 'Join or create a guild first.' : $option->description() }}
-                        </span>
-                    </button>
-                @endforeach
-            </div>
-
-            {{-- Which guild. Only shown when it is actually a choice — with one guild the
-                 visibility button already adopted it, and a picker with a single option is noise. --}}
-            @if ($guide->visibility === UserGuideVisibility::Guild && $this->myGuilds->count() > 1)
-                <div class="flex flex-wrap gap-2 mb-3">
-                    @foreach ($this->myGuilds as $g)
-                        <button type="button" wire:click="setGuild({{ $g->id }})"
-                                class="px-2.5 py-1.5 rounded border text-[12px] transition-colors {{ $guide->guild_id === $g->id ? 'border-line-gold bg-gold-subtle text-gold' : 'border-line text-ink-muted hover:border-line-strong' }}">
-                            {{ $g->name }}
-                        </button>
-                    @endforeach
-                </div>
-            @elseif ($guide->visibility === UserGuideVisibility::Guild && $guide->guild)
-                <p class="text-[12px] text-ink-muted mb-3">
-                    Shared with <a href="{{ route('guilds.show', $guide->guild) }}" wire:navigate
-                                   class="text-gold hover:text-gold-light">{{ $guide->guild->name }}</a>.
-                </p>
-            @endif
-
-            @if ($guide->visibility === UserGuideVisibility::Public)
-                @if ($url = $guide->publicUrl())
-                    <div class="flex items-center gap-2" x-data="{ copied: false }">
-                        <input type="text" readonly value="{{ $url }}"
-                               class="form-input flex-1 text-[12px] font-mono"
-                               x-ref="shareUrl" x-on:focus="$event.target.select()">
-                        <button type="button" class="btn-ghost shrink-0"
-                                x-on:click="navigator.clipboard.writeText($refs.shareUrl.value); copied = true; setTimeout(() => copied = false, 1500)">
-                            <span x-show="!copied">Copy link</span>
-                            <span x-show="copied" x-cloak class="text-gold">Copied</span>
-                        </button>
-                    </div>
-                @endif
-            @else
-                <div class="flex items-start gap-2">
-                    <div class="flex-1">
-                        <div class="flex gap-2">
-                            <input type="email" wire:model="shareEmail" placeholder="Their account email"
-                                   class="form-input flex-1 text-[13px]"
-                                   wire:keydown.enter="shareWith">
-                            <button type="button" wire:click="shareWith" class="btn-secondary shrink-0">Add</button>
-                        </div>
-                        @if ($shareError)
-                            <p class="text-[11.5px] text-red-400 mt-1">{{ $shareError }}</p>
-                        @else
-                            <p class="text-[11.5px] text-ink-subtle mt-1">
-                                They need a MindCollector account already &mdash; we don't send invitations to
-                                addresses that haven't signed up.
-                            </p>
-                        @endif
-                    </div>
-                </div>
-
-                @if ($this->viewers->isNotEmpty())
-                    <div class="flex flex-wrap gap-1.5 mt-3">
-                        @foreach ($this->viewers as $viewer)
-                            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded border border-line bg-surface-2 text-[12px] text-ink"
-                                  wire:key="viewer-{{ $viewer->id }}">
-                                {{ $viewer->name }}
-                                <button type="button" wire:click="unshare({{ $viewer->id }})"
-                                        class="text-ink-subtle hover:text-red-400 transition-colors">&times;</button>
-                            </span>
-                        @endforeach
-                    </div>
-                @endif
-            @endif
-        </div>
-    @endif
-
-    {{-- Written as -------------------------------------------------------------------
-         Opt-in: sign the guide with one of your own characters, and readers see its exp,
-         ratings, gear and talents. Nothing is shown until you pick one. Author only — signing
-         somebody else's guide with your character would put your name on work that isn't yours. --}}
-    @if ($this->isAuthor)
-    <div class="linear-card p-4 mb-6">
-        <div class="flex items-baseline justify-between gap-4 mb-3">
-            <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Written as</h2>
-            <span class="text-[12px] text-ink-subtle">Optional &mdash; readers see this character's exp, gear and talents</span>
-        </div>
-
-        @if (! $this->hasBattlenet)
-            <p class="text-[13px] text-ink-muted">
-                <a href="{{ route('battlenet.redirect') }}" class="text-gold hover:text-gold-light">Link Battle.net</a>
-                to sign this guide with one of your characters.
-            </p>
-        @elseif ($this->myCharacters->isEmpty())
-            <p class="text-[13px] text-ink-muted">
-                No characters at level {{ config('services.battlenet.detail_min_level', 70) }}+ on your linked account.
-                <a href="{{ route('characters.index') }}" wire:navigate class="text-gold hover:text-gold-light">Your characters</a>
-            </p>
-        @else
-            <div class="flex flex-wrap gap-2">
-                <button type="button" wire:click="setAuthorCharacter(null)"
-                        class="px-3 py-2 rounded border text-[12.5px] transition-colors {{ $guide->battlenet_character_id === null ? 'border-line-gold bg-gold-subtle text-ink' : 'border-line text-ink-muted hover:border-line-strong' }}">
-                    Don't sign it
-                </button>
-
-                @foreach ($this->myCharacters as $character)
-                    @php
-                        $picked = $guide->battlenet_character_id === $character->id;
-                        $exp = $character->bestExp();
-                        $cc = $classColors[$character->gameClass?->slug] ?? '#8A8A9A';
-                    @endphp
-                    <button type="button" wire:click="setAuthorCharacter({{ $character->id }})" wire:key="author-{{ $character->id }}"
-                            class="flex items-center gap-2 px-2.5 py-1.5 rounded border text-left transition-colors {{ $picked ? 'border-line-gold bg-gold-subtle' : 'border-line hover:border-line-strong' }}">
-                        @if ($character->specialization)
-                            <x-spec-icon :spec="$character->specialization" size="w-7 h-7"/>
-                        @endif
-                        <span>
-                            <span class="block text-[12.5px] font-medium leading-tight" style="color: {{ $cc }}">{{ $character->name }}</span>
-                            <span class="block text-[10.5px] text-ink-subtle leading-tight">
-                                {{ $character->realm_name }}@if ($exp) &middot; <span class="text-gold tabular-nums">{{ $exp['rating'] }}</span> exp @endif
-                            </span>
-                        </span>
-                    </button>
-                @endforeach
-            </div>
-        @endif
-    </div>
-    @endif
-
     <x-guides.health :health="$this->health" :editable="true"/>
 
     {{-- Roster ---------------------------------------------------------------------
@@ -318,7 +116,11 @@
         <div class="linear-card p-4 mb-6">
             <div class="flex items-baseline justify-between gap-4 mb-3">
                 <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">The matchup</h2>
-                <span class="text-[12px] text-ink-subtle">One spec &mdash; add an opponent only if the guide is about a matchup</span>
+                @if ($this->members->isEmpty())
+                    <span class="text-[12px] text-gold">Start here &mdash; pick the spec this guide is for</span>
+                @else
+                    <span class="text-[12px] text-ink-subtle">One spec &mdash; add an opponent only if the guide is about a matchup</span>
+                @endif
             </div>
 
             <div class="grid sm:grid-cols-[1fr_auto_1fr] items-center gap-3">
@@ -357,7 +159,11 @@
         <div class="linear-card p-4 mb-6">
             <div class="flex items-baseline justify-between gap-4 mb-3">
                 <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">The comp</h2>
-                <span class="text-[12px] text-ink-subtle">Up to {{ $guide->maxMembers() }} &mdash; two for 2v2, three for 3v3</span>
+                @if ($this->members->isEmpty())
+                    <span class="text-[12px] text-gold">Start here &mdash; pick the specs this plan is for</span>
+                @else
+                    <span class="text-[12px] text-ink-subtle">Up to {{ $guide->maxMembers() }} &mdash; two for 2v2, three for 3v3</span>
+                @endif
             </div>
 
             <div class="grid sm:grid-cols-3 gap-3">
@@ -402,6 +208,240 @@
                 </div>
             </div>
         @endif
+    @endif
+
+    {{-- Sharing & credit -----------------------------------------------------------
+         Who can edit, who can read, and which character signs it — all author-only settings,
+         and none of them needed to write a plan. They used to sit ABOVE the comp, so a
+         first-time author saw collaboration and signing options before the one thing they had
+         to do (pick a spec), and on a phone the spec slots were below the fold. Now one line
+         under the roster, collapsed on a draft and open once published, when "who can read
+         this" is the question that matters. The summary says what's set without opening it. --}}
+    @if ($this->isAuthor)
+        @php
+            $editSummary = match (true) {
+                $guide->friends_can_edit && $guide->guild_can_edit => 'Friends and guild can edit',
+                $guide->friends_can_edit => 'Friends can edit',
+                $guide->guild_can_edit => 'Guild can edit',
+                default => 'Only you can edit',
+            };
+            $readSummary = $isPublished ? $guide->visibility->label() : 'Draft — only you can read it';
+            $signSummary = $guide->authorCharacter ? 'Signed as '.$guide->authorCharacter->name : 'Not signed';
+        @endphp
+        <div class="linear-card mb-6" x-data="{ open: {{ $isPublished ? 'true' : 'false' }} }" wire:key="sharing-panel">
+            <button type="button" x-on:click="open = !open" class="w-full flex items-center justify-between gap-4 px-4 py-3 text-left">
+                <span class="min-w-0">
+                    <span class="block text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Sharing &amp; credit</span>
+                    <span class="block text-[12px] text-ink-subtle mt-0.5 truncate">{{ $readSummary }} &middot; {{ $editSummary }} &middot; {{ $signSummary }}</span>
+                </span>
+                <span class="text-[12px] text-ink-subtle hover:text-gold shrink-0">
+                    <span x-show="!open">Show</span><span x-show="open" x-cloak>Hide</span>
+                </span>
+            </button>
+            <div x-show="open" x-cloak class="px-4 pb-4 space-y-4">
+            {{-- Who can edit. The author's two switches, shown for drafts too — collaborating on a guide
+                 before anyone else can read it is the common case. --}}
+            @if ($this->isAuthor)
+                <div class="border-t border-line pt-4">
+                    <div class="flex items-baseline justify-between gap-4 mb-3 flex-wrap">
+                        <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Who can edit this</h2>
+                        <a href="{{ route('friends.index') }}" wire:navigate class="text-[12px] text-ink-subtle hover:text-gold">Manage friends &rarr;</a>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-2">
+                        <button type="button" wire:click="setFriendsCanEdit({{ $guide->friends_can_edit ? 'false' : 'true' }})"
+                                class="flex items-start gap-3 px-3 py-2.5 rounded border text-left transition-colors {{ $guide->friends_can_edit ? 'border-line-gold bg-gold-subtle' : 'border-line hover:border-line-strong' }}">
+                            <span class="mt-0.5 w-4 h-4 rounded border shrink-0 flex items-center justify-center {{ $guide->friends_can_edit ? 'border-gold bg-gold text-surface-0' : 'border-line-strong' }}">
+                                @if ($guide->friends_can_edit) <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg> @endif
+                            </span>
+                            <span>
+                                <span class="block text-[13px] font-medium text-ink">My friends can edit</span>
+                                <span class="block text-[11px] text-ink-subtle">
+                                    @php $friendCount = auth()->user()->friendIds()->count(); @endphp
+                                    {{ $friendCount === 0 ? 'You have no friends added yet.' : $friendCount.' '.Str::plural('friend', $friendCount).' — follows your friends list.' }}
+                                </span>
+                            </span>
+                        </button>
+
+                        @php $noGuild = $this->myGuilds->isEmpty(); @endphp
+                        <button type="button" wire:click="setGuildCanEdit({{ $guide->guild_can_edit ? 'false' : 'true' }})"
+                                @disabled($noGuild || (! $guide->guild_can_edit && $guide->guild_id === null && $this->myGuilds->count() > 1))
+                                class="flex items-start gap-3 px-3 py-2.5 rounded border text-left transition-colors {{ $guide->guild_can_edit ? 'border-line-gold bg-gold-subtle' : 'border-line hover:border-line-strong' }} {{ $noGuild ? 'opacity-50 cursor-not-allowed' : '' }}">
+                            <span class="mt-0.5 w-4 h-4 rounded border shrink-0 flex items-center justify-center {{ $guide->guild_can_edit ? 'border-gold bg-gold text-surface-0' : 'border-line-strong' }}">
+                                @if ($guide->guild_can_edit) <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg> @endif
+                            </span>
+                            <span>
+                                <span class="block text-[13px] font-medium text-ink">My guild can edit</span>
+                                <span class="block text-[11px] text-ink-subtle">
+                                    @if ($noGuild)
+                                        Join or create a guild first.
+                                    @elseif ($guide->guild)
+                                        Members of {{ $guide->guild->name }}.
+                                    @elseif ($this->myGuilds->count() > 1)
+                                        Pick which guild below first.
+                                    @else
+                                        Members of {{ $this->myGuilds->first()->name }}.
+                                    @endif
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+
+                    {{-- Which guild, when the author is in more than one — the same guild_id a
+                         guild-visible guide is shared with, so a guide never names two guilds. --}}
+                    @if ($this->myGuilds->count() > 1)
+                        <div class="flex flex-wrap items-center gap-2 mt-3">
+                            <span class="text-[11px] text-ink-subtle">Guild:</span>
+                            @foreach ($this->myGuilds as $g)
+                                <button type="button" wire:click="setGuild({{ $g->id }})" wire:key="edit-guild-{{ $g->id }}"
+                                        class="px-2.5 py-1 rounded border text-[12px] transition-colors {{ $guide->guild_id === $g->id ? 'border-line-gold bg-gold-subtle text-gold' : 'border-line text-ink-muted hover:border-line-strong' }}">
+                                    {{ $g->name }}
+                                </button>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            @endif
+
+            {{-- Sharing ------------------------------------------------------------------ --}}
+            @if ($isPublished && $this->isAuthor)
+                <div class="border-t border-line pt-4">
+                    <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-3">Who can read this</h2>
+
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        @foreach (UserGuideVisibility::cases() as $option)
+                            @php $noGuild = $option === UserGuideVisibility::Guild && $this->myGuilds->isEmpty(); @endphp
+                            <button type="button" wire:click="setVisibility('{{ $option->value }}')"
+                                    @disabled($noGuild)
+                                    class="px-3 py-2 rounded border text-left transition-colors {{ $guide->visibility === $option ? 'border-line-gold bg-gold-subtle' : 'border-line hover:border-line-strong' }} {{ $noGuild ? 'opacity-50 cursor-not-allowed' : '' }}">
+                                <span class="block text-[13px] font-medium text-ink">{{ $option->label() }}</span>
+                                <span class="block text-[11px] text-ink-subtle">
+                                    {{ $noGuild ? 'Join or create a guild first.' : $option->description() }}
+                                </span>
+                            </button>
+                        @endforeach
+                    </div>
+
+                    {{-- Which guild. Only shown when it is actually a choice — with one guild the
+                         visibility button already adopted it, and a picker with a single option is noise. --}}
+                    @if ($guide->visibility === UserGuideVisibility::Guild && $this->myGuilds->count() > 1)
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            @foreach ($this->myGuilds as $g)
+                                <button type="button" wire:click="setGuild({{ $g->id }})"
+                                        class="px-2.5 py-1.5 rounded border text-[12px] transition-colors {{ $guide->guild_id === $g->id ? 'border-line-gold bg-gold-subtle text-gold' : 'border-line text-ink-muted hover:border-line-strong' }}">
+                                    {{ $g->name }}
+                                </button>
+                            @endforeach
+                        </div>
+                    @elseif ($guide->visibility === UserGuideVisibility::Guild && $guide->guild)
+                        <p class="text-[12px] text-ink-muted mb-3">
+                            Shared with <a href="{{ route('guilds.show', $guide->guild) }}" wire:navigate
+                                           class="text-gold hover:text-gold-light">{{ $guide->guild->name }}</a>.
+                        </p>
+                    @endif
+
+                    @if ($guide->visibility === UserGuideVisibility::Public)
+                        @if ($url = $guide->publicUrl())
+                            <div class="flex items-center gap-2" x-data="{ copied: false }">
+                                <input type="text" readonly value="{{ $url }}"
+                                       class="form-input flex-1 text-[12px] font-mono"
+                                       x-ref="shareUrl" x-on:focus="$event.target.select()">
+                                <button type="button" class="btn-ghost shrink-0"
+                                        x-on:click="navigator.clipboard.writeText($refs.shareUrl.value); copied = true; setTimeout(() => copied = false, 1500)">
+                                    <span x-show="!copied">Copy link</span>
+                                    <span x-show="copied" x-cloak class="text-gold">Copied</span>
+                                </button>
+                            </div>
+                        @endif
+                    @else
+                        <div class="flex items-start gap-2">
+                            <div class="flex-1">
+                                <div class="flex gap-2">
+                                    <input type="email" wire:model="shareEmail" placeholder="Their account email"
+                                           class="form-input flex-1 text-[13px]"
+                                           wire:keydown.enter="shareWith">
+                                    <button type="button" wire:click="shareWith" class="btn-secondary shrink-0">Add</button>
+                                </div>
+                                @if ($shareError)
+                                    <p class="text-[11.5px] text-red-400 mt-1">{{ $shareError }}</p>
+                                @else
+                                    <p class="text-[11.5px] text-ink-subtle mt-1">
+                                        They need a MindCollector account already &mdash; we don't send invitations to
+                                        addresses that haven't signed up.
+                                    </p>
+                                @endif
+                            </div>
+                        </div>
+
+                        @if ($this->viewers->isNotEmpty())
+                            <div class="flex flex-wrap gap-1.5 mt-3">
+                                @foreach ($this->viewers as $viewer)
+                                    <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded border border-line bg-surface-2 text-[12px] text-ink"
+                                          wire:key="viewer-{{ $viewer->id }}">
+                                        {{ $viewer->name }}
+                                        <button type="button" wire:click="unshare({{ $viewer->id }})"
+                                                class="text-ink-subtle hover:text-red-400 transition-colors">&times;</button>
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
+                    @endif
+                </div>
+            @endif
+
+            {{-- Written as -------------------------------------------------------------------
+                 Opt-in: sign the guide with one of your own characters, and readers see its exp,
+                 ratings, gear and talents. Nothing is shown until you pick one. Author only — signing
+                 somebody else's guide with your character would put your name on work that isn't yours. --}}
+            @if ($this->isAuthor)
+            <div class="border-t border-line pt-4">
+                <div class="flex items-baseline justify-between gap-4 mb-3">
+                    <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Written as</h2>
+                    <span class="text-[12px] text-ink-subtle">Optional &mdash; readers see this character's exp, gear and talents</span>
+                </div>
+
+                @if (! $this->hasBattlenet)
+                    <p class="text-[13px] text-ink-muted">
+                        <a href="{{ route('battlenet.redirect') }}" class="text-gold hover:text-gold-light">Link Battle.net</a>
+                        to sign this guide with one of your characters.
+                    </p>
+                @elseif ($this->myCharacters->isEmpty())
+                    <p class="text-[13px] text-ink-muted">
+                        No characters at level {{ config('services.battlenet.detail_min_level', 70) }}+ on your linked account.
+                        <a href="{{ route('characters.index') }}" wire:navigate class="text-gold hover:text-gold-light">Your characters</a>
+                    </p>
+                @else
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" wire:click="setAuthorCharacter(null)"
+                                class="px-3 py-2 rounded border text-[12.5px] transition-colors {{ $guide->battlenet_character_id === null ? 'border-line-gold bg-gold-subtle text-ink' : 'border-line text-ink-muted hover:border-line-strong' }}">
+                            Don't sign it
+                        </button>
+
+                        @foreach ($this->myCharacters as $character)
+                            @php
+                                $picked = $guide->battlenet_character_id === $character->id;
+                                $exp = $character->bestExp();
+                                $cc = $classColors[$character->gameClass?->slug] ?? '#8A8A9A';
+                            @endphp
+                            <button type="button" wire:click="setAuthorCharacter({{ $character->id }})" wire:key="author-{{ $character->id }}"
+                                    class="flex items-center gap-2 px-2.5 py-1.5 rounded border text-left transition-colors {{ $picked ? 'border-line-gold bg-gold-subtle' : 'border-line hover:border-line-strong' }}">
+                                @if ($character->specialization)
+                                    <x-spec-icon :spec="$character->specialization" size="w-7 h-7"/>
+                                @endif
+                                <span>
+                                    <span class="block text-[12.5px] font-medium leading-tight" style="color: {{ $cc }}">{{ $character->name }}</span>
+                                    <span class="block text-[10.5px] text-ink-subtle leading-tight">
+                                        {{ $character->realm_name }}@if ($exp) &middot; <span class="text-gold tabular-nums">{{ $exp['rating'] }}</span> exp @endif
+                                    </span>
+                                </span>
+                            </button>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+            @endif
+            </div>
+        </div>
     @endif
 
     {{-- Talent tree for one comp slot ---------------------------------------------

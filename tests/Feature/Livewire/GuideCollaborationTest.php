@@ -390,7 +390,12 @@ test('guildmates who are not friends yet are suggested on the friends page', fun
  */
 
 test('signing in lands on the arena home with the three main actions', function () {
-    $this->actingAs(User::factory()->create())
+    // A player with a guide of their own; a brand-new account gets the first-run home instead
+    // (see FirstRunExperienceTest).
+    $user = User::factory()->create();
+    collabGuide($user);
+
+    $this->actingAs($user)
         ->get(route('dashboard'))
         ->assertOk()
         ->assertSee('Build a guide')

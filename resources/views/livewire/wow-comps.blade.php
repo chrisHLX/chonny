@@ -112,6 +112,17 @@
             {{ $compSubtitle ?: "Pick a spec for each slot to compare your team's spells, cooldowns and crowd control side by side." }}
         </p>
 
+        {{-- Signed-out only. This page is "/", so it is where most first visits land, and on its
+             own it reads as a reference tool. The thing an account is for — turning a comp into a
+             plan you can share — is otherwise not mentioned anywhere above the fold. --}}
+        @guest
+            <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[12px]">
+                <span class="text-ink-muted">Turn a comp into a game plan: your opener, your go, and the defensives you need to force.</span>
+                <a href="{{ route('guides.browse') }}" class="text-gold hover:text-gold-light transition-colors">See players' plans &rarr;</a>
+                <a href="{{ route('register') }}" class="text-gold hover:text-gold-light transition-colors">Build your own, free &rarr;</a>
+            </div>
+        @endguest
+
         {{-- Common picks — one-click starter comps (WowComps::PRESET_COMPS). Clicking one loads
              it into the three slots below via applyPreset(); it's a real user action, so it logs
              attributed selections (top classes/specs/slot breakdown) plus a per-preset row,

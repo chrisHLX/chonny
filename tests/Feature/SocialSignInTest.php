@@ -178,7 +178,9 @@ test('a guest whose Battle.net account is already linked is signed in to it', fu
 
     $this->withSession(['battlenet_oauth_state' => 'st'])
         ->get(route('battlenet.callback', ['state' => 'st', 'code' => 'c']))
-        ->assertRedirect(route('characters.index'));
+        // Home, not My Characters: every sign-in lands where guides get started.
+        ->assertRedirect(route('dashboard'))
+        ->assertSessionHas('battlenet_status');
 
     expect(Auth::id())->toBe($owner->id)
         ->and(User::count())->toBe(1)
@@ -199,7 +201,11 @@ test('a new Battle.net player finishes sign-up with an email and lands with char
     $this->get(route('battlenet.finish'))->assertOk()->assertSee('Newbie#1111')->assertSee('1 character');
 
     $this->post(route('battlenet.finish.store'), ['email' => 'Newbie@Example.com', 'terms' => '1'])
-        ->assertRedirect(route('characters.index'));
+        ->assertRedirect(route('dashboard'))
+        ->assertSessionHas('battlenet_status');
+
+    // ...and Home shows the welcome, with the new account's characters on its Battle.net card.
+    $this->get(route('dashboard'))->assertOk()->assertSee('Welcome to MindCollector')->assertSee('Stabby');
 
     $user = User::where('email', 'newbie@example.com')->first();
     expect($user)->not->toBeNull()
