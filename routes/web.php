@@ -216,9 +216,27 @@ Route::middleware('auth')->prefix('guides')->name('guides.')->group(function () 
 // ------- Battle.net link + your characters -------
 // Owner-only. A character's name only ever reaches another person's screen through a guide its
 // owner explicitly attributed to it — see UserGuide::authorCharacter().
-Route::middleware('auth')->group(function () {
+//
+// The redirect and callback serve guests too: signed in they LINK, signed out they sign in or sign
+// up (see BattlenetController). The finish step is the email form a brand-new Battle.net sign-up
+// needs, since Blizzard shares no email address.
+Route::middleware('throttle:20,1')->group(function () {
     Route::get('/auth/battlenet', [\App\Http\Controllers\BattlenetController::class, 'redirect'])->name('battlenet.redirect');
     Route::get('/auth/battlenet/callback', [\App\Http\Controllers\BattlenetController::class, 'callback'])->name('battlenet.callback');
+});
+Route::middleware(['guest', 'throttle:10,1'])->group(function () {
+    Route::get('/auth/battlenet/finish', [\App\Http\Controllers\BattlenetController::class, 'finishForm'])->name('battlenet.finish');
+    Route::post('/auth/battlenet/finish', [\App\Http\Controllers\BattlenetController::class, 'finishStore'])->name('battlenet.finish.store');
+});
+
+// "Continue with Google" — see GoogleAuthController. Guests only: a signed-in player has nothing
+// to sign in to.
+Route::middleware(['guest', 'throttle:20,1'])->group(function () {
+    Route::get('/auth/google', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'redirect'])->name('google.redirect');
+    Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\GoogleAuthController::class, 'callback'])->name('google.callback');
+});
+
+Route::middleware('auth')->group(function () {
     Route::delete('/auth/battlenet', [\App\Http\Controllers\BattlenetController::class, 'destroy'])->name('battlenet.unlink');
     Route::get('/characters', \App\Livewire\Battlenet\Characters::class)->name('characters.index');
     Route::get('/characters/{character}', \App\Livewire\Battlenet\CharacterShow::class)->whereNumber('character')->name('characters.show');

@@ -7,6 +7,8 @@
         </p>
     </div>
 
+    <x-auth.social-buttons/>
+
     <form id="register-form" method="POST" action="{{ route('register') }}" class="space-y-4">
         @csrf
 

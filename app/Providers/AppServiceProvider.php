@@ -33,13 +33,14 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('admin', fn (User $user) => $user->is_admin);
 
         // Signup, password reset and password change all validate against Password::defaults().
-        // In production a password must also not appear in a known breach (Have I Been Pwned's
-        // range API: only the first 5 characters of the SHA-1 leave the server, never the
-        // password). If that API is unreachable Laravel lets the password through rather than
-        // blocking signups.
-        Password::defaults(fn () => app()->isProduction()
-            ? Password::min(8)->uncompromised()
-            : Password::min(8));
+        //
+        // NO BREACH CHECK (->uncompromised()), deliberately. It was on for one day (2026-09-12)
+        // and turned away a real person on every password he tried — each one genuinely appeared
+        // in Have I Been Pwned (checked: the rule itself was working, a random strong password
+        // passed on production). Most people reuse a few passwords, so on a site where an account
+        // holds guides and characters rather than money, the check cost more signups than it
+        // protected. Google / Battle.net sign-in is now the low-friction path instead.
+        Password::defaults(fn () => Password::min(8));
 
         View::composer('*', function ($view) {
             $credits = Auth::check() ? Auth::user()->credits : null;

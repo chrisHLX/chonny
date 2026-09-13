@@ -532,6 +532,8 @@ Found missing from this list 2026-08-05 while answering a deployment question ab
 - Keys in .env as RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY
 - Score threshold: 0.5 (adjust in RegisteredUserController and LoginRequest)
 - Uses direct Google siteverify API call — no package dependency
+- **No password breach check** (`->uncompromised()` was removed 2026-09-12, see "Sign in with Google or Battle.net" at the end of this file). `Password::defaults()` is `min(8)` only.
+- Google and Battle.net sign-in skip reCAPTCHA on purpose — getting through the provider's own sign-in is a stronger bot barrier than a score.
 
 ## Windows / Herd Environment
 - `php artisan` commands may be run directly via the PowerShell tool — PHP is on the Windows PATH and confirmed working there (verified 2026-08-02: `php artisan --version` succeeds via PowerShell).
@@ -4695,3 +4697,54 @@ wear), media lookup cached 30 days per item. Blizzard's inline tooltip markup (`
   signed with it.
 - **Shuffle exp** as a number — Blizzard exposes no lifetime-best shuffle statistic; the rank title
   is the stand-in.
+
+
+## Sign in with Google or Battle.net; password breach check removed ✓ COMPLETE (2026-09-12)
+
+Reported: a friend tried to sign up and **every** password he typed was refused as "appeared in a
+data leak". Diagnosed on production before changing anything: a random strong password passed and
+the HIBP range API answered 200, so the check was working — his passwords genuinely were in breach
+corpora, which is true of most passwords real people reuse. `->uncompromised()` is **removed**
+(`AppServiceProvider`, now `Password::min(8)`), deliberately: a rule that turns away a real person on
+every attempt costs more sign-ups than it prevents compromised accounts on a site that stores no
+payment details. Sign-up friction was the reported pain point, so one-click sign-in was added with it.
+
+**Both buttons sit on the login and register pages** (`<x-auth.social-buttons>`), each rendering only
+when its provider is configured, so a missing key hides a button rather than breaking one. The line
+under them ("By continuing you agree to the Terms and Privacy Policy") is what records ToS acceptance
+for these paths.
+
+**Files:** `Auth\GoogleAuthController` (Socialite ^5.31), `SocialSignupService` (creates + signs in
+an account from either provider), `GuestResultsClaimService` (the guest quiz/diagnostic carry-over,
+moved verbatim out of `RegisteredUserController` so every way of creating an account claims it),
+`BattlenetController` (rewritten: link / sign in / sign up through one callback),
+`resources/views/auth/battlenet-finish.blade.php`, migration `2026_09_12_000003` (`users.google_id`).
+Tests: `tests/Feature/SocialSignInTest.php` (14).
+
+### Which account a sign-in lands on — the part that must not regress
+
+- **Google:** `google_id` (Google's stable `sub`, never the email) first. Then an existing account
+  with the same email **only if Google reports `email_verified`** — without that flag anyone could
+  make a Google account showing somebody else's address and walk into their MindCollector account.
+  An unverified match is refused with a message, never linked. Otherwise a new, already-verified
+  account.
+- **Battle.net:** shares no email address at all. A guest whose Battle.net account is already linked
+  is signed in (and the character list refreshed — sign-in is the one moment we hold a token that can
+  read it). A new player gets one extra step, `/auth/battlenet/finish`, asking for an email; the
+  Battle.net id, battletag and character list are parked in the session for 15 minutes rather than
+  keeping the token. **An email already in use is refused, never merged** — nothing proves the person
+  typing it owns that inbox — with directions to log in and link from My Characters. The new account
+  starts unverified and gets the same verification email the password form sends.
+- The Battle.net callback is the same `/auth/battlenet/callback` already registered on the Blizzard
+  client, so **no new Blizzard registration is needed**. Signed-in players still link; guests sign in.
+
+Social accounts get a random 64-char password nobody knows; a player who later wants one uses
+"Forgot password", which proves email ownership first.
+
+### Setup per environment
+
+Google does nothing until `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` are set (Google Cloud Console →
+APIs & Services → Credentials → OAuth client, type Web application) with authorised redirect URIs
+`https://mindcollector.com/auth/google/callback` and `https://www.mindcollector.com/auth/google/callback`
+(both hosts serve the site — same reason as the Battle.net pair). Then `php artisan config:clear`.
+`GOOGLE_REDIRECT_URI` overrides the relative default if needed.

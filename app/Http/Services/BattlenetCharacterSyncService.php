@@ -76,9 +76,9 @@ class BattlenetCharacterSyncService
      *
      * @throws BattlenetAccountTakenException when another MindCollector account already holds it
      */
-    public function linkAccount(User $user, string $userToken): BattlenetAccount
+    public function linkAccount(User $user, string $userToken, ?array $info = null): BattlenetAccount
     {
-        $info = $this->client->userInfo($userToken);
+        $info ??= $this->client->userInfo($userToken);
 
         $holder = BattlenetAccount::where('battlenet_id', $info['id'])->first();
 
@@ -89,6 +89,27 @@ class BattlenetCharacterSyncService
         // Fetched BEFORE anything is written: a failed list read must leave the previous link
         // exactly as it was, not half-replaced.
         $list = $this->client->accountCharacters($userToken);
+
+        return $this->linkWithCharacters($user, $info, $list);
+    }
+
+    /**
+     * Link from an identity and character list already fetched — Battle.net sign-up reads both in
+     * the OAuth callback, then creates the account one step later once the player has given an
+     * email, by which time the (never stored) token is long gone.
+     *
+     * @param  array{id: int, battletag: string}  $info
+     * @param  list<array<string, mixed>>  $list
+     *
+     * @throws BattlenetAccountTakenException
+     */
+    public function linkWithCharacters(User $user, array $info, array $list): BattlenetAccount
+    {
+        $holder = BattlenetAccount::where('battlenet_id', $info['id'])->first();
+
+        if ($holder && $holder->user_id !== $user->id) {
+            throw new BattlenetAccountTakenException;
+        }
 
         return DB::transaction(function () use ($user, $info, $list) {
             $account = BattlenetAccount::updateOrCreate(

@@ -54,6 +54,17 @@ return [
         'key' => env('GEMINI_API_KEY'),
     ],
 
+    // "Continue with Google" (Socialite). Create an OAuth client at console.cloud.google.com →
+    // APIs & Services → Credentials, and register BOTH https://mindcollector.com/auth/google/callback
+    // and https://www.mindcollector.com/auth/google/callback. The redirect is relative on purpose:
+    // Socialite resolves it against the host the visitor is on, so www and the bare domain each
+    // get their own matching callback. The button is hidden until both keys are set.
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI', '/auth/google/callback'),
+    ],
+
     // Battle.net OAuth (account linking) + the WoW profile API. The same client the data scripts
     // (fetch-talent-trees.php, fetch-spell-icons.php) already use — its Redirect URLs in the
     // Blizzard developer portal must include this app's /auth/battlenet/callback, exactly.
