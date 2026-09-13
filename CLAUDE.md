@@ -4748,3 +4748,50 @@ APIs & Services → Credentials → OAuth client, type Web application) with aut
 `https://mindcollector.com/auth/google/callback` and `https://www.mindcollector.com/auth/google/callback`
 (both hosts serve the site — same reason as the Battle.net pair). Then `php artisan config:clear`.
 `GOOGLE_REDIRECT_URI` overrides the relative default if needed.
+
+## Scanner-tampered Livewire requests, and an admin-build write hole they exposed ✓ FIXED (2026-09-13)
+
+Reported from the admin log viewer: a run of ERRORs on WoW Comps — "Trying to access array offset on
+value of type int" (WowComps.php `getCompProperty()`) and "Cannot assign array to property
+WowComps::$rotationTabLoaded of type bool". **Every one of the 45 server errors on live in the three
+days before came from automated vulnerability scanners** — the same IPs were probing
+`/wp-json/batch/v1`, `/.git/.env`, `/phpinfo.php` in the same second. They load the homepage (which IS
+WoW Comps), take its Livewire snapshot, and post it back to `/livewire/update` with junk written into
+every public property. Livewire is 3.6.4, which carries the fix for CVE-2025-54068 (the hole these
+probes look for), so none of it got anywhere — it just buried real errors under 90-line stack traces.
+
+**The root cause is a Livewire default worth remembering: every public property is writable by anyone
+who posts to /livewire/update**, whether or not the page ever binds it. The snapshot checksum only
+protects the data the server sent; `updates` are unauthenticated by design.
+
+**Fixed three ways:**
+1. **Server-owned public properties are `#[Locked]`.** WowComps `$slots`/`$rotationTabLoaded` (only
+   `selectSpec()`/`applyPreset()`/`loadRotationTab()` change them; the dead `updated()` hook for the
+   old wire:model path is gone), plus the same treatment for `TalentSelector`, `TogglesSpellTalents`,
+   `Modules\Show`, `GuestRoadmap` and `DiagnosticQuizRunner`'s evidence arrays (a guest's
+   `$guestEvidenceLog` is written to the database on sign-up, so it must not be client-writable).
+   `selectSpec()` also validates its own arguments (slot index in range, spec belongs to the class).
+2. **`App\Support\LivewireTampering`**, mapped in `bootstrap/app.php`: on the Livewire update route
+   only, a locked-property write, a checksum failure, or a TypeError/ErrorException raised *inside
+   Livewire's own hydration code* becomes a **419** plus one WARNING line (IP, user agent, reason)
+   instead of a 500 and a stack trace. 419 is the status Livewire itself uses for a page that can't be
+   resumed, and its JS turns it into "This page has expired — refresh?", which is also the right
+   answer for the one legitimate way a player lands here (a tab open across a deploy that changed a
+   property's type). **An exception raised in our own component code is deliberately never matched**
+   — that is a real bug and must stay a loud 500.
+3. **A real write hole, found while doing (1), now closed.** `TalentSelector::$isDefaultEditor`,
+   `$readOnly` and `$specId` were public and unlocked, and the selector is mounted on public read-only
+   pages (Burst Window talents, a signed guide's character build). Posting `readOnly=false` +
+   `isDefaultEditor=true` and then clicking a node wrote into the spec's **admin default build** —
+   the one WoW Comps and Spell Explorer show everyone — with no sign-in, because
+   `persistIfAuthenticated()` skips its auth check for the default editor. Proven by a test against the
+   unfixed code before locking. **Audited on live: not exploited** — no default build or pick has
+   changed since 2026-08-27 09:46 UTC (Enhancement Shaman), which predates the first public read-only
+   mount (2026-08-28), and no ownerless builds exist.
+
+**The rule for new components:** a public property that only the server sets gets `#[Locked]`. The
+only public properties that should stay writable are ones the view binds (`wire:model`,
+`$set(...)`). Anything that decides *where* something is saved, or *whose* data is shown, must never
+be writable. Tests: `tests/Feature/LivewireTamperingTest.php` (9 — real HTTP posts of tampered
+snapshots, since `Livewire::test()` never touches the update route) and the exploit regression in
+`TalentSelectorGridTest.php`.

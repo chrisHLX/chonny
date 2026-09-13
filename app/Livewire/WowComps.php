@@ -16,6 +16,7 @@ use App\Models\UserGuide;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 /**
@@ -51,6 +52,15 @@ use Livewire\Component;
  */
 class WowComps extends Component
 {
+    /**
+     * Locked: only selectSpec()/applyPreset() may change it. Nothing in the page ever writes it
+     * from the browser, and a public property is otherwise writable by anyone who posts to
+     * /livewire/update. Automated scanners do exactly that (2026-09-12, live): they grab a
+     * snapshot from the homepage and write junk into every public property, and slots = [1,2,3]
+     * made getCompProperty() read $slot['classId'] off an int — a 500 per request, 43 in five
+     * days. Locking turns that into a clean 419 (see App\Support\LivewireTampering).
+     */
+    #[Locked]
     public array $slots = [
         ['label' => 'Healer', 'classId' => null, 'specId' => null],
         ['label' => 'DPS', 'classId' => null, 'specId' => null],
@@ -67,7 +77,11 @@ class WowComps extends Component
      * every single spec pick regardless of which tab was even visible. Set true only by
      * loadRotationTab(), called from the Burst Window tab button itself (see the blade) — so the
      * cost is paid once, the first time someone actually opens that tab, not on every render.
+     *
+     * Locked for the same reason as $slots: only loadRotationTab() sets it, and scanners were
+     * writing arrays into it ("Cannot assign array to property ... of type bool", 25 in five days).
      */
+    #[Locked]
     public bool $rotationTabLoaded = false;
 
     public function loadRotationTab(): void
@@ -282,24 +296,6 @@ class WowComps extends Component
             ->all();
     }
 
-    public function updated(string $name): void
-    {
-        if (preg_match('/^slots\.(\d+)\.classId$/', $name, $m)) {
-            $index = (int) $m[1];
-            $this->slots[$index]['specId'] = Specialization::where('class_id', $this->slots[$index]['classId'])
-                ->orderBy('name')
-                ->first()?->id;
-
-            $this->logSlotSelection($index);
-
-            return;
-        }
-
-        if (preg_match('/^slots\.(\d+)\.specId$/', $name, $m)) {
-            $this->logSlotSelection((int) $m[1]);
-        }
-    }
-
     private function logSlotSelection(int $index): void
     {
         PageViewEvent::log(
@@ -354,9 +350,20 @@ class WowComps extends Component
      * rather than relying on updated() to fire for a method-mutated property — updated() is
      * kept as-is below for the original wire:model-driven path (still covered by
      * tests/Feature/Admin/PageUsageTrackingTest.php's ->set('slots.0.classId', ...) case).
+     *
+     * Superseded 2026-09-13: $slots is #[Locked] and updated() is gone, so this is the only way a
+     * slot changes. Its arguments arrive from the browser, so they are checked rather than
+     * trusted: an index outside the three slots would append a fourth slot with no label, and a
+     * spec outside the given class would put one class's name over another's kit. Either is a
+     * silent no-op.
      */
     public function selectSpec(int $index, int $classId, int $specId): void
     {
+        if (! array_key_exists($index, $this->slots)
+            || ! Specialization::whereKey($specId)->where('class_id', $classId)->exists()) {
+            return;
+        }
+
         $this->slots[$index]['classId'] = $classId;
         $this->slots[$index]['specId'] = $specId;
 

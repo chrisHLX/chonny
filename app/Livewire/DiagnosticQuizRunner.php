@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 use App\Models\Module;
 use App\Models\UserAxisMastery;
@@ -38,6 +39,7 @@ class DiagnosticQuizRunner extends Component
     // handleContextDeclared(), read by applyContextRouting() and claimed for real by
     // RegisteredUserController::claimGuestQuizResults() on signup. Always empty for auth users,
     // who declare straight to UserSubjectContext via SubjectContextForm.
+    #[Locked]
     public array $guestDeclaredContext = [];
     public $questions;
     public $currentIndex = 0;
@@ -54,10 +56,16 @@ class DiagnosticQuizRunner extends Component
     public $userCredits = null;
     public $feedback;
 
-    // Diagnostic-specific
+    // Diagnostic-specific. Locked (2026-09-13): accumulated server-side from submitted answers
+    // and, for a guest, written to the database on sign-up — so a crafted /livewire/update must
+    // not be able to write them directly. See App\Support\LivewireTampering.
+    #[Locked]
     public array $traitScores = [];
+    #[Locked]
     public array $surveyAnswers = [];   // keyed by question_key — context facts, not trait signals
+    #[Locked]
     public array $guestEvidenceLog = [];
+    #[Locked]
     public ?array $diagnosticProfile = null;
     public bool $retakingDiagnostic = false;
     public ?string $retakeStartedAt = null;

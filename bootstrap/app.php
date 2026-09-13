@@ -16,12 +16,16 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\LoadUserCredits::class,
             \App\Http\Middleware\SecurityHeaders::class,
         ]);
-        
-         $middleware->validateCsrfTokens(except: [
+
+        $middleware->validateCsrfTokens(except: [
             'webhook/stripe', // your webhook route
         ]);
-        
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        // Scanner-tampered /livewire/update payloads: a 419 and one warning line instead of a
+        // 500 and a stack trace. See App\Support\LivewireTampering for exactly what is matched.
+        $exceptions->map(fn (\Throwable $e) => \App\Support\LivewireTampering::matches($e)
+            ? \App\Support\LivewireTampering::from($e)
+            : $e);
     })->create();

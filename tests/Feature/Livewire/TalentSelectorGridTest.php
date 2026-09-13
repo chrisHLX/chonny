@@ -140,3 +140,31 @@ test('class talent nodes exclude anything duplicated from any of the class\'s sp
 
     expect($shownExternalIds)->toBe([900]);
 });
+
+test('a guest on a read-only talent view cannot turn it into the admin default-build editor', function () {
+    // The request a scanner (or anyone) could craft on the public Burst Window / signed-guide
+    // talent views before 2026-09-13: flip readOnly off and isDefaultEditor on, then click a node.
+    // persistIfAuthenticated() skips its sign-in check for the default editor, so this used to
+    // write into the spec's admin default build — the one WoW Comps and Spell Explorer show
+    // everyone. Each of these flags is now #[Locked], so the first write is refused outright.
+    $fixture = makeGridFixture();
+
+    $component = Livewire::test(TalentSelector::class, [
+        'specId' => $fixture['spec']->id, 'layout' => 'grid', 'readOnly' => true,
+    ]);
+
+    foreach (['readOnly' => false, 'isDefaultEditor' => true] as $prop => $value) {
+        try {
+            $component->set($prop, $value);
+        } catch (\Livewire\Features\SupportLockedProperties\CannotUpdateLockedPropertyException) {
+            // expected
+        }
+    }
+
+    $component->call('toggleEntry', $fixture['node']->id, $fixture['rank1']->id);
+
+    expect(TalentBuild::count())->toBe(0)
+        ->and(TalentBuildChoice::count())->toBe(0)
+        ->and($component->get('readOnly'))->toBeTrue()
+        ->and($component->get('isDefaultEditor'))->toBeFalse();
+});

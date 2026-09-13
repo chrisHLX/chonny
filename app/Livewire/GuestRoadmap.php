@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Http\Services\RoadmapService;
 use App\Models\FunnelEvent;
 use App\Models\Module;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 /**
@@ -27,6 +28,8 @@ class GuestRoadmap extends Component
     // has expired/is missing — component renders nothing in either case.
     public bool $available = false;
 
+    // Locked: built by reveal() only (2026-09-13 — see App\Support\LivewireTampering).
+    #[Locked]
     public ?array $roadmap = null;
 
     public function mount($moduleId): void

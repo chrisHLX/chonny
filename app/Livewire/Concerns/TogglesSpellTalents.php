@@ -26,7 +26,13 @@ namespace App\Livewire\Concerns;
  */
 trait TogglesSpellTalents
 {
-    /** @var array<int, bool> */
+    /**
+     * Locked: only toggleTalent()/resetTalents() change it; the browser never writes it directly.
+     * See App\Support\LivewireTampering for why server-owned state is locked (2026-09-13).
+     *
+     * @var array<int, bool>
+     */
+    #[\Livewire\Attributes\Locked]
     public array $talentOverrides = [];
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Modules;
 
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\TalentSelectionService;
@@ -20,6 +21,9 @@ class Show extends Component
 {
     public Module $module;
     public bool $enrolled = false;
+    // Server-owned state is #[Locked] so a crafted /livewire/update cannot rewrite it
+    // (2026-09-13 — see App\Support\LivewireTampering).
+    #[Locked]
     public ?array $userModule = null;
     public ?int $activePipelineId = null;
 
@@ -32,9 +36,11 @@ class Show extends Component
      * 'talents-changed' listener that used to keep this reactive was removed alongside it —
      * nothing on this page dispatches that event anymore.
      */
+    #[Locked]
     public array $selectedSpellIds = [];
 
     /** spell_id => rank, the counterpart to $selectedSpellIds for multi-rank talents whose magnitude differs per rank — see TalentSelectionService::selectedRanks(). */
+    #[Locked]
     public array $selectedRanks = [];
 
     /**
@@ -42,7 +48,10 @@ class Show extends Component
      * as just the id (Livewire-serializable, same pattern as $activePipelineId above) so
      * getModuleSpellReferencesProperty() can look up TalentSelectionService::resolvedDescriptionsFor()
      * without re-resolving which build applies a second time.
+     *
+     * Locked: an id the browser could rewrite would let it point this page at any user's build.
      */
+    #[Locked]
     public ?int $resolvedTalentBuildId = null;
 
     public function mount(Module $module): void

@@ -80,8 +80,9 @@ test('spell explorer dispatches spell-list-refreshed after every change that swa
 test('wow comps mount records a bare view and slot picks are attributed to their slot', function () {
     $fixture = makePageUsageFixture();
 
+    // Through selectSpec(), the only way a slot changes: $slots is #[Locked] (2026-09-13).
     Livewire::test(WowComps::class)
-        ->set('slots.0.classId', $fixture['priest']->id);
+        ->call('selectSpec', 0, $fixture['priest']->id, $fixture['discipline']->id);
 
     expect(PageViewEvent::where('page', 'wow_comps')->whereNull('class_id')->count())->toBe(1);
 
@@ -144,8 +145,8 @@ function makeRmpPresetFixture(): array
 
     return [
         'rdruid' => $spec('druid', 'restoration'),
-        'sub'    => $spec('rogue', 'subtlety'),
-        'frost'  => $spec('mage', 'frost'),
+        'sub' => $spec('rogue', 'subtlety'),
+        'frost' => $spec('mage', 'frost'),
     ];
 }
 

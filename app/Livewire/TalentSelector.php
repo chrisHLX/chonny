@@ -41,8 +41,21 @@ use Livewire\Component;
  */
 class TalentSelector extends Component
 {
+    /**
+     * $specId, $isDefaultEditor, $readOnly, $moduleHeroTreeId and $layout are all set once, by the
+     * mounting page, and decide WHERE a pick is saved. They are #[Locked] for the same reason as
+     * $buildId below, and it is not theoretical: until 2026-09-13 a signed-out visitor on the
+     * public read-only talent views (Burst Window talents, a signed guide's character build) could
+     * post readOnly=false + isDefaultEditor=true and then click a node — persistIfAuthenticated()
+     * skips its sign-in check for the default editor, so the pick landed in the spec's ADMIN
+     * DEFAULT build, the one WoW Comps and Spell Explorer show every viewer. Proven by
+     * TalentSelectorGridTest before the fix went in. Only $heroTreeId and $importString stay
+     * writable, because the view writes them (wire:model).
+     */
+    #[Locked]
     public int $specId;
 
+    #[Locked]
     public bool $isDefaultEditor = false;
 
     /**
@@ -72,6 +85,7 @@ class TalentSelector extends Component
      * isNodeLocked() also always returns false here: lock/grey styling exists to explain why a
      * pick *can't* be made yet, which is meaningless once nothing can be picked at all.
      */
+    #[Locked]
     public bool $readOnly = false;
 
     /**
@@ -91,6 +105,7 @@ class TalentSelector extends Component
      * Voidweaver main browsing this Oracle-specific guide keeps their own saved pick if they have
      * one; this default only fills in when they have none).
      */
+    #[Locked]
     public ?int $moduleHeroTreeId = null;
 
     public ?int $heroTreeId = null;
@@ -109,21 +124,32 @@ class TalentSelector extends Component
      * isNodeLocked()) and a points-spent counter per tree. This is what Admin\TalentBuildEditor
      * uses. Both layout modes share every persistence method below — only the Blade view differs.
      */
+    #[Locked]
     public string $layout = 'list';
 
-    /** @var array<int, int> talent_node_id => chosen talent_node_entry id */
+    /**
+     * Server-owned picks. Locked (2026-09-13): every change goes through a method here, and an
+     * unlocked array would let a crafted request plant arbitrary entries that persistIfAuthenticated()
+     * then saves. See App\Support\LivewireTampering.
+     *
+     * @var array<int, int> talent_node_id => chosen talent_node_entry id
+     */
+    #[Locked]
     public array $chosenEntries = [];
 
     /** @var array<int, int> ordered pvp_talent ids currently selected */
+    #[Locked]
     public array $chosenPvpTalentIds = [];
 
     /** Paste target for a Blizzard "Export" talent loadout string (PvE tree only — see BlizzardTalentStringCodec). */
     public string $importString = '';
 
     /** @var ?array<int, array{nodeId: int, entryId: int, spellName: string, treeType: string}> Decoded but not-yet-applied import — nothing is written to talent_builds until applyImport(). */
+    #[Locked]
     public ?array $importPreview = null;
 
     /** @var array<int, string> */
+    #[Locked]
     public array $importWarnings = [];
 
     public ?string $importError = null;
