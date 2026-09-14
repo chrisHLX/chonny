@@ -177,7 +177,7 @@ class Home extends Component
     public function render()
     {
         return view('livewire.home')->layout('layouts.app', [
-            'title' => 'Home | MindCollector',
+            'title' => 'Dashboard | MindCollector',
             'description' => 'Build arena guides with your team, compare 3v3 comps, and link your WoW characters.',
         ]);
     }

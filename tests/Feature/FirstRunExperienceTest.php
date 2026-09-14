@@ -147,6 +147,31 @@ test('a collaborator never sees the author-only sharing panel', function () {
         ->assertDontSee('Sharing &amp; credit', false);
 });
 
+// ------------------------------------------------------------------ the sidebar
+
+test('the sidebar puts your own pages in one block, separate from the public site', function () {
+    $user = firstRunUser();
+
+    $this->actingAs($user)
+        ->get(route('dashboard'))
+        ->assertOk()
+        // Your space first — dashboard through account — then the public site, then Training.
+        ->assertSeeInOrder([
+            'Your space', 'Newbie', 'Dashboard', 'My Guides', 'My Characters', 'Friends', 'Guilds', 'Profile &amp; settings',
+            'Explore', '3v3 Comps', 'Player Guides', 'Class data', 'Training', 'Diagnostic',
+        ], false)
+        ->assertDontSee('Your Profile');
+});
+
+test('a signed-out visitor gets only the public side of the sidebar', function () {
+    $this->get(route('guides.browse'))
+        ->assertOk()
+        ->assertSee('Explore')
+        ->assertSee('Player Guides')
+        ->assertDontSee('Your space')
+        ->assertDontSee('My Guides');
+});
+
 // ------------------------------------------------------------------ signed-out visitors
 
 test('a signed-out reader of a public guide is invited to build their own; a signed-in one is not', function () {

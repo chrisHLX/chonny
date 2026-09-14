@@ -23,19 +23,90 @@
     <!-- Scrollable nav body -->
     <div class="flex-1 overflow-y-auto py-2 px-2 space-y-0.5">
 
-        {{-- ORDER, 2026-09-13: the arena side first, then class data, then Training. It used to
-             open on Home/Progress/Discover — all quiz pages — with every WoW tool nested underneath
-             as sub-items, which told a player who came to plan comps that the site was about
-             something else. The quiz pages are unchanged and live under Training. --}}
+        {{-- TWO KINDS OF LINK, 2026-09-14. "Your space" is everything that belongs to the signed-in
+             player — their dashboard, guides, characters, friends, guilds and account — in one
+             tinted card with their name on it, so it can't be mistaken for the site's own pages.
+             "Explore" below it is the public site: the same for everyone, signed in or not.
+             Before this the two were one flat list (Home, 3v3 Comps, Player Guides, My Guides,
+             Friends…), and the account page was only reachable from the menu at the very bottom.
+             (The previous reorder, 2026-09-13, moved the arena side above the quiz pages; that
+             still holds — Training stays last.) --}}
         @auth
-        <a href="{{ route('dashboard') }}"
-           class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-            </svg>
-            Home
-        </a>
+            @php
+                $navMe = auth()->user();
+                $navPendingFriends = $navMe->pendingFriendRequestCount();
+            @endphp
+            <div class="rounded-lg border border-line-gold bg-gold-subtle/60 p-1 mb-3">
+                <div class="flex items-center gap-2 px-2 pt-1.5 pb-2">
+                    <div class="w-6 h-6 rounded-full bg-gold/15 border border-gold/30 flex items-center justify-center text-[11px] font-semibold text-gold shrink-0">
+                        {{ strtoupper(substr($navMe->name ?? 'U', 0, 1)) }}
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-[9.5px] font-semibold text-gold uppercase tracking-widest leading-none">Your space</p>
+                        <p class="text-[12px] text-ink truncate leading-tight mt-1">
+                            {{ $navMe->name }}@if ($navMe->username)<span class="text-ink-subtle"> &middot; &#64;{{ $navMe->username }}</span>@endif
+                        </p>
+                    </div>
+                </div>
+
+                <a href="{{ route('dashboard') }}"
+                   class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    Dashboard
+                </a>
+
+                <a href="{{ route('guides.index') }}"
+                   class="sidebar-item {{ request()->routeIs('guides.index') || request()->routeIs('guides.edit') ? 'active' : '' }}">
+                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                    </svg>
+                    My Guides
+                </a>
+
+                <a href="{{ route('characters.index') }}"
+                   class="sidebar-item {{ request()->routeIs('characters.*') ? 'active' : '' }}">
+                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                    My Characters
+                </a>
+
+                <a href="{{ route('friends.index') }}"
+                   class="sidebar-item {{ request()->routeIs('friends.*') ? 'active' : '' }}">
+                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                    </svg>
+                    Friends
+                    @if ($navPendingFriends > 0)
+                        <span class="ml-auto badge-gold tabular-nums">{{ $navPendingFriends }}</span>
+                    @endif
+                </a>
+
+                <a href="{{ route('guilds.index') }}"
+                   class="sidebar-item {{ request()->routeIs('guilds.*') ? 'active' : '' }}">
+                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
+                    </svg>
+                    Guilds
+                </a>
+
+                <a href="{{ route('profile.edit') }}"
+                   class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    Profile &amp; settings
+                </a>
+            </div>
         @endauth
+
+        {{-- Explore: the public site, identical for every visitor. --}}
+        <div class="px-2.5 pt-1 pb-1">
+            <p class="text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Explore</p>
+        </div>
 
         <a href="{{ route('wow-comps') }}"
            class="sidebar-item {{ request()->routeIs('wow-comps') ? 'active' : '' }}">
@@ -54,44 +125,6 @@
             </svg>
             Player Guides
         </a>
-
-        @auth
-        <a href="{{ route('guides.index') }}"
-           class="sidebar-item {{ request()->routeIs('guides.index') || request()->routeIs('guides.edit') ? 'active' : '' }}">
-            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-            </svg>
-            My Guides
-        </a>
-
-        @php $navPendingFriends = auth()->user()->pendingFriendRequestCount(); @endphp
-        <a href="{{ route('friends.index') }}"
-           class="sidebar-item {{ request()->routeIs('friends.*') ? 'active' : '' }}">
-            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
-            </svg>
-            Friends
-            @if ($navPendingFriends > 0)
-                <span class="ml-auto badge-gold tabular-nums">{{ $navPendingFriends }}</span>
-            @endif
-        </a>
-
-        <a href="{{ route('guilds.index') }}"
-           class="sidebar-item {{ request()->routeIs('guilds.*') ? 'active' : '' }}">
-            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
-            </svg>
-            Guilds
-        </a>
-
-        <a href="{{ route('characters.index') }}"
-           class="sidebar-item {{ request()->routeIs('characters.*') ? 'active' : '' }}">
-            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-            </svg>
-            My Characters
-        </a>
-        @endauth
 
         <div class="pl-3 space-y-0.5 pt-1">
             <div class="px-2.5 pt-1.5 pb-0.5">
@@ -128,7 +161,9 @@
             <a href="{{ route_with_context('training') }}"
                class="sidebar-item text-[12px] {{ request()->routeIs('training') ? 'active !text-accent' : '' }}">
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Your Profile
+                {{-- Was "Your Profile", which collided with the account's Profile & settings in
+                     "Your space" above. This page is the diagnostic's learning profile. --}}
+                Diagnostic
             </a>
             @endauth
             <a href="{{ route_with_context('modules.index') }}"
@@ -304,7 +339,7 @@
                     <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                     </svg>
-                    Profile
+                    Profile &amp; settings
                 </a>
                 <div class="border-t border-line">
                     <form method="POST" action="{{ route('logout') }}">
