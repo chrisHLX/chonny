@@ -4,6 +4,7 @@ namespace App\Livewire\Guides;
 
 use App\Enums\UserGuideStatus;
 use App\Enums\UserGuideType;
+use App\Http\Services\UserGuideDuplicator;
 use App\Models\PageViewEvent;
 use App\Models\UserGuide;
 use Livewire\Attributes\Computed;
@@ -81,6 +82,24 @@ class Index extends Component
         $guide = UserGuide::startDraft(auth()->user(), $guideType);
 
         return $this->redirectRoute('guides.edit', ['guide' => $guide->slug], navigate: true);
+    }
+
+    /**
+     * Copy one of your own guides and open the copy — the "reuse it as a template" path. See
+     * UserGuideDuplicator for exactly what carries over and what deliberately does not.
+     */
+    public function duplicate(int $guideId)
+    {
+        // Scoped to the author's own guides, so an id from anywhere else simply matches nothing.
+        $guide = auth()->user()->guides()->where('id', $guideId)->first();
+        if (! $guide) {
+            return null;
+        }
+
+        $copy = app(UserGuideDuplicator::class)->duplicate($guide, auth()->user());
+        PageViewEvent::log('guide_duplicate', slot: 'index');
+
+        return $this->redirectRoute('guides.edit', ['guide' => $copy->slug], navigate: true);
     }
 
     public function delete(int $guideId): void

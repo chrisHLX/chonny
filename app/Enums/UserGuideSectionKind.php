@@ -36,9 +36,20 @@ enum UserGuideSectionKind: string
     case Sequence = 'sequence';
 
     /**
-     * What you are trying to force out of the opponent. Palette: the DEFENSIVE cooldowns of the
-     * section's own opponent_spec_id — a different spec's kit entirely from the rest of the guide,
-     * which is the whole point of a VS section.
+     * The enemy's side of the matchup: what to watch out for and what to force. Palette: the
+     * OPPONENT's kit — their crowd control (grouped by DR category), interrupts, and offensive and
+     * defensive cooldowns — drawn from the section's own opponent, else the guide's enemy team,
+     * else a class guide's single opponent.
+     *
+     * STORED AS 'defensives', and the case is named for that history. Until 2026-09-14 this section
+     * offered only the opponent's defensive cooldowns ("defensives to force"); it was broadened
+     * because the enemy's CC and go are at least as much a part of a matchup as their answers
+     * ("we have the option for defensives but we also need to show offensives and potentially
+     * CC"). Every existing section already means "the opponent's side", so the value was kept
+     * rather than migrated — renaming it would rewrite live rows to say the same thing.
+     *
+     * Not a sequence in the DR sense: it is a list of separate threats, usually from several
+     * enemy players, so no DR is tallied across it (see tracksControl()).
      */
     case Defensives = 'defensives';
 
@@ -49,7 +60,7 @@ enum UserGuideSectionKind: string
     {
         return match ($this) {
             self::Sequence => 'Sequence',
-            self::Defensives => 'Defensives to force',
+            self::Defensives => 'Enemy abilities',
             self::Text => 'Notes',
         };
     }
@@ -59,7 +70,7 @@ enum UserGuideSectionKind: string
     {
         return match ($this) {
             self::Sequence => 'An ordered run of abilities — a go, a chain, an opener, a rotation.',
-            self::Defensives => "A named opponent's defensive cooldowns, so you can plan what to force.",
+            self::Defensives => 'Their CC, interrupts, offensive and defensive cooldowns — what to watch for and what to force.',
             self::Text => 'Free notes in Markdown.',
         };
     }

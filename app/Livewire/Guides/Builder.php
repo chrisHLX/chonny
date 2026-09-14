@@ -10,6 +10,7 @@ use App\Enums\UserGuideVisibility;
 use App\Http\Services\CharacterTalentResolver;
 use App\Http\Services\TalentSelectionService;
 use App\Http\Services\UserGuideChainService;
+use App\Http\Services\UserGuideDuplicator;
 use App\Models\GameClass;
 use App\Models\PageViewEvent;
 use App\Models\Patch;
@@ -664,9 +665,10 @@ class Builder extends Component
     }
 
     /**
-     * Name the opponent a Defensives section is about. Changing it deliberately keeps any steps
-     * already added — they name real abilities, and silently deleting authored steps because the
-     * opponent was corrected would be the same destructive surprise as clearing a comp slot.
+     * Narrow an enemy section to one opponent spec ("their healer's defensives"). Changing it
+     * deliberately keeps any steps already added — they name real abilities, and silently deleting
+     * authored steps because the opponent was corrected would be the same destructive surprise as
+     * clearing a comp slot.
      */
     public function setOpponent(int $specId): void
     {
@@ -678,6 +680,22 @@ class Builder extends Component
 
         $this->pickingOpponentFor = null;
         $this->refreshGuide();
+    }
+
+    /**
+     * Widen an enemy section back to the whole enemy team (or a class guide's own opponent) —
+     * the undo for setOpponent(). Steps stay, for the same reason.
+     */
+    public function clearOpponent(int $sectionId): void
+    {
+        $section = $this->ownedSection($sectionId);
+
+        if ($section?->kind->usesOpponent() && $section->opponent_spec_id !== null) {
+            $section->update(['opponent_spec_id' => null, 'updated_by_user_id' => auth()->id()]);
+            $this->refreshGuide();
+        }
+
+        $this->pickingOpponentFor = null;
     }
 
     /**
@@ -892,6 +910,23 @@ class Builder extends Component
      * behind a profile step nobody has been asked to complete.
      */
     /**
+     * Copy this guide and open the copy, to reuse it for another matchup. Author only: a
+     * collaborator copying a friend's guide into their own account is a different decision
+     * (whose work it becomes) and is not what "reuse my guide" asked for.
+     */
+    public function duplicate()
+    {
+        if (! $this->authorOnly()) {
+            return null;
+        }
+
+        $copy = app(UserGuideDuplicator::class)->duplicate($this->guide, auth()->user());
+        PageViewEvent::log('guide_duplicate', slot: 'builder');
+
+        return $this->redirectRoute('guides.edit', ['guide' => $copy->slug], navigate: true);
+    }
+
+    /**
      * Publish, and on the FIRST publish only, give the guide a slug that says what it is.
      *
      * The slug is generated at row-creation time, before there is a title or a comp, so a real
@@ -1087,7 +1122,7 @@ class Builder extends Component
             // thing that says what it is (see UserGuideSectionKind), so seeding it with a
             // confident-sounding "The go" would invite authors to leave it alone.
             UserGuideSectionKind::Sequence => 'Untitled sequence',
-            UserGuideSectionKind::Defensives => 'Defensives to force',
+            UserGuideSectionKind::Defensives => 'Watch out for',
             UserGuideSectionKind::Text => 'Notes',
         };
     }

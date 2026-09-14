@@ -292,6 +292,7 @@ class PageUsage extends Component
             (object) ['label' => 'Feed: switched back to "Everyone"', 'count' => (int) ($feed['everyone'] ?? 0)],
             (object) ['label' => 'Feed: "Show more"', 'count' => (int) ($feed['more'] ?? 0)],
             (object) ['label' => 'Buy me a coffee clicks', 'count' => PageViewEvent::where('page', 'support_click')->count()],
+            (object) ['label' => 'Guides duplicated (reused as a template)', 'count' => PageViewEvent::where('page', 'guide_duplicate')->count()],
         ];
     }
 

@@ -122,7 +122,9 @@
                         @endif
 
                         @if ($cat && $step['duration'] === null)
-                            <p class="text-[11.5px] text-ink-subtle mt-0.5">No verified PvP duration on file &mdash; not counted in the total.</p>
+                            <p class="text-[11.5px] text-ink-subtle mt-0.5">
+                                No verified PvP duration on file{{ $section->kind->tracksControl() ? ' — not counted in the total' : '' }}.
+                            </p>
                         @endif
 
                         @if ($note = $block->note())

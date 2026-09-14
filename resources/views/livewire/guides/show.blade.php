@@ -188,13 +188,27 @@
                         <h2 class="text-[17px] font-semibold text-ink mt-1.5">{{ $section->title }}</h2>
                         <x-guides.section-credit :section="$section" :owner-id="$guide->user_id"/>
 
-                        @if ($section->kind->usesOpponent() && $opponent)
-                            <div class="flex items-center gap-1.5 mt-1.5">
-                                <x-spec-icon :spec="$opponent" size="w-5 h-5"/>
-                                <span class="text-[12px]" style="color: {{ $classColors[$opponent->gameClass?->slug] ?? '#8A8A9A' }}">
-                                    vs {{ $opponent->name }} {{ $opponent->gameClass?->name }}
-                                </span>
-                            </div>
+                        {{-- Same fallback order as the palette: one named spec, else their team,
+                             else a class guide's opponent. --}}
+                        @if ($section->kind->usesOpponent())
+                            @php $sectionOpponent = $opponent ?? ($this->enemies->isEmpty() ? $guide->opponentSpec : null); @endphp
+                            @if ($sectionOpponent)
+                                <div class="flex items-center gap-1.5 mt-1.5">
+                                    <x-spec-icon :spec="$sectionOpponent" size="w-5 h-5"/>
+                                    <span class="text-[12px]" style="color: {{ $classColors[$sectionOpponent->gameClass?->slug] ?? '#8A8A9A' }}">
+                                        {{ $sectionOpponent->name }} {{ $sectionOpponent->gameClass?->name }}
+                                    </span>
+                                </div>
+                            @elseif ($this->enemies->isNotEmpty())
+                                <div class="flex items-center gap-1 mt-1.5">
+                                    @foreach ($this->enemies as $enemy)
+                                        @if ($enemy->specialization)
+                                            <x-spec-icon :spec="$enemy->specialization" size="w-5 h-5"/>
+                                        @endif
+                                    @endforeach
+                                    <span class="text-[12px] text-ink-muted ml-1">Their team</span>
+                                </div>
+                            @endif
                         @endif
                     </div>
 
@@ -203,8 +217,8 @@
                             {!! $section->bodyHtml() !!}
                         </div>
                     @else
-                        @if ($data)
-                            <x-guides.metrics :metrics="$data['metrics']" :tracks-control="$section->kind->tracksControl()"/>
+                        @if ($data && $section->kind->tracksControl())
+                            <x-guides.metrics :metrics="$data['metrics']"/>
                         @endif
                         <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :owner-id="$guide->user_id"/>
                     @endif

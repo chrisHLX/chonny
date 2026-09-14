@@ -41,6 +41,16 @@
         <div class="flex flex-col items-end gap-2 shrink-0">
             {{-- Publishing is the author's call, so a collaborator sees the state but not the
                  buttons. Builder::authorOnly() refuses the actions on the server either way. --}}
+            @if ($this->isAuthor)
+                <button type="button" wire:click="duplicate"
+                        wire:loading.attr="disabled" wire:target="duplicate"
+                        title="Copy this guide — same comp, talents and plan — to write another matchup from it"
+                        class="text-[12px] text-ink-subtle hover:text-gold transition-colors">
+                    <span wire:loading.remove wire:target="duplicate">Duplicate as a new guide</span>
+                    <span wire:loading wire:target="duplicate">Copying&hellip;</span>
+                </button>
+            @endif
+
             @if ($isPublished)
                 <span class="badge-green">Published</span>
                 @if ($this->isAuthor)
@@ -144,7 +154,7 @@
                                     class="text-[11px] text-ink-subtle hover:text-red-400 transition-colors">Clear</button>
                         </div>
                         <p class="mt-2 text-[11px] text-ink-subtle">
-                            A &ldquo;defensives to force&rdquo; section will use this automatically.
+                            An &ldquo;enemy abilities&rdquo; section will use this automatically.
                         </p>
                     @else
                         <button type="button" wire:click="openGuideOpponentPicker"
@@ -196,8 +206,9 @@
                 </p>
 
                 <p class="text-[12px] text-ink-subtle mt-1" x-show="open" x-cloak>
-                    Naming a team makes this a matchup guide — their defensives fill the VS columns,
-                    and people can find it by searching for that comp. Leave it blank for a general guide.
+                    Naming a team makes this a matchup guide — their CC, cooldowns and defensives fill
+                    the enemy sections, and people can find it by searching for that comp. Leave it
+                    blank for a general guide.
                 </p>
 
                 <div class="grid sm:grid-cols-3 gap-3 mt-3" x-show="open" x-cloak>
@@ -580,18 +591,48 @@
 
                             <x-guides.section-credit :section="$section" :owner-id="$guide->user_id"/>
 
+                            {{-- Whose abilities this section draws from — the same fallback order
+                                 UserGuideChainService::paletteSpecs() uses: one narrowed spec, else
+                                 the whole enemy team, else a class guide's opponent. --}}
                             @if ($section->kind->usesOpponent())
-                                <button type="button" wire:click="openOpponentPicker({{ $section->id }})"
-                                        class="flex items-center gap-1.5 mt-2 text-[12px] text-ink-subtle hover:text-gold transition-colors">
+                                <div class="flex items-center gap-x-3 gap-y-1 mt-2 flex-wrap text-[12px]">
                                     @if ($opponent)
-                                        <x-spec-icon :spec="$opponent" size="w-5 h-5"/>
-                                        <span style="color: {{ $classColors[$opponent->gameClass?->slug] ?? '#8A8A9A' }}">
-                                            vs {{ $opponent->name }} {{ $opponent->gameClass?->name }}
+                                        <button type="button" wire:click="openOpponentPicker({{ $section->id }})"
+                                                class="flex items-center gap-1.5 hover:text-gold transition-colors">
+                                            <x-spec-icon :spec="$opponent" size="w-5 h-5"/>
+                                            <span style="color: {{ $classColors[$opponent->gameClass?->slug] ?? '#8A8A9A' }}">
+                                                {{ $opponent->name }} {{ $opponent->gameClass?->name }}
+                                            </span>
+                                        </button>
+                                        @if ($this->enemies->isNotEmpty() || ($guide->isClassGuide() && $guide->opponent_spec_id !== $opponent->id))
+                                            <button type="button" wire:click="clearOpponent({{ $section->id }})"
+                                                    class="text-ink-subtle hover:text-gold transition-colors">
+                                                {{ $this->enemies->isNotEmpty() ? 'Show their whole team' : 'Use the guide\'s opponent' }}
+                                            </button>
+                                        @endif
+                                    @elseif ($this->enemies->isNotEmpty())
+                                        <span class="flex items-center gap-1">
+                                            @foreach ($this->enemies as $enemy)
+                                                @if ($enemy->specialization)
+                                                    <x-spec-icon :spec="$enemy->specialization" size="w-5 h-5"/>
+                                                @endif
+                                            @endforeach
+                                            <span class="text-ink-muted ml-1">Their team</span>
+                                        </span>
+                                        <button type="button" wire:click="openOpponentPicker({{ $section->id }})"
+                                                class="text-ink-subtle hover:text-gold transition-colors">Narrow to one spec</button>
+                                    @elseif ($guide->isClassGuide() && $guide->opponentSpec)
+                                        <span class="flex items-center gap-1.5">
+                                            <x-spec-icon :spec="$guide->opponentSpec" size="w-5 h-5"/>
+                                            <span style="color: {{ $classColors[$guide->opponentSpec->gameClass?->slug] ?? '#8A8A9A' }}">
+                                                {{ $guide->opponentSpec->name }} {{ $guide->opponentSpec->gameClass?->name }}
+                                            </span>
                                         </span>
                                     @else
-                                        <span>+ Choose the opponent</span>
+                                        <button type="button" wire:click="openOpponentPicker({{ $section->id }})"
+                                                class="text-ink-subtle hover:text-gold transition-colors">+ Choose the opponent</button>
                                     @endif
-                                </button>
+                                </div>
                             @endif
                         </div>
 
@@ -618,8 +659,10 @@
                             <div class="prose-guide mt-3 text-[13.5px] text-ink-muted">{!! $section->bodyHtml() !!}</div>
                         @endif
                     @else
-                        @if ($data)
-                            <x-guides.metrics :metrics="$data['metrics']" :tracks-control="$section->kind->tracksControl()"/>
+                        {{-- No totals on an enemy section: it lists separate threats, so a summed
+                             control time or a "gated by" cooldown would describe a go nobody runs. --}}
+                        @if ($data && $section->kind->tracksControl())
+                            <x-guides.metrics :metrics="$data['metrics']"/>
                         @endif
 
                         <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :editable="true" :owner-id="$guide->user_id"/>
@@ -670,7 +713,9 @@
                             @if ($palette->isEmpty())
                                 <p class="text-[12.5px] text-ink-subtle">
                                     @if ($section->kind->usesOpponent())
-                                        Choose the opponent above to see their defensive cooldowns.
+                                        {{ $guide->isClassGuide()
+                                            ? 'Name the opponent above to see their abilities.'
+                                            : 'Name the enemy team at the top of the page, or choose an opponent above, to see their abilities.' }}
                                     @else
                                         Add a spec to the comp above and its abilities appear here.
                                     @endif
@@ -760,7 +805,7 @@
                 <div class="flex items-center justify-center">
                     <button type="button" wire:click="addParallelSection({{ $rowIndex }}, 'defensives')"
                             class="text-[12px] text-ink-subtle hover:text-gold transition-colors border border-dashed border-line-strong rounded px-3 py-2">
-                        + Add a VS column here
+                        + Add their side here
                     </button>
                 </div>
             @endif
@@ -768,8 +813,8 @@
     @empty
         <div class="linear-card p-10 text-center mb-4">
             <p class="text-[14px] text-ink-muted max-w-lg mx-auto">
-                A guide is made of sections. Add a chain, a full go, some notes &mdash; or a VS column
-                showing the defensives you're trying to force out of a specific opponent.
+                A guide is made of sections. Add a chain, a full go, some notes &mdash; or the enemy's
+                side: the CC, cooldowns and defensives to watch for.
             </p>
         </div>
     @endforelse

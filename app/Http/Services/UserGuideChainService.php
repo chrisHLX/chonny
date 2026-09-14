@@ -48,6 +48,9 @@ class UserGuideChainService
 
     private const UTILITY_GROUP = 'Utility & other';
 
+    /** Enemy sections only — see computeGroupsFor(). */
+    private const INTERRUPT_GROUP = 'Interrupts';
+
     /**
      * Bump when computeGroupsFor() changes WHICH abilities land in WHICH group.
      *
@@ -62,8 +65,11 @@ class UserGuideChainService
      * precomputed spell kits, so using it to publish a change to one palette would drop WoW Comps
      * and Spell Explorer onto their slow live-compute path for no reason — the same
      * over-invalidation trap already recorded for the burst guides.
+     *
+     * 4 (2026-09-14): enemy sections offer the opponent's CC, interrupts and offensive cooldowns,
+     * not just their defensives.
      */
-    private const PALETTE_SHAPE_VERSION = 3;
+    private const PALETTE_SHAPE_VERSION = 4;
 
     public function __construct(
         private SpecKitComputer $kits,
@@ -77,8 +83,11 @@ class UserGuideChainService
      * What the author can drag into this section, one group of sources per heading.
      *
      * Which specs are offered depends on the section's kind, and this is the whole point of the VS
-     * layout: a Defensives section draws from its OPPONENT's kit, every other kind draws from the
-     * author's own comp.
+     * layout: an enemy section draws from the OPPONENT's kit (their CC, interrupts and cooldowns),
+     * every other kind draws from the author's own comp.
+     *
+     * Costs nothing until asked for: the builder only builds the palette for the one section whose
+     * palette is open, the grouping is cached per spec+build, and the read view never builds one.
      *
      * A SEQUENCE OFFERS THE WHOLE PRESSABLE KIT, not a filtered slice of it (2026-09-08). It used
      * to offer control only, plus offensive cooldowns if the section had been created as a "go" —
@@ -114,9 +123,11 @@ class UserGuideChainService
      * The talent build a spec is being played with in this guide, or null to use the spec's
      * admin-curated default.
      *
-     * Only ever the author's OWN comp. A Defensives section's opponent is not in the guide's
-     * roster and has no build of its own here, which is correct: you do not know what your
-     * opponent talented, and inventing an answer would be worse than showing the meta default.
+     * Own-comp sections read the author's team; enemy sections read the enemy team, since an
+     * enemy slot can name its own build too ("their Priest is running Ultimate Penitence"). An
+     * opponent with no build of its own — including a per-section or class-guide opponent, which
+     * is never a roster row — uses the meta default: you do not know what your opponent talented,
+     * and inventing an answer would be worse than showing the meta.
      *
      * A comp with the same spec in two slots (a mirror double-DPS) resolves to the first slot's
      * build. Steps record only which SPEC they came from, not which slot, so the two are already
@@ -126,25 +137,22 @@ class UserGuideChainService
      */
     private function buildForSpec(UserGuideSection $section, int $specId): ?TalentBuild
     {
-        if ($section->kind->usesOpponent()) {
-            return null;
-        }
-
-        return $this->memberBuilds($section)->get($specId);
+        return $this->memberBuilds($section, $section->kind->usesOpponent())->get($specId);
     }
 
-    /** @var array<int, Collection<int, TalentBuild>> guide id => spec id => build */
+    /** @var array<string, Collection<int, TalentBuild>> "guide id:side" => spec id => build */
     private array $memberBuildsMemo = [];
 
     /** @return Collection<int, TalentBuild> keyed by spec id; a member with no build is absent. */
-    private function memberBuilds(UserGuideSection $section): Collection
+    private function memberBuilds(UserGuideSection $section, bool $enemies = false): Collection
     {
-        $guideId = (int) $section->user_guide_id;
+        $key = $section->user_guide_id.':'.($enemies ? 'enemy' : 'team');
 
-        return $this->memberBuildsMemo[$guideId] ??= $section->guide->members()
+        return $this->memberBuildsMemo[$key] ??= ($enemies ? $section->guide->enemies() : $section->guide->members())
             ->with('talentBuild')
             ->get()
             ->filter(fn ($m) => $m->talentBuild !== null)
+            ->unique('spec_id')
             ->keyBy('spec_id')
             ->map(fn ($m) => $m->talentBuild);
     }
@@ -208,7 +216,13 @@ class UserGuideChainService
         $controlBlockIds = [];
         $controlSpells = collect();
 
-        foreach ($blocks as $block) {
+        // An enemy section is a list of separate threats, usually from several enemy players —
+        // not one ordered chain. Tallying DR across it would badge their second stun as "50%"
+        // just because the author listed it after the first, which describes nothing real. Each
+        // step shows its full PvP duration instead.
+        $tracksControl = $section->kind->tracksControl();
+
+        foreach ($tracksControl ? $blocks : [] as $block) {
             $spell = $this->spellFor($block, $entriesByExternalId);
 
             if ($spell === null || ($entriesByExternalId[$spell->spell_id] ?? null)?->drCategory() === null) {
@@ -224,11 +238,12 @@ class UserGuideChainService
             $annotations[$controlBlockIds[$i]] = $annotation;
         }
 
-        return $blocks->map(function (UserGuideBlock $block) use ($entriesByExternalId, $annotations, $specs) {
+        return $blocks->map(function (UserGuideBlock $block) use ($entriesByExternalId, $annotations, $specs, $tracksControl) {
             $externalId = $block->externalSpellId();
             $entry = $externalId !== null ? ($entriesByExternalId[$externalId] ?? null) : null;
             $spell = $this->spellFor($block, $entriesByExternalId);
-            $dr = $annotations[$block->id] ?? null;
+            // Undiminished for an enemy section, so its CC still shows a real duration.
+            $dr = $annotations[$block->id] ?? ($tracksControl ? null : ['dr_percentage' => 100]);
 
             return [
                 'block' => $block,
@@ -260,9 +275,9 @@ class UserGuideChainService
      * FREQUENCY is the longest cooldown in the section: the whole thing repeats only as often as
      * its slowest piece comes back, so the maximum is the gate and the ability holding it is named.
      * Cooldowns come from the resolved entry, so they are talent-aware and benefit from sibling
-     * recovery. Steps with no cooldown are excluded and counted. It is computed for a Defensives
-     * section too, where it answers the genuinely useful inverse — how often the opponent can
-     * answer this at all.
+     * recovery. Steps with no cooldown are excluded and counted. Neither number is shown for an
+     * enemy section: it is a list of separate threats, so a summed control time or a "slowest
+     * piece" gate would describe a go nobody is running.
      *
      * @return array{control_seconds: ?float, control_steps: int, unknown_duration_steps: int, diminished_steps: int, frequency_seconds: ?float, frequency_spell: ?string, unknown_cooldown_steps: int}
      */
@@ -442,12 +457,12 @@ class UserGuideChainService
     private function groupsFor(UserGuideSection $section, Specialization $spec, Patch $patch, ?TalentBuild $build = null): Collection
     {
         $key = sprintf(
-            'guide_palette:s%d:%d:%s:%s:%s:v%s:%s',
+            'guide_palette:s%d:%d:%s:%s:v%s:%s',
             self::PALETTE_SHAPE_VERSION,
             $spec->id,
             $build === null ? 'default' : $build->id.'@'.($build->updated_at?->timestamp ?? 0),
-            $section->kind->usesOpponent() ? 'opp' : 'own',
-            $section->guide->type->usesWholeKit() ? 'whole' : 'cds',
+            // An enemy palette is the same whatever the guide type, so it gets one entry.
+            $section->kind->usesOpponent() ? 'opp' : ($section->guide->type->usesWholeKit() ? 'own-whole' : 'own-cds'),
             $this->talents->spellCacheVersion(),
             $this->talents->deployedCodeFingerprint(),
         );
@@ -477,15 +492,13 @@ class UserGuideChainService
     private function computeGroupsFor(UserGuideSection $section, Specialization $spec, Patch $patch, ?TalentBuild $build = null): Collection
     {
         $entries = $this->specEntries($spec, $build);
+        $isEnemy = $section->kind->usesOpponent();
 
-        if ($section->kind->usesOpponent()) {
-            $defensives = $entries
-                ->filter(fn ($e) => CooldownTabs::isEntry($e, 'defensive'))
-                ->sortBy(fn ($e) => $e->displayName())
-                ->values();
-
-            return $defensives->isEmpty() ? collect() : collect([self::DEFENSIVE_GROUP => $defensives]);
-        }
+        // Taken before the same-name collapse below, which keeps ONE copy per name and could keep
+        // one without the curated flag. The flag belongs to the ability, whichever copy has it.
+        $interruptNames = $isEnemy
+            ? $entries->filter(fn ($e) => $e['spell']->is_interrupt)->map(fn ($e) => $e->displayName())->unique()
+            : collect();
 
         $ccSpellIds = $this->pressableCcSpellIds($spec, $patch);
         $entries = $this->onePerDisplayName($entries);
@@ -506,6 +519,24 @@ class UserGuideChainService
         $claimed = $ccSpellIds->flip();
         $remaining = $entries->reject(fn ($e) => $claimed->has($e['spell']->id));
 
+        // ENEMY SECTIONS ONLY: their interrupts. "Watch the Kick" is one of the first things a
+        // matchup guide says, and an interrupt is neither CC (no DR category) nor a cooldown by the
+        // WoW Comps rule, so without this group it would appear nowhere in their palette. Own-comp
+        // palettes are deliberately unchanged — see the comp/class split below.
+        if ($interruptNames->isNotEmpty()) {
+            $interrupts = $remaining
+                ->filter(fn ($e) => $interruptNames->contains($e->displayName())
+                    && ! $e['spell']->is_passive && ! $e['spell']->not_in_spellbook)
+                ->sortBy(fn ($e) => $e->displayName())
+                ->values();
+
+            if ($interrupts->isNotEmpty()) {
+                $groups = $groups->put(self::INTERRUPT_GROUP, $interrupts);
+                $claimed = $claimed->union($interrupts->pluck('spell.id')->flip());
+                $remaining = $remaining->reject(fn ($e) => $claimed->has($e['spell']->id));
+            }
+        }
+
         foreach ([self::OFFENSIVE_GROUP => 'offensive', self::DEFENSIVE_GROUP => 'defensive'] as $label => $direction) {
             $matched = $remaining
                 ->filter(fn ($e) => CooldownTabs::isEntry($e, $direction))
@@ -523,8 +554,10 @@ class UserGuideChainService
         // movement ability alongside them made the comp palette harder to use for no gain, which
         // was the direct report that split the two guide types apart ("we don't need utility or
         // other in the 3v3 2v2 guide section, that's for a different type of guide"). A rotation
-        // or technique guide is built out of exactly those abilities, so it gets them.
-        if ($section->guide->type->usesWholeKit()) {
+        // or technique guide is built out of exactly those abilities, so it gets them — for YOUR
+        // spec. An enemy section never does: what matters about the other side is what they can
+        // do to you and how they survive, not their filler.
+        if (! $isEnemy && $section->guide->type->usesWholeKit()) {
             $explicitBaseline = $this->explicitBaselineSpellIds($spec);
             $utility = $remaining
                 ->filter(fn ($e) => $this->isPressable($e, $explicitBaseline))

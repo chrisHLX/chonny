@@ -11,7 +11,8 @@
             <h1 class="font-display text-3xl text-ink">My Guides</h1>
             <p class="text-[14px] text-ink-muted mt-2 max-w-prose">
                 Guides you've written for your own comps. Drafts stay private until you publish them,
-                and a published guide is private until you make it public.
+                and a published guide is private until you make it public. Writing the same comp into
+                a different matchup? Duplicate a guide and change the enemy side.
             </p>
         </div>
 
@@ -31,7 +32,7 @@
             <h2 class="text-[16px] font-semibold text-ink mb-2">Nothing here yet</h2>
             <p class="text-[14px] text-ink-muted max-w-lg mx-auto mb-6">
                 Two kinds. A <span class="text-ink">comp guide</span> is a 2v2 or 3v3 team &mdash; the
-                opener, the go, and a VS column for the defensives you're trying to force. A
+                opener, the go, and the enemy's side &mdash; their CC, cooldowns and defensives to watch for. A
                 <span class="text-ink">class guide</span> is one spec: a rotation, a technique, or a
                 specific matchup like Rogue vs Disc. Either way we work out how much control survives
                 diminishing returns and how often you can run it again.
@@ -107,12 +108,23 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-2 shrink-0">
+                    <div class="flex flex-wrap items-center gap-2 shrink-0">
                         @if ($guide->status === UserGuideStatus::Published && $url = $guide->publicUrl())
                             <a href="{{ $url }}" wire:navigate class="btn-ghost shrink-0">View</a>
                         @endif
 
                         <a href="{{ route('guides.edit', $guide->slug) }}" wire:navigate class="btn-ghost shrink-0">Edit</a>
+
+                        {{-- Reuse it for another matchup: same comp, talents and plan, as a new
+                             private draft. See UserGuideDuplicator. --}}
+                        <button type="button"
+                                wire:click="duplicate({{ $guide->id }})"
+                                wire:loading.attr="disabled" wire:target="duplicate({{ $guide->id }})"
+                                title="Copy this guide to start another from it"
+                                class="btn-ghost shrink-0">
+                            <span wire:loading.remove wire:target="duplicate({{ $guide->id }})">Duplicate</span>
+                            <span wire:loading wire:target="duplicate({{ $guide->id }})">Copying&hellip;</span>
+                        </button>
 
                         <button type="button"
                                 wire:click="delete({{ $guide->id }})"
