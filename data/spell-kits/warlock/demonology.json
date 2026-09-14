@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-09T21:55:06+00:00",
-    "spellCacheVersion": 4160,
+    "generatedAt": "2026-09-14T02:57:09+00:00",
+    "spellCacheVersion": 11,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -177,7 +177,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -237,7 +237,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -483,7 +483,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -1426,22 +1426,6 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 10978,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases the range of your Demonic Gateway by 20 yards, and reduces the cast time by 30%. Reduces the time between how often players can take your Demonic Gateway by 30 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 11206,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -1651,9 +1635,26 @@
                     }
                 ],
                 "baseline": [],
-                "potential": []
+                "potential": [
+                    {
+                        "spellId": 10978,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases the range of your Demonic Gateway by 20 yards, and reduces the cast time by 30%. Reduces the time between how often players can take your Demonic Gateway by 30 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": 10,
                 "base_seconds": 10,
@@ -2772,8 +2773,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_shadowfury.jpg",
-                                        "created_at": "2026-07-30T14:03:43.000000Z",
-                                        "updated_at": "2026-09-06T04:00:42.000000Z"
+                                        "created_at": "2026-08-03T12:23:32.000000Z",
+                                        "updated_at": "2026-09-08T00:07:17.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -5,
@@ -3084,8 +3085,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_impphaseshift.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:30.000000Z",
+                            "created_at": "2026-08-03T12:23:32.000000Z",
+                            "updated_at": "2026-09-08T00:07:06.000000Z",
                             "effects": [
                                 {
                                     "id": 20937,
@@ -3100,8 +3101,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -3151,8 +3152,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_demonhunter_infernalchains.jpg",
-                            "created_at": "2026-07-30T14:03:45.000000Z",
-                            "updated_at": "2026-09-06T04:00:35.000000Z",
+                            "created_at": "2026-08-03T12:23:33.000000Z",
+                            "updated_at": "2026-09-08T00:07:11.000000Z",
                             "effects": [
                                 {
                                     "id": 21255,
@@ -3167,8 +3168,8 @@
                                     "pvp_coefficient": 0.33333,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:45.000000Z",
-                                    "updated_at": "2026-09-09T11:36:17.000000Z"
+                                    "created_at": "2026-08-03T12:23:33.000000Z",
+                                    "updated_at": "2026-09-14T02:52:29.000000Z"
                                 }
                             ]
                         },
@@ -3561,7 +3562,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4286,8 +4287,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_shadowfury.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:42.000000Z",
+                            "created_at": "2026-08-03T12:23:32.000000Z",
+                            "updated_at": "2026-09-08T00:07:17.000000Z",
                             "effects": [
                                 {
                                     "id": 20969,
@@ -4302,8 +4303,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20970,
@@ -4318,8 +4319,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20971,
@@ -4334,8 +4335,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20972,
@@ -4350,8 +4351,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -5132,7 +5133,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -6031,8 +6032,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_shadowfury.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:42.000000Z",
+                            "created_at": "2026-08-03T12:23:32.000000Z",
+                            "updated_at": "2026-09-08T00:07:17.000000Z",
                             "effects": [
                                 {
                                     "id": 20969,
@@ -6047,8 +6048,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20970,
@@ -6063,8 +6064,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20971,
@@ -6079,8 +6080,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20972,
@@ -6095,8 +6096,8 @@
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -6534,7 +6535,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -7025,8 +7026,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_impphaseshift.jpg",
-                                        "created_at": "2026-07-30T14:03:43.000000Z",
-                                        "updated_at": "2026-09-06T04:00:30.000000Z"
+                                        "created_at": "2026-08-03T12:23:32.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -7074,8 +7075,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "ability_demonhunter_infernalchains.jpg",
-                                        "created_at": "2026-07-30T14:03:45.000000Z",
-                                        "updated_at": "2026-09-06T04:00:35.000000Z"
+                                        "created_at": "2026-08-03T12:23:33.000000Z",
+                                        "updated_at": "2026-09-08T00:07:11.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -90,
@@ -7116,7 +7117,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -7226,7 +7227,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,

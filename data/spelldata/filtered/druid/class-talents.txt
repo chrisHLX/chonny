@@ -1,5 +1,5 @@
 # Druid — Class Talents
-# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
+# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
 # 64 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Incapacitating Roar (id=99) [Spell Family (7)] 
@@ -412,7 +412,6 @@ Attributes       : Not Shapeshifted (16), No Threat (42), Include In Advanced Co
 Effects          :
 #1 (id=18680)    : Apply Aura (6) | Periodic Power% Regen (21)
                    Base Value: 5 | Scaled Value: 5 | PvP Coefficient: 0.8 | Target: Targeted Ally (21)
-Hotfixed         : PvP Coefficient (1 -> 0.8)
 Description      : Infuse a friendly healer with energy, causing them to regenerate $o1% of their maximum mana over $d.
 Tooltip          : Regenerating $w1% mana every $t1 sec.
 
@@ -626,7 +625,7 @@ Cooldown         : 60 seconds
 Labels           : 16: Class Spells
                  : 21: Druid Spells
                  : 292
-                 : 1387
+                 : 1387: Avoid CC Targets
 Affecting Spells : Starfall (191034 effect#2), Astral Influence (197524 effect#1), Ekowraith, Creator of Worlds (210667 effect#1)
 Family Flags     : 110
 Attributes       : Do Not Sheath (18), No Redirection (35), No Reflection (39), No Threat (42), No AutoCast (AI) (49), Requires Main-Hand Weapon (106), Not In Spellbook Until Learned (269), Allow Class Ability Procs (416)

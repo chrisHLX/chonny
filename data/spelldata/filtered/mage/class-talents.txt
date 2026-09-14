@@ -1,5 +1,5 @@
 # Mage — Class Talents
-# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
+# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
 # 53 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Remove Curse (id=475) [Spell Family (3)] 
@@ -48,7 +48,6 @@ Effects          :
 #1 (id=4830)     : Apply Aura (6) | Absorb Damage (69)
                    Base Value: 0 | Scaled Value: 0 | PvP Coefficient: 0.75 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
-Hotfixed         : PvP Coefficient (1 -> 0.75)
                    Modified By: Eldritch Warding (274379 effect#1)
 #2 (id=343726)   : Apply Aura (6) | Dummy (4)
                    Base Value: 35 | Scaled Value: 35 | PvP Coefficient: 0.517 | Misc Value: 127 | Target: Self (1)
@@ -368,7 +367,6 @@ Effects          :
 #1 (id=355674)   : Apply Aura (6) | Absorb Damage (69)
                    Base Value: 0 | Scaled Value: 0 | PvP Coefficient: 0.75 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
-Hotfixed         : PvP Coefficient (1 -> 0.75)
                    Modified By: Eldritch Warding (274379 effect#1)
 #2 (id=355675)   : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.75 | Target: Self (1)
@@ -413,7 +411,6 @@ Effects          :
 #1 (id=355844)   : Apply Aura (6) | Absorb Damage (69)
                    Base Value: 0 | Scaled Value: 0 | PvP Coefficient: 0.75 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
-Hotfixed         : PvP Coefficient (1 -> 0.75)
                    Modified By: Eldritch Warding (274379 effect#1)
 #2 (id=355845)   : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.75 | Misc Value: 127 | Target: Self (1)
@@ -586,7 +583,6 @@ Effects          :
 Description      : Counterspell's cooldown is reduced by ${-$s1/1000} sec.
 
 Name             : Winter's Protection (id=382424) [Spell Family (3), Passive, Hidden] 
-Hotfixed         : Attributes
 Talent Entry     : Generic [tree=class, row=3, col=5, max_rank=2, req_points=0]
                  : Effect#1 [op=set, values=(-29999, -60000)]
 Class            : Mage
@@ -862,7 +858,6 @@ Effects          :
                    Base Value: -30000 | Scaled Value: -30000 | PvP Coefficient: 0.5 | Misc Value: 11 | Target: Self (1)
                    Affected Spells: Mirror Image (55342)
                    Family Flags: 53
-Hotfixed         : PvP Coefficient (1 -> 0.5)
 Description      : Mirror Image's cooldown is reduced by ${-$s1/1000} sec.
 
 Name             : Spatial Manipulation (id=1244031) [Spell Family (3), Passive] 

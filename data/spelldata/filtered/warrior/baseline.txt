@@ -1,5 +1,5 @@
 # Warrior — Baseline (no talent tree)
-# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
+# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
 # 624 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Vanguard (id=71) [Spell Family (4), Passive] 
@@ -9338,7 +9338,6 @@ Effects          :
 Description      : $@spelldesc444775
 
 Name             : Bladestorm (id=446035) [Spell Family (4)] 
-Hotfixed         : Attributes
 Class            : Warrior
 School           : Physical
 Spell Type       : Melee
@@ -10728,7 +10727,7 @@ Labels           : 16: Class Spells
                  : 25: Warrior Spells
                  : 292
                  : 948
-                 : 1387
+                 : 1387: Avoid CC Targets
 Affecting Spells : Warrior (137047 effect#2), Battlefield Commander (424742 effect#3), Resonant Voice (1243660 effect#1)
 Triggered By     : Piercing Howl (12323)
 Family Flags     : 8, 70, 71
@@ -10782,7 +10781,6 @@ Effects          :
                    Base Value: -15 | Scaled Value: -15 | Misc Value: 5 | Misc Value 2: 2670 (Label) | Target: Self (1)
 #11 (id=1352907) : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
                    Base Value: 10000 | Scaled Value: 10000 | Misc Value: 12 | Misc Value 2: 7157 (Label) | Target: Self (1)
-Hotfixed         : NEW EFFECT
 
 Name             : Protection Warrior (id=1256935) [Spell Family (4), Passive, Hidden] 
 Class            : Protection Warrior
@@ -10831,7 +10829,6 @@ Effects          :
                    Family Flags: 29
 #6 (id=1352908)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
                    Base Value: 10000 | Scaled Value: 10000 | Misc Value: 12 | Misc Value 2: 7157 (Label) | Target: Self (1)
-Hotfixed         : NEW EFFECT
 
 Name             : Protection Warrior (id=1258163) [Spell Family (4), Passive, Hidden] 
 Class            : Protection Warrior

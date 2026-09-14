@@ -1,5 +1,5 @@
 # Druid — Restoration Spec Talents
-# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
+# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
 # 53 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Tranquility (id=740) [Spell Family (7)] 
@@ -70,7 +70,6 @@ Attributes       : Not Shapeshifted (16), Allow While Not Shapeshifted (caster f
 Effects          :
 #1 (id=10065)    : Direct Heal (10)
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 10.37 | Target: Targeted Ally (21)
-Hotfixed         : PvP Coefficient (1.25 -> 1)
 #2 (id=1326779)  : None (0)
                    Base Value: 40 | Scaled Value: 40
 Description      : $?s392410[Utilize][Consume] a Regrowth, Wild Growth, or Rejuvenation effect to instantly heal an ally for $s1. Healing is increased by $s2% of the $?s392410[utilized][consumed] heal over time effect.
@@ -811,7 +810,6 @@ Effects          :
                    Base Value: 4 | Scaled Value: 4 | Target: Self (1)
 #2 (id=1030500)  : Dummy (3) | Attributes: Suppress Points Stacking (6)
                    Base Value: 10 | Scaled Value: 10 | PvP Coefficient: 0.8 | Target: Self (1)
-Hotfixed         : PvP Coefficient (1 -> 0.8)
                    Modified By: Potent Enchantments (429420 effect#5)
 Description      : Every $s1 casts of Swiftmend grants you Incarnation: Tree of Life for $s2 sec.
 

@@ -1,5 +1,5 @@
 # Death Knight — San'layn Hero Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69587 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Vampiric Strike (id=433901) [Spell Family (15), Passive] 
@@ -327,7 +327,6 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
                    Affected Spells: Virulent Plague (191587), Virulent Eruption (191685)
                    Family Flags: 40
-Hotfixed         : Affects Spells
 #4 (id=1311174)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
                    Affected Spells: Blood Plague (55078), Consumption (1263872)
@@ -340,7 +339,6 @@ Hotfixed         : Affects Spells
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Virulent Plague (191587), Virulent Eruption (191685)
                    Family Flags: 40
-Hotfixed         : Affects Spells
 #7 (id=1319201)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Blood Plague (55078), Consumption (1263872)
