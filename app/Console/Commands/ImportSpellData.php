@@ -330,7 +330,10 @@ class ImportSpellData extends Command
         // What this run changed on abilities players can press — the Home feed's "game data
         // updated" item. Written after every pass so the visibility filter sees this run's talent
         // and override rows, not the previous run's.
-        if ($dataUpdate = $this->spellChanges->flush($patch->id, $patch->build_version)) {
+        // The GAME build the data came from, not $patch->build_version: that row name is frozen on
+        // purpose (see CLAUDE.md, "the current patch string is intentionally frozen"), so the feed
+        // would name a build players never had.
+        if ($dataUpdate = $this->spellChanges->flush($patch->id, $this->simcGameBuild($classDataRoot))) {
             $this->info("Recorded a game-data update: {$dataUpdate->changed_spell_count} pressable abilit".($dataUpdate->changed_spell_count === 1 ? 'y' : 'ies').' changed (shown in the Home feed).');
         }
 
@@ -349,6 +352,30 @@ class ImportSpellData extends Command
         $this->runSpellbookDiffCheck();
 
         return self::SUCCESS;
+    }
+
+    /**
+     * The game build SimC's dump was generated from ("12.1.0.69814"), read from the header every
+     * filtered file carries: "# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for
+     * World of Warcraft 12.1.0.69814 Live)". Null if no file says — the feed then omits the build
+     * rather than showing a wrong one.
+     */
+    private function simcGameBuild(string $classDataRoot): ?string
+    {
+        foreach (File::allFiles($classDataRoot) as $file) {
+            $handle = fopen($file->getPathname(), 'r');
+            $firstLines = '';
+            for ($i = 0; $i < 3 && ($line = fgets($handle)) !== false; $i++) {
+                $firstLines .= $line;
+            }
+            fclose($handle);
+
+            if (preg_match('/for World of Warcraft (\d+\.\d+\.\d+\.\d+)/', $firstLines, $m)) {
+                return $m[1];
+            }
+        }
+
+        return null;
     }
 
     private function importClass(Game $game, Patch $patch, string $classDir): void
