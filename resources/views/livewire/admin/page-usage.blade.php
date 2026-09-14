@@ -103,6 +103,22 @@
             @endif
         </div>
 
+        {{-- ── Home feed + Buy me a coffee ── --}}
+        <div class="linear-card overflow-hidden">
+            <div class="px-5 py-4 border-b border-line">
+                <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider">Home feed &amp; support</p>
+                <p class="text-[11px] text-ink-subtle mt-0.5">Real switches between feed tabs (not the tab landed on), "Show more" clicks, and clicks through to Buy me a coffee. Home page views themselves are in the table above.</p>
+            </div>
+            <div class="divide-y divide-line">
+                @foreach($homeEngagement as $row)
+                    <div class="px-5 py-3 flex items-center justify-between">
+                        <p class="text-[13px] text-ink">{{ $row->label }}</p>
+                        <p class="text-[12px] text-ink-muted tabular-nums">{{ number_format($row->count) }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
         {{-- ── PvP Guides: tab usage ── --}}
         <div class="linear-card overflow-hidden">
             <div class="px-5 py-4 border-b border-line">

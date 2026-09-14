@@ -272,9 +272,33 @@ class PageUsage extends Component
             ]);
     }
 
+    /**
+     * Home feed and support engagement (added 2026-09-14): switches into each feed tab, "Show more"
+     * clicks, and "Buy me a coffee" clicks through /support. None of these is a page, so like the
+     * tab and preset breakdowns above they live outside PAGES.
+     *
+     * @return array<int, object{label: string, count: int}>
+     */
+    public function getHomeEngagementProperty(): array
+    {
+        $feed = PageViewEvent::query()
+            ->selectRaw('slot, count(*) as count')
+            ->where('page', 'home_feed')
+            ->groupBy('slot')
+            ->pluck('count', 'slot');
+
+        return [
+            (object) ['label' => 'Feed: switched to "Friends & guilds"', 'count' => (int) ($feed['circle'] ?? 0)],
+            (object) ['label' => 'Feed: switched back to "Everyone"', 'count' => (int) ($feed['everyone'] ?? 0)],
+            (object) ['label' => 'Feed: "Show more"', 'count' => (int) ($feed['more'] ?? 0)],
+            (object) ['label' => 'Buy me a coffee clicks', 'count' => PageViewEvent::where('page', 'support_click')->count()],
+        ];
+    }
+
     public function render()
     {
         return view('livewire.admin.page-usage', [
+            'homeEngagement' => $this->homeEngagement,
             'pages' => self::PAGES,
             'pvpGuidesTabBreakdown' => $this->pvpGuidesTabBreakdown,
             'summary' => $this->summary,

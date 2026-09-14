@@ -23,20 +23,23 @@
     <!-- Scrollable nav body -->
     <div class="flex-1 overflow-y-auto py-2 px-2 space-y-0.5">
 
-        {{-- TWO KINDS OF LINK, 2026-09-14. "Your space" is everything that belongs to the signed-in
-             player — their dashboard, guides, characters, friends, guilds and account — in one
-             tinted card with their name on it, so it can't be mistaken for the site's own pages.
-             "Explore" below it is the public site: the same for everyone, signed in or not.
-             Before this the two were one flat list (Home, 3v3 Comps, Player Guides, My Guides,
-             Friends…), and the account page was only reachable from the menu at the very bottom.
-             (The previous reorder, 2026-09-13, moved the arena side above the quiz pages; that
-             still holds — Training stays last.) --}}
+        {{-- SIMPLIFIED, 2026-09-14. Every link in this sidebar says "this is something you should
+             understand", so it carries only what the site is now about: game plans. Five short
+             groups, in this order —
+               Your space   the signed-in player's own pages, in one tinted card with their name on it
+               Explore      the public site: guides and comps
+               Social       friends and guilds
+               Class data   the reference pages behind the plans
+               Training     diagnostic and quizzes, collapsed until opened (open on its own pages)
+             Feedback / Discord / Support moved to one small row at the bottom, and credits/XP into
+             the account menu. History: 2026-09-13 moved the arena side above the quiz pages;
+             2026-09-14 (earlier) split "Your space" from the public site. --}}
         @auth
             @php
                 $navMe = auth()->user();
                 $navPendingFriends = $navMe->pendingFriendRequestCount();
             @endphp
-            <div class="rounded-lg border border-line-gold bg-gold-subtle/60 p-1 mb-3">
+            <div class="rounded-lg border border-line-gold bg-gold-subtle/60 p-1 mb-2">
                 <div class="flex items-center gap-2 px-2 pt-1.5 pb-2">
                     <div class="w-6 h-6 rounded-full bg-gold/15 border border-gold/30 flex items-center justify-center text-[11px] font-semibold text-gold shrink-0">
                         {{ strtoupper(substr($navMe->name ?? 'U', 0, 1)) }}
@@ -54,7 +57,7 @@
                     <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                     </svg>
-                    Dashboard
+                    Home
                 </a>
 
                 <a href="{{ route('guides.index') }}"
@@ -73,25 +76,6 @@
                     My Characters
                 </a>
 
-                <a href="{{ route('friends.index') }}"
-                   class="sidebar-item {{ request()->routeIs('friends.*') ? 'active' : '' }}">
-                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
-                    </svg>
-                    Friends
-                    @if ($navPendingFriends > 0)
-                        <span class="ml-auto badge-gold tabular-nums">{{ $navPendingFriends }}</span>
-                    @endif
-                </a>
-
-                <a href="{{ route('guilds.index') }}"
-                   class="sidebar-item {{ request()->routeIs('guilds.*') ? 'active' : '' }}">
-                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
-                    </svg>
-                    Guilds
-                </a>
-
                 <a href="{{ route('profile.edit') }}"
                    class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
                     <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,17 +88,7 @@
         @endauth
 
         {{-- Explore: the public site, identical for every visitor. --}}
-        <div class="px-2.5 pt-1 pb-1">
-            <p class="text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Explore</p>
-        </div>
-
-        <a href="{{ route('wow-comps') }}"
-           class="sidebar-item {{ request()->routeIs('wow-comps') ? 'active' : '' }}">
-            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-            </svg>
-            3v3 Comps
-        </a>
+        <p class="px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Explore</p>
 
         {{-- Public: a player guide is readable without an account, so the browse listing must be
              reachable without one too. --}}
@@ -126,63 +100,102 @@
             Player Guides
         </a>
 
-        <div class="pl-3 space-y-0.5 pt-1">
-            <div class="px-2.5 pt-1.5 pb-0.5">
-                <p class="text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Class data</p>
-            </div>
-            <a href="{{ route('top-damage-rotations') }}"
-               class="sidebar-item text-[12px] {{ request()->routeIs('top-damage-rotations') ? 'active !text-accent' : '' }}">
-                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Top Burst Windows
-            </a>
-            {{-- One link replacing four (Class Kits / Burst Guides / Spell Counters / Spells),
-                 2026-09-07: all four answer questions about a single class/spec, so they are now
-                 tabs on one per-spec page. The four routes still exist and still render on their
-                 own for anything already bookmarked or linked; they are just no longer separate
-                 destinations in the nav. See App\Livewire\PvpGuides. --}}
-            <a href="{{ route('pvp-guides') }}"
-               class="sidebar-item text-[12px] {{ request()->routeIs('pvp-guides') || request()->routeIs('class-guide') || request()->routeIs('burst-guides') || request()->routeIs('claudes-counters') || request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">
-                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Class Guides
-            </a>
-            <a href="{{ route('top-cc-chains') }}"
-               class="sidebar-item text-[12px] {{ request()->routeIs('top-cc-chains') ? 'active !text-accent' : '' }}">
-                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Top 10 CC Chains
-            </a>
-        </div>
+        <a href="{{ route('wow-comps') }}"
+           class="sidebar-item {{ request()->routeIs('wow-comps') ? 'active' : '' }}">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            3v3 Comps
+        </a>
 
-        {{-- Training: the diagnostic and quiz side, unchanged, grouped last. --}}
-        <div class="pl-3 space-y-0.5 pt-1">
-            <div class="px-2.5 pt-1.5 pb-0.5">
-                <p class="text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Training</p>
+        @auth
+            <p class="px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Social</p>
+
+            <a href="{{ route('friends.index') }}"
+               class="sidebar-item {{ request()->routeIs('friends.*') ? 'active' : '' }}">
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                </svg>
+                Friends
+                @if ($navPendingFriends > 0)
+                    <span class="ml-auto badge-gold tabular-nums">{{ $navPendingFriends }}</span>
+                @endif
+            </a>
+
+            <a href="{{ route('guilds.index') }}"
+               class="sidebar-item {{ request()->routeIs('guilds.*') ? 'active' : '' }}">
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
+                </svg>
+                Guilds
+            </a>
+        @endauth
+
+        <p class="px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Class data</p>
+
+        {{-- One link replacing four (Class Kits / Burst Guides / Spell Counters / Spells),
+             2026-09-07: all four answer questions about a single class/spec, so they are now
+             tabs on one per-spec page. The four routes still exist and still render on their
+             own for anything already bookmarked or linked; they are just no longer separate
+             destinations in the nav. See App\Livewire\PvpGuides. --}}
+        <a href="{{ route('pvp-guides') }}"
+           class="sidebar-item text-[12px] {{ request()->routeIs('pvp-guides') || request()->routeIs('class-guide') || request()->routeIs('burst-guides') || request()->routeIs('claudes-counters') || request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">
+            <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+            Class Guides
+        </a>
+        <a href="{{ route('top-damage-rotations') }}"
+           class="sidebar-item text-[12px] {{ request()->routeIs('top-damage-rotations') ? 'active !text-accent' : '' }}">
+            <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+            Top Burst Windows
+        </a>
+        <a href="{{ route('top-cc-chains') }}"
+           class="sidebar-item text-[12px] {{ request()->routeIs('top-cc-chains') ? 'active !text-accent' : '' }}">
+            <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+            Top 10 CC Chains
+        </a>
+
+        {{-- Training: the diagnostic and quiz side. Kept — it is still part of where the site is
+             going — but collapsed by default so it does not compete with the arena side. Always
+             open while you are on one of its own pages. --}}
+        @php $onTrainingPage = request()->routeIs('training') || request()->routeIs('modules.*') || request()->routeIs('collection.index'); @endphp
+        <div x-data="{ open: $persist(false).as('nav_training_open') }">
+            <button type="button" @click="open = !open"
+                    class="w-full flex items-center justify-between px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest hover:text-ink-muted transition-colors">
+                Training
+                <svg :class="(open || {{ $onTrainingPage ? 'true' : 'false' }}) ? 'rotate-90' : ''"
+                     class="w-3 h-3 transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+            <div x-show="open || {{ $onTrainingPage ? 'true' : 'false' }}" x-cloak class="space-y-0.5">
+                @auth
+                    <a href="{{ route_with_context('training') }}"
+                       class="sidebar-item text-[12px] {{ request()->routeIs('training') ? 'active !text-accent' : '' }}">
+                        <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                        {{-- Was "Your Profile", which collided with the account's Profile & settings in
+                             "Your space" above. This page is the diagnostic's learning profile. --}}
+                        Diagnostic
+                    </a>
+                @endauth
+                <a href="{{ route_with_context('modules.index') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('modules.*') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Quizzes
+                </a>
+                @auth
+                    <a href="{{ route_with_context('collection.index') }}"
+                       class="sidebar-item text-[12px] {{ request()->routeIs('collection.index') ? 'active !text-accent' : '' }}">
+                        <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                        Progress
+                    </a>
+                @endauth
             </div>
-            @auth
-            <a href="{{ route_with_context('training') }}"
-               class="sidebar-item text-[12px] {{ request()->routeIs('training') ? 'active !text-accent' : '' }}">
-                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                {{-- Was "Your Profile", which collided with the account's Profile & settings in
-                     "Your space" above. This page is the diagnostic's learning profile. --}}
-                Diagnostic
-            </a>
-            @endauth
-            <a href="{{ route_with_context('modules.index') }}"
-               class="sidebar-item text-[12px] {{ request()->routeIs('modules.*') ? 'active !text-accent' : '' }}">
-                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Quizzes
-            </a>
-            @auth
-            <a href="{{ route_with_context('collection.index') }}"
-               class="sidebar-item text-[12px] {{ request()->routeIs('collection.index') ? 'active !text-accent' : '' }}">
-                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                Progress
-            </a>
-            @endauth
         </div>
 
         @can('admin')
         <!-- Creator -->
-        <div x-data="{ creatorOpen: $persist(true).as('nav_creator_open') }" class="pt-1">
+        {{-- Admin only. Collapsed by default (new persist key, so it starts closed for everyone once). --}}
+        <div x-data="{ creatorOpen: $persist(false).as('nav_creator_open_v2') }" class="pt-3">
             <button @click="creatorOpen = !creatorOpen"
                     class="sidebar-item w-full justify-between">
                 <div class="flex items-center gap-2.5">
@@ -262,56 +275,23 @@
 
     </div>
 
-    <!-- Feedback + Discord + Support -->
-    <div class="shrink-0 px-2 pb-1 space-y-0.5">
-        <a href="{{ route('feedback.create') }}"
-           class="sidebar-item text-[12px] text-ink-subtle {{ request()->routeIs('feedback.*') ? 'active' : '' }}">
-            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
-            </svg>
-            Feedback
-        </a>
-        <a href="https://discord.gg/Bk7wEvPRt"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="sidebar-item text-[12px] text-ink-subtle">
-            <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-            </svg>
-            Join Discord
-        </a>
-        @auth
-        <button id="nav-support-btn"
-                class="sidebar-item w-full text-[12px] text-ink-subtle">
-            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-            </svg>
-            Support Development
-        </button>
-        @endauth
+    {{-- Feedback, Discord and Buy me a coffee: one quiet row rather than three full-size nav items.
+         They are real, and worth one click, but not worth competing with the site's own pages.
+         The coffee link replaced a Stripe checkout button (2026-09-14) and shows for everyone,
+         signed in or not, but only once BUYMEACOFFEE_URL is set. --}}
+    <div class="shrink-0 px-3 py-2 flex items-center gap-3 flex-wrap text-[11.5px] text-ink-subtle">
+        <a href="{{ route('feedback.create') }}" class="hover:text-ink transition-colors {{ request()->routeIs('feedback.*') ? 'text-gold' : '' }}">Feedback</a>
+        <a href="https://discord.gg/Bk7wEvPRt" target="_blank" rel="noopener noreferrer" class="hover:text-ink transition-colors">Discord</a>
+        @if (filled(config('services.buymeacoffee.url')))
+            <a href="{{ route('support') }}" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">&#9749; Buy me a coffee</a>
+        @endif
     </div>
 
-    <!-- Footer: credits + user (auth) or sign-in prompt (guest) -->
+    <!-- Footer: the account menu (auth) or sign-in prompt (guest) -->
     <div class="shrink-0 border-t border-line">
         @auth
-        <!-- Credits row -->
-        <div class="flex items-center justify-between px-3 py-2">
-            <div class="flex items-center gap-1.5 text-[11px] text-ink-subtle">
-                <svg class="w-3 h-3 text-gold shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                </svg>
-                Credits <span class="text-ink-muted font-medium">{{ $nav_ai_credits }}</span>
-            </div>
-            <div class="flex items-center gap-1.5 text-[11px] text-ink-subtle">
-                <svg class="w-3 h-3 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                XP <span class="text-ink-muted font-medium">{{ $nav_learned_credits }}</span>
-            </div>
-        </div>
-
         <!-- User menu -->
-        <div x-data="{ open: false }" class="relative px-2 pb-2">
+        <div x-data="{ open: false }" class="relative px-2 py-2">
             <button @click="open = !open" class="sidebar-item w-full justify-between">
                 <div class="flex items-center gap-2 min-w-0">
                     <div class="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center text-[10px] font-semibold text-gold shrink-0">
@@ -334,6 +314,18 @@
                  x-transition:leave-end="opacity-0 translate-y-1"
                  class="absolute bottom-full left-2 right-2 mb-1 bg-surface-2 border border-line rounded-lg shadow-xl overflow-hidden"
                  style="display:none">
+                {{-- Credits and XP belong to the quiz side (Training); moved here from a row that sat
+                     permanently above this menu on every page. --}}
+                <div class="flex items-center justify-between px-3 py-2 border-b border-line text-[11px] text-ink-subtle">
+                    <span class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-gold shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        Credits <span class="text-ink-muted font-medium">{{ $nav_ai_credits }}</span>
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        XP <span class="text-ink-muted font-medium">{{ $nav_learned_credits }}</span>
+                    </span>
+                </div>
                 <a href="{{ route('profile.edit') }}"
                    class="flex items-center gap-2 px-3 py-2 text-[12px] text-ink-muted hover:text-ink hover:bg-surface-3 transition-colors">
                     <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -373,17 +365,3 @@
     </div>
 </aside>
 
-@auth
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-    document.getElementById('nav-support-btn').addEventListener('click', async () => {
-        const stripe = Stripe("{{ config('services.stripe.key') }}");
-        const res = await fetch("{{ route('checkout.session') }}", {
-            method: 'POST',
-            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
-        });
-        const data = await res.json();
-        await stripe.redirectToCheckout({ sessionId: data.id });
-    });
-</script>
-@endauth

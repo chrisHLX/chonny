@@ -41,6 +41,13 @@ return [
         'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
     ],
 
+    // "Buy me a coffee" in the sidebar footer, via the tracked /support redirect. Replaced the
+    // Stripe "Support Development" checkout button (2026-09-14). Unset = the link is hidden,
+    // never shown broken.
+    'buymeacoffee' => [
+        'url' => env('BUYMEACOFFEE_URL'),
+    ],
+
     'recaptcha' => [
         'site_key' => env('RECAPTCHA_SITE_KEY'),
         'secret_key' => env('RECAPTCHA_SECRET_KEY'),

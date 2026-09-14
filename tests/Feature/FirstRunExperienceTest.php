@@ -62,11 +62,10 @@ test('a brand-new account gets the first-run home: one thing to do, and a real p
         ->assertSee('See one another player wrote')
         ->assertSee('RMP into TSG')
         ->assertSee('Your characters')
-        ->assertSee('Browse 3v3 comps')
-        // Other players' plans come before the (empty, for a new account) friends block.
-        ->assertSeeInOrder(['Plans other players have written', 'From your friends'])
-        // The hero replaces the small "Build a guide" card rather than repeating it.
-        ->assertDontSee('Build a guide')
+        // The hero comes first, then the feed of other players' plans.
+        ->assertSeeInOrder(['Build your first game plan', 'Everyone', 'RMP into TSG'])
+        // The hero's buttons replace the header's rather than repeating them.
+        ->assertDontSee('+ New comp guide')
         ->assertSee('aria-label="Main"', false);
 });
 
@@ -78,7 +77,7 @@ test('a player who has written something gets the regular home back', function (
         ->get(route('dashboard'))
         ->assertOk()
         ->assertSee('Welcome back, Newbie')
-        ->assertSee('Build a guide')
+        ->assertSee('+ New comp guide')
         ->assertSee('My opener')
         ->assertDontSee('Build your first game plan');
 });
@@ -147,6 +146,35 @@ test('a collaborator never sees the author-only sharing panel', function () {
         ->assertDontSee('Sharing &amp; credit', false);
 });
 
+// ------------------------------------------------------------------ slugs shared across authors
+
+test('two players whose first guides share a slug each open their own, and a stranger is still refused', function () {
+    // Found by the launch round trip: every new guide starts as "Untitled class guide", slugs are
+    // unique per author only, and the edit route used to find whichever guide came first.
+    [$first, $second, $stranger] = [firstRunUser('first'), firstRunUser('second'), firstRunUser('stranger')];
+    $theirs = firstRunGuide($first, ['title' => 'Untitled class guide']);
+    $mine = firstRunGuide($second, ['title' => 'Untitled class guide', 'summary' => 'second player summary']);
+
+    expect($mine->slug)->toBe($theirs->slug);
+
+    $this->actingAs($second)->get(route('guides.edit', $mine->slug))
+        ->assertOk()
+        ->assertSee('second player summary');
+
+    $this->actingAs($stranger)->get(route('guides.edit', $mine->slug))->assertForbidden();
+});
+
+test('the public URL serves the named author\'s guide when another author has the same slug', function () {
+    [$alice, $bob] = [firstRunUser('alice'), firstRunUser('bob')];
+    $published = ['status' => UserGuideStatus::Published, 'visibility' => UserGuideVisibility::Public];
+    firstRunGuide($alice, $published + ['title' => 'RMP opener', 'summary' => 'alice version']);
+    firstRunGuide($bob, $published + ['title' => 'RMP opener', 'summary' => 'bob version']);
+
+    $this->get('/g/bob/rmp-opener')->assertOk()->assertSee('bob version')->assertDontSee('alice version');
+    $this->get('/g/alice/rmp-opener')->assertOk()->assertSee('alice version');
+    $this->get('/g/nobody/rmp-opener')->assertNotFound();
+});
+
 // ------------------------------------------------------------------ the sidebar
 
 test('the sidebar puts your own pages in one block, separate from the public site', function () {
@@ -155,12 +183,16 @@ test('the sidebar puts your own pages in one block, separate from the public sit
     $this->actingAs($user)
         ->get(route('dashboard'))
         ->assertOk()
-        // Your space first — dashboard through account — then the public site, then Training.
+        // Your space, then the public site, social, class data, and Training last.
         ->assertSeeInOrder([
-            'Your space', 'Newbie', 'Dashboard', 'My Guides', 'My Characters', 'Friends', 'Guilds', 'Profile &amp; settings',
-            'Explore', '3v3 Comps', 'Player Guides', 'Class data', 'Training', 'Diagnostic',
+            'Your space', 'Newbie', 'Home', 'My Guides', 'My Characters', 'Profile &amp; settings',
+            'Explore', 'Player Guides', '3v3 Comps',
+            'Social', 'Friends', 'Guilds',
+            'Class data', 'Class Guides', 'Training', 'Diagnostic',
         ], false)
-        ->assertDontSee('Your Profile');
+        ->assertDontSee('Your Profile')
+        // Credits/XP live in the account menu now, which comes after everything above.
+        ->assertSeeInOrder(['Training', 'Feedback', 'Discord', 'Credits'], false);
 });
 
 test('a signed-out visitor gets only the public side of the sidebar', function () {

@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Console\Concerns\RegeneratesSpellKits;
 use App\Http\Services\ArenaLogService;
 use App\Http\Services\ModuleSpellReferenceService;
+use App\Http\Services\SpellChangeRecorder;
 use App\Http\Services\SpellDataFileParser;
 use App\Http\Services\TalentSelectionService;
 use App\Models\Game;
@@ -174,9 +175,19 @@ class ImportSpellData extends Command
 
     private int $scalarCorrectionSkips = 0;
 
+    /**
+     * On only while the class-record pass runs, so the feed's "game data updated" items describe
+     * what the game data changed — never this project's own curated passes that run afterwards.
+     * See SpellChangeRecorder.
+     */
+    private bool $recordSpellChanges = false;
+
+    private SpellChangeRecorder $spellChanges;
+
     public function handle(SpellDataFileParser $parser): int
     {
         $this->parser = $parser;
+        $this->spellChanges = app(SpellChangeRecorder::class);
 
         foreach (self::TRACKED_TABLES as $table) {
             $this->counts[$table] = ['created' => 0, 'updated' => 0, 'unchanged' => 0];
@@ -250,9 +261,11 @@ class ImportSpellData extends Command
             return self::SUCCESS;
         }
 
+        $this->recordSpellChanges = true;
         foreach ($classDirs as $classDir) {
             DB::transaction(fn () => $this->importClass($game, $patch, $classDir));
         }
+        $this->recordSpellChanges = false;
 
         $this->importRelationships();
         $this->importCategoryRelationships();
@@ -313,6 +326,13 @@ class ImportSpellData extends Command
         }
 
         $this->materializeSpellShape($patch);
+
+        // What this run changed on abilities players can press — the Home feed's "game data
+        // updated" item. Written after every pass so the visibility filter sees this run's talent
+        // and override rows, not the previous run's.
+        if ($dataUpdate = $this->spellChanges->flush($patch->id, $patch->build_version)) {
+            $this->info("Recorded a game-data update: {$dataUpdate->changed_spell_count} pressable abilit".($dataUpdate->changed_spell_count === 1 ? 'y' : 'ies').' changed (shown in the Home feed).');
+        }
 
         // Spell data (cooldowns, descriptions, mechanic, effects) may have changed for any
         // spec touched by this run — bump the shared version counter WowComps/SpellExplorer's
@@ -2224,6 +2244,11 @@ class ImportSpellData extends Command
 
         $instance->fill($values);
         $changed = $instance->isDirty();
+
+        if ($changed && $existed && $this->recordSpellChanges && $instance instanceof Spell) {
+            $this->spellChanges->capture($instance);
+        }
+
         $instance->save();
 
         if (! $existed) {

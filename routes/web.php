@@ -222,6 +222,8 @@ Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group
 });
 
 // ------- User-authored guides -------
+// {guide} resolves through an explicit binding in AppServiceProvider::boot() — guide slugs are
+// only unique per author, so a plain slug lookup can find somebody else's guide. See there.
 Route::middleware('auth')->prefix('guides')->name('guides.')->group(function () {
     Route::get('/', \App\Livewire\Guides\Index::class)->name('index');
     Route::get('/{guide}/edit', \App\Livewire\Guides\Builder::class)->name('edit');
@@ -284,6 +286,18 @@ Route::get('/guilds/{guild}', \App\Livewire\Guilds\Show::class)->name('guilds.sh
 // the two trust tiers from being mistaken for each other. Not auth-gated: a public guide is
 // readable by anyone, and Guides\Show decides access per guide.
 Route::get('/g/{username}/{guide}', \App\Livewire\Guides\Show::class)->name('guides.show');
+
+// "Buy me a coffee": a redirect rather than a bare external link so each click is counted
+// (PageViewEvent 'support_click', shown on /admin/page-usage). 404s when no URL is configured,
+// which the sidebar never links to anyway — see config/services.php.
+Route::get('/support', function () {
+    $url = config('services.buymeacoffee.url');
+    abort_unless(filled($url) && str_starts_with($url, 'https://'), 404);
+
+    \App\Models\PageViewEvent::log('support_click');
+
+    return redirect()->away($url);
+})->middleware('throttle:30,1')->name('support');
 
 // Feedback
 Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback.create');

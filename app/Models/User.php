@@ -255,6 +255,12 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new \App\Notifications\QueuedVerifyEmail);
     }
 
+    /** Queued for the same reason as the verification email — see QueuedResetPassword. */
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new \App\Notifications\QueuedResetPassword($token));
+    }
+
     protected static function booted()
     {
         static::created(function ($user) {

@@ -398,9 +398,9 @@ test('signing in lands on the arena home with the three main actions', function 
     $this->actingAs($user)
         ->get(route('dashboard'))
         ->assertOk()
-        ->assertSee('Build a guide')
+        ->assertSee('+ New comp guide')
         ->assertSee('Your characters')
-        ->assertSee('Browse 3v3 comps')
+        ->assertSee('Friends &amp; guilds', false)
         // The phone tab bar is on the page — without it a phone had no way to reach anything.
         ->assertSee('aria-label="Main"', false);
 });
