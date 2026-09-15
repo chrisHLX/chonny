@@ -4726,10 +4726,14 @@ Rank 1, because what they required changed over those expansions); plain `Gladia
 seasonless title. Requiring `Season <number>` and a single-word adjective is what keeps out
 `Midnight Keystone Legend: Season 1` (Mythic+) and every `… Gladiator's <mount>` achievement.
 
-**These achievements look account-wide (Warband), not per character.** Inferred, not confirmed: a
-character whose achievements include `Gladiator: Midnight Season 1` did not have the Gladiator title
-in its own `/titles` list. The tooltip says so rather than claiming the title for that character.
-Characters synced before this change show no titles until their next sync.
+**These achievements are account-wide (Warband), not per character.** First inferred (a character
+whose achievements include `Gladiator: Midnight Season 1` did not have the Gladiator title in its own
+`/titles` list), then confirmed by the production backfill the same day: 30 characters across two
+linked accounts, and every character on an account came back with an identical title set (9 alts
+all "Gladiator + Legend", 21 alts all "Legend"). The tooltip says the title can come from any
+character on the account rather than claiming it for that character. Characters synced before this
+change show no titles until their next sync (`battlenet:sync-characters --stale-hours=0` backfilled
+production on 2026-09-15).
 
 
 ## Sign in with Google or Battle.net; password breach check removed ✓ COMPLETE (2026-09-12)
