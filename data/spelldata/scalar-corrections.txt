@@ -131,3 +131,11 @@
 # that text — cooldown supplied directly by the user from their own play knowledge (2026-08-27),
 # real-world confirmed fact, not recoverable from any imported source.
 356719 | cooldown_seconds=60 | Chimaeral Sting
+
+# Dismantle (Rogue PvP talent, spell_id 207777, all 3 Rogue specs) — same shape as Grapple Weapon
+# and Strangulate above: a PvP talent SimC does not ship, so its row carries no cooldown at all.
+# The 5 players were seeing in the guide builder was its disarm DURATION (pvp_duration_seconds=5.0,
+# cc-synergies-overrides.txt), not a cooldown. cooldown_seconds=45 supplied directly by the user
+# from their own play knowledge (2026-09-16), real-world confirmed fact, not recoverable from any
+# imported source.
+207777 | cooldown_seconds=45 | Dismantle

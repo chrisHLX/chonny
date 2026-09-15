@@ -351,9 +351,14 @@
 80353 | mage | frost | Time Warp
 # Rake's conditional while-stealthed stun bonus (real spell_id 163505, mechanic=Stun) — a
 # separate record from Rake's own base Bleed spell_id (155722), see cc-synergies-overrides.txt's
-# note on this same spell_id for the full misclassification trace. Feral-only: the stun requires
-# being stealthed (Prowl), a Feral-exclusive mechanic.
+# note on this same spell_id for the full misclassification trace. Originally Feral-only, on the
+# reasoning that the stun needs stealth (Prowl). Restoration added 2026-09-16 on the user's direct
+# statement that Resto takes it as a talent — Resto's default build already picks Rake from the
+# Druid class tree (1822), and the gating passive Improved Prowl (231052) sits in no tree in our
+# data, so this is expert knowledge rather than something the import could show. Balance and
+# Guardian deliberately NOT added: not verified for them.
 163505 | druid | feral | Rake (While Stealthed)
+163505 | druid | restoration | Rake (While Stealthed)
 106951 | druid | feral | Berserk
 1850 | druid | feral | Dash
 193753 | druid | feral | Dreamwalk

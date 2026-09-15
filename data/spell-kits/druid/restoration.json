@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-15T06:57:25+00:00",
-    "spellCacheVersion": 12,
+    "generatedAt": "2026-09-15T21:04:24+00:00",
+    "spellCacheVersion": 13,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -5425,22 +5425,6 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 2193,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo (varies):points;.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 3102,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -5595,6 +5579,22 @@
                         "description": {
                             "text": "Physical damage and Armor increased by 6%.",
                             "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 2193,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo (varies):points;.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7226,22 +7226,6 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 2193,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo (varies):points;.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 2384,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -7274,22 +7258,6 @@
                         }
                     },
                     {
-                        "spellId": 2202,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "While stealthed, Rake will also stun the target for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Crowd Control",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 2628,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7302,22 +7270,6 @@
                         "cooldown": {
                             "seconds": 300,
                             "base_seconds": 300,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 2707,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo (varies):points;.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -7413,6 +7365,22 @@
                         "description": {
                             "text": "Physical damage and Armor increased by 6%.",
                             "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 2193,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo (varies):points;.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7550,6 +7518,22 @@
                         }
                     },
                     {
+                        "spellId": 2202,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "While stealthed, Rake will also stun the target for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 2290,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7575,6 +7559,22 @@
                             "uncertain": false
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 2707,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo (varies):points;.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -10389,22 +10389,6 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 2193,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo (varies):points;.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 3102,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -10592,6 +10576,22 @@
                         "description": {
                             "text": "Physical damage and Armor increased by 6%.",
                             "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 2193,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Rake the target for 0.3 Bleed damage and an additional (varies) Bleed damage over 15. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. While stealthed, Rake will also stun the target for 4 and deal 60% increased damage. Awards 1 combo (varies):points;.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
