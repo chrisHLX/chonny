@@ -2362,6 +2362,10 @@ Follow-up question after the Synergies tagging above: why does Axe Toss show no 
 
 **Verified end-to-end:** `effectiveCooldown()` for Axe Toss now returns 30s (was null). Existing `ModuleSpellReferenceServiceDescriptionTest`/`ModuleSpellReferenceServiceTalentGatingTest` suites: all 16 cases still pass unchanged. Full test suite: same 12 pre-existing, unrelated failures, zero new regressions. Spell cache version bumped (computation shape changed for every cached spec).
 
+**Corrected 2026-09-15 — the description-reference tier is now restricted to the SAME ability.** The "1,002 cooldowns recovered" above were mostly wrong: a description references OTHER abilities all the time (a talent in a conditional, a proc, the spell a passive modifies), and every one lent this spell its cooldown. Reported from the guide builder: **Ferocious Bite showed 180s** because its description mentions Incarnation: Avatar of Ashamane for the extra Energy it can spend. Measured before narrowing: 119 cooldowns and 25 charge counts borrowed from a different ability, against 8 from the same one. `findDescriptionReferencedSpells()` now only returns a referenced record whose `display_name` (name minus `(desc=…)`) matches, which keeps every legitimate case (Axe Toss, Master's Call, Lightning Lasso, the weapon imbues) and drops the rest. Across the 40 kits, 38 abilities lost a borrowed value and no real cooldown was lost; all but Ferocious Bite, Create Healthstone and one embedded modifier were passive talents wearing the cooldown of what they modify (Inner Peace had Tranquility's 180s). The `duration` field this tier also fills is never read anywhere. Test: `tests/Feature/Services/BaseCooldownFallbackTest.php`.
+
+**Same day — the guide palette offers both versions of Rake.** Rake is one button that also stuns from stealth; `onePerDisplayName()` collapsed its copies to the stun (163505), so an author could not write plain Rake. A stealth-gated CC copy (`requires_stealth` + `dr_category`) is now kept apart from the rest of its name, its plain twin is placed right after it in the same CC group ("out of stealth · no stun"), and a step made from the twin carries `no_stealth_cc` so the guide shows the same marker (`UserGuideChainService::stealthTwinCategory()`). The twin has no DR category, so it never enters the DR tally. Only Rake has this shape in the current patch. `PALETTE_SHAPE_VERSION` → 5.
+
 ## `wow:find-cc-duration` upgraded to histogram/mode + Preservation Evoker outlier detection ✓ COMPLETE (2026-08-17)
 
 Direct follow-up to the arena-log-based duration idea flagged (not built) above: the user asked for it to be built after all, with a specific methodology — round each observed instance to a clean duration, take the longest *clean* (recurring) value as the base, and for any outlier longer than that, check whether a Preservation Evoker was in that specific match, since Preservation has a real ability that extends CC duration on affected targets.
@@ -4697,6 +4701,35 @@ wear), media lookup cached 30 days per item. Blizzard's inline tooltip markup (`
   signed with it.
 - **Shuffle exp** as a number — Blizzard exposes no lifetime-best shuffle statistic; the rank title
   is the stand-in.
+
+### Highest 3v3 and Solo Shuffle title (added 2026-09-15)
+
+`battlenet_characters.arena_titles` (JSON), written by `parseArenaTitles()` on every detail sync, and
+`BattlenetCharacter::bracketTitles()` / `BattlenetAccount::bestBracketTitles()` +
+`<x-battlenet.bracket-titles>` to show it: on the character summary, the My Characters header, and
+(compact) in a signed guide's byline, listing card and feed item.
+
+**Only Gladiator (3v3) and Legend (Solo Shuffle) belong to a bracket.** Checked on three real
+high-rated characters: every rank below them (Combatant to Elite) is earned from any rated bracket,
+so no achievement can say a Duelist came from 3v3. Below Gladiator/Legend a bracket therefore shows
+Blizzard's rank for the character **this season**, from the `tier.id` every `pvp-bracket` response
+carries (named via `/data/wow/pvp-tier/{id}`, cached 30 days; "Unranked" is dropped), and it is labelled
+"this season". Shuffle uses the best spec. The old any-bracket `pvp_rank_title` is still shown, as
+"best rank", but only when it is not itself Gladiator/Legend (`showsOverallRank()`), since then it
+would repeat a bracket badge. Compact views (bylines, listings) show lifetime titles only.
+
+**Name patterns, each checked against all 9,041 names in Blizzard's achievement index** (zero false
+positives): `Gladiator: <X> Season N` / `Legend: …` = the title that season (34); `<Adjective>
+Gladiator: <X> Season N` / `<Adjective> Legend: …` = Rank 1 (34); `Merciless Gladiator` …
+`Tyrannical Gladiator` = Burning Crusade to Mists titles (12, counted as Gladiator seasons rather than
+Rank 1, because what they required changed over those expansions); plain `Gladiator` = the old
+seasonless title. Requiring `Season <number>` and a single-word adjective is what keeps out
+`Midnight Keystone Legend: Season 1` (Mythic+) and every `… Gladiator's <mount>` achievement.
+
+**These achievements look account-wide (Warband), not per character.** Inferred, not confirmed: a
+character whose achievements include `Gladiator: Midnight Season 1` did not have the Gladiator title
+in its own `/titles` list. The tooltip says so rather than claiming the title for that character.
+Characters synced before this change show no titles until their next sync.
 
 
 ## Sign in with Google or Battle.net; password breach check removed ✓ COMPLETE (2026-09-12)

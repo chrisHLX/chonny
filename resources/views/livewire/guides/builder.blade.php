@@ -783,6 +783,11 @@
                                                                             <span class="text-[10px] text-violet" title="Requires stealth, and the target must be out of combat — realistically an opener.">stealth + OOC</span>
                                                                         @elseif ($entry['spell']->requires_stealth)
                                                                             <span class="text-[10px] text-violet" title="Only applies its crowd control while you are stealthed.">from stealth</span>
+                                                                        @elseif ($entry->drCategory() === null && isset($drBadge[$groupName]))
+                                                                            {{-- The plain twin of the stealth version above it (Rake's
+                                                                                 bleed without the stun) — UserGuideChainService places
+                                                                                 it here so both versions sit side by side. --}}
+                                                                            <span class="text-[10px] text-ink-muted" title="The same ability used out of stealth: no {{ Str::lower($groupName) }}, so it adds no crowd control to the chain.">out of stealth &middot; no {{ Str::lower($groupName) }}</span>
                                                                         @endif
                                                                     </span>
                                                                 </span>

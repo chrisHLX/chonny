@@ -104,6 +104,8 @@
                                 <span class="badge-blue" title="Requires stealth, and the target must be out of combat — realistically an opener.">Stealth + target OOC</span>
                             @elseif ($entry['spell']->requires_stealth)
                                 <span class="badge-blue" title="Only applies its crowd control while you are stealthed.">From stealth</span>
+                            @elseif ($step['no_stealth_cc'] ?? null)
+                                <span class="badge-gray" title="Used out of stealth: no {{ Str::lower($step['no_stealth_cc']) }}, so this step adds no crowd control to the chain.">Out of stealth &middot; no {{ Str::lower($step['no_stealth_cc']) }}</span>
                             @endif
                         </div>
 

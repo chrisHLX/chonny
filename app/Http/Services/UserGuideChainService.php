@@ -69,7 +69,7 @@ class UserGuideChainService
      * 4 (2026-09-14): enemy sections offer the opponent's CC, interrupts and offensive cooldowns,
      * not just their defensives.
      */
-    private const PALETTE_SHAPE_VERSION = 4;
+    private const PALETTE_SHAPE_VERSION = 5;
 
     public function __construct(
         private SpecKitComputer $kits,
@@ -175,7 +175,7 @@ class UserGuideChainService
      * saved content, and quietly removing a step they wrote would be indistinguishable from data
      * loss.
      *
-     * @return array<int, array{block: UserGuideBlock, entry: mixed, spec: ?Specialization, unresolved: bool, dr: ?array, duration: ?float}>
+     * @return array<int, array{block: UserGuideBlock, entry: mixed, spec: ?Specialization, unresolved: bool, dr: ?array, duration: ?float, no_stealth_cc: ?string}>
      */
     public function resolve(UserGuideSection $section): array
     {
@@ -254,6 +254,9 @@ class UserGuideChainService
                 'unresolved' => $block->block_type->referencesSpell() && $entry === null,
                 'dr' => $dr,
                 'duration' => $this->stepDuration($spell, $dr),
+                // "Rake" used out of stealth: the plain version, so the step can say it applies
+                // no stun rather than leave the reader to wonder.
+                'no_stealth_cc' => $this->stealthTwinCategory($spell),
             ];
         })->all();
     }
@@ -517,6 +520,30 @@ class UserGuideChainService
         // both. Listing one ability twice would let an author add it from two places without
         // noticing, and would make the palette look bigger than the kit actually is.
         $claimed = $ccSpellIds->flip();
+
+        // A stealth-only CC ability's plain twin sits directly after it, in the same group, so
+        // the two versions of one button are side by side — and in a comp guide, which has no
+        // Utility group, it would otherwise appear nowhere. The palette marks it "no stun" (see
+        // stealthTwinCategory()), and a step made from it carries no DR category, so it never
+        // enters the section's DR tally.
+        $groups = $groups->map(fn (Collection $group) => $group->flatMap(function ($e) use ($entries, &$claimed) {
+            if (! $this->isStealthCc($e['spell'])) {
+                return [$e];
+            }
+
+            $twin = $entries->first(fn ($t) => $t->displayName() === $e->displayName()
+                && ! $this->isStealthCc($t['spell'])
+                && ! $claimed->has($t['spell']->id)
+                && ! $t['spell']->is_passive && ! $t['spell']->not_in_spellbook);
+
+            if ($twin === null) {
+                return [$e];
+            }
+
+            $claimed->put($twin['spell']->id, true);
+
+            return [$e, $twin];
+        })->values());
         $remaining = $entries->reject(fn ($e) => $claimed->has($e['spell']->id));
 
         // ENEMY SECTIONS ONLY: their interrupts. "Watch the Kick" is one of the first things a
@@ -654,7 +681,13 @@ class UserGuideChainService
         // effect-less internal copy over the real 25s-cooldown ability, which then failed the
         // offensive-cooldown test and vanished from the palette entirely.
         return $entries
-            ->groupBy(fn ($e) => $e->displayName())
+            // A STEALTH-ONLY CC copy is kept apart from the rest of its name. Rake is one button
+            // that ALSO stuns when pressed from stealth; collapsing its copies to one left an
+            // author able to say "Rake from stealth" and unable to say plain Rake — reported
+            // 2026-09-15 while writing a Feral guide ("I wanted to say use rake but not from
+            // stealth"). Only Rake has this shape in the current patch (Sap has no plain copy;
+            // Cheap Shot is deliberately not stealth-tagged — see cc-synergies-overrides.txt).
+            ->groupBy(fn ($e) => $e->displayName().($this->isStealthCc($e['spell']) ? '#stealth' : ''))
             ->map(fn (Collection $copies) => $copies->sortBy([
                 // A CURATED dr_category WINS EVERYTHING ELSE, and this comparator is why Rake's
                 // stun was missing from Feral's palette entirely — reported 2026-09-09 as "no rake
@@ -896,6 +929,36 @@ class UserGuideChainService
      * reason attached, is the honest version.
      */
     private const PALETTE_EXCLUDED_CC_SPELL_IDS = [1330]; // Garrote - Silence — press "Garrote" (703)
+
+    /** A copy of an ability that only applies its CC from stealth — Rake's stun, Sap. */
+    private function isStealthCc(Spell $spell): bool
+    {
+        return (bool) $spell->requires_stealth && $spell->dr_category !== null;
+    }
+
+    /** @var array<int, array<string, string>> patch id => display name => stealth copy's DR category */
+    private array $stealthCcByNameMemo = [];
+
+    /**
+     * When $spell is the plain version of an ability whose CC only lands from stealth, that CC's
+     * category ("Stun" for Rake) — so the palette and the guide can say "no stun" on the version
+     * that is just the bleed. Null for everything else, including the stealth copy itself.
+     */
+    public function stealthTwinCategory(?Spell $spell): ?string
+    {
+        if ($spell === null || $this->isStealthCc($spell) || $spell->dr_category !== null) {
+            return null;
+        }
+
+        $byName = $this->stealthCcByNameMemo[$spell->patch_id] ??= Spell::where('patch_id', $spell->patch_id)
+            ->where('requires_stealth', true)
+            ->whereNotNull('dr_category')
+            ->get()
+            ->mapWithKeys(fn (Spell $s) => [$s->display_name => $s->dr_category])
+            ->all();
+
+        return $byName[$spell->display_name] ?? null;
+    }
 
     private function pressableCcSpellIds(Specialization $spec, Patch $patch): Collection
     {

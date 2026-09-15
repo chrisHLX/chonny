@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-14T02:57:49+00:00",
-    "spellCacheVersion": 11,
+    "generatedAt": "2026-09-15T06:57:02+00:00",
+    "spellCacheVersion": 12,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -198,13 +198,13 @@
             },
             "hasPotentialImprovement": false,
             "cooldown": {
-                "seconds": 180,
-                "base_seconds": 180,
+                "seconds": null,
+                "base_seconds": null,
                 "applied": []
             },
             "charges": {
-                "charges": 1,
-                "base_charges": 1,
+                "charges": null,
+                "base_charges": null,
                 "applied": []
             },
             "isSelected": false,
@@ -1603,8 +1603,8 @@
                         },
                         "category": "Other",
                         "cooldown": {
-                            "seconds": 180,
-                            "base_seconds": 180,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     }
@@ -5205,8 +5205,8 @@
                         },
                         "category": "Other",
                         "cooldown": {
-                            "seconds": 60,
-                            "base_seconds": 60,
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -8358,8 +8358,8 @@
             },
             "hasPotentialImprovement": false,
             "cooldown": {
-                "seconds": 60,
-                "base_seconds": 60,
+                "seconds": null,
+                "base_seconds": null,
                 "applied": []
             },
             "charges": {

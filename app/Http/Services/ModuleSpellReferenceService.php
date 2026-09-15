@@ -722,8 +722,9 @@ class ModuleSpellReferenceService
      * `$<id>s<n>` regex shape and findSpellBySpellId(), not a new parsing mechanism.
      *
      * Never guesses a value — only borrows a real, non-null field from a sibling or an
-     * explicitly-referenced spell; a spell with neither carrying either field stays exactly as
-     * unresolved as before.
+     * explicitly-referenced record of the SAME ability (see findDescriptionReferencedSpells() for
+     * why "same ability" matters — Ferocious Bite once wore Incarnation's 180s); a spell with
+     * neither carrying either field stays exactly as unresolved as before.
      *
      * @return array{seconds: ?float, charges: ?int, duration: ?float}
      */
@@ -838,12 +839,25 @@ class ModuleSpellReferenceService
     }
 
     /**
-     * Every distinct spell explicitly referenced by $spell's own description via a `$<id>d` or
-     * `$<id>s<n>` token — Blizzard's own pointer to another spell_id's duration or effect value,
-     * the same token shape resolveValueToken() already parses for text substitution. Reused here
-     * (by resolveBaseCooldownCharges()) as a scalar-field fallback source: when a description
-     * explicitly names another spell_id, that's stronger evidence of "this is the real data
-     * record" than a same-name-string heuristic. Order-preserving, deduplicated by spell_id.
+     * Every distinct record OF THE SAME ABILITY that $spell's own description references via a
+     * `$<id>d` or `$<id>s<n>` token — Blizzard's pointer to another spell_id's duration or effect
+     * value, the same token shape resolveValueToken() already parses for text substitution. Used
+     * by resolveBaseCooldownCharges() as a scalar-field fallback. Order-preserving, deduplicated.
+     *
+     * SAME ABILITY = the same name once Blizzard's "(desc=…)" suffix is stripped, and that
+     * restriction is load-bearing. The first version accepted any referenced spell, and a
+     * description references OTHER abilities all the time — a talent's value in a conditional
+     * ("$?a102543[${$s2*(1+$102543s3/100)}]"), a proc it triggers, the spell a passive modifies.
+     * Reported 2026-09-15: Ferocious Bite showed a 180s cooldown in the guide builder. It has none;
+     * its description mentions Incarnation: Avatar of Ashamane for the extra Energy it can spend,
+     * and Incarnation's 180s was borrowed. Measured across the current patch before narrowing:
+     * 119 cooldowns and 25 charge counts were being borrowed from a DIFFERENT ability (47 and 13
+     * on abilities a user can see — Create Healthstone took Healthstone's 60s, Inner Peace took
+     * Tranquility's 180s), against 8 cooldowns from genuinely the same ability. Every one of the
+     * same-ability cases is the shape this fallback was built for: Axe Toss's displayed copy
+     * ("Axe Toss (desc=Command Demon Ability)") pointing at the record carrying its real 30s
+     * ("Axe Toss (desc=Special Ability)"), and likewise Master's Call, Lightning Lasso and the
+     * weapon imbues.
      *
      * @return array<int, Spell>
      */
@@ -858,7 +872,7 @@ class ModuleSpellReferenceService
         $referenced = [];
         foreach (array_unique($matches[1]) as $externalSpellId) {
             $other = $this->findSpellBySpellId((int) $externalSpellId, $spell->patch_id);
-            if ($other && $other->id !== $spell->id) {
+            if ($other && $other->id !== $spell->id && $other->display_name === $spell->display_name) {
                 $referenced[] = $other;
             }
         }

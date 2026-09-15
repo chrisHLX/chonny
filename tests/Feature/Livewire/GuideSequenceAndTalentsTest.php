@@ -733,13 +733,12 @@ function paletteEntryFor(array $spellAttributes, bool $isPriority = false, ?floa
 test('the copy carrying a curated dr_category survives de-duplication', function () {
     guideFixture();
 
-    // Rake, exactly as the real data has it: the damaging ability a Feral presses constantly
-    // (all over the arena logs, so isPriority) and the stun it applies from stealth (the row that
-    // actually carries dr_category). NEITHER has a cooldown, which is what let isPriority decide
-    // it before this was fixed — the damage copy won, the survivor had no dr_category, and Rake
-    // vanished from crowd control entirely.
+    // Two copies of one ability, neither with a cooldown: the damage copy is all over the arena
+    // logs (isPriority) and the other carries dr_category. Before 2026-09-09 isPriority decided it,
+    // the survivor had no dr_category, and the ability vanished from crowd control entirely (first
+    // seen on Rake).
     $damage = paletteEntryFor(['dr_category' => null], isPriority: true);
-    $stun = paletteEntryFor(['dr_category' => 'Stun', 'requires_stealth' => true]);
+    $stun = paletteEntryFor(['dr_category' => 'Stun']);
 
     $method = new ReflectionMethod(App\Http\Services\UserGuideChainService::class, 'onePerDisplayName');
     $kept = $method->invoke(app(App\Http\Services\UserGuideChainService::class), collect([$damage, $stun]));
@@ -747,6 +746,22 @@ test('the copy carrying a curated dr_category survives de-duplication', function
     expect($kept)->toHaveCount(1)
         ->and($kept->first()['spell']->id)->toBe($stun['spell']->id)
         ->and($kept->first()['spell']->dr_category)->toBe('Stun');
+});
+
+test('a stealth-only stun keeps its plain twin, so the author can pick either', function () {
+    guideFixture();
+
+    // Rake exactly as the real data has it: one button that ALSO stuns when used from stealth.
+    // Collapsing the two left only "Rake from stealth" in the palette, with no way to write plain
+    // Rake (reported 2026-09-15 while writing a Feral guide).
+    $damage = paletteEntryFor(['dr_category' => null], isPriority: true);
+    $stun = paletteEntryFor(['dr_category' => 'Stun', 'requires_stealth' => true]);
+
+    $method = new ReflectionMethod(App\Http\Services\UserGuideChainService::class, 'onePerDisplayName');
+    $kept = $method->invoke(app(App\Http\Services\UserGuideChainService::class), collect([$damage, $stun]));
+
+    expect($kept->pluck('spell.id')->sort()->values()->all())
+        ->toBe(collect([$damage['spell']->id, $stun['spell']->id])->sort()->values()->all());
 });
 
 test('a cooldown still wins when neither copy is crowd control', function () {
