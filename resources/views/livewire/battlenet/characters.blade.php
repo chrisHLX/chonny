@@ -34,6 +34,7 @@
         @php
             $bestExp = $this->account->bestExp();
             $bestRank = $this->account->bestRankTitle();
+            $bestTitles = $this->account->bestBracketTitles();
         @endphp
         <div class="linear-card p-4 mb-6 flex flex-col sm:flex-row sm:items-center gap-4">
             <div class="flex-1 min-w-0">
@@ -44,17 +45,22 @@
                         &middot; list updated {{ $this->account->characters_synced_at->diffForHumans() }}
                     @endif
                 </p>
-                @if ($bestExp || $bestRank)
+                @if ($bestExp || ($bestRank && $bestRank->showsOverallRank()))
                     <p class="text-[13px] text-ink-muted mt-2">
                         @if ($bestExp)
                             Account exp <span class="text-gold font-semibold tabular-nums">{{ $bestExp['rating'] }}</span>
                             <span class="text-ink-subtle">({{ $bestExp['bracket'] }}, {{ $bestExp['character']->name }})</span>
                         @endif
-                        @if ($bestRank)
+                        @if ($bestRank && $bestRank->showsOverallRank())
                             @if ($bestExp) &middot; @endif
-                            best title <span class="text-ink">{{ $bestRank->pvp_rank_title }}</span>
+                            best rank <span class="text-ink">{{ $bestRank->pvp_rank_title }}</span>
                         @endif
                     </p>
+                @endif
+                @if ($bestTitles !== [])
+                    <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                        <x-battlenet.bracket-titles :titles="$bestTitles"/>
+                    </div>
                 @endif
             </div>
             <div class="flex items-center gap-2 shrink-0">

@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Http\Services\BattlenetCharacterSyncService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * One WoW character on a linked Battle.net account.
@@ -32,6 +34,7 @@ class BattlenetCharacter extends Model
         'exp_3v3',
         'pvp_rank_title',
         'pvp_rank_tier',
+        'arena_titles',
         'arenas_played',
         'arenas_won',
         'ratings',
@@ -43,6 +46,7 @@ class BattlenetCharacter extends Model
     ];
 
     protected $casts = [
+        'arena_titles' => 'array',
         'ratings' => 'array',
         'talents' => 'array',
         'equipment' => 'array',
@@ -101,6 +105,82 @@ class BattlenetCharacter extends Model
     public function rankTitleShort(): ?string
     {
         return $this->pvp_rank_title ? trim(explode(':', $this->pvp_rank_title)[0]) : null;
+    }
+
+    /**
+     * The best season rank from ANY bracket is worth showing only when the bracket titles do not
+     * already say it: a Gladiator or Legend is exactly what bracketTitles() shows, while an Elite
+     * or a Duelist — which no achievement can tie to a bracket — has nowhere else to appear.
+     */
+    public function showsOverallRank(): bool
+    {
+        return $this->pvp_rank_title !== null
+            && ! in_array($this->rankTitleShort(), array_values(BattlenetCharacterSyncService::BRACKET_TITLE_WORDS), true);
+    }
+
+    /**
+     * The highest title in 3v3 and in Solo Shuffle.
+     *
+     * Each is the account's lifetime title in that bracket (Rank 1, then Gladiator / Legend) when
+     * it has one. Otherwise it is Blizzard's rank for the character in that bracket THIS season,
+     * and says so — every rank below Gladiator/Legend is earned from any bracket, so no lifetime
+     * achievement can be tied to 3v3 or to Shuffle. For Shuffle, which is rated per spec, the
+     * character's best spec this season.
+     *
+     * `score` orders entries across characters (see BattlenetAccount::bestBracketTitles()).
+     *
+     * @return list<array{bracket: string, title: string, count: int, rank_one: bool, this_season: bool, spec: ?string, tooltip: string, score: int}>
+     */
+    public function bracketTitles(): array
+    {
+        $out = [];
+        $account = 'Blizzard shares PvP season achievements across a Battle.net account, so this can come from any character on it.';
+
+        foreach (['3v3' => '3v3', 'shuffle' => 'Solo Shuffle'] as $key => $bracket) {
+            if ($t = $this->arena_titles[$key] ?? null) {
+                $word = BattlenetCharacterSyncService::BRACKET_TITLE_WORDS[$key];
+                $count = $t['rank_one'] ? (int) $t['rank_one_seasons'] : (int) $t['seasons'];
+                $when = $t['season'] ? " in {$t['season']}" : '';
+
+                $out[] = [
+                    'bracket' => $bracket,
+                    'title' => $t['title'],
+                    'count' => $count,
+                    'rank_one' => (bool) $t['rank_one'],
+                    'this_season' => false,
+                    'spec' => null,
+                    'tooltip' => ($t['rank_one']
+                        ? "Rank 1 in {$bracket}{$when}. Rank 1 in {$t['rank_one_seasons']} ".Str::plural('season', (int) $t['rank_one_seasons'])."; {$word} in {$t['seasons']}."
+                        : "{$word}{$when}. Earned in {$t['seasons']} ".Str::plural('season', (int) $t['seasons']).'.').' '.$account,
+                    'score' => ($t['rank_one'] ? 3000 : 2000) + $count,
+                ];
+
+                continue;
+            }
+
+            $season = collect($this->currentRatings())
+                ->where('label', $bracket)
+                ->filter(fn ($r) => ! empty($r['tier']))
+                ->sortByDesc(fn ($r) => BattlenetCharacterSyncService::RANK_TIERS[$r['tier']] ?? 0)
+                ->first();
+
+            if ($season) {
+                $spec = $key === 'shuffle' ? ($season['spec_name'] ?? null) : null;
+
+                $out[] = [
+                    'bracket' => $bracket,
+                    'title' => $season['tier'],
+                    'count' => 1,
+                    'rank_one' => false,
+                    'this_season' => true,
+                    'spec' => $spec,
+                    'tooltip' => "Blizzard's {$bracket} rank for this character this season".($spec ? " ({$spec})" : '').'.',
+                    'score' => 1000 + (BattlenetCharacterSyncService::RANK_TIERS[$season['tier']] ?? 0),
+                ];
+            }
+        }
+
+        return $out;
     }
 
     /**

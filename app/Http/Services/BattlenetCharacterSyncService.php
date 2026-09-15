@@ -63,6 +63,12 @@ class BattlenetCharacterSyncService
         'Gladiator' => 9, 'Legend' => 9, 'Strategist' => 9,
     ];
 
+    /**
+     * The two brackets whose top title belongs to that bracket alone. Every rank below these
+     * (Combatant to Elite) is earned from ANY rated bracket, so an achievement cannot say which one.
+     */
+    public const BRACKET_TITLE_WORDS = ['3v3' => 'Gladiator', 'shuffle' => 'Legend'];
+
     /** Cosmetic slots with no bearing on a PvP build. */
     private const SKIPPED_SLOTS = ['SHIRT', 'TABARD'];
 
@@ -219,6 +225,7 @@ class BattlenetCharacterSyncService
 
         $stats = $this->parseStatistics($r['statistics'] ?? []);
         $rank = $this->parseRankTitle($r['achievements'] ?? []);
+        $arenaTitles = $this->parseArenaTitles($r['achievements'] ?? []);
         $ratings = $this->fetchRatings($c, $r['pvp'] ?? []);
         $talents = $this->parseTalents($r['specializations'] ?? []);
         $equipment = $this->withItemIcons($c->region, $this->parseEquipment($r['equipment'] ?? []));
@@ -243,6 +250,7 @@ class BattlenetCharacterSyncService
             'arenas_won' => $stats['arenas_won'],
             'pvp_rank_title' => $rank['title'] ?? null,
             'pvp_rank_tier' => $rank['tier'] ?? null,
+            'arena_titles' => $arenaTitles,
             'ratings' => $ratings,
             'talents' => $talents,
             'equipment' => $equipment,
@@ -269,6 +277,56 @@ class BattlenetCharacterSyncService
             if ($bracket && ($row = $this->parseBracket((string) $key, $bracket, $currentSeason))) {
                 $out[] = $row;
             }
+        }
+
+        $names = $this->tierNames($c->region, array_filter(array_column($out, 'tier_id')));
+
+        foreach ($out as &$row) {
+            $name = $names[$row['tier_id'] ?? 0] ?? null;
+            // "Unranked" is a real tier, but as a title beside a name it reads as a verdict.
+            $row['tier'] = $name !== null && isset(self::RANK_TIERS[$name]) ? $name : null;
+        }
+
+        return $out;
+    }
+
+    /**
+     * Blizzard's name for each PvP tier id ("Duelist", "Rival II"). A bracket response carries
+     * only the id. Tier ids are per bracket (3v3's Duelist is not Shuffle's), static game data,
+     * so each is looked up once and cached. A failed lookup names nothing rather than failing
+     * the sync — the tier is a label on a rating the character already has.
+     *
+     * @param  array<int>  $ids
+     * @return array<int, string>
+     */
+    private function tierNames(string $region, array $ids): array
+    {
+        $out = [];
+        $missing = [];
+
+        foreach (array_unique($ids) as $id) {
+            $name = Cache::get("battlenet:pvp_tier:{$region}:{$id}");
+
+            if (is_string($name)) {
+                $out[$id] = $name;
+            } else {
+                $missing[$id] = "/data/wow/pvp-tier/{$id}";
+            }
+        }
+
+        if ($missing === []) {
+            return $out;
+        }
+
+        try {
+            foreach ($this->client->gameDataMany($region, $missing, 'static') as $id => $tier) {
+                if (is_string($name = $tier['name'] ?? null)) {
+                    Cache::put("battlenet:pvp_tier:{$region}:{$id}", $name, now()->addDays(30));
+                    $out[(int) $id] = $name;
+                }
+            }
+        } catch (\Throwable $e) {
+            Log::info('Battle.net PvP tier lookup failed', ['error' => $e->getMessage()]);
         }
 
         return $out;
@@ -350,6 +408,85 @@ class BattlenetCharacterSyncService
         return $best ? ['title' => $best['title'], 'tier' => $best['tier']] : null;
     }
 
+    /**
+     * The highest title in each bracket that has one of its own — Gladiator for 3v3, Legend for
+     * Solo Shuffle — with how many seasons it was earned in.
+     *
+     * The name shapes, checked against all 9,041 names in Blizzard's achievement index on
+     * 2026-09-15 (each pattern below matches exactly the achievements named, and nothing else):
+     *
+     * - "Gladiator: Midnight Season 1", "Legend: …"      — the title that season (34)
+     * - "Galactic Gladiator: Midnight Season 1", "Galactic Legend: …" — Rank 1 that season (34)
+     * - "Merciless Gladiator" … "Tyrannical Gladiator"   — Burning Crusade to Mists titles (12).
+     *   Counted as Gladiator seasons, NOT as Rank 1: what they required changed across those
+     *   expansions (top 0.5% early on, top 0.1% later), so claiming Rank 1 would overstate some.
+     * - "Gladiator"                                        — the old seasonless title
+     *
+     * The season suffix must end "Season <number>" and the Rank 1 adjective must be one word,
+     * which is what keeps Mythic+ titles out ("Midnight Keystone Legend: Season 1", "The War
+     * Within Keystone Legend: Season Three") along with every mount achievement
+     * ("Galactic Gladiator's Goredrake").
+     *
+     * Before Warlords, the Gladiator title could also come from 2v2 or 5v5. It is still filed
+     * under 3v3 — the bracket that has carried it ever since.
+     *
+     * @return array{'3v3': ?array, shuffle: ?array}
+     */
+    public function parseArenaTitles(array $response): array
+    {
+        $season = '((?:[A-Z][A-Za-z\']* )*Season \d+)';
+        $out = [];
+
+        foreach (self::BRACKET_TITLE_WORDS as $bracket => $word) {
+            $seasons = [];
+            $rankOneSeasons = [];
+            $best = null;
+            $consider = function (array $entry) use (&$best) {
+                // Rank 1 outranks the title; within a kind, the most recent wins.
+                if ($best === null
+                    || $entry['rank_one'] > $best['rank_one']
+                    || ($entry['rank_one'] === $best['rank_one'] && $entry['when'] > $best['when'])) {
+                    $best = $entry;
+                }
+            };
+
+            foreach ($response['achievements'] ?? [] as $a) {
+                $name = $a['achievement']['name'] ?? '';
+
+                if (empty($a['completed_timestamp'])) {
+                    continue;
+                }
+
+                $when = (int) $a['completed_timestamp'];
+
+                if (preg_match("/^([A-Z][a-z]+) {$word}: {$season}$/", $name, $m)) {
+                    $seasons[$m[2]] = true;
+                    $rankOneSeasons[$m[2]] = true;
+                    $consider(['title' => "{$m[1]} {$word}", 'season' => $m[2], 'rank_one' => true, 'when' => $when]);
+                } elseif (preg_match("/^{$word}: {$season}$/", $name, $m)) {
+                    $seasons[$m[1]] = true;
+                    $consider(['title' => $word, 'season' => $m[1], 'rank_one' => false, 'when' => $when]);
+                } elseif ($word === 'Gladiator' && preg_match('/^([A-Z][a-z]+) Gladiator$/', $name, $m)) {
+                    $seasons["old:{$m[1]}"] = true;
+                    $consider(['title' => $name, 'season' => null, 'rank_one' => false, 'when' => $when]);
+                } elseif ($name === $word) {
+                    // Seasonless — proves the title, names no season, so it adds none to the count.
+                    $consider(['title' => $word, 'season' => null, 'rank_one' => false, 'when' => $when]);
+                }
+            }
+
+            $out[$bracket] = $best === null ? null : [
+                'title' => $best['title'],
+                'season' => $best['season'],
+                'rank_one' => $best['rank_one'],
+                'seasons' => max(1, count($seasons)),
+                'rank_one_seasons' => count($rankOneSeasons),
+            ];
+        }
+
+        return $out;
+    }
+
     /** @return array<string, mixed>|null */
     public function parseBracket(string $key, array $response, ?int $currentSeasonId): ?array
     {
@@ -376,6 +513,8 @@ class BattlenetCharacterSyncService
             'spec_external_id' => $response['specialization']['id'] ?? null,
             'spec_name' => $response['specialization']['name'] ?? null,
             'rating' => (int) ($response['rating'] ?? 0),
+            // Blizzard's rank in this bracket this season, by tier id; named in fetchRatings().
+            'tier_id' => isset($response['tier']['id']) ? (int) $response['tier']['id'] : null,
             'season' => $season,
             // Unknown current season (the lookup failed) is treated as current rather than
             // hiding every rating — the bracket list itself only covers recent seasons.

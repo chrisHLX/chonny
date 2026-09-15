@@ -59,6 +59,23 @@ class BattlenetAccount extends Model
             ->first();
     }
 
+    /**
+     * The best 3v3 and Solo Shuffle title across every character — see
+     * BattlenetCharacter::bracketTitles(). A lifetime title beats a this-season rank.
+     *
+     * @return list<array<string, mixed>>
+     */
+    public function bestBracketTitles(): array
+    {
+        return $this->characters
+            ->flatMap(fn (BattlenetCharacter $c) => $c->bracketTitles())
+            ->groupBy('bracket')
+            ->map(fn ($entries) => $entries->sortByDesc('score')->first())
+            ->sortBy(fn ($e) => $e['bracket'] === '3v3' ? 0 : 1)
+            ->values()
+            ->all();
+    }
+
     /** The battletag without its #1234 discriminator, for places the full tag is noise. */
     public function battletagName(): string
     {

@@ -254,8 +254,9 @@ test('a detail sync stores exp, the best rank title, current ratings, talents an
             ['href' => "https://{$base}/pvp-bracket/3v3?namespace=profile-us"],
             ['href' => "https://{$base}/pvp-bracket/2v2?namespace=profile-us"],
         ]]),
+        'us.api.blizzard.com/data/wow/pvp-tier/13*' => Http::response(['id' => 13, 'name' => 'Duelist', 'bracket' => ['type' => 'ARENA_3v3']]),
         "{$base}/pvp-bracket/3v3*" => Http::response(['bracket' => ['type' => 'ARENA_3v3'], 'rating' => 1850, 'season' => ['id' => 42],
-            'season_match_statistics' => ['played' => 50, 'won' => 30, 'lost' => 20]]),
+            'tier' => ['id' => 13], 'season_match_statistics' => ['played' => 50, 'won' => 30, 'lost' => 20]]),
         "{$base}/pvp-bracket/2v2*" => Http::response(['bracket' => ['type' => 'ARENA_2v2'], 'rating' => 1600, 'season' => ['id' => 41],
             'season_match_statistics' => ['played' => 10, 'won' => 5, 'lost' => 5]]),
         "{$base}/specializations*" => Http::response([
@@ -297,6 +298,12 @@ test('a detail sync stores exp, the best rank title, current ratings, talents an
     // Only the current season's rating is "current".
     expect(collect($c->currentRatings())->pluck('label')->all())->toBe(['3v3']);
 
+    // No Gladiator on the account, so 3v3 falls back to Blizzard's rank this season, by tier id.
+    expect($c->arena_titles)->toBe(['3v3' => null, 'shuffle' => null])
+        ->and($c->currentRatings()[0]['tier'])->toBe('Duelist')
+        ->and($c->bracketTitles())->toHaveCount(1)
+        ->and($c->bracketTitles()[0])->toMatchArray(['bracket' => '3v3', 'title' => 'Duelist', 'this_season' => true]);
+
     // Tabard dropped; Blizzard's inline atlas markup stripped; the icon is self-hosted.
     expect($c->equipment)->toHaveCount(1)
         ->and($c->equipment[0]['enchantments'])->toBe(['Helm Rune'])
@@ -335,6 +342,83 @@ test('an API failure is written to the character, never thrown into the queue', 
 test('tooltip markup is stripped to the text the game shows', function () {
     expect(BattlenetCharacterSyncService::cleanDisplayString('+23 |cFF00FF00Primary|r Stat |A:Quality-Tier2:20:20|a'))
         ->toBe('+23 Primary Stat');
+});
+
+test('3v3 and Shuffle titles come from their own achievements, and nothing that only looks like one', function () {
+    $a = fn (string $name, ?int $when = 1) => ['achievement' => ['name' => $name], 'completed_timestamp' => $when];
+
+    $titles = app(BattlenetCharacterSyncService::class)->parseArenaTitles(['achievements' => [
+        $a('Gladiator', 1),
+        $a('Merciless Gladiator', 2),                       // Burning Crusade: a Gladiator season, not Rank 1
+        $a('Gladiator: Dragonflight Season 1', 3),
+        $a('Gladiator: Midnight Season 1', 6),
+        $a('Galactic Gladiator: Midnight Season 1', 7),     // Rank 1, and the same season as above
+        $a('Sinful Gladiator: Shadowlands Season 1', 4),    // an older Rank 1
+        $a('Gladiator: Midnight Season 2', null),           // in progress — not earned
+        $a("Galactic Gladiator's Goredrake", 8),            // a mount
+        $a('Murkimus the Gladiator', 9),                    // a pet
+        $a('Legend: The War Within Season 3', 5),
+        $a('Legend: Midnight Season 1', 6),
+        $a('Midnight Keystone Legend: Season 1', 9),        // Mythic+
+        $a('Legend of the Past', 9),
+    ]]);
+
+    expect($titles['3v3'])->toBe([
+        'title' => 'Galactic Gladiator', 'season' => 'Midnight Season 1', 'rank_one' => true,
+        // Merciless, Dragonflight S1, Midnight S1, Shadowlands S1 — the seasonless title adds none.
+        'seasons' => 4, 'rank_one_seasons' => 2,
+    ])->and($titles['shuffle'])->toBe([
+        'title' => 'Legend', 'season' => 'Midnight Season 1', 'rank_one' => false,
+        'seasons' => 2, 'rank_one_seasons' => 0,
+    ]);
+
+    // A lone seasonless Gladiator still proves the title.
+    expect(app(BattlenetCharacterSyncService::class)->parseArenaTitles(['achievements' => [$a('Gladiator')]])['3v3']['seasons'])->toBe(1)
+        ->and(app(BattlenetCharacterSyncService::class)->parseArenaTitles(['achievements' => []]))->toBe(['3v3' => null, 'shuffle' => null]);
+});
+
+test('without a lifetime title each bracket shows this season\'s rank, Shuffle by its best spec', function () {
+    bnetWorld();
+    $character = ownedCharacter(User::factory()->create(), [
+        'arena_titles' => ['3v3' => ['title' => 'Gladiator', 'season' => 'Midnight Season 1', 'rank_one' => false, 'seasons' => 3, 'rank_one_seasons' => 0], 'shuffle' => null],
+        'ratings' => [
+            ['label' => '3v3', 'rating' => 2100, 'current' => true, 'tier' => 'Duelist', 'spec_name' => null],
+            ['label' => 'Solo Shuffle', 'rating' => 1900, 'current' => true, 'tier' => 'Rival I', 'spec_name' => 'Holy'],
+            ['label' => 'Solo Shuffle', 'rating' => 2000, 'current' => true, 'tier' => 'Rival II', 'spec_name' => 'Discipline'],
+            ['label' => 'Solo Shuffle', 'rating' => 2400, 'current' => false, 'tier' => 'Elite', 'spec_name' => 'Shadow'], // last season
+        ],
+    ]);
+
+    $titles = collect($character->bracketTitles())->keyBy('bracket');
+
+    // The lifetime Gladiator beats this season's Duelist; Shuffle has no Legend, so it is this season.
+    expect($titles['3v3'])->toMatchArray(['title' => 'Gladiator', 'count' => 3, 'this_season' => false])
+        ->and($titles['Solo Shuffle'])->toMatchArray(['title' => 'Rival II', 'spec' => 'Discipline', 'this_season' => true]);
+});
+
+test('titles render on the characters page, and a guide byline shows only the lifetime ones', function () {
+    bnetWorld();
+    $user = User::factory()->create();
+    $character = ownedCharacter($user, [
+        'pvp_rank_title' => 'Gladiator: Midnight Season 1', 'pvp_rank_tier' => 9,
+        'arena_titles' => [
+            '3v3' => ['title' => 'Galactic Gladiator', 'season' => 'Midnight Season 1', 'rank_one' => true, 'seasons' => 5, 'rank_one_seasons' => 2],
+            'shuffle' => null,
+        ],
+        'ratings' => [['label' => 'Solo Shuffle', 'rating' => 2000, 'current' => true, 'tier' => 'Rival II', 'spec_name' => 'Discipline', 'won' => 30, 'lost' => 10]],
+    ]);
+
+    $this->actingAs($user)->get(route('characters.index'))->assertOk()
+        ->assertSee('Galactic Gladiator')->assertSee('Rank 1 ×2', false)
+        ->assertSee('Rival II')->assertSee('Discipline this season')
+        // Gladiator is already shown under 3v3 — the any-bracket rank would only repeat it.
+        ->assertDontSee('best rank');
+
+    $guide = UserGuide::create(['user_id' => $user->id, 'title' => 'Titled guide', 'battlenet_character_id' => $character->id]);
+    $html = view('components.guides.card', ['guide' => $guide->fresh()])->render();
+
+    expect($html)->toContain('Galactic Gladiator')->toContain('(Rank 1)')
+        ->not->toContain('Rival II');
 });
 
 // ------------------------------------------------------------------ talent resolution

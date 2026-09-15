@@ -7,6 +7,7 @@
     $classColor = config('wow_classes.colors')[$character->gameClass?->slug] ?? '#8A8A9A';
     $exp = collect(['3v3' => $character->exp_3v3, '2v2' => $character->exp_2v2])->filter(fn ($r) => $r > 0);
     $ratings = $showRatings ? $character->currentRatings() : [];
+    $bracketTitles = $character->bracketTitles();
 @endphp
 
 <div {{ $attributes->merge(['class' => 'flex items-start gap-3']) }}>
@@ -31,7 +32,7 @@
             @endif
         </p>
 
-        @if ($exp->isNotEmpty() || $character->pvp_rank_title)
+        @if ($exp->isNotEmpty() || $bracketTitles !== [] || $character->showsOverallRank())
             <div class="flex flex-wrap items-center gap-1.5 mt-2">
                 @foreach ($exp as $bracket => $rating)
                     <span class="inline-flex items-baseline gap-1 px-2 py-0.5 rounded border border-line-gold bg-gold-subtle"
@@ -41,8 +42,14 @@
                     </span>
                 @endforeach
 
-                @if ($character->pvp_rank_title)
-                    <span class="badge-blue" title="{{ $character->pvp_rank_title }}">{{ $character->rankTitleShort() }}</span>
+                <x-battlenet.bracket-titles :titles="$bracketTitles"/>
+
+                {{-- Elite, Duelist and below are earned from any bracket, so they cannot sit under
+                     3v3 or Shuffle — shown once, labelled for what it is. --}}
+                @if ($character->showsOverallRank())
+                    <span class="badge-blue" title="Best season rank earned in any rated bracket: {{ $character->pvp_rank_title }}">
+                        {{ $character->rankTitleShort() }} &middot; best rank
+                    </span>
                 @endif
             </div>
         @endif

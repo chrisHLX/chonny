@@ -11,6 +11,7 @@
     // a reader scanning a listing actually wants. Guarded on the column so an unsigned guide never
     // costs a query here, on pages that do not eager-load the relation.
     $authorExp = $guide->battlenet_character_id ? $guide->authorCharacter?->bestExp() : null;
+    $authorTitles = $guide->battlenet_character_id ? ($guide->authorCharacter?->bracketTitles() ?? []) : [];
 @endphp
 
 <a href="{{ $guide->publicUrl() ?? '#' }}" wire:navigate
@@ -65,6 +66,7 @@
                     @if ($authorExp)
                         <span class="text-gold tabular-nums">&middot; {{ $authorExp['rating'] }} exp</span>
                     @endif
+                    <x-battlenet.bracket-titles :titles="$authorTitles" compact/>
                     @isset($guide->comments_count)
                         &middot; {{ $guide->comments_count }} {{ Str::plural('comment', $guide->comments_count) }}
                     @endisset

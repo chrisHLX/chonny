@@ -23,6 +23,9 @@
                 @if ($this->authorCharacter && ($exp = $this->authorCharacter->bestExp()))
                     <span class="text-gold tabular-nums" title="Highest {{ $exp['bracket'] }} rating reached">&middot; {{ $exp['rating'] }} exp</span>
                 @endif
+                @if ($this->authorCharacter)
+                    <x-battlenet.bracket-titles :titles="$this->authorCharacter->bracketTitles()" compact/>
+                @endif
                 @if ($bracket = $guide->bracket())
                     &middot; {{ $bracket }}
                 @elseif ($guide->isClassGuide())
