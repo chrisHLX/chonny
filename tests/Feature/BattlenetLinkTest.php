@@ -339,6 +339,28 @@ test('an API failure is written to the character, never thrown into the queue', 
         ->and($character->fresh()->sync_error)->toContain('500');
 });
 
+test('solo shuffle shows its round record, every other bracket its games', function () {
+    $sync = app(BattlenetCharacterSyncService::class);
+
+    // The real Holy Priest response the bug was reported against (2026-09-16): 156-8 in matches,
+    // 480-447 in rounds. The rounds are the record the game shows.
+    $shuffle = $sync->parseBracket('shuffle-priest-holy', [
+        'bracket' => ['type' => 'SHUFFLE'], 'rating' => 2029, 'season' => ['id' => 42],
+        'specialization' => ['id' => 257, 'name' => 'Holy'],
+        'season_match_statistics' => ['played' => 164, 'won' => 156, 'lost' => 8],
+        'season_round_statistics' => ['played' => 927, 'won' => 480, 'lost' => 447],
+    ], 42);
+
+    expect($shuffle)->toMatchArray(['played' => 927, 'won' => 480, 'lost' => 447, 'record_unit' => 'rounds']);
+
+    $threes = $sync->parseBracket('3v3', [
+        'bracket' => ['type' => 'ARENA_3v3'], 'rating' => 1915, 'season' => ['id' => 42],
+        'season_match_statistics' => ['played' => 243, 'won' => 136, 'lost' => 107],
+    ], 42);
+
+    expect($threes)->toMatchArray(['played' => 243, 'won' => 136, 'lost' => 107, 'record_unit' => 'games']);
+});
+
 test('tooltip markup is stripped to the text the game shows', function () {
     expect(BattlenetCharacterSyncService::cleanDisplayString('+23 |cFF00FF00Primary|r Stat |A:Quality-Tier2:20:20|a'))
         ->toBe('+23 Primary Stat');

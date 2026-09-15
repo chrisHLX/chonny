@@ -62,7 +62,10 @@
                             {{ $r['label'] }}@if ($r['spec_name'] && in_array($r['label'], ['Solo Shuffle', 'Blitz'])) &middot; {{ $r['spec_name'] }}@endif
                         </span>
                         <span class="text-[12.5px] font-semibold text-ink tabular-nums">{{ $r['rating'] }}</span>
-                        <span class="text-[10.5px] text-ink-subtle tabular-nums">{{ $r['won'] }}&ndash;{{ $r['lost'] }}</span>
+                        {{-- Shuffle is scored by round (see parseBracket()); a row synced before
+                             that fix carries no unit and still holds games, so it says games. --}}
+                        <span class="text-[10.5px] text-ink-subtle tabular-nums"
+                              title="{{ ($r['record_unit'] ?? 'games') === 'rounds' ? 'Rounds' : 'Games' }} won&ndash;lost this season">{{ $r['won'] }}&ndash;{{ $r['lost'] }}</span>
                     </span>
                 @endforeach
             </div>

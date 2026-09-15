@@ -507,6 +507,14 @@ class BattlenetCharacterSyncService
 
         $season = $response['season']['id'] ?? null;
 
+        // SOLO SHUFFLE IS SCORED BY ROUND, and its response carries both. Its match statistics
+        // are not the record a player knows: a real Holy Priest read 156-8 in matches against a
+        // true 480-447 in rounds (2026-09-16, reported as "our solo shuffle win loss is
+        // incorrect"). Only Shuffle carries round statistics, so every other bracket falls
+        // through to its match record exactly as before.
+        $rounds = isset($response['season_round_statistics']);
+        $record = $response['season_round_statistics'] ?? $response['season_match_statistics'] ?? [];
+
         return [
             'key' => $key,
             'label' => $label,
@@ -519,9 +527,10 @@ class BattlenetCharacterSyncService
             // Unknown current season (the lookup failed) is treated as current rather than
             // hiding every rating — the bracket list itself only covers recent seasons.
             'current' => $currentSeasonId === null || $season === $currentSeasonId,
-            'played' => (int) ($response['season_match_statistics']['played'] ?? 0),
-            'won' => (int) ($response['season_match_statistics']['won'] ?? 0),
-            'lost' => (int) ($response['season_match_statistics']['lost'] ?? 0),
+            'played' => (int) ($record['played'] ?? 0),
+            'won' => (int) ($record['won'] ?? 0),
+            'lost' => (int) ($record['lost'] ?? 0),
+            'record_unit' => $rounds ? 'rounds' : 'games',
         ];
     }
 
