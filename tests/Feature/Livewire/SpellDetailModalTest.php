@@ -1,13 +1,12 @@
 <?php
 
-use App\Livewire\CcReview;
 use App\Livewire\SpellDetailModal;
 use App\Models\Game;
 use App\Models\GameClass;
 use App\Models\Patch;
+use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\SpellClassAvailability;
-use App\Models\Specialization;
 use Livewire\Livewire;
 
 /**
@@ -47,7 +46,7 @@ function makeModalFixtureSpell(): array
 }
 
 test('CC review page loads and renders spells grouped by class and spec', function () {
-    $this->get('/cc-review')->assertOk();
+    $this->get(route('cc-review', absolute: false))->assertOk();
 });
 
 test('SpellDetailModal computes a full entry with spec context, including enriched modifiers', function () {

@@ -293,6 +293,19 @@ class PageUsage extends Component
             (object) ['label' => 'Feed: "Show more"', 'count' => (int) ($feed['more'] ?? 0)],
             (object) ['label' => 'Buy me a coffee clicks', 'count' => PageViewEvent::where('page', 'support_click')->count()],
             (object) ['label' => 'Guides duplicated (reused as a template)', 'count' => PageViewEvent::where('page', 'guide_duplicate')->count()],
+
+            // The comp builder -> guide funnel (added 2026-09-16). Not a PAGES entry: it is a click
+            // on /wow-comps, not a page, and the comp key rides in `slot`. The split matters more
+            // than the total — a guest click is a sign-up prompt that may not be taken, so counting
+            // them together would overstate how many plans actually get started.
+            (object) [
+                'label' => 'Comp builder: "write a plan for this comp" (signed in)',
+                'count' => PageViewEvent::where('page', 'wow_comps_start_guide')->whereNotNull('user_id')->count(),
+            ],
+            (object) [
+                'label' => 'Comp builder: same, by a guest (sent to sign up)',
+                'count' => PageViewEvent::where('page', 'wow_comps_start_guide')->whereNull('user_id')->count(),
+            ],
         ];
     }
 

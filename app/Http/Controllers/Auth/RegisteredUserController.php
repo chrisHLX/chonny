@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\GuestResultsClaimService;
+use App\Http\Services\IntendedCompService;
 use App\Models\FunnelEvent;
 use App\Models\User;
 use App\Rules\Recaptcha;
@@ -58,6 +59,12 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         app(GuestResultsClaimService::class)->claim($user);
+
+        // Somebody who clicked "write the first plan" on a comp lands in that comp, not on the
+        // dashboard: the sign-up form was the only thing between them and the plan they had started.
+        if ($toComp = app(IntendedCompService::class)->redirectAfterAuth($user)) {
+            return $toComp;
+        }
 
         return redirect(route('dashboard', absolute: false));
     }

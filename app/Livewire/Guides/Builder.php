@@ -1172,8 +1172,10 @@ class Builder extends Component
 
         // The comp key is denormalised from the roster, so it has to be rebuilt wherever the
         // roster can have changed. Doing it here rather than at each call site means a future
-        // roster action cannot forget — and it is a no-op when nothing moved.
+        // roster action cannot forget — and it is a no-op when nothing moved. Same for the game,
+        // which a roster can answer for a guide created before one was picked.
         $this->guide->syncCompKey();
+        $this->guide->syncGameFromRoster();
 
         $this->guide->refresh();
 

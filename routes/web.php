@@ -44,7 +44,15 @@ Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle']);
 Route::get('/checkout/success', fn () => view('checkout.success'))->name('checkout.success');
 Route::get('/checkout/cancel', fn () => view('checkout.cancel'))->name('checkout.cancel');
 
-Route::get('/', \App\Livewire\WowComps::class);
+// The site root sends visitors to the comp builder, where it used to render one directly. Now that
+// every game-scoped page lives under /wow (see that group below), rendering the same component at
+// two URLs would be a duplicate of the site's most-visited page — so there is exactly one canonical
+// address for it, and this is a 301 to it.
+//
+// What visitors see is unchanged: type the domain, get the comp builder. What changes is that '/'
+// is now free for a real landing page whenever one is written, without having to move /wow/comps
+// again to make room for it.
+Route::get('/', fn () => redirect()->route('wow-comps', [], 301));
 
 Route::get('/diagnostic', function () {
     return view('diagnostic');
@@ -112,35 +120,99 @@ Route::post('/questions', [QuestionController::class, 'store'])->name('questions
 Route::get('modules', Index::class)->name('modules.index');
 // Route::get('modules', [ModuleController::class, 'index'])->name('modules.index')->middleware('auth');
 
-Route::get('/spells', SpellExplorer::class)->name('spells.explore');
-Route::get('/wow-comps', \App\Livewire\WowComps::class)->name('wow-comps');
+// ------- Game-scoped pages: /wow/... -------
+//
+// EVERY page whose content only makes sense for one game lives under that game's own segment, so
+// a second game is a sibling prefix rather than a rename of nine live URLs. Until 2026-09-16 these
+// sat at the site root (/spells, /wow-comps, /burst-guides, ...), which is only unambiguous while
+// exactly one game exists — `games` is already a real table and `classes`/`patches` are already
+// scoped to it, so the schema was ready for a second game and the URLs were not.
+//
+// Done BEFORE the site is advertised on purpose. Every one of these paths keeps working (see the
+// permanent redirects below), but a 301 is a tax on every future visitor who follows an old link,
+// and the cheapest moment to stop minting old links is before anyone else has any.
+//
+// ROUTE NAMES ARE UNCHANGED, deliberately: every internal link is built with route(), so moving
+// the paths touches no view. The three places that hardcoded a URL (the JSON-LD block in
+// layouts/app.blade.php and public/sitemap.xml) were updated with this change.
+//
+// The game segment is a literal, not a {game} parameter. A parameter would imply these components
+// can render another game, and none of them can — SpellExplorer, WowComps and the rest are built
+// on WoW's own spec/talent/spell model throughout. When a second game arrives it gets its own
+// group and its own components; this stays honest about what it is until then.
+Route::prefix('wow')->group(function () {
+    Route::get('/comps', \App\Livewire\WowComps::class)->name('wow-comps');
+    Route::get('/spells', SpellExplorer::class)->name('spells.explore');
+    Route::get('/spell-finder', \App\Livewire\SpellFinder::class)->name('spell-finder');
+    // One permanent, linkable page per spell. Renders the same <x-spells.detail> the site-wide
+    // modal does, from the same SpellProfile — see App\Livewire\SpellDetail.
+    Route::get('/spell/{spellId}', \App\Livewire\SpellDetail::class)->whereNumber('spellId')->name('spell.show');
+    Route::get('/spell-counters', \App\Livewire\ClaudesCounters::class)->name('claudes-counters');
 
-// Fire-and-forget usage beacon for WoW Comps' Alpine-only tab bar — see TrackController.
+    Route::get('/top-damage-rotations', \App\Livewire\TopDamageRotations::class)->name('top-damage-rotations');
+    Route::get('/top-damage-rotations/{classSlug}/{specSlug}/{length}/talents', \App\Livewire\BurstWindowTalents::class)
+        ->where('length', '[0-9]+')
+        ->name('burst-window-talents');
+
+    Route::get('/class-guide/{classSlug?}/{specSlug?}', \App\Livewire\ClassGuide::class)->name('class-guide');
+    Route::get('/cc-chains', \App\Livewire\TopCcChains::class)->name('top-cc-chains');
+    Route::get('/claudes-guides/{classSlug?}/{specSlug?}', \App\Livewire\ClaudesGuides::class)->name('claudes-guides');
+    Route::get('/burst-guides', \App\Livewire\BurstGuides::class)->name('burst-guides');
+
+    // The combined per-spec view over the four routes above it (class-guide, burst-guides, spells,
+    // spell-counters). Those four are deliberately NOT redirected here: each still renders
+    // standalone, and each is what an existing bookmark or the sitemap resolves to. See
+    // App\Livewire\PvpGuides. `?tab=` selects the panel; spec lives in the path so a guide link
+    // always names the spec it opens on.
+    Route::get('/pvp-guides/{classSlug?}/{specSlug?}', \App\Livewire\PvpGuides::class)->name('pvp-guides');
+
+    // Curation review tools. Not linked from the nav, but real URLs people have open.
+    Route::get('/cc-review', \App\Livewire\CcReview::class)->name('cc-review');
+    Route::get('/cc-immunity-review', \App\Livewire\CcImmunityReview::class)->name('cc-immunity-review');
+});
+
+// Fire-and-forget usage beacon for WoW Comps' Alpine-only tab bar — see TrackController. NOT moved
+// under /wow: it is an internal endpoint the page posts to, not a page anyone links to, and moving
+// it would break any tab already open across the deploy for no benefit.
 Route::post('/track/wow-comps-tab', [\App\Http\Controllers\TrackController::class, 'wowCompsTab'])
     ->name('track.wow-comps-tab');
-Route::get('/top-damage-rotations', \App\Livewire\TopDamageRotations::class)->name('top-damage-rotations');
-Route::get('/top-damage-rotations/{classSlug}/{specSlug}/{length}/talents', \App\Livewire\BurstWindowTalents::class)
-    ->where('length', '[0-9]+')
-    ->name('burst-window-talents');
-Route::get('/cc-review', \App\Livewire\CcReview::class)->name('cc-review');
-Route::get('/cc-immunity-review', \App\Livewire\CcImmunityReview::class)->name('cc-immunity-review');
-Route::get('/spell-finder', \App\Livewire\SpellFinder::class)->name('spell-finder');
-// One permanent, linkable page per spell. Renders the same <x-spells.detail> the site-wide
-// modal does, from the same SpellProfile — see App\Livewire\SpellDetail.
-Route::get('/spell/{spellId}', \App\Livewire\SpellDetail::class)->whereNumber('spellId')->name('spell.show');
-Route::get('/class-guide/{classSlug?}/{specSlug?}', \App\Livewire\ClassGuide::class)->name('class-guide');
-Route::get('/cc-chains', \App\Livewire\TopCcChains::class)->name('top-cc-chains');
-Route::get('/claudes-guides/{classSlug?}/{specSlug?}', \App\Livewire\ClaudesGuides::class)->name('claudes-guides');
-Route::get('/burst-guides', \App\Livewire\BurstGuides::class)->name('burst-guides');
-Route::get('/spell-counters', \App\Livewire\ClaudesCounters::class)->name('claudes-counters');
-Route::redirect('/claudes-counters', '/spell-counters'); // old URL, kept working for anything already linked/bookmarked to it
 
-// The combined per-spec view over the four routes directly above/around it (class-guide,
-// burst-guides, spells, spell-counters). Those four are deliberately NOT redirected here: each
-// still renders standalone, and each is what an existing bookmark or the sitemap resolves to.
-// See App\Livewire\PvpGuides. `?tab=` selects the panel; spec lives in the path so a guide link
-// always names the spec it opens on.
-Route::get('/pvp-guides/{classSlug?}/{specSlug?}', \App\Livewire\PvpGuides::class)->name('pvp-guides');
+// ------- Old paths, kept working permanently -------
+//
+// One 301 per old page, each also forwarding anything after it ({rest}), which is what keeps the
+// parameterised pages whole: /class-guide/priest/discipline and
+// /top-damage-rotations/rogue/subtlety/15/talents land on their new equivalents rather than on a
+// bare index. 301 rather than 302 so search engines move their index across instead of holding
+// both. These are cheap to keep and must not be removed — a link on Reddit, in a Discord, or in
+// somebody's bookmarks outlives any of our opinions about tidiness.
+// Written as an explicit old => new map rather than by gluing '/wow' onto the old path, because
+// one page changed its NAME as well as its place: /wow-comps became /wow/comps, not
+// /wow/wow-comps, which would have been a 404 served to every visitor following the single
+// most-linked URL on the site.
+$movedToWow = [
+    '/wow-comps' => '/wow/comps',
+    '/spells' => '/wow/spells',
+    '/spell-finder' => '/wow/spell-finder',
+    '/spell' => '/wow/spell',
+    '/spell-counters' => '/wow/spell-counters',
+    '/top-damage-rotations' => '/wow/top-damage-rotations',
+    '/class-guide' => '/wow/class-guide',
+    '/cc-chains' => '/wow/cc-chains',
+    '/claudes-guides' => '/wow/claudes-guides',
+    '/burst-guides' => '/wow/burst-guides',
+    '/pvp-guides' => '/wow/pvp-guides',
+    '/cc-review' => '/wow/cc-review',
+    '/cc-immunity-review' => '/wow/cc-immunity-review',
+];
+
+foreach ($movedToWow as $old => $new) {
+    Route::get($old.'/{rest?}', fn (?string $rest = null) => redirect($new.($rest !== null ? '/'.$rest : ''), 301))
+        ->where('rest', '.*');
+}
+
+// Older still: /claudes-counters was renamed to /spell-counters long before the /wow move, and is
+// now two hops from home. Sent straight to the current URL rather than through the hop above.
+Route::get('/claudes-counters', fn () => redirect('/wow/spell-counters', 301));
 
 Route::get('/modules/manage', [ModuleController::class, 'manage'])->name('modules.manage')->middleware('auth');
 Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules.create')->middleware('auth');

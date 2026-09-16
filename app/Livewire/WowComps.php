@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Enums\UserGuideType;
 use App\Http\Services\ArenaLogService;
 use App\Http\Services\CcFormulaService;
+use App\Http\Services\IntendedCompService;
 use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\SpecKitComputer;
 use App\Http\Services\TalentSelectionService;
@@ -406,16 +408,79 @@ class WowComps extends Component
     #[Computed]
     public function guides()
     {
-        $specIds = collect($this->slots)->pluck('specId')->filter()->values();
-
-        if ($specIds->count() < count($this->slots)) {
+        if (! $this->compIsComplete()) {
             return collect();
         }
 
-        return UserGuide::forComp($specIds->all())
+        return UserGuide::forComp($this->selectedSpecIds())
             ->with(['user', 'members.specialization.gameClass', 'enemies.specialization.gameClass'])
             ->limit(self::MAX_COMP_GUIDES)
             ->get();
+    }
+
+    /** The three chosen spec ids in slot order. Empty entries are dropped, so count() tells you how full the comp is. */
+    public function selectedSpecIds(): array
+    {
+        return collect($this->slots)->pluck('specId')->filter()->values()->all();
+    }
+
+    /** Every slot filled. A partial comp is not a comp: it has no guides and cannot start one. */
+    public function compIsComplete(): bool
+    {
+        return count($this->selectedSpecIds()) === count($this->slots);
+    }
+
+    /**
+     * The comp written out for a human ("Restoration Druid / Subtlety Rogue / Frost Mage").
+     *
+     * Reads the already-resolved members from getCompProperty() rather than querying again — that
+     * property is memoised for the request and every caller of this is on a page that has already
+     * built it.
+     */
+    public function compLabel(): string
+    {
+        return collect($this->comp)
+            ->map(fn ($member) => $member['spec'] && $member['class']
+                ? $member['spec']->name.' '.$member['class']->name
+                : null)
+            ->filter()
+            ->implode(' / ');
+    }
+
+    /**
+     * Turn the comp currently in the slots into a new guide, and open the builder on it.
+     *
+     * This is the page's whole reason to exist for an author, and it was missing: /wow-comps is by
+     * far the most-visited page on the site (6,402 views in the 30 days to 2026-09-16, against 143
+     * for every guide page combined), yet a viewer who had just built a comp had no route into
+     * writing the plan for it. Worse, the "player guides for this comp" listing below only renders
+     * when a guide already exists, and with 40 specs there are 9,880 three-spec combinations — so
+     * for virtually every comp the page simply ended, and the builder and the comp picker read as
+     * two unrelated products rather than two halves of one.
+     *
+     * A guest is not turned away: the comp is remembered in the session and rebuilt after they
+     * register, so the sign-up form is the only thing between them and the plan they were already
+     * writing. See resumeIntendedComp().
+     */
+    public function startGuideFromComp()
+    {
+        if (! $this->compIsComplete()) {
+            return null;
+        }
+
+        $specIds = $this->selectedSpecIds();
+
+        PageViewEvent::log('wow_comps_start_guide', slot: UserGuide::compKeyFor($specIds));
+
+        if (! auth()->check()) {
+            app(IntendedCompService::class)->remember($specIds);
+
+            return redirect()->route('register');
+        }
+
+        $guide = UserGuide::startDraft(auth()->user(), UserGuideType::Comp, $specIds);
+
+        return redirect()->route('guides.edit', ['guide' => $guide->slug]);
     }
 
     /**

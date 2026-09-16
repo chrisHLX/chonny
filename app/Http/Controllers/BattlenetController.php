@@ -144,6 +144,13 @@ class BattlenetController extends Controller
         $request->session()->forget(self::PENDING_KEY);
         $count = $this->queueDetailSyncs($account);
 
+        // A comp remembered before signing up wins over Home — it is a more specific version of
+        // the same intent. See IntendedCompService.
+        if ($toComp = app(\App\Http\Services\IntendedCompService::class)->redirectAfterAuth($user)) {
+            return $toComp->with('battlenet_status',
+                "Welcome to MindCollector, {$user->name}. We're fetching your characters now.");
+        }
+
         // Home, not My Characters: a new player signed up to plan games, and Home is where the
         // first guide gets started. Their characters show on Home's own Battle.net card.
         return redirect()->route('dashboard')->with('battlenet_status',
@@ -185,9 +192,14 @@ class BattlenetController extends Controller
 
             $count = $this->queueDetailSyncs($this->sync->linkAccount($account->user, $token, $info));
 
-            return redirect()->intended(route('dashboard'))
-                ->with('battlenet_status', "Signed in as {$info['battletag']}. Refreshing {$count} "
-                    .Str::plural('character', $count).'.');
+            $status = "Signed in as {$info['battletag']}. Refreshing {$count} ".Str::plural('character', $count).'.';
+
+            // Same as every other sign-in path: a comp picked before signing in becomes a guide.
+            if ($toComp = app(\App\Http\Services\IntendedCompService::class)->redirectAfterAuth($account->user)) {
+                return $toComp->with('battlenet_status', $status);
+            }
+
+            return redirect()->intended(route('dashboard'))->with('battlenet_status', $status);
         }
 
         $request->session()->put(self::PENDING_KEY, [

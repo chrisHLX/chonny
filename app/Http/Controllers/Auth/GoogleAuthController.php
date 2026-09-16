@@ -89,6 +89,11 @@ class GoogleAuthController extends Controller
             $signup->create((string) $google->getName(), $email, $verified, ['google_id' => $googleId]);
         }
 
+        // A comp remembered before signing in becomes their first guide — see IntendedCompService.
+        if ($toComp = app(\App\Http\Services\IntendedCompService::class)->redirectAfterAuth(Auth::user())) {
+            return $toComp;
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 }

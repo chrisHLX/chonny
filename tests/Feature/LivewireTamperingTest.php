@@ -22,7 +22,9 @@ uses(RefreshDatabase::class);
  */
 function homepageSnapshot($test): string
 {
-    $html = $test->get('/')->assertOk()->getContent();
+    // WowComps moved to /wow/comps on 2026-09-16 and '/' now 301s there; taken by route name so
+    // this keeps pointing at whatever URL the component actually serves.
+    $html = $test->get(route('wow-comps', absolute: false))->assertOk()->getContent();
 
     preg_match('/wire:snapshot="([^"]+)"/', $html, $m);
     expect($m)->not->toBeEmpty();

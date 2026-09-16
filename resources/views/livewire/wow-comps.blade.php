@@ -1125,8 +1125,15 @@
 
              Placed below the tabs rather than inside one so it is visible whichever tab the
              viewer is on: somebody who has just read this comp's burst window is exactly the
-             person who wants to know whether a player wrote it up. --}}
-        @if ($this->guides->isNotEmpty())
+             person who wants to know whether a player wrote it up.
+
+             ALWAYS RENDERED once the comp is full, empty or not — that is the point. This block
+             used to be wrapped in @if ($this->guides->isNotEmpty()), which sounds harmless and was
+             not: with 40 specs there are 9,880 three-spec combinations and a handful of guides, so
+             for virtually every comp the page simply ended, with no hint that writing a plan was
+             even possible. /wow-comps is the most-visited page on the site by an order of
+             magnitude; this is the one path from it into authoring. --}}
+        @if ($this->compIsComplete())
             <div class="mt-8">
                 <div class="flex items-baseline justify-between gap-4 mb-3">
                     <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">
@@ -1136,14 +1143,54 @@
                        class="text-[12px] text-ink-subtle hover:text-gold transition-colors">Browse all &rarr;</a>
                 </div>
 
-                <p class="text-[12px] text-ink-subtle mb-3 max-w-2xl">
-                    Openers and game plans written by players who run this comp.
-                </p>
+                @if ($this->guides->isNotEmpty())
+                    <p class="text-[12px] text-ink-subtle mb-3 max-w-2xl">
+                        Openers and game plans written by players who run this comp.
+                    </p>
 
-                @foreach ($this->guides as $playerGuide)
-                    <x-guides.card :guide="$playerGuide" :compact="true"
-                                   :class-colors="config('wow_classes.colors', [])"/>
-                @endforeach
+                    @foreach ($this->guides as $playerGuide)
+                        <x-guides.card :guide="$playerGuide" :compact="true"
+                                       :class-colors="config('wow_classes.colors', [])"/>
+                    @endforeach
+
+                    <div class="mt-4">
+                        <button type="button" wire:click="startGuideFromComp"
+                                wire:loading.attr="disabled" wire:target="startGuideFromComp"
+                                class="btn-ghost text-[13px]">
+                            <span wire:loading.remove wire:target="startGuideFromComp">Write your own for this comp</span>
+                            <span wire:loading wire:target="startGuideFromComp">Starting&hellip;</span>
+                        </button>
+                    </div>
+                @else
+                    {{-- The empty state is the funnel. Name the comp back to the reader so it reads
+                         as being about the thing they just built, not a generic advert. --}}
+                    <div class="linear-card p-5 sm:p-6">
+                        <p class="text-[15px] text-ink mb-1.5">
+                            No one has written a plan for
+                            <span class="text-gold">{{ $this->compLabel() }}</span> yet.
+                        </p>
+                        <p class="text-[13px] text-ink-muted mb-4 max-w-xl">
+                            You have the cooldowns, the crowd control and the burst window above.
+                            A plan is the order you press them in &mdash; your opener, what you do
+                            against a given enemy team, and the answers you have ready.
+                        </p>
+
+                        <div class="flex flex-wrap items-center gap-3">
+                            <button type="button" wire:click="startGuideFromComp"
+                                    wire:loading.attr="disabled" wire:target="startGuideFromComp"
+                                    class="btn-primary text-[13px]">
+                                <span wire:loading.remove wire:target="startGuideFromComp">Write the first plan</span>
+                                <span wire:loading wire:target="startGuideFromComp">Starting&hellip;</span>
+                            </button>
+
+                            @guest
+                                <span class="text-[12px] text-ink-subtle">
+                                    We&rsquo;ll keep this comp while you sign up.
+                                </span>
+                            @endguest
+                        </div>
+                    </div>
+                @endif
             </div>
         @endif
 

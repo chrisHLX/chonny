@@ -39,9 +39,9 @@
                         'name' => 'MindCollector sections',
                         'itemListElement' => [
                             ['@type' => 'SiteNavigationElement', 'position' => 1, 'name' => 'Player Guides', 'url' => 'https://mindcollector.com/browse-guides'],
-                            ['@type' => 'SiteNavigationElement', 'position' => 2, 'name' => '3v3 Comp Builder', 'url' => 'https://mindcollector.com/wow-comps'],
-                            ['@type' => 'SiteNavigationElement', 'position' => 3, 'name' => 'Class Guides', 'url' => 'https://mindcollector.com/pvp-guides'],
-                            ['@type' => 'SiteNavigationElement', 'position' => 4, 'name' => 'Spell Explorer', 'url' => 'https://mindcollector.com/spells'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 2, 'name' => '3v3 Comp Builder', 'url' => 'https://mindcollector.com/wow/comps'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 3, 'name' => 'Class Guides', 'url' => 'https://mindcollector.com/wow/pvp-guides'],
+                            ['@type' => 'SiteNavigationElement', 'position' => 4, 'name' => 'Spell Explorer', 'url' => 'https://mindcollector.com/wow/spells'],
                         ],
                     ],
                 ],

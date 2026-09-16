@@ -182,11 +182,16 @@ echo "    whose icon was sitting on disk, unreferenced, because this had never b
 php artisan wow:apply-icon-manifest
 
 echo "==> Post-deploy smoke test"
+# Game-scoped pages moved under /wow on 2026-09-16. The canonical URLs are listed so the check
+# verifies the real page; '/' and one old path are kept deliberately, to prove the redirect chain
+# still lands somewhere that renders — that is now a thing that can break on its own.
 SMOKE_URLS=(
     "https://mindcollector.com/"
+    "https://mindcollector.com/wow/comps"
+    "https://mindcollector.com/wow/pvp-guides"
+    "https://mindcollector.com/wow/spells"
+    "https://mindcollector.com/browse-guides"
     "https://mindcollector.com/wow-comps"
-    "https://mindcollector.com/pvp-guides"
-    "https://mindcollector.com/spells"
 )
 SMOKE_FAILED=0
 for url in "${SMOKE_URLS[@]}"; do

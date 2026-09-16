@@ -44,6 +44,9 @@ class UserGuideDuplicator
         return DB::transaction(function () use ($original, $author) {
             $copy = UserGuide::create([
                 'user_id' => $author->id,
+                // A copy is about the same game as its original, always — carried across rather
+                // than re-derived so a roster-less guide keeps its game too.
+                'game_id' => $original->game_id,
                 'type' => $original->type,
                 'opponent_spec_id' => $original->opponent_spec_id,
                 // Signing is a per-guide choice the same author made, so it carries over; for

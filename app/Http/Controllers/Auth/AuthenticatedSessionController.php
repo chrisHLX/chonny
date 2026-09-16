@@ -26,7 +26,15 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        // regenerate() changes the session id but carries the data over, so a comp remembered
+        // before signing in survives to the next line.
         $request->session()->regenerate();
+
+        // A guest who clicked "write a plan for this comp" and turned out to already have an
+        // account gets the same landing as one who registered — see IntendedCompService.
+        if ($toComp = app(\App\Http\Services\IntendedCompService::class)->redirectAfterAuth($request->user())) {
+            return $toComp;
+        }
 
         return redirect()->intended(route('dashboard', absolute: false));
     }

@@ -220,9 +220,13 @@ test('a signed-out reader of a public guide is invited to build their own; a sig
 });
 
 test('the landing page tells a signed-out visitor they can turn a comp into a plan', function () {
-    $this->get('/')->assertOk()->assertSee('Turn a comp into a game plan')->assertSee('Build your own, free');
+    // The comp builder moved to /wow/comps on 2026-09-16 ('/' now 301s there) — see
+    // GameScopedUrlsTest. Addressed by route name so a future move does not break this again.
+    $comps = route('wow-comps', absolute: false);
 
-    $this->actingAs(firstRunUser())->get('/')->assertOk()->assertDontSee('Build your own, free');
+    $this->get($comps)->assertOk()->assertSee('Turn a comp into a game plan')->assertSee('Build your own, free');
+
+    $this->actingAs(firstRunUser())->get($comps)->assertOk()->assertDontSee('Build your own, free');
 });
 
 test('the register page says what the account is for, and no longer warns that things may reset', function () {

@@ -240,7 +240,7 @@ test('the route serves a real spell and 404s an unknown one', function () {
         ->assertOk()
         ->assertSee('Kidney Shot');
 
-    $this->get('/spell/999999')->assertNotFound();
+    $this->get(route('spell.show', ['spellId' => 999999], absolute: false))->assertNotFound();
 });
 
 /**

@@ -27,6 +27,7 @@ class UserGuide extends Model
 {
     protected $fillable = [
         'user_id',
+        'game_id',
         'guild_id',
         'battlenet_character_id',
         'type',
@@ -463,11 +464,22 @@ class UserGuide extends Model
      * The starter section exists so the builder never opens on a blank page with no obvious first
      * move. The placeholder title is what the slug is generated from, and a draft's slug is rebuilt
      * from the title and comp on first publish (see descriptiveSlug()), so it need not be good.
+     *
+     * $teamSpecIds pre-fills the author's own side of the roster, which is how the comp builder
+     * hands a comp straight to the builder ("write a plan for this comp"). Empty for every other
+     * entry point, which opens on the roster picker as before. Ids are filtered against real specs
+     * rather than trusted, and capped by the type's own slot count, so a tampered comp cannot build
+     * a three-slot roster inside a class guide.
+     *
+     * @param  array<int, int>  $teamSpecIds  spec ids in slot order, may be empty
      */
-    public static function startDraft(User $user, UserGuideType $type): self
+    public static function startDraft(User $user, UserGuideType $type, array $teamSpecIds = []): self
     {
         $guide = self::create([
             'user_id' => $user->id,
+            // Set at creation so a guide that never gets a roster (a prose-only strategy document)
+            // still knows which game it is about — see defaultGameId().
+            'game_id' => self::defaultGameId(),
             'type' => $type,
             'status' => UserGuideStatus::Draft,
             'visibility' => UserGuideVisibility::Invited,
@@ -485,7 +497,47 @@ class UserGuide extends Model
             'updated_by_user_id' => $user->id,
         ]);
 
+        if ($teamSpecIds !== []) {
+            $guide->fillTeamRoster($teamSpecIds);
+        }
+
         return $guide;
+    }
+
+    /**
+     * Fill this guide's own side of the roster from a list of spec ids, in slot order.
+     *
+     * Used when a comp arrives from somewhere that already knows it (the comp builder). Validates
+     * against real specs and against this guide type's own slot cap, then rebuilds comp_key so the
+     * guide is immediately findable from the comp it was started from — the round trip that makes
+     * "no guide for this comp yet" turn into "here is one" without any further action.
+     *
+     * @param  array<int, int>  $specIds
+     */
+    public function fillTeamRoster(array $specIds): void
+    {
+        $max = $this->maxSlotsFor(UserGuideMemberSide::Team);
+
+        $valid = Specialization::whereIn('id', array_filter($specIds))->pluck('id')->all();
+
+        $slot = 0;
+        foreach ($specIds as $specId) {
+            if ($slot >= $max) {
+                break;
+            }
+            if (! in_array((int) $specId, $valid, true)) {
+                continue;
+            }
+
+            UserGuideMember::updateOrCreate(
+                ['user_guide_id' => $this->id, 'side' => UserGuideMemberSide::Team->value, 'position' => $slot],
+                ['spec_id' => (int) $specId],
+            );
+            $slot++;
+        }
+
+        $this->syncCompKey();
+        $this->syncGameFromRoster();
     }
 
     /**
@@ -588,6 +640,55 @@ class UserGuide extends Model
         if ($this->comp_key !== $key) {
             $this->forceFill(['comp_key' => $key])->save();
         }
+    }
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
+
+    /**
+     * Keep game_id in step with the roster, without ever overwriting an answer already on file.
+     *
+     * The roster is the strongest evidence of a guide's game — a spec belongs to a class, and a
+     * class belongs to exactly one game — but it only exists once the author has picked someone.
+     * So this fills the column when the roster can answer and leaves it alone otherwise, which is
+     * what lets a roster-less draft or a prose-only guide still carry a game (set at creation, see
+     * startDraft()) rather than being permanently unattributable.
+     *
+     * Never REASSIGNS: a guide does not change game, and a roster edit that somehow produced a
+     * different one would be a bug worth seeing rather than silently following.
+     */
+    public function syncGameFromRoster(): void
+    {
+        if ($this->game_id !== null) {
+            return;
+        }
+
+        // Every column is qualified: both tables in this join have an `id`, and an unqualified one
+        // is an outright SQL error rather than a wrong answer.
+        $gameId = Specialization::query()
+            ->join('classes', 'classes.id', '=', 'specializations.class_id')
+            ->whereIn('specializations.id', $this->members()->pluck('spec_id'))
+            ->value('classes.game_id');
+
+        if ($gameId) {
+            $this->forceFill(['game_id' => $gameId])->save();
+        }
+    }
+
+    /**
+     * The game a brand-new guide belongs to, before it has a roster to derive one from.
+     *
+     * While exactly one game is seeded the answer is unambiguous and guessing it is not a guess.
+     * With several, it deliberately returns null rather than picking the first row — a wrong game
+     * is worse than an unset one, and by then the builder will have to ask.
+     */
+    public static function defaultGameId(): ?int
+    {
+        $games = Game::query()->limit(2)->pluck('id');
+
+        return $games->count() === 1 ? (int) $games->first() : null;
     }
 
     /** The same key for an arbitrary set of spec ids, so a lookup can be built the same way. */
