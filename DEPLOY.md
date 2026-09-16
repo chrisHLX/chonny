@@ -158,3 +158,40 @@ actually fire." It is not. Any other `routes/console.php` scheduled command is e
 not running. Confirmed 2026-08-29, not acted on — out of scope for the caching incident, but a
 real, separate production gap worth its own fix (`* * * * * php artisan schedule:run` in root's
 crontab is the standard remedy).
+
+## Nginx: gzip and static caching (server-only config, 2026-09-16)
+
+Reported as "initial load felt slow". It was, and the cause was not PHP — measured TTFB on
+production is 0.12s for most pages. The problem was everything after the HTML.
+
+**What was wrong.** `/etc/nginx/nginx.conf` had `gzip on;` with every `gzip_types` line shipped
+commented out by the distro. `gzip on` alone compresses **`text/html` and nothing else** — that is
+nginx's built-in default and it is the entire list. So HTML was gzipped (100KB → 12KB) while
+`app.js` (241KB) and `app.css` (108KB) were served raw on every visit. Separately, `/build/` had
+no `Cache-Control` at all, so a returning visitor re-downloaded both files every time.
+
+**What changed**, both in the running config only — neither file is in this repo:
+
+- `/etc/nginx/nginx.conf` — real `gzip_types` (css, js, json, xml, svg, woff2), plus `gzip_vary`,
+  `gzip_comp_level 6`, `gzip_min_length 256`. Marked with a `MINDCOLLECTOR_GZIP` comment so it is
+  findable and so re-running the fix is idempotent.
+- `/etc/nginx/sites-enabled/mindcollector` — a `location /build/` block with
+  `Cache-Control: public, max-age=31536000, immutable`. Safe precisely because Vite content-hashes
+  those filenames, so any change ships under a new URL.
+
+**Measured result:** first-visit transfer for `/wow/comps` went **361KB → 111KB** (js 241→85,
+css 108→16, html 100→10). Repeat visits now skip the JS and CSS entirely.
+
+**One header fix worth keeping in mind:** `expires 1y;` emits its own `Cache-Control`, so pairing
+it with `add_header Cache-Control` sends the header **twice**, with different values, and leaves
+the client to pick. Use one or the other. The pre-existing `/storage/spell-icons/` block had the
+same shape and was corrected at the same time.
+
+**Trap hit while doing this, worth not repeating:** the first attempt wrote the config backups to
+`/etc/nginx/sites-enabled/*.bak-<timestamp>`. That directory is glob-included by nginx, so the
+backup was parsed as a second site and `nginx -t` failed with *"a duplicate default server for
+0.0.0.0:80"*. Caught before any reload, and the running server was never affected. **Back nginx
+configs up outside `sites-enabled/`** — these now live in `/root/nginx-backups/`.
+
+**Always `nginx -t` before `systemctl reload nginx`.** The reload is graceful and will refuse a
+broken config, but the test is what tells you *why*.

@@ -93,7 +93,7 @@ test('the guides block renders for a comp with no guides — the empty state IS 
     )->html();
 
     expect($html)->toContain('Player guides for this comp')
-        ->toContain('No one has written a plan for')
+        ->toContain('No plan yet for')
         // Named back to the reader, so it reads as being about the comp they just built.
         ->toContain('Frost Mage')
         ->toContain('Write the first plan');

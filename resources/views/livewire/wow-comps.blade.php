@@ -1163,32 +1163,28 @@
                     </div>
                 @else
                     {{-- The empty state is the funnel. Name the comp back to the reader so it reads
-                         as being about the thing they just built, not a generic advert. --}}
-                    <div class="linear-card p-5 sm:p-6">
-                        <p class="text-[15px] text-ink mb-1.5">
-                            No one has written a plan for
-                            <span class="text-gold">{{ $this->compLabel() }}</span> yet.
-                        </p>
-                        <p class="text-[13px] text-ink-muted mb-4 max-w-xl">
-                            You have the cooldowns, the crowd control and the burst window above.
-                            A plan is the order you press them in &mdash; your opener, what you do
-                            against a given enemy team, and the answers you have ready.
-                        </p>
-
-                        <div class="flex flex-wrap items-center gap-3">
-                            <button type="button" wire:click="startGuideFromComp"
-                                    wire:loading.attr="disabled" wire:target="startGuideFromComp"
-                                    class="btn-primary text-[13px]">
-                                <span wire:loading.remove wire:target="startGuideFromComp">Write the first plan</span>
-                                <span wire:loading wire:target="startGuideFromComp">Starting&hellip;</span>
-                            </button>
-
-                            @guest
-                                <span class="text-[12px] text-ink-subtle">
-                                    We&rsquo;ll keep this comp while you sign up.
-                                </span>
-                            @endguest
+                         as being about the thing they just built, not a generic advert — then stop.
+                         An earlier version explained what a plan was in three lines; anyone who has
+                         scrolled past this comp's cooldowns already knows. --}}
+                    <div class="linear-card p-4 sm:p-5 flex flex-wrap items-center justify-between gap-3">
+                        <div class="min-w-0">
+                            <p class="text-[14.5px] text-ink">
+                                No plan yet for <span class="text-gold">{{ $this->compLabel() }}</span>.
+                            </p>
+                            <p class="text-[12.5px] text-ink-subtle mt-0.5">
+                                Write the order you press it all in &mdash; opener, kill window, answers.
+                                {{-- Guests only, and kept deliberately short: this one clause is what
+                                     makes clicking feel safe rather than like hitting a signup wall. --}}
+                                @guest<span class="text-ink-subtle/80">We&rsquo;ll keep this comp while you sign up.</span>@endguest
+                            </p>
                         </div>
+
+                        <button type="button" wire:click="startGuideFromComp"
+                                wire:loading.attr="disabled" wire:target="startGuideFromComp"
+                                class="btn-primary text-[13px] shrink-0">
+                            <span wire:loading.remove wire:target="startGuideFromComp">Write the first plan</span>
+                            <span wire:loading wire:target="startGuideFromComp">Starting&hellip;</span>
+                        </button>
                     </div>
                 @endif
             </div>
