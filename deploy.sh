@@ -148,15 +148,13 @@ php artisan tinker --execute="app(App\Http\Services\TalentSelectionService::clas
 # This used to be a printed reminder telling a human to look up the patch version and run the
 # import by hand, because a wrong version argument silently forks every patch-scoped table
 # rather than failing. That is now impossible to get wrong: `import:spelldata wow` with no patch
-# argument reuses the DB's own current patch and refuses to run if there isn't one, which is the
-# same verification the reminder asked for, performed by the command itself.
+# argument reuses the DB's own current patch and refuses to run if there isn't one. Since
+# 2026-09-16 a new game build relabels that row in place rather than forking (PatchResolver).
 if echo "$CHANGED_FILES" | grep -qE '^data/spelldata/|^database/migrations/.*(spell|talent)'; then
     echo "==> Spell data or a spell/talent migration changed — running the full import."
-    echo "    No patch argument is passed on purpose: the command resolves the current patch"
-    echo "    from the database itself. Never pass a literal version here — a string that"
-    echo "    doesn't match the DB creates a NEW patches row and forks every patch-scoped"
-    echo "    table away from the one the live site reads (this has happened for real)."
-    echo "    A genuine patch transition is a deliberate, separate, manual action."
+    echo "    No patch argument is passed on purpose: the command imports into the current"
+    echo "    patch row and relabels it to the build the SimC dump headers report, keeping"
+    echo "    every relationship (see PatchResolver). Forking a new row needs --new-patch."
     php -d memory_limit=1024M artisan import:spelldata wow
     # import:spelldata regenerates every spec kit itself as its final step, so the standalone
     # precompute below would be redundant work on an already-slow deploy.

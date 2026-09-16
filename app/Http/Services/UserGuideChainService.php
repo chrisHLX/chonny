@@ -379,8 +379,17 @@ class UserGuideChainService
             }
         }
 
-        $authored = $guide->patch?->build_version;
-        $current = Patch::where('is_current', true)->value('build_version');
+        $currentPatch = Patch::where('is_current', true)->first(['id', 'build_version']);
+        $current = $currentPatch?->build_version;
+
+        // The label captured when the guide was written. Without one, fall back to the patch
+        // row's label ONLY when the guide points at a different row: the current row is
+        // relabelled in place on a new build (ImportSpellData::resolvePatch()), so its label
+        // says what the data is on now, not what it was on when this guide was written.
+        $authored = $guide->authored_build_version
+            ?? ($guide->patch_id !== null && $guide->patch_id !== $currentPatch?->id
+                ? $guide->patch?->build_version
+                : null);
 
         return [
             'unresolved' => $unresolved,

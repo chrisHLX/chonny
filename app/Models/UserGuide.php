@@ -38,6 +38,7 @@ class UserGuide extends Model
         'guild_can_edit',
         'last_edited_by_user_id',
         'patch_id',
+        'authored_build_version',
         'title',
         'slug',
         'summary',

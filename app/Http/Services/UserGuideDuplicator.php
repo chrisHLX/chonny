@@ -58,6 +58,7 @@ class UserGuideDuplicator
                 'guild_can_edit' => false,
                 'last_edited_by_user_id' => $author->id,
                 'patch_id' => $original->patch_id,
+                'authored_build_version' => $original->authored_build_version,
                 'title' => $this->copyTitle($original->title),
                 'summary' => $original->summary,
             ]);

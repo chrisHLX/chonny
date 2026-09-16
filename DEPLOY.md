@@ -42,11 +42,9 @@ SSH session: `scp root@45.76.116.44:/var/www/mindcollector/storage/logs/laravel.
    default-build edit) with no code deploy involved — see [[chonny_spell_cache_deploy_incident]]
    for why a version bump *alone*, done after the underlying staleness already produced a bad
    cache entry, does not retroactively fix that entry (this is exactly what step 8 now closes).
-10. Prints a **reminder** (never auto-runs it) to check the current patch and run
-    `import:spelldata` if `data/spelldata/` or a spell/talent migration changed — this is
-    deliberately manual because the patch version argument must be verified against the DB, never
-    hardcoded (see CLAUDE.md's frozen-patch-string section — using the wrong string forks a
-    disconnected patch row).
+10. Runs `import:spelldata wow` (no patch argument) if `data/spelldata/` or a spell/talent
+    migration changed. It imports into the current patch row and relabels it to the build the SimC
+    dumps report, without forking (see CLAUDE.md, "The patch row is relabelled in place").
 11. **Smoke test**: curls `/`, `/wow-comps`, `/spells` and reports the HTTP status of each.
 12. **Checks `laravel.log`** for `ERROR`-level lines in the deploy window.
 13. **Saves the full run to `storage/logs/deploy-<timestamp>.log`** — a persistent, timestamped

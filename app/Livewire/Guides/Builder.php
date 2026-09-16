@@ -1162,9 +1162,13 @@ class Builder extends Component
     private function refreshGuide(): void
     {
         // patch_id records what the author was looking at, and is set on first real edit rather
-        // than at creation so an abandoned empty draft never claims to describe a patch.
+        // than at creation so an abandoned empty draft never claims to describe a patch. The build
+        // label is captured alongside it because the patch row is relabelled in place when the
+        // game moves on — patch_id alone can't say which build the guide was written on.
         if ($this->guide->patch_id === null) {
-            $this->guide->patch_id = Patch::where('is_current', true)->value('id');
+            $current = Patch::where('is_current', true)->first(['id', 'build_version']);
+            $this->guide->patch_id = $current?->id;
+            $this->guide->authored_build_version = $current?->build_version;
         }
 
         $this->guide->last_edited_by_user_id = auth()->id();

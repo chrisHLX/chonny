@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\DB;
 /**
  * Deletes a non-current patch row and everything hanging off it.
  *
- * WHY THIS EXISTS. Every distinct patch string passed to `import:spelldata` creates a NEW
- * `patches` row, and essentially all game data is patch-scoped by foreign key — so one mistyped
- * or well-meaning version argument silently forks the entire dataset instead of updating it in
- * place. That happened on production: a second patch row appeared on 2026-08-18 and sat there
+ * WHY THIS EXISTS. Until 2026-09-16 every distinct patch string passed to `import:spelldata`
+ * created a NEW `patches` row, and essentially all game data is patch-scoped by foreign key — so
+ * one mistyped or well-meaning version argument silently forked the entire dataset instead of
+ * updating it in place. (It now relabels the current row instead; a new row needs --new-patch.
+ * See PatchResolver.) That happened on production: a second patch row appeared on 2026-08-18 and sat there
  * doubling `spells`, `talent_trees`, `pvp_talents` and `talent_builds`. Nothing displayed it
  * (every read filters to the current patch) but it was not harmless — three callers looked up a
  * spec's admin-default TalentBuild WITHOUT filtering by patch and got the older row back, so

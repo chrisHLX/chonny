@@ -35,6 +35,10 @@
 # (the real Blizzard spell id — check it against a real tooltip/addon before adding, same
 # verify-first discipline as every other file in this folder), name, class (class slug), specs
 # (comma-separated spec slugs, or the literal word "all" for every spec of that class).
+# Optional fields are written only when set — a key left out is left to the rest of the import
+# (e.g. a talent's description comes from data/talenttrees, which is Blizzard's own tooltip; do
+# not repeat it here, or the two passes overwrite each other on every run and each import posts a
+# fake change to the Home feed — that happened to Aimed Shot and Mirror Image until 2026-09-16).
 # Optional: school, description (write real numbers directly — no $d/$sN template tokens, since
 # nothing re-resolves this text), cooldown_seconds, duration_seconds, charges, mechanic (must
 # match a key in ModuleSpellReferenceService::MECHANIC_CATEGORY_MAP to categorize correctly),
@@ -75,7 +79,6 @@ name: Aimed Shot
 class: hunter
 specs: marksmanship
 school: Physical
-description: A powerful aimed shot that deals damage.
 END
 
 # Mirror Image's duration (15 sec) is real, verified data — pulled directly from the exported
@@ -89,7 +92,6 @@ class: mage
 specs: all
 school: Arcane
 duration_seconds: 15
-description: Creates 3 copies of you nearby, which cast spells and attack your enemies. While active, you generate significantly reduced threat. Taking direct damage will cause one of your images to dissipate.
 END
 
 # Shadowstep, added 2026-08-14 — found via arena-log kill-sequence data (spell_id 36554,

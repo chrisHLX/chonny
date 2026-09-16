@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Process;
  * reasoning behind what is and isn't automated here.
  *
  * Runs, in order: fetch-talent-trees.php, fetch-simc-dumps.php, regenerate-filtered.php,
- * import:spelldata, fetch-spell-icons.php. All additive — see ImportSpellData's own docblock
- * and CLAUDE.md's patch_id-scoping explanation for why none of this can touch existing users,
- * diagnostics, or a prior patch's data.
+ * import:spelldata, fetch-spell-icons.php. The import updates the CURRENT patch row in place and
+ * relabels it to {build} (PatchResolver) — it does not fork a new row, so every curated talent
+ * build, module reference and guide keeps pointing at the same data.
  *
  * The spellbook-snapshot sanity check used to be this orchestrator's own step 6/6 — moved
  * INTO ImportSpellData::handle() itself (2026-08-13) so it also fires on a plain
@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Process;
 class PatchUpdate extends Command
 {
     protected $signature = 'wow:patch-update
-        {build : Patch build version, e.g. 12.1.0.69123}
+        {build : Game build version to relabel the current patch with, e.g. 12.1.0.69123}
         {--branch= : SimC branch to pull raw spell dumps from, e.g. midnight or data-update-live-69123}
         {--auto-detect-live : Auto-detect the current data-update-live-* SimC branch instead of --branch=}
         {--only= : Comma-separated class slugs to limit every step to, e.g. --only=priest,hunter}
@@ -100,7 +100,7 @@ class PatchUpdate extends Command
             : $this->runScript('data/spelldata/fetch-spell-icons.php', []));
 
         $this->newLine();
-        $this->info('Mechanical steps done. This did NOT touch users, diagnostics, or the previous patch\'s data — see the patch_id-scoping note in CLAUDE.md if you want to verify that yourself.');
+        $this->info('Mechanical steps done. The current patch row was updated in place and relabelled — users, diagnostics and curated talent builds still point at it.');
         $this->newLine();
         $this->warn('Manual steps still needed — deliberately not automated, see this command\'s own docblock for why:');
         $this->line('  1. Re-curate admin default talent builds for the specs you actually need:');

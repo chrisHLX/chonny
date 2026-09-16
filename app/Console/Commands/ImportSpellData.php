@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Console\Concerns\RegeneratesSpellKits;
 use App\Http\Services\ArenaLogService;
 use App\Http\Services\ModuleSpellReferenceService;
+use App\Http\Services\PatchResolver;
 use App\Http\Services\SpellChangeRecorder;
 use App\Http\Services\SpellDataFileParser;
 use App\Http\Services\TalentSelectionService;
@@ -77,8 +78,9 @@ class ImportSpellData extends Command
 
     protected $signature = 'import:spelldata
         {game : Game slug, e.g. wow}
-        {patch? : Patch build version. OMIT IT to reuse the game\'s existing current patch — that is the correct default for a routine re-import, and the only safe one for an automated caller. See handle()\'s resolution note.}
+        {patch? : Build version to label the current patch with. Usually OMIT IT — the build is then read from the SimC dump headers. A version matching no row relabels the current patch in place; it does not fork. See resolvePatch().}
         {--current : Mark this patch as the current one for the game}
+        {--new-patch : Create a SEPARATE patches row for a build version that does not exist yet, instead of relabelling the current one. Forks every patch-scoped table — almost never wanted. See resolvePatch().}
         {--only= : Comma-separated class folder names to limit the import to, e.g. --only=priest}';
 
     protected $description = 'Imports flat-file spell/talent/pvp-talent data into the relational game-reference schema.';
@@ -195,24 +197,10 @@ class ImportSpellData extends Command
 
         $gameSlug = Str::slug($this->argument('game'));
 
-        // Patch resolution. Omitting the argument reuses the game's existing current patch, and
-        // that is deliberately the recommended form for any routine re-import.
-        //
-        // A wrong version string here does not fail — it silently CREATES A NEW patches row, and
-        // every patch-scoped table (spells, spell_relationships, talent_*, admin-curated
-        // TalentBuilds, both override files' application, spellbook snapshots) forks away from the
-        // one the live site actually reads. That has happened for real: a session re-derived the
-        // version from CLAUDE.md's own prose, typed a string that did not match the DB, and forked
-        // a stray disconnected patch before it was caught. CLAUDE.md's answer was a warning telling
-        // humans to verify the argument by hand every time; this is the same verification, done by
-        // the command itself so it cannot be skipped or mistyped.
-        //
-        // An explicit version is still accepted and still creates a new row when it does not match
-        // — that is exactly what a genuine patch transition needs, and it stays an explicit,
-        // deliberate act rather than something a caller can do by accident.
-        $patchVersion = $this->argument('patch') !== null
-            ? (string) $this->argument('patch')
-            : null;
+        // Patch resolution — see resolvePatch()'s docblock. The short version: the patches ROW is
+        // the dataset's identity (every patch-scoped table points at its id), while build_version
+        // is only a LABEL. A new game build relabels the existing row in place; it never forks a
+        // new one unless --new-patch explicitly asks for that.
         $onlyOption = $this->option('only');
         $only = $onlyOption ? array_map($this->normalizeSlug(...), array_map('trim', explode(',', $onlyOption))) : null;
 
@@ -221,30 +209,21 @@ class ImportSpellData extends Command
         ], 'games');
         $this->info("Game: {$game->name} ({$game->slug})");
 
-        if ($patchVersion === null) {
-            $currentPatch = Patch::where('game_id', $game->id)->where('is_current', true)->first();
+        $classDataRoot = base_path('data/spelldata/filtered');
+        $gameBuild = $this->simcGameBuild($classDataRoot);
 
-            if ($currentPatch === null) {
-                $this->error("No current patch exists for '{$game->slug}' — pass an explicit build version to create the first one, e.g. import:spelldata {$game->slug} 12.0.7.68453 --current");
-
-                return self::FAILURE;
-            }
-
-            $patchVersion = $currentPatch->build_version;
-            $this->comment("No patch argument given — reusing the current patch: {$patchVersion}");
+        $resolved = $this->resolvePatch($game, $this->argument('patch'), $gameBuild, $only !== null);
+        if ($resolved === null) {
+            return self::FAILURE;
         }
-
-        $patch = $this->upsertTrack(Patch::class, [
-            'game_id' => $game->id,
-            'build_version' => $patchVersion,
-        ], [], 'patches');
+        [$patch, $relabelTo] = $resolved;
 
         if ($this->option('current')) {
             $patch->markCurrent();
         }
-        $this->info("Patch: {$patch->build_version}".($patch->fresh()->is_current ? ' (current)' : ''));
+        $this->info("Patch: {$patch->build_version}".($patch->fresh()->is_current ? ' (current)' : '')
+            .($relabelTo !== null && $relabelTo !== $patch->build_version ? " → will be relabelled {$relabelTo} once the import succeeds" : ''));
 
-        $classDataRoot = base_path('data/spelldata/filtered');
         if (! File::isDirectory($classDataRoot)) {
             $this->error("No spelldata directory found at {$classDataRoot}");
 
@@ -330,10 +309,12 @@ class ImportSpellData extends Command
         // What this run changed on abilities players can press — the Home feed's "game data
         // updated" item. Written after every pass so the visibility filter sees this run's talent
         // and override rows, not the previous run's.
-        // The GAME build the data came from, not $patch->build_version: that row name is frozen on
-        // purpose (see CLAUDE.md, "the current patch string is intentionally frozen"), so the feed
-        // would name a build players never had.
-        if ($dataUpdate = $this->spellChanges->flush($patch->id, $this->simcGameBuild($classDataRoot))) {
+        // Relabel only now, after every pass succeeded: a run that died halfway must not leave the
+        // row claiming a build its data never finished becoming.
+        $this->applyPatchRelabel($patch, $relabelTo);
+
+        // The GAME build the data came from (SimC's own header), which is what players had.
+        if ($dataUpdate = $this->spellChanges->flush($patch->id, $gameBuild)) {
             $this->info("Recorded a game-data update: {$dataUpdate->changed_spell_count} pressable abilit".($dataUpdate->changed_spell_count === 1 ? 'y' : 'ies').' changed (shown in the Home feed).');
         }
 
@@ -357,11 +338,19 @@ class ImportSpellData extends Command
     /**
      * The game build SimC's dump was generated from ("12.1.0.69814"), read from the header every
      * filtered file carries: "# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for
-     * World of Warcraft 12.1.0.69814 Live)". Null if no file says — the feed then omits the build
-     * rather than showing a wrong one.
+     * World of Warcraft 12.1.0.69814 Live)".
+     *
+     * Every file is checked, not just the first, because this value now relabels the patch row.
+     * If the files disagree (some classes re-fetched from a newer branch, others not), there is no
+     * single build the dataset is "on", so this returns null and says so rather than picking one.
      */
     private function simcGameBuild(string $classDataRoot): ?string
     {
+        if (! File::isDirectory($classDataRoot)) {
+            return null;
+        }
+
+        $builds = [];
         foreach (File::allFiles($classDataRoot) as $file) {
             $handle = fopen($file->getPathname(), 'r');
             $firstLines = '';
@@ -371,11 +360,58 @@ class ImportSpellData extends Command
             fclose($handle);
 
             if (preg_match('/for World of Warcraft (\d+\.\d+\.\d+\.\d+)/', $firstLines, $m)) {
-                return $m[1];
+                $builds[$m[1]] = ($builds[$m[1]] ?? 0) + 1;
             }
         }
 
-        return null;
+        if (count($builds) > 1) {
+            $this->warn('  SimC dump headers disagree on the game build ('
+                .collect($builds)->map(fn ($n, $b) => "{$b}: {$n} files")->implode(', ')
+                .') — the patch label will not be changed from them. Re-fetch the dumps so every class is on one build.');
+
+            return null;
+        }
+
+        return array_key_first($builds);
+    }
+
+    /**
+     * Which patch row this import writes into, and the label to give it afterwards. The rules live
+     * in PatchResolver (see its docblock for why a new build relabels rather than forks); this only
+     * prints what it decided and creates a row when one is genuinely needed.
+     *
+     * @return array{0: Patch, 1: ?string}|null
+     */
+    private function resolvePatch(Game $game, ?string $argument, ?string $gameBuild, bool $partial): ?array
+    {
+        $decision = app(PatchResolver::class)->resolve($game, $argument, $gameBuild, $partial, (bool) $this->option('new-patch'));
+
+        foreach ($decision['messages'] as [$level, $text]) {
+            $this->{$level}($text);
+        }
+
+        if ($decision['error'] !== null) {
+            $this->error($decision['error']);
+
+            return null;
+        }
+
+        $patch = $decision['patch']
+            ?? $this->upsertTrack(Patch::class, ['game_id' => $game->id, 'build_version' => $decision['create']], [], 'patches');
+
+        return [$patch, $decision['relabel']];
+    }
+
+    private function applyPatchRelabel(Patch $patch, ?string $label): void
+    {
+        $result = app(PatchResolver::class)->relabel($patch, $label);
+
+        if ($result['applied']) {
+            $this->counts['patches']['updated']++;
+            $this->info($result['message']);
+        } elseif ($result['message'] !== null) {
+            $this->warn($result['message']);
+        }
     }
 
     private function importClass(Game $game, Patch $patch, string $classDir): void
@@ -1424,22 +1460,40 @@ class ImportSpellData extends Command
                 continue;
             }
 
+            // Only the fields the block actually sets. A missing key used to be written as null,
+            // which meant a block could never leave a field to a better source — and the
+            // talent-tree pass earlier in this same run already writes Blizzard's real tooltip for
+            // any of these spells that is a talent. The two passes then overwrote each other on
+            // every run, and because change recording is on during the tree pass, every import
+            // posted the same fake "abilities changed" item to the Home feed (Aimed Shot and
+            // Mirror Image, until 2026-09-16).
+            $values = ['name' => $block['name'], 'is_passive' => false, 'not_in_spellbook' => false];
+            $casts = [
+                'school' => fn ($v) => $v,
+                'description' => fn ($v) => $v,
+                'cooldown_seconds' => fn ($v) => (float) $v,
+                'duration_seconds' => fn ($v) => (float) $v,
+                'charges' => fn ($v) => (int) $v,
+                'mechanic' => fn ($v) => $v,
+                'spell_type' => fn ($v) => $v,
+                'range_yards' => fn ($v) => $v,
+            ];
+            foreach ($casts as $field => $cast) {
+                if (($block[$field] ?? '') !== '') {
+                    $values[$field] = $cast($block[$field]);
+                }
+            }
+
+            $existing = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $block['spell_id'])->first();
+            if ($existing && ($existing->description ?? '') !== '' && isset($values['description'])
+                && $existing->description !== $values['description']) {
+                $this->warn("  manual-spells.txt overrides the game data's description for '{$block['name']}' ({$block['spell_id']}). The talent data writes its own text first on every run, so the two will keep swapping and post a change to the Home feed each time — remove the description from the block unless the game data is wrong.");
+            }
+
             $spell = $this->upsertTrack(Spell::class, [
                 'patch_id' => $patch->id,
                 'spell_id' => (int) $block['spell_id'],
-            ], [
-                'name' => $block['name'],
-                'school' => $block['school'] ?? null,
-                'description' => $block['description'] ?? null,
-                'cooldown_seconds' => ($block['cooldown_seconds'] ?? '') !== '' ? (float) $block['cooldown_seconds'] : null,
-                'duration_seconds' => ($block['duration_seconds'] ?? '') !== '' ? (float) $block['duration_seconds'] : null,
-                'charges' => ($block['charges'] ?? '') !== '' ? (int) $block['charges'] : null,
-                'mechanic' => $block['mechanic'] ?? null,
-                'spell_type' => $block['spell_type'] ?? null,
-                'range_yards' => $block['range_yards'] ?? null,
-                'is_passive' => false,
-                'not_in_spellbook' => false,
-            ], 'spells');
+            ], $values, 'spells');
 
             $this->spellIndex[(int) $block['spell_id']] = $spell;
 
