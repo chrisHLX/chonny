@@ -522,6 +522,29 @@ test('a section belonging to someone else cannot be opened', function () {
     expect($component->get('openPaletteFor'))->toBeNull();
 });
 
+test('the palette is its own component, and only people who can edit the guide can open it', function () {
+    $f = guideFixture();
+    $section = UserGuideSection::create(['user_guide_id' => $f['guide']->id, 'kind' => UserGuideSectionKind::Sequence, 'row' => 0, 'column' => 0, 'title' => 'A']);
+
+    // Mounted as a child, so the builder's own re-renders (adding a step) leave it alone.
+    Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->call('togglePalette', $section->id)
+        ->assertSeeLivewire(\App\Livewire\Guides\Palette::class);
+
+    Livewire::actingAs($f['user'])->test(\App\Livewire\Guides\Palette::class, ['sectionId' => $section->id])->assertOk();
+    Livewire::actingAs(User::factory()->create())->test(\App\Livewire\Guides\Palette::class, ['sectionId' => $section->id])->assertStatus(403);
+});
+
+test('an ability the palette does not offer cannot be added', function () {
+    $f = guideFixture();
+    $section = UserGuideSection::create(['user_guide_id' => $f['guide']->id, 'kind' => UserGuideSectionKind::Sequence, 'row' => 0, 'column' => 0, 'title' => 'A']);
+
+    Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->call('addSpell', $section->id, 408, 999999);
+
+    expect($section->blocks()->count())->toBe(0);
+});
+
 test('the title and summary save on blur rather than re-rendering mid-sentence', function () {
     $f = guideFixture();
 

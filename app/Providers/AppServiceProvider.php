@@ -30,6 +30,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Page links use wire:navigate, which swaps the page in without a full reload. After a
+        // deploy changes the built JS/CSS, this makes an open tab do one full reload instead of
+        // running the new page with the old assets.
+        \Illuminate\Support\Facades\Vite::useScriptTagAttributes(['data-navigate-track' => 'reload']);
+        \Illuminate\Support\Facades\Vite::useStyleTagAttributes(['data-navigate-track' => 'reload']);
+
         Event::listen(Registered::class, SendNewUserNotification::class);
 
         Gate::define('admin', fn (User $user) => $user->is_admin);

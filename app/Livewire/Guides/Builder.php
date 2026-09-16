@@ -211,31 +211,23 @@ class Builder extends Component
         return app(UserGuideChainService::class)->health($this->guide, $this->resolved);
     }
 
-    /** @var array<int, \Illuminate\Support\Collection> section id => palette, this request only */
-    private array $paletteMemo = [];
-
     /**
-     * Memoised because one click asks for the same palette several times over: addSpell()
-     * validates against it, then the re-render asks again for every open section. Measured
-     * 2026-09-08 at 376ms and 87 queries per build, so a 3-section guide paid ~1.5s of duplicate
-     * work per ability added — a large part of the "I click it three times and then three
-     * abilities appear" report.
-     *
-     * NOT a #[Computed]: those key on nothing but the property name, and this takes an argument.
-     * Per-request only, which is the correct lifetime — a palette must reflect a talent change
-     * made moments ago in the same session.
+     * Everything a section's palette is built from, as a short hash for its wire:key. When any of
+     * it changes the palette component remounts; while none of it does, adding steps leaves the
+     * palette untouched.
      */
-    public function paletteFor(int $sectionId)
+    public function paletteSignature(UserGuideSection $section): string
     {
-        if (isset($this->paletteMemo[$sectionId])) {
-            return $this->paletteMemo[$sectionId];
-        }
+        $roster = fn ($rows) => $rows->map(fn ($m) => [$m->position, $m->spec_id, $m->talent_build_id, $m->talentBuild?->updated_at?->timestamp])->all();
 
-        $section = $this->ownedSection($sectionId);
-
-        return $this->paletteMemo[$sectionId] = $section
-            ? app(UserGuideChainService::class)->palette($section)
-            : collect();
+        return substr(md5(json_encode([
+            $section->kind->value,
+            $section->opponent_spec_id,
+            $this->guide->type->value,
+            $this->guide->opponent_spec_id,
+            $roster($this->members->loadMissing('talentBuild')),
+            $roster($this->enemies->loadMissing('talentBuild')),
+        ])), 0, 10);
     }
 
     /** The roster row whose talent tree is currently open, on whichever side it belongs to. */
@@ -771,12 +763,10 @@ class Builder extends Component
         // not be able to attach an arbitrary spell id, one belonging to a spec outside the comp,
         // an offensive cooldown to a plain chain, or one of your own abilities to the opponent's
         // defensives.
-        $offered = $this->paletteFor($section->id)
-            ->filter(fn (array $s) => $s['spec']->id === $specId)
-            ->flatMap(fn (array $s) => $s['groups']->flatten(1))
-            ->contains(fn ($entry) => (int) $entry['spell']->spell_id === $externalSpellId);
-
-        if (! $offered) {
+        //
+        // offersSpell() answers from the cached palette shape; building the palette itself here
+        // cost ~240ms per click on a 3-spec guide just to confirm one id.
+        if (! app(UserGuideChainService::class)->offersSpell($section, $specId, $externalSpellId)) {
             return;
         }
 
@@ -1194,9 +1184,6 @@ class Builder extends Component
             $this->contributors,
         );
 
-        // The palette memo is keyed by section and lives for the request, so a roster or talent
-        // change made earlier in THIS request must not be served from it afterwards.
-        $this->paletteMemo = [];
         $this->markSaved();
     }
 

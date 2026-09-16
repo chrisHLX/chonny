@@ -6,7 +6,7 @@
 
     <!-- App name -->
     <div class="flex items-center px-3 h-11 border-b border-gold/20 shrink-0">
-        <a href="{{ auth()->check() ? route('dashboard') : url('/') }}"
+        <a href="{{ auth()->check() ? route('dashboard') : url('/') }}" wire:navigate
            class="flex items-center gap-2 hover:opacity-90 transition-opacity">
             <svg class="w-6 h-6 text-gold shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 3 L35 11.5 L35 28.5 L20 37 L5 28.5 L5 11.5 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <a href="{{ route('dashboard') }}"
+                <a href="{{ route('dashboard') }}" wire:navigate
                    class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
@@ -60,7 +60,7 @@
                     Home
                 </a>
 
-                <a href="{{ route('guides.index') }}"
+                <a href="{{ route('guides.index') }}" wire:navigate
                    class="sidebar-item {{ request()->routeIs('guides.index') || request()->routeIs('guides.edit') ? 'active' : '' }}">
                     <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
@@ -68,7 +68,7 @@
                     My Guides
                 </a>
 
-                <a href="{{ route('characters.index') }}"
+                <a href="{{ route('characters.index') }}" wire:navigate
                    class="sidebar-item {{ request()->routeIs('characters.*') ? 'active' : '' }}">
                     <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -76,7 +76,7 @@
                     My Characters
                 </a>
 
-                <a href="{{ route('profile.edit') }}"
+                <a href="{{ route('profile.edit') }}" wire:navigate
                    class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
                     <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
@@ -92,7 +92,7 @@
 
         {{-- A visitor's home is the public front page; a signed-in player's is in "Your space". --}}
         @guest
-            <a href="{{ route('home') }}"
+            <a href="{{ route('home') }}" wire:navigate
                class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
                 <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
@@ -103,7 +103,7 @@
 
         {{-- Public: a player guide is readable without an account, so the browse listing must be
              reachable without one too. --}}
-        <a href="{{ route('guides.browse') }}"
+        <a href="{{ route('guides.browse') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('guides.browse') || request()->routeIs('guides.show') ? 'active' : '' }}">
             <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
@@ -111,7 +111,7 @@
             Player Guides
         </a>
 
-        <a href="{{ route('wow-comps') }}"
+        <a href="{{ route('wow-comps') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('wow-comps') ? 'active' : '' }}">
             <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
@@ -122,7 +122,7 @@
         @auth
             <p class="px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Social</p>
 
-            <a href="{{ route('friends.index') }}"
+            <a href="{{ route('friends.index') }}" wire:navigate
                class="sidebar-item {{ request()->routeIs('friends.*') ? 'active' : '' }}">
                 <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
@@ -133,7 +133,7 @@
                 @endif
             </a>
 
-            <a href="{{ route('guilds.index') }}"
+            <a href="{{ route('guilds.index') }}" wire:navigate
                class="sidebar-item {{ request()->routeIs('guilds.*') ? 'active' : '' }}">
                 <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
@@ -149,17 +149,17 @@
              tabs on one per-spec page. The four routes still exist and still render on their
              own for anything already bookmarked or linked; they are just no longer separate
              destinations in the nav. See App\Livewire\PvpGuides. --}}
-        <a href="{{ route('pvp-guides') }}"
+        <a href="{{ route('pvp-guides') }}" wire:navigate
            class="sidebar-item text-[12px] {{ request()->routeIs('pvp-guides') || request()->routeIs('class-guide') || request()->routeIs('burst-guides') || request()->routeIs('claudes-counters') || request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">
             <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
             Class Guides
         </a>
-        <a href="{{ route('top-damage-rotations') }}"
+        <a href="{{ route('top-damage-rotations') }}" wire:navigate
            class="sidebar-item text-[12px] {{ request()->routeIs('top-damage-rotations') ? 'active !text-accent' : '' }}">
             <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
             Top Burst Windows
         </a>
-        <a href="{{ route('top-cc-chains') }}"
+        <a href="{{ route('top-cc-chains') }}" wire:navigate
            class="sidebar-item text-[12px] {{ request()->routeIs('top-cc-chains') ? 'active !text-accent' : '' }}">
             <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
             Top 10 CC Chains
@@ -188,13 +188,13 @@
                         Diagnostic
                     </a>
                 @endauth
-                <a href="{{ route_with_context('modules.index') }}"
+                <a href="{{ route_with_context('modules.index') }}" wire:navigate
                    class="sidebar-item text-[12px] {{ request()->routeIs('modules.*') ? 'active !text-accent' : '' }}">
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                     Quizzes
                 </a>
                 @auth
-                    <a href="{{ route_with_context('collection.index') }}"
+                    <a href="{{ route_with_context('collection.index') }}" wire:navigate
                        class="sidebar-item text-[12px] {{ request()->routeIs('collection.index') ? 'active !text-accent' : '' }}">
                         <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                         Progress
@@ -291,7 +291,7 @@
          The coffee link replaced a Stripe checkout button (2026-09-14) and shows for everyone,
          signed in or not, but only once BUYMEACOFFEE_URL is set. --}}
     <div class="shrink-0 px-3 py-2 flex items-center gap-3 flex-wrap text-[11.5px] text-ink-subtle">
-        <a href="{{ route('feedback.create') }}" class="hover:text-ink transition-colors {{ request()->routeIs('feedback.*') ? 'text-gold' : '' }}">Feedback</a>
+        <a href="{{ route('feedback.create') }}" wire:navigate class="hover:text-ink transition-colors {{ request()->routeIs('feedback.*') ? 'text-gold' : '' }}">Feedback</a>
         <a href="https://discord.gg/Bk7wEvPRt" target="_blank" rel="noopener noreferrer" class="hover:text-ink transition-colors">Discord</a>
         @if (filled(config('services.buymeacoffee.url')))
             <a href="{{ route('support') }}" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">&#9749; Buy me a coffee</a>
@@ -337,7 +337,7 @@
                         XP <span class="text-ink-muted font-medium">{{ $nav_learned_credits }}</span>
                     </span>
                 </div>
-                <a href="{{ route('profile.edit') }}"
+                <a href="{{ route('profile.edit') }}" wire:navigate
                    class="flex items-center gap-2 px-3 py-2 text-[12px] text-ink-muted hover:text-ink hover:bg-surface-3 transition-colors">
                     <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>

@@ -468,24 +468,7 @@ class UserGuideChainService
      */
     private function groupsFor(UserGuideSection $section, Specialization $spec, Patch $patch, ?TalentBuild $build = null): Collection
     {
-        $key = sprintf(
-            'guide_palette:s%d:%d:%s:%s:v%s:%s',
-            self::PALETTE_SHAPE_VERSION,
-            $spec->id,
-            $build === null ? 'default' : $build->id.'@'.($build->updated_at?->timestamp ?? 0),
-            // An enemy palette is the same whatever the guide type, so it gets one entry.
-            $section->kind->usesOpponent() ? 'opp' : ($section->guide->type->usesWholeKit() ? 'own-whole' : 'own-cds'),
-            $this->talents->spellCacheVersion(),
-            $this->talents->deployedCodeFingerprint(),
-        );
-
-        $shape = Cache::remember(
-            $key,
-            now()->addDay(),
-            fn () => $this->computeGroupsFor($section, $spec, $patch, $build)
-                ->map(fn (Collection $entries) => $entries->map(fn ($e) => $e['spell']->id)->all())
-                ->all()
-        );
+        $shape = $this->groupShape($section, $spec, $patch, $build);
 
         if ($shape === []) {
             return collect();
@@ -499,6 +482,65 @@ class UserGuideChainService
                 ->filter()
                 ->values())
             ->filter(fn (Collection $entries) => $entries->isNotEmpty());
+    }
+
+    /**
+     * The cached palette shape: group name => internal spell ids. See groupsFor() for why only
+     * ids are cached.
+     *
+     * @return array<string, array<int, int>>
+     */
+    private function groupShape(UserGuideSection $section, Specialization $spec, Patch $patch, ?TalentBuild $build = null): array
+    {
+        $key = sprintf(
+            'guide_palette:s%d:%d:%s:%s:v%s:%s',
+            self::PALETTE_SHAPE_VERSION,
+            $spec->id,
+            $build === null ? 'default' : $build->id.'@'.($build->updated_at?->timestamp ?? 0),
+            // An enemy palette is the same whatever the guide type, so it gets one entry.
+            $section->kind->usesOpponent() ? 'opp' : ($section->guide->type->usesWholeKit() ? 'own-whole' : 'own-cds'),
+            $this->talents->spellCacheVersion(),
+            $this->talents->deployedCodeFingerprint(),
+        );
+
+        return Cache::remember(
+            $key,
+            now()->addDay(),
+            fn () => $this->computeGroupsFor($section, $spec, $patch, $build)
+                ->map(fn (Collection $entries) => $entries->map(fn ($e) => $e['spell']->id)->all())
+                ->all()
+        );
+    }
+
+    /**
+     * Whether this section's palette offers this ability for this spec — the same answer as
+     * searching palette(), without hydrating the spec's whole kit to get it.
+     *
+     * Added 2026-09-17: addSpell() validated by building the full palette, ~240ms per click on a
+     * 3-spec guide, just to confirm one id. The cached shape already says which spells each group
+     * holds; this translates the external id and looks it up there.
+     */
+    public function offersSpell(UserGuideSection $section, int $specId, int $externalSpellId): bool
+    {
+        if (! $section->kind->isSequence()) {
+            return false;
+        }
+
+        $patch = Patch::where('is_current', true)->first();
+        $spec = $patch ? $this->paletteSpecs($section)->firstWhere('id', $specId) : null;
+
+        if (! $spec) {
+            return false;
+        }
+
+        $offered = collect($this->groupShape($section, $spec, $patch, $this->buildForSpec($section, $spec->id)))
+            ->flatten()
+            ->flip();
+
+        return Spell::where('patch_id', $patch->id)
+            ->where('spell_id', $externalSpellId)
+            ->pluck('id')
+            ->contains(fn (int $id) => $offered->has($id));
     }
 
     private function computeGroupsFor(UserGuideSection $section, Specialization $spec, Patch $patch, ?TalentBuild $build = null): Collection
@@ -959,12 +1001,18 @@ class UserGuideChainService
             return null;
         }
 
-        $byName = $this->stealthCcByNameMemo[$spell->patch_id] ??= Spell::where('patch_id', $spell->patch_id)
-            ->where('requires_stealth', true)
-            ->whereNotNull('dr_category')
-            ->get()
-            ->mapWithKeys(fn (Spell $s) => [$s->display_name => $s->dr_category])
-            ->all();
+        // Cached across requests too: it is a full scan of the patch's spells (~50ms) that every
+        // guide render asked for again, and it only changes when spell data does.
+        $byName = $this->stealthCcByNameMemo[$spell->patch_id] ??= Cache::remember(
+            sprintf('guide_stealth_cc:%d:v%s', $spell->patch_id, $this->talents->spellCacheVersion()),
+            now()->addDay(),
+            fn () => Spell::where('patch_id', $spell->patch_id)
+                ->where('requires_stealth', true)
+                ->whereNotNull('dr_category')
+                ->get()
+                ->mapWithKeys(fn (Spell $s) => [$s->display_name => $s->dr_category])
+                ->all(),
+        );
 
         return $byName[$spell->display_name] ?? null;
     }
