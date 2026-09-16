@@ -44,15 +44,13 @@ Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle']);
 Route::get('/checkout/success', fn () => view('checkout.success'))->name('checkout.success');
 Route::get('/checkout/cancel', fn () => view('checkout.cancel'))->name('checkout.cancel');
 
-// The site root sends visitors to the comp builder, where it used to render one directly. Now that
-// every game-scoped page lives under /wow (see that group below), rendering the same component at
-// two URLs would be a duplicate of the site's most-visited page — so there is exactly one canonical
-// address for it, and this is a 301 to it.
+// The public front page (2026-09-16): what the site is for, the comp builder as the first action,
+// and the public feed of game plans. Signed-in players are sent on to Home. See App\Livewire\Landing.
 //
-// What visitors see is unchanged: type the domain, get the comp builder. What changes is that '/'
-// is now free for a real landing page whenever one is written, without having to move /wow/comps
-// again to make room for it.
-Route::get('/', fn () => redirect()->route('wow-comps', [], 301));
+// This used to be a 301 to /wow/comps. Browsers cache a 301, so a visitor who hit the old redirect
+// may keep being sent to the comp builder by their own browser until that cache clears — nothing
+// server-side can undo it, and it is harmless (the builder still works).
+Route::get('/', \App\Livewire\Landing::class)->name('home');
 
 Route::get('/diagnostic', function () {
     return view('diagnostic');

@@ -18,14 +18,21 @@
 
 <article {{ $attributes->merge(['class' => 'py-5 border-b border-line']) }}>
     <p class="text-[12px] text-ink-subtle">
-        <span class="text-ink-muted font-medium">&#64;{{ $actor?->handle() ?? 'someone' }}</span>
-        {{ $item['verb'] }}
-        @if ($item['byCollaborator'])
-            &#64;{{ $guide->user?->handle() }}&rsquo;s guide
+        @if ($item['popular'] ?? false)
+            {{-- Shown because it is liked, not because it is recent (GuideFeed tops up a thin
+                 public stream), so it must not read as fresh activity. --}}
+            <span class="text-gold font-medium">Popular guide</span>
+            &middot; &#64;{{ $guide->user?->handle() ?? 'someone' }}
         @else
-            a guide
+            <span class="text-ink-muted font-medium">&#64;{{ $actor?->handle() ?? 'someone' }}</span>
+            {{ $item['verb'] }}
+            @if ($item['byCollaborator'])
+                &#64;{{ $guide->user?->handle() }}&rsquo;s guide
+            @else
+                a guide
+            @endif
+            &middot; {{ $item['at']->diffForHumans() }}
         @endif
-        &middot; {{ $item['at']->diffForHumans() }}
     </p>
 
     <a href="{{ $url ?? '#' }}" wire:navigate class="block group mt-1.5">

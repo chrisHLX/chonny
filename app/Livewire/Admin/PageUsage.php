@@ -35,6 +35,7 @@ class PageUsage extends Component
      * never added here, so its views were being recorded with nowhere to see them.
      */
     private const PAGES = [
+        'landing' => 'Front page (visitors)',
         'home' => 'Home (signed-in landing)',
         'friends' => 'Friends',
         'spell_detail' => 'Spell Detail',
@@ -291,6 +292,7 @@ class PageUsage extends Component
             (object) ['label' => 'Feed: switched to "Friends & guilds"', 'count' => (int) ($feed['circle'] ?? 0)],
             (object) ['label' => 'Feed: switched back to "Everyone"', 'count' => (int) ($feed['everyone'] ?? 0)],
             (object) ['label' => 'Feed: "Show more"', 'count' => (int) ($feed['more'] ?? 0)],
+            (object) ['label' => 'Front page feed: "Show more" (visitors)', 'count' => PageViewEvent::where('page', 'landing_feed')->where('slot', 'more')->count()],
             (object) ['label' => 'Buy me a coffee clicks', 'count' => PageViewEvent::where('page', 'support_click')->count()],
             (object) ['label' => 'Guides duplicated (reused as a template)', 'count' => PageViewEvent::where('page', 'guide_duplicate')->count()],
 

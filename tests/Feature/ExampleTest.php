@@ -1,7 +1,7 @@
 <?php
 
-it('sends the site root to the comp builder', function () {
-    // '/' used to render WowComps directly; since 2026-09-16 every game-scoped page lives under
-    // /wow and the root permanently redirects there. See GameScopedUrlsTest for the full contract.
-    $this->get('/')->assertStatus(301)->assertRedirect('/wow/comps');
+it('serves the public front page at the site root', function () {
+    // '/' redirected to the comp builder until 2026-09-16; it is now the front page
+    // (App\Livewire\Landing). See LandingPageTest for the full contract.
+    $this->get('/')->assertOk()->assertSee('Build a 3v3 comp');
 });

@@ -2,9 +2,14 @@
 <!--
     Static sitemap. Game-scoped pages moved under /wow on 2026-09-16 — the old paths still 301, but
     a sitemap should only ever list the URL a page actually lives at, never one that redirects.
-    The site root is deliberately absent for the same reason: it 301s to /wow/comps.
+    The site root is the public front page (App\Livewire\Landing) since 2026-09-16.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://mindcollector.com/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
     <url>
         <loc>https://mindcollector.com/wow/comps</loc>
         <changefreq>weekly</changefreq>
