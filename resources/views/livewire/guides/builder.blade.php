@@ -51,7 +51,11 @@
                 </button>
             @endif
 
-            @if ($isPublished)
+            @if ($this->isGuestPlan)
+                {{-- A guest plan cannot be published. Signing up keeps it and opens it again. --}}
+                <a href="{{ route('register') }}" class="btn-primary">Sign up to save this plan</a>
+                <a href="{{ route('login') }}" class="text-[11px] text-ink-subtle hover:text-gold">Have an account? Log in</a>
+            @elseif ($isPublished)
                 <span class="badge-green">Published</span>
                 @if ($this->isAuthor)
                     <button type="button" wire:click="unpublish" class="btn-ghost">Unpublish</button>
@@ -82,7 +86,9 @@
                     Saving&hellip;
                 </span>
                 <span wire:loading.remove class="text-ink-subtle">
-                    @if ($savedAt)
+                    @if ($this->isGuestPlan)
+                        Kept in this browser for {{ \App\Http\Services\GuestPlanService::KEEP_DAYS }} days
+                    @elseif ($savedAt)
                         <span class="text-green-400">&check;</span> All changes saved &middot; {{ $savedAt }}
                     @else
                         Changes save automatically
@@ -93,7 +99,20 @@
     </div>
 
     {{-- Collaboration ------------------------------------------------------------ --}}
-    @unless ($this->isAuthor)
+    @if ($this->isGuestPlan)
+        <div class="linear-card p-4 mb-6 border-line-gold bg-gold-subtle/40 flex flex-col sm:flex-row sm:items-center gap-3">
+            <div class="flex-1">
+                <p class="text-[13.5px] text-ink">
+                    You're trying the planner. This plan isn't saved to an account yet.
+                </p>
+                <p class="text-[12px] text-ink-muted mt-1">
+                    It stays in this browser for {{ \App\Http\Services\GuestPlanService::KEEP_DAYS }} days.
+                    Sign up (or log in) and it moves to your account, where you can publish and share it.
+                </p>
+            </div>
+            <a href="{{ route('register') }}" class="btn-primary shrink-0 justify-center">Sign up free</a>
+        </div>
+    @elseif (! $this->isAuthor)
         <div class="linear-card p-4 mb-6 border-violet/40 bg-violet-subtle/40">
             <p class="text-[13.5px] text-ink">
                 You're helping edit <span class="font-semibold">&#64;{{ $guide->user?->handle() }}</span>'s guide.
@@ -102,7 +121,7 @@
                 Steps and sections you add are credited to you. Publishing and sharing stay with the author.
             </p>
         </div>
-    @endunless
+    @endif
 
     @if ($this->contributors->count() > 1)
         <div class="flex items-center gap-2 flex-wrap mb-6 text-[12px] text-ink-subtle">

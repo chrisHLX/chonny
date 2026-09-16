@@ -22,7 +22,7 @@
 
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 mt-6">
             <a href="{{ route('wow-comps') }}" wire:navigate class="btn-primary justify-center">Build a 3v3 comp</a>
-            <a href="{{ route('register') }}" class="btn-secondary justify-center">Write a guide</a>
+            <x-guides.try-button class="btn-secondary justify-center w-full sm:w-auto" label="Try the planner, no sign-up"/>
             <a href="{{ route('guides.browse') }}" wire:navigate class="text-[13px] text-ink-muted hover:text-gold sm:ml-2 text-center">Browse player guides &rarr;</a>
         </div>
 
@@ -65,9 +65,9 @@
                 @empty
                     <div class="py-10 text-center">
                         <p class="text-[13.5px] text-ink-muted">No guides published yet.</p>
-                        <p class="text-[12.5px] text-ink-subtle mt-1">
-                            <a href="{{ route('register') }}" class="text-gold hover:text-gold-light">Write the first one</a>.
-                        </p>
+                        <div class="text-[12.5px] text-ink-subtle mt-1">
+                            <x-guides.try-button class="text-gold hover:text-gold-light" label="Write the first one"/> &mdash; no account needed.
+                        </div>
                     </div>
                 @endforelse
 

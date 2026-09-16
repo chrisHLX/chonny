@@ -295,9 +295,25 @@ Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group
 // ------- User-authored guides -------
 // {guide} resolves through an explicit binding in AppServiceProvider::boot() — guide slugs are
 // only unique per author, so a plain slug lookup can find somebody else's guide. See there.
+// The builder is open to guests: Builder::mount() lets in whoever UserGuide::isEditableBy() allows,
+// and a guest plan is editable only from the browser holding its cookie (see GuestPlanService).
+Route::get('/guides/{guide}/edit', \App\Livewire\Guides\Builder::class)->name('guides.edit');
+
+// Try the planner without an account. POST for the same reason as guides.create below. A signed-in
+// player just gets a normal draft. Throttled because anyone, bots included, can reach it.
+Route::post('/try/{type}', function (string $type) {
+    $guideType = \App\Enums\UserGuideType::tryFrom($type);
+    abort_if($guideType === null, 404);
+
+    $guide = auth()->check()
+        ? \App\Models\UserGuide::startDraft(auth()->user(), $guideType)
+        : app(\App\Http\Services\GuestPlanService::class)->start($guideType);
+
+    return redirect()->route('guides.edit', ['guide' => $guide->slug]);
+})->middleware('throttle:10,60')->name('guides.try');
+
 Route::middleware('auth')->prefix('guides')->name('guides.')->group(function () {
     Route::get('/', \App\Livewire\Guides\Index::class)->name('index');
-    Route::get('/{guide}/edit', \App\Livewire\Guides\Builder::class)->name('edit');
 
     // Start a guide from anywhere — the mobile nav's Build button posts here. POST, never a link:
     // a GET that creates rows would create one every time a browser prefetched it.

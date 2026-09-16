@@ -4942,3 +4942,32 @@ Also: guests get a Home link in the sidebar's Explore group and as the first pho
 A "Handle" card on `/profile` (`PATCH /profile/handle`, `ProfileController::updateUsername`, `UsernameUpdateRequest`), linked from the Friends page. It is a separate form, so saving a name or email never needs a handle. Rules: 3–30 characters, lowercase letters, numbers, `-` and `_`, starting and ending with a letter or number. A leading `@` is dropped and the input is lowercased. A few site-like names are reserved (`UsernameUpdateRequest::RESERVED`).
 
 **Old handles keep shared links working.** `User::changeUsername()` records the old handle in `previous_usernames`. The `{guide}` binding in `AppServiceProvider` sends `/g/{old}/{slug}` to the current URL with a 301. An old handle stays reserved to its owner, since letting someone else take it would point old links at a stranger. The owner can take it back, which deletes the row. No limit on how often a handle can be changed. Each change reserves one more handle, which is fine at this scale. Tests: `tests/Feature/ChangeUsernameTest.php`.
+
+## Faster clicks: in-page navigation and a separate palette component (2026-09-17)
+
+Reported as the site feeling slow. Measured on live: the server built pages in 0.1–0.16s, so the causes were elsewhere.
+
+- **Page clicks were full reloads.** Sidebar and phone tab bar links now use `wire:navigate`. Left as normal links on purpose: sign-in, sign-up and Training (they load reCAPTCHA or Stripe scripts, which break when loaded twice), admin links, and outside links. `AppServiceProvider` marks the Vite script and style tags `data-navigate-track="reload"`, so a tab left open across a deploy does one full reload instead of running new pages on old assets. If a page misbehaves only after arriving by a click (fine after a refresh), in-page navigation is the first suspect.
+- **Adding an ability took ~0.85s on a 9-section guide**, and ~240ms of that rebuilt the open palette. The palette is now its own component, `App\Livewire\Guides\Palette`, mounted inside the builder with a `wire:key` from `Builder::paletteSignature()` (section kind and opponent, guide type and opponent, both rosters with their talent build ids and timestamps). Livewire leaves a child alone when the parent re-renders, so adding a step no longer rebuilds or resends it. Buttons call `$wire.$parent.addSpell(...)`, and the builder still does every check.
+- `Builder::addSpell()` validates with `UserGuideChainService::offersSpell()`, which reads the cached palette shape (`groupShape()`) instead of building the palette.
+- The "no stun" stealth-twin name lookup is cached per patch and spell cache version.
+
+Also on the server (nginx, not in the repo): HTTP/2 turned on, and 30-day caching for `/storage/spec-icons/`, `/class-icons/` and `/item-icons/`, matching spell icons. Backup of the old config: `/root/nginx-mindcollector.bak-20260917`.
+
+## Guests can try the planner without signing up ✓ COMPLETE (2026-09-17)
+
+Every way into the builder used to go through sign-up first, so a visitor never got to try what the site is for. Now a visitor builds a real plan straight away, and signing up or logging in keeps it.
+
+**How it works (`App\Http\Services\GuestPlanService`).** A guest plan is an ordinary `user_guides` row with `user_id` NULL and a random 64-character `guest_token` (migration `2026_09_17_000001`, which makes `user_id` nullable). The same token sits in an encrypted cookie, `mc_guest_plans`, that lasts 7 days and is refreshed whenever the plan is opened. A cookie, not the session, because the session ends after 2 idle hours. `UserGuide::isEditableBy()` accepts a row with no owner only from the browser holding that cookie. Guest slugs are random (`plan-xxxxxxxxxxxx`) so nobody can open one by guessing, and `guest_token` is in `$hidden`.
+
+**What a guest can do:** everything content-related: comp, enemy team, sections, abilities, notes, talents. `TalentSelector` now saves for a signed-out viewer only when it was given a `#[Locked] buildId`, which only the builder passes after its own check. **What a guest cannot do:** publish, share, set edit access, sign with a character, duplicate. All of these go through `Builder::authorOnly()`, false for a guest plan. The builder shows a "You're trying the planner" banner and "Sign up to save this plan" in place of Publish.
+
+**Keeping it.** `IntendedCompService::redirectAfterAuth()` calls `GuestPlanService::claim()` first. Every sign-in and sign-up path (email register, email login, Google, Battle.net sign-in and sign-up) already calls that method. Claiming moves every plan on the cookie to the account, gives it a readable slug, credits guest-written sections and steps to the account, clears the cookie, and opens the most recent plan.
+
+**Entry points.** `POST /try/{comp|class}` (`guides.try`, throttle 10/hour per IP; a signed-in player just gets a normal draft) via `<x-guides.try-button>` on the front page, the WoW Comps guest strip, the guide page's "Build your own" card, Browse, and the phone tab bar's gold button ("Try it"). WoW Comps' "Write the first plan" now creates a guest plan with the comp filled in (rate-limited per IP too; past the limit it falls back to the old remember-the-comp-and-sign-up path). `guides.edit` moved out of the `auth` route group, since `Builder::mount()` does the access check.
+
+**Cleanup and limits.** Production has no scheduler, so stale plans (untouched 7 days) are deleted whenever a visitor starts a plan, along with their slots' talent builds (deleting a guide does not delete those). `php artisan guides:prune-guest-plans` does the same by hand. One browser keeps at most 3 guest plans; starting a 4th deletes the oldest. `/guides/` and `/try/` are disallowed in robots.txt.
+
+**Tracking:** `guide_try` (slot = type) when a guest plan starts, `guide_try_claimed` (slot = how many) when sign-up or login keeps them. Both are in Admin → Page usage → "Home feed & support". Started vs kept is the number that says whether this turns visitors into accounts.
+
+Tests: `tests/Feature/GuestPlanTest.php` (6). Four older tests that asserted the sign-up wall were updated to the new behaviour.

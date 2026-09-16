@@ -473,7 +473,10 @@ class TalentSelector extends Component
             return;
         }
 
-        if (! $this->isDefaultEditor && ! auth()->check()) {
+        // A nominated build ($buildId, #[Locked]) is only ever passed by the guide builder after its
+        // own access check, which is how a guest trying the planner edits their plan's talents.
+        // Without one, a signed-out viewer has no build to save to.
+        if (! $this->isDefaultEditor && $this->buildId === null && ! auth()->check()) {
             return;
         }
 

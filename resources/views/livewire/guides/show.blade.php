@@ -248,12 +248,12 @@
                 <p class="text-[13px] text-ink-muted mt-1 max-w-prose">
                     Pick your comp and drag in the abilities you'd press. MindCollector works out how
                     long the control lasts after diminishing returns and how often you can run it again.
-                    Free, and private until you publish it.
+                    Try it now without an account. Sign up when you want to keep it.
                 </p>
             </div>
             <div class="flex items-center gap-2 shrink-0">
-                <a href="{{ route('register') }}" class="btn-primary">Create a free account</a>
-                <a href="{{ route('login') }}" class="btn-ghost">Sign in</a>
+                <x-guides.try-button label="Try the planner"/>
+                <a href="{{ route('register') }}" class="btn-ghost">Create an account</a>
             </div>
         </div>
     @endguest

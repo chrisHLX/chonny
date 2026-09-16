@@ -214,7 +214,7 @@ test('a signed-out reader of a public guide is invited to build their own; a sig
     ]);
     $url = route('guides.show', ['username' => 'author', 'guide' => $guide->slug]);
 
-    $this->get($url)->assertOk()->assertSee('Build your own game plan')->assertSee('Create a free account');
+    $this->get($url)->assertOk()->assertSee('Build your own game plan')->assertSee('Try the planner');
 
     $this->actingAs(firstRunUser('reader'))->get($url)->assertOk()->assertDontSee('Build your own game plan');
 });
@@ -224,9 +224,9 @@ test('the landing page tells a signed-out visitor they can turn a comp into a pl
     // GameScopedUrlsTest. Addressed by route name so a future move does not break this again.
     $comps = route('wow-comps', absolute: false);
 
-    $this->get($comps)->assertOk()->assertSee('Turn a comp into a game plan')->assertSee('Build your own, free');
+    $this->get($comps)->assertOk()->assertSee('Turn a comp into a game plan')->assertSee('Try building one, no sign-up');
 
-    $this->actingAs(firstRunUser())->get($comps)->assertOk()->assertDontSee('Build your own, free');
+    $this->actingAs(firstRunUser())->get($comps)->assertOk()->assertDontSee('Try building one, no sign-up');
 });
 
 test('the register page says what the account is for, and no longer warns that things may reset', function () {

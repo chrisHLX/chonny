@@ -83,15 +83,15 @@ test('sort is a pair of buttons showing which one is active', function () {
     expect($component->get('sort'))->toBe('new');
 });
 
-test('a guest is pitched an account in one line; a signed-in player is not pitched at all', function () {
+test('a guest is pitched the planner in one line; a signed-in player is not pitched at all', function () {
     seedBrowseClasses();
 
     $guest = Livewire::test(Browse::class)->html();
-    expect($guest)->toContain('Create a free account')
+    expect($guest)->toContain('Try the planner')
         // The five-line explanation this replaced.
         ->not->toContain('work out what to do in the matchups');
 
     $user = App\Models\User::factory()->create();
     expect(Livewire::actingAs($user)->test(Browse::class)->html())
-        ->not->toContain('Create a free account');
+        ->not->toContain('Try the planner');
 });

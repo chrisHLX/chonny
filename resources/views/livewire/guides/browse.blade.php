@@ -20,8 +20,8 @@
                 Build an opener, line up cooldowns, keep it private or share it.
             </p>
             <div class="flex items-center gap-2 shrink-0">
-                <a href="{{ route('register') }}" class="btn-primary text-[13px]">Create a free account</a>
-                <a href="{{ route('login') }}" class="btn-ghost text-[13px]">Log in</a>
+                <x-guides.try-button class="btn-primary text-[13px]" label="Try the planner"/>
+                <a href="{{ route('register') }}" class="btn-ghost text-[13px]">Create an account</a>
             </div>
         </div>
     @endguest

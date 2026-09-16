@@ -119,7 +119,7 @@
             <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[12px]">
                 <span class="text-ink-muted">Turn a comp into a game plan: your opener, your go, and the defensives you need to force.</span>
                 <a href="{{ route('guides.browse') }}" class="text-gold hover:text-gold-light transition-colors">See players' plans &rarr;</a>
-                <a href="{{ route('register') }}" class="text-gold hover:text-gold-light transition-colors">Build your own, free &rarr;</a>
+                <x-guides.try-button class="text-gold hover:text-gold-light transition-colors" label="Try building one, no sign-up →"/>
             </div>
         @endguest
 
@@ -1175,7 +1175,7 @@
                                 Write the order you press it all in &mdash; opener, kill window, answers.
                                 {{-- Guests only, and kept deliberately short: this one clause is what
                                      makes clicking feel safe rather than like hitting a signup wall. --}}
-                                @guest<span class="text-ink-subtle/80">We&rsquo;ll keep this comp while you sign up.</span>@endguest
+                                @guest<span class="text-ink-subtle/80">No account needed to try it.</span>@endguest
                             </p>
                         </div>
 

@@ -129,6 +129,12 @@ class Builder extends Component
         $this->title = $guide->title;
         $this->summary = $guide->summary ?? '';
 
+        // Opening a guest plan keeps its cookie alive, so a plan someone keeps coming back to is
+        // never deleted out from under them.
+        if ($guide->user_id === null) {
+            app(\App\Http\Services\GuestPlanService::class)->refreshCookie();
+        }
+
         PageViewEvent::log('guide_builder');
     }
 
@@ -172,6 +178,16 @@ class Builder extends Component
     public function isAuthor(): bool
     {
         return $this->guide->isOwnedBy(auth()->user());
+    }
+
+    /**
+     * A plan a visitor made without an account (see GuestPlanService). The builder works the same;
+     * publishing, sharing and signing are refused by authorOnly() and replaced by a sign-up prompt.
+     */
+    #[Computed]
+    public function isGuestPlan(): bool
+    {
+        return $this->guide->user_id === null;
     }
 
     /** Everyone who has actually put something into this guide — see UserGuide::contributors(). */

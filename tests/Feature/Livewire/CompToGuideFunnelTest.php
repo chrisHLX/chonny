@@ -139,28 +139,29 @@ test('a published public guide shows in the listing; a draft by the same author 
         ->and($listed->html())->toContain('Write your own for this comp');
 });
 
-test('a guest is sent to register with the comp remembered, and gets it back as a guide', function () {
+test('a guest goes straight into a guest plan for the comp, and signing up keeps it', function () {
     ['specs' => $specs] = makeCompFunnelFixture();
     $comp = [$specs['restoration'], $specs['subtlety'], $specs['frost']];
     $specIds = collect($comp)->pluck('id')->all();
 
     $component = pickComp(Livewire::test(WowComps::class), $comp);
-    expect($component->html())->toContain('keep this comp while you sign up');
+    expect($component->html())->toContain('No account needed to try it');
 
-    $component->call('startGuideFromComp')->assertRedirect(route('register'));
-    expect(session('intended_comp'))->toBe($specIds);
+    // No sign-up wall: a guest plan (no owner) is created with the comp filled in. See GuestPlanService.
+    $component->call('startGuideFromComp');
+    $guide = \App\Models\UserGuide::sole();
+    $component->assertRedirect(route('guides.edit', ['guide' => $guide->slug]));
 
-    // What the register/login/Google/Battle.net controllers all call.
+    expect($guide->user_id)->toBeNull()
+        ->and($guide->members()->orderBy('position')->pluck('spec_id')->all())->toBe($specIds);
+
+    // What the register/login/Google/Battle.net controllers all call, from the same browser.
+    request()->cookies->set(\App\Http\Services\GuestPlanService::COOKIE, $guide->guest_token);
     $user = User::factory()->create();
-    $guide = app(IntendedCompService::class)->resume($user);
+    $redirect = app(IntendedCompService::class)->redirectAfterAuth($user);
 
-    expect($guide)->not->toBeNull()
-        ->and($guide->user_id)->toBe($user->id)
-        ->and($guide->members()->orderBy('position')->pluck('spec_id')->all())->toBe($specIds)
-        // Consumed on read: a later unrelated sign-in on this browser must not inherit the comp.
-        ->and(session('intended_comp'))->toBeNull();
-
-    expect(app(IntendedCompService::class)->resume($user))->toBeNull();
+    expect($guide->fresh()->user_id)->toBe($user->id)
+        ->and($redirect->getTargetUrl())->toBe(route('guides.edit', ['guide' => $guide->fresh()->slug]));
 });
 
 test('a remembered comp of specs that no longer exist yields no guide rather than an empty one', function () {

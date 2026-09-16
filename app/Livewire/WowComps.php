@@ -472,10 +472,26 @@ class WowComps extends Component
 
         PageViewEvent::log('wow_comps_start_guide', slot: UserGuide::compKeyFor($specIds));
 
+        // A guest goes straight into the planner with this comp filled in, and signing up later
+        // keeps the plan (see GuestPlanService). Sending them to sign-up first lost most of them.
+        // Rate limited per IP like the /try route, since this path creates rows too.
         if (! auth()->check()) {
-            app(IntendedCompService::class)->remember($specIds);
+            $allowed = \Illuminate\Support\Facades\RateLimiter::attempt(
+                'guest-plan:'.request()->ip(),
+                10,
+                fn () => true,
+                3600,
+            );
 
-            return redirect()->route('register');
+            if (! $allowed) {
+                app(IntendedCompService::class)->remember($specIds);
+
+                return redirect()->route('register');
+            }
+
+            $guide = app(\App\Http\Services\GuestPlanService::class)->start(UserGuideType::Comp, $specIds);
+
+            return redirect()->route('guides.edit', ['guide' => $guide->slug]);
         }
 
         $guide = UserGuide::startDraft(auth()->user(), UserGuideType::Comp, $specIds);

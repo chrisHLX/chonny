@@ -85,7 +85,9 @@ class AppServiceProvider extends ServiceProvider
             $candidates = UserGuide::where('slug', $value)->orderBy('id')->get();
             $viewer = auth()->user();
 
-            return $candidates->firstWhere('user_id', $viewer?->id)
+            // Only look for "the viewer's own" when there is a viewer: firstWhere('user_id', null)
+            // would otherwise pick any guest plan (user_id NULL) with this slug.
+            return ($viewer ? $candidates->firstWhere('user_id', $viewer->id) : null)
                 ?? $candidates->first(fn (UserGuide $g) => $g->isEditableBy($viewer))
                 ?? $candidates->first()
                 ?? abort(404);

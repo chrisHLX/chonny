@@ -27,6 +27,7 @@ class UserGuide extends Model
 {
     protected $fillable = [
         'user_id',
+        'guest_token',
         'game_id',
         'guild_id',
         'battlenet_character_id',
@@ -63,6 +64,9 @@ class UserGuide extends Model
      * first render of a new guide, and it would only appear once the row was reloaded from the
      * database — which is exactly when a test would stop reproducing it.
      */
+    /** Whoever holds this can edit a guest plan, so it never goes into any serialised output. */
+    protected $hidden = ['guest_token'];
+
     protected $attributes = [
         'type' => UserGuideType::Comp->value,
     ];
@@ -387,6 +391,12 @@ class UserGuide extends Model
      */
     public function isEditableBy(?User $user): bool
     {
+        // A guest plan (no owner yet) is editable only from the browser holding its cookie, signed
+        // in or not. See GuestPlanService.
+        if ($this->user_id === null) {
+            return app(\App\Http\Services\GuestPlanService::class)->owns($this);
+        }
+
         if ($user === null) {
             return false;
         }
@@ -474,17 +484,21 @@ class UserGuide extends Model
      *
      * @param  array<int, int>  $teamSpecIds  spec ids in slot order, may be empty
      */
-    public static function startDraft(User $user, UserGuideType $type, array $teamSpecIds = []): self
+    public static function startDraft(?User $user, UserGuideType $type, array $teamSpecIds = [], ?string $guestToken = null): self
     {
         $guide = self::create([
-            'user_id' => $user->id,
+            // No user means a guest plan, owned by $guestToken instead (see GuestPlanService). Its
+            // slug is random, so nobody can open someone else's by guessing "untitled-comp-guide".
+            'user_id' => $user?->id,
+            'guest_token' => $user ? null : $guestToken,
+            'slug' => $user ? null : 'plan-'.Str::lower(Str::random(12)),
             // Set at creation so a guide that never gets a roster (a prose-only strategy document)
             // still knows which game it is about — see defaultGameId().
             'game_id' => self::defaultGameId(),
             'type' => $type,
             'status' => UserGuideStatus::Draft,
             'visibility' => UserGuideVisibility::Invited,
-            'last_edited_by_user_id' => $user->id,
+            'last_edited_by_user_id' => $user?->id,
             'title' => $type === UserGuideType::ClassGuide ? 'Untitled class guide' : 'Untitled comp guide',
         ]);
 
@@ -494,8 +508,8 @@ class UserGuide extends Model
             'title' => $type === UserGuideType::ClassGuide ? 'The sequence' : 'The opener',
             'row' => 0,
             'column' => 0,
-            'created_by_user_id' => $user->id,
-            'updated_by_user_id' => $user->id,
+            'created_by_user_id' => $user?->id,
+            'updated_by_user_id' => $user?->id,
         ]);
 
         if ($teamSpecIds !== []) {

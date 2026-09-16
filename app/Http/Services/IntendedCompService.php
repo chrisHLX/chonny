@@ -66,6 +66,15 @@ class IntendedCompService
     /** Where to send a user who has just authenticated: their remembered comp, or null for the usual place. */
     public function redirectAfterAuth(User $user): ?\Illuminate\Http\RedirectResponse
     {
+        // A plan they were already building as a guest comes first: it is real work, where a
+        // remembered comp is only a starting point. Every sign-in and sign-up path calls this
+        // method, which is why claiming happens here. See GuestPlanService.
+        if ($claimed = app(GuestPlanService::class)->claim($user)) {
+            session()->forget(self::KEY);
+
+            return redirect()->route('guides.edit', ['guide' => $claimed->slug]);
+        }
+
         $guide = $this->resume($user);
 
         return $guide ? redirect()->route('guides.edit', ['guide' => $guide->slug]) : null;

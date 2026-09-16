@@ -102,11 +102,13 @@ test('both guide pages render over HTTP for their author', function () {
     $this->actingAs($user)->get(route('guides.edit', $guide->slug))->assertOk()->assertSee('The comp');
 });
 
-test('a guest is sent to login rather than into the builder', function () {
+test('a guest is sent to login for My Guides, and cannot open somebody else\'s guide', function () {
     $guide = makeChainGuide(User::factory()->create());
 
     $this->get(route('guides.index'))->assertRedirect(route('login'));
-    $this->get(route('guides.edit', $guide->slug))->assertRedirect(route('login'));
+    // The builder is open to guests now (for their own guest plans), so another person's guide is
+    // refused by Builder::mount() rather than by a login redirect.
+    $this->get(route('guides.edit', $guide->slug))->assertForbidden();
 });
 
 test('a guide is addressed by slug, and an id in the URL is a 404', function () {

@@ -71,12 +71,17 @@
                 Build
             </button>
         @else
-            <a href="{{ route('register') }}" class="flex flex-col items-center justify-center gap-1 text-gold">
-                <span class="w-9 h-9 -mt-1 rounded-full bg-gold-gradient text-surface-0 flex items-center justify-center shadow-gold-sm">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-                </span>
-                Sign up
-            </a>
+            {{-- A guest tries the planner straight away (see GuestPlanService) rather than hitting a
+                 sign-up form first. POST, so a prefetch can never create a plan. --}}
+            <form method="POST" action="{{ route('guides.try', ['type' => 'comp']) }}" class="contents">
+                @csrf
+                <button type="submit" class="flex flex-col items-center justify-center gap-1 text-gold">
+                    <span class="w-9 h-9 -mt-1 rounded-full bg-gold-gradient text-surface-0 flex items-center justify-center shadow-gold-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+                    </span>
+                    Try it
+                </button>
+            </form>
         @endauth
 
         <a href="{{ route('guides.browse') }}" wire:navigate class="flex flex-col items-center justify-center gap-1 {{ $tab(request()->routeIs('guides.browse') || request()->routeIs('guides.show')) }}">

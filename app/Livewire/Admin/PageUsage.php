@@ -305,9 +305,14 @@ class PageUsage extends Component
                 'count' => PageViewEvent::where('page', 'wow_comps_start_guide')->whereNotNull('user_id')->count(),
             ],
             (object) [
-                'label' => 'Comp builder: same, by a guest (sent to sign up)',
+                'label' => 'Comp builder: same, by a guest (opens a guest plan since 2026-09-17)',
                 'count' => PageViewEvent::where('page', 'wow_comps_start_guide')->whereNull('user_id')->count(),
             ],
+
+            // Guest plans (added 2026-09-17, see GuestPlanService). Started vs kept is the number
+            // that says whether letting people try before signing up actually turns into accounts.
+            (object) ['label' => 'Guest plans started (no account)', 'count' => PageViewEvent::where('page', 'guide_try')->count()],
+            (object) ['label' => 'Guest plans kept by signing up or logging in', 'count' => PageViewEvent::where('page', 'guide_try_claimed')->count()],
         ];
     }
 
