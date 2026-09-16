@@ -68,18 +68,27 @@ class Index extends Component
         // Category::first() — see DashboardController for why (a contextless visit shouldn't
         // reset to whatever's first in the DB).
         $this->categoryId ??= session('context.category_id') ?? Category::first()?->id;
+
+        // RESOLVE FIRST, THEN TRUST. categoryId is bound to the query string (?category_id=), so
+        // its value is whatever the URL says — and until 2026-09-16 an id matching no row was
+        // loaded as null and handed to a view that reads ->name on it. That is a 500 anyone can
+        // trigger by typing ?category_id=999999 on a page the nav links to, and it happened 24
+        // times on production on 2026-09-15. Falling back to the first real category makes a bad
+        // id behave like no id, which is what a contextless visit already does.
+        $this->category = Category::find($this->categoryId) ?? Category::first();
+        $this->categoryId = $this->category?->id;
+
         session(['context.category_id' => $this->categoryId]);
 
         $this->currentSubjectId ??= session('context.subject_id');
 
         // syncSubject() already validates currentSubjectId actually belongs to categoryId and
-        // falls back to that category's first subject otherwise — reused as-is here.
+        // falls back to that category's first subject otherwise — reused as-is here. It runs
+        // AFTER categoryId has been resolved to a real one, so it can never validate against an
+        // id that does not exist.
         $this->syncSubject();
 
         session(['context.subject_id' => $this->currentSubjectId]);
-
-        $this->category = Category::find($this->categoryId);
-
     }
 
     public function getModulesProperty()

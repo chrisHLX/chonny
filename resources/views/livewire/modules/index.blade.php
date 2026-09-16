@@ -2,7 +2,9 @@
     <div class="max-w-5xl mx-auto space-y-6">
 
         <div>
-            <h1 class="text-[17px] font-semibold text-ink">{{ $this->category->name }}</h1>
+            {{-- Null-safe as well as the fallback in mount(): the only way this is null now is a
+                 database with no categories at all, and a heading is not worth a 500. --}}
+            <h1 class="text-[17px] font-semibold text-ink">{{ $this->category?->name ?? 'Guides' }}</h1>
             <p class="text-[13px] text-ink-muted mt-0.5">Browse and filter available guides.</p>
         </div>
 
