@@ -25,6 +25,7 @@
                 Your handle is
                 <span class="font-mono text-gold">&#64;{{ auth()->user()->handle() }}</span>
                 &mdash; send it to a friend so they can add you.
+                <a href="{{ route('profile.edit') }}#username" class="text-ink-subtle hover:text-gold underline">Change</a>
             </p>
             <button type="button" class="btn-ghost text-[12px]"
                     x-on:click="navigator.clipboard.writeText('{{ auth()->user()->handle() }}'); copied = true; setTimeout(() => copied = false, 1500)">

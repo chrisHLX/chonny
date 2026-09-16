@@ -59,6 +59,20 @@ class AppServiceProvider extends ServiceProvider
             if ($username = $route->parameter('username')) {
                 $author = User::where('username', $username)->first();
 
+                // An old handle: send the reader to the guide's current URL rather than 404, so
+                // links shared before the author changed their handle keep working.
+                if (! $author) {
+                    $current = \App\Models\PreviousUsername::where('username', $username)->first()?->user;
+
+                    if ($current?->username && $current->guides()->where('slug', $value)->exists()) {
+                        throw new \Illuminate\Http\Exceptions\HttpResponseException(redirect()->route(
+                            $route->getName(),
+                            ['username' => $current->username, 'guide' => $value] + $route->parametersWithoutNulls(),
+                            301,
+                        ));
+                    }
+                }
+
                 return $author?->guides()->where('slug', $value)->first() ?? abort(404);
             }
 

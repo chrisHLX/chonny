@@ -241,6 +241,35 @@ class User extends Authenticatable implements MustVerifyEmail
         return $candidate;
     }
 
+    /**
+     * Change this account's handle. The old one is kept as a redirect so shared guide links keep
+     * working, and stays reserved to this player; taking an old handle back removes that record.
+     * Validation (format, reserved, taken) is UsernameUpdateRequest's job, not this method's.
+     */
+    public function changeUsername(string $username): void
+    {
+        $old = $this->username;
+
+        if ($old === $username) {
+            return;
+        }
+
+        \Illuminate\Support\Facades\DB::transaction(function () use ($old, $username) {
+            PreviousUsername::where('user_id', $this->id)->where('username', $username)->delete();
+
+            if (filled($old)) {
+                PreviousUsername::firstOrCreate(['username' => $old], ['user_id' => $this->id]);
+            }
+
+            $this->forceFill(['username' => $username])->save();
+        });
+    }
+
+    public function previousUsernames(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PreviousUsername::class);
+    }
+
     public function hasVerifiedEmail(): bool
     {
         if (! app()->isProduction()) {
