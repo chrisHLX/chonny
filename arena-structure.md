@@ -858,3 +858,111 @@ in the data model represents position, and no part of this framework currently
 accounts for it.
 
 ---
+
+## Part 16 — Comp Intent, Expected Value, and the Damage-Window Tail (2026-09-18)
+
+Three follow-ups to Part 15, from the same session. The first is a gap in this
+document; the second corrects Part 15.2; the third is explicitly UNRESOLVED and is
+recorded with the method that would settle it, not with an answer.
+
+### 16.1 Comp intent: setup vs dampener — a missing axis
+
+Everything in Parts 1–15 assumes both teams are trying to reach **only us** and land
+a go. That is one intent, not the only one. Part 3 does define attrition, but as the
+TERMINAL BEHAVIOUR of a round that never leaves Neutral — an outcome by default.
+
+A dampener comp inverts that: **staying in Neutral is its win condition**, chosen
+deliberately. It wins by surviving, denying every conjunction, and taking the round
+on dampening. The same four states apply; what changes is which one each team is
+trying to be in.
+
+| | Setup comp | Dampener comp |
+|---|---|---|
+| Wants the round in | **Only us** | **Neutral** |
+| Spends control on | Assembling a go | Falsifying one term of theirs |
+| A round with no kill is | A failure | Progress |
+| The clock is | An enemy | An ally |
+
+Consequences that matter beyond wording:
+
+- **Part 2's "a go missing a term is not a go" is a setup-comp statement.** For a
+  dampener, the equivalent is that removing ONE term is the whole job — which the
+  doc already says defensively, but never as a comp's primary plan.
+- **Part 4's "an uncashed window leaves you net negative" is also intent-dependent.**
+  For a dampener, trading cooldowns for time is the plan, not waste.
+- **A generated "go" is the wrong output for a dampener comp.** Its plan is a denial
+  plan: which of their terms is cheapest to remove, which of your cooldowns answer
+  their opener, and what the survival cadence is.
+
+**How far is intent derivable?** Partly. A spec's measured burst profile
+(`BurstGuideBuilder`'s anchor and go length), its control density, and its sustained
+versus windowed damage are all on file, so "this comp has no real burst anchor and
+high control density" is computable. Naming the archetype, and deciding a comp's
+intent against a SPECIFIC opponent (the same comp can set up against one team and
+dampen against another), is expert curation. Treat a computed archetype as a prior,
+never a label — the same discipline Part 15.6 applies to cross-CC.
+
+### 16.2 Expected value: a held cooldown that is never used is worth zero
+
+Part 15.2 says to bank an expensive cooldown for full value rather than spend it
+DR'd. True, and incomplete — it assumes you will recognise the moment to spend it:
+
+> If you don't know when the right time is, it's often better to use Blind early
+> rather than hold onto it for three minutes, because then you at least get value
+> out of it.
+
+So the trade in 15.2 is **value × probability you actually use it**, and the second
+term is a property of the PLAYER, not the ability. A 2-minute cooldown held for a
+perfect window that never gets recognised has an expected value of zero, and is
+strictly worse than a mediocre use at second 10.
+
+This connects Part 15's economics to the Rating Ladder (Part 11): optimal play
+assumes recognition. Where recognition is missing, **usage rate beats optimality**,
+and the correct advice inverts.
+
+*For the generator and for guide scoring:* advice on banking a cooldown is tiered
+advice, not a rule. "Use it early, it is worth more spent than saved" and "hold it
+for the second go" are both correct answers to the same position for different
+players, and anything that scores a plan must not mark the first as a mistake.
+
+### 16.3 The damage-window tail — UNRESOLVED, with a method
+
+The player raised this and explicitly does not have an answer, which is why it is
+recorded as a question rather than a rule.
+
+**The situation.** A Feral's Incarnation lasts 20 seconds. The healer may trinket
+the chain at second 3. The kill target may take Pain Suppression, which lasts 8
+seconds. So a 20-second amplification can end up with 8 seconds spent hitting an
+immune-ish target and 12 seconds of buff remaining after their answer expires.
+
+**The reframe that seems right, stated as a hypothesis.** "Control coverage ÷ buff
+length" is the wrong comparison. Three timers run on one axis — your buff, their
+mitigation, their healer's availability — and what matters is the **intersection**:
+buff live AND mitigation absent AND healer unable to heal. On that reading the tail
+is not waste, it is often the real kill window, because it is the part of the buff
+that lands after their answer has expired. Which would mean **the control that
+matters is the control that is live when their defensive ends, not when your buff
+starts** — an argument for holding or re-applying a piece of control rather than
+spending the whole chain at second zero, and for the delayed go the player's own
+guides already describe ("try to force trinket and pain sup from the priest without
+using blind").
+
+**Why it is not written as a rule.** The opposite is also arguable: front-loading
+control is often what FORCES the defensive in the first place, and a go that never
+forces anything has no tail to exploit. Nothing in the data settles which is
+correct, and this framework does not assert unverified play.
+
+**What is computable today**, and is worth showing regardless of which reading wins:
+your window length (measured per spec), their answer durations (Pain Suppression 8s,
+Ice Block 10s, and so on, all on file), and therefore the arithmetic statement
+"your window outlives their best single answer by N seconds". That is a fact, not a
+recommendation.
+
+**The method that would actually settle it.** The archive holds 689 real matches
+with casts and aura applications. For every real burst window, it can be measured:
+when an enemy defensive lands mid-window, what do high-rated players do with the
+remainder — keep hitting the same target, swap, or stop; and does the round's kill
+land during the tail or in a later go. That is an empirical question this project is
+equipped to answer, and it should be answered that way rather than reasoned out.
+
+---
