@@ -9,6 +9,43 @@
             </p>
         </div>
 
+        {{-- Your results: every spec you have finished a level of, most recent first. --}}
+        @if ($resultSpecs->isNotEmpty())
+            <div class="mb-6">
+                <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-2">Your results</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    @foreach ($resultSpecs as $rs)
+                        @php
+                            $rsColor = $classColors[$rs->gameClass->slug] ?? '#8A8A9A';
+                            $rsLevels = $specResults[$rs->id];
+                            $rsPassed = collect($rsLevels)->filter->passed()->count();
+                        @endphp
+                        <a href="{{ route('wow-quiz', ['classSlug' => $rs->gameClass->slug, 'specSlug' => $rs->slug]) }}" wire:navigate
+                           wire:key="result-{{ $rs->id }}"
+                           class="linear-card p-3 flex items-center gap-3 {{ $rsPassed === $levelCount ? 'border-gold/60' : 'border-line-gold' }}">
+                            <x-spec-icon :spec="$rs" :color="$rsColor" size="w-9 h-9"/>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-[13.5px] text-ink truncate">
+                                    {{ $rs->name }} <span style="color: {{ $rsColor }}">{{ $rs->gameClass->name }}</span>
+                                </p>
+                                <div class="flex flex-wrap gap-1 mt-1">
+                                    @foreach (range(1, $levelCount) as $n)
+                                        @php $a = $rsLevels[$n] ?? null; @endphp
+                                        <span class="text-[11px] tabular-nums px-1.5 py-0.5 rounded border
+                                            {{ $a?->passed() ? 'border-green-500/50 text-green-400 bg-green-500/10' : ($a ? 'border-line-strong text-ink-muted' : 'border-line text-ink-subtle') }}"
+                                              title="Level {{ $n }}{{ $a ? ': best '.$a->score.' / '.$a->total : ': not taken' }}">
+                                            L{{ $n }} {{ $a ? $a->score.'/'.$a->total : '–' }}
+                                        </span>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <span class="text-[12px] shrink-0 {{ $rsPassed === $levelCount ? 'text-gold' : 'text-ink-subtle' }}">{{ $rsPassed }}/{{ $levelCount }} passed</span>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             @foreach ($classes as $class)
                 @php $color = $classColors[$class->slug] ?? '#8A8A9A'; @endphp
@@ -16,10 +53,28 @@
                     <p class="text-[12px] font-semibold uppercase tracking-wider mb-2" style="color: {{ $color }}">{{ $class->name }}</p>
                     <div class="flex flex-wrap gap-2">
                         @foreach ($class->specializations as $sp)
+                            @php
+                                // Coloured by progress: gold once every level is passed, green-edged
+                                // once any level is passed, gold-edged once any level is finished.
+                                $spLevels = $specResults[$sp->id] ?? [];
+                                $spPassed = collect($spLevels)->filter->passed()->count();
+                                $spClass = match (true) {
+                                    $spLevels === [] => 'border-line hover:border-line-gold',
+                                    $spPassed === $levelCount => 'border-gold bg-gold-subtle',
+                                    $spPassed > 0 => 'border-green-500/50 bg-green-500/5',
+                                    default => 'border-line-gold',
+                                };
+                            @endphp
                             <a href="{{ route('wow-quiz', ['classSlug' => $class->slug, 'specSlug' => $sp->slug]) }}" wire:navigate
-                               class="flex items-center gap-2 px-2 py-1.5 rounded border border-line hover:border-line-gold transition-colors">
+                               class="flex items-center gap-2 px-2 py-1.5 rounded border transition-colors {{ $spClass }}">
                                 <x-spec-icon :spec="$sp" :color="$color" size="w-7 h-7"/>
                                 <span class="text-[13px] text-ink">{{ $sp->name }}</span>
+                                @if ($spLevels !== [])
+                                    <span class="text-[11px] tabular-nums {{ $spPassed === $levelCount ? 'text-gold' : ($spPassed > 0 ? 'text-green-400' : 'text-ink-subtle') }}"
+                                          title="{{ $spPassed }} of {{ $levelCount }} levels passed">
+                                        @if ($spPassed === $levelCount) &#10003; @endif{{ $spPassed }}/{{ $levelCount }}
+                                    </span>
+                                @endif
                             </a>
                         @endforeach
                     </div>
@@ -45,7 +100,7 @@
                     $attempt = $best[$n] ?? null;
                     $isNext = $recommended === $n;
                 @endphp
-                <div class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3 {{ $isNext ? 'border-line-gold' : '' }}">
+                <div class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3 {{ $attempt?->passed() ? 'border-green-500/40 bg-green-500/5' : ($isNext ? 'border-line-gold' : '') }}">
                     <div class="font-display text-2xl text-gold w-8 shrink-0">{{ $n }}</div>
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center gap-2 flex-wrap">

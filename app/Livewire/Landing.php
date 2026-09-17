@@ -65,6 +65,13 @@ class Landing extends Component
         return WowComps::presetLinks();
     }
 
+    /** Top class quiz players by questions answered, for the leaderboard in the side column. */
+    #[Computed]
+    public function quizLeaderboard()
+    {
+        return app(\App\Quiz\QuizService::class)->leaderboard('wow', 5);
+    }
+
     public function render()
     {
         return view('livewire.landing')->layout('layouts.app', [

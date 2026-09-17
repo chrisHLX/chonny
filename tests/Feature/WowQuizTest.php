@@ -207,3 +207,55 @@ test('best scores are the viewer\'s own, and the next level to take follows them
         ->assertSee('Passed')
         ->assertSee('Best: 8 / 8');
 });
+
+test('the leaderboard ranks signed-in players by questions answered and leaves guests out', function () {
+    fakeQuizFacts();
+    $subject = WowQuiz::subjectFor(quizSpec());
+    $alice = User::factory()->create(['username' => 'alice']);
+    $bob = User::factory()->create(['username' => 'bob']);
+
+    $row = fn (?User $u, int $answered, int $score) => QuizAttempt::create([
+        'user_id' => $u?->id, 'session_id' => $u ? null : 'guest', 'game' => 'wow', 'subject' => $subject,
+        'level' => 1, 'questions' => [], 'answered' => $answered, 'score' => $score, 'total' => 8,
+    ]);
+    $row($alice, 8, 6);
+    $row($bob, 8, 8);
+    $row($bob, 4, 2);
+    $row(null, 40, 40);
+
+    $board = app(QuizService::class)->leaderboard('wow');
+
+    expect($board->map(fn ($r) => [$r->user->username, $r->answered, $r->correct])->all())
+        ->toBe([['bob', 12, 10], ['alice', 8, 6]]);
+
+    $this->get(route('home'))->assertOk()->assertSeeInOrder(['Most questions answered', '@bob', '@alice']);
+});
+
+test('answering updates the answered count', function () {
+    fakeQuizFacts();
+    $service = app(QuizService::class);
+    $attempt = $service->start('wow', WowQuiz::subjectFor(quizSpec()), 3, User::factory()->create(), 's');
+
+    $service->answer($attempt, 0, $attempt->question(0)->correctKey);
+    $service->answer($attempt->fresh(), 1, $attempt->question(1)->correctKey);
+
+    expect($attempt->fresh()->answered)->toBe(2);
+});
+
+test('the spec picker shows which specs you have finished, and your results', function () {
+    fakeQuizFacts();
+    $spec = quizSpec();
+    $user = User::factory()->create();
+
+    QuizAttempt::create(['user_id' => $user->id, 'game' => 'wow', 'subject' => WowQuiz::subjectFor($spec), 'level' => 1,
+        'questions' => [], 'answered' => 8, 'score' => 7, 'total' => 8, 'completed_at' => now()]);
+
+    Livewire::actingAs($user)->test(WowQuizIndex::class)
+        ->assertSee('Your results')
+        ->assertSee('L1 7/8')
+        ->assertSee('1/3 passed')
+        ->assertSeeHtml('border-green-500/50 bg-green-500/5');
+
+    // Someone who has taken nothing sees no results section.
+    Livewire::actingAs(User::factory()->create())->test(WowQuizIndex::class)->assertDontSee('Your results');
+});

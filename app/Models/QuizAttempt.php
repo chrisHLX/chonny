@@ -13,13 +13,14 @@ class QuizAttempt extends Model
 
     protected $fillable = [
         'user_id', 'session_id', 'game', 'subject', 'level',
-        'questions', 'answers', 'score', 'total', 'completed_at',
+        'questions', 'answers', 'answered', 'score', 'total', 'completed_at',
     ];
 
     protected $casts = [
         'questions' => 'array',
         'answers' => 'array',
         'level' => 'integer',
+        'answered' => 'integer',
         'score' => 'integer',
         'total' => 'integer',
         'completed_at' => 'datetime',

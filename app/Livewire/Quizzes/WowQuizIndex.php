@@ -42,16 +42,28 @@ class WowQuizIndex extends Component
     public function render(QuizService $quizzes)
     {
         $quiz = $quizzes->game('wow');
-        $best = $this->spec
-            ? $quizzes->bestByLevel('wow', WowQuiz::subjectFor($this->spec), auth()->user(), session()->getId())
-            : [];
+        $results = $quizzes->bestBySubject('wow', auth()->user(), session()->getId());
+        $best = $this->spec ? ($results[WowQuiz::subjectFor($this->spec)] ?? []) : [];
 
         // The first level not yet passed is the one to take next.
         $recommended = collect($quiz->levels())->keys()->first(fn (int $n) => ! (($best[$n] ?? null)?->passed()));
 
         $title = $this->spec ? "{$this->spec->name} {$this->spec->gameClass->name} quiz" : 'WoW class quizzes';
 
+        // Every spec this player has finished a level of, for the picker's colouring and the
+        // "Your results" list. Keyed by spec id.
+        $specResults = collect($results)
+            ->mapWithKeys(fn (array $levels, string $subject) => [(int) str_replace('spec:', '', $subject) => $levels])
+            ->all();
+
         return view('livewire.quizzes.wow-quiz-index', [
+            'specResults' => $specResults,
+            'resultSpecs' => $this->spec || $specResults === []
+                ? collect()
+                : Specialization::with('gameClass')->whereIn('id', array_keys($specResults))->get()
+                    ->sortByDesc(fn (Specialization $s) => collect($specResults[$s->id])->max('completed_at'))
+                    ->values(),
+            'levelCount' => count($quiz->levels()),
             'classes' => $this->spec ? collect() : GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))
                 ->with(['specializations' => fn ($q) => $q->orderBy('name')])
                 ->orderBy('name')

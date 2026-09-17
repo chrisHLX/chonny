@@ -190,6 +190,13 @@ class Home extends Component
         unset($this->friendRequests, $this->feed, $this->collaborating);
     }
 
+    /** Top class quiz players by questions answered, for the leaderboard in the side column. */
+    #[Computed]
+    public function quizLeaderboard()
+    {
+        return app(\App\Quiz\QuizService::class)->leaderboard('wow', 5);
+    }
+
     public function render()
     {
         return view('livewire.home')->layout('layouts.app', [

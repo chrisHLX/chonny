@@ -5002,3 +5002,13 @@ Tests: 3 in `GuideBuilderTest`, 2 in `ClaudesCountersTest`.
 **Next steps discussed, not built:** level 4 (the enemy spec's kit), level 5 (counters from `spell_counters`), a private matchup journal with "quiz me on this matchup", and AI-generated questions from guides (store the spell ids each question depends on; flag or regenerate when `spell_changes` touches them).
 
 Tests: `tests/Feature/WowQuizTest.php` (9).
+
+## Old Training pages hidden; quiz results and leaderboard ✓ COMPLETE (2026-09-17)
+
+**Hidden, not removed — we will return to these once class quizzes are built out properly.** The sidebar's Training group no longer links Diagnostic (`training`), Quizzes (`modules.index`) or Progress (`collection.index`). They belong to the old learning-module system. Their routes, controllers and data are untouched and still work by URL, and some old pages still link to each other. The Training group now holds only Class quizzes and starts open (new persist key `nav_training_open_v2`). When bringing any of them back, decide first whether it becomes part of class quizzes (progress, a diagnostic that recommends levels) rather than restoring the old link as it was.
+
+**Results on the class quizzes page.** `QuizService::bestBySubject()` gives the viewer's best finished attempt per level for every spec. The spec picker colours each spec by progress (gold with a tick when every level is passed, green edge when any is passed, gold edge when a level is finished but not passed) and shows "passed/levels". A "Your results" list sits above the picker (per-level best scores, most recent spec first). On a spec's page, passed levels get a green card.
+
+**Leaderboard.** `<x-quizzes.leaderboard>` (top of the side column on the front page and on Home) promotes class quizzes and ranks signed-in players by questions answered (`QuizService::leaderboard()`, top 5, correct answers in the tooltip). Guests are never ranked. `quiz_attempts.answered` is a stored count (set on every answer, backfilled by its migration) so the ranking is a plain SUM on MySQL and SQLite alike; unfinished attempts count too.
+
+Tests: 3 more in `tests/Feature/WowQuizTest.php`; `FirstRunExperienceTest`'s sidebar order now expects Class quizzes under Training.

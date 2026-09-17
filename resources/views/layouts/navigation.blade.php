@@ -165,11 +165,11 @@
             Top 10 CC Chains
         </a>
 
-        {{-- Training: the diagnostic and quiz side. Kept — it is still part of where the site is
-             going — but collapsed by default so it does not compete with the arena side. Always
-             open while you are on one of its own pages. --}}
+        {{-- Training: class quizzes. Open by default since 2026-09-17 (new persist key), when the
+             old module pages were hidden and this became the class quizzes' home. Always open while
+             you are on one of its own pages. --}}
         @php $onTrainingPage = request()->routeIs('training') || request()->routeIs('modules.*') || request()->routeIs('collection.index') || request()->routeIs('wow-quiz*'); @endphp
-        <div x-data="{ open: $persist(false).as('nav_training_open') }">
+        <div x-data="{ open: $persist(true).as('nav_training_open_v2') }">
             <button type="button" @click="open = !open"
                     class="w-full flex items-center justify-between px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest hover:text-ink-muted transition-colors">
                 Training
@@ -184,27 +184,9 @@
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                     Class quizzes
                 </a>
-                @auth
-                    <a href="{{ route_with_context('training') }}"
-                       class="sidebar-item text-[12px] {{ request()->routeIs('training') ? 'active !text-accent' : '' }}">
-                        <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                        {{-- Was "Your Profile", which collided with the account's Profile & settings in
-                             "Your space" above. This page is the diagnostic's learning profile. --}}
-                        Diagnostic
-                    </a>
-                @endauth
-                <a href="{{ route_with_context('modules.index') }}" wire:navigate
-                   class="sidebar-item text-[12px] {{ request()->routeIs('modules.*') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Quizzes
-                </a>
-                @auth
-                    <a href="{{ route_with_context('collection.index') }}" wire:navigate
-                       class="sidebar-item text-[12px] {{ request()->routeIs('collection.index') ? 'active !text-accent' : '' }}">
-                        <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                        Progress
-                    </a>
-                @endauth
+                {{-- Diagnostic, Quizzes and Progress are hidden (2026-09-17): they belong to the old
+                     learning-module system. The routes still work; the links come back once class
+                     quizzes are built out. See CLAUDE.md, "Old Training pages hidden". --}}
             </div>
         </div>
 

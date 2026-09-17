@@ -145,6 +145,8 @@
         {{-- Your things: small, secondary ------------------------------------------------- --}}
         <aside class="space-y-7 min-w-0">
 
+            <x-quizzes.leaderboard :rows="$this->quizLeaderboard"/>
+
             {{-- Your guides --}}
             @unless ($firstRun)
                 <div>

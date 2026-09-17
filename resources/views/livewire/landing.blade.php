@@ -81,6 +81,8 @@
 
         {{-- The rest of the site, small ----------------------------------------------------- --}}
         <aside class="space-y-7 min-w-0">
+            <x-quizzes.leaderboard :rows="$this->quizLeaderboard"/>
+
             <div>
                 <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-2">Class data</h2>
                 <a href="{{ route('pvp-guides') }}" wire:navigate class="block py-1.5 group">

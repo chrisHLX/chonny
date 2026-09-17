@@ -5,6 +5,8 @@ namespace App\Quiz;
 use App\Models\QuizAttempt;
 use App\Models\User;
 use App\Quiz\Wow\WowQuiz;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Starts, answers and finishes quiz attempts for any game. A game plugs in through GameQuiz;
@@ -61,11 +63,55 @@ class QuizService
 
         $attempt->update([
             'answers' => $answers,
+            'answered' => count($answers),
             'score' => $attempt->score + ($question->isCorrect($key) ? 1 : 0),
             'completed_at' => count($answers) >= $attempt->total ? now() : null,
         ]);
 
         return true;
+    }
+
+    /**
+     * The best finished attempt per level, for every subject this player has finished a level of.
+     *
+     * @return array<string, array<int, QuizAttempt>> subject => level => best attempt
+     */
+    public function bestBySubject(string $game, ?User $user, string $sessionId): array
+    {
+        return $this->finishedAttempts($game, $user, $sessionId)
+            ->groupBy('subject')
+            ->map(fn (Collection $attempts) => $this->bestPerLevel($attempts))
+            ->all();
+    }
+
+    /**
+     * Signed-in players ranked by questions answered, most first. Guests are not ranked: their
+     * attempts belong to a session, not a person.
+     *
+     * @return Collection<int, object{user: User, answered: int, correct: int}>
+     */
+    public function leaderboard(string $game, int $limit = 10): Collection
+    {
+        $rows = QuizAttempt::where('game', $game)
+            ->whereNotNull('user_id')
+            ->where('answered', '>', 0)
+            ->groupBy('user_id')
+            ->select('user_id', DB::raw('SUM(answered) as answered'), DB::raw('SUM(score) as correct'))
+            ->orderByDesc('answered')
+            ->orderByDesc('correct')
+            ->limit($limit)
+            ->get();
+
+        $users = User::whereIn('id', $rows->pluck('user_id'))->get()->keyBy('id');
+
+        return $rows
+            ->filter(fn ($row) => $users->has($row->user_id))
+            ->map(fn ($row) => (object) [
+                'user' => $users[$row->user_id],
+                'answered' => (int) $row->answered,
+                'correct' => (int) $row->correct,
+            ])
+            ->values();
     }
 
     /**
@@ -75,13 +121,24 @@ class QuizService
      */
     public function bestByLevel(string $game, string $subject, ?User $user, string $sessionId): array
     {
+        return $this->bestPerLevel($this->finishedAttempts($game, $user, $sessionId)->where('subject', $subject));
+    }
+
+    /** @return Collection<int, QuizAttempt> */
+    private function finishedAttempts(string $game, ?User $user, string $sessionId): Collection
+    {
         return QuizAttempt::where('game', $game)
-            ->where('subject', $subject)
             ->whereNotNull('completed_at')
             ->when($user, fn ($q) => $q->where('user_id', $user->id), fn ($q) => $q->whereNull('user_id')->where('session_id', $sessionId))
-            ->get()
-            ->groupBy('level')
-            ->map(fn ($attempts) => $attempts->sortByDesc(fn (QuizAttempt $a) => $a->score / max(1, $a->total))->first())
+            ->get(['id', 'user_id', 'session_id', 'game', 'subject', 'level', 'score', 'total', 'completed_at']);
+    }
+
+    /** @return array<int, QuizAttempt> level => best attempt */
+    private function bestPerLevel(Collection $attempts): array
+    {
+        return $attempts->groupBy('level')
+            ->map(fn (Collection $group) => $group->sortByDesc(fn (QuizAttempt $a) => $a->score / max(1, $a->total))->first())
+            ->sortKeys()
             ->all();
     }
 }
