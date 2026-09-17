@@ -922,6 +922,15 @@ class ModuleSpellReferenceService
      *
      * @var array<string, string>
      */
+    /**
+     * A category for a spell with no effect data to infer one from, keyed by EXTERNAL spell_id.
+     * Only for hand-written spells in data/spelldata/manual-spells.txt, which carry no effects.
+     * Gladiator's Medallion (the PvP trinket) would otherwise read as Other.
+     */
+    private const CURATED_CATEGORY_BY_SPELL_ID = [
+        336126 => 'Defensive',
+    ];
+
     private const MECHANIC_CATEGORY_MAP = [
         'Stun' => 'Crowd Control',
         'Root' => 'Crowd Control',
@@ -1290,6 +1299,10 @@ class ModuleSpellReferenceService
         // damage — Glacial Spike is Offensive, not Crowd Control. Same judgment
         // MECHANIC_CATEGORY_MAP already applies to 'Snare'/'Knockback' mechanics. A pure slow
         // with no damage signal falls through to the effect check below.
+        if (isset(self::CURATED_CATEGORY_BY_SPELL_ID[$spell->spell_id])) {
+            return self::CURATED_CATEGORY_BY_SPELL_ID[$spell->spell_id];
+        }
+
         if ($spell->dr_category !== null && $spell->dr_category !== 'Slow') {
             return 'Crowd Control';
         }

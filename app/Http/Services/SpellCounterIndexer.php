@@ -62,6 +62,17 @@ class SpellCounterIndexer
         'Incapacitate' => 'Incapacitate',
     ];
 
+    /**
+     * Abilities that break a CC after it lands, by EXTERNAL spell_id, with the DR categories each
+     * one frees you from. Curated because no effect data says it: Gladiator's Medallion is a
+     * hand-written spell with no effects (see data/spelldata/manual-spells.txt). Its tooltip
+     * removes "all movement impairing effects and all effects which cause loss of control", which
+     * is every category here except Knockback and Disarm.
+     */
+    private const CC_BREAK_SPELL_IDS = [
+        336126 => ['Stun', 'Silence', 'Incapacitate', 'Disorient', 'Root', 'Slow'],
+    ];
+
     public function __construct(private readonly ModuleSpellReferenceService $service) {}
 
     /**
@@ -158,6 +169,12 @@ class SpellCounterIndexer
                         'detail' => $mechanic,
                     ];
                 }
+            }
+        }
+
+        foreach ($pools['breaksCc'] ?? [] as $spell) {
+            if ($spell->id !== $cc->id && in_array($cc->dr_category, self::CC_BREAK_SPELL_IDS[$spell->spell_id] ?? [], true)) {
+                $found[] = ['spell' => $spell, 'mechanism' => SpellCounter::MECHANISM_BREAKS_CC, 'detail' => $cc->dr_category];
             }
         }
 
@@ -284,7 +301,14 @@ class SpellCounterIndexer
 
         $dodgeParry = Spell::where('patch_id', $patch->id)
             ->whereIn('id', $availableSpellIds)
-            ->whereHas('effects', fn ($q) => $q->whereIn('type', ['Modify Dodge%', 'Modify Parry%'])->where('base_value', '>', 0))
+            // A base value of 0 is usually noise, but Blizzard stores "dodge/parry everything" as a
+            // 0 on real defensive cooldowns: Fists of Fury parries all frontal attacks, Blur dodges.
+            // So a 0 counts when the spell has a real cooldown, which leaves out the passives
+            // (Sanctuary) and mastery auras (Elusive Brawler) that also carry one. Found
+            // 2026-09-17: Fists of Fury was missing as a counter to Kidney Shot.
+            ->whereHas('effects', fn ($q) => $q->whereIn('type', ['Modify Dodge%', 'Modify Parry%'])
+                ->where(fn ($v) => $v->where('base_value', '>', 0)
+                    ->orWhere(fn ($zero) => $zero->where('base_value', 0)->whereHas('spell', fn ($sp) => $sp->whereNotNull('cooldown_seconds')))))
             ->tap($hygiene)
             ->get();
 
@@ -305,7 +329,13 @@ class SpellCounterIndexer
             ->with('effects')
             ->get();
 
+        $breaksCc = Spell::where('patch_id', $patch->id)
+            ->whereIn('id', $availableSpellIds)
+            ->whereIn('spell_id', array_keys(self::CC_BREAK_SPELL_IDS))
+            ->get();
+
         return [
+            'breaksCc' => $breaksCc,
             'usableWhile' => array_map(fn ($pool) => $this->narrowToPressable(collect($pool)), $usableWhile),
             'immunityByMechanic' => array_map(fn ($pool) => $this->narrowToPressable(collect($pool)), $immunityByMechanic),
             'dodgeParry' => $this->narrowToPressable($dodgeParry),

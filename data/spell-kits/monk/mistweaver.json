@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-15T21:04:08+00:00",
-    "spellCacheVersion": 13,
+    "generatedAt": "2026-09-17T05:40:42+00:00",
+    "spellCacheVersion": 18,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -4864,6 +4864,40 @@
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
+            "drCategory": null
+        },
+        {
+            "spellId": 13680,
+            "category": "Defensive",
+            "description": {
+                "text": "Removes all movement impairing effects and all effects which cause loss of control of your character.",
+                "uncertain": false
+            },
+            "formulaModifierSpellIds": [],
+            "modifiers": {
+                "named": [],
+                "baseline": [],
+                "potential": []
+            },
+            "hasPotentialImprovement": false,
+            "cooldown": {
+                "seconds": 120,
+                "base_seconds": 120,
+                "applied": []
+            },
+            "charges": {
+                "charges": null,
+                "base_charges": null,
+                "applied": []
+            },
+            "isSelected": true,
+            "source": "baseline",
+            "isPriority": true,
+            "offensiveDefensive": {
+                "offensive": false,
+                "defensive": true,
+                "label": "Defensive"
+            },
             "drCategory": null
         },
         {
@@ -10249,7 +10283,7 @@
                                     "modifier_unit": null,
                                     "effect_index": 2,
                                     "created_at": "2026-08-05T12:14:04.000000Z",
-                                    "updated_at": "2026-09-15T21:00:41.000000Z",
+                                    "updated_at": "2026-09-17T05:11:50.000000Z",
                                     "source_spell": {
                                         "id": 6724,
                                         "patch_id": 1,
@@ -12778,7 +12812,7 @@
                                     "modifier_unit": null,
                                     "effect_index": 2,
                                     "created_at": "2026-08-05T12:14:04.000000Z",
-                                    "updated_at": "2026-09-15T21:00:41.000000Z",
+                                    "updated_at": "2026-09-17T05:11:50.000000Z",
                                     "source_spell": {
                                         "id": 6724,
                                         "patch_id": 1,

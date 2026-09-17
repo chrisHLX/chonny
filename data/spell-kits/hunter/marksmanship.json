@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-15T21:04:03+00:00",
-    "spellCacheVersion": 13,
+    "generatedAt": "2026-09-17T05:40:38+00:00",
+    "spellCacheVersion": 18,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -37,7 +37,7 @@
             "spellId": 4856,
             "category": "Other",
             "description": {
-                "text": "A powerful aimed shot that deals damage.",
+                "text": "A powerful aimed shot that deals 346 Physical damage.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4960,6 +4960,40 @@
             "isPriority": true,
             "offensiveDefensive": null,
             "drCategory": "Incapacitate"
+        },
+        {
+            "spellId": 13680,
+            "category": "Defensive",
+            "description": {
+                "text": "Removes all movement impairing effects and all effects which cause loss of control of your character.",
+                "uncertain": false
+            },
+            "formulaModifierSpellIds": [],
+            "modifiers": {
+                "named": [],
+                "baseline": [],
+                "potential": []
+            },
+            "hasPotentialImprovement": false,
+            "cooldown": {
+                "seconds": 120,
+                "base_seconds": 120,
+                "applied": []
+            },
+            "charges": {
+                "charges": null,
+                "base_charges": null,
+                "applied": []
+            },
+            "isSelected": true,
+            "source": "baseline",
+            "isPriority": true,
+            "offensiveDefensive": {
+                "offensive": false,
+                "defensive": true,
+                "label": "Defensive"
+            },
+            "drCategory": null
         },
         {
             "spellId": 4714,

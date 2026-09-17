@@ -370,3 +370,47 @@ test('a passive-granted CC aura with no pressable copy at all is excluded entire
 
     expect($aura->fresh()->counteredBy)->toBeEmpty();
 });
+
+test('a zero-value parry effect counts on a real cooldown but not on a passive', function () {
+    // Found 2026-09-17: Blizzard stores Fists of Fury's "parry all frontal attacks" as base 0, and
+    // the old `base_value > 0` rule dropped it, so it never countered Kidney Shot.
+    [, $patch, $classA, $classB] = counterFixtureWorld();
+
+    $stun = makeCounterCcSpell($patch, 9701, 'Parryable Stun', 'Stun');
+    attachToClass($stun, $classA);
+
+    $fists = makeCounterAbility($patch, 9702, 'Fists Clone', ['cooldown_seconds' => 24]);
+    attachToClass($fists, $classB);
+    SpellEffect::create(['spell_id' => $fists->id, 'effect_index' => 4, 'type' => 'Modify Parry%', 'base_value' => 0]);
+
+    $passive = makeCounterAbility($patch, 9703, 'Mastery Clone', ['cooldown_seconds' => null]);
+    attachToClass($passive, $classB);
+    SpellEffect::create(['spell_id' => $passive->id, 'effect_index' => 1, 'type' => 'Modify Dodge%', 'base_value' => 0]);
+
+    rebuildCounterIndex();
+
+    $row = Livewire::test(ClaudesCounters::class)->instance()->counterableByClass['Class A']
+        ->firstWhere('spell.name', 'Parryable Stun');
+
+    expect(counterNames($row, SpellCounter::MECHANISM_DODGE_PARRY)->all())->toBe(['Fists Clone']);
+});
+
+test('Gladiator\'s Medallion breaks loss-of-control CC but not a knockback or disarm', function () {
+    [, $patch, $classA, $classB] = counterFixtureWorld();
+
+    $stun = makeCounterCcSpell($patch, 9801, 'Trinketable Stun', 'Stun', school: 'Shadow');
+    $knock = makeCounterCcSpell($patch, 9802, 'Test Knockback', 'Knockback', school: 'Nature');
+    attachToClass($stun, $classA);
+    attachToClass($knock, $classA);
+
+    $trinket = makeCounterAbility($patch, 336126, "Gladiator's Medallion");
+    attachToClass($trinket, $classB, source: 'verified_override');
+
+    rebuildCounterIndex();
+
+    $rows = Livewire::test(ClaudesCounters::class)->instance()->counterableByClass['Class A'];
+
+    expect(counterNames($rows->firstWhere('spell.name', 'Trinketable Stun'), SpellCounter::MECHANISM_BREAKS_CC)->all())
+        ->toBe(["Gladiator's Medallion"])
+        ->and(counterNames($rows->firstWhere('spell.name', 'Test Knockback'), SpellCounter::MECHANISM_BREAKS_CC))->toBeEmpty();
+});

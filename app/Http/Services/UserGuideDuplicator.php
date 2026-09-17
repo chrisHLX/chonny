@@ -82,6 +82,7 @@ class UserGuideDuplicator
                     'column' => $section->column,
                     'opponent_spec_id' => $section->opponent_spec_id,
                     'body' => $section->body,
+                    'show_timer' => $section->show_timer !== false,
                     'created_by_user_id' => $author->id,
                     'updated_by_user_id' => $author->id,
                 ]);

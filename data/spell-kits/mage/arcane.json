@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-15T21:02:39+00:00",
-    "spellCacheVersion": 13,
+    "generatedAt": "2026-09-17T05:39:33+00:00",
+    "spellCacheVersion": 18,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -4459,6 +4459,40 @@
             "drCategory": "Root"
         },
         {
+            "spellId": 13680,
+            "category": "Defensive",
+            "description": {
+                "text": "Removes all movement impairing effects and all effects which cause loss of control of your character.",
+                "uncertain": false
+            },
+            "formulaModifierSpellIds": [],
+            "modifiers": {
+                "named": [],
+                "baseline": [],
+                "potential": []
+            },
+            "hasPotentialImprovement": false,
+            "cooldown": {
+                "seconds": 120,
+                "base_seconds": 120,
+                "applied": []
+            },
+            "charges": {
+                "charges": null,
+                "base_charges": null,
+                "applied": []
+            },
+            "isSelected": true,
+            "source": "baseline",
+            "isPriority": true,
+            "offensiveDefensive": {
+                "offensive": false,
+                "defensive": true,
+                "label": "Defensive"
+            },
+            "drCategory": null
+        },
+        {
             "spellId": 5751,
             "category": "Other",
             "description": {
@@ -6304,7 +6338,7 @@
             "spellId": 5762,
             "category": "Other",
             "description": {
-                "text": "Creates 3 copies of you nearby, which cast spells and attack your enemies. While active, you generate significantly reduced threat. Taking direct damage will cause one of your images to dissipate.",
+                "text": "Creates 3 copies of you nearby for 15 sec, which cast spells and attack your enemies. While active, you generate significantly reduced threat.\r\n\r\nTaking direct damage will cause one of your images to dissipate.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

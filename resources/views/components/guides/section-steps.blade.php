@@ -9,6 +9,11 @@
 
     // Every step in the list is a real ability, so the counter and the list index stay in step.
     $stepNo = 0;
+
+    // The author can switch a sequence's timer off; then no step shows a duration, a DR
+    // percentage or the immune dimming. The ability's CC type still shows — that is what it is,
+    // not how long it lasts.
+    $showTimer = $section->kind->tracksControl() ? $section->showsTimer() : true;
 @endphp
 
 @if (empty($steps))
@@ -29,11 +34,11 @@
                 $stepNo++;
                 $entry = $step['entry'];
                 $dr = $step['dr'];
-                $pct = $dr['dr_percentage'] ?? 100;
+                $pct = $showTimer ? ($dr['dr_percentage'] ?? 100) : 100;
                 $stepSpec = $step['spec'];
                 $stepColor = $classColors[$stepSpec?->gameClass?->slug] ?? '#8A8A9A';
                 $cat = $entry?->drCategory();
-                $durLabel = $step['duration'] !== null
+                $durLabel = $showTimer && $step['duration'] !== null
                     ? rtrim(rtrim(number_format($step['duration'], 1), '0'), '.').'s'.($pct < 100 ? ' · '.$pct.'%' : '')
                     : null;
             @endphp
@@ -119,11 +124,11 @@
                             @endif
                         </p>
 
-                        @if ($dr['dr_reason'] ?? null)
+                        @if ($showTimer && ($dr['dr_reason'] ?? null))
                             <p class="text-[11.5px] text-ink-subtle mt-0.5">{{ $dr['dr_reason'] }}</p>
                         @endif
 
-                        @if ($cat && $step['duration'] === null)
+                        @if ($showTimer && $cat && $step['duration'] === null)
                             <p class="text-[11.5px] text-ink-subtle mt-0.5">
                                 No verified PvP duration on file{{ $section->kind->tracksControl() ? ' — not counted in the total' : '' }}.
                             </p>

@@ -1438,22 +1438,31 @@ class ImportSpellData extends Command
                 continue;
             }
 
-            $class = GameClass::where('slug', $block['class'])->first();
+            // `class: all` is for a spell every class has — the PvP trinket (Gladiator's
+            // Medallion). It always means every spec of every class, so `specs` must be `all` too.
+            $classes = $block['class'] === 'all'
+                ? GameClass::where('game_id', $patch->game_id)->get()
+                : GameClass::where('slug', $block['class'])->get();
 
-            if (! $class) {
+            if ($classes->isEmpty() || ($block['class'] === 'all' && $block['specs'] !== 'all')) {
                 $this->manualSpellsSkipped++;
-                $this->warn("  Skipping manual-spells.txt block '{$block['name']}' — unknown class slug '{$block['class']}'.");
+                $this->warn("  Skipping manual-spells.txt block '{$block['name']}' — unknown class slug '{$block['class']}' (class: all needs specs: all).");
 
                 continue;
             }
 
-            $specSlugs = $block['specs'] === 'all'
-                ? Specialization::where('class_id', $class->id)->pluck('slug')->all()
-                : array_map('trim', explode(',', $block['specs']));
+            $specsByClass = [];
+            foreach ($classes as $class) {
+                $specs = $block['specs'] === 'all'
+                    ? Specialization::where('class_id', $class->id)->get()
+                    : Specialization::where('class_id', $class->id)->whereIn('slug', array_map('trim', explode(',', $block['specs'])))->get();
 
-            $specs = Specialization::where('class_id', $class->id)->whereIn('slug', $specSlugs)->get();
+                if ($specs->isNotEmpty()) {
+                    $specsByClass[$class->id] = $specs;
+                }
+            }
 
-            if ($specs->isEmpty()) {
+            if ($specsByClass === []) {
                 $this->manualSpellsSkipped++;
                 $this->warn("  Skipping manual-spells.txt block '{$block['name']}' — no specs resolved from '{$block['specs']}' for class '{$block['class']}'.");
 
@@ -1497,15 +1506,17 @@ class ImportSpellData extends Command
 
             $this->spellIndex[(int) $block['spell_id']] = $spell;
 
-            foreach ($specs as $spec) {
-                $this->upsertTrack(SpellClassAvailability::class, [
-                    'spell_id' => $spell->id,
-                    'class_id' => $class->id,
-                    'spec_id' => $spec->id,
-                    'source' => 'verified_override',
-                ], [], 'spell_class_availability');
+            foreach ($specsByClass as $classId => $specs) {
+                foreach ($specs as $spec) {
+                    $this->upsertTrack(SpellClassAvailability::class, [
+                        'spell_id' => $spell->id,
+                        'class_id' => $classId,
+                        'spec_id' => $spec->id,
+                        'source' => 'verified_override',
+                    ], [], 'spell_class_availability');
 
-                $this->verifiedOverridePairsWritten["{$spell->id}:{$spec->id}"] = true;
+                    $this->verifiedOverridePairsWritten["{$spell->id}:{$spec->id}"] = true;
+                }
             }
 
             $this->manualSpellsApplied++;

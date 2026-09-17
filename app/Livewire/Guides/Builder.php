@@ -644,6 +644,21 @@ class Builder extends Component
         $this->refreshGuide();
     }
 
+    /**
+     * Turns a sequence's timer on or off (see add_show_timer_to_user_guide_sections). A content
+     * edit like renaming, so collaborators and guests can do it too.
+     */
+    public function toggleTimer(int $sectionId): void
+    {
+        $section = $this->ownedSection($sectionId);
+        if (! $section || ! $section->kind->tracksControl()) {
+            return;
+        }
+
+        $section->update(['show_timer' => ! $section->show_timer, 'updated_by_user_id' => auth()->id()]);
+        $this->refreshGuide();
+    }
+
     public function setSectionBody(int $sectionId, string $body): void
     {
         $section = $this->ownedSection($sectionId);

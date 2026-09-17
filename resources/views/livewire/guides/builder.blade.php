@@ -656,6 +656,23 @@
                         </div>
 
                         <div class="flex items-center gap-0.5 shrink-0">
+                            {{-- The timer is the DR maths: control totals, each step's duration and
+                                 DR percentage. Some sequences are about order, not timing. --}}
+                            @if ($section->kind->tracksControl())
+                                <button type="button" wire:click="toggleTimer({{ $section->id }})"
+                                        aria-pressed="{{ $section->showsTimer() ? 'true' : 'false' }}"
+                                        title="{{ $section->showsTimer() ? 'Hide the DR and duration timer for this sequence' : 'Show the DR and duration timer for this sequence' }}"
+                                        class="flex items-center gap-1 text-[11.5px] px-1.5 mr-1 transition-colors {{ $section->showsTimer() ? 'text-ink-muted hover:text-gold' : 'text-ink-subtle hover:text-gold' }}">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="13" r="8" stroke-width="2"/>
+                                        <path stroke-linecap="round" stroke-width="2" d="M12 9v4l2 2M9 2h6"/>
+                                        @unless ($section->showsTimer())
+                                            <path stroke-linecap="round" stroke-width="2" d="M4 4l16 16"/>
+                                        @endunless
+                                    </svg>
+                                    {{ $section->showsTimer() ? 'Timer on' : 'Timer off' }}
+                                </button>
+                            @endif
                             <button type="button" wire:click="moveSection({{ $section->id }}, -1)"
                                     class="text-ink-subtle hover:text-gold transition-colors px-1" title="Move up">&uarr;</button>
                             <button type="button" wire:click="moveSection({{ $section->id }}, 1)"
@@ -680,7 +697,7 @@
                     @else
                         {{-- No totals on an enemy section: it lists separate threats, so a summed
                              control time or a "gated by" cooldown would describe a go nobody runs. --}}
-                        @if ($data && $section->kind->tracksControl())
+                        @if ($data && $section->showsTimer())
                             <x-guides.metrics :metrics="$data['metrics']"/>
                         @endif
 

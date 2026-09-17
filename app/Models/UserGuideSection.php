@@ -24,6 +24,7 @@ class UserGuideSection extends Model
         'column',
         'opponent_spec_id',
         'body',
+        'show_timer',
         'created_by_user_id',
         'updated_by_user_id',
     ];
@@ -44,7 +45,18 @@ class UserGuideSection extends Model
         'kind' => UserGuideSectionKind::class,
         'row' => 'integer',
         'column' => 'integer',
+        'show_timer' => 'boolean',
     ];
+
+    /**
+     * Whether this section shows its timer: the control/frequency totals and each step's duration
+     * and DR percentage. Only a sequence has a timer; an author can turn it off for one that is
+     * about order rather than timing.
+     */
+    public function showsTimer(): bool
+    {
+        return $this->kind->tracksControl() && $this->show_timer !== false;
+    }
 
     public function guide()
     {

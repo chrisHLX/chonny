@@ -57,6 +57,8 @@ class PageUsage extends Component
         'guild_show' => 'Guild (read)',
         'battlenet_characters' => 'Your Characters',
         'battlenet_character' => 'Character Detail',
+        'wow_quiz' => 'Class Quizzes',
+        'wow_quiz_play' => 'Class Quiz (playing)',
     ];
 
     /**

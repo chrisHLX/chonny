@@ -803,6 +803,18 @@ class UserGuideChainService
      * deployedCodeFingerprint keys every other spell cache here uses. The memo below still applies
      * within one request; this cache is what stops every page load paying for it again.
      */
+    /**
+     * A spec's whole kit against its default build, from the same cache the palettes use. Public
+     * for the WoW quizzes (App\Quiz\Wow\WowAbilityFacts), so a quiz and a guide never read a
+     * spec's abilities two different ways.
+     *
+     * @return Collection<int, mixed>
+     */
+    public function specKit(Specialization $spec): Collection
+    {
+        return $this->specEntries($spec);
+    }
+
     private function specEntries(Specialization $spec, ?TalentBuild $build = null): Collection
     {
         $memoKey = $spec->id.':'.($build?->id ?? 0);

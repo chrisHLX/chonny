@@ -4971,3 +4971,34 @@ Every way into the builder used to go through sign-up first, so a visitor never 
 **Tracking:** `guide_try` (slot = type) when a guest plan starts, `guide_try_claimed` (slot = how many) when sign-up or login keeps them. Both are in Admin → Page usage → "Home feed & support". Started vs kept is the number that says whether this turns visitors into accounts.
 
 Tests: `tests/Feature/GuestPlanTest.php` (6). Four older tests that asserted the sign-up wall were updated to the new behaviour.
+
+## Sequence timer toggle, Gladiator's Medallion, zero-value parry counters ✓ COMPLETE (2026-09-17)
+
+**Timer toggle.** `user_guide_sections.show_timer` (default true). "The timer" is the DR maths on a sequence: the "Control after DR" / "Available every" totals and each step's duration, DR percentage, immune dimming and DR note. `UserGuideSection::showsTimer()` is false for anything that isn't a sequence. `Builder::toggleTimer()` is a content edit (collaborators and guests can use it), the button sits in the section header next to the move arrows, the read view follows the same setting, and `UserGuideDuplicator` copies it. The step's CC type badge (Stun etc.) still shows with the timer off.
+
+**Gladiator's Medallion (336126).** An item spell, so SimC's class dumps never had it (it only appeared inside other talents' affected-spell lists). Every spec's arena logs record it. Now:
+- A hand-written block in `data/spelldata/manual-spells.txt` with the new `class: all` + `specs: all` form (`importManualSpells()`, scoped to the patch's game), which gives it `verified_override` rows for all 40 specs.
+- A hand entry in `data/arena-logs/spell-classification/defensive-cooldowns.json`. That file is hand-promoted; **keep this entry when re-promoting** classify-cooldowns.php output, or the trinket drops out of every Defensive Cooldowns tab and guide palette.
+- `ModuleSpellReferenceService::CURATED_CATEGORY_BY_SPELL_ID` makes it Defensive (it has no effects to categorize from).
+- `SpellCounterIndexer::CC_BREAK_SPELL_IDS` + new mechanism `breaks_cc` ("Breaks free", high confidence): counters Stun, Silence, Incapacitate, Disorient, Root and Slow, never Knockback or Disarm. 95 rows.
+- Icon: Blizzard's media API 404s for 336126 (an item spell), so the filename `ability_pvp_gladiatormedallion` came from `wow:resolve-wowhead-icons 336126 --apply` (CDN-verified) into `icon-name-overrides.txt`, and is in `icon-manifest.json`. On production, `import:spelldata wow` then `wow:apply-icon-manifest` sets it without any API calls; the file itself is committed with the other spell icons.
+
+**Zero-value dodge/parry.** Blizzard stores "parry/dodge everything" as base 0 on some real cooldowns (Fists of Fury, Blur), and the counter pool required `> 0`, so Fists of Fury never countered Kidney Shot. A 0 now counts when the spell has a real cooldown, which still excludes passives (Sanctuary) and mastery auras (Elusive Brawler). There are now 108 `dodge_parry` rows; Kidney Shot lists Evasion, Die by the Sword, Blur and Fists of Fury.
+
+Tests: 3 in `GuideBuilderTest`, 2 in `ClaudesCountersTest`.
+
+## Class quizzes (Training) ✓ COMPLETE (2026-09-17)
+
+`/wow/quiz` (`wow-quiz`, `Quizzes\WowQuizIndex`) picks a spec and shows its levels with your best score; `/wow/quiz/{class}/{spec}/level/{n}` (`wow-quiz.play`, `Quizzes\WowQuizPlay`) plays one. Linked first in the sidebar's Training group. Guests can play; only signed-in scores are kept long term (guest attempts are tied to the session).
+
+**Questions are never stored as content.** Each attempt builds its questions from live game data, so a patch that changes a cooldown or a DR group changes the next quiz with nothing to regenerate. The questions (answers included) are saved on the `quiz_attempts` row only so grading uses what the player saw, and so the correct answer never reaches the browser before they pick (it is not in any public Livewire property; the page only marks the right option after an answer).
+
+**Game-neutral engine, WoW implementation.**
+- `App\Quiz\GameQuiz` (interface: levels + build questions for a subject), `QuizQuestion`, `QuizLevel`, `QuizService` (start / answer once / best per level; games registered in `QuizService::GAMES`). `quiz_attempts` has `game` + `subject` strings (WoW uses `spec:{id}`), so another game adds its own `GameQuiz` and pages.
+- `App\Quiz\Wow\WowAbilityFacts` reads only verified facts: CC from curated `dr_category` on pressable abilities (Stun/Incapacitate/Disorient/Silence/Root), offensive/defensive from `CooldownTabs::isEntry()` (the WoW Comps rule), interrupts from `is_interrupt`. `categorize()`'s effect guess is deliberately not used. Gladiator's Medallion is left out (every class has it). Cached per spell cache version. Reads the kit through `UserGuideChainService::specKit()`, the same cached kit the guide palettes use.
+- `App\Quiz\Wow\WowQuestionBuilder` is pure (plain `WowAbility` data in, questions out) and skips any question without one clear right answer (an ability with two roles, a tie for longest cooldown). Levels: 1 Know your kit (which is yours, what is it for), 2 Your cooldowns (offensive/defensive, cooldown length, longest), 3 Crowd control (DR group, what shares DR). 8 questions per attempt; every spec gets at least 3 per level on current data, most get 8. Pass = 75%.
+- Cooldown questions use the spec's default (meta) build, and the explanation says talents can change it.
+
+**Next steps discussed, not built:** level 4 (the enemy spec's kit), level 5 (counters from `spell_counters`), a private matchup journal with "quiz me on this matchup", and AI-generated questions from guides (store the spell ids each question depends on; flag or regenerate when `spell_changes` touches them).
+
+Tests: `tests/Feature/WowQuizTest.php` (9).

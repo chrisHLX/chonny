@@ -165,6 +165,14 @@ Route::prefix('wow')->group(function () {
     // always names the spec it opens on.
     Route::get('/pvp-guides/{classSlug?}/{specSlug?}', \App\Livewire\PvpGuides::class)->name('pvp-guides');
 
+    // Class quizzes (Training). Questions are built from live game data each attempt, so they stay
+    // current when a patch changes the kit. The engine is game-neutral (App\Quiz); these routes and
+    // their components are WoW's. See App\Quiz\QuizService.
+    Route::get('/quiz/{classSlug?}/{specSlug?}', \App\Livewire\Quizzes\WowQuizIndex::class)->name('wow-quiz');
+    Route::get('/quiz/{classSlug}/{specSlug}/level/{level}', \App\Livewire\Quizzes\WowQuizPlay::class)
+        ->whereNumber('level')
+        ->name('wow-quiz.play');
+
     // Curation review tools. Not linked from the nav, but real URLs people have open.
     Route::get('/cc-review', \App\Livewire\CcReview::class)->name('cc-review');
     Route::get('/cc-immunity-review', \App\Livewire\CcImmunityReview::class)->name('cc-immunity-review');

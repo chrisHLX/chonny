@@ -176,3 +176,23 @@ mechanic: Flee
 spell_type: Melee
 description: Emits dazzling light in all directions, disorienting nearby enemies. Damage may cancel the effect.
 END
+
+# Gladiator's Medallion, the PvP trinket (2026-09-17). Every class and spec has it, and it is one
+# of the most important cooldowns to track in arena. It is an item spell, and SimC's class dumps
+# only carry class spells, so it never had a spells row: 336126 appeared only inside other talents'
+# "Affected Spells (Category)" lists. Real match evidence confirms it: all 40 spec files under
+# data/arena-logs/spell-usage/ record casts of 336126. `class: all` is read by
+# ImportSpellData::importManualSpells(). Its Defensive classification is a hand entry in
+# data/arena-logs/spell-classification/defensive-cooldowns.json, its category is set by
+# ModuleSpellReferenceService::CURATED_CATEGORY_BY_SPELL_ID, and it counters CC through
+# SpellCounterIndexer::CC_BREAK_SPELL_IDS.
+BEGIN
+spell_id: 336126
+name: Gladiator's Medallion
+class: all
+specs: all
+school: Physical
+spell_type: None
+cooldown_seconds: 120
+description: Removes all movement impairing effects and all effects which cause loss of control of your character.
+END

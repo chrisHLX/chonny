@@ -735,3 +735,45 @@ test('a row is keyed by the sections in it, so a reorder moves cards instead of 
 
     expect(strpos($html, 'wire:key="row-'.$b->id.'"'))->toBeLessThan(strpos($html, 'wire:key="row-'.$a->id.'"'));
 });
+
+test('a sequence\'s timer can be switched off and on, but a notes section has none', function () {
+    $user = User::factory()->create();
+    $guide = makeChainGuide($user);
+    $sequence = addSection($guide);
+    $notes = addSection($guide, UserGuideSectionKind::Text, row: 1);
+
+    expect($sequence->fresh()->showsTimer())->toBeTrue()
+        ->and($notes->fresh()->showsTimer())->toBeFalse();
+
+    $c = Livewire::actingAs($user)->test(Builder::class, ['guide' => $guide])
+        ->assertSee('Timer on');
+
+    $c->call('toggleTimer', $sequence->id)->assertSee('Timer off');
+    expect($sequence->fresh()->showsTimer())->toBeFalse();
+
+    $c->call('toggleTimer', $notes->id);
+    expect($notes->fresh()->show_timer)->toBeTrue();
+
+    $c->call('toggleTimer', $sequence->id);
+    expect($sequence->fresh()->showsTimer())->toBeTrue();
+});
+
+test('toggleTimer cannot touch a section on another guide', function () {
+    $user = User::factory()->create();
+    $mine = makeChainGuide($user);
+    $theirs = addSection(makeChainGuide(User::factory()->create()));
+
+    Livewire::actingAs($user)->test(Builder::class, ['guide' => $mine])->call('toggleTimer', $theirs->id);
+
+    expect($theirs->fresh()->show_timer)->toBeTrue();
+});
+
+test('duplicating a guide keeps each section\'s timer setting', function () {
+    $user = User::factory()->create();
+    $guide = makeChainGuide($user);
+    addSection($guide)->update(['show_timer' => false]);
+
+    $copy = app(\App\Http\Services\UserGuideDuplicator::class)->duplicate($guide, $user);
+
+    expect($copy->sections()->first()->show_timer)->toBeFalse();
+});

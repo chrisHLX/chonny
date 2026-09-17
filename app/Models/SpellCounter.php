@@ -18,6 +18,7 @@ class SpellCounter extends Model
         self::MECHANISM_IMMUNITY_MECHANIC,
         self::MECHANISM_IMMUNITY_TALENT,
         self::MECHANISM_IMMUNITY_SCHOOL,
+        self::MECHANISM_BREAKS_CC,
         self::MECHANISM_USABLE_WHILE,
         self::MECHANISM_DODGE_PARRY,
     ];
@@ -36,6 +37,13 @@ class SpellCounter extends Model
     public const MECHANISM_IMMUNITY_TALENT = 'immunity_talent';
 
     public const MECHANISM_IMMUNITY_SCHOOL = 'immunity_school';
+
+    /**
+     * Breaks free of the CC after it lands, rather than preventing it: Gladiator's Medallion.
+     * High confidence, because it is a curated list (SpellCounterIndexer::CC_BREAK_SPELL_IDS),
+     * not the noisy "Allow While Stunned" attribute that usable_while reads.
+     */
+    public const MECHANISM_BREAKS_CC = 'breaks_cc';
 
     public const MECHANISM_USABLE_WHILE = 'usable_while';
 
@@ -61,6 +69,7 @@ class SpellCounter extends Model
         self::MECHANISM_IMMUNITY_TALENT => 'high',
         self::MECHANISM_IMMUNITY_SCHOOL => 'high',
         self::MECHANISM_DODGE_PARRY => 'high',
+        self::MECHANISM_BREAKS_CC => 'high',
         self::MECHANISM_USABLE_WHILE => 'low',
     ];
 
@@ -69,6 +78,7 @@ class SpellCounter extends Model
         self::MECHANISM_IMMUNITY_MECHANIC => 'Grants immunity',
         self::MECHANISM_IMMUNITY_TALENT => 'Grants immunity (with PvP talent)',
         self::MECHANISM_IMMUNITY_SCHOOL => 'School immunity',
+        self::MECHANISM_BREAKS_CC => 'Breaks free',
         self::MECHANISM_USABLE_WHILE => 'Usable while affected',
         self::MECHANISM_DODGE_PARRY => 'Dodge / parry chance',
     ];

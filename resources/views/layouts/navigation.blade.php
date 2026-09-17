@@ -168,7 +168,7 @@
         {{-- Training: the diagnostic and quiz side. Kept — it is still part of where the site is
              going — but collapsed by default so it does not compete with the arena side. Always
              open while you are on one of its own pages. --}}
-        @php $onTrainingPage = request()->routeIs('training') || request()->routeIs('modules.*') || request()->routeIs('collection.index'); @endphp
+        @php $onTrainingPage = request()->routeIs('training') || request()->routeIs('modules.*') || request()->routeIs('collection.index') || request()->routeIs('wow-quiz*'); @endphp
         <div x-data="{ open: $persist(false).as('nav_training_open') }">
             <button type="button" @click="open = !open"
                     class="w-full flex items-center justify-between px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest hover:text-ink-muted transition-colors">
@@ -179,6 +179,11 @@
                 </svg>
             </button>
             <div x-show="open || {{ $onTrainingPage ? 'true' : 'false' }}" x-cloak class="space-y-0.5">
+                <a href="{{ route('wow-quiz') }}" wire:navigate
+                   class="sidebar-item text-[12px] {{ request()->routeIs('wow-quiz*') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Class quizzes
+                </a>
                 @auth
                     <a href="{{ route_with_context('training') }}"
                        class="sidebar-item text-[12px] {{ request()->routeIs('training') ? 'active !text-accent' : '' }}">

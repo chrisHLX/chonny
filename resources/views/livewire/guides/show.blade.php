@@ -239,7 +239,7 @@
                             {!! $section->bodyHtml() !!}
                         </div>
                     @else
-                        @if ($data && $section->kind->tracksControl())
+                        @if ($data && $section->showsTimer())
                             <x-guides.metrics :metrics="$data['metrics']"/>
                         @endif
                         <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :owner-id="$guide->user_id"/>
