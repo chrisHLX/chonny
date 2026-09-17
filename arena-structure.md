@@ -682,3 +682,179 @@ just happened here, informally, for a single go rather than a full matchup. The
 next real test is the same exercise run deliberately: take one real matchup this
 player has played, write its full state table (Part 12), and check it against ten
 actual losses.
+
+## Part 15 — The Go as an Allocation Problem (player's critique, 2026-09-18)
+
+Written after the player reviewed a set of eight "implicit assumptions" extracted
+from his own eleven published guides. The extraction was mostly right and mostly
+shallow: it described the SHAPE of a plan without the economics that decide what
+goes in it. His handwritten critique is the correction, and it is the specification
+an automatic strategy generator has to satisfy. Everything below is his, restated;
+the "for the generator" lines are the implementation consequence.
+
+**Epistemic note first, because it affects how much weight the pattern deserves.**
+The go/next-go framing was read off the guides — but the guides were written in a
+builder whose layout is a vertical list of sections, so some of that structure is
+the tool's shape, not the game's. Treat the cycle as well-supported (Part 1 has it
+from direct experience), and treat "every guide comes in threes" as partly an
+artifact of the authoring surface.
+
+### 15.1 Commitment is conditional, not total
+
+"You set up, commit everything" is wrong as stated. If they trinket and answer
+early, continuing spends abilities into an answer that has already landed —
+**sending Combustion into Cloak of Shadows** is the canonical waste. A go therefore
+carries abort conditions, and the decision to continue is re-made at the moment
+their answer appears.
+
+*For the generator:* a generated go needs a "hold if" line per commitment step,
+derived from `spell_counters` — which already knows that their Cloak answers your
+magic burst and their Blessing of Protection answers your physical control.
+
+### 15.2 A chain is an economic trade, not a DR-avoidance puzzle
+
+The sharpest correction. Changing DR category is a *consequence*, not the rule. The
+real comparison is **control-seconds gained against cooldown spent**:
+
+> Blind is a 2-minute Disorient that lasts 6 seconds. Fear is a 6-second Disorient
+> with a 30-second cooldown, but it is dispellable. You shouldn't send a 2-minute
+> cooldown DR'd after a Fear unless the extra 3 seconds is genuinely needed.
+> Instead use it at full duration on the off-target as a peel — it might force a
+> trinket without a stun. Same concept with Trap and Scatter.
+
+So a chain that is DR-legal can still be badly played, and the correct move is
+sometimes to NOT chain: bank the expensive ability for full value elsewhere. Two
+modifiers on the trade: **dispellability** (a dispellable CC is worth less against a
+healer who is free), and **alignment** — spending a 2-minute cooldown is defensible
+when it lines up with another 2-minute cooldown.
+
+*For the generator:* the objective is not "a valid chain". It is value per cooldown
+spent — `effective_duration_after_DR ÷ cooldown` — with an explicit output for
+"hold this one, it is worth more as a peel". `CcChainBuilder` currently optimises
+the wrong thing; it is not wrong, it is answering a narrower question.
+
+### 15.3 The cadence is chosen, not observed, and being off it is a real cost
+
+Not merely "what's off cooldown now". You deliberately **align abilities onto a
+common tier** so several land in the same window:
+
+> You get a multiplier effect using all three in 30 seconds rather than DR'ing one
+> ability or school and then having spells out of sync.
+
+Scatter Shot's 30-second cooldown lining up with Maim's is the reason Scatter is
+worth bringing back in Jungle — "but most people don't play like this, they would
+use Scatter randomly."
+
+*For the generator:* pick the go period T that maximises how many of the comp's key
+abilities are simultaneously available, rather than emitting abilities as they come
+up. This is the LCM/harmonics idea, and 15.2 and 15.4 are what make it matter.
+
+### 15.4 Parallelism exists to deny the enemy a free global
+
+Simultaneity is not a presentation detail. Good players answer a go the moment they
+see the first piece of it:
+
+> If the Paladin is free when the Priest gets stunned, he can use Sanctuary or
+> Blessing of Protection on the Priest, or Sacrifice on the Warrior, to neutralise
+> the go.
+
+Hence Jungle vs Ret/War: the Feral stuns the Warrior and, **on the same global**,
+the Hunter scatters the Ret — because the two enemy DPS are stacked on the same
+target, so both are reachable and neither is left free to answer.
+
+*For the generator:* a go is a set of MOMENTS, each holding one action per player,
+and a plan can be scored by how many free globals it leaves the enemy team. The
+current single-list sequence cannot express this.
+
+### 15.5 A broken link costs the next go, not just this one
+
+> Once the Maim or Intimidation is used, if the follow-up CC is stopped it becomes
+> very hard to get pressure — now the Trap has to land with no stun on the Warrior
+> and no cross-CC on the Paladin. It also makes the next go fail if the healer
+> staggers out of the next chain, because Maim and Trap no longer line up.
+
+Failure is not a lost attempt, it is a **desynchronisation** that propagates: the
+abilities that were aligned (15.3) come off cooldown at different times from here
+on, so the comp's real go rate drops until it is deliberately re-aligned.
+
+*For the generator:* this is the reason a plan should state the alignment it depends
+on. Whether to model re-alignment explicitly is an open question.
+
+### 15.6 "Cross-CC" is an allocation, not a property of an ability
+
+> Cross-CC depends on what CC is left over, so we can't really categorise something
+> as cross-CC until it's looked at within the context of a comp.
+
+This contradicts the way `spells.chain_target` is curated. The measured healer-share
+from `CcTargetingAnalyzer` is a useful PRIOR, not a rule: what an ability is FOR in
+a given comp falls out of solving the allocation — healer CC first, kill-target
+control (15.7), whatever remains becomes cross-CC or a banked peel.
+
+DR is per target, so the allocation must also respect that Scatter and Trap share a
+category: fine on two different players, a wasted second application on one.
+
+*For the generator:* solve an assignment — abilities to roles — under DR-per-target,
+cooldown alignment and the 15.2 value rule. Do not read the role off the ability.
+
+### 15.7 Kill-target control has a second purpose: denying the heal
+
+The "Stun or Silence only, because everything else breaks on your damage" rule holds
+for HOLDING a target, and has a real exception class for finishing one:
+
+> Cycloning or Mind Controlling a target low — it either immunes them, or makes the
+> healer's next defensive land on themselves, because Mind Control causes them to
+> drop target.
+
+*For the generator:* keep the break-on-damage rule for control that must persist,
+and treat a low-health Cyclone/MC as a distinct "deny the save" action, not a
+mistake.
+
+### 15.8 Control has to cover the damage window, or the tail is free
+
+> Offensive spells last a certain amount of time — Avatar lasts 20 seconds, same
+> with Berserk. Some CC chains don't last that long, so there's a window for some
+> classes of high sustained damage.
+
+A 20-second amplification behind 9 seconds of control leaves 11 seconds of damage
+into a free healer. This is directly computable today: `BurstGuideBuilder` measures
+each spec's real go length, and the builder already computes control-seconds after
+DR.
+
+*For the generator, and as a guide-scoring metric:* coverage = control seconds ÷ go
+length. It is one of the few honest "is this plan sound" numbers available.
+
+### 15.9 The currency is the answer pool, not the trinket
+
+> Other players don't just die, unless AFK or lagged out — which makes me think the
+> trinket doesn't matter as much if they have no defensives left.
+
+Forcing a trinket is only valuable relative to what else they still hold. This is
+Part 4's ledger, sharpened: track the **remaining answers per enemy player**, and
+judge a go by how much of that pool it empties, or by whether it lands when the pool
+is empty.
+
+### 15.10 Kill target is a trade-off, not a lookup
+
+"Fewest answers" is one term among several:
+
+> Some classes are tanky, others hard to pin down. A good Mage can sometimes just
+> kite out damage versus melee, same with a Lock. But training them isn't a bad
+> thing — it makes it easier to land kicks and stops them from peeling. At the same
+> time the Rogue will die in a stun and can't kite that well.
+
+Three axes, and they pull against each other: how many answers they hold, how
+**pinnable** they are, and how much pressure on them **suppresses their peels**.
+Your own team's fragility is a fourth.
+
+*For the generator:* offer a ranked target list with the reason per candidate, never
+a single verdict.
+
+### 15.11 Positioning is missing entirely
+
+Flagged by the player as undiscussed and load-bearing: enemy DPS are usually stacked
+on the same target, which is what makes same-global cross-CC reachable at all. Cone
+and ground-targeted control, line of sight, and range all sit in this gap. Nothing
+in the data model represents position, and no part of this framework currently
+accounts for it.
+
+---
