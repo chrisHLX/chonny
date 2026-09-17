@@ -121,6 +121,8 @@ test('with an enemy team named, an enemy section draws from the whole team and c
     foreach ([enemySpec(), $mage] as $i => $spec) {
         UserGuideMember::create(['user_guide_id' => $guide->id, 'side' => UserGuideMemberSide::Enemy, 'position' => $i, 'spec_id' => $spec->id]);
     }
+    // Your own side too: the builder shows nothing past the comp picker until the guide has one.
+    UserGuideMember::create(['user_guide_id' => $guide->id, 'position' => 0, 'spec_id' => enemySpec('priest', 'discipline')->id]);
     $section = UserGuideSection::create(['user_guide_id' => $guide->id, 'kind' => UserGuideSectionKind::Defensives, 'title' => 'Watch out for', 'row' => 0, 'column' => 0]);
 
     $c = Livewire::actingAs($user)->test(Builder::class, ['guide' => $guide])

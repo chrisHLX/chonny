@@ -207,7 +207,7 @@
         {{-- The enemy team. Optional: a guide about your own opener is still a good guide, so
              this stays collapsed until asked for rather than presenting three empty slots as
              something you owe the page. --}}
-        @if ($guide->maxEnemies() > 0)
+        @if ($guide->maxEnemies() > 0 && $guide->hasRoster())
             <div class="linear-card p-4 mb-6" x-data="{ open: {{ $this->enemies->isNotEmpty() ? 'true' : 'false' }} }">
                 <div class="flex items-baseline justify-between gap-4">
                     <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Playing against</h2>
@@ -247,7 +247,7 @@
          to do (pick a spec), and on a phone the spec slots were below the fold. Now one line
          under the roster, collapsed on a draft and open once published, when "who can read
          this" is the question that matters. The summary says what's set without opening it. --}}
-    @if ($this->isAuthor)
+    @if ($this->isAuthor && $guide->hasRoster())
         @php
             $editSummary = match (true) {
                 $guide->friends_can_edit && $guide->guild_can_edit => 'Friends and guild can edit',
@@ -569,6 +569,25 @@
         </div>
     @endif
 
+    {{-- Everything past the comp waits for the comp -------------------------------
+         With no spec picked, the sections, the sharing panel and the enemy team were all on
+         screen and all useless: the palette behind "+ Add an ability" can only say "add a spec
+         above and its abilities appear here", so roughly eight things were clickable and exactly
+         one of them did anything. Real visitors did get lost this way — five picked a full comp
+         and only one ever added an ability (2026-09-17). One thing at a time: pick the comp, and
+         the rest of the page arrives with a kit behind it. --}}
+    @unless ($guide->hasRoster())
+        <div class="linear-card p-8 text-center">
+            <x-mc-icon name="icon-compass" class="w-8 h-8 mx-auto text-gold/40"/>
+            <p class="text-[14px] text-ink mt-3">
+                {{ $guide->isClassGuide() ? 'Pick the spec above to start.' : 'Pick a spec above to start.' }}
+            </p>
+            <p class="text-[12.5px] text-ink-subtle mt-1.5 max-w-md mx-auto">
+                Its abilities appear here, and you build the plan by putting them in order.
+            </p>
+        </div>
+    @else
+
     {{-- Sections ------------------------------------------------------------------ --}}
     @forelse ($this->rows as $rowIndex => $rowSections)
         @php
@@ -728,12 +747,34 @@
                         <div class="flex items-center gap-2 mt-3">
                         <button type="button" wire:click="togglePalette({{ $section->id }})"
                                 wire:loading.attr="disabled" wire:target="togglePalette({{ $section->id }})"
-                                class="btn-ghost w-full text-[12px]">
-                            <span wire:loading.remove wire:target="togglePalette({{ $section->id }})">
-                                {{ $openPaletteFor === $section->id ? 'Close' : '+ Add an ability' }}
+                                class="btn-ghost w-full text-[12px] inline-flex items-center justify-center gap-1.5">
+                            <span wire:loading.remove wire:target="togglePalette({{ $section->id }})"
+                                  class="inline-flex items-center gap-1.5">
+                                @if ($openPaletteFor === $section->id)
+                                    Close
+                                @else
+                                    <x-mc-icon name="icon-scroll" class="w-3.5 h-3.5"/> Add an ability
+                                @endif
                             </span>
                             <span wire:loading wire:target="togglePalette({{ $section->id }})">Loading kit&hellip;</span>
                         </button>
+
+                        {{-- A starting point for an empty sequence. Four real steps you can change
+                             beat an empty page: the abilities are this comp's own CC and the order
+                             comes from CcChainBuilder's diminishing-returns rules, so it is a
+                             draft to argue with rather than an answer. --}}
+                        @if ($section->kind === UserGuideSectionKind::Sequence && empty($data['steps']))
+                            <button type="button" wire:click="suggestOpener({{ $section->id }})"
+                                    wire:loading.attr="disabled" wire:target="suggestOpener({{ $section->id }})"
+                                    title="Fills this section with a control opener from your comp — change anything you like"
+                                    class="btn-secondary w-full text-[12px] inline-flex items-center justify-center gap-1.5">
+                                <span wire:loading.remove wire:target="suggestOpener({{ $section->id }})"
+                                      class="inline-flex items-center gap-1.5">
+                                    <x-mc-icon name="icon-lightning-circle" class="w-3.5 h-3.5"/> Suggest an opener
+                                </span>
+                                <span wire:loading wire:target="suggestOpener({{ $section->id }})">Building&hellip;</span>
+                            </button>
+                        @endif
                         </div>
 
                         {{-- `search` is scoped to this palette's own x-data so two open palettes
@@ -785,6 +826,7 @@
             @endforeach
         </div>
     </div>
+    @endunless
 
     <livewire:spell-detail-modal/>
 </div>

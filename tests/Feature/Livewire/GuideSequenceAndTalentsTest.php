@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserGuideBlockType;
 use App\Enums\UserGuideSectionKind;
 use App\Enums\UserGuideType;
 use App\Http\Services\TalentSelectionService;
@@ -328,8 +329,9 @@ test('a defensives section in a class guide inherits the guide opponent, and in 
  */
 
 test('an empty comp slot renders its own index into the picker button', function () {
+    // One slot filled, so the enemy team card is on screen at all (it waits for a comp, like the
+    // rest of the page) — the remaining team slots and every enemy slot are the empty ones here.
     $f = guideFixture();
-    $f['member']->delete();
 
     $html = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])->html();
 
@@ -342,10 +344,10 @@ test('an empty comp slot renders its own index into the picker button', function
     // Three of your own slots and three enemy ones, each numbered from 0 on its own side —
     // which is exactly why position is unique per (guide, SIDE) rather than per guide.
 
-    expect(array_slice($m[1], 0, 3))->toBe(['0', '1', '2'])
-        ->and(array_slice($m[2], 0, 3))->toBe(['team', 'team', 'team'])
-        ->and(array_slice($m[1], 3, 3))->toBe(['0', '1', '2'])
-        ->and(array_slice($m[2], 3, 3))->toBe(['enemy', 'enemy', 'enemy']);
+    expect(array_slice($m[1], 0, 2))->toBe(['1', '2'])
+        ->and(array_slice($m[2], 0, 2))->toBe(['team', 'team'])
+        ->and(array_slice($m[1], 2, 3))->toBe(['0', '1', '2'])
+        ->and(array_slice($m[2], 2, 3))->toBe(['enemy', 'enemy', 'enemy']);
 });
 
 test('a filled comp slot renders its own index into the talents and clear buttons', function () {
@@ -468,8 +470,40 @@ test('the accessibility auto-cast button is never offered as an ability', functi
  * the thing that actually regresses if someone moves this back behind an x-show.
  */
 
-test('no palette is built until a section is opened', function () {
+test('only the open section builds a palette, and closing one stays closed', function () {
     $f = guideFixture();
+    $open = UserGuideSection::create([
+        'user_guide_id' => $f['guide']->id,
+        'kind' => UserGuideSectionKind::Sequence,
+        'row' => 0, 'column' => 0, 'title' => 'Opener',
+    ]);
+    $other = UserGuideSection::create([
+        'user_guide_id' => $f['guide']->id,
+        'kind' => UserGuideSectionKind::Sequence,
+        'row' => 1, 'column' => 0, 'title' => 'Second',
+    ]);
+
+    $component = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()]);
+
+    // The first empty sequence opens itself (see Builder::autoOpenFirstPalette) — but only that
+    // one, which is the invariant this test exists for.
+    expect($component->get('openPaletteFor'))->toBe($open->id);
+    expect($component->html())->not->toContain('addSpell('.$other->id.',');
+
+    // Clicking it closes it, and it must STAY closed — an auto-open that fires again on the next
+    // round trip would fight the author.
+    $component->call('togglePalette', $open->id);
+    expect($component->get('openPaletteFor'))->toBeNull();
+    expect($component->html())->not->toContain('addSpell(');
+
+    $component->call('togglePalette', $open->id);
+    expect($component->get('openPaletteFor'))->toBe($open->id);
+});
+
+test('the abilities open by themselves once there is a comp, not before', function () {
+    $f = guideFixture();
+    $f['member']->delete();
+
     $section = UserGuideSection::create([
         'user_guide_id' => $f['guide']->id,
         'kind' => UserGuideSectionKind::Sequence,
@@ -478,15 +512,56 @@ test('no palette is built until a section is opened', function () {
 
     $component = Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()]);
 
+    // Nothing to draw abilities from yet, so nothing opens — and the page says what to do instead
+    // of showing sections whose only button reports that the comp is empty.
     expect($component->get('openPaletteFor'))->toBeNull();
-    expect($component->html())->not->toContain('addSpell(');
+    expect($component->html())->toContain('Pick a spec above to start');
+    expect($component->html())->not->toContain('Add a section');
 
-    $component->call('togglePalette', $section->id);
+    $component->set('pickingSlot', 0)->call('setMember', $f['spec']->id);
+
     expect($component->get('openPaletteFor'))->toBe($section->id);
+    expect($component->html())->toContain('Add a section');
+});
 
-    // Clicking the same section again closes it rather than rebuilding.
-    $component->call('togglePalette', $section->id);
-    expect($component->get('openPaletteFor'))->toBeNull();
+test('a suggested opener never overwrites a section that already has steps', function () {
+    $f = guideFixture();
+    $section = UserGuideSection::create([
+        'user_guide_id' => $f['guide']->id,
+        'kind' => UserGuideSectionKind::Sequence,
+        'row' => 0, 'column' => 0, 'title' => 'Opener',
+    ]);
+    UserGuideBlock::create([
+        'user_guide_section_id' => $section->id,
+        'position' => 1,
+        'block_type' => UserGuideBlockType::Spell,
+        'payload' => ['external_spell_id' => 408, 'source_spec_id' => $f['spec']->id],
+    ]);
+
+    Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->call('suggestOpener', $section->id);
+
+    expect($section->blocks()->count())->toBe(1);
+});
+
+test("a suggested opener cannot be pushed into another author's guide", function () {
+    $f = guideFixture();
+
+    $stranger = UserGuide::create([
+        'user_id' => User::factory()->create()->id,
+        'type' => UserGuideType::Comp,
+        'status' => 'draft', 'visibility' => 'invited', 'title' => 'Theirs',
+    ]);
+    $theirSection = UserGuideSection::create([
+        'user_guide_id' => $stranger->id,
+        'kind' => UserGuideSectionKind::Sequence,
+        'row' => 0, 'column' => 0, 'title' => 'Theirs',
+    ]);
+
+    Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
+        ->call('suggestOpener', $theirSection->id);
+
+    expect($theirSection->blocks()->count())->toBe(0);
 });
 
 test('only one section palette is open at a time', function () {
@@ -526,9 +601,9 @@ test('the palette is its own component, and only people who can edit the guide c
     $f = guideFixture();
     $section = UserGuideSection::create(['user_guide_id' => $f['guide']->id, 'kind' => UserGuideSectionKind::Sequence, 'row' => 0, 'column' => 0, 'title' => 'A']);
 
-    // Mounted as a child, so the builder's own re-renders (adding a step) leave it alone.
+    // Mounted as a child, so the builder's own re-renders (adding a step) leave it alone. Open
+    // from mount here, since this is the first empty sequence — see autoOpenFirstPalette().
     Livewire::actingAs($f['user'])->test(Builder::class, ['guide' => $f['guide']->fresh()])
-        ->call('togglePalette', $section->id)
         ->assertSeeLivewire(\App\Livewire\Guides\Palette::class);
 
     Livewire::actingAs($f['user'])->test(\App\Livewire\Guides\Palette::class, ['sectionId' => $section->id])->assertOk();

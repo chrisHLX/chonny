@@ -67,6 +67,22 @@ function makeChainGuide(User $user): UserGuide
     return UserGuide::create(['user_id' => $user->id, 'title' => 'Test guide']);
 }
 
+/**
+ * The same guide with a spec in it. The builder shows nothing but the comp picker until there is
+ * one, so any test asserting on SECTION markup needs a comp — a guide holding sections but no spec
+ * is no longer a state the UI can reach. Kept separate from makeChainGuide() because several tests
+ * are specifically about the empty-comp state.
+ */
+function withComp(UserGuide $guide): UserGuide
+{
+    UserGuideMember::firstOrCreate(
+        ['user_guide_id' => $guide->id, 'side' => 'team', 'position' => 0],
+        ['spec_id' => guideTestSpec()->id],
+    );
+
+    return $guide->fresh();
+}
+
 function addSection(UserGuide $guide, UserGuideSectionKind $kind = UserGuideSectionKind::Sequence, int $row = 0, int $column = 0): UserGuideSection
 {
     return UserGuideSection::create([
@@ -711,7 +727,7 @@ test('a rename or body edit that does change something still writes', function (
 });
 
 test('the delete prompt only mentions steps for a section that has them', function () {
-    $guide = makeChainGuide(User::factory()->create());
+    $guide = withComp(makeChainGuide(User::factory()->create()));
     addSection($guide, UserGuideSectionKind::Text, row: 0)->update(['title' => 'Opener']);
     addSection($guide, UserGuideSectionKind::Sequence, row: 1)->update(['title' => 'The go']);
 
@@ -722,7 +738,7 @@ test('the delete prompt only mentions steps for a section that has them', functi
 });
 
 test('a row is keyed by the sections in it, so a reorder moves cards instead of rewriting them', function () {
-    $guide = makeChainGuide(User::factory()->create());
+    $guide = withComp(makeChainGuide(User::factory()->create()));
     $a = addSection($guide, UserGuideSectionKind::Text, row: 0);
     $b = addSection($guide, UserGuideSectionKind::Sequence, row: 1);
 
@@ -738,7 +754,7 @@ test('a row is keyed by the sections in it, so a reorder moves cards instead of 
 
 test('a sequence\'s timer can be switched off and on, but a notes section has none', function () {
     $user = User::factory()->create();
-    $guide = makeChainGuide($user);
+    $guide = withComp(makeChainGuide($user));
     $sequence = addSection($guide);
     $notes = addSection($guide, UserGuideSectionKind::Text, row: 1);
 

@@ -45,9 +45,23 @@
             </button>
         @endif
     @else
+        {{-- An empty slot reads as a slot: a placeholder the size and shape of the spec icon that
+             will replace it, so the row shows what it is waiting for rather than offering a bare
+             "+". Same footprint as the filled state, so nothing shifts when it fills. --}}
         <button type="button" wire:click="openMemberPicker({{ $position }}, '{{ $side }}')"
-                class="w-full h-full min-h-[52px] flex items-center justify-center gap-2 text-[13px] text-ink-subtle hover:text-gold transition-colors">
-            <span class="text-[16px] leading-none">+</span> Add a spec
+                wire:loading.attr="disabled" wire:target="openMemberPicker({{ $position }}, '{{ $side }}')"
+                class="group w-full h-full min-h-[52px] flex items-center gap-2.5 text-left transition-colors">
+            <span class="w-9 h-9 shrink-0 rounded border border-dashed border-line-strong bg-surface-3/60
+                         flex items-center justify-center text-ink-subtle
+                         group-hover:border-gold group-hover:text-gold transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14"/>
+                </svg>
+            </span>
+            <span class="min-w-0">
+                <span class="block text-[13px] font-medium text-ink-muted group-hover:text-gold transition-colors">Add a spec</span>
+                <span class="block text-[11px] text-ink-subtle">Choose a class</span>
+            </span>
         </button>
     @endif
 </div>

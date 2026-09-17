@@ -7,6 +7,7 @@ use App\Enums\UserGuideMemberSide;
 use App\Enums\UserGuideSectionKind;
 use App\Enums\UserGuideStatus;
 use App\Enums\UserGuideVisibility;
+use App\Http\Services\CcChainBuilder;
 use App\Http\Services\CharacterTalentResolver;
 use App\Http\Services\TalentSelectionService;
 use App\Http\Services\UserGuideChainService;
@@ -24,6 +25,7 @@ use App\Models\UserGuideMember;
 use App\Models\UserGuideSection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 /**
@@ -109,6 +111,10 @@ class Builder extends Component
      */
     public ?int $openPaletteFor = null;
 
+    /** Whether autoOpenFirstPalette() has already fired on this page — see that method. */
+    #[Locked]
+    public bool $paletteAutoOpened = false;
+
     /** Open a section's palette, or close it if it is already the open one. */
     public function togglePalette(int $sectionId): void
     {
@@ -136,6 +142,51 @@ class Builder extends Component
         }
 
         PageViewEvent::log('guide_builder');
+
+        $this->autoOpenFirstPalette();
+    }
+
+    /**
+     * Open the first empty sequence section's palette by itself, once per page.
+     *
+     * A plan whose comp is picked but has no steps used to land on a page where the next move was
+     * a button labelled "+ Add an ability", and the panel behind it is the only thing on screen
+     * that does anything yet. Measured on the real traffic from the 2026-09-17 Reddit post: five
+     * visitors picked a full three-spec comp, and exactly one of them added a single ability —
+     * one of them sat on a finished comp for fifteen minutes and added nothing. So the abilities
+     * open themselves the moment there is a comp to draw them from.
+     *
+     * ONCE PER PAGE, guarded by $paletteAutoOpened: closing it must stay closed, and a second
+     * auto-open on the next comp pick would fight the author. It costs the ~270ms of one palette
+     * build (see $openPaletteFor) at the exact moment that work is what the author wants.
+     */
+    private function autoOpenFirstPalette(): void
+    {
+        if ($this->paletteAutoOpened || $this->openPaletteFor !== null || ! $this->guide->hasRoster()) {
+            return;
+        }
+
+        $section = $this->firstEmptyOwnSequence();
+
+        if ($section) {
+            $this->openPaletteFor = $section->id;
+            $this->paletteAutoOpened = true;
+        }
+    }
+
+    /**
+     * The first section that draws on your OWN comp and has nothing in it yet — where a new plan's
+     * first step goes. Null once every sequence section has steps, or when the only sections are
+     * notes or the enemy's side.
+     */
+    private function firstEmptyOwnSequence(): ?UserGuideSection
+    {
+        return $this->guide->sections()
+            ->where('kind', UserGuideSectionKind::Sequence->value)
+            ->withCount('blocks')
+            ->orderBy('row')->orderBy('column')
+            ->get()
+            ->firstWhere('blocks_count', 0);
     }
 
     #[Computed]
@@ -467,6 +518,10 @@ class Builder extends Component
         $this->pickingSlot = null;
         $this->pickingSide = UserGuideMemberSide::Team->value;
         $this->refreshGuide();
+
+        // The first spec is what turns a blank plan into one with a kit behind it, so the
+        // abilities appear with it rather than waiting behind another button.
+        $this->autoOpenFirstPalette();
     }
 
     /**
@@ -814,6 +869,110 @@ class Builder extends Component
 
         $this->touchSection($section);
         $this->refreshGuide();
+    }
+
+    /**
+     * Fill an empty sequence with a DR-valid control opener drawn from the comp's own CC.
+     *
+     * A starting point, not an answer: editing four real steps is a far easier first move than
+     * facing an empty section, and every step is a normal block the author can reorder, remove or
+     * replace. Nothing is invented — the abilities come from the same palette the section offers,
+     * and the ORDER comes from CcChainBuilder, which is the piece of this codebase that already
+     * knows control cannot repeat a diminishing-returns category back to back. It had been dormant
+     * since the Synergies tab stopped sequencing (2026-08-16); this is its one live caller.
+     *
+     * OWN SIDE ONLY, and only into a section with nothing in it: suggesting steps into the
+     * enemy's abilities would be suggesting what the OPPONENT presses, and appending to a written
+     * sequence would be editing someone's plan rather than starting one.
+     */
+    public function suggestOpener(int $sectionId): void
+    {
+        $section = $this->ownedSection($sectionId);
+
+        if (! $section || $section->kind !== UserGuideSectionKind::Sequence || $section->blocks()->exists()) {
+            return;
+        }
+
+        $chain = app(CcChainBuilder::class)->buildChain($this->openerCandidates($section));
+        $position = 0;
+
+        foreach ($chain as $step) {
+            if ($position >= self::SUGGESTED_OPENER_STEPS) {
+                break;
+            }
+
+            // Skip a diminished step rather than stopping at it: a suggestion that halves its own
+            // control would teach the mistake this builder exists to show you, but ending there
+            // would also throw away the fresh categories further down the chain — a comp whose
+            // third-best control repeats a category was getting a two-step opener while an
+            // untouched Silence sat right behind it. Dropping a step only ever REDUCES a
+            // category's count, so the steps kept after it stay undiminished.
+            if ($step['dr_percentage'] < 100) {
+                continue;
+            }
+
+            UserGuideBlock::create([
+                'user_guide_section_id' => $section->id,
+                'position' => ++$position,
+                'block_type' => UserGuideBlockType::Spell,
+                'payload' => [
+                    'external_spell_id' => $step['spell']->spell_id,
+                    'source_spec_id' => $step['spell']->guide_source_spec_id,
+                ],
+                'added_by_user_id' => auth()->id(),
+            ]);
+        }
+
+        if ($position > 0) {
+            $this->openPaletteFor = $section->id;
+            $this->touchSection($section);
+        }
+
+        $this->refreshGuide();
+    }
+
+    /** How many steps a suggested opener lands — enough to be a plan, short enough to edit. */
+    private const SUGGESTED_OPENER_STEPS = 4;
+
+    /**
+     * Every control ability the comp can press, as Spell models for CcChainBuilder, one per
+     * ability and carrying the spec it came from.
+     *
+     * Two things ride along on the model in memory, never saved: guide_source_spec_id, because a
+     * step has to record its own caster (resolving every step against one spec produces confident,
+     * wrong cooldowns), and the RESOLVED dr_category, so a talent-conditional ability sequences by
+     * where it will actually land for this build rather than by its base column — Holy Word:
+     * Chastise is an Incapacitate until Censure is talented, and a Stun after.
+     */
+    private function openerCandidates(UserGuideSection $section): \Illuminate\Support\Collection
+    {
+        $seen = [];
+        $pool = collect();
+
+        foreach (app(UserGuideChainService::class)->palette($section) as $paletteSpec) {
+            foreach ($paletteSpec['groups'] as $group) {
+                foreach ($group as $entry) {
+                    $category = $entry->drCategory();
+                    $spell = $entry['spell'];
+
+                    // Skips the cooldown and interrupt groups, and a stealth-only ability's plain
+                    // twin, which deliberately carries no category and so cannot be sequenced.
+                    if ($category === null || isset($seen[$spell->id])) {
+                        continue;
+                    }
+
+                    $seen[$spell->id] = true;
+
+                    $candidate = clone $spell;
+                    $candidate->dr_category = $category;
+                    $candidate->guide_source_spec_id = $paletteSpec['spec']->id;
+
+                    $pool->push($candidate);
+                }
+            }
+        }
+
+        return $pool;
     }
 
     public function removeBlock(int $blockId): void

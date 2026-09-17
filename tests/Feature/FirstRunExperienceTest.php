@@ -26,6 +26,18 @@ function firstRunUser(string $username = 'newbie'): User
     return $user;
 }
 
+function firstRunSpec(): \App\Models\Specialization
+{
+    $game = \App\Models\Game::firstOrCreate(['slug' => 'wow'], ['name' => 'World of Warcraft']);
+    \App\Models\Patch::firstOrCreate(['game_id' => $game->id, 'build_version' => '1.0.0-test'], ['is_current' => true]);
+    $class = \App\Models\GameClass::firstOrCreate(['slug' => 'druid'], ['game_id' => $game->id, 'name' => 'Druid']);
+
+    return \App\Models\Specialization::firstOrCreate(
+        ['class_id' => $class->id, 'slug' => 'feral'],
+        ['name' => 'Feral', 'external_spec_id' => 103],
+    );
+}
+
 function firstRunGuide(User $owner, array $attrs = []): UserGuide
 {
     $guide = UserGuide::create(array_merge(['user_id' => $owner->id, 'title' => 'Jungle opener'], $attrs));
@@ -118,13 +130,31 @@ test('an unconfirmed account reaches Home on production, with a banner instead o
 
 // ------------------------------------------------------------------ the builder's first screen
 
-test('the builder shows the comp before the sharing settings, and says where to start', function () {
+test('an empty guide asks for the comp and shows nothing else', function () {
+    $user = firstRunUser();
+    $guide = firstRunGuide($user);
+
+    // Sections, sharing and the enemy team all wait for a comp: until there is one, the palette
+    // behind "+ Add an ability" can only report that the comp is empty, so offering it (and seven
+    // other controls) is offering choices that do nothing. Real visitors got stuck exactly here —
+    // five picked a full comp on 2026-09-17 and only one ever added an ability.
+    Livewire::actingAs($user)->test(Builder::class, ['guide' => $guide])
+        ->assertSee('Start here')
+        ->assertSee('Pick a spec above to start')
+        ->assertDontSee('Sharing &amp; credit', false)
+        ->assertDontSee('Add a section')
+        ->assertDontSee('Playing against');
+});
+
+test('once a spec is picked the rest of the page arrives, comp first and sharing after', function () {
     $user = firstRunUser();
     $guide = firstRunGuide($user);
 
     Livewire::actingAs($user)->test(Builder::class, ['guide' => $guide])
+        ->set('pickingSlot', 0)
+        ->call('setMember', firstRunSpec()->id)
         ->assertSeeInOrder(['The comp', 'Sharing &amp; credit', 'Who can edit this', 'Written as'], false)
-        ->assertSee('Start here')
+        ->assertSee('Add a section')
         // The collapsed summary says what is set without opening the panel.
         ->assertSee('Only you can edit')
         ->assertSee('Not signed');
