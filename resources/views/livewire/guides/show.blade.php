@@ -145,10 +145,29 @@
                     <p class="text-[10px] uppercase tracking-[0.13em] text-ink-subtle mb-2">Written as</p>
                     <x-battlenet.character-summary :character="$author"/>
                 </div>
-                <button type="button" wire:click="toggleAuthorBuild" class="btn-ghost shrink-0 self-start">
+                <button type="button" wire:click="toggleAuthorBuild"
+                        wire:loading.attr="disabled" wire:target="toggleAuthorBuild"
+                        class="btn-ghost shrink-0 self-start inline-flex items-center gap-2">
+                    <svg wire:loading wire:target="toggleAuthorBuild" class="w-3.5 h-3.5 animate-spin text-gold" viewBox="0 0 24 24" fill="none">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                        <path class="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z"/>
+                    </svg>
                     {{ $showAuthorBuild ? 'Hide gear & talents' : 'Show gear & talents' }}
                 </button>
             </div>
+
+            {{-- The talent calculator is a large render, so opening this takes a moment. Say so
+                 while it loads rather than leaving the click looking ignored. --}}
+            @unless ($showAuthorBuild)
+                <div wire:loading.flex wire:target="toggleAuthorBuild"
+                     class="mt-5 pt-5 border-t border-line items-center gap-3 text-[12.5px] text-ink-muted">
+                    <svg class="w-4 h-4 animate-spin text-gold" viewBox="0 0 24 24" fill="none">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                        <path class="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z"/>
+                    </svg>
+                    Loading gear and talents&hellip;
+                </div>
+            @endunless
 
             @if ($showAuthorBuild)
                 <div class="mt-5 pt-5 border-t border-line space-y-6">

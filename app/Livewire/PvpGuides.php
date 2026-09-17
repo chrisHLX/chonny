@@ -55,13 +55,14 @@ class PvpGuides extends Component
      * to the default rather than rendering an empty page.
      */
     public const TABS = [
-        'kit' => ['label' => 'Class Kit', 'blurb' => 'The talents top-rated players run, and which picks pull their weight.'],
+        // Offensive Kit first: it is the default tab (since 2026-09-17), so it leads the tab bar.
         'burst' => ['label' => 'Offensive Kit', 'blurb' => 'How long your go lasts, how many globals fit in it, and the order to press them.'],
+        'kit' => ['label' => 'Class Kit', 'blurb' => 'The most commonly picked talents and abilities used.'],
         'spells' => ['label' => 'Spells', 'blurb' => 'Every talent and PvP talent, with cooldowns adjusted for your build.'],
         'counters' => ['label' => 'Counters', 'blurb' => 'Your crowd control, and what the other team can use to answer it.'],
     ];
 
-    public const DEFAULT_TAB = 'kit';
+    public const DEFAULT_TAB = 'burst';
 
     /**
      * The spec an unnamed /pvp-guides lands on when it exists (2026-09-07, direct request:

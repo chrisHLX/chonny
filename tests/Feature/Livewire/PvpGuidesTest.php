@@ -55,6 +55,11 @@ test('only the active tab mounts a panel, and switching swaps which one', functi
 
     // Livewire names each child component in the rendered markup, so "which panel is mounted"
     // is directly observable rather than inferred.
+    // Lands on Offensive Kit (the default since 2026-09-17), so neither of these panels is mounted.
+    expect($component->get('tab'))->toBe('burst');
+    expect($component->html())->not->toContain('class-guide')->not->toContain('spell-explorer');
+
+    $component->call('selectTab', 'kit');
     expect($component->html())->toContain('class-guide')->not->toContain('spell-explorer');
 
     $component->call('selectTab', 'spells');

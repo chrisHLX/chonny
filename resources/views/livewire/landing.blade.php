@@ -13,11 +13,11 @@
 
         <p class="text-[11px] uppercase tracking-[0.14em] text-gold mb-2">World of Warcraft arena</p>
         <h1 class="font-display text-[28px] sm:text-[38px] text-ink leading-tight max-w-3xl">
-            Plan your arena games, and see what other players are planning
+            Plan your arena games. Share, analyse, climb.
         </h1>
         <p class="text-[14px] text-ink-muted mt-3 max-w-2xl">
-            Build a comp, then write the plan: the opener, the go, and the defensives you need them to
-            spend. Cooldowns and diminishing returns come from the game's own spell data.
+            Build a comp, then write the plan: the opener, the go, and the defensives to force.
+            Spells and talents maintained daily.
         </p>
 
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 mt-6">
