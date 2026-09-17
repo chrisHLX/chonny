@@ -170,6 +170,11 @@ class BattlenetCharacterSyncService
     {
         return $account->characters()
             ->where('level', '>=', (int) config('services.battlenet.detail_min_level', 70))
+            // Highest level and item level first, so the characters My Characters shows land first.
+            ->reorder()
+            ->orderByDesc('level')
+            ->orderByRaw('item_level is null')
+            ->orderByDesc('item_level')
             ->get();
     }
 

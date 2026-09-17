@@ -3,19 +3,16 @@
         <a href="{{ route('characters.index') }}" wire:navigate
            class="text-[12px] text-ink-subtle hover:text-gold transition-colors">&larr; Your characters</a>
 
-        <div class="linear-card p-5 mt-3 mb-6">
+        <div class="linear-card p-5 mt-3 mb-6 transition-opacity" wire:loading.class="opacity-60" wire:target="refresh">
             <div class="flex items-start gap-4">
                 <x-battlenet.character-summary :character="$character" class="flex-1 min-w-0"/>
 
                 <div class="flex flex-col items-end gap-1 shrink-0 text-right">
-                    <button type="button" wire:click="refresh" wire:loading.attr="disabled" wire:target="refresh"
-                            class="btn-ghost">
-                        <span wire:loading.remove wire:target="refresh">Refresh</span>
-                        <span wire:loading wire:target="refresh">Refreshing&hellip;</span>
-                    </button>
-                    @if ($character->synced_at)
-                        <span class="text-[11px] text-ink-subtle">updated {{ $character->synced_at->diffForHumans() }}</span>
-                    @endif
+                    <x-battlenet.refresh-button target="refresh" action="refresh" class="btn-ghost"/>
+                    <span class="text-[11px] text-ink-subtle" wire:loading.remove wire:target="refresh">
+                        @if ($character->synced_at) updated {{ $character->synced_at->diffForHumans() }} @endif
+                    </span>
+                    <span class="text-[11px] text-gold" wire:loading wire:target="refresh">Fetching from Blizzard&hellip;</span>
                 </div>
             </div>
 

@@ -22,7 +22,10 @@ class Characters extends Component
     /** How long after a link the page keeps polling for queued syncs to land. */
     private const POLL_WINDOW_MINUTES = 10;
 
-    /** Whether characters below the detail-sync level are listed too. */
+    /** At most this many characters are listed until the player asks for the rest. */
+    public const SHOWN_LIMIT = 9;
+
+    /** Whether the characters left out of the default list are listed too. */
     public bool $showLowLevel = false;
 
     public function mount(): void
@@ -38,7 +41,11 @@ class Characters extends Component
             ->first();
     }
 
-    /** Level first, then the best exp — the order a player scans their own roster in. */
+    /**
+     * Max-level characters only, and when there are more than SHOWN_LIMIT of them, the ones with
+     * the highest item level — an account's alts rarely matter for PvP. "Show more" lists
+     * everything, in the old level-then-exp order.
+     */
     #[Computed]
     public function characters()
     {
@@ -46,22 +53,39 @@ class Characters extends Component
             return collect();
         }
 
-        $min = $this->minLevel();
+        if ($this->showLowLevel) {
+            return $this->account->characters
+                ->sortBy([
+                    fn ($a, $b) => $b->level <=> $a->level,
+                    fn ($a, $b) => ($b->item_level ?? 0) <=> ($a->item_level ?? 0),
+                    fn ($a, $b) => ($b->bestExp()['rating'] ?? 0) <=> ($a->bestExp()['rating'] ?? 0),
+                    fn ($a, $b) => strcmp($a->name, $b->name),
+                ])
+                ->values();
+        }
 
         return $this->account->characters
-            ->filter(fn (BattlenetCharacter $c) => $this->showLowLevel || $c->level >= $min)
+            ->filter(fn (BattlenetCharacter $c) => $c->level >= $this->maxLevel())
             ->sortBy([
-                fn ($a, $b) => $b->level <=> $a->level,
+                fn ($a, $b) => ($b->item_level ?? 0) <=> ($a->item_level ?? 0),
                 fn ($a, $b) => ($b->bestExp()['rating'] ?? 0) <=> ($a->bestExp()['rating'] ?? 0),
                 fn ($a, $b) => strcmp($a->name, $b->name),
             ])
+            ->take(self::SHOWN_LIMIT)
             ->values();
     }
 
+    /** How many characters the default list leaves out. */
     #[Computed]
     public function hiddenCount(): int
     {
-        return $this->account ? $this->account->characters->where('level', '<', $this->minLevel())->count() : 0;
+        if (! $this->account) {
+            return 0;
+        }
+
+        $shown = min(self::SHOWN_LIMIT, $this->account->characters->where('level', '>=', $this->maxLevel())->count());
+
+        return $this->account->characters->count() - $shown;
     }
 
     /** Whether queued syncs are plausibly still landing — see POLL_WINDOW_MINUTES. */
@@ -93,10 +117,16 @@ class Characters extends Component
     {
         return view('livewire.battlenet.characters', [
             'configured' => app(BattlenetClient::class)->isConfigured(),
+            'maxLevel' => $this->maxLevel(),
         ])->layout('layouts.app', [
             'title' => 'Your characters | MindCollector',
             'description' => 'Your linked Battle.net characters — exp, ratings, gear and talents.',
         ]);
+    }
+
+    private function maxLevel(): int
+    {
+        return (int) config('services.battlenet.max_level', 90);
     }
 
     private function minLevel(): int

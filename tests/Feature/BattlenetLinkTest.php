@@ -632,3 +632,28 @@ test('a comp slot can take the signing character\'s real talent build', function
         ])
         ->and($build->pvpChoices()->pluck('pvp_talent_id')->all())->toBe([$t['pvp']->id]);
 });
+
+test('my characters lists max-level characters only, the nine with the highest item level', function () {
+    bnetWorld();
+    $user = User::factory()->create();
+    foreach (range(1, 11) as $i) {
+        ownedCharacter($user->fresh(), ['name' => "Main{$i}", 'item_level' => 250 + $i, 'blizzard_character_id' => 1000 + $i]);
+    }
+    ownedCharacter($user->fresh(), ['name' => 'Alt', 'level' => 85, 'item_level' => 300, 'blizzard_character_id' => 2000]);
+
+    $component = \Livewire\Livewire::actingAs($user)->test(\App\Livewire\Battlenet\Characters::class);
+
+    expect($component->instance()->characters->pluck('name')->all())
+        ->toBe(['Main11', 'Main10', 'Main9', 'Main8', 'Main7', 'Main6', 'Main5', 'Main4', 'Main3'])
+        ->and($component->instance()->hiddenCount)->toBe(3);
+
+    $component->set('showLowLevel', true);
+    expect($component->instance()->characters)->toHaveCount(12);
+});
+
+test('a refresh on a character page keeps the talent calculator mounted', function () {
+    // The calculator's root used to carry its own wire:key, so a parent re-render could not match
+    // it to its placeholder and tore it down, breaking every later click on the page.
+    expect(file_get_contents(resource_path('views/livewire/talent-selector.blade.php')))
+        ->not->toMatch('/<div[^>]*class="linear-card overflow-hidden"[^>]*wire:key/');
+});

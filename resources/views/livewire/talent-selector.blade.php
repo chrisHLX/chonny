@@ -1,4 +1,9 @@
-<div class="linear-card overflow-hidden" wire:key="talent-selector-{{ $specId }}">
+{{-- No wire:key on this root. A parent re-render sends this component back as a bare
+     <div wire:id="…"> placeholder, and Livewire's morph matches elements by wire:key before
+     wire:id — a key here made the two never match, so the calculator was torn down and the
+     placeholder re-initialised ("Snapshot missing on Livewire component"), which silently broke
+     every later click on the parent page. Parents pass :key on the <livewire:> tag instead. --}}
+<div class="linear-card overflow-hidden">
     <div class="px-5 py-4 border-b border-line flex items-center justify-between gap-3">
         <div>
             <p class="text-[13px] font-semibold text-ink">

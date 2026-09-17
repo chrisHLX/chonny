@@ -5012,3 +5012,13 @@ Tests: `tests/Feature/WowQuizTest.php` (9).
 **Leaderboard.** `<x-quizzes.leaderboard>` (top of the side column on the front page and on Home) promotes class quizzes and ranks signed-in players by questions answered (`QuizService::leaderboard()`, top 5, correct answers in the tooltip). Guests are never ranked. `quiz_attempts.answered` is a stored count (set on every answer, backfilled by its migration) so the ranking is a plain SUM on MySQL and SQLite alike; unfinished attempts count too.
 
 Tests: 3 more in `tests/Feature/WowQuizTest.php`; `FirstRunExperienceTest`'s sidebar order now expects Class quizzes under Training.
+
+## My Characters: Refresh broke the page; top-9 list ✓ FIXED (2026-09-17)
+
+**Bug:** on a character's page, the first Refresh worked but threw "Snapshot missing on Livewire component" in the browser, and every later click on that page did nothing (no request sent). Cause: `talent-selector.blade.php`'s root had its own `wire:key`. When a parent re-renders, Livewire sends a child back as a bare `<div wire:id="…">` placeholder, and its morph matches elements by `wire:key` before `wire:id`, so the two never matched: the calculator was removed and the placeholder was initialised as a new component with no snapshot. This hit every page that re-renders around the calculator (character page, guide builder, a guide's character panel), not just characters. **Never put `wire:key` on a Livewire component's root element**; pass `:key` on the `<livewire:>` tag. Reproduced and verified in a real browser (Playwright): three Refresh clicks in a row now all go through.
+
+Production check the same day: the clicks before the fix had not synced anything, but nothing was left broken. The later "Refresh list" synced every character normally.
+
+**Loading state:** `<x-battlenet.refresh-button>` spins, disables and says "Refreshing…"; the row/card dims while the sync runs.
+
+**List:** `/characters` now shows only characters at `services.battlenet.max_level` (90), the 9 with the highest item level when there are more (`Characters::SHOWN_LIMIT`); "Show N more" lists everything. Detail syncs after a link run highest level and item level first. Test: two cases at the end of `BattlenetLinkTest`.

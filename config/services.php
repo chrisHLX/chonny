@@ -89,6 +89,10 @@ return [
         // Characters below this level get their list entry only, no detail sync — they cannot
         // have rated PvP history, and a large account has many of them.
         'detail_min_level' => 70,
+
+        // The current level cap. My Characters lists only characters at it by default (the nine
+        // with the highest item level, when there are more). Raise it with each expansion.
+        'max_level' => 90,
     ],
 
     'discord' => [

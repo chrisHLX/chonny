@@ -86,19 +86,16 @@
 
         {{-- Characters ---------------------------------------------------------------- --}}
         @forelse ($this->characters as $character)
-            <div class="linear-card p-4 mb-3" wire:key="char-{{ $character->id }}">
+            <div class="linear-card p-4 mb-3 transition-opacity" wire:key="char-{{ $character->id }}"
+                 wire:loading.class="opacity-60" wire:target="refresh({{ $character->id }})">
                 <div class="flex items-start gap-4">
                     <a href="{{ route('characters.show', $character->id) }}" wire:navigate class="flex-1 min-w-0 group">
                         <x-battlenet.character-summary :character="$character"/>
                     </a>
 
                     <div class="flex flex-col items-end gap-1 shrink-0 text-right">
-                        <button type="button" wire:click="refresh({{ $character->id }})"
-                                wire:loading.attr="disabled" wire:target="refresh({{ $character->id }})"
-                                class="text-[12px] text-ink-subtle hover:text-gold transition-colors">
-                            <span wire:loading.remove wire:target="refresh({{ $character->id }})">Refresh</span>
-                            <span wire:loading wire:target="refresh({{ $character->id }})">Refreshing&hellip;</span>
-                        </button>
+                        <x-battlenet.refresh-button :action="'refresh('.$character->id.')'" :target="'refresh('.$character->id.')'"
+                                                    class="text-[12px] text-ink-subtle hover:text-gold transition-colors"/>
                         @if ($character->synced_at)
                             <span class="text-[11px] text-ink-subtle">updated {{ $character->synced_at->diffForHumans() }}</span>
                         @elseif ($character->level >= (int) config('services.battlenet.detail_min_level', 70))
@@ -114,7 +111,7 @@
         @empty
             <div class="linear-card p-8 text-center">
                 <p class="text-[13.5px] text-ink-muted">
-                    No characters at level {{ config('services.battlenet.detail_min_level', 70) }}+ on this account.
+                    No level {{ $maxLevel }} characters on this account.
                 </p>
             </div>
         @endforelse
@@ -122,7 +119,7 @@
         @if ($this->hiddenCount > 0)
             <button type="button" wire:click="$toggle('showLowLevel')"
                     class="text-[12px] text-ink-subtle hover:text-gold transition-colors mt-2">
-                {{ $showLowLevel ? 'Hide' : 'Show' }} {{ $this->hiddenCount }} lower-level {{ Str::plural('character', $this->hiddenCount) }}
+                {{ $showLowLevel ? 'Hide' : 'Show' }} {{ $this->hiddenCount }} more {{ Str::plural('character', $this->hiddenCount) }}
             </button>
         @endif
     @endif
