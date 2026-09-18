@@ -1,0 +1,100 @@
+{
+  "slug": "boomkin-cleave-vs-jungle",
+  "title": "Boomkin Cleave vs Jungle",
+  "summary": "Balance Druid / Ret Paladin / Resto Shaman into Feral, Beast Mastery and Disc. Built on one read: Jungle has to stack to do anything, and this comp has four separate ways to punish two people standing together.",
+  "team": ["druid/balance", "paladin/retribution", "shaman/restoration"],
+  "enemy": ["druid/feral", "hunter/beast-mastery", "priest/discipline"],
+  "sections": [
+    {
+      "kind": "text",
+      "title": "The whole plan is that they have to stack and you do not",
+      "body": "Jungle's damage is a Feral in melee and a Hunter who wants his pet on the same target. Their control is Maim, Cyclone, roots, and a Freezing Trap that has to be placed where someone is going to be. All of it requires them to converge — on your kill target, and therefore on each other.\n\nNow count what this comp does to two players standing together. Solar Beam is an area silence. Capacitor Totem is an area stun delivered from range. Blinding Light is an area disorient. Typhoon is an area knockback. Mass Entanglement is an area root. Five pieces of area control, from three players, on four separate diminishing-returns categories.\n\nThat is not a coincidence of the draft — it is the comp. Nothing here is built to out-damage a Jungle in a straight exchange, and trying to will lose. What it is built to do is make the moment they commit cost them the whole commitment.\n\nSo the trigger for everything below is positional, not numerical: the plan starts when the Feral and the Hunter's pet are on the same player at the same time. Until then you are doing very little on purpose.",
+      "row": 0
+    },
+    {
+      "kind": "text",
+      "title": "Kill target: the Feral, and not for the usual reason",
+      "body": "Answer counts first, because they are worth having. The Feral holds four — Barkskin, Survival Instincts, Frenzied Regeneration, trinket. The Hunter holds six — Aspect of the Turtle, Exhilaration, Roar of Sacrifice, Survival of the Fittest, Camouflage, trinket. The Priest holds four — Fade, Desperate Prayer, Pain Suppression, trinket, with two charges of the Suppression rather than one.\n\nOn count the Feral and the Priest tie, and the habit on this site would be to take the healer. This plan takes the Feral, and it is worth being explicit that killing a Feral ends a round perfectly well — a Hunter and a Priest with no melee are not a team that goes on to win, and several earlier guides here wrote as though only a dead healer counted. That was a reflex, not an argument.\n\nThe real reason is reach. The Feral has to be in melee to do anything at all, which means he is inside every one of the five area effects listed above, by choice, for the whole match. The Hunter never has to be. The Priest can be anywhere. You are choosing the target who has already agreed to stand where your comp works.\n\nThe cost, stated honestly: he is also the hardest of the three to keep there. Dash, Wild Charge, Shadowmeld on a Night Elf, and the ability to simply stealth out and reset — a Feral who decides to leave, leaves. This plan does not have an answer to that beyond spending control on him earlier than feels comfortable.",
+      "row": 1
+    },
+    {
+      "kind": "text",
+      "title": "The talent choices this plan assumes",
+      "body": "Two of the five area effects above are talents that exclude something else, and a plan that does not say so is not usable.\n\nThe Balance Druid takes Mass Entanglement, not Wild Charge. They are entries on the same choice node in the class tree. This costs the Druid real mobility, which against a Feral and a Hunter is a genuine loss — but an area root that holds two converging melee is the piece that makes the Solar Beam land on both of them rather than one, and without it this comp is a normal damage comp with a silence.\n\nThe Balance Druid also takes Mighty Bash over Incapacitating Roar, the same choice node a reader flagged in another matchup and for the same reason: a roar breaks on damage and this plan's whole purpose is to damage the people it has controlled. Mighty Bash is a stun and holds.\n\nCyclone sits on a choice node too — against Soothe — and this plan takes Cyclone. Only one target can be cycloned at a time, so it is not a second Bash; it is the tool for removing the Priest from a window, and it can only ever remove one person.",
+      "row": 2
+    },
+    {
+      "kind": "sequence",
+      "title": "The trigger: they converge, and you spend four things at once",
+      "body": "This is the sequence the comp exists for. Every step below is an area effect, they are in four different diminishing-returns categories, and the whole thing goes out inside about two globals rather than as a chain.\n\nThe ordering rule is that the root goes first. Everything else is worth more against people who cannot walk out of it.",
+      "steps": [
+        { "spec": "druid/balance", "spell": "Mass Entanglement", "note": "First, and on the Feral — it spreads to whatever is near him, which is the point. Roots are their own category and share nothing with the rest of this sequence." },
+        { "spec": "druid/balance", "spell": "Solar Beam", "note": "Centred on the Priest if she is anywhere near the melee, otherwise on the melee themselves. This is an area silence, so it does not diminish against any of the stuns below and it stops the Priest answering the next four seconds at all." },
+        { "spec": "shaman/restoration", "spell": "Capacitor Totem", "note": "From range, which is the piece that keeps your Shaman out of the fight. She never walks into a melee cleave to land this — she drops it and steps back." },
+        { "spec": "paladin/retribution", "spell": "Blinding Light", "note": "The catch: it disorients everything nearby including the target you are about to kill, and a disoriented target breaks on the first damage anyway. So this goes out at the Hunter and his pet on the edge of the group, not into the middle. Used wrong it is the step that ruins this sequence." }
+      ],
+      "row": 3
+    },
+    {
+      "kind": "sequence",
+      "title": "The go, into a Feral who cannot move",
+      "steps": [
+        { "spec": "paladin/retribution", "spell": "Wake of Ashes", "note": "Opens, because it is the Paladin's own short-cooldown burst and it is up on nearly every attempt rather than the big ones only." },
+        { "spec": "paladin/retribution", "spell": "Avenging Wrath", "note": "The real commitment, and the slowest thing in the comp. Avenging Crusader is the same choice node — one or the other, never both — and this plan takes Wrath because the comp is trying to end the round in a window, not heal through one." },
+        { "spec": "druid/balance", "spell": "Celestial Alignment", "note": "Lines up with the Paladin roughly every other attempt rather than every one, which is what makes the cadence section below matter." },
+        { "spec": "druid/balance", "spell": "Starfall", "note": "Area damage into a rooted, stunned group. This is where the sequence above converts: the same convergence that made their go possible makes yours worth double." },
+        { "spec": "paladin/retribution", "spell": "Hammer of Justice", "note": "NOT on the Feral, who is already held by the Capacitor Totem. Two stuns on one target is one and a half stuns. Send this at the Hunter so both of them are locked at full duration." }
+      ],
+      "row": 4
+    },
+    {
+      "kind": "sequence",
+      "title": "Between goes: peels, and the Blessings nobody counts",
+      "body": "Jungle's own go is a Feral opening from stealth with the Hunter already in position. You will not always see it coming, and the sequence above is a response to their convergence — so the tools here are the ones that work when you are behind rather than ahead.\n\nThe Paladin's Blessings are the most under-used part of this comp and they are all instant, all castable on someone else, and none of them share a category with anything.",
+      "steps": [
+        { "spec": "paladin/retribution", "spell": "Blessing of Protection", "note": "On whoever the Feral is on. It removes him from the target entirely — physical immunity against a comp whose melee damage is all physical is close to a total answer for its duration." },
+        { "spec": "paladin/retribution", "spell": "Blessing of Freedom", "note": "The one that is never counted and often matters most. Jungle controls through roots and slows more than through stuns; this answers all of it, instantly, on an ally, and it is back quickly." },
+        { "spec": "druid/balance", "spell": "Typhoon", "note": "Knockback, its own category, no meaningful cooldown. The cheapest way to buy your Shaman three seconds, and it should be spent freely rather than saved." },
+        { "spec": "shaman/restoration", "spell": "Earthgrab Totem", "note": "Roots whatever is near it, and like the Capacitor Totem it is delivered from range. Dropped on your own position it peels for you without anyone repositioning." },
+        { "spec": "paladin/retribution", "spell": "Blessing of Sacrifice", "note": "The last one, and the one that costs the Paladin real health. Worth it only when the alternative is the Shaman dying — but it is a party-wide-class answer that a defensive-cooldown count of the enemy never prompts you to remember you have." }
+      ],
+      "row": 5
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Feral answers with",
+      "opponent": "druid/feral",
+      "steps": [
+        { "spec": "druid/feral", "spell": "Survival Instincts", "note": "The big one, and the reason a go into a fresh Feral achieves nothing. If this is up, the sequence above is better spent as a peel than as a kill attempt." },
+        { "spec": "druid/feral", "spell": "Barkskin", "note": "Cheap and back every attempt. Do not read it as a real answer spent." },
+        { "spec": "druid/feral", "spell": "Frenzied Regeneration", "note": "Healing rather than mitigation, which means it is the one your damage can actually out-pace — and the one a well-timed silence or stun stops outright." },
+        { "spec": "druid/feral", "spell": "Gladiator's Medallion", "note": "What the whole first sequence is really trying to force. A Feral who trinkets the Capacitor Totem has nothing left for the Mighty Bash, and that is the second attempt where the round is usually decided." }
+      ],
+      "row": 6
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Hunter and the Priest do to your plan",
+      "opponent": "hunter/beast-mastery",
+      "steps": [
+        { "spec": "hunter/beast-mastery", "spell": "Roar of Sacrifice", "note": "Not a defensive for him — it goes on the Feral, and it is the single most likely thing to make the go above achieve nothing. It is also cheap. Assume it is up." },
+        { "spec": "hunter/beast-mastery", "spell": "Aspect of the Turtle", "note": "Total for its duration, but it stops him doing anything too. If he presses it during your sequence, the sequence worked." },
+        { "spec": "hunter/beast-mastery", "spell": "Master's Call", "note": "Answers your roots, on an ally, instantly. This is why Mass Entanglement is spent first rather than held — you want it out before he is watching for it." },
+        { "spec": "hunter/beast-mastery", "spell": "Intimidation", "note": "Not a defensive: a stun from the pet, and the piece that most often breaks up your Paladin. It can be pressed from range while the Hunter is nowhere near your area control." }
+      ],
+      "row": 7
+    },
+    {
+      "kind": "text",
+      "title": "Cadence: the control is cheap, the damage is not",
+      "body": "The five area effects are on very different clocks and this is the practical consequence of that.\n\nTyphoon, Mass Entanglement, Earthgrab Totem and Hammer of Justice sit around thirty seconds. Capacitor Totem is in the same region. That means the trigger sequence — minus Blinding Light and Solar Beam — is genuinely repeatable, roughly every time they try something.\n\nSolar Beam and Mighty Bash are a minute. Blinding Light is longer again. So the full five-piece version of the sequence is not repeatable; it happens perhaps twice in a match, and spending Solar Beam on a convergence that was not going anywhere is the most common way to arrive at their real go with nothing.\n\nThe damage is slower still. Avenging Wrath and Celestial Alignment are both long, and they do not divide evenly into each other — the Druid's is back roughly every other Paladin window. So there is one genuinely big attempt, two medium ones, and a lot of cheap control in between.\n\nThe scheduling rule that follows: cheap control is spent on every convergence, immediately and without thinking about it. Solar Beam and the two long damage cooldowns are spent together or not at all.",
+      "row": 8
+    },
+    {
+      "kind": "text",
+      "title": "Where this is guessing",
+      "body": "1. That Jungle actually has to stack. The entire plan rests on it, and it is inferred from what their kit needs rather than observed. A Hunter can do most of his damage from range and a Feral can bleed a target and leave; a Jungle that refuses to converge may beat this comp without ever walking into anything, and nothing here knows how often that happens at a real rating.\n\n2. Blinding Light. It is placed at the edge of the group above on the reasoning that it would otherwise break your own kill window. That reasoning is sound and the execution is very hard — this may simply be an ability this comp should not press during a go at all, and a real player would know which.\n\n3. Roar of Sacrifice. Named as the biggest threat to the go and then not answered. There is no plan here for what to do when it lands, beyond stopping — and stopping may be wrong when your two long cooldowns are already spent.\n\n4. The Feral leaving. The kill-target section admits he can reset and offers nothing for it. This is the largest hole in the plan: a target who can stealth out whenever the window turns against him is a bad target however well he fits the comp's shape, and the argument above never really answers that objection.\n\n5. Whether Mass Entanglement is worth the mobility. The talent section treats losing Wild Charge as an acceptable cost. Against a comp with this much melee pressure on a caster Druid, it may not be, and this plan has no way to weigh a peel you cast against a peel you are.",
+      "row": 9
+    }
+  ]
+}

@@ -8,6 +8,7 @@ use App\Enums\UserGuideSectionKind;
 use App\Enums\UserGuideStatus;
 use App\Enums\UserGuideType;
 use App\Enums\UserGuideVisibility;
+use App\Http\Services\TalentFeasibilityService;
 use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\User;
@@ -46,7 +47,8 @@ class AuthorMachineGuide extends Command
         {path : A draft JSON file, or a directory of them}
         {--author=mindcollector : The account that owns these guides}
         {--model=Claude Opus 5 : The byline, stored on the guide}
-        {--draft : Write it unpublished, to be read by its author only}';
+        {--draft : Write it unpublished, to be read by its author only}
+        {--dry-run : Resolve and check the draft without writing anything}';
 
     protected $description = 'Create or update machine-drafted guides from committed JSON drafts';
 
@@ -98,7 +100,11 @@ class AuthorMachineGuide extends Command
             }
 
             try {
-                $this->apply($draft, $author);
+                if ($this->option('dry-run')) {
+                    $this->preflight($draft);
+                } else {
+                    $this->apply($draft, $author);
+                }
             } catch (\Throwable $e) {
                 $this->error('  '.$e->getMessage());
                 $failed++;
@@ -153,6 +159,87 @@ class AuthorMachineGuide extends Command
 
         $this->line('  '.$guide->title);
         $this->line('  /g/'.$author->username.'/'.$guide->slug);
+
+        $this->reportTalentConflicts($draft);
+    }
+
+    /**
+     * Resolve every reference in a draft and report on it, without writing a row.
+     *
+     * This is the loop that authoring a draft actually runs in: a name that resolves to nothing,
+     * or a pair of abilities no single build can hold, should be found while the draft is still a
+     * file being edited — not after it is published and a reader has to point it out.
+     */
+    private function preflight(array $draft): void
+    {
+        foreach (['slug', 'title', 'team', 'sections'] as $required) {
+            if (! isset($draft[$required])) {
+                throw new \RuntimeException("Draft is missing '{$required}'.");
+            }
+        }
+
+        foreach (array_merge($draft['team'] ?? [], $draft['enemy'] ?? []) as $ref) {
+            $this->spec($ref);
+        }
+
+        $steps = 0;
+
+        foreach ($draft['sections'] as $section) {
+            if (UserGuideSectionKind::tryFrom($section['kind'] ?? 'sequence') === null) {
+                throw new \RuntimeException("Unknown section kind '{$section['kind']}'.");
+            }
+
+            if (isset($section['opponent'])) {
+                $this->spec($section['opponent']);
+            }
+
+            foreach ($section['steps'] ?? [] as $step) {
+                $spec = $this->spec($step['spec']);
+                $spell = $this->spell($step['spell'], $spec);
+                $steps++;
+
+                if ($spell->name !== $step['spell']) {
+                    $this->line("  <fg=gray>'{$step['spell']}' → {$spell->display_name} (#{$spell->spell_id})</>");
+                }
+            }
+        }
+
+        $this->line('  '.count($draft['sections']).' section(s), '.$steps.' step(s) — all references resolve.');
+
+        $this->reportTalentConflicts($draft);
+    }
+
+    /**
+     * Warn when one character in the plan is asked to press two abilities no single build holds.
+     *
+     * A WARNING, NOT A FAILURE. The check is deliberately narrow — choice-node exclusivity only
+     * (see TalentFeasibilityService) — and a guide is allowed to discuss an ability the enemy
+     * might have taken, or to name an alternative in a defensives section. What it must not do is
+     * build a sequence out of two picks that exclude each other and say nothing about it. Printing
+     * loudly and letting the author judge is the right side of that line; failing the import would
+     * block legitimate drafts.
+     */
+    private function reportTalentConflicts(array $draft): void
+    {
+        $bySpec = [];
+
+        foreach ($draft['sections'] as $section) {
+            foreach ($section['steps'] ?? [] as $step) {
+                $bySpec[$step['spec']][] = $step['spell'];
+            }
+        }
+
+        $feasibility = app(TalentFeasibilityService::class);
+
+        foreach ($bySpec as $ref => $names) {
+            $result = $feasibility->check($this->spec($ref), $names);
+
+            foreach ($result['conflicts'] as $conflict) {
+                $this->warn('  TALENT CONFLICT ('.$ref.'): '.implode(' / ', $conflict['abilities'])
+                    .' share choice node '.$conflict['node'].' in '.$conflict['tree']
+                    .' — one build cannot hold both.');
+            }
+        }
     }
 
     /** @param array<int, string> $specs "rogue/subtlety" strings, in slot order */

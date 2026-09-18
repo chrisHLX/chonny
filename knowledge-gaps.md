@@ -319,3 +319,53 @@ future canonical modules against raw data, check specifically for
 low-opportunity-cost passives attached to already-discussed abilities first —
 that's where the yield has been highest so far, not in the big cooldowns
 themselves (which experts reliably get right).
+
+---
+
+## 2026-09-18 — Guide-reader corrections vs. talent-tree data
+
+Source: 24 reader comments on the machine-drafted guides, exported with
+`guides:export-feedback` from production. Most were confirmed against
+`talent_nodes` / `talent_node_entries` and folded straight into the drafts.
+These three did not resolve cleanly and are recorded rather than guessed at.
+
+### FLAGGED — "the Death Knight has to play either the silence or Asphyxiate, he can't have both"
+
+Reader's words, on `havoc-ele-vs-tsg`. **The talent data disagrees**, and it is
+worth resolving before any guide asserts it either way:
+
+- `Strangulate` has **no talent-tree entry at all** — it is baseline for Unholy
+  in the current import. Nothing gates it against anything.
+- `Asphyxiate` sits on node 17, type `CHOICE`, in the Death Knight class tree,
+  where its one alternative is **`Death's Reach`** — not the silence.
+
+So as imported, an Unholy DK holds Strangulate unconditionally and chooses
+Asphyxiate against Death's Reach. Three possibilities, none yet tested:
+the reader is describing a pairing that exists in the live game and is missing
+from the SimC dump; the reader is recalling a different pair; or Strangulate is
+a `spec_id = NULL` baseline row that is really spec-gated (the known-ambiguous
+case — see CLAUDE.md rule 1). **Do not curate a baseline override off this
+until someone checks it in-game.** The guides currently say nothing about the
+pairing.
+
+### CONFIRMED — Mighty Bash and Incapacitating Roar are one choice
+
+Reader: *"the insight was mighty bash, using it as a second stun on the warrior
+is actually legit where incap roar is useless in the comp."* Confirmed: both
+are entries on node 676, type `CHOICE`, Druid class tree. A Feral has one or
+the other, never both, so the reader's preference is a real talent decision and
+not a stylistic one.
+
+### CONFIRMED — abilities that do not work on players at all
+
+Both were hedged in published guides as "probably doesn't work, but if it does
+it's free value". The reader settled both, and the hedging was the actual error:
+
+- **Banish** — demons and elementals only.
+- **Shackle Horror** — pets and non-player targets only.
+
+Neither is castable on any player, so neither belongs in any arena plan. The
+spell data models *what a spell does*, not *what unit types it may target*, so
+this class of mistake is invisible to every check the pipeline currently has.
+**This is the open gap worth closing next:** a target-validity field would have
+caught both, and nothing else will.

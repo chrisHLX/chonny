@@ -37,8 +37,8 @@
         },
         {
           "spec": "monk/mistweaver",
-          "spell": "Mighty Ox Kick",
-          "note": "No cooldown, so it's free to repeat every time he tries to close — knock him out of range the moment he moves toward the Mage or lines up Kick, rather than saving it for one big moment."
+          "spell": "Paralysis",
+          "note": "The Mistweaver's own incapacitate, and a different category from the disarm above, so the two stack cleanly on one Rogue. An earlier version of this plan used Mighty Ox Kick here; it is a talent almost nobody takes, and a plan built on an ability real players do not have is not a plan."
         }
       ]
     },
@@ -59,7 +59,7 @@
         {
           "spec": "monk/windwalker",
           "spell": "Disable",
-          "note": "No cooldown — lay this the moment the Stun chain runs dry so the Mage can't walk or Blink out before the next Stun is back."
+          "note": "No cooldown — lay this the moment the stun chain runs dry. Do not expect it to hold him: a Frost Mage carries Blink, Ice Block and Alter Time and gets out of this chain more often than not. The point of the chain is to make him spend one of those, not to kill him inside it."
         }
       ]
     },
@@ -94,8 +94,8 @@
         },
         {
           "spec": "monk/windwalker",
-          "spell": "Whirling Dragon Punch",
-          "note": "Melee follow-up on the same cadence, while the Stun chain from the previous section is still covering the target."
+          "spell": "Rising Sun Kick",
+          "note": "Melee follow-up on the same cadence, while the stun chain from the previous section is still covering the target. Whirling Dragon Punch is NOT the follow-up here — it shares a choice node with Strike of the Windlord above, so a Windwalker has one of them, never both."
         }
       ]
     },

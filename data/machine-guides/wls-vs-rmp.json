@@ -8,18 +8,23 @@
     {
       "kind": "text",
       "title": "You have more control than they do, and most of it is free",
-      "body": "Count what the Warlock alone brings: Fear with no cooldown, Howl of Terror, Seduction, Mortal Coil, Shadowfury, Banish. Add the Shaman's Hex and Capacitor Totem and the Warrior's two stuns.\n\nAgainst a comp whose entire win condition is assembling one clean window, that is the matchup in a sentence: you can break their setup more often than they can build it, and it costs you almost nothing to try.\n\nSo the mindset is inverted from most guides here. Your control is not primarily there to make a kill window. It is there to make sure theirs never happens, and the kill arrives because they eventually run out of answers."
+      "body": "Count what the Warlock actually brings to a match, after the talent tree has taken its cut: Fear with no cooldown, Mortal Coil, and one — not both — of Shadowfury or Howl of Terror. Add the Shaman's Hex and Capacitor Totem and the Warrior's two stuns.\n\nThat is still more control than they hold, and most of it is free. Against a comp whose entire win condition is assembling one clean window, that is the matchup in a sentence: you can break their setup more often than they can build it, and it costs you almost nothing to try.\n\nSo the mindset is inverted from most guides here. Your control is not primarily there to make a kill window. It is there to make sure theirs never happens, and the kill arrives because they eventually run out of answers.\n\nTwo abilities an earlier version of this plan counted here have been removed, because they do not work on the people in this match. Banish only lands on a demon or an elemental, so against a Rogue, a Mage and a Priest it is a dead button. Seduction is the Succubus's, not the Warlock's — bringing her means not bringing the Felhunter, and giving up Spell Lock to gain a second fear against a comp with two casters is a trade this plan does not think is worth making."
+    },
+    {
+      "kind": "text",
+      "title": "The talent choice this plan is built on",
+      "body": "Shadowfury and Howl of Terror are the same talent. They are two entries on one choice node in the Warlock class tree, which means no Warlock has ever had both, and any plan that sequences one into the other is describing a character that cannot exist.\n\nThis plan takes Shadowfury, for three reasons. It is a stun, so it holds through your own damage where a fear does not. It has no cast time and no target requirement, so it can be thrown at a spot rather than a player. And it is the only control in the comp that reliably catches a Rogue and a Mage standing together during their own setup.\n\nWhat that costs: Howl of Terror is the better button when you are the one being opened on, because it is a bigger radius and it does not care whether you are facing the right way. A Warlock who keeps dying to the opener before the Shaman can react should take Howl instead — and if he does, every step below that says Shadowfury becomes a fear, shares a category with your own Fear, and cannot be chained behind it. That is a different plan, not a variation on this one.\n\nThe same question is worth asking about the pet. This plan assumes a Felhunter, for Spell Lock, against a comp with two casters. A Succubus brings Seduction and a fourth source of control, and gives up the only interrupt the Warlock has. Against RMP specifically, the interrupt is worth more."
     },
     {
       "kind": "text",
       "title": "Kill the Mage, but do not chase him",
-      "body": "The Rogue holds six answers and two are near-total against this comp — Cloak of Shadows removes the Warlock entirely for its duration, and Evasion removes the Warrior. Killing through both is a round spent achieving nothing.\n\nThe Mage holds four. Two of them are barriers that come back every attempt and therefore are not really answers at all.\n\nThe caveat, and it matters more here than usual: this comp has one charge and a Feral Lunge-equivalent it does not have. A Mage who kites well is a bad target for a Warrior who cannot reach him — which is the argument for parking damage on whoever is closest and winning on attrition instead."
+      "body": "The Rogue holds six answers and two are near-total against this comp — Cloak of Shadows removes the Warlock entirely for its duration, and Evasion removes the Warrior. Killing through both is a round spent achieving nothing.\n\nThe Mage holds four. Two of them are barriers that come back every attempt and therefore are not really answers at all.\n\nThe caveat, and it matters more here than usual: this comp has one charge and a Feral Lunge-equivalent it does not have. A Mage who kites well is a bad target for a Warrior who cannot reach him — which is the argument for parking damage on whoever is closest and winning on attrition instead.\n\nAttrition, concretely, because that word does a lot of work and explains nothing on its own. It means you stop trying to kill anyone inside one window and start spending their answers faster than they come back. Every Ice Block, Cloak of Shadows, Evasion and Pain Suppression they press is on a cooldown measured in minutes; your Fear, your Hex and your Warrior's stuns are on cooldowns measured in tens of seconds. So you press damage on whoever is nearest, force whatever that costs them, and let it come back off cooldown on your schedule rather than theirs.\n\nYou are not looking for a kill. You are looking for the round where the Mage has no Block, the Rogue has no Cloak, and the Priest is out of position — and then the kill is whoever is standing closest, not whoever you nominated at the start."
     },
     {
       "kind": "sequence",
       "title": "Break their opener",
       "steps": [
-        { "spec": "warlock/destruction", "spell": "Howl of Terror", "note": "It needs no target and it catches a Rogue who has just opened. This is the cheapest way to end a setup before it starts." },
+        { "spec": "warlock/destruction", "spell": "Mortal Coil", "note": "Instant, needs no cast, and it heals the Warlock on the way out — which is what you want from the button you press while a Rogue is already on you. This is the cheapest way to end a setup before it starts." },
         { "spec": "shaman/restoration", "spell": "Hex", "note": "On the Priest, the moment their go begins. A healer who cannot cast cannot cover their own commitment either." },
         { "spec": "warrior/arms", "spell": "Spell Reflection", "note": "Not control — but it is back every attempt and it eats a Polymorph, which is the piece their chain usually starts with." }
       ]
@@ -30,8 +35,7 @@
       "steps": [
         { "spec": "warlock/destruction", "spell": "Fear", "note": "Free. In a comp with this much control, the free one goes first and the expensive ones stay in reserve." },
         { "spec": "shaman/restoration", "spell": "Hex", "note": "Fresh category, full duration." },
-        { "spec": "warlock/destruction", "spell": "Shadowfury", "note": "Stun, so it holds through your own damage — and it is the only one here that can catch two of them at once." },
-        { "spec": "warlock/destruction", "spell": "Mortal Coil", "note": "GUESS: same category as the Hex, so it lands halved. It also heals the Warlock, which may make it worth more as a defensive than as the fourth link of a chain." }
+        { "spec": "warlock/destruction", "spell": "Shadowfury", "note": "Stun, so it holds through your own damage — and it is the only one here that can catch two of them at once. This is the one talent point that makes the whole plan work; see the talent section below for what it costs." }
       ]
     },
     {
@@ -77,7 +81,7 @@
     {
       "kind": "text",
       "title": "Cadence: you go whenever they try to",
-      "body": "Fear and Disarm have no cooldown, Hex is back faster than anything else here, and Earthgrab, Storm Bolt and Curse of Exhaustion sit on the thirty-second tier. Howl of Terror, Seduction and Mortal Coil are all in the same region.\n\nAvatar is the ceiling and nothing else in the comp shares that tier, so there is only one scheduling decision: whether to hold Avatar for a window you created or spend it on the window their commitment hands you.\n\nThis guide argues for the second. A comp with this much cheap control does not need to build anything — it needs their team to try something while your damage cooldown is up."
+      "body": "Fear and Disarm have no cooldown, Hex is back faster than anything else here, and Earthgrab, Storm Bolt and Curse of Exhaustion sit on the thirty-second tier. Shadowfury and Mortal Coil are in the same region.\n\nAvatar is the ceiling and nothing else in the comp shares that tier, so there is only one scheduling decision: whether to hold Avatar for a window you created or spend it on the window their commitment hands you.\n\nThis guide argues for the second. A comp with this much cheap control does not need to build anything — it needs their team to try something while your damage cooldown is up."
     },
     {
       "kind": "text",
