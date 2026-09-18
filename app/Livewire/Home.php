@@ -117,6 +117,7 @@ class Home extends Component
     public function exampleGuide(): ?UserGuide
     {
         return UserGuide::listed()
+            ->humanAuthored()
             ->with(['user', 'members.specialization.gameClass'])
             ->orderByDesc('like_count')
             ->orderByDesc('view_count')

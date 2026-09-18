@@ -368,6 +368,11 @@ Route::middleware('auth')->group(function () {
 // is public, and requiring an account to look at one would defeat the point of publishing.
 Route::get('/browse-guides', \App\Livewire\Guides\Browse::class)->name('guides.browse');
 
+// Machine-drafted comp guides, on their own page rather than mixed into the listing above — see
+// Guides\MachineGuides for why. Public: the whole point is that anyone can read one and say where
+// it is wrong.
+Route::get('/claudes-comp-guides', \App\Livewire\Guides\MachineGuides::class)->name('guides.machine');
+
 // ------- Guilds -------
 // Index is auth-only (it is "your guilds"); the guild page itself is not, because its URL is the
 // invite and someone following it may not have an account yet. Guilds\Show decides what a

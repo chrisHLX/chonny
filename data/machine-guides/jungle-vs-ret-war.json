@@ -1,0 +1,82 @@
+{
+  "slug": "jungle-vs-ret-war-disc",
+  "title": "Jungle vs Ret / Arms / Disc",
+  "summary": "A machine-drafted plan for Feral / BM Hunter / Disc into Ret Paladin, Arms Warrior and Disc Priest. Kill target, control allocation and cadence are derived from cooldowns and DR; the order is a guess. Correct it on any step.",
+  "team": ["druid/feral", "hunter/beast-mastery", "priest/discipline"],
+  "enemy": ["warrior/arms", "paladin/retribution", "priest/discipline"],
+  "sections": [
+    {
+      "kind": "text",
+      "title": "Kill the Warrior — and here is the arithmetic, not an opinion",
+      "body": "The Paladin holds eight defensive answers, including Divine Shield (5 min), Blessing of Protection (5 min), Blessing of Spellwarding (5 min), Lay on Hands (10 min), Divine Protection (90s), Blessing of Sacrifice (60s) and a trinket. The Warrior holds four: Die by the Sword (2 min), Berserker Shout (60s), Spell Reflection (25s) and a trinket.\n\nSo the Warrior's answer pool empties in one go and the Paladin's does not. That is the whole reason for the target call.\n\nWhat this does NOT account for: how hard each of them is to actually keep in melee range, and whether pressure on the Paladin is worth more as peel-suppression than as damage. Both of those are judgement, not data."
+    },
+    {
+      "kind": "sequence",
+      "title": "Control the healer — the Disc Priest",
+      "steps": [
+        { "spec": "hunter/beast-mastery", "spell": "Intimidation", "note": "The stun exists to make the trap land, not for its own 3 seconds." },
+        { "spec": "hunter/beast-mastery", "spell": "Freezing Trap", "note": "6s, and the cheapest real control in the comp at a 25s cooldown." },
+        { "spec": "priest/discipline", "spell": "Psychic Scream", "note": "Fresh category, full 6s. Never send this at the Warrior — Berserker Shout answers it for free." },
+        { "spec": "druid/feral", "spell": "Cyclone", "note": "GUESS: this shares Disorient with the Scream, so it lands at 50%. It has no cooldown, which is the argument for spending it here rather than banking it — but a 2.5s Cyclone may be worth less than holding it as a peel." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Cross-CC the Paladin — so he cannot answer the go",
+      "steps": [
+        { "spec": "hunter/beast-mastery", "spell": "Scatter Shot", "note": "Same global as the stun on the Warrior. A free Paladin answers with Sacrifice or Blessing of Protection the moment he sees the stun." },
+        { "spec": "druid/feral", "spell": "Cyclone", "note": "If the Cyclone went to the healer above, this slot is empty and the Paladin gets a free global. That trade is the open question in this guide." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Hold the Warrior",
+      "steps": [
+        { "spec": "druid/feral", "spell": "Maim", "note": "5s, 30s cooldown — the same tier as the trap, which is why the comp repeats on 30s." },
+        { "spec": "druid/feral", "spell": "Mighty Bash", "note": "Second stun for the next go, not this one: back to back it lands at 50%." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "The go",
+      "steps": [
+        { "spec": "druid/feral", "spell": "Tiger's Fury", "note": "Before the bleeds, so they are snapshotted." },
+        { "spec": "druid/feral", "spell": "Incarnation: Avatar of Ashamane", "note": "90s. This is the cooldown the whole plan is scheduled around." },
+        { "spec": "priest/discipline", "spell": "Power Infusion", "note": "On the Feral. 120s, so it is only in every second big go." },
+        { "spec": "druid/feral", "spell": "Feral Frenzy" },
+        { "spec": "hunter/beast-mastery", "spell": "Bestial Wrath" }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Warrior answers with",
+      "opponent": "warrior/arms",
+      "steps": [
+        { "spec": "warrior/arms", "spell": "Die by the Sword", "note": "2 minutes. Forcing this is most of what a failed go is worth." },
+        { "spec": "warrior/arms", "spell": "Berserker Shout", "note": "Breaks fear. This is why the Scream goes to the healer." },
+        { "spec": "warrior/arms", "spell": "Spell Reflection", "note": "25s — it comes back inside one cadence, so do not count it as spent." }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Paladin answers with",
+      "opponent": "paladin/retribution",
+      "steps": [
+        { "spec": "paladin/retribution", "spell": "Blessing of Sacrifice", "note": "60s. The cheapest way he saves the Warrior, and the one you should expect every go." },
+        { "spec": "paladin/retribution", "spell": "Blessing of Protection", "note": "5 minutes, and it cancels physical control — a Maim on the Warrior goes with it." },
+        { "spec": "paladin/retribution", "spell": "Divine Protection" },
+        { "spec": "paladin/retribution", "spell": "Divine Shield", "note": "If this comes out on the Paladin you already won the exchange: he spent a 5-minute answer and the Warrior is still the target." }
+      ]
+    },
+    {
+      "kind": "text",
+      "title": "Cadence: 30 seconds, with a real go every 90",
+      "body": "Almost everything this comp needs sits on the same tier: Freezing Trap 25s, Maim 30s, Psychic Scream 30s, Scatter Shot 30s, Bestial Wrath 30s, Feral Frenzy 30s, Tiger's Fury 30s. Intimidation at 40s and Binding Shot at 45s are the two that drift.\n\nSo the comp repeats a full control-plus-damage attempt every 30 seconds, and a big one every 90 when Incarnation returns. Power Infusion at 120s only makes every second big go.\n\nThe consequence: spending Maim or the trap off-cycle costs more than the ability itself, because the next attempt arrives with them no longer lined up."
+    },
+    {
+      "kind": "text",
+      "title": "Where this is guessing — tell it what a real player does instead",
+      "body": "1. The Cyclone. It is the only free control in the comp, and this plan cannot decide whether it belongs on the healer at 50% or on the Paladin at full. Which is right, and does it depend on whether their trinket is up?\n\n2. Incarnation lasts far longer than 5 seconds of Maim. This plan controls the healer through the window instead of the target — is that right, or should control be held back so it is live when Sacrifice ends?\n\n3. Whether the opener should force Sacrifice cheaply and commit on the second go instead. This plan commits on the first one.\n\n4. Nothing here accounts for positioning. Same-global cross-CC on the Paladin assumes he is reachable when the Warrior is."
+    }
+  ]
+}

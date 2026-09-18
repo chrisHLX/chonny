@@ -27,6 +27,7 @@ class UserGuide extends Model
 {
     protected $fillable = [
         'user_id',
+        'authored_by_model',
         'guest_token',
         'game_id',
         'guild_id',
@@ -317,6 +318,34 @@ class UserGuide extends Model
     {
         return $query->where('status', UserGuideStatus::Published->value)
             ->where('visibility', UserGuideVisibility::Public->value);
+    }
+
+    /**
+     * Written by a model rather than a person. See the migration for why this stores the model's
+     * name rather than a flag.
+     */
+    public function isMachineAuthored(): bool
+    {
+        return $this->authored_by_model !== null;
+    }
+
+    /** Guides a model wrote. */
+    public function scopeMachineAuthored(Builder $query): Builder
+    {
+        return $query->whereNotNull('authored_by_model');
+    }
+
+    /**
+     * Guides a person wrote — what "player guides" means everywhere it is listed.
+     *
+     * Machine guides are deliberately kept out of the player listings and the feed rather than
+     * mixed in and labelled: they have their own page, and a listing that mixed both would make
+     * "a guide someone wrote" and "a guide a model drafted" compete for the same attention on the
+     * same terms, which is the exact framing problem /g/ exists to avoid.
+     */
+    public function scopeHumanAuthored(Builder $query): Builder
+    {
+        return $query->whereNull('authored_by_model');
     }
 
     /**

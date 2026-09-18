@@ -12,9 +12,15 @@
          own plan, and a reader has to be able to tell the difference at a glance. --}}
     <div class="flex items-start justify-between gap-6 mb-6 pb-6 border-b border-line">
         <div class="flex-1 min-w-0">
-            <p class="text-[11px] uppercase tracking-[0.16em] text-violet font-medium mb-2">
-                Player-written guide
-            </p>
+            @if ($guide->isMachineAuthored())
+                <p class="text-[11px] uppercase tracking-[0.16em] text-gold font-medium mb-2">
+                    {{ $guide->authored_by_model }} guide &middot; drafted by a model
+                </p>
+            @else
+                <p class="text-[11px] uppercase tracking-[0.16em] text-violet font-medium mb-2">
+                    Player-written guide
+                </p>
+            @endif
 
             <h1 class="font-display text-3xl text-ink" style="text-wrap: balance">{{ $guide->title }}</h1>
 
@@ -242,8 +248,14 @@
                         @if ($data && $section->showsTimer())
                             <x-guides.metrics :metrics="$data['metrics']"/>
                         @endif
-                        <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :owner-id="$guide->user_id"/>
+                        <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :owner-id="$guide->user_id"
+                                                :notes="$this->notesByAnchor" :noting-on="$notingOn" :annotatable="true"/>
                     @endif
+
+                    <x-guides.note-thread anchor="section:{{ $section->id }}"
+                                          :notes="$this->notesByAnchor['section:'.$section->id] ?? collect()"
+                                          :open="$notingOn === 'section:'.$section->id"
+                                          label="this section"/>
                 </div>
             @endforeach
         </div>
@@ -252,9 +264,17 @@
     @endforelse
 
     <p class="text-[11.5px] text-ink-subtle mt-8 pt-6 border-t border-line leading-relaxed max-w-prose">
-        Written by a player, not derived from match data. Cooldowns, diminishing returns and durations
-        are computed from MindCollector's own game data; the plan itself, and the order of it, is this
-        author's.
+        @if ($guide->isMachineAuthored())
+            Drafted by {{ $guide->authored_by_model }} from MindCollector's game data and real match
+            windows &mdash; not by a player, and not verified by one. The mechanics are derived:
+            cooldowns, diminishing returns, durations and immunities. <span class="text-ink">The plan
+            itself is a guess.</span> Add a note on any step you think is wrong, and say why &mdash;
+            those notes are read and used to correct the model behind it.
+        @else
+            Written by a player, not derived from match data. Cooldowns, diminishing returns and durations
+            are computed from MindCollector's own game data; the plan itself, and the order of it, is this
+            author's.
+        @endif
     </p>
 
     {{-- Signed-out readers only, and only here, after the guide: a shared guide link is how most

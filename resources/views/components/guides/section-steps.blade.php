@@ -1,4 +1,4 @@
-@props(['steps', 'section', 'editable' => false, 'ownerId' => null])
+@props(['steps', 'section', 'editable' => false, 'ownerId' => null, 'annotatable' => false, 'notes' => null, 'notingOn' => null])
 
 @php
     // One definition of how a step renders, shared by the builder and the public read view — the
@@ -175,7 +175,23 @@
                         </button>
                     </div>
                 @endif
+
+                @if ($annotatable && ! $step['unresolved'])
+                    <button type="button" wire:click="startNote('block:{{ $block->id }}')"
+                            class="text-[11px] text-ink-subtle hover:text-violet transition-colors px-1.5 py-1 shrink-0 self-start"
+                            title="Say what's wrong with this step">
+                        @php $count = collect($notes[ 'block:'.$block->id ] ?? [])->count(); @endphp
+                        {{ $count > 0 ? 'Notes ('.$count.')' : 'Note' }}
+                    </button>
+                @endif
             </li>
+
+            @if ($annotatable)
+                <x-guides.note-thread anchor="block:{{ $block->id }}"
+                                      :notes="$notes['block:'.$block->id] ?? collect()"
+                                      :open="$notingOn === 'block:'.$block->id"
+                                      :label="$entry ? $entry->displayName() : 'this step'"/>
+            @endif
         @endforeach
     </ul>
 @endif

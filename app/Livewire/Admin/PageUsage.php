@@ -53,6 +53,7 @@ class PageUsage extends Component
         'guide_builder' => 'Guide Builder',
         'guide_show' => 'Shared Guide (read)',
         'guides_browse' => 'Player Guides (browse)',
+        'machine_guides' => "Claude's Comp Guides",
         'guilds_index' => 'Guilds',
         'guild_show' => 'Guild (read)',
         'battlenet_characters' => 'Your Characters',

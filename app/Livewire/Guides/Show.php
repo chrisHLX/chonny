@@ -8,6 +8,7 @@ use App\Http\Services\UserGuideChainService;
 use App\Models\PageViewEvent;
 use App\Models\User;
 use App\Models\UserGuide;
+use App\Models\UserGuideBlock;
 use App\Models\UserGuideComment;
 use App\Models\UserGuideLike;
 use Livewire\Attributes\Computed;
@@ -275,7 +276,102 @@ class Show extends Component
     #[Computed]
     public function comments()
     {
-        return $this->guide->comments()->with('user')->get();
+        return $this->guide->comments()
+            ->with('user')
+            ->whereNull('user_guide_block_id')
+            ->whereNull('user_guide_section_id')
+            ->get();
+    }
+
+    // ------------------------------------------------- notes anchored to one step or section
+
+    /**
+     * Which step or section the reader is writing a note on, as "block:12" or "section:3".
+     *
+     * One at a time, and server-held rather than Alpine, because posting the note is a round trip
+     * anyway and two half-written notes on one page is a state nobody asked for.
+     */
+    public ?string $notingOn = null;
+
+    public string $note = '';
+
+    public function startNote(string $anchor): void
+    {
+        $this->feedbackError = null;
+        $this->notingOn = $this->notingOn === $anchor ? null : $anchor;
+        $this->note = '';
+    }
+
+    /**
+     * Post a note against one step or section.
+     *
+     * The anchor is re-derived from the guide's own rows rather than trusted from the client, so a
+     * tampered id cannot attach a note to another guide — the same ownership-through-the-guide
+     * rule the builder applies to every mutation.
+     */
+    public function postNote(): void
+    {
+        $this->feedbackError = null;
+        $body = trim($this->note);
+
+        if (! auth()->check()) {
+            $this->feedbackError = 'Sign in to add a note.';
+
+            return;
+        }
+
+        [$kind, $id] = array_pad(explode(':', (string) $this->notingOn, 2), 2, null);
+        $id = (int) $id;
+
+        if ($body === '' || $id <= 0) {
+            return;
+        }
+
+        $sectionId = null;
+        $blockId = null;
+
+        if ($kind === 'section') {
+            $sectionId = $this->guide->sections()->whereKey($id)->value('id');
+        } elseif ($kind === 'block') {
+            $block = UserGuideBlock::whereKey($id)
+                ->whereIn('user_guide_section_id', $this->guide->sections()->select('id'))
+                ->first();
+            $blockId = $block?->id;
+            $sectionId = $block?->user_guide_section_id;
+        }
+
+        if ($sectionId === null) {
+            return;
+        }
+
+        UserGuideComment::create([
+            'user_guide_id' => $this->guide->id,
+            'user_guide_section_id' => $sectionId,
+            'user_guide_block_id' => $blockId,
+            'user_id' => auth()->id(),
+            'body' => mb_substr($body, 0, UserGuideComment::MAX_LENGTH),
+        ]);
+
+        $this->note = '';
+        $this->notingOn = null;
+        unset($this->comments, $this->notesByAnchor);
+    }
+
+    /** Every anchored note on this guide, keyed "block:12" / "section:3" for the view. */
+    #[Computed]
+    public function notesByAnchor()
+    {
+        return $this->guide->comments()
+            ->with('user')
+            ->where(function ($q) {
+                $q->whereNotNull('user_guide_block_id')->orWhereNotNull('user_guide_section_id');
+            })
+            ->get()
+            ->groupBy(function ($c) {
+                return $c->user_guide_block_id
+                    ? 'block:'.$c->user_guide_block_id
+                    : 'section:'.$c->user_guide_section_id;
+            });
     }
 
     public function render()
@@ -291,7 +387,8 @@ class Show extends Component
         return view('livewire.guides.show')->layout('layouts.app', [
             'title' => "{$this->guide->title} by {$this->guide->user?->username} | MindCollector",
             'description' => $this->guide->summary
-                ?: trim('A player-written arena guide'.($subject !== '' ? " for {$subject}" : '').'.'),
+                ?: trim(($this->guide->isMachineAuthored() ? 'A machine-drafted arena guide' : 'A player-written arena guide')
+                    .($subject !== '' ? " for {$subject}" : '').'.'),
         ]);
     }
 }

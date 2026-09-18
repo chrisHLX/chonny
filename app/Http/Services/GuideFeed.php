@@ -90,6 +90,8 @@ class GuideFeed
     {
         $query = UserGuide::query()
             ->where('status', UserGuideStatus::Published->value)
+            // Machine-drafted guides are not player activity — they have their own page.
+            ->humanAuthored()
             ->with([
                 'user', 'lastEditor', 'authorCharacter.gameClass',
                 'members.specialization.gameClass', 'enemies.specialization.gameClass',
@@ -148,7 +150,7 @@ class GuideFeed
             return collect();
         }
 
-        return UserGuide::listed()
+        return UserGuide::listed()->humanAuthored()
             ->whereNotIn('id', $excludeIds)
             ->with([
                 'user', 'lastEditor', 'authorCharacter.gameClass',

@@ -111,6 +111,11 @@
             Player Guides
         </a>
 
+        <a href="{{ route('guides.machine') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('guides.machine') ? 'active' : '' }}">
+            Claude's Comp Guides
+        </a>
+
         <a href="{{ route('wow-comps') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('wow-comps') ? 'active' : '' }}">
             <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

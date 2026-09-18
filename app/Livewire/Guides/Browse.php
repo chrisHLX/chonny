@@ -66,6 +66,8 @@ class Browse extends Component
     {
         $query = UserGuide::query()
             ->listed()
+            // Machine-drafted guides have their own page — see UserGuide::scopeHumanAuthored().
+            ->humanAuthored()
             ->with(['user', 'authorCharacter.gameClass', 'members.specialization.gameClass', 'enemies.specialization.gameClass'])
             ->withCount('comments');
 
