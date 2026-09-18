@@ -865,42 +865,78 @@ Three follow-ups to Part 15, from the same session. The first is a gap in this
 document; the second corrects Part 15.2; the third is explicitly UNRESOLVED and is
 recorded with the method that would settle it, not with an answer.
 
-### 16.1 Comp intent: setup vs dampener — a missing axis
+### 16.1 Comp intent: setup vs dampener — and what actually differs
 
 Everything in Parts 1–15 assumes both teams are trying to reach **only us** and land
 a go. That is one intent, not the only one. Part 3 does define attrition, but as the
-TERMINAL BEHAVIOUR of a round that never leaves Neutral — an outcome by default.
+TERMINAL BEHAVIOUR of a round that never leaves Neutral — an outcome by default,
+never a plan. A dampener comp (Ret/Warrior, Rogue/Lock) chooses it.
 
-A dampener comp inverts that: **staying in Neutral is its win condition**, chosen
-deliberately. It wins by surviving, denying every conjunction, and taking the round
-on dampening. The same four states apply; what changes is which one each team is
-trying to be in.
+**Corrected 2026-09-18, and the first version of this section had it wrong.** It
+claimed a dampener comp does not really go, and that generating "the go" for one is
+the wrong artifact. Both are false:
+
+> They still have goes. Execution isn't as important. Vs certain comps, having that
+> go at the right time can both work as a peel and force cooldowns. You would still
+> line Wings and Avatar up as Ret/War, I think — actually I'm not sure now, and this
+> is where actual experience matters.
+
+So lining up control and damage is correct for both. **The difference is what a
+failed go costs and what the damage does between goes**, not whether goes happen.
 
 | | Setup comp | Dampener comp |
 |---|---|---|
-| Wants the round in | **Only us** | **Neutral** |
-| Spends control on | Assembling a go | Falsifying one term of theirs |
-| A round with no kill is | A failure | Progress |
-| The clock is | An enemy | An ally |
+| Damage is | concentrated in windows | continuous, with windows on top |
+| A go that forces answers but no kill is | a spent attempt | **a full success** |
+| Damage between goes is | near-worthless | **the win condition** |
+| Control can be spent defensively | rarely — it IS the win condition | **freely** |
+| The clock is | an enemy | an ally |
 
-Consequences that matter beyond wording:
+The player's own reading of why that wins:
 
-- **Part 2's "a go missing a term is not a go" is a setup-comp statement.** For a
-  dampener, the equivalent is that removing ONE term is the whole job — which the
-  doc already says defensively, but never as a comp's primary plan.
-- **Part 4's "an uncashed window leaves you net negative" is also intent-dependent.**
-  For a dampener, trading cooldowns for time is the plan, not waste.
-- **A generated "go" is the wrong output for a dampener comp.** Its plan is a denial
-  plan: which of their terms is cheapest to remove, which of your cooldowns answer
-  their opener, and what the survival cadence is.
+> Versus the Jungle they could use CC to peel, then just pump in between the other
+> team's goes, out-DPS and out-heal, and win by default. Technically I think you'd
+> probably be better playing like that versus setup comps — you don't need to think
+> about using CC to stop them using defensives, the overall damage and pressure
+> would eventually overwhelm them. I think that's the real differentiator.
 
-**How far is intent derivable?** Partly. A spec's measured burst profile
-(`BurstGuideBuilder`'s anchor and go length), its control density, and its sustained
-versus windowed damage are all on file, so "this comp has no real burst anchor and
-high control density" is computable. Naming the archetype, and deciding a comp's
-intent against a SPECIFIC opponent (the same comp can set up against one team and
-dampen against another), is expert curation. Treat a computed archetype as a prior,
-never a label — the same discipline Part 15.6 applies to cross-CC.
+Recorded as his hypothesis, not as settled: it is testable against the archive
+(do dampener comps beat setup comps disproportionately by attrition?) and has not
+been tested.
+
+**The computable proxy for intent is burst concentration** — what share of a spec's
+damage lands inside its own anchor window versus outside it. `BurstGuideBuilder`
+already measures the windows, so this is arithmetic over existing data rather than a
+new judgement. High concentration means a failed go costs the round; low means the
+damage keeps arriving either way. Treat a computed archetype as a prior, never a
+label (same discipline Part 15.6 applies to cross-CC), because intent is also
+matchup-dependent: the same comp sets up against one team and dampens against
+another.
+
+### 16.1a Control spent on an amplified enemy is paid twice
+
+The unifying mechanic, and the reason the setup/dampener split is softer than it
+looks:
+
+> As the Jungle, landing a stun on the Warrior during Avatar and cross-CC'ing the
+> Paladin during Wings is a win-win. You stop damage and get a go.
+
+One action, two currencies: it removes damage from their committed window (defence)
+and creates the conjunction terms for yours (offence). It also explains why a
+dampener comp can afford to spend control defensively without losing its plan —
+against them, the peel IS the go.
+
+**This adds a second targeting rule to Part 15.6.** Control is allocated by role
+(healer / off-DPS / kill target / banked peel) AND by **state**: an enemy currently
+inside an offensive amplification is worth more control than the same enemy idle,
+because the same cooldown buys twice. A generator that only reads role will never
+produce "stun the Warrior during Avatar".
+
+**Open and genuinely unknown: do Ret/War actually sync Wings and Avatar?** The
+player is unsure, and it is the kind of question the archive answers directly —
+measure the distribution of time between two teammates' major offensive cooldowns
+and see whether it clusters at zero or spreads. Until measured, do not assert it in
+either direction.
 
 ### 16.2 Expected value: a held cooldown that is never used is worth zero
 
