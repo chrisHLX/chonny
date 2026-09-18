@@ -1,5 +1,32 @@
 [
     {
+        "spellId": 136,
+        "name": "Mend Pet",
+        "cooldownSeconds": 10,
+        "charges": null,
+        "signals": [
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 498,
+        "name": "Divine Protection",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-20)"
+        ]
+    },
+    {
+        "spellId": 586,
+        "name": "Fade",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-10)"
+        ]
+    },
+    {
         "spellId": 633,
         "name": "Lay on Hands",
         "cooldownSeconds": 600,
@@ -9,84 +36,12 @@
         ]
     },
     {
-        "spellId": 471195,
-        "name": "Lay on Hands",
-        "cooldownSeconds": 600,
-        "charges": null,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 115203,
-        "name": "Fortifying Brew",
-        "cooldownSeconds": 360,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 120954: Absorb (Absorb Damage)"
-        ]
-    },
-    {
         "spellId": 642,
         "name": "Divine Shield",
         "cooldownSeconds": 300,
         "charges": null,
         "signals": [
             "Immunity"
-        ]
-    },
-    {
-        "spellId": 1022,
-        "name": "Blessing of Protection",
-        "cooldownSeconds": 300,
-        "charges": 1,
-        "signals": [
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 196718,
-        "name": "Darkness",
-        "cooldownSeconds": 300,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 209426: Absorb (Absorb Damage)"
-        ]
-    },
-    {
-        "spellId": 204018,
-        "name": "Blessing of Spellwarding",
-        "cooldownSeconds": 300,
-        "charges": 1,
-        "signals": [
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 45438,
-        "name": "Ice Block",
-        "cooldownSeconds": 240,
-        "charges": 1,
-        "signals": [
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 51052,
-        "name": "Anti-Magic Zone",
-        "cooldownSeconds": 240,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 50461: Absorb (Absorb Damage)"
-        ]
-    },
-    {
-        "spellId": 363534,
-        "name": "Rewind",
-        "cooldownSeconds": 240,
-        "charges": 1,
-        "signals": [
-            "Periodic Heal (real magnitude)"
         ]
     },
     {
@@ -108,6 +63,187 @@
         ]
     },
     {
+        "spellId": 1022,
+        "name": "Blessing of Protection",
+        "cooldownSeconds": 300,
+        "charges": 1,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 1044,
+        "name": "Blessing of Freedom",
+        "cooldownSeconds": 25,
+        "charges": 1,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 1160,
+        "name": "Demoralizing Shout",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Modify Damage Taken% from Caster's Spells [hand-added 2026-09-18 — classifier missed it]"
+        ]
+    },
+    {
+        "spellId": 1953,
+        "name": "Blink",
+        "cooldownSeconds": 20,
+        "charges": 1,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 1966,
+        "name": "Feint",
+        "cooldownSeconds": 15,
+        "charges": 1,
+        "signals": [
+            "Damage Taken%, self takes LESS (-40)"
+        ]
+    },
+    {
+        "spellId": 2050,
+        "name": "Holy Word: Serenity",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 5277,
+        "name": "Evasion",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Dodge% (200)"
+        ]
+    },
+    {
+        "spellId": 5394,
+        "name": "Healing Stream Totem",
+        "cooldownSeconds": 30,
+        "charges": 0,
+        "signals": [
+            "Via sibling spell_id 52042: Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 6262,
+        "name": "Healthstone",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 6940,
+        "name": "Blessing of Sacrifice",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 11426,
+        "name": "Ice Barrier",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 18499,
+        "name": "Berserker Rage",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 18562,
+        "name": "Swiftmend",
+        "cooldownSeconds": 15,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 19236,
+        "name": "Desperate Prayer",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 22812,
+        "name": "Barkskin",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-20)"
+        ]
+    },
+    {
+        "spellId": 22842,
+        "name": "Frenzied Regeneration",
+        "cooldownSeconds": 36,
+        "charges": 1,
+        "signals": [
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 23920,
+        "name": "Spell Reflection",
+        "cooldownSeconds": 25,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 335255: Damage Taken%, self takes LESS (-20)"
+        ]
+    },
+    {
+        "spellId": 31224,
+        "name": "Cloak of Shadows",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 35729: Immunity (School Immunity)"
+        ]
+    },
+    {
+        "spellId": 31850,
+        "name": "Ardent Defender",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)",
+            "Damage Taken%, self takes LESS (-30)"
+        ]
+    },
+    {
+        "spellId": 33076,
+        "name": "Prayer of Mending",
+        "cooldownSeconds": 12,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 33110: Direct Heal (real magnitude)"
+        ]
+    },
+    {
         "spellId": 33206,
         "name": "Pain Suppression",
         "cooldownSeconds": 180,
@@ -126,140 +262,21 @@
         ]
     },
     {
-        "spellId": 47788,
-        "name": "Guardian Spirit",
-        "cooldownSeconds": 180,
-        "charges": null,
-        "signals": [
-            "Absorb (shield)"
-        ]
-    },
-    {
-        "spellId": 61336,
-        "name": "Survival Instincts",
-        "cooldownSeconds": 180,
+        "spellId": 34861,
+        "name": "Holy Word: Sanctify",
+        "cooldownSeconds": 60,
         "charges": 1,
-        "signals": [
-            "Via sibling spell_id 50322: Damage Taken%, self takes LESS (-50)"
-        ]
-    },
-    {
-        "spellId": 64843,
-        "name": "Divine Hymn",
-        "cooldownSeconds": 180,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 64844: Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 64844,
-        "name": "Divine Hymn",
-        "cooldownSeconds": 180,
-        "charges": null,
         "signals": [
             "Direct Heal (real magnitude)"
         ]
     },
     {
-        "spellId": 98008,
-        "name": "Spirit Link Totem",
-        "cooldownSeconds": 180,
+        "spellId": 45438,
+        "name": "Ice Block",
+        "cooldownSeconds": 240,
         "charges": 1,
         "signals": [
-            "Via sibling spell_id 98007: Damage Taken%, self takes LESS (-10)"
-        ]
-    },
-    {
-        "spellId": 104773,
-        "name": "Unending Resolve",
-        "cooldownSeconds": 180,
-        "charges": null,
-        "signals": [
-            "Damage Taken%, self takes LESS (-25)",
             "Immunity"
-        ]
-    },
-    {
-        "spellId": 115310,
-        "name": "Revival",
-        "cooldownSeconds": 180,
-        "charges": 1,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 157982,
-        "name": "Tranquility",
-        "cooldownSeconds": 180,
-        "charges": null,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 186265,
-        "name": "Aspect of the Turtle",
-        "cooldownSeconds": 180,
-        "charges": null,
-        "signals": [
-            "Damage Taken%, self takes LESS (-30)",
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 212182,
-        "name": "Smoke Bomb",
-        "cooldownSeconds": 180,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 88611: Damage Taken%, self takes LESS (-10)"
-        ]
-    },
-    {
-        "spellId": 359053,
-        "name": "Smoke Bomb",
-        "cooldownSeconds": 180,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 88611: Damage Taken%, self takes LESS (-10)"
-        ]
-    },
-    {
-        "spellId": 388615,
-        "name": "Restoral",
-        "cooldownSeconds": 180,
-        "charges": 1,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 5277,
-        "name": "Evasion",
-        "cooldownSeconds": 120,
-        "charges": null,
-        "signals": [
-            "Dodge% (200)"
-        ]
-    },
-    {
-        "spellId": 6940,
-        "name": "Blessing of Sacrifice",
-        "cooldownSeconds": 120,
-        "charges": null,
-        "signals": [
-            "Absorb (shield)"
-        ]
-    },
-    {
-        "spellId": 31224,
-        "name": "Cloak of Shadows",
-        "cooldownSeconds": 120,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 35729: Immunity (School Immunity)"
         ]
     },
     {
@@ -271,6 +288,33 @@
             "Damage Taken%, self takes LESS (-75)",
             "Immunity",
             "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 47788,
+        "name": "Guardian Spirit",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 48438,
+        "name": "Wild Growth",
+        "cooldownSeconds": 10,
+        "charges": null,
+        "signals": [
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 48707,
+        "name": "Anti-Magic Shell",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
         ]
     },
     {
@@ -312,6 +356,15 @@
         ]
     },
     {
+        "spellId": 51052,
+        "name": "Anti-Magic Zone",
+        "cooldownSeconds": 240,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 50461: Absorb (Absorb Damage)"
+        ]
+    },
+    {
         "spellId": 53480,
         "name": "Roar of Sacrifice",
         "cooldownSeconds": 120,
@@ -321,12 +374,113 @@
         ]
     },
     {
+        "spellId": 55233,
+        "name": "Vampiric Blood",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 61336,
+        "name": "Survival Instincts",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 50322: Damage Taken%, self takes LESS (-50)"
+        ]
+    },
+    {
+        "spellId": 64843,
+        "name": "Divine Hymn",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 64844: Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 64844,
+        "name": "Divine Hymn",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 73685,
+        "name": "Unleash Life",
+        "cooldownSeconds": 20,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 86659,
+        "name": "Guardian of Ancient Kings",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Modify Damage Taken% [hand-added 2026-09-18 — classifier missed it]"
+        ]
+    },
+    {
+        "spellId": 97462,
+        "name": "Rallying Cry",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Increase Health, via sibling spell_id 97463 (own copy carries only Dummy effects) [hand-added 2026-09-18 — classifier missed it]"
+        ]
+    },
+    {
+        "spellId": 98008,
+        "name": "Spirit Link Totem",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 98007: Damage Taken%, self takes LESS (-10)"
+        ]
+    },
+    {
+        "spellId": 102342,
+        "name": "Ironbark",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-20)"
+        ]
+    },
+    {
+        "spellId": 104773,
+        "name": "Unending Resolve",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-25)",
+            "Immunity"
+        ]
+    },
+    {
         "spellId": 108271,
         "name": "Astral Shift",
         "cooldownSeconds": 120,
         "charges": null,
         "signals": [
             "Damage Taken%, self takes LESS (-40)"
+        ]
+    },
+    {
+        "spellId": 108416,
+        "name": "Dark Pact",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)",
+            "Periodic Heal (real magnitude)"
         ]
     },
     {
@@ -357,6 +511,42 @@
         ]
     },
     {
+        "spellId": 115008,
+        "name": "Chi Torpedo",
+        "cooldownSeconds": 20,
+        "charges": 2,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 115151,
+        "name": "Renewing Mist",
+        "cooldownSeconds": 9,
+        "charges": 2,
+        "signals": [
+            "Via sibling spell_id 119611: Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 115203,
+        "name": "Fortifying Brew",
+        "cooldownSeconds": 360,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 120954: Absorb (Absorb Damage)"
+        ]
+    },
+    {
+        "spellId": 115310,
+        "name": "Revival",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
         "spellId": 116849,
         "name": "Life Cocoon",
         "cooldownSeconds": 120,
@@ -377,6 +567,24 @@
         ]
     },
     {
+        "spellId": 132578,
+        "name": "Invoke Niuzao, the Black Ox",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Absorb Damage [hand-added 2026-09-18 — classifier missed it]"
+        ]
+    },
+    {
+        "spellId": 157982,
+        "name": "Tranquility",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
         "spellId": 184364,
         "name": "Enraged Regeneration",
         "cooldownSeconds": 120,
@@ -386,161 +594,49 @@
         ]
     },
     {
-        "spellId": 215769,
-        "name": "Spirit of Redemption",
-        "cooldownSeconds": 120,
+        "spellId": 185311,
+        "name": "Crimson Vial",
+        "cooldownSeconds": 30,
         "charges": null,
         "signals": [
-            "Absorb (shield)",
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 325197,
-        "name": "Invoke Chi-Ji, the Red Crane",
-        "cooldownSeconds": 120,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 343818: Immunity (School Immunity)"
-        ]
-    },
-    {
-        "spellId": 19236,
-        "name": "Desperate Prayer",
-        "cooldownSeconds": 90,
-        "charges": null,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 31850,
-        "name": "Ardent Defender",
-        "cooldownSeconds": 90,
-        "charges": null,
-        "signals": [
-            "Absorb (shield)",
-            "Damage Taken%, self takes LESS (-30)"
-        ]
-    },
-    {
-        "spellId": 55233,
-        "name": "Vampiric Blood",
-        "cooldownSeconds": 90,
-        "charges": null,
-        "signals": [
-            "Absorb (shield)"
-        ]
-    },
-    {
-        "spellId": 102342,
-        "name": "Ironbark",
-        "cooldownSeconds": 90,
-        "charges": null,
-        "signals": [
-            "Damage Taken%, self takes LESS (-20)"
-        ]
-    },
-    {
-        "spellId": 264735,
-        "name": "Survival of the Fittest",
-        "cooldownSeconds": 90,
-        "charges": 1,
-        "signals": [
-            "Damage Taken%, self takes LESS (-30)"
-        ]
-    },
-    {
-        "spellId": 363916,
-        "name": "Obsidian Scales",
-        "cooldownSeconds": 90,
-        "charges": 1,
-        "signals": [
-            "Damage Taken%, self takes LESS (-30)",
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 473909,
-        "name": "Ancient of Lore",
-        "cooldownSeconds": 90,
-        "charges": null,
-        "signals": [
-            "Damage Taken%, self takes LESS (-30)",
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 498,
-        "name": "Divine Protection",
-        "cooldownSeconds": 60,
-        "charges": null,
-        "signals": [
-            "Damage Taken%, self takes LESS (-20)"
-        ]
-    },
-    {
-        "spellId": 2050,
-        "name": "Holy Word: Serenity",
-        "cooldownSeconds": 60,
-        "charges": 1,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 6262,
-        "name": "Healthstone",
-        "cooldownSeconds": 60,
-        "charges": null,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 18499,
-        "name": "Berserker Rage",
-        "cooldownSeconds": 60,
-        "charges": null,
-        "signals": [
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 22812,
-        "name": "Barkskin",
-        "cooldownSeconds": 60,
-        "charges": null,
-        "signals": [
-            "Damage Taken%, self takes LESS (-20)"
-        ]
-    },
-    {
-        "spellId": 34861,
-        "name": "Holy Word: Sanctify",
-        "cooldownSeconds": 60,
-        "charges": 1,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 48707,
-        "name": "Anti-Magic Shell",
-        "cooldownSeconds": 60,
-        "charges": null,
-        "signals": [
-            "Absorb (shield)"
-        ]
-    },
-    {
-        "spellId": 108416,
-        "name": "Dark Pact",
-        "cooldownSeconds": 60,
-        "charges": null,
-        "signals": [
-            "Absorb (shield)",
             "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 186265,
+        "name": "Aspect of the Turtle",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-30)",
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 190456,
+        "name": "Ignore Pain",
+        "cooldownSeconds": 1,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 194509,
+        "name": "Power Word: Radiance",
+        "cooldownSeconds": 18,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 196718,
+        "name": "Darkness",
+        "cooldownSeconds": 300,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 209426: Absorb (Absorb Damage)"
         ]
     },
     {
@@ -562,93 +658,58 @@
         ]
     },
     {
-        "spellId": 357170,
-        "name": "Time Dilation",
-        "cooldownSeconds": 60,
+        "spellId": 200025,
+        "name": "Beacon of Virtue",
+        "cooldownSeconds": 15,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-5)"
+        ]
+    },
+    {
+        "spellId": 203720,
+        "name": "Demon Spikes",
+        "cooldownSeconds": 20,
         "charges": 1,
         "signals": [
-            "Absorb (shield)"
+            "Via sibling spell_id 203819: Parry% (8)"
         ]
     },
     {
-        "spellId": 374251,
-        "name": "Cauterizing Flame",
-        "cooldownSeconds": 60,
-        "charges": null,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 384100,
-        "name": "Berserker Shout",
-        "cooldownSeconds": 60,
-        "charges": null,
+        "spellId": 204018,
+        "name": "Blessing of Spellwarding",
+        "cooldownSeconds": 300,
+        "charges": 1,
         "signals": [
             "Immunity"
         ]
     },
     {
-        "spellId": 403876,
-        "name": "Divine Protection",
+        "spellId": 212182,
+        "name": "Smoke Bomb",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 88611: Damage Taken%, self takes LESS (-10)"
+        ]
+    },
+    {
+        "spellId": 212552,
+        "name": "Wraith Walk",
         "cooldownSeconds": 60,
         "charges": null,
         "signals": [
-            "Damage Taken%, self takes LESS (-20)"
+            "Modify Damage Taken% [hand-added 2026-09-18 — classifier missed it]"
         ]
     },
     {
-        "spellId": 452930,
-        "name": "Demonic Healthstone",
-        "cooldownSeconds": 60,
+        "spellId": 215769,
+        "name": "Spirit of Redemption",
+        "cooldownSeconds": 120,
         "charges": null,
         "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 22842,
-        "name": "Frenzied Regeneration",
-        "cooldownSeconds": 36,
-        "charges": 1,
-        "signals": [
-            "Periodic Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 586,
-        "name": "Fade",
-        "cooldownSeconds": 30,
-        "charges": null,
-        "signals": [
-            "Damage Taken%, self takes LESS (-10)"
-        ]
-    },
-    {
-        "spellId": 5394,
-        "name": "Healing Stream Totem",
-        "cooldownSeconds": 30,
-        "charges": 0,
-        "signals": [
-            "Via sibling spell_id 52042: Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 11426,
-        "name": "Ice Barrier",
-        "cooldownSeconds": 30,
-        "charges": 1,
-        "signals": [
-            "Absorb (shield)"
-        ]
-    },
-    {
-        "spellId": 185311,
-        "name": "Crimson Vial",
-        "cooldownSeconds": 30,
-        "charges": null,
-        "signals": [
-            "Periodic Heal (real magnitude)"
+            "Absorb (shield)",
+            "Immunity"
         ]
     },
     {
@@ -671,156 +732,85 @@
         ]
     },
     {
-        "spellId": 452497,
-        "name": "Abyssal Gaze",
-        "cooldownSeconds": 30,
+        "spellId": 264735,
+        "name": "Survival of the Fittest",
+        "cooldownSeconds": 90,
+        "charges": 1,
+        "signals": [
+            "Damage Taken%, self takes LESS (-30)"
+        ]
+    },
+    {
+        "spellId": 322507,
+        "name": "Celestial Brew",
+        "cooldownSeconds": 90,
+        "charges": 1,
+        "signals": [
+            "Absorb Damage [hand-added 2026-09-18 — classifier missed it]"
+        ]
+    },
+    {
+        "spellId": 325197,
+        "name": "Invoke Chi-Ji, the Red Crane",
+        "cooldownSeconds": 120,
         "charges": null,
         "signals": [
-            "Immunity"
+            "Via sibling spell_id 343818: Immunity (School Immunity)"
         ]
     },
     {
-        "spellId": 1267068,
-        "name": "Stormstream Totem",
-        "cooldownSeconds": 30,
-        "charges": 0,
-        "signals": [
-            "Via sibling spell_id 1267745: Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 1044,
-        "name": "Blessing of Freedom",
-        "cooldownSeconds": 25,
-        "charges": 1,
-        "signals": [
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 23920,
-        "name": "Spell Reflection",
-        "cooldownSeconds": 25,
-        "charges": 1,
-        "signals": [
-            "Via sibling spell_id 335255: Damage Taken%, self takes LESS (-20)"
-        ]
-    },
-    {
-        "spellId": 1953,
-        "name": "Blink",
-        "cooldownSeconds": 20,
-        "charges": 1,
-        "signals": [
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 73685,
-        "name": "Unleash Life",
-        "cooldownSeconds": 20,
-        "charges": 1,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 115008,
-        "name": "Chi Torpedo",
-        "cooldownSeconds": 20,
-        "charges": 2,
-        "signals": [
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 203720,
-        "name": "Demon Spikes",
-        "cooldownSeconds": 20,
-        "charges": 1,
-        "signals": [
-            "Via sibling spell_id 203819: Parry% (8)"
-        ]
-    },
-    {
-        "spellId": 1277297,
-        "name": "Ignore Pain",
-        "cooldownSeconds": 20,
+        "spellId": 336126,
+        "name": "Gladiator's Medallion",
+        "cooldownSeconds": 120,
         "charges": null,
+        "signals": [
+            "Manual: PvP trinket, breaks loss of control (added by hand 2026-09-17; not produced by classify-cooldowns.php, keep it when re-promoting)"
+        ]
+    },
+    {
+        "spellId": 357170,
+        "name": "Time Dilation",
+        "cooldownSeconds": 60,
+        "charges": 1,
         "signals": [
             "Absorb (shield)"
         ]
     },
     {
-        "spellId": 194509,
-        "name": "Power Word: Radiance",
-        "cooldownSeconds": 18,
-        "charges": 1,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 1966,
-        "name": "Feint",
-        "cooldownSeconds": 15,
-        "charges": 1,
-        "signals": [
-            "Damage Taken%, self takes LESS (-40)"
-        ]
-    },
-    {
-        "spellId": 18562,
-        "name": "Swiftmend",
-        "cooldownSeconds": 15,
-        "charges": 1,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 200025,
-        "name": "Beacon of Virtue",
-        "cooldownSeconds": 15,
+        "spellId": 359053,
+        "name": "Smoke Bomb",
+        "cooldownSeconds": 180,
         "charges": null,
         "signals": [
-            "Damage Taken%, self takes LESS (-5)"
+            "Via sibling spell_id 88611: Damage Taken%, self takes LESS (-10)"
         ]
     },
     {
-        "spellId": 33076,
-        "name": "Prayer of Mending",
-        "cooldownSeconds": 12,
-        "charges": 1,
-        "signals": [
-            "Via sibling spell_id 33110: Direct Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 136,
-        "name": "Mend Pet",
-        "cooldownSeconds": 10,
+        "spellId": 359816,
+        "name": "Dream Flight",
+        "cooldownSeconds": 120,
         "charges": null,
+        "signals": [
+            "Absorb Damage [hand-added 2026-09-18 — classifier missed it]"
+        ]
+    },
+    {
+        "spellId": 363534,
+        "name": "Rewind",
+        "cooldownSeconds": 240,
+        "charges": 1,
         "signals": [
             "Periodic Heal (real magnitude)"
         ]
     },
     {
-        "spellId": 48438,
-        "name": "Wild Growth",
-        "cooldownSeconds": 10,
-        "charges": null,
+        "spellId": 363916,
+        "name": "Obsidian Scales",
+        "cooldownSeconds": 90,
+        "charges": 1,
         "signals": [
-            "Periodic Heal (real magnitude)"
-        ]
-    },
-    {
-        "spellId": 115151,
-        "name": "Renewing Mist",
-        "cooldownSeconds": 9,
-        "charges": 2,
-        "signals": [
-            "Via sibling spell_id 119611: Periodic Heal (real magnitude)"
+            "Damage Taken%, self takes LESS (-30)",
+            "Immunity"
         ]
     },
     {
@@ -834,21 +824,112 @@
         ]
     },
     {
-        "spellId": 190456,
-        "name": "Ignore Pain",
-        "cooldownSeconds": 1,
-        "charges": null,
-        "signals": [
-            "Absorb (shield)"
-        ]
-    },
-    {
-        "spellId": 336126,
-        "name": "Gladiator's Medallion",
+        "spellId": 374227,
+        "name": "Zephyr",
         "cooldownSeconds": 120,
         "charges": null,
         "signals": [
-            "Manual: PvP trinket, breaks loss of control (added by hand 2026-09-17; not produced by classify-cooldowns.php, keep it when re-promoting)"
+            "Modify AoE Damage Taken% [hand-added 2026-09-18 — classifier missed it]"
+        ]
+    },
+    {
+        "spellId": 374251,
+        "name": "Cauterizing Flame",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 384100,
+        "name": "Berserker Shout",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 388615,
+        "name": "Restoral",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 403876,
+        "name": "Divine Protection",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-20)"
+        ]
+    },
+    {
+        "spellId": 414658,
+        "name": "Ice Cold",
+        "cooldownSeconds": 240,
+        "charges": 1,
+        "signals": [
+            "Modify Damage Taken% (-70) [hand-added 2026-09-18 — classifier missed it]"
+        ]
+    },
+    {
+        "spellId": 452497,
+        "name": "Abyssal Gaze",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 452930,
+        "name": "Demonic Healthstone",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 471195,
+        "name": "Lay on Hands",
+        "cooldownSeconds": 600,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 473909,
+        "name": "Ancient of Lore",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-30)",
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 1267068,
+        "name": "Stormstream Totem",
+        "cooldownSeconds": 30,
+        "charges": 0,
+        "signals": [
+            "Via sibling spell_id 1267745: Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 1277297,
+        "name": "Ignore Pain",
+        "cooldownSeconds": 20,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
         ]
     }
 ]

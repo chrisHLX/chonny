@@ -1,0 +1,89 @@
+{
+  "slug": "fire-fury-vs-jungle",
+  "title": "Fire Mage / Fury Warrior / Holy Paladin vs Jungle",
+  "summary": "A machine-drafted plan for Fire Mage / Fury Warrior / Holy Paladin into Feral Druid, Beast Mastery Hunter and Discipline Priest — kill target, control allocation and cadence are derived from cooldowns and defensive counts; the order is a guess. Correct it on any step.",
+  "team": ["mage/fire", "warrior/fury", "paladin/holy"],
+  "enemy": ["druid/feral", "hunter/beast-mastery", "priest/discipline"],
+  "sections": [
+    {
+      "kind": "text",
+      "title": "Kill target: the Discipline Priest — and the trade-off",
+      "body": "Count the personal defensive cooldowns each of the three holds: the Feral has four (Barkskin, Frenzied Regeneration, Survival Instincts, the trinket), the Priest has four (Fade, Desperate Prayer, Pain Suppression, the trinket), and the Hunter has six (Aspect of the Turtle, Camouflage, Exhilaration, Roar of Sacrifice, Survival of the Fittest, the trinket). The Hunter is out on count alone.\n\nFeral and Priest tie. This plan picks the Priest, because killing the healer ends the enemy's sustain outright rather than removing one source of their damage — and this comp's own kit (Combustion, the Warrior's stacked heavy cooldowns, Avenging Wrath) is built to close a game inside a window, not grind one out. A kill on the Priest ends the match; a kill on the Feral still leaves a healer free to keep the Hunter alive indefinitely.\n\nThe honest trade-off: the Feral is where most of the enemy's own control lives — Maim, Cyclone, the roots, Typhoon. Pressuring or killing the Feral instead would gut their capacity to peel for the Priest for the rest of the match. This plan can't weigh 'end the game now' against 'remove their control for the next ten minutes' from a cooldown count alone — that's a judgment call, not an answer.\n\nBecause the Priest is both the healer and the kill target here, the usual four roles collapse to three: there is no separate 'control the healer' step — holding the Priest and killing her are the same action, covered next — and both remaining enemies need cross-CC, since either one can peel for her."
+    },
+    {
+      "kind": "sequence",
+      "title": "Hold the Priest — she's also the kill target",
+      "steps": [
+        { "spec": "warrior/fury", "spell": "Heroic Leap", "note": "Closes the gap and lands the opener in the same action, so the stun isn't delayed by a run-in." },
+        { "spec": "mage/fire", "spell": "Polymorph", "note": "Locks her down before anything commits — break it with the first hit of the burst, not before." },
+        { "spec": "warrior/fury", "spell": "Storm Bolt", "note": "The one that actually holds through the burst — it's the only category here that doesn't break on our own damage." },
+        { "spec": "paladin/holy", "spell": "Hammer of Justice", "note": "Same category as Storm Bolt, so back-to-back it lands diminished. Better held for the moment the first stun runs out, or banked for the next go if the kill already landed." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Cross-CC the Feral and the Hunter — either one can peel",
+      "steps": [
+        { "spec": "paladin/holy", "spell": "Blinding Light", "note": "A frontal cone — catches both if they're stacked on the Priest. If they're spread, it only gets one, and this plan has no way to know which." },
+        { "spec": "mage/fire", "spell": "Frost Nova", "note": "The long root, not the short one — spend it on whichever of the two Blinding Light missed." },
+        { "spec": "warrior/fury", "spell": "Charge", "note": "Roots the third player, but it's also the Warrior's own gap-closer. Using it here instead of on the Priest costs his positioning into the kill." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "The go",
+      "steps": [
+        { "spec": "mage/fire", "spell": "Combustion", "note": "Pop first, so the rest of the window burns inside the higher crit." },
+        { "spec": "warrior/fury", "spell": "Avatar", "note": "Every third beat this arrives already stacked with Recklessness and Bladestorm — see cadence." },
+        { "spec": "warrior/fury", "spell": "Recklessness" },
+        { "spec": "paladin/holy", "spell": "Avenging Crusader", "note": "The reliable one, same tier as Combustion." },
+        { "spec": "paladin/holy", "spell": "Avenging Wrath", "note": "Only every fourth beat. When both Paladin cooldowns and the Warrior's full stack land together, that's the biggest window this comp has." },
+        { "spec": "mage/fire", "spell": "Meteor" },
+        { "spec": "mage/fire", "spell": "Pyroblast", "note": "After Meteor, while Combustion is still active." }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Priest answers with",
+      "opponent": "priest/discipline",
+      "steps": [
+        { "spec": "priest/discipline", "spell": "Fade", "note": "Comes back almost every beat — a short reduction, not a real answer." },
+        { "spec": "priest/discipline", "spell": "Desperate Prayer", "note": "A big chunk of health back mid-burst. Doesn't stop the stun, just resets the clock." },
+        { "spec": "priest/discipline", "spell": "Pain Suppression", "note": "The real answer. If it's already been forced on an earlier go, this window should be the kill." },
+        { "spec": "priest/discipline", "spell": "Gladiator's Medallion", "note": "Breaks the stun outright and grants immunity. Once this is spent, the next stun holds clean." }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Hunter answers with",
+      "opponent": "hunter/beast-mastery",
+      "steps": [
+        { "spec": "hunter/beast-mastery", "spell": "Roar of Sacrifice", "note": "This is the real save for the Priest, not a personal defensive — it reduces damage taken by an ally. If it lands on her mid-go, expect the burst to underperform even with no trinket used." },
+        { "spec": "hunter/beast-mastery", "spell": "Survival of the Fittest", "note": "Cuts damage and CC duration together — the second stun in this plan may land shorter than it looks." },
+        { "spec": "hunter/beast-mastery", "spell": "Aspect of the Turtle", "note": "Close to full damage immunity. If this comes out, the go is over regardless of what else lands." },
+        { "spec": "hunter/beast-mastery", "spell": "Gladiator's Medallion" }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Feral answers with",
+      "opponent": "druid/feral",
+      "steps": [
+        { "spec": "druid/feral", "spell": "Survival Instincts", "note": "The biggest one they hold. If cross-CC lands clean and this still comes out, it was spent surviving our pressure, not saving the Priest." },
+        { "spec": "druid/feral", "spell": "Barkskin", "note": "Personal, not a save — the real threat from the Feral is landing Maim or Cyclone on us before our stun lands, not this." },
+        { "spec": "druid/feral", "spell": "Frenzied Regeneration" },
+        { "spec": "druid/feral", "spell": "Gladiator's Medallion" }
+      ]
+    },
+    {
+      "kind": "text",
+      "title": "Cadence: a 30-second beat that scales up",
+      "body": "The shared beat is 30 seconds. Storm Bolt, Hammer of Justice, Meteor, Pyroblast, Heroic Leap and Divine Toll are all back on that cycle, so a real attempt — a stun plus the Mage and Paladin's reliable damage — is available every 30 seconds regardless of what else is up.\n\nEvery second beat (60s) Combustion and Avenging Crusader join. Every third beat (90s) the Warrior's whole heavy kit — Avatar, Bladestorm, Champion's Spear, Recklessness — arrives together; it's already self-aligned inside one player, without needing anything else to line up. Every fourth beat (120s) Avenging Wrath joins on top of all of it, which is the biggest window this comp has.\n\nShockwave, Dragon's Breath and Ring of Frost all sit on their own tier (40s) that lines up with neither the 30-second rhythm nor Combustion's 60 — treat them as opportunistic, not scheduled.\n\nMissing the beat costs more than the ability spent. If Storm Bolt goes out off-cycle, the next stun on the Priest arrives without Meteor, Pyroblast or Divine Toll lined up behind it, and the go that was meant to land inside Avenging Wrath's window instead arrives early, without it."
+    },
+    {
+      "kind": "text",
+      "title": "Where this is guessing",
+      "body": "1. Positioning isn't in this data at all. Blinding Light catching both Feral and Hunter, and Charge reaching a third target, both assume they're stacked near the Priest. If they're spread, cross-CC collapses to one target and the other peels free — a real player will know how these three actually position, this plan doesn't.\n\n2. The kill target. Feral and Priest tie on defensive count. This plan picks the Priest for the sustain-denial upside, but the Feral is where the enemy's own control lives — which is actually right depends on how pinnable each of them is in practice, and this plan has no way to judge that.\n\n3. Holding Hammer of Justice for the next go instead of chaining it diminished behind Storm Bolt is the textbook trade. But a cooldown that's never spent because the right window never gets recognized is worth nothing — using it early and diminished may be the better real answer, and that depends on the player, not the math.\n\n4. Whether Roar of Sacrifice landing on the Priest mid-go should end the attempt or not. This plan assumes a partial go still forces something worth having — a spent Sacrifice, maybe a trinket — even without a kill, but it doesn't prove that's the right call here."
+    }
+  ]
+}

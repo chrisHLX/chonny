@@ -1,4 +1,4 @@
-@props(['steps', 'section', 'editable' => false, 'ownerId' => null, 'annotatable' => false, 'notes' => null, 'notingOn' => null])
+@props(['steps', 'section', 'editable' => false, 'ownerId' => null, 'annotatable' => false, 'notes' => null, 'notingOn' => null, 'authorLabel' => null])
 
 @php
     // One definition of how a step renders, shared by the builder and the public read view — the
@@ -135,7 +135,15 @@
                         @endif
 
                         @if ($note = $block->note())
-                            <p class="text-[12px] text-ink-muted mt-1 italic">{{ $note }}</p>
+                            {{-- Whose words these are, said plainly: on a machine-drafted guide a
+                                 reader could not tell the author's own annotation apart from a
+                                 reader's comment when both were called "notes". --}}
+                            <p class="text-[12px] text-ink-muted mt-1 italic">
+                                @if ($authorLabel)
+                                    <span class="not-italic text-gold text-[11px]">{{ $authorLabel }}:</span>
+                                @endif
+                                {{ $note }}
+                            </p>
                         @endif
 
                         @if ($editable)
@@ -176,22 +184,14 @@
                     </div>
                 @endif
 
-                @if ($annotatable && ! $step['unresolved'])
-                    <button type="button" wire:click="startNote('block:{{ $block->id }}')"
-                            class="text-[11px] text-ink-subtle hover:text-violet transition-colors px-1.5 py-1 shrink-0 self-start"
-                            title="Say what's wrong with this step">
-                        @php $count = collect($notes[ 'block:'.$block->id ] ?? [])->count(); @endphp
-                        {{ $count > 0 ? 'Notes ('.$count.')' : 'Note' }}
-                    </button>
+                @if ($annotatable && ($replies = collect($notes['block:'.$block->id] ?? []))->isNotEmpty())
+                    {{-- Notes from when comments were anchored per step (2026-09-18). Nothing writes
+                         these any more, but somebody's criticism is not something to hide. --}}
+                    <span class="text-[11px] text-violet shrink-0 self-start" title="Commented on before this moved to sections">
+                        {{ $replies->count() }} note{{ $replies->count() === 1 ? '' : 's' }}
+                    </span>
                 @endif
             </li>
-
-            @if ($annotatable)
-                <x-guides.note-thread anchor="block:{{ $block->id }}"
-                                      :notes="$notes['block:'.$block->id] ?? collect()"
-                                      :open="$notingOn === 'block:'.$block->id"
-                                      :label="$entry ? $entry->displayName() : 'this step'"/>
-            @endif
         @endforeach
     </ul>
 @endif

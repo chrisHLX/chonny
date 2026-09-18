@@ -1,0 +1,87 @@
+{
+  "slug": "turbo-vs-jungle",
+  "title": "Turbo vs Jungle",
+  "summary": "Arms / Enhancement / Resto Shaman into Feral, BM Hunter and Disc. Two Hexes, two Capacitor Totems and continuous damage — a plan built on repeating a cheap go rather than landing a perfect one.",
+  "team": ["warrior/arms", "shaman/enhancement", "shaman/restoration"],
+  "enemy": ["druid/feral", "hunter/beast-mastery", "priest/discipline"],
+  "sections": [
+    {
+      "kind": "text",
+      "title": "The comp's real advantage is that it has two of everything",
+      "body": "Both Shamans bring Hex, Capacitor Totem, Earthgrab Totem and Lightning Lasso. That is not twice the control, it is something better: two independent sources of healer control, which is what decides how often a comp can go at all rather than how good one go is.\n\nHex is the cheapest incapacitate in this matchup by a wide margin and there are two of them. That is the plan — repeat a cheap chain often, rather than stack everything into one attempt.\n\nWhat this comp does not have is a second stun on demand. Capacitor Totem is a totem: it has a travel and a wind-up, it can be killed, and it cannot be aimed at someone who has already moved."
+    },
+    {
+      "kind": "text",
+      "title": "Kill the Hunter",
+      "body": "Answer counts: the Hunter holds six, the Feral four. But count is the wrong reading here — the Feral's four include Survival Instincts and Barkskin, both of which shrug off a melee go, and a Feral can leave melee range whenever he likes.\n\nThe Hunter's answers are mostly disengages and pet-driven mitigation, and this comp closes distance better than any other archetype: two charges, a leap and a Feral Lunge.\n\nSo: kill the one you can actually keep in melee, not the one with the shorter list."
+    },
+    {
+      "kind": "sequence",
+      "title": "Healer chain — cheap, and repeatable every go",
+      "steps": [
+        { "spec": "shaman/enhancement", "spell": "Hex", "note": "The Enhancement one first. It costs almost nothing, so spending it and having it back next go is the point." },
+        { "spec": "shaman/restoration", "spell": "Hex", "note": "Same category, so it lands halved — but it is the second cheapest thing in the comp, and holding it buys nothing." },
+        { "spec": "warrior/arms", "spell": "Intimidating Shout", "note": "Fresh category at full duration. GUESS: this is the comp's one long control and spending it on the healer here may be worse than saving it to break their go." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Hold the Hunter",
+      "steps": [
+        { "spec": "warrior/arms", "spell": "Storm Bolt", "note": "Stun, so your own damage does not break it." },
+        { "spec": "shaman/enhancement", "spell": "Capacitor Totem", "note": "Place it before the stun ends, not after — it needs a wind-up, and a Hunter who is free will simply walk out of it." },
+        { "spec": "warrior/arms", "spell": "Shockwave", "note": "Third stun in the same category. Diminished, and worth more on the next attempt unless this one is already lethal." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Stop the Feral peeling",
+      "steps": [
+        { "spec": "shaman/restoration", "spell": "Earthgrab Totem", "note": "A Feral out of melee range is not peeling, and a root costs him the leap rather than a global." },
+        { "spec": "warrior/arms", "spell": "Disarm", "note": "Free, and against a melee healer-peeler it is close to a stun in effect." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "The go",
+      "steps": [
+        { "spec": "warrior/arms", "spell": "Avatar" },
+        { "spec": "shaman/enhancement", "spell": "Doom Winds", "note": "Same tier as Avatar only every second attempt — Ascendance is the one that does not line up." },
+        { "spec": "warrior/arms", "spell": "Colossus Smash" },
+        { "spec": "shaman/enhancement", "spell": "Sundering" },
+        { "spec": "warrior/arms", "spell": "Champion's Spear" }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Hunter answers with",
+      "opponent": "hunter/beast-mastery",
+      "steps": [
+        { "spec": "hunter/beast-mastery", "spell": "Aspect of the Turtle", "note": "Total for its duration, and the reason a go that starts before it is spent achieves nothing." },
+        { "spec": "hunter/beast-mastery", "spell": "Survival of the Fittest" },
+        { "spec": "hunter/beast-mastery", "spell": "Roar of Sacrifice", "note": "Goes on somebody else — it is how the Hunter saves the Feral, not himself." },
+        { "spec": "hunter/beast-mastery", "spell": "Exhilaration" }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Feral does to your go",
+      "opponent": "druid/feral",
+      "steps": [
+        { "spec": "druid/feral", "spell": "Cyclone", "note": "The single most disruptive thing in the matchup. It is free and it takes your Warrior out of the window." },
+        { "spec": "druid/feral", "spell": "Ursol's Vortex", "note": "Not damage prevention — it stops you leaving or arriving, which against a melee comp is the same thing." },
+        { "spec": "druid/feral", "spell": "Survival Instincts", "note": "Halves everything. If he uses it in your first go, the second one is where the kill is." }
+      ]
+    },
+    {
+      "kind": "text",
+      "title": "Cadence: thirty seconds, and almost nothing above it",
+      "body": "Hex is back sooner than anything else in the game at this tier. Storm Bolt, Earthgrab, Sundering, Feral Lunge and Surging Totem all sit on the thirty-second tier; Capacitor Totem and Shockwave drift slightly above it.\n\nAvatar and Doom Winds are the ceiling, and they line up only every second attempt, which is the one real scheduling decision this comp has.\n\nThe practical consequence: this comp goes roughly twice as often as the team it is fighting, and its goes are individually worse. That is the trade, and it is why spending a long cooldown on a chain — the Intimidating Shout above — is the choice I am least sure about."
+    },
+    {
+      "kind": "text",
+      "title": "Where this is guessing",
+      "body": "1. Two Hexes back to back. The second lands halved, and it may be better to keep it for the next attempt entirely, since the comp's whole advantage is attempt frequency.\n\n2. Intimidating Shout as chain versus as peel — the same unresolved trade as every other guide here.\n\n3. Kill target. I chose the Hunter on pinnability over the Feral on answer count, and that is a judgement I made from structure rather than from play.\n\n4. Nothing here handles a Cyclone on the Warrior during Avatar, which is presumably what a good Feral does, and which would waste the comp's only real window."
+    }
+  ]
+}

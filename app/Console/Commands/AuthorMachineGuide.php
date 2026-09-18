@@ -158,7 +158,10 @@ class AuthorMachineGuide extends Command
     /** @param array<int, string> $specs "rogue/subtlety" strings, in slot order */
     private function syncRoster(UserGuide $guide, array $specs, UserGuideMemberSide $side): void
     {
-        $guide->members()->where('side', $side->value)->delete();
+        // roster(), not members() — that relation is already scoped to the team side, so
+        // members()->where('side', 'enemy') matches nothing and the re-import then collides with
+        // the rows it was supposed to have replaced. Caught re-importing a revised guide.
+        $guide->roster()->where('side', $side->value)->delete();
 
         foreach (array_values($specs) as $position => $ref) {
             $spec = $this->spec($ref);

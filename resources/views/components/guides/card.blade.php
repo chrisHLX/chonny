@@ -62,7 +62,13 @@
 
             @if ($showAuthor)
                 <p class="text-[11px] text-ink-subtle mt-1.5">
-                    by <span @if ($c = $guide->authorColor()) style="color: {{ $c }}" @endif>{{ $guide->authorLabel() }}</span>
+                    {{-- A model's guides are all owned by one account, so the account name says
+                         nothing useful — which MODEL wrote it is the thing a reader is comparing. --}}
+                    @if ($guide->isMachineAuthored())
+                        by <span class="text-gold">{{ $guide->authored_by_model }}</span>
+                    @else
+                        by <span @if ($c = $guide->authorColor()) style="color: {{ $c }}" @endif>{{ $guide->authorLabel() }}</span>
+                    @endif
                     @if ($authorExp)
                         <span class="text-gold tabular-nums">&middot; {{ $authorExp['rating'] }} exp</span>
                     @endif

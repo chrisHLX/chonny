@@ -1,0 +1,83 @@
+{
+  "slug": "thug-vs-rmd",
+  "title": "Thug Cleave vs RMD",
+  "summary": "Assassination / BM Hunter / Disc into Assassination, Fire Mage and Resto Druid. Their Rogue opens on you as hard as yours opens on them — this plan is about who wins the first ten seconds and what to do when it is not you.",
+  "team": ["rogue/assassination", "hunter/beast-mastery", "priest/discipline"],
+  "enemy": ["rogue/assassination", "mage/fire", "druid/restoration"],
+  "sections": [
+    {
+      "kind": "text",
+      "title": "The opener decides more here than in any other matchup",
+      "body": "Both teams have a Rogue, which means both teams open from stealth and only one of them lands it. Everything below assumes you got it; the last section says what changes if you did not.\n\nKill target: the Mage. Their Rogue holds six answers including Cloak of Shadows and Evasion — a Cloak alone removes your Priest from the round for its duration and most of a Garrote. The Mage holds four, and one of those is a barrier that is up every attempt anyway.\n\nThe real argument for the Mage, though, is not the count — it is that a Fire Mage who is not casting is not killing you either. Pressure on him is peel-suppression as much as it is damage."
+    },
+    {
+      "kind": "sequence",
+      "title": "Opener — the healer first, because their Rogue is faster than yours",
+      "steps": [
+        { "spec": "rogue/assassination", "spell": "Sap", "note": "On the Druid. Free, and it has to land before their Rogue is in position to answer." },
+        { "spec": "hunter/beast-mastery", "spell": "Intimidation", "note": "On the Mage. Same global as the Sap, so the Druid cannot immediately break it and the Mage cannot Blink away from the trap." },
+        { "spec": "hunter/beast-mastery", "spell": "Freezing Trap", "note": "GUESS: this plan traps the MAGE, not the healer — the Druid is already Sapped, and a trapped Mage cannot Ice Block, Blink or Dragon's Breath your opener." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Control the Druid through the go",
+      "steps": [
+        { "spec": "priest/discipline", "spell": "Psychic Scream", "note": "Fresh category after the Sap, so it lands full." },
+        { "spec": "hunter/beast-mastery", "spell": "Chimaeral Sting", "note": "Silence rather than a fear — it survives the Druid's own damage and it does not share a category with anything above." },
+        { "spec": "rogue/assassination", "spell": "Blind", "note": "Long cooldown, and last in the chain so it is diminished. The comp has two cheaper answers; this is the one to hold if their Rogue is still unspent." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Hold the Mage",
+      "steps": [
+        { "spec": "rogue/assassination", "spell": "Cheap Shot", "note": "Twelve seconds, so it is effectively free — this is the stun the go is built on." },
+        { "spec": "rogue/assassination", "spell": "Garrote", "note": "Silence, and it survives your damage. Against a Fire Mage this is worth more than the stun: a silenced Mage cannot Block." },
+        { "spec": "rogue/assassination", "spell": "Kidney Shot", "note": "Diminished after Cheap Shot. Spend it here only if the kill is already on." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "The go",
+      "steps": [
+        { "spec": "rogue/assassination", "spell": "Deathmark", "note": "The longest thing in the comp, so it is what the cadence is built around." },
+        { "spec": "priest/discipline", "spell": "Power Infusion", "note": "On the Rogue. Both are long, so they line up naturally." },
+        { "spec": "rogue/assassination", "spell": "Kingsbane" },
+        { "spec": "hunter/beast-mastery", "spell": "Bestial Wrath", "note": "Back every attempt — this is the pressure between goes, not part of the big one." },
+        { "spec": "rogue/assassination", "spell": "Thistle Tea" }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Mage answers with",
+      "opponent": "mage/fire",
+      "steps": [
+        { "spec": "mage/fire", "spell": "Ice Block", "note": "Longer than most — forcing it effectively removes his answer for the rest of the round." },
+        { "spec": "mage/fire", "spell": "Blazing Barrier", "note": "Up every attempt. Not a cooldown you are spending." },
+        { "spec": "mage/fire", "spell": "Greater Invisibility", "note": "Also drops your damage over time, which against a bleed comp is a bigger answer than it looks." }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "Their Rogue is the problem, not their Mage",
+      "opponent": "rogue/assassination",
+      "steps": [
+        { "spec": "rogue/assassination", "spell": "Cloak of Shadows", "note": "Removes your Priest's control and most of a Garrote. If your go depends on magic, this ends it." },
+        { "spec": "rogue/assassination", "spell": "Smoke Bomb", "note": "Used on their Mage, it makes your kill window unusable without moving." },
+        { "spec": "rogue/assassination", "spell": "Evasion" },
+        { "spec": "rogue/assassination", "spell": "Dismantle", "note": "Not a defensive: it is what stops your Rogue mid-go, and it is why the Hunter has to carry pressure." }
+      ]
+    },
+    {
+      "kind": "text",
+      "title": "Cadence, and the part nobody schedules",
+      "body": "Cheap Shot and Garrote are close to always available, which is why this comp can threaten constantly without spending anything. The thirty-second tier holds Kidney Shot, Psychic Scream, Bestial Wrath and Tricks of the Trade.\n\nDeathmark and Power Infusion are the ceiling and they line up. That is the one moment in every round where this comp is genuinely lethal rather than merely annoying.\n\nWhat is not on a tier at all: Sap, and their Rogue's stealth. The opener is a one-off, and this comp is considerably worse at its second go than its first, because the free control is gone and the enemy Rogue is now in position."
+    },
+    {
+      "kind": "text",
+      "title": "Where this is guessing",
+      "body": "1. Trapping the Mage instead of the healer. I think it is right against a Fire Mage specifically, because Ice Block and Blink are the two things that beat this opener — but it is the single call in this guide I would most expect a real player to reverse.\n\n2. What to do when THEY open. Nothing above covers losing the stealth war, and that is at least half the matchup.\n\n3. Whether the Blind should be in the healer chain at all when their Rogue has a Smoke Bomb that will invalidate your window anyway.\n\n4. Cloak of Shadows timing. If their Rogue cloaks the opener, your Priest's entire contribution to the go disappears, and I do not know whether the right answer is to pre-bait it or to go anyway."
+    }
+  ]
+}

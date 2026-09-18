@@ -1,0 +1,88 @@
+{
+  "slug": "wls-vs-rmp",
+  "title": "WLS vs RMP",
+  "summary": "Arms / Destruction Warlock / Resto Shaman into Sub Rogue, Frost Mage and Disc. Three fears, two of them free — a plan that wins by never letting their setup finish rather than by assembling a better one.",
+  "team": ["warrior/arms", "warlock/destruction", "shaman/restoration"],
+  "enemy": ["rogue/subtlety", "mage/frost", "priest/discipline"],
+  "sections": [
+    {
+      "kind": "text",
+      "title": "You have more control than they do, and most of it is free",
+      "body": "Count what the Warlock alone brings: Fear with no cooldown, Howl of Terror, Seduction, Mortal Coil, Shadowfury, Banish. Add the Shaman's Hex and Capacitor Totem and the Warrior's two stuns.\n\nAgainst a comp whose entire win condition is assembling one clean window, that is the matchup in a sentence: you can break their setup more often than they can build it, and it costs you almost nothing to try.\n\nSo the mindset is inverted from most guides here. Your control is not primarily there to make a kill window. It is there to make sure theirs never happens, and the kill arrives because they eventually run out of answers."
+    },
+    {
+      "kind": "text",
+      "title": "Kill the Mage, but do not chase him",
+      "body": "The Rogue holds six answers and two are near-total against this comp — Cloak of Shadows removes the Warlock entirely for its duration, and Evasion removes the Warrior. Killing through both is a round spent achieving nothing.\n\nThe Mage holds four. Two of them are barriers that come back every attempt and therefore are not really answers at all.\n\nThe caveat, and it matters more here than usual: this comp has one charge and a Feral Lunge-equivalent it does not have. A Mage who kites well is a bad target for a Warrior who cannot reach him — which is the argument for parking damage on whoever is closest and winning on attrition instead."
+    },
+    {
+      "kind": "sequence",
+      "title": "Break their opener",
+      "steps": [
+        { "spec": "warlock/destruction", "spell": "Howl of Terror", "note": "It needs no target and it catches a Rogue who has just opened. This is the cheapest way to end a setup before it starts." },
+        { "spec": "shaman/restoration", "spell": "Hex", "note": "On the Priest, the moment their go begins. A healer who cannot cast cannot cover their own commitment either." },
+        { "spec": "warrior/arms", "spell": "Spell Reflection", "note": "Not control — but it is back every attempt and it eats a Polymorph, which is the piece their chain usually starts with." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Control the Priest when you commit",
+      "steps": [
+        { "spec": "warlock/destruction", "spell": "Fear", "note": "Free. In a comp with this much control, the free one goes first and the expensive ones stay in reserve." },
+        { "spec": "shaman/restoration", "spell": "Hex", "note": "Fresh category, full duration." },
+        { "spec": "warlock/destruction", "spell": "Shadowfury", "note": "Stun, so it holds through your own damage — and it is the only one here that can catch two of them at once." },
+        { "spec": "warlock/destruction", "spell": "Mortal Coil", "note": "GUESS: same category as the Hex, so it lands halved. It also heals the Warlock, which may make it worth more as a defensive than as the fourth link of a chain." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Keep the Rogue off the go",
+      "steps": [
+        { "spec": "warrior/arms", "spell": "Disarm", "note": "Free, and against a Rogue it is close to a stun in effect." },
+        { "spec": "shaman/restoration", "spell": "Earthgrab Totem", "note": "A rooted Rogue is not reaching your Warlock, and it costs a totem rather than a cooldown." }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "The go",
+      "steps": [
+        { "spec": "warrior/arms", "spell": "Avatar", "note": "The comp's gate — the rest is scheduled around it." },
+        { "spec": "warrior/arms", "spell": "Colossus Smash" },
+        { "spec": "warlock/destruction", "spell": "Malevolence" },
+        { "spec": "warlock/destruction", "spell": "Soul Fire" },
+        { "spec": "warrior/arms", "spell": "Champion's Spear" }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Mage answers with",
+      "opponent": "mage/frost",
+      "steps": [
+        { "spec": "mage/frost", "spell": "Ice Block", "note": "The one you are actually trying to spend." },
+        { "spec": "mage/frost", "spell": "Ice Barrier", "note": "Back every attempt, so it is the floor rather than an answer." },
+        { "spec": "mage/frost", "spell": "Greater Invisibility" }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "What the Rogue does to your plan",
+      "opponent": "rogue/subtlety",
+      "steps": [
+        { "spec": "rogue/subtlety", "spell": "Cloak of Shadows", "note": "Every fear, every curse and most of the Warlock's damage, gone for its duration. This comp has no answer to it except waiting." },
+        { "spec": "rogue/subtlety", "spell": "Smoke Bomb", "note": "Makes their kill window unreachable rather than saving anyone." },
+        { "spec": "rogue/subtlety", "spell": "Dismantle", "note": "Not a defensive. It is what stops your Warrior mid-Avatar, and it is free for them." },
+        { "spec": "rogue/subtlety", "spell": "Evasion" }
+      ]
+    },
+    {
+      "kind": "text",
+      "title": "Cadence: you go whenever they try to",
+      "body": "Fear and Disarm have no cooldown, Hex is back faster than anything else here, and Earthgrab, Storm Bolt and Curse of Exhaustion sit on the thirty-second tier. Howl of Terror, Seduction and Mortal Coil are all in the same region.\n\nAvatar is the ceiling and nothing else in the comp shares that tier, so there is only one scheduling decision: whether to hold Avatar for a window you created or spend it on the window their commitment hands you.\n\nThis guide argues for the second. A comp with this much cheap control does not need to build anything — it needs their team to try something while your damage cooldown is up."
+    },
+    {
+      "kind": "text",
+      "title": "Where this is guessing",
+      "body": "1. Whether to hold Avatar for their go or to schedule your own. I have argued one side; the other is entirely defensible and it is the central question of the matchup.\n\n2. Mortal Coil as the fourth link in a chain, where it is halved, versus as the Warlock's own panic button. It is both, and nothing in the data tells me which use wins more rounds.\n\n3. Nothing here says what to do about Cloak of Shadows, which invalidates most of a Destruction Warlock's contribution on demand.\n\n4. The kill target reasoning assumes you can hold the Mage still. If your Warrior cannot, the whole plan should probably be pressure on the Rogue and a mana war instead — and I do not know at what point to make that call."
+    }
+  ]
+}

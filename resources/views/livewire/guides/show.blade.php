@@ -249,12 +249,14 @@
                             <x-guides.metrics :metrics="$data['metrics']"/>
                         @endif
                         <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :owner-id="$guide->user_id"
-                                                :notes="$this->notesByAnchor" :noting-on="$notingOn" :annotatable="true"/>
+                                                :notes="$this->notesByAnchor" :noting-on="$notingOn" :annotatable="true"
+                                                :author-label="$guide->authored_by_model"/>
                     @endif
 
                     <x-guides.note-thread anchor="section:{{ $section->id }}"
                                           :notes="$this->notesByAnchor['section:'.$section->id] ?? collect()"
                                           :open="$notingOn === 'section:'.$section->id"
+                                          :author="$guide->authored_by_model"
                                           label="this section"/>
                 </div>
             @endforeach
