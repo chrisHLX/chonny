@@ -231,6 +231,18 @@ test('the leaderboard ranks signed-in players by questions answered and leaves g
     $this->get(route('home'))->assertOk()->assertSeeInOrder(['Most questions answered', '@bob', '@alice']);
 });
 
+test('starting a quiz as a guest remembers the session it was taken under, for claiming at sign-in', function () {
+    fakeQuizFacts();
+    $service = app(QuizService::class);
+    $subject = WowQuiz::subjectFor(quizSpec());
+
+    $service->start('wow', $subject, 1, null, 'sess-a');
+    $service->start('wow', $subject, 2, null, 'sess-a');
+    $service->start('wow', $subject, 1, User::factory()->create(), 'sess-b');
+
+    expect(session(QuizService::GUEST_SESSIONS_KEY))->toBe(['sess-a']);
+});
+
 test('answering updates the answered count', function () {
     fakeQuizFacts();
     $service = app(QuizService::class);

@@ -15,10 +15,10 @@ return [
 
     'name' => env('APP_NAME', 'MindCollector'),
 
-    'screener_module_id'       => env('SCREENER_MODULE_ID'),
-    'screener_wow_module_id'   => env('SCREENER_WOW_MODULE_ID'),
-    'screener_sc2_module_id'   => env('SCREENER_SC2_MODULE_ID'),
-    'screener_lol_module_id'   => env('SCREENER_LOL_MODULE_ID'),
+    'screener_module_id' => env('SCREENER_MODULE_ID'),
+    'screener_wow_module_id' => env('SCREENER_WOW_MODULE_ID'),
+    'screener_sc2_module_id' => env('SCREENER_SC2_MODULE_ID'),
+    'screener_lol_module_id' => env('SCREENER_LOL_MODULE_ID'),
     'screener_poker_module_id' => env('SCREENER_POKER_MODULE_ID'),
 
     /*
@@ -128,6 +128,12 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
-    
+
+    /*
+    | Every new account is made friends with this account on sign-up (AddWelcomeFriend), so
+    | nobody arrives to an empty friends list. Blank, or an address with no account, turns it off.
+    */
+
+    'welcome_friend_email' => env('WELCOME_FRIEND_EMAIL', 'christian@mindcollector.com'),
 
 ];

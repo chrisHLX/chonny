@@ -2,12 +2,9 @@
 
 namespace App\Providers;
 
-use App\Listeners\SendNewUserNotification;
 use App\Models\User;
 use App\Models\UserGuide;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -36,7 +33,9 @@ class AppServiceProvider extends ServiceProvider
         \Illuminate\Support\Facades\Vite::useScriptTagAttributes(['data-navigate-track' => 'reload']);
         \Illuminate\Support\Facades\Vite::useStyleTagAttributes(['data-navigate-track' => 'reload']);
 
-        Event::listen(Registered::class, SendNewUserNotification::class);
+        // Listeners in app/Listeners are registered by Laravel's event discovery, from each
+        // handle() method's type hint. Don't also Event::listen() them here: that registered
+        // SendNewUserNotification twice, so every sign-up sent the admin two emails.
 
         Gate::define('admin', fn (User $user) => $user->is_admin);
 

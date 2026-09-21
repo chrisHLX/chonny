@@ -28,6 +28,13 @@ class QuizService
         return app(self::GAMES[$game]);
     }
 
+    /**
+     * Session key listing the session ids this browser has taken quizzes under as a guest. Kept in
+     * the session's DATA, not derived from its id, because signing in changes the id (Laravel
+     * migrates the session on login) while the data survives — see claimGuestAttempts().
+     */
+    public const GUEST_SESSIONS_KEY = 'quiz.guest_session_ids';
+
     /** Returns null when the game data can't make a quiz for this subject and level. */
     public function start(string $game, string $subject, int $level, ?User $user, string $sessionId): ?QuizAttempt
     {
@@ -35,6 +42,13 @@ class QuizService
 
         if ($questions === []) {
             return null;
+        }
+
+        if (! $user) {
+            $known = session(self::GUEST_SESSIONS_KEY, []);
+            if (! in_array($sessionId, $known, true)) {
+                session()->put(self::GUEST_SESSIONS_KEY, [...$known, $sessionId]);
+            }
         }
 
         return QuizAttempt::create([
@@ -69,6 +83,32 @@ class QuizService
         ]);
 
         return true;
+    }
+
+    /**
+     * Move the quizzes this browser took as a guest onto the account that just signed in. Called on
+     * every login (ClaimGuestQuizAttempts), so it covers email, Google and Battle.net alike.
+     *
+     * Without this a guest's scores stayed keyed to a session id that signing in replaces: they
+     * vanished from the player's own progress and never counted on the leaderboard — the first
+     * player to sign up straight from a quiz (2026-09-20, two perfect levels) lost both.
+     *
+     * Only ids from this session's own server-side data are claimed, so nobody can claim another
+     * visitor's attempts by guessing a session id.
+     *
+     * @return int attempts claimed
+     */
+    public function claimGuestAttempts(User $user): int
+    {
+        $sessionIds = session()->pull(self::GUEST_SESSIONS_KEY, []);
+
+        if (! is_array($sessionIds) || $sessionIds === []) {
+            return 0;
+        }
+
+        return QuizAttempt::whereNull('user_id')
+            ->whereIn('session_id', $sessionIds)
+            ->update(['user_id' => $user->id, 'session_id' => null]);
     }
 
     /**

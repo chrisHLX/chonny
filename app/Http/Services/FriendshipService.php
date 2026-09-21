@@ -79,6 +79,37 @@ class FriendshipService
         });
     }
 
+    /**
+     * Make two players friends outright, with no request to accept. Only for the site's own
+     * welcome friend (AddWelcomeFriend) — a player-initiated friendship always goes through
+     * request(), because friendship grants edit access to guides with friends_can_edit on.
+     */
+    public function befriend(User $a, User $b): void
+    {
+        if ($a->id === $b->id) {
+            return;
+        }
+
+        DB::transaction(function () use ($a, $b) {
+            $existing = Friendship::between($a->id, $b->id)->lockForUpdate()->first();
+
+            if ($existing) {
+                if ($existing->status !== FriendshipStatus::Accepted) {
+                    $this->markAccepted($existing);
+                }
+
+                return;
+            }
+
+            Friendship::create([
+                'requester_id' => $a->id,
+                'addressee_id' => $b->id,
+                'status' => FriendshipStatus::Accepted,
+                'accepted_at' => now(),
+            ]);
+        });
+    }
+
     /** Accept a request sent TO this player. A request they sent themselves is not theirs to accept. */
     public function accept(User $user, int $friendshipId): bool
     {
