@@ -11,10 +11,9 @@ Every Claude-drafted guide on this site is written from this document. So if a g
 gives you bad advice, the fault is probably here, and this is the page to argue with.
 
 It is a model of what an arena game *is*: the currency both teams are actually
-spending, what makes a go work, and what a plan has to say before it is a plan. It came
-from three places — one Gladiator's own analysis of his games, the full spell and talent
-data behind this site, and a transcript of Calvish's breakdown of the team that won
-BlizzCon 2026.
+spending, what makes a go work, and what a plan has to say before it is a plan. It came from three
+places: real games reasoned over in detail, the full spell and talent data behind this
+site, and a transcript of Calvish's breakdown of the team that won BlizzCon 2026.
 
 **Nothing here is settled.** Each section is tagged with how much weight it deserves:
 
@@ -55,7 +54,7 @@ games — our player went 0-6 in a lobby trying to force the win condition this 
 prescribes, against opponents nobody was coordinating with. Shuffle needs its own model
 and doesn't have one yet.
 
-## What we will and won't try to tell you {#scope}
+## What a guide can and can't tell you {#scope}
 ::tier observed::
 
 Some things about arena are reliably true. Others are buried in a context nobody outside
@@ -70,19 +69,16 @@ implies.
 opponent. Individual outplays sit inside a context we don't have access to. Any guide
 that claims otherwise is guessing at you.
 
-## The currency is the answer pool, not the trinket {#answer-pool}
+## What actually decides a kill {#answer-pool}
 ::tier observed::
 
-This is the most strongly supported idea on the page, and the first thing to organise a
-plan around.
+Not their health bar. **The list of buttons they still hold** — trinket, personals,
+healer externals, escapes, immunities. Track it per enemy player.
 
-Track, per enemy player, **the list of buttons they still hold** — trinket, personals,
-healer externals, escapes, immunities. A kill is not a damage calculation against a
-health bar. It is a damage calculation against a *list*.
-
-The trinket is not the currency, because a trinket only buys time to press something
-else. A trinket with nothing behind it is a two-second delay. Calvish narrates almost
-every kill in the BlizzCon final this way:
+A trinket only buys time to press something else, so a trinket with nothing behind it is
+a two-second delay. This is the best-supported idea on the page, and the first thing to
+organise a plan around. Calvish narrates almost every kill in the BlizzCon final this
+way:
 
 > "You can have trinkets, but if you don't have anything to press, it's so easy to just
 > die on the spot."
@@ -96,11 +92,11 @@ Three things follow:
 - **A go into a full pool is a strip. A go into an empty pool is a kill.** Different
   plays, different acceptable risk. Plan them differently.
 
-## Overlap is the most expensive mistake in the game {#overlap}
+## Two defensives spent on one threat {#overlap}
 ::tier observed::
 
-Two answers spent on one threat. Not a small inefficiency — a state change that removes
-your ability to play at all.
+Two of you answer the same threat, so two buttons are gone and only one was needed.
+This is not a small inefficiency. It removes your ability to play at all.
 
 > "We overlap iron bark, trinket, trinket, cloak. If you have ever played a game like
 > this, you know exactly how unplayable the rest of the game is going to be. **You are
@@ -117,7 +113,7 @@ the most useful thing this site can build — is a per-matchup lookup: **enemy p
 you press Y.** Every input already exists in our data. That table is what a defensives
 section of a guide should actually contain.
 
-## Damage has three jobs {#damage}
+## The three jobs of damage {#damage}
 ::tier hypothesis::
 
 The obvious two: **kill** (damage inside a live window) and **strip** (forcing a
@@ -138,7 +134,7 @@ damage cooldown into a healer who was never under strain. Nobody has established
 the threshold is. Until we measure it, treat "just do damage" as a named alternative
 with an unknown condition — not as a plan.
 
-## A good go is a zugzwang, not a burst {#zugzwang}
+## Making a go they can't answer {#zugzwang}
 ::tier observed::
 
 Score a go by **how many free globals it leaves the enemy team.** If someone on their
@@ -165,7 +161,7 @@ Two consequences:
   refined between games. It is the strongest evidence we have that a specific written
   opener is a thing you can install and immediately be better.
 
-## A chain is an economic trade {#chains}
+## When to spend a long cooldown {#chains}
 ::tier observed::
 
 Not a DR-avoidance puzzle. Changing DR category is a *consequence* of a good chain, not
@@ -186,7 +182,7 @@ don't yet know when the right moment is, using it early is better than saving it
 forever. Both "use it now" and "bank it" are correct answers to the same position, for
 different players — and nothing here should mark the first one as a mistake.
 
-## What a CC is *for* depends on the comp {#allocation}
+## Who your CC should land on {#allocation}
 ::tier observed::
 
 You cannot label an ability "cross-CC" in the abstract. Cross-CC is whatever control is
@@ -201,7 +197,7 @@ Two rules for allocating:
   Warrior during Avatar both removes damage from their window and creates the setup for
   yours. One button, two currencies.
 
-## Time is counted in DRs, not seconds {#clock}
+## How good players count time {#clock}
 ::tier observed::
 
 Top players plan in **DR windows** and **goes**, not in seconds. *"We have one more DR
@@ -213,7 +209,7 @@ several land together — and when a link in a chain gets stopped, the real cost
 the lost attempt. It is that everything you had aligned now comes off cooldown at
 different times, and your go rate drops until you deliberately re-align.
 
-## Patience inside a window is never fully learned {#patience}
+## Waiting when you're ahead {#patience}
 ::tier observed::
 
 When you survive a go, you hold a window in which they have nothing. The classic mistake
@@ -233,7 +229,7 @@ it. There is no rule that resolves this. There is only the answer pool and the c
 It also means any tool that tells you a skill is *mastered* is claiming something the
 evidence doesn't support. Error rates fall. They don't reach zero.
 
-## The setup happens before the window opens {#setup}
+## Setting up before the damage starts {#setup}
 ::tier derived::
 
 The narrower your damage window, the more of the setup has to be finished before it
@@ -250,7 +246,7 @@ This does **not** generalise to every comp. A comp with a wide window or sustain
 doesn't need a pre-CC, and Jungle's go genuinely can start on the first Maim. What
 generalises is the constraint, not the trick.
 
-## You can force the information {#information}
+## Making them show you what they have {#information}
 ::tier observed::
 
 Most of what decides a go is hidden — their DR state, their cooldowns, their talents,
@@ -265,7 +261,7 @@ Note both halves. The bait is half of it; the **call** is the other half, and it
 land within a couple of seconds or the information is worthless. This is a routine run
 every game, not a clever read — which means a guide can prescribe it.
 
-## Certainty comes from memorised facts, not calculation {#thresholds}
+## Knowing a kill is guaranteed {#thresholds}
 ::tier derived::
 
 There is no time to calculate mid-game. What there *is* time for is recalling three or
@@ -281,7 +277,7 @@ the Evasion.
 of memorisable thresholds and interactions per matchup — not a calculator you'd never
 have time to open.
 
-## Comps don't have an identity; matchups do {#intent}
+## Whether the clock is on your side {#intent}
 ::tier observed::
 
 We used to sort comps into "setup" and "dampener". That's too coarse. Calvish's comp is a
@@ -294,7 +290,7 @@ The axis that actually matters is **which side does the clock favour, in this ma
 this patch.** Everything else follows from it: whether a failed go is survivable, whether
 damage between goes counts, whether you can spend control defensively.
 
-## Your build is part of your plan {#talents}
+## Talents are part of the plan {#talents}
 ::tier observed::
 
 A guide that names one build is describing one matchup. At the top, a real share of the
@@ -305,7 +301,7 @@ lobby, a comp with a measured 100% win rate into one other comp across 30 games.
 None of those examples were about more damage. They changed which term of the plan was
 *available*. That's the lens to read a build with.
 
-## Two things we don't model at all {#gaps}
+## What we don't model {#gaps}
 ::tier observed::
 
 **Positioning.** Nothing in our data represents where anyone is standing, and positioning
@@ -323,9 +319,9 @@ it, but a guide can at least name the calls.
 
 Things we'd genuinely like to be corrected on, in rough order of how much they'd change:
 
-1. **Does any of this transfer?** Everything here is how a world champion and one
-   Gladiator think. That a 1700 player handed it reads a game better is *not*
-   established.
+1. **Does any of this transfer?** All of it has been reasoned over carefully. Almost
+   none of it has been tested. That a player handed this reads a game better than one
+   who hasn't is *not* established.
 2. **The third job of damage.** If pressure doesn't measurably suppress an enemy
    healer's CC output, that section shrinks back to two jobs.
 3. **Overlap as the dominant loss condition.** If lower-rated games don't show more

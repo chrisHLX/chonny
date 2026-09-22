@@ -210,7 +210,9 @@
       "Bash(awk -F'|' '{print NF-1}')",
       "Bash(awk -F'|' '{print \"spell=\"$1, \"stealth=\"$8, \"ooc=\"$9}')",
       "Bash(grep -B2 -A28 \"spell_id.*=.*118\\\\b\\\\|Name.*Polymorph$\")",
-      "Bash(grep -rn \"^Name.*: Polymorph$\" c:/Users/chris/Herd/chonny/data/spelldata/filtered/mage/)"
+      "Bash(grep -rn \"^Name.*: Polymorph$\" c:/Users/chris/Herd/chonny/data/spelldata/filtered/mage/)",
+      "Bash(python *prod_ssh.py*)",
+      "Bash(python *run.py*)"
     ],
     "additionalDirectories": [
       "C:\\Users\\chris\\AppData\\Local\\Temp\\claude\\c--Users-chris-Herd-chonny\\ddeac992-b130-43e8-b9c8-a726189ef579\\scratchpad"
