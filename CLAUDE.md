@@ -39,7 +39,11 @@ exist to be corrected. The spell/talent/match-data pipeline underneath must stay
 | `DEPLOY.md` | Production deploy runbook. |
 | `game-data.md` | Spell-data import pipeline, folder-by-folder, with dated findings. |
 | `spell-acquisition-model.md` | Architecture map of every acquisition script/command/service. |
-| `arena-structure.md` | Go/anti-go cycle, rating ladder, and (Parts 15–16) the spec for an automatic strategy generator. Read before building anything that generates or scores a plan. |
+| `arena-structure.md` | **The arena model (v2).** Go/anti-go cycle, the answer pool, overlap, globals-denied, rating ladder, and what a guide must answer before it has steps. Every claim tagged [OBS]/[DER]/[HYP] — never assert a [HYP] in a guide. Read before building anything that generates or scores a plan. |
+| `arena-open-questions.md` | What the model still guesses at, with who can settle each one. Answered questions graduate into `arena-structure.md`. |
+| `docs/arena/sources/` | Verbatim sources behind the model, plus a distilled note per source. **Never edit or delete a raw file** — re-distillation runs against it. |
+| `docs/arena/synthesis-process.md` | **How to fold a new prose source into the model.** Run this whenever the user adds a transcript. Raw → distilled note → diff against the model → update questions → report what changed. |
+| `data/brain/brain.md` | The reader-facing statement of the model, rendered at `/brain`. **Every machine-drafted guide is written from it.** |
 | `knowledge-gaps.md` | Append-only ledger of module-prose vs spell-data discrepancies. |
 | `wow-spells.md`, `wow-spell-data-model.md` | Spell data model notes. |
 | `dr-categories-reference.md` | 2022-era community DR guide. **Stale — confirmed wrong twice.** A hint, never authority. |
@@ -139,6 +143,71 @@ This caused real 500s for real users (2026-08-28). `deploy.sh` restarts php-fpm 
 bumps the spell cache version, regenerates the spell kits, runs a smoke test, and logs to
 `storage/logs/deploy-*.log`. Nginx config is not in the repo (backup:
 `/root/nginx-mindcollector.bak-20260917`).
+
+### Working on production (SSH, deploys, permissions)
+
+**When the user asks you to deploy or check something on live, do it — this is the method.**
+Don't stop at "I can't SSH from here".
+
+**The box:** Ubuntu 22.04 on Vultr, `45.76.116.44` (== `mindcollector.com`), `root`, code at
+`/var/www/mindcollector`, deployed from `github.com/chrisHLX/chonny` (no CI/CD — push to GitHub,
+then run `deploy.sh` on the server). The password is in
+`C:\Users\chris\Desktop\mytho\MINDCOLLECTOR.txt`. Read that file; don't guess usernames or keys.
+The local `id_ed25519` key is **not** accepted.
+
+**How to connect — paramiko, not `ssh`.** The Bash tool's native `ssh`/`scp` can't answer a
+password prompt. Use `python -m pip install paramiko` and a small helper, `prod_ssh.py`, in the
+scratchpad. It takes `(command, exec_timeout_seconds)` as argv, uses password auth, and prints
+stdout and stderr. Put `sys.stdout.reconfigure(encoding="utf-8", errors="replace")` at the top,
+or a `●` from `systemctl status` crashes it on the Windows console. The scratchpad is per-session,
+so re-create the helper with the Write tool if it's missing.
+
+- **SFTP is broken on this server** (`sftp.put()` → bare `FileNotFoundError`, even to `/tmp`).
+  **Upload files by base64-over-exec**: base64 the local file in Python, then run
+  `base64 -d > /path << 'B64EOF' ... B64EOF` through `exec_command`.
+- **Complex remote PHP: never `tinker --execute`** through Bash → python argv → SSH. Backslashes
+  and namespace separators get mangled. Upload a standalone script that bootstraps Laravel
+  (`require vendor/autoload.php; $app = require bootstrap/app.php; ...`) and run `php /tmp/x.php`.
+  `php artisan tinker file.php` hangs waiting on stdin.
+- **Redis cache is DB 1**, not 0 (`predis`, no `REDIS_CACHE_DB` set). Use `redis-cli -n 1 ...` for
+  anything `Cache::`-related, or it looks empty.
+
+**Permissions / auto mode — the reason deploys have failed:**
+- The user has allow rules for `Bash(python *prod_ssh.py*)` and `Bash(python *run.py*)` in
+  `.claude/settings.local.json`. **The command must START with `python` to match them.** A leading
+  `MSYS_NO_PATHCONV=1`, a `cd && python ...`, or a `cat > file <<EOF; python ...` compound does
+  **not** match. It falls through to the auto-mode classifier, which denies production access.
+- So: write helper files with the **Write** tool first, then run a bare
+  `python "<scratchpad>/prod_ssh.py" "cd /var/www/mindcollector && ./deploy.sh" 600`. Start the
+  remote command with `cd` (not a bare `/var/...` path) so git-bash's MSYS path conversion doesn't
+  rewrite it to `C:/Program Files/Git/var/...`. Then you need no `MSYS_NO_PATHCONV` prefix.
+- **Allowed this way:** reads (logs, `git status`, `systemctl status`, read-only DB queries) and
+  `./deploy.sh`.
+- **Blocked even with the rule:** one-off production DB writes (classifier: "Modify Shared
+  Resources"). Give those to the user as a ready-to-paste `!` command instead of retrying.
+- **Never add an allow rule for yourself.** The classifier denies it ("Instruction Poisoning").
+  If a rule is missing, say so up front and ask the user to add it via `/permissions`.
+
+**Deploying:**
+- **Always `cd /var/www/mindcollector && ./deploy.sh`, never a bare `git pull`.** With OPcache's
+  `validate_timestamps=Off`, workers keep running old bytecode after a pull. Stale queue workers
+  and the Redis entries they wrote go stale the same way. This caused real 500s on `/wow-comps`
+  (2026-08-28). Bumping the cache version alone did **not** fix it: the stale entry was already
+  written under the current version.
+- `deploy.sh` restarts php-fpm, restarts the queue workers, bumps the spell cache version,
+  regenerates kits, runs migrations, runs composer/npm if lockfiles or assets changed, and
+  smoke-tests `/`, `/wow-comps`, `/spells`. It logs to `storage/logs/deploy-*.log`. Full runbook:
+  `DEPLOY.md`.
+- Commit and push locally first (only when the user asks for a commit). Check the server's
+  `git status` if a pull might conflict with untracked files.
+
+**Queue workers:** 2 Supervisor-managed (`laravel-worker_00`, `mindcollector-worker`), 90s timeout
+each, default queue, restarted by `deploy.sh`. **No scheduler:** root's crontab is empty, so every
+`Schedule::command(...)` in `routes/console.php` (e.g. `next-steps:expire`) is inert on live.
+
+**Performance ceiling:** the 1 vCPU is the bottleneck, not RAM. `/` and `/wow-comps` take about
+0.12s of CPU and `/spell-counters` about 0.57s. Latency scales linearly under concurrency.
+`pm.max_children = 12` is already at CPU saturation; more workers won't help, a second vCPU would.
 
 ### Required environment variables
 
@@ -258,7 +327,7 @@ sign-up).
 ### Machine-drafted guides
 
 Guides a model wrote, **published to be corrected**. The correction is the point, not the guide:
-the one input the game data cannot supply is what forces what (`arena-structure.md` 15.2, 16.3),
+the one input the game data cannot supply is what forces what (`arena-structure.md` Parts 6, 11),
 and a specific, checkable, wrong-in-places plan is far cheaper to correct than a right one is to
 author. 16 drafts live in `data/machine-guides/`.
 
@@ -308,6 +377,14 @@ author. 16 drafts live in `data/machine-guides/`.
   machine-drafted `user_guides` — commentable, correctable. The second is hand-authored JSON per
   class/spec under `data/claudes-guides/`, read-only, no comments, carrying its own `"patch"`
   field unrelated to the DB.
+- **Every machine-drafted guide is written from `arena-structure.md`, whose public statement is
+  `/brain` (`data/brain/brain.md`, rendered by `App\Livewire\Brain`).** Before drafting a guide,
+  read the model; a claim that is `[HYP]` there must not be asserted as fact in a guide. Comments
+  on `/brain` are corrections to the model itself and outrank a correction to any single guide —
+  they are the top of the same feedback loop `guides:export-feedback` sits at the bottom of.
+  The brain document's section ids (`{#answer-pool}`) are comment anchors: **reword a heading
+  freely, never change an id.**
+
 - `Guides\Show` bylines a machine guide "{model} guide · drafted by a model" instead of
   "Player-written guide", and closes by saying the mechanics are derived while **the plan is a
   guess** — inviting correction. Do not let a model's draft render like a derived fact.

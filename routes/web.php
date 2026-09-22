@@ -373,6 +373,12 @@ Route::get('/browse-guides', \App\Livewire\Guides\Browse::class)->name('guides.b
 // it is wrong.
 Route::get('/claudes-comp-guides', \App\Livewire\Guides\MachineGuides::class)->name('guides.machine');
 
+// The MindCollector Brain: the arena model every machine-drafted guide is written from, published
+// so a reader who disagrees with a guide can argue with the thing that produced it. Public for the
+// same reason the guides above are — a correction is the entire point, and requiring an account to
+// read the model would cut off the people most likely to know it is wrong.
+Route::get('/brain', \App\Livewire\Brain::class)->name('brain');
+
 // ------- Guilds -------
 // Index is auth-only (it is "your guilds"); the guild page itself is not, because its URL is the
 // invite and someone following it may not have an account yet. Guilds\Show decides what a
