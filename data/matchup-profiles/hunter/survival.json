@@ -1,0 +1,210 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:13:32+00:00",
+    "class": "hunter",
+    "className": "Hunter",
+    "spec": "survival",
+    "specName": "Survival",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 1250646,
+            "name": "Takedown",
+            "icon": "inv12_ability_hunter_takedown.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 8
+        },
+        {
+            "spellId": 1261193,
+            "name": "Boomstick",
+            "icon": "inv_musket_04.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "duration": 3
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 186265,
+            "name": "Aspect of the Turtle",
+            "icon": "132199.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 8,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 53480,
+            "name": "Roar of Sacrifice",
+            "icon": "ability_hunter_fervor.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 10,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 264735,
+            "name": "Survival of the Fittest",
+            "icon": "spell_nature_spiritarmor.jpg",
+            "cooldown": 90,
+            "charges": 2,
+            "duration": 6,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 199483,
+            "name": "Camouflage",
+            "icon": "ability_hunter_camouflage.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 60,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 109304,
+            "name": "Exhilaration",
+            "icon": "461117.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 6262,
+            "name": "Healthstone",
+            "icon": "warlock_healthstone.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": null,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 187650,
+            "name": "Freezing Trap",
+            "icon": "spell_frost_chainsofice.jpg",
+            "cooldown": 25,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": "healer"
+        },
+        {
+            "spellId": 19577,
+            "name": "Intimidation",
+            "icon": "ability_devour.jpg",
+            "cooldown": 40,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": "both"
+        },
+        {
+            "spellId": 109248,
+            "name": "Binding Shot",
+            "icon": "spell_shaman_bindelemental.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": "both"
+        },
+        {
+            "spellId": 356719,
+            "name": "Chimaeral Sting",
+            "icon": "ability_hunter_snaketrap.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "drCategory": "Silence",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 5116,
+            "name": "Concussive Shot",
+            "icon": "spell_frost_stun.jpg",
+            "cooldown": 5,
+            "charges": null,
+            "drCategory": "Slow",
+            "hard": false,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 190925,
+            "name": "Harpoon",
+            "icon": "ability_hunter_harpoon.jpg",
+            "cooldown": 20,
+            "charges": 1,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 3,
+            "isPeel": true,
+            "chainTarget": null
+        },
+        {
+            "spellId": 212638,
+            "name": "Tracker's Net",
+            "icon": "hunter_pvp_trackersnet.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 6,
+            "isPeel": true,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 186257,
+            "name": "Aspect of the Cheetah",
+            "icon": "132242.jpg",
+            "cooldown": 90,
+            "charges": null
+        },
+        {
+            "spellId": 781,
+            "name": "Disengage",
+            "icon": "132294.jpg",
+            "cooldown": 20,
+            "charges": 1
+        },
+        {
+            "spellId": 54216,
+            "name": "Master's Call",
+            "icon": "236189.jpg",
+            "cooldown": null,
+            "charges": null
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 187707,
+            "name": "Muzzle",
+            "icon": "ability_hunter_negate.jpg",
+            "cooldown": 15,
+            "charges": null
+        }
+    ]
+}

@@ -1,0 +1,119 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:13:22+00:00",
+    "class": "shaman",
+    "className": "Shaman",
+    "spec": "restoration",
+    "specName": "Restoration",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 443454,
+            "name": "Ancestral Swiftness",
+            "icon": "inv_ability_farseershaman_ancestralswiftness.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 444995,
+            "name": "Surging Totem",
+            "icon": "inv_ability_totemicshaman_surgingtotem.jpg",
+            "cooldown": 25,
+            "charges": null,
+            "duration": 25
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 98008,
+            "name": "Spirit Link Totem",
+            "icon": "spell_shaman_spiritlink.jpg",
+            "cooldown": 180,
+            "charges": 1,
+            "duration": 6,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 108271,
+            "name": "Astral Shift",
+            "icon": "ability_shaman_astralshift.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 12,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 51514,
+            "name": "Hex",
+            "icon": "spell_shaman_hex.jpg",
+            "cooldown": 15,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": "healer"
+        },
+        {
+            "spellId": 192058,
+            "name": "Capacitor Totem",
+            "icon": "spell_nature_brilliance.jpg",
+            "cooldown": 40,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 51485,
+            "name": "Earthgrab Totem",
+            "icon": "spell_nature_stranglevines.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 6,
+            "isPeel": true,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 2645,
+            "name": "Ghost Wolf",
+            "icon": "136095.jpg",
+            "cooldown": null,
+            "charges": null
+        },
+        {
+            "spellId": 58875,
+            "name": "Spirit Walk",
+            "icon": "ability_tracking.jpg",
+            "cooldown": 60,
+            "charges": null
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 57994,
+            "name": "Wind Shear",
+            "icon": "spell_nature_cyclone.jpg",
+            "cooldown": 30,
+            "charges": null
+        }
+    ]
+}

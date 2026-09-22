@@ -1,0 +1,125 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:13:27+00:00",
+    "class": "priest",
+    "className": "Priest",
+    "spec": "shadow",
+    "specName": "Shadow",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 10060,
+            "name": "Power Infusion",
+            "icon": "spell_holy_powerinfusion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 15
+        },
+        {
+            "spellId": 228260,
+            "name": "Voidform",
+            "icon": "spell_priest_voidblast.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 263165,
+            "name": "Void Torrent",
+            "icon": "spell_priest_voidsear.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": 3
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 19236,
+            "name": "Desperate Prayer",
+            "icon": "spell_holy_testoffaith.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 10,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 47585,
+            "name": "Dispersion",
+            "icon": "spell_shadow_dispersion.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 6,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 586,
+            "name": "Fade",
+            "icon": "spell_magic_lesserinvisibilty.jpg",
+            "cooldown": 20,
+            "charges": null,
+            "duration": 10,
+            "kind": "immunity"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 8122,
+            "name": "Psychic Scream",
+            "icon": "spell_shadow_psychicscream.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 15487,
+            "name": "Silence",
+            "icon": "ability_priest_silence.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Silence",
+            "hard": true,
+            "duration": 4,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 605,
+            "name": "Mind Control",
+            "icon": "spell_shadow_shadowworddominate.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 9484,
+            "name": "Shackle Horror",
+            "icon": "spell_nature_slow.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": null,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [],
+    "interrupts": []
+}

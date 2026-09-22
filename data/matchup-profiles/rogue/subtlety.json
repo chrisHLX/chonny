@@ -1,0 +1,190 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:13:29+00:00",
+    "class": "rogue",
+    "className": "Rogue",
+    "spec": "subtlety",
+    "specName": "Subtlety",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 121471,
+            "name": "Shadow Blades",
+            "icon": "inv_knife_1h_grimbatolraid_d_03.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 16
+        },
+        {
+            "spellId": 57934,
+            "name": "Tricks of the Trade",
+            "icon": "ability_rogue_tricksofthetrade.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": 30
+        },
+        {
+            "spellId": 280719,
+            "name": "Secret Technique",
+            "icon": "ability_rogue_sinistercalling.jpg",
+            "cooldown": 25,
+            "charges": 1,
+            "duration": null
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 212182,
+            "name": "Smoke Bomb",
+            "icon": "ability_rogue_smoke.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 31224,
+            "name": "Cloak of Shadows",
+            "icon": "spell_shadow_nethercloak.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 5,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 5277,
+            "name": "Evasion",
+            "icon": "spell_shadow_shadowward.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 10,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 185311,
+            "name": "Crimson Vial",
+            "icon": "1373904.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": 4,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 1966,
+            "name": "Feint",
+            "icon": "ability_rogue_feint.jpg",
+            "cooldown": 15,
+            "charges": 2,
+            "duration": 6,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 1833,
+            "name": "Cheap Shot",
+            "icon": "ability_cheapshot.jpg",
+            "cooldown": 12,
+            "charges": 2,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 4,
+            "isPeel": false,
+            "chainTarget": "both"
+        },
+        {
+            "spellId": 1776,
+            "name": "Gouge",
+            "icon": "ability_gouge.jpg",
+            "cooldown": 25,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 408,
+            "name": "Kidney Shot",
+            "icon": "ability_rogue_kidneyshot.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 5,
+            "isPeel": false,
+            "chainTarget": "both"
+        },
+        {
+            "spellId": 2094,
+            "name": "Blind",
+            "icon": "spell_shadow_mindsteal.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 5,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 6770,
+            "name": "Sap",
+            "icon": "ability_sap.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 207777,
+            "name": "Dismantle",
+            "icon": "ability_rogue_dismantle.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Disarm",
+            "hard": false,
+            "duration": 5,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 36554,
+            "name": "Shadowstep",
+            "icon": "132303.jpg",
+            "cooldown": 30,
+            "charges": null
+        },
+        {
+            "spellId": 2983,
+            "name": "Sprint",
+            "icon": "ability_rogue_sprint.jpg",
+            "cooldown": 60,
+            "charges": null
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 1766,
+            "name": "Kick",
+            "icon": "ability_kick.jpg",
+            "cooldown": 15,
+            "charges": null
+        }
+    ]
+}

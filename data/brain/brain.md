@@ -1,7 +1,7 @@
 ---
 title: The MindCollector Brain
 subtitle: What we think an arena game actually is — and how sure we are about each part.
-updated: 2026-09-22
+updated: 2026-09-23
 ---
 
 ## Why this page exists {#why}
@@ -301,6 +301,46 @@ lobby, a comp with a measured 100% win rate into one other comp across 30 games.
 None of those examples were about more damage. They changed which term of the plan was
 *available*. That's the lens to read a build with.
 
+## Both teams on one clock {#timeline}
+::tier derived::
+
+Everything above tells you what to look for. None of it tells you **when**.
+
+"Go into an empty pool" is a true sentence you cannot act on until something says at
+which point in *this* round their pool is empty. So we draw it. Every cooldown on both
+teams has a known length, so both sides' resources can be put on one timeline and read
+off: when their trinkets come back, when your next full go is up, and whether those two
+moments are the same moment.
+
+**Two lines, and the second one is per player.** The first is what a team can commit at a
+given second — not damage, we can't compute damage, but *what is off cooldown and how
+much of the enemy team your control reaches at once*. The second is how many answers each
+enemy player can **press right now**, which is not the same as how many they own. A
+healer in a trap has none, whatever is on their bars. That gap is the whole point: a team
+can hold six defensives and have none of them reachable.
+
+**Where a rising line meets a flat-zero one, that's a window.** It is the moment a go is
+a kill attempt instead of a strip — not a moment a kill is guaranteed. We don't have a
+damage model and won't pretend to. An empty answer list means they have no button left,
+not that what you're about to do is lethal.
+
+**The clock is not 30 seconds.** Thirty is Jungle's number because Maim and Scatter are
+both thirty. Your period is whatever your slowest aligned ability is, and it is different
+for every comp — which is exactly why a generic "go every 30s" guide is wrong for most
+teams reading it.
+
+You can play with this on the **Matchup Lab**: pick both comps and see whose window
+opens first, and why. Two honest limits are printed on that page and worth repeating
+here. Cooldowns that shrink as you spend resources aren't in our data, so every period
+we show is the **slowest** it could be — real goes come round sooner. And there is no
+win probability anywhere on it, because there is no match-outcome data to fit one to;
+inventing a percentage would make the page feel more authoritative and be worth less.
+
+**Execution is a setting, not a rating.** The same matchup reads differently depending on
+whether the defending team trades cleanly or answers late and burns two cooldowns for one
+threat. That isn't a lower-rated version of the same picture — it's a different picture,
+and often a different plan. Read a matchup at the setting you actually play at.
+
 ## What we don't model {#gaps}
 ::tier observed::
 
@@ -328,6 +368,10 @@ Things we'd genuinely like to be corrected on, in rough order of how much they'd
    double-defensive spends, we've overstated it.
 4. **The tail of a damage window.** Your buff outlives their defensive by ten seconds —
    is that waste, or is it the actual kill window? We don't know.
+5. **The order you answer a threat in.** We rank it control the caster, then break line
+   of sight, then a personal, then an external, then trinket — cheapest thing that
+   works, first. That ordering is reasoned, not observed, and there are surely threats
+   where it inverts. If you know one, that's the correction we want.
 
 If you have a view on any of these, especially the first, the comment box under each
 section is the most useful thing on this page.

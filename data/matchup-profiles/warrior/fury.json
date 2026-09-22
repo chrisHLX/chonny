@@ -1,0 +1,228 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:12:52+00:00",
+    "class": "warrior",
+    "className": "Warrior",
+    "spec": "fury",
+    "specName": "Fury",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 64382,
+            "name": "Shattering Throw",
+            "icon": "ability_warrior_shatteringthrow.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 107574,
+            "name": "Avatar",
+            "icon": "warrior_talent_icon_avatar.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 20
+        },
+        {
+            "spellId": 376079,
+            "name": "Champion's Spear",
+            "icon": "inv_ability_warrior_championsspear.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 1719,
+            "name": "Recklessness",
+            "icon": "warrior_talent_icon_innerrage.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 12
+        },
+        {
+            "spellId": 385059,
+            "name": "Odyn's Fury",
+            "icon": "inv_sword_1h_artifactvigfus_d_01.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 6544,
+            "name": "Heroic Leap",
+            "icon": "ability_heroicleap.jpg",
+            "cooldown": 30,
+            "charges": 1,
+            "duration": null
+        },
+        {
+            "spellId": 202168,
+            "name": "Impending Victory",
+            "icon": "spell_impending_victory.jpg",
+            "cooldown": 25,
+            "charges": null,
+            "duration": null
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 97462,
+            "name": "Rallying Cry",
+            "icon": "ability_warrior_rallyingcry.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 184364,
+            "name": "Enraged Regeneration",
+            "icon": "ability_warrior_focusedrage.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 8,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 107574,
+            "name": "Avatar",
+            "icon": "warrior_talent_icon_avatar.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 20,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 18499,
+            "name": "Berserker Rage",
+            "icon": "136009.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 6,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 384100,
+            "name": "Berserker Shout",
+            "icon": "spell_nature_ancestralguardian.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 6,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 202168,
+            "name": "Impending Victory",
+            "icon": "spell_impending_victory.jpg",
+            "cooldown": 25,
+            "charges": null,
+            "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 23920,
+            "name": "Spell Reflection",
+            "icon": "ability_warrior_shieldreflection.jpg",
+            "cooldown": 25,
+            "charges": 1,
+            "duration": 5,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 107570,
+            "name": "Storm Bolt",
+            "icon": "warrior_talent_icon_stormbolt.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 46968,
+            "name": "Shockwave",
+            "icon": "ability_warrior_shockwave.jpg",
+            "cooldown": 40,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 5246,
+            "name": "Intimidating Shout",
+            "icon": "ability_golemthunderclap.jpg",
+            "cooldown": 75,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 100,
+            "name": "Charge",
+            "icon": "132337.jpg",
+            "cooldown": 17,
+            "charges": 2,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": null,
+            "isPeel": true,
+            "chainTarget": null
+        },
+        {
+            "spellId": 236077,
+            "name": "Disarm",
+            "icon": "ability_warrior_disarm.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Disarm",
+            "hard": false,
+            "duration": 5,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 100,
+            "name": "Charge",
+            "icon": "132337.jpg",
+            "cooldown": 17,
+            "charges": 2
+        },
+        {
+            "spellId": 6544,
+            "name": "Heroic Leap",
+            "icon": "ability_heroicleap.jpg",
+            "cooldown": 30,
+            "charges": 1
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 6552,
+            "name": "Pummel",
+            "icon": "inv_gauntlets_04.jpg",
+            "cooldown": 15,
+            "charges": null
+        }
+    ]
+}

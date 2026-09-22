@@ -1,0 +1,95 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:12:26+00:00",
+    "class": "monk",
+    "className": "Monk",
+    "spec": "brewmaster",
+    "specName": "Brewmaster",
+    "buildName": "Default Build",
+    "offensive": [],
+    "answers": [
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 132578,
+            "name": "Invoke Niuzao, the Black Ox",
+            "icon": "spell_monk_brewmaster_spec.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 25,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 322507,
+            "name": "Celestial Brew",
+            "icon": "ability_monk_ironskinbrew.jpg",
+            "cooldown": 90,
+            "charges": 2,
+            "duration": 8,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 115078,
+            "name": "Paralysis",
+            "icon": "ability_monk_paralysis.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 202335,
+            "name": "Double Barrel",
+            "icon": "archaeology_5_0_emptykegofbrewfatherxinwoyin.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": null,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 116844,
+            "name": "Ring of Peace",
+            "icon": "spell_monk_ringofpeace.jpg",
+            "cooldown": 40,
+            "charges": null,
+            "drCategory": "Knockback",
+            "hard": false,
+            "duration": null,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 116841,
+            "name": "Tiger's Lust",
+            "icon": "ability_monk_tigerslust.jpg",
+            "cooldown": 30,
+            "charges": null
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 116705,
+            "name": "Spear Hand Strike",
+            "icon": "ability_monk_spearhand.jpg",
+            "cooldown": 15,
+            "charges": null
+        }
+    ]
+}

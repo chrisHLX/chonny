@@ -369,3 +369,40 @@ spell data models *what a spell does*, not *what unit types it may target*, so
 this class of mistake is invisible to every check the pipeline currently has.
 **This is the open gap worth closing next:** a target-validity field would have
 caught both, and nothing else will.
+
+### OPEN — cooldowns are stored as constants, but a real one shrinks as you play
+
+Found 2026-09-23 while building the Matchup Lab (`CooldownGraphService`), which
+puts both teams' cooldowns on one clock and therefore depends on every number
+on that clock being right.
+
+The pipeline holds two cooldown values per ability: the **base** one from the
+SimC dump, and the **talent-modified** one that
+`ModuleSpellReferenceService::effectiveCooldown()` resolves against a build.
+Between them they cover every modifier a *build* applies — flat reductions,
+percentages, charges.
+
+Neither covers reduction driven by what the player **spends during the game**:
+"every cast of X takes 3 seconds off Y", "each spender refunds a charge". That
+is a function of a rotation executed at a rate, and no rate exists anywhere in
+this project's data — the rotation artifacts under `data/arena-logs/rotations/`
+record *which* abilities a spec presses in its best window, never how often a
+cooldown actually came back.
+
+**Why it matters and which way it is wrong.** The error has a sign: a stored
+cooldown is always the longest the ability can be, so **every period derived
+from it is an upper bound**. A comp's real go rate is faster than any timeline
+built from this data says, by an amount that differs per spec — badly for a
+spec with heavy spend-driven CDR, not at all for one without. Any page that
+compares two comps' cadences is therefore comparing two differently-wrong
+numbers, and the direction of the error is not uniform.
+
+The Matchup Lab states this on the page rather than correcting for it, because
+an invented correction factor would be worse than a visible hole.
+
+**What would close it:** C12 in `arena-open-questions.md` — measure, per spec,
+the distribution of real intervals between consecutive casts of the same
+cooldown across the 689-match archive, against that ability's stated number. A
+median well under the stated cooldown is real spend-driven CDR and the ratio is
+the correction factor. This needs no new data and the archive is fixed, so the
+measurement is repeatable.

@@ -133,6 +133,16 @@
             3v3 Comps
         </a>
 
+        {{-- Directly under 3v3 Comps: same picker, one step further on — two comps instead of
+             one, and a read of the matchup rather than a listing of the kits. --}}
+        <a href="{{ route('matchup-lab') }}" wire:navigate
+           class="sidebar-item {{ request()->routeIs('matchup-lab') ? 'active' : '' }}">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 17l5-6 4 4 5-8 4 5"/>
+            </svg>
+            Matchup Lab
+        </a>
+
         @auth
             <p class="px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Social</p>
 

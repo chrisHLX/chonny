@@ -202,6 +202,29 @@ spell data, resolved per matchup and per target. It is what a guide's defensives
 should actually contain, and it needs no new data. Worth doing before anything else in
 section C.
 
+**C12. How much does spend-driven cooldown reduction shorten a real period?** [ARCHIVE]
+— *new, from the Gemini source (Part 19.5).*
+The database holds base and talent-modified cooldowns, but not reduction driven by what
+a player *spends* during a game ("each cast of X takes 3s off Y"), because that is a
+rotation run at a rate and no rate is recorded anywhere. So **every period the Matchup
+Lab computes is an upper bound** — real goes come round sooner, by an unknown amount
+that differs per spec. Measurable without new data: for each spec, the distribution of
+real observed intervals between consecutive casts of the same cooldown in the 689
+matches, against that ability's stated cooldown. A spec whose observed median is well
+under its stated number has meaningful spend-driven CDR; one that matches does not. That
+per-spec ratio is the correction factor the engine currently does not apply.
+
+**C13. Is the priority cascade the order players actually use?** [TEST/YOU]
+— *new, from the Gemini source (Part 19.2).*
+Part 19.2 ranks answers **control the source → break line of sight → personal → external
+→ trinket**, composed from Parts 3 and 6. Nobody observed that ordering; it is reasoned
+from cooldown cost, and it is `[HYP]` until a player says otherwise. Two things would
+settle it: your own read on whether the ranking is right (and where it inverts — there
+must be threats where the personal is correct before the peel), and whether a ranked
+trigger table is more usable than Part 3's single "enemy presses X → you press Y".
+
+ANSWER:
+
 **C9. How often is the correct save actually taken, by bracket?** [ARCHIVE]
 The Tier-2 probabilistic framing from Part 11, and the input to the "usage rate beats
 optimality" tiering in Part 6. Combat-log frequencies: trinket wasted, CC not

@@ -41,8 +41,9 @@ exist to be corrected. The spell/talent/match-data pipeline underneath must stay
 | `spell-acquisition-model.md` | Architecture map of every acquisition script/command/service. |
 | `arena-structure.md` | **The arena model (v2).** Go/anti-go cycle, the answer pool, overlap, globals-denied, rating ladder, and what a guide must answer before it has steps. Every claim tagged [OBS]/[DER]/[HYP] — never assert a [HYP] in a guide. Read before building anything that generates or scores a plan. |
 | `arena-open-questions.md` | What the model still guesses at, with who can settle each one. Answered questions graduate into `arena-structure.md`. |
-| `docs/arena/sources/` | Verbatim sources behind the model, plus a distilled note per source. **Never edit or delete a raw file** — re-distillation runs against it. |
+| `docs/arena/sources/` | Verbatim sources behind the model, plus a distilled note per source. **Never edit or delete a raw file** — re-distillation runs against it. Tiers differ: the Kalvish transcript and the player's own review are players; `gemini-cooldown-graph-2026-09-23.md` is a language model that had `arena-structure.md` in its context, so its agreement is never corroboration. |
 | `docs/arena/synthesis-process.md` | **How to fold a new prose source into the model.** Run this whenever the user adds a transcript. Raw → distilled note → diff against the model → update questions → report what changed. |
+| `data/matchup-profiles/README.md` | The Matchup Lab's per-spec artifact: what a profile holds, why control and defensives read different duration columns, and the three things it structurally cannot say. |
 | `data/brain/brain.md` | The reader-facing statement of the model, rendered at `/brain`. **Every machine-drafted guide is written from it.** |
 | `knowledge-gaps.md` | Append-only ledger of module-prose vs spell-data discrepancies. |
 | `wow-spells.md`, `wow-spell-data-model.md` | Spell data model notes. |
@@ -82,6 +83,7 @@ php artisan wow:patch-update {build}             # orchestrates a full patch bum
 php artisan wow:refresh-match-derived            # after ANY match-data change
 php artisan wow:apply-icon-manifest              # icons without Blizzard credentials
 php artisan wow:precompute-spell-kits            # after a resolver/display change
+php artisan wow:build-matchup-profiles           # AFTER the kits, never before
 php artisan wow:rebuild-spell-counters           # backfill only; import already does it
 php artisan wow:import-murlok-defaults --all --apply   # on-demand only, see Rules
 ```
@@ -121,6 +123,25 @@ Say "same 12 pre-existing failures" only when you have actually confirmed the co
 - A full re-import may need `php -d memory_limit=512M artisan import:spelldata wow`.
 - Treat destructive artisan commands (`migrate:fresh`, `db:seed` on a real DB, `queue:restart`)
   with confirm-first judgment.
+
+#### Looking at a page in a browser
+
+**`chonny.test` is often not resolvable** — Herd is not always running, and the host may not be
+in `C:\Windows\System32\drivers\etc\hosts` at all. Do not conclude from that that a page
+cannot be checked. Serve it directly:
+
+```bash
+php -S 127.0.0.1:8321 -t public     # run in the background, then Invoke-WebRequest the routes
+```
+
+Use the built-in server, not `php artisan serve` — the latter failed to bind here
+("Failed to listen on 127.0.0.1:8123") while `php -S` on the same machine worked.
+
+**Do this before calling any new page done.** `Livewire::test()` renders a component *without*
+its layout, so a full-page component missing its `->layout('layouts.app', [...])` call passes
+every Livewire assertion while the real URL returns a 500 (`MissingLayoutException`). That is
+exactly how the Matchup Lab shipped its first green test run (2026-09-23). A `$this->get(route(
+...))->assertOk()` alongside the Livewire tests catches the same class of error in CI.
 
 ### Production
 
@@ -299,6 +320,9 @@ fingerprint; falls back to a live compute when stale (6,964ms/3,042 queries vs 9
 - `/` — `Landing` (public front page: feed of game plans + comp shortcuts). Signed-in players
   redirect to `dashboard`.
 - `/dashboard` — `Home` (feed, your guides, characters, friends).
+- `/wow/matchup-lab` — `MatchupLab`. Two comps on one clock: whose kill window opens first,
+  and why, read at three execution settings. The only page answering a question about a
+  *matchup* rather than about one spec or one comp.
 - `/wow-comps` — `WowComps`, the heaviest page. Tabs: Active Abilities, Offensive/Defensive
   Cooldowns, Crowd Control, Mobility, Burst Window, Example CC Chains.
 - `/guides/{slug}/edit` — `Guides\Builder` + `Guides\Palette`; `/g/{username}/{slug}` —
@@ -587,6 +611,33 @@ it probably doesn't belong.
 30. **Machine-drafted guides stay out of player listings.** `Browse`, `GuideFeed` and
     `Home::exampleGuide()` filter `humanAuthored()`; machine guides have their own page and their
     own byline.
+
+### The Matchup Lab
+
+31. **`wow:build-matchup-profiles` runs AFTER `wow:precompute-spell-kits`, never before.** A
+    profile is a narrowing of the same kit, so with fresh kits a whole sweep is a few seconds of
+    JSON reads and with stale ones it is the full ~7s-per-spec live computation forty times over.
+    `deploy.sh` runs them in that order, and throws away both committed artifacts before the pull
+    for the same reason.
+
+32. **Matchup profiles carry EXTERNAL spell ids; spell kits carry internal ones.** That is what
+    makes a committed profile the real artifact rather than a placeholder — internal `spells.id`
+    values are reassigned on every rebuild, which is why the committed kits are regenerated per
+    environment. See rule 2; this distinction has caused at least three silent bugs that resolved
+    cleanly while being wrong.
+
+33. **Nothing built on the cooldown graph may state a win probability, or call a window a kill.**
+    There is no outcome corpus to fit a probability to (rule 12 killed match search; the comp
+    index holds two entries), and an empty answer pool means the target has no button left, not
+    that the damage is lethal — Part 11's damage-model blocker is unchanged. The page's
+    honest-limits copy lives in one method, `MatchupLab::limitations()`, so it cannot be trimmed
+    a line at a time by a layout change. `arena-structure.md` Part 19.1 records why the source
+    that proposed the feature was wrong to call the crossing point "mathematically guaranteed".
+
+34. **Every cadence the engine reports is an upper bound.** The data holds base and
+    talent-modified cooldowns, not spend-driven reduction, so real goes come round sooner by an
+    unknown amount that differs per spec. Stated on the page rather than corrected for; see
+    `knowledge-gaps.md` (2026-09-23) and `arena-open-questions.md` C12.
 
 ## Traps that have bitten before
 

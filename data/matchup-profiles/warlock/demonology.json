@@ -1,0 +1,168 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:12:28+00:00",
+    "class": "warlock",
+    "className": "Warlock",
+    "spec": "demonology",
+    "specName": "Demonology",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 264130,
+            "name": "Power Siphon",
+            "icon": "ability_warlock_backdraft.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": null
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 104773,
+            "name": "Unending Resolve",
+            "icon": "136150.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": 8,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 108416,
+            "name": "Dark Pact",
+            "icon": "spell_shadow_deathpact.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 20,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 452930,
+            "name": "Demonic Healthstone",
+            "icon": "warlock_bloodstone.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": null,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 119914,
+            "name": "Axe Toss",
+            "icon": "ability_warrior_titansgrip.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 119909,
+            "name": "Seduction",
+            "icon": null,
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 5484,
+            "name": "Howl of Terror",
+            "icon": "ability_warlock_howlofterror.jpg",
+            "cooldown": 35,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 6789,
+            "name": "Mortal Coil",
+            "icon": "ability_warlock_mortalcoil.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 710,
+            "name": "Banish",
+            "icon": "spell_shadow_cripple.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": null,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 5782,
+            "name": "Fear",
+            "icon": "136183.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": "healer"
+        },
+        {
+            "spellId": 334275,
+            "name": "Curse of Exhaustion",
+            "icon": "spell_shadow_grimward.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Slow",
+            "hard": false,
+            "duration": 12,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 111400,
+            "name": "Burning Rush",
+            "icon": "ability_deathwing_sealarmorbreachtga.jpg",
+            "cooldown": null,
+            "charges": null
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 119914,
+            "name": "Axe Toss",
+            "icon": "ability_warrior_titansgrip.jpg",
+            "cooldown": 30,
+            "charges": null
+        },
+        {
+            "spellId": 119910,
+            "name": "Spell Lock",
+            "icon": "spell_shadow_mindrot.jpg",
+            "cooldown": 24,
+            "charges": null
+        }
+    ]
+}

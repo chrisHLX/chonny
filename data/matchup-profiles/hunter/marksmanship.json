@@ -1,0 +1,184 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:13:05+00:00",
+    "class": "hunter",
+    "className": "Hunter",
+    "spec": "marksmanship",
+    "specName": "Marksmanship",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 288613,
+            "name": "Trueshot",
+            "icon": "ability_trueshot.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 15
+        },
+        {
+            "spellId": 392060,
+            "name": "Wailing Arrow",
+            "icon": "132323.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 260243,
+            "name": "Volley",
+            "icon": "ability_hunter_rapidkilling.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "duration": 6
+        },
+        {
+            "spellId": 212431,
+            "name": "Explosive Shot",
+            "icon": "ability_hunter_explosiveshot.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": 3
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 186265,
+            "name": "Aspect of the Turtle",
+            "icon": "132199.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 8,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 264735,
+            "name": "Survival of the Fittest",
+            "icon": "spell_nature_spiritarmor.jpg",
+            "cooldown": 90,
+            "charges": 2,
+            "duration": 6,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 199483,
+            "name": "Camouflage",
+            "icon": "ability_hunter_camouflage.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 60,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 109304,
+            "name": "Exhilaration",
+            "icon": "461117.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": null,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 187650,
+            "name": "Freezing Trap",
+            "icon": "spell_frost_chainsofice.jpg",
+            "cooldown": 25,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": "healer"
+        },
+        {
+            "spellId": 474421,
+            "name": "Intimidation",
+            "icon": "artifactability_survivalhunter_eaglesbite.jpg",
+            "cooldown": 40,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": "both"
+        },
+        {
+            "spellId": 109248,
+            "name": "Binding Shot",
+            "icon": "spell_shaman_bindelemental.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": "both"
+        },
+        {
+            "spellId": 356719,
+            "name": "Chimaeral Sting",
+            "icon": "ability_hunter_snaketrap.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "drCategory": "Silence",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 5116,
+            "name": "Concussive Shot",
+            "icon": "spell_frost_stun.jpg",
+            "cooldown": 5,
+            "charges": null,
+            "drCategory": "Slow",
+            "hard": false,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 186257,
+            "name": "Aspect of the Cheetah",
+            "icon": "132242.jpg",
+            "cooldown": 120,
+            "charges": null
+        },
+        {
+            "spellId": 781,
+            "name": "Disengage",
+            "icon": "132294.jpg",
+            "cooldown": 20,
+            "charges": 1
+        },
+        {
+            "spellId": 54216,
+            "name": "Master's Call",
+            "icon": "236189.jpg",
+            "cooldown": null,
+            "charges": null
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 147362,
+            "name": "Counter Shot",
+            "icon": "inv_ammo_arrow_03.jpg",
+            "cooldown": 24,
+            "charges": null
+        }
+    ]
+}

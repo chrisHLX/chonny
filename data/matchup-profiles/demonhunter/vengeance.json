@@ -1,0 +1,231 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:13:36+00:00",
+    "class": "demonhunter",
+    "className": "Demon Hunter",
+    "spec": "vengeance",
+    "specName": "Vengeance",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 187827,
+            "name": "Metamorphosis",
+            "icon": "ability_demonhunter_metamorphasistank.jpg",
+            "cooldown": 120,
+            "charges": 2,
+            "duration": 15
+        },
+        {
+            "spellId": 390163,
+            "name": "Sigil of Spite",
+            "icon": "inv_ability_demonhunter_elysiandecree.jpg",
+            "cooldown": 60,
+            "charges": 1,
+            "duration": 2
+        },
+        {
+            "spellId": 207407,
+            "name": "Soul Carver",
+            "icon": "inv_glaive_1h_artifactaldrochi_d_01.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 3
+        },
+        {
+            "spellId": 204021,
+            "name": "Fiery Brand",
+            "icon": "ability_demonhunter_fierybrand.jpg",
+            "cooldown": 48,
+            "charges": 2,
+            "duration": null
+        },
+        {
+            "spellId": 179057,
+            "name": "Chaos Nova",
+            "icon": "spell_fire_felfirenova.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "duration": 3
+        },
+        {
+            "spellId": 212084,
+            "name": "Fel Devastation",
+            "icon": "ability_demonhunter_feldevastation.jpg",
+            "cooldown": 40,
+            "charges": null,
+            "duration": 2
+        },
+        {
+            "spellId": 258920,
+            "name": "Immolation Aura",
+            "icon": "ability_demonhunter_immolation.jpg",
+            "cooldown": 30,
+            "charges": 1,
+            "duration": 6
+        },
+        {
+            "spellId": 204596,
+            "name": "Sigil of Flame",
+            "icon": "ability_demonhunter_sigilofinquisition.jpg",
+            "cooldown": 30,
+            "charges": 1,
+            "duration": 2
+        },
+        {
+            "spellId": 247454,
+            "name": "Spirit Bomb",
+            "icon": "inv_icon_shadowcouncilorb_purple.jpg",
+            "cooldown": 25,
+            "charges": null,
+            "duration": 1.5
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 196718,
+            "name": "Darkness",
+            "icon": "ability_demonhunter_darkness.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": 8,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 187827,
+            "name": "Metamorphosis",
+            "icon": "ability_demonhunter_metamorphasistank.jpg",
+            "cooldown": 120,
+            "charges": 2,
+            "duration": 15,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 204021,
+            "name": "Fiery Brand",
+            "icon": "ability_demonhunter_fierybrand.jpg",
+            "cooldown": 48,
+            "charges": 2,
+            "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 212084,
+            "name": "Fel Devastation",
+            "icon": "ability_demonhunter_feldevastation.jpg",
+            "cooldown": 40,
+            "charges": null,
+            "duration": 2,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 203720,
+            "name": "Demon Spikes",
+            "icon": "ability_demonhunter_demonspikes.jpg",
+            "cooldown": 20,
+            "charges": 2,
+            "duration": null,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 179057,
+            "name": "Chaos Nova",
+            "icon": "spell_fire_felfirenova.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 217832,
+            "name": "Imprison",
+            "icon": "ability_demonhunter_imprison.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 202137,
+            "name": "Sigil of Silence",
+            "icon": "ability_demonhunter_sigilofsilence.jpg",
+            "cooldown": 75,
+            "charges": 1,
+            "drCategory": "Silence",
+            "hard": true,
+            "duration": null,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 207684,
+            "name": "Sigil of Misery",
+            "icon": "ability_demonhunter_sigilofmisery.jpg",
+            "cooldown": 90,
+            "charges": 1,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 205596,
+            "name": "Detainment",
+            "icon": "inv_misc_steelweaponchain.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": null,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 205630,
+            "name": "Illidan's Grasp",
+            "icon": "ability_demonhunter_illidansgrasp.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 1.9,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 189110,
+            "name": "Infernal Strike",
+            "icon": "ability_demonhunter_infernalstrike1.jpg",
+            "cooldown": 13,
+            "charges": 2
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 183752,
+            "name": "Disrupt",
+            "icon": "inv_12_voiddh_ability_disrupt.jpg",
+            "cooldown": 15,
+            "charges": null
+        }
+    ]
+}

@@ -1,0 +1,191 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:12:19+00:00",
+    "class": "druid",
+    "className": "Druid",
+    "spec": "balance",
+    "specName": "Balance",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 102560,
+            "name": "Incarnation: Chosen of Elune",
+            "icon": "spell_druid_incarnation.jpg",
+            "cooldown": 120,
+            "charges": 2,
+            "duration": 20
+        },
+        {
+            "spellId": 202770,
+            "name": "Fury of Elune",
+            "icon": "ability_druid_dreamstate.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "duration": 8
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 22812,
+            "name": "Barkskin",
+            "icon": "spell_nature_stoneclawtotem.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 8,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 22842,
+            "name": "Frenzied Regeneration",
+            "icon": "ability_bullrush.jpg",
+            "cooldown": 36,
+            "charges": 1,
+            "duration": 3,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 99,
+            "name": "Incapacitating Roar",
+            "icon": "ability_druid_demoralizingroar.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 5211,
+            "name": "Mighty Bash",
+            "icon": "ability_druid_bash.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 4,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 78675,
+            "name": "Solar Beam",
+            "icon": "ability_vehicle_sonicshockwave.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "drCategory": "Silence",
+            "hard": true,
+            "duration": 5,
+            "isPeel": false,
+            "chainTarget": "healer"
+        },
+        {
+            "spellId": 33786,
+            "name": "Cyclone",
+            "icon": "spell_nature_earthbind.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 5,
+            "isPeel": false,
+            "chainTarget": "healer"
+        },
+        {
+            "spellId": 102401,
+            "name": "Wild Charge",
+            "icon": "spell_druid_wildcharge.jpg",
+            "cooldown": 15,
+            "charges": null,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 0.5,
+            "isPeel": true,
+            "chainTarget": null
+        },
+        {
+            "spellId": 102359,
+            "name": "Mass Entanglement",
+            "icon": "spell_druid_massentanglement.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 6,
+            "isPeel": true,
+            "chainTarget": null
+        },
+        {
+            "spellId": 132469,
+            "name": "Typhoon",
+            "icon": "ability_druid_typhoon.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Knockback",
+            "hard": false,
+            "duration": null,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 339,
+            "name": "Entangling Roots",
+            "icon": "136100.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 6,
+            "isPeel": true,
+            "chainTarget": null
+        },
+        {
+            "spellId": 209749,
+            "name": "Faerie Swarm",
+            "icon": "spell_druid_swarm.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Disarm",
+            "hard": false,
+            "duration": 5,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 1850,
+            "name": "Dash",
+            "icon": "ability_druid_dash.jpg",
+            "cooldown": 120,
+            "charges": null
+        },
+        {
+            "spellId": 106898,
+            "name": "Stampeding Roar",
+            "icon": "spell_druid_stampedingroar_cat.jpg",
+            "cooldown": 60,
+            "charges": null
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 132469,
+            "name": "Typhoon",
+            "icon": "ability_druid_typhoon.jpg",
+            "cooldown": 30,
+            "charges": null
+        }
+    ]
+}

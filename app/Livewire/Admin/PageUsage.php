@@ -41,6 +41,7 @@ class PageUsage extends Component
         'spell_detail' => 'Spell Detail',
         'spell_explorer' => 'Spell Explorer',
         'wow_comps' => 'WoW Comps',
+        'matchup_lab' => 'Matchup Lab',
         'top_damage_rotations' => 'Top Burst Windows',
         'burst_window_talents' => 'Burst Window Talent View',
         'class_guide' => 'Class Guide',

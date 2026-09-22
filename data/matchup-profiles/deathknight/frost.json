@@ -1,0 +1,178 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:12:48+00:00",
+    "class": "deathknight",
+    "className": "Death Knight",
+    "spec": "frost",
+    "specName": "Frost",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 1249658,
+            "name": "Breath of Sindragosa",
+            "icon": "spell_deathknight_breathofsindragosa.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 8
+        },
+        {
+            "spellId": 279302,
+            "name": "Frostwyrm's Fury",
+            "icon": "achievement_boss_sindragosa.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 10
+        },
+        {
+            "spellId": 51271,
+            "name": "Pillar of Frost",
+            "icon": "ability_deathknight_pillaroffrost.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "duration": 12
+        },
+        {
+            "spellId": 439843,
+            "name": "Reaper's Mark",
+            "icon": "inv_ability_deathbringerdeathknight_reapersmark.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 43265,
+            "name": "Death and Decay",
+            "icon": "136144.jpg",
+            "cooldown": 30,
+            "charges": 2,
+            "duration": 10
+        },
+        {
+            "spellId": 47568,
+            "name": "Empower Rune Weapon",
+            "icon": "inv_sword_62.jpg",
+            "cooldown": 30,
+            "charges": 4,
+            "duration": null
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 51052,
+            "name": "Anti-Magic Zone",
+            "icon": "spell_deathknight_antimagiczone.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": 6,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 48792,
+            "name": "Icebound Fortitude",
+            "icon": "spell_deathknight_iceboundfortitude.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 8,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 48743,
+            "name": "Death Pact",
+            "icon": "spell_shadow_deathpact.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 15,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 48707,
+            "name": "Anti-Magic Shell",
+            "icon": "spell_shadow_antimagicshell.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 5,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 212552,
+            "name": "Wraith Walk",
+            "icon": "inv_helm_plate_raiddeathknight_p_01.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 4,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 47476,
+            "name": "Strangulate",
+            "icon": "spell_shadow_soulleech_3.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Silence",
+            "hard": true,
+            "duration": 4,
+            "isPeel": false,
+            "chainTarget": "healer"
+        },
+        {
+            "spellId": 207167,
+            "name": "Blinding Sleet",
+            "icon": "spell_frost_chillingblast.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 4,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 45524,
+            "name": "Chains of Ice",
+            "icon": "135834.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Slow",
+            "hard": false,
+            "duration": 8,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 48265,
+            "name": "Death's Advance",
+            "icon": "237561.jpg",
+            "cooldown": 45,
+            "charges": 2
+        },
+        {
+            "spellId": 212552,
+            "name": "Wraith Walk",
+            "icon": "inv_helm_plate_raiddeathknight_p_01.jpg",
+            "cooldown": 60,
+            "charges": null
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 47528,
+            "name": "Mind Freeze",
+            "icon": "spell_deathknight_mindfreeze.jpg",
+            "cooldown": 15,
+            "charges": null
+        }
+    ]
+}

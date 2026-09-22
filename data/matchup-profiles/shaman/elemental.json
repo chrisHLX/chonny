@@ -1,0 +1,136 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:12:38+00:00",
+    "class": "shaman",
+    "className": "Shaman",
+    "spec": "elemental",
+    "specName": "Elemental",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 114050,
+            "name": "Ascendance",
+            "icon": "spell_fire_elementaldevastation.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 191634,
+            "name": "Stormkeeper",
+            "icon": "ability_thunderking_lightningwhip.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 15
+        },
+        {
+            "spellId": 443454,
+            "name": "Ancestral Swiftness",
+            "icon": "inv_ability_farseershaman_ancestralswiftness.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": null
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 108271,
+            "name": "Astral Shift",
+            "icon": "ability_shaman_astralshift.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 12,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 5394,
+            "name": "Healing Stream Totem",
+            "icon": "inv_spear_04.jpg",
+            "cooldown": 25,
+            "charges": 0,
+            "duration": 15,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 51514,
+            "name": "Hex",
+            "icon": "spell_shaman_hex.jpg",
+            "cooldown": 15,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": "healer"
+        },
+        {
+            "spellId": 192058,
+            "name": "Capacitor Totem",
+            "icon": "spell_nature_brilliance.jpg",
+            "cooldown": 40,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 305483,
+            "name": "Lightning Lasso",
+            "icon": "shaman_pvp_lightninglasso.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": null,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 51485,
+            "name": "Earthgrab Totem",
+            "icon": "spell_nature_stranglevines.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 6,
+            "isPeel": true,
+            "chainTarget": null
+        },
+        {
+            "spellId": 51490,
+            "name": "Thunderstorm",
+            "icon": "spell_shaman_thunderstorm.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Knockback",
+            "hard": false,
+            "duration": 6.5,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [],
+    "interrupts": [
+        {
+            "spellId": 57994,
+            "name": "Wind Shear",
+            "icon": "spell_nature_cyclone.jpg",
+            "cooldown": 12,
+            "charges": null
+        }
+    ]
+}

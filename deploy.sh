@@ -69,6 +69,7 @@ if [[ "${DEPLOY_STAGE:-1}" == "1" ]]; then
     # are tracked, so without this a pull aborts with "local changes would be overwritten" —
     # discarding them is safe precisely because the run regenerates them from scratch.
     git checkout -- data/spell-kits/ 2>/dev/null || true
+    git checkout -- data/matchup-profiles/ 2>/dev/null || true
     git checkout -- deploy.sh 2>/dev/null || true
 
     echo "==> git pull"
@@ -169,6 +170,15 @@ else
     php -d memory_limit=1024M artisan wow:precompute-spell-kits
 fi
 
+echo "==> Rebuilding Matchup Lab profiles (data/matchup-profiles/{class}/{spec}.json)."
+echo "    AFTER the kits, never before: a profile is a narrowing of the same kit, so with fresh"
+echo "    kits this is a few seconds of JSON reads, and with stale ones it is the full"
+echo "    ~7s-per-spec live computation forty times over. /wow/matchup-lab reads these six at a"
+echo "    time with no database query at all; a spec whose profile is missing is excluded from"
+echo "    the matchup by name rather than simulated with an empty answer pool, which would read"
+echo "    as a short pool and silently move the verdict."
+php -d memory_limit=1024M artisan wow:build-matchup-profiles
+
 echo "==> Applying the committed icon manifest (data/spelldata/icon-manifest.json)."
 echo "    Fills spells/classes/specs icon_name from the committed manifest wherever it is still"
 echo "    NULL. Zero Blizzard API calls, idempotent, and cheap. It lives here because the icon"
@@ -186,6 +196,7 @@ echo "==> Post-deploy smoke test"
 SMOKE_URLS=(
     "https://mindcollector.com/"
     "https://mindcollector.com/wow/comps"
+    "https://mindcollector.com/wow/matchup-lab"
     "https://mindcollector.com/wow/pvp-guides"
     "https://mindcollector.com/wow/spells"
     "https://mindcollector.com/browse-guides"

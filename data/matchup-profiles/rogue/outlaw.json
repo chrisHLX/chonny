@@ -1,0 +1,227 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:13:10+00:00",
+    "class": "rogue",
+    "className": "Rogue",
+    "spec": "outlaw",
+    "specName": "Outlaw",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 13750,
+            "name": "Adrenaline Rush",
+            "icon": "spell_shadow_shadowworddominate.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": 15
+        },
+        {
+            "spellId": 51690,
+            "name": "Killing Spree",
+            "icon": "inv_112_rogue_betweentheeyes.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 271877,
+            "name": "Blade Rush",
+            "icon": "ability_arakkoa_spinning_blade.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 381623,
+            "name": "Thistle Tea",
+            "icon": "inv_drink_milk_05.jpg",
+            "cooldown": 60,
+            "charges": 3,
+            "duration": null
+        },
+        {
+            "spellId": 315341,
+            "name": "Between the Eyes",
+            "icon": "inv_weapon_rifle_01.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "duration": 2
+        },
+        {
+            "spellId": 13877,
+            "name": "Blade Flurry",
+            "icon": "ability_warrior_punishingblow.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": 10
+        },
+        {
+            "spellId": 5938,
+            "name": "Shiv",
+            "icon": "inv_throwingknife_04.jpg",
+            "cooldown": 30,
+            "charges": 1,
+            "duration": null
+        },
+        {
+            "spellId": 57934,
+            "name": "Tricks of the Trade",
+            "icon": "ability_rogue_tricksofthetrade.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": 30
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 51690,
+            "name": "Killing Spree",
+            "icon": "inv_112_rogue_betweentheeyes.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 212182,
+            "name": "Smoke Bomb",
+            "icon": "ability_rogue_smoke.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 31224,
+            "name": "Cloak of Shadows",
+            "icon": "spell_shadow_nethercloak.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 5,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 5277,
+            "name": "Evasion",
+            "icon": "spell_shadow_shadowward.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 10,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 185311,
+            "name": "Crimson Vial",
+            "icon": "1373904.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": 4,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 1966,
+            "name": "Feint",
+            "icon": "ability_rogue_feint.jpg",
+            "cooldown": 15,
+            "charges": 2,
+            "duration": 6,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 1833,
+            "name": "Cheap Shot",
+            "icon": "ability_cheapshot.jpg",
+            "cooldown": 12,
+            "charges": 1,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 4,
+            "isPeel": false,
+            "chainTarget": "both"
+        },
+        {
+            "spellId": 1776,
+            "name": "Gouge",
+            "icon": "ability_gouge.jpg",
+            "cooldown": 25,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 408,
+            "name": "Kidney Shot",
+            "icon": "ability_rogue_kidneyshot.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 5,
+            "isPeel": false,
+            "chainTarget": "both"
+        },
+        {
+            "spellId": 2094,
+            "name": "Blind",
+            "icon": "spell_shadow_mindsteal.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 5,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 207777,
+            "name": "Dismantle",
+            "icon": "ability_rogue_dismantle.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Disarm",
+            "hard": false,
+            "duration": 5,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 36554,
+            "name": "Shadowstep",
+            "icon": "132303.jpg",
+            "cooldown": 30,
+            "charges": null
+        },
+        {
+            "spellId": 2983,
+            "name": "Sprint",
+            "icon": "ability_rogue_sprint.jpg",
+            "cooldown": 60,
+            "charges": null
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 1766,
+            "name": "Kick",
+            "icon": "ability_kick.jpg",
+            "cooldown": 15,
+            "charges": null
+        }
+    ]
+}

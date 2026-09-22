@@ -17,6 +17,7 @@ Sources are preserved verbatim in `docs/arena/sources/`:
 | `arena-structure-v1-2026-09-18.md` | v1, unedited. The reasoned framework. |
 | `arena-structure-v1-reviewed-by-chriso.md` | v1 with the player's inline corrections. **The primary correction record.** |
 | `kalvish-blizzcon-2026-awc-finals.md` | Calvish's post-tournament breakdown, incl. a game-by-game VOD review of the grand final. |
+| `gemini-cooldown-graph-2026-09-23.md` | A Gemini session proposing this model be drawn as curves over a round. **Not a player.** It had this document in its context, so agreement is not corroboration — see Part 19 and the distilled note's caveat. |
 
 ---
 
@@ -932,3 +933,154 @@ That last one is the real open question, and it is the product question: this fr
 is derived from how the best players in the world and one Gladiator think. Whether it
 *transfers* — whether a 1700 player given this reads a game better — is not established
 by anything in these documents. `arena-open-questions.md` lists what would establish it.
+
+---
+
+## Part 19 — The timeline view: the same model, drawn against a clock
+
+Added 2026-09-23, after `docs/arena/sources/gemini-cooldown-graph-2026-09-23.md` — a
+Gemini session that had this document in its context and proposed drawing it as two
+curves over a round. **It is the weakest source in the folder and its caveat is
+load-bearing**: a language model agreeing with this file is this file being read back,
+not corroboration. Nothing in Part 19 is `[OBS]` on that source's authority. What it did
+contribute is a *representation*, and a representation is judgeable without a pro — the
+test is whether it is computable from data already held.
+
+Appended rather than slotted between Parts 17 and 18 because every other document, and
+every `/brain` section id, refers to these parts by number.
+
+**The problem it solves.** Parts 2, 5 and 7 state their rules without a **when**. "A go
+into an empty pool is a kill" is true and unusable until something says *at which point
+in this round their pool is empty*. A reader who cannot locate that moment has to time it
+by feel, which is exactly what the model claims separates brackets. Putting both sides'
+resources on one clock is what turns the rules into a window with a start.
+
+### 19.1 Two curves, and the second one is per player [DER]
+
+**The threat curve** — for each team, what it can commit at time *t*. Not damage:
+Part 11's blocker (static coefficients are not tied to a real character's stats) means
+this project cannot compute damage, and a curve drawn as though it were damage would be
+fabrication. It is an **availability** curve: which offensive cooldowns are up, and how
+much of the enemy team the team's control can reach on one global (Part 5's globals
+denied, seen from the attacking side).
+
+**The answer curve** — how many answers each enemy player can **press right now**. Two
+corrections to the naive version, and both matter:
+
+- **It is per player, never per team.** Part 2: *"the pool is per-player, not per-team.
+  Their healer holding three externals does not help a target the healer cannot reach."*
+  A team-summed line averages away the one quantity that picks the target, and cannot
+  express the mid-go swap Part 2 requires.
+- **Owning a button and being able to press it are different.** A player in CC has a pool
+  of zero for the duration, whatever they hold. This is Part 2's reachability rule
+  expressed on the time axis, and it is what makes the drawing worth doing: **a go's
+  quality is how far it pushes the defender's *reachable* pool toward zero**, which is
+  Part 5's criterion and Part 2's currency as a single number.
+
+**A kill window is where a team's threat curve rises while some enemy player's reachable
+answer curve sits at zero.** The source called this the moment a kill is "mathematically
+guaranteed". **That phrase is rejected** — it contradicts Part 11. An empty pool means
+the target has no button left, not that the incoming damage is lethal; the gap between
+those is the damage model this project does not have. The honest claim is that the window
+is one in which **a go is a kill attempt rather than a strip** (Part 2). Say that, and
+never more.
+
+**The period is derived, never assumed.** The source proposed spikes "every 30 seconds".
+Thirty seconds is Jungle's number because Maim and Scatter are both 30s — Part 7's
+cadence is *chosen*, not a property of arena, and the DR window itself is ~18s. The
+engine takes the team's natural period **T** from the slowest term it must align, which
+is what Part 17 already asks the data layer for.
+
+### 19.2 The answer to a threat is a ranked list, not a lookup [HYP]
+
+Part 3 asks for a per-matchup trigger table — *"enemy presses X → you press Y"* — and
+calls it the most concretely buildable thing in this document. The source's objection is
+fair: there is rarely one Y. Avatar can be answered by a personal, by an external, by
+stunning or disarming the Warrior, or by leaving.
+
+The composition of what Parts 3 and 6 already hold is a **cascade**, cheapest sufficient
+answer first:
+
+**control the source → break line of sight → spend a personal → spend an external →
+trinket**
+
+taking the first option that is both available and sufficient, and skipping any step the
+defender cannot reach because they are in CC. This is not new material — Part 3's
+corollary already says to reposition under a defensive and layer a peel on top, and
+Part 6 already prices control on an amplified enemy as paid twice (*"landing a stun on
+the Warrior during Avatar... You stop damage and get a go"*). What is new is the
+**order**, and nobody has observed it. It is reasoned from cooldown cost, so it is
+`[HYP]`, and the test is Part 3's own: put a ranked trigger table in front of a player
+instead of a single answer and see whether it survives contact.
+
+For authoring, the cascade is why a defensives section reads better as *"if he is free,
+disarm; if he is stunned, this is what bark is for"* than as one instruction.
+
+### 19.3 Execution belongs in the model as an input [DER from Part 15]
+
+Part 15's correction was that the ladder describes **error rates that fall, not stages
+that are passed** — the world champion makes the 1800-bracket error in a grand final.
+The consequence that part did not draw: if the error rate is the variable, it can be an
+**input**, and the same matchup can be read at more than one setting.
+
+Three settings carry their weight, each mapping to a specific claim already in this file:
+
+| Setting | What changes | From |
+|---|---|---|
+| Trading late | the defender answers a threat that has already landed, and a second answer lands on top — one go costs two answers | Part 3, overlap as the dominant loss condition |
+| Trading cleanly | one sufficient answer per threat, no overlap, but every go is sent as soon as it is up | Part 3's pre-agreed trigger working |
+| Playing the pool | the cascade is applied — control before cooldowns — and a go into a full pool is **held** rather than spent | Parts 2, 6 and 8: patience inside the window |
+
+This is directly what a guide author needs. Part 0 already requires a guide to say **which
+use it is written for**, drill-shaped or plan-shaped; a matchup read at "trading late" and
+the same matchup read at "playing the pool" are different documents, and the setting makes
+that choice mechanical instead of a tone the author picks. Note what the third setting
+implies and the first does not: at the top, **the go that is not sent is a move**.
+
+`[HYP]` on any specific rate. That a lower-rated defender overlaps more is `[OBS]` from
+Part 3. How often, at what rating, is measured by nothing.
+
+### 19.4 Dampening is what makes the lines slope [OBS, from Part 12]
+
+The source omits dampening entirely, and that is its significant silence. Part 12:
+in the current patch it scales defensive cooldowns, so **the value of every answer in the
+enemy pool decays across the round**. A pool that is sufficient at minute two is not
+sufficient at minute ten.
+
+Without it both curves are stationary and the drawing says the same thing at 0:30 as at
+6:00, which is false and is the mechanism behind the whole "sit behind a pillar for ten
+minutes" plan. With it, **which side the clock favours** (Part 16's fourth question)
+becomes a readable property of the picture rather than a judgement the author supplies.
+
+### 19.5 What a timeline built from this data may not claim
+
+- **Not a win probability.** There is no outcome corpus to fit one to: match search is
+  discontinued upstream, and the archive's comp index holds two entries. A percentage
+  would be invented. The output is a **structural read** — whose window opens first, and
+  why — stated in this document's own vocabulary.
+- **Not a kill.** See 19.1.
+- **Every period is an upper bound.** The database holds base and talent-modified
+  cooldowns, not **spend-driven** reduction ("each cast of X takes 3s off Y"), because
+  that is a function of a rotation run at a rate and no rate is recorded anywhere. Real
+  goes come round sooner than the graph says, by an unknown amount that differs per spec.
+  This is a new entry in `knowledge-gaps.md` and C12 in `arena-open-questions.md`.
+- **No positioning, no comms.** A curve has no geometry (Part 14). Several of Part 5's
+  simultaneity claims *depend* on both enemy DPS being reachable, which the picture
+  silently assumes.
+- **No reaction time.** The source proposed a 0.5–2s human lag. Nothing measures it, and
+  an invented constant applied to every trade moves every number on the page by an amount
+  nobody can check. The structural half of that point — a defender in CC presses nothing
+  — is adopted in 19.1; the latency half is not.
+
+### 19.6 What Part 17 has to add for this
+
+On top of the per-spec and per-comp terms already listed there:
+
+- **Per answer**: its cooldown *and* its duration, and which kind it is — control,
+  positional, personal, external, trinket, immunity. The cascade in 19.2 is an ordering
+  over those kinds, so an answer with no kind cannot be placed in it.
+- **Per comp**: the go set — the specific abilities the team insists on aligning — since
+  T is the slowest of those and nothing else.
+- **Per player slot**: which answers are self-only and which can be cast on a teammate.
+  An external suppressed by CC on the *healer* is the mechanism in 19.1, and it cannot be
+  computed without knowing who can cast what on whom.

@@ -1,0 +1,199 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:13:15+00:00",
+    "class": "paladin",
+    "className": "Paladin",
+    "spec": "protection",
+    "specName": "Protection",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 31884,
+            "name": "Avenging Wrath",
+            "icon": "spell_holy_avenginewrath.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 20
+        },
+        {
+            "spellId": 375576,
+            "name": "Divine Toll",
+            "icon": "inv_ability_paladin_divinetoll.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 432459,
+            "name": "Holy Bulwark",
+            "icon": "inv_ability_lightsmithpaladin_holybulwark.jpg",
+            "cooldown": 45,
+            "charges": 2,
+            "duration": null
+        },
+        {
+            "spellId": 432472,
+            "name": "Sacred Weapon",
+            "icon": "inv_ability_lightsmithpaladin_sacredweapon.jpg",
+            "cooldown": 45,
+            "charges": 2,
+            "duration": null
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 633,
+            "name": "Lay on Hands",
+            "icon": "spell_holy_layonhands.jpg",
+            "cooldown": 600,
+            "charges": null,
+            "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 1022,
+            "name": "Blessing of Protection",
+            "icon": "spell_holy_sealofprotection.jpg",
+            "cooldown": 240,
+            "charges": 1,
+            "duration": 10,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 204018,
+            "name": "Blessing of Spellwarding",
+            "icon": "spell_holy_blessingofprotection.jpg",
+            "cooldown": 240,
+            "charges": 1,
+            "duration": 10,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 31850,
+            "name": "Ardent Defender",
+            "icon": "spell_holy_ardentdefender.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 12,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 6940,
+            "name": "Blessing of Sacrifice",
+            "icon": "spell_holy_sealofsacrifice.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 12,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 432459,
+            "name": "Holy Bulwark",
+            "icon": "inv_ability_lightsmithpaladin_holybulwark.jpg",
+            "cooldown": 45,
+            "charges": 2,
+            "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 1044,
+            "name": "Blessing of Freedom",
+            "icon": "spell_holy_sealofvalor.jpg",
+            "cooldown": 25,
+            "charges": 1,
+            "duration": 8,
+            "kind": "immunity"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 31935,
+            "name": "Avenger's Shield",
+            "icon": "spell_holy_avengersshield.jpg",
+            "cooldown": 15,
+            "charges": null,
+            "drCategory": "Silence",
+            "hard": true,
+            "duration": 1.4,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 853,
+            "name": "Hammer of Justice",
+            "icon": "spell_holy_sealofmight.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 5,
+            "isPeel": false,
+            "chainTarget": "both"
+        },
+        {
+            "spellId": 115750,
+            "name": "Blinding Light",
+            "icon": "ability_paladin_blindinglight.jpg",
+            "cooldown": 75,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 4,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 215652,
+            "name": "Shield of Virtue",
+            "icon": "inv_shield_60.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Silence",
+            "hard": true,
+            "duration": 1.9,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 1044,
+            "name": "Blessing of Freedom",
+            "icon": "spell_holy_sealofvalor.jpg",
+            "cooldown": 25,
+            "charges": 1
+        },
+        {
+            "spellId": 190784,
+            "name": "Divine Steed",
+            "icon": "ability_paladin_divinesteed.jpg",
+            "cooldown": 45,
+            "charges": 2
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 31935,
+            "name": "Avenger's Shield",
+            "icon": "spell_holy_avengersshield.jpg",
+            "cooldown": 15,
+            "charges": null
+        },
+        {
+            "spellId": 96231,
+            "name": "Rebuke",
+            "icon": "spell_holy_rebuke.jpg",
+            "cooldown": 15,
+            "charges": null
+        }
+    ]
+}

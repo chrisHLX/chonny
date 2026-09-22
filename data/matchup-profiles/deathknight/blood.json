@@ -1,0 +1,104 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:12:24+00:00",
+    "class": "deathknight",
+    "className": "Death Knight",
+    "spec": "blood",
+    "specName": "Blood",
+    "buildName": "Default Build",
+    "offensive": [],
+    "answers": [
+        {
+            "spellId": 51052,
+            "name": "Anti-Magic Zone",
+            "icon": "spell_deathknight_antimagiczone.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": 6,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 49028,
+            "name": "Dancing Rune Weapon",
+            "icon": "inv_sword_07.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 8,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 55233,
+            "name": "Vampiric Blood",
+            "icon": "spell_shadow_lifedrain.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 10,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 221562,
+            "name": "Asphyxiate",
+            "icon": "ability_deathknight_asphixiate.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 4,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 207167,
+            "name": "Blinding Sleet",
+            "icon": "spell_frost_chillingblast.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 4,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 108199,
+            "name": "Gorefiend's Grasp",
+            "icon": "ability_deathknight_aoedeathgrip.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "drCategory": "Knockback",
+            "hard": false,
+            "duration": null,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 212552,
+            "name": "Wraith Walk",
+            "icon": "inv_helm_plate_raiddeathknight_p_01.jpg",
+            "cooldown": 60,
+            "charges": null
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 47528,
+            "name": "Mind Freeze",
+            "icon": "spell_deathknight_mindfreeze.jpg",
+            "cooldown": 15,
+            "charges": null
+        }
+    ]
+}

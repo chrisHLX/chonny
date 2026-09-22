@@ -1,0 +1,107 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:12:41+00:00",
+    "class": "shaman",
+    "className": "Shaman",
+    "spec": "enhancement",
+    "specName": "Enhancement",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 114051,
+            "name": "Ascendance",
+            "icon": "spell_fire_elementaldevastation.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": 15
+        },
+        {
+            "spellId": 384352,
+            "name": "Doom Winds",
+            "icon": "ability_ironmaidens_swirlingvortex.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 196884,
+            "name": "Feral Lunge",
+            "icon": "spell_beastmaster_wolf.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 197214,
+            "name": "Sundering",
+            "icon": "ability_rhyolith_lavapool.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": null
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 108271,
+            "name": "Astral Shift",
+            "icon": "ability_shaman_astralshift.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 12,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 192058,
+            "name": "Capacitor Totem",
+            "icon": "spell_nature_brilliance.jpg",
+            "cooldown": 40,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 51485,
+            "name": "Earthgrab Totem",
+            "icon": "spell_nature_stranglevines.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 6,
+            "isPeel": true,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 196884,
+            "name": "Feral Lunge",
+            "icon": "spell_beastmaster_wolf.jpg",
+            "cooldown": 30,
+            "charges": null
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 57994,
+            "name": "Wind Shear",
+            "icon": "spell_nature_cyclone.jpg",
+            "cooldown": 12,
+            "charges": null
+        }
+    ]
+}

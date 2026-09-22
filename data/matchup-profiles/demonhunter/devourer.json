@@ -1,0 +1,149 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:12:34+00:00",
+    "class": "demonhunter",
+    "className": "Demon Hunter",
+    "spec": "devourer",
+    "specName": "Devourer",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 1246167,
+            "name": "The Hunt",
+            "icon": "inv_12_voiddh_ability_thehunt.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "duration": 2
+        },
+        {
+            "spellId": 1234195,
+            "name": "Void Nova",
+            "icon": "inv_12_voiddh_ability_voidnova.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "duration": 2
+        },
+        {
+            "spellId": 1241937,
+            "name": "Soul Immolation",
+            "icon": "inv_12_dh_void_ability_voidpurge.jpg",
+            "cooldown": 30,
+            "charges": 2,
+            "duration": 5
+        },
+        {
+            "spellId": 1245412,
+            "name": "Voidblade",
+            "icon": "inv_12_voiddh_ability_voidblade.jpg",
+            "cooldown": 30,
+            "charges": 1,
+            "duration": null
+        },
+        {
+            "spellId": 198793,
+            "name": "Vengeful Retreat",
+            "icon": "inv_12_voiddh_ability_vengefulretreat.jpg",
+            "cooldown": 25,
+            "charges": 1,
+            "duration": 1
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 196718,
+            "name": "Darkness",
+            "icon": "ability_demonhunter_darkness.jpg",
+            "cooldown": 180,
+            "charges": null,
+            "duration": 8,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 198589,
+            "name": "Blur",
+            "icon": "ability_demonhunter_blur.jpg",
+            "cooldown": 60,
+            "charges": 2,
+            "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 1241937,
+            "name": "Soul Immolation",
+            "icon": "inv_12_dh_void_ability_voidpurge.jpg",
+            "cooldown": 30,
+            "charges": 2,
+            "duration": 5,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 217832,
+            "name": "Imprison",
+            "icon": "ability_demonhunter_imprison.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 1234195,
+            "name": "Void Nova",
+            "icon": "inv_12_voiddh_ability_voidnova.jpg",
+            "cooldown": 45,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 2,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 207684,
+            "name": "Sigil of Misery",
+            "icon": "ability_demonhunter_sigilofmisery.jpg",
+            "cooldown": 120,
+            "charges": 1,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 1246167,
+            "name": "The Hunt",
+            "icon": "inv_12_voiddh_ability_thehunt.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 1.5,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [],
+    "interrupts": [
+        {
+            "spellId": 183752,
+            "name": "Disrupt",
+            "icon": "inv_12_voiddh_ability_disrupt.jpg",
+            "cooldown": 15,
+            "charges": null
+        }
+    ]
+}

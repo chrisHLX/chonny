@@ -1,0 +1,120 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:12:32+00:00",
+    "class": "evoker",
+    "className": "Evoker",
+    "spec": "devastation",
+    "specName": "Devastation",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 357210,
+            "name": "Deep Breath",
+            "icon": "4622450.jpg",
+            "cooldown": 60,
+            "charges": 2,
+            "duration": 6
+        },
+        {
+            "spellId": 355913,
+            "name": "Emerald Blossom",
+            "icon": "4622457.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": 1.5
+        },
+        {
+            "spellId": 382266,
+            "name": "Fire Breath",
+            "icon": "4622458.jpg",
+            "cooldown": 30,
+            "charges": 1,
+            "duration": 3.3
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 363916,
+            "name": "Obsidian Scales",
+            "icon": "inv_artifact_dragonscales.jpg",
+            "cooldown": 90,
+            "charges": 2,
+            "duration": 12,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 355913,
+            "name": "Emerald Blossom",
+            "icon": "4622457.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": 1.5,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 360806,
+            "name": "Sleep Walk",
+            "icon": "ability_xavius_dreamsimulacrum.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 372245,
+            "name": "Terror of the Skies",
+            "icon": "4622477.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Stun",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 355689,
+            "name": "Landslide",
+            "icon": "1016245.jpg",
+            "cooldown": 90,
+            "charges": null,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 358267,
+            "name": "Hover",
+            "icon": "ability_evoker_hover.jpg",
+            "cooldown": 35,
+            "charges": 2
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 351338,
+            "name": "Quell",
+            "icon": "ability_evoker_quell.jpg",
+            "cooldown": 20,
+            "charges": null
+        }
+    ]
+}

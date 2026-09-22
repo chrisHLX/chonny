@@ -141,6 +141,13 @@ Route::get('modules', Index::class)->name('modules.index');
 // group and its own components; this stays honest about what it is until then.
 Route::prefix('wow')->group(function () {
     Route::get('/comps', \App\Livewire\WowComps::class)->name('wow-comps');
+
+    // Two comps on one clock — whose kill window opens first, and why. The first page here that
+    // answers a question about a MATCHUP rather than about one spec or one comp, which is the
+    // unit a guide is actually written for. See App\Livewire\MatchupLab and
+    // data/matchup-profiles/README.md. Sits next to /wow/comps deliberately: same picker, same
+    // mental model, one step further on.
+    Route::get('/matchup-lab', \App\Livewire\MatchupLab::class)->name('matchup-lab');
     Route::get('/spells', SpellExplorer::class)->name('spells.explore');
     Route::get('/spell-finder', \App\Livewire\SpellFinder::class)->name('spell-finder');
     // One permanent, linkable page per spell. Renders the same <x-spells.detail> the site-wide

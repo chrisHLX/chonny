@@ -1,0 +1,153 @@
+{
+    "shapeVersion": 1,
+    "generatedAt": "2026-09-22T22:12:46+00:00",
+    "class": "mage",
+    "className": "Mage",
+    "spec": "fire",
+    "specName": "Fire",
+    "buildName": "Default Build",
+    "offensive": [
+        {
+            "spellId": 190319,
+            "name": "Combustion",
+            "icon": "spell_fire_sealoffire.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 10
+        },
+        {
+            "spellId": 153561,
+            "name": "Meteor",
+            "icon": "spell_mage_meteor.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": null
+        },
+        {
+            "spellId": 11366,
+            "name": "Pyroblast",
+            "icon": "spell_fire_fireball02.jpg",
+            "cooldown": 30,
+            "charges": null,
+            "duration": null
+        }
+    ],
+    "answers": [
+        {
+            "spellId": 45438,
+            "name": "Ice Block",
+            "icon": "spell_frost_frost.jpg",
+            "cooldown": 150,
+            "charges": 1,
+            "duration": 10,
+            "kind": "immunity"
+        },
+        {
+            "spellId": 336126,
+            "name": "Gladiator's Medallion",
+            "icon": "ability_pvp_gladiatormedallion.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "trinket"
+        },
+        {
+            "spellId": 110959,
+            "name": "Greater Invisibility",
+            "icon": "ability_mage_greaterinvisibility.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 235313,
+            "name": "Blazing Barrier",
+            "icon": "ability_mage_moltenarmor.jpg",
+            "cooldown": 30,
+            "charges": 2,
+            "duration": 60,
+            "kind": "cooldown"
+        }
+    ],
+    "control": [
+        {
+            "spellId": 31661,
+            "name": "Dragon's Breath",
+            "icon": "inv_misc_head_dragon_01.jpg",
+            "cooldown": 40,
+            "charges": null,
+            "drCategory": "Disorient",
+            "hard": true,
+            "duration": 3,
+            "isPeel": false,
+            "chainTarget": "healer"
+        },
+        {
+            "spellId": 113724,
+            "name": "Ring of Frost",
+            "icon": "spell_frost_ringoffrost.jpg",
+            "cooldown": 40,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": null
+        },
+        {
+            "spellId": 118,
+            "name": "Polymorph",
+            "icon": "spell_nature_polymorph.jpg",
+            "cooldown": null,
+            "charges": null,
+            "drCategory": "Incapacitate",
+            "hard": true,
+            "duration": 6,
+            "isPeel": false,
+            "chainTarget": "healer"
+        },
+        {
+            "spellId": 157997,
+            "name": "Ice Nova",
+            "icon": "spell_mage_icenova.jpg",
+            "cooldown": 20,
+            "charges": null,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 2,
+            "isPeel": true,
+            "chainTarget": null
+        },
+        {
+            "spellId": 122,
+            "name": "Frost Nova",
+            "icon": "spell_frost_frostnova.jpg",
+            "cooldown": 25,
+            "charges": 2,
+            "drCategory": "Root",
+            "hard": false,
+            "duration": 8,
+            "isPeel": true,
+            "chainTarget": null
+        }
+    ],
+    "mobility": [
+        {
+            "spellId": 212653,
+            "name": "Shimmer",
+            "icon": "spell_arcane_massdispel.jpg",
+            "cooldown": 27,
+            "charges": 2
+        }
+    ],
+    "interrupts": [
+        {
+            "spellId": 2139,
+            "name": "Counterspell",
+            "icon": "135856.jpg",
+            "cooldown": 23,
+            "charges": null
+        }
+    ]
+}
