@@ -157,6 +157,12 @@ php artisan guides:export-feedback --all --out=feedback.md        # run on the S
 Idempotent by slug: re-running replaces sections and steps while keeping the guide row, its
 URL and its view count.
 
+**Never change an existing draft's `slug`.** It is the only thing tying a draft to its
+published guide, so a changed slug publishes a second guide and leaves the original live
+with its old content. That happened on 2026-09-23 (`jungle-vs-ret-war-disc` →
+`jungle-vs-ret-war`) and left a stale guide published until it was spotted. Rename the
+file freely; leave the slug alone.
+
 **But re-authoring destroys anchored reader comments.**
 `user_guide_comments.user_guide_section_id` / `user_guide_block_id` are `cascadeOnDelete`
 and sections are replaced wholesale, so every note attached to a section or a step dies.
