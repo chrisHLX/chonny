@@ -227,7 +227,7 @@
                 ];
             @endphp
 
-            <x-matchup.fold title="Both teams on one clock" note="Two charts, one time axis.">
+            <x-fold title="Both teams on one clock" note="Two charts, one time axis.">
                 <div class="flex items-center gap-4 pb-1">
                     @foreach (['a', 'b'] as $side)
                         <span class="flex items-center gap-1.5 text-[11px] text-ink-muted">
@@ -269,7 +269,7 @@
                         </svg>
                     </div>
                 @endforeach
-            </x-matchup.fold>
+            </x-fold>
         @endif
 
         @php
@@ -282,7 +282,7 @@
             $rows = array_slice($result['triggers'][$triggerSide], 0, 6);
         @endphp
 
-        <x-matchup.fold title="When they press this, press that"
+        <x-fold title="When they press this, press that"
                         note="Cheapest thing that works, first. Trinket last.">
             <div class="flex gap-1 pb-2">
                 @foreach (['a', 'b'] as $side)
@@ -328,9 +328,9 @@
                     @endforeach
                 </div>
             @endif
-        </x-matchup.fold>
+        </x-fold>
 
-        <x-matchup.fold title="The numbers behind it">
+        <x-fold title="The numbers behind it">
             <div class="overflow-x-auto">
                 <table class="w-full text-[11px]">
                     <thead>
@@ -360,10 +360,10 @@
                     </tbody>
                 </table>
             </div>
-        </x-matchup.fold>
+        </x-fold>
     @endif
 
-    <x-matchup.fold title="What this can't see">
+    <x-fold title="What this can't see">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2.5">
             @foreach ($limitations as $limitation)
                 <div>
@@ -377,7 +377,7 @@
             <a href="{{ route('brain') }}" wire:navigate class="text-gold hover:text-gold-light underline decoration-gold/30">the model behind it</a>
             — a correction there changes every guide downstream.
         </p>
-    </x-matchup.fold>
+    </x-fold>
 
     {{-- ---------- Spec picker ---------- --}}
     <div x-show="picker !== null" x-cloak x-transition.opacity.duration.100ms

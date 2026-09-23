@@ -1,24 +1,147 @@
 <div class="min-h-full py-8 px-6 lg:px-10 xl:px-16">
-    <div class="max-w-6xl mx-auto space-y-6">
+    <div class="max-w-6xl mx-auto space-y-5">
 
-        {{-- Header --}}
         <div>
-            <h1 class="text-[17px] font-semibold text-ink">Page Usage</h1>
-            <p class="text-[13px] text-ink-muted mt-0.5">Every tracked WoW page — WoW Comps, Spell Explorer, Top Burst Windows, Class Guides, Top 10 CC Chains, the per-spell detail page and more — page views and which classes/specs actually get looked at.</p>
+            <h1 class="text-[17px] font-semibold text-ink">Page usage</h1>
+            <p class="text-[13px] text-ink-muted mt-0.5">
+                Real visitors, with crawlers counted separately rather than mixed in.
+            </p>
         </div>
 
-        {{-- ── Summary row ── --}}
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            @foreach($pages as $page => $label)
+        {{-- ── The headline ──
+             Until 2026-09-24 this page opened with all-time totals, no window and no bot filter,
+             and about half of every number was a crawler. Two windows, visitors first. --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            @foreach ($overview as $days => $o)
                 <div class="linear-card p-5">
-                    <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-2">{{ $label }}</p>
-                    <p class="text-[22px] font-semibold text-ink leading-none">{{ number_format($summary[$page]['views']) }}</p>
-                    <p class="text-[12px] text-ink-muted mt-1">page views</p>
-                    <p class="text-[11px] text-ink-subtle mt-2">{{ number_format($summary[$page]['selections']) }} class/spec selections made</p>
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wider">{{ $o['label'] }}</p>
+
+                    <div class="flex items-baseline gap-2.5 mt-2">
+                        <p class="text-[26px] font-semibold text-ink leading-none tabular-nums">{{ number_format($o['views']) }}</p>
+                        @if ($o['change'] !== null)
+                            <span @class([
+                                'text-[12px] font-medium tabular-nums',
+                                'text-green-400' => $o['change'] > 0,
+                                'text-red-400' => $o['change'] < 0,
+                                'text-ink-subtle' => $o['change'] === 0,
+                            ])>{{ $o['change'] > 0 ? '+' : '' }}{{ $o['change'] }}%</span>
+                        @endif
+                    </div>
+                    <p class="text-[12px] text-ink-muted mt-1">
+                        views from {{ number_format($o['sessions']) }} visitor session(s)
+                    </p>
+
+                    <div class="flex flex-wrap gap-x-4 gap-y-1 mt-3 pt-3 border-t border-line text-[11px]">
+                        <span class="text-ink-subtle">
+                            crawlers <span class="text-ink-muted tabular-nums">{{ number_format($o['bots']) }}</span>
+                            @if ($o['views'] + $o['bots'] > 0)
+                                <span class="text-ink-subtle">({{ round(100 * $o['bots'] / ($o['views'] + $o['bots'])) }}% of all traffic)</span>
+                            @endif
+                        </span>
+                        @if ($o['unclassified'] > 0)
+                            <span class="text-ink-subtle" title="Logged before the user agent was read. Not assumed human — about half of comparable traffic was crawler.">
+                                unclassified <span class="text-ink-muted tabular-nums">{{ number_format($o['unclassified']) }}</span>
+                            </span>
+                        @endif
+                    </div>
                 </div>
             @endforeach
         </div>
 
+        {{-- ── Fourteen days, both lines ──
+             The two moved in opposite directions through September and only the combined figure
+             was visible, which made crawler discovery look like growth. --}}
+        @php
+            $peak = max(1, $daily->max(fn ($d) => max($d['human'], $d['bot'])));
+        @endphp
+        <div class="linear-card p-5">
+            <div class="flex items-baseline justify-between gap-3 mb-3">
+                <p class="text-[12px] font-medium text-ink">Last 14 days</p>
+                <div class="flex items-center gap-3 text-[11px]">
+                    <span class="flex items-center gap-1.5 text-ink-muted"><span class="w-2.5 h-2.5 rounded-sm bg-gold"></span>visitors</span>
+                    <span class="flex items-center gap-1.5 text-ink-muted"><span class="w-2.5 h-2.5 rounded-sm bg-line-strong"></span>crawlers</span>
+                </div>
+            </div>
+
+            @if ($daily->isEmpty())
+                <p class="text-[12px] text-ink-subtle">Nothing logged yet.</p>
+            @else
+                <div class="flex items-end gap-1.5 h-28">
+                    @foreach ($daily as $d)
+                        <div class="flex-1 flex flex-col justify-end gap-0.5 group relative">
+                            <div class="w-full rounded-t-sm bg-gold" style="height: {{ max(2, round(100 * $d['human'] / $peak)) }}%"
+                                 title="{{ $d['day'] }} — {{ $d['human'] }} visitor views"></div>
+                            <div class="w-full rounded-b-sm bg-line-strong" style="height: {{ max(1, round(60 * $d['bot'] / $peak)) }}%"
+                                 title="{{ $d['day'] }} — {{ $d['bot'] }} crawler views"></div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="flex justify-between text-[10px] text-ink-subtle mt-1.5">
+                    <span>{{ $daily->first()['day'] }}</span>
+                    <span>{{ $daily->last()['day'] }}</span>
+                </div>
+            @endif
+        </div>
+
+        {{-- ── What people actually look at ── --}}
+        <div class="linear-card p-5">
+            <p class="text-[12px] font-medium text-ink mb-3">Pages, by real visitors &mdash; last 30 days</p>
+            <div class="overflow-x-auto">
+                <table class="w-full text-[12px]">
+                    <thead>
+                        <tr class="text-[10px] uppercase tracking-wide text-ink-subtle text-left">
+                            <th class="font-medium py-1.5 pr-3">Page</th>
+                            <th class="font-medium py-1.5 px-3 text-right">Views</th>
+                            <th class="font-medium py-1.5 px-3 text-right">Sessions</th>
+                            <th class="font-medium py-1.5 pl-3 text-right">Crawlers</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-line">
+                        @foreach ($topPages as $row)
+                            <tr>
+                                <td class="py-1.5 pr-3">
+                                    <span class="text-ink">{{ $row['label'] }}</span>
+                                    @unless ($row['tracked'])
+                                        <span class="text-[10px] text-ink-subtle" title="Logged but not listed in PageUsage::PAGES">&middot; untracked</span>
+                                    @endunless
+                                </td>
+                                <td class="py-1.5 px-3 text-right text-ink tabular-nums">{{ number_format($row['views']) }}</td>
+                                <td class="py-1.5 px-3 text-right text-ink-muted tabular-nums">{{ number_format($row['sessions']) }}</td>
+                                <td class="py-1.5 pl-3 text-right text-ink-subtle tabular-nums">{{ number_format($row['bots']) }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        {{-- ── Where they came from ── --}}
+        <div class="linear-card p-5">
+            <p class="text-[12px] font-medium text-ink mb-1">Referrers &mdash; last 30 days</p>
+            <p class="text-[11px] text-ink-subtle mb-3">
+                Own-domain referrals are excluded: internal navigation is not a referral, and it buried the real sources.
+            </p>
+            @if ($referrers->isEmpty())
+                <p class="text-[12px] text-ink-subtle">Nothing yet. Referrers have only been recorded since 2026-09-24.</p>
+            @else
+                <div class="flex flex-col gap-1">
+                    @foreach ($referrers as $r)
+                        <div class="flex items-baseline justify-between gap-3 text-[12px]">
+                            <span class="text-ink truncate">{{ $r->referrer_host }}</span>
+                            <span class="text-ink-muted tabular-nums shrink-0">{{ number_format($r->c) }} views &middot; {{ number_format($r->sessions) }} sessions</span>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+
+        {{-- ── The per-page detail, folded ──
+             All of this is still here and still correct; it was simply competing with the
+             headline for attention. NOTE: these breakdowns are NOT bot-filtered — they count
+             attributed class/spec selections, which a crawler does not generate (it never
+             clicks a spec), so they were always closer to real than the view counts were. --}}
+        <x-fold title="Class and spec breakdowns" note="Which classes and specs get picked, per page">
+            <div class="space-y-5 pt-2">
         {{-- ── Top classes ── --}}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
             @foreach($pages as $page => $label)
@@ -227,6 +350,8 @@
                 </div>
             @endif
         </div>
+            </div>
+        </x-fold>
 
     </div>
 </div>

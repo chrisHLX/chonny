@@ -1,7 +1,7 @@
 @props(['title', 'note' => null, 'open' => false])
 
 {{--
-    A collapsed section on the Matchup Lab.
+    A collapsed section.
 
     Native <details> rather than an Alpine panel: it needs no JavaScript, it survives a Livewire
     re-render without the component having to track which panel is open, and it is keyboard- and

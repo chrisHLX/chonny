@@ -116,6 +116,130 @@ class PageUsage extends Component
         'turbo' => 'Turbo Cleave',
     ];
 
+    /**
+     * The headline: real visitors, over a window, with the crawler share alongside.
+     *
+     * WHY THIS IS AT THE TOP NOW. Until 2026-09-24 this page showed all-time totals with no
+     * window and no bot filter, and roughly half of every number was a crawler — measured
+     * against nginx's own logs, 3,559 of 7,766 served pages over a fortnight were self-declared
+     * bots. A tripling of crawler discovery read as a tripling of audience. Bots are still
+     * counted and still shown, just never mixed into "visitors".
+     *
+     * @return array<string, mixed>
+     */
+    public function getOverviewProperty(): array
+    {
+        $window = fn (int $days, int $offset = 0) => [
+            now()->subDays($days + $offset),
+            now()->subDays($offset),
+        ];
+
+        $humanViews = function (array $range) {
+            return PageViewEvent::human()->whereNull('slot')->whereBetween('created_at', $range)->count();
+        };
+        $humanSessions = function (array $range) {
+            return PageViewEvent::human()->whereBetween('created_at', $range)->distinct()->count('session_id');
+        };
+
+        $out = [];
+
+        foreach ([7 => 'Last 7 days', 30 => 'Last 30 days'] as $days => $label) {
+            $current = $window($days);
+            $previous = $window($days, $days);
+
+            $views = $humanViews($current);
+            $before = $humanViews($previous);
+
+            $out[$days] = [
+                'label' => $label,
+                'views' => $views,
+                'sessions' => $humanSessions($current),
+                'bots' => PageViewEvent::where('is_bot', true)->whereNull('slot')
+                    ->whereBetween('created_at', $current)->count(),
+                // Rows from before the user agent was read at all. Not assumed human: there is
+                // no way to tell which half they were.
+                'unclassified' => PageViewEvent::unclassified()->whereNull('slot')
+                    ->whereBetween('created_at', $current)->count(),
+                'change' => $before > 0 ? (int) round(100 * ($views - $before) / $before) : null,
+            ];
+        }
+
+        return $out;
+    }
+
+    /**
+     * Real visitors per day, with the crawler line beside it — the two moved in opposite
+     * directions in September and only the combined figure was visible.
+     *
+     * @return Collection<int, array{day: string, human: int, bot: int}>
+     */
+    public function getDailyProperty(): Collection
+    {
+        $since = now()->subDays(14)->startOfDay();
+
+        $rows = PageViewEvent::query()
+            ->whereNull('slot')
+            ->where('created_at', '>=', $since)
+            ->selectRaw('DATE(created_at) as day, is_bot, count(*) as c')
+            ->groupBy('day', 'is_bot')
+            ->get();
+
+        return collect($rows->groupBy('day'))->map(fn ($group, $day) => [
+            'day' => $day,
+            'human' => (int) ($group->firstWhere('is_bot', 0)->c ?? 0),
+            'bot' => (int) ($group->firstWhere('is_bot', 1)->c ?? 0),
+        ])->values()->sortBy('day')->values();
+    }
+
+    /**
+     * Where real visitors came from. Own-domain referrals are already collapsed to null by
+     * BotDetector::referrerHost(), because internal navigation is not a referral and it buried
+     * the handful of genuine external sources.
+     */
+    public function getReferrersProperty(): Collection
+    {
+        return PageViewEvent::human()
+            ->whereNotNull('referrer_host')
+            ->where('created_at', '>=', now()->subDays(30))
+            ->selectRaw('referrer_host, count(*) as c, count(distinct session_id) as sessions')
+            ->groupBy('referrer_host')
+            ->orderByDesc('c')
+            ->limit(12)
+            ->get();
+    }
+
+    /**
+     * Pages ranked by REAL visitors over 30 days, with the crawler count beside each — the
+     * question "what are people actually looking at" in one table rather than a block per page.
+     */
+    public function getTopPagesProperty(): Collection
+    {
+        $since = now()->subDays(30);
+        $labels = self::PAGES;
+
+        $rows = PageViewEvent::query()
+            ->whereNull('slot')
+            ->where('created_at', '>=', $since)
+            ->selectRaw('page, is_bot, count(*) as c, count(distinct session_id) as sessions')
+            ->groupBy('page', 'is_bot')
+            ->get()
+            ->groupBy('page');
+
+        return $rows->map(function ($group, $page) use ($labels) {
+            $human = $group->firstWhere('is_bot', 0);
+
+            return [
+                'page' => $page,
+                'label' => $labels[$page] ?? $page,
+                'tracked' => isset($labels[$page]),
+                'views' => (int) ($human->c ?? 0),
+                'sessions' => (int) ($human->sessions ?? 0),
+                'bots' => (int) ($group->firstWhere('is_bot', 1)->c ?? 0),
+                'unclassified' => (int) ($group->firstWhere('is_bot', null)->c ?? 0),
+            ];
+        })->sortByDesc('views')->values();
+    }
+
     public function getSummaryProperty(): array
     {
         return collect(array_keys(self::PAGES))->mapWithKeys(function (string $page) {
@@ -325,6 +449,10 @@ class PageUsage extends Component
     public function render()
     {
         return view('livewire.admin.page-usage', [
+            'overview' => $this->overview,
+            'daily' => $this->daily,
+            'referrers' => $this->referrers,
+            'topPages' => $this->topPages,
             'homeEngagement' => $this->homeEngagement,
             'pages' => self::PAGES,
             'pvpGuidesTabBreakdown' => $this->pvpGuidesTabBreakdown,
