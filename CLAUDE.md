@@ -39,6 +39,7 @@ exist to be corrected. The spell/talent/match-data pipeline underneath must stay
 | `DEPLOY.md` | Production deploy runbook. |
 | `game-data.md` | Spell-data import pipeline, folder-by-folder, with dated findings. |
 | `spell-acquisition-model.md` | Architecture map of every acquisition script/command/service. |
+| `AbilityFinder` / `wow:abilities` | **Find abilities by curated property, for drafting a sequence.** Fields only, never descriptions — a text search for "what separates players" was ~60% wrong because *immune to knockback* and *causes a knockback* share a word. Reads the matchup profiles, so duplicate spell_id copies and abilities nobody takes are excluded for free. `--vocabulary` lists what is queryable **and what has no field at all**. |
 | `arena-structure.md` | **The arena model (v2).** Go/anti-go cycle, the answer pool, overlap, globals-denied, rating ladder, and what a guide must answer before it has steps. Every claim tagged [OBS]/[DER]/[HYP] — a [HYP] may be *written* in a guide, never *asserted as settled*. The split is by confidence, not permission (Part 0, corrected 2026-09-23): propose a kill target, rank it, give the reason, say it is reasoning. Read before building anything that generates or scores a plan. |
 | `arena-open-questions.md` | What the model still guesses at, with who can settle each one. Answered questions graduate into `arena-structure.md`. |
 | `docs/arena/sources/chriso-scope-correction-2026-09-23.md` | **Why the model proposes rather than refuses.** Humility over prohibition; the game's own facts are the constraint, not prose in a doc. Read before adding any "we can't do X" line to the framework. |
@@ -83,10 +84,12 @@ php artisan migrate:fresh --seed
 ```bash
 php artisan import:spelldata wow                 # normal form — no patch arg, see Rules
 php artisan wow:patch-update {build}             # orchestrates a full patch bump
+php artisan wow:ingest-combatlog                 # import YOUR games from WoWCombatLog.txt
 php artisan wow:refresh-match-derived            # after ANY match-data change
 php artisan wow:apply-icon-manifest              # icons without Blizzard credentials
 php artisan wow:precompute-spell-kits            # after a resolver/display change
 php artisan wow:build-matchup-profiles           # AFTER the kits, never before
+php artisan wow:abilities --vocabulary           # drafting aid: what is queryable, and what is not
 php artisan wow:rebuild-spell-counters           # backfill only; import already does it
 php artisan wow:import-murlok-defaults --all --apply   # on-demand only, see Rules
 ```
