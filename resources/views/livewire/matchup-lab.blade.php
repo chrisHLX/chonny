@@ -1,8 +1,8 @@
 @php
-    // All chart geometry in one place. The blade below draws; it does not compute.
+    // Chart geometry. The blade draws; it does not compute.
     $plotW = 700;
-    $plotH = 150;
-    $padL = 34;
+    $plotH = 130;
+    $padL = 30;
     $padR = 12;
     $padT = 10;
     $padB = 20;
@@ -14,7 +14,6 @@
     $xFor = fn ($t) => $padL + ($horizon > 0 ? ($t / $horizon) * $innerW : 0);
     $yFor = fn ($v, $max) => $padT + $innerH - ($max > 0 ? ($v / $max) * $innerH : 0);
 
-    // Polyline point strings, built here rather than inline so the SVG markup stays readable.
     $poly = function (array $series, float $max) use ($xFor, $yFor) {
         $points = [];
         foreach ($series as $point) {
@@ -26,9 +25,10 @@
 
     $clock = fn ($seconds) => sprintf('%d:%02d', intdiv((int) $seconds, 60), (int) $seconds % 60);
     $sideName = fn ($side) => $side === 'a' ? 'Team A' : 'Team B';
+    $drBadge = config('spell_display.dr_badges', []);
 @endphp
 
-<div class="max-w-7xl mx-auto px-4 py-8 space-y-6"
+<div class="max-w-6xl mx-auto px-4 py-8 space-y-5"
      x-data="{
         picker: null,
         search: '',
@@ -42,24 +42,19 @@
         },
      }">
 
-    <header class="space-y-2">
+    <header>
         <h1 class="font-display italic text-3xl text-ink">Matchup Lab</h1>
-        <p class="text-[13px] text-ink-muted max-w-3xl leading-relaxed">
-            Pick two teams and see both sides' cooldowns on one clock. The page answers one question —
-            <span class="text-ink">whose kill window opens first, and why</span> — in the vocabulary of
-            <a href="{{ route('brain') }}" wire:navigate class="text-gold hover:text-gold-light underline decoration-gold/30">the Brain</a>:
-            the answer pool, globals denied, and the cadence each comp can actually go on.
-        </p>
+        <p class="text-[13px] text-ink-muted mt-1">Pick two teams. See who runs out of defensives first, and when.</p>
     </header>
 
-    {{-- ---------- The two comps ---------- --}}
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    {{-- ---------- Pick the comps ---------- --}}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
         @foreach (['a', 'b'] as $side)
             @php
                 $slots = $side === 'a' ? $this->teamA : $this->teamB;
                 $colour = $teamColours[$side];
             @endphp
-            <div class="linear-card p-4 space-y-3" style="border-color: {{ $colour }}33">
+            <div class="linear-card p-3 space-y-2.5" style="border-color: {{ $colour }}33">
                 <div class="flex items-center justify-between gap-2">
                     <p class="text-[11px] font-bold uppercase tracking-widest" style="color: {{ $colour }}">
                         {{ $sideName($side) }}
@@ -68,7 +63,7 @@
                         @foreach ($presets as $preset)
                             <button type="button"
                                     wire:click="applyPreset('{{ $side }}', '{{ $preset['key'] }}')"
-                                    class="text-[10px] px-2 py-1 rounded border border-line hover:border-gold/40 text-ink-muted hover:text-ink transition-colors">
+                                    class="text-[10px] px-2 py-0.5 rounded border border-line hover:border-gold/40 text-ink-muted hover:text-ink transition-colors">
                                 {{ $preset['label'] }}
                             </button>
                         @endforeach
@@ -84,13 +79,15 @@
                         @endphp
                         <button type="button"
                                 @click="open('{{ $side }}', {{ $index }})"
-                                class="flex flex-col items-center gap-1.5 p-2 rounded-lg border border-line hover:border-gold/40 transition-colors">
+                                class="flex items-center gap-2 p-1.5 rounded-lg border border-line hover:border-gold/40 transition-colors text-left">
                             @if ($spec)
-                                <x-spec-icon :spec="$spec" :color="$classColour" size="w-10 h-10"/>
-                                <span class="text-[11px] font-semibold text-ink text-center leading-tight">{{ $spec->name }}</span>
-                                <span class="text-[10px] text-ink-muted text-center leading-tight">{{ $class->name }}</span>
+                                <x-spec-icon :spec="$spec" :color="$classColour" size="w-8 h-8"/>
+                                <span class="min-w-0">
+                                    <span class="block text-[11px] font-semibold text-ink truncate leading-tight">{{ $spec->name }}</span>
+                                    <span class="block text-[10px] text-ink-muted truncate leading-tight">{{ $class->name }}</span>
+                                </span>
                             @else
-                                <div class="w-10 h-10 rounded-md border border-line-strong bg-surface-2 flex items-center justify-center">
+                                <div class="w-8 h-8 rounded-md border border-line-strong bg-surface-2 flex items-center justify-center shrink-0">
                                     <x-mc-icon name="badge-wow" class="w-4 h-4 text-ink-subtle"/>
                                 </div>
                                 <span class="text-[11px] text-ink-muted">{{ $slot['label'] }}</span>
@@ -102,50 +99,40 @@
         @endforeach
     </div>
 
-    {{-- ---------- Execution setting ---------- --}}
-    <div class="linear-card p-4 space-y-3">
-        <div class="flex items-baseline gap-2 flex-wrap">
-            <p class="text-[12px] font-semibold text-ink">How well is it being played?</p>
-            <p class="text-[11px] text-ink-muted">
-                Not a rating. The same matchup read at two of these is two different plans.
-            </p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            @foreach ($executionSettings as $key => $setting)
-                <button type="button"
-                        wire:click="setExecution('{{ $key }}')"
-                        @class([
-                            'text-left p-3 rounded-lg border transition-colors',
-                            'border-gold bg-gold-subtle' => $execution === $key,
-                            'border-line hover:border-line-strong' => $execution !== $key,
-                        ])>
-                    <span @class([
-                        'block text-[12px] font-semibold mb-1',
-                        'text-gold-light' => $execution === $key,
-                        'text-ink' => $execution !== $key,
-                    ])>{{ $setting['label'] }}</span>
-                    <span class="block text-[11px] text-ink-muted leading-snug">{{ $setting['summary'] }}</span>
-                </button>
-            @endforeach
-        </div>
+    {{-- ---------- How well is it played ---------- --}}
+    <div class="flex flex-wrap items-center gap-2">
+        <span class="text-[11px] text-ink-subtle uppercase tracking-widest mr-1">Played like</span>
+        @foreach ($executionSettings as $key => $setting)
+            <button type="button"
+                    wire:click="setExecution('{{ $key }}')"
+                    title="{{ $setting['summary'] }}"
+                    @class([
+                        'text-[12px] px-3 py-1.5 rounded-lg border transition-colors',
+                        'border-gold bg-gold-subtle text-gold-light font-semibold' => $execution === $key,
+                        'border-line text-ink-muted hover:text-ink' => $execution !== $key,
+                    ])>
+                {{ $setting['label'] }}
+            </button>
+        @endforeach
+        <span class="text-[11px] text-ink-subtle basis-full sm:basis-auto sm:ml-2">
+            {{ $executionSettings[$execution]['summary'] }}
+        </span>
     </div>
 
     @if ($missingProfiles !== [])
         <div class="linear-card p-4 border-amber-500/30">
-            <p class="text-[12px] font-semibold text-ink mb-1">No matchup profile for {{ implode(', ', $missingProfiles) }}</p>
-            <p class="text-[11px] text-ink-muted leading-relaxed">
-                This matchup is not being simulated rather than being simulated with a member's answers missing —
-                an absent pool would read as a short one and quietly move the verdict.
-                Regenerate with <code class="text-gold-light">php artisan wow:build-matchup-profiles</code>.
+            <p class="text-[12px] font-semibold text-ink mb-1">No data yet for {{ implode(', ', $missingProfiles) }}</p>
+            <p class="text-[11px] text-ink-muted">
+                Running this without one player's defensives would show a shorter pool than they have, so it is not run at all.
+                Rebuild with <code class="text-gold-light">php artisan wow:build-matchup-profiles</code>.
             </p>
         </div>
     @elseif (! $result)
-        <div class="linear-card p-6 space-y-3">
-            <p class="text-[13px] text-ink">Pick three specs on each side to read the matchup.</p>
-            <p class="text-[12px] text-ink-muted max-w-2xl leading-relaxed">
-                Every cooldown both teams hold goes on one 6-minute clock. Where one side's threat rises while some
-                enemy player has nothing left to press, that is a window — a stretch where a go is a kill attempt
-                rather than a strip. The point is not the verdict; it is which term produced it.
+        <div class="linear-card p-6">
+            <p class="text-[13px] text-ink">Pick three specs on each side.</p>
+            <p class="text-[12px] text-ink-muted max-w-xl mt-1.5 leading-relaxed">
+                Every cooldown both teams hold goes on one six-minute clock. Where one side attacks and
+                nobody on the other side has a button left, that is a window.
             </p>
         </div>
     @endif
@@ -154,122 +141,109 @@
         @php
             $verdict = $result['verdict'];
             $favoured = $verdict['favoured'];
+            $teamA = $result['teams']['a'];
+            $teamB = $result['teams']['b'];
         @endphp
 
-        {{-- ---------- Verdict ---------- --}}
-        <div class="linear-card p-5 space-y-4"
+        {{-- ---------- The answer ---------- --}}
+        <div class="linear-card p-4 space-y-3"
              @if ($favoured) style="border-color: {{ $teamColours[$favoured] }}66" @endif>
-            <div class="space-y-1">
-                <p class="text-[10px] uppercase tracking-widest text-ink-subtle">Structural read — not a prediction</p>
-                <h2 class="font-display italic text-2xl text-ink">{{ $verdict['headline'] }}</h2>
-                <p class="text-[12px] text-ink-muted leading-relaxed max-w-3xl">{{ $verdict['detail'] }}</p>
+            <h2 class="font-display italic text-2xl text-ink">{{ $verdict['headline'] }}</h2>
+            <p class="text-[12px] text-ink-muted leading-relaxed max-w-3xl">{{ $verdict['detail'] }}</p>
+
+            @php
+                $chips = [
+                    ['Goes every', ($teamA['controlCadence'] ?? '—').'s', ($teamB['controlCadence'] ?? '—').'s'],
+                    ['All cooldowns every', ($teamA['cooldownCadence'] ?? '—').'s', ($teamB['cooldownCadence'] ?? '—').'s'],
+                    ['Reaches', $teamA['reach'].' of 3', $teamB['reach'].' of 3'],
+                    ['Buttons held', (string) $teamA['poolSize'], (string) $teamB['poolSize']],
+                ];
+            @endphp
+            <div class="flex flex-wrap gap-1.5 pt-1">
+                @foreach ($chips as [$label, $a, $b])
+                    <span class="inline-flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-lg bg-surface-2 border border-line">
+                        <span class="text-ink-subtle">{{ $label }}</span>
+                        <span class="font-semibold tabular-nums" style="color: {{ $teamColours['a'] }}">{{ $a }}</span>
+                        <span class="text-ink-subtle">/</span>
+                        <span class="font-semibold tabular-nums" style="color: {{ $teamColours['b'] }}">{{ $b }}</span>
+                    </span>
+                @endforeach
             </div>
 
             @if ($verdict['reasons'] !== [])
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <ul class="space-y-1 pt-1">
                     @foreach ($verdict['reasons'] as $reason)
-                        <div class="flex gap-2.5 p-2.5 rounded-lg bg-surface-2 border border-line">
-                            <span class="w-1 rounded-full flex-shrink-0" style="background: {{ $teamColours[$reason['favours']] }}"></span>
-                            <div class="min-w-0">
-                                <p class="text-[11px] font-semibold text-ink">
-                                    {{ $reason['term'] }}
-                                    <span class="text-ink-subtle font-normal">— {{ $sideName($reason['favours']) }}</span>
-                                </p>
-                                <p class="text-[11px] text-ink-muted leading-snug">{{ $reason['text'] }}</p>
-                            </div>
-                        </div>
+                        <li class="flex gap-2 text-[11.5px]">
+                            <span class="w-1 rounded-full shrink-0" style="background: {{ $teamColours[$reason['favours']] }}"></span>
+                            <span class="text-ink-muted"><span class="text-ink font-medium">{{ $reason['term'] }}.</span> {{ $reason['text'] }}</span>
+                        </li>
                     @endforeach
-                </div>
+                </ul>
             @endif
         </div>
 
-        {{-- ---------- The two charts ----------
-             Deliberately two charts sharing one x axis rather than one chart with two y scales.
-             Threat is a 0-100 availability index and answers are a count of buttons; on one pair
-             of axes their crossing point would look like it meant something and would mean
-             nothing. --}}
+        {{-- ---------- The round, go by go ----------
+             Rendered like a guide sequence on purpose: the time, then the abilities with their
+             icons, then what it forced out of them. Same reading order as
+             <x-guides.section-steps>, so somebody who has read a guide here already knows how to
+             read this. --}}
+        <div class="space-y-2">
+            <div class="flex items-baseline justify-between gap-3">
+                <h2 class="text-[13px] font-semibold text-ink">The round</h2>
+                <span class="text-[11px] text-ink-subtle">{{ count($result['events']) }} goes in six minutes</span>
+            </div>
+
+            <ul class="flex flex-col gap-2">
+                @foreach ($timeline['shown'] as $event)
+                    <x-matchup.go-row :event="$event" :colours="$teamColours" :links="$spellLinks" :dr-badge="$drBadge"/>
+                @endforeach
+                @foreach ($timeline['after'] as $event)
+                    <x-matchup.go-row :event="$event" :colours="$teamColours" :links="$spellLinks" :dr-badge="$drBadge"/>
+                @endforeach
+            </ul>
+
+            @if ($timeline['dropped'] > 0)
+                <p class="text-[11px] text-ink-subtle pt-1">
+                    {{ $timeline['dropped'] }} more goes follow the same pattern. The charts below cover the whole six minutes.
+                </p>
+            @endif
+        </div>
+
+        {{-- ---------- Everything else, folded away ---------- --}}
         @if ($chart)
             @php
-                $bandsJson = json_encode($chart['bands']);
-                $threatPointsA = $poly($chart['threat']['a'], 100);
-                $threatPointsB = $poly($chart['threat']['b'], 100);
+                $threatA = $poly($chart['threat']['a'], 100);
+                $threatB = $poly($chart['threat']['b'], 100);
                 $answerMax = max(1, $chart['maxAnswers']);
-                $answerPointsA = $poly($chart['answers']['a'], $answerMax);
-                $answerPointsB = $poly($chart['answers']['b'], $answerMax);
-
-                // One hover model for both charts: index into the sampled series, so the
-                // crosshair reads the same instant on each.
-                $hoverSeries = [];
-                foreach ($chart['threat']['a'] as $i => $point) {
-                    $hoverSeries[] = [
-                        't' => $point['t'],
-                        'x' => round($xFor($point['t']), 1),
-                        'ta' => $point['v'],
-                        'tb' => $chart['threat']['b'][$i]['v'] ?? 0,
-                        'aa' => $chart['answers']['a'][$i]['v'] ?? 0,
-                        'ab' => $chart['answers']['b'][$i]['v'] ?? 0,
-                    ];
-                }
-                $hoverJson = json_encode($hoverSeries);
-
+                $answersA = $poly($chart['answers']['a'], $answerMax);
+                $answersB = $poly($chart['answers']['b'], $answerMax);
                 $minuteMarks = [];
                 for ($m = 60; $m <= $horizon; $m += 60) {
                     $minuteMarks[] = $m;
                 }
+                $panels = [
+                    ['title' => 'What each side can commit', 'max' => 100, 'a' => $threatA, 'b' => $threatB],
+                    ['title' => 'Buttons left on their thinnest player', 'max' => $answerMax, 'a' => $answersA, 'b' => $answersB],
+                ];
             @endphp
 
-            <div class="linear-card p-5 space-y-5"
-                 x-data="{
-                    series: {{ $hoverJson }},
-                    hover: null,
-                    track(event) {
-                        const svg = event.currentTarget;
-                        const rect = svg.getBoundingClientRect();
-                        const x = ((event.clientX - rect.left) / rect.width) * {{ $plotW }};
-                        let best = null;
-                        for (const point of this.series) {
-                            if (best === null || Math.abs(point.x - x) < Math.abs(best.x - x)) best = point;
-                        }
-                        this.hover = best;
-                    },
-                    clock(seconds) {
-                        return Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0');
-                    },
-                 }">
-
-                <div class="flex flex-wrap items-center justify-between gap-3">
-                    <div>
-                        <p class="text-[13px] font-semibold text-ink">Six minutes of this matchup</p>
-                        <p class="text-[11px] text-ink-muted">Hover to read both charts at the same second.</p>
-                    </div>
-                    {{-- Legend is always present for two series, and both lines are direct-labelled
-                         below, so identity is never carried by colour alone. --}}
-                    <div class="flex items-center gap-4">
-                        @foreach (['a', 'b'] as $side)
-                            <span class="flex items-center gap-1.5 text-[11px] text-ink-muted">
-                                <span class="w-3 h-0.5 rounded-full" style="background: {{ $teamColours[$side] }}"></span>
-                                {{ $sideName($side) }}
-                            </span>
-                        @endforeach
+            <x-matchup.fold title="Both teams on one clock" note="Two charts, one time axis.">
+                <div class="flex items-center gap-4 pb-1">
+                    @foreach (['a', 'b'] as $side)
                         <span class="flex items-center gap-1.5 text-[11px] text-ink-muted">
-                            <span class="w-3 h-3 rounded-sm border border-dashed border-ink-subtle"></span>
-                            Kill window
+                            <span class="w-3 h-0.5 rounded-full" style="background: {{ $teamColours[$side] }}"></span>
+                            {{ $sideName($side) }}
                         </span>
-                    </div>
+                    @endforeach
+                    <span class="flex items-center gap-1.5 text-[11px] text-ink-muted">
+                        <span class="w-3 border-t border-dashed border-ink-subtle"></span> Window opens
+                    </span>
                 </div>
 
-                @foreach ([
-                    ['key' => 'threat', 'title' => 'Threat — what each side can commit', 'max' => 100, 'suffix' => '', 'a' => $threatPointsA, 'b' => $threatPointsB, 'note' => 'Availability and reach, not damage. 100 means every cooldown up and all three of them reachable at once.'],
-                    ['key' => 'answers', 'title' => 'Answers the thinnest player can press', 'max' => $answerMax, 'suffix' => '', 'a' => $answerPointsA, 'b' => $answerPointsB, 'note' => 'Per player, not per team — the kill target is whoever is shortest, and a player in CC reads zero whatever they hold.'],
-                ] as $panel)
-                    <div class="space-y-1">
-                        <p class="text-[12px] font-semibold text-ink">{{ $panel['title'] }}</p>
-                        <p class="text-[10px] text-ink-subtle leading-snug max-w-2xl">{{ $panel['note'] }}</p>
-
-                        <svg viewBox="0 0 {{ $plotW }} {{ $plotH }}" class="w-full h-auto select-none"
-                             @mousemove="track($event)" @mouseleave="hover = null">
-
-                            {{-- Recessive grid: minutes only. --}}
+                @foreach ($panels as $panel)
+                    <div class="space-y-0.5 pt-2">
+                        <p class="text-[11px] text-ink-muted">{{ $panel['title'] }}</p>
+                        <svg viewBox="0 0 {{ $plotW }} {{ $plotH }}" class="w-full h-auto">
                             @foreach ($minuteMarks as $mark)
                                 <line x1="{{ round($xFor($mark), 1) }}" y1="{{ $padT }}"
                                       x2="{{ round($xFor($mark), 1) }}" y2="{{ $padT + $innerH }}"
@@ -279,214 +253,73 @@
                             @endforeach
                             <line x1="{{ $padL }}" y1="{{ $padT + $innerH }}" x2="{{ $plotW - $padR }}" y2="{{ $padT + $innerH }}"
                                   stroke="#2C2C38" stroke-width="1"/>
-                            <text x="{{ $padL - 6 }}" y="{{ $padT + 8 }}" text-anchor="end" font-size="9" fill="#52525F">{{ $panel['max'] }}</text>
-                            <text x="{{ $padL - 6 }}" y="{{ $padT + $innerH }}" text-anchor="end" font-size="9" fill="#52525F">0</text>
+                            <text x="{{ $padL - 5 }}" y="{{ $padT + 8 }}" text-anchor="end" font-size="9" fill="#52525F">{{ $panel['max'] }}</text>
+                            <text x="{{ $padL - 5 }}" y="{{ $padT + $innerH }}" text-anchor="end" font-size="9" fill="#52525F">0</text>
 
-                            {{-- Kill windows, on both charts, so the two read as one picture. --}}
                             @foreach ($chart['bands'] as $band)
                                 <line x1="{{ round($xFor($band['t']), 1) }}" y1="{{ $padT }}"
                                       x2="{{ round($xFor($band['t']), 1) }}" y2="{{ $padT + $innerH }}"
-                                      stroke="{{ $teamColours[$band['side']] }}" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.9"/>
+                                      stroke="{{ $teamColours[$band['side']] }}" stroke-width="1.5" stroke-dasharray="3 3"/>
                             @endforeach
 
                             <polyline points="{{ $panel['a'] }}" fill="none" stroke="{{ $teamColours['a'] }}" stroke-width="2"
                                       stroke-linejoin="round" stroke-linecap="round"/>
                             <polyline points="{{ $panel['b'] }}" fill="none" stroke="{{ $teamColours['b'] }}" stroke-width="2"
                                       stroke-linejoin="round" stroke-linecap="round"/>
-
-                            {{-- Crosshair. --}}
-                            <template x-if="hover">
-                                <g>
-                                    <line :x1="hover.x" y1="{{ $padT }}" :x2="hover.x" y2="{{ $padT + $innerH }}"
-                                          stroke="#8A8A9A" stroke-width="1" stroke-dasharray="2 2"/>
-                                    <circle :cx="hover.x"
-                                            :cy="{{ $padT + $innerH }} - (hover.{{ $panel['key'] === 'threat' ? 'ta' : 'aa' }} / {{ max(1, $panel['max']) }}) * {{ $innerH }}"
-                                            r="4" fill="{{ $teamColours['a'] }}" stroke="#111116" stroke-width="2"/>
-                                    <circle :cx="hover.x"
-                                            :cy="{{ $padT + $innerH }} - (hover.{{ $panel['key'] === 'threat' ? 'tb' : 'ab' }} / {{ max(1, $panel['max']) }}) * {{ $innerH }}"
-                                            r="4" fill="{{ $teamColours['b'] }}" stroke="#111116" stroke-width="2"/>
-                                </g>
-                            </template>
                         </svg>
                     </div>
                 @endforeach
-
-                <div class="h-10">
-                    <template x-if="hover">
-                        <div class="flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] px-3 py-2 rounded-lg bg-surface-2 border border-line">
-                            <span class="text-ink font-semibold tabular-nums" x-text="clock(hover.t)"></span>
-                            <span class="text-ink-muted">
-                                Threat <span class="text-ink tabular-nums" x-text="hover.ta"></span> / <span class="text-ink tabular-nums" x-text="hover.tb"></span>
-                            </span>
-                            <span class="text-ink-muted">
-                                Thinnest list <span class="text-ink tabular-nums" x-text="hover.aa"></span> / <span class="text-ink tabular-nums" x-text="hover.ab"></span>
-                            </span>
-                            <span class="text-ink-subtle">Team A / Team B</span>
-                        </div>
-                    </template>
-                </div>
-            </div>
+            </x-matchup.fold>
         @endif
 
-        {{-- ---------- The terms behind the read ---------- --}}
-        <div class="linear-card p-5 space-y-3">
-            <p class="text-[13px] font-semibold text-ink">The terms</p>
-            <div class="overflow-x-auto">
-                <table class="w-full text-[11px]">
-                    <thead>
-                        <tr class="text-ink-subtle uppercase tracking-wide text-[10px]">
-                            <th class="text-left font-medium py-1.5 pr-3">Term</th>
-                            <th class="text-left font-medium py-1.5 px-3" style="color: {{ $teamColours['a'] }}">Team A</th>
-                            <th class="text-left font-medium py-1.5 px-3" style="color: {{ $teamColours['b'] }}">Team B</th>
-                            <th class="text-left font-medium py-1.5 pl-3">What it is</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-line">
-                        @php
-                            $terms = [
-                                ['Go cadence', fn ($t) => $t['controlCadence'] === null ? 'no hard control' : $t['controlCadence'].'s', 'How often the team can bring coordinated control. Derived from the slowest of each member\'s cheapest hard CC — never assumed to be 30s.'],
-                                ['Cooldown cadence', fn ($t) => $t['cooldownCadence'] === null ? '—' : $t['cooldownCadence'].'s', 'How often a go can have every damage cooldown in it. The DPS anchors only; a healer\'s four-minute button is not what a comp aligns to.'],
-                                ['Reach', fn ($t) => $t['reach'].' of 3', 'How many of them the team can deny a global to at once, if everything is up.'],
-                                ['Answer pool', fn ($t) => $t['poolSize'].' buttons', 'Every defensive cooldown, immunity and trinket across the three players.'],
-                                ['Goes sent', fn ($t) => (string) $t['goes'], 'Over six minutes, at this execution setting.'],
-                            ];
-                        @endphp
-                        @foreach ($terms as [$label, $value, $explain])
-                            <tr>
-                                <td class="py-1.5 pr-3 text-ink font-medium whitespace-nowrap">{{ $label }}</td>
-                                <td class="py-1.5 px-3 text-ink tabular-nums whitespace-nowrap">{{ $value($result['teams']['a']) }}</td>
-                                <td class="py-1.5 px-3 text-ink tabular-nums whitespace-nowrap">{{ $value($result['teams']['b']) }}</td>
-                                <td class="py-1.5 pl-3 text-ink-muted leading-snug">{{ $explain }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        {{-- ---------- What happened, go by go ---------- --}}
         @php
-            $shown = array_slice($result['events'], 0, 14);
+            $rungColours = [
+                'control the source' => 'badge-green',
+                'spend a cooldown' => 'badge-blue',
+                'immunity' => 'badge-gold',
+                'trinket' => 'badge-gray',
+            ];
+            $rows = array_slice($result['triggers'][$triggerSide], 0, 6);
         @endphp
-        <div class="linear-card p-5 space-y-3">
-            <div>
-                <p class="text-[13px] font-semibold text-ink">Go by go</p>
-                <p class="text-[11px] text-ink-muted">The first {{ count($shown) }} of {{ count($result['events']) }} commitments, and what each one cost them.</p>
-            </div>
-            <div class="space-y-1.5">
-                @foreach ($shown as $event)
-                    <div @class([
-                            'flex flex-wrap items-baseline gap-x-2.5 gap-y-1 px-3 py-2 rounded-lg border text-[11px]',
-                            'border-line bg-surface-2' => ! $event['killWindow'],
-                            'border-gold/50 bg-gold-subtle' => $event['killWindow'],
-                        ])>
-                        <span class="tabular-nums text-ink-subtle w-9">{{ $clock($event['t']) }}</span>
-                        <span class="font-semibold" style="color: {{ $teamColours[$event['side']] }}">{{ $sideName($event['side']) }}</span>
-                        <span class="text-ink-muted">onto</span>
-                        <span class="text-ink">{{ $event['target'] ?? 'nobody reachable' }}</span>
 
-                        @if ($event['denied'] !== [])
-                            <span class="text-ink-subtle">·</span>
-                            <span class="text-ink-muted">
-                                denied
-                                {{-- The DR suffix is built in PHP, not with an inline @if. A
-                                     directive glued to a word character ("...}}s@if") is not
-                                     compiled at all while its @endif is, which unbalances the
-                                     block and throws an "unexpected endif" from somewhere else
-                                     in the file. This has bitten this codebase before. --}}
-                                @foreach ($event['denied'] as $denied)
-                                    @php
-                                        $deniedName = $denied['role'] === 'healer' ? 'their healer' : $denied['player'];
-                                        $deniedFor = $denied['seconds'].'s'.($denied['diminished'] ? ' (DR)' : '');
-                                    @endphp
-                                    <span class="text-ink">{{ $deniedName }}</span><span class="text-ink-subtle">&nbsp;{{ $deniedFor }}</span>{{ ! $loop->last ? ',' : '' }}
-                                @endforeach
-                            </span>
-                        @endif
-
-                        @if ($event['spent'] !== [])
-                            <span class="text-ink-subtle">·</span>
-                            <span class="text-ink-muted">
-                                forced <span class="text-ink">{{ implode(', ', array_column($event['spent'], 'spell')) }}</span>
-                            </span>
-                        @elseif ($event['peeledBy'])
-                            <span class="text-ink-subtle">·</span>
-                            <span class="text-ink-muted">peeled off by <span class="text-ink">{{ $event['peeledBy']['spell'] }}</span>, nothing spent</span>
-                        @endif
-
-                        @if ($event['killWindow'])
-                            <span class="badge-gold ml-auto">Kill window opens</span>
-                        @elseif ($event['lockedOut'])
-                            <span class="badge-amber ml-auto">Still locked out</span>
-                        @endif
-                    </div>
+        <x-matchup.fold title="When they press this, press that"
+                        note="Cheapest thing that works, first. Trinket last.">
+            <div class="flex gap-1 pb-2">
+                @foreach (['a', 'b'] as $side)
+                    <button type="button" wire:click="setTriggerSide('{{ $side }}')"
+                            @class([
+                                'text-[11px] px-2.5 py-1 rounded-lg border transition-colors',
+                                'border-gold bg-gold-subtle text-gold-light' => $triggerSide === $side,
+                                'border-line text-ink-muted hover:text-ink' => $triggerSide !== $side,
+                            ])>
+                        Answering {{ $sideName($side) }}
+                    </button>
                 @endforeach
             </div>
-        </div>
-
-        {{-- ---------- Trigger table ---------- --}}
-        <div class="linear-card p-5 space-y-4">
-            <div class="flex flex-wrap items-start justify-between gap-3">
-                <div class="max-w-2xl">
-                    <p class="text-[13px] font-semibold text-ink">When they press this, press that</p>
-                    <p class="text-[11px] text-ink-muted leading-relaxed">
-                        A ranked list, not a single answer — cheapest thing that works, first. Control the caster before
-                        you spend a cooldown, and keep the trinket for last, because a trinket only buys time to press
-                        something else. <span class="text-ink-subtle">The ordering is reasoned, not observed; the abilities are real.</span>
-                    </p>
-                </div>
-                <div class="flex gap-1">
-                    @foreach (['a', 'b'] as $side)
-                        <button type="button" wire:click="setTriggerSide('{{ $side }}')"
-                                @class([
-                                    'text-[11px] px-3 py-1.5 rounded-lg border transition-colors',
-                                    'border-gold bg-gold-subtle text-gold-light' => $triggerSide === $side,
-                                    'border-line text-ink-muted hover:text-ink' => $triggerSide !== $side,
-                                ])>
-                            {{ $sideName($side === 'a' ? 'b' : 'a') }} answering {{ $sideName($side) }}
-                        </button>
-                    @endforeach
-                </div>
-            </div>
-
-            @php
-                $rungColours = [
-                    'control the source' => 'badge-green',
-                    'spend a cooldown' => 'badge-blue',
-                    'immunity' => 'badge-gold',
-                    'trinket' => 'badge-gray',
-                ];
-                $rows = array_slice($result['triggers'][$triggerSide], 0, 6);
-            @endphp
 
             @if ($rows === [])
-                <p class="text-[11px] text-ink-muted">This side has no classified offensive cooldowns to answer.</p>
+                <p class="text-[11px] text-ink-muted">This side has no classified offensive cooldowns.</p>
             @else
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
                     @foreach ($rows as $row)
-                        <div class="rounded-lg border border-line p-3 space-y-2">
+                        <div class="rounded-lg border border-line p-2.5 space-y-1.5">
                             <div class="flex items-center gap-2">
                                 <x-spell-icon :spell="(object) ['icon_name' => $row['icon'], 'display_name' => $row['threat']]" size="w-7 h-7"/>
                                 <div class="min-w-0">
                                     <p class="text-[12px] font-semibold text-ink truncate">{{ $row['threat'] }}</p>
-                                    <p class="text-[10px] text-ink-muted truncate">
-                                        {{ $row['by'] }} · {{ $row['cooldown'] }}s cooldown{{ $row['duration'] ? ', '.$row['duration'].'s long' : '' }}
-                                    </p>
+                                    <p class="text-[10px] text-ink-muted truncate tabular-nums">{{ $row['cooldown'] }}s CD{{ $row['duration'] ? ' · '.$row['duration'].'s' : '' }}</p>
                                 </div>
                             </div>
                             <ol class="space-y-1">
                                 @foreach ($row['options'] as $option)
-                                    <li class="flex items-center gap-2 text-[11px]">
-                                        <span class="{{ $rungColours[$option['rung']] ?? 'badge-gray' }} !text-[9px] w-[104px] justify-center">{{ $option['rung'] }}</span>
+                                    <li class="flex items-center gap-1.5 text-[11px]">
+                                        <span class="{{ $rungColours[$option['rung']] ?? 'badge-gray' }} !text-[9px] w-[92px] justify-center shrink-0">{{ $option['rung'] }}</span>
                                         <x-spell-icon :spell="(object) ['icon_name' => $option['icon'], 'display_name' => $option['spell']]" size="w-5 h-5"/>
                                         <span class="text-ink truncate">{{ $option['spell'] }}</span>
-                                        <span class="text-ink-subtle whitespace-nowrap">{{ $option['by'] }}</span>
                                         @if ($option['covers'] === true)
-                                            <span class="ml-auto text-[10px] text-green-400 whitespace-nowrap">outlasts it</span>
+                                            <span class="ml-auto text-[10px] text-green-400 shrink-0">outlasts</span>
                                         @elseif ($option['covers'] === false)
-                                            <span class="ml-auto text-[10px] text-amber-400 whitespace-nowrap">expires first</span>
-                                        @else
-                                            <span class="ml-auto text-[10px] text-ink-subtle whitespace-nowrap">duration not recorded</span>
+                                            <span class="ml-auto text-[10px] text-amber-400 shrink-0">too short</span>
                                         @endif
                                     </li>
                                 @endforeach
@@ -495,14 +328,43 @@
                     @endforeach
                 </div>
             @endif
-        </div>
+        </x-matchup.fold>
 
+        <x-matchup.fold title="The numbers behind it">
+            <div class="overflow-x-auto">
+                <table class="w-full text-[11px]">
+                    <thead>
+                        <tr class="text-ink-subtle uppercase tracking-wide text-[10px] text-left">
+                            <th class="font-medium py-1.5 pr-3">Player</th>
+                            <th class="font-medium py-1.5 px-3">Buttons</th>
+                            <th class="font-medium py-1.5 px-3">Spent</th>
+                            <th class="font-medium py-1.5 px-3">Hard CC</th>
+                            <th class="font-medium py-1.5 pl-3">Cooldowns</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-line">
+                        @foreach (['a', 'b'] as $side)
+                            @foreach ($result['teams'][$side]['players'] as $player)
+                                <tr>
+                                    <td class="py-1.5 pr-3 whitespace-nowrap">
+                                        <span class="w-1.5 h-1.5 rounded-full inline-block mr-1.5" style="background: {{ $teamColours[$side] }}"></span>
+                                        <span class="text-ink">{{ $player['name'] }}</span>
+                                    </td>
+                                    <td class="py-1.5 px-3 text-ink tabular-nums">{{ $player['answers'] }}</td>
+                                    <td class="py-1.5 px-3 text-ink-muted tabular-nums">{{ $player['answersSpent'] }}</td>
+                                    <td class="py-1.5 px-3 text-ink-muted tabular-nums">{{ $player['hardControl'] }}</td>
+                                    <td class="py-1.5 pl-3 text-ink-muted tabular-nums">{{ $player['offensive'] }}</td>
+                                </tr>
+                            @endforeach
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </x-matchup.fold>
     @endif
 
-    {{-- ---------- What this cannot see ---------- --}}
-    <div class="linear-card p-5 space-y-3">
-        <p class="text-[13px] font-semibold text-ink">What this cannot see</p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+    <x-matchup.fold title="What this can't see">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2.5">
             @foreach ($limitations as $limitation)
                 <div>
                     <p class="text-[11px] font-semibold text-ink">{{ $limitation['title'] }}</p>
@@ -510,12 +372,12 @@
                 </div>
             @endforeach
         </div>
-        <p class="text-[11px] text-ink-muted pt-1 border-t border-line">
-            If a reading here is wrong, the model behind it is the thing to argue with —
-            <a href="{{ route('brain') }}" wire:navigate class="text-gold hover:text-gold-light underline decoration-gold/30">the Brain</a>
-            takes comments per section, and a correction there changes every guide downstream of it.
+        <p class="text-[11px] text-ink-muted pt-2.5 mt-2.5 border-t border-line">
+            Think a reading here is wrong? Argue with
+            <a href="{{ route('brain') }}" wire:navigate class="text-gold hover:text-gold-light underline decoration-gold/30">the model behind it</a>
+            — a correction there changes every guide downstream.
         </p>
-    </div>
+    </x-matchup.fold>
 
     {{-- ---------- Spec picker ---------- --}}
     <div x-show="picker !== null" x-cloak x-transition.opacity.duration.100ms

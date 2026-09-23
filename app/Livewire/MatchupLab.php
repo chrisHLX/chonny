@@ -6,7 +6,9 @@ use App\Http\Services\CooldownGraphService;
 use App\Http\Services\MatchupProfileService;
 use App\Models\GameClass;
 use App\Models\PageViewEvent;
+use App\Models\Patch;
 use App\Models\Specialization;
+use App\Models\Spell;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
@@ -359,6 +361,101 @@ class MatchupLab extends Component
     }
 
     /**
+     * How much of the round is worth showing.
+     *
+     * The engine runs the full six minutes, which for a typical matchup is 50-odd goes. Rendering
+     * all of them was 437KB of HTML and, worse, buried the answer: once both sides have opened
+     * their first window the question this page asks has been answered, and everything after is
+     * the model continuing to turn. So the timeline stops at the later of the two first windows.
+     *
+     * A few goes past that are kept, because seeing the pool stay empty is the point of Part 3's
+     * "you are not allowed to play until you have these buttons back". Anything beyond that is
+     * dropped rather than folded — a collapsed <details> still ships every byte, and the charts
+     * already show the whole round.
+     *
+     * @return array{shown: array<int, array>, after: array<int, array>, dropped: int}
+     */
+    #[Computed]
+    public function timeline(): array
+    {
+        $result = $this->result();
+
+        if (! $result) {
+            return ['shown' => [], 'after' => [], 'dropped' => 0];
+        }
+
+        $decidedAt = null;
+        foreach ($result['killWindows'] as $window) {
+            $decidedAt = max($decidedAt ?? 0, $window['t']);
+        }
+
+        // Nothing resolved inside six minutes: show the opening stretch, where the shape of the
+        // matchup is visible, rather than an arbitrary slice of the middle.
+        $cut = $decidedAt ?? 120;
+
+        $shown = [];
+        $after = [];
+
+        foreach ($result['events'] as $event) {
+            if ($event['t'] <= $cut) {
+                $shown[] = $event;
+            } else {
+                $after[] = $event;
+            }
+        }
+
+        $keep = array_slice($after, 0, 4);
+
+        return ['shown' => $shown, 'after' => $keep, 'dropped' => count($after) - count($keep)];
+    }
+
+    /**
+     * External spell id => internal `spells.id`, for the timeline's ability links.
+     *
+     * One indexed query, run only once a matchup is complete. The profiles deliberately carry
+     * EXTERNAL ids so the committed artifact survives a rebuild (see MatchupProfileService), but
+     * `/wow/spell/{id}` and the detail modal both take the internal key — so the translation has
+     * to happen somewhere, and here is the only place that needs it. An id that does not resolve
+     * simply renders unlinked rather than pointing at the wrong spell.
+     *
+     * @return array<int, int>
+     */
+    #[Computed]
+    public function spellLinks(): array
+    {
+        $result = $this->result();
+
+        if (! $result) {
+            return [];
+        }
+
+        $external = [];
+
+        foreach ($result['events'] as $event) {
+            foreach (['controlSpent', 'burst', 'spent'] as $bucket) {
+                foreach ($event[$bucket] ?? [] as $row) {
+                    if (! empty($row['spellId'])) {
+                        $external[] = (int) $row['spellId'];
+                    }
+                }
+            }
+
+            if (! empty($event['peeledBy']['spellId'])) {
+                $external[] = (int) $event['peeledBy']['spellId'];
+            }
+        }
+
+        if ($external === []) {
+            return [];
+        }
+
+        return Spell::where('patch_id', Patch::where('is_current', true)->value('id'))
+            ->whereIn('spell_id', array_unique($external))
+            ->pluck('id', 'spell_id')
+            ->all();
+    }
+
+    /**
      * Everything the page must say about what it cannot see. In one place on purpose: this copy
      * is the difference between a tool and a tool that overclaims, and scattered across a blade
      * it would be quietly trimmed one line at a time by somebody tidying the layout.
@@ -369,24 +466,24 @@ class MatchupLab extends Component
     {
         return [
             [
-                'title' => 'This is not a win probability',
-                'body' => 'Nothing here is fitted to match outcomes, because there is no outcome data to fit it to — arena log search was discontinued upstream and the archive holds a fixed corpus with two comps indexed. What you are reading is cooldown arithmetic with its reasoning shown. A percentage would look more authoritative and mean less.',
+                'title' => 'No win percentage, on purpose',
+                'body' => 'We have no match results to work from, so any number we put here would be made up. This is cooldown arithmetic with the reasoning shown.',
             ],
             [
-                'title' => 'A kill window is not a kill',
-                'body' => 'An empty answer list means the target has no button left. It does not mean the damage is lethal — that needs a damage model tied to a real character\'s gear, which this site does not have and does not fake. The window is where a go is a kill attempt instead of a strip.',
+                'title' => 'A window is not a kill',
+                'body' => 'Empty list means they have nothing left to press. It does not mean your damage kills them. We have no damage model and will not fake one.',
             ],
             [
-                'title' => 'Every cadence here is the slowest it could be',
-                'body' => 'Cooldowns that shrink as you spend resources are not in our data, so real goes come round sooner than the timeline shows — by an amount that differs per spec and that nothing currently measures.',
+                'title' => 'Real goes come round sooner',
+                'body' => 'Cooldowns that shrink as you spend resources are not in our data, so every timing here is the slowest it could be.',
             ],
             [
-                'title' => 'No positioning, no comms, no reaction time',
-                'body' => 'A curve has no geometry. The model assumes both enemy DPS are reachable when they are being controlled on the same global, which is exactly the assumption real games break. It also assumes the call gets made and the button gets pressed.',
+                'title' => 'No positioning, no calls',
+                'body' => 'We assume both their DPS are reachable on the same global, and that someone makes the call. Real games break both.',
             ],
             [
                 'title' => 'One build per spec',
-                'body' => 'Each comp is read against that spec\'s current default build. A talent swap into a matchup can change which go is even possible, which is the thing the top of the ladder spends its preparation on.',
+                'body' => 'Read against each spec\'s default talents. A swap can change which go is even possible.',
             ],
         ];
     }
@@ -401,6 +498,8 @@ class MatchupLab extends Component
             'result' => $this->result(),
             'chart' => $this->chart(),
             'missingProfiles' => $this->missingProfiles(),
+            'spellLinks' => $this->spellLinks(),
+            'timeline' => $this->timeline(),
             'limitations' => $this->limitations(),
             'executionSettings' => CooldownGraphService::EXECUTION_SETTINGS,
             'teamColours' => self::TEAM_COLOURS,

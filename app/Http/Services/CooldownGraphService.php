@@ -484,6 +484,8 @@ class CooldownGraphService
             $victim = &$enemy['players'][$step['victim']];
             $victim['controlledUntil'] = max($victim['controlledUntil'], $t + $step['seconds']);
             $this->applyDr($victim, $step['category'], $t);
+            $victimName = $victim['name'];
+            $victimRole = $victim['role'];
 
             $denied[] = [
                 'player' => $victim['name'],
@@ -495,8 +497,12 @@ class CooldownGraphService
             $controlSpent[] = [
                 'by' => $team['players'][$step['by']]['name'],
                 'spell' => $step['spell'],
+                'spellId' => $step['spellId'],
+                'icon' => $step['icon'],
                 'category' => $step['category'],
                 'seconds' => round($step['seconds'], 1),
+                'on' => $victimName,
+                'onRole' => $victimRole,
             ];
             unset($victim);
         }
@@ -549,7 +555,13 @@ class CooldownGraphService
                         $answer = $enemy['players'][$targetIndex]['answers'][$answerIndex];
                         $enemy['players'][$targetIndex]['answers'][$answerIndex]['readyAt'] = $t + $answer['cooldown'];
                         $enemy['players'][$targetIndex]['answersSpent']++;
-                        $spent[] = ['player' => $enemy['players'][$targetIndex]['name'], 'spell' => $answer['name'], 'kind' => $answer['kind']];
+                        $spent[] = [
+                            'player' => $enemy['players'][$targetIndex]['name'],
+                            'spell' => $answer['name'],
+                            'spellId' => $answer['spellId'],
+                            'icon' => $answer['icon'],
+                            'kind' => $answer['kind'],
+                        ];
                     }
                 }
             }
@@ -570,7 +582,12 @@ class CooldownGraphService
                 }
 
                 $team['players'][$playerIndex]['offensive'][$entryIndex]['readyAt'] = $t + $entry['cooldown'];
-                $burst[] = ['by' => $player['name'], 'spell' => $entry['name']];
+                $burst[] = [
+                    'by' => $player['name'],
+                    'spell' => $entry['name'],
+                    'spellId' => $entry['spellId'],
+                    'icon' => $entry['icon'],
+                ];
 
                 break;
             }
@@ -736,6 +753,10 @@ class CooldownGraphService
                         'entry' => $entryIndex,
                         'victim' => $victimIndex,
                         'spell' => $entry['name'],
+                        // Carried through so the timeline can render an ability the way a guide
+                        // sequence does, with its icon, rather than as a bare name.
+                        'spellId' => $entry['spellId'],
+                        'icon' => $entry['icon'],
                         'category' => $entry['drCategory'],
                         'seconds' => $seconds,
                         'cooldown' => (float) $entry['cooldown'],
@@ -786,7 +807,12 @@ class CooldownGraphService
 
                 $defenders['players'][$playerIndex]['control'][$entryIndex]['readyAt'] = $t + $entry['cooldown'];
 
-                return ['by' => $player['name'], 'spell' => $entry['name']];
+                return [
+                    'by' => $player['name'],
+                    'spell' => $entry['name'],
+                    'spellId' => $entry['spellId'],
+                    'icon' => $entry['icon'],
+                ];
             }
         }
 
