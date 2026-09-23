@@ -1,0 +1,57 @@
+{
+  "title": "Strategy, shown in arena",
+  "subtitle": "Ideas that turn up in a lot of games, each one next to the exact sequence that is it.",
+  "status": "teaser",
+  "intro": "Arena is a good place to look at strategy because it is small enough to see all of, and because here the numbers are real — every cooldown and duration below is read from the game's own data, not written from memory. The idea comes first, then the sequence that is an instance of it, then where else it shows up.",
+  "concepts": [
+    {
+      "slug": "recon-by-fire",
+      "name": "Reconnaissance by fire",
+      "origin": "Military doctrine",
+      "idea": "You cannot see what they are holding. So spend something cheap to make them show you, and have the answer ready for what they reveal.",
+      "arena": "Their Mage either has Counterspell up or does not, and there is no way to look. So cast something you can afford to lose. If it lands, you got the crowd control. If it is kicked, you have bought the information that their interrupt is down for the next 23 seconds — and your healer casts into that gap.",
+      "sequence": [
+        { "spec": "mage/frost", "spell": "Polymorph", "note": "Cast it expecting to lose it. This is the probe, not the play." },
+        { "spec": "mage/frost", "spell": "Counterspell", "side": "them", "note": "They kick. Now it is down for 23s and you know it." },
+        { "spec": "druid/restoration", "spell": "Cyclone", "note": "The real cast, into a window that is now known rather than hoped for." }
+      ],
+      "tell": "The whole thing only works if you say it out loud the moment it happens. A world champion describes doing this every single game — and the part he emphasises is the call, not the cast.",
+      "elsewhere": "Probing a market with a small order. A cheap lawsuit filed to see who responds. Any move whose payoff is the reply rather than the move.",
+      "model": "Part 10 — hidden state, and forcing it"
+    },
+    {
+      "slug": "zugzwang",
+      "name": "Zugzwang",
+      "origin": "Chess",
+      "idea": "Not a position you can win from — a position where every move they have available makes things worse for them. You do not beat their answer. You build a situation with no good answer in it.",
+      "arena": "A weak opener threatens one player and leaves the other two free to respond. A strong one is a fork: if their Rogue stays hidden, your team kills the healer for free. If he comes out to stop it, he is visible and out of position and you gouge him as he opens. He has to pick, and both are bad.",
+      "sequence": [
+        { "spec": "monk/windwalker", "spell": "Paralysis", "note": "On their healer. The threat that forces the decision." },
+        { "spec": "rogue/subtlety", "spell": "Gouge", "note": "Held for the Rogue who has to come out. This is the fork closing." },
+        { "spec": "druid/restoration", "spell": "Cyclone", "note": "Now the healer is alone, whichever way they chose." }
+      ],
+      "tell": "Ask of any opener: what can they do about this? If the honest answer names a button, it is not this yet — it is just damage with a stun in front of it.",
+      "elsewhere": "A negotiating position where both of their options concede something. Chess endgames. Any fork.",
+      "model": "Part 5 — a go is a set of moments, and its quality is globals denied"
+    },
+    {
+      "slug": "patience-in-the-window",
+      "name": "Patience inside the window",
+      "origin": "Musashi, on rhythm",
+      "idea": "Knowing the moment has arrived is the easy half. Not rushing it once you know is the hard half, and it does not get easier with skill — it gets more expensive to get wrong.",
+      "arena": "Their defensives are down and nothing is coming back for 55 seconds. That is four or five setups worth of time. The instinct is to go immediately, which spends the window on the worst version of the attempt.",
+      "sequence": [
+        { "spec": "rogue/subtlety", "spell": "Sap", "note": "Before anything. Buys the time to get into position." },
+        { "spec": "rogue/subtlety", "spell": "Shadow Blades", "note": "90s. Only now, with everyone actually in place." },
+        { "spec": "rogue/subtlety", "spell": "Kidney Shot", "note": "The window opens here — not at the start of the 55 seconds." }
+      ],
+      "tell": "This is not a beginner's mistake. The reigning world champion threw exactly this window in a grand final, while saying on comms — repeatedly — that there was no need to rush.",
+      "elsewhere": "Closing a deal the day the leverage appears instead of the day it is worth most. Shipping on the first green build.",
+      "model": "Part 8 — patience inside a window"
+    }
+  ],
+  "notMapped": {
+    "heading": "Where the borrowing stops",
+    "body": "Not every famous idea has an arena counterpart, and forcing one is how this sort of page turns into decoration. Sun Tzu on terrain has no analogue here because this project does not model position at all. Musashi is writing about one person with a sword; the whole of arena is three people coordinating, which is the part he has least to say about. Formlessness — 'be like water' — sounds like target swapping and is strictly worse than the actual rule, which is that you re-derive the kill target every go from who has the fewest buttons left. The gaps are the honest part of the list."
+  }
+}

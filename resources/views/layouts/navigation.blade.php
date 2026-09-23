@@ -192,7 +192,7 @@
         {{-- Training: class quizzes. Open by default since 2026-09-17 (new persist key), when the
              old module pages were hidden and this became the class quizzes' home. Always open while
              you are on one of its own pages. --}}
-        @php $onTrainingPage = request()->routeIs('training') || request()->routeIs('modules.*') || request()->routeIs('collection.index') || request()->routeIs('wow-quiz*'); @endphp
+        @php $onTrainingPage = request()->routeIs('training') || request()->routeIs('modules.*') || request()->routeIs('collection.index') || request()->routeIs('wow-quiz*') || request()->routeIs('strategy'); @endphp
         <div x-data="{ open: $persist(true).as('nav_training_open_v2') }">
             <button type="button" @click="open = !open"
                     class="w-full flex items-center justify-between px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest hover:text-ink-muted transition-colors">
@@ -207,6 +207,11 @@
                    class="sidebar-item text-[12px] {{ request()->routeIs('wow-quiz*') ? 'active !text-accent' : '' }}">
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                     Class quizzes
+                </a>
+                <a href="{{ route('strategy') }}" wire:navigate
+                   class="sidebar-item text-[12px] {{ request()->routeIs('strategy') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Strategy
                 </a>
                 {{-- Diagnostic, Quizzes and Progress are hidden (2026-09-17): they belong to the old
                      learning-module system. The routes still work; the links come back once class

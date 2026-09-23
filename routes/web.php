@@ -386,6 +386,11 @@ Route::get('/claudes-comp-guides', \App\Livewire\Guides\MachineGuides::class)->n
 // read the model would cut off the people most likely to know it is wrong.
 Route::get('/brain', \App\Livewire\Brain::class)->name('brain');
 
+// Strategic ideas with the arena sequence that is an instance of each. Sits at the root next to
+// /brain rather than under /wow deliberately: the ideas are meant to be game-neutral even though
+// today every worked example is WoW. See App\Livewire\Strategy.
+Route::get('/strategy', \App\Livewire\Strategy::class)->name('strategy');
+
 // ------- Guilds -------
 // Index is auth-only (it is "your guilds"); the guild page itself is not, because its URL is the
 // invite and someone following it may not have an account yet. Guilds\Show decides what a
