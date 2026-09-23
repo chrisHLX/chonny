@@ -521,15 +521,32 @@ it probably doesn't belong.
 
 ### Arena logs
 
-12. **Match search is DISCONTINUED upstream.** The WoWArenaLogs API returns `SEARCH_DISABLED`:
-    scraping drove their hosting costs up and they turned it off deliberately. **Do not work
-    around it** — not by retrying, reshaping the query, spoofing headers, or pacing requests.
-    Every search-based puller (`wow:pull-latest-matches`, `wow:pull-scarce-specs`,
-    `wow:discover-all-specs`, `wow:pull-low-rated-spec`, `wow:discover-spec-spells`) is dead and
-    reports an empty feed. The 689-match archive is a **fixed corpus** now.
+12. **New matches come from YOUR OWN combat log.** `wow:ingest-combatlog` reads
+    `WoWCombatLog.txt` and writes the archive's own `raw/` + `metadata/` files directly, so the
+    archive is a growing corpus again with no third party involved. Everything the WoWArenaLogs
+    API returned is in the log already, and the derivation was checked field by field against
+    their metadata for all 16 matches we hold both halves of — bracket, zone, ranked, duration,
+    winner, rating, result and the full roster matched 16/16. See `CombatLogIngestService` and
+    `tools/wow-addon/MindCollectorArenaLog/`.
+
+    **Two mappings that are NOT guessable and were fitted to that archive.** `reaction` is
+    friendly-or-hostile *as seen by the logging player*, so it is **not** the arena team id — the
+    team only ever comes from `COMBATANT_INFO` field 2, and the two disagree in 12 of 16 matches.
+    `playerTeamRating` is `ARENA_MATCH_END` field `3 + myTeam`; `result` is 2 for a loss, 3 for a
+    win. **Advanced Combat Logging must be on** or the log carries no `COMBATANT_INFO`, so no
+    specs, so nothing downstream can use the match.
+
+    **The WoWArenaLogs pullers are dead and stay dead** — `wow:pull-latest-matches`,
+    `wow:pull-scarce-specs`, `wow:discover-all-specs`, `wow:pull-low-rated-spec`,
+    `wow:discover-spec-spells`. That API returned `SEARCH_DISABLED` from 2026-09-09 (deliberate
+    anti-scraping: *"automated scraping of search results has driven our hosting costs up
+    sharply"*) and `UNAUTHENTICATED` behind a Battle.net sign-in from 2026-09-23. Signing in
+    would make it permitted; the reason they built the gate has not changed, so do not resume
+    bulk pulling through it.
 
 13. **Do not cull the archive again.** The 2026-09-05 cull of the oldest 500 matches is permanent
-    and unrecoverable now that search is gone.
+    and unrecoverable — those came from a feed that no longer serves us. New matches only ever
+    arrive now by playing them.
 
 14. **The raw archive is a build-time input, never a runtime dependency.**
     `data/arena-logs/metadata/*` is gitignored, so anything a page reads from it at render time

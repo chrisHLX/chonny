@@ -33,4 +33,27 @@ return [
     */
 
     'archive_path' => env('ARENA_LOG_ARCHIVE_PATH', base_path('data/arena-logs')),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Local Combat Log
+    |--------------------------------------------------------------------------
+    |
+    | Where WoW writes its own combat log, so `wow:ingest-combatlog` can be run
+    | with no argument. This is how matches get into the archive now:
+    | wowarenalogs.com turned match search off in September 2026 and then put
+    | it behind a Battle.net sign-in, and everything their API returned is
+    | already in this file (see CombatLogIngestService).
+    |
+    | Typically:
+    |   Windows  C:/Program Files (x86)/World of Warcraft/_retail_/Logs/WoWCombatLog.txt
+    |   macOS    /Applications/World of Warcraft/_retail_/Logs/WoWCombatLog.txt
+    |
+    | Advanced Combat Logging must be on (System > Network) or the log carries
+    | no COMBATANT_INFO, and without that there are no specs and nothing
+    | downstream can use the match.
+    |
+    */
+
+    'combatlog_path' => env('WOW_COMBATLOG_PATH'),
 ];

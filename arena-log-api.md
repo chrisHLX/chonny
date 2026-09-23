@@ -1,5 +1,28 @@
 # wowarenalogs.com API (undocumented, reverse-engineered 2026-08-14)
 
+> **SUPERSEDED 2026-09-23 — we do not pull from this API any more.**
+>
+> New matches come from your own `WoWCombatLog.txt` via `wow:ingest-combatlog`
+> (`App\Http\Services\CombatLogIngestService`). Everything the metadata below carried turns
+> out to be in the log already, and the local derivation matches their output 16/16 on every
+> field across the archived matches we hold both halves of.
+>
+> **The API's own history, for the record.** Search was switched off entirely on 2026-09-09 with
+> `SEARCH_DISABLED` and the message *"automated scraping of search results has driven our hosting
+> costs up sharply"*. On 2026-09-23 it came back behind a Battle.net sign-in, returning
+> `UNAUTHENTICATED` — *"Sign in with Battle.net to view matches."* It is NextAuth with a
+> Battle.net OAuth provider, so using it would mean carrying a session cookie. `latestMatches`,
+> `characterMatches` and `recentMatchesWithCombatant` all require it; `matchById` returns null
+> unauthenticated too, so the old "shared by link still works" route is closed.
+>
+> Signing in would make it permitted. It would not change why the gate was built, so this
+> document stays as reference rather than as a plan.
+>
+> Kept because the schema notes explain the shape of `data/arena-logs/metadata/*.json`, which
+> the local ingester still writes byte-for-byte, and because the spec-id and comp-string details
+> below are still correct and still used.
+
+
 This is a completely separate, unrelated service from Warcraft Logs (warcraftlogs.com). The
 `WARCRAFT_LOGS_CLIENT_ID`/`SECRET` in `.env` are for that other, real API and are not used
 anywhere for what's documented here.
