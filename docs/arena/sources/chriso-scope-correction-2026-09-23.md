@@ -84,12 +84,56 @@ and **also** list the kill-target decision as out of reach. Part 16 is the one t
 is more specific, it is tagged [OBS], and it already carries the humility the correction asks
 for — *ranked, with reasons, never a single verdict*.
 
+## 6. What the tags are for — a follow-up the same day
+
+Asked whether guide steps should carry a confidence field so the tags could be enforced,
+he declined, and in declining corrected what the tags had been taken to mean:
+
+> "I don't think we need to assign a confidence to those tiers just yet. I think it's
+> better to not make the assumption a calculated or reasoned-over approach to cooldowns or
+> guides is de facto worse than observed. I think for us it's good to know if something is
+> a hyp or obs, but for the product I don't think it matters. As long as the guide is
+> usable and our graph or modeller is also usable and we build it with our structure in
+> mind."
+
+And on what they were introduced to do in the first place:
+
+> "I really just wanted the AI to synthesise or correct parts in the file as supported by
+> what Kalvish said in his prose, or what I said in notes. It wasn't really a way to make
+> distinctions on what approach is best. The whole arena structure md is the approach or
+> reference tool to help create a guide, or if you ever need help understanding how to
+> analyse arena data or information."
+
+**Three things follow.**
+
+**The tags are provenance, not grades.** They answer *what is behind this claim* — a pro's
+prose, the player's notes, or the data — so a later pass can see what it is arguing with.
+They were never a quality ranking.
+
+**The ladder they had acquired is upside down where it matters.** "How to read this file"
+said of [OBS] *"take it as true"*, and the synthesis process spoke of *upgrading* a claim
+from [HYP] to [OBS]. But by those same definitions [DER] is the checkable one: a
+derivation can be redone, a recollection cannot, and this project's own standing cautions
+say a pro's claim is contingent on the meta he won in. Both framings are corrected.
+
+**Nothing in the product should read them.** A guide is judged on whether it is usable and
+whether it is built on this structure. No confidence field in the draft format, and no
+check gating a step on its tag.
+
+**This retracts an argument made a few hours earlier.** Part 0.2 had justified removing the
+scope prohibition on the grounds that the tags did the same policing per-claim. They do
+not police anything — nothing reads them and no check verifies them — so the justification
+was itself an overstatement of the kind this correction is about. Part 0.2 now rests on
+the argument he actually made: the defect the old table named was the *asserting*, and the
+kit is what disciplines a proposal.
+
 ---
 
 ## What this does NOT change
 
-- **The confidence tiers stay.** [OBS]/[DER]/[HYP] were always the right mechanism and this
-  correction makes them the *only* one. Nothing here licenses stating a hypothesis as a fact.
+- **The tags stay.** [OBS]/[DER]/[HYP] remain on every claim — see section 6 for what they
+  are actually for. Nothing here licenses stating a hypothesis in the voice of a fact; that
+  is a matter of how a sentence is written, not of what the tags permit.
 - **Part 16's "things not to write" stays**, because every entry on it is about *how* something is
   stated or about a checkable error of fact — a fabricated number, control on a target the spell
   cannot affect — not about what may be reasoned over.
@@ -105,3 +149,6 @@ for — *ranked, with reasons, never a single verdict*.
 | 2026-09-23 | The game's own facts are the constraint; prose prohibitions add nothing | `arena-structure.md` Part 0.2 |
 | 2026-09-23 | Part 0 vs Part 16 contradiction resolved in Part 16's favour | `arena-structure.md` Part 0 |
 | 2026-09-23 | "Worth writing even when unsure" added as the positive counterpart | `arena-structure.md` Part 16 |
+| 2026-09-23 | Tags reframed as provenance, not grades; "take it as true" and "upgrade the tier" both removed | `arena-structure.md` "How to read this file", `docs/arena/synthesis-process.md` step 4, `data/brain/brain.md` |
+| 2026-09-23 | Part 0.2's "the tags do the policing" argument retracted and replaced | `arena-structure.md` Part 0.2 |
+| 2026-09-23 | No confidence field in the machine-guide draft format — declined | (no change; recorded so it is not re-proposed) |

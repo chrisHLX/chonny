@@ -15,12 +15,16 @@ spending, what makes a go work, and what a plan has to say before it is a plan. 
 places: real games reasoned over in detail, the full spell and talent data behind this
 site, and a transcript of Calvish's breakdown of the team that won BlizzCon 2026.
 
-**Nothing here is settled.** Each section is tagged with how much weight it deserves:
+**Nothing here is settled.** Each section is tagged with what's behind it:
 
 - **Observed** — a top player said it about real games, or our own player found it in his.
 - **Derived** — it follows from game mechanics or data we hold, and you can check it.
 - **Hypothesis** — reasoned, plausible, and *untested*. We have not proved it and we
   might be wrong.
+
+Those are three different kinds of backing, not a ranking. Derived is the one you can
+actually re-check yourself; observed means a good player told us, about the meta he was
+playing at the time.
 
 Comment on any section. A correction to this page changes every guide downstream of it,
 which is worth more than a correction to any single guide.

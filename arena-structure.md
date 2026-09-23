@@ -24,19 +24,39 @@ Sources are preserved verbatim in `docs/arena/sources/`:
 ## How to read this file
 
 v1's real flaw was not that it was wrong. It was that reasoned claims and observed
-claims were written in the same confident voice, so nothing in it could be checked.
-Every substantive claim here carries a tier:
+claims were written in the same confident voice, so nothing in it could be traced back
+to anything. Every substantive claim here therefore says **where it came from**:
 
-- **[OBS]** — observed. Stated by a top player about real games, or by the project's
-  player about his own play. Take it as true.
-- **[DER]** — derived. Follows from game mechanics or data this project already holds.
-  Checkable without new evidence.
-- **[HYP]** — hypothesis. Reasoned, plausible, **untested**. Never assert one in a
-  guide as if it were a fact. Each one names the test that would settle it; those are
-  collected in `arena-open-questions.md`.
+- **[OBS]** — observed. A top player said it about real games, or the project's player
+  found it in his own. Its support is a person's account of a specific meta.
+- **[DER]** — derived. It follows from game mechanics or data this project already
+  holds. Its support is arithmetic you can redo.
+- **[HYP]** — hypothesis. Reasoned, plausible, and nothing has tested it yet. Each one
+  names the test that would settle it; those are collected in `arena-open-questions.md`.
 
-Where the two sources disagree, both readings are given. Do not resolve a
-disagreement by picking the one that fits the model better.
+**These are three kinds of support, not three grades of it.** [OBS, 2026-09-23] An
+earlier version of this section said of [OBS] "take it as true", and the synthesis
+process spoke of *upgrading* a claim from [HYP] to [OBS]. Both implied a ladder with
+observation at the top, and that ladder does not survive the definitions directly above
+it: **[DER] is the checkable one.** You can redo a derivation. You cannot redo a pro's
+recollection — and this document's own standing cautions say that a pro's claim is
+contingent on the meta he won in, and that winners' accounts are survivor-biased. "Their
+Barkskin is 8s and Avatar runs 20s, so one Barkskin does not cover it" is [DER] and
+settled. "Pressure stops their druid from CC'ing" is [OBS] and is one team, one mirror,
+one patch — Part 4 says so at length.
+
+So do not read [DER] as a weaker [OBS], or [HYP] as an apology. The reason to tag a
+claim is so the next person can see what would change it: new evidence changes an [OBS],
+a corrected number changes a [DER], a test settles a [HYP].
+
+**What the tags are not.** They are not a gate on what may be written, and nothing in
+the product reads them. A guide is judged on whether it is usable and whether it is
+built on this structure — not on the mix of tags behind it. Their job is provenance:
+they let a reader of *this file* trace a claim back to Kalvish's prose, to the player's
+notes, or to the data, and they let the next synthesis pass know what it is arguing with.
+
+Where two sources disagree, both readings are given. Do not resolve a disagreement by
+picking the one that fits the model better.
 
 ---
 
@@ -149,11 +169,18 @@ governs how every other part of this document should be read:
 > to maintain a level of humility that allows errors and promotes a creative, playful,
 > exploratory [approach] as a virtue rather than something to avoid."
 
-**Why this is not a licence to guess.** The tiers do the work the old prohibition was
-trying to do, and they do it better, because they are attached to individual claims rather
-than to whole topics. A ranked kill-target list tagged as reasoning is honest. The same
-list asserted as fact is not. Nothing here loosens that — it removes a *second*, blunter
-mechanism that was overlapping the tiers and forbidding more than they do.
+**Why this is not a licence to guess.** The old table named its own failure: *"it starts
+asserting things no data supports."* The defect there is the **asserting**, not the
+subject — so the fix is to write the proposal as a proposal, ranked and with its reason
+attached, which is what Part 16 has always asked for. Removing a topic from the document
+was never the only way to stop a sentence being overconfident, and it cost the good line
+along with the bad one.
+
+**Do not expect the [OBS]/[DER]/[HYP] tags to do this job.** They record where a claim
+came from; they are not a control on what gets written, nothing in the product reads
+them, and no check anywhere verifies that prose respects them. An earlier draft of this
+part claimed the tags did the policing the table used to do. They do not, and resting the
+change on them would have replaced one overstatement with another.
 
 **Where the constraint actually lives.** [OBS] The player's argument, and the reason the
 above is safe:

@@ -73,9 +73,9 @@ Go through the note's section tags and act on each:
 
 | Tag | Action |
 |---|---|
-| **confirms** | Upgrade the claim's tier in `arena-structure.md`. `[HYP]` → `[OBS]`. Add the quote if it is better than what is already cited. If it was already `[OBS]` from one source, note that a second, independent source agrees — that is a real strengthening. |
+| **confirms** | Retag the claim in `arena-structure.md` to say what now supports it — a `[HYP]` a source has now observed becomes `[OBS]`. **This is a change of provenance, not a promotion**: see that file's "How to read this file", which records why the tags are three kinds of support rather than three grades. Add the quote if it is better than what is already cited. If it was already `[OBS]` from one source, note that a second, independent source agrees — that is a real strengthening. |
 | **corrects** | Rewrite the part. Keep the old reading visible if it was plausible; say what changed it. Never silently overwrite — the reversal is information. |
-| **adds** | New part, or a new subsection. Tier it `[OBS]` if the source observed it, `[HYP]` if the source asserts it without showing it. |
+| **adds** | New part, or a new subsection. Tag it `[OBS]` if the source observed it, `[HYP]` if the source asserts it without showing it, `[DER]` if it follows from data we already hold. |
 | **contradicts** | **Do not resolve it.** Record both readings in the model, and open a question in `arena-open-questions.md` naming what would settle it. A model that quietly picks the source it likes is worthless. |
 
 ## Step 5 — Update the open questions
