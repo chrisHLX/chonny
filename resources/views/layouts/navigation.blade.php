@@ -101,28 +101,27 @@
             </a>
         @endguest
 
-        {{-- Public: a player guide is readable without an account, so the browse listing must be
-             reachable without one too. --}}
+        {{-- One "Guides" entry with Claude's nested under it, 2026-09-24. Explore had five
+             top-level items and two of them ("Player Guides", "Claude's Comp Guides") were the
+             same kind of thing, which read as two destinations rather than one with a variant.
+             The indented child follows the same pattern "Class data" already uses below.
+
+             NAV ONLY — the two listings stay separate pages. CLAUDE.md rule 30: machine-drafted
+             guides are filtered OUT of Browse, GuideFeed and Home::exampleGuide() by
+             humanAuthored(), and they carry their own byline. Nesting the link must not be read
+             as licence to merge the lists. --}}
         <a href="{{ route('guides.browse') }}" wire:navigate
            class="sidebar-item {{ request()->routeIs('guides.browse') || request()->routeIs('guides.show') ? 'active' : '' }}">
             <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
             </svg>
-            Player Guides
+            Guides
         </a>
 
         <a href="{{ route('guides.machine') }}" wire:navigate
-           class="sidebar-item {{ request()->routeIs('guides.machine') ? 'active' : '' }}">
-            Claude's Comp Guides
-        </a>
-
-        {{-- Sits directly under the machine guides because it is what they are written from. --}}
-        <a href="{{ route('brain') }}" wire:navigate
-           class="sidebar-item {{ request()->routeIs('brain') ? 'active' : '' }}">
-            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-            </svg>
-            The Brain
+           class="sidebar-item text-[12px] {{ request()->routeIs('guides.machine') ? 'active !text-accent' : '' }}">
+            <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+            Claude
         </a>
 
         <a href="{{ route('wow-comps') }}" wire:navigate
@@ -192,7 +191,7 @@
         {{-- Training: class quizzes. Open by default since 2026-09-17 (new persist key), when the
              old module pages were hidden and this became the class quizzes' home. Always open while
              you are on one of its own pages. --}}
-        @php $onTrainingPage = request()->routeIs('training') || request()->routeIs('modules.*') || request()->routeIs('collection.index') || request()->routeIs('wow-quiz*') || request()->routeIs('strategy'); @endphp
+        @php $onTrainingPage = request()->routeIs('training') || request()->routeIs('modules.*') || request()->routeIs('collection.index') || request()->routeIs('wow-quiz*') || request()->routeIs('strategy') || request()->routeIs('brain'); @endphp
         <div x-data="{ open: $persist(true).as('nav_training_open_v2') }">
             <button type="button" @click="open = !open"
                     class="w-full flex items-center justify-between px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest hover:text-ink-muted transition-colors">
@@ -212,6 +211,14 @@
                    class="sidebar-item text-[12px] {{ request()->routeIs('strategy') ? 'active !text-accent' : '' }}">
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                     Strategy
+                </a>
+                {{-- Moved here from Explore, 2026-09-24. It is a document you read to understand
+                     the model, which is what the rest of this section is; next to the comp tools
+                     it read as another tool. --}}
+                <a href="{{ route('brain') }}" wire:navigate
+                   class="sidebar-item text-[12px] {{ request()->routeIs('brain') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    The Brain
                 </a>
                 {{-- Diagnostic, Quizzes and Progress are hidden (2026-09-17): they belong to the old
                      learning-module system. The routes still work; the links come back once class

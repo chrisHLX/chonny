@@ -216,9 +216,9 @@ test('the sidebar puts your own pages in one block, separate from the public sit
         // Your space, then the public site, social, class data, and Training last.
         ->assertSeeInOrder([
             'Your space', 'Newbie', 'Home', 'My Guides', 'My Characters', 'Profile &amp; settings',
-            'Explore', 'Player Guides', '3v3 Comps',
+            'Explore', 'Guides', 'Claude', '3v3 Comps',
             'Social', 'Friends', 'Guilds',
-            'Class data', 'Class Guides', 'Training', 'Class quizzes',
+            'Class data', 'Class Guides', 'Training', 'Class quizzes', 'The Brain',
         ], false)
         ->assertDontSee('Your Profile')
         // Credits/XP live in the account menu now, which comes after everything above.
@@ -229,7 +229,7 @@ test('a signed-out visitor gets only the public side of the sidebar', function (
     $this->get(route('guides.browse'))
         ->assertOk()
         ->assertSee('Explore')
-        ->assertSee('Player Guides')
+        ->assertSee('Guides')
         ->assertDontSee('Your space')
         ->assertDontSee('My Guides');
 });
