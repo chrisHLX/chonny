@@ -1,92 +1,95 @@
 {
   "slug": "wls-vs-rmp",
   "title": "WLS vs RMP",
-  "summary": "Arms / Destruction Warlock / Resto Shaman into Sub Rogue, Frost Mage and Disc. Three fears, two of them free — a plan that wins by never letting their setup finish rather than by assembling a better one.",
-  "team": ["warrior/arms", "warlock/destruction", "shaman/restoration"],
-  "enemy": ["rogue/subtlety", "mage/frost", "priest/discipline"],
+  "summary": "The Mage holds four and two of them are escapes. Your Shaman holds three — whoever runs out first decides this.",
+  "team": [
+    "warrior/arms",
+    "warlock/destruction",
+    "shaman/restoration"
+  ],
+  "enemy": [
+    "rogue/subtlety",
+    "mage/frost",
+    "priest/discipline"
+  ],
   "sections": [
     {
       "kind": "text",
-      "title": "You have more control than they do, and most of it is free",
-      "body": "Count what the Warlock actually brings to a match, after the talent tree has taken its cut: Fear with no cooldown, Mortal Coil, and one — not both — of Shadowfury or Howl of Terror. Add the Shaman's Hex and Capacitor Totem and the Warrior's two stuns.\n\nThat is still more control than they hold, and most of it is free. Against a comp whose entire win condition is assembling one clean window, that is the matchup in a sentence: you can break their setup more often than they can build it, and it costs you almost nothing to try.\n\nSo the mindset is inverted from most guides here. Your control is not primarily there to make a kill window. It is there to make sure theirs never happens, and the kill arrives because they eventually run out of answers.\n\nTwo abilities an earlier version of this plan counted here have been removed, because they do not work on the people in this match. Banish only lands on a demon or an elemental, so against a Rogue, a Mage and a Priest it is a dead button. Seduction is the Succubus's, not the Warlock's — bringing her means not bringing the Felhunter, and giving up Spell Lock to gain a second fear against a comp with two casters is a trade this plan does not think is worth making."
-    },
-    {
-      "kind": "text",
-      "title": "The talent choice this plan is built on",
-      "body": "Shadowfury and Howl of Terror are the same talent. They are two entries on one choice node in the Warlock class tree, which means no Warlock has ever had both, and any plan that sequences one into the other is describing a character that cannot exist.\n\nThis plan takes Shadowfury, for three reasons. It is a stun, so it holds through your own damage where a fear does not. It has no cast time and no target requirement, so it can be thrown at a spot rather than a player. And it is the only control in the comp that reliably catches a Rogue and a Mage standing together during their own setup.\n\nWhat that costs: Howl of Terror is the better button when you are the one being opened on, because it is a bigger radius and it does not care whether you are facing the right way. A Warlock who keeps dying to the opener before the Shaman can react should take Howl instead — and if he does, every step below that says Shadowfury becomes a fear, shares a category with your own Fear, and cannot be chained behind it. That is a different plan, not a variation on this one.\n\nThe same question is worth asking about the pet. This plan assumes a Felhunter, for Spell Lock, against a comp with two casters. A Succubus brings Seduction and a fourth source of control, and gives up the only interrupt the Warlock has. Against RMP specifically, the interrupt is worth more."
-    },
-    {
-      "kind": "text",
-      "title": "Kill the Mage, but do not chase him",
-      "body": "The Rogue holds six answers and two are near-total against this comp — Cloak of Shadows removes the Warlock entirely for its duration, and Evasion removes the Warrior. Killing through both is a round spent achieving nothing.\n\nThe Mage holds four. Two of them are barriers that come back every attempt and therefore are not really answers at all.\n\nThe caveat, and it matters more here than usual: this comp has one charge and a Feral Lunge-equivalent it does not have. A Mage who kites well is a bad target for a Warrior who cannot reach him — which is the argument for parking damage on whoever is closest and winning on attrition instead.\n\nAttrition, concretely, because that word does a lot of work and explains nothing on its own. It means you stop trying to kill anyone inside one window and start spending their answers faster than they come back. Every Ice Block, Cloak of Shadows, Evasion and Pain Suppression they press is on a cooldown measured in minutes; your Fear, your Hex and your Warrior's stuns are on cooldowns measured in tens of seconds. So you press damage on whoever is nearest, force whatever that costs them, and let it come back off cooldown on your schedule rather than theirs.\n\nYou are not looking for a kill. You are looking for the round where the Mage has no Block, the Rogue has no Cloak, and the Priest is out of position — and then the kill is whoever is standing closest, not whoever you nominated at the start."
+      "title": "Both teams are thin. Yours is thinner",
+      "body": "Counts, theirs: Rogue 6, Priest 5, Mage 4. Yours: Warrior 8, Lock 4, Shaman 3. Your Shaman is the shortest list in the game and their Rogue's whole plan is reaching him. So this is not a matchup you can play out — the Mage is the target because he is their thinnest and because two of his four only reset the go rather than surviving it."
     },
     {
       "kind": "sequence",
-      "title": "Break their opener",
+      "title": "Opener — Fear is the setup, not the go",
       "steps": [
-        { "spec": "warlock/destruction", "spell": "Mortal Coil", "note": "Instant, needs no cast, and it heals the Warlock on the way out — which is what you want from the button you press while a Rogue is already on you. This is the cheapest way to end a setup before it starts." },
-        { "spec": "shaman/restoration", "spell": "Hex", "note": "On the Priest, the moment their go begins. A healer who cannot cast cannot cover their own commitment either." },
-        { "spec": "warrior/arms", "spell": "Spell Reflection", "note": "Not control — but it is back every attempt and it eats a Polymorph, which is the piece their chain usually starts with." }
-      ]
-    },
-    {
-      "kind": "sequence",
-      "title": "Control the Priest when you commit",
-      "steps": [
-        { "spec": "warlock/destruction", "spell": "Fear", "note": "Free. In a comp with this much control, the free one goes first and the expensive ones stay in reserve." },
-        { "spec": "shaman/restoration", "spell": "Hex", "note": "Fresh category, full duration." },
-        { "spec": "warlock/destruction", "spell": "Shadowfury", "note": "Stun, so it holds through your own damage — and it is the only one here that can catch two of them at once. This is the one talent point that makes the whole plan work; see the talent section below for what it costs." }
-      ]
-    },
-    {
-      "kind": "sequence",
-      "title": "Keep the Rogue off the go",
-      "steps": [
-        { "spec": "warrior/arms", "spell": "Disarm", "note": "Free, and against a Rogue it is close to a stun in effect." },
-        { "spec": "shaman/restoration", "spell": "Earthgrab Totem", "note": "A rooted Rogue is not reaching your Warlock, and it costs a totem rather than a cooldown." }
+        {
+          "spec": "warlock/destruction",
+          "spell": "Fear",
+          "note": "On the Priest. No cooldown, so it costs nothing to open with."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Charge",
+          "note": "17s root onto the Mage as the Fear lands."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Storm Bolt",
+          "note": "The Mage blinks on 15s. Lead, do not follow."
+        }
       ]
     },
     {
       "kind": "sequence",
       "title": "The go",
       "steps": [
-        { "spec": "warrior/arms", "spell": "Avatar", "note": "The comp's gate — the rest is scheduled around it." },
-        { "spec": "warrior/arms", "spell": "Colossus Smash" },
-        { "spec": "warlock/destruction", "spell": "Malevolence" },
-        { "spec": "warlock/destruction", "spell": "Soul Fire" },
-        { "spec": "warrior/arms", "spell": "Champion's Spear" }
+        {
+          "spec": "warrior/arms",
+          "spell": "Avatar",
+          "note": "90s. The cadence term for the whole comp."
+        },
+        {
+          "spec": "warlock/destruction",
+          "spell": "Malevolence",
+          "note": "60s. Half-cadence; it is in every go."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Colossus Smash",
+          "note": "45s. Up every go — the sustained damage term."
+        },
+        {
+          "spec": "warlock/destruction",
+          "spell": "Mortal Coil",
+          "note": "45s. Cross-CC on the Rogue, never on the kill target."
+        }
       ]
     },
     {
       "kind": "defensives",
       "title": "What the Mage answers with",
-      "opponent": "mage/frost",
       "steps": [
-        { "spec": "mage/frost", "spell": "Ice Block", "note": "The one you are actually trying to spend." },
-        { "spec": "mage/frost", "spell": "Ice Barrier", "note": "Back every attempt, so it is the floor rather than an answer." },
-        { "spec": "mage/frost", "spell": "Greater Invisibility" }
+        {
+          "spec": "mage/frost",
+          "spell": "Ice Block",
+          "note": "120s. Full immunity — it ends the go rather than blunting it."
+        },
+        {
+          "spec": "mage/frost",
+          "spell": "Greater Invisibility",
+          "note": "120s. He leaves and resets."
+        },
+        {
+          "spec": "mage/frost",
+          "spell": "Ice Barrier",
+          "note": "30s. Back every go; not a real forcing target."
+        }
       ]
-    },
-    {
-      "kind": "defensives",
-      "title": "What the Rogue does to your plan",
-      "opponent": "rogue/subtlety",
-      "steps": [
-        { "spec": "rogue/subtlety", "spell": "Cloak of Shadows", "note": "Every fear, every curse and most of the Warlock's damage, gone for its duration. This comp has no answer to it except waiting." },
-        { "spec": "rogue/subtlety", "spell": "Smoke Bomb", "note": "Makes their kill window unreachable rather than saving anyone." },
-        { "spec": "rogue/subtlety", "spell": "Dismantle", "note": "Not a defensive. It is what stops your Warrior mid-Avatar, and it is free for them." },
-        { "spec": "rogue/subtlety", "spell": "Evasion" }
-      ]
-    },
-    {
-      "kind": "text",
-      "title": "Cadence: you go whenever they try to",
-      "body": "Fear and Disarm have no cooldown, Hex is back faster than anything else here, and Earthgrab, Storm Bolt and Curse of Exhaustion sit on the thirty-second tier. Shadowfury and Mortal Coil are in the same region.\n\nAvatar is the ceiling and nothing else in the comp shares that tier, so there is only one scheduling decision: whether to hold Avatar for a window you created or spend it on the window their commitment hands you.\n\nThis guide argues for the second. A comp with this much cheap control does not need to build anything — it needs their team to try something while your damage cooldown is up."
     },
     {
       "kind": "text",
       "title": "Where this is guessing",
-      "body": "1. Whether to hold Avatar for their go or to schedule your own. I have argued one side; the other is entirely defensible and it is the central question of the matchup.\n\n2. Mortal Coil as the fourth link in a chain, where it is halved, versus as the Warlock's own panic button. It is both, and nothing in the data tells me which use wins more rounds.\n\n3. Nothing here says what to do about Cloak of Shadows, which invalidates most of a Destruction Warlock's contribution on demand.\n\n4. The kill target reasoning assumes you can hold the Mage still. If your Warrior cannot, the whole plan should probably be pressure on the Rogue and a mana war instead — and I do not know at what point to make that call."
+      "body": "This plan wants control your build may not have. Howl of Terror and Shadowfury sit on one choice node — you take one. Check what the Warlock actually holds before running the opener, because a Fear that is not on the bar makes the whole sequence a Charge into a full pool."
     }
   ]
 }

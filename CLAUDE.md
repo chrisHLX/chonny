@@ -52,6 +52,8 @@ exist to be corrected. The spell/talent/match-data pipeline underneath must stay
 | `arena-log-api.md` | WoWArenaLogs API shape. |
 | `spellbook-verifier.md` | Addon export → snapshot → diff pipeline. |
 | `app/Http/Services/playstyle-analysis.md` | Per-player talent-usage read. |
+| `guide-writing.md` | **How to draft a machine guide.** The length budget (the 2026-09 batch averaged 7,900 reader-facing chars; the limit is now 2,300), the shape, and the errors the last batch made. Read with `docs/guides/reader-corrections-2026-09-23.md`. |
+| `docs/guides/` | Reader feedback on the machine guides: the full export, plus the distilled corrections. **Export before re-authoring** — anchored comments are cascade-deleted. |
 | `module-upload-format.md` | Shape for drafting module content. |
 
 These are reference, not gates. Implementation decisions are yours. A note that something "can
@@ -385,6 +387,10 @@ author. 16 drafts live in `data/machine-guides/`.
   Horror (pets/NPCs) both shipped in published plans as control on players, hedged as "probably
   doesn't work, but if it does it's free". The hedging was the error. Nothing in the pipeline can
   catch this class of mistake — see `knowledge-gaps.md`, 2026-09-18.
+- **Re-authoring DESTROYS anchored reader comments.** `user_guide_comments.user_guide_section_id`
+  and `user_guide_block_id` are `cascadeOnDelete` and `guides:author` replaces sections wholesale,
+  so every note attached to a section or step dies on a re-run — 26 of 33 in the 2026-09-23 sweep.
+  **Run `guides:export-feedback` and commit the output before re-authoring anything.**
 - **`guides:export-feedback`** (`--out=`, `--all`) writes every machine guide, its steps and every
   note as markdown. **This is the loop**: corrections come back here and get folded into
   `arena-structure.md`, which is the only thing carrying knowledge between sessions. Markdown on

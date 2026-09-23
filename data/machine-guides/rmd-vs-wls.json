@@ -1,112 +1,111 @@
 {
   "slug": "rmd-vs-wls",
   "title": "RMD vs WLS",
-  "summary": "Assassination Rogue / Frost Mage / Resto Druid into Arms, Destruction Warlock and Resto Shaman. The site already has this matchup written from the other side — this is the answer to it, and the answer is that their plan needs you to try something.",
-  "team": ["rogue/assassination", "mage/frost", "druid/restoration"],
-  "enemy": ["warrior/arms", "warlock/destruction", "shaman/restoration"],
+  "summary": "The Resto Shaman holds three answers — fewer than anyone on either team. Everything here is about reaching him through the Warrior.",
+  "team": [
+    "rogue/assassination",
+    "mage/frost",
+    "druid/restoration"
+  ],
+  "enemy": [
+    "warrior/arms",
+    "warlock/destruction",
+    "shaman/restoration"
+  ],
   "sections": [
     {
       "kind": "text",
-      "title": "Read their plan first, because it is written down",
-      "body": "This site already has WLS vs RMP from the other side. Its thesis is explicit: WLS does not build a kill window, it breaks yours, and it wins because a setup comp that never completes a setup eventually loses to sustained pressure. Its own summary calls the plan 'a comp that wins by never letting their setup finish rather than by assembling a better one'.\n\nThat is unusually useful, because it tells you exactly what the enemy is waiting for. Every piece of control in WLS — the Fear, the Shadowfury, the Hex, the Warrior's stuns — is being held for the moment you commit. Their comp is reactive by design.\n\nSo the central question of this matchup is not how to assemble a better go. It is what happens if you decline to go at all.\n\nThe answer is that WLS has to come to you. Their damage is a Warrior who must be in melee and a Warlock who must be casting; neither of those is free. A comp holding all its control for your commitment is a comp spending nothing while you spend nothing, and that is a trade RMD wins, because your sustained damage is better than theirs and your healer is harder to pressure than an exposed Restoration Shaman.\n\nRMD is a setup comp. Against WLS the correct opening move is to be a patient one.",
-      "row": 0
-    },
-    {
-      "kind": "text",
-      "title": "Kill target: the Restoration Shaman, and this time it really is the healer",
-      "body": "Several guides on this site pick the healer by reflex, and a reader rightly called that out. So the case here is made on the specifics rather than the habit.\n\nThe Warrior holds five: Die by the Sword, Rallying Cry, Berserker Shout, Spell Reflection, trinket. The Warlock holds five: Unending Resolve, Dark Pact, Burning Rush, a healthstone, trinket — and Burning Rush means he leaves whenever he wants. The Shaman holds six on paper, which by the usual method makes her the worst target on the team.\n\nThe usual method is wrong here, for one reason: she is the only one of the three who cannot afford to be out of line of sight, and this comp is built to take line of sight away from a specific person. A Rogue opens on her from stealth, a Mage sheeps whoever comes to help, and a Druid cyclones the second helper. Her six answers are mostly personal mitigation — Astral Shift, a totem, a trinket — and personal mitigation does not help a healer who is not being damaged so much as being prevented from casting.\n\nThe Warrior is the alternative and the argument against him is short: Die by the Sword is real against a Rogue, Spell Reflection is real against a Mage, and he has Rallying Cry for whatever gets through. He answers exactly this comp.\n\nThe Warlock is the interesting third option and this plan does not take it, but it is closer than it looks — Burning Rush is a liability as well as an escape, because it costs him health continuously, and a Warlock who has been running from a Rogue all match arrives at your go already low.",
-      "row": 1
-    },
-    {
-      "kind": "text",
-      "title": "The talent choices this plan assumes",
-      "body": "The Druid takes Cyclone, which sits on a choice node against Soothe. Only one target can be cycloned at a time — it is not a second stun, it is a way to remove exactly one person from exactly one window, and the plan below spends it on whichever of the Warrior or Warlock arrives to help.\n\nThe Druid takes Mighty Bash over Incapacitating Roar. Same choice node, same reasoning a reader gave elsewhere on this site: the roar breaks on damage, and every use this plan has for a second stun is inside a window where damage is already landing.\n\nThe Mage takes Ring of Frost. It is the piece that covers the Rogue's reposition and it does not need a target, which matters when the thing you are trying to catch is a Warrior who is charging past you.\n\nOn their side, one thing worth knowing rather than assuming: Shadowfury and Howl of Terror are a single choice for the Warlock, so he has one of them, not both. Which one changes your plan. If he took Shadowfury he can stop your go with a stun that holds through damage; if he took Howl of Terror his area control breaks the moment your Rogue lands anything. You find out which on the first attempt, and the first attempt is worth making partly to learn it.",
-      "row": 2
+      "title": "Kill the Shaman, and count the Warrior's eight before you commit",
+      "body": "Counts: Warrior 8, Lock 4, Shaman 3. The Shaman is thin by a wide margin — Spirit Link, Astral Shift, trinket, and that is the list. The Warrior's eight are why you cannot simply train him instead: Die by the Sword is 30% of all damage taken for 8s, not a parry effect, and Rallying Cry blunts the whole go rather than saving one player."
     },
     {
       "kind": "sequence",
-      "title": "The patient opening: pressure without commitment",
-      "body": "Nothing here is a setup. The point is to make the Warrior and the Warlock spend something while your own control stays untouched — because their entire plan is to answer a commitment you have not made.",
+      "title": "Opener — Sap the Lock, open on the Shaman",
       "steps": [
-        { "spec": "rogue/assassination", "spell": "Garrote", "note": "Opened from stealth on the Warlock rather than the Shaman. It is a silence as well as damage, it costs nothing from the real chain, and a Warlock who has to move is a Warlock not casting." },
-        { "spec": "rogue/assassination", "spell": "Rupture", "note": "Sustained bleed damage that runs whether or not anyone is controlled. This is what makes waiting profitable rather than merely safe." },
-        { "spec": "mage/frost", "spell": "Frozen Orb", "note": "Free pressure into the melee. It also strips their positioning slowly, which matters more against a Warrior than the damage does." },
-        { "spec": "druid/restoration", "spell": "Ursol's Vortex", "note": "Dropped between the Warrior and your Mage the moment he commits to a charge. Purely defensive, no cooldown worth saving, and it teaches him that closing costs him time." }
-      ],
-      "row": 3
+        {
+          "spec": "rogue/assassination",
+          "spell": "Sap",
+          "note": "On the Warlock. Free, and it removes the Fear from the go."
+        },
+        {
+          "spec": "mage/frost",
+          "spell": "Polymorph",
+          "note": "On the Warlock as Sap breaks. Same DR, so it is short."
+        },
+        {
+          "spec": "rogue/assassination",
+          "spell": "Cheap Shot",
+          "note": "On the Shaman, the global the Poly lands."
+        }
+      ]
     },
     {
       "kind": "sequence",
-      "title": "The setup, once they have spent control",
-      "body": "The trigger is specific and it is the whole guide: their Fear, their Shadowfury or their Hex has gone out on something that was not a real go. WLS holds those for your commitment — so a WLS that has already spent them is a WLS with no answer to the next thirty seconds.\n\nNow the comp does what it was built to do.",
+      "title": "The go — off Deathmark, every two minutes",
       "steps": [
-        { "spec": "rogue/assassination", "spell": "Sap", "note": "On the Warrior, before anything begins. It is free and it removes the player most able to interrupt the reposition." },
-        { "spec": "mage/frost", "spell": "Polymorph", "note": "On the Warlock. Different category from the Sap, so it lands at full duration — and unlike the Sap it can be reapplied if the setup takes a second attempt." },
-        { "spec": "rogue/assassination", "spell": "Cheap Shot", "note": "On the Shaman, opening the real chain. The cheapest stun in the game and the reason this comp can try again in thirty seconds rather than two minutes." },
-        { "spec": "rogue/assassination", "spell": "Kidney Shot", "note": "Same category as the Cheap Shot, so it is halved. It is spent anyway because the window is already committed — this is the point where holding something back costs more than diminishing it." }
-      ],
-      "row": 4
-    },
-    {
-      "kind": "sequence",
-      "title": "The go",
-      "steps": [
-        { "spec": "rogue/assassination", "spell": "Deathmark", "note": "The Rogue's real cooldown, and the slowest thing in the comp. Its availability, not the Mage's, decides whether an attempt is a genuine one." },
-        { "spec": "mage/frost", "spell": "Ray of Frost", "note": "Channelled, so it needs the target genuinely held rather than merely slowed — which is what the stun chain above was for. It lines up with the Rogue's cooldown on most attempts rather than all of them." },
-        { "spec": "rogue/assassination", "spell": "Kingsbane", "note": "Into the held target, after the Deathmark rather than before it." },
-        { "spec": "druid/restoration", "spell": "Cyclone", "note": "Not on the kill target — on whichever of the Warrior or Warlock has arrived to help. This is the step that converts a stun chain into an actual kill, and spending it on the Shaman instead is the most common way this comp wastes a window." },
-        { "spec": "mage/frost", "spell": "Ice Lance", "note": "The finisher into a target that is rooted or stunned. Everything above exists to make this land on someone who cannot move." }
-      ],
-      "row": 5
-    },
-    {
-      "kind": "sequence",
-      "title": "Between goes: surviving the answer",
-      "body": "WLS's own guide is explicit that it wins on attrition — that it presses damage on whoever is nearest and waits for you to run out of answers. So this section is the counter to their actual plan, and it matters more than the go does.",
-      "steps": [
-        { "spec": "druid/restoration", "spell": "Typhoon", "note": "Cheapest peel in the comp, its own category, and it resets the Warrior's position without spending anything that the go needs." },
-        { "spec": "rogue/assassination", "spell": "Kick", "note": "On the Warlock's Chaos Bolt rather than held for a heal. Their Shaman has more ways around an interrupt than the Warlock does, and the Warlock is where their real damage lives." },
-        { "spec": "mage/frost", "spell": "Ring of Frost", "note": "Placed on your own Druid when the Warrior commits, not thrown at the enemy. Against a comp whose plan is sustained pressure, the defensive use is worth more than the offensive one." },
-        { "spec": "druid/restoration", "spell": "Ironbark", "note": "On whoever the Warrior is on. It is cheap enough to be spent on a merely uncomfortable moment rather than saved for a crisis." },
-        { "spec": "rogue/assassination", "spell": "Cloak of Shadows", "note": "Answers the Fear, the Shadowfury and most of the Warlock's damage at once. Against WLS specifically this is closer to a control-breaker than a defensive, and reading it that way changes when it is spent." }
-      ],
-      "row": 6
+        {
+          "spec": "rogue/assassination",
+          "spell": "Deathmark",
+          "note": "120s. Your slowest term; nothing else sets the cadence."
+        },
+        {
+          "spec": "druid/restoration",
+          "spell": "Cyclone",
+          "note": "On the Warrior, so he cannot peel into the window."
+        },
+        {
+          "spec": "mage/frost",
+          "spell": "Frozen Orb",
+          "note": "60s. Lands inside the stun, never before it."
+        },
+        {
+          "spec": "rogue/assassination",
+          "spell": "Kidney Shot",
+          "note": "Diminished after Cheap Shot. It is still the window."
+        }
+      ]
     },
     {
       "kind": "defensives",
-      "title": "What the Restoration Shaman answers with",
-      "opponent": "shaman/restoration",
+      "title": "What the Shaman answers with — three, and that is all",
       "steps": [
-        { "spec": "shaman/restoration", "spell": "Astral Shift", "note": "Personal, and she will spend it on the first serious attempt. It is not a reason to stop — it is the first of the answers you are trying to exhaust." },
-        { "spec": "shaman/restoration", "spell": "Spirit Link Totem", "note": "The real answer, and it is a totem — it can be killed, and it only helps if her team is near it. A go that has already cycloned one teammate away is a go Spirit Link answers badly." },
-        { "spec": "shaman/restoration", "spell": "Tremor Totem", "note": "Not aimed at you — it is her answer to nothing this comp does. Worth knowing so it is not misread as a defensive spent." },
-        { "spec": "shaman/restoration", "spell": "Gladiator's Medallion", "note": "What the Cheap Shot into Kidney Shot is really trying to force. Once it is gone, the next chain is the one that kills her." }
-      ],
-      "row": 7
+        {
+          "spec": "shaman/restoration",
+          "spell": "Spirit Link Totem",
+          "note": "180s. Once a game. Break it or move out of it."
+        },
+        {
+          "spec": "shaman/restoration",
+          "spell": "Astral Shift",
+          "note": "90s, 40%. Back every second go."
+        },
+        {
+          "spec": "shaman/restoration",
+          "spell": "Gladiator's Medallion",
+          "note": "120s. Nothing behind it once Astral Shift is gone."
+        }
+      ]
     },
     {
       "kind": "defensives",
-      "title": "What the Warrior and the Warlock do to your go",
-      "opponent": "warrior/arms",
+      "title": "What the Warrior does to your go",
       "steps": [
-        { "spec": "warrior/arms", "spell": "Spell Reflection", "note": "Back on every attempt and it eats a Polymorph — which is the piece the setup section above depends on. Do not open the setup into it; make him spend it on something cheap first." },
-        { "spec": "warrior/arms", "spell": "Berserker Shout", "note": "Answers their own Warlock's fear as well as anything you do — irrelevant against this comp's control, which is stuns and incapacitates. One of the few matchups where it is close to a dead button." },
-        { "spec": "warrior/arms", "spell": "Rallying Cry", "note": "Party-wide, so it blunts the whole go rather than saving the Shaman. It is also the answer this site has repeatedly failed to count, and against a burst window comp it is worth more than any personal cooldown he holds." },
-        { "spec": "warrior/arms", "spell": "Intimidating Shout", "note": "Not a defensive. It is the most likely thing to break your chain, and it is the reason the Sap goes on him first rather than on the Warlock." }
-      ],
-      "row": 8
-    },
-    {
-      "kind": "text",
-      "title": "Cadence: you have one real go and they have none",
-      "body": "The asymmetry is the whole matchup. Deathmark is the slowest thing on your side and everything meaningful is scheduled around it — Icy Veins lines up most of the time, the stun chain is repeatable far more often than either, and Cyclone and Ring of Frost sit in between.\n\nWLS has no equivalent. Its heaviest cooldown is the Warrior's Avatar, and the WLS guide on this site argues openly that the comp should spend it reactively, on a window your commitment hands them, rather than building one. That means they are not waiting for a cooldown. They are waiting for you.\n\nThe practical consequence is that time is on your side in a way it usually is not for a setup comp. The cheap chain — Sap, Cheap Shot, Kidney, Polymorph — is back roughly every thirty seconds, and each repetition costs them control they are holding in reserve. Every attempt that fails but forces a Fear or a Shadowfury has done its job.\n\nThe mistake is committing Deathmark to one of those cheap attempts. The cheap chain is for stripping their reserve; the real go happens when their reserve is gone and the Rogue's cooldown is up, and those two conditions do not naturally coincide — making them coincide is the skill in this matchup.",
-      "row": 9
-    },
-    {
-      "kind": "text",
-      "title": "Where this is guessing",
-      "body": "1. The whole plan is built on another guide on this site being right about WLS. That guide was written by the same model, from the same data, and a reader called its analysis good — but it is not independent evidence, and reasoning from it is closer to reasoning from an assumption than it looks.\n\n2. That declining to commit actually favours RMD. It is argued from sustained damage and healer exposure and it is completely untested. A WLS that simply trains the Druid while you wait may win the patient game outright, in which case the first section has the matchup backwards.\n\n3. Choosing the Shaman over the Warrior. The reasoning is that her answers are personal and her weakness is line of sight, which this comp attacks. That is a real argument, but it is the same shape as the reflex a reader criticised elsewhere — and the honest position is that the Warrior may be correct here and this plan cannot tell.\n\n4. Cyclone's target. Spending it on the helper rather than the kill target is stated as the difference between a kill and a wasted window, and nothing here quantifies that. It is the single most consequential judgement in the guide and it rests on nothing but reasoning.\n\n5. Which control the enemy Warlock actually took. The talent section says you learn it on the first attempt, which is true and also means every plan above is written without knowing it. A Shadowfury build and a Howl of Terror build should probably be played against differently, and this guide does not say how.",
-      "row": 10
+        {
+          "spec": "warrior/arms",
+          "spell": "Die by the Sword",
+          "note": "30% of ALL damage taken, 8s, 120s cooldown."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Spell Reflection",
+          "note": "25s. Your Mage opens into this if he leads with a cast."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Intimidating Shout",
+          "note": "75s. It reaches your whole go, not one player."
+        }
+      ]
     }
   ]
 }

@@ -1,113 +1,111 @@
 {
   "slug": "mm-mage-disc-vs-thug",
-  "title": "MM Hunter / Frost Mage / Disc vs Thug Cleave",
-  "summary": "Marksmanship, Frost Mage and Discipline into Assassination, Beast Mastery and Disc. Two ranged teams where only one side has to close — the plan is to win the first fifteen seconds, because the comp that gets opened on loses this.",
-  "team": ["hunter/marksmanship", "mage/frost", "priest/discipline"],
-  "enemy": ["rogue/assassination", "hunter/beast-mastery", "priest/discipline"],
+  "title": "MM Hunter / Frost Mage / Disc vs Thug",
+  "summary": "Stun and trap into the cast — never open on one. Their Priest holds five and no escape.",
+  "team": [
+    "hunter/marksmanship",
+    "mage/frost",
+    "priest/discipline"
+  ],
+  "enemy": [
+    "rogue/assassination",
+    "hunter/beast-mastery",
+    "priest/discipline"
+  ],
   "sections": [
     {
       "kind": "text",
-      "title": "The opener decides this, and there is no second plan",
-      "body": "Both teams are mostly ranged. Both hold a healer of the same class. The damage is broadly comparable. What is not symmetrical is the Rogue: they have one and you do not, and he decides when the match starts.\n\nThat single fact drives everything. A Thug Cleave that opens cleanly on your Mage or your Priest — Sap on one, stun on the other, Hunter already in position — wins from the first ten seconds, because neither of your casters has the tools to fight out of a stun chain with a Beast Mastery Hunter already doing full damage into it. Nothing later in this guide recovers that.\n\nSo this is not a guide about a kill window. It is a guide about the first fifteen seconds, and about making the Rogue's opener land on the one member of your team who can absorb it.\n\nThe corollary, which is the good news: a Thug Cleave whose opener achieves nothing is a comp with a real problem. Their sustained damage is worse than yours, their healer has the same answers as yours, and a Rogue who has spent Shadowstep, Sap and his stun for nothing is not dangerous again for a while. You do not have to beat them. You have to survive them being at their best, once.",
-      "row": 0
-    },
-    {
-      "kind": "text",
-      "title": "Kill target: the Rogue, which is the unusual call here",
-      "body": "Answer counts: the Rogue holds six — Cloak of Shadows, Evasion, Feint, Crimson Vial, Smoke Bomb, trinket. The Hunter holds six — Aspect of the Turtle, Exhilaration, Roar of Sacrifice, Survival of the Fittest, Camouflage, trinket. The Priest holds four, with two charges of Pain Suppression.\n\nOn count the Priest is the target and this site would normally take her. This plan does not, and the reason is worth stating because it is a genuine exception rather than a preference.\n\nA Discipline Priest is the hardest of the three to convert. She has two charges of her big cooldown, her own team can peel for her, and this comp's damage — a Hunter and a Frost Mage — is precise but not explosive. Meanwhile the Rogue is the only member of their team who has to come to you. He is in your Frost Nova, your Ring of Frost, your trap and your Scream by virtue of doing his job at all. Everyone else can stand at range and never be touched.\n\nSo: kill the one who must approach. It is the same logic as picking a Feral out of a Jungle, and it applies more strongly here because a Thug Cleave without its Rogue has almost no way to make anything happen — the Hunter alone does not open on anyone.\n\nThe honest weakness: Cloak of Shadows removes most of what this comp does, and an Assassination Rogue with Cloak up is close to unkillable by a Mage and a Priest. The plan below is really about the attempt after the Cloak, not the one before it.",
-      "row": 1
-    },
-    {
-      "kind": "text",
-      "title": "The talent choices this plan assumes",
-      "body": "The Mage takes Ring of Frost. It sits on a choice node, and against a comp whose only melee has to walk into you it is the strongest defensive tool in the comp — an area incapacitate placed on your own position answers an opener in a way no personal cooldown does.\n\nThe Hunter takes Tar Trap, also a choice. This plan uses traps as area denial around the casters rather than as control on a target, which is a different habit from most Hunter play and is the point of the section below.\n\nScare Beast is in the tree and is not in this plan. It works only on beasts — which against a Rogue, a Hunter and a Priest means it lands on the Hunter's pet and nothing else. That is not nothing, and it is named here rather than quietly dropped, because the pet is a real part of their damage. But it is not control on a player, and no plan should count it as one.\n\nThe Priest takes Pain Suppression rather than a damage-side alternative. Against a comp built to kill one of your casters inside one window, the ability to stop one window is worth more than anything that shortens yours.",
-      "row": 2
+      "title": "Nothing here is cast from a standing start",
+      "body": "Counts: Rogue 6, Hunter 6, Priest 5. Their Priest is the target on count and because he has no mobility and no interrupt. But this comp's whole difficulty is that a Rogue and a Hunter will never let you free-cast: every chain below opens on an instant, and the cast goes inside a stun that has already landed."
     },
     {
       "kind": "sequence",
-      "title": "Before the opener: make the Rogue's approach cost something",
-      "body": "This is what the first fifteen seconds are spent on, and none of it is reactive. All of it is placed before anything happens, on the assumption that the Rogue is already moving.\n\nThe principle: you cannot see him, so you do not try. You make the ground around your casters expensive instead.",
+      "title": "Opener — instant, then trap, then the cast",
       "steps": [
-        { "spec": "hunter/marksmanship", "spell": "Tar Trap", "note": "Placed at the Mage's feet, not thrown at a target. It slows whatever enters it, which against a stealthed opener means the Rogue is slowed as he arrives rather than after he has already landed his stun." },
-        { "spec": "mage/frost", "spell": "Ice Barrier", "note": "Up before the match starts and re-applied whenever it lapses. It is not a cooldown to save — an absorb that is not on the Mage when the Rogue opens is an absorb that was never used." },
-        { "spec": "priest/discipline", "spell": "Power Word: Shield", "note": "On the Mage, pre-emptively. Between this and the Barrier the opener has to chew through two absorbs before it is doing real damage, and that is most of the time your team needs." },
-        { "spec": "hunter/marksmanship", "spell": "Concussive Shot", "note": "Free, short cooldown, and worth pressing the instant the Rogue is visible at all. Nothing in this section is being saved." }
-      ],
-      "row": 3
+        {
+          "spec": "hunter/marksmanship",
+          "spell": "Intimidation",
+          "note": "40s stun. Instant — this is what buys the trap."
+        },
+        {
+          "spec": "hunter/marksmanship",
+          "spell": "Freezing Trap",
+          "note": "25s. On a second target while the stun holds."
+        },
+        {
+          "spec": "mage/frost",
+          "spell": "Polymorph",
+          "note": "Now it lands, because nobody is free to stop it."
+        }
+      ]
     },
     {
       "kind": "sequence",
-      "title": "The opener lands anyway — breaking it",
-      "body": "Assume the Sap and the stun both land. This is the sequence that turns their best window into a failed one, and the ordering matters because two of these share a diminishing-returns category with each other.",
+      "title": "The go",
       "steps": [
-        { "spec": "mage/frost", "spell": "Ring of Frost", "note": "On your own position, not theirs. It catches the Rogue standing on your Priest and the Hunter's pet with him, and it does not require the Mage to be free to aim anything precisely." },
-        { "spec": "priest/discipline", "spell": "Psychic Scream", "note": "The reactive break, and the reason the Priest is not the one who dies here. Different category from the Ring, so it lands clean after it." },
-        { "spec": "hunter/marksmanship", "spell": "Intimidation", "note": "The pet's stun, which means it is available while the Hunter himself is doing something else. On the Rogue, and it is a fresh category again." },
-        { "spec": "priest/discipline", "spell": "Pain Suppression", "note": "On whoever is actually being killed. Two charges, so spending one here is not the end of the plan — and a Discipline Priest who saves both of them until it is too late has wasted more than one who spends one early." }
-      ],
-      "row": 4
-    },
-    {
-      "kind": "sequence",
-      "title": "The go: convert the failed opener immediately",
-      "body": "The trigger is the Rogue having spent Shadowstep and his stun and being stuck in the middle of your team with a trap under him. This is the window and it will not be offered twice.",
-      "steps": [
-        { "spec": "mage/frost", "spell": "Frost Nova", "note": "Holds him where he already is. Roots are their own category, so this costs nothing against the chain above." },
-        { "spec": "hunter/marksmanship", "spell": "Trueshot", "note": "The Hunter's real cooldown, and the comp's main source of burst. It wants a target that cannot move, which is exactly what the Nova just produced." },
-        { "spec": "priest/discipline", "spell": "Power Infusion", "note": "On the Hunter. Talented it buffs the Priest as well as the target, so there is no cost to choosing him over herself." },
-        { "spec": "mage/frost", "spell": "Frozen Orb", "note": "Into a stationary target, and it keeps applying slows after the Nova breaks." },
-        { "spec": "priest/discipline", "spell": "Mindgames", "note": "Lands on the Rogue while the Hunter's damage is already in flight — it punishes the healing their Priest is about to do rather than adding to the raw total." }
-      ],
-      "row": 5
-    },
-    {
-      "kind": "sequence",
-      "title": "Between goes: denying their second attempt",
-      "body": "A Rogue who fails an opener will try again from stealth. The whole middle of the match is about making the second attempt worse than the first, and about not being where the Hunter wants you.",
-      "steps": [
-        { "spec": "hunter/marksmanship", "spell": "Tar Trap", "note": "Re-placed as soon as it is back, and again on your own casters rather than on a target. This is the single most repeatable thing in the comp." },
-        { "spec": "mage/frost", "spell": "Polymorph", "note": "On the Hunter, not the Rogue — a stealthed Rogue cannot be polymorphed, and a Hunter who is sheeped is a Hunter not covering his partner's re-entry. Breaks on damage, so it is cast when your own damage is off him." },
-        { "spec": "priest/discipline", "spell": "Fade", "note": "Cheap, frequent, and it sheds the Hunter's pet as well as threat from anything else. It is listed here because Discipline players routinely forget it exists." },
-        { "spec": "mage/frost", "spell": "Blink", "note": "Spent to break a re-open rather than saved for a stun. The Mage's position is the comp's position; a Blink held for a perfect moment is usually a Blink held until the Mage is dead." },
-        { "spec": "hunter/marksmanship", "spell": "Camouflage", "note": "The Hunter's own reset. It is a defensive here, not an ambush tool — breaking line of sight against a Rogue who is re-approaching costs him the setup he just spent." }
-      ],
-      "row": 6
+        {
+          "spec": "hunter/marksmanship",
+          "spell": "Trueshot",
+          "note": "90s. The slowest term; the cadence is this."
+        },
+        {
+          "spec": "mage/frost",
+          "spell": "Frozen Orb",
+          "note": "60s. Every second Trueshot, aligned not scattered."
+        },
+        {
+          "spec": "hunter/marksmanship",
+          "spell": "Volley",
+          "note": "45s. The filler between full goes."
+        },
+        {
+          "spec": "priest/discipline",
+          "spell": "Power Infusion",
+          "note": "On the Hunter, inside Trueshot."
+        }
+      ]
     },
     {
       "kind": "defensives",
-      "title": "What the Rogue answers with",
-      "opponent": "rogue/assassination",
+      "title": "What their Priest answers with",
       "steps": [
-        { "spec": "rogue/assassination", "spell": "Cloak of Shadows", "note": "Against a Frost Mage and a Discipline Priest this removes almost everything you do, including the control. This is the answer that beats the plan above, and the only real response is to make the attempt when it is down." },
-        { "spec": "rogue/assassination", "spell": "Evasion", "note": "Physical mitigation, which mostly answers the Hunter and does nothing about the Mage. Between this and Cloak he has a separate answer for each half of your comp — which is the real argument against him as a target and is worth weighing against the reach argument above." },
-        { "spec": "rogue/assassination", "spell": "Smoke Bomb", "note": "Breaks line of sight for everyone in it. Dropped on his own healer it can end your go outright, and it is the piece that most often turns a won window into nothing." },
-        { "spec": "rogue/assassination", "spell": "Crimson Vial", "note": "Cheap, frequent, ignorable on its own — but it is what lets him survive the chip damage that would otherwise force Cloak early." }
-      ],
-      "row": 7
+        {
+          "spec": "priest/discipline",
+          "spell": "Pain Suppression",
+          "note": "180s, 8s, 2 charges. Expect it twice in a game."
+        },
+        {
+          "spec": "priest/discipline",
+          "spell": "Desperate Prayer",
+          "note": "90s. Back every third go."
+        },
+        {
+          "spec": "priest/discipline",
+          "spell": "Fade",
+          "note": "20s. Constant, so it is not a real forcing target."
+        }
+      ]
     },
     {
       "kind": "defensives",
-      "title": "What the Hunter and their Priest do to your go",
-      "opponent": "hunter/beast-mastery",
+      "title": "What reaches you first",
       "steps": [
-        { "spec": "hunter/beast-mastery", "spell": "Roar of Sacrifice", "note": "Goes on the Rogue, and it is the cheapest way for them to blunt your entire window. Assume it is available on every attempt." },
-        { "spec": "hunter/beast-mastery", "spell": "Aspect of the Turtle", "note": "Total for its duration and it is on the Hunter, not the target — so it does not save the Rogue. It does mean a swap onto the Hunter mid-go achieves nothing." },
-        { "spec": "hunter/beast-mastery", "spell": "Master's Call", "note": "Answers your Nova and your traps, from range, on an ally. This is why the go section opens with the Nova rather than relying on it — the root is a trigger, not a lock." },
-        { "spec": "hunter/beast-mastery", "spell": "Intimidation", "note": "Their pet stun, mirroring yours. It is the most likely interruption to the Hunter's own Trueshot window and it costs them very little." }
-      ],
-      "row": 8
-    },
-    {
-      "kind": "text",
-      "title": "Cadence: everything that matters is cheap, and that is unusual",
-      "body": "Look at what this plan actually depends on: traps, Concussive Shot, Frost Nova, Ice Barrier, Power Word: Shield, Fade, Intimidation. Almost all of it is on a short cooldown or none at all, and all of it is defensive or positional.\n\nThe long tier is small — Trueshot, Ring of Frost, Pain Suppression, Cloak on their side. That shape has a specific consequence: this comp does not have many goes, but it can refuse many openers. Against a Thug Cleave, refusing is worth more.\n\nSo the cadence to watch is not yours. It is Cloak of Shadows, which is long, and Roar of Sacrifice, which is not. A go into a live Cloak achieves nothing at all; a go into a Roar of Sacrifice achieves perhaps half. The first is a reason to wait, the second is not.\n\nRing of Frost is the one piece of your own timing that genuinely matters, and the mistake is spending it offensively. It is placed on your own casters as an answer to an opener far more often than it is thrown at an enemy, and a Ring spent hunting a kill is a Ring that is not there for the re-open ninety seconds later.",
-      "row": 9
-    },
-    {
-      "kind": "text",
-      "title": "Where this is guessing",
-      "body": "1. That the Rogue is the right target. The argument is that he must approach and the others need not, which is sound. The counter-argument is in his own defensives section — Cloak answers the Mage and the Priest, Evasion answers the Hunter, and he has a specific tool for each half of the comp. Those two arguments are not weighed against each other here, because nothing available can weigh them.\n\n2. Trap placement. Putting traps under your own casters rather than throwing them at targets is stated confidently and is not how most Hunters play. It follows from the comp's shape, but it is inference, not observation.\n\n3. The whole 'first fifteen seconds' framing. It is asserted in the opening section and never tested. A real Thug Cleave may well open, fail, and simply reset into a better attempt two minutes later without ever being punished for it — in which case the go section is describing a window that does not reliably exist.\n\n4. Whether a Discipline Priest can actually survive the opener with two absorbs and a Scream. The pre-opener section assumes she can. Against a Rogue with full cooldowns and a Hunter already in position, she may not, and the entire plan is downstream of that assumption.\n\n5. Smoke Bomb. Listed as the thing that most often ruins a won window and then given no answer. There is no counter here because this plan does not know one, and that is a real hole rather than an omission.",
-      "row": 10
+        {
+          "spec": "rogue/assassination",
+          "spell": "Garrote",
+          "note": "6s silence. Your Mage and Priest both cast; he knows."
+        },
+        {
+          "spec": "rogue/assassination",
+          "spell": "Blind",
+          "note": "120s. It arrives during your go, not before it."
+        },
+        {
+          "spec": "hunter/beast-mastery",
+          "spell": "Freezing Trap",
+          "note": "25s. The same plan you are running, back at you."
+        }
+      ]
     }
   ]
 }

@@ -1,85 +1,126 @@
 {
   "slug": "rmp-vs-tsg",
   "title": "RMP vs TSG",
-  "summary": "Sub Rogue / Frost Mage / Disc into Arms, Unholy and Resto Druid. Kill the Warrior through a Sap opener, and treat the Druid's Cyclone as the thing that actually beats you.",
-  "team": ["rogue/subtlety", "mage/frost", "priest/discipline"],
-  "enemy": ["warrior/arms", "deathknight/unholy", "druid/restoration"],
+  "summary": "Warrior dies: eight answers, none of them magic-immune. Cyclone on your Priest is what beats you — he has no kick and no escape.",
+  "team": [
+    "rogue/subtlety",
+    "mage/frost",
+    "priest/discipline"
+  ],
+  "enemy": [
+    "warrior/arms",
+    "deathknight/unholy",
+    "druid/restoration"
+  ],
   "sections": [
     {
       "kind": "text",
-      "title": "Kill the Warrior, and expect to need two goes",
-      "body": "Answer counts: the Warrior holds five (Die by the Sword, Rallying Cry, Berserker Shout, Spell Reflection, trinket). Rallying Cry is the one these guides keep leaving out, and it is the one that most changes what a failed go costs you — it is party-wide, so it does not save the Warrior, it blunts the entire attempt. The Death Knight holds six, two of them school-specific against exactly the damage this comp does — Anti-Magic Shell and Anti-Magic Zone are both answers to a Mage and a Priest, and Lichborne makes him immune to the fear.\n\nSo the Warrior is the target on count, and by a wider margin than usual against a caster comp: half the DK's kit is built to ignore you.\n\nThe argument against, and it is real: the Warrior has a charge, a leap and a knockback, so he is the harder of the two to hold still. If your Rogue cannot stay on him you are choosing a target you cannot actually pin, which is the trade-off this plan does not resolve."
+      "title": "Warrior dies, not the Death Knight",
+      "body": "Counts: Warrior 8, DK 7, Druid 5. The Druid is thinnest but is the hardest to hold. The DK's seven are the misleading ones — Anti-Magic Shell (40s), Anti-Magic Zone and Lichborne blank most of what a Mage and a Priest do, so half his kit is built for you. The Warrior's eight are generic. Rallying Cry is party-wide — it blunts the whole attempt rather than saving him, so price it against the go."
     },
     {
       "kind": "sequence",
-      "title": "Opener — Sap, then set up on the Warrior",
+      "title": "Opener — nothing is cast from nothing",
       "steps": [
-        { "spec": "rogue/subtlety", "spell": "Sap", "note": "On the Druid. It is free, so the opener costs nothing before it starts." },
-        { "spec": "mage/frost", "spell": "Polymorph", "note": "Also free. Same category as the Sap, so it lands halved — but it buys the Rogue the reposition, and nothing else is spent." },
-        { "spec": "rogue/subtlety", "spell": "Cheap Shot", "note": "On the Warrior. Twelve seconds, the cheapest real stun in the game and the reason this opener repeats." },
-        { "spec": "rogue/subtlety", "spell": "Kidney Shot", "note": "Same category as Cheap Shot, so it is halved. Worth it here only because the go is already committed — otherwise hold it." }
+        {
+          "spec": "rogue/subtlety",
+          "spell": "Sap",
+          "note": "On the Druid. No cooldown, so the go starts before it costs anything."
+        },
+        {
+          "spec": "mage/frost",
+          "spell": "Polymorph",
+          "note": "Re-CC the Druid as Sap breaks. Same DR, so it is the short one."
+        },
+        {
+          "spec": "rogue/subtlety",
+          "spell": "Cheap Shot",
+          "note": "Opens on the Warrior the global the Poly lands."
+        },
+        {
+          "spec": "priest/discipline",
+          "spell": "Power Infusion",
+          "note": "On the Mage. 2 min — only in every second go."
+        }
       ]
     },
     {
       "kind": "sequence",
-      "title": "Keep the healer out — the real chain",
+      "title": "The go — Kidney is the window, not the opener",
       "steps": [
-        { "spec": "priest/discipline", "spell": "Psychic Scream", "note": "Fresh category after the Sap and Polymorph, so this is the first control on the Druid at full duration." },
-        { "spec": "mage/frost", "spell": "Ring of Frost", "note": "Incapacitate again and therefore diminished — the argument for it is that it needs no target and covers the reposition." },
-        { "spec": "rogue/subtlety", "spell": "Blind", "note": "GUESS: this is a two-minute cooldown and it is the last thing in the chain, so it lands diminished. Holding it as a peel on the Warrior may be worth more than three seconds here." }
-      ]
-    },
-    {
-      "kind": "sequence",
-      "title": "Shut the Death Knight off the go",
-      "steps": [
-        { "spec": "rogue/subtlety", "spell": "Gouge", "note": "Cheap, and it costs him the global he would spend on Anti-Magic Zone." },
-        { "spec": "mage/frost", "spell": "Frost Nova", "note": "Root rather than a stun — he still acts, but he is not on your Mage, and it shares no category with anything above." }
-      ]
-    },
-    {
-      "kind": "sequence",
-      "title": "The go",
-      "steps": [
-        { "spec": "priest/discipline", "spell": "Power Infusion", "note": "On the Mage. Two minutes, so it is only in every second attempt." },
-        { "spec": "mage/frost", "spell": "Frozen Orb" },
-        { "spec": "mage/frost", "spell": "Ray of Frost", "note": "Channelled, so it needs the Warrior actually held rather than merely slowed." },
-        { "spec": "rogue/subtlety", "spell": "Shadow Blades" },
-        { "spec": "rogue/subtlety", "spell": "Tricks of the Trade", "note": "On the Mage, before the damage rather than during it." },
-        { "spec": "rogue/subtlety", "spell": "Secret Technique" }
+        {
+          "spec": "rogue/subtlety",
+          "spell": "Shadow Blades",
+          "note": "90s. This is the term the cadence is built on."
+        },
+        {
+          "spec": "rogue/subtlety",
+          "spell": "Kidney Shot",
+          "note": "Fresh stun DR after Cheap Shot, so half duration. Accept it."
+        },
+        {
+          "spec": "mage/frost",
+          "spell": "Frozen Orb",
+          "note": "Lands inside the Kidney, not before it."
+        },
+        {
+          "spec": "rogue/subtlety",
+          "spell": "Dismantle",
+          "note": "Only if he still holds Die by the Sword — it is a parry buff."
+        }
       ]
     },
     {
       "kind": "defensives",
-      "title": "What the Warrior answers with",
-      "opponent": "warrior/arms",
+      "title": "What the Warrior answers with — all eight",
       "steps": [
-        { "spec": "warrior/arms", "spell": "Spell Reflection", "note": "Short enough to be back every go, and it eats a Polymorph or a Blast. Do not open into it." },
-        { "spec": "warrior/arms", "spell": "Die by the Sword", "note": "The one that actually costs him something." },
-        { "spec": "warrior/arms", "spell": "Berserker Shout", "note": "Answers the Scream for free, which is why the Scream goes to the Druid." },
-        { "spec": "warrior/arms", "spell": "Rallying Cry", "note": "Party-wide, so it blunts the whole go rather than saving one player." }
+        {
+          "spec": "warrior/arms",
+          "spell": "Die by the Sword",
+          "note": "30% all damage for 8s. Back every second go."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Spell Reflection",
+          "note": "25s, so up every go. Do not open a cast into it."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Rallying Cry",
+          "note": "Party-wide. Blunts the go, does not save him."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Berserker Shout",
+          "note": "Breaks fear and blocks it for 6s. Not a damage answer."
+        }
       ]
     },
     {
       "kind": "defensives",
-      "title": "What the Death Knight brings to the fight",
-      "opponent": "deathknight/unholy",
+      "title": "What answers your Priest",
       "steps": [
-        { "spec": "deathknight/unholy", "spell": "Anti-Magic Shell", "note": "Back inside one cadence, and it answers most of what a Mage and a Priest do." },
-        { "spec": "deathknight/unholy", "spell": "Anti-Magic Zone", "note": "Party-wide magic mitigation — the reason a caster go into a stacked TSG can achieve nothing." },
-        { "spec": "deathknight/unholy", "spell": "Lichborne", "note": "Fear immunity. Your Scream and your Blind both stop working on him while it is up." },
-        { "spec": "deathknight/unholy", "spell": "Strangulate", "note": "Not a defensive: it is a silence, and it is what stops the Priest saving the kill target." }
+        {
+          "spec": "druid/restoration",
+          "spell": "Cyclone",
+          "note": "No cooldown. Your Priest has no kick and no escape."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Storm Bolt",
+          "note": "30s ranged stun. It arrives every cadence."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Strangulate",
+          "note": "45s silence. Kills the Pain Suppression, not the heal."
+        }
       ]
-    },
-    {
-      "kind": "text",
-      "title": "Cadence: everything lands on thirty, except what matters most",
-      "body": "Cheap Shot at twelve seconds is out on its own and effectively always available. Then the thirty-second tier: Kidney Shot, Psychic Scream, Gouge, Tricks of the Trade, Flurry, Ice Barrier, Crimson Vial.\n\nThe real goes are gated much higher — Shadow Blades and Power Infusion sit far above that tier, so the comp gets many small attempts and few genuine ones. That is the shape of the matchup: repeated cheap pressure to strip their answers, with the committed attempt saved for when the Warrior has nothing.\n\nBlind and Ice Block are both two-minute answers, and the side that spends theirs first usually loses the round."
     },
     {
       "kind": "text",
       "title": "Where this is guessing",
-      "body": "1. The Blind. This plan spends it in the healer chain where it lands diminished, which is probably wrong — as a peel on the Warrior at full duration it may force the trinket without a stun. I could not settle it.\n\n2. Cyclone is not in any section above, and it is the ability most likely to beat this comp. Nothing here says what to do about a Resto Druid cycloning your Mage mid-go, because I do not know whether the answer is to pre-empt it with a silence or to eat it and go again.\n\n3. Anti-Magic Zone against a two-caster comp may make the whole plan wrong rather than merely slower — perhaps the Warrior is not the target at all when it is up.\n\n4. Whether the opener should Sap the Druid or the Death Knight. This plan assumes the healer, and against a DK who can Lichborne out of everything else, that assumption is not obvious."
+      "body": "The plan assumes your Rogue can hold the Warrior, who has Charge on 17s and Heroic Leap on 30s. If he cannot, you have chosen a target you cannot pin and the DK's magic immunities make the swap worse than the original. That trade is not resolved here."
     }
   ]
 }

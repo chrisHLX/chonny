@@ -1,167 +1,111 @@
 {
   "slug": "ww-dev-vs-rmp",
   "title": "Windwalker / Devastation / Mistweaver vs RMP",
-  "summary": "A Turbo Cleave plan for Windwalker/Devastation/Mistweaver against Subtlety/Frost/Discipline: hold the Mage on Stun-only control while the Rogue and Priest are locked off the fight, and land the team's damage cooldowns together instead of as they come up.",
-  "team": ["monk/windwalker", "evoker/devastation", "monk/mistweaver"],
-  "enemy": ["rogue/subtlety", "mage/frost", "priest/discipline"],
+  "summary": "Your Evoker holds three answers and no escape but Hover. Kill the Mage inside one window or you do not get another.",
+  "team": [
+    "monk/windwalker",
+    "evoker/devastation",
+    "monk/mistweaver"
+  ],
+  "enemy": [
+    "rogue/subtlety",
+    "mage/frost",
+    "priest/discipline"
+  ],
   "sections": [
     {
       "kind": "text",
-      "title": "Choosing the Kill Target",
-      "body": "The Mage carries four defensive cooldowns in this matchup: Gladiator's Medallion, Greater Invisibility, Ice Barrier, Ice Block. The Rogue carries six: Cloak of Shadows, Crimson Vial, Evasion, Feint, Gladiator's Medallion, Smoke Bomb. By raw answer count alone, the Mage is the easier kill.\n\nThe Rogue's extra pieces aren't redundant, though — they're split by damage type. Cloak of Shadows answers the Evoker's magic damage specifically; Evasion answers the Windwalker's physical damage specifically. Training the Rogue down doesn't remove his outs cleanly, because he holds a dedicated counter for each half of this comp's damage. The Mage has no such split: Ice Barrier and Greater Invisibility are general-purpose, and Ice Block is the only true full stop — a single, all-or-nothing answer rather than a layered kit.\n\nThe trade-off: the Mage is more mobile once engaged. Frost Nova and Ice Nova are self-centered roots he can use to peel the Windwalker off him mid-fight, so expect the melee half of this plan to get kited at some point. The Evoker's and Mistweaver's damage has to be what keeps landing through that gap.\n\nKill target: the Mage. Fewer answers, no per-damage-type defense, at the cost of having to fight through a root or two to stay on him."
+      "title": "One window, on the Mage",
+      "body": "Counts, theirs: Rogue 6, Priest 5, Mage 4. Yours: Mistweaver 5, Windwalker 4, Evoker 3. Your Evoker is the thinnest player in the game and a Sub Rogue is built to reach him. The Mage is their thinnest and two of his four only reset the go. This comp gets a very narrow damage window, so everything has to be in position before it opens."
     },
     {
       "kind": "sequence",
-      "title": "Lock the Healer",
-      "steps": [
-        {
-          "spec": "evoker/devastation",
-          "spell": "Sleep Walk",
-          "note": "No cooldown, so this is the free open on the Priest — nothing lost if it's dispelled or resisted, and nothing held back from the actual burst plan."
-        },
-        {
-          "spec": "monk/mistweaver",
-          "spell": "Paralysis",
-          "note": "Different category from Sleep Walk, so it extends the lock instead of diminishing it. If it catches the Priest mid-channel on Ultimate Penitence, that's worth double — the channel is denied and the Mage go opens in the same action. Leave Song of Chi-Ji out of this chain regardless; stacked this close it lands at reduced value, and it's worth more spent whole later or held as a peel."
-        }
-      ]
-    },
-    {
-      "kind": "sequence",
-      "title": "Cross-CC the Rogue",
+      "title": "Before the go — the setup is the plan",
       "steps": [
         {
           "spec": "monk/windwalker",
-          "spell": "Grapple Weapon",
-          "note": "Disarms the Rogue specifically, and it's a different category from anything spent on the Mage or the Priest, so it costs nothing in DR. Most of what he'd use to interrupt or peel is weapon-dependent."
+          "spell": "Paralysis",
+          "note": "30s. On the Priest, before any damage starts."
         },
         {
           "spec": "monk/mistweaver",
-          "spell": "Paralysis",
-          "note": "The Mistweaver's own incapacitate, and a different category from the disarm above, so the two stack cleanly on one Rogue. An earlier version of this plan used Mighty Ox Kick here; it is a talent almost nobody takes, and a plan built on an ability real players do not have is not a plan."
+          "spell": "Song of Chi-Ji",
+          "note": "30s. Second category on the same target."
+        },
+        {
+          "spec": "evoker/devastation",
+          "spell": "Landslide",
+          "note": "90s root on the Mage so he cannot walk the window off."
         }
       ]
     },
     {
       "kind": "sequence",
-      "title": "Hold the Mage",
+      "title": "The go — narrow, so open it already stacked",
       "steps": [
-        {
-          "spec": "evoker/devastation",
-          "spell": "Terror of the Skies",
-          "note": "No cooldown and it's a Stun, so it's the safe opener against the break-on-damage rule — free to reapply for as long as the go runs."
-        },
         {
           "spec": "monk/windwalker",
           "spell": "Leg Sweep",
-          "note": "Hits everyone in range, not just the Mage — if the Rogue or Priest are standing close, this is a free second lock on the same global rather than a separate commitment. If they're spread out, it's just a single-target Stun."
+          "note": "50s. The stun the whole window sits inside."
+        },
+        {
+          "spec": "evoker/devastation",
+          "spell": "Deep Breath",
+          "note": "60s. Lands in the sweep, never before it."
         },
         {
           "spec": "monk/windwalker",
-          "spell": "Disable",
-          "note": "No cooldown — lay this the moment the stun chain runs dry. Do not expect it to hold him: a Frost Mage carries Blink, Ice Block and Alter Time and gets out of this chain more often than not. The point of the chain is to make him spend one of those, not to kill him inside it."
-        }
-      ]
-    },
-    {
-      "kind": "sequence",
-      "title": "The Go",
-      "steps": [
-        {
-          "spec": "monk/windwalker",
-          "spell": "Fists of Fury",
-          "note": "Channelled — start it right as the Stun lands so none of it is wasted on a target that can still move."
+          "spell": "Zenith",
+          "note": "70s. Your slowest term — the cadence is this, not Leg Sweep."
         },
         {
           "spec": "monk/windwalker",
           "spell": "Strike of the Windlord",
-          "note": "Lands on the same cadence as the Evoker's three cooldowns below — this is the actual go, not five abilities used separately as they come up."
-        },
-        {
-          "spec": "evoker/devastation",
-          "spell": "Fire Breath",
-          "note": "Same cadence as Strike of the Windlord and Eternity Surge — time it with them, not on its own."
-        },
-        {
-          "spec": "evoker/devastation",
-          "spell": "Eternity Surge",
-          "note": "Same cadence again — the point of this comp's burst is landing all three together, not spread across separate windows."
-        },
-        {
-          "spec": "evoker/devastation",
-          "spell": "Emerald Blossom",
-          "note": "Third piece on the same cycle as Fire Breath and Eternity Surge."
-        },
-        {
-          "spec": "monk/windwalker",
-          "spell": "Rising Sun Kick",
-          "note": "Melee follow-up on the same cadence, while the stun chain from the previous section is still covering the target. Whirling Dragon Punch is NOT the follow-up here — it shares a choice node with Strike of the Windlord above, so a Windwalker has one of them, never both."
+          "note": "30s. The filler term."
         }
       ]
     },
     {
-      "kind": "text",
-      "title": "Cadence",
-      "body": "Strike of the Windlord, Whirling Dragon Punch, Fire Breath, Eternity Surge, and Emerald Blossom all return on the same tier — the 30-second tier. That's the actual go rate for this comp: land all five together every time that tier comes back around, rather than using each one the moment it's individually available.\n\nFists of Fury returns slightly faster than that tier, so it drifts a beat early most goes — use it as soon as it's up rather than holding it to sync exactly; the gap is small enough not to matter.\n\nDeep Breath returns on twice that tier, so it reinforces every other go rather than every go — that's the amplified window, and it's worth timing the Priest lock and Rogue cross-CC to land on that specific cycle rather than the smaller ones either side of it. Touch of Karma and Celestial Conduit both return on three times the base tier, reinforcing further on top of that — the goes where all of it lines up are rare and worth banking control for, not spending early.\n\nZenith doesn't divide evenly into any of this and will drift in and out of the cadence on its own schedule — treat it as a bonus when it's up, not something to plan a go around.\n\nBeing off this tier costs more than the missed go: a Stun chain or CC lock spent out of sync with the team's damage doesn't come back in sync either, so the next go is desynchronized until it's deliberately realigned."
-    },
-    {
       "kind": "defensives",
-      "title": "What the Mage Answers With",
-      "opponent": "mage/frost",
+      "title": "What the Mage answers with",
       "steps": [
         {
           "spec": "mage/frost",
           "spell": "Ice Block",
-          "note": "Full stop, on both damage and control. If it lands mid-chain, hold anything not already committed — the Mage is untouchable until it drops, and there's nothing left to spend into it."
-        },
-        {
-          "spec": "mage/frost",
-          "spell": "Ice Barrier",
-          "note": "A shield, not an escape — the likely first answer to the opening Stun-into-burst, cheaper to use than Ice Block and doesn't need the Mage to survive on its own."
+          "note": "120s. It ends the window rather than shortening it."
         },
         {
           "spec": "mage/frost",
           "spell": "Greater Invisibility",
-          "note": "Doesn't break the Stun chain by itself, but drops threat and cuts incoming damage — if the Mage seems to fall out of target focus mid-go, this is why, not a trinket."
+          "note": "120s. He resets and you have spent Zenith."
         },
         {
           "spec": "mage/frost",
-          "spell": "Gladiator's Medallion",
-          "note": "Breaks whichever control is currently active. If it's used on the opening Stun, the Priest and Rogue locks from the earlier sections are still live — re-time onto the follow-up Stun rather than abandoning the go."
+          "spell": "Frost Nova",
+          "note": "25s. It is the answer to your melee, not to damage."
         }
       ]
     },
     {
       "kind": "defensives",
-      "title": "What the Rogue Answers With",
-      "opponent": "rogue/subtlety",
+      "title": "What reaches your Evoker",
       "steps": [
         {
           "spec": "rogue/subtlety",
-          "spell": "Smoke Bomb",
-          "note": "The real threat to this plan — a zone, not a single-target answer. It can pull control off whoever's standing in it, including the Mage. If it comes out while the kill-target chain is live, that's the hold condition: stop committing until it's clear whether the Mage is still lockable."
+          "spell": "Shadowstep",
+          "note": "30s. He is on the Evoker whenever he wants to be."
         },
         {
           "spec": "rogue/subtlety",
-          "spell": "Cloak of Shadows",
-          "note": "His own answer to any magic damage or magic control that clips him — doesn't interact with the physical cross-CC from the earlier section."
+          "spell": "Cheap Shot",
+          "note": "12s. Opens on your thinnest player for free."
         },
         {
-          "spec": "rogue/subtlety",
-          "spell": "Evasion",
-          "note": "Answers the Windwalker specifically, same as Cloak answers the Evoker on the Mage's side — the mirror of that split, just on his own defense instead of an ally's."
-        },
-        {
-          "spec": "rogue/subtlety",
-          "spell": "Crimson Vial",
-          "note": "A self-heal, not an escape — doesn't change the CC plan, just adds health the go has to out-damage if he's the one being pressured."
+          "spec": "mage/frost",
+          "spell": "Polymorph",
+          "note": "No cooldown, and your Evoker has three answers total."
         }
       ]
-    },
-    {
-      "kind": "text",
-      "title": "Where We're Guessing",
-      "body": "This is where a real player should correct it, and where the plan is weakest:\n\nPositioning is assumed, not verified. Leg Sweep's value in the Hold section depends on the Rogue or Priest standing close enough to the Mage to get caught by it. Against a team that spreads out on purpose, that free second lock disappears and Leg Sweep is just a single-target Stun with nothing extra to show for it.\n\nTerror of the Skies is treated as a genuinely free, repeatable Stun because the kit file shows no cooldown on it. If that's actually gated by a resource rather than truly free, the \"hold the Mage on Stun-only control\" plan runs out of pieces sooner than this guide assumes, and Leg Sweep's naturally slower return becomes the real bottleneck.\n\nThe kill-target choice assumes Ice Block is a worse answer, over a whole fight, than the Rogue's split Cloak/Evasion defense. A player who's actually run this matchup might find the Rogue dies just as fast in practice, if Smoke Bomb gets burned early and doesn't come back in time to matter — that would flip the target choice entirely.\n\nThe cadence section assumes the Evoker plays close enough to the Mage, or within Leg Sweep's radius, for the same-global argument in the Hold section to matter for real coordination. If the Evoker sits at range for the whole fight, that specific claim is weaker than stated here, even though the 30-second cadence itself still holds."
     }
   ]
 }

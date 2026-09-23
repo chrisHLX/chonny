@@ -1,163 +1,111 @@
 {
   "slug": "havoc-ele-vs-tsg",
   "title": "Havoc / Elemental / Resto Druid vs TSG",
-  "summary": "A plan built around training the Warrior for his shallow defensive pool, while an Incapacitate cross-CC keeps the Death Knight from ever getting a free global to disrupt the go.",
-  "team": ["demonhunter/havoc", "shaman/elemental", "druid/restoration"],
-  "enemy": ["warrior/arms", "deathknight/unholy", "druid/restoration"],
+  "summary": "Do not pick a target at the gates. Kite, purge, and swap between the Warrior and the DK until one of them is dry.",
+  "team": [
+    "demonhunter/havoc",
+    "shaman/elemental",
+    "druid/restoration"
+  ],
+  "enemy": [
+    "warrior/arms",
+    "deathknight/unholy",
+    "druid/restoration"
+  ],
   "sections": [
     {
       "kind": "text",
-      "title": "Kill target: the Warrior",
-      "body": "The Warrior holds five defensive cooldowns — Die by the Sword, Rallying Cry, Spell Reflection, Berserker Shout, and Gladiator's Medallion. The Death Knight holds six — Anti-Magic Shell, Anti-Magic Zone, Death Pact, Icebound Fortitude, Lichborne, and Gladiator's Medallion.\n\nOn count alone that is nearly a tie, and the count is not why the Warrior is the target. The reason is what the Knight's answers are made of. Anti-Magic Shell and Anti-Magic Zone are magic mitigation, and this comp is a Demon Hunter, an Elemental Shaman and a Druid — very close to pure magic damage. Against this team specifically, two of his six answers are not merely good, they are close to total, and one of them covers his whole party. Training him means committing into the exact defensive his class is built around.\n\nThe Warrior has nothing of the kind. Put a stun on him and he has to trinket it; the Knight in the same spot has Icebound Fortitude and simply rides it out. That asymmetry — one of them must spend the once-a-match answer, the other has a cheap one — is the actual argument, and it survives the count being close.\n\nOne correction to an earlier version of this plan, which claimed the Warrior has no disengage. He has Heroic Leap, and it goes wherever he points it, away included. He is not pinned because he is melee; he is pinned only for as long as his mobility is on cooldown.\n\nThe trade-off is the Knight's depth — he's tankier and carries more disruption than the Warrior does, so he doesn't get ignored either. He gets cross-CC instead of a kill attempt; see the next section."
+      "title": "This comp kites and swaps; it does not train",
+      "body": "Counts: Warrior 8, DK 7, Druid 5. Nobody on their side is thin, so a named target is a target you cannot finish. Both your DPS kite well and both have AoE burst that lines up with AoE control. Their Resto Druid takes real time to heal two targets at once, and your Shaman can purge. Swap between the Warrior and the DK until one list is empty."
     },
     {
       "kind": "sequence",
-      "title": "Lock the healer — open with the instant, not the cast",
-      "body": "The ordering here was wrong in the first version, and the correction matters more than it looks. Hex is a cast. Against a healer who is watching for it, a cast is a thing that gets kicked, LoS'd or simply walked out of, and every second it takes is a second the Demon Hunter's stun is already ticking away on the Warrior.\n\nMaim is instant. Landing it on the same global as the stun on the Warrior means both enemies are held at the same moment rather than in sequence, and that is the window the burst actually goes into — Chain Lightning splashing across two stationary targets standing together, rather than single-target damage into one held player while the healer is still free.\n\nSo the Druid's Maim is the opener and Hex is what extends it, not the other way round.",
+      "title": "Kite — the default state, not a retreat",
       "steps": [
         {
-          "spec": "druid/restoration",
-          "spell": "Maim",
-          "note": "The opener. Instant, so it lands on the same global as the Demon Hunter's stun rather than after it. This is what makes the burst a real window instead of a sequence of single locks."
-        },
-        {
           "spec": "shaman/elemental",
-          "spell": "Chain Lightning",
-          "note": "Into the two held targets, not one. The whole reason for landing the control simultaneously is that this splashes — a stun on the Warrior alone is worth far less than a stun on the Warrior while the healer is also sitting still next to him."
-        },
-        {
-          "spec": "shaman/elemental",
-          "spell": "Hex",
-          "note": "Cheap enough to reapply before it lapses, so it's the anchor on the healer rather than a one-off. Keeping the Druid locked also keeps Ironbark off the Warrior once we commit to him."
+          "spell": "Earthgrab Totem",
+          "note": "30s. The cheapest way to buy distance."
         },
         {
           "spec": "druid/restoration",
-          "spell": "Cyclone",
-          "note": "No cooldown, and since we're not putting damage on the healer it won't break early the way it would on a target we're actually trying to kill. Use it to bridge the gap between Hex applications, not instead of Hex."
+          "spell": "Ursol's Vortex",
+          "note": "60s. Denies the Warrior the re-engage."
+        },
+        {
+          "spec": "demonhunter/havoc",
+          "spell": "Darkness",
+          "note": "180s. Use it to reset, not to survive a go."
         }
       ]
     },
     {
       "kind": "sequence",
-      "title": "Cross-CC the Death Knight — and read whether they are stacked",
-      "body": "This section has two versions and which one is right is decided by where the enemy melee are standing, not by anything on a cooldown bar.\n\nIf the Warrior and the Death Knight are apart, it is Imprison on the Knight, single target, as below.\n\nIf they are stacked — which a TSG usually is, because both of them want to be on the same kill target — then Chaos Nova is worth more than Imprison, because it catches both on one global. The stronger line then is Chaos Nova into Capacitor Totem: two area stuns from two different players, back to back, on two enemies at once. The Totem is also the reason this is better than it first looks, because it means the Druid never has to walk into the middle to land his own control. A Resto Druid who exposes his position to a melee cleave is the most likely way this comp loses, and the totem does that job from range for him.",
+      "title": "The go — only when both their melee are stacked",
       "steps": [
         {
           "spec": "demonhunter/havoc",
           "spell": "Chaos Nova",
-          "note": "The stacked answer. Area stun, so it holds through the burst, and if the Warrior and the Knight are together it does the work of two separate commitments for one global."
+          "note": "45s. Only when they are stacked — it is the whole trigger."
         },
         {
           "spec": "shaman/elemental",
           "spell": "Capacitor Totem",
-          "note": "Straight after the Nova, and this is the piece that keeps the Druid safe. It is an area stun delivered from range by the Shaman, so nobody on your team has to step into the cleave to land control."
+          "note": "40s. Drop it into the Nova so the Druid stays hidden."
         },
-        {
-          "spec": "demonhunter/havoc",
-          "spell": "Imprison",
-          "note": "The unstacked answer instead. Lands as an Incapacitate, which keeps the Stun category clean for the Warrior chain. A free Knight gets a global to Strangulate the Shaman or Asphyxiate the Druid before any of it takes hold. The Hunt used to sit here as a follow-up for its root; it has been removed, because a 1.5-second root is not a follow-up to anything and no real player spends The Hunt that way."
-        }
-      ]
-    },
-    {
-      "kind": "sequence",
-      "title": "The go: stun-lock the Warrior",
-      "steps": [
         {
           "spec": "druid/restoration",
           "spell": "Maim",
-          "note": "The longest stun we have, so it opens the chain and does the anchoring rather than being held in reserve."
-        },
-        {
-          "spec": "demonhunter/havoc",
-          "spell": "Metamorphosis",
-          "note": "Pop this the moment the lock is on, not before — there's no reason to burn window time while the Warrior could still answer."
+          "note": "Instant, on their healer, the same global as the Nova."
         },
         {
           "spec": "shaman/elemental",
           "spell": "Ascendance",
-          "note": "Same global as Metamorphosis if it can be managed. Both sit on the same long cooldown tier — see the cadence section for why that matters."
-        },
-        {
-          "spec": "shaman/elemental",
-          "spell": "Capacitor Totem",
-          "note": "Extends the lock as Maim runs out. It shares the Stun category with Maim so it isn't landing at full value, but real coverage on a diminished stun still beats no coverage at all here."
-        },
-        {
-          "spec": "demonhunter/havoc",
-          "spell": "Chaos Nova",
-          "note": "Hold this rather than force it in — chained a third time into the same Stun category it's close to wasted, and it's worth more banked as a peel for our own healer. The one exception: if the Warrior is mid-Avatar or Bladestorm when this comes off cooldown, use it immediately — a stun that cuts his own amplified window pays for itself twice, whether or not it lines up with the rest of this chain."
-        }
-      ]
-    },
-    {
-      "kind": "text",
-      "title": "Cadence: the long tier gates the real go",
-      "body": "Metamorphosis and Ascendance are both on the same long cooldown — the only tier where our two biggest damage pieces actually line up. It's also where the Warrior's Die by the Sword and the Knight's Icebound Fortitude come back up, which means the first clean lock we land is more likely to eat one of those defensives than the kill.\n\nUse the faster tier in between to bait them out early instead of into the real go — Eye Beam and Ancestral Swiftness share a shorter cooldown, and Stormkeeper's mid-length cooldown lets it come up twice in the time it takes Metamorphosis and Ascendance to reset. If Die by the Sword or Icebound Fortitude gets spent answering that pressure, the next long-cooldown cycle is the one to actually commit the full chain into.\n\nMissing this alignment costs more than the attempt — it knocks Metamorphosis and Ascendance out of sync with each other, and getting them back onto the same cooldown means waiting out a full cycle again rather than just trying sooner."
-    },
-    {
-      "kind": "defensives",
-      "title": "What the Warrior answers with",
-      "opponent": "warrior/arms",
-      "steps": [
-        {
-          "spec": "warrior/arms",
-          "spell": "Gladiator's Medallion",
-          "note": "Breaks the stun-lock outright. Watch for it the instant the chain lands — if it's used here, don't follow up with Chaos Nova into a lock that's already gone."
-        },
-        {
-          "spec": "warrior/arms",
-          "spell": "Die by the Sword",
-          "note": "Blanket damage reduction, not a CC break — the lock still holds, but Metamorphosis and Ascendance land for much less. This is the specific answer the cadence plan is built to bait early."
-        },
-        {
-          "spec": "warrior/arms",
-          "spell": "Spell Reflection",
-          "note": "Reflects a single cast. Matters more against a hard-cast Shaman spell than against anything instant, including Ascendance itself."
-        },
-        {
-          "spec": "warrior/arms",
-          "spell": "Rallying Cry",
-          "note": "Party-wide temporary health, and the answer these guides kept forgetting. It does not save the Warrior — it blunts your entire go, on all three of them at once. If it comes out early in your window, the window is already worth less than it looks, and the right read is often to stop spending and reset rather than push into it."
-        },
-        {
-          "spec": "warrior/arms",
-          "spell": "Berserker Shout",
-          "note": "Rage and a CC-break aimed at fear-type effects, which this plan doesn't use — mostly relevant as a sign he's not fully out of tools even mid-chain."
+          "note": "120s. The slowest term you hold; this is the cadence."
         }
       ]
     },
     {
       "kind": "defensives",
       "title": "What the Death Knight answers with",
-      "opponent": "deathknight/unholy",
       "steps": [
         {
           "spec": "deathknight/unholy",
-          "spell": "Icebound Fortitude",
-          "note": "The one answer that could undo the whole cross-CC plan — if its immunity covers Incapacitate the way it covers Stun, Imprison does nothing the moment this is up. Not confirmed here; see the closing section."
-        },
-        {
-          "spec": "deathknight/unholy",
           "spell": "Anti-Magic Shell",
-          "note": "Blocks magic damage and effects. Relevant if the Shaman's burst is what's punishing him for being loose, not to the physical cross-CC itself."
+          "note": "40s, and your whole comp is magic. Back every go."
         },
         {
           "spec": "deathknight/unholy",
-          "spell": "Lichborne",
-          "note": "Fear immunity and a self-heal off it — we don't run Fear in this comp, so this mostly buys him sustain rather than an escape from the lock."
+          "spell": "Anti-Magic Zone",
+          "note": "180s. Party-wide — it blunts the go, not the target."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Icebound Fortitude",
+          "note": "120s, 30%, and it breaks stuns."
         }
       ]
     },
     {
-      "kind": "text",
-      "title": "The other plan: kite first, and take the go only when it is offered",
-      "body": "Everything above assumes you are the team making something happen. Against TSG this comp has a second mode, and a reader who has actually played it argues it is the primary one.\n\nLook at what the three of you hold rather than what you can set up. Ursol's Vortex, Earthgrab Totem, Cyclone, Typhoon and Darkness are all area control, and all of it works on two melee who have to stand next to you to do anything at all. A Warrior and a Death Knight with no target in reach are two players doing nothing. That is not a stall — against a melee cleave it is damage prevented at no cost.\n\nSo the shape of the match is: kite as the default, and treat the go as something their positioning hands you rather than something you build. The trigger is exactly the one the cross-CC section describes — both of them stacked, in range of one Chaos Nova. When that happens you have the whole window available at once, because you have not been spending it.\n\nThe second lever is the Shaman's Purge, and it is worth more here than the burst is. A Restoration Druid does not heal three people quickly; he heals them over time, and he does it by stacking buffs and HoTs that Purge removes. Pressuring both enemies in turn and purging what the Druid puts up to answer it drains him in a way a single committed go does not. Swap between the Warrior and the Knight until one of them is out of defensives, and let the kill be whoever that turns out to be — rather than deciding at the start that it is the Warrior.\n\nWhich plan is right is a genuine open question. The sections above are the committed version, and this is the patient one; both are coherent, and this guide does not know which wins more."
-    },
-    {
-      "kind": "text",
-      "title": "Where this is guessing",
-      "body": "Three things here aren't confirmed against real play, and any of them could reorder the plan.\n\nIcebound Fortitude's immunity is well-established for Stun — whether it also blocks the Incapacitate the Knight cross-CC opens with (Imprison) isn't confirmed here. If it does, swap the opener to The Hunt's root instead and treat Imprison as the follow-up rather than the first thing thrown at him.\n\nRake shows up twice in the kit data — one copy carries a stun, one doesn't, which usually means the stun only lands from stealth. That requires our Druid to be in Prowl, which isn't realistic while he's also playing healer through the rest of the fight. Treat Rake as unavailable for this plan rather than assume it's live.\n\nAnd whether the Warrior and the Knight actually line up their own big offensive cooldowns — Avatar or Bladestorm with Army of the Dead — is an open question, not something this plan assumes either way. If they do sync, a single well-timed stun on the Warrior during that window is worth more than usual; if they don't, that's a bonus rather than a dependency. Nothing here computes whether our stun coverage on the Warrior actually spans the full length of Metamorphosis and Ascendance, or leaves a free tail at the end once the lock runs out — there's no buff-duration data in the kit file to check that against, so assume the coverage is partial until someone who's actually played it says otherwise."
+      "kind": "defensives",
+      "title": "What the Warrior answers with",
+      "steps": [
+        {
+          "spec": "warrior/arms",
+          "spell": "Rallying Cry",
+          "note": "180s, party-wide. Count it against the go."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Die by the Sword",
+          "note": "30% all damage, 8s, 120s."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Heroic Leap",
+          "note": "30s. He leaves the Nova rather than eating it."
+        }
+      ]
     }
   ]
 }

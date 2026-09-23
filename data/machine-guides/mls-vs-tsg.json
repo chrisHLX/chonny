@@ -1,102 +1,95 @@
 {
   "slug": "mls-vs-tsg",
   "title": "MLS vs TSG",
-  "summary": "Arcane Mage / Demo Lock / Resto Shaman into Arms, Unholy and Resto Druid. Three casters against two melee, where the enemy holds the one defensive your entire comp cannot play through — so the plan is distance and dispels, not damage.",
-  "team": ["mage/arcane", "warlock/demonology", "shaman/restoration"],
-  "enemy": ["warrior/arms", "deathknight/unholy", "druid/restoration"],
+  "summary": "Their Druid holds five and yours holds three. Kill their healer or lose the long one — there is no third plan.",
+  "team": [
+    "mage/arcane",
+    "warlock/demonology",
+    "shaman/restoration"
+  ],
+  "enemy": [
+    "warrior/arms",
+    "deathknight/unholy",
+    "druid/restoration"
+  ],
   "sections": [
     {
       "kind": "text",
-      "title": "Anti-Magic Zone is the matchup, and it is worth saying so first",
-      "body": "An Arcane Mage, a Demonology Warlock and a Restoration Shaman do close to one hundred per cent magic damage. The Death Knight opposite holds Anti-Magic Shell for himself and Anti-Magic Zone for his whole team.\n\nMost guides would note that in a defensives section near the bottom. It belongs at the top, because it is not a cooldown to play around — it is a condition that makes your comp temporarily not work. A reader looking at the same problem in another matchup put it plainly: Anti-Magic Shell is too strong here. He is right, and it is worse against three casters than it was against two.\n\nSo the first decision is not who to kill. It is when you are allowed to try. Committing a go into a live Anti-Magic Zone is not a reduced-value attempt, it is close to a wasted one, and the comp does not have enough long cooldowns to waste one.\n\nWhat that leaves, and it is more than it sounds: your damage does not have a cooldown either. Agony-style ramp is not this comp's shape, but Arcane and Demonology both do sustained damage that costs nothing to hold, and a Zone that is up is a Zone that is running out. You are not stopped by it — you are told to wait, and told exactly how long.",
-      "row": 0
-    },
-    {
-      "kind": "text",
-      "title": "Kill target: the Warrior, and the Druid is the real work",
-      "body": "The Warrior holds five: Die by the Sword, Rallying Cry, Berserker Shout, Spell Reflection, trinket. Notice that only one of those does anything about magic damage, and Spell Reflection catches exactly one cast. The Death Knight holds six, and two of them are the Anti-Magic pair — against this comp his effective count is higher than the Warrior's by a wide margin, not the one implied by counting to six.\n\nThe Warrior is also the one who has to trinket. Put a real stun on him and he has no cheap way out; the Death Knight in the same position has Icebound Fortitude and simply stands in it. That asymmetry decides it.\n\nBut the target is not where this match is won. The Restoration Druid is, and not by killing him. A Resto Druid heals by stacking periodic effects and letting them run — he does not heal a target from low to full on demand the way a Paladin does. Every one of those is a magic buff, and your Shaman holds Purge.\n\nThat is the actual plan. Pressure the Warrior so the Druid has to commit heals, purge what he commits, and force him to recast into a comp that also holds a Hex and a Counterspell. You are not out-damaging their defensives; you are making their healer pay twice for every answer.",
-      "row": 1
-    },
-    {
-      "kind": "text",
-      "title": "The talent choices this plan assumes",
-      "body": "The Warlock takes Shadowfury, not Howl of Terror — one choice node, never both. Against two melee who will be standing on the same target, an area stun that holds through your damage is worth far more than an area fear that breaks the moment your Mage does anything. This is the opposite of the choice the Shadowplay guide on this site makes, and the reason is the comp: that one peels, this one sets up.\n\nThe Warlock also runs a Felguard rather than a Felhunter, which is what makes Axe Toss available. That is a real cost — it gives up Spell Lock, the only interrupt the Warlock has — and against TSG it is worth paying, because the enemy has exactly one caster and your comp already holds Counterspell and Wind Shear for him. Against a double-caster team the trade goes the other way.\n\nThe Mage takes Ring of Frost, which sits on a choice node. Against two melee converging it is the single best piece of control in the comp, and it is also the one most likely to be wasted by a Warrior who simply walks around it.\n\nBanish is not in this plan. It works only on demons and elementals, so against a Warrior, a Death Knight and a Druid it is a dead button — with one exception worth remembering, which is the Death Knight's own summoned demon if he brings one.",
-      "row": 2
+      "title": "Their healer is the target, because their DPS are not",
+      "body": "Counts: Warrior 8, DK 7, Druid 5. The DK's seven include two magic immunities and an MLS is entirely magic, so he is the worst target on the floor for you specifically. The Warrior outlasts any window you own. That leaves the Druid, and your comp has the control to keep him out of a go for longer than either of them can cover for him."
     },
     {
       "kind": "sequence",
-      "title": "The default state: distance, and totems that do the work",
-      "body": "Two melee who cannot reach anyone are two players contributing nothing. This comp does not have to beat TSG's damage — it has to not be in it. Everything here is spent freely and repeatedly rather than saved, because none of it is part of a kill window.",
+      "title": "Opener — stack the control on one target",
       "steps": [
-        { "spec": "shaman/restoration", "spell": "Earthgrab Totem", "note": "Dropped on your own feet, not theirs. It roots whatever comes to you, from range, without the Shaman repositioning — the cheapest peel in the comp and the one most often forgotten." },
-        { "spec": "shaman/restoration", "spell": "Wind Rush Totem", "note": "Speed for the whole team rather than control on them. Against a comp built on closing distance this is a defensive cooldown, and it should be treated as one." },
-        { "spec": "mage/arcane", "spell": "Blink", "note": "Not a cooldown to hold. The Mage's position is the comp's position, and a Blink spent early to avoid a Charge is worth more than one saved for a stun that may never come." },
-        { "spec": "warlock/demonology", "spell": "Burning Rush", "note": "Costs health, which is exactly why it is listed here rather than in the go — it is the answer to being caught out of position, and it works while rooted and slowed in ways nothing else in the comp does." }
-      ],
-      "row": 3
+        {
+          "spec": "warlock/demonology",
+          "spell": "Axe Toss",
+          "note": "30s stun on the Druid. Instant, so nothing is cast first."
+        },
+        {
+          "spec": "mage/arcane",
+          "spell": "Polymorph",
+          "note": "As the stun breaks. Fresh category, full duration."
+        },
+        {
+          "spec": "shaman/restoration",
+          "spell": "Hex",
+          "note": "15s. Third category on the same target inside one go."
+        }
+      ]
     },
     {
       "kind": "sequence",
-      "title": "Strip the Druid — the sequence that actually wins",
-      "body": "This runs continuously and is not part of any go. The Druid's healing is periodic and pre-applied, which means most of it is on the target before your damage arrives and can be removed before it matters.",
+      "title": "The go",
       "steps": [
-        { "spec": "shaman/restoration", "spell": "Purge", "note": "On whoever the Druid has just healed. Every removed effect is a global he has to spend again, and unlike damage it cannot be mitigated, reflected or absorbed by anything either melee holds." },
-        { "spec": "shaman/restoration", "spell": "Wind Shear", "note": "Short cooldown, so it is the interrupt spent freely. Its job is not to stop a big cast — it is to make him choose between casting and being purged." },
-        { "spec": "mage/arcane", "spell": "Counterspell", "note": "Held for the cast that follows a successful purge, not spent on the first thing he does. A Druid forced to hard-cast is a Druid worth interrupting; a Druid topping off is not." },
-        { "spec": "shaman/restoration", "spell": "Hex", "note": "The commitment. Spent only when the two above have already cost him something — a Hex on a healer who was comfortable is a 30-second cooldown spent on nothing." }
-      ],
-      "row": 4
-    },
-    {
-      "kind": "sequence",
-      "title": "The go, once the Zone is down",
-      "body": "The trigger is negative rather than positive: not 'our cooldowns are up' but 'their Anti-Magic Zone is not'. If both are true at once, this is the sequence.",
-      "steps": [
-        { "spec": "mage/arcane", "spell": "Ring of Frost", "note": "Placed between the melee and the Warrior's escape route rather than on top of them. This is the setup piece and it goes out before anything is committed." },
-        { "spec": "warlock/demonology", "spell": "Axe Toss", "note": "The Felguard's stun, and the reason for the pet choice above. It is a full stun on the Warrior that costs the Warlock nothing from his own bar — and it forces the trinket that the Shadowfury below is really aimed at." },
-        { "spec": "warlock/demonology", "spell": "Shadowfury", "note": "After the trinket, not before. Area stun, so if the Death Knight has closed in to help, it holds both — and unlike everything else in this comp it does not care about Anti-Magic anything, because it is control rather than damage." },
-        { "spec": "mage/arcane", "spell": "Touch of the Magi", "note": "Opens the damage, because it amplifies everything that lands inside it — this is what makes the window worth having rather than just long." },
-        { "spec": "mage/arcane", "spell": "Arcane Surge", "note": "The Mage's real cooldown, spent into the held target." },
-        { "spec": "warlock/demonology", "spell": "Summon Demonic Tyrant", "note": "Lands last. It multiplies pets that are already out, so the Warlock must have been doing his normal damage throughout — a Tyrant pressed from a standing start is worth a fraction of one pressed from a full board." }
-      ],
-      "row": 5
+        {
+          "spec": "mage/arcane",
+          "spell": "Arcane Surge",
+          "note": "90s. The slowest term; everything aligns to it."
+        },
+        {
+          "spec": "mage/arcane",
+          "spell": "Touch of the Magi",
+          "note": "45s. Half-cadence, so it is in every go."
+        },
+        {
+          "spec": "warlock/demonology",
+          "spell": "Power Siphon",
+          "note": "30s. The filler term between full goes."
+        },
+        {
+          "spec": "shaman/restoration",
+          "spell": "Capacitor Totem",
+          "note": "40s. On the Warrior, so he cannot reach you."
+        }
+      ]
     },
     {
       "kind": "defensives",
-      "title": "What the Death Knight brings — the section that shapes everything above",
-      "opponent": "deathknight/unholy",
+      "title": "What the Druid answers with",
       "steps": [
-        { "spec": "deathknight/unholy", "spell": "Anti-Magic Zone", "note": "Party-wide magic mitigation. Against this comp specifically it is not a defensive cooldown, it is an off switch, and the go section exists mainly to say: not while this is up." },
-        { "spec": "deathknight/unholy", "spell": "Anti-Magic Shell", "note": "The personal version, and back far more often. It is the reason he is not the kill target — training him means committing into the thing his class is built around." },
-        { "spec": "deathknight/unholy", "spell": "Icebound Fortitude", "note": "The cheap out that the Warrior does not have. Stun him and he rides it; stun the Warrior and he trinkets." },
-        { "spec": "deathknight/unholy", "spell": "Death Grip", "note": "Not a defensive. It is the single biggest threat to the distance plan in the first section — it takes your Mage or your Warlock out of position for free, from range, on a short cooldown, and no totem answers it." },
-        { "spec": "deathknight/unholy", "spell": "Lichborne", "note": "Fear immunity while it runs. It does nothing about Shadowfury, which is one more argument for the stun over the fear in the talent section." }
-      ],
-      "row": 6
-    },
-    {
-      "kind": "defensives",
-      "title": "What the Warrior answers with",
-      "opponent": "warrior/arms",
-      "steps": [
-        { "spec": "warrior/arms", "spell": "Rallying Cry", "note": "Party-wide, so it blunts your whole go rather than saving him. If it comes out early in your window the window is already worth less than it looks — and this is the answer these guides have repeatedly failed to count." },
-        { "spec": "warrior/arms", "spell": "Spell Reflection", "note": "Against three casters this is worth far more than it would be otherwise. Do not open the go with your biggest single cast; open it with the pet stun, which cannot be reflected." },
-        { "spec": "warrior/arms", "spell": "Die by the Sword", "note": "Physical mitigation against a comp doing no physical damage. Close to a dead button here, which is part of why he is the target." },
-        { "spec": "warrior/arms", "spell": "Heroic Leap", "note": "Not a defensive, and the reason 'he is melee so he is pinned' is wrong. He leaves whenever he likes; the Ring of Frost above is placed where he is going, not where he is." }
-      ],
-      "row": 7
+        {
+          "spec": "druid/restoration",
+          "spell": "Tranquility",
+          "note": "180s. Break it — it is a channel, not a buff."
+        },
+        {
+          "spec": "druid/restoration",
+          "spell": "Ironbark",
+          "note": "70s. Back every second go."
+        },
+        {
+          "spec": "druid/restoration",
+          "spell": "Barkskin",
+          "note": "60s, 20%. Up nearly every go."
+        }
+      ]
     },
     {
       "kind": "text",
-      "title": "Cadence: their defensive is the clock, not your cooldowns",
-      "body": "The unusual thing about this matchup is that the schedule is set by an enemy ability rather than by anything on your own bars.\n\nAnti-Magic Zone is a long cooldown — long enough that it is not available for most of the match. Anti-Magic Shell is much shorter and will be up for most of your attempts, which is survivable; the Zone is not. So the practical rule is that the go section fires on Zone availability first and cooldown availability second, and a window where your cooldowns are up and the Zone is also up should be allowed to pass.\n\nOn your side: Axe Toss, Wind Shear, Purge, Earthgrab and Blink are all cheap and repeat constantly — that is the Druid-stripping plan and it never stops. Shadowfury, Ring of Frost, Hex and Counterspell sit in the middle. Arcane Surge, Demonic Tyrant and the Shaman's real cooldowns are the slow tier, and they are the only things that need to line up with each other.\n\nThe mistake this comp makes most often is spending the middle tier — Ring of Frost especially — on a convergence that was not going to become anything, and then arriving at a genuine Zone-down window with control already gone. Cheap things are spent freely; the middle tier is spent only when the slow tier is close.",
-      "row": 8
-    },
-    {
-      "kind": "text",
-      "title": "Where this is guessing",
-      "body": "1. How long Anti-Magic Zone really takes out of the match. The whole plan is scheduled around it and nothing here has measured it against real play — a Death Knight who saves it correctly may make the go section fire perhaps twice a match, which would mean the Druid-stripping plan is not a supporting idea but the entire comp.\n\n2. Purge as a win condition. The kill-target section makes a strong claim — that removing the Druid's healing is worth more than damaging anyone — and does not quantify it at all. How many globals of purging equal a kill is exactly the sort of thing this site has no data for.\n\n3. The Felguard over the Felhunter. Argued above on the basis that TSG has one caster and the comp already has two interrupts. That is reasoning from a roster, not from experience, and giving up Spell Lock against a Restoration Druid who is the actual target of the plan may be straightforwardly wrong.\n\n4. Death Grip. Named as the biggest threat to the distance plan and then not answered anywhere. There is no counter listed because this plan does not know one beyond positioning, and 'stand somewhere else' is not a plan.\n\n5. Whether three casters can survive TSG at all at close range. Everything above assumes the distance plan mostly works. If it does not — if a Warrior and a Death Knight simply get on the Mage and stay there — none of the rest matters, and no sequence here fixes it.",
-      "row": 9
+      "title": "Your Shaman is the liability",
+      "body": "He holds three answers to their Druid's five and the Warrior reaches him on a 17s Charge. If the go does not land inside the first two attempts, the matchup inverts and their DK's magic immunities decide the rest of it."
     }
   ]
 }

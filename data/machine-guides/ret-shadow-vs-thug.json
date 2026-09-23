@@ -1,90 +1,111 @@
 {
   "slug": "ret-shadow-vs-thug",
-  "title": "Ret / Shadow / Holy Paladin vs Thug Cleave",
-  "summary": "A machine-drafted plan for Retribution Paladin, Shadow Priest and Holy Paladin against Assassination Rogue, Beast Mastery Hunter and Discipline Priest — kill target and control allocation follow from the defensive-cooldown count and DR categories in the kit file; the exact sequencing is a guess a real player should correct.",
-  "team": ["paladin/retribution", "priest/shadow", "paladin/holy"],
-  "enemy": ["rogue/assassination", "hunter/beast-mastery", "priest/discipline"],
+  "title": "Ret / Shadow / Holy Paladin vs Thug",
+  "summary": "You hold 20 answers to their 17 and two Paladins with eight each. Win the long one — but your Shadow Priest has to survive it.",
+  "team": [
+    "paladin/retribution",
+    "priest/shadow",
+    "paladin/holy"
+  ],
+  "enemy": [
+    "rogue/assassination",
+    "hunter/beast-mastery",
+    "priest/discipline"
+  ],
   "sections": [
     {
       "kind": "text",
-      "title": "Kill target: the Discipline Priest, and why the fewest-answers count is not the whole reason",
-      "body": "The Rogue holds six defensive answers on this kit: Cloak of Shadows, Crimson Vial, Evasion, Feint, Gladiator's Medallion and Smoke Bomb. The Hunter holds six as well: Aspect of the Turtle, Camouflage, Exhilaration, Gladiator's Medallion, Roar of Sacrifice and Survival of the Fittest. The Discipline Priest holds four: Desperate Prayer, Fade, Gladiator's Medallion and Pain Suppression.\n\nSo her pool empties fastest — and she is also the healer, which makes this a different call from killing a DPS. Winning this exchange does not just remove one answer from the pool, it can end the round outright.\n\nAn earlier version of this section said that neither the Rogue nor the Hunter has an escape anywhere in this kit. That was a gap in the site's data, not a fact about the game, and a reader corrected it. Both are extremely mobile: the Rogue has Shadowstep and Sprint, the Hunter has Disengage, Aspect of the Cheetah and Master's Call. None of that appears in a defensive-cooldown count, which is exactly why a defensive-cooldown count is not a plan on its own.\n\nWhat that changes: this comp cannot reliably pin anyone who does not want to be pinned, so a plan that depends on holding one target still for a long window is a plan that will mostly fail. The better use of the count above is not \"train the Priest until she dies\" — it is spread damage across all three, force the answers out wherever they are cheapest, and convert to a single target only once someone has actually run dry. Thug Cleave is a comp with a great deal of mobility and comparatively little sustain; you beat it by making everyone spend, not by chasing the healer."
+      "title": "The clock is yours; your Shadow Priest is the exception",
+      "body": "Counts, yours: Ret 8, Holy 8, Shadow 4. Theirs: Rogue 6, Hunter 6, Priest 5. Two Paladins with three immunities each between them means their go has to be perfect and yours does not. The whole matchup is whether your Shadow Priest — four answers, no escape, no interrupt — lives through the two or three real attempts they get."
     },
     {
       "kind": "sequence",
-      "title": "Hold the healer — stun into silence, nothing else",
-      "body": "The Holy Paladin's own stun is deliberately not stacked on top of the Retribution Paladin's here. Sending both back to back diminishes the second badly, which is a poor return on a cooldown that only comes around once a cycle — bank it instead (see the cross-CC section below) rather than spend it here for a shrinking rest of the stun.\n\nLater in the same life, once she is low, Mind Control becomes a legitimate choice on her specifically — even though it is otherwise off-limits as kill-target control, since it breaks on your own damage. At that point it isn't being used to hold her, it's being used to hijack the exact global she would otherwise spend trinketing or healing herself. That is a finishing move, not an opener, and it is not in the sequence below for that reason.",
+      "title": "Opener — protect the Priest before you attack",
       "steps": [
-        { "spec": "paladin/retribution", "spell": "Hammer of Justice", "note": "Locks her down completely and forces a decision: trinket now, or eat the full duration. Land it on the same global as the Incapacitate on the Rogue below, so neither enemy gets a free global to react." },
-        { "spec": "priest/shadow", "spell": "Silence", "note": "Follow the stun immediately. Different category, so it does not diminish it — it extends the denial past the point the stun would have ended or been trinketed away." }
+        {
+          "spec": "paladin/holy",
+          "spell": "Blessing of Freedom",
+          "note": "25s. Pre-emptive on the Priest, not reactive."
+        },
+        {
+          "spec": "paladin/retribution",
+          "spell": "Hammer of Justice",
+          "note": "30s on the Rogue. It repeats every go."
+        },
+        {
+          "spec": "priest/shadow",
+          "spell": "Psychic Scream",
+          "note": "30s. Only once they have committed to reaching you."
+        }
       ]
     },
     {
       "kind": "sequence",
-      "title": "Cross-CC — lock the Rogue, bank the second stun for the Hunter",
-      "body": "The first version of this plan opened this section with Shackle Horror, on the reasoning that it was free and cost nothing in diminishing returns. It is not free — it is unusable. Shackle Horror lands on pets and other non-player targets only, so against a Rogue, a Hunter and a Priest it is not a cheap option, it is no option.\n\nRemoving it removes the section's whole premise, and it is worth being clear about what that costs rather than quietly substituting something. There is no free cross-CC in this comp. Every tool that holds the Rogue is one that was wanted somewhere else, so this section is now a trade, and the trade is Blinding Light — which the earlier version deliberately declined precisely because it thought it had something free.\n\nThe catch with Blinding Light is that it is an area effect and does not choose. Cast near the go it disorients your own kill target too, moving her along a diminishing-returns category you want fresh. So it is cast on the Rogue away from the Priest, or it is not cast at all.",
+      "title": "The go — on their Priest, every 60 seconds",
       "steps": [
-        { "spec": "paladin/retribution", "spell": "Blinding Light", "note": "On the Rogue, and positioned so it does not clip the Priest. Different category from the stun on the kill target, so it costs nothing there — what it costs is the cooldown, which is long, and the risk of catching your own target. This is the replacement for an ability the first version of this plan should never have used." },
-        { "spec": "paladin/holy", "spell": "Hammer of Justice", "note": "The banked stun from the section above. Hold it and spend it reactively the moment the Hunter goes for Freezing Trap or Binding Shot on your melee — it denies the peel, and if it lands while Bestial Wrath is still running it is paid twice: his damage stops and your window opens." }
-      ]
-    },
-    {
-      "kind": "sequence",
-      "title": "The go — stacked on the fast tier",
-      "steps": [
-        { "spec": "paladin/retribution", "spell": "Wake of Ashes", "note": "Opens the window the instant the stun lands — it sits on the same fast tier as the stun and the silence, so it is always available for this exact chain." },
-        { "spec": "paladin/holy", "spell": "Divine Toll", "note": "The Holy Paladin's copy repeats on the same fast tier as the stun. The Retribution Paladin's copy does not (see the cadence section) — use this one here, not his." },
-        { "spec": "priest/shadow", "spell": "Void Torrent", "note": "Channel this once the silence global is spent — it is the priest's real damage, not her control." },
-        { "spec": "priest/shadow", "spell": "Power Infusion", "note": "Cast it on the Retribution Paladin — and note that this is not the either/or an earlier version of this plan treated it as. Talented, it buffs the Shadow Priest AND the ally she puts it on. So there is no decision to agonise over: she gets it either way, and the only question is who gets the second copy. The Paladin, because he is the one swinging into an already-stunned target." },
-        { "spec": "paladin/retribution", "spell": "Avenging Wrath", "note": "Only available on every second cycle of this chain — see the cadence section for why." }
+        {
+          "spec": "paladin/retribution",
+          "spell": "Avenging Wrath",
+          "note": "60s. The cadence term."
+        },
+        {
+          "spec": "priest/shadow",
+          "spell": "Void Torrent",
+          "note": "30s. Filler between the full goes."
+        },
+        {
+          "spec": "paladin/retribution",
+          "spell": "Execution Sentence",
+          "note": "60s. Aligned to Wrath, not spread from it."
+        },
+        {
+          "spec": "priest/shadow",
+          "spell": "Silence",
+          "note": "30s. Inside the window, on their healer."
+        }
       ]
     },
     {
       "kind": "defensives",
-      "title": "What the Discipline Priest answers with",
-      "opponent": "priest/discipline",
+      "title": "What saves your Shadow Priest",
       "steps": [
-        { "spec": "priest/discipline", "spell": "Desperate Prayer", "note": "Instant self-heal, and the cheapest thing she has. Expect it early, not as a last resort." },
-        { "spec": "priest/discipline", "spell": "Fade", "note": "Does not remove the silence or the stun, but it drops threat and grants her a moment of extra survivability — not enough on its own." },
-        { "spec": "priest/discipline", "spell": "Pain Suppression", "note": "Deep damage reduction, and she can cast it on herself while stunned. Two charges, so seeing one spent does not mean the answer is gone — the opener stun does not lock her out of it, it just costs her one. The silence is what actually adds kill pressure; the stun is there to make the silence land." },
-        { "spec": "priest/discipline", "spell": "Gladiator's Medallion", "note": "Removes the stun outright. This is exactly why the silence follows it rather than a second stun — the silence still lands even if the trinket does." }
+        {
+          "spec": "paladin/holy",
+          "spell": "Blessing of Protection",
+          "note": "240s. Physical immunity — it blanks the Rogue."
+        },
+        {
+          "spec": "paladin/holy",
+          "spell": "Blessing of Sacrifice",
+          "note": "60s. The cheap one; spend it first."
+        },
+        {
+          "spec": "priest/shadow",
+          "spell": "Dispersion",
+          "note": "90s, 75%. His only real mitigation."
+        }
       ]
     },
     {
       "kind": "defensives",
-      "title": "What the Rogue answers with",
-      "opponent": "rogue/assassination",
+      "title": "What they open with",
       "steps": [
-        { "spec": "rogue/assassination", "spell": "Cloak of Shadows", "note": "Immune to magic, including the priest's silence and any disorient — but it does nothing against a physical stun. This is self-preservation for him, not a save for the healer." },
-        { "spec": "rogue/assassination", "spell": "Smoke Bomb", "note": "A stealth field that can hide the whole team, including the Priest. If this drops mid-chain, the fight resets and the answer-count above resets with it." },
-        { "spec": "rogue/assassination", "spell": "Evasion", "note": "Answers your melee, not your control. Does not change this plan, just extends how long the Priest survives it." },
-        { "spec": "rogue/assassination", "spell": "Feint", "note": "Marginal here — it reduces AoE damage taken and this plan is single-target." },
-        { "spec": "rogue/assassination", "spell": "Crimson Vial", "note": "A small self-heal, not a real answer to losing the healer." },
-        { "spec": "rogue/assassination", "spell": "Gladiator's Medallion", "note": "His own trinket, spent on himself — it does not save her." }
+        {
+          "spec": "rogue/assassination",
+          "spell": "Cheap Shot",
+          "note": "12s. The opener, and it is on your Priest."
+        },
+        {
+          "spec": "hunter/beast-mastery",
+          "spell": "Freezing Trap",
+          "note": "25s. Lands on a Paladin, not the kill target."
+        },
+        {
+          "spec": "rogue/assassination",
+          "spell": "Kidney Shot",
+          "note": "30s. The window — this is when the trinket goes."
+        }
       ]
-    },
-    {
-      "kind": "defensives",
-      "title": "What the Hunter answers with",
-      "opponent": "hunter/beast-mastery",
-      "steps": [
-        { "spec": "hunter/beast-mastery", "spell": "Exhilaration", "note": "A real self-heal — this is his actual save button, not a last-resort defensive." },
-        { "spec": "hunter/beast-mastery", "spell": "Roar of Sacrifice", "note": "Redirects some of what an ally would take onto himself. If this goes up on the Priest, you are no longer fighting the target you chose." },
-        { "spec": "hunter/beast-mastery", "spell": "Aspect of the Turtle", "note": "Self-only immunity. Does not save her, but it does mean he stops being a threat for as long as it is up." },
-        { "spec": "hunter/beast-mastery", "spell": "Survival of the Fittest", "note": "Party-wide damage reduction — softens the go for everyone, including her." },
-        { "spec": "hunter/beast-mastery", "spell": "Camouflage", "note": "Stealth, not a direct save — mostly relevant to resetting the fight, same as the Rogue's Smoke Bomb." },
-        { "spec": "hunter/beast-mastery", "spell": "Gladiator's Medallion", "note": "His own trinket, same caveat as the Rogue's." }
-      ]
-    },
-    {
-      "kind": "text",
-      "title": "Cadence: the fast tier, and what drifts off it",
-      "body": "Most of what this plan needs repeats on the same tier: both copies of Hammer of Justice, Wake of Ashes, the Silence, Psychic Scream, Void Torrent, and — only for the Holy Paladin, not the Retribution one — Divine Toll. That shared tier is why the opener above is a real, repeatable chain rather than an improvised one.\n\nTwo real mismatches sit inside a comp that otherwise looks aligned. The Retribution Paladin's Avenging Wrath returns on half the cycles the fast tier does; the Holy Paladin's own Avenging Wrath is slower again — the two Paladins are each lined up with the fast tier individually, not with each other. Holy Bulwark sits off-tier entirely, on neither cadence. Power Infusion is the slowest thing in the comp — treat it as the marker for the big go, not every go.\n\nThe enemy Priest's Mind Blast is close to this tier but not on it — worth naming only because it is tempting to assume it lines up with your chain when it does not, quite."
-    },
-    {
-      "kind": "text",
-      "title": "What this plan is guessing at",
-      "body": "1. SETTLED, and it was a false dilemma. Power Infusion talented applies to the Shadow Priest and to the ally she casts it on, so the agonising in an earlier version of this plan about whether it belonged on her own Void Torrent or on the Paladin was a choice that does not exist. She gets it regardless.\n\n2.The banked Hammer of Justice, and Blinding Light, which is not used at all. Both are read as better held than spent early against the Hunter's trap or binding shot. A real player who has actually run this matchup may know the opposite — that spending Blinding Light proactively on both off-DPS at once is worth more than holding either for a reactive read that might not come.\n\n3. CORRECTED. An earlier version said neither the Rogue nor the Hunter has an escape listed in this kit and treated that as a fact about the matchup. It was a hole in the site's data — Shadowstep, Sprint, Disengage, Aspect of the Cheetah and Master's Call are all real and all relevant. The kill-target section has been rewritten around that. What remains genuinely open is whether this comp can convert spread pressure into a kill at all against that much mobility, or whether it simply runs out of time.\n\n4.Whether the Priest is the right kill target at all. The answer-count in the first section is real, but it says nothing about how well either team's melee can actually reach her relative to the other two targets, and nothing about whether this comp's own damage windows are concentrated enough to punish a forced trinket rather than just chip it."
     }
   ]
 }

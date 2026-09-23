@@ -1,83 +1,95 @@
 {
   "slug": "tsg-vs-rmp",
   "title": "TSG vs RMP",
-  "summary": "Arms / Unholy / Resto Druid into Sub Rogue, Frost Mage and Disc. The mirror of the RMP guide, written from the side that does not need a perfect go — and the first plan here where forcing their cooldowns is the whole win condition.",
-  "team": ["warrior/arms", "deathknight/unholy", "druid/restoration"],
-  "enemy": ["rogue/subtlety", "mage/frost", "priest/discipline"],
+  "summary": "Starve them, then swap. The Mage holds four answers and two of them are escapes, not mitigation — he dies when they are gone, not before.",
+  "team": [
+    "warrior/arms",
+    "deathknight/unholy",
+    "druid/restoration"
+  ],
+  "enemy": [
+    "rogue/subtlety",
+    "mage/frost",
+    "priest/discipline"
+  ],
   "sections": [
     {
       "kind": "text",
-      "title": "You are not the setup team here — that changes what a failed go means",
-      "body": "This comp has one long amplification and a lot of continuous damage. RMP has the opposite: little pressure between windows, and everything staked on assembling one.\n\nSo a go that forces their Ice Block and their Pain Suppression without killing anyone is a success for you and a failure for them, even though the same scoreboard shows nothing. Their answers are two-minute and three-minute; yours come back far sooner.\n\nThe corollary is the part players get wrong: do not spend your control creating a kill window you do not need. Most of it is worth more denying theirs."
-    },
-    {
-      "kind": "text",
-      "title": "Kill target: the Mage, unless the Priest is already out of position",
-      "body": "The Rogue holds six answers and two of them — Cloak of Shadows and Evasion — are near-total against exactly what this comp does. Cloak answers the Death Knight's magic damage and every silence; Evasion answers the Warrior. Training a Rogue through both is a way to spend a round achieving nothing.\n\nThe Mage holds four, and two of those (Ice Barrier, Greater Invisibility) do not survive real pressure. His long answer is Ice Block, and it is the one you are trying to spend.\n\nThe counter-argument, stated because it is not settled: the Mage is the hardest to pin and the Rogue is the one who has to stand still to kill you. Pressure on the Rogue may be worth more as peel-suppression than the kill on the Mage is worth as a kill."
+      "title": "The opening is when they are dry, not when you are ready",
+      "body": "Counts: Rogue 6, Priest 5, Mage 4. The Mage is thinnest and two of his four — Ice Block and Greater Invisibility — are escapes that reset the go rather than surviving it. So the first two goes are strips, not kills. You are looking for the moment nobody on their side holds a trinket, and then you CC to end it rather than to start it."
     },
     {
       "kind": "sequence",
-      "title": "Deny their opener",
+      "title": "Strip — force the cheap answers out",
       "steps": [
-        { "spec": "deathknight/unholy", "spell": "Strangulate", "note": "On the Priest the moment their go starts. A silenced healer cannot Pain Suppression, and this is the cheapest way to make their whole attempt worth nothing." },
-        { "spec": "druid/restoration", "spell": "Cyclone", "note": "On the Rogue, not the Mage. It is free, and it takes the one player who must be in melee out of the window entirely." },
-        { "spec": "warrior/arms", "spell": "Spell Reflection", "note": "Not control, but it belongs in this sequence: it is the answer to a Polymorph or a Blast and it comes back inside every cadence." }
+        {
+          "spec": "warrior/arms",
+          "spell": "Storm Bolt",
+          "note": "On the Mage. He blinks the moment he is free, so lead with it."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Strangulate",
+          "note": "On the Priest. Denies Pain Suppression, not the heal."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Colossus Smash",
+          "note": "45s. Up nearly every go — this is the sustained term."
+        }
       ]
     },
     {
       "kind": "sequence",
-      "title": "Control the Priest when you do commit",
+      "title": "The kill go — once their trinkets are down",
       "steps": [
-        { "spec": "deathknight/unholy", "spell": "Asphyxiate", "note": "Stun first, so the follow-up lands on a healer who cannot act rather than one who can trinket on reaction." },
-        { "spec": "druid/restoration", "spell": "Cyclone", "note": "Fresh category. The Druid can only hold one target in a Cyclone at a time, so this is a choice not to have the Rogue out." },
-        { "spec": "warrior/arms", "spell": "Intimidating Shout", "note": "Long cooldown for six seconds. GUESS: this may be worth more saved as a peel — it is the only thing here that can interrupt their go without a stun." }
-      ]
-    },
-    {
-      "kind": "sequence",
-      "title": "The go",
-      "steps": [
-        { "spec": "warrior/arms", "spell": "Avatar", "note": "The comp's real gate. Everything else is scheduled around it." },
-        { "spec": "warrior/arms", "spell": "Colossus Smash", "note": "Inside Avatar rather than on cooldown, since the two land on the same tier only every second attempt." },
-        { "spec": "deathknight/unholy", "spell": "Dark Transformation" },
-        { "spec": "deathknight/unholy", "spell": "Army of the Dead", "note": "Summoned before the window, not during it — it is pressure that arrives, not damage you press." },
-        { "spec": "warrior/arms", "spell": "Champion's Spear" }
-      ]
-    },
-    {
-      "kind": "sequence",
-      "title": "Hold the kill target",
-      "steps": [
-        { "spec": "warrior/arms", "spell": "Storm Bolt", "note": "Stun, so it survives your own damage — the only kind of control that belongs on the person you are killing." },
-        { "spec": "warrior/arms", "spell": "Shockwave", "note": "Second stun, diminished if it follows Storm Bolt straight away. It is worth more on the next attempt." },
-        { "spec": "deathknight/unholy", "spell": "Chains of Ice", "note": "Not control, and it will not stop a Blink — but it is free and it costs the Mage the reposition." }
+        {
+          "spec": "druid/restoration",
+          "spell": "Cyclone",
+          "note": "On the Priest. Free, and their answer to it is a trinket."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Avatar",
+          "note": "90s. Only spend it into a pool you have already emptied."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Army of the Dead",
+          "note": "90s. Aligns with Avatar — keep them on one clock."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Shockwave",
+          "note": "Fresh stun DR after Storm Bolt. The window, not the opener."
+        }
       ]
     },
     {
       "kind": "defensives",
       "title": "What the Mage answers with",
-      "opponent": "mage/frost",
       "steps": [
-        { "spec": "mage/frost", "spell": "Ice Block", "note": "Two minutes. Forcing this is what a good go looks like when nobody dies." },
-        { "spec": "mage/frost", "spell": "Ice Barrier", "note": "Back every attempt, so it is not a cooldown you are spending — it is the floor." },
-        { "spec": "mage/frost", "spell": "Greater Invisibility", "note": "Also drops threat and most damage over time. If he uses it early, his real answer is gone." }
-      ]
-    },
-    {
-      "kind": "defensives",
-      "title": "What the Rogue answers with — the reason he is not the target",
-      "opponent": "rogue/subtlety",
-      "steps": [
-        { "spec": "rogue/subtlety", "spell": "Cloak of Shadows", "note": "Magic immunity: it answers the Death Knight almost entirely for its duration." },
-        { "spec": "rogue/subtlety", "spell": "Evasion", "note": "And the Warrior, separately. Two different answers to your two damage dealers." },
-        { "spec": "rogue/subtlety", "spell": "Feint", "note": "Short, always up, and the reason chip damage on a Rogue accomplishes nothing." },
-        { "spec": "rogue/subtlety", "spell": "Smoke Bomb", "note": "Not a personal defensive so much as a way to make your go impossible to finish." }
+        {
+          "spec": "mage/frost",
+          "spell": "Ice Block",
+          "note": "120s immunity. Resets your go entirely — do not burst into it."
+        },
+        {
+          "spec": "mage/frost",
+          "spell": "Greater Invisibility",
+          "note": "120s. He leaves; he does not survive."
+        },
+        {
+          "spec": "mage/frost",
+          "spell": "Ice Barrier",
+          "note": "30s. Back every go, so it is not worth forcing."
+        }
       ]
     },
     {
       "kind": "text",
-      "title": "Where this is guessing",
-      "body": "1. Whether to commit at all before their Ice Block is gone. This plan says to pressure early and go late, but a Warrior sitting on Avatar while it comes back off cooldown is also wasting the comp's only real window.\n\n2. The Cyclone allocation. It appears twice above, on different targets, and the Druid can only hold one person at a time. Which one actually wins the round is not something I can derive.\n\n3. Intimidating Shout as a peel versus as part of a chain. Same trade as Blind in the mirror guide, and I could not settle it there either.\n\n4. This whole plan assumes you out-sustain them if nobody dies. If RMP can reset and force a mana war instead, the assumption is backwards and the guide is wrong from the first paragraph."
+      "title": "Which side the clock favours",
+      "body": "Yours. You hold 20 answers to their 15 and the Druid has no damage cooldowns to waste. A failed go costs you very little, which is the whole reason the strip-first plan is correct here and would be wrong in the mirror."
     }
   ]
 }

@@ -1,84 +1,90 @@
 {
   "slug": "dk-lock-vs-turbo",
-  "title": "Frost DK / Destro Lock / Disc vs Turbo",
-  "summary": "A machine-drafted plan for Frost DK / Destro Lock / Disc into Arms Warrior, Enhancement Shaman and Restoration Shaman (Turbo): kill target, control allocation and cadence are derived from cooldowns and DR; the order is a guess. Correct it on any step.",
-  "team": ["deathknight/frost", "warlock/destruction", "priest/discipline"],
-  "enemy": ["warrior/arms", "shaman/enhancement", "shaman/restoration"],
+  "title": "Frost DK / Destro / Disc vs Turbo",
+  "summary": "Their Enhancement Shaman holds two answers. That is the whole plan — reach him and he does not come back.",
+  "team": [
+    "deathknight/frost",
+    "warlock/destruction",
+    "priest/discipline"
+  ],
+  "enemy": [
+    "warrior/arms",
+    "shaman/enhancement",
+    "shaman/restoration"
+  ],
   "sections": [
     {
       "kind": "text",
-      "title": "Kill target: the Restoration Shaman, against the cheap read",
-      "body": "By defensive-cooldown count alone, the Enhancement Shaman is the correct kill target: two personal answers (Astral Shift, a trinket) against the Warrior's four (Berserker Shout, Die by the Sword, Spell Reflection, a trinket) and the healer's three (Astral Shift, Spirit Link Totem, a trinket). That is the lookup, and it is wrong for this comp.\n\nSpirit Link Totem is team-wide. While the Restoration Shaman is free to cast it, a clean kill on the Enhancement Shaman or the Warrior can be undone from outside regardless of how many of their own cooldowns are already spent — their personal answer count doesn't actually bound how tanky they are. The only way a kill on anyone sticks is if the healer herself can't answer, which makes her own cooldown bar the real target, not whichever of the other two happens to have the shortest one.\n\nShe is also the one enemy this comp is built to hold without spending anything that breaks on our own damage. The Death Knight carries both a stun and a silence, and the two share no diminishing-returns category — sequenced on the same target, that is real, continuous lockdown from a single player, not two half-value applications. Mindgames adds a second reason to want her specifically: cast on a target while she is being kept alive, any healing she receives while it is active is converted into damage on her instead. That tool only does anything if the healer is the one under it.\n\nThe trade against her: she is ranged and, in theory, the least pinnable of the three. This plan answers that with volume and category of control rather than speed — see the next two sections."
+      "title": "Two answers is the shortest list in this document",
+      "body": "Counts: Warrior 8, Resto 3, Enhancement 2. The Enhancement Shaman holds Astral Shift and a trinket. Once both are gone he has nothing until a 90s cooldown returns, and his healer has three of his own. Kill him. The Warrior's eight make him a target you cannot finish and Rallying Cry blunts anything you send at either of them."
     },
     {
       "kind": "sequence",
-      "title": "Hold the healer — stun into silence, nothing that breaks",
+      "title": "Opener — get the Resto out of the go",
       "steps": [
-        { "spec": "deathknight/frost", "spell": "Strangulate", "note": "Open with the silence, not the stun. It stops a heal, a dispel, or a Spirit Link cast from going out before the lock is actually in place." },
-        { "spec": "deathknight/frost", "spell": "Asphyxiate", "note": "Land the stun the moment the silence ends. It shares no diminishing-returns category with the silence above, so this is one continuous lock from a single player, not two separately-diminished pieces." },
-        { "spec": "deathknight/frost", "spell": "Chains of Ice", "note": "Free to reapply — it doesn't compete with the stun or silence for a diminishing-returns slot. Use it the moment she tries to open distance once the stun ends." }
+        {
+          "spec": "warlock/destruction",
+          "spell": "Fear",
+          "note": "On the Resto Shaman. Free, and he has no way out of it."
+        },
+        {
+          "spec": "deathknight/frost",
+          "spell": "Strangulate",
+          "note": "45s silence on the Resto as the Fear breaks."
+        },
+        {
+          "spec": "priest/discipline",
+          "spell": "Power Infusion",
+          "note": "On the Warlock. 2 min — not every go."
+        }
       ]
     },
     {
       "kind": "sequence",
-      "title": "Cross-CC the Warrior and Enhancement Shaman — same global as the lock",
+      "title": "The go — aligned on Pillar of Frost",
       "steps": [
-        { "spec": "warlock/destruction", "spell": "Shadowfury", "note": "An area stun, and against a melee cleave that stands together it catches both. It is the only piece of this section that holds through damage — everything else here breaks the moment the go lands on the wrong target. Shadowfury and Howl of Terror are one choice node, so this is the Warlock's area control for the whole match; there is no second one." },
-        { "spec": "priest/discipline", "spell": "Mind Control", "note": "A second, independent category from the stun above, so it lands clean on whichever of the two Shadowfury did not need to hold." },
-        { "spec": "warlock/destruction", "spell": "Fear", "note": "No cooldown, so it's the cheap follow-up if either target trinkets or breaks free early. Don't reach for Seduction or Mortal Coil for this — both are worth more banked for the next attempt than spent as a redundant third application here (see cadence)." }
-      ]
-    },
-    {
-      "kind": "sequence",
-      "title": "The go — burst on the shared tier",
-      "steps": [
-        { "spec": "deathknight/frost", "spell": "Empower Rune Weapon", "note": "Always back up by the time this go starts. Press it just ahead of Pillar of Frost so the extra resource carries into the window rather than trailing behind it." },
-        { "spec": "deathknight/frost", "spell": "Pillar of Frost", "note": "The cooldown this whole plan is scheduled around — see the cadence section." },
-        { "spec": "warlock/destruction", "spell": "Soul Fire", "note": "Same tier as Pillar of Frost. Hold it until the silence has actually landed — sending it into a healer who's about to be silenced anyway wastes the tempo it's meant to buy." },
-        { "spec": "deathknight/frost", "spell": "Reaper's Mark", "note": "It detonates after a delay rather than immediately, so drop it early in the window — the more of the go's damage happens while it's already ticking, the bigger the payoff." },
-        { "spec": "priest/discipline", "spell": "Mindgames", "note": "The actual reason the healer is the target rather than a DPS: any healing that reaches her while this is active comes back as damage on her instead." },
-        { "spec": "priest/discipline", "spell": "Power Infusion", "note": "Doesn't line up with the shared tier — it returns roughly every other attempt. Put it on whichever teammate benefits most that specific go rather than defaulting to the same player every time." }
+        {
+          "spec": "deathknight/frost",
+          "spell": "Pillar of Frost",
+          "note": "45s. The term everything else lines up to."
+        },
+        {
+          "spec": "deathknight/frost",
+          "spell": "Breath of Sindragosa",
+          "note": "90s. Every second Pillar, not every one."
+        },
+        {
+          "spec": "warlock/destruction",
+          "spell": "Malevolence",
+          "note": "60s. Align it or lose half the window."
+        },
+        {
+          "spec": "deathknight/frost",
+          "spell": "Blinding Sleet",
+          "note": "60s. On the Warrior, so he cannot peel."
+        }
       ]
     },
     {
       "kind": "defensives",
-      "title": "What the Warrior answers with",
-      "opponent": "warrior/arms",
+      "title": "What the Enhancement Shaman answers with — both of them",
       "steps": [
-        { "spec": "warrior/arms", "spell": "Berserker Shout", "note": "A party-wide fear break, not just a personal one. It does nothing about Shadowfury — a stun is not a fear — but it does undo a Mind Control or a Death Coil across his whole team, so do not treat either as a guaranteed follow-up while it is up." },
-        { "spec": "warrior/arms", "spell": "Spell Reflection", "note": "Short enough that it comes back inside this same cadence — don't count it as spent. It's the real punishment for sending Soul Fire or Mindgames at him instead of the healer." },
-        { "spec": "warrior/arms", "spell": "Die by the Sword", "note": "The biggest personal answer he holds. Forcing it costs him roughly two attempts' worth of survivability even when the go itself doesn't land a kill." },
-        { "spec": "warrior/arms", "spell": "Gladiator's Medallion", "note": "Clears whatever control he's under and buys a short window of immunity after — the generic answer every enemy in this match carries." }
-      ]
-    },
-    {
-      "kind": "defensives",
-      "title": "What the Enhancement Shaman answers with",
-      "opponent": "shaman/enhancement",
-      "steps": [
-        { "spec": "shaman/enhancement", "spell": "Astral Shift", "note": "His only real personal defensive. It reduces the damage he's taking, it doesn't remove him from the fight — it buys time, not survival on its own." },
-        { "spec": "shaman/enhancement", "spell": "Gladiator's Medallion", "note": "The same generic answer everyone on this team carries. Once both of his are spent, there is nothing standing between him and the next hard CC — which is the honest argument for the fewest-answers read named in the opening section." }
-      ]
-    },
-    {
-      "kind": "defensives",
-      "title": "What the Restoration Shaman answers with",
-      "opponent": "shaman/restoration",
-      "steps": [
-        { "spec": "shaman/restoration", "spell": "Gladiator's Medallion", "note": "Breaks the Death Knight's stun and grants a short window of immunity after. If this is what she spends on the opener, the silence alone still denies the follow-up cast — don't panic and burn Shadowfury to re-stun immediately, hold it for the next attempt instead." },
-        { "spec": "shaman/restoration", "spell": "Astral Shift", "note": "Reduces the damage she's taking rather than removing her from it. Doesn't answer the silence or the stun on its own." },
-        { "spec": "shaman/restoration", "spell": "Spirit Link Totem", "note": "Team-wide, and the actual thing this whole plan is built to force. Getting this out of her is the real win condition, not her own health bar — see the opening section." }
+        {
+          "spec": "shaman/enhancement",
+          "spell": "Astral Shift",
+          "note": "90s, 40%. This is his only mitigation."
+        },
+        {
+          "spec": "shaman/enhancement",
+          "spell": "Gladiator's Medallion",
+          "note": "120s. After this he has nothing at all."
+        }
       ]
     },
     {
       "kind": "text",
-      "title": "Cadence: the 45-second tier",
-      "body": "Almost everything this comp needs sits on one shared tier. On the Death Knight: the stun, the silence, Pillar of Frost, and Reaper's Mark. On the Warlock: the stun, the incapacitate (Mortal Coil), and Soul Fire. On the Priest: Mindgames. Even the Warrior's Colossus Smash and Wrecking Throw land on that same 45-second tier, which is worth checking when deciding whether he's mid-cooldown for the 'paid twice' read on Shadowfury above.\n\nTwo of the Death Knight's biggest cooldowns — Breath of Sindragosa and Frostwyrm's Fury — sit at exactly double that tier, so they line up with every second attempt rather than every one. Power Infusion drifts further still, landing on roughly every second-to-third go instead of a clean multiple. Ultimate Penitence and Malevolence sit well outside the cadence entirely — treat them as bonus damage whenever they happen to be up, not something to plan the go around. Mind Blast doesn't need aligning either; use it on cooldown as filler between attempts.\n\nThe consequence: spending Shadowfury, Mortal Coil, or Seduction on a target the Warlock already has covered this go costs more than the ability itself. None of them come back until the next full cycle, and by then the rest of the kit will already have — bank what isn't needed this attempt rather than stacking redundant control on one player."
-    },
-    {
-      "kind": "text",
-      "title": "Where this is guessing",
-      "body": "1. SETTLED, and it was guessed wrong twice. Banish works only on demons and elementals, and Shackle Horror only on pets and other non-player targets. Neither is usable on any of the three players in this match, and earlier versions of this plan hedged about them as though the restriction were uncertain. It is not. Both are dead buttons here and have been removed from the plan rather than left as an upside.\n\n2. The cross-CC section assumes the Warrior and Enhancement Shaman are standing close enough together for Shadowfury to catch both. That depends entirely on where they're actually standing when the go starts, which this plan has no way to see — if they're spread out, Shadowfury only ever catches one of them and the other gets a free global regardless of the silence landing on the healer.\n\n3.Whether Spell Reflection can catch the Death Knight's stun or silence at all is unconfirmed here. If it can, opening with the Death Knight before checking whether Spell Reflection is up is a real risk this plan doesn't currently account for.\n\n4. Berserker Shout is treated here as breaking fear for his whole party, not just himself. If it's self-only, the 'one press undoes both' risk named in the Warrior's defensives section doesn't apply, and Mind Control on the second target is safer than this plan assumes."
+      "title": "Two things this plan cannot assume",
+      "body": "Banish does not work on players — it is demons and elementals only, so it is not cross-CC here whatever the tooltip suggests. And Shadowfury and Howl of Terror share a choice node: your Warlock has one of them, not both, and the opener above assumes Fear rather than either."
     }
   ]
 }

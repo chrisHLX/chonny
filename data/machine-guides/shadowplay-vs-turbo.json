@@ -1,106 +1,111 @@
 {
   "slug": "shadowplay-vs-turbo",
   "title": "Shadowplay vs Turbo Cleave",
-  "summary": "Shadow Priest / Affliction Warlock / Resto Druid into Arms, Enhancement and Resto Shaman. Nobody is nominated as the kill target at the start — the plan is to make all three of them spend, and take whoever runs dry first.",
-  "team": ["priest/shadow", "warlock/affliction", "druid/restoration"],
-  "enemy": ["warrior/arms", "shaman/enhancement", "shaman/restoration"],
+  "summary": "Their Enhancement Shaman holds two answers. Yours is a Shadow Priest with four, no escape and no interrupt — whoever gets reached first loses.",
+  "team": [
+    "priest/shadow",
+    "warlock/affliction",
+    "druid/restoration"
+  ],
+  "enemy": [
+    "warrior/arms",
+    "shaman/enhancement",
+    "shaman/restoration"
+  ],
   "sections": [
     {
       "kind": "text",
-      "title": "This plan does not pick a kill target, and that is the point",
-      "body": "Almost every plan on this site opens by counting defensive cooldowns, naming whoever holds fewest, and training them. A reader pushed back on that habit, and he was right: it has become a reflex rather than an analysis, and it is a particularly bad fit for this comp.\n\nShadowplay does not kill anyone inside a window. It has no Combustion, no Avatar, no stacked burst that turns thirty seconds of control into a corpse. What it has is damage that is already running on all three of them at once, all the time, whether or not anyone is stunned. Against that, choosing a kill target in advance throws away the comp's only real advantage — which is that it does not have to choose.\n\nSo the count below is not a target list. It is a spending ledger.\n\nThe Warrior holds five: Die by the Sword, Rallying Cry, Berserker Shout, Spell Reflection, trinket. The Enhancement Shaman holds five: Astral Shift, Shamanistic Rage, Earth Elemental, Spirit Walk, trinket. The Restoration Shaman holds six, and hers are the ones that matter most, because Spirit Link Totem answers pressure on the whole team at once rather than on one player.\n\nSixteen answers between them, and almost none of them come back inside a minute. Your dots do not stop. The round is decided by which of those sixteen have been spent when the moment arrives, and that is a thing you find out during the match, not before it.",
-      "row": 0
-    },
-    {
-      "kind": "text",
-      "title": "The talent choice this plan assumes",
-      "body": "Naming this up front, because a plan that quietly depends on a talent nobody takes is not a plan.\n\nThe Warlock takes Howl of Terror, not Shadowfury. These are two entries on one choice node in the class tree, so no Warlock has ever had both, and every plan that chains one into the other is describing a character that cannot exist. Against a melee cleave that is standing on top of you, the bigger area fear is worth more than the stun: you are not setting up a kill window, you are trying to get two melee off your Druid, and Howl does not require you to be facing anything.\n\nThe Druid takes Mighty Bash over Incapacitating Roar — the same choice node, and the same reasoning a reader gave for it in another matchup. A stun holds through your own damage; a roar does not, and this comp's damage is always running, so an Incapacitating Roar on a dotted target breaks more or less immediately. Against Turbo the roar is close to useless.\n\nBanish is not in this plan. It works only on demons and elementals, so against a Warrior and two Shamans it is a dead button — except, and this is the exception worth knowing, against the Enhancement Shaman's Earth Elemental, where it is one of the few answers that exists at all.",
-      "row": 1
+      "title": "Kill the Enhancement Shaman, and keep your Priest alive",
+      "body": "Counts, theirs: Warrior 8, Resto 3, Enhancement 2. Yours: Druid 5, Priest 4, Lock 4. Their Enhancement Shaman is the softest target on the floor. Your Shadow Priest is the second softest — four answers, no mobility, no interrupt — and a Warrior with Charge on 17s reaches him whenever he likes. This is a race, and you are the faster comp."
     },
     {
       "kind": "sequence",
-      "title": "The first minute: spend nothing, apply everything",
-      "body": "There is no opener here in the sense the other guides mean it. You are not building toward anything, so the early game is about getting damage onto all three of them while keeping every cooldown you own unspent.",
+      "title": "Opener — both fears, on different targets",
       "steps": [
-        { "spec": "warlock/affliction", "spell": "Agony", "note": "On all three, and kept there. It ramps, so the earliest application is worth the most — this is the single most important thing that happens in the first thirty seconds and it costs nothing." },
-        { "spec": "warlock/affliction", "spell": "Corruption", "note": "Spread the same way. None of this forces an answer on its own; the point is that by the time anything does, it has been running for a minute." },
-        { "spec": "priest/shadow", "spell": "Vampiric Touch", "note": "On the two Shamans in preference to the Warrior. He has the most raw health and the fewest ways to stop periodic damage; they have Spirit Link and the healer's own attention to spend on it." },
-        { "spec": "priest/shadow", "spell": "Shadow Word: Pain", "note": "The cheap one, everywhere. Its job is not damage, it is making the Restoration Shaman choose which of three dotted players to look at." }
-      ],
-      "row": 2
+        {
+          "spec": "warlock/affliction",
+          "spell": "Fear",
+          "note": "On the Resto Shaman. Free."
+        },
+        {
+          "spec": "priest/shadow",
+          "spell": "Psychic Scream",
+          "note": "30s, on the Warrior. Different target, same global."
+        },
+        {
+          "spec": "druid/restoration",
+          "spell": "Cyclone",
+          "note": "On whichever of them the fears did not reach."
+        }
+      ]
     },
     {
       "kind": "sequence",
-      "title": "Peeling between goes — where this comp actually lives",
-      "body": "A reader asked for this section by name, and it matters more in this matchup than the go does. Turbo wins by having two melee stand on one of you for the whole match. Everything below exists to make that not happen, and none of it is being saved for a kill window — there is no kill window.\n\nThe ordering rule: spend the free things first, and never spend two pieces of control from the same diminishing-returns category back to back when a fresh one is available.",
+      "title": "The go",
       "steps": [
-        { "spec": "druid/restoration", "spell": "Ursol's Vortex", "note": "The best peel in the comp and it has no target. Dropped between the melee and whoever they are on, it costs them the time to walk out and costs you almost nothing. First thing spent, every time." },
-        { "spec": "warlock/affliction", "spell": "Howl of Terror", "note": "Both melee at once if they are stacked, which against Turbo they usually are. It breaks on damage — so this is a peel, not a setup, and it is worth pressing even if it only buys two seconds." },
-        { "spec": "druid/restoration", "spell": "Typhoon", "note": "No cooldown worth worrying about and it does not share a category with the fear. Use it to reset the Enhancement Shaman's position rather than to hold him." },
-        { "spec": "priest/shadow", "spell": "Psychic Scream", "note": "The reactive one. Held for the moment both melee commit cooldowns at once, because that is the only time a short fear is worth a 30-second cooldown." },
-        { "spec": "warlock/affliction", "spell": "Mortal Coil", "note": "Incapacitate, fresh category after the fears, and it heals the Warlock — which is often the actual reason to press it. This is the button that keeps him alive through a swap." }
-      ],
-      "row": 3
-    },
-    {
-      "kind": "sequence",
-      "title": "Control the healer, but only when it converts",
-      "body": "This comp can lock the Restoration Shaman down. It mostly should not. Every second she spends hexed is a second neither of her melee is being peeled, and a Hex on a healer who was not about to do anything is a cooldown spent on nothing.\n\nThe trigger is specific: her team has already spent an answer, your dots are at full stacks on someone, and she is the only thing keeping them up.",
-      "steps": [
-        { "spec": "priest/shadow", "spell": "Silence", "note": "First, and on her — not on the Enhancement Shaman. A silence stops a heal without giving her a diminishing-returns tick on anything else, which is what makes the follow-up land at full duration." },
-        { "spec": "druid/restoration", "spell": "Cyclone", "note": "The real lock. Fresh category after the silence, and because you are not damaging her it does not break early. Note that only one target can be cycloned at a time — so this is a commitment to her specifically." },
-        { "spec": "druid/restoration", "spell": "Mighty Bash", "note": "The finisher, and the reason the talent was taken. Stun, so it holds while every dot you own keeps ticking on her team." }
-      ],
-      "row": 4
-    },
-    {
-      "kind": "sequence",
-      "title": "The go, such as it is",
-      "body": "Not a burst window — a decision to stop spreading and put everything on whichever of the three is furthest into their answers.",
-      "steps": [
-        { "spec": "warlock/affliction", "spell": "Malevolence", "note": "The Warlock's real cooldown, and it converts existing dots rather than starting new damage. That is why the first minute mattered: this is worth double on a target that has been dotted the whole match." },
-        { "spec": "priest/shadow", "spell": "Power Infusion", "note": "Talented, it buffs the Shadow Priest and the ally she casts it on — both, not one. So it goes on the Warlock, and she gets it anyway." },
-        { "spec": "priest/shadow", "spell": "Void Torrent", "note": "Channelled, so it needs the target held or at least off you. This is where the Bash from the section above is actually paying for itself." },
-        { "spec": "warlock/affliction", "spell": "Summon Darkglare", "note": "Extends what is already on them. Same principle as Malevolence — its value is a function of how long you spent not committing." }
-      ],
-      "row": 5
+        {
+          "spec": "priest/shadow",
+          "spell": "Voidform",
+          "note": "120s. The slowest term; the cadence is this."
+        },
+        {
+          "spec": "priest/shadow",
+          "spell": "Power Infusion",
+          "note": "120s. The talent gives it to you AND your target."
+        },
+        {
+          "spec": "warlock/affliction",
+          "spell": "Dark Harvest",
+          "note": "60s. Half-cadence, in every go."
+        },
+        {
+          "spec": "priest/shadow",
+          "spell": "Silence",
+          "note": "30s. On the Resto, inside the window rather than before it."
+        }
+      ]
     },
     {
       "kind": "defensives",
-      "title": "What the Restoration Shaman answers with",
-      "opponent": "shaman/restoration",
+      "title": "What the Enhancement Shaman answers with",
       "steps": [
-        { "spec": "shaman/restoration", "spell": "Spirit Link Totem", "note": "The one that beats this comp. It answers spread damage specifically — which is exactly what you do — by levelling the whole team's health. Pressing your go into a fresh Spirit Link is the most common way this matchup is lost." },
-        { "spec": "shaman/restoration", "spell": "Astral Shift", "note": "Personal, and cheap enough that she will spend it on your first real attempt at her. Do not read it as her being out of answers." },
-        { "spec": "shaman/restoration", "spell": "Tremor Totem", "note": "The specific answer to this plan's peel. Two of your three peels are fears, and this removes them from her whole team on a cooldown far shorter than either of yours. It is a totem, so it can be killed — and against this comp killing that totem is worth more than a global of damage on a player." },
-        { "spec": "shaman/restoration", "spell": "Healing Tide Totem", "note": "The other area answer, and the longest cooldown she owns. Same weakness: it is a totem standing still on the ground." },
-        { "spec": "shaman/restoration", "spell": "Gladiator's Medallion", "note": "The one you are actually trying to force with the healer chain. If it comes out for the Cyclone, the chain has already paid for itself." }
-      ],
-      "row": 6
+        {
+          "spec": "shaman/enhancement",
+          "spell": "Astral Shift",
+          "note": "90s, 40%. His only mitigation."
+        },
+        {
+          "spec": "shaman/enhancement",
+          "spell": "Gladiator's Medallion",
+          "note": "120s, and then the list is empty."
+        }
+      ]
     },
     {
       "kind": "defensives",
-      "title": "What the two melee answer with",
-      "opponent": "warrior/arms",
+      "title": "What reaches your Priest",
       "steps": [
-        { "spec": "warrior/arms", "spell": "Rallying Cry", "note": "Party-wide, so it does not save the Warrior — it blunts pressure on all three at once. Against a comp doing spread damage it is worth more than any personal cooldown he has, and it is the one these guides keep forgetting to count." },
-        { "spec": "warrior/arms", "spell": "Berserker Shout", "note": "Answers both of your fears for his whole party. The reason Howl of Terror and Psychic Scream should not go out back to back — spend one, see whether this answers it, then spend the other." },
-        { "spec": "warrior/arms", "spell": "Spell Reflection", "note": "Eats a single cast. Against three casters it is a coin flip which one it catches, but it is back every attempt, so assume it is up." },
-        { "spec": "warrior/arms", "spell": "Die by the Sword", "note": "Only mitigates physical damage, and you are not doing any. Against this comp specifically it is close to a wasted button — which is a real reason to prefer him as the eventual target." }
-      ],
-      "row": 7
+        {
+          "spec": "warrior/arms",
+          "spell": "Charge",
+          "note": "17s. He is on your Priest whenever he chooses to be."
+        },
+        {
+          "spec": "warrior/arms",
+          "spell": "Storm Bolt",
+          "note": "30s. Your Priest has no trinket-free way out of it."
+        },
+        {
+          "spec": "shaman/enhancement",
+          "spell": "Capacitor Totem",
+          "note": "40s and visible. Move before it lands."
+        }
+      ]
     },
     {
       "kind": "text",
-      "title": "Cadence: almost nothing to schedule, and that is the strength",
-      "body": "Look at what this comp's damage depends on: Agony, Corruption, Vampiric Touch, Shadow Word: Pain. None of them have a cooldown. None of them need to line up with anything. The comp is at roughly ninety per cent of its output at all times, and the cooldowns it does hold — Malevolence, Darkglare, Void Torrent, Power Infusion — are multipliers on damage that is already happening rather than the damage itself.\n\nTurbo is the opposite. Avatar, Bladestorm, Doom Winds and Ascendance are the whole comp, and between them it is a much weaker team than it looks. So the cadence that matters is theirs, not yours.\n\nThe practical form of that: you do not schedule a go, you schedule a refusal. When their cooldowns come up, that is when Vortex, Howl and Scream are spent, and it does not matter that you are spending three pieces of control to prevent one window rather than to create one — you have no window to create. When their cooldowns are down, that is when you commit.\n\nThe only thing on your side worth timing is Spirit Link. It is the longest cooldown in the matchup and it is the single answer to what you do. Everything above is really a plan for arriving at the moment where it is not available.",
-      "row": 8
-    },
-    {
-      "kind": "text",
-      "title": "Where this is guessing",
-      "body": "1. Whether refusing to name a kill target is wisdom or an excuse. A plan that says 'take whoever runs dry' is harder to argue with than one that says 'kill the Warrior', because it can never be wrong — and that should make you suspicious of it. A real player probably does pick a target by the second minute. This plan does not know what that decision actually looks like.\n\n2. Spirit Link Totem's real weight. Everything above treats it as the thing to play around, on the reasoning that it is an area answer to area damage. That reasoning is sound and completely untested against how a good Restoration Shaman actually uses it — she may well hold it for their go rather than yours, in which case the whole cadence section is solving a problem that is not there.\n\n3. Whether the Warlock should take Howl of Terror at all. This plan argues for it over Shadowfury because the comp is peeling rather than setting up. But the healer chain above would be strictly better with a stun in it, and a Warlock who takes Shadowfury gets a real go at the cost of a worse peel. That is a genuine fork and this guide has picked one side of it without evidence.\n\n4. Killing totems. Named twice above as probably correct and never quantified. Nobody here knows how many globals a Spirit Link or an Earthen Wall is actually worth spending, or whether a Warlock stopping his dot spread to attack a totem is ahead or behind.\n\n5. The first-minute plan assumes you survive the first minute. Against two melee with a healer, a Shadow Priest and a Warlock who are both spending their early game applying damage rather than defending may simply die. Nothing above tests that.",
-      "row": 9
+      "title": "One correction to an earlier draft",
+      "body": "Shackle Horror is not control on a player — it only works on pets and NPCs, so it is not part of any chain here. Nothing in our data models who a spell can be cast on, so this is the class of error only a reader catches."
     }
   ]
 }
