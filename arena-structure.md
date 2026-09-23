@@ -54,18 +54,39 @@ constraint in this document:
 > individual outplays in the game, they seem to be embedded inside a context that we
 > don't really have access to all the information."
 
-So the model is deliberately split:
+So the model is split — **by confidence, not by permission**:
 
-| Reliably authorable | Out of reach |
+| What we can state | What we can only propose |
 |---|---|
 | What a long CC chain looks like for this comp | Whether to send *this* chain, in *this* round |
 | What a good go looks like — its shape, order, simultaneity | Whether this specific go beats this specific opponent |
-| What tools a team holds, and what each one counters | Individual outplays and reads |
-| Which of their tools must be gone before a go is a kill | Whether they will press it |
+| What tools a team holds, and what each one counters | Who to kill, and how to rank the candidates |
+| Which of their tools must be gone before a go is a kill | Whether they will actually press it |
 | The playstyle a given talent build implies | Moment-to-moment adaptation |
 
-A guide should live entirely in the left column. When it strays right, it starts
-asserting things no data supports and the reader can tell.
+**A guide may write in either column. What it may not do is write the right-hand column
+in the left-hand column's voice.** Propose, rank, give the reason, and say it is a
+proposal.
+
+**[CORRECTED 2026-09-23] An earlier version of this table was headed "Reliably
+authorable / Out of reach", and told a guide to live entirely in the left column.** That
+was a misreading of the very quote above it, and the player's correction is recorded in
+`docs/arena/sources/chriso-scope-correction-2026-09-23.md`:
+
+> "I don't want to have information or prose that implies the AI can't do something. It's
+> more my thoughts and our reasoning, but we honestly don't know 100% what's going to
+> happen, and I feel like that's a humility I would like to instil into our system."
+
+He said *we do not have access to all the information*. The table turned that into *do not
+write about it*. Those are different claims and only the first one is his: one is about
+the evidence, the other is a limit on the reasoning, and nothing earned the second.
+
+**The document had already caught itself on this.** Part 16's first question — the one a
+guide must answer before it is allowed any steps at all — is *"Who dies, and why them?
+Ranked, with a reason per candidate... Never a single verdict"*, tagged [OBS]. A framework
+cannot both require a ranked kill-target list and call the kill-target decision out of
+reach. Part 16 is the one that survives, and note that it already carries the right
+posture: **ranked, reasoned, never a single verdict.**
 
 **Who it is for, and what changes with rating.** [OBS] The player is 1700 on alts and
 Gladiator on his mains, and reads the difference as mechanical, not strategic:
@@ -116,6 +137,50 @@ the mistake is shipping one while implying the other.
 opener, the memorised-threshold sheet, and the build-per-matchup recommendation are not
 three pages — they are three outputs of one thing, and the comp builder is where they
 live.
+
+---
+
+## Part 0.2 — Humility, and why exploring is the virtue
+
+[OBS] The player's instruction on the character of the whole system, 2026-09-23, and it
+governs how every other part of this document should be read:
+
+> "Even if the advice allows or helps a player get rank 1 or BlizzCon winner, I would like
+> to maintain a level of humility that allows errors and promotes a creative, playful,
+> exploratory [approach] as a virtue rather than something to avoid."
+
+**Why this is not a licence to guess.** The tiers do the work the old prohibition was
+trying to do, and they do it better, because they are attached to individual claims rather
+than to whole topics. A ranked kill-target list tagged as reasoning is honest. The same
+list asserted as fact is not. Nothing here loosens that — it removes a *second*, blunter
+mechanism that was overlapping the tiers and forbidding more than they do.
+
+**Where the constraint actually lives.** [OBS] The player's argument, and the reason the
+above is safe:
+
+> "I think the constraint is built into the actual facts of the game — that a creative
+> expression of abilities, when reasoned over, will expose potential strategic weaknesses
+> without forcing the system in the md."
+
+A bad proposal is **checkable against the kit**. If a guide names the wrong kill target,
+the target's answer list says so; if it names a chain that cannot reach, the DR categories
+and ranges say so; if it names a build one character could not hold,
+`TalentFeasibilityService` says so. The spell data is the discipline, and it is a far
+better one than a paragraph of caution, because it catches the specific error instead of
+suppressing the whole class of thought that would have found the good line.
+
+This is how the rest of the project already works. Every real guardrail here is a check
+against a fact — the description resolver refusing to ship `$s1`, the importer warning on
+a duplicated override line, the feasibility check on choice-node exclusivity. None of them
+is a rule against thinking.
+
+**[DER] And a cautious model is the wrong instrument for this product specifically.** The
+machine-drafted guides exist *to be corrected* — that is the stated point of publishing
+them, and `guides:export-feedback` is the bottom of that loop. A draft that only ever says
+what is already certain gives a reader nothing to disagree with, and a reader who
+disagrees with nothing teaches us nothing. **Being specific and wrong is worth more here
+than being vague and safe**, provided the specificity is tiered honestly so nobody mistakes
+it for a finding.
 
 ---
 
@@ -866,6 +931,27 @@ on the answer pool") is specific, falsifiable, and teachable in a sitting.
 - Control on a target the spell cannot legally affect. The data does not model who a
   spell can be cast on — Banish and Shackle Horror both shipped in published plans as
   control on players. Nothing in the pipeline catches this.
+
+Every entry on that list is about **how a thing is stated**, or about a checkable error of
+fact. None of them is a topic that may not be reasoned about — see Part 0.2.
+
+**Things worth writing even though we might be wrong.** [OBS, 2026-09-23] The positive
+counterpart, and the more important list of the two:
+
+- **A ranked kill target, with the reason for each candidate.** Question 1 above already
+  requires it. "Their Rogue first — shortest list and no external reaches him through
+  Smoke Bomb; otherwise the healer" is useful and checkable. "It depends" is not.
+- **A specific opener, named ability by ability.** The single strongest piece of evidence
+  in this whole document is that a written opener is an installable improvement (Part 5:
+  Calvish's team invented one between games and levelled up immediately). A vague opener
+  is not a smaller version of that; it is nothing.
+- **A line you are unsure of, marked as one.** "We think X, and here is why, and here is
+  what would prove it wrong" is a contribution. The reader who corrects it has told us
+  something, which is the entire mechanism this project runs on.
+- **A creative use of a kit that nobody plays.** The kit is real data; a bad idea built
+  out of it exposes itself when the numbers are checked. The cost of a wrong proposal is
+  one correction. The cost of never proposing is that the document only ever contains what
+  was already known.
 
 ---
 

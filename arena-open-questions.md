@@ -346,18 +346,35 @@ The player's note after the first answering pass, which is now Part 0 of the mod
 > playstyle for each talent build and comp. I think we have more than enough context and
 > information to help get someone relatively high rated."
 
-**This retires a whole class of question from this document.** Anything of the form
-"what is the right play in situation X" is out of scope and should not be asked here
-again. What stays in scope:
+**[REVISED 2026-09-23 — see `docs/arena/sources/chriso-scope-correction-2026-09-23.md`.]**
+This was read as retiring a whole class of question: anything of the form "what is the
+right play in situation X" was marked out of scope and not to be asked again. **That went
+further than the quote does.** "We don't have access to all the information" prices a
+question's answerability; it does not forbid the question. The player's correction:
+
+> "I don't want to have information or prose that implies the AI can't do something...
+> we honestly don't know 100% what's going to happen, and I feel like that's a humility I
+> would like to instil into our system."
+
+So what this section really settles is **which answers can be stated and which can only
+be proposed** — the split now in Part 0 of the model:
+
+*Statable, because the data carries them:*
 
 - What is reliably true about a comp's tools, chains, windows and counters.
 - What a build implies about how the comp is played.
 - Which enemy answers must be gone before a go is a kill rather than a strip.
 - Measurements the archive can settle.
 
-Several remaining questions below are of the retired kind. They are left in place rather
-than deleted, marked **[OUT OF SCOPE]** where they are, because a question that was
-deliberately abandoned is worth more on the page than a question that quietly vanished.
+*Proposable, ranked and reasoned, never stated flat:*
+
+- Who to kill, and how to rank the candidates (Part 16 already **requires** this).
+- Whether a given go beats a given opponent.
+- What to do in a named situation, given the state we can actually see.
+
+Questions below still marked **[OUT OF SCOPE]** are kept with that tag for the audit
+trail, but the tag now means *"no clean answer is expected"* rather than *"do not ask"*.
+A question nobody can settle is still worth a reasoned, labelled attempt.
 
 ---
 

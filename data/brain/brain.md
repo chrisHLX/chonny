@@ -54,20 +54,31 @@ games — our player went 0-6 in a lobby trying to force the win condition this 
 prescribes, against opponents nobody was coordinating with. Shuffle needs its own model
 and doesn't have one yet.
 
-## What a guide can and can't tell you {#scope}
+## How sure we are, and where we're guessing {#scope}
 ::tier observed::
 
-Some things about arena are reliably true. Others are buried in a context nobody outside
-the game can see. We try to stay on the right side of that line.
+Some things about arena are reliably true. Others we can only reason about. We'd rather
+tell you which is which than only tell you the first kind.
 
-**What a guide can honestly contain:** what a long CC chain looks like for this comp,
-what a good go looks like, what tools a team holds and what each one counters, which of
-their answers must be gone before a go is a kill, and the playstyle a given talent build
-implies.
+**What we can state:** what a long CC chain looks like for this comp, what a good go looks
+like, what tools a team holds and what each one counters, which of their answers must be
+gone before a go is a kill, and the playstyle a given talent build implies. These come out
+of the game's own data and you can check them.
 
-**What it can't:** whether to send *this* chain, in *this* round, against *this*
-opponent. Individual outplays sit inside a context we don't have access to. Any guide
-that claims otherwise is guessing at you.
+**What we can only propose:** who to kill and in what order, whether to send *this* chain
+in *this* round, whether they'll actually press the button. We'll still give you an answer
+— a ranked one, with the reason attached — because "it depends" helps nobody. But it's our
+reasoning, not a fact, and it's labelled that way.
+
+**This page used to say the second list was off-limits, and that was wrong.** Not having
+complete information isn't the same as having nothing useful to say. A guide that only
+ever tells you what's already certain gives you nothing to argue with, and arguing with it
+is the point — corrections here are what make the next version better.
+
+**What keeps that honest isn't caution, it's the game.** A bad call exposes itself when you
+check it: the target we named has three defensives left, the chain doesn't reach, the build
+can't hold both talents. The data does that work. So we'd rather be specific and
+occasionally wrong than vague and safe — as long as we're clear which parts are which.
 
 ## What actually decides a kill {#answer-pool}
 ::tier observed::
