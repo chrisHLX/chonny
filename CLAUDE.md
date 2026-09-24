@@ -57,6 +57,7 @@ exist to be corrected. The spell/talent/match-data pipeline underneath must stay
 | `docs/guides/` | Reader feedback on the machine guides: the full export, plus the distilled corrections. **Export before re-authoring** — anchored comments are cascade-deleted. |
 | `module-upload-format.md` | Shape for drafting module content. |
 | `docs/learning/question-audit-2026-09-24.md` | **The authored question bank read against the Brain and the spell data.** 9 questions contradict the model, 4 have a defensible distractor, 5 contradict live spell data — two of them stating a PvE crowd control duration. The case for generating facts rather than writing them. |
+| `monetisation-read.md` | **Usage read against the case for a paywall (2026-09-24).** The sixteen days after the guide builder shipped: 3 sign-ups, 3 guide authors, 2 comments, ~79% crawler traffic. Records why `session_id` cannot measure retention here. |
 | `system-integration.md` | **How the learning platform joins the spell data, the guides and the Brain.** The three grounding layers, the finding that the old questions went stale on doctrine rather than numbers, and the staged path. Read before touching modules, diagnostics or concept mastery. |
 
 These are reference, not gates. Implementation decisions are yours. A note that something "can

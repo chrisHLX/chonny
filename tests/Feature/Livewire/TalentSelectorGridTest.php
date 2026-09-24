@@ -168,3 +168,31 @@ test('a guest on a read-only talent view cannot turn it into the admin default-b
         ->and($component->get('readOnly'))->toBeTrue()
         ->and($component->get('isDefaultEditor'))->toBeFalse();
 });
+
+/*
+ * The points-spent counter was one click behind — 2026-09-25, from a real report of "an incorrect
+ * amount of talents selected".
+ *
+ * toggleEntry() asks isNodeLocked() whether a fresh pick is allowed BEFORE it writes the pick.
+ * That populated rankByNodeId()'s per-instance cache from the pre-click state, and render() then
+ * counted points and evaluated gate locks off the same stale map. The counter only caught up on
+ * the NEXT interaction.
+ */
+test('the points-spent counter reflects the click that just happened, not the one before it', function () {
+    $fixture = makeGridFixture();
+
+    $component = Livewire::test(TalentSelector::class, ['specId' => $fixture['spec']->id, 'layout' => 'grid']);
+
+    expect($component->instance()->specPointsSpent)->toBe(0);
+
+    $component->call('toggleEntry', $fixture['node']->id, $fixture['rank1']->id);
+    expect($component->instance()->specPointsSpent)->toBe(1);
+
+    // Rank 2 is worth two points in the tree's own accounting, and it must land on this call.
+    $component->call('cycleNode', $fixture['node']->id);
+    expect($component->instance()->specPointsSpent)->toBe(2);
+
+    // Clearing has to come back down on the same interaction too.
+    $component->call('toggleEntry', $fixture['node']->id, $fixture['rank2']->id);
+    expect($component->instance()->specPointsSpent)->toBe(0);
+});

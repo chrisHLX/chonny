@@ -241,6 +241,9 @@ class TalentSelector extends Component
             return;
         }
 
+        // The hero lookups answered for the previous tree.
+        $this->forgetLookups();
+
         $staleNodeIds = TalentNode::whereHas(
             'talentTree',
             fn ($q) => $q->where('type', 'hero')->when($value, fn ($q2) => $q2->where('id', '!=', $value))
@@ -515,7 +518,7 @@ class TalentSelector extends Component
 
     public function getSpecializationProperty(): ?Specialization
     {
-        return Specialization::find($this->specId);
+        return $this->remember('spec', fn () => Specialization::find($this->specId));
     }
 
     /** @var array<int, string> spell_id => resolved description text, memoized per render */
@@ -552,7 +555,7 @@ class TalentSelector extends Component
 
     private function currentPatchId(): ?int
     {
-        return $this->specialization?->game()?->currentPatch?->id;
+        return $this->remember('patch_id', fn () => $this->specialization?->game()?->currentPatch?->id);
     }
 
     private function loadTreeNodes(?TalentTree $tree): Collection
@@ -565,26 +568,74 @@ class TalentSelector extends Component
         // same $tree the caller passed in, so this avoids a real query for something already
         // known, purely to let isNodeLocked()'s gate check read $node->talentTree->type cheaply.
         return $tree->nodes()
-            ->with('entries.spell')
+            // incomingEdges is what isNodePrerequisiteLocked() reads, once per node during a
+            // render. Without it here that method issued its own query each time.
+            ->with('entries.spell', 'incomingEdges')
             ->orderBy('pos_y')
             ->orderBy('pos_x')
             ->get()
             ->each(fn (TalentNode $n) => $n->setRelation('talentTree', $tree));
     }
 
-    /** @var ?Collection<int, int> talent_node_id => rank, memoized per render/action from */
+    /**
+     * Per-request memo for the tree/node/edge lookups below.
+     *
+     * None of them depend on which talents are picked — they are "what does this spec's tree look
+     * like", which cannot change inside one request. They were recomputed on every read, and the
+     * blade reads them repeatedly: isNodeLocked() calls treeNodesFor() once per node, and that
+     * touches all three node collections plus all three tree lookups, so a single render of
+     * Discipline ran 129 queries and 199ms of work on the production box for three lists that
+     * never move. Measured before and after; see the commit.
+     *
+     * Deliberately a plain array rather than Livewire's #[Computed]: these are legacy
+     * getFooProperty() accessors read as $this->foo from PHP AND passed by name into the view,
+     * and #[Computed] changes how the name is exposed. This keeps the public shape identical.
+     *
+     * @var array<string, mixed>
+     */
+    private array $lookupMemo = [];
+
+    /** @param  \Closure():mixed  $compute */
+    private function remember(string $key, \Closure $compute): mixed
+    {
+        return array_key_exists($key, $this->lookupMemo)
+            ? $this->lookupMemo[$key]
+            : $this->lookupMemo[$key] = $compute();
+    }
+
+    /** Picking a different hero tree changes what the hero lookups answer, so they start again. */
+    private function forgetLookups(): void
+    {
+        $this->lookupMemo = [];
+    }
+
+    /** @var ?Collection<int, int> talent_node_id => rank */
     private ?Collection $rankByNodeIdCache = null;
+
+    /** The $chosenEntries the cache above was built from, so it cannot outlive them. */
+    private ?string $rankCacheSignature = null;
 
     /**
      * Converts the live $chosenEntries state (node_id => entry_id) into the node_id => rank map
      * TalentSelectionService's lock-checking methods need — see those methods' own docblocks for
      * why this reads live component state rather than a persisted TalentBuild.
+     *
+     * KEYED ON $chosenEntries, not memoized once per request, and that is a bug fix rather than a
+     * refinement. toggleEntry() asks isNodeLocked() whether a fresh pick is allowed BEFORE it
+     * writes the pick — which populated this cache — and render() then read the same cache to
+     * count points and to grey out gated nodes. Every counter and every lock was therefore one
+     * click behind: click a talent, watch the number stay put; click another, watch the first
+     * one land. A signature check cannot be forgotten at a new call site the way an explicit
+     * "clear the cache here" could.
      */
     private function rankByNodeId(): Collection
     {
-        if ($this->rankByNodeIdCache === null) {
+        $signature = md5(serialize($this->chosenEntries));
+
+        if ($this->rankByNodeIdCache === null || $this->rankCacheSignature !== $signature) {
             $rankByEntryId = TalentNodeEntry::whereIn('id', array_values($this->chosenEntries))->pluck('rank', 'id');
             $this->rankByNodeIdCache = collect($this->chosenEntries)->map(fn ($entryId) => $rankByEntryId->get($entryId, 0));
+            $this->rankCacheSignature = $signature;
         }
 
         return $this->rankByNodeIdCache;
@@ -642,152 +693,172 @@ class TalentSelector extends Component
 
     public function getClassTalentEdgesProperty(): Collection
     {
-        return $this->loadTreeEdges($this->classTalentNodes);
+        return $this->remember('class_edges', function () {
+            return $this->loadTreeEdges($this->classTalentNodes);
+        });
     }
 
     public function getSpecTalentEdgesProperty(): Collection
     {
-        return $this->loadTreeEdges($this->specTalentNodes);
+        return $this->remember('spec_edges', function () {
+            return $this->loadTreeEdges($this->specTalentNodes);
+        });
     }
 
     public function getHeroTalentEdgesProperty(): Collection
     {
-        return $this->loadTreeEdges($this->heroTalentNodes);
+        return $this->remember('hero_edges', function () {
+            return $this->loadTreeEdges($this->heroTalentNodes);
+        });
     }
 
     public function getClassTalentTreeProperty(): ?TalentTree
     {
-        $spec = $this->specialization;
-        $patchId = $this->currentPatchId();
+        return $this->remember('class_tree', function () {
+            $spec = $this->specialization;
+            $patchId = $this->currentPatchId();
 
-        if (! $spec || ! $patchId) {
-            return null;
-        }
+            if (! $spec || ! $patchId) {
+                return null;
+            }
 
-        return TalentTree::where('class_id', $spec->class_id)
-            ->where('patch_id', $patchId)
-            ->where('type', 'class')
-            ->first();
+            return TalentTree::where('class_id', $spec->class_id)
+                ->where('patch_id', $patchId)
+                ->where('type', 'class')
+                ->first();
+        });
     }
 
     public function getClassTalentNodesProperty(): Collection
     {
-        $nodes = $this->loadTreeNodes($this->classTalentTree);
-        $spec = $this->specialization;
-        $patchId = $this->currentPatchId();
+        return $this->remember('class_nodes', function () {
+            $nodes = $this->loadTreeNodes($this->classTalentTree);
+            $spec = $this->specialization;
+            $patchId = $this->currentPatchId();
 
-        if ($nodes->isEmpty() || ! $spec || ! $patchId) {
-            return $nodes;
-        }
+            if ($nodes->isEmpty() || ! $spec || ! $patchId) {
+                return $nodes;
+            }
 
-        // Defensive filter against the documented "class-tree API response echoes nearly every
-        // spec node" bug (CLAUDE.md's "data/talenttrees/{class}.json class-tree bloat" note,
-        // 2026-08-02) — the real fix lives in fetch-talent-trees.php at fetch time, but this
-        // locally-imported dataset currently still shows it (confirmed 2026-08-10: Restoration
-        // Druid's entire 73-node spec tree is duplicated into its class tree; Priest's class
-        // tree is back to the exact pre-fix count of 226 nodes). Re-fetching from Blizzard's API
-        // and re-importing is a separate, larger operation (needs live credentials) — this is a
-        // render-time safety net so the picker doesn't show ~4x too many class-tree nodes in the
-        // meantime. Harmless once the underlying data is eventually clean: this filter becomes a
-        // no-op the moment class-tree nodes stop overlapping spec/hero external_node_ids.
-        //
-        // Deliberately compares against EVERY spec/hero tree of this class, not just the one
-        // currently being viewed — confirmed by hand that the bloated response bundles ALL of a
-        // class's spec-tree duplicates together (excluding only the current spec's own 73 nodes
-        // left Druid's class list at 208, nowhere near the documented real ~45-75 range; the
-        // remaining bloat was Balance/Feral/Guardian's own duplicated nodes).
-        $excludedIds = TalentNode::whereHas(
-            'talentTree',
-            fn ($q) => $q->where('class_id', $spec->class_id)
-                ->where('patch_id', $patchId)
-                ->whereIn('type', ['spec', 'hero'])
-        )->pluck('external_node_id');
+            // Defensive filter against the documented "class-tree API response echoes nearly every
+            // spec node" bug (CLAUDE.md's "data/talenttrees/{class}.json class-tree bloat" note,
+            // 2026-08-02) — the real fix lives in fetch-talent-trees.php at fetch time, but this
+            // locally-imported dataset currently still shows it (confirmed 2026-08-10: Restoration
+            // Druid's entire 73-node spec tree is duplicated into its class tree; Priest's class
+            // tree is back to the exact pre-fix count of 226 nodes). Re-fetching from Blizzard's API
+            // and re-importing is a separate, larger operation (needs live credentials) — this is a
+            // render-time safety net so the picker doesn't show ~4x too many class-tree nodes in the
+            // meantime. Harmless once the underlying data is eventually clean: this filter becomes a
+            // no-op the moment class-tree nodes stop overlapping spec/hero external_node_ids.
+            //
+            // Deliberately compares against EVERY spec/hero tree of this class, not just the one
+            // currently being viewed — confirmed by hand that the bloated response bundles ALL of a
+            // class's spec-tree duplicates together (excluding only the current spec's own 73 nodes
+            // left Druid's class list at 208, nowhere near the documented real ~45-75 range; the
+            // remaining bloat was Balance/Feral/Guardian's own duplicated nodes).
+            $excludedIds = TalentNode::whereHas(
+                'talentTree',
+                fn ($q) => $q->where('class_id', $spec->class_id)
+                    ->where('patch_id', $patchId)
+                    ->whereIn('type', ['spec', 'hero'])
+            )->pluck('external_node_id');
 
-        return $nodes->reject(fn (TalentNode $n) => $excludedIds->contains($n->external_node_id))->values();
+            return $nodes->reject(fn (TalentNode $n) => $excludedIds->contains($n->external_node_id))->values();
+        });
     }
 
     public function getSpecTalentTreeProperty(): ?TalentTree
     {
-        $patchId = $this->currentPatchId();
+        return $this->remember('spec_tree', function () {
+            $patchId = $this->currentPatchId();
 
-        if (! $patchId) {
-            return null;
-        }
+            if (! $patchId) {
+                return null;
+            }
 
-        return TalentTree::where('spec_id', $this->specId)
-            ->where('patch_id', $patchId)
-            ->where('type', 'spec')
-            ->first();
+            return TalentTree::where('spec_id', $this->specId)
+                ->where('patch_id', $patchId)
+                ->where('type', 'spec')
+                ->first();
+        });
     }
 
     public function getSpecTalentNodesProperty(): Collection
     {
-        $nodes = $this->loadTreeNodes($this->specTalentTree);
-        $spec = $this->specialization;
-        $patchId = $this->currentPatchId();
+        return $this->remember('spec_nodes', function () {
+            $nodes = $this->loadTreeNodes($this->specTalentTree);
+            $spec = $this->specialization;
+            $patchId = $this->currentPatchId();
 
-        if ($nodes->isEmpty() || ! $spec || ! $patchId) {
-            return $nodes;
-        }
+            if ($nodes->isEmpty() || ! $spec || ! $patchId) {
+                return $nodes;
+            }
 
-        // Same defensive shape, same root cause, and same "render-time safety net, not the real
-        // fix" caveat as getClassTalentNodesProperty() directly above — but for HERO nodes
-        // echoed into a SPEC tree's own node list, which that filter never covered. Added
-        // 2026-09-01 from a real user report ("there are hero talents on the right hand side
-        // that seem to be greyed out with the class talents"): confirmed systemic, not a
-        // one-off — 39 of 40 spec trees are affected, 1,127 duplicated nodes in total. Feral
-        // Druid's spec tree carried 28 of them (BOTH of its hero trees, Druid of the Claw at
-        // one edge and Wildstalker at the other), rendering as two disconnected greyed-out
-        // clusters flanking the real tree and inflating it from 7 real columns to 17.
-        //
-        // Matching on external_node_id alone is safe here despite that column not being
-        // globally unique (see BlizzardTalentStringCodec's own docblock on that hazard) —
-        // verified before shipping, not assumed: all 1,127 matched pairs carry an IDENTICAL
-        // spell set, i.e. every single one is a genuine duplicate rather than a coincidental
-        // id collision. Also verified zero of the 3,659 existing talent_build_choices rows
-        // point at any node this hides, so no saved build loses a pick.
-        //
-        // Deliberately NOT applied to BlizzardTalentStringCodec::orderedNodesForSpec(), which
-        // reads these same spec-tree nodes unfiltered to align its bit-stream: that decode path
-        // is separately verified working against a real exported string, so the bloat is very
-        // likely present in Blizzard's own live trait-tree ordering too. Filtering it there
-        // would re-break the exact alignment the 2026-08-02 class-tree fix established. This is
-        // a display concern only.
-        $heroExternalIds = TalentNode::whereHas(
-            'talentTree',
-            fn ($q) => $q->where('class_id', $spec->class_id)
-                ->where('patch_id', $patchId)
-                ->where('type', 'hero')
-        )->pluck('external_node_id');
+            // Same defensive shape, same root cause, and same "render-time safety net, not the real
+            // fix" caveat as getClassTalentNodesProperty() directly above — but for HERO nodes
+            // echoed into a SPEC tree's own node list, which that filter never covered. Added
+            // 2026-09-01 from a real user report ("there are hero talents on the right hand side
+            // that seem to be greyed out with the class talents"): confirmed systemic, not a
+            // one-off — 39 of 40 spec trees are affected, 1,127 duplicated nodes in total. Feral
+            // Druid's spec tree carried 28 of them (BOTH of its hero trees, Druid of the Claw at
+            // one edge and Wildstalker at the other), rendering as two disconnected greyed-out
+            // clusters flanking the real tree and inflating it from 7 real columns to 17.
+            //
+            // Matching on external_node_id alone is safe here despite that column not being
+            // globally unique (see BlizzardTalentStringCodec's own docblock on that hazard) —
+            // verified before shipping, not assumed: all 1,127 matched pairs carry an IDENTICAL
+            // spell set, i.e. every single one is a genuine duplicate rather than a coincidental
+            // id collision. Also verified zero of the 3,659 existing talent_build_choices rows
+            // point at any node this hides, so no saved build loses a pick.
+            //
+            // Deliberately NOT applied to BlizzardTalentStringCodec::orderedNodesForSpec(), which
+            // reads these same spec-tree nodes unfiltered to align its bit-stream: that decode path
+            // is separately verified working against a real exported string, so the bloat is very
+            // likely present in Blizzard's own live trait-tree ordering too. Filtering it there
+            // would re-break the exact alignment the 2026-08-02 class-tree fix established. This is
+            // a display concern only.
+            $heroExternalIds = TalentNode::whereHas(
+                'talentTree',
+                fn ($q) => $q->where('class_id', $spec->class_id)
+                    ->where('patch_id', $patchId)
+                    ->where('type', 'hero')
+            )->pluck('external_node_id');
 
-        return $nodes->reject(fn (TalentNode $n) => $heroExternalIds->contains($n->external_node_id))->values();
+            return $nodes->reject(fn (TalentNode $n) => $heroExternalIds->contains($n->external_node_id))->values();
+        });
     }
 
     public function getHeroTreesProperty(): Collection
     {
-        $spec = $this->specialization;
-        $patchId = $this->currentPatchId();
+        return $this->remember('hero_trees', function () {
+            $spec = $this->specialization;
+            $patchId = $this->currentPatchId();
 
-        if (! $spec || ! $patchId) {
-            return collect();
-        }
+            if (! $spec || ! $patchId) {
+                return collect();
+            }
 
-        return TalentTree::where('class_id', $spec->class_id)
-            ->where('patch_id', $patchId)
-            ->where('type', 'hero')
-            ->whereHas('specializations', fn ($q) => $q->where('specializations.id', $this->specId))
-            ->orderBy('name')
-            ->get();
+            return TalentTree::where('class_id', $spec->class_id)
+                ->where('patch_id', $patchId)
+                ->where('type', 'hero')
+                ->whereHas('specializations', fn ($q) => $q->where('specializations.id', $this->specId))
+                ->orderBy('name')
+                ->get();
+        });
     }
 
     public function getSelectedHeroTreeProperty(): ?TalentTree
     {
-        return $this->heroTreeId ? TalentTree::find($this->heroTreeId) : null;
+        return $this->remember('hero_tree', function () {
+            return $this->heroTreeId ? TalentTree::find($this->heroTreeId) : null;
+        });
     }
 
     public function getHeroTalentNodesProperty(): Collection
     {
-        return $this->loadTreeNodes($this->selectedHeroTree);
+        return $this->remember('hero_nodes', function () {
+            return $this->loadTreeNodes($this->selectedHeroTree);
+        });
     }
 
     /**

@@ -1021,7 +1021,15 @@ class TalentSelectionService
      */
     public function isNodePrerequisiteLocked(TalentNode $node, Collection $rankByNodeId): bool
     {
-        $prerequisiteNodeIds = $node->incomingEdges()->pluck('from_node_id');
+        // Uses the loaded relation when the caller eager-loaded it, and only falls back to a
+        // query when it did not. This is called once per node while rendering a tree, so the
+        // query form ran ~110 times for one Discipline render: 129 queries and 199ms of work on
+        // the production box for every single talent click, which is the delay players reported.
+        // TalentSelector::loadTreeNodes() now eager-loads incomingEdges, taking the same render
+        // to 9 queries.
+        $prerequisiteNodeIds = $node->relationLoaded('incomingEdges')
+            ? $node->incomingEdges->pluck('from_node_id')
+            : $node->incomingEdges()->pluck('from_node_id');
 
         if ($prerequisiteNodeIds->isEmpty()) {
             return false;
