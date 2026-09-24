@@ -293,9 +293,12 @@ test('resolveDescription evaluates a $<var> whose Variables definition is one un
         ->and($result['uncertain'])->toBeFalse();
 });
 
-test('resolveDescription keeps $<var> as (varies) when the Variables block has any $? conditional', function () {
-    // Penance shape: a conditional-free var sits in the SAME block as a conditional one — the
-    // whole block is untrusted, nothing is inlined.
+test('resolveDescription resolves an unconditional $<var> sitting beside a conditional one', function () {
+    // Penance shape: a conditional-free var in the SAME block as a conditional one. Until
+    // 2026-09-24 a single "$?" anywhere in the block made every definition in it untrusted, so
+    // this rendered "(varies)" — which is why Penance said "causing (varies) Holy damage" while
+    // Blizzard's own formula for it sat in the block. Conditionals are handled per definition
+    // now, so the unconditional neighbour resolves.
     $fixture = makeDescriptionFixture();
     $spell = Spell::create([
         'patch_id' => $fixture['patch']->id, 'spell_id' => 31,
@@ -308,8 +311,8 @@ test('resolveDescription keeps $<var> as (varies) when the Variables block has a
 
     $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
 
-    expect($result['text'])->toBe('Deals (varies) damage.')
-        ->and($result['uncertain'])->toBeTrue();
+    expect($result['text'])->toBe('Deals 500 damage.')
+        ->and($result['uncertain'])->toBeFalse();
 });
 
 test('resolveDescription consumes a trailing ".N" precision suffix after ${...}', function () {

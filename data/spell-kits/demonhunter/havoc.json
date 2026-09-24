@@ -1,5 +1,5 @@
 {
-    "generatedAt": "2026-09-24T08:56:57+00:00",
+    "generatedAt": "2026-09-24T09:54:14+00:00",
     "spellCacheVersion": 21,
     "codeFingerprint": "dev",
     "entries": [
@@ -37,12 +37,10 @@
             "spellId": 1580,
             "category": "Defensive",
             "description": {
-                "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to (varies) Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
-                "uncertain": true
+                "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                1851
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -2791,8 +2789,8 @@
             "spellId": 1926,
             "category": "Other",
             "description": {
-                "text": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing (varies) Cosmic damage over 6 sec.",
-                "uncertain": true
+                "text": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing ≈600% of Spell Power Cosmic damage over 6 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4532,12 +4530,10 @@
             "spellId": 1850,
             "category": "Defensive",
             "description": {
-                "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to (varies) Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
-                "uncertain": true
+                "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                1851
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -4562,7 +4558,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to (varies) Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4578,7 +4574,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to (varies) Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4642,7 +4638,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to (varies) Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over (varies). Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -4853,8 +4849,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to (varies) Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
-                            "uncertain": true
+                            "text": "Blasts all enemies in front of you, dealing guaranteed critical strikes for up to {?a320415[{40}][{20}] Chaos damage over 2. Deals reduced damage beyond 5 targets. When Eye Beam finishes fully channeling, your Haste is increased by an additional 8% for 8.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -8840,8 +8836,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing (varies) Cosmic damage over 40 sec.",
-                            "uncertain": true
+                            "text": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing ≈4,000% of Spell Power Cosmic damage over 40 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8872,8 +8868,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing (varies) Cosmic damage over 6 sec.",
-                            "uncertain": true
+                            "text": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing ≈600% of Spell Power Cosmic damage over 6 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {

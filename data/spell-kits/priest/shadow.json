@@ -1,5 +1,5 @@
 {
-    "generatedAt": "2026-09-24T08:57:26+00:00",
+    "generatedAt": "2026-09-24T09:54:43+00:00",
     "spellCacheVersion": 21,
     "codeFingerprint": "dev",
     "entries": [
@@ -487,16 +487,10 @@
             "spellId": 8427,
             "category": "Offensive",
             "description": {
-                "text": "Launches a volley of darkness at the target, causing (varies) Shadow damage to an enemy or (varies) healing to an ally over 2. Castable while moving.",
-                "uncertain": true
+                "text": "Launches a volley of darkness at the target, causing ≈243.3–975.9% of Spell Power Shadow damage to an enemy or ≈1,046.5–3,650.6% of Spell Power healing to an ally over 2. Castable while moving.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                8644,
-                8370,
-                8121,
-                8262,
-                8394
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
                 "baseline": [
@@ -930,13 +924,10 @@
             "spellId": 8028,
             "category": "Crowd Control",
             "description": {
-                "text": "Disperse into pure shadow energy, reducing all damage taken by 75% for 6 and healing you for (varies)% of your maximum health over its duration, but you are unable to attack or cast spells. Increases movement speed by 50% and makes you immune to all movement impairing effects. Castable while stunned, feared, or silenced.",
-                "uncertain": true
+                "text": "Disperse into pure shadow energy, reducing all damage taken by 75% for 6 and healing you for ≈25–66.7% of your maximum health over its duration, but you are unable to attack or cast spells. Increases movement speed by 50% and makes you immune to all movement impairing effects. Castable while stunned, feared, or silenced.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                8692,
-                8791
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -945,8 +936,8 @@
                         "modifier_value": -30,
                         "modifier_unit": "seconds",
                         "description": {
-                            "text": "Dispersion heals you for an additional (varies)% of your maximum health over its duration and its cooldown is reduced by 30 sec.",
-                            "uncertain": true
+                            "text": "Dispersion heals you for an additional ≈25–33.3% of your maximum health over its duration and its cooldown is reduced by 30 sec.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1151,14 +1142,10 @@
             "spellId": 8073,
             "category": "Offensive",
             "description": {
-                "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing (varies) Shadow damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets. Generates 6 Insanity.",
-                "uncertain": true
+                "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing ≈56–92.6% of Spell Power Shadow damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets. Generates 6 Insanity.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                8404,
-                8262,
-                8394
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -1186,8 +1173,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing (varies) Holy damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing ≈56–64.4% of Spell Power Holy damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1202,8 +1189,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing (varies) Holy damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing ≈56–64.4% of Spell Power Holy damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -1218,8 +1205,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing (varies) Holy damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing ≈56–64.4% of Spell Power Holy damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1234,8 +1221,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing (varies) Holy damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing ≈56–64.4% of Spell Power Holy damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1250,8 +1237,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing (varies) Holy damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Throw a Divine Star forward 27 yds, healing allies in its path for 6 and dealing ≈56–64.4% of Spell Power Holy damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2269,14 +2256,10 @@
             "spellId": 8687,
             "category": "Offensive",
             "description": {
-                "text": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Shadow damage to enemies. Healing reduced beyond 6 targets. Generates 5 Insanity.",
-                "uncertain": true
+                "text": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–238.4% of Spell Power Shadow damage to enemies. Healing reduced beyond 6 targets. Generates 5 Insanity.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                8404,
-                8262,
-                8394
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -2320,8 +2303,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Holy damage to enemies. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–165.8% of Spell Power Holy damage to enemies. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2336,8 +2319,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Holy damage to enemies. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–165.8% of Spell Power Holy damage to enemies. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2352,8 +2335,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Holy damage to enemies. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–165.8% of Spell Power Holy damage to enemies. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2368,8 +2351,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Holy damage to enemies. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–165.8% of Spell Power Holy damage to enemies. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -2480,8 +2463,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Holy damage to enemies. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–165.8% of Spell Power Holy damage to enemies. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3079,7 +3062,7 @@
             "spellId": 8805,
             "category": "Other",
             "description": {
-                "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing 30 Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
+                "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3169,7 +3152,7 @@
             "spellId": 8798,
             "category": "Other",
             "description": {
-                "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and (varies) Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
+                "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and ≈49.8% of Spell Power Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3181,7 +3164,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and (varies) Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
+                            "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and ≈49.8% of Spell Power Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3396,12 +3379,10 @@
             "spellId": 8662,
             "category": "Offensive",
             "description": {
-                "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for (varies) Shadow damage and extending their durations by 0.7 sec.",
-                "uncertain": true
+                "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for ≈84–90.8% of Spell Power Shadow damage and extending their durations by 0.7 sec.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                8087
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -3712,13 +3693,10 @@
             "spellId": 8791,
             "category": "Other",
             "description": {
-                "text": "Dispersion heals you for an additional (varies)% of your maximum health over its duration and its cooldown is reduced by 30 sec.",
-                "uncertain": true
+                "text": "Dispersion heals you for an additional ≈25–33.3% of your maximum health over its duration and its cooldown is reduced by 30 sec.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                8692,
-                8791
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
                 "baseline": [],
@@ -4662,8 +4640,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for (varies) Shadow damage and extending their durations by 0.7 sec.",
-                            "uncertain": true
+                            "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for ≈84–90.8% of Spell Power Shadow damage and extending their durations by 0.7 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5308,7 +5286,7 @@
             "spellId": 8423,
             "category": "Offensive",
             "description": {
-                "text": "Corrosive shadow energy radiates from the target, dealing 30 Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
+                "text": "Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5355,7 +5333,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing 30 Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
+                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5371,7 +5349,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing 30 Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
+                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5387,7 +5365,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing 30 Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
+                            "text": "Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target. Mind Flay Assaults the target's mind with Shadow energy, causing (varies) Shadow damage over 10 and slowing their movement speed by 30%. Generates 5 Insanity over the duration. Mind Sear Corrosive shadow energy radiates from the target, dealing ≈214.6% of Spell Power Shadow damage over 10 to all enemies within 10 yards of the target. Damage reduced beyond 5 targets. Generates 5 Insanity over the duration.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5540,8 +5518,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for (varies) Shadow damage and extending their durations by 0.7 sec.",
-                            "uncertain": true
+                            "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for ≈84–90.8% of Spell Power Shadow damage and extending their durations by 0.7 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5640,7 +5618,7 @@
             "spellId": 8380,
             "category": "Offensive",
             "description": {
-                "text": "Assault an enemy's mind, dealing (varies) Shadow damage and briefly reversing their perception of reality. For 7, the next (varies) damage they deal will heal their target, and the next (varies) healing they deal will damage their target. Generates 10 Insanity.",
+                "text": "Assault an enemy's mind, dealing ≈1,125% of Spell Power Shadow damage and briefly reversing their perception of reality. For 7, the next (varies) damage they deal will heal their target, and the next (varies) healing they deal will damage their target. Generates 10 Insanity.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7399,8 +7377,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for (varies) Shadow damage and extending their durations by 0.7 sec.",
-                            "uncertain": true
+                            "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for ≈84–90.8% of Spell Power Shadow damage and extending their durations by 0.7 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -8225,7 +8203,7 @@
             "spellId": 7999,
             "category": "Offensive",
             "description": {
-                "text": "A word of darkness that causes (varies) Shadow damage instantly, and an additional (varies) Shadow damage over 16. Generates 3 Insanity.",
+                "text": "A word of darkness that causes ≈19.3% of Spell Power Shadow damage instantly, and an additional (varies) Shadow damage over 16. Generates 3 Insanity.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -8721,7 +8699,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sends a bolt of pure void energy at the enemy, causing ≈351% of Spell Power Shadow damage and extending the duration of Shadow Word: Pain and Vampiric Touch on all nearby targets by (varies) sec. Requires Voidform. Generates $/100;s3 Insanity.",
+                            "text": "Sends a bolt of pure void energy at the enemy, causing ≈351% of Spell Power Shadow damage and extending the duration of Shadow Word: Pain and Vampiric Touch on all nearby targets by 3 sec sec. Requires Voidform. Generates $/100;s3 Insanity.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8908,8 +8886,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for (varies) Shadow damage and extending their durations by 0.7 sec.",
-                            "uncertain": true
+                            "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for ≈84–90.8% of Spell Power Shadow damage and extending their durations by 0.7 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9004,7 +8982,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and (varies) Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
+                            "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and ≈49.8% of Spell Power Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9068,7 +9046,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and (varies) Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
+                            "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and ≈49.8% of Spell Power Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9324,7 +9302,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and (varies) Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
+                            "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and ≈49.8% of Spell Power Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9372,7 +9350,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and (varies) Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
+                            "text": "After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At 20 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for 20. Void Spike Hurls a bolt of dark magic, dealing ≈93.9% of Spell Power Shadow damage and ≈49.8% of Spell Power Shadow damage to all enemies within 10 yards of the target. Damage reduced beyond 5 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -9783,8 +9761,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Disperse into pure shadow energy, reducing all damage taken by 75% for 6 and healing you for (varies)% of your maximum health over its duration, but you are unable to attack or cast spells. Increases movement speed by 50% and makes you immune to all movement impairing effects. Castable while stunned, feared, or silenced.",
-                            "uncertain": true
+                            "text": "Disperse into pure shadow energy, reducing all damage taken by 75% for 6 and healing you for ≈25–66.7% of your maximum health over its duration, but you are unable to attack or cast spells. Increases movement speed by 50% and makes you immune to all movement impairing effects. Castable while stunned, feared, or silenced.",
+                            "uncertain": false
                         },
                         "category": "Crowd Control",
                         "cooldown": {
@@ -11355,7 +11333,7 @@
             "spellId": 8134,
             "category": "Offensive",
             "description": {
-                "text": "Sends a bolt of pure void energy at the enemy, causing ≈351% of Spell Power Shadow damage and extending the duration of Shadow Word: Pain and Vampiric Touch on all nearby targets by (varies) sec. Requires Voidform. Generates $/100;s3 Insanity.",
+                "text": "Sends a bolt of pure void energy at the enemy, causing ≈351% of Spell Power Shadow damage and extending the duration of Shadow Word: Pain and Vampiric Touch on all nearby targets by 3 sec sec. Requires Voidform. Generates $/100;s3 Insanity.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12359,7 +12337,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Sends a bolt of pure void energy at the enemy, causing ≈351% of Spell Power Shadow damage and extending the duration of Shadow Word: Pain and Vampiric Touch on all nearby targets by (varies) sec. Requires Voidform. Generates $/100;s3 Insanity.",
+                            "text": "Sends a bolt of pure void energy at the enemy, causing ≈351% of Spell Power Shadow damage and extending the duration of Shadow Word: Pain and Vampiric Touch on all nearby targets by 3 sec sec. Requires Voidform. Generates $/100;s3 Insanity.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -12661,8 +12639,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for (varies) Shadow damage and extending their durations by 0.7 sec.",
-                            "uncertain": true
+                            "text": "Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to 5 nearby enemies for ≈84–90.8% of Spell Power Shadow damage and extending their durations by 0.7 sec.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {

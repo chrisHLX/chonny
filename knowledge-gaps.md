@@ -452,13 +452,16 @@ raw `$` tokens 199 → 10, unresolved conditionals 30 → 10.
 
 **What is left, and why each one stays.**
 
-- **`$tN` — a periodic effect's tick interval, 545 occurrences.** Searched for and not found: the
-  dump's effect detail lines carry Base Value, Scaled Value, SP/AP/PvP Coefficient, Radius, Chain
-  Targets, Max Stack Count, Misc Value, Mechanic, Delay and a few others, and **no period,
-  amplitude or tick field of any kind**. There is nothing to read, so "every (varies) sec" stays
-  until the dump format changes or another source supplies it.
-- **`$oN` — total damage over time, 478 occurrences.** Needs the tick interval above *and* the
-  spell-power scaling this project deliberately does not model. Two gaps deep, not one.
+- **`$tN` — a periodic effect's tick interval, 545 occurrences.** ~~Searched for and not found.~~
+  **CORRECTED 2026-09-24, later the same day: the period IS in the dump**, on the effect's TYPE
+  line rather than its detail line — `Periodic Trigger Spell (23): Penance every 1 seconds`,
+  `Periodic Heal (8): every 3 seconds`. **893 occurrences.** The original search grouped the
+  detail lines by `Key:` prefix, which structurally could not see a value embedded in the type
+  string, and the wrong conclusion was written up as fact. Still unparsed, but now known to be
+  parseable — the next piece of work here, not a dead end.
+- **`$oN` — total damage over time, 478 occurrences.** Base value x tick count over the duration.
+  With the period above it becomes arithmetic; on its own it also needs spell-power scaling,
+  which Pass 2 can now carry (see below). Worth revisiting together with `$tN`.
 - **`$abs`, `$AP`, `$mas`, `$MHP`, `$versadmg`, `$auracaster`** — every one of these is a
   property of a specific character at a specific moment. There is no character. "(varies)" is
   the correct answer, not a gap to close.
@@ -482,3 +485,70 @@ was `data-update-live-69283` — **older than both the data already imported (69
 `midnight` branch (69933)**, so the flag would have silently rolled the spell data backwards by
 two builds. Check the header line of a dump before trusting either source; `midnight` was right
 here.
+
+
+---
+
+## 2026-09-24 (second pass) — Conditional Variables blocks, and what a coefficient may be read as
+
+`parseVariableDefs()` used to discard a spell's whole Variables block on finding a single `$?`
+anywhere in it. That is why Penance rendered "causing (varies) Holy damage" while Blizzard's own
+formula for it sat in our data:
+
+```
+$penancedamage=${$47666s1*$<darkside>*$<balanceofthings>*(3+$<castigation>+$<harsh>)}
+```
+
+Conditionals are now handled per definition. Penance reads **"≈279.6–975.3% of Spell Power"** —
+the floor being three bolts at 93.2% of Spell Power each, the ceiling seven bolts with Power of
+the Dark Side and Twilight Equilibrium up.
+
+**Why a range and not a number.** The conditionals in a Variables block ask two different
+questions in identical syntax: `$?a193134` is "is Castigation talented", a build fact, and
+`$?a198069` is "is Power of the Dark Side procced right now", a moment in a fight.
+`buildKitSpellIdsFor()` answers neither — it answers "can this spec have it", and it includes
+every baseline spell. All three of Penance's proc conditions are baseline, so resolving them
+against the kit would report every buff permanently active and print 975% as Penance's ordinary
+damage. Both readings are computed instead and neither is asserted.
+
+**A caveat on the range itself.** The two ends are "no condition met" and "every condition met",
+not a proven minimum and maximum over every combination. For a formula that only multiplies and
+adds they coincide; for one that subtracts a conditional term they would not.
+
+### Three ways this was wrong before it was right
+
+Worth recording, because each produced a plausible-looking number:
+
+1. **Sibling recovery answered first.** `$47666s1` is a coefficient-only effect, so
+   `findEffectByIndex()` went looking for a same-named spell "with a real value" and found
+   Penance's own parent record, whose effect #1 is an unrelated Dummy holding 120. The formula
+   rendered "≈360–1,310 Holy damage" — arithmetic on a number that means nothing. A coefficient
+   is now read off the effect the token names, with no sibling fallback.
+2. **Nested expressions were rounded between levels.** Evaluating `${a*${b}}` one level at a time
+   sends the inner result back through `formatNumber()`, which rounds to one decimal for display.
+   Twilight Equilibrium's 1.15 became 1.2 and the top of Penance's range inflated from 975.3% to
+   1,017.7%. Definitions are flattened into one expression and evaluated once.
+3. **A coefficient is not always a coefficient.** `sp_coefficient` is populated on Taunt,
+   Shapeshift, Change Model, Charge, Fear, Modify Block% and Instant Kill. Reading those as
+   damage produced "healing ≈53.5% of Spell Power injured allies in a ≈92.2% of Spell Power yd
+   cone". Only an effect whose type is damage, a heal, a leech or an absorb is now treated as
+   scaling with Spell Power.
+
+### One render that is still wrong, and why it is being left
+
+**Dream Breath (355941).** Its own description uses `$s1` and `$s3` twice over in one sentence —
+once as a count of allies and a cone angle, once as healing amounts — while effects #1 and #3 are
+a Periodic Heal and a Direct Heal. Both readings cannot be right, and the source gives no way to
+tell which applies where, so it still renders "≈53.5% of Spell Power injured allies". Fixing it
+would mean guessing from the English around the token, which is a parser this project should not
+own for one spell in 6,189.
+
+### What a number like this is and is not
+
+"≈279.6% of Spell Power" is a tooltip-equivalent figure: the same arithmetic the game does, which
+a player can check against their own spellbook. It is **not** a damage model. Multiplying it by a
+real character's Spell Power would need Blizzard's character-statistics endpoint, which
+`BattlenetCharacterSyncService` does not call — it fetches `/achievements/statistics`, the
+achievement counters. Even then the result is an unbuffed tooltip number, not damage done in a
+game: the target's versatility, absorbs and defensives are not in it. `brain.md` {#timeline}'s
+rule stands — no damage model, and nothing here predicts an outcome.

@@ -2044,37 +2044,6 @@ class ModuleSpellReferenceService
             $text
         );
 
-        // Pass 1.5: bare "$<varname>" references to a named Variables-block formula (e.g.
-        // Penance's "$<penancedamage>") — added 2026-08-02.
-        //
-        // Blanket-evaluating these is still out of scope: a Variables block can chain through
-        // conditional talent multipliers ($castigation=$?a193134[${1}][${0}]), and picking a
-        // branch would be a guess — see variablesModifiers()'s docblock. BUT a large share of
-        // Variables entries are a single, unconditional ${...} arithmetic expression (optionally
-        // with a ".N" precision suffix — 690 such spots dataset-wide), which Pass 2 already
-        // knows how to evaluate exactly. So: if the whole Variables block for this spell is
-        // conditional-free ($? absent) AND the referenced var is defined as one bare ${...}
-        // expression, inline that expression here and let Pass 2 resolve it (subject to its own
-        // "unresolved token -> (varies)" guards). Otherwise fall back to "(varies)" as before.
-        // Found 2026-09-06 via Shield Discipline (47755): "$mana=${$47755s1/100}.1" -> "0.5%".
-        $varDefs = $this->parseVariableDefs($spell->variables);
-        $text = preg_replace_callback(
-            '/\$<([a-zA-Z0-9]+)>/',
-            function ($m) use (&$uncertain, $varDefs) {
-                $def = $varDefs[$m[1]] ?? null;
-
-                if ($def !== null && preg_match('/^\$\{[^{}]*\}(?:\.\d)?$/', $def)) {
-                    // Hand the bare ${...} (precision suffix stripped) to Pass 2 below.
-                    return preg_replace('/(\})\.\d$/', '$1', $def);
-                }
-
-                $uncertain = true;
-
-                return '(varies)';
-            },
-            $text
-        );
-
         // Pass 2: ${...} arithmetic — substitute embedded value tokens, then safely evaluate.
         // A trailing ".N" immediately after the closing brace is SimC's decimal-precision
         // specifier (690 occurrences dataset-wide, effectively always ".1") — consumed and
@@ -2105,52 +2074,94 @@ class ModuleSpellReferenceService
                     $expr = $m[1];
                     $poisoned = false;
                     $count = 0;
+                    $usedCoefficient = false;
 
-                    $inner = preg_replace_callback(
-                        '/\$(\d*[a-zA-Z]+\d*)/',
-                        function ($mm) use (&$poisoned, &$uncertain, $spell, $expr) {
-                            // PREG_OFFSET_CAPTURE: $mm[n] is [string, byteOffset].
-                            [$full, $offset] = $mm[0];
-                            $token = $mm[1][0];
+                    // Run twice: once substituting each spell-power coefficient with its real
+                    // value, once with zero. Comparing the two is what decides whether the whole
+                    // expression is a share of Spell Power — see below. Every flag it sets is a
+                    // one-way latch, so the second run cannot change the verdict of the first.
+                    //
+                    // A REGULAR CLOSURE. Written as `fn () =>` this captures $usedCoefficient by
+                    // value, the inner callback's `&$usedCoefficient` then binds to that copy, and
+                    // the flag never reaches the code below — Penance came out as a bare "2.8–9.8"
+                    // with the "% of Spell Power" silently dropped. Same trap as the settle loop
+                    // earlier in this method, and it is the first one CLAUDE.md lists.
+                    $substitute = function (bool $zeroCoefficients) use (&$poisoned, &$uncertain, &$usedCoefficient, &$count, $spell, $expr, $m): ?string {
+                        return preg_replace_callback(
+                            '/\$(\d*[a-zA-Z]+\d*)/',
+                            function ($mm) use (&$poisoned, &$uncertain, &$usedCoefficient, $spell, $expr, $zeroCoefficients) {
+                                // PREG_OFFSET_CAPTURE: $mm[n] is [string, byteOffset].
+                                [$full, $offset] = $mm[0];
+                                $token = $mm[1][0];
 
-                            $value = $this->resolveValueToken($token, $spell);
+                                // The coefficient is tried FIRST, because resolveValueToken() ends in
+                                // findEffectByIndex()'s sibling recovery and that fires before any
+                                // coefficient would be reached. ownCoefficient() answers null whenever
+                                // the named effect holds a real value, so the order that actually runs
+                                // is: this effect's own value, then this effect's own coefficient,
+                                // then a sibling's value — which is the order of decreasing certainty.
+                                $coefficient = $this->coefficientFor($token, $spell);
 
-                            if ($value !== null) {
-                                return (string) $value;
-                            }
+                                if ($coefficient !== null) {
+                                    $usedCoefficient = true;
 
-                            $uncertain = true;
+                                    return $zeroCoefficients ? '0' : (string) $coefficient;
+                                }
 
-                            // Operators immediately flanking this token in the raw expression.
-                            $before = rtrim(substr($expr, 0, $offset));
-                            $after = ltrim(substr($expr, $offset + strlen($full)));
-                            $prevOp = $before === '' ? '' : substr($before, -1);
-                            $nextOp = $after === '' ? '' : substr($after, 0, 1);
+                                $value = $this->resolveValueToken($token, $spell);
 
-                            // 0 annihilates a product and breaks division-by; it's the identity for
-                            // an additive term or a dividend.
-                            //
-                            // It is NOT the identity for a MINUEND either — "$x1-1" collapses to
-                            // "0-1" and renders a confident "-1". Found 2026-09-10 while fixing the
-                            // signed-reduction prose below: this is what was left rendering "jumping
-                            // to -1 additional nearby enemies" (Avenger's Shield), "once every -1
-                            // sec" (Earth Shield) and "strikes up to -3 nearby targets" (Blade
-                            // Flurry). The tokens involved ($x chain-targets, $u max-stacks, $i
-                            // targets) aren't captured in this schema at all, so there is nothing to
-                            // resolve them to — "(varies)" is the honest answer, and a negative count
-                            // of targets is the confidently-wrong one. A 0 SUBTRAHEND ("$d-$s1" where
-                            // $s1 is null) stays safe and is deliberately still allowed through.
-                            if ($prevOp === '*' || $prevOp === '/' || $nextOp === '*' || $nextOp === '-') {
-                                $poisoned = true;
-                            }
+                                if ($value !== null) {
+                                    return (string) $value;
+                                }
 
-                            return '0';
-                        },
-                        $m[1],
-                        -1,
-                        $count,
-                        PREG_OFFSET_CAPTURE
-                    );
+                                // A purely spell-power-scaled effect carries Base and Scaled Value 0
+                                // and its real magnitude in sp_coefficient, so resolveValueToken()
+                                // correctly finds nothing. Substituting the coefficient keeps the
+                                // arithmetic intact and the result is then read as a share of Spell
+                                // Power rather than as a flat number.
+                                //
+                                // coefficientDisplay()'s docblock declined to do this in Pass 2,
+                                // because blending a coefficient into talent-conditional math risked
+                                // being confidently wrong. What changed is the conditional handling,
+                                // not the arithmetic: Pass 1.5 no longer picks a branch at all, it
+                                // reports both. Mixing a coefficient with a real flat value in one
+                                // expression is still refused below — "x% of Spell Power plus 500"
+                                // has no single honest rendering.
+                                $uncertain = true;
+
+                                // Operators immediately flanking this token in the raw expression.
+                                $before = rtrim(substr($expr, 0, $offset));
+                                $after = ltrim(substr($expr, $offset + strlen($full)));
+                                $prevOp = $before === '' ? '' : substr($before, -1);
+                                $nextOp = $after === '' ? '' : substr($after, 0, 1);
+
+                                // 0 annihilates a product and breaks division-by; it's the identity for
+                                // an additive term or a dividend.
+                                //
+                                // It is NOT the identity for a MINUEND either — "$x1-1" collapses to
+                                // "0-1" and renders a confident "-1". Found 2026-09-10 while fixing the
+                                // signed-reduction prose below: this is what was left rendering "jumping
+                                // to -1 additional nearby enemies" (Avenger's Shield), "once every -1
+                                // sec" (Earth Shield) and "strikes up to -3 nearby targets" (Blade
+                                // Flurry). The tokens involved ($x chain-targets, $u max-stacks, $i
+                                // targets) aren't captured in this schema at all, so there is nothing to
+                                // resolve them to — "(varies)" is the honest answer, and a negative count
+                                // of targets is the confidently-wrong one. A 0 SUBTRAHEND ("$d-$s1" where
+                                // $s1 is null) stays safe and is deliberately still allowed through.
+                                if ($prevOp === '*' || $prevOp === '/' || $nextOp === '*' || $nextOp === '-') {
+                                    $poisoned = true;
+                                }
+
+                                return '0';
+                            },
+                            $m[1],
+                            -1,
+                            $count,
+                            PREG_OFFSET_CAPTURE
+                        );
+                    };
+
+                    $inner = $substitute(false);
 
                     if ($poisoned) {
                         return '(varies)';
@@ -2163,10 +2174,50 @@ class ModuleSpellReferenceService
                         return '(varies)';
                     }
 
-                    return $this->formatNumber($result);
+                    if (! $usedCoefficient) {
+                        return $this->formatNumber($result);
+                    }
+
+                    // A coefficient can be multiplied by anything and still be a share of Spell
+                    // Power; added to a flat amount it is no longer a share of anything. Rather
+                    // than inspect the operators, the expression is evaluated a second time with
+                    // every coefficient set to zero: a value proportional to Spell Power collapses
+                    // to zero, "40% of Spell Power plus 500" does not.
+                    //
+                    // Penance's own formula is exactly why the cruder test — refuse any expression
+                    // mixing a coefficient with a real effect value — was wrong: its multipliers
+                    // (1.3 for Power of the Dark Side, 1.15 for Twilight Equilibrium) and its bolt
+                    // count are all real effect values, and the product is still a clean multiple
+                    // of Spell Power.
+                    $withoutCoefficients = $this->safeEval($substitute(true));
+
+                    if ($withoutCoefficients === null || abs($withoutCoefficients) > 0.0001) {
+                        $uncertain = true;
+
+                        return '(varies)';
+                    }
+
+                    return '≈'.$this->formatNumber($result * 100).'% of Spell Power';
                 },
                 $input
             );
+        };
+
+        // Applies the pass above until the text stops changing, because one round only peels off
+        // the innermost brace level. Shared by Pass 1.5 and the main run below so the two cannot
+        // disagree about how deep an expression is allowed to nest.
+        $settle = function (callable $evaluate, string $input): string {
+            for ($depth = 0; $depth < 4; $depth++) {
+                $next = $evaluate($input);
+
+                if ($next === $input) {
+                    break;
+                }
+
+                $input = $next;
+            }
+
+            return $input;
         };
 
         // Run until it settles, because Pass 1.5 can hand this pass a NESTED expression.
@@ -2177,15 +2228,61 @@ class ModuleSpellReferenceService
         // 43 raw descriptions inline a $<var> inside another ${...}, and 25 leaked this way across
         // the kits, including a plain "${10+20}". Each iteration resolves one more level, so two
         // are enough today; the cap is there so a malformed string cannot spin.
-        for ($depth = 0; $depth < 4; $depth++) {
-            $next = $evaluateExpressions($text);
+        // Pass 1.5: bare "$<varname>" references to a named Variables-block formula — Penance's
+        // "$<penancedamage>", added 2026-08-02, widened 2026-09-24.
+        //
+        // It used to inline only a definition that was a single bare ${...}, and only when the
+        // whole block was free of conditionals. Penance shows what that cost: Blizzard writes the
+        // damage out in full,
+        //
+        //   $penancedamage=${$47666s1*$<darkside>*$<balanceofthings>*(3+$<castigation>+$<harsh>)}
+        //
+        // every term of which we hold, and the page still said "(varies) Holy damage".
+        //
+        // Each definition is now flattened by expandVariableDefinition() and evaluated here
+        // rather than handed onward, TWICE: once taking every conditional's not-met branch, once
+        // taking its met branch. Where the two agree there is a single number; where they differ
+        // the pair is printed as a range. That is two computed values and no claim about which
+        // one applies right now — see expandVariableDefinition() for why resolving the conditional
+        // against kit membership would instead print Penance's fully-procced damage as its
+        // ordinary damage.
+        $varDefs = $this->parseVariableDefs($spell->variables);
+        $text = preg_replace_callback(
+            '/\$<([a-zA-Z0-9]+)>/',
+            function ($m) use (&$uncertain, $varDefs, $evaluateExpressions, $settle, $spell) {
+                $low = $this->expandVariableDefinition($m[1], $varDefs, 'low');
+                $high = $this->expandVariableDefinition($m[1], $varDefs, 'high');
 
-            if ($next === $text) {
-                break;
-            }
+                if ($low === null) {
+                    $uncertain = true;
+                    $this->logGapOnce("var:{$spell->spell_id}:{$m[1]}", 'ModuleSpellReferenceService: unresolved $<var> reference', [
+                        'spell_id' => $spell->spell_id, 'variable' => $m[1],
+                    ]);
 
-            $text = $next;
-        }
+                    return '(varies)';
+                }
+
+                // ".N" is Pass 2's decimal-precision specifier and formatNumber() already renders
+                // sensible precision, so it is dropped here exactly as Pass 2 drops it.
+                $strip = fn (string $e): string => preg_replace('/(\})\.\d\b/', '$1', $e);
+
+                $lowText = $settle($evaluateExpressions, $strip($low));
+                $highText = ($high === null || $high === $low)
+                    ? $lowText
+                    : $settle($evaluateExpressions, $strip($high));
+
+                $merged = $this->mergeRange($lowText, $highText);
+
+                if (str_contains($merged, '(varies)')) {
+                    $uncertain = true;
+                }
+
+                return $merged;
+            },
+            $text
+        );
+
+        $text = $settle($evaluateExpressions, $text);
 
         // Pass 2.5: set aside SimC's pluralisation tokens — "$lrune:runes;", "$LRune:Runes;" —
         // so Pass 3 cannot eat them, and resolve them once the numbers around them are real.
@@ -2481,15 +2578,19 @@ class ModuleSpellReferenceService
      * Parses a spell's raw Variables block into a name => right-hand-side map. Format is one
      * "$name=expression" per line (the block is "\n"-joined at parse time — see
      * SpellDataFileParser). Returns [] when there is no block OR when the block contains any
-     * "$?" conditional anywhere — in that case no single definition can be trusted as
-     * unconditional, so Pass 1.5 falls back to "(varies)" for the whole block rather than
-     * risk inlining a branch-dependent value. (2026-09-06)
+     * "$?" conditional anywhere — in that case no single definition could be trusted as
+     * unconditional, so Pass 1.5 fell back to "(varies)" for the whole block. (2026-09-06)
+     *
+     * THAT BLANKET RULE IS GONE (2026-09-24). It is why Penance rendered "causing (varies) Holy
+     * damage": one conditional definition made its four unconditional neighbours untrusted too.
+     * A conditional is now handled per definition by expandVariableDefinition(), and an
+     * unconditional definition sitting beside one resolves normally.
      *
      * @return array<string, string>
      */
     private function parseVariableDefs(?string $variables): array
     {
-        if ($variables === null || $variables === '' || str_contains($variables, '$?')) {
+        if ($variables === null || $variables === '') {
             return [];
         }
 
@@ -2501,6 +2602,98 @@ class ModuleSpellReferenceService
         }
 
         return $defs;
+    }
+
+    /**
+     * One variable definition, flattened into plain arithmetic for Pass 2.
+     *
+     * Two things happen here. Nested `$<name>` references are inlined recursively — Penance's
+     * `$penancedamage` is written in terms of four other variables — and each `$?` conditional is
+     * resolved to ONE of its branches, chosen by $branch rather than by any lookup.
+     *
+     * WHY NOT RESOLVE THE CONDITIONAL AGAINST THE KIT, the way Pass 1 does for prose. Because
+     * these two questions look identical in the syntax and are not the same question:
+     *
+     *   $?a193134[...]  — is Castigation TALENTED? a build fact
+     *   $?a198069[...]  — is Power of the Dark Side PROCCED RIGHT NOW? a moment in a fight
+     *
+     * buildKitSpellIdsFor() answers "can this spec have it", and it includes every baseline
+     * spell. All three of Penance's proc conditions are baseline, so kit resolution would report
+     * every buff permanently active and print 975% of Spell Power as Penance's ordinary damage —
+     * a 3.5x overstatement, and exactly the confidently-wrong failure coefficientDisplay()'s
+     * docblock warned about when it declined to do this in the first place.
+     *
+     * So neither branch is asserted. The caller evaluates BOTH and reports the pair, which is two
+     * computed numbers and no claim about which one applies today.
+     *
+     * Returns null when a definition cannot be reduced honestly — a $?c condition code, a
+     * reference to a variable that does not exist, or a cycle.
+     *
+     * @param  array<string, string>  $varDefs
+     * @param  'low'|'high'  $branch  which side of every conditional to take: 'low' the
+     *                                condition-not-met branch, 'high' the condition-met one
+     * @param  array<int, string>  $seen  names already being expanded, so a cycle terminates
+     */
+    private function expandVariableDefinition(string $name, array $varDefs, string $branch, array $seen = []): ?string
+    {
+        if (in_array($name, $seen, true) || ! array_key_exists($name, $varDefs)) {
+            return null;
+        }
+
+        $seen[] = $name;
+        $expr = $varDefs[$name];
+
+        // A $?c code names a condition nobody here can evaluate, so the definition is dropped
+        // rather than half-resolved — same posture as Pass 1.
+        if (preg_match('/\$\?c\d+/', $expr)) {
+            return null;
+        }
+
+        // Two-branch, then one-branch, in that order — reversed, the one-branch pattern would
+        // tear the first half off "[A][B]" and silently drop B. Same ordering rule as Pass 1c.
+        $expr = preg_replace_callback(
+            '/\$\?!?[as]\d+\]?\[([^\[\]]*)\]\s*\[([^\[\]]*)\]/',
+            fn ($m) => $branch === 'high' ? $m[1] : $m[2],
+            $expr
+        );
+
+        $expr = preg_replace_callback(
+            '/\$\?!?[as]\d+\[([^\[\]]*)\]/',
+            fn ($m) => $branch === 'high' ? $m[1] : '',
+            $expr
+        );
+
+        // Anything still carrying a "$?" is a shape this does not understand; do not guess at it.
+        if (str_contains($expr, '$?')) {
+            return null;
+        }
+
+        $failed = false;
+        $expr = preg_replace_callback(
+            '/\$<([a-zA-Z0-9]+)>/',
+            function ($m) use ($varDefs, $branch, $seen, &$failed) {
+                $nested = $this->expandVariableDefinition($m[1], $varDefs, $branch, $seen);
+
+                if ($nested === null) {
+                    $failed = true;
+
+                    return '';
+                }
+
+                // FLATTENED, not nested: "${1+($198069s1/100)}" goes in as "(1+($198069s1/100))".
+                //
+                // Left nested, each level is evaluated separately and the inner result comes back
+                // through formatNumber(), which rounds to one decimal for display. On Penance that
+                // turned Twilight Equilibrium's 1.15 multiplier into 1.2 and inflated the top of
+                // the range from 975.3% to 1,017.7% of Spell Power — a rounding error compounding
+                // through the arithmetic, which is a quiet way to be wrong. Flat, it is evaluated
+                // once at full precision.
+                return preg_match('/^\$\{(.*)\}$/s', $nested, $inner) ? '('.$inner[1].')' : $nested;
+            },
+            $expr
+        );
+
+        return $failed ? null : $expr;
     }
 
     /**
@@ -2767,11 +2960,114 @@ class ModuleSpellReferenceService
     {
         $effect = $this->findEffectByIndex($spell, $index);
 
-        if (! $effect || $effect->sp_coefficient === null) {
+        // Same type gate as ownCoefficient(): a coefficient on a Taunt or a Shapeshift is not a
+        // share of anything, and this method has been printing those as one.
+        if (! $effect || ! $this->scalesWithSpellPower($effect)) {
             return null;
         }
 
         return '≈'.$this->formatNumber($effect->sp_coefficient * 100).'% of Spell Power';
+    }
+
+    /**
+     * The raw spell-power coefficient behind an "sN" or "<id>sN" token, for Pass 2's arithmetic.
+     *
+     * The number, not the sentence — coefficientDisplay() above formats the same value for prose.
+     * Only these two token shapes: every other token ($d, $u, $AN, $xN) is a duration or a count,
+     * and a coefficient has nothing to do with it.
+     *
+     * OWN EFFECT ONLY — no findEffectByIndex() sibling recovery, and this is the whole reason the
+     * first attempt printed a confident wrong number. Penance's damage bolt (47666) has effect #1
+     * at Base 0 / Scaled 0 with the magnitude in sp_coefficient, so sibling recovery went looking
+     * for a same-named spell carrying "a real value" and found Penance's own parent record, whose
+     * effect #1 is an unrelated Dummy holding 120. The formula then rendered "≈360–1,310 Holy
+     * damage" — arithmetic built on a number that means nothing. A coefficient must be read off
+     * the effect the token actually names.
+     *
+     * A real value on that same effect still wins: null here, and resolveValueToken() takes over.
+     */
+    private function coefficientFor(string $token, Spell $spell): ?float
+    {
+        if (preg_match('/^s(\d+)$/', $token, $m)) {
+            return $this->ownCoefficient($spell, (int) $m[1]);
+        }
+
+        if (preg_match('/^(\d+)s(\d+)$/', $token, $m)) {
+            $other = $this->findSpellBySpellId((int) $m[1], $spell->patch_id);
+
+            return $other ? $this->ownCoefficient($other, (int) $m[2]) : null;
+        }
+
+        return null;
+    }
+
+    private function ownCoefficient(Spell $spell, int $index): ?float
+    {
+        $effect = $spell->effects->firstWhere('effect_index', $index);
+
+        if (! $effect || ! $this->scalesWithSpellPower($effect) || $this->effectValue($effect) !== null) {
+            return null;
+        }
+
+        return (float) $effect->sp_coefficient;
+    }
+
+    /**
+     * Whether an effect's magnitude is genuinely a multiple of Spell Power.
+     *
+     * A populated sp_coefficient is NOT enough on its own, which the dump makes obvious once you
+     * group by effect type: Taunt, Shapeshift, Change Model, Charge, Fear, Modify Block% and
+     * Instant Kill all carry one. Reading those as damage produced real nonsense on the page —
+     * an Evoker breath rendered "healing ≈53.5% of Spell Power injured allies in a ≈92.2% of
+     * Spell Power yd cone", where the two tokens are a target count and a cone angle.
+     *
+     * So the type has to say the effect deals damage, heals, leeches or absorbs. Anything else
+     * keeps its honest "(varies)" — a visible hole beats a confident number about an angle.
+     */
+    private function scalesWithSpellPower(SpellEffect $effect): bool
+    {
+        return $effect->sp_coefficient !== null
+            && preg_match('/^(School Damage|Direct Heal|Periodic Damage|Periodic Heal|Health Leech|Periodic Health Leech|Absorb Damage|School Absorb)/i', (string) $effect->type) === 1;
+    }
+
+    /**
+     * Two evaluations of one formula, printed as one phrase.
+     *
+     * Identical readings collapse to a single value. Two numbers of the same kind become a range
+     * written low-first — "≈279.6–975.3% of Spell Power" — which says what the formula gives with
+     * none of its conditions met and with all of them met.
+     *
+     * A caveat worth keeping in view: those are the two ENDS this method was handed, not a proven
+     * minimum and maximum over every combination. For a formula that only multiplies and adds,
+     * like Penance's, they are the same thing. For one that subtracts a conditional term they
+     * would not be, and the honest reading of the output stays "these two cases", not "never
+     * outside this".
+     *
+     * Anything else — one side unresolved, or two readings that are not comparable numbers —
+     * falls back to the not-met side, which is the one that asserts least.
+     */
+    private function mergeRange(string $low, string $high): string
+    {
+        if ($low === $high) {
+            return $low;
+        }
+
+        $pattern = '/^≈?(-?[\d,]+(?:\.\d+)?)(.*)$/u';
+
+        if (! preg_match($pattern, $low, $lm) || ! preg_match($pattern, $high, $hm) || $lm[2] !== $hm[2]) {
+            return $low;
+        }
+
+        $lowValue = (float) str_replace(',', '', $lm[1]);
+        $highValue = (float) str_replace(',', '', $hm[1]);
+
+        if ($lowValue === $highValue) {
+            return $low;
+        }
+
+        [$first, $second] = $lowValue < $highValue ? [$lm[1], $hm[1]] : [$hm[1], $lm[1]];
+
+        return '≈'.$first.'–'.$second.$lm[2];
     }
 
     /** Trims to a whole number when exact, else one decimal place — matches how these tooltip

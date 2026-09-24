@@ -1,5 +1,5 @@
 {
-    "generatedAt": "2026-09-24T08:56:45+00:00",
+    "generatedAt": "2026-09-24T09:54:02+00:00",
     "spellCacheVersion": 21,
     "codeFingerprint": "dev",
     "entries": [
@@ -2288,8 +2288,8 @@
             "spellId": 5626,
             "category": "Offensive",
             "description": {
-                "text": "Blasts the enemy, critically striking for (varies) Frostfire damage. Castable while casting other spells.",
-                "uncertain": true
+                "text": "Blasts the enemy, critically striking for ≈197.3% of Spell Power Frostfire damage. Castable while casting other spells.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2772,7 +2772,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes ≈48.3% of Spell Power% of your Ignite to spread to (varies) nearby enemies.",
+                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3453,7 +3453,7 @@
             "spellId": 5622,
             "category": "Offensive",
             "description": {
-                "text": "Calls down a pillar of fire, burning all enemies within the area for ≈345% of Spell Power Fire damage. Deals reduced damage beyond 8 targets. Leaves behind a patch of flames that burns enemies within it for 6 Fire damage over 6. This spell is cast at a selected location.",
+                "text": "Calls down a pillar of fire, burning all enemies within the area for ≈345% of Spell Power Fire damage. Deals reduced damage beyond 8 targets. Leaves behind a patch of flames that burns enemies within it for ≈90% of Spell Power Fire damage over 6. This spell is cast at a selected location.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3841,7 +3841,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes ≈48.3% of Spell Power% of your Ignite to spread to (varies) nearby enemies.",
+                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6641,7 +6641,7 @@
             "spellId": 5714,
             "category": "Other",
             "description": {
-                "text": "Meteor now also calls down a Comet Storm, dealing 7 Frost damage to nearby enemies.",
+                "text": "Meteor now also calls down a Comet Storm, dealing ≈649.6% of Spell Power Frost damage to nearby enemies.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7112,7 +7112,7 @@
             "spellId": 5628,
             "category": "Offensive",
             "description": {
-                "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing 0.9 Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
+                "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing ≈832% of Spell Power Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -7156,7 +7156,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing 0.9 Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
+                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing ≈832% of Spell Power Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7224,7 +7224,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing 0.9 Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
+                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing ≈832% of Spell Power Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7292,7 +7292,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing 0.9 Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
+                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing ≈832% of Spell Power Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7308,7 +7308,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing 0.9 Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
+                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing ≈832% of Spell Power Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7324,7 +7324,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing 0.9 Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
+                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing ≈832% of Spell Power Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7392,7 +7392,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing 0.9 Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
+                            "text": "Calls down a meteor which lands at the target location after 3, dealing 3.6 Fire damage to all enemies, and burns the ground, dealing ≈832% of Spell Power Fire damage over 4 to all enemies in the area. The enemy closest to the center of the Meteor's impact takes 75% increased damage. Damage reduced beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7492,7 +7492,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Meteor now also calls down a Comet Storm, dealing 7 Frost damage to nearby enemies.",
+                            "text": "Meteor now also calls down a Comet Storm, dealing ≈649.6% of Spell Power Frost damage to nearby enemies.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7543,7 +7543,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes ≈48.3% of Spell Power% of your Ignite to spread to (varies) nearby enemies.",
+                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8510,7 +8510,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes ≈48.3% of Spell Power% of your Ignite to spread to (varies) nearby enemies.",
+                            "text": "Your target burns for an additional 0% over 9 of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast, Meteor, and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite. Fire Blast causes (varies)% of your Ignite to spread to (varies) nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Other",

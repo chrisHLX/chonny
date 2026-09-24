@@ -338,8 +338,35 @@ Four separate rendering bugs surfaced while measuring, each visible on the page:
 | leaked raw `$` tokens | 199 | **10** |
 | unresolved conditionals | 30 | **10** |
 
-`knowledge-gaps.md` (2026-09-24) records what is left and why each one stays — chiefly `$tN`,
-which has **no field anywhere in the dump** to read, checked rather than assumed.
+`knowledge-gaps.md` (2026-09-24) records what is left and why each one stays.
+
+**One claim in that first write-up was wrong and is corrected there:** `$tN`, the tick interval,
+*is* in the dump — on the effect's TYPE line, not its detail line (`Periodic Heal (8): every 3
+seconds`), 893 occurrences. The search that concluded otherwise grouped detail lines by their
+`Key:` prefix and structurally could not see a value embedded in a type string.
+
+## Conditional Variables blocks now resolve, and what a coefficient may be read as — 2026-09-24
+
+`parseVariableDefs()` discarded a spell's entire Variables block on finding one `$?` anywhere in
+it, which is why Penance rendered "causing (varies) Holy damage" while Blizzard's own formula for
+its damage sat in our data. Conditionals are handled per definition now, and Pass 2 can carry a
+spell-power coefficient through arithmetic, so Penance reads
+**"≈279.6–975.3% of Spell Power"** — three bolts at 93.2% each at the floor, seven bolts with
+Power of the Dark Side and Twilight Equilibrium up at the ceiling.
+
+A range rather than a number because the syntax asks two different questions identically:
+`$?a193134` is "is Castigation talented" (a build fact) and `$?a198069` is "is Power of the Dark
+Side procced right now" (a moment in a fight). `buildKitSpellIdsFor()` answers "can this spec have
+it" and includes every baseline spell, so resolving against the kit would print Penance's
+fully-procced damage as its ordinary damage. Both readings are computed; neither is asserted.
+
+Three failure modes were hit on the way, each producing a plausible wrong number — sibling
+recovery substituting an unrelated Dummy value, display rounding compounding between nested
+expression levels, and `sp_coefficient` being populated on Taunt/Shapeshift/Fear. All three are
+written up in `knowledge-gaps.md` with the values they produced.
+
+Kit measurement after this pass: **"(varies)" 2,531 → 1,863** across the 40 precomputed kits,
+237 description shapes losing every placeholder they had.
 
 ## Not yet built
 

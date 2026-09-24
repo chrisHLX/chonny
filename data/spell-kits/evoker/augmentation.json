@@ -1,5 +1,5 @@
 {
-    "generatedAt": "2026-09-24T08:56:16+00:00",
+    "generatedAt": "2026-09-24T09:53:33+00:00",
     "spellCacheVersion": 21,
     "codeFingerprint": "dev",
     "entries": [
@@ -231,7 +231,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -247,7 +247,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -386,7 +386,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -402,7 +402,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -1179,12 +1179,10 @@
             "spellId": 3173,
             "category": "Offensive",
             "description": {
-                "text": "Increase all damage dealing allies' primary stat by (varies)% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
-                "uncertain": true
+                "text": "Increase all damage dealing allies' primary stat by ≈8–9% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                3475
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
                 "baseline": [],
@@ -1195,7 +1193,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -1211,7 +1209,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -1500,7 +1498,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -1516,7 +1514,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -1532,8 +1530,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increase all damage dealing allies' primary stat by (varies)% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
-                            "uncertain": true
+                            "text": "Increase all damage dealing allies' primary stat by ≈20–21% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1921,7 +1919,7 @@
             "spellId": 3231,
             "category": "Offensive",
             "description": {
-                "text": "Inhale, stoking your inner flame. Release to exhale, burning enemies in a cone in front of you for (varies) Fire damage, reduced beyond 5 targets. Increases the duration of your active Ebon Might effects by 2 sec. Empowering causes more of the damage to be dealt immediately instead of over time. I:   Deals (varies) damage instantly and (varies) over (varies) sec. II:  Deals (varies) damage instantly and (varies) over (varies) sec. III: Deals (varies) damage instantly and (varies) over (varies) sec.",
+                "text": "Inhale, stoking your inner flame. Release to exhale, burning enemies in a cone in front of you for (varies) Fire damage, reduced beyond 5 targets. Increases the duration of your active Ebon Might effects by 2 sec. Empowering causes more of the damage to be dealt immediately instead of over time. I:   Deals ≈163.4% of Spell Power damage instantly and (varies) over ≈20–28 sec. II:  Deals (varies) damage instantly and (varies) over ≈14–22 sec. III: Deals (varies) damage instantly and (varies) over ≈8–16 sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -1954,8 +1952,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increase all damage dealing allies' primary stat by (varies)% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
-                            "uncertain": true
+                            "text": "Increase all damage dealing allies' primary stat by ≈20–21% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -2253,7 +2251,7 @@
             "spellId": 3239,
             "category": "Mobility",
             "description": {
-                "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -4958,7 +4956,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -4974,7 +4972,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -5549,7 +5547,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -5565,7 +5563,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launch yourself and gain 30% increased movement speed for (varies) sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
+                            "text": "Launch yourself and gain 30% increased movement speed for ≈6–10 sec. Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -5993,8 +5991,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increase all damage dealing allies' primary stat by (varies)% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
-                            "uncertain": true
+                            "text": "Increase all damage dealing allies' primary stat by ≈20–21% of your own and increase your own damage by 20% for 10. Ebon Might will split its effect when applied to more than 2 other allies. Eruption, Breath of Eons, and your empower spells extend the duration of these effects.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {

@@ -318,3 +318,123 @@ test('the uppercase form keeps its own capitalisation', function () {
 
     expect(resolveText($spell, $class, $spec))->toBe('Costs 2 Runes.');
 });
+
+/*
+ * Conditional Variables blocks — 2026-09-24. Penance is the worked example: Blizzard writes its
+ * damage out in full as
+ *
+ *   $penancedamage=${$47666s1*$<darkside>*$<balanceofthings>*(3+$<castigation>+$<harsh>)}
+ *
+ * and the page said "(varies) Holy damage", because one conditional definition in the block made
+ * all five untrusted.
+ */
+test('a conditional formula is reported as both of its readings, not one of them', function () {
+    [$patch, $class, $spec] = tokenWorld();
+
+    // The bolt: no flat value at all, its whole magnitude in the coefficient.
+    tokenSpell($patch, $class, ['spell_id' => 47666, 'name' => 'Penance Bolt'], [
+        ['type' => 'School Damage', 'base_value' => 0, 'scaled_value' => 0, 'sp_coefficient' => 0.932],
+    ]);
+    tokenSpell($patch, $class, ['spell_id' => 198069, 'name' => 'Power of the Dark Side'], [
+        ['type' => 'Dummy', 'base_value' => 30, 'scaled_value' => 30],
+    ]);
+    tokenSpell($patch, $class, ['spell_id' => 373180, 'name' => 'Harsh Discipline'], [
+        ['type' => 'Dummy', 'base_value' => 30, 'scaled_value' => 30],
+        ['type' => 'None', 'base_value' => 3, 'scaled_value' => 3],
+    ]);
+
+    $spell = tokenSpell($patch, $class, [
+        'spell_id' => 47540,
+        'name' => 'Penance',
+        'variables' => implode("\n", [
+            '$castigation=$?a193134[${1}][${0}]',
+            '$harsh=$?a373183[${$373180s2}][${0}]',
+            '$darkside=$?a198069[${1+($198069s1/100)}][${1}]',
+            '$penancedamage=${$47666s1*$<darkside>*(3+$<castigation>+$<harsh>)}',
+        ]),
+        'description' => 'Causing $<penancedamage> Holy damage.',
+    ]);
+
+    // Floor: three bolts at 93.2%. Ceiling: seven bolts at 93.2%, multiplied by 1.3.
+    // 0.932 * 3 = 2.796;  0.932 * 1.3 * 7 = 8.4812.
+    expect(resolveText($spell, $class, $spec))
+        ->toBe('Causing ≈279.6–848.1% of Spell Power Holy damage.');
+});
+
+test('an unconditional formula resolves to a single figure', function () {
+    [$patch, $class, $spec] = tokenWorld();
+
+    tokenSpell($patch, $class, ['spell_id' => 700001, 'name' => 'Bolt'], [
+        ['type' => 'School Damage', 'base_value' => 0, 'scaled_value' => 0, 'sp_coefficient' => 0.5],
+    ]);
+
+    $spell = tokenSpell($patch, $class, [
+        'spell_id' => 700002,
+        'name' => 'Steady Spell',
+        'variables' => '$dmg=${$700001s1*4}',
+        'description' => 'Deals $<dmg> damage.',
+    ]);
+
+    expect(resolveText($spell, $class, $spec))->toBe('Deals ≈200% of Spell Power damage.');
+});
+
+test('a coefficient added to a flat amount is refused rather than mislabelled', function () {
+    [$patch, $class, $spec] = tokenWorld();
+
+    // 0.4 of Spell Power PLUS a flat 500 is not a share of anything, so there is no honest
+    // percentage to print. The zero-substitution test is what catches it: with the coefficient
+    // set to 0 the expression still evaluates to 500, not 0.
+    $spell = tokenSpell($patch, $class, [
+        'spell_id' => 700003,
+        'name' => 'Mixed Spell',
+        'description' => 'Deals ${$s1+$s2} damage.',
+    ], [
+        ['type' => 'School Damage', 'base_value' => 0, 'scaled_value' => 0, 'sp_coefficient' => 0.4],
+        ['type' => 'Dummy', 'base_value' => 500, 'scaled_value' => 500],
+    ]);
+
+    expect(resolveText($spell, $class, $spec))->toBe('Deals (varies) damage.');
+});
+
+test('a coefficient is read off the effect named, never off a same-named sibling', function () {
+    [$patch, $class, $spec] = tokenWorld();
+
+    // The sibling carries an unrelated flat 120 on effect #1. Sibling recovery finds it and
+    // would build the whole formula on a number that means nothing — this rendered Penance as
+    // "≈360–1,310 Holy damage" before the ordering was fixed.
+    tokenSpell($patch, $class, ['spell_id' => 700004, 'name' => 'Twin'], [
+        ['type' => 'Dummy', 'base_value' => 120, 'scaled_value' => 120],
+    ]);
+    tokenSpell($patch, $class, ['spell_id' => 700005, 'name' => 'Twin'], [
+        ['type' => 'School Damage', 'base_value' => 0, 'scaled_value' => 0, 'sp_coefficient' => 0.932],
+    ]);
+
+    $spell = tokenSpell($patch, $class, [
+        'spell_id' => 700006,
+        'name' => 'Caller',
+        'description' => 'Deals ${$700005s1*3} damage.',
+    ]);
+
+    expect(resolveText($spell, $class, $spec))->toBe('Deals ≈279.6% of Spell Power damage.');
+});
+
+test('a coefficient on an effect that is not damage or healing is ignored', function () {
+    [$patch, $class, $spec] = tokenWorld();
+
+    // The dump populates sp_coefficient on Taunt, Shapeshift, Change Model and Charge among
+    // others. An Evoker breath read "healing ≈53.5% of Spell Power injured allies in a ≈92.2% of
+    // Spell Power yd cone" off exactly this: the two tokens are a target count and a cone angle.
+    $spell = tokenSpell($patch, $class, [
+        'spell_id' => 700007,
+        'name' => 'Breath',
+        'description' => 'Hits $s1 allies in a $s2 yd cone for $s3 damage.',
+    ], [
+        ['type' => 'Dummy', 'base_value' => 0, 'scaled_value' => 0, 'sp_coefficient' => 0.535],
+        ['type' => 'Taunt (114)', 'base_value' => 0, 'scaled_value' => 0, 'sp_coefficient' => 0.922],
+        ['type' => 'School Damage (2): fire', 'base_value' => 0, 'scaled_value' => 0, 'sp_coefficient' => 1.5],
+    ]);
+
+    // Only the third token is a real share of Spell Power; the other two stay honest holes.
+    expect(resolveText($spell, $class, $spec))
+        ->toBe('Hits (varies) allies in a (varies) yd cone for ≈150% of Spell Power damage.');
+});

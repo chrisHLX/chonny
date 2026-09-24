@@ -1,5 +1,5 @@
 {
-    "generatedAt": "2026-09-24T08:57:02+00:00",
+    "generatedAt": "2026-09-24T09:54:19+00:00",
     "spellCacheVersion": 21,
     "codeFingerprint": "dev",
     "entries": [
@@ -1348,8 +1348,8 @@
             "spellId": 8743,
             "category": "Defensive",
             "description": {
-                "text": "Heals all party or raid members within 40 yards for (varies) over 5. Each heal increases all targets' healing taken by 4% for 15, stacking. You gain Guardian Spirit while channeling Divine Hymn. Healing reduced beyond 5 targets.",
-                "uncertain": true
+                "text": "Heals all party or raid members within 40 yards for ≈2,804.4% of Spell Power over 5. Each heal increases all targets' healing taken by 4% for 15, stacking. You gain Guardian Spirit while channeling Divine Hymn. Healing reduced beyond 5 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1376,8 +1376,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals all party or raid members within 40 yards for (varies) over 15. Each heal increases all targets' healing taken by 4% for 15, stacking. You gain Guardian Spirit while channeling Divine Hymn. Healing reduced beyond 5 targets.",
-                            "uncertain": true
+                            "text": "Heals all party or raid members within 40 yards for ≈2,804.4% of Spell Power over 15. Each heal increases all targets' healing taken by 4% for 15, stacking. You gain Guardian Spirit while channeling Divine Hymn. Healing reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3258,8 +3258,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals all party or raid members within 40 yards for (varies) over 15. Each heal increases all targets' healing taken by 4% for 15, stacking. You gain Guardian Spirit while channeling Divine Hymn. Healing reduced beyond 5 targets.",
-                            "uncertain": true
+                            "text": "Heals all party or raid members within 40 yards for ≈2,804.4% of Spell Power over 15. Each heal increases all targets' healing taken by 4% for 15, stacking. You gain Guardian Spirit while channeling Divine Hymn. Healing reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3274,8 +3274,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Heals all party or raid members within 40 yards for (varies) over 5. Each heal increases all targets' healing taken by 4% for 15, stacking. You gain Guardian Spirit while channeling Divine Hymn. Healing reduced beyond 5 targets.",
-                            "uncertain": true
+                            "text": "Heals all party or raid members within 40 yards for ≈2,804.4% of Spell Power over 5. Each heal increases all targets' healing taken by 4% for 15, stacking. You gain Guardian Spirit while channeling Divine Hymn. Healing reduced beyond 5 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3411,14 +3411,10 @@
             "spellId": 8687,
             "category": "Offensive",
             "description": {
-                "text": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Shadow damage to enemies. Healing reduced beyond 6 targets.",
-                "uncertain": true
+                "text": "Creates a ring of Shadow energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–238.4% of Spell Power Shadow damage to enemies. Healing reduced beyond 6 targets.",
+                "uncertain": false
             },
-            "formulaModifierSpellIds": [
-                8404,
-                8262,
-                8394
-            ],
+            "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
                     {
@@ -3478,8 +3474,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Holy damage to enemies. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–165.8% of Spell Power Holy damage to enemies. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3494,8 +3490,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Holy damage to enemies. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–165.8% of Spell Power Holy damage to enemies. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3510,8 +3506,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Holy damage to enemies. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–165.8% of Spell Power Holy damage to enemies. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3526,8 +3522,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Holy damage to enemies. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–165.8% of Spell Power Holy damage to enemies. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3638,8 +3634,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing (varies) Holy damage to enemies. Healing reduced beyond 6 targets.",
-                            "uncertain": true
+                            "text": "Creates a ring of Holy energy around you that quickly expands to a 40 yd radius, healing allies for 6 and dealing ≈144.2–165.8% of Spell Power Holy damage to enemies. Healing reduced beyond 6 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {

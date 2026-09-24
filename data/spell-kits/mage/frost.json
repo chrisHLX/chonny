@@ -1,5 +1,5 @@
 {
-    "generatedAt": "2026-09-24T08:56:50+00:00",
+    "generatedAt": "2026-09-24T09:54:06+00:00",
     "spellCacheVersion": 21,
     "codeFingerprint": "dev",
     "entries": [
@@ -1316,7 +1316,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spells that Freeze your enemies deal ≈160% of Spell Power% increased damage. Spells that Shatter your enemies deal ≈160% of Spell Power% increased damage.",
+                            "text": "Spells that Freeze your enemies deal (varies)% increased damage. Spells that Shatter your enemies deal (varies)% increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1775,7 +1775,7 @@
             "spellId": 5700,
             "category": "Offensive",
             "description": {
-                "text": "Casting Ray of Frost replaces your Ray of Frost with Comet Storm, calling down a series of 7 icy comets on and around the target, that deals up to 7 Frost damage to all enemies within 8 yds of its impacts. Each Comet Shatters 1 stack of Freezing.",
+                "text": "Casting Ray of Frost replaces your Ray of Frost with Comet Storm, calling down a series of 7 icy comets on and around the target, that deals up to ≈903% of Spell Power Frost damage to all enemies within 8 yds of its impacts. Each Comet Shatters 1 stack of Freezing.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2096,7 +2096,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spells that Freeze your enemies deal ≈160% of Spell Power% increased damage. Spells that Shatter your enemies deal ≈160% of Spell Power% increased damage.",
+                            "text": "Spells that Freeze your enemies deal (varies)% increased damage. Spells that Shatter your enemies deal (varies)% increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3623,7 +3623,7 @@
             "spellId": 5667,
             "category": "Offensive",
             "description": {
-                "text": "Unleash a flurry of ice, striking the target 3 times for a total of 3 Frostfire damage. Applies 3 stacks of Freezing.",
+                "text": "Unleash a flurry of ice, striking the target 3 times for a total of ≈385.6% of Spell Power Frostfire damage. Applies 3 stacks of Freezing.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -3683,7 +3683,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a flurry of ice, striking the target 1 times for a total of 1 Frostfire damage. Applies 1 stack of Freezing.",
+                            "text": "Unleash a flurry of ice, striking the target 1 times for a total of ≈165.2% of Spell Power Frostfire damage. Applies ≈128.5% of Spell Power stacks of Freezing.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3699,7 +3699,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a flurry of ice, striking the target 1 times for a total of 1 Frostfire damage. Applies 1 stack of Freezing.",
+                            "text": "Unleash a flurry of ice, striking the target 1 times for a total of ≈128.5% of Spell Power Frostfire damage. Applies 1 stack of Freezing.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3715,7 +3715,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a flurry of ice, striking the target 1 times for a total of 1 Frostfire damage. Applies 1 stack of Freezing.",
+                            "text": "Unleash a flurry of ice, striking the target 1 times for a total of ≈128.5% of Spell Power Frostfire damage. Applies 1 stack of Freezing.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -3731,7 +3731,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a flurry of ice, striking the target 1 times for a total of 1 Frostfire damage. Applies 1 stack of Freezing.",
+                            "text": "Unleash a flurry of ice, striking the target 1 times for a total of ≈128.5% of Spell Power Frostfire damage. Applies 1 stack of Freezing.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -4852,7 +4852,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spells that Freeze your enemies deal ≈160% of Spell Power% increased damage. Spells that Shatter your enemies deal ≈160% of Spell Power% increased damage.",
+                            "text": "Spells that Freeze your enemies deal (varies)% increased damage. Spells that Shatter your enemies deal (varies)% increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5458,7 +5458,7 @@
             "spellId": 5669,
             "category": "Offensive",
             "description": {
-                "text": "Launches an orb of swirling ice in front of you, dealing up to 21.2 Frost damage to all enemies it passes through over 15. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets. Enemies damaged by the Frozen Orb are slowed by 50% for 8.",
+                "text": "Launches an orb of swirling ice in front of you, dealing up to ≈1,554% of Spell Power Frost damage to all enemies it passes through over 15. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets. Enemies damaged by the Frozen Orb are slowed by 50% for 8.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5502,7 +5502,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches an orb of swirling ice in front of you, dealing up to 21.2 Frost damage to all enemies it passes through over (varies). After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets. Enemies damaged by the Frozen Orb are slowed by 50% for 8.",
+                            "text": "Launches an orb of swirling ice in front of you, dealing up to ≈1,554% of Spell Power Frost damage to all enemies it passes through over (varies). After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets. Enemies damaged by the Frozen Orb are slowed by 50% for 8.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5518,7 +5518,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches an orb of swirling ice in front of you, dealing up to 21.2 Frost damage to all enemies it passes through over 1.5. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets. Enemies damaged by the Frozen Orb are slowed by 50% for 8.",
+                            "text": "Launches an orb of swirling ice in front of you, dealing up to ≈1,554% of Spell Power Frost damage to all enemies it passes through over 1.5. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets. Enemies damaged by the Frozen Orb are slowed by 50% for 8.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -5550,7 +5550,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches an orb of swirling ice in front of you, dealing up to 21.2 Frost damage to all enemies it passes through over 3. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets. Enemies damaged by the Frozen Orb are slowed by 50% for 8.",
+                            "text": "Launches an orb of swirling ice in front of you, dealing up to ≈1,554% of Spell Power Frost damage to all enemies it passes through over 3. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets. Enemies damaged by the Frozen Orb are slowed by 50% for 8.",
                             "uncertain": false
                         },
                         "category": "Utility",
@@ -7903,7 +7903,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spells that Freeze your enemies deal ≈160% of Spell Power% increased damage. Spells that Shatter your enemies deal ≈160% of Spell Power% increased damage.",
+                            "text": "Spells that Freeze your enemies deal (varies)% increased damage. Spells that Shatter your enemies deal (varies)% increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -8176,7 +8176,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spells that Freeze your enemies deal ≈160% of Spell Power% increased damage. Spells that Shatter your enemies deal ≈160% of Spell Power% increased damage.",
+                            "text": "Spells that Freeze your enemies deal (varies)% increased damage. Spells that Shatter your enemies deal (varies)% increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10177,7 +10177,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Spells that Freeze your enemies deal ≈160% of Spell Power% increased damage. Spells that Shatter your enemies deal ≈160% of Spell Power% increased damage.",
+                            "text": "Spells that Freeze your enemies deal (varies)% increased damage. Spells that Shatter your enemies deal (varies)% increased damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -10241,7 +10241,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Ray of Frost replaces your Ray of Frost with Comet Storm, calling down a series of 7 icy comets on and around the target, that deals up to 7 Frost damage to all enemies within 8 yds of its impacts. Each Comet Shatters 1 stack of Freezing.",
+                            "text": "Casting Ray of Frost replaces your Ray of Frost with Comet Storm, calling down a series of 7 icy comets on and around the target, that deals up to ≈903% of Spell Power Frost damage to all enemies within 8 yds of its impacts. Each Comet Shatters 1 stack of Freezing.",
                             "uncertain": false
                         },
                         "category": "Offensive",
