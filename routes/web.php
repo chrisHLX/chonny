@@ -180,6 +180,12 @@ Route::prefix('wow')->group(function () {
         ->whereNumber('level')
         ->name('wow-quiz.play');
 
+    // Concept drills: the same generated questions, selected by a learning-platform concept
+    // instead of by a level. The spec stays in the path because it flavours the questions — the
+    // concept is what the answers are scored against. See App\Learning\ConceptCoverage.
+    Route::get('/quiz/{classSlug}/{specSlug}/drill/{conceptSlug}', \App\Livewire\Quizzes\ConceptDrillPlay::class)
+        ->name('wow-quiz.drill');
+
     // Curation review tools. Not linked from the nav, but real URLs people have open.
     Route::get('/cc-review', \App\Livewire\CcReview::class)->name('cc-review');
     Route::get('/cc-immunity-review', \App\Livewire\CcImmunityReview::class)->name('cc-immunity-review');

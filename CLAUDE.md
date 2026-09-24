@@ -56,6 +56,8 @@ exist to be corrected. The spell/talent/match-data pipeline underneath must stay
 | `guide-writing.md` | **How to draft a machine guide.** The length budget (the 2026-09 batch averaged 7,900 reader-facing chars; the limit is now 2,300), the shape, and the errors the last batch made. Read with `docs/guides/reader-corrections-2026-09-23.md`. |
 | `docs/guides/` | Reader feedback on the machine guides: the full export, plus the distilled corrections. **Export before re-authoring** — anchored comments are cascade-deleted. |
 | `module-upload-format.md` | Shape for drafting module content. |
+| `docs/learning/question-audit-2026-09-24.md` | **The authored question bank read against the Brain and the spell data.** 9 questions contradict the model, 4 have a defensible distractor, 5 contradict live spell data — two of them stating a PvE crowd control duration. The case for generating facts rather than writing them. |
+| `system-integration.md` | **How the learning platform joins the spell data, the guides and the Brain.** The three grounding layers, the finding that the old questions went stale on doctrine rather than numbers, and the staged path. Read before touching modules, diagnostics or concept mastery. |
 
 These are reference, not gates. Implementation decisions are yours. A note that something "can
 break" is a warning to check before relying on it, not a rule that blocks the work.
@@ -337,7 +339,11 @@ fingerprint; falls back to a live compute when stale (6,964ms/3,042 queries vs 9
   counters), each also standalone at `/class-guide`, `/burst-guides`, `/spells`,
   `/spell-counters`.
 - `/spell/{id}` — `SpellDetail`; shared `SpellDetailModal` everywhere else.
-- `/wow/quiz` — `Quizzes\WowQuizIndex` / `WowQuizPlay`.
+- `/wow/quiz` — `Quizzes\WowQuizIndex` / `WowQuizPlay`, plus concept drills at
+  `/wow/quiz/{class}/{spec}/drill/{concept}` (`Quizzes\ConceptDrillPlay`). A level and a concept
+  are two ways of choosing the same generated question types; `App\Learning\ConceptCoverage` maps
+  concept → `brain.md` sections → types, and names why four of the seven concepts have none.
+  Drill results are **never** written to `UserConceptMastery` — see the Rules.
 - `/characters` — `Battlenet\Characters` / `CharacterShow`.
 - `/top-damage-rotations`, `/cc-chains`, `/cc-review`, `/friends`, `/guilds`, `/profile`.
 - Admin: `/admin/content`, `/admin/talent-builds`, `/admin/page-usage`, `/admin/weak-areas`,
@@ -665,6 +671,30 @@ it probably doesn't belong.
     talent-modified cooldowns, not spend-driven reduction, so real goes come round sooner by an
     unknown amount that differs per spec. Stated on the page rather than corrected for; see
     `knowledge-gaps.md` (2026-09-23) and `arena-open-questions.md` C12.
+
+### Generated questions
+
+35. **A generated result never writes `UserConceptMastery`.** `MasteryService` scores a concept
+    as `correct ÷ every question attached to it` — the whole authored bank, not what the player
+    was asked. Feed that an unbounded generator and every player's percentage falls as the game
+    data gets richer. Drill results are read back off `quiz_attempts` instead
+    (`ConceptDrillRecord`, a window over the last 20 questions actually asked), which needs no
+    table because an attempt already stores its questions as they were asked.
+
+36. **A generated question states only what a field can confirm, and never compares to a field
+    it does not hold.** The arena-duration question was first written with an explanation claiming the PvE
+    duration is longer; 36 of the 111 crowd control spells carrying an arena figure have the same
+    figure in PvE, so it would have been false a third of the time. `WowAbility` carries no PvE
+    duration, so the claim is now general rather than per-spell.
+
+37. **`usable_while_cc = NULL` means no, not unknown.** `SpellDataFileParser` reads every spell's
+    whole `Attributes` line on every import and writes null when none of Blizzard's "Allow While …"
+    codes are present. That is what makes a "which of these can you cast while stunned" distractor
+    sound. Do not generalise this to other nullable columns — most of them *are* gaps.
+
+38. **Adding a field to a cached `WowAbility` bumps `WowAbilityFacts::SHAPE_VERSION`, not the
+    spell cache version.** Rule 17's reasoning: the global counter also keys all 40 kits. A stale
+    entry of the old shape makes every question type reading the new field skip in silence.
 
 ## Traps that have bitten before
 

@@ -27,9 +27,9 @@ function quizAbilities(): array
         new WowAbility(1, 'Zenith', 'a.jpg', cooldown: 90, offensive: true, className: 'Monk'),
         new WowAbility(2, 'Strike of the Windlord', 'b.jpg', cooldown: 30, offensive: true, className: 'Monk'),
         new WowAbility(3, 'Touch of Karma', 'c.jpg', cooldown: 90, offensive: true, defensive: true, className: 'Monk'),
-        new WowAbility(4, 'Fortifying Brew', 'd.jpg', cooldown: 120, defensive: true, className: 'Monk'),
-        new WowAbility(5, 'Leg Sweep', 'e.jpg', drCategory: 'Stun', cooldown: 60, className: 'Monk'),
-        new WowAbility(6, 'Paralysis', 'f.jpg', drCategory: 'Incapacitate', cooldown: 45, className: 'Monk'),
+        new WowAbility(4, 'Fortifying Brew', 'd.jpg', cooldown: 120, defensive: true, className: 'Monk', usableWhileCc: ['stun']),
+        new WowAbility(5, 'Leg Sweep', 'e.jpg', drCategory: 'Stun', cooldown: 60, className: 'Monk', pvpDuration: 4),
+        new WowAbility(6, 'Paralysis', 'f.jpg', drCategory: 'Incapacitate', cooldown: 45, className: 'Monk', pvpDuration: 8),
         new WowAbility(7, 'Spear Hand Strike', 'g.jpg', cooldown: 15, interrupt: true, className: 'Monk'),
     ];
 }
@@ -98,13 +98,52 @@ test('the answers match the facts', function () {
     expect($wrong->every(fn ($k) => (int) $k >= 100))->toBeTrue();
 });
 
+test('the arena duration question reads the arena duration and nothing else', function () {
+    $builder = quizBuilder();
+    [, , , , $legSweep, $paralysis] = quizAbilities();
+
+    // Leg Sweep's 60 second cooldown is right there on the same object; the answer is its
+    // 4 second PvP duration. Two of the three questions in the authored bank that state a crowd
+    // control duration state the PvE one instead — docs/learning/question-audit-2026-09-24.md.
+    expect($builder->make('pvp_duration', $legSweep)->correctKey)->toBe('4')
+        ->and($builder->make('pvp_duration', $paralysis)->correctKey)->toBe('8');
+
+    // Wrong answers stay two seconds clear, so the question is not a coin toss between 5 and 6.
+    $values = array_map('intval', array_column($builder->make('pvp_duration', $legSweep)->options, 'key'));
+    sort($values);
+    foreach ($values as $i => $value) {
+        if ($i > 0) {
+            expect($value - $values[$i - 1])->toBeGreaterThanOrEqual(2);
+        }
+    }
+});
+
+test('the cast-while-stunned question offers one ability that can and three that cannot', function () {
+    $builder = quizBuilder();
+    $brew = quizAbilities()[3];
+
+    $question = $builder->make('usable_while_cc', $brew);
+
+    expect($question->correctKey)->toBe('4')
+        ->and($question->prompt)->toContain('stunned');
+
+    $byId = collect(quizAbilities())->keyBy('spellId');
+    foreach ($question->options as $option) {
+        expect($byId[(int) $option['key']]->usableWhile('stun'))->toBe($option['key'] === $question->correctKey);
+    }
+});
+
 test('a question with no single right answer is not asked', function () {
     $builder = quizBuilder();
     $karma = quizAbilities()[2]; // both offensive and defensive
 
     expect($builder->make('ability_role', $karma))->toBeNull()
         ->and($builder->make('is_offensive_cd', $karma))->toBeNull()
-        ->and($builder->make('dr_category', quizAbilities()[0]))->toBeNull();
+        ->and($builder->make('dr_category', quizAbilities()[0]))->toBeNull()
+        // Zenith is not crowd control and has no arena duration, and nothing lets it be cast
+        // while stunned, so neither of the two newer types has anything to ask about it.
+        ->and($builder->make('pvp_duration', quizAbilities()[0]))->toBeNull()
+        ->and($builder->make('usable_while_cc', quizAbilities()[0]))->toBeNull();
 
     // Two offensive cooldowns share the longest cooldown, so there is no clear winner.
     $tied = new WowQuestionBuilder('X', [

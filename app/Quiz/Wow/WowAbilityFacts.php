@@ -27,6 +27,17 @@ use Illuminate\Support\Facades\Cache;
  */
 class WowAbilityFacts
 {
+    /**
+     * Bumped when the SHAPE of a cached WowAbility changes — a new field, a new filter.
+     *
+     * Deliberately not bumpSpellCacheVersion(): that counter also keys all 40 precomputed spell
+     * kits, so bumping it to publish a quiz-only change drops WoW Comps and Spell Explorer onto
+     * the slow path for nothing (CLAUDE.md rule 17). A stale entry of the old shape would simply
+     * be missing the new fields, and every question type that reads them would skip in silence,
+     * which is the kind of quiet no-op this constant exists to prevent.
+     */
+    public const SHAPE_VERSION = 2;
+
     /** Every class has these (Gladiator's Medallion), so they say nothing about a spec. */
     public const UNIVERSAL_SPELL_IDS = [336126];
 
@@ -47,7 +58,7 @@ class WowAbilityFacts
      */
     public function specAbilities(Specialization $spec): array
     {
-        $key = "quiz:wow:spec:{$spec->id}:v{$this->talents->spellCacheVersion()}";
+        $key = "quiz:wow:spec:{$spec->id}:v{$this->talents->spellCacheVersion()}:s".self::SHAPE_VERSION;
 
         return $this->hydrate(Cache::remember($key, now()->addDay(), function () use ($spec) {
             $cc = $this->pressableCcIds();
@@ -70,6 +81,8 @@ class WowAbilityFacts
                         defensive: CooldownTabs::isEntry($e, 'defensive'),
                         interrupt: (bool) $e['spell']->is_interrupt && $cooldown !== null,
                         className: $className,
+                        pvpDuration: $e['spell']->pvp_duration_seconds !== null ? (float) $e['spell']->pvp_duration_seconds : null,
+                        usableWhileCc: self::ccTokens($e['spell']),
                     );
                 })
                 ->filter(fn (WowAbility $a) => $a->drCategory || $a->offensive || $a->defensive || $a->interrupt)
@@ -91,7 +104,7 @@ class WowAbilityFacts
      */
     public function otherClassAbilities(Specialization $spec): array
     {
-        $key = "quiz:wow:others:{$spec->class_id}:v{$this->talents->spellCacheVersion()}";
+        $key = "quiz:wow:others:{$spec->class_id}:v{$this->talents->spellCacheVersion()}:s".self::SHAPE_VERSION;
 
         return $this->hydrate(Cache::remember($key, now()->addDay(), function () use ($spec) {
             $patch = $this->patch();
@@ -143,7 +156,7 @@ class WowAbilityFacts
      */
     public function ccPool(): array
     {
-        $key = "quiz:wow:ccpool:v{$this->talents->spellCacheVersion()}";
+        $key = "quiz:wow:ccpool:v{$this->talents->spellCacheVersion()}:s".self::SHAPE_VERSION;
 
         return $this->hydrate(Cache::remember($key, now()->addDay(), function () {
             $patch = $this->patch();
@@ -161,11 +174,27 @@ class WowAbilityFacts
                     name: $s->display_name,
                     icon: $s->icon_name,
                     drCategory: $s->dr_category,
+                    pvpDuration: $s->pvp_duration_seconds !== null ? (float) $s->pvp_duration_seconds : null,
+                    usableWhileCc: self::ccTokens($s),
                 ))->toArray())
                 ->unique('name')
                 ->values()
                 ->all();
         }));
+    }
+
+    /**
+     * spells.usable_while_cc as a token list. An unset column is an empty list, not an unknown:
+     * SpellDataFileParser reads the whole Attributes line of every spell on every import and
+     * writes null when none of Blizzard's "Allow While …" codes are present.
+     *
+     * @return array<int, string>
+     */
+    private static function ccTokens(Spell $spell): array
+    {
+        return $spell->usable_while_cc === null
+            ? []
+            : array_values(array_filter(array_map('trim', explode(',', $spell->usable_while_cc))));
     }
 
     /** @return array<int, WowAbility> */

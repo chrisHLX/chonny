@@ -8,6 +8,19 @@ namespace App\Quiz\Wow;
  */
 final class WowAbility
 {
+    /**
+     * @param  ?float  $pvpDuration  how long it lasts on a PLAYER (spells.pvp_duration_seconds),
+     *                               which is routinely shorter than the PvE duration. Null when
+     *                               the data holds no arena figure — never substituted with the
+     *                               PvE one, because that substitution is exactly the mistake the
+     *                               stored question bank made (docs/learning/question-audit-2026-09-24.md).
+     * @param  array<int, string>  $usableWhileCc  the CC states this can still be cast under, as
+     *                                             spells.usable_while_cc tokens. Empty means the
+     *                                             spell carries none of Blizzard's "Allow While …"
+     *                                             attributes — a real no, not a gap, because
+     *                                             SpellDataFileParser reads every spell's whole
+     *                                             attribute line on every import.
+     */
     public function __construct(
         public readonly int $spellId,
         public readonly string $name,
@@ -18,7 +31,14 @@ final class WowAbility
         public readonly bool $defensive = false,
         public readonly bool $interrupt = false,
         public readonly ?string $className = null,
+        public readonly ?float $pvpDuration = null,
+        public readonly array $usableWhileCc = [],
     ) {}
+
+    public function usableWhile(string $token): bool
+    {
+        return in_array($token, $this->usableWhileCc, true);
+    }
 
     public function iconPath(): ?string
     {

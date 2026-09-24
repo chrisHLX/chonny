@@ -2,6 +2,10 @@
 
 namespace App\Livewire\Quizzes;
 
+use App\Learning\ConceptCoverage;
+use App\Learning\ConceptDrillRecord;
+use App\Learning\WowConcepts;
+use App\Models\Concept;
 use App\Models\GameClass;
 use App\Models\PageViewEvent;
 use App\Models\Specialization;
@@ -50,6 +54,16 @@ class WowQuizIndex extends Component
 
         $title = $this->spec ? "{$this->spec->name} {$this->spec->gameClass->name} quiz" : 'WoW class quizzes';
 
+        // Concept drills, shown under the levels once a spec is picked. A level is a stage on a
+        // path; a drill is a single idea you can hammer. Concepts with no generated questions are
+        // listed too, with the reason — a visible hole beats a quietly missing row.
+        $concepts = $this->spec ? WowConcepts::all() : collect();
+        $drillRecords = ConceptDrillRecord::forViewer(
+            $concepts->filter(fn (Concept $c) => ConceptCoverage::isGenerable($c->name))->pluck('id')->all(),
+            auth()->user(),
+            session()->getId(),
+        );
+
         // Every spec this player has finished a level of, for the picker's colouring and the
         // "Your results" list. Keyed by spec id.
         $specResults = collect($results)
@@ -71,6 +85,8 @@ class WowQuizIndex extends Component
             'levels' => $quiz->levels(),
             'best' => $best,
             'recommended' => $recommended,
+            'concepts' => $concepts,
+            'drillRecords' => $drillRecords,
         ])->layout('layouts.app', [
             'title' => "{$title} | MindCollector",
             'description' => 'Quizzes on your WoW arena kit: your cooldowns, your crowd control and diminishing returns. Built from live game data, so they stay current every patch.',

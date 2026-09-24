@@ -19,7 +19,7 @@ class WowQuestionBuilder
     public const LEVEL_TYPES = [
         1 => ['which_is_yours', 'ability_role'],
         2 => ['is_offensive_cd', 'is_defensive_cd', 'cooldown_length', 'longest_offensive'],
-        3 => ['dr_category', 'shares_dr_with'],
+        3 => ['dr_category', 'shares_dr_with', 'pvp_duration', 'usable_while_cc'],
     ];
 
     private const ROLE_LABELS = [
@@ -31,6 +31,9 @@ class WowQuestionBuilder
 
     /** Real cooldown lengths wrong answers are picked from, so no option looks made up. */
     private const COOLDOWN_LADDER = [10, 15, 20, 30, 45, 60, 90, 120, 180, 240, 300, 600];
+
+    /** Real crowd control durations in arena, for the same reason. */
+    private const PVP_DURATION_LADDER = [3, 4, 5, 6, 8, 10, 20];
 
     private Randomizer $random;
 
@@ -52,7 +55,22 @@ class WowQuestionBuilder
     /** @return array<int, QuizQuestion> */
     public function build(int $level, int $count): array
     {
-        $types = self::LEVEL_TYPES[$level] ?? [];
+        return $this->buildTypes(self::LEVEL_TYPES[$level] ?? [], $count);
+    }
+
+    /**
+     * The same mix, from an explicit type list rather than a level.
+     *
+     * A level is one way to choose types; a concept (ConceptCoverage) is another, and a concept
+     * drill cuts across levels — Crowd Control draws on both the level 3 DR questions and the
+     * arena-duration one. Everything downstream of the type list is identical either way, so the
+     * two callers cannot drift apart on how a quiz is mixed.
+     *
+     * @param  array<int, string>  $types
+     * @return array<int, QuizQuestion>
+     */
+    public function buildTypes(array $types, int $count): array
+    {
         if ($types === [] || $this->abilities === []) {
             return [];
         }
@@ -122,8 +140,106 @@ class WowQuestionBuilder
             'longest_offensive' => $this->longestOffensive(),
             'dr_category' => $this->drCategory($subject),
             'shares_dr_with' => $this->sharesDrWith($subject),
+            'pvp_duration' => $this->pvpDuration($subject),
+            'usable_while_cc' => $this->usableWhileCc($subject),
             default => null,
         };
+    }
+
+    /**
+     * "How long does this last on a player?" — read from pvp_duration_seconds, never from the
+     * PvE duration.
+     *
+     * This type exists because of a measured failure, not a hunch: of the three questions in the
+     * stored bank that state a crowd control duration, two state the PvE number (Intimidation as
+     * 5s when arena is 3s, Hammer of Justice as 6s when arena is 5s — see
+     * docs/learning/question-audit-2026-09-24.md). A generated question cannot make that mistake
+     * in any patch, because there is no PvE figure anywhere in its inputs to reach for.
+     */
+    private function pvpDuration(WowAbility $ability): ?QuizQuestion
+    {
+        if ($ability->drCategory === null || $ability->pvpDuration === null || fmod($ability->pvpDuration, 1.0) !== 0.0) {
+            return null;
+        }
+
+        $correct = (int) $ability->pvpDuration;
+
+        // Two seconds apart, so the question tests whether the player knows the arena duration
+        // rather than whether they guessed between 5 and 6.
+        $apart = fn (int $a, int $b) => abs($a - $b) >= 2;
+
+        $candidates = array_values(array_filter(self::PVP_DURATION_LADDER, fn (int $s) => $apart($s, $correct)));
+        usort($candidates, fn (int $a, int $b) => abs($a - $correct) <=> abs($b - $correct));
+
+        $wrong = [];
+        foreach ($candidates as $candidate) {
+            if (collect($wrong)->every(fn (int $w) => $apart($w, $candidate))) {
+                $wrong[] = $candidate;
+            }
+            if (count($wrong) === 3) {
+                break;
+            }
+        }
+
+        if (count($wrong) < 3) {
+            return null;
+        }
+
+        $values = $this->shuffle([$correct, ...$wrong]);
+
+        return new QuizQuestion(
+            type: 'pvp_duration',
+            prompt: "How long does {$ability->name} last on an enemy player?",
+            subject: ['label' => $ability->name, 'icon' => $ability->iconPath()],
+            options: array_map(fn (int $s) => ['key' => (string) $s, 'label' => "{$s} sec", 'icon' => null], $values),
+            correctKey: (string) $correct,
+            // No claim about how this compares to its tooltip duration. 36 of the 111 crowd
+            // control spells that carry an arena figure have the SAME figure in PvE, so
+            // "it lasts longer against a dummy" would be false about a third of the time — and a
+            // confidently wrong number is worse than none.
+            explanation: "{$ability->name} lasts {$correct} seconds on a player. Tooltips quote the PvE duration, which for a lot of crowd control is longer than the arena one, so this is the figure to learn. A second {$ability->drCategory} on the same target then lands at half, and a third not at all.",
+        );
+    }
+
+    /**
+     * "You are stunned. Which of these can you still press?"
+     *
+     * Both halves come from Blizzard's own per-spell attribute line, read whole on every import:
+     * the right answer carries "Allow While Stunned", the wrong ones carry none of the
+     * "Allow While …" codes at all. So a wrong option is a spell the game says cannot be cast,
+     * not a spell nobody has got round to labelling.
+     */
+    private function usableWhileCc(WowAbility $ability): ?QuizQuestion
+    {
+        $labels = config('spell_display.cc_token_labels', []);
+
+        foreach ($ability->usableWhileCc as $token) {
+            if (! isset($labels[$token])) {
+                continue;
+            }
+
+            $wrong = array_slice($this->shuffle(array_filter(
+                $this->abilities,
+                fn (WowAbility $a) => ! $a->usableWhile($token) && $a->name !== $ability->name,
+            )), 0, 3);
+
+            if (count($wrong) < 3) {
+                continue;
+            }
+
+            $state = strtolower($labels[$token]);
+
+            return $this->iconQuestion(
+                'usable_while_cc',
+                "You are {$state}. Which of these can you still cast?",
+                null,
+                $ability,
+                $wrong,
+                "{$ability->name} can be cast while {$state}. The others cannot, so being {$state} takes them off the table — that is what makes {$ability->name} an answer to it and them not.",
+            );
+        }
+
+        return null;
     }
 
     private function whichIsYours(WowAbility $correct): ?QuizQuestion

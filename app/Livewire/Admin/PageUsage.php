@@ -63,6 +63,7 @@ class PageUsage extends Component
         'battlenet_character' => 'Character Detail',
         'wow_quiz' => 'Class Quizzes',
         'wow_quiz_play' => 'Class Quiz (playing)',
+        'concept_drill_play' => 'Concept Drill (playing)',
     ];
 
     /**

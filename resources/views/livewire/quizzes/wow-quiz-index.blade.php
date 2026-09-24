@@ -124,6 +124,57 @@
             @endforeach
         </div>
 
+        @if ($concepts->isNotEmpty())
+            <div class="mt-10">
+                <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Drills</h2>
+                <p class="text-[13px] text-ink-muted mt-1 mb-3">
+                    One idea at a time, as long as you like. Nothing here is written down anywhere — every question is
+                    built from the spell data the moment you start, so the answers are whatever is true this patch.
+                </p>
+
+                <div class="space-y-2">
+                    @foreach ($concepts as $concept)
+                        @php
+                            $generable = \App\Learning\ConceptCoverage::isGenerable($concept->name);
+                            $record = $drillRecords[$concept->id] ?? null;
+                            $sections = \App\Learning\ConceptCoverage::brainSectionsFor($concept->name);
+                        @endphp
+                        <div wire:key="drill-{{ $concept->id }}"
+                             class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3 {{ $generable ? '' : 'opacity-70' }}">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <p class="text-[15px] font-medium text-ink">{{ $concept->name }}</p>
+                                    @if ($generable && $record && ! $record->isEmpty())
+                                        <span class="text-[11.5px] text-ink-subtle tabular-nums">
+                                            {{ $record->correct }} right of your last {{ $record->asked }}
+                                        </span>
+                                    @elseif (! $generable)
+                                        <span class="badge-gray">Not generated</span>
+                                    @endif
+                                </div>
+                                <p class="text-[13px] text-ink-muted mt-0.5">
+                                    {{ $generable ? $concept->description : \App\Learning\ConceptCoverage::unbackedReason($concept->name) }}
+                                </p>
+                                @if ($sections)
+                                    <p class="text-[12px] text-ink-subtle mt-1">
+                                        In the model:
+                                        @foreach ($sections as $section)
+                                            <a href="{{ route('brain') }}#{{ $section }}"
+                                               class="text-ink-muted hover:text-gold transition-colors">{{ str_replace('-', ' ', $section) }}</a>{{ $loop->last ? '' : ' · ' }}
+                                        @endforeach
+                                    </p>
+                                @endif
+                            </div>
+                            @if ($generable)
+                                <a href="{{ route('wow-quiz.drill', ['classSlug' => $spec->gameClass->slug, 'specSlug' => $spec->slug, 'conceptSlug' => \Illuminate\Support\Str::slug($concept->name)]) }}"
+                                   wire:navigate class="btn-ghost text-[13px] shrink-0 text-center">Drill</a>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
         @guest
             <p class="text-[12.5px] text-ink-subtle mt-4">
                 <a href="{{ route('register') }}" class="text-gold hover:underline">Create an account</a> to keep your scores.

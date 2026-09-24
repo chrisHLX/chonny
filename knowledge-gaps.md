@@ -406,3 +406,31 @@ cooldown across the 689-match archive, against that ability's stated number. A
 median well under the stated cooldown is real spend-driven CDR and the ratio is
 the correction factor. This needs no new data and the archive is fixed, so the
 measurement is repeatable.
+
+---
+
+## 2026-09-24 — Generated quiz questions inherit "who can this be cast on"
+
+Concept drills (`App\Learning\ConceptCoverage`, `/wow/quiz/{class}/{spec}/drill/{concept}`) build
+crowd control questions from `dr_category` and `pvp_duration_seconds`. That means they reproduce
+the gap recorded on 2026-09-18: **the data does not model who a spell may legally target.**
+
+Drilling Discipline Priest, the Crowd Control mix asks "Which diminishing returns group is
+Shackle Horror in?" and answers Incapacitate. That is what the column says and it is right about
+the DR group — but Shackle Horror only lands on pets and NPCs, so a player reading the question is
+being told it is a piece of player control. Same shape as the published-guide mistake, arriving
+through a generator instead of an author.
+
+**Why it was not filtered out.** There is no field to filter on. Adding one would mean a curated
+`valid_targets` column on `spells`, hand-populated the way `baseline-spec-overrides.txt` is —
+worth doing, but a curation project rather than a quiz change, and guessing at it in the
+generator would be exactly the kind of structural inference this project has tried and reverted.
+
+**Scope.** Affects the `dr_category`, `shares_dr_with` and `pvp_duration` question types, and only
+for the handful of abilities whose targets are restricted — Banish, Shackle Horror, Hibernate,
+Scare Beast, Turn Evil. It does not affect `usable_while_cc`, `cooldown_length` or the
+offensive/defensive types, which say nothing about a target.
+
+**What would close it:** a curated target-restriction list, one verified line at a time, read by
+both the quiz builder and `guides:author`'s feasibility check. Until then the same warning applies
+to a drill as to a guide.
