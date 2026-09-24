@@ -1,7 +1,7 @@
 {
-    "generatedAt": "2026-09-19T10:21:00+00:00",
-    "spellCacheVersion": 4162,
-    "codeFingerprint": "07526e2",
+    "generatedAt": "2026-09-24T08:56:08+00:00",
+    "spellCacheVersion": 21,
+    "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 10711,
@@ -95,7 +95,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts one target with (varies) Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -159,7 +159,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts one target with (varies) Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -482,8 +482,8 @@
             "spellId": 11657,
             "category": "Other",
             "description": {
-                "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
-                "uncertain": true
+                "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -526,8 +526,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damage dealt by Haunt has a chance to release the demonic soul haunting its target. When released, it unleashes a devastating attack before being banished back to Nathreza. Wrath of Nathreza $@spelldesc1262028",
-                            "uncertain": false
+                            "text": "Damage dealt by Haunt has a chance to release the demonic soul haunting its target. When released, it unleashes a devastating attack before being banished back to Nathreza. Wrath of Nathreza Calls down a meteor formed from the ruins of Nathreza that explodes upon impact, dealing ≈2,274.1% of Spell Power Shadow damage to all enemies within 10 yds. Damage reduced beyond 8 targets.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -684,8 +684,8 @@
             "spellId": 11539,
             "category": "Other",
             "description": {
-                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing their casting time of all spells by 100% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
-                "uncertain": true
+                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within 10 yds, increasing their casting time of all spells by 100% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -714,8 +714,8 @@
             "spellId": 11449,
             "category": "Offensive",
             "description": {
-                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing the time between their attacks by 100% and reducing their critical strike chance by 10% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
-                "uncertain": true
+                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within 10 yds, increasing the time between their attacks by 100% and reducing their critical strike chance by 10% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -774,7 +774,7 @@
             "spellId": 11684,
             "category": "Other",
             "description": {
-                "text": "Encircle enemy players with Bonds of Fel. If any affected player leaves the 12 yd radius they explode, dealing 5,534 Fire damage split amongst all nearby enemies.",
+                "text": "Encircle enemy players with Bonds of Fel. If any affected player leaves the 12 yd radius they explode, dealing 5,518 Fire damage split amongst all nearby enemies.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -809,9 +809,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
+                "named": [
                     {
                         "spellId": 11512,
                         "relationship_type": "modifies",
@@ -828,9 +826,11 @@
                             "applied": []
                         }
                     }
-                ]
+                ],
+                "baseline": [],
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -841,7 +841,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -971,7 +971,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts one target with (varies) Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1067,10 +1067,26 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts one target with (varies) Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10738,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases Wither damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -1099,7 +1115,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Embeds a demon seed in the enemy target that will explode after 12, dealing 50 Shadow damage to all enemies within (varies) yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
+                            "text": "Embeds a demon seed in the enemy target that will explode after 12, dealing 50 Shadow damage to all enemies within 10 yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1115,7 +1131,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
+                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1132,6 +1148,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Wither damage has a chance to cause your next Drain Soul or Malefic Grasp to deal 25% increased damage. Drain Soul and Malefic Grasp channel 50% faster while affected.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10712,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Seed of Corruption now embeds demon seeds into 2 additional nearby enemies at 50% effectiveness.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1206,6 +1238,22 @@
                         }
                     },
                     {
+                        "spellId": 10733,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Reduces the cast time of Seed of Corruption by 0 sec and increases its damage by 5%.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10734,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -1238,12 +1286,28 @@
                         }
                     },
                     {
+                        "spellId": 10739,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases damage dealt by Seed of Corruption to its host by 50%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10742,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1259,7 +1323,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within (varies) yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
+                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within 10 yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1275,7 +1339,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within (varies) yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
+                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within 10 yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1291,7 +1355,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within (varies) yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
+                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within 10 yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1355,7 +1419,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -1482,70 +1546,6 @@
                         }
                     },
                     {
-                        "spellId": 10738,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases Corruption damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10712,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Seed of Corruption now embeds demon seeds into 2 additional nearby enemies at 50% effectiveness.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10733,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Reduces the cast time of Seed of Corruption by 0 sec and increases its damage by 5%.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10739,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases damage dealt by Seed of Corruption to its host by 50%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10933,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -1658,7 +1658,7 @@
                         }
                     },
                     {
-                        "spellId": 12713,
+                        "spellId": 13608,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -1696,14 +1696,12 @@
             "spellId": 10762,
             "category": "Other",
             "description": {
-                "text": "Creates a Healthstone that can be consumed to restore 25% health. $@spelldesc386646",
+                "text": "Creates a Healthstone that can be consumed to restore 25% health. When you use a Healthstone, gain 4% Leech for 20.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
+                "named": [
                     {
                         "spellId": 11524,
                         "relationship_type": "modifies",
@@ -1720,9 +1718,11 @@
                             "applied": []
                         }
                     }
-                ]
+                ],
+                "baseline": [],
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -1803,7 +1803,7 @@
             "spellId": 10725,
             "category": "Other",
             "description": {
-                "text": "Shadow Bolt and Drain Soul have a chance to trigger a Shadow Bolt Volley, dealing (varies) Shadow damage to 5 enemies within (varies) yards of your current target.",
+                "text": "Shadow Bolt and Drain Soul have a chance to trigger a Shadow Bolt Volley, dealing (varies) Shadow damage to 5 enemies within 10 yards of your current target.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -1914,7 +1914,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Curse of Weakness is empowered and transforms into Curse of the Satyr. Curse of the Satyr $@spelldesc442804",
+                            "text": "Curse of Weakness is empowered and transforms into Curse of the Satyr. Curse of the Satyr Increases the time between an enemy's attacks by 20% and the casting time of all spells by 30% for 120. Curses: A warlock can only have one Curse active per target.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1978,8 +1978,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
-                            "uncertain": true
+                            "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1994,8 +1994,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
-                            "uncertain": true
+                            "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2058,7 +2058,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Curse of Weakness is empowered and transforms into Curse of the Satyr. Curse of the Satyr $@spelldesc442804",
+                            "text": "Curse of Weakness is empowered and transforms into Curse of the Satyr. Curse of the Satyr Increases the time between an enemy's attacks by 20% and the casting time of all spells by 30% for 120. Curses: A warlock can only have one Curse active per target.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -2090,8 +2090,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
-                            "uncertain": true
+                            "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2106,8 +2106,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
-                            "uncertain": true
+                            "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2238,14 +2238,17 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
+                    }
+                ],
+                "baseline": [],
+                "potential": [
                     {
-                        "spellId": 12714,
+                        "spellId": 13608,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
+                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels 10% faster and deals 15% increased damage.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2254,17 +2257,14 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
+                    },
                     {
-                        "spellId": 12713,
+                        "spellId": 13609,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels 10% faster and deals 15% increased damage.",
+                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2562,6 +2562,22 @@
                         }
                     },
                     {
+                        "spellId": 11683,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Conjure a Shadow Rift at the target location lasting 2 sec. Enemy players within the rift when it expires are teleported to your Demonic Circle.\r\n\r\nMust be within 40 yds of your Demonic Circle to cast.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 11685,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -2579,26 +2595,9 @@
                     }
                 ],
                 "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 11683,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Conjure a Shadow Rift at the target location lasting 2 sec. Enemy players within the rift when it expires are teleported to your Demonic Circle.\r\n\r\nMust be within 40 yds of your Demonic Circle to cast.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ]
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -2963,8 +2962,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone $@spelldesc452930 60 sec cooldown.",
-                            "uncertain": false
+                            "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional (varies)% over 6. 60 sec cooldown.",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3032,8 +3031,8 @@
             "spellId": 11665,
             "category": "Offensive",
             "description": {
-                "text": "A demonic entity now inhabits your soul, allowing you to detect if a Soul Shard has a Succulent Soul when it's generated. Consuming a Succulent Soul unleashes your demonic soul, dealing 10 Shadow damage to all enemies within (varies) yds of the target. Damage reduced beyond 8 targets.",
-                "uncertain": true
+                "text": "A demonic entity now inhabits your soul, allowing you to detect if a Soul Shard has a Succulent Soul when it's generated. Consuming a Succulent Soul unleashes your demonic soul, dealing 10 Shadow damage to all enemies within 10 yds of the target. Damage reduced beyond 8 targets.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3044,7 +3043,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3060,8 +3059,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A demonic entity now inhabits your soul, allowing you to detect if a Soul Shard has a Succulent Soul when it's generated. Consuming a Succulent Soul unleashes your demonic soul, dealing 10 Shadow damage to all enemies within (varies) yds of the target. Damage reduced beyond 8 targets.",
-                            "uncertain": true
+                            "text": "A demonic entity now inhabits your soul, allowing you to detect if a Soul Shard has a Succulent Soul when it's generated. Consuming a Succulent Soul unleashes your demonic soul, dealing 10 Shadow damage to all enemies within 10 yds of the target. Damage reduced beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3076,8 +3075,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A demonic entity now inhabits your soul, allowing you to detect if a Soul Shard has a Succulent Soul when it's generated. Consuming a Succulent Soul unleashes your demonic soul, dealing 10 Shadow damage to all enemies within (varies) yds of the target. Damage reduced beyond 8 targets.",
-                            "uncertain": true
+                            "text": "A demonic entity now inhabits your soul, allowing you to detect if a Soul Shard has a Succulent Soul when it's generated. Consuming a Succulent Soul unleashes your demonic soul, dealing 10 Shadow damage to all enemies within 10 yds of the target. Damage reduced beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3108,8 +3107,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A demonic entity now inhabits your soul, allowing you to detect if a Soul Shard has a Succulent Soul when it's generated. Consuming a Succulent Soul unleashes your demonic soul, dealing 10 Shadow damage to all enemies within (varies) yds of the target. Damage reduced beyond 8 targets.",
-                            "uncertain": true
+                            "text": "A demonic entity now inhabits your soul, allowing you to detect if a Soul Shard has a Succulent Soul when it's generated. Consuming a Succulent Soul unleashes your demonic soul, dealing 10 Shadow damage to all enemies within 10 yds of the target. Damage reduced beyond 8 targets.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3156,7 +3155,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3172,8 +3171,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each Succulent Soul consumed has an increasing chance to unleash the Demonic Soul within you, enabling it to assault your enemies for 9. Soul Swipe $@spelldesc1269049",
-                            "uncertain": false
+                            "text": "Each Succulent Soul consumed has an increasing chance to unleash the Demonic Soul within you, enabling it to assault your enemies for 9. Soul Swipe Strikes nearby enemies with a malevolent claw, dealing ≈195.5% of Spell Power Shadow damage to its target and ≈130.3% of Spell Power Shadow damage to other enemies in 10 yds.",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3236,8 +3235,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each Succulent Soul consumed has an increasing chance to unleash the Demonic Soul within you, enabling it to assault your enemies for 9. Soul Swipe $@spelldesc1269049",
-                            "uncertain": false
+                            "text": "Each Succulent Soul consumed has an increasing chance to unleash the Demonic Soul within you, enabling it to assault your enemies for 9. Soul Swipe Strikes nearby enemies with a malevolent claw, dealing ≈195.5% of Spell Power Shadow damage to its target and ≈130.3% of Spell Power Shadow damage to other enemies in 10 yds.",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3255,8 +3254,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damage dealt by Haunt has a chance to release the demonic soul haunting its target. When released, it unleashes a devastating attack before being banished back to Nathreza. Wrath of Nathreza $@spelldesc1262028",
-                            "uncertain": false
+                            "text": "Damage dealt by Haunt has a chance to release the demonic soul haunting its target. When released, it unleashes a devastating attack before being banished back to Nathreza. Wrath of Nathreza Calls down a meteor formed from the ruins of Nathreza that explodes upon impact, dealing ≈2,274.1% of Spell Power Shadow damage to all enemies within 10 yds. Damage reduced beyond 8 targets.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3318,7 +3317,7 @@
             "spellId": 10959,
             "category": "Defensive",
             "description": {
-                "text": "Drains life from the target, causing (varies) Shadow damage over 5, and healing you for (varies)% of the damage done. $@spelldesc386619",
+                "text": "Drains life from the target, causing (varies) Shadow damage over 5, and healing you for (varies)% of the damage done. Drain Life heals for 15% more while below 50% health.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3473,7 +3472,7 @@
                         }
                     },
                     {
-                        "spellId": 12713,
+                        "spellId": 13608,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -3667,7 +3666,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Shadow Bolt and Drain Soul have a chance to trigger a Shadow Bolt Volley, dealing (varies) Shadow damage to 5 enemies within (varies) yards of your current target.",
+                            "text": "Shadow Bolt and Drain Soul have a chance to trigger a Shadow Bolt Volley, dealing (varies) Shadow damage to 5 enemies within 10 yards of your current target.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3687,22 +3686,6 @@
                             "uncertain": false
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10741,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp $@spelldesc1261153",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -3732,38 +3715,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Damage dealt by Drain Soul has a 10% chance to make your next Unstable Affliction or Seed of Corruption cost no Soul Shards and cast instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11470,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp $@spelldesc1261153",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12714,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3826,12 +3777,60 @@
                         }
                     },
                     {
+                        "spellId": 10741,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing (varies) Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10933,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
                             "text": "Shadow Bolt damage increases the duration of your Corruption and Agony on the target by 2 sec. Drain Life and Drain Soul damage increases the duration of your Corruption and Agony on the target by 1 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 11470,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing (varies) Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 13609,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4034,7 +4033,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4074,7 +4073,7 @@
             "spellId": 10761,
             "category": "Crowd Control",
             "description": {
-                "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. $@spelldesc386648",
+                "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. Increases the amount of damage required to break your fear effects by 60%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4086,7 +4085,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Let loose a terrifying howl, causing 5 enemies within (varies) yds to flee in fear, disorienting them for 20. Damage may cancel the effect.",
+                            "text": "Let loose a terrifying howl, causing 5 enemies within 10 yds to flee in fear, disorienting them for 20. Damage may cancel the effect.",
                             "uncertain": true
                         },
                         "category": "Crowd Control",
@@ -4104,6 +4103,8 @@
                                         "description": "Reduces the cooldown of Shadowfury by ${$s1/-1000} sec and increases its radius by $s2 yds. Reduces the cooldown of Howl of Terror by ${$s3/-1000} sec and it now fears $s4 additional enemies.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4135,8 +4136,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_shadowfury.jpg",
-                                        "created_at": "2026-07-30T14:03:43.000000Z",
-                                        "updated_at": "2026-09-06T04:00:42.000000Z"
+                                        "created_at": "2026-08-03T12:23:32.000000Z",
+                                        "updated_at": "2026-09-08T00:07:17.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -5,
@@ -4187,7 +4188,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. $@spelldesc386648",
+                            "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. Increases the amount of damage required to break your fear effects by 60%.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -4203,7 +4204,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. $@spelldesc386648",
+                            "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. Increases the amount of damage required to break your fear effects by 60%.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -4386,6 +4387,8 @@
                             "description": "Reduces the cooldown of Fel Domination by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4417,8 +4420,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_impphaseshift.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:30.000000Z",
+                            "created_at": "2026-08-03T12:23:32.000000Z",
+                            "updated_at": "2026-09-08T00:07:06.000000Z",
                             "effects": [
                                 {
                                     "id": 20937,
@@ -4428,13 +4431,15 @@
                                     "base_value": -60000,
                                     "scaled_value": -60000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -4453,6 +4458,8 @@
                             "description": "Fel Domination cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4484,8 +4491,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_demonhunter_infernalchains.jpg",
-                            "created_at": "2026-07-30T14:03:45.000000Z",
-                            "updated_at": "2026-09-06T04:00:35.000000Z",
+                            "created_at": "2026-08-03T12:23:33.000000Z",
+                            "updated_at": "2026-09-08T00:07:11.000000Z",
                             "effects": [
                                 {
                                     "id": 21255,
@@ -4495,13 +4502,15 @@
                                     "base_value": -90000,
                                     "scaled_value": -90000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.33333,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:45.000000Z",
-                                    "updated_at": "2026-09-19T10:17:58.000000Z"
+                                    "created_at": "2026-08-03T12:23:33.000000Z",
+                                    "updated_at": "2026-09-24T08:32:58.000000Z"
                                 }
                             ]
                         },
@@ -4607,7 +4616,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4794,7 +4803,7 @@
             "drCategory": null
         },
         {
-            "spellId": 38212,
+            "spellId": 13680,
             "category": "Defensive",
             "description": {
                 "text": "Removes all movement impairing effects and all effects which cause loss of control of your character.",
@@ -5034,7 +5043,7 @@
             "spellId": 10708,
             "category": "Offensive",
             "description": {
-                "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
+                "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5078,7 +5087,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5094,7 +5103,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5111,22 +5120,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Corruption deals damage 25% faster and Haunt grants Nightfall.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12714,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5210,8 +5203,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Damage dealt by Haunt has a chance to release the demonic soul haunting its target. When released, it unleashes a devastating attack before being banished back to Nathreza. Wrath of Nathreza $@spelldesc1262028",
-                            "uncertain": false
+                            "text": "Damage dealt by Haunt has a chance to release the demonic soul haunting its target. When released, it unleashes a devastating attack before being banished back to Nathreza. Wrath of Nathreza Calls down a meteor formed from the ruins of Nathreza that explodes upon impact, dealing ≈2,274.1% of Spell Power Shadow damage to all enemies within 10 yds. Damage reduced beyond 8 targets.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5227,6 +5220,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Copies your damage over time effects and Haunt from the target, preserving their duration.\r\n\r\nYour next use of Soul Swap within 10 sec will exhale a copy damage of the effects onto a new target.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 13609,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5260,7 +5269,7 @@
             "drCategory": null
         },
         {
-            "spellId": 12713,
+            "spellId": 13608,
             "category": "Other",
             "description": {
                 "text": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%. Dark Harvest channels 10% faster and deals 15% increased damage.",
@@ -5323,7 +5332,7 @@
             "spellId": 11495,
             "category": "Crowd Control",
             "description": {
-                "text": "Let loose a terrifying howl, causing 5 enemies within (varies) yds to flee in fear, disorienting them for 20. Damage may cancel the effect.",
+                "text": "Let loose a terrifying howl, causing 5 enemies within 10 yds to flee in fear, disorienting them for 20. Damage may cancel the effect.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5364,6 +5373,8 @@
                             "description": "Reduces the cooldown of Shadowfury by ${$s1/-1000} sec and increases its radius by $s2 yds. Reduces the cooldown of Howl of Terror by ${$s3/-1000} sec and it now fears $s4 additional enemies.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5395,8 +5406,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_shadowfury.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:42.000000Z",
+                            "created_at": "2026-08-03T12:23:32.000000Z",
+                            "updated_at": "2026-09-08T00:07:17.000000Z",
                             "effects": [
                                 {
                                     "id": 20969,
@@ -5406,13 +5417,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20970,
@@ -5422,13 +5435,15 @@
                                     "base_value": 2,
                                     "scaled_value": 2,
                                     "misc_value": 6,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20971,
@@ -5438,13 +5453,15 @@
                                     "base_value": -5000,
                                     "scaled_value": -5000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20972,
@@ -5454,13 +5471,15 @@
                                     "base_value": 5,
                                     "scaled_value": 5,
                                     "misc_value": 40,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -5543,7 +5562,7 @@
             "drCategory": null
         },
         {
-            "spellId": 12714,
+            "spellId": 13609,
             "category": "Other",
             "description": {
                 "text": "Drain Soul and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. Dark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
@@ -5566,7 +5585,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5851,8 +5870,8 @@
             "spellId": 10741,
             "category": "Offensive",
             "description": {
-                "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp $@spelldesc1261153",
-                "uncertain": false
+                "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing (varies) Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
+                "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5904,7 +5923,10 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
+                    }
+                ],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 11419,
                         "relationship_type": "mentions",
@@ -5927,8 +5949,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp $@spelldesc1261153",
-                            "uncertain": false
+                            "text": "While Darkglare is active, your Drain Soul becomes Malefic Grasp. Malefic Grasp Binds the target in twilight, dealing (varies) Shadow damage over 4. When Malefic Grasp deals damage, it causes all of your other periodic Affliction damage effects to instantly deal 30% of their normal periodic damage.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5938,7 +5960,7 @@
                         }
                     },
                     {
-                        "spellId": 12714,
+                        "spellId": 13609,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5953,11 +5975,9 @@
                             "applied": []
                         }
                     }
-                ],
-                "baseline": [],
-                "potential": []
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -5968,7 +5988,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -6061,8 +6081,8 @@
             "spellId": 11678,
             "category": "Other",
             "description": {
-                "text": "Each Succulent Soul consumed has an increasing chance to unleash the Demonic Soul within you, enabling it to assault your enemies for 9. Soul Swipe $@spelldesc1269049",
-                "uncertain": false
+                "text": "Each Succulent Soul consumed has an increasing chance to unleash the Demonic Soul within you, enabling it to assault your enemies for 9. Soul Swipe Strikes nearby enemies with a malevolent claw, dealing ≈195.5% of Spell Power Shadow damage to its target and ≈130.3% of Spell Power Shadow damage to other enemies in 10 yds.",
+                "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6312,7 +6332,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -6335,6 +6355,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Critical strikes from your Agony, Wither, and Unstable Affliction have a chance to grant Nightfall.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10738,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases Wither damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -6458,26 +6494,9 @@
                     }
                 ],
                 "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 10738,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases Corruption damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ]
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -6558,7 +6577,7 @@
             "spellId": 10738,
             "category": "Other",
             "description": {
-                "text": "Increases Corruption damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
+                "text": "Increases Wither damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6578,7 +6597,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -6618,8 +6637,8 @@
             "spellId": 11520,
             "category": "Other",
             "description": {
-                "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone $@spelldesc452930 60 sec cooldown.",
-                "uncertain": false
+                "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional (varies)% over 6. 60 sec cooldown.",
+                "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6788,7 +6807,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -7038,7 +7057,7 @@
             "spellId": 10707,
             "category": "Offensive",
             "description": {
-                "text": "Embeds a demon seed in the enemy target that will explode after 12, dealing 50 Shadow damage to all enemies within (varies) yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
+                "text": "Embeds a demon seed in the enemy target that will explode after 12, dealing 50 Shadow damage to all enemies within 10 yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7054,6 +7073,22 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10733,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Reduces the cast time of Seed of Corruption by 0 sec and increases its damage by 5%.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -7083,6 +7118,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Damage dealt by Drain Soul has a 10% chance to make your next Unstable Affliction or Seed of Corruption cost no Soul Shards and cast instantly.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10712,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Seed of Corruption now embeds demon seeds into 2 additional nearby enemies at 50% effectiveness.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7155,6 +7206,38 @@
                             "base_seconds": null,
                             "applied": []
                         }
+                    },
+                    {
+                        "spellId": 10738,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases Wither damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10739,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases damage dealt by Seed of Corruption to its host by 50%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
                     }
                 ],
                 "baseline": [
@@ -7209,76 +7292,12 @@
                         }
                     },
                     {
-                        "spellId": 10733,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Reduces the cast time of Seed of Corruption by 0 sec and increases its damage by 5%.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 11661,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
                             "text": "Increases the damage of Unstable Affliction by 8% and Seed of Corruption by 4%. This effect is doubled while Malevolence is active.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10712,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Seed of Corruption now embeds demon seeds into 2 additional nearby enemies at 50% effectiveness.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10738,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases Corruption damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10739,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases damage dealt by Seed of Corruption to its host by 50%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7331,7 +7350,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -7401,7 +7420,7 @@
             "spellId": 10742,
             "category": "Offensive",
             "description": {
-                "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
+                "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7451,7 +7470,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -7461,8 +7480,8 @@
             "spellId": 11497,
             "category": "Crowd Control",
             "description": {
-                "text": "Stuns all enemies within (varies) yds for 3.",
-                "uncertain": true
+                "text": "Stuns all enemies within 8 yds for 3.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7502,6 +7521,8 @@
                             "description": "Reduces the cooldown of Shadowfury by ${$s1/-1000} sec and increases its radius by $s2 yds. Reduces the cooldown of Howl of Terror by ${$s3/-1000} sec and it now fears $s4 additional enemies.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7533,8 +7554,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_shadowfury.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:42.000000Z",
+                            "created_at": "2026-08-03T12:23:32.000000Z",
+                            "updated_at": "2026-09-08T00:07:17.000000Z",
                             "effects": [
                                 {
                                     "id": 20969,
@@ -7544,13 +7565,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20970,
@@ -7560,13 +7583,15 @@
                                     "base_value": 2,
                                     "scaled_value": 2,
                                     "misc_value": 6,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20971,
@@ -7576,13 +7601,15 @@
                                     "base_value": -5000,
                                     "scaled_value": -5000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20972,
@@ -7592,13 +7619,15 @@
                                     "base_value": 5,
                                     "scaled_value": 5,
                                     "misc_value": 40,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -7701,7 +7730,7 @@
             "spellId": 11675,
             "category": "Offensive",
             "description": {
-                "text": "When you kill a target, its tortured soul is flung into a nearby enemy for 3. This effect inflicts 8 Shadow damage to enemies within (varies) yds every (varies) sec. Deals reduced damage beyond 8 targets.",
+                "text": "When you kill a target, its tortured soul is flung into a nearby enemy for 3. This effect inflicts 8 Shadow damage to enemies within 10 yds every (varies) sec. Deals reduced damage beyond 8 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -7778,8 +7807,8 @@
             "spellId": 10817,
             "category": "Utility",
             "description": {
-                "text": "Burns harmful spells, removing 1 harmful Magic effect from an ally. Auto-Cast: Cast upon master when (varies):she; is unable to cast spells due to a Magic effect. (Right-Click to toggle)",
-                "uncertain": true
+                "text": "Burns harmful spells, removing 1 harmful Magic effect from an ally. Auto-Cast: Cast upon master when he is unable to cast spells due to a Magic effect. (Right-Click to toggle)",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7817,7 +7846,7 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 12713,
+                        "spellId": 13608,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8160,7 +8189,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -8316,7 +8345,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8421,24 +8450,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
-                    {
-                        "spellId": 10746,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases the duration of Summon Darkglare by 5 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ],
+                "named": [],
                 "baseline": [],
                 "potential": [
                     {
@@ -8451,6 +8463,22 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10746,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases the duration of Summon Darkglare by 5 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -8510,6 +8538,8 @@
                                         "description": "Reduces the cooldown of Fel Domination by ${$s1/-1000} sec.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8541,8 +8571,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_impphaseshift.jpg",
-                                        "created_at": "2026-07-30T14:03:43.000000Z",
-                                        "updated_at": "2026-09-06T04:00:30.000000Z"
+                                        "created_at": "2026-08-03T12:23:32.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -8559,6 +8589,8 @@
                                         "description": "Fel Domination cooldown is reduced by ${$s1/-1000} sec.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8590,8 +8622,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "ability_demonhunter_infernalchains.jpg",
-                                        "created_at": "2026-07-30T14:03:45.000000Z",
-                                        "updated_at": "2026-09-06T04:00:35.000000Z"
+                                        "created_at": "2026-08-03T12:23:33.000000Z",
+                                        "updated_at": "2026-09-08T00:07:11.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -90,
@@ -8656,6 +8688,8 @@
                                         "description": "Reduces the cooldown of Fel Domination by ${$s1/-1000} sec.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8687,8 +8721,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_impphaseshift.jpg",
-                                        "created_at": "2026-07-30T14:03:43.000000Z",
-                                        "updated_at": "2026-09-06T04:00:30.000000Z"
+                                        "created_at": "2026-08-03T12:23:32.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -8705,6 +8739,8 @@
                                         "description": "Fel Domination cooldown is reduced by ${$s1/-1000} sec.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -8736,8 +8772,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "ability_demonhunter_infernalchains.jpg",
-                                        "created_at": "2026-07-30T14:03:45.000000Z",
-                                        "updated_at": "2026-09-06T04:00:35.000000Z"
+                                        "created_at": "2026-08-03T12:23:33.000000Z",
+                                        "updated_at": "2026-09-08T00:07:11.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -90,
@@ -8822,7 +8858,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8956,8 +8992,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
-                            "uncertain": true
+                            "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8972,8 +9008,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
-                            "uncertain": true
+                            "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9009,7 +9045,7 @@
             "spellId": 10729,
             "category": "Offensive",
             "description": {
-                "text": "Afflicts the target with (varies) Shadow damage over 8. Multiple uses of this ability may overlap. If dispelled, deals (varies) damage to the dispeller and silences them for 4. This damage is increased by 15% per stack on the target. Generates (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                "text": "Afflicts the target with (varies) Shadow damage over 8. Multiple uses of this ability may overlap. If dispelled, deals (varies) damage to the dispeller and silences them for 4. This damage is increased by 15% per stack on the target. Generates (varies) Soul Shards if the target dies while afflicted.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9245,7 +9281,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 10% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 24,816 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 10% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 24,816 damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9261,7 +9297,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 620.4 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 620.4 damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9277,7 +9313,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9293,7 +9329,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9309,7 +9345,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9325,7 +9361,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9341,7 +9377,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts the target with (varies) Shadow damage over 8. You may afflict a target with up to 5 Unstable Afflictions at once. You deal 15% increased damage to targets affected by your Unstable Affliction. If dispelled, deals 384,896.2 damage to the dispeller and silences them for 4. Refunds (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9644,7 +9680,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts one target with (varies) Shadow damage over 16. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9756,10 +9792,26 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Afflicts one target with (varies) Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul (varies):Shards; if the target dies while afflicted.",
+                            "text": "Afflicts one target with (varies) Shadow damage over 12. If dispelled, deals (varies) damage to the dispeller and silences them for 4. Generates (varies) Soul Shards if the target dies while afflicted.",
                             "uncertain": true
                         },
                         "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10738,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases Wither damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -9788,7 +9840,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Embeds a demon seed in the enemy target that will explode after 12, dealing 50 Shadow damage to all enemies within (varies) yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
+                            "text": "Embeds a demon seed in the enemy target that will explode after 12, dealing 50 Shadow damage to all enemies within 10 yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9804,7 +9856,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
+                            "text": "A ghostly soul haunts a single target, dealing ≈720.6% of Spell Power Shadow damage and increasing your damage dealt to the target by 16% for 18. While active, Haunt deals (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Corruption or Wither. If the target dies, Haunt's cooldown is reset.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9884,7 +9936,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9900,7 +9952,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within (varies) yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
+                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within 10 yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9916,7 +9968,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within (varies) yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
+                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within 10 yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9932,7 +9984,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within (varies) yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
+                            "text": "Embeds a demon seed in the enemy target that will explode after (varies), dealing 50 Shadow damage to all enemies within 10 yards and applying Wither to them. Damage reduced beyond 8 targets. The seed will detonate early if the target is hit by other detonations, or takes (varies) damage from your spells.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9980,7 +10032,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and (varies) enemies within (varies) yards suffering from your Wither over its duration.",
+                            "text": "Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target. The soul is unstable and ravenous, dealing (varies) Shadow damage to its host and 3 enemies within 10 yards suffering from your Wither over its duration.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10132,22 +10184,6 @@
                             "uncertain": false
                         },
                         "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10738,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases Corruption damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,

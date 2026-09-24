@@ -1,5 +1,5 @@
 # Death Knight — Unholy Spec Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
 # 41 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Army of the Dead (id=42650) [Spell Family (15)] 
@@ -807,7 +807,7 @@ $@spelldesc383269
 
 Name             : Scourging (id=1242604) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=9, col=2, max_rank=2, req_points=20]
-                 : Effect#1 [op=set, values=(15, 35)]
+                 : Effect#1 [op=set, values=(30, 65)]
                  : Effect#3 [op=set, values=(1, 2)]
 Class            : Death Knight
 School           : Physical
@@ -818,7 +818,8 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), No Threat (42), Allow Aura While Dead (116), Not In Spellbook (143), Allow While Riding Vehicle (204), Aura Points On Client (268), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1242209)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
-                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Target: Self (1)
+                   Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.538462 | Misc Value: 12 | Target: Self (1)
+Hotfixed         : Base Value (15 -> 30), PvP Coefficient (1 -> 0.538462)
 #2 (id=1293236)  : Apply Aura (6) | Dummy (4)
                    Base Value: 35 | Scaled Value: 35 | Target: Self (1)
 #3 (id=1293238)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
@@ -973,7 +974,8 @@ Effects          :
 #1 (id=1284994)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 #2 (id=1285178)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Base Value: 200 | Scaled Value: 200 | PvP Coefficient: 0.25 | Target: Self (1)
+Hotfixed         : Base Value (100 -> 200), PvP Coefficient (0.5 -> 0.25)
 #3 (id=1293674)  : Apply Aura (6) | Proc Trigger Spell (42): Blightfall
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 1271975 | Target: Self (1)
 Description      : Dark Transformation grants access to Blightfall.

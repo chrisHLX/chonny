@@ -1,7 +1,7 @@
 {
     "class": "Demon Hunter",
     "talent_tree_id": 854,
-    "fetched_at": "2026-08-29T03:28:38+00:00",
+    "fetched_at": "2026-09-24T08:08:08+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -1134,7 +1134,7 @@
                         "talent_name": "Felblade",
                         "spell_id": 232893,
                         "spell_name": "Felblade",
-                        "description": "Charge to your target and deal 42 Fire damage.\r\n\r\nGenerates 15 Fury.",
+                        "description": "Charge to your target and deal 43 Fire damage.\r\n\r\nGenerates 15 Fury.",
                         "cast_time": "Instant",
                         "cooldown": "12 sec cooldown",
                         "range": "15 yd range"
@@ -1442,7 +1442,7 @@
                         "talent_name": "Voidblade",
                         "spell_id": 1245412,
                         "spell_name": "Voidblade",
-                        "description": "Unleash your glaives and charge to your target, dealing 869 Cosmic damage.\r\n",
+                        "description": "Unleash your glaives and charge to your target, dealing 856 Cosmic damage.\r\n",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "15 yd range"
@@ -1885,7 +1885,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,364 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,334 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2157,7 +2157,7 @@
                             "talent_name": "Reaver's Mark",
                             "spell_id": 442679,
                             "spell_name": "Reaver's Mark",
-                            "description": "When enhanced by Reaver's Glaive, Shear applies Reaver's Mark, which causes the target to take 7% increased damage for 20 sec. Max 2 stacks.\r\n\r\nApplies 1 additional stack of Reaver's Mark If cast after Soul Cleave.",
+                            "description": "When enhanced by Reaver's Glaive, Shear applies Reaver's Mark, which causes the target to take 8% increased damage for 20 sec. Max 2 stacks.\r\n\r\nApplies 1 additional stack of Reaver's Mark If cast after Soul Cleave.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2326,7 +2326,7 @@
                             "talent_name": "Art of the Glaive",
                             "spell_id": 442290,
                             "spell_name": "Art of the Glaive",
-                            "description": "Consuming 20 Soul Fragments or casting Sigil of Spite converts your next Throw Glaive into Reaver's Glaive.\r\n\r\n Reaver's Glaive: \r\nThrow a glaive enhanced with the essence of consumed souls at your target, dealing 134 Physical damage and ricocheting to 2 additional enemies.\r\n \r\nBegins a well-practiced pattern of glaivework, enhancing your next Shear and Soul Cleave.\r\n\r\nThe enhanced ability you cast first deals 10% increased damage, and the second deals 20% increased damage.",
+                            "description": "Consuming 20 Soul Fragments or casting Sigil of Spite converts your next Throw Glaive into Reaver's Glaive.\r\n\r\n Reaver's Glaive: \r\nThrow a glaive enhanced with the essence of consumed souls at your target, dealing 168 Physical damage and ricocheting to 2 additional enemies.\r\n \r\nBegins a well-practiced pattern of glaivework, enhancing your next Shear and Soul Cleave.\r\n\r\nThe enhanced ability you cast first deals 15% increased damage, and the second deals 30% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2439,7 +2439,7 @@
                             "talent_name": "Broken Spirit",
                             "spell_id": 1272143,
                             "spell_name": "Broken Spirit",
-                            "description": "The Hunt shatters 1 Soul Fragment. Blade Dance and Chaos Strike have a 15% chance to shatter a Soul Fragment.",
+                            "description": "The Hunt shatters 1 Soul Fragment. Blade Dance and Chaos Strike have a 20% chance to shatter a Soul Fragment.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2530,7 +2530,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,283 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,286 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2685,7 +2685,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 679 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 667 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3140,7 +3140,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,422 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,403 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3345,7 +3345,7 @@
                             "talent_name": "Art of the Glaive",
                             "spell_id": 442290,
                             "spell_name": "Art of the Glaive",
-                            "description": "Consuming 20 Soul Fragments or casting Sigil of Spite converts your next Throw Glaive into Reaver's Glaive.\r\n\r\n Reaver's Glaive: \r\nThrow a glaive enhanced with the essence of consumed souls at your target, dealing 134 Physical damage and ricocheting to 2 additional enemies.\r\n \r\nBegins a well-practiced pattern of glaivework, enhancing your next Shear and Soul Cleave.\r\n\r\nThe enhanced ability you cast first deals 10% increased damage, and the second deals 20% increased damage.",
+                            "description": "Consuming 20 Soul Fragments or casting Sigil of Spite converts your next Throw Glaive into Reaver's Glaive.\r\n\r\n Reaver's Glaive: \r\nThrow a glaive enhanced with the essence of consumed souls at your target, dealing 168 Physical damage and ricocheting to 2 additional enemies.\r\n \r\nBegins a well-practiced pattern of glaivework, enhancing your next Shear and Soul Cleave.\r\n\r\nThe enhanced ability you cast first deals 15% increased damage, and the second deals 30% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3372,7 +3372,7 @@
                             "talent_name": "Fel Devastation",
                             "spell_id": 212084,
                             "spell_name": "Fel Devastation",
-                            "description": "Unleash the fel within you, damaging enemies directly in front of you for 163 Fire damage over 2 sec.",
+                            "description": "Unleash the fel within you, damaging enemies directly in front of you for 161 Fire damage over 2 sec.",
                             "cast_time": "Channeled",
                             "cooldown": "40 sec cooldown",
                             "range": "20 yd range"
@@ -3470,7 +3470,7 @@
                             "talent_name": "Reaver's Mark",
                             "spell_id": 442679,
                             "spell_name": "Reaver's Mark",
-                            "description": "When enhanced by Reaver's Glaive, Shear applies Reaver's Mark, which causes the target to take 7% increased damage for 20 sec. Max 2 stacks.\r\n\r\nApplies 1 additional stack of Reaver's Mark If cast after Soul Cleave.",
+                            "description": "When enhanced by Reaver's Glaive, Shear applies Reaver's Mark, which causes the target to take 8% increased damage for 20 sec. Max 2 stacks.\r\n\r\nApplies 1 additional stack of Reaver's Mark If cast after Soul Cleave.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3498,7 +3498,7 @@
                             "talent_name": "Broken Spirit",
                             "spell_id": 1272143,
                             "spell_name": "Broken Spirit",
-                            "description": "The Hunt shatters 1 Soul Fragment. Blade Dance and Chaos Strike have a 15% chance to shatter a Soul Fragment.",
+                            "description": "The Hunt shatters 1 Soul Fragment. Blade Dance and Chaos Strike have a 20% chance to shatter a Soul Fragment.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3527,7 +3527,7 @@
                             "talent_name": "Spirit Bomb",
                             "spell_id": 247454,
                             "spell_name": "Spirit Bomb",
-                            "description": "Consume up to 5 Soul Fragments then explode, dealing 70 Fire damage to nearby enemies, increased by 20% per fragment consumed. Deals reduced damage beyond 8 targets.",
+                            "description": "Consume up to 5 Soul Fragments then explode, dealing 69 Fire damage to nearby enemies, increased by 20% per fragment consumed. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Instant",
                             "cooldown": "25 sec cooldown",
                             "range": null
@@ -3556,7 +3556,7 @@
                             "talent_name": "Fiery Brand",
                             "spell_id": 204021,
                             "spell_name": "Fiery Brand",
-                            "description": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by 40% and instantly dealing 145 Fire damage to the enemy.",
+                            "description": "Brand yourself and an enemy target with demonic symbols, reducing the damage you take by 40% and instantly dealing 144 Fire damage to the enemy.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "30 yd range"
@@ -4247,7 +4247,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 675 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 668 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4605,7 +4605,7 @@
                             "talent_name": "Void Reaver",
                             "spell_id": 268175,
                             "spell_name": "Void Reaver",
-                            "description": "Frailty now also reduces all damage you take from afflicted targets by 5%.",
+                            "description": "Frailty now also reduces all damage you take from afflicted targets by 6%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5119,7 +5119,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,232 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,259 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5343,7 +5343,7 @@
                             "talent_name": "Soul Carver",
                             "spell_id": 207407,
                             "spell_name": "Soul Carver",
-                            "description": "Carve into the soul of your target, dealing 171 Fire damage and an additional 106 Fire damage over 3 sec.  Immediately shatters 3 Soul Fragments from the target and 1 additional Soul Fragment every 1 sec.",
+                            "description": "Carve into the soul of your target, dealing 171 Fire damage and an additional 104 Fire damage over 3 sec.  Immediately shatters 3 Soul Fragments from the target and 1 additional Soul Fragment every 1 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": "Melee Range"
@@ -5486,7 +5486,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,400 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,369 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5515,7 +5515,7 @@
                             "talent_name": "Art of the Glaive",
                             "spell_id": 442290,
                             "spell_name": "Art of the Glaive",
-                            "description": "Consuming 20 Soul Fragments or casting Sigil of Spite converts your next Throw Glaive into Reaver's Glaive.\r\n\r\n Reaver's Glaive: \r\nThrow a glaive enhanced with the essence of consumed souls at your target, dealing 134 Physical damage and ricocheting to 2 additional enemies.\r\n \r\nBegins a well-practiced pattern of glaivework, enhancing your next Shear and Soul Cleave.\r\n\r\nThe enhanced ability you cast first deals 10% increased damage, and the second deals 20% increased damage.",
+                            "description": "Consuming 20 Soul Fragments or casting Sigil of Spite converts your next Throw Glaive into Reaver's Glaive.\r\n\r\n Reaver's Glaive: \r\nThrow a glaive enhanced with the essence of consumed souls at your target, dealing 168 Physical damage and ricocheting to 2 additional enemies.\r\n \r\nBegins a well-practiced pattern of glaivework, enhancing your next Shear and Soul Cleave.\r\n\r\nThe enhanced ability you cast first deals 15% increased damage, and the second deals 30% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5542,7 +5542,7 @@
                             "talent_name": "Eye Beam",
                             "spell_id": 198013,
                             "spell_name": "Eye Beam",
-                            "description": "Blasts all enemies in front of you, for up to 278 Chaos damage over 1.8 sec. Deals reduced damage beyond 5 targets.",
+                            "description": "Blasts all enemies in front of you, for up to 283 Chaos damage over 1.8 sec. Deals reduced damage beyond 5 targets.",
                             "cast_time": "Channeled",
                             "cooldown": "30 sec cooldown",
                             "range": "20 yd range"
@@ -5752,7 +5752,7 @@
                             "talent_name": "Reaver's Mark",
                             "spell_id": 442679,
                             "spell_name": "Reaver's Mark",
-                            "description": "When enhanced by Reaver's Glaive, Shear applies Reaver's Mark, which causes the target to take 7% increased damage for 20 sec. Max 2 stacks.\r\n\r\nApplies 1 additional stack of Reaver's Mark If cast after Soul Cleave.",
+                            "description": "When enhanced by Reaver's Glaive, Shear applies Reaver's Mark, which causes the target to take 8% increased damage for 20 sec. Max 2 stacks.\r\n\r\nApplies 1 additional stack of Reaver's Mark If cast after Soul Cleave.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5780,7 +5780,7 @@
                             "talent_name": "Broken Spirit",
                             "spell_id": 1272143,
                             "spell_name": "Broken Spirit",
-                            "description": "The Hunt shatters 1 Soul Fragment. Blade Dance and Chaos Strike have a 15% chance to shatter a Soul Fragment.",
+                            "description": "The Hunt shatters 1 Soul Fragment. Blade Dance and Chaos Strike have a 20% chance to shatter a Soul Fragment.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6192,7 +6192,7 @@
                             "talent_name": "First Blood",
                             "spell_id": 206416,
                             "spell_name": "First Blood",
-                            "description": "Blade Dance deals 101 Chaos damage to the first target struck.",
+                            "description": "Blade Dance deals 102 Chaos damage to the first target struck.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6810,7 +6810,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 674 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 665 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6839,7 +6839,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,383 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,372 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7365,7 +7365,7 @@
                             "talent_name": "The Hunt",
                             "spell_id": 370965,
                             "spell_name": "The Hunt",
-                            "description": "Charge to your target, striking them for 261 Chaos damage, rooting them in place for 1.5 sec and inflicting 188 Chaos damage over 6 sec to up to 5 enemies in your path. ",
+                            "description": "Charge to your target, striking them for 260 Chaos damage, rooting them in place for 1.5 sec and inflicting 188 Chaos damage over 6 sec to up to 5 enemies in your path. ",
                             "cast_time": "1 sec cast",
                             "cooldown": "1.5 min cooldown",
                             "range": "50 yd range"
@@ -8003,7 +8003,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,302 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,245 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8285,7 +8285,7 @@
                             "talent_name": "Essence Break",
                             "spell_id": 258860,
                             "spell_name": "Essence Break",
-                            "description": "Slash all enemies in front of you for 159 Chaos damage, causing Chaos Strike and Blade Dance to deal 90 Chaos damage to them for 4 sec. Deals reduced damage beyond 8 targets.",
+                            "description": "Slash all enemies in front of you for 161 Chaos damage, causing Chaos Strike and Blade Dance to deal 91 Chaos damage to them for 4 sec. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Instant",
                             "cooldown": "40 sec cooldown",
                             "range": null
@@ -8312,7 +8312,7 @@
                             "talent_name": "Glaive Tempest",
                             "spell_id": 1244557,
                             "spell_name": "Glaive Tempest",
-                            "description": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 65 Chaos damage over 3 sec to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 64 Chaos damage over 3 sec to all nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8350,7 +8350,7 @@
                                     "talent_name": "Collective Anguish",
                                     "spell_id": 390152,
                                     "spell_name": "Collective Anguish",
-                                    "description": "Eye Beam summons an allied Vengeance Demon Hunter who casts Fel Devastation, dealing 92 Fire damage over 2 sec. Dealing damage heals you for up to 61 health.",
+                                    "description": "Eye Beam summons an allied Vengeance Demon Hunter who casts Fel Devastation, dealing 92 Fire damage over 2 sec. Dealing damage heals you for up to 76 health.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8469,7 +8469,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,355 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,345 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8496,7 +8496,7 @@
                             "talent_name": "Void Ray",
                             "spell_id": 473728,
                             "spell_name": "Void Ray",
-                            "description": "Requires 100 Fury\r\nUnleash a beam of concentrated void energy, dealing 77 Cosmic damage and consuming 5 Fury every 0.1 sec.\r\n\r\nEffect ends after 2.7 sec or upon reaching 0 Fury.",
+                            "description": "Requires 100 Fury\r\nUnleash a beam of concentrated void energy, dealing 76 Cosmic damage and consuming 5 Fury every 0.1 sec.\r\n\r\nEffect ends after 2.7 sec or upon reaching 0 Fury.",
                             "cast_time": "Channeled",
                             "cooldown": null,
                             "range": "25 yd range"
@@ -9103,7 +9103,7 @@
                             "talent_name": "Collapsing Star",
                             "spell_id": 1221167,
                             "spell_name": "Collapsing Star",
-                            "description": "While in Void Metamorphosis, every 30 Soul Fragments harvested grants access to Collapsing Star.\r\n\r\n Collapsing Star\r\nChannel an immense amount of void energy into a single, cataclysmic blast, dealing 2,412 Cosmic damage to your target and 1,782 Cosmic damage to all nearby enemies. Damage reduced beyond 8 targets.\r\n\r\nWhile casting Collapsing Star, your Fury drain is significantly reduced.",
+                            "description": "While in Void Metamorphosis, every 30 Soul Fragments harvested grants access to Collapsing Star.\r\n\r\n Collapsing Star\r\nChannel an immense amount of void energy into a single, cataclysmic blast, dealing 4,388 Cosmic damage to your target and 2,405 Cosmic damage to all nearby enemies. Damage reduced beyond 8 targets.\r\n\r\nWhile casting Collapsing Star, your Fury drain is significantly reduced.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9310,7 +9310,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 676 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 668 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9339,7 +9339,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,326 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,399 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10520,7 +10520,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,276 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,275 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10827,7 +10827,7 @@
                             "talent_name": "The Hunt",
                             "spell_id": 1246167,
                             "spell_name": "The Hunt",
-                            "description": "Charge to your target, striking them for 2,278 Cosmic damage, rooting them in place for 1.5 sec and inflicting 1,628 Cosmic damage over 6 sec to up to 5 enemies in your path.",
+                            "description": "Charge to your target, striking them for 2,261 Cosmic damage, rooting them in place for 1.5 sec and inflicting 1,628 Cosmic damage over 6 sec to up to 5 enemies in your path.",
                             "cast_time": "1 sec cast",
                             "cooldown": "1.5 min cooldown",
                             "range": "50 yd range"

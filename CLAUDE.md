@@ -502,6 +502,12 @@ it probably doesn't belong.
    often deliberate and say so (an aura spell_id kept for log matching alongside the pressable
    copy kept for palettes). This has stopped at least two wrong "fixes".
 
+6a. **`--auto-detect-live` can roll the spell data BACKWARDS.** `fetch-simc-dumps.php` picks the
+    newest `data-update-live-*` branch, but SimC does not cut one per build: on 2026-09-24 the
+    only live branch was 69283 while `midnight` carried 69933 and the DB already held 69814. Read
+    the first line of a fetched dump ("... for World of Warcraft 12.1.0.69933 Live") and compare
+    it with `patches.build_version` before importing. `midnight` is the expansion's active branch.
+
 7. **`php artisan import:spelldata wow` with no patch argument is the normal form.** It resolves
    the current patch from the DB and relabels that row in place from the SimC dump headers.
    **The patch row is never forked** — everything game-related FKs to `patches.id`, so a new row

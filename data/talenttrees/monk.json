@@ -1,7 +1,7 @@
 {
     "class": "Monk",
     "talent_tree_id": 1000,
-    "fetched_at": "2026-08-29T03:28:49+00:00",
+    "fetched_at": "2026-09-24T08:08:21+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -1826,7 +1826,7 @@
                         "talent_name": "Chi Wave",
                         "spell_id": 450391,
                         "spell_name": "Chi Wave",
-                        "description": "Every 15 sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 20 healing. Bounces up to 7 times to targets within 25 yards.",
+                        "description": "Every 15 sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 6 Nature damage or 20 healing. Bounces up to 7 times to targets within 25 yards.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1859,7 +1859,7 @@
                                 "talent_name": "Chi Wave",
                                 "spell_id": 450391,
                                 "spell_name": "Chi Wave",
-                                "description": "Every 15 sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 20 healing. Bounces up to 7 times to targets within 25 yards.",
+                                "description": "Every 15 sec, your next Rising Sun Kick or Vivify releases a wave of Chi energy that flows through friends and foes, dealing 7 Nature damage or 21 healing. Bounces up to 7 times to targets within 25 yards.",
                                 "cast_time": "Passive",
                                 "cooldown": null,
                                 "range": null
@@ -1869,7 +1869,7 @@
                                 "talent_name": "Chi Burst",
                                 "spell_id": 123986,
                                 "spell_name": "Chi Burst",
-                                "description": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 98 Nature damage to all enemies, and 78 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets.\r\n\r\n\r\nCasting Chi Burst does not prevent avoiding attacks.",
+                                "description": "Hurls a torrent of Chi energy up to 40 yds forward, dealing 98 Nature damage to all enemies, and 75 healing to the Monk and all allies in its path. Healing and damage reduced beyond 5 targets.\r\n\r\n\r\nCasting Chi Burst does not prevent avoiding attacks.",
                                 "cast_time": "1 sec cast",
                                 "cooldown": "30 sec cooldown",
                                 "range": "40 yd range"
@@ -2783,7 +2783,7 @@
                             "talent_name": "Celestial Conduit",
                             "spell_id": 443028,
                             "spell_name": "Celestial Conduit",
-                            "description": "The August Celestials empower you, causing you to radiate 282 Nature damage onto enemies and 20,493 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
+                            "description": "The August Celestials empower you, causing you to radiate 288 Nature damage onto enemies and 20,400 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
                             "cast_time": "Channeled",
                             "cooldown": "1.5 min cooldown",
                             "range": null
@@ -2872,7 +2872,7 @@
                             "talent_name": "Celestial Conduit",
                             "spell_id": 1248989,
                             "spell_name": "Celestial Conduit",
-                            "description": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 1 min.\r\n\r\n Celestial Conduit:\r\nThe August Celestials empower you, causing you to radiate 291 Nature damage onto enemies and 20,589 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
+                            "description": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 1 min.\r\n\r\n Celestial Conduit:\r\nThe August Celestials empower you, causing you to radiate 290 Nature damage onto enemies and 20,850 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4112,7 +4112,7 @@
                             "talent_name": "Combat Wisdom",
                             "spell_id": 121817,
                             "spell_name": "Combat Wisdom",
-                            "description": "While out of combat, your Chi balances to 2 instead of depleting to empty.\r\n\r\nYour stamina is increased by 5% and every 15 sec, your next Tiger Palm also casts Expel Harm.\r\n\r\n Expel Harm\r\nExpel negative chi from your body, healing for 456 and dealing 10% of the amount healed as Nature damage to an enemy within 20 yards.",
+                            "description": "While out of combat, your Chi balances to 2 instead of depleting to empty.\r\n\r\nYour stamina is increased by 5% and every 15 sec, your next Tiger Palm also casts Expel Harm.\r\n\r\n Expel Harm\r\nExpel negative chi from your body, healing for 447 and dealing 10% of the amount healed as Nature damage to an enemy within 20 yards.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4736,7 +4736,7 @@
                             "talent_name": "Celestial Conduit",
                             "spell_id": 1248989,
                             "spell_name": "Celestial Conduit",
-                            "description": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 1 min.\r\n\r\n Celestial Conduit:\r\nThe August Celestials empower you, causing you to radiate 287 Nature damage onto enemies and 20,450 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
+                            "description": "After Invoking Xuen, the White Tiger you may cast Celestial Conduit within 1 min.\r\n\r\n Celestial Conduit:\r\nThe August Celestials empower you, causing you to radiate 289 Nature damage onto enemies and 20,537 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4827,7 +4827,7 @@
                             "talent_name": "Dual Threat",
                             "spell_id": 451823,
                             "spell_name": "Dual Threat",
-                            "description": "Your auto attacks have a 30% chance to instead kick your target dealing 169 Physical damage. Damage increased while using a two-handed weapon.",
+                            "description": "Your auto attacks have a 30% chance to instead kick your target dealing 203 Physical damage. Damage increased while using a two-handed weapon.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5516,7 +5516,7 @@
                                     "talent_name": "Whirling Dragon Punch",
                                     "spell_id": 152175,
                                     "spell_name": "Whirling Dragon Punch",
-                                    "description": "Performs a devastating whirling upward strike, dealing 330 damage to all nearby enemies and an additional 159 damage to the first target struck. Damage reduced beyond 5 targets.\r\n\r\nOnly usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
+                                    "description": "Performs a devastating whirling upward strike, dealing 334 damage to all nearby enemies and an additional 157 damage to the first target struck. Damage reduced beyond 5 targets.\r\n\r\nOnly usable while both Fists of Fury and Rising Sun Kick are on cooldown.",
                                     "cast_time": "Instant",
                                     "cooldown": "35 sec cooldown",
                                     "range": null
@@ -6221,7 +6221,7 @@
                             "talent_name": "Celestial Conduit",
                             "spell_id": 443028,
                             "spell_name": "Celestial Conduit",
-                            "description": "The August Celestials empower you, causing you to radiate 291 Nature damage onto enemies and 20,943 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
+                            "description": "The August Celestials empower you, causing you to radiate 294 Nature damage onto enemies and 20,573 healing onto up to 5 injured allies within 15 yds over 3.6 sec, reduced beyond 5 targets.\r\n\r\nYou may move while channeling, but casting other healing or damaging spells cancels this effect.\r\n",
                             "cast_time": "Channeled",
                             "cooldown": "1.5 min cooldown",
                             "range": null
@@ -6427,7 +6427,7 @@
                             "talent_name": "Thunder Focus Tea",
                             "spell_id": 116680,
                             "spell_name": "Thunder Focus Tea",
-                            "description": "Receive a jolt of energy, empowering your next spell cast:\r\n\r\nEnveloping Mist: Immediately heals for 2,865 and is instant cast.\r\nRenewing Mist: Duration increased by 10 sec.\r\nRising Sun Kick: Cooldown reduced by 9 sec.\r\n",
+                            "description": "Receive a jolt of energy, empowering your next spell cast:\r\n\r\nEnveloping Mist: Immediately heals for 2,792 and is instant cast.\r\nRenewing Mist: Duration increased by 10 sec.\r\nRising Sun Kick: Cooldown reduced by 9 sec.\r\n",
                             "cast_time": "Instant",
                             "cooldown": "1 sec cooldown",
                             "range": null
@@ -6665,7 +6665,7 @@
                             "talent_name": "Invigorating Mists",
                             "spell_id": 274586,
                             "spell_name": "Invigorating Mists",
-                            "description": "Vivify heals all allies with your Renewing Mist active for 1,243.\r\n\r\nSheilun's Gift's healing is increased by 500% on its primary target.",
+                            "description": "Vivify heals all allies with your Renewing Mist active for 1,245.\r\n\r\nSheilun's Gift's healing is increased by 500% on its primary target.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6858,7 +6858,7 @@
                                     "talent_name": "Revival",
                                     "spell_id": 115310,
                                     "spell_name": "Revival",
-                                    "description": "Heals all party and raid members within 40 yds for 22,942 and clears them of 3 harmful Magic, all Poison, and all Disease effects.\r\n\r\nHealing reduced beyond 5 targets.",
+                                    "description": "Heals all party and raid members within 40 yds for 23,089 and clears them of 3 harmful Magic, all Poison, and all Disease effects.\r\n\r\nHealing reduced beyond 5 targets.",
                                     "cast_time": "Instant",
                                     "cooldown": "1 sec cooldown",
                                     "range": null
@@ -6868,7 +6868,7 @@
                                     "talent_name": "Restoral",
                                     "spell_id": 388615,
                                     "spell_name": "Restoral",
-                                    "description": "Heals all party and raid members within 40 yds for 22,515 and clears them of all harmful Poison and Disease effects. \r\n\r\nCastable while stunned.\r\n\r\nHealing reduced beyond 5 targets.",
+                                    "description": "Heals all party and raid members within 40 yds for 23,254 and clears them of all harmful Poison and Disease effects. \r\n\r\nCastable while stunned.\r\n\r\nHealing reduced beyond 5 targets.",
                                     "cast_time": "Instant",
                                     "cooldown": "1 sec cooldown",
                                     "range": null
@@ -7115,7 +7115,7 @@
                             "talent_name": "Zen Pulse",
                             "spell_id": 446326,
                             "spell_name": "Zen Pulse",
-                            "description": "Renewing Mist's heal over time has a chance to cause your next Vivify to also trigger a Zen Pulse on its target and all allies with Renewing Mist, healing them for 598 increased by 6% per Renewing Mist active, up to 30%.",
+                            "description": "Renewing Mist's heal over time has a chance to cause your next Vivify to also trigger a Zen Pulse on its target and all allies with Renewing Mist, healing them for 610 increased by 6% per Renewing Mist active, up to 30%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7517,7 +7517,7 @@
                             "talent_name": "Yu'lon's Whisper",
                             "spell_id": 388038,
                             "spell_name": "Yu'lon's Whisper",
-                            "description": "While channeling Mana Tea you exhale the breath of Yu'lon, healing up to 5 allies within 15 yards for 353 every 0.4 sec.",
+                            "description": "While channeling Mana Tea you exhale the breath of Yu'lon, healing up to 5 allies within 15 yards for 339 every 0.4 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7997,7 +7997,7 @@
                             "talent_name": "Sheilun's Gift",
                             "spell_id": 399491,
                             "spell_name": "Sheilun's Gift",
-                            "description": "Draws in all nearby clouds of mist, healing the friendly target and up to 2 nearby allies for 1,584 and an additional 79 per cloud absorbed.\r\n\r\nA cloud of mist is generated every 8 sec while in combat.",
+                            "description": "Draws in all nearby clouds of mist, healing the friendly target and up to 2 nearby allies for 1,822 and an additional 91 per cloud absorbed.\r\n\r\nA cloud of mist is generated every 8 sec while in combat.",
                             "cast_time": "2 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -8614,7 +8614,7 @@
                             "talent_name": "Keg Smash",
                             "spell_id": 121253,
                             "spell_name": "Keg Smash",
-                            "description": "Smash a keg of brew, dealing 100 Physical damage to your primary target and 67 Physical damage to all other enemies within 8 yds, and reducing their movement speed by 20% for 15 sec. Deals reduced damage beyond 5 targets.",
+                            "description": "Smash a keg of brew, dealing 102 Physical damage to your primary target and 66 Physical damage to all other enemies within 8 yds, and reducing their movement speed by 20% for 15 sec. Deals reduced damage beyond 5 targets.",
                             "cast_time": "Instant",
                             "cooldown": "1 sec cooldown",
                             "range": "15 yd range"
@@ -9157,7 +9157,7 @@
                             "talent_name": "Gift of the Ox",
                             "spell_id": 124502,
                             "spell_name": "Gift of the Ox",
-                            "description": "When you take damage, you have a chance to summon a Healing Sphere.\r\n\r\nHealing Sphere:\r\nSummon a Healing Sphere visible only to you. Moving through this Healing Sphere heals you for 117.",
+                            "description": "When you take damage, you have a chance to summon a Healing Sphere.\r\n\r\nHealing Sphere:\r\nSummon a Healing Sphere visible only to you. Moving through this Healing Sphere heals you for 115.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9234,7 +9234,7 @@
                             "talent_name": "Spirit of the Ox",
                             "spell_id": 400629,
                             "spell_name": "Spirit of the Ox",
-                            "description": "Blackout Kick has a chance to summon a Healing Sphere.\r\n\r\nHealing Sphere:\r\nSummon a Healing Sphere visible only to you. Moving through this Healing Sphere heals you for 113.",
+                            "description": "Blackout Kick has a chance to summon a Healing Sphere.\r\n\r\nHealing Sphere:\r\nSummon a Healing Sphere visible only to you. Moving through this Healing Sphere heals you for 115.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9666,7 +9666,7 @@
                             "talent_name": "Breath of Fire",
                             "spell_id": 115181,
                             "spell_name": "Breath of Fire",
-                            "description": "Breathe fire on targets in front of you, causing 34 Fire damage. Deals reduced damage to secondary targets.\r\n\r\nTargets affected by Keg Smash will also burn, taking 23 Fire damage and dealing 5% reduced damage to you for 12 sec.",
+                            "description": "Breathe fire on targets in front of you, causing 35 Fire damage. Deals reduced damage to secondary targets.\r\n\r\nTargets affected by Keg Smash will also burn, taking 23 Fire damage and dealing 5% reduced damage to you for 12 sec.",
                             "cast_time": "Instant",
                             "cooldown": "15 sec cooldown",
                             "range": null
@@ -10048,7 +10048,7 @@
                             "talent_name": "Walk with the Ox",
                             "spell_id": 387219,
                             "spell_name": "Walk with the Ox",
-                            "description": "Your damaging abilities have a chance to invoke Niuzao, causing him to charge to your target's location and Stomp, dealing 140 Physical damage to your target and reduced damage to secondary targets.\r\n",
+                            "description": "Your damaging abilities have a chance to invoke Niuzao, causing him to charge to your target's location and Stomp, dealing 138 Physical damage to your target and reduced damage to secondary targets.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10059,7 +10059,7 @@
                             "talent_name": "Walk with the Ox",
                             "spell_id": 387219,
                             "spell_name": "Walk with the Ox",
-                            "description": "Your damaging abilities have an increased chance to invoke Niuzao, causing him to charge to your target's location and Stomp, dealing 140 Physical damage to your target and reduced damage to secondary targets.\r\n",
+                            "description": "Your damaging abilities have an increased chance to invoke Niuzao, causing him to charge to your target's location and Stomp, dealing 139 Physical damage to your target and reduced damage to secondary targets.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

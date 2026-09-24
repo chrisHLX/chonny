@@ -1,5 +1,5 @@
 # Mage — Sunfury Hero Talents
-# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
+# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Spellfire Spheres (id=448601) [Spell Family (3), Passive, Hidden] 
@@ -245,9 +245,10 @@ Effects          :
                    Affected Spells: Pyroblast (11366), Pyroblast (460475), Pyroblast (1262863)
                    Family Flags: 22
 #2 (id=1261871)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
                    Affected Spells: Flamestrike (2120), Flamestrike (460476), Flamestrike (1254851)
                    Family Flags: 2
+Hotfixed         : Base Value (3 -> 6)
 #3 (id=1261872)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
                    Affected Spells: Arcane Blast (30451)

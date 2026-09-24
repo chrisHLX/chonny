@@ -1,5 +1,5 @@
 # Priest — Discipline Spec Talents
-# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
+# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
 # 48 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Pain Suppression (id=33206) [Spell Family (6)] 
@@ -102,6 +102,7 @@ Effects          :
 Description      : Summons a holy barrier to protect all allies at the target location for $d, reducing all damage taken by $81782s2% and preventing damage from delaying spellcasting.
 
 Name             : Atonement (id=81749) [Spell Family (6), Passive, Hidden] 
+Hotfixed         : Description
 Talent Entry     : Discipline [tree=spec, row=1, col=4, max_rank=1, req_points=0]
 Class            : Priest
 School           : Physical
@@ -115,12 +116,18 @@ Family Flags     : 35
 Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355), Allow Class Ability Procs (416), Unknown (450)
 Effects          :
 #1 (id=135203)   : Apply Aura (6) | Dummy (4)
-                   Base Value: 46 | Scaled Value: 46 | PvP Coefficient: 1.39 | Target: Self (1)
+                   Base Value: 46 | Scaled Value: 46 | Target: Self (1)
+Hotfixed         : PvP Coefficient (1.39 -> 1)
 #2 (id=178045)   : Dummy (3)
                    Base Value: 5 | Scaled Value: 5
+#3 (id=1356875)  : Dummy (3)
+                   Base Value: 40 | Scaled Value: 40
+Hotfixed         : NEW EFFECT
 Description      : Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for $194384d.
 
-Your spell damage heals all targets affected by Atonement for $s1% of the damage done. Healing is reduced when healing more than $s2 targets.
+Your spell damage heals all targets affected by Atonement for $s1% of the damage done. Healing is reduced when healing more than $s2 targets.
+
+Healing increased by $s3% when not in a raid.
 
 Name             : Castigation (id=193134) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Discipline [tree=spec, row=6, col=3, max_rank=1, req_points=8]

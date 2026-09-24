@@ -15,6 +15,8 @@ class Spell extends Model
         'description',
         'variables',
         'charges',
+        'max_stacks',
+        'proc_chance',
         'cooldown_seconds',
         'cooldown_scaling_note',
         'duration_seconds',
@@ -55,6 +57,8 @@ class Spell extends Model
     // dirty-check (and therefore idempotency) actually work for these columns.
     protected $casts = [
         'charges' => 'integer',
+        'max_stacks' => 'integer',
+        'proc_chance' => 'decimal:2',
         'cooldown_seconds' => 'decimal:2',
         'duration_seconds' => 'decimal:2',
         'pvp_duration_seconds' => 'decimal:1',

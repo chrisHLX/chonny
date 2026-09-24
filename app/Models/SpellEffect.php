@@ -16,6 +16,8 @@ class SpellEffect extends Model
         'sp_coefficient',
         'pvp_coefficient',
         'misc_value',
+        'radius_yards',
+        'chain_targets',
         'affected_schools',
         'rank_op',
         'rank_values',
@@ -31,6 +33,8 @@ class SpellEffect extends Model
         'sp_coefficient' => 'float',
         'pvp_coefficient' => 'float',
         'misc_value' => 'integer',
+        'radius_yards' => 'decimal:2',
+        'chain_targets' => 'integer',
         'rank_values' => 'array',
     ];
 

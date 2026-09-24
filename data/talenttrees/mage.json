@@ -1,7 +1,7 @@
 {
     "class": "Mage",
     "talent_tree_id": 658,
-    "fetched_at": "2026-08-29T03:28:29+00:00",
+    "fetched_at": "2026-09-24T08:08:00+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -123,7 +123,7 @@
                                 "talent_name": "Ice Nova",
                                 "spell_id": 157997,
                                 "spell_name": "Ice Nova",
-                                "description": "Causes a whirl of icy wind around the enemy, dealing 587 Frost damage to the target and all other enemies within 8 yds, freezing them in place for 2 sec. Damage reduced beyond 8 targets.",
+                                "description": "Causes a whirl of icy wind around the enemy, dealing 575 Frost damage to the target and all other enemies within 8 yds, freezing them in place for 2 sec. Damage reduced beyond 8 targets.",
                                 "cast_time": "Instant",
                                 "cooldown": "25 sec cooldown",
                                 "range": "40 yd range"
@@ -741,7 +741,7 @@
                         "talent_name": "Blazing Barrier",
                         "spell_id": 235313,
                         "spell_name": "Blazing Barrier",
-                        "description": "Shields you in flame, absorbing 9,165 damage for 1 min.\r\n\r\nMelee attacks against you cause the attacker to take 59 Fire damage.",
+                        "description": "Shields you in flame, absorbing 9,165 damage for 1 min.\r\n\r\nMelee attacks against you cause the attacker to take 62 Fire damage.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": null
@@ -1067,7 +1067,7 @@
                                 "talent_name": "Dragon's Breath",
                                 "spell_id": 31661,
                                 "spell_name": "Dragon's Breath",
-                                "description": "Enemies in a 12 yd cone in front of you take 282 Fire damage and are disoriented for 4 sec. Damage will cancel the effect.",
+                                "description": "Enemies in a 12 yd cone in front of you take 281 Fire damage and are disoriented for 4 sec. Damage will cancel the effect.",
                                 "cast_time": "Instant",
                                 "cooldown": "45 sec cooldown",
                                 "range": null
@@ -1077,7 +1077,7 @@
                                 "talent_name": "Supernova",
                                 "spell_id": 157980,
                                 "spell_name": "Supernova",
-                                "description": "Pulses arcane energy around the target enemy or ally, dealing 178 Arcane damage to all enemies within 8 yds, and knocking them upward. A primary enemy target will take 100% increased damage.",
+                                "description": "Pulses arcane energy around the target enemy or ally, dealing 179 Arcane damage to all enemies within 8 yds, and knocking them upward. A primary enemy target will take 100% increased damage.",
                                 "cast_time": "Instant",
                                 "cooldown": "45 sec cooldown",
                                 "range": "40 yd range"
@@ -2010,7 +2010,7 @@
                             "talent_name": "Glorious Incandescence",
                             "spell_id": 449394,
                             "spell_name": "Glorious Incandescence",
-                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 426 Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 428 Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2586,7 +2586,7 @@
                             "talent_name": "Isothermic Core",
                             "spell_id": 431095,
                             "spell_name": "Isothermic Core",
-                            "description": "Meteor now also calls down a Comet Storm, dealing 2,785 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,868 Fire damage to nearby enemies.",
+                            "description": "Meteor now also calls down a Comet Storm, dealing 2,720 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,835 Fire damage to nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2615,7 +2615,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,115 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,100 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2898,7 +2898,7 @@
                             "talent_name": "Duality",
                             "spell_id": 1262843,
                             "spell_name": "Duality",
-                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,722 Fire damage.",
+                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,737 Fire damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2927,7 +2927,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,081 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,084 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2961,7 +2961,7 @@
                             "talent_name": "Ice Lance",
                             "spell_id": 30455,
                             "spell_name": "Ice Lance",
-                            "description": "Quickly fling a shard of ice at the target, dealing 766 Frost damage.\r\n\r\nShatters 4 stacks of Freezing.",
+                            "description": "Quickly fling a shard of ice at the target, dealing 774 Frost damage.\r\n\r\nShatters 4 stacks of Freezing.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2990,7 +2990,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,093 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,101 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3049,7 +3049,7 @@
                                     "talent_name": "Blizzard",
                                     "spell_id": 190356,
                                     "spell_name": "Blizzard",
-                                    "description": "Ice shards pelt the target area, dealing 1,642 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at a selected location",
+                                    "description": "Ice shards pelt the target area, dealing 1,646 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at a selected location",
                                     "cast_time": "2 sec cast",
                                     "cooldown": "12 sec cooldown",
                                     "range": "40 yd range"
@@ -3059,7 +3059,7 @@
                                     "talent_name": "Blizzard",
                                     "spell_id": 1248829,
                                     "spell_name": "Blizzard",
-                                    "description": "Ice shards pelt the target area, dealing 1,678 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at your target.",
+                                    "description": "Ice shards pelt the target area, dealing 1,664 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at your target.",
                                     "cast_time": "2 sec cast",
                                     "cooldown": "12 sec cooldown",
                                     "range": "40 yd range"
@@ -3388,7 +3388,7 @@
                             "talent_name": "Frostbite",
                             "spell_id": 1248825,
                             "spell_name": "Frostbite",
-                            "description": "When Frostbolt critically strikes, it applies 1 additional stack of Freezing.\r\n\r\nEach stack of Freezing that you Shatter deals 104 damage to nearby enemies. Damage reduced beyond 5 targets.",
+                            "description": "When Frostbolt critically strikes, it applies 1 additional stack of Freezing.\r\n\r\nEach stack of Freezing that you Shatter deals 115 damage to nearby enemies. Damage reduced beyond 5 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3417,7 +3417,7 @@
                             "talent_name": "Icicles",
                             "spell_id": 1246832,
                             "spell_name": "Icicles",
-                            "description": "While in combat, Frost crystallizes around you, generating an Icicle every 5.4 sec. Upon generating 5 Icicles, Frostbolt upgrades to Glacial Spike for its next cast.\r\n\r\n Glacial Spike\r\nConjures a massive spike of ice that impales your target, dealing 5,524 damage and slowing the target's movement speed by 50% for 8 sec.\r\n\r\nApplies 3 stacks of Freezing.",
+                            "description": "While in combat, Frost crystallizes around you, generating an Icicle every 5.4 sec. Upon generating 5 Icicles, Frostbolt upgrades to Glacial Spike for its next cast.\r\n\r\n Glacial Spike\r\nConjures a massive spike of ice that impales your target, dealing 5,499 damage and slowing the target's movement speed by 50% for 8 sec.\r\n\r\nApplies 3 stacks of Freezing.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3712,7 +3712,7 @@
                             "talent_name": "Flurry",
                             "spell_id": 44614,
                             "spell_name": "Flurry",
-                            "description": "Unleash a flurry of ice, striking the target 3 times for a total of 1,627 Frost damage.\r\n\r\nApplies 3 stacks of Freezing.",
+                            "description": "Unleash a flurry of ice, striking the target 3 times for a total of 1,632 Frost damage.\r\n\r\nApplies 3 stacks of Freezing.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3784,7 +3784,7 @@
                             "talent_name": "Frozen Orb",
                             "spell_id": 84714,
                             "spell_name": "Frozen Orb",
-                            "description": "Launches an orb of swirling ice in front of you, dealing up to 5,623 Frost damage to all enemies it passes through over 15 sec. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets.\r\n\r\nEnemies damaged by the Frozen Orb are slowed by 50% for 8 sec.",
+                            "description": "Launches an orb of swirling ice in front of you, dealing up to 6,543 Frost damage to all enemies it passes through over 15 sec. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets.\r\n\r\nEnemies damaged by the Frozen Orb are slowed by 50% for 8 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": "40 yd range"
@@ -4183,7 +4183,7 @@
                             "talent_name": "Isothermic Core",
                             "spell_id": 431095,
                             "spell_name": "Isothermic Core",
-                            "description": "Meteor now also calls down a Comet Storm, dealing 2,752 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,739 Fire damage to nearby enemies.",
+                            "description": "Meteor now also calls down a Comet Storm, dealing 2,718 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,808 Fire damage to nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4763,7 +4763,7 @@
                             "talent_name": "Glacial Assault",
                             "spell_id": 378947,
                             "spell_name": "Glacial Assault",
-                            "description": "Flurry has a 12% chance each hit to call down an icy comet, crashing into your target and nearby enemies for 632 Frost damage.\r\n\r\nApplies 1 stack of Freezing.",
+                            "description": "Flurry has a 12% chance each hit to call down an icy comet, crashing into your target and nearby enemies for 949 Frost damage.\r\n\r\nApplies 1 stack of Freezing.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4986,7 +4986,7 @@
                             "talent_name": "Comet Storm",
                             "spell_id": 1247777,
                             "spell_name": "Comet Storm",
-                            "description": "Casting Ray of Frost replaces your Ray of Frost with Comet Storm, calling down a series of 7 icy comets on and around the target, that deals up to 2,538 Frost damage to all enemies within 8 yds of its impacts.\r\n\r\nEach Comet Shatters 1 stack of Freezing.",
+                            "description": "Casting Ray of Frost replaces your Ray of Frost with Comet Storm, calling down a series of 7 icy comets on and around the target, that deals up to 3,814 Frost damage to all enemies within 8 yds of its impacts.\r\n\r\nEach Comet Shatters 1 stack of Freezing.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5010,7 +5010,7 @@
                             "talent_name": "Hand of Frost",
                             "spell_id": 1262935,
                             "spell_name": "Hand of Frost",
-                            "description": "Shattering an enemy has a 10% chance to summon a Hand of Frost to pursue your target, dealing 1,622 Frost damage and applying 1 stack of Freezing on contact.",
+                            "description": "Shattering an enemy has a 10% chance to summon a Hand of Frost to pursue your target, dealing 1,955 Frost damage and applying 1 stack of Freezing on contact.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5048,7 +5048,7 @@
                             "talent_name": "Pyroblast",
                             "spell_id": 11366,
                             "spell_name": "Pyroblast",
-                            "description": "Hurls an immense fiery boulder that causes 2,712 Fire damage.",
+                            "description": "Hurls an immense fiery boulder that causes 2,720 Fire damage.",
                             "cast_time": "4 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5077,7 +5077,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,084 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,083 Frostfire damage, slowing movement speed by 50%, and causing an additional 102 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5106,7 +5106,7 @@
                             "talent_name": "Fire Blast",
                             "spell_id": 108853,
                             "spell_name": "Fire Blast",
-                            "description": "Blasts the enemy, critically striking for 821 Fire damage.\r\n\r\nCastable while casting other spells.",
+                            "description": "Blasts the enemy, critically striking for 827 Fire damage.\r\n\r\nCastable while casting other spells.",
                             "cast_time": "Instant",
                             "cooldown": "0.5 sec cooldown",
                             "range": "40 yd range"
@@ -5163,7 +5163,7 @@
                                     "talent_name": "Flamestrike",
                                     "spell_id": 2120,
                                     "spell_name": "Flamestrike",
-                                    "description": "Calls down a pillar of fire, burning all enemies within the area for 1,450 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at a selected location.",
+                                    "description": "Calls down a pillar of fire, burning all enemies within the area for 1,486 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at a selected location.",
                                     "cast_time": "3.5 sec cast",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -5173,7 +5173,7 @@
                                     "talent_name": "Flamestrike",
                                     "spell_id": 1254851,
                                     "spell_name": "Flamestrike",
-                                    "description": "Calls down a pillar of fire on your target, burning all enemies within the area for 1,426 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at your target.",
+                                    "description": "Calls down a pillar of fire on your target, burning all enemies within the area for 1,478 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at your target.",
                                     "cast_time": "3.5 sec cast",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -5319,7 +5319,7 @@
                             "talent_name": "Duality",
                             "spell_id": 1262843,
                             "spell_name": "Duality",
-                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,786 Fire damage.",
+                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,681 Fire damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5618,7 +5618,7 @@
                             "talent_name": "Meteor",
                             "spell_id": 153561,
                             "spell_name": "Meteor",
-                            "description": "Calls down a meteor which lands at the target location after 3 sec, dealing 3,808 Fire damage to all enemies, and burns the ground, dealing 1,754 Fire damage over 4 sec to all enemies in the area.\r\n\r\nDamage reduced beyond 8 targets.",
+                            "description": "Calls down a meteor which lands at the target location after 3 sec, dealing 3,749 Fire damage to all enemies, and burns the ground, dealing 3,509 Fire damage over 4 sec to all enemies in the area.\r\n\r\nDamage reduced beyond 8 targets.",
                             "cast_time": "Instant",
                             "cooldown": "45 sec cooldown",
                             "range": "40 yd range"
@@ -5759,7 +5759,7 @@
                             "talent_name": "Scorch",
                             "spell_id": 2948,
                             "spell_name": "Scorch",
-                            "description": "Scorches an enemy for 426 Fire damage.\r\n\r\nWhen cast on a target below 30% health, Scorch is a guaranteed critical strike.\r\n\r\nCastable while moving.",
+                            "description": "Scorches an enemy for 420 Fire damage.\r\n\r\nWhen cast on a target below 30% health, Scorch is a guaranteed critical strike.\r\n\r\nCastable while moving.",
                             "cast_time": "1.5 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5916,7 +5916,7 @@
                             "talent_name": "Isothermic Core",
                             "spell_id": 431095,
                             "spell_name": "Isothermic Core",
-                            "description": "Meteor now also calls down a Comet Storm, dealing 2,726 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,706 Fire damage to nearby enemies.",
+                            "description": "Meteor now also calls down a Comet Storm, dealing 2,754 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,740 Fire damage to nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6122,7 +6122,7 @@
                             "talent_name": "Conflagration",
                             "spell_id": 1271171,
                             "spell_name": "Conflagration",
-                            "description": "Fire Blast deals 166 additional Fire damage to up to 8 nearby enemies.",
+                            "description": "Fire Blast deals 167 additional Fire damage to up to 8 nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6597,7 +6597,7 @@
                                     "talent_name": "Explosive Potential",
                                     "spell_id": 1246030,
                                     "spell_name": "Explosive Potential",
-                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 231 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
+                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 227 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -7043,7 +7043,7 @@
                             "talent_name": "Cinderstorm",
                             "spell_id": 1254865,
                             "spell_name": "Cinderstorm",
-                            "description": "Casting Pyroblast or Flamestrike has a 8% chance to summon a storm of 5 cinders that pursue your target. Upon reaching your target, each cinder deals 1,039 Fire damage, applies Ignite at 100% effectiveness, and spreads 50% of your Ignite to up to 1 nearby target.",
+                            "description": "Casting Pyroblast or Flamestrike has a 8% chance to summon a storm of 5 cinders that pursue your target. Upon reaching your target, each cinder deals 937 Fire damage, applies Ignite at 100% effectiveness, and spreads 50% of your Ignite to up to 1 nearby target.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -7133,7 +7133,7 @@
                             "talent_name": "Arcane Missiles",
                             "spell_id": 5143,
                             "spell_name": "Arcane Missiles",
-                            "description": "Requires Clearcasting\r\nLaunches 5 waves of Arcane Missiles at the enemy over 2.2 sec, causing a total of 2,226 Arcane damage.",
+                            "description": "Requires Clearcasting\r\nLaunches 5 waves of Arcane Missiles at the enemy over 2.2 sec, causing a total of 2,258 Arcane damage.",
                             "cast_time": "Channeled",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -7600,7 +7600,7 @@
                             "talent_name": "Arcane Pulse",
                             "spell_id": 1241462,
                             "spell_name": "Arcane Pulse",
-                            "description": "A pulse of Arcane magic erupts from underneath your target, dealing 2,546 Arcane damage to all enemies within 8 yds. Damage reduced beyond 5 targets.\r\n\r\nGenerates 1 Arcane Charge for each enemy struck.",
+                            "description": "A pulse of Arcane magic erupts from underneath your target, dealing 2,555 Arcane damage to all enemies within 8 yds. Damage reduced beyond 5 targets.\r\n\r\nGenerates 1 Arcane Charge for each enemy struck.",
                             "cast_time": "2 sec cast",
                             "cooldown": "15 sec cooldown",
                             "range": "40 yd range"
@@ -7659,7 +7659,7 @@
                             "talent_name": "Arcane Orb",
                             "spell_id": 153626,
                             "spell_name": "Arcane Orb",
-                            "description": "Launches an Arcane Orb forward from your position, traveling up to 40 yds, dealing 1,235 Arcane damage to enemies it passes through.\r\n\r\nGrants 1 Arcane Charge when cast and every time it deals damage.",
+                            "description": "Launches an Arcane Orb forward from your position, traveling up to 40 yds, dealing 1,242 Arcane damage to enemies it passes through.\r\n\r\nGrants 1 Arcane Charge when cast and every time it deals damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -8444,7 +8444,7 @@
                             "talent_name": "Glorious Incandescence",
                             "spell_id": 449394,
                             "spell_name": "Glorious Incandescence",
-                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 426 Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 435 Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8687,7 +8687,7 @@
                                     "talent_name": "Explosive Potential",
                                     "spell_id": 1246030,
                                     "spell_name": "Explosive Potential",
-                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 229 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
+                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 232 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -9151,7 +9151,7 @@
                             "talent_name": "Prismatic Bolt",
                             "spell_id": 1295923,
                             "spell_name": "Prismatic Bolt",
-                            "description": "Arcane Barrage has a 1% chance per stack of Arcane Salvo consumed to replace your next Arcane Blast with Prismatic Bolt.\r\n\r\n Prismatic Bolt\r\nDevastates the target with overwhelming energy, dealing 16,518 Arcane damage to them and 10,590 Arcane damage to other nearby enemies. Damage reduced beyond 5 targets.\r\n\r\nGenerates 4 Arcane Charges.",
+                            "description": "Arcane Barrage has a 1% chance per stack of Arcane Salvo consumed to replace your next Arcane Blast with Prismatic Bolt.\r\n\r\n Prismatic Bolt\r\nDevastates the target with overwhelming energy, dealing 16,548 Arcane damage to them and 10,770 Arcane damage to other nearby enemies. Damage reduced beyond 5 targets.\r\n\r\nGenerates 4 Arcane Charges.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

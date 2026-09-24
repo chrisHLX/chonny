@@ -1,5 +1,5 @@
 # Monk — Mistweaver Spec Talents
-# Extracted verbatim from monk.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
+# Extracted verbatim from monk.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
 # 58 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Revival (id=115310) [Spell Family (53)] 
@@ -840,7 +840,8 @@ Family Flags     : 48, 114
 Attributes       : Doesn't Reset Swing Timer if Instant (217), Aura Points On Client (268), Heal Prediction (280), Allow Cast While Channeling (308), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1043545)  : Direct Heal (10) | Attributes: Add Target (Dest) Combat Reach to AOE (11), Area Effects Use Target Radius (17)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 4.1696 | PvP Coefficient: 0.8 | Radius: 0 - 40 yards | Target: at Self (18) -> At Ally in Area (31)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 4.79504 | PvP Coefficient: 0.869 | Radius: 0 - 40 yards | Target: at Self (18) -> At Ally in Area (31)
+Hotfixed         : SP Coefficient (4.1696 -> 4.79504), PvP Coefficient (0.8 -> 0.869)
 #2 (id=1043548)  : Dummy (3)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
                    Modified By: Legacy of Wisdom (404408 effect#1), Emperor's Favor (471761 effect#1)

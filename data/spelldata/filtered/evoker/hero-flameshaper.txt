@@ -1,5 +1,5 @@
 # Evoker — Flameshaper Hero Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Enkindle (desc=Red) (id=444016) [Spell Family (224), Passive, Hidden] 
@@ -66,7 +66,8 @@ Effects          :
 #5 (id=1275591)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
 #6 (id=1278179)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 240 | Scaled Value: 240 | Target: Self (1)
+                   Base Value: 240 | Scaled Value: 240 | PvP Coefficient: 0.7 | Target: Self (1)
+Hotfixed         : PvP Coefficient (1 -> 0.7)
 #7 (id=1317269)  : Apply Aura (6) | Dummy (4)
                    Base Value: 115 | Scaled Value: 115 | Target: Self (1)
 Description      : $?c1[Disintegrate consumes ${$s2/1000}.1 sec of Fire Breath from enemies it damages, detonating it for $s4% of the amount consumed.

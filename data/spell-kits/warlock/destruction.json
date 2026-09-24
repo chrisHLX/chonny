@@ -1,7 +1,7 @@
 {
-    "generatedAt": "2026-09-19T10:21:24+00:00",
-    "spellCacheVersion": 4162,
-    "codeFingerprint": "07526e2",
+    "generatedAt": "2026-09-24T08:56:30+00:00",
+    "spellCacheVersion": 21,
+    "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 11523,
@@ -187,8 +187,8 @@
             "spellId": 11657,
             "category": "Other",
             "description": {
-                "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
-                "uncertain": true
+                "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -217,8 +217,8 @@
             "spellId": 11623,
             "category": "Other",
             "description": {
-                "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend $@spelldesc434587",
-                "uncertain": false
+                "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend Generates 1 Soul Shard Fragment every (varies) sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
+                "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -390,7 +390,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -525,8 +525,8 @@
             "spellId": 11539,
             "category": "Other",
             "description": {
-                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing their casting time of all spells by 100% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
-                "uncertain": true
+                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within 10 yds, increasing their casting time of all spells by 100% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -555,8 +555,8 @@
             "spellId": 11449,
             "category": "Offensive",
             "description": {
-                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within (varies) yds, increasing the time between their attacks by 100% and reducing their critical strike chance by 10% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
-                "uncertain": true
+                "text": "Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within 10 yds, increasing the time between their attacks by 100% and reducing their critical strike chance by 10% for 12. Curses: A warlock can only have one Curse or Blight active per target.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -615,7 +615,7 @@
             "spellId": 11684,
             "category": "Other",
             "description": {
-                "text": "Encircle enemy players with Bonds of Fel. If any affected player leaves the 12 yd radius they explode, dealing 5,534 Fire damage split amongst all nearby enemies.",
+                "text": "Encircle enemy players with Bonds of Fel. If any affected player leaves the 12 yd radius they explode, dealing 5,518 Fire damage split amongst all nearby enemies.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -650,9 +650,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
+                "named": [
                     {
                         "spellId": 11512,
                         "relationship_type": "modifies",
@@ -669,9 +667,11 @@
                             "applied": []
                         }
                     }
-                ]
+                ],
+                "baseline": [],
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -682,7 +682,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -692,7 +692,7 @@
             "spellId": 11591,
             "category": "Offensive",
             "description": {
-                "text": "Calls forth a cataclysm at the target location, dealing ≈364.5% of Spell Power Shadowflame damage to all enemies within (varies) yards and afflicting them with Wither.",
+                "text": "Calls forth a cataclysm at the target location, dealing ≈364.5% of Spell Power Shadowflame damage to all enemies within 8 yards and afflicting them with Wither.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -923,7 +923,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -933,7 +933,7 @@
             "spellId": 11594,
             "category": "Offensive",
             "description": {
-                "text": "Launches 15 bolts of felfire over 3 at random targets afflicted by your Wither within (varies) yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
+                "text": "Launches 15 bolts of felfire over 3 at random targets afflicted by your Wither within 40 yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1475,6 +1475,8 @@
                                         "description": "Reduces the cooldown of Conflagrate by ${$s1/-1000} sec.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -1506,8 +1508,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_fire_felflamering_red.jpg",
-                                        "created_at": "2026-07-30T14:03:44.000000Z",
-                                        "updated_at": "2026-09-06T04:00:30.000000Z"
+                                        "created_at": "2026-08-03T12:23:33.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -2,
@@ -1703,7 +1705,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination $@spelldesc434635",
+                            "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination Call down a demon-infested meteor from the depths of the Twisting Nether, dealing 434,635 Chaos damage on impact to all enemies within 8 yds of the target and summoning 1 Diabolic Imp. Damage is further increased by your critical strike chance and is reduced beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -1783,8 +1785,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear $@spelldesc394235 Unstable Tear $@spelldesc387979 Chaos Tear $@spelldesc394243 Generates 3 Soul Shard Fragments.",
-                            "uncertain": false
+                            "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear Deals (varies) Shadow damage over 14. Unstable Tear Deals (varies) Chaos damage over 6. Chaos Tear Fires a Chaos Bolt, dealing 1 Chaos damage. This Chaos Bolt always critically strikes and your critical strike chance increases its damage. Generates 3 Soul Shard Fragments.",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1815,7 +1817,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination $@spelldesc434635",
+                            "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination Call down a demon-infested meteor from the depths of the Twisting Nether, dealing 434,635 Chaos damage on impact to all enemies within 8 yds of the target and summoning 1 Diabolic Imp. Damage is further increased by your critical strike chance and is reduced beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -2106,22 +2108,6 @@
                     },
                     {
                         "spellId": 11608,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Reduces the cooldown of Conflagrate by 2 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11608,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": -2,
                         "modifier_unit": "seconds",
@@ -2268,22 +2254,6 @@
                     },
                     {
                         "spellId": 10857,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10857,
                         "relationship_type": "hasted_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2333,6 +2303,8 @@
                             "description": "Reduces the cooldown of Conflagrate by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2364,8 +2336,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_fire_felflamering_red.jpg",
-                            "created_at": "2026-07-30T14:03:44.000000Z",
-                            "updated_at": "2026-09-06T04:00:30.000000Z",
+                            "created_at": "2026-08-03T12:23:33.000000Z",
+                            "updated_at": "2026-09-08T00:07:06.000000Z",
                             "effects": [
                                 {
                                     "id": 21103,
@@ -2375,13 +2347,15 @@
                                     "base_value": -2000,
                                     "scaled_value": -2000,
                                     "misc_value": 672,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:44.000000Z",
-                                    "updated_at": "2026-09-02T11:58:20.000000Z"
+                                    "created_at": "2026-08-03T12:23:33.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -2406,6 +2380,8 @@
                             "description": "Conflagrate gains an additional charge.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -2437,8 +2413,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_fire_fireball.jpg",
-                            "created_at": "2026-07-30T14:03:44.000000Z",
-                            "updated_at": "2026-09-06T04:00:21.000000Z",
+                            "created_at": "2026-08-03T12:23:33.000000Z",
+                            "updated_at": "2026-09-08T00:06:59.000000Z",
                             "effects": [
                                 {
                                     "id": 21084,
@@ -2448,13 +2424,15 @@
                                     "base_value": 1,
                                     "scaled_value": 1,
                                     "misc_value": 672,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:44.000000Z",
-                                    "updated_at": "2026-09-02T11:58:20.000000Z"
+                                    "created_at": "2026-08-03T12:23:33.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -2539,7 +2517,7 @@
             "spellId": 10762,
             "category": "Other",
             "description": {
-                "text": "Creates a Healthstone that can be consumed to restore 25% health. $@spelldesc386646",
+                "text": "Creates a Healthstone that can be consumed to restore 25% health. When you use a Healthstone, gain 4% Leech for 20.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2694,7 +2672,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Curse of Weakness is empowered and transforms into Curse of the Satyr. Curse of the Satyr $@spelldesc442804",
+                            "text": "Curse of Weakness is empowered and transforms into Curse of the Satyr. Curse of the Satyr Increases the time between an enemy's attacks by 20% and the casting time of all spells by 30% for 120. Curses: A warlock can only have one Curse active per target.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -2739,8 +2717,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
-                            "uncertain": true
+                            "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2771,8 +2749,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
-                            "uncertain": true
+                            "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3051,6 +3029,22 @@
                         }
                     },
                     {
+                        "spellId": 11683,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Conjure a Shadow Rift at the target location lasting 2 sec. Enemy players within the rift when it expires are teleported to your Demonic Circle.\r\n\r\nMust be within 40 yds of your Demonic Circle to cast.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 11685,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -3076,22 +3070,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "You always gain the benefit of Soulburn when casting Demonic Circle: Teleport, increasing your movement speed by 50% and making you immune to snares and roots for 6 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11683,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Conjure a Shadow Rift at the target location lasting 2 sec. Enemy players within the rift when it expires are teleported to your Demonic Circle.\r\n\r\nMust be within 40 yds of your Demonic Circle to cast.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -3468,8 +3446,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone $@spelldesc452930 60 sec cooldown.",
-                            "uncertain": false
+                            "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional (varies)% over 6. 60 sec cooldown.",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3557,7 +3535,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -3657,7 +3635,7 @@
             "spellId": 11644,
             "category": "Other",
             "description": {
-                "text": "You summon a Diabolic Oculus, up to (varies), each time the duration of Diabolic Ritual is reduced by one of your spells. Diabolic Oculi explode when consuming Demonic Art, dealing ≈234.6% of Spell Power Fire damage to all enemies within (varies) yds of the target. Damage reduced beyond 8 targets.",
+                "text": "You summon a Diabolic Oculus, up to 3, each time the duration of Diabolic Ritual is reduced by one of your spells. Diabolic Oculi explode when consuming Demonic Art, dealing ≈234.6% of Spell Power Fire damage to all enemies within 10 yds of the target. Damage reduced beyond 8 targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3687,8 +3665,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Diabolic Oculi now cast Diabolic Gaze at your primary demon's target every 1 sec while active. Diabolic Gaze $@spelldesc1269892",
-                            "uncertain": false
+                            "text": "Your Diabolic Oculi now cast Diabolic Gaze at your primary demon's target every 1 sec while active. Diabolic Gaze Fire a beam of destructive chaos magic at the target, dealing ≈80% of Spell Power Chaos damage. Damage is increased by 100% per Demonic Oculus active.",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3814,7 +3792,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "You summon a Diabolic Oculus, up to (varies), each time the duration of Diabolic Ritual is reduced by one of your spells. Diabolic Oculi explode when consuming Demonic Art, dealing ≈234.6% of Spell Power Fire damage to all enemies within (varies) yds of the target. Damage reduced beyond 8 targets.",
+                            "text": "You summon a Diabolic Oculus, up to 3, each time the duration of Diabolic Ritual is reduced by one of your spells. Diabolic Oculi explode when consuming Demonic Art, dealing ≈234.6% of Spell Power Fire damage to all enemies within 10 yds of the target. Damage reduced beyond 8 targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3847,8 +3825,8 @@
             "spellId": 11629,
             "category": "Other",
             "description": {
-                "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear $@spelldesc394235 Unstable Tear $@spelldesc387979 Chaos Tear $@spelldesc394243 Generates 3 Soul Shard Fragments.",
-                "uncertain": false
+                "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear Deals (varies) Shadow damage over 14. Unstable Tear Deals (varies) Chaos damage over 6. Chaos Tear Fires a Chaos Bolt, dealing 1 Chaos damage. This Chaos Bolt always critically strikes and your critical strike chance increases its damage. Generates 3 Soul Shard Fragments.",
+                "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3859,8 +3837,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend $@spelldesc434587",
-                            "uncertain": false
+                            "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend Generates 1 Soul Shard Fragment every (varies) sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3894,8 +3872,8 @@
             "spellId": 11625,
             "category": "Other",
             "description": {
-                "text": "Casting Incinerate has a 10% chance to evoke an echo of the Dark Titan's power. Echo of Sargeras $@spelldesc1265884",
-                "uncertain": false
+                "text": "Casting Incinerate has a 10% chance to evoke an echo of the Dark Titan's power. Echo of Sargeras Hurl an ember torn from Nihilam at the target, dealing ≈187.5% of Spell Power Shadowflame damage and an additional ≈162.5% of Spell Power Shadowflame damage to all enemies within 10 yds. Damage reduced beyond 8 targets.",
+                "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3974,7 +3952,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4044,7 +4022,7 @@
             "spellId": 10761,
             "category": "Crowd Control",
             "description": {
-                "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. $@spelldesc386648",
+                "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. Increases the amount of damage required to break your fear effects by 60%.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4056,7 +4034,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Let loose a terrifying howl, causing 5 enemies within (varies) yds to flee in fear, disorienting them for 20. Damage may cancel the effect.",
+                            "text": "Let loose a terrifying howl, causing 5 enemies within 10 yds to flee in fear, disorienting them for 20. Damage may cancel the effect.",
                             "uncertain": true
                         },
                         "category": "Crowd Control",
@@ -4074,6 +4052,8 @@
                                         "description": "Reduces the cooldown of Shadowfury by ${$s1/-1000} sec and increases its radius by $s2 yds. Reduces the cooldown of Howl of Terror by ${$s3/-1000} sec and it now fears $s4 additional enemies.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -4105,8 +4085,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shadow_shadowfury.jpg",
-                                        "created_at": "2026-07-30T14:03:43.000000Z",
-                                        "updated_at": "2026-09-06T04:00:42.000000Z"
+                                        "created_at": "2026-08-03T12:23:32.000000Z",
+                                        "updated_at": "2026-09-08T00:07:17.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -5,
@@ -4157,7 +4137,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. $@spelldesc386648",
+                            "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. Increases the amount of damage required to break your fear effects by 60%.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -4173,7 +4153,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. $@spelldesc386648",
+                            "text": "Strikes fear in the enemy, disorienting for 20. Damage may cancel the effect. Limit 1. Increases the amount of damage required to break your fear effects by 60%.",
                             "uncertain": false
                         },
                         "category": "Crowd Control",
@@ -4257,7 +4237,9 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
+                "named": [],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 11513,
                         "relationship_type": "modifies_cooldown",
@@ -4274,83 +4256,13 @@
                             "applied": []
                         }
                     }
-                ],
-                "baseline": [],
-                "potential": []
-            },
-            "hasPotentialImprovement": false,
-            "cooldown": {
-                "seconds": 120,
-                "base_seconds": 180,
-                "applied": [
-                    {
-                        "spell": {
-                            "id": 11513,
-                            "patch_id": 1,
-                            "spell_id": 386113,
-                            "name": "Fel Pact",
-                            "school": "Shadow",
-                            "description": "Reduces the cooldown of Fel Domination by ${$s1/-1000} sec.",
-                            "variables": null,
-                            "charges": null,
-                            "cooldown_seconds": null,
-                            "cooldown_scaling_note": null,
-                            "duration_seconds": null,
-                            "pvp_duration_seconds": null,
-                            "pairs_with_category": null,
-                            "requires_stealth": false,
-                            "requires_target_out_of_combat": false,
-                            "not_in_spellbook": true,
-                            "mechanic": null,
-                            "usable_while_cc": null,
-                            "bypasses_active_defense": false,
-                            "silence_immune_by_school": false,
-                            "cc_immunity_note": null,
-                            "grants_cc_immunity_override": null,
-                            "cc_immunity_gating_spell_id": null,
-                            "grants_cc_immunity": [],
-                            "grants_school_immunity": null,
-                            "school_immunity_override": null,
-                            "spell_type": "None",
-                            "range_yards": null,
-                            "dr_category": null,
-                            "conditional_dr_gating_spell_id": null,
-                            "conditional_dr_category": null,
-                            "category": "Other",
-                            "cast_type": "instant",
-                            "chain_target": null,
-                            "is_peel": false,
-                            "is_interrupt": false,
-                            "is_mobility": false,
-                            "is_passive": true,
-                            "icon_name": "spell_shadow_impphaseshift.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:30.000000Z",
-                            "effects": [
-                                {
-                                    "id": 20937,
-                                    "spell_id": 11513,
-                                    "effect_index": 1,
-                                    "type": "Add Flat Modifier (107): Spell Cooldown",
-                                    "base_value": -60000,
-                                    "scaled_value": -60000,
-                                    "misc_value": 11,
-                                    "affected_schools": null,
-                                    "sp_coefficient": null,
-                                    "pvp_coefficient": null,
-                                    "rank_op": null,
-                                    "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
-                                }
-                            ]
-                        },
-                        "relationship_type": "modifies_cooldown",
-                        "modifier_value": -60,
-                        "modifier_unit": "seconds",
-                        "selection_spell_id": 11513
-                    }
                 ]
+            },
+            "hasPotentialImprovement": true,
+            "cooldown": {
+                "seconds": 180,
+                "base_seconds": 180,
+                "applied": []
             },
             "charges": {
                 "charges": null,
@@ -4417,7 +4329,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4507,7 +4419,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4537,7 +4449,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4577,8 +4489,8 @@
             "spellId": 11604,
             "category": "Offensive",
             "description": {
-                "text": "When your Wither deals periodic damage to a target above 80% health, gain 2% Haste for 10. Stacks up to (varies) times.",
-                "uncertain": true
+                "text": "When your Wither deals periodic damage to a target above 80% health, gain 2% Haste for 10. Stacks up to 3 times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4771,7 +4683,7 @@
             "drCategory": null
         },
         {
-            "spellId": 38212,
+            "spellId": 13680,
             "category": "Defensive",
             "description": {
                 "text": "Removes all movement impairing effects and all effects which cause loss of control of your character.",
@@ -5107,7 +5019,7 @@
             "spellId": 11495,
             "category": "Crowd Control",
             "description": {
-                "text": "Let loose a terrifying howl, causing 5 enemies within (varies) yds to flee in fear, disorienting them for 20. Damage may cancel the effect.",
+                "text": "Let loose a terrifying howl, causing 5 enemies within 10 yds to flee in fear, disorienting them for 20. Damage may cancel the effect.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -5165,6 +5077,8 @@
                             "description": "Reduces the cooldown of Shadowfury by ${$s1/-1000} sec and increases its radius by $s2 yds. Reduces the cooldown of Howl of Terror by ${$s3/-1000} sec and it now fears $s4 additional enemies.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5196,8 +5110,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_shadowfury.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:42.000000Z",
+                            "created_at": "2026-08-03T12:23:32.000000Z",
+                            "updated_at": "2026-09-08T00:07:17.000000Z",
                             "effects": [
                                 {
                                     "id": 20969,
@@ -5207,13 +5121,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20970,
@@ -5223,13 +5139,15 @@
                                     "base_value": 2,
                                     "scaled_value": 2,
                                     "misc_value": 6,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20971,
@@ -5239,13 +5157,15 @@
                                     "base_value": -5000,
                                     "scaled_value": -5000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20972,
@@ -5255,13 +5175,15 @@
                                     "base_value": 5,
                                     "scaled_value": 5,
                                     "misc_value": 40,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -5756,8 +5678,8 @@
             "spellId": 11645,
             "category": "Other",
             "description": {
-                "text": "Your Diabolic Oculi now cast Diabolic Gaze at your primary demon's target every 1 sec while active. Diabolic Gaze $@spelldesc1269892",
-                "uncertain": false
+                "text": "Your Diabolic Oculi now cast Diabolic Gaze at your primary demon's target every 1 sec while active. Diabolic Gaze Fire a beam of destructive chaos magic at the target, dealing ≈80% of Spell Power Chaos damage. Damage is increased by 100% per Demonic Oculus active.",
+                "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6072,7 +5994,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -6142,8 +6064,8 @@
             "spellId": 11520,
             "category": "Other",
             "description": {
-                "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone $@spelldesc452930 60 sec cooldown.",
-                "uncertain": false
+                "text": "Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded. Demonic Healthstone Instantly restores 25% health, plus an additional (varies)% over 6. 60 sec cooldown.",
+                "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6405,22 +6327,6 @@
                         }
                     },
                     {
-                        "spellId": 11621,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases how quickly Rain of Fire deals damage by 25% and how quickly your Infernal's Immolation deals damage by 10%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 11144,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -6519,6 +6425,22 @@
                 ],
                 "baseline": [],
                 "potential": [
+                    {
+                        "spellId": 11621,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases how quickly Rain of Fire deals damage by 25% and how quickly your Infernal's Immolation deals damage by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
                     {
                         "spellId": 11404,
                         "relationship_type": "modifies",
@@ -6726,8 +6648,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Consuming Ritual of Ruin summons an Overfiend for 8. Summon Overfiend $@spelldesc434587",
-                            "uncertain": false
+                            "text": "Consuming Ritual of Ruin summons an Overfiend for 8. Summon Overfiend Generates 1 Soul Shard Fragment every (varies) sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6745,7 +6667,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination $@spelldesc434635",
+                            "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination Call down a demon-infested meteor from the depths of the Twisting Nether, dealing 434,635 Chaos damage on impact to all enemies within 8 yds of the target and summoning 1 Diabolic Imp. Damage is further increased by your critical strike chance and is reduced beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6761,7 +6683,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination $@spelldesc434635",
+                            "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination Call down a demon-infested meteor from the depths of the Twisting Nether, dealing 434,635 Chaos damage on impact to all enemies within 8 yds of the target and summoning 1 Diabolic Imp. Damage is further increased by your critical strike chance and is reduced beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6794,7 +6716,7 @@
             "spellId": 11633,
             "category": "Offensive",
             "description": {
-                "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination $@spelldesc434635",
+                "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination Call down a demon-infested meteor from the depths of the Twisting Nether, dealing 434,635 Chaos damage on impact to all enemies within 8 yds of the target and summoning 1 Diabolic Imp. Damage is further increased by your critical strike chance and is reduced beyond 8 targets.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6808,7 +6730,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination $@spelldesc434635",
+                            "text": "Summoning a Pit Lord causes your next Chaos Bolt to become Ruination. Ruination Call down a demon-infested meteor from the depths of the Twisting Nether, dealing 434,635 Chaos damage on impact to all enemies within 8 yds of the target and summoning 1 Diabolic Imp. Damage is further increased by your critical strike chance and is reduced beyond 8 targets.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -6871,8 +6793,8 @@
             "spellId": 11632,
             "category": "Other",
             "description": {
-                "text": "Mother of Chaos empowers your next Incinerate to become Infernal Bolt. Infernal Bolt $@spelldesc434506",
-                "uncertain": false
+                "text": "Mother of Chaos empowers your next Incinerate to become Infernal Bolt. Infernal Bolt Hurl a bolt enveloped in the infernal flames of the abyss, dealing ≈1,347.4% of Spell Power Fire damage to your enemy target and generating 3 Soul Shards.",
+                "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -6981,7 +6903,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -7407,8 +7329,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear $@spelldesc394235 Unstable Tear $@spelldesc387979 Chaos Tear $@spelldesc394243 Generates 3 Soul Shard Fragments.",
-                            "uncertain": false
+                            "text": "Chaos Bolt and Shadowburn have a 10% chance to rip open a hole in space and time, opening a random portal that damages your target: Shadowy Tear Deals (varies) Shadow damage over 14. Unstable Tear Deals (varies) Chaos damage over 6. Chaos Tear Fires a Chaos Bolt, dealing 1 Chaos damage. This Chaos Bolt always critically strikes and your critical strike chance increases its damage. Generates 3 Soul Shard Fragments.",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7472,8 +7394,8 @@
             "spellId": 11497,
             "category": "Crowd Control",
             "description": {
-                "text": "Stuns all enemies within (varies) yds for 3.",
-                "uncertain": true
+                "text": "Stuns all enemies within 8 yds for 3.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7513,6 +7435,8 @@
                             "description": "Reduces the cooldown of Shadowfury by ${$s1/-1000} sec and increases its radius by $s2 yds. Reduces the cooldown of Howl of Terror by ${$s3/-1000} sec and it now fears $s4 additional enemies.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7544,8 +7468,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shadow_shadowfury.jpg",
-                            "created_at": "2026-07-30T14:03:43.000000Z",
-                            "updated_at": "2026-09-06T04:00:42.000000Z",
+                            "created_at": "2026-08-03T12:23:32.000000Z",
+                            "updated_at": "2026-09-08T00:07:17.000000Z",
                             "effects": [
                                 {
                                     "id": 20969,
@@ -7555,13 +7479,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20970,
@@ -7571,13 +7497,15 @@
                                     "base_value": 2,
                                     "scaled_value": 2,
                                     "misc_value": 6,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20971,
@@ -7587,13 +7515,15 @@
                                     "base_value": -5000,
                                     "scaled_value": -5000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 20972,
@@ -7603,13 +7533,15 @@
                                     "base_value": 5,
                                     "scaled_value": 5,
                                     "misc_value": 40,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:43.000000Z",
-                                    "updated_at": "2026-09-02T11:58:19.000000Z"
+                                    "created_at": "2026-08-03T12:23:32.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 }
                             ]
                         },
@@ -7635,8 +7567,8 @@
             "spellId": 10817,
             "category": "Utility",
             "description": {
-                "text": "Burns harmful spells, removing 1 harmful Magic effect from an ally. Auto-Cast: Cast upon master when (varies):she; is unable to cast spells due to a Magic effect. (Right-Click to toggle)",
-                "uncertain": true
+                "text": "Burns harmful spells, removing 1 harmful Magic effect from an ally. Auto-Cast: Cast upon master when he is unable to cast spells due to a Magic effect. (Right-Click to toggle)",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7821,8 +7753,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend $@spelldesc434587",
-                            "uncertain": false
+                            "text": "Casting Soul Fire summons an Overfiend. Opening a Dimensional Rift has a chance to summon an Overfiend instead. Summon Overfiend Generates 1 Soul Shard Fragment every (varies) sec and casts Chaos Bolt at 80% effectiveness at its summoner's target. Lasts 8.",
+                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8027,22 +7959,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 11536,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Drain Life heals for an additional 200% of damage dealt and grants Soul Leech equal to 10% of damage dealt.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ],
                 "baseline": [],
@@ -8070,6 +7986,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Sacrifice 10% of your maximum health. Soul Leech now absorbs an additional 15% of your maximum health.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 11536,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Drain Life heals for an additional 200% of damage dealt and grants Soul Leech equal to 10% of damage dealt.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -8168,7 +8100,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -8365,59 +8297,9 @@
                         },
                         "category": "Other",
                         "cooldown": {
-                            "seconds": 120,
+                            "seconds": 180,
                             "base_seconds": 180,
-                            "applied": [
-                                {
-                                    "spell": {
-                                        "id": 11513,
-                                        "patch_id": 1,
-                                        "spell_id": 386113,
-                                        "name": "Fel Pact",
-                                        "school": "Shadow",
-                                        "description": "Reduces the cooldown of Fel Domination by ${$s1/-1000} sec.",
-                                        "variables": null,
-                                        "charges": null,
-                                        "cooldown_seconds": null,
-                                        "cooldown_scaling_note": null,
-                                        "duration_seconds": null,
-                                        "pvp_duration_seconds": null,
-                                        "pairs_with_category": null,
-                                        "requires_stealth": false,
-                                        "requires_target_out_of_combat": false,
-                                        "not_in_spellbook": true,
-                                        "mechanic": null,
-                                        "usable_while_cc": null,
-                                        "bypasses_active_defense": false,
-                                        "silence_immune_by_school": false,
-                                        "cc_immunity_note": null,
-                                        "grants_cc_immunity_override": null,
-                                        "cc_immunity_gating_spell_id": null,
-                                        "grants_cc_immunity": [],
-                                        "grants_school_immunity": null,
-                                        "school_immunity_override": null,
-                                        "spell_type": "None",
-                                        "range_yards": null,
-                                        "dr_category": null,
-                                        "conditional_dr_gating_spell_id": null,
-                                        "conditional_dr_category": null,
-                                        "category": "Other",
-                                        "cast_type": "instant",
-                                        "chain_target": null,
-                                        "is_peel": false,
-                                        "is_interrupt": false,
-                                        "is_mobility": false,
-                                        "is_passive": true,
-                                        "icon_name": "spell_shadow_impphaseshift.jpg",
-                                        "created_at": "2026-07-30T14:03:43.000000Z",
-                                        "updated_at": "2026-09-06T04:00:30.000000Z"
-                                    },
-                                    "relationship_type": "modifies_cooldown",
-                                    "modifier_value": -60,
-                                    "modifier_unit": "seconds",
-                                    "selection_spell_id": 11513
-                                }
-                            ]
+                            "applied": []
                         }
                     }
                 ],
@@ -8502,6 +8384,8 @@
                             "description": null,
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": "101.00",
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8533,8 +8417,8 @@
                             "is_mobility": false,
                             "is_passive": false,
                             "icon_name": "1367345.jpg",
-                            "created_at": "2026-07-30T14:03:39.000000Z",
-                            "updated_at": "2026-09-06T04:00:23.000000Z",
+                            "created_at": "2026-08-03T12:23:29.000000Z",
+                            "updated_at": "2026-09-24T08:32:57.000000Z",
                             "effects": [
                                 {
                                     "id": 20191,
@@ -8544,13 +8428,15 @@
                                     "base_value": 0,
                                     "scaled_value": 0,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:39.000000Z",
-                                    "updated_at": "2026-08-07T15:40:12.000000Z"
+                                    "created_at": "2026-08-03T12:23:29.000000Z",
+                                    "updated_at": "2026-08-03T12:23:29.000000Z"
                                 },
                                 {
                                     "id": 20192,
@@ -8560,13 +8446,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:39.000000Z",
-                                    "updated_at": "2026-09-02T11:58:17.000000Z"
+                                    "created_at": "2026-08-03T12:23:29.000000Z",
+                                    "updated_at": "2026-09-08T00:05:05.000000Z"
                                 }
                             ]
                         },
@@ -8585,6 +8473,8 @@
                             "description": "Reduces the cooldown of Summon Infernal by ${$s1/-1000}.1 sec and increases your Mastery by $s2%.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8616,8 +8506,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "warlock_pvp_burninglegion.jpg",
-                            "created_at": "2026-07-30T14:03:44.000000Z",
-                            "updated_at": "2026-09-06T04:00:42.000000Z",
+                            "created_at": "2026-08-03T12:23:33.000000Z",
+                            "updated_at": "2026-09-08T00:07:17.000000Z",
                             "effects": [
                                 {
                                     "id": 21142,
@@ -8627,13 +8517,15 @@
                                     "base_value": -30000,
                                     "scaled_value": -30000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:44.000000Z",
-                                    "updated_at": "2026-09-02T11:58:20.000000Z"
+                                    "created_at": "2026-08-03T12:23:33.000000Z",
+                                    "updated_at": "2026-09-08T00:05:06.000000Z"
                                 },
                                 {
                                     "id": 21143,
@@ -8643,13 +8535,15 @@
                                     "base_value": 3,
                                     "scaled_value": 3,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:44.000000Z",
-                                    "updated_at": "2026-08-07T15:40:17.000000Z"
+                                    "created_at": "2026-08-03T12:23:33.000000Z",
+                                    "updated_at": "2026-08-03T12:23:33.000000Z"
                                 }
                             ]
                         },
@@ -8665,7 +8559,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -8692,59 +8586,9 @@
                         },
                         "category": "Other",
                         "cooldown": {
-                            "seconds": 120,
+                            "seconds": 180,
                             "base_seconds": 180,
-                            "applied": [
-                                {
-                                    "spell": {
-                                        "id": 11513,
-                                        "patch_id": 1,
-                                        "spell_id": 386113,
-                                        "name": "Fel Pact",
-                                        "school": "Shadow",
-                                        "description": "Reduces the cooldown of Fel Domination by ${$s1/-1000} sec.",
-                                        "variables": null,
-                                        "charges": null,
-                                        "cooldown_seconds": null,
-                                        "cooldown_scaling_note": null,
-                                        "duration_seconds": null,
-                                        "pvp_duration_seconds": null,
-                                        "pairs_with_category": null,
-                                        "requires_stealth": false,
-                                        "requires_target_out_of_combat": false,
-                                        "not_in_spellbook": true,
-                                        "mechanic": null,
-                                        "usable_while_cc": null,
-                                        "bypasses_active_defense": false,
-                                        "silence_immune_by_school": false,
-                                        "cc_immunity_note": null,
-                                        "grants_cc_immunity_override": null,
-                                        "cc_immunity_gating_spell_id": null,
-                                        "grants_cc_immunity": [],
-                                        "grants_school_immunity": null,
-                                        "school_immunity_override": null,
-                                        "spell_type": "None",
-                                        "range_yards": null,
-                                        "dr_category": null,
-                                        "conditional_dr_gating_spell_id": null,
-                                        "conditional_dr_category": null,
-                                        "category": "Other",
-                                        "cast_type": "instant",
-                                        "chain_target": null,
-                                        "is_peel": false,
-                                        "is_interrupt": false,
-                                        "is_mobility": false,
-                                        "is_passive": true,
-                                        "icon_name": "spell_shadow_impphaseshift.jpg",
-                                        "created_at": "2026-07-30T14:03:43.000000Z",
-                                        "updated_at": "2026-09-06T04:00:30.000000Z"
-                                    },
-                                    "relationship_type": "modifies_cooldown",
-                                    "modifier_value": -60,
-                                    "modifier_unit": "seconds",
-                                    "selection_spell_id": 11513
-                                }
-                            ]
+                            "applied": []
                         }
                     }
                 ],
@@ -8967,8 +8811,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
-                            "uncertain": true
+                            "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 20% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8983,8 +8827,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "While Unending Resolve is active, enemies within (varies) yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
-                            "uncertain": true
+                            "text": "While Unending Resolve is active, enemies within 30 yds are affected by Curse of Tongues and Curse of Weakness at 100% effectiveness.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9323,8 +9167,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your Wither deals periodic damage to a target above 80% health, gain 2% Haste for 10. Stacks up to (varies) times.",
-                            "uncertain": true
+                            "text": "When your Wither deals periodic damage to a target above 80% health, gain 2% Haste for 10. Stacks up to 3 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9462,22 +9306,6 @@
                         }
                     },
                     {
-                        "spellId": 11591,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Calls forth a cataclysm at the target location, dealing ≈364.5% of Spell Power Shadowflame damage to all enemies within (varies) yards and afflicting them with Wither.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 30,
-                            "base_seconds": 30,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 11603,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -9499,8 +9327,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When your Wither deals periodic damage to a target above 80% health, gain 2% Haste for 10. Stacks up to (varies) times.",
-                            "uncertain": true
+                            "text": "When your Wither deals periodic damage to a target above 80% health, gain 2% Haste for 10. Stacks up to 3 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9695,7 +9523,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within (varies) yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
+                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within 40 yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9711,7 +9539,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within (varies) yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
+                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within 40 yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9727,7 +9555,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within (varies) yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
+                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within 40 yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9759,7 +9587,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within (varies) yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
+                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within 40 yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9775,7 +9603,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within (varies) yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
+                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within 40 yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9791,7 +9619,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within (varies) yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
+                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within 40 yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9807,7 +9635,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within (varies) yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
+                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within 40 yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9823,7 +9651,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within (varies) yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
+                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within 40 yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9839,7 +9667,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within (varies) yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
+                            "text": "Launches 15 bolts of felfire over (varies) at random targets afflicted by your Wither within 40 yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9882,12 +9710,28 @@
                         }
                     },
                     {
+                        "spellId": 11591,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Calls forth a cataclysm at the target location, dealing ≈364.5% of Spell Power Shadowflame damage to all enemies within 8 yards and afflicting them with Wither.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": 30,
+                            "base_seconds": 30,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 11594,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Launches 15 bolts of felfire over 3 at random targets afflicted by your Wither within (varies) yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
+                            "text": "Launches 15 bolts of felfire over 3 at random targets afflicted by your Wither within 40 yds. Each bolt deals 15 Fire damage to the target and ≈19.6% of Spell Power Fire damage to nearby enemies.",
                             "uncertain": true
                         },
                         "category": "Offensive",

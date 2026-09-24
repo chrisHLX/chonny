@@ -71,6 +71,13 @@ namespace App\Http\Services;
  * occasionally a min-max range like "6 - 25 yards" — stored as the raw string, never parsed to
  * a number, since `spell_type` alone is the field this was actually added for). Both left null
  * when absent — unlike cast_type, there's no safe default value to assume here.
+ *
+ * `max_stacks` (spell-level "Stacks : N maximum") and `radius_yards` / `chain_targets` (both on an
+ * effect's own detail line) were added 2026-09-24 for one reason: descriptions ask for all three by
+ * name ($u, $AN/$aN, $xN) and, with nowhere to read them from, rendered "(varies)" in finished
+ * prose — "stacking up to (varies) times", "all enemies within (varies) yards". Unlike range_yards
+ * above, these ARE parsed to numbers, because substituting them into prose is the whole purpose.
+ * A min-max radius keeps the maximum; the prose never asks about the inner bound.
  */
 class SpellDataFileParser
 {
@@ -84,14 +91,14 @@ class SpellDataFileParser
      *     spell_id: int, name: string, school: ?string, description: ?string, description_ref: ?int,
      *     variables: ?string,
      *     class_field: ?string,
-     *     charges: ?int, cooldown_seconds: ?float, duration_seconds: ?float, mechanic: ?string, spell_type: ?string, range_yards: ?string, cast_type: string,
+     *     charges: ?int, max_stacks: ?int, proc_chance: ?float, cooldown_seconds: ?float, duration_seconds: ?float, mechanic: ?string, spell_type: ?string, range_yards: ?string, cast_type: string,
      *     affecting_spells: array<int, array{name: string, effect_index: ?int}>,
      *     category_refs: array<int, array{name: string, effect_index: ?int}>,
      *     replaces_refs: array<int, string>,
      *     free_specs: array<int, string>,
      *     not_in_spellbook: bool,
      *     is_passive: bool,
-     *     effects: array<int, array{effect_index: int, type: ?string, base_value: ?float, scaled_value: ?float, sp_coefficient: ?float, pvp_coefficient: ?float, rank_op: ?string, rank_values: ?array<int, float>, modified_by: array<int, array{name: string, effect_index: ?int}>, affects_category: array<int, array{name: string, effect_index: ?int}>}>,
+     *     effects: array<int, array{effect_index: int, type: ?string, base_value: ?float, scaled_value: ?float, sp_coefficient: ?float, pvp_coefficient: ?float, radius_yards: ?float, chain_targets: ?int, rank_op: ?string, rank_values: ?array<int, float>, modified_by: array<int, array{name: string, effect_index: ?int}>, affects_category: array<int, array{name: string, effect_index: ?int}>}>,
      * }>
      */
     public function parseContent(string $content): array
@@ -137,6 +144,8 @@ class SpellDataFileParser
                     'variables' => null,
                     'class_field' => null,
                     'charges' => null,
+                    'max_stacks' => null,
+                    'proc_chance' => null,
                     'cooldown_seconds' => null,
                     'duration_seconds' => null,
                     'mechanic' => null,
@@ -208,7 +217,7 @@ class SpellDataFileParser
             if (str_contains($line, 'tree=class') && preg_match('/free=\(([^)]*)\)/', $line, $m)) {
                 foreach (explode(',', $m[1]) as $specName) {
                     $specName = trim($specName);
-                    if ($specName !== '' && !in_array($specName, $current['free_specs'], true)) {
+                    if ($specName !== '' && ! in_array($specName, $current['free_specs'], true)) {
                         $current['free_specs'][] = $specName;
                     }
                 }
@@ -271,6 +280,36 @@ class SpellDataFileParser
             if (preg_match('/^Range\s*:\s*(.+)$/', $line, $m)) {
                 $current['range_yards'] = trim($m[1]);
                 $inEffects = false;
+
+                continue;
+            }
+
+            // "Stacks : 10 maximum" or "Stacks : 1 initial, 1 maximum" — the cap a stacking aura
+            // reaches, which descriptions ask for by name ("stacking up to $194879u times", 273
+            // occurrences of $u/$U across the 13 dumps). Only the MAXIMUM is taken: the initial
+            // count is how many you get on the first application, and no token asks for it.
+            //
+            // Unlike Range just above this is parsed to a number, because that is the whole point
+            // — a "(varies) times" in rendered prose is what it exists to replace. A line with no
+            // "maximum" leaves the field null, so resolveValueToken() keeps returning null and the
+            // honest "(varies)" survives rather than becoming a confident 0.
+            // "Proc Chance : 40%" — what $h means ("has a $h% chance to reset the cooldown").
+            // Stored exactly as given; see the 2026_09_24_000002 migration for why the column's
+            // odd-looking 101% rows are not a reason to distrust the ones descriptions use.
+            if (preg_match('/^Proc Chance\s*:\s*([\d.]+)\s*%/i', $line, $m)) {
+                $current['proc_chance'] = (float) $m[1];
+                $inEffects = false;
+                $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
+
+                continue;
+            }
+
+            if (preg_match('/^Stacks\s*:\s*(?:.*?,\s*)?(\d+)\s*maximum/i', $line, $m)) {
+                $current['max_stacks'] = (int) $m[1];
+                $inEffects = false;
+                $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
 
                 continue;
             }
@@ -527,7 +566,7 @@ class SpellDataFileParser
                 continue;
             }
 
-            if (!$inEffects) {
+            if (! $inEffects) {
                 continue;
             }
 
@@ -569,6 +608,8 @@ class SpellDataFileParser
                     'sp_coefficient' => null,
                     'pvp_coefficient' => null,
                     'misc_value' => null,
+                    'radius_yards' => null,
+                    'chain_targets' => null,
                     'affected_schools' => null,
                     'modified_by' => [],
                     'affects_category' => [],
@@ -614,6 +655,22 @@ class SpellDataFileParser
             // 2026_09_02 migration's docblock for what this column is for.
             if (preg_match('/Misc Value:\s*(0x[0-9a-fA-F]+|-?\d+)/', $line, $m)) {
                 $currentEffect['misc_value'] = (int) intval($m[1], 0);
+            }
+
+            // "Radius: 12 yards" or "Radius: 0 - 40 yards" — what $AN/$aN mean in a description
+            // ("all enemies within $A1 yards", 283 occurrences). The min-max form is a min/max
+            // pair and the MAX is the one the prose is talking about: "Radius: 0 - 40 yards" is
+            // an effect that reaches 40 yards, and no description asks about the inner bound.
+            if (preg_match('/Radius:\s*(?:[\d.]+\s*-\s*)?([\d.]+)\s*yards?/i', $line, $m)) {
+                $currentEffect['radius_yards'] = (float) $m[1];
+            }
+
+            // "Chain Targets: 3" — what $xN means ("Affects $x1 total targets"). The count
+            // INCLUDES the primary target, which is why the prose reads "total targets" rather
+            // than "additional": Chain Lightning's effect #1 carries 3 and its tooltip in game
+            // reads "Affects 3 total targets", so this value is substituted as-is.
+            if (preg_match('/Chain Targets:\s*(\d+)/', $line, $m)) {
+                $currentEffect['chain_targets'] = (int) $m[1];
             }
 
             if (preg_match('/Modified By:\s*(.+)$/', $line, $m)) {

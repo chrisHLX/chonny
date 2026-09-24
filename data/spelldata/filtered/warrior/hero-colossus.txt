@@ -1,5 +1,5 @@
 # Warrior — Colossus Hero Talents
-# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
+# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Colossal Might (id=429634) [Spell Family (4), Passive, Hidden] 
@@ -163,9 +163,10 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1114022)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 0.6 | Target: Self (1)
+                   Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 1.2 | Target: Self (1)
                    Affected Spells: Slam (1464), Mortal Strike (12294), Mortal Strike (339385), Heroic Strike (1269383), Concussive Slam (1300660)
                    Family Flags: 21, 25
+Hotfixed         : PvP Coefficient (0.6 -> 1.2)
 #2 (id=1184820)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
                    Affected Spells: Cleave (845), Whirlwind (1680), Whirlwind Off-Hand (44949), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Whirlwind (411547), Cleave (458459)

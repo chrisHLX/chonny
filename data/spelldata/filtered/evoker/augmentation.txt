@@ -1,5 +1,5 @@
 # Evoker — Augmentation Spec Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
 # 52 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Quell (id=351338) [Spell Family (224)] 
@@ -23,6 +23,7 @@ Effects          :
 Description      : Interrupt an enemy's spellcasting and prevent any spell from that school of magic from being cast for $d.
 
 Name             : Blistering Scales (desc=Black) (id=360827) [Spell Family (224)] 
+Hotfixed         : Variables
 Talent Entry     : Augmentation [tree=spec, row=6, col=2, max_rank=1, req_points=8]
 Class            : Evoker
 School           : Firestorm
@@ -60,7 +61,7 @@ Melee attacks against the target cause 1 scale to explode, dealing $<dmg> Volcan
 Blistering Scales can only be placed on one target at a time. Casts on your enemy's target if they have one.
 Tooltip          : $?$w1>0[Armor increased by $w1.][Armor increased by $w2%.] Melee attacks against you have a chance to cause an explosion of Volcanic damage.
 Variables        : $perc=${$s2}
-$dmg=${$INT*0.3*(1+$@versadmg)*$pctD}
+$dmg=${$INT*0.6*(1+$@versadmg)*$pctD}
 
 Name             : Power Nexus (id=369908) [Spell Family (224), Passive] 
 Talent Entry     : Augmentation [tree=spec, row=5, col=2, max_rank=1, req_points=8]
@@ -132,10 +133,12 @@ Attributes       : No Aura Cancel (31), Exclude Caster (51), Ignore Line of Sigh
 Aura Interrupt   : Leave World (19), Change Specialization (38), Raid Encounter Start or M+ Start (40), Change Talent (46), Change Glyph (47)
 Effects          :
 #1 (id=1035393)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
-                   Base Value: 8 | Scaled Value: 8 | PvP Coefficient: 1.25 | Radius: 0 - 500 yards | Target: at Self (18) -> At Ally in Area (31)
+                   Base Value: 8 | Scaled Value: 8 | PvP Coefficient: 1.5 | Radius: 0 - 500 yards | Target: at Self (18) -> At Ally in Area (31)
+Hotfixed         : PvP Coefficient (1.25 -> 1.5)
                    Modified By: Close as Clutchmates (396043 effect#1), Evoker Augmentation 10.1 Class Set 4pc (414878 effect#1)
 #2 (id=1035394)  : Apply Aura (6) | Modify Stat With Support Triggers (540)
-                   Base Value: 0 | Scaled Value: 0 | PvP Coefficient: 1.25 | Misc Value: 1 | Radius: 0 - 500 yards | Target: at Self (18) -> At Ally in Area (31)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Radius: 0 - 500 yards | Target: at Self (18) -> At Ally in Area (31)
+Hotfixed         : PvP Coefficient (1.25 -> 1)
 #3 (id=1248097)  : Dummy (3)
                    Base Value: 2 | Scaled Value: 2
 Description      : Increase all damage dealing allies' primary stat by $<amount>% of your own and increase your own damage by $395296s1% for $d.
@@ -166,7 +169,8 @@ Family Flags     : 0, 2, 3, 38, 54
 Attributes       : Spellcast Override In Spellbook (310), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1035409)  : School Damage (2): firestorm | Attributes: Always AOE Line of Sight (5)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 2.8 | PvP Coefficient: 1.4375 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 3.22 | PvP Coefficient: 1.4375 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+Hotfixed         : SP Coefficient (2.8 -> 3.22)
 Description      : Cause a violent eruption beneath an enemy's feet, dealing $s1 Volcanic damage split between them and nearby enemies.$?s395153[
 
 Increases the duration of your active Ebon Might effects by ${$395153s1/1000}.1 sec.][]

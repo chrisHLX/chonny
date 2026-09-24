@@ -1915,8 +1915,21 @@ class ModuleSpellReferenceService
 
         // Pass 1: conditional branches. $?a<id>/$?s<id> resolved via this spell's own kit
         // context membership; $?c<n> codes are flagged rather than guessed.
+        // The "\]?" tolerates a stray closing bracket between the id and the first branch —
+        // "$?a137008][$s3 charges of Bone Shield][Killing Machine]". Exactly two spells in the
+        // 12.1.0.69933 dumps are written this way (the other is "$?s400254][Raze][Maul]"), and
+        // both were leaking the whole token as raw text onto the page, 30 times across the
+        // committed kits once duplicated per spec. Not a guess about what they mean: a condition
+        // followed by [A][B] has one reading, and both sentences are only grammatical under it.
+        // The "\s*" between the two branch groups is the same kind of source variation: three
+        // descriptions write "$?a137010[...] [...]" with a space, which the adjacent-only form
+        // could not match either. Both tolerances are anchored on "$?<letter><digits>", so no
+        // ordinary bracketed prose can be swept up by them.
+        //
+        // A well-formed token is unaffected, and a shape that still doesn't match is left for
+        // Pass 1a exactly as before.
         $text = preg_replace_callback(
-            '/\$\?([acs])(\d+)\[([^\[\]]*)\]\[([^\[\]]*)\]/',
+            '/\$\?([acs])(\d+)\]?\[([^\[\]]*)\]\s*\[([^\[\]]*)\]/',
             function ($m) use (&$uncertain, $kitIds, $spell) {
                 [, $letter, $id, $branchA, $branchB] = $m;
 
@@ -1968,6 +1981,37 @@ class ModuleSpellReferenceService
             '/\$\?\(?[^)\[\]]*\)?\[[^\[\]]*\](?:\?\(?[^)\[\]]*\)?\[[^\[\]]*\])*\[[^\[\]]*\]/',
             function ($m) use (&$uncertain, $kitIds, $spell) {
                 return $this->resolveChainedConditional($m[0], $kitIds, $uncertain, $spell);
+            },
+            $text
+        );
+
+        // Pass 1c: a conditional with ONE branch and no else — "$?a137010[Maul, Raze, Mangle, or
+        // Swipe]". The branch is inserted when the aura is in this kit and nothing is when it is
+        // not, which is what an absent second group means.
+        //
+        // Runs AFTER Pass 1 and Pass 1a on purpose. Both of those need a second bracket group, so
+        // by the time this runs every two-branch and every chained token is already gone and what
+        // is left genuinely has one branch. Ordered the other way round it would tear the first
+        // half off a well-formed "[A][B]" and silently drop B. Aggravate Wounds is the case that
+        // found it: it writes two of these back to back and also a normal "[A][B]" in the same
+        // sentence, so it exercises both paths at once.
+        $text = preg_replace_callback(
+            '/\$\?([acs])(\d+)\[([^\[\]]*)\]/',
+            function ($m) use (&$uncertain, $kitIds, $spell) {
+                [, $letter, $id, $branch] = $m;
+
+                if ($letter === 'c') {
+                    $uncertain = true;
+                    $this->logGapOnce("cond:{$spell->spell_id}:{$id}", 'ModuleSpellReferenceService: unresolvable $?c condition code', [
+                        'spell_id' => $spell->spell_id, 'code' => $id,
+                    ]);
+
+                    return '(varies by condition — check in-game)';
+                }
+
+                $other = $this->findSpellBySpellId((int) $id, null);
+
+                return ($other && $kitIds->contains($other->id)) ? $branch : '';
             },
             $text
         );
@@ -2037,86 +2081,153 @@ class ModuleSpellReferenceService
         // dropped here; formatNumber() already renders sensible precision (whole when exact,
         // else one decimal). Before this it passed through as literal text ("lasts 3.1 sec"
         // where the real value is 3, "restore 0.5.1%" once a $<var> resolved to 0.5).
-        $text = preg_replace_callback(
-            '/\$\{([^{}]*)\}(?:\.\d)?/',
-            function ($m) use (&$uncertain, $spell) {
-                // An unresolved token substituted as 0 only produces a correct result when 0 is
-                // the arithmetic identity for its position: an ADDITIVE term (`+$s3`, `$d-$s1`)
-                // or a DIVIDEND (`$s2/100`). As a MULTIPLICAND (`$m1*3`) it annihilates the
-                // product; as a DIVISOR (`$s1/$s2`) it breaks the expression. So a null token in
-                // a poisoning position discards the whole ${...} to "(varies)" — matching what
-                // effectValue()/Pass 3 already do for the bare-token case (game-data.md Gap 1) —
-                // while a null token in a safe additive/dividend position is genuinely "no
-                // modifier applied" and 0 is kept.
-                // Found 2026-09-06: Eviscerate's ${$m1*N} rendered "1 point : 0 damage ...";
-                // 21 kit entries affected. Additive carve-out added same day so Alter Time
-                // (${$110909d+$s3}) keeps its real "10 seconds" and Nature's Guardian
-                // (${$Xs1*(1+$s2/100)}) keeps its real base %.
-                $expr = $m[1];
-                $poisoned = false;
-                $count = 0;
+        // A REGULAR closure with `use (&$uncertain)`, never `fn () =>`. An arrow function
+        // captures by value with no opt-out, so the inner callback's `&$uncertain` would bind to
+        // the arrow function's own copy and the flag would never reach the caller: the text came
+        // out right and `uncertain` silently stayed false. CLAUDE.md lists this as the first PHP
+        // trap in the file for a reason — it has now caused a regression twice.
+        $evaluateExpressions = function (string $input) use (&$uncertain, $spell): string {
+            return preg_replace_callback(
+                '/\$\{([^{}]*)\}(?:\.\d)?/',
+                function ($m) use (&$uncertain, $spell) {
+                    // An unresolved token substituted as 0 only produces a correct result when 0 is
+                    // the arithmetic identity for its position: an ADDITIVE term (`+$s3`, `$d-$s1`)
+                    // or a DIVIDEND (`$s2/100`). As a MULTIPLICAND (`$m1*3`) it annihilates the
+                    // product; as a DIVISOR (`$s1/$s2`) it breaks the expression. So a null token in
+                    // a poisoning position discards the whole ${...} to "(varies)" — matching what
+                    // effectValue()/Pass 3 already do for the bare-token case (game-data.md Gap 1) —
+                    // while a null token in a safe additive/dividend position is genuinely "no
+                    // modifier applied" and 0 is kept.
+                    // Found 2026-09-06: Eviscerate's ${$m1*N} rendered "1 point : 0 damage ...";
+                    // 21 kit entries affected. Additive carve-out added same day so Alter Time
+                    // (${$110909d+$s3}) keeps its real "10 seconds" and Nature's Guardian
+                    // (${$Xs1*(1+$s2/100)}) keeps its real base %.
+                    $expr = $m[1];
+                    $poisoned = false;
+                    $count = 0;
 
-                $inner = preg_replace_callback(
-                    '/\$(\d*[a-zA-Z]+\d*)/',
-                    function ($mm) use (&$poisoned, &$uncertain, $spell, $expr) {
-                        // PREG_OFFSET_CAPTURE: $mm[n] is [string, byteOffset].
-                        [$full, $offset] = $mm[0];
-                        $token = $mm[1][0];
+                    $inner = preg_replace_callback(
+                        '/\$(\d*[a-zA-Z]+\d*)/',
+                        function ($mm) use (&$poisoned, &$uncertain, $spell, $expr) {
+                            // PREG_OFFSET_CAPTURE: $mm[n] is [string, byteOffset].
+                            [$full, $offset] = $mm[0];
+                            $token = $mm[1][0];
 
-                        $value = $this->resolveValueToken($token, $spell);
+                            $value = $this->resolveValueToken($token, $spell);
 
-                        if ($value !== null) {
-                            return (string) $value;
-                        }
+                            if ($value !== null) {
+                                return (string) $value;
+                            }
 
+                            $uncertain = true;
+
+                            // Operators immediately flanking this token in the raw expression.
+                            $before = rtrim(substr($expr, 0, $offset));
+                            $after = ltrim(substr($expr, $offset + strlen($full)));
+                            $prevOp = $before === '' ? '' : substr($before, -1);
+                            $nextOp = $after === '' ? '' : substr($after, 0, 1);
+
+                            // 0 annihilates a product and breaks division-by; it's the identity for
+                            // an additive term or a dividend.
+                            //
+                            // It is NOT the identity for a MINUEND either — "$x1-1" collapses to
+                            // "0-1" and renders a confident "-1". Found 2026-09-10 while fixing the
+                            // signed-reduction prose below: this is what was left rendering "jumping
+                            // to -1 additional nearby enemies" (Avenger's Shield), "once every -1
+                            // sec" (Earth Shield) and "strikes up to -3 nearby targets" (Blade
+                            // Flurry). The tokens involved ($x chain-targets, $u max-stacks, $i
+                            // targets) aren't captured in this schema at all, so there is nothing to
+                            // resolve them to — "(varies)" is the honest answer, and a negative count
+                            // of targets is the confidently-wrong one. A 0 SUBTRAHEND ("$d-$s1" where
+                            // $s1 is null) stays safe and is deliberately still allowed through.
+                            if ($prevOp === '*' || $prevOp === '/' || $nextOp === '*' || $nextOp === '-') {
+                                $poisoned = true;
+                            }
+
+                            return '0';
+                        },
+                        $m[1],
+                        -1,
+                        $count,
+                        PREG_OFFSET_CAPTURE
+                    );
+
+                    if ($poisoned) {
+                        return '(varies)';
+                    }
+
+                    $result = $this->safeEval($inner);
+                    if ($result === null) {
                         $uncertain = true;
 
-                        // Operators immediately flanking this token in the raw expression.
-                        $before = rtrim(substr($expr, 0, $offset));
-                        $after = ltrim(substr($expr, $offset + strlen($full)));
-                        $prevOp = $before === '' ? '' : substr($before, -1);
-                        $nextOp = $after === '' ? '' : substr($after, 0, 1);
+                        return '(varies)';
+                    }
 
-                        // 0 annihilates a product and breaks division-by; it's the identity for
-                        // an additive term or a dividend.
-                        //
-                        // It is NOT the identity for a MINUEND either — "$x1-1" collapses to
-                        // "0-1" and renders a confident "-1". Found 2026-09-10 while fixing the
-                        // signed-reduction prose below: this is what was left rendering "jumping
-                        // to -1 additional nearby enemies" (Avenger's Shield), "once every -1
-                        // sec" (Earth Shield) and "strikes up to -3 nearby targets" (Blade
-                        // Flurry). The tokens involved ($x chain-targets, $u max-stacks, $i
-                        // targets) aren't captured in this schema at all, so there is nothing to
-                        // resolve them to — "(varies)" is the honest answer, and a negative count
-                        // of targets is the confidently-wrong one. A 0 SUBTRAHEND ("$d-$s1" where
-                        // $s1 is null) stays safe and is deliberately still allowed through.
-                        if ($prevOp === '*' || $prevOp === '/' || $nextOp === '*' || $nextOp === '-') {
-                            $poisoned = true;
-                        }
+                    return $this->formatNumber($result);
+                },
+                $input
+            );
+        };
 
-                        return '0';
-                    },
-                    $m[1],
-                    -1,
-                    $count,
-                    PREG_OFFSET_CAPTURE
-                );
+        // Run until it settles, because Pass 1.5 can hand this pass a NESTED expression.
+        //
+        // "[^{}]*" cannot span an inner brace, so on "${$361237s1*${$s2/100}}" the regex fails at
+        // the outer "${", matches the inner one, and carries on past the outer closer — leaving a
+        // literal "${383,410*1}" on the page once Pass 3 formatted the leftover token inside it.
+        // 43 raw descriptions inline a $<var> inside another ${...}, and 25 leaked this way across
+        // the kits, including a plain "${10+20}". Each iteration resolves one more level, so two
+        // are enough today; the cap is there so a malformed string cannot spin.
+        for ($depth = 0; $depth < 4; $depth++) {
+            $next = $evaluateExpressions($text);
 
-                if ($poisoned) {
-                    return '(varies)';
-                }
+            if ($next === $text) {
+                break;
+            }
 
-                $result = $this->safeEval($inner);
-                if ($result === null) {
-                    $uncertain = true;
+            $text = $next;
+        }
 
-                    return '(varies)';
-                }
+        // Pass 2.5: set aside SimC's pluralisation tokens — "$lrune:runes;", "$LRune:Runes;" —
+        // so Pass 3 cannot eat them, and resolve them once the numbers around them are real.
+        //
+        // This is a rendering bug, not a data gap, and it was visible in shipped output: Pass 3's
+        // token regex matched the "$Lrune" half, failed to resolve a value token called "Lrune",
+        // and returned "(varies)" — leaving the other half of the token stranded as literal text.
+        // The committed spell kits held 1,028 of these, reading "(varies):stacks;",
+        // "(varies):charges;", "(varies):points;". CLAUDE.md names "$lWord:Words;" in its own
+        // definition of done for this data.
+        //
+        // The placeholder deliberately uses braces with no leading "$": every other pass in this
+        // resolver anchors on "$", so nothing downstream can match it by accident.
+        $plurals = [];
+        $capture = function ($m) use (&$plurals) {
+            $plurals[] = ['singular' => $m[1], 'plural' => $m[2]];
 
-                return $this->formatNumber($result);
-            },
-            $text
-        );
+            return '{{PLURAL:'.(count($plurals) - 1).'}}';
+        };
+
+        // The usual form, "$ltarget:targets;".
+        $text = preg_replace_callback('/\$[lL]([^:;$]*):([^;$]*);/', $capture, $text);
+
+        // "$ghe:she;" is the same shape for gender, and leaked the same way — "(varies):she;" on
+        // a pet's auto-cast line. The game fills it from the reading character's own gender and
+        // this site has no character, so there is no right answer to pick: the first form is
+        // used, as the game's own words rather than an invention, and the limitation is recorded
+        // in knowledge-gaps.md. Three descriptions in the current patch use it, none of them an
+        // arena ability. Captured through the same list so the sentinel logic is shared; the
+        // number test ahead of it simply never matches a pronoun, so the first form wins.
+        $text = preg_replace_callback('/\$[gG]([^:;$]*):([^;$]*);/', function ($m) use (&$plurals) {
+            $plurals[] = ['singular' => $m[1], 'plural' => $m[1]];
+
+            return '{{PLURAL:'.(count($plurals) - 1).'}}';
+        }, $text);
+
+        // And a second form, "$ltarget;targets", where the separator is the semicolon and the
+        // plural simply runs to the end of the word. Three descriptions use it — Shadowboxing
+        // Treads among them, whose tooltip in game reads "strikes an additional 2 targets",
+        // which is the reading this takes. Matched after the colon form, so there is no
+        // "$lA:B;" left for it to bite into, and restricted to letters for the same reason.
+        $text = preg_replace_callback('/\$[lL]([a-zA-Z]+);([a-zA-Z]+)/', $capture, $text);
 
         // Pass 3: remaining bare tokens ($s1, $d, $<id>s1, $<id>d) outside any braces.
         //
@@ -2180,8 +2291,96 @@ class ModuleSpellReferenceService
             $text
         );
 
+        // Pass 4: put the pluralisation tokens back, now that the numbers are real.
+        //
+        // The game picks the form from the last number written before the token, which is what
+        // "refund 2 $lrune:runes;" means. So does this: the nearest preceding number decides, and
+        // ONLY an exact 1 takes the singular.
+        //
+        // When nothing numeric precedes it — the value ahead of it resolved to "(varies)", or the
+        // token opens the sentence — the plural is used. That is the form that reads correctly
+        // next to an unresolved value ("stacking up to (varies) times") and next to a count the
+        // reader has not seen yet, and unlike the number itself there is no honest third option:
+        // a word has to be written one way or the other.
+        if ($plurals !== []) {
+            $text = preg_replace_callback(
+                '/\{\{PLURAL:(\d+)\}\}/',
+                function ($m) use ($plurals, $text) {
+                    $forms = $plurals[(int) $m[1]];
+
+                    // Each placeholder carries its own index, so strpos finds this one and no
+                    // other. Earlier placeholders are stripped out of the preceding text before
+                    // the number is read — "{{PLURAL:0}}" ends in a digit and would otherwise
+                    // read as the nearest number.
+                    $at = strpos($text, $m[0]);
+                    $before = $at === false ? '' : preg_replace('/\{\{PLURAL:\d+\}\}/', '', substr($text, 0, $at));
+
+                    $singular = preg_match('/(\d+(?:\.\d+)?)\D*$/', $before, $num) && (float) $num[1] === 1.0;
+
+                    return $singular ? $forms['singular'] : $forms['plural'];
+                },
+                $text
+            );
+        }
+
+        // Pass 5: inline "$@spelldesc<id>" — another spell's description, spliced into this one
+        // mid-sentence ("infects all enemies with Blood Plague. Blood Plague $@spelldesc55078").
+        //
+        // SpellDataFileParser already handles the case where a description is ONLY this pointer:
+        // it anchors on ^...$, stores description_ref, and ImportSpellData backfills the text
+        // after every class is loaded. An inline one matches neither that anchor nor any pass
+        // above — Pass 3's token regex needs a letter straight after the "$" and finds "@" — so
+        // it travelled all the way to the page as raw text, 164 times across the committed kits.
+        //
+        // The referenced description is resolved in ITS OWN right, not spliced in raw, because
+        // its $s1 means effect #1 of the spell it was written for. Inlining the raw text would
+        // resolve those against the host spell and print a confident wrong number. Done last, so
+        // the text that comes back is never put through the passes above a second time.
+        //
+        // A cycle would otherwise be infinite (A points at B, B points back at A), so a spell
+        // already being resolved further up the stack drops its token instead. A dropped token
+        // leaves a slightly thin sentence; a leaked one leaves "$@spelldesc55078" on the page.
+        if (str_contains($text, '$@spelldesc')) {
+            $text = preg_replace_callback(
+                '/\$@spelldesc(\d+)/',
+                function ($m) use (&$uncertain, $spell, $build) {
+                    $referenced = (int) $m[1];
+                    $other = $this->findSpellBySpellId($referenced, $spell->patch_id);
+
+                    if (! $other || $other->id === $spell->id || in_array($other->id, $this->descriptionRefStack, true)) {
+                        $uncertain = true;
+                        $this->logGapOnce("spelldesc:{$spell->spell_id}:{$referenced}", 'ModuleSpellReferenceService: unresolved inline $@spelldesc reference', [
+                            'spell_id' => $spell->spell_id, 'referenced_spell_id' => $referenced,
+                        ]);
+
+                        return '';
+                    }
+
+                    $this->descriptionRefStack[] = $other->id;
+
+                    try {
+                        $resolved = $this->resolveDescription($other, $build);
+                    } finally {
+                        array_pop($this->descriptionRefStack);
+                    }
+
+                    $uncertain = $uncertain || $resolved['uncertain'];
+
+                    return $resolved['text'];
+                },
+                $text
+            );
+
+            // Splicing a sentence in can leave a doubled space or a space before punctuation.
+            $text = preg_replace('/ {2,}/', ' ', $text);
+            $text = preg_replace('/ +([.,;])/', '$1', $text);
+        }
+
         return ['text' => $text, 'uncertain' => $uncertain];
     }
+
+    /** Spell ids currently being resolved, so an inline $@spelldesc cycle terminates. */
+    private array $descriptionRefStack = [];
 
     /**
      * Parses and resolves one "$?(cond)[branch]?(cond)[branch)...[fallback]" chained
@@ -2386,15 +2585,65 @@ class ModuleSpellReferenceService
             return $spell->duration_seconds !== null ? (float) $spell->duration_seconds : null;
         }
 
-        if (preg_match('/^(\d+)(s(\d+)|d)$/', $token, $m)) {
+        // $u / $U — "stacking up to $u times". Case-insensitive because the dumps use both.
+        if ($token === 'u' || $token === 'U') {
+            return $spell->max_stacks !== null ? (float) $spell->max_stacks : null;
+        }
+
+        // $h — "has a $h% chance to". The percent sign is written in the prose around the token,
+        // so only the number is substituted.
+        if ($token === 'h') {
+            return $spell->proc_chance !== null ? (float) $spell->proc_chance : null;
+        }
+
+        // $aN / $AN — effect N's radius, "all enemies within $A1 yards". Own effect only, no
+        // sibling recovery: a same-named sibling is a DIFFERENT effect of the ability (the
+        // damage bolt vs the visual), so its radius is a different number rather than a better
+        // copy of this one, and substituting it would read as a confident wrong distance.
+        if (preg_match('/^[aA](\d+)$/', $token, $m)) {
+            $effect = $spell->effects->firstWhere('effect_index', (int) $m[1]);
+
+            return $effect?->radius_yards !== null ? (float) $effect->radius_yards : null;
+        }
+
+        // $xN — effect N's chain target count, "Affects $x1 total targets".
+        if (preg_match('/^x(\d+)$/', $token, $m)) {
+            $effect = $spell->effects->firstWhere('effect_index', (int) $m[1]);
+
+            return $effect?->chain_targets !== null ? (float) $effect->chain_targets : null;
+        }
+
+        if (preg_match('/^(\d+)(s(\d+)|[aA](\d+)|x(\d+)|d|[uU]|h)$/', $token, $m)) {
             $other = $this->findSpellBySpellId((int) $m[1], $spell->patch_id);
 
             if (! $other) {
                 return null;
             }
 
-            if ($m[2] === 'd') {
+            $rest = $m[2];
+
+            if ($rest === 'd') {
                 return $other->duration_seconds !== null ? (float) $other->duration_seconds : null;
+            }
+
+            if ($rest === 'u' || $rest === 'U') {
+                return $other->max_stacks !== null ? (float) $other->max_stacks : null;
+            }
+
+            if ($rest === 'h') {
+                return $other->proc_chance !== null ? (float) $other->proc_chance : null;
+            }
+
+            if (preg_match('/^[aA](\d+)$/', $rest, $am)) {
+                $effect = $other->effects->firstWhere('effect_index', (int) $am[1]);
+
+                return $effect?->radius_yards !== null ? (float) $effect->radius_yards : null;
+            }
+
+            if (preg_match('/^x(\d+)$/', $rest, $xm)) {
+                $effect = $other->effects->firstWhere('effect_index', (int) $xm[1]);
+
+                return $effect?->chain_targets !== null ? (float) $effect->chain_targets : null;
             }
 
             $effect = $this->findEffectByIndex($other, (int) $m[3]);

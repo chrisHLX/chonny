@@ -1,5 +1,5 @@
 # Death Knight — San'layn Hero Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Vampiric Strike (id=433901) [Spell Family (15), Passive] 
@@ -175,7 +175,8 @@ Effects          :
 #5 (id=1283137)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
 #6 (id=1293332)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Base Value: 75 | Scaled Value: 75 | Target: Self (1)
+Hotfixed         : Base Value (30 -> 75)
 Description      : When Vampiric Strike damages an enemy affected by your $?a137008[Blood Plague][plagues], it extends the duration of the $?a137008[disease][plagues] by $?c1[${$s3/1000}.1][${$s5/1000}.1] sec$?c1[, and deals $s2% of the remaining damage to the enemy.][, and erupts them with $s6% increased effectiveness.]
 
 Name             : Incite Terror (id=434151) [Spell Family (15), Passive] 
@@ -332,9 +333,10 @@ Effects          :
                    Affected Spells: Blood Plague (55078), Consumption (1263872)
                    Family Flags: 57
 #5 (id=1311177)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
                    Affected Spells: Festering Wound (194311), Dread Plague (1240996), Dread Plague (1242564)
                    Family Flags: 119
+Hotfixed         : Base Value (10 -> 20)
 #6 (id=1319200)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Virulent Plague (191587), Virulent Eruption (191685)
@@ -344,9 +346,10 @@ Effects          :
                    Affected Spells: Blood Plague (55078), Consumption (1263872)
                    Family Flags: 57
 #8 (id=1319202)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
-                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Festering Wound (194311), Dread Plague (1240996), Dread Plague (1242564)
                    Family Flags: 119
+Hotfixed         : Base Value (10 -> 20)
 Description      : Essence of the Blood Queen additionally increases your Mastery by $?c3[${$s1/10}.1][${$s3/10}.1]% per stack.
 
 $?c3[Dread Plague deals $s5% and Virulent Plague deals $s3%][Blood Plague deals $s4%] increased damage.
@@ -380,7 +383,8 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1293648)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 2 | Target: Self (1)
+Hotfixed         : PvP Coefficient (1 -> 2)
 #2 (id=1293649)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : $?a137008[Blood Plague deals up to $s2%][Your plagues deal up to $s1%] increased damage based on the target's missing health.$?a137007[

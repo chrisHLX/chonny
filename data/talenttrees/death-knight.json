@@ -1,7 +1,7 @@
 {
     "class": "Death Knight",
     "talent_tree_id": 750,
-    "fetched_at": "2026-08-29T03:28:17+00:00",
+    "fetched_at": "2026-09-24T08:07:48+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -718,7 +718,7 @@
                         "talent_name": "Death Strike",
                         "spell_id": 49998,
                         "spell_name": "Death Strike",
-                        "description": "Focuses dark power into a strike that deals 52 Physical damage and heals you for 20.00% of all damage taken in the last 5 sec, minimum 7.0% of maximum health.",
+                        "description": "Focuses dark power into a strike that deals 61 Physical damage and heals you for 20.00% of all damage taken in the last 5 sec, minimum 7.0% of maximum health.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "Melee Range"
@@ -2328,7 +2328,7 @@
                             "talent_name": "Swift and Painful",
                             "spell_id": 443560,
                             "spell_name": "Swift and Painful",
-                            "description": "If no enemies are struck by Soul Rupture, you gain 10% Strength for 8 sec.\r\n\r\nWave of Souls is 100% more effective on the main target of your Reaper's Mark.",
+                            "description": "If no enemies are struck by Soul Rupture, you gain 15% Strength for 8 sec.\r\n\r\nWave of Souls is 100% more effective on the main target of your Reaper's Mark.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2426,7 +2426,7 @@
                             "talent_name": "Wave of Souls",
                             "spell_id": 439851,
                             "spell_name": "Wave of Souls",
-                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 34 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
+                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 33 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2652,7 +2652,7 @@
                             "talent_name": "Exterminate",
                             "spell_id": 441378,
                             "spell_name": "Exterminate",
-                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 152 Shadowfrost damage and the second scythe strikes all enemies around your target for 62 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
+                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 154 Shadowfrost damage and the second scythe strikes all enemies around your target for 63 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2708,7 +2708,7 @@
                             "talent_name": "Deathly Blows",
                             "spell_id": 1265932,
                             "spell_name": "Deathly Blows",
-                            "description": "Death Strike damage increased by 12%.",
+                            "description": "Death Strike damage increased by 20%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2799,7 +2799,7 @@
                             "talent_name": "Heart Strike",
                             "spell_id": 206930,
                             "spell_name": "Heart Strike",
-                            "description": "Instantly strike the target and 1 other nearby enemy, causing 69 Physical damage, and reducing enemies' movement speed by 20% for 8 sec.",
+                            "description": "Instantly strike the target and 1 other nearby enemy, causing 67 Physical damage, and reducing enemies' movement speed by 20% for 8 sec.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -2856,7 +2856,7 @@
                             "talent_name": "Wave of Souls",
                             "spell_id": 439851,
                             "spell_name": "Wave of Souls",
-                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 34 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
+                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 33 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2968,7 +2968,7 @@
                             "talent_name": "Marrowrend",
                             "spell_id": 195182,
                             "spell_name": "Marrowrend",
-                            "description": "Smash the target, dealing 78 Physical damage and generating 3 charges of Bone Shield.\r\n\r\n Bone Shield\r\nSurrounds you with a barrier of whirling bones, increasing Armor by 110. Each melee attack against you consumes a charge. Lasts 30 sec or until all charges are consumed.",
+                            "description": "Smash the target, dealing 77 Physical damage and generating 3 charges of Bone Shield.\r\n\r\n Bone Shield\r\nSurrounds you with a barrier of whirling bones, increasing Armor by 110. Each melee attack against you consumes a charge. Lasts 30 sec or until all charges are consumed.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -3276,7 +3276,7 @@
                             "talent_name": "Deathly Blows",
                             "spell_id": 1265932,
                             "spell_name": "Deathly Blows",
-                            "description": "Death Strike damage increased by 12%.",
+                            "description": "Death Strike damage increased by 20%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3474,7 +3474,7 @@
                             "talent_name": "Swift and Painful",
                             "spell_id": 443560,
                             "spell_name": "Swift and Painful",
-                            "description": "If no enemies are struck by Soul Rupture, you gain 10% Strength for 8 sec.\r\n\r\nWave of Souls is 100% more effective on the main target of your Reaper's Mark.",
+                            "description": "If no enemies are struck by Soul Rupture, you gain 15% Strength for 8 sec.\r\n\r\nWave of Souls is 100% more effective on the main target of your Reaper's Mark.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4248,7 +4248,7 @@
                             "talent_name": "Deadly Reach",
                             "spell_id": 1264235,
                             "spell_name": "Deadly Reach",
-                            "description": "Death Strike hits an additional 2 enemies at 75% effectiveness.",
+                            "description": "Death Strike hits an additional 2 enemies at 60% effectiveness.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4741,7 +4741,7 @@
                             "talent_name": "Sanguinary Burst",
                             "spell_id": 1263781,
                             "spell_name": "Sanguinary Burst",
-                            "description": "When Blood Mist ends it deals 95 Shadow damage to 8 nearby enemies, healing you for 18% of the damage dealt. The damage is increased by 2% for every 1 Runic Power spent while Blood Mist was active.",
+                            "description": "When Blood Mist ends it deals 96 Shadow damage to 8 nearby enemies, healing you for 18% of the damage dealt. The damage is increased by 2% for every 1 Runic Power spent while Blood Mist was active.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4938,7 +4938,7 @@
                             "talent_name": "Scourge Strike",
                             "spell_id": 55090,
                             "spell_name": "Scourge Strike",
-                            "description": "An unholy strike that deals 47 Shadow damage and causing your plagues on the target to erupt, dealing their damage an additional time at 35% effectiveness.\r\n\r\nApplies Virulent Plague or spreads it to a nearby enemy.",
+                            "description": "An unholy strike that deals 48 Shadow damage and causing your plagues on the target to erupt, dealing their damage an additional time at 35% effectiveness.\r\n\r\nApplies Virulent Plague or spreads it to a nearby enemy.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "30 yd range"
@@ -5606,7 +5606,7 @@
                             "talent_name": "Festering Scythe",
                             "spell_id": 455397,
                             "spell_name": "Festering Scythe",
-                            "description": "Festering Strike now follows up with a Festering Scythe that costs no Runes.\r\n\r\nFestering Scythe\r\nSlashes through all enemies within 14 yds in front of you, dealing 36 Shadow damage and hastening all of your plagues on targets hit to deal damage 35% faster for 25 sec.",
+                            "description": "Festering Strike now follows up with a Festering Scythe that costs no Runes.\r\n\r\nFestering Scythe\r\nSlashes through all enemies within 14 yds in front of you, dealing 35 Shadow damage and hastening all of your plagues on targets hit to deal damage 35% faster for 25 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6623,7 +6623,7 @@
                             "talent_name": "Scourging",
                             "spell_id": 1242604,
                             "spell_name": "Scourging",
-                            "description": "Scourge Strike now causes your Plagues to erupt at 50% effectiveness.\r\n\r\nClawing Shadows can now stack 1 additional times.",
+                            "description": "Scourge Strike now causes your Plagues to erupt at 65% effectiveness.\r\n\r\nClawing Shadows can now stack 1 additional times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6634,7 +6634,7 @@
                             "talent_name": "Scourging",
                             "spell_id": 1242604,
                             "spell_name": "Scourging",
-                            "description": "Scourge Strike now causes your Plagues to erupt at 70% effectiveness.\r\n\r\nClawing Shadows can now stack 2 additional times.",
+                            "description": "Scourge Strike now causes your Plagues to erupt at 100% effectiveness.\r\n\r\nClawing Shadows can now stack 2 additional times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6808,7 +6808,7 @@
                             "talent_name": "Blightfall",
                             "spell_id": 1271974,
                             "spell_name": "Blightfall",
-                            "description": "Dark Transformation grants access to Blightfall.\r\n\r\nBlightfall\r\nConsume 100% of your plagues around you and deal 100% of their remaining damage instantly.\r\n\r\nGrants 1 charge of Putrefy.",
+                            "description": "Dark Transformation grants access to Blightfall.\r\n\r\nBlightfall\r\nConsume 100% of your plagues around you and deal 200% of their remaining damage instantly.\r\n\r\nGrants 1 charge of Putrefy.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6951,7 +6951,7 @@
                             "talent_name": "Frost Strike",
                             "spell_id": 49143,
                             "spell_name": "Frost Strike",
-                            "description": "Chill your weapon with icy power and quickly strike the enemy, dealing 57 Frost damage.",
+                            "description": "Chill your weapon with icy power and quickly strike the enemy, dealing 70 Frost damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -7092,7 +7092,7 @@
                             "talent_name": "Obliterate",
                             "spell_id": 49020,
                             "spell_name": "Obliterate",
-                            "description": "A brutal attack that deals 28 Physical and 28 Frost damage.",
+                            "description": "A brutal attack that deals 41 Physical and 41 Frost damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -7121,7 +7121,7 @@
                             "talent_name": "Howling Blast",
                             "spell_id": 49184,
                             "spell_name": "Howling Blast",
-                            "description": "Blast the target with a frigid wind, dealing 15 Frost damage to that foe, and reduced damage to all other enemies within 10 yards, infecting all targets with Frost Fever.\r\n\r\n Frost Fever\r\nA disease that deals 117 Frost damage over 24 sec and has a chance to grant the Death Knight 4 Runic Power each time it deals damage.",
+                            "description": "Blast the target with a frigid wind, dealing 17 Frost damage to that foe, and reduced damage to all other enemies within 10 yards, infecting all targets with Frost Fever.\r\n\r\n Frost Fever\r\nA disease that deals 117 Frost damage over 24 sec and has a chance to grant the Death Knight 4 Runic Power each time it deals damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -7247,7 +7247,7 @@
                             "talent_name": "Deathly Blows",
                             "spell_id": 1265932,
                             "spell_name": "Deathly Blows",
-                            "description": "Death Strike damage increased by 12%.",
+                            "description": "Death Strike damage increased by 20%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7336,7 +7336,7 @@
                             "talent_name": "Frostscythe",
                             "spell_id": 207230,
                             "spell_name": "Frostscythe",
-                            "description": "A sweeping attack that strikes all enemies in front of you for 16 Frost damage. Deals reduced damage beyond 5 targets. \r\n\r\nConsumes Killing Machine to have its critical strikes deal 4 times the normal damage.",
+                            "description": "A sweeping attack that strikes all enemies in front of you for 17 Frost damage. Deals reduced damage beyond 5 targets. \r\n\r\nConsumes Killing Machine to have its critical strikes deal 4 times the normal damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "8 yd range"
@@ -7364,7 +7364,7 @@
                             "talent_name": "Swift and Painful",
                             "spell_id": 443560,
                             "spell_name": "Swift and Painful",
-                            "description": "If no enemies are struck by Soul Rupture, you gain 10% Strength for 8 sec.\r\n\r\nWave of Souls is 100% more effective on the main target of your Reaper's Mark.",
+                            "description": "If no enemies are struck by Soul Rupture, you gain 15% Strength for 8 sec.\r\n\r\nWave of Souls is 100% more effective on the main target of your Reaper's Mark.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7675,7 +7675,7 @@
                             "talent_name": "Exterminate",
                             "spell_id": 441378,
                             "spell_name": "Exterminate",
-                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 154 Shadowfrost damage and the second scythe strikes all enemies around your target for 62 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
+                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 151 Shadowfrost damage and the second scythe strikes all enemies around your target for 61 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7734,7 +7734,7 @@
                             "talent_name": "Frostreaper",
                             "spell_id": 1230301,
                             "spell_name": "Frostreaper",
-                            "description": "Obliterate deals 10% increased damage and has a chance to tether the souls of its target and a nearby enemy to yours.\r\n\r\nFrost Strike severs the tethers, dealing 72 Shadowfrost damage to both foes.",
+                            "description": "Obliterate deals 10% increased damage and has a chance to tether the souls of its target and a nearby enemy to yours.\r\n\r\nFrost Strike severs the tethers, dealing 144 Shadowfrost damage to both foes.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8232,7 +8232,7 @@
                             "talent_name": "Frostwyrm's Fury",
                             "spell_id": 279302,
                             "spell_name": "Frostwyrm's Fury",
-                            "description": "Summons a frostwyrm who breathes on all enemies within 40 yd in front of you, dealing 103 Frost damage, stunning enemies for 3 sec, and slowing movement speed by 50% for 10 sec.",
+                            "description": "Summons a frostwyrm who breathes on all enemies within 40 yd in front of you, dealing 102 Frost damage, stunning enemies for 3 sec, and slowing movement speed by 50% for 10 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1.5 min cooldown",
                             "range": null
@@ -8892,7 +8892,7 @@
                             "talent_name": "Frostbane",
                             "spell_id": 455993,
                             "spell_name": "Frostbane",
-                            "description": "Each foe struck with Glacial Advance has a chance to transform your next Frost Strike into Frostbane. The chance increases with the number of Razorice stacks on the target.\r\n\r\nFrostbane\r\nStart a frozen onslaught that strikes twice, unleashing the chilling essence of winter, dealing 21 Frost damage to all enemies caught in its wake with each strike.\r\n\r\nEach enemy struck reduces the damage dealt to the next foe by 5%, down to 40%.",
+                            "description": "Each foe struck with Glacial Advance has a chance to transform your next Frost Strike into Frostbane. The chance increases with the number of Razorice stacks on the target.\r\n\r\nFrostbane\r\nStart a frozen onslaught that strikes twice, unleashing the chilling essence of winter, dealing 25 Frost damage to all enemies caught in its wake with each strike.\r\n\r\nEach enemy struck reduces the damage dealt to the next foe by 5%, down to 40%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

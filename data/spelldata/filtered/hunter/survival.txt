@@ -1,5 +1,5 @@
 # Hunter — Survival Spec Talents
-# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
+# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
 # 43 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Raptor Strike (id=186270) [Spell Family (9)] 
@@ -83,7 +83,8 @@ Effects          :
 #2 (id=997004)   : Dummy (3)
                    Base Value: 8 | Scaled Value: 8 | Target: Targeted Enemy (6)
 #3 (id=1099130)  : Dummy (3)
-                   Base Value: 80 | Scaled Value: 80 | Target: Targeted Enemy (6)
+                   Base Value: 50 | Scaled Value: 50 | Target: Targeted Enemy (6)
+Hotfixed         : Base Value (80 -> 50)
                    Modified By: Contained Explosion (426344 effect#1)
 Description      : Hurl a bomb at the target, exploding for $265157s1 Fire damage in a cone and coating enemies in wildfire, scorching them for $269747o1 Fire damage over $269747d. Deals reduced damage beyond $s2 targets.
 

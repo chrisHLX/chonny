@@ -286,6 +286,61 @@ Verified: Shield Discipline → *"restore 0.5% of your maximum mana"* (`$47755s1
 
 **Widened again the same day** — a report of missing icons on `/claudes-counters` (which renders spells straight off `spell_class_availability`, passive/hidden ones included — NOT the kit subset). `fetch-spell-icons.php` now also targets **every `spells.id` with a `spell_class_availability` row for the current patch** (~12,800). This is the widest reasonable target — if a spell is available to any class/spec it can surface on some spec page — and subsumes every other source query for coverage. First full run: **4,847 spells got icons** (3,190 via same-name sibling recovery — Shadow Word: Death, Mass Dispel, Vampiric Embrace, Holy Nova, etc.), **3,475 landed in the "no API" bucket** (hidden/internal/removed/test records with no Blizzard media entry anywhere and no sibling that has one — these render `<x-spell-icon>`'s placeholder `<div>`, never a broken image; the run is just noisier). ~22k API requests, one-time. Then 16 more resolved by hand via `wow:resolve-wowhead-icons --apply` (all 9 Hunter pet-family CC abilities — Tendon Rip, Web Spray, Lock Jaw, etc.; the 6 slow/root debuff spell_ids — Earthbind, Cripple, Chilled, Earthgrab, Freeze; and Absolute Zero), each filename verified 200 on Blizzard's own icon CDN before adding, per that file's own rule. **Final: 3 rendered spells still icon-less** — Seduction (2 internal `(desc=Command Demon Ability)` copies) and Fatebound Coin (Tails); Wowhead has filenames but they 404 on Blizzard's CDN at every path/size/region, so they stay as placeholders. `spells` with `icon_name` set went from ~4,480 to 9,356; manifest from ~4,480 to 9,356 entries.
 
+## Four dump values that were never stored, and four rendering bugs — fixed 2026-09-24
+
+Patch bump to **12.1.0.69933** (SimC `midnight`; see CLAUDE.md rule 6a for why
+`--auto-detect-live` would have gone *backwards* to 69283 that day).
+
+The dump has always carried these; nothing read them, so the tokens that ask for them printed
+"(varies)" in finished prose. Counts are occurrences in raw Description lines across all 13
+classes.
+
+| Token | Occurrences | Source line | Column |
+|---|---|---|---|
+| `$u` / `$U` / `$<id>u` | 273 | `Stacks : 10 maximum` | `spells.max_stacks` |
+| `$aN` / `$AN` / `$<id>AN` | 283 | effect detail, `Radius: 12 yards` | `spell_effects.radius_yards` |
+| `$h` | 139 | `Proc Chance : 40%` | `spells.proc_chance` |
+| `$xN` | 19 | effect detail, `Chain Targets: 3` | `spell_effects.chain_targets` |
+
+A min-max radius (`Radius: 0 - 40 yards`) keeps the maximum; the prose never asks about the
+inner bound. `Proc Chance` looks untrustworthy in bulk — 2,295 spells carry 101% — but no spell
+that uses `$h` is one of them, and Battlelord's 40% matches its in-game tooltip.
+
+Four separate rendering bugs surfaced while measuring, each visible on the page:
+
+1. **Pluralisation was never handled at all.** `$lrune:runes;` — Pass 3 matched the `$Lrune`
+   half, failed to resolve a value token by that name, and returned "(varies)", stranding
+   `:runes;` as literal text. The kits held 250 of these. Now set aside before Pass 3 and
+   resolved after, with the nearest preceding number choosing the form and only an exact 1 taking
+   the singular. A second source form, `$ltarget;targets` (3 occurrences), reads the same way.
+2. **Inline `$@spelldesc<id>` leaked raw, 164 times.** The parser only recognises a pointer when
+   it is the *whole* description (`^...$`); one spliced mid-sentence matched no pass at all,
+   because Pass 3's regex needs a letter straight after the `$`. Now resolved recursively — the
+   referenced description is resolved in its own right, since its `$s1` means *its* effect #1 —
+   with a stack guard so a cycle terminates.
+3. **Nested `${...}` left literal braces on the page, 25 times.** Pass 1.5 can inline a
+   `$<var>` that is itself a `${...}`, and `[^{}]*` cannot span the inner brace, so the outer
+   expression survived and Pass 3 then formatted the token inside it — `${383,410*1}`, and once a
+   plain `${10+20}`. Pass 2 now runs until the text settles.
+4. **Three conditional shapes matched nothing.** A stray bracket after the id
+   (`$?a137008][A][B]`, 2 spells), a space between the branch groups (`$?a137010[A] [B]`, 3), and
+   a single branch with no else (`$?a137010[Maul or Swipe]`, which Aggravate Wounds writes twice
+   in one sentence). The one-branch pass runs *after* the two-branch and chained passes on
+   purpose: reversed, it would tear the first half off a well-formed `[A][B]` and drop B.
+
+**Measured across the 40 precomputed kits, committed artifacts against a rebuild:**
+
+| | Before | After |
+|---|---|---|
+| `(varies)` in rendered descriptions | 2,531 | **1,932** |
+| broken plurals (`(varies):stacks;`) | 250 | **0** |
+| leaked `$@spelldesc` | 164 | **0** |
+| leaked raw `$` tokens | 199 | **10** |
+| unresolved conditionals | 30 | **10** |
+
+`knowledge-gaps.md` (2026-09-24) records what is left and why each one stays — chiefly `$tN`,
+which has **no field anywhere in the dump** to read, checked rather than assumed.
+
 ## Not yet built
 
 Per `VISION.md`'s standing goals, the display-facing items here (unresolved tokens, coarse

@@ -1,7 +1,7 @@
 {
-    "generatedAt": "2026-09-19T10:21:35+00:00",
-    "spellCacheVersion": 4162,
-    "codeFingerprint": "07526e2",
+    "generatedAt": "2026-09-24T08:56:41+00:00",
+    "spellCacheVersion": 21,
+    "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 10640,
@@ -67,8 +67,8 @@
             "spellId": 10627,
             "category": "Other",
             "description": {
-                "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to (varies) charges.",
-                "uncertain": true
+                "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to 2 charges.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -155,7 +155,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon (varies):stacks; every (varies) sec.",
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -189,6 +189,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -220,8 +222,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -237,7 +239,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon (varies):stacks; every (varies) sec.",
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -271,6 +273,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -302,8 +306,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -397,6 +401,8 @@
                             "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -428,8 +434,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shaman_ancestralawakening.jpg",
-                            "created_at": "2026-07-30T14:03:29.000000Z",
-                            "updated_at": "2026-09-06T04:00:29.000000Z",
+                            "created_at": "2026-08-03T12:23:24.000000Z",
+                            "updated_at": "2026-09-08T00:07:06.000000Z",
                             "effects": [
                                 {
                                     "id": 19340,
@@ -439,13 +445,15 @@
                                     "base_value": 10,
                                     "scaled_value": 10,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-08-07T15:40:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:24.000000Z",
+                                    "updated_at": "2026-08-03T12:23:24.000000Z"
                                 },
                                 {
                                     "id": 19341,
@@ -455,13 +463,15 @@
                                     "base_value": 100,
                                     "scaled_value": 100,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.35,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-08-07T15:40:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:24.000000Z",
+                                    "updated_at": "2026-08-03T12:23:24.000000Z"
                                 },
                                 {
                                     "id": 19342,
@@ -471,13 +481,15 @@
                                     "base_value": 10,
                                     "scaled_value": 10,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-08-07T15:40:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:24.000000Z",
+                                    "updated_at": "2026-08-03T12:23:24.000000Z"
                                 },
                                 {
                                     "id": 19343,
@@ -487,13 +499,15 @@
                                     "base_value": -60000,
                                     "scaled_value": -60000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-09-02T11:58:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:24.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 },
                                 {
                                     "id": 19344,
@@ -503,13 +517,15 @@
                                     "base_value": 2000,
                                     "scaled_value": 2000,
                                     "misc_value": 1,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-09-02T11:58:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:24.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 },
                                 {
                                     "id": 19345,
@@ -519,13 +535,15 @@
                                     "base_value": 2000,
                                     "scaled_value": 2000,
                                     "misc_value": 3,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-09-02T11:58:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:24.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 }
                             ]
                         },
@@ -703,6 +721,8 @@
                             "description": "Reduces the cooldown of Astral Shift by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -734,8 +754,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shaman_astralshift.jpg",
-                            "created_at": "2026-07-30T14:03:28.000000Z",
-                            "updated_at": "2026-09-06T04:00:29.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-08T00:07:05.000000Z",
                             "effects": [
                                 {
                                     "id": 19117,
@@ -745,13 +765,15 @@
                                     "base_value": -30000,
                                     "scaled_value": -30000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:03.000000Z"
                                 },
                                 {
                                     "id": 19118,
@@ -761,13 +783,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:03.000000Z"
                                 }
                             ]
                         },
@@ -887,8 +911,8 @@
             "spellId": 10471,
             "category": "Crowd Control",
             "description": {
-                "text": "Summons a totem at the target location that gathers electrical energy from the surrounding air and explodes after 2 sec, stunning all enemies within (varies) yards for 3.",
-                "uncertain": true
+                "text": "Summons a totem at the target location that gathers electrical energy from the surrounding air and explodes after 2 sec, stunning all enemies within 8 yards for 3.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -961,6 +985,8 @@
                             "description": "Reduces the cooldown of Capacitor Totem by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -992,8 +1018,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_nature_brilliance.jpg",
-                            "created_at": "2026-07-30T14:03:28.000000Z",
-                            "updated_at": "2026-09-06T04:00:22.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-08T00:07:00.000000Z",
                             "effects": [
                                 {
                                     "id": 19101,
@@ -1003,6 +1029,8 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
@@ -1011,8 +1039,8 @@
                                         -10000,
                                         -20000
                                     ],
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:03.000000Z"
                                 }
                             ]
                         },
@@ -1038,8 +1066,8 @@
             "spellId": 10457,
             "category": "Defensive",
             "description": {
-                "text": "Heals the friendly target for 50, then jumps up to 40 yards to heal the (varies) most injured nearby allies. Healing is reduced by 30% with each jump.",
-                "uncertain": true
+                "text": "Heals the friendly target for 50, then jumps up to 40 yards to heal the 3 most injured nearby allies. Healing is reduced by 30% with each jump.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1098,8 +1126,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
-                            "uncertain": true
+                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to 20 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1146,8 +1174,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maelstrom Weapon can now stack 5 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
-                            "uncertain": true
+                            "text": "Maelstrom Weapon can now stack 5 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to 20 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1214,8 +1242,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1358,8 +1386,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1439,7 +1467,7 @@
             "spellId": 10470,
             "category": "Offensive",
             "description": {
-                "text": "Hurls a lightning bolt at the enemy, dealing ≈116.4% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects (varies) total targets Consumes Maelstrom Weapon for increased cast speed and damage.",
+                "text": "Hurls a lightning bolt at the enemy, dealing ≈116.4% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects 3 total targets Consumes Maelstrom Weapon for increased cast speed and damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1451,8 +1479,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1547,8 +1575,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to (varies) charges.",
-                            "uncertain": true
+                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1563,8 +1591,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to (varies) charges.",
-                            "uncertain": true
+                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1627,8 +1655,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1643,8 +1671,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1659,8 +1687,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1675,8 +1703,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1707,8 +1735,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1755,8 +1783,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1771,8 +1799,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 2,000% and increases its damage by 10%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 2,000% and increases its damage by 10%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1787,8 +1815,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1867,8 +1895,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to (varies) charges.",
-                            "uncertain": true
+                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1935,7 +1963,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge $@spelldesc201845",
+                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge Stormstrike has a 5.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2141,7 +2169,7 @@
             "spellId": 10629,
             "category": "Other",
             "description": {
-                "text": "Gain the effects of the Lightning Rod talent: Lightning Rod $@spelldesc210689",
+                "text": "Gain the effects of the Lightning Rod talent: Lightning Rod Tempest, Lightning Bolt and Chain Lightning make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -2188,8 +2216,8 @@
             "spellId": 10584,
             "category": "Other",
             "description": {
-                "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of (varies) stacks.",
-                "uncertain": true
+                "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of 6 stacks.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2356,8 +2384,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of (varies) stacks.",
-                            "uncertain": true
+                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of 6 stacks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2372,8 +2400,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of (varies) stacks.",
-                            "uncertain": true
+                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of 6 stacks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2388,8 +2416,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of (varies) stacks.",
-                            "uncertain": true
+                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of 6 stacks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2466,22 +2494,6 @@
                     },
                     {
                         "spellId": 9844,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9844,
                         "relationship_type": "hasted_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -2520,7 +2532,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge $@spelldesc201845",
+                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge Stormstrike has a 5.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2564,9 +2576,9 @@
                     },
                     {
                         "spellId": 10433,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": 1,
-                        "modifier_unit": "charges",
+                        "relationship_type": "bypasses_cooldown",
+                        "modifier_value": null,
+                        "modifier_unit": null,
                         "description": {
                             "text": "Each Maelstrom Weapon spent has a 0.1% chance to cause your next Crash Lightning to ignore its cooldown. The weapon enhancement effect of Crash Lightning may now overlap.",
                             "uncertain": false
@@ -2580,9 +2592,9 @@
                     },
                     {
                         "spellId": 10433,
-                        "relationship_type": "bypasses_cooldown",
-                        "modifier_value": null,
-                        "modifier_unit": null,
+                        "relationship_type": "modifies_charges",
+                        "modifier_value": 1,
+                        "modifier_unit": "charges",
                         "description": {
                             "text": "Each Maelstrom Weapon spent has a 0.1% chance to cause your next Crash Lightning to ignore its cooldown. The weapon enhancement effect of Crash Lightning may now overlap.",
                             "uncertain": false
@@ -2776,6 +2788,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2807,8 +2821,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -2842,6 +2856,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2873,8 +2889,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -2890,7 +2906,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon (varies):stacks; every (varies) sec.",
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -2924,6 +2940,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -2955,8 +2973,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -2972,8 +2990,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2988,8 +3006,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3004,8 +3022,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3020,8 +3038,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 5 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 5 Fire Feral Spirits and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3036,8 +3054,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3052,8 +3070,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3068,8 +3086,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3084,8 +3102,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3100,7 +3118,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon (varies):stacks; every (varies) sec.",
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -3132,8 +3150,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -3556,7 +3574,7 @@
             "spellId": 10460,
             "category": "Crowd Control",
             "description": {
-                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within (varies) yards for 8. Enemies previously rooted by the totem instead suffer 50% movement speed reduction.",
+                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within 8 yards for 8. Enemies previously rooted by the totem instead suffer 50% movement speed reduction.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3856,8 +3874,8 @@
             "spellId": 10569,
             "category": "Other",
             "description": {
-                "text": "Stormstrike damage is increased by 20%, and Stormstrike and Lava Lash have a 100% chance to generate 1 (varies):stacks; of Maelstrom Weapon.",
-                "uncertain": true
+                "text": "Stormstrike damage is increased by 20%, and Stormstrike and Lava Lash have a 100% chance to generate 1 stack of Maelstrom Weapon.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4194,8 +4212,8 @@
             "spellId": 10591,
             "category": "Other",
             "description": {
-                "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                "uncertain": true
+                "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4463,8 +4481,8 @@
             "spellId": 10597,
             "category": "Offensive",
             "description": {
-                "text": "Voltaic Blaze generates 2 additional Maelstrom Weapon and has a 30% chance to cause a Fire Nova. Fire Nova $@spelldesc333974",
-                "uncertain": false
+                "text": "Voltaic Blaze generates 2 additional Maelstrom Weapon and has a 30% chance to cause a Fire Nova. Fire Nova Erupt a burst of fiery damage from all targets affected by your Flame Shock, dealing 2 Volcanic damage to up to (varies) targets within 8 yds of your Flame Shock targets.",
+                "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4596,7 +4614,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4798,7 +4816,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge $@spelldesc201845",
+                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge Stormstrike has a 5.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -4908,7 +4926,7 @@
             "drCategory": null
         },
         {
-            "spellId": 38212,
+            "spellId": 13680,
             "category": "Defensive",
             "description": {
                 "text": "Removes all movement impairing effects and all effects which cause loss of control of your character.",
@@ -5158,8 +5176,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
-                            "uncertain": true
+                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to 20 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5174,8 +5192,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maelstrom Weapon can now stack 5 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
-                            "uncertain": true
+                            "text": "Maelstrom Weapon can now stack 5 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to 20 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5258,8 +5276,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5322,8 +5340,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5429,6 +5447,8 @@
                             "description": "Your Hex target is slowed by $378080s1% during Hex and for $378080d after it ends. Reduces the cooldown of Hex by ${($m1/1000)*-1} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5460,8 +5480,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shaman_hex.jpg",
-                            "created_at": "2026-07-30T14:03:28.000000Z",
-                            "updated_at": "2026-09-06T04:00:18.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-08T00:06:57.000000Z",
                             "effects": [
                                 {
                                     "id": 19099,
@@ -5471,13 +5491,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:03.000000Z"
                                 }
                             ]
                         },
@@ -5493,7 +5515,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -5503,8 +5525,8 @@
             "spellId": 10568,
             "category": "Other",
             "description": {
-                "text": "Melee auto-attacks with Flametongue Weapon active have a (varies)% chance to reduce the cooldown of Lava Lash by 25.4% and increase the damage of Lava Lash by 20% for 8. May not occur during an active Hot Hand.",
-                "uncertain": true
+                "text": "Melee auto-attacks with Flametongue Weapon active have a 5% chance to reduce the cooldown of Lava Lash by 25.4% and increase the damage of Lava Lash by 20% for 8. May not occur during an active Hot Hand.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5793,8 +5815,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 150.1 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 150.1 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5809,8 +5831,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 0.1 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 0.1 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5825,8 +5847,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 27 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 27 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5841,8 +5863,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5857,8 +5879,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5873,8 +5895,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a Flame Ascendant for 15, instantly casting a Flame Shock and a 50% effectiveness Lava Burst at up to 6 nearby enemies. While ascended, Elemental Overload damage is increased by 30% and spells affected by your Mastery: Elemental Overload cause 1 additional Elemental (varies):Overloads;.",
-                            "uncertain": true
+                            "text": "Transform into a Flame Ascendant for 15, instantly casting a Flame Shock and a 50% effectiveness Lava Burst at up to 6 nearby enemies. While ascended, Elemental Overload damage is increased by 30% and spells affected by your Mastery: Elemental Overload cause 1 additional Elemental Overload.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -5891,6 +5913,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -5922,8 +5946,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -5939,8 +5963,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 4 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 4 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5991,7 +6015,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge $@spelldesc201845",
+                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge Stormstrike has a 5.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6360,8 +6384,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Melee auto-attacks with Flametongue Weapon active have a (varies)% chance to reduce the cooldown of Lava Lash by 25.4% and increase the damage of Lava Lash by 20% for 8. May not occur during an active Hot Hand.",
-                            "uncertain": true
+                            "text": "Melee auto-attacks with Flametongue Weapon active have a 5% chance to reduce the cooldown of Lava Lash by 25.4% and increase the damage of Lava Lash by 20% for 8. May not occur during an active Hot Hand.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6376,8 +6400,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Stormstrike damage is increased by 20%, and Stormstrike and Lava Lash have a 100% chance to generate 1 (varies):stacks; of Maelstrom Weapon.",
-                            "uncertain": true
+                            "text": "Stormstrike damage is increased by 20%, and Stormstrike and Lava Lash have a 100% chance to generate 1 stack of Maelstrom Weapon.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6508,7 +6532,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge $@spelldesc201845",
+                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge Stormstrike has a 5.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6711,6 +6735,8 @@
                             "description": "Lava Lash cooldown reduced by ${$m1/-1000}.1 sec, and if Lava Lash is used against a target affected by your Flame Shock, Flame Shock will be spread to up to $s2 nearby enemies.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6742,8 +6768,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_fire_ragnaros_lavabolt.jpg",
-                            "created_at": "2026-07-30T14:03:29.000000Z",
-                            "updated_at": "2026-09-06T04:00:25.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-08T00:07:02.000000Z",
                             "effects": [
                                 {
                                     "id": 19312,
@@ -6753,13 +6779,15 @@
                                     "base_value": -6000,
                                     "scaled_value": -6000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-09-02T11:58:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 },
                                 {
                                     "id": 19313,
@@ -6769,13 +6797,15 @@
                                     "base_value": 5,
                                     "scaled_value": 5,
                                     "misc_value": 23,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-09-02T11:58:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 }
                             ]
                         },
@@ -6958,8 +6988,8 @@
             "spellId": 10566,
             "category": "Other",
             "description": {
-                "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                "uncertain": true
+                "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -7002,8 +7032,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7018,8 +7048,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7130,8 +7160,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7164,6 +7194,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7195,8 +7227,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -7292,7 +7324,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon (varies):stacks; every (varies) sec.",
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7324,8 +7356,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
-                            "uncertain": true
+                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to 20 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7340,8 +7372,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7356,8 +7388,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7422,6 +7454,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7453,8 +7487,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -7470,8 +7504,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7518,8 +7552,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7534,8 +7568,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 2,000% and increases its damage by 10%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 2,000% and increases its damage by 10%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7550,7 +7584,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly shocks the target and 5 enemies within (varies) yds with blazing thunder, applying Flame Shock and dealing ≈400% of Spell Power Nature damage. Always critically strikes. Generates 1 (varies):stacks; of Maelstrom Weapon.",
+                            "text": "Instantly shocks the target and 5 enemies within (varies) yds with blazing thunder, applying Flame Shock and dealing ≈400% of Spell Power Nature damage. Always critically strikes. Generates 1 stack of Maelstrom Weapon.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7566,7 +7600,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a lightning bolt at the enemy, dealing ≈116.4% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects (varies) total targets Consumes Maelstrom Weapon for increased cast speed and damage.",
+                            "text": "Hurls a lightning bolt at the enemy, dealing ≈116.4% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects 3 total targets Consumes Maelstrom Weapon for increased cast speed and damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7582,7 +7616,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Instantly shocks the target and 5 enemies within (varies) yds with blazing thunder, applying Flame Shock and dealing ≈400% of Spell Power Nature damage. Always critically strikes. Generates 1 (varies):stacks; of Maelstrom Weapon.",
+                            "text": "Instantly shocks the target and 5 enemies within 10 yds with blazing thunder, applying Flame Shock and dealing ≈400% of Spell Power Nature damage. Always critically strikes. Generates 1 stack of Maelstrom Weapon.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7616,6 +7650,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -7647,8 +7683,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -7664,8 +7700,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Stormstrike damage is increased by 20%, and Stormstrike and Lava Lash have a 100% chance to generate 1 (varies):stacks; of Maelstrom Weapon.",
-                            "uncertain": true
+                            "text": "Stormstrike damage is increased by 20%, and Stormstrike and Lava Lash have a 100% chance to generate 1 stack of Maelstrom Weapon.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7696,8 +7732,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maelstrom Weapon can now stack 5 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
-                            "uncertain": true
+                            "text": "Maelstrom Weapon can now stack 5 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to 20 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7712,7 +7748,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon (varies):stacks; every (varies) sec.",
+                            "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7792,8 +7828,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Voltaic Blaze generates 2 additional Maelstrom Weapon and has a 30% chance to cause a Fire Nova. Fire Nova $@spelldesc333974",
-                            "uncertain": false
+                            "text": "Voltaic Blaze generates 2 additional Maelstrom Weapon and has a 30% chance to cause a Fire Nova. Fire Nova Erupt a burst of fiery damage from all targets affected by your Flame Shock, dealing 2 Volcanic damage to up to (varies) targets within 8 yds of your Flame Shock targets.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -7891,7 +7927,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) (varies):stacks; of Maelstrom Weapon.",
+                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) stacks of Maelstrom Weapon.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7907,7 +7943,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) (varies):stacks; of Maelstrom Weapon.",
+                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) stacks of Maelstrom Weapon.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7923,7 +7959,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) (varies):stacks; of Maelstrom Weapon.",
+                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) stacks of Maelstrom Weapon.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7939,7 +7975,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) (varies):stacks; of Maelstrom Weapon.",
+                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) stacks of Maelstrom Weapon.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7955,7 +7991,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Calls down a tremendous lightning strike that deals 452,201 Nature damage to your target and (varies) Nature damage to enemies within (varies) yds of your target. Damage reduced beyond 5 targets. Consumes Maelstrom Weapon for increased cast speed and damage.",
+                            "text": "Calls down a tremendous lightning strike that deals 452,201 Nature damage to your target and (varies) Nature damage to enemies within 8 yds of your target. Damage reduced beyond 5 targets. Consumes Maelstrom Weapon for increased cast speed and damage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7987,8 +8023,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Purges the enemy target, removing 1 beneficial Magic (varies):effects;.$?(s147762&s51530) [ Successfully purging a target grants a stack of Maelstrom Weapon.][]",
-                            "uncertain": true
+                            "text": "Purges the enemy target, removing 1 beneficial Magic effect.$?(s147762&s51530) [ Successfully purging a target grants a stack of Maelstrom Weapon.][]",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -8068,8 +8104,8 @@
             "spellId": 10492,
             "category": "Other",
             "description": {
-                "text": "Your Stormstrike casts restore 225 mana to you and 4 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                "uncertain": true
+                "text": "Your Stormstrike casts restore 225 mana to you and 4 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8080,8 +8116,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 150.1 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 150.1 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8096,8 +8132,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 0.1 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 0.1 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8112,8 +8148,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 27 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 27 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8128,8 +8164,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8144,8 +8180,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8406,8 +8442,8 @@
             "spellId": 10580,
             "category": "Other",
             "description": {
-                "text": "Maelstrom Weapon can now stack 5 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
-                "uncertain": true
+                "text": "Maelstrom Weapon can now stack 5 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to 20 times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8418,8 +8454,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to (varies) times.",
-                            "uncertain": true
+                            "text": "Maelstrom Weapon can now stack 10 additional times. Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by 10%, and increasing their healing by 10% up to 10 times. This effect can be accumulated up to 20 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8825,8 +8861,8 @@
             "spellId": 10455,
             "category": "Utility",
             "description": {
-                "text": "Purges the enemy target, removing 1 beneficial Magic (varies):effects;.$?(s147762&s51530) [ Successfully purging a target grants a stack of Maelstrom Weapon.][]",
-                "uncertain": true
+                "text": "Purges the enemy target, removing 1 beneficial Magic effect.$?(s147762&s51530) [ Successfully purging a target grants a stack of Maelstrom Weapon.][]",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9115,7 +9151,7 @@
             "spellId": 10478,
             "category": "Defensive",
             "description": {
-                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to (varies) times.",
+                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to 4 times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9314,7 +9350,7 @@
             "spellId": 10585,
             "category": "Other",
             "description": {
-                "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon (varies):stacks; every (varies) sec.",
+                "text": "During Doom Winds or Ascendance, you generate 1 Maelstrom Weapon stack every (varies) sec.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9524,8 +9560,8 @@
             "spellId": 10572,
             "category": "Offensive",
             "description": {
-                "text": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal 25% additional damage as Nature damage, stacking up to (varies) times.",
-                "uncertain": true
+                "text": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal 25% additional damage as Nature damage, stacking up to 2 times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9631,78 +9667,12 @@
             "spellId": 9759,
             "category": "Offensive",
             "description": {
-                "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) (varies):stacks; of Maelstrom Weapon.",
+                "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) stacks of Maelstrom Weapon.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
-                    {
-                        "spellId": 10564,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 120,
-                            "base_seconds": 180,
-                            "applied": [
-                                {
-                                    "spell": {
-                                        "id": 10586,
-                                        "patch_id": 1,
-                                        "spell_id": 384444,
-                                        "name": "Thorim's Invocation",
-                                        "school": "Physical",
-                                        "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
-                                        "variables": null,
-                                        "charges": null,
-                                        "cooldown_seconds": null,
-                                        "cooldown_scaling_note": null,
-                                        "duration_seconds": null,
-                                        "pvp_duration_seconds": null,
-                                        "pairs_with_category": null,
-                                        "requires_stealth": false,
-                                        "requires_target_out_of_combat": false,
-                                        "not_in_spellbook": true,
-                                        "mechanic": null,
-                                        "usable_while_cc": null,
-                                        "bypasses_active_defense": false,
-                                        "silence_immune_by_school": false,
-                                        "cc_immunity_note": null,
-                                        "grants_cc_immunity_override": null,
-                                        "cc_immunity_gating_spell_id": null,
-                                        "grants_cc_immunity": [],
-                                        "grants_school_immunity": null,
-                                        "school_immunity_override": null,
-                                        "spell_type": "None",
-                                        "range_yards": null,
-                                        "dr_category": null,
-                                        "conditional_dr_gating_spell_id": null,
-                                        "conditional_dr_category": null,
-                                        "category": "Other",
-                                        "cast_type": "instant",
-                                        "chain_target": null,
-                                        "is_peel": false,
-                                        "is_interrupt": false,
-                                        "is_mobility": false,
-                                        "is_passive": true,
-                                        "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
-                                    },
-                                    "relationship_type": "modifies_cooldown",
-                                    "modifier_value": -60,
-                                    "modifier_unit": "seconds",
-                                    "selection_spell_id": 10586
-                                }
-                            ]
-                        }
-                    },
                     {
                         "spellId": 10564,
                         "relationship_type": "modifies_cooldown",
@@ -9727,6 +9697,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9758,8 +9730,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -9775,8 +9747,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Stormstrike damage is increased by 20%, and Stormstrike and Lava Lash have a 100% chance to generate 1 (varies):stacks; of Maelstrom Weapon.",
-                            "uncertain": true
+                            "text": "Stormstrike damage is increased by 20%, and Stormstrike and Lava Lash have a 100% chance to generate 1 stack of Maelstrom Weapon.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9791,8 +9763,8 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal 25% additional damage as Nature damage, stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal 25% additional damage as Nature damage, stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9839,8 +9811,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of (varies) stacks.",
-                            "uncertain": true
+                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of 6 stacks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9889,6 +9861,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9920,8 +9894,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -9937,8 +9911,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 150.1 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 150.1 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -9969,8 +9943,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal 25% additional damage as Nature damage, stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal 25% additional damage as Nature damage, stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -9985,8 +9959,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 0.1 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 0.1 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10001,8 +9975,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 27 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 27 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10017,8 +9991,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10033,8 +10007,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 225 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10049,8 +10023,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of (varies) stacks.",
-                            "uncertain": true
+                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of 6 stacks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10115,6 +10089,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -10146,8 +10122,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -10163,8 +10139,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal 25% additional damage as Nature damage, stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal 25% additional damage as Nature damage, stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -10259,8 +10235,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Stormstrike casts restore 225 mana to you and 4 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Stormstrike casts restore 225 mana to you and 4 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10339,8 +10315,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of (varies) stacks.",
-                            "uncertain": true
+                            "text": "Each target hit by Crash Lightning increases the damage of your next Stormstrike by 25%, up to a maximum of 6 stacks.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10449,22 +10425,6 @@
                     },
                     {
                         "spellId": 9844,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9844,
                         "relationship_type": "hasted_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -10487,8 +10447,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Stormstrike has a (varies).1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
-                            "uncertain": true
+                            "text": "Stormstrike has a 100.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10503,7 +10463,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) (varies):stacks; of Maelstrom Weapon.",
+                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) stacks of Maelstrom Weapon.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10519,7 +10479,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) (varies):stacks; of Maelstrom Weapon.",
+                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) stacks of Maelstrom Weapon.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10535,8 +10495,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Stormstrike has a (varies).1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
-                            "uncertain": true
+                            "text": "Stormstrike has a 5.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10567,7 +10527,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) (varies):stacks; of Maelstrom Weapon.",
+                            "text": "Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of 0 Physical damage. Stormstrike has a (varies)% chance to generate (varies) stacks of Maelstrom Weapon.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10583,8 +10543,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Stormstrike has a (varies).1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
-                            "uncertain": true
+                            "text": "Stormstrike has a 101.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10663,6 +10623,8 @@
                             "description": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal $s1% additional damage as Nature damage, stacking up to $470466u times.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": "101.00",
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -10694,8 +10656,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shaman_focusedstrikes.jpg",
-                            "created_at": "2026-07-30T14:03:29.000000Z",
-                            "updated_at": "2026-09-06T04:00:24.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-24T08:32:55.000000Z",
                             "effects": [
                                 {
                                     "id": 19309,
@@ -10705,13 +10667,15 @@
                                     "base_value": 25,
                                     "scaled_value": 25,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-08-07T15:40:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-08-03T12:23:23.000000Z"
                                 },
                                 {
                                     "id": 19310,
@@ -10721,13 +10685,15 @@
                                     "base_value": 1,
                                     "scaled_value": 1,
                                     "misc_value": 1254,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-09-02T11:58:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 },
                                 {
                                     "id": 19311,
@@ -10737,13 +10703,15 @@
                                     "base_value": 1,
                                     "scaled_value": 1,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-08-07T15:40:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-08-03T12:23:23.000000Z"
                                 }
                             ]
                         },
@@ -10886,8 +10854,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10902,8 +10870,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10918,8 +10886,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10934,8 +10902,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 5 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 5 Fire Feral Spirits and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10950,8 +10918,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10966,8 +10934,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10982,8 +10950,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10998,8 +10966,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11062,8 +11030,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Sundering summons 1 Fire Feral (varies):Spirits; and Doom Winds summons 1 Nature Feral (varies):Spirits; by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
-                            "uncertain": true
+                            "text": "Casting Sundering summons 1 Fire Feral Spirit and Doom Winds summons 1 Nature Feral Spirit by your side for 8. Feral Spirit An Elemental Spirit Raptor infused with Fire or Nature magic, granting the summoner with 5% increased Fire or Nature damage and 5% Physical damage for 8.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11146,7 +11114,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge $@spelldesc201845",
+                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge Stormstrike has a 5.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -11323,8 +11291,8 @@
             "spellId": 10623,
             "category": "Other",
             "description": {
-                "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                "uncertain": true
+                "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11337,8 +11305,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11511,7 +11479,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Elemental motes orbit around your Surging Totem. Your abilities consume the motes for enhanced effects. Air: $@spelldesc453409 Earth: $@spelldesc453406 Fire: $@spelldesc453405",
+                            "text": "Elemental motes orbit around your Surging Totem. Your abilities consume the motes for enhanced effects. Air: Your next Lightning Bolt, Chain Lightning or Elemental Blast unleashes 3 Surging Bolts at your Surging Totem. Earth: Your next Sundering deals 100% increased damage and summons a Searing Totem. Fire: Your next Lava Lash grants you Hot Hand for 8 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -11674,7 +11642,7 @@
             "spellId": 10295,
             "category": "Offensive",
             "description": {
-                "text": "Calls down a tremendous lightning strike that deals 452,201 Nature damage to your target and (varies) Nature damage to enemies within (varies) yds of your target. Damage reduced beyond 5 targets. Consumes Maelstrom Weapon for increased cast speed and damage.",
+                "text": "Calls down a tremendous lightning strike that deals 452,201 Nature damage to your target and (varies) Nature damage to enemies within 8 yds of your target. Damage reduced beyond 5 targets. Consumes Maelstrom Weapon for increased cast speed and damage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11686,8 +11654,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to (varies) times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
-                            "uncertain": true
+                            "text": "When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to 5 times. Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by 20% and increases its damage by 20%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11830,8 +11798,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to (varies) charges.",
-                            "uncertain": true
+                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11878,8 +11846,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to (varies) charges.",
-                            "uncertain": true
+                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11942,8 +11910,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to (varies) charges.",
-                            "uncertain": true
+                            "text": "Tempest causes your next Chain Lightning to be instant cast, deal 40% increased damage, and cast an additional time. Can accumulate up to 2 charges.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -11974,7 +11942,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Gain the effects of the Lightning Rod talent: Lightning Rod $@spelldesc210689",
+                            "text": "Gain the effects of the Lightning Rod talent: Lightning Rod Tempest, Lightning Bolt and Chain Lightning make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -12058,7 +12026,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge $@spelldesc201845",
+                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge Stormstrike has a 5.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -12170,8 +12138,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12202,8 +12170,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -12391,7 +12359,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -12598,8 +12566,8 @@
             "spellId": 10458,
             "category": "Other",
             "description": {
-                "text": "Summons a totem at your feet that shakes the ground around it for 10, removing Fear, Charm and Sleep effects from party and raid members within (varies) yards.",
-                "uncertain": true
+                "text": "Summons a totem at your feet that shakes the ground around it for 10, removing Fear, Charm and Sleep effects from party and raid members within 30 yards.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -12722,7 +12690,7 @@
             "spellId": 10549,
             "category": "Offensive",
             "description": {
-                "text": "Instantly shocks the target and 5 enemies within (varies) yds with blazing thunder, applying Flame Shock and dealing ≈400% of Spell Power Nature damage. Always critically strikes. Generates 1 (varies):stacks; of Maelstrom Weapon.",
+                "text": "Instantly shocks the target and 5 enemies within 10 yds with blazing thunder, applying Flame Shock and dealing ≈400% of Spell Power Nature damage. Always critically strikes. Generates 1 stack of Maelstrom Weapon.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -12782,8 +12750,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Voltaic Blaze generates 2 additional Maelstrom Weapon and has a 30% chance to cause a Fire Nova. Fire Nova $@spelldesc333974",
-                            "uncertain": false
+                            "text": "Voltaic Blaze generates 2 additional Maelstrom Weapon and has a 30% chance to cause a Fire Nova. Fire Nova Erupt a burst of fiery damage from all targets affected by your Flame Shock, dealing 2 Volcanic damage to up to (varies) targets within 8 yds of your Flame Shock targets.",
+                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -12850,7 +12818,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge $@spelldesc201845",
+                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge Stormstrike has a 5.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13076,7 +13044,7 @@
             "spellId": 10635,
             "category": "Other",
             "description": {
-                "text": "Elemental motes orbit around your Surging Totem. Your abilities consume the motes for enhanced effects. Air: $@spelldesc453409 Earth: $@spelldesc453406 Fire: $@spelldesc453405",
+                "text": "Elemental motes orbit around your Surging Totem. Your abilities consume the motes for enhanced effects. Air: Your next Lightning Bolt, Chain Lightning or Elemental Blast unleashes 3 Surging Bolts at your Surging Totem. Earth: Your next Sundering deals 100% increased damage and summons a Searing Totem. Fire: Your next Lava Lash grants you Hot Hand for 8 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -13136,8 +13104,8 @@
             "spellId": 10473,
             "category": "Other",
             "description": {
-                "text": "Summons a totem at the target location for 15, continually granting all allies who pass within (varies) yards 40% increased movement speed for 5.",
-                "uncertain": true
+                "text": "Summons a totem at the target location for 15, continually granting all allies who pass within 10 yards 40% increased movement speed for 5.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -13327,7 +13295,7 @@
             "spellId": 10563,
             "category": "Other",
             "description": {
-                "text": "Imbue your main-hand weapon with the element of Wind for 3,600. Each main-hand attack has a (varies)% chance to trigger three extra attacks, dealing (varies) Physical damage each.",
+                "text": "Imbue your main-hand weapon with the element of Wind for 3,600. Each main-hand attack has a 15% chance to trigger three extra attacks, dealing (varies) Physical damage each.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -13358,7 +13326,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge $@spelldesc201845",
+                            "text": "Increases your chance to trigger Stormsurge and Windfury Weapon by 0%, and increases all Fire, Frost, and Nature damage you deal by 0%. Stormsurge Stormstrike has a 5.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -13429,7 +13397,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -13477,72 +13445,6 @@
                 "named": [
                     {
                         "spellId": 10564,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Transform into an Air Ascendant for 15 and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by 60%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a (varies) yd range. Maelstrom Weapon spenders have a 0.5% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": 120,
-                            "base_seconds": 180,
-                            "applied": [
-                                {
-                                    "spell": {
-                                        "id": 10586,
-                                        "patch_id": 1,
-                                        "spell_id": 384444,
-                                        "name": "Thorim's Invocation",
-                                        "school": "Physical",
-                                        "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
-                                        "variables": null,
-                                        "charges": null,
-                                        "cooldown_seconds": null,
-                                        "cooldown_scaling_note": null,
-                                        "duration_seconds": null,
-                                        "pvp_duration_seconds": null,
-                                        "pairs_with_category": null,
-                                        "requires_stealth": false,
-                                        "requires_target_out_of_combat": false,
-                                        "not_in_spellbook": true,
-                                        "mechanic": null,
-                                        "usable_while_cc": null,
-                                        "bypasses_active_defense": false,
-                                        "silence_immune_by_school": false,
-                                        "cc_immunity_note": null,
-                                        "grants_cc_immunity_override": null,
-                                        "cc_immunity_gating_spell_id": null,
-                                        "grants_cc_immunity": [],
-                                        "grants_school_immunity": null,
-                                        "school_immunity_override": null,
-                                        "spell_type": "None",
-                                        "range_yards": null,
-                                        "dr_category": null,
-                                        "conditional_dr_gating_spell_id": null,
-                                        "conditional_dr_category": null,
-                                        "category": "Other",
-                                        "cast_type": "instant",
-                                        "chain_target": null,
-                                        "is_peel": false,
-                                        "is_interrupt": false,
-                                        "is_mobility": false,
-                                        "is_passive": true,
-                                        "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
-                                    },
-                                    "relationship_type": "modifies_cooldown",
-                                    "modifier_value": -60,
-                                    "modifier_unit": "seconds",
-                                    "selection_spell_id": 10586
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "spellId": 10564,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -13565,6 +13467,8 @@
                                         "description": "Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec. During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -13596,8 +13500,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_ancestralawakening.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:29.000000Z"
+                                        "created_at": "2026-08-03T12:23:24.000000Z",
+                                        "updated_at": "2026-09-08T00:07:06.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -13629,8 +13533,8 @@
                         "modifier_value": 1,
                         "modifier_unit": "charges",
                         "description": {
-                            "text": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal 25% additional damage as Nature damage, stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal 25% additional damage as Nature damage, stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -13651,22 +13555,6 @@
                             "uncertain": false
                         },
                         "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9844,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -13697,8 +13585,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Stormstrike has a (varies).1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
-                            "uncertain": true
+                            "text": "Stormstrike has a 100.1% chance to reset the cooldown of Stormstrike and cause your next Stormstrike to deal 25% additional damage as Nature damage.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -13729,6 +13617,8 @@
                             "description": "Stormstrike has an additional charge. Stormsurge now also causes your next Stormstrike to deal $s1% additional damage as Nature damage, stacking up to $470466u times.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": "101.00",
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -13760,8 +13650,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shaman_focusedstrikes.jpg",
-                            "created_at": "2026-07-30T14:03:29.000000Z",
-                            "updated_at": "2026-09-06T04:00:24.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-24T08:32:55.000000Z",
                             "effects": [
                                 {
                                     "id": 19309,
@@ -13771,13 +13661,15 @@
                                     "base_value": 25,
                                     "scaled_value": 25,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-08-07T15:40:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-08-03T12:23:23.000000Z"
                                 },
                                 {
                                     "id": 19310,
@@ -13787,13 +13679,15 @@
                                     "base_value": 1,
                                     "scaled_value": 1,
                                     "misc_value": 1254,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-09-02T11:58:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 },
                                 {
                                     "id": 19311,
@@ -13803,13 +13697,15 @@
                                     "base_value": 1,
                                     "scaled_value": 1,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-08-07T15:40:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-08-03T12:23:23.000000Z"
                                 }
                             ]
                         },

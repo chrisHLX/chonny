@@ -434,3 +434,51 @@ offensive/defensive types, which say nothing about a target.
 **What would close it:** a curated target-restriction list, one verified line at a time, read by
 both the quiz builder and `guides:author`'s feasibility check. Until then the same warning applies
 to a drill as to a guide.
+
+---
+
+## 2026-09-24 — Description tokens: what now resolves, and what never will
+
+Patch 12.1.0.69933. Four values the SimC dump has always carried were never stored, so the
+tokens that ask for them rendered "(varies)" in finished prose. They are stored now —
+`spells.max_stacks`, `spells.proc_chance`, `spell_effects.radius_yards`,
+`spell_effects.chain_targets` — and `$u`/`$U`, `$h`, `$aN`/`$AN`, `$xN` resolve, in both the
+own-spell and the `$<id>` cross-spell form.
+
+Measured across the 40 precomputed kits, comparing the committed artifacts against a rebuild:
+**"(varies)" 2,531 → 1,932**. Alongside it, four rendering bugs that were visible on the page:
+broken pluralisation ("(varies):stacks;") 250 → 0, leaked `$@spelldesc` pointers 164 → 0, leaked
+raw `$` tokens 199 → 10, unresolved conditionals 30 → 10.
+
+**What is left, and why each one stays.**
+
+- **`$tN` — a periodic effect's tick interval, 545 occurrences.** Searched for and not found: the
+  dump's effect detail lines carry Base Value, Scaled Value, SP/AP/PvP Coefficient, Radius, Chain
+  Targets, Max Stack Count, Misc Value, Mechanic, Delay and a few others, and **no period,
+  amplitude or tick field of any kind**. There is nothing to read, so "every (varies) sec" stays
+  until the dump format changes or another source supplies it.
+- **`$oN` — total damage over time, 478 occurrences.** Needs the tick interval above *and* the
+  spell-power scaling this project deliberately does not model. Two gaps deep, not one.
+- **`$abs`, `$AP`, `$mas`, `$MHP`, `$versadmg`, `$auracaster`** — every one of these is a
+  property of a specific character at a specific moment. There is no character. "(varies)" is
+  the correct answer, not a gap to close.
+- **21 spells still carry a leftover token** in their rendered description: `$@spellaura<id>`
+  (24 raw occurrences), `$@switch<1>[a][an increased]` (9), and two malformed strings
+  (`$?(varies)&1.`, `$/100;s2`). `$@spellaura` is plausibly "insert that aura's description",
+  the same shape as `$@spelldesc` — but plausibly is not verified, and a wrong splice reads as
+  fact. Left alone until someone checks one against an in-game tooltip.
+
+**A gendered guess that is now being made.** `$ghe:she;` picks its form from the reading
+character's gender, and this site has no character. Three descriptions use it, none of them an
+arena ability (pet auto-cast lines). The resolver takes the **first** form, so the page reads
+"when he is unable to cast spells". That is the game's own word rather than an invention, and it
+replaced a broken "(varies):she;" — but it is a guess about a person, and the neutral rewrite
+that would avoid it ("when they is unable") is ungrammatical without rewriting the sentence.
+Worth revisiting if the token ever appears on something a player actually presses.
+
+**A trap in the fetch tooling, found the same day.** `fetch-simc-dumps.php --auto-detect-live`
+picks the most recently updated `data-update-live-*` branch. On 2026-09-24 the only such branch
+was `data-update-live-69283` — **older than both the data already imported (69814) and the
+`midnight` branch (69933)**, so the flag would have silently rolled the spell data backwards by
+two builds. Check the header line of a dump before trusting either source; `midnight` was right
+here.

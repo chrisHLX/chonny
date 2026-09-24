@@ -1,7 +1,7 @@
 {
-    "generatedAt": "2026-09-19T10:21:32+00:00",
-    "spellCacheVersion": 4162,
-    "codeFingerprint": "07526e2",
+    "generatedAt": "2026-09-24T08:56:38+00:00",
+    "spellCacheVersion": 21,
+    "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 10524,
@@ -316,7 +316,7 @@
             "spellId": 10516,
             "category": "Offensive",
             "description": {
-                "text": "Transform into a Flame Ascendant for (varies), instantly casting a Flame Shock and a 50% effectiveness Lava Burst at up to 6 nearby enemies. While ascended, Elemental Overload damage is increased by 30% and spells affected by your Mastery: Elemental Overload cause 1 additional Elemental (varies):Overloads;.",
+                "text": "Transform into a Flame Ascendant for (varies), instantly casting a Flame Shock and a 50% effectiveness Lava Burst at up to 6 nearby enemies. While ascended, Elemental Overload damage is increased by 30% and spells affected by your Mastery: Elemental Overload cause 1 additional Elemental Overload.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -362,6 +362,8 @@
                                         "description": "The cooldown of Ascendance$?a137039[ and Healing Tide Totem][] is reduced by ${$s1/-1000} sec.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -393,8 +395,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_astralshift.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:37.000000Z"
+                                        "created_at": "2026-08-03T12:23:23.000000Z",
+                                        "updated_at": "2026-09-08T00:07:13.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -428,6 +430,8 @@
                                         "description": "The cooldown of Ascendance$?a137039[ and Healing Tide Totem][] is reduced by ${$s1/-1000} sec.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -459,8 +463,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_astralshift.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:37.000000Z"
+                                        "created_at": "2026-08-03T12:23:23.000000Z",
+                                        "updated_at": "2026-09-08T00:07:13.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -538,6 +542,8 @@
                             "description": "The cooldown of Ascendance$?a137039[ and Healing Tide Totem][] is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -569,8 +575,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shaman_astralshift.jpg",
-                            "created_at": "2026-07-30T14:03:29.000000Z",
-                            "updated_at": "2026-09-06T04:00:37.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-08T00:07:13.000000Z",
                             "effects": [
                                 {
                                     "id": 19227,
@@ -580,13 +586,15 @@
                                     "base_value": -60000,
                                     "scaled_value": -60000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-09-02T11:58:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 }
                             ]
                         },
@@ -723,7 +731,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 65% on Lightning Bolt and Chain Lightning casts.",
+                            "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 40% on Lightning Bolt and Chain Lightning casts.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -750,6 +758,8 @@
                             "description": "Reduces the cooldown of Astral Shift by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -781,8 +791,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shaman_astralshift.jpg",
-                            "created_at": "2026-07-30T14:03:28.000000Z",
-                            "updated_at": "2026-09-06T04:00:29.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-08T00:07:05.000000Z",
                             "effects": [
                                 {
                                     "id": 19117,
@@ -792,13 +802,15 @@
                                     "base_value": -30000,
                                     "scaled_value": -30000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:03.000000Z"
                                 },
                                 {
                                     "id": 19118,
@@ -808,13 +820,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:03.000000Z"
                                 }
                             ]
                         },
@@ -1011,8 +1025,8 @@
             "spellId": 10471,
             "category": "Crowd Control",
             "description": {
-                "text": "Summons a totem at the target location that gathers electrical energy from the surrounding air and explodes after 2 sec, stunning all enemies within (varies) yards for 3.",
-                "uncertain": true
+                "text": "Summons a totem at the target location that gathers electrical energy from the surrounding air and explodes after 2 sec, stunning all enemies within 8 yards for 3.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1068,6 +1082,8 @@
                             "description": "Reduces the cooldown of Capacitor Totem by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -1099,8 +1115,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_nature_brilliance.jpg",
-                            "created_at": "2026-07-30T14:03:28.000000Z",
-                            "updated_at": "2026-09-06T04:00:22.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-08T00:07:00.000000Z",
                             "effects": [
                                 {
                                     "id": 19101,
@@ -1110,6 +1126,8 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
@@ -1118,8 +1136,8 @@
                                         -10000,
                                         -20000
                                     ],
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:03.000000Z"
                                 }
                             ]
                         },
@@ -1145,8 +1163,8 @@
             "spellId": 10457,
             "category": "Defensive",
             "description": {
-                "text": "Heals the friendly target for 50, then jumps up to 40 yards to heal the (varies) most injured nearby allies. Healing is reduced by 30% with each jump.",
-                "uncertain": true
+                "text": "Heals the friendly target for 50, then jumps up to 40 yards to heal the 3 most injured nearby allies. Healing is reduced by 30% with each jump.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1301,7 +1319,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within (varies) yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within (varies) yards.",
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within 20 yards.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1337,8 +1355,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1353,8 +1371,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1386,7 +1404,7 @@
             "spellId": 10470,
             "category": "Offensive",
             "description": {
-                "text": "Hurls a lightning bolt at the enemy, dealing ≈116.4% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects (varies) total targets Consumes Maelstrom Weapon for increased cast speed and damage. Generates 2 Maelstrom per target hit.",
+                "text": "Hurls a lightning bolt at the enemy, dealing ≈116.4% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects 3 total targets Consumes Maelstrom Weapon for increased cast speed and damage. Generates 2 Maelstrom per target hit.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1430,8 +1448,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Charge yourself with lightning, causing your next 2 Lightning (varies):Bolts; to be instant cast and deal 150% more damage, or cause your next 2 Chain (varies):Lightings; to be instant cast and trigger an Elemental Overload on every target. Additionally, increases Lightning Bolt and Chain Lightning damage by 25%. Generates 10 Maelstrom.",
-                            "uncertain": true
+                            "text": "Charge yourself with lightning, causing your next 2 Lightning Bolts to be instant cast and deal 150% more damage, or cause your next 2 Chain Lightings to be instant cast and trigger an Elemental Overload on every target. Additionally, increases Lightning Bolt and Chain Lightning damage by 25%. Generates 10 Maelstrom.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1521,6 +1539,22 @@
                         }
                     },
                     {
+                        "spellId": 10540,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by 15%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10543,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -1574,10 +1608,42 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Lightning and Lightning Bolt have a 20% chance to cause your next Lava Burst deal 20% extra damage, stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Chain Lightning and Lightning Bolt have a 20% chance to cause your next Lava Burst deal 20% extra damage, stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9896,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9897,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -1590,7 +1656,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within (varies) yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within (varies) yards.",
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within 20 yards.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -1606,10 +1672,26 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Lightning and Lightning Bolt have a 15% chance to cause your next Lava Burst deal 20% extra damage, stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Chain Lightning and Lightning Bolt have a 15% chance to cause your next Lava Burst deal 20% extra damage, stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10523,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -1749,22 +1831,6 @@
                         }
                     },
                     {
-                        "spellId": 10540,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by 15%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10386,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -1813,38 +1879,6 @@
                         }
                     },
                     {
-                        "spellId": 9896,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9897,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10350,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -1854,22 +1888,6 @@
                             "uncertain": true
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10523,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -1930,7 +1948,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 65% on Lightning Bolt and Chain Lightning casts.",
+                            "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 40% on Lightning Bolt and Chain Lightning casts.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -1983,7 +2001,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -2078,9 +2096,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
+                "named": [
                     {
                         "spellId": 10547,
                         "relationship_type": "modifies",
@@ -2097,9 +2113,11 @@
                             "applied": []
                         }
                     }
-                ]
+                ],
+                "baseline": [],
+                "potential": []
             },
-            "hasPotentialImprovement": true,
+            "hasPotentialImprovement": false,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -2247,25 +2265,6 @@
                             "base_seconds": 180,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 10545,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Increases the duration of your Elementals by 20%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     },
                     {
                         "spellId": 10195,
@@ -2290,6 +2289,25 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Your Earth Elemental no longer taunts nearby enemies or generates threat and instead increases your maximum health by 15% while active.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
+                "baseline": [],
+                "potential": [
+                    {
+                        "spellId": 10545,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Increases the duration of your Elementals by 20%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2665,6 +2683,70 @@
                         }
                     },
                     {
+                        "spellId": 9896,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9897,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10523,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10532,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Earth Shock, Elemental Blast, and Earthquake can trigger your Mastery: Elemental Overload at 50% effectiveness. Overloaded Earthquakes do not knock enemies down.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10554,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -2797,76 +2879,12 @@
                         }
                     },
                     {
-                        "spellId": 9896,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9897,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10523,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10524,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
                             "text": "Earth Shock, Elemental Blast, and Earthquake have a 25% chance to refund all Maelstrom spent.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10532,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Earth Shock, Elemental Blast, and Earthquake can trigger your Mastery: Elemental Overload at 50% effectiveness. Overloaded Earthquakes do not knock enemies down.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -2959,7 +2977,7 @@
             "spellId": 10460,
             "category": "Crowd Control",
             "description": {
-                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within (varies) yards for 8. Enemies previously rooted by the totem instead suffer 50% movement speed reduction.",
+                "text": "Summons a totem at the target location for 20. The totem pulses every (varies) sec, rooting all enemies within 8 yards for 8. Enemies previously rooted by the totem instead suffer 50% movement speed reduction.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -3022,8 +3040,8 @@
             "spellId": 10515,
             "category": "Offensive",
             "description": {
-                "text": "Causes the earth within (varies) yards of the target location to tremble and break, dealing 8.4 Nature damage over 6 and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap. This spell is cast at a selected location.",
-                "uncertain": true
+                "text": "Causes the earth within 8 yards of the target location to tremble and break, dealing 8.4 Nature damage over 6 and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap. This spell is cast at a selected location.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -3130,8 +3148,40 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Causes the earth within (varies) yards of the target location to tremble and break, dealing 8.4 Nature damage over (varies) and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap. This spell is cast at a selected location.",
+                            "text": "Causes the earth within 8 yards of the target location to tremble and break, dealing 8.4 Nature damage over (varies) and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap. This spell is cast at a selected location.",
                             "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9896,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9897,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3162,7 +3212,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Causes the earth within (varies) yards of the target location to tremble and break, dealing 8.4 Nature damage over (varies) and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap. This spell is cast at a selected location.",
+                            "text": "Causes the earth within 8 yards of the target location to tremble and break, dealing 8.4 Nature damage over (varies) and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap. This spell is cast at a selected location.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3198,6 +3248,38 @@
                             "uncertain": true
                         },
                         "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10523,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10532,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Earth Shock, Elemental Blast, and Earthquake can trigger your Mastery: Elemental Overload at 50% effectiveness. Overloaded Earthquakes do not knock enemies down.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -3256,54 +3338,6 @@
                         }
                     },
                     {
-                        "spellId": 9896,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9897,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10523,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10524,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -3320,29 +3354,13 @@
                         }
                     },
                     {
-                        "spellId": 10532,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Earth Shock, Elemental Blast, and Earthquake can trigger your Mastery: Elemental Overload at 50% effectiveness. Overloaded Earthquakes do not knock enemies down.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10539,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Causes the earth within (varies) yards of your target to tremble and break, dealing 8.4 Nature damage over 6 and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap. This spell is cast at your target.",
-                            "uncertain": true
+                            "text": "Causes the earth within 8 yards of your target to tremble and break, dealing 8.4 Nature damage over 6 and has a 5% chance to knock the enemy down. Multiple uses of Earthquake may overlap. This spell is cast at your target.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3723,15 +3741,79 @@
                         }
                     },
                     {
+                        "spellId": 9896,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9897,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10334,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within (varies) yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within (varies) yards.",
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within 20 yards.",
                             "uncertain": true
                         },
                         "category": "Defensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10523,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10532,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Earth Shock, Elemental Blast, and Earthquake can trigger your Mastery: Elemental Overload at 50% effectiveness. Overloaded Earthquakes do not knock enemies down.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -3804,22 +3886,6 @@
                     }
                 ],
                 "baseline": [
-                    {
-                        "spellId": 9843,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Elemental Shaman baseline passive",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
                     {
                         "spellId": 9843,
                         "relationship_type": "modifies_cooldown",
@@ -3951,76 +4017,12 @@
                         }
                     },
                     {
-                        "spellId": 9896,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9897,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10523,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10524,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
                             "text": "Earth Shock, Elemental Blast, and Earthquake have a 25% chance to refund all Maelstrom spent.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10532,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Earth Shock, Elemental Blast, and Earthquake can trigger your Mastery: Elemental Overload at 50% effectiveness. Overloaded Earthquakes do not knock enemies down.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4704,7 +4706,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5074,7 +5076,7 @@
             "drCategory": null
         },
         {
-            "spellId": 38212,
+            "spellId": 13680,
             "category": "Defensive",
             "description": {
                 "text": "Removes all movement impairing effects and all effects which cause loss of control of your character.",
@@ -5232,7 +5234,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 65% on Lightning Bolt and Chain Lightning casts.",
+                            "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 40% on Lightning Bolt and Chain Lightning casts.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5265,7 +5267,7 @@
             "spellId": 9753,
             "category": "Defensive",
             "description": {
-                "text": "Summons a totem at your feet for 15 that heals two injured party or raid members within (varies) yards for 5 every (varies) sec. If you already know Healing Stream Totem, instead gain 1 additional (varies):charges; of Healing Stream Totem.",
+                "text": "Summons a totem at your feet for 15 that heals two injured party or raid members within 40 yards for 5 every (varies) sec. If you already know Healing Stream Totem, instead gain 1 additional charge of Healing Stream Totem.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [
@@ -5280,22 +5282,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Cleanse Spirit, Wind Shear, Purge, and totem casts no longer cancel Ghost Wolf.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10491,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Reduces the cooldown of most totems by 5 sec.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -5437,6 +5423,8 @@
                             "description": "Reduces the cooldown of most totems by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5468,8 +5456,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_nature_agitatingtotem.jpg",
-                            "created_at": "2026-07-30T14:03:28.000000Z",
-                            "updated_at": "2026-09-06T04:00:29.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-08T00:07:05.000000Z",
                             "effects": [
                                 {
                                     "id": 19124,
@@ -5479,13 +5467,15 @@
                                     "base_value": -5000,
                                     "scaled_value": -5000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:03.000000Z"
                                 },
                                 {
                                     "id": 19125,
@@ -5495,13 +5485,15 @@
                                     "base_value": -5000,
                                     "scaled_value": -5000,
                                     "misc_value": 1569,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:03.000000Z"
                                 }
                             ]
                         },
@@ -5680,6 +5672,8 @@
                             "description": "Your Hex target is slowed by $378080s1% during Hex and for $378080d after it ends. Reduces the cooldown of Hex by ${($m1/1000)*-1} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -5711,8 +5705,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "spell_shaman_hex.jpg",
-                            "created_at": "2026-07-30T14:03:28.000000Z",
-                            "updated_at": "2026-09-06T04:00:18.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-08T00:06:57.000000Z",
                             "effects": [
                                 {
                                     "id": 19099,
@@ -5722,13 +5716,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:03.000000Z"
                                 }
                             ]
                         },
@@ -6092,8 +6088,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Lightning and Lightning Bolt have a 20% chance to cause your next Lava Burst deal 20% extra damage, stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Chain Lightning and Lightning Bolt have a 20% chance to cause your next Lava Burst deal 20% extra damage, stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6135,86 +6131,6 @@
                         }
                     },
                     {
-                        "spellId": 10197,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your Lava Burst casts restore 150.1 mana to you and 150.1 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10233,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your Lava Burst casts restore 150.1 mana to you and 0.1 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10234,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your Lava Burst casts restore 150.1 mana to you and 27 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10237,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your Lava Burst casts restore 150.1 mana to you and 225 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10238,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your Lava Burst casts restore 150.1 mana to you and 225 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10276,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -6236,8 +6152,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a Flame Ascendant for 15, instantly casting a Flame Shock and a 50% effectiveness Lava Burst at up to 6 nearby enemies. While ascended, Elemental Overload damage is increased by 30% and spells affected by your Mastery: Elemental Overload cause 1 additional Elemental (varies):Overloads;.",
-                            "uncertain": true
+                            "text": "Transform into a Flame Ascendant for 15, instantly casting a Flame Shock and a 50% effectiveness Lava Burst at up to 6 nearby enemies. While ascended, Elemental Overload damage is increased by 30% and spells affected by your Mastery: Elemental Overload cause 1 additional Elemental Overload.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -6254,6 +6170,8 @@
                                         "description": "The cooldown of Ascendance$?a137039[ and Healing Tide Totem][] is reduced by ${$s1/-1000} sec.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6285,8 +6203,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_astralshift.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:37.000000Z"
+                                        "created_at": "2026-08-03T12:23:23.000000Z",
+                                        "updated_at": "2026-09-08T00:07:13.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -6313,28 +6231,12 @@
                         }
                     },
                     {
-                        "spellId": 10492,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your Lava Burst casts restore 150.1 mana to you and 4 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10516,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Transform into a Flame Ascendant for (varies), instantly casting a Flame Shock and a 50% effectiveness Lava Burst at up to 6 nearby enemies. While ascended, Elemental Overload damage is increased by 30% and spells affected by your Mastery: Elemental Overload cause 1 additional Elemental (varies):Overloads;.",
+                            "text": "Transform into a Flame Ascendant for (varies), instantly casting a Flame Shock and a 50% effectiveness Lava Burst at up to 6 nearby enemies. While ascended, Elemental Overload damage is increased by 30% and spells affected by your Mastery: Elemental Overload cause 1 additional Elemental Overload.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6352,6 +6254,8 @@
                                         "description": "The cooldown of Ascendance$?a137039[ and Healing Tide Totem][] is reduced by ${$s1/-1000} sec.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -6383,8 +6287,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "spell_shaman_astralshift.jpg",
-                                        "created_at": "2026-07-30T14:03:29.000000Z",
-                                        "updated_at": "2026-09-06T04:00:37.000000Z"
+                                        "created_at": "2026-08-03T12:23:23.000000Z",
+                                        "updated_at": "2026-09-08T00:07:13.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -60,
@@ -6400,8 +6304,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Lightning and Lightning Bolt have a 15% chance to cause your next Lava Burst deal 20% extra damage, stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Chain Lightning and Lightning Bolt have a 15% chance to cause your next Lava Burst deal 20% extra damage, stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6575,6 +6479,102 @@
                         }
                     },
                     {
+                        "spellId": 10197,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your Lava Burst casts restore 150.1 mana to you and 150.1 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10233,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your Lava Burst casts restore 150.1 mana to you and 0.1 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10234,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your Lava Burst casts restore 150.1 mana to you and 27 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10237,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your Lava Burst casts restore 150.1 mana to you and 225 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10238,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your Lava Burst casts restore 150.1 mana to you and 225 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10492,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Your Lava Burst casts restore 150.1 mana to you and 4 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10513,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -6612,6 +6612,8 @@
                             "description": "Lava Burst gains an additional charge and deals $s2% increased damage.$?a137039[ Riptide gains an additional charge and heals for $s3% more.][]",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6643,8 +6645,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_shaman_echooftheelements.jpg",
-                            "created_at": "2026-07-30T14:03:29.000000Z",
-                            "updated_at": "2026-09-06T04:00:34.000000Z",
+                            "created_at": "2026-08-03T12:23:24.000000Z",
+                            "updated_at": "2026-09-08T00:07:10.000000Z",
                             "effects": [
                                 {
                                     "id": 19374,
@@ -6654,13 +6656,15 @@
                                     "base_value": 1,
                                     "scaled_value": 1,
                                     "misc_value": 1536,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-09-02T11:58:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:24.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 },
                                 {
                                     "id": 19375,
@@ -6670,13 +6674,15 @@
                                     "base_value": 10,
                                     "scaled_value": 10,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-08-07T15:40:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:24.000000Z",
+                                    "updated_at": "2026-08-03T12:23:24.000000Z"
                                 },
                                 {
                                     "id": 19376,
@@ -6686,13 +6692,15 @@
                                     "base_value": 20,
                                     "scaled_value": 20,
                                     "misc_value": 22,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 1.25,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-09-02T11:58:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:24.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 },
                                 {
                                     "id": 19377,
@@ -6702,13 +6710,15 @@
                                     "base_value": 20,
                                     "scaled_value": 20,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 1.25,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-08-07T15:40:06.000000Z"
+                                    "created_at": "2026-08-03T12:23:24.000000Z",
+                                    "updated_at": "2026-08-03T12:23:24.000000Z"
                                 },
                                 {
                                     "id": 19378,
@@ -6718,13 +6728,15 @@
                                     "base_value": 1,
                                     "scaled_value": 1,
                                     "misc_value": 1228,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:29.000000Z",
-                                    "updated_at": "2026-09-02T11:58:14.000000Z"
+                                    "created_at": "2026-08-03T12:23:24.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 }
                             ]
                         },
@@ -6743,6 +6755,8 @@
                             "description": "$?s137039[Riptide and Lava Burst have][Lava Burst has] an additional charge.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -6774,8 +6788,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_shaman_echooftheelements.jpg",
-                            "created_at": "2026-07-30T14:03:28.000000Z",
-                            "updated_at": "2026-09-06T04:00:25.000000Z",
+                            "created_at": "2026-08-03T12:23:23.000000Z",
+                            "updated_at": "2026-09-08T00:07:02.000000Z",
                             "effects": [
                                 {
                                     "id": 19206,
@@ -6785,13 +6799,15 @@
                                     "base_value": 1,
                                     "scaled_value": 1,
                                     "misc_value": 1536,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 },
                                 {
                                     "id": 19207,
@@ -6801,13 +6817,15 @@
                                     "base_value": 1,
                                     "scaled_value": 1,
                                     "misc_value": 1228,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:28.000000Z",
-                                    "updated_at": "2026-09-02T11:58:13.000000Z"
+                                    "created_at": "2026-08-03T12:23:23.000000Z",
+                                    "updated_at": "2026-09-08T00:05:04.000000Z"
                                 }
                             ]
                         },
@@ -7103,8 +7121,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Charge yourself with lightning, causing your next 2 Lightning (varies):Bolts; to be instant cast and deal 150% more damage, or cause your next 2 Chain (varies):Lightings; to be instant cast and trigger an Elemental Overload on every target. Additionally, increases Lightning Bolt and Chain Lightning damage by 25%. Generates 10 Maelstrom.",
-                            "uncertain": true
+                            "text": "Charge yourself with lightning, causing your next 2 Lightning Bolts to be instant cast and deal 150% more damage, or cause your next 2 Chain Lightings to be instant cast and trigger an Elemental Overload on every target. Additionally, increases Lightning Bolt and Chain Lightning damage by 25%. Generates 10 Maelstrom.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7194,6 +7212,22 @@
                         }
                     },
                     {
+                        "spellId": 10540,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by 15%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10543,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -7247,10 +7281,42 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Lightning and Lightning Bolt have a 20% chance to cause your next Lava Burst deal 20% extra damage, stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Chain Lightning and Lightning Bolt have a 20% chance to cause your next Lava Burst deal 20% extra damage, stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9896,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9897,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -7263,7 +7329,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a lightning bolt at the enemy, dealing ≈116.4% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects (varies) total targets.",
+                            "text": "Hurls a lightning bolt at the enemy, dealing ≈116.4% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects 3 total targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7279,7 +7345,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a lightning bolt at the enemy, dealing ≈382.6% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects (varies) total targets.",
+                            "text": "Hurls a lightning bolt at the enemy, dealing ≈382.6% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects 5 total targets.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7295,7 +7361,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Heal now jumps to a nearby totem within (varies) yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within (varies) yards.",
+                            "text": "Chain Heal now jumps to a nearby totem within 20 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within (varies) yards for 50. Jumps to 50 nearby targets within 20 yards.",
                             "uncertain": true
                         },
                         "category": "Defensive",
@@ -7311,7 +7377,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Hurls a lightning bolt at the enemy, dealing ≈116.4% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects (varies) total targets Consumes Maelstrom Weapon for increased cast speed and damage. Generates 2 Maelstrom per target hit.",
+                            "text": "Hurls a lightning bolt at the enemy, dealing ≈116.4% of Spell Power Nature damage and then jumping to additional nearby enemies. Affects 3 total targets Consumes Maelstrom Weapon for increased cast speed and damage. Generates 2 Maelstrom per target hit.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7327,10 +7393,26 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Chain Lightning and Lightning Bolt have a 15% chance to cause your next Lava Burst deal 20% extra damage, stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Chain Lightning and Lightning Bolt have a 15% chance to cause your next Lava Burst deal 20% extra damage, stacking up to 2 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10523,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -7470,22 +7552,6 @@
                         }
                     },
                     {
-                        "spellId": 10540,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by 15%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10633,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -7511,38 +7577,6 @@
                             "uncertain": false
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9896,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9897,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -7620,22 +7654,6 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Each Maelstrom spent has an additional 0.3% chance to upgrade your next Lightning Bolt to Tempest.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10523,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
                             "uncertain": false
                         },
                         "category": "Offensive",
@@ -7731,7 +7749,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 65% on Lightning Bolt and Chain Lightning casts.",
+                            "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 40% on Lightning Bolt and Chain Lightning casts.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7910,7 +7928,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -7925,9 +7943,7 @@
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [],
-                "baseline": [],
-                "potential": [
+                "named": [
                     {
                         "spellId": 10547,
                         "relationship_type": "modifies",
@@ -7975,7 +7991,10 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
+                    }
+                ],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 10629,
                         "relationship_type": "mentions",
@@ -8005,7 +8024,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8045,20 +8064,22 @@
             "spellId": 10492,
             "category": "Other",
             "description": {
-                "text": "Your Lava Burst casts restore 150.1 mana to you and 4 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                "uncertain": true
+                "text": "Your Lava Burst casts restore 150.1 mana to you and 4 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
+                "named": [],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 10197,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lava Burst casts restore 150.1 mana to you and 150.1 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Lava Burst casts restore 150.1 mana to you and 150.1 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8073,8 +8094,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lava Burst casts restore 150.1 mana to you and 0.1 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Lava Burst casts restore 150.1 mana to you and 0.1 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8089,8 +8110,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lava Burst casts restore 150.1 mana to you and 27 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Lava Burst casts restore 150.1 mana to you and 27 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8105,8 +8126,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lava Burst casts restore 150.1 mana to you and 225 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Lava Burst casts restore 150.1 mana to you and 225 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8121,8 +8142,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Your Lava Burst casts restore 150.1 mana to you and 225 allies nearest to you within (varies) yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
-                            "uncertain": true
+                            "text": "Your Lava Burst casts restore 150.1 mana to you and 225 allies nearest to you within 40 yards. Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -8131,11 +8152,9 @@
                             "applied": []
                         }
                     }
-                ],
-                "baseline": [],
-                "potential": []
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": null,
                 "base_seconds": null,
@@ -8146,7 +8165,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8236,7 +8255,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8282,24 +8301,7 @@
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
-                "baseline": [
-                    {
-                        "spellId": 10414,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Elemental Shaman baseline passive",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ],
+                "baseline": [],
                 "potential": []
             },
             "hasPotentialImprovement": false,
@@ -8329,24 +8331,7 @@
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
-                "baseline": [
-                    {
-                        "spellId": 10414,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Elemental Shaman baseline passive",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ],
+                "baseline": [],
                 "potential": []
             },
             "hasPotentialImprovement": false,
@@ -8725,8 +8710,8 @@
             "spellId": 10522,
             "category": "Other",
             "description": {
-                "text": "Chain Lightning and Lightning Bolt have a 15% chance to cause your next Lava Burst deal 20% extra damage, stacking up to (varies) times.",
-                "uncertain": true
+                "text": "Chain Lightning and Lightning Bolt have a 15% chance to cause your next Lava Burst deal 20% extra damage, stacking up to 2 times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8869,7 +8854,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -8939,8 +8924,8 @@
             "spellId": 10455,
             "category": "Utility",
             "description": {
-                "text": "Purges the enemy target, removing 1 beneficial Magic (varies):effects;.$?(s147762&s51530) [ Successfully purging a target grants a stack of Maelstrom Weapon.][]",
-                "uncertain": true
+                "text": "Purges the enemy target, removing 1 beneficial Magic effect.$?(s147762&s51530) [ Successfully purging a target grants a stack of Maelstrom Weapon.][]",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9308,7 +9293,7 @@
             "spellId": 10478,
             "category": "Defensive",
             "description": {
-                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to (varies) times.",
+                "text": "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every (varies) sec, stacking up to 4 times.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9601,7 +9586,7 @@
             "spellId": 10703,
             "category": "Other",
             "description": {
-                "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 65% on Lightning Bolt and Chain Lightning casts.",
+                "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 40% on Lightning Bolt and Chain Lightning casts.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -9651,7 +9636,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -9727,24 +9712,7 @@
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [],
-                "baseline": [
-                    {
-                        "spellId": 10414,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Elemental Shaman baseline passive",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    }
-                ],
+                "baseline": [],
                 "potential": []
             },
             "hasPotentialImprovement": false,
@@ -9768,8 +9736,8 @@
             "spellId": 10520,
             "category": "Other",
             "description": {
-                "text": "Charge yourself with lightning, causing your next 2 Lightning (varies):Bolts; to be instant cast and deal 150% more damage, or cause your next 2 Chain (varies):Lightings; to be instant cast and trigger an Elemental Overload on every target. Additionally, increases Lightning Bolt and Chain Lightning damage by 25%. Generates 10 Maelstrom.",
-                "uncertain": true
+                "text": "Charge yourself with lightning, causing your next 2 Lightning Bolts to be instant cast and deal 150% more damage, or cause your next 2 Chain Lightings to be instant cast and trigger an Elemental Overload on every target. Additionally, increases Lightning Bolt and Chain Lightning damage by 25%. Generates 10 Maelstrom.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10104,8 +10072,8 @@
             "spellId": 10623,
             "category": "Other",
             "description": {
-                "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                "uncertain": true
+                "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -10118,8 +10086,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10218,12 +10186,76 @@
             "modifiers": {
                 "named": [
                     {
+                        "spellId": 9896,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 9897,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10523,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
+                            "uncertain": false
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 10535,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
                             "text": "Increases the critical strike chance of Lightning Bolt, Tempest, and Chain Lightning by 10%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 10540,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by 15%.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -10285,38 +10317,6 @@
                         }
                     },
                     {
-                        "spellId": 9896,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 9897,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10305,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -10354,8 +10354,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10477,38 +10477,6 @@
                         }
                     },
                     {
-                        "spellId": 10523,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Tempest, Earth Shock, Elemental Blast, and Earthquake make your target a Lightning Rod for 8. Lightning Rods take 10% of all damage you deal with Tempest, Lightning Bolt, and Chain Lightning.",
-                            "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 10540,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Reduces the cast time of Lightning Bolt, Tempest, and Chain Lightning by 15%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 10541,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -10546,8 +10514,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to (varies)%.",
-                            "uncertain": true
+                            "text": "Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by 16%, up to 80%.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -10736,7 +10704,7 @@
             "spellId": 9785,
             "category": "Crowd Control",
             "description": {
-                "text": "Calls down a bolt of lightning, dealing ≈15.2% of Spell Power Nature damage to all enemies within (varies) yards, reducing their movement speed by 40% for 5, and knocking them upward. Usable while stunned.",
+                "text": "Calls down a bolt of lightning, dealing ≈15.2% of Spell Power Nature damage to all enemies within 10 yards, reducing their movement speed by 40% for 5, and knocking them upward. Usable while stunned.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11143,8 +11111,8 @@
             "spellId": 10458,
             "category": "Other",
             "description": {
-                "text": "Summons a totem at your feet that shakes the ground around it for 10, removing Fear, Charm and Sleep effects from party and raid members within (varies) yards.",
-                "uncertain": true
+                "text": "Summons a totem at your feet that shakes the ground around it for 10, removing Fear, Charm and Sleep effects from party and raid members within 30 yards.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11220,7 +11188,7 @@
             "spellId": 10549,
             "category": "Offensive",
             "description": {
-                "text": "Instantly shocks the target and 5 enemies within (varies) yds with blazing thunder, applying Flame Shock and dealing ≈400% of Spell Power Nature damage. Always critically strikes. Generates 6 Maelstrom.",
+                "text": "Instantly shocks the target and 5 enemies within 10 yds with blazing thunder, applying Flame Shock and dealing ≈400% of Spell Power Nature damage. Always critically strikes. Generates 6 Maelstrom.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -11590,8 +11558,8 @@
             "spellId": 10473,
             "category": "Other",
             "description": {
-                "text": "Summons a totem at the target location for 15, continually granting all allies who pass within (varies) yards 40% increased movement speed for 5.",
-                "uncertain": true
+                "text": "Summons a totem at the target location for 15, continually granting all allies who pass within 10 yards 40% increased movement speed for 5.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -11797,7 +11765,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 65% on Lightning Bolt and Chain Lightning casts.",
+                            "text": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 40% on Lightning Bolt and Chain Lightning casts.",
                             "uncertain": false
                         },
                         "category": "Other",

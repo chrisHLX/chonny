@@ -1,7 +1,7 @@
 {
-    "generatedAt": "2026-09-19T10:22:08+00:00",
-    "spellCacheVersion": 4162,
-    "codeFingerprint": "07526e2",
+    "generatedAt": "2026-09-24T08:57:16+00:00",
+    "spellCacheVersion": 21,
+    "codeFingerprint": "dev",
     "entries": [
         {
             "spellId": 12349,
@@ -134,70 +134,6 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 11840,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Crowd Control",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11841,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Crowd Control",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11885,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Utility",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12277,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Crowd Control",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12349,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -296,9 +232,74 @@
                         }
                     }
                 ],
-                "potential": []
+                "potential": [
+                    {
+                        "spellId": 11840,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 11841,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 11885,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Utility",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12277,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ]
             },
-            "hasPotentialImprovement": false,
+            "hasPotentialImprovement": true,
             "cooldown": {
                 "seconds": 90,
                 "base_seconds": 90,
@@ -490,8 +491,8 @@
             "spellId": 12275,
             "category": "Other",
             "description": {
-                "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by 50% on group members within (varies) yds.",
-                "uncertain": true
+                "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by 50% on group members within 12 yds.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -520,12 +521,14 @@
             "spellId": 12367,
             "category": "Defensive",
             "description": {
-                "text": "Go berserk, removing and granting immunity to Fear, Sap, and Incapacitate effects for 6. Also remove fear effects from and reduce the duration of the next crowd control effect within 5 by 50% on group members within (varies) yds.",
-                "uncertain": true
+                "text": "Go berserk, removing and granting immunity to Fear, Sap, and Incapacitate effects for 6. Also remove fear effects from and reduce the duration of the next crowd control effect within 5 by 50% on group members within 12 yds.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
-                "named": [
+                "named": [],
+                "baseline": [],
+                "potential": [
                     {
                         "spellId": 12379,
                         "relationship_type": "modifies",
@@ -541,18 +544,15 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
+                    },
                     {
                         "spellId": 12275,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by 50% on group members within (varies) yds.",
-                            "uncertain": true
+                            "text": "Berserker Shout also reduces the duration of the next crowd control effect within 5 by 50% on group members within 12 yds.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -574,7 +574,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": true,
             "offensiveDefensive": {
@@ -645,7 +645,7 @@
             "drCategory": null
         },
         {
-            "spellId": 12741,
+            "spellId": 13550,
             "category": "Other",
             "description": {
                 "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
@@ -668,7 +668,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -758,7 +758,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -858,8 +858,8 @@
             "spellId": 12495,
             "category": "Other",
             "description": {
-                "text": "Using Shield Slam increases the damage of Shield Slam by 10% and the block value of your shield by 5% for 16. Stacking up to (varies) times.",
-                "uncertain": true
+                "text": "Using Shield Slam increases the damage of Shield Slam by 10% and the block value of your shield by 5% for 16. Stacking up to 3 times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -918,8 +918,8 @@
             "spellId": 12449,
             "category": "Other",
             "description": {
-                "text": "Lightning Strikes have a (varies)% chance to make your next 2 Shield Slams have no cooldown.",
-                "uncertain": true
+                "text": "Lightning Strikes have a 15% chance to make your next 2 Shield Slams have no cooldown.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1008,8 +1008,8 @@
             "spellId": 11740,
             "category": "Utility",
             "description": {
-                "text": "Taunts all enemies within (varies) yds to attack you for 6, and increases the threat you generate against them by 800% for 6.",
-                "uncertain": true
+                "text": "Taunts all enemies within 10 yds to attack you for 6, and increases the threat you generate against them by 800% for 6.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1036,8 +1036,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Taunts all enemies within (varies) yds to attack you for 6, interrupts all spellcasting within (varies) yds and prevents any spell in that school from being cast for 6. Increases the threat you generate against the target by 800%.",
-                            "uncertain": true
+                            "text": "Taunts all enemies within 14 yds to attack you for 6, interrupts all spellcasting within 14 yds and prevents any spell in that school from being cast for 6. Increases the threat you generate against the target by 800%.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -1187,7 +1187,7 @@
             "spellId": 12421,
             "category": "Other",
             "description": {
-                "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to (varies) times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
+                "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -1201,7 +1201,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to (varies) times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1217,8 +1217,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies affected by Demolish take up to (varies)% more damage from you and deal up to (varies)% less damage to you for 10 based on the number of stacks of Colossal Might consumed by Demolish. Colossal Might stacks up to 10 times.",
-                            "uncertain": true
+                            "text": "Enemies affected by Demolish take up to 10% more damage from you and deal up to 20% less damage to you for 10 based on the number of stacks of Colossal Might consumed by Demolish. Colossal Might stacks up to 10 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -1508,8 +1508,8 @@
             "spellId": 11729,
             "category": "Offensive",
             "description": {
-                "text": "Execute inflicts Deep Wounds on the target. Deep Wounds $@spelldesc262115",
-                "uncertain": false
+                "text": "Execute inflicts Deep Wounds on the target. Deep Wounds Causes the target to suffer (varies) Bleed damage over 6. If this effect is reapplied, any remaining damage will be added to the new Deep Wounds.",
+                "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1762,8 +1762,8 @@
             "spellId": 12431,
             "category": "Defensive",
             "description": {
-                "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                "uncertain": true
+                "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -1793,7 +1793,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to (varies) times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1809,8 +1809,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                            "uncertain": true
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1825,8 +1825,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                            "uncertain": true
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1841,8 +1841,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                            "uncertain": true
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "uncertain": false
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -1889,7 +1889,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to (varies) times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -1905,8 +1905,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Enemies affected by Demolish take up to (varies)% more damage from you and deal up to (varies)% less damage to you for 10 based on the number of stacks of Colossal Might consumed by Demolish. Colossal Might stacks up to 10 times.",
-                            "uncertain": true
+                            "text": "Enemies affected by Demolish take up to 10% more damage from you and deal up to 20% less damage to you for 10 based on the number of stacks of Colossal Might consumed by Demolish. Colossal Might stacks up to 10 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -2020,7 +2020,7 @@
             "spellId": 12474,
             "category": "Offensive",
             "description": {
-                "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
+                "text": "Demoralizes all enemies within 10 yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2314,7 +2314,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": true,
             "offensiveDefensive": null,
@@ -2324,8 +2324,8 @@
             "spellId": 12496,
             "category": "Utility",
             "description": {
-                "text": "Taunts all enemies within (varies) yds to attack you for 6, interrupts all spellcasting within (varies) yds and prevents any spell in that school from being cast for 6. Increases the threat you generate against the target by 800%.",
-                "uncertain": true
+                "text": "Taunts all enemies within 14 yds to attack you for 6, interrupts all spellcasting within 14 yds and prevents any spell in that school from being cast for 6. Increases the threat you generate against the target by 800%.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2371,8 +2371,8 @@
             "spellId": 12422,
             "category": "Other",
             "description": {
-                "text": "Enemies affected by Demolish take up to (varies)% more damage from you and deal up to (varies)% less damage to you for 10 based on the number of stacks of Colossal Might consumed by Demolish. Colossal Might stacks up to 10 times.",
-                "uncertain": true
+                "text": "Enemies affected by Demolish take up to 10% more damage from you and deal up to 20% less damage to you for 10 based on the number of stacks of Colossal Might consumed by Demolish. Colossal Might stacks up to 10 times.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2631,7 +2631,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -2761,7 +2761,7 @@
             "spellId": 12375,
             "category": "Other",
             "description": {
-                "text": "(varies by condition — check in-game) a (varies)% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
+                "text": "(varies by condition — check in-game) a 20% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -2858,14 +2858,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 38212,
+            "spellId": 13680,
             "category": "Defensive",
             "description": {
                 "text": "Removes all movement impairing effects and all effects which cause loss of control of your character.",
@@ -2932,8 +2932,8 @@
             "spellId": 12506,
             "category": "Other",
             "description": {
-                "text": "Execute hits up to 2 additional (varies):targets; for 70% damage.",
-                "uncertain": true
+                "text": "Execute hits up to 2 additional targets for 70% damage.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -2952,7 +2952,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -2992,28 +2992,12 @@
             "spellId": 12340,
             "category": "Mobility",
             "description": {
-                "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within (varies) yards(varies by condition — check in-game).",
+                "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
-                    {
-                        "spellId": 12350,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Reduces the cooldown of Heroic Leap by 15 sec and Heroic Leap also increases your movement speed by 70% for 3.",
-                            "uncertain": false
-                        },
-                        "category": "Mobility",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
                     {
                         "spellId": 12350,
                         "relationship_type": "modifies_cooldown",
@@ -3055,8 +3039,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                            "uncertain": true
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3082,6 +3066,8 @@
                             "description": "Reduces the cooldown of Heroic Leap by ${$m1/-1000} sec and Heroic Leap also increases your movement speed by $202164s1% for $202164d.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -3113,8 +3099,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_heroicleap.jpg",
-                            "created_at": "2026-07-30T14:03:58.000000Z",
-                            "updated_at": "2026-09-06T04:00:18.000000Z",
+                            "created_at": "2026-08-03T12:23:40.000000Z",
+                            "updated_at": "2026-09-08T00:06:57.000000Z",
                             "effects": [
                                 {
                                     "id": 22434,
@@ -3124,13 +3110,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 1211,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.7,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:58.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:08.000000Z"
                                 },
                                 {
                                     "id": 22435,
@@ -3140,13 +3128,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": 0.7,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:58.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:08.000000Z"
                                 }
                             ]
                         },
@@ -3335,8 +3325,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                            "uncertain": true
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3384,7 +3374,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within 10 yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -3439,6 +3429,22 @@
                         "cooldown": {
                             "seconds": 3,
                             "base_seconds": 3,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -3566,22 +3572,6 @@
                         "description": {
                             "text": "You deal 5% more damage and take 5% less damage. Size increased by 5%.",
                             "uncertain": false
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
                         },
                         "category": "Offensive",
                         "cooldown": {
@@ -3755,28 +3745,12 @@
             "spellId": 12378,
             "category": "Defensive",
             "description": {
-                "text": "Run at high speed toward a target location near your allies, taking 30% of all damage dealt to allies within (varies) yards for 8 or until you take at least (varies) damage from this effect.",
+                "text": "Run at high speed toward a target location near your allies, taking 30% of all damage dealt to allies within 3 yards for 8 or until you take at least (varies) damage from this effect.",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
-                    {
-                        "spellId": 12373,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
-                            "uncertain": true
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
                     {
                         "spellId": 12373,
                         "relationship_type": "modifies_cooldown",
@@ -3818,8 +3792,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                            "uncertain": true
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -3851,28 +3825,12 @@
             "spellId": 12337,
             "category": "Other",
             "description": {
-                "text": "Run at high speed toward an ally, intercepting all melee and ranged attacks against them for 6 while they remain within (varies) yds.",
-                "uncertain": true
+                "text": "Run at high speed toward an ally, intercepting all melee and ranged attacks against them for 6 while they remain within 10 yds.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
-                    {
-                        "spellId": 12373,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
-                            "uncertain": true
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
                     {
                         "spellId": 12373,
                         "relationship_type": "modifies_cooldown",
@@ -3904,25 +3862,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    }
-                ],
-                "baseline": [],
-                "potential": [
-                    {
-                        "spellId": 12431,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                            "uncertain": true
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": 30,
-                            "base_seconds": 30,
-                            "applied": []
-                        }
                     },
                     {
                         "spellId": 12519,
@@ -3937,6 +3876,25 @@
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
+                            "applied": []
+                        }
+                    }
+                ],
+                "baseline": [],
+                "potential": [
+                    {
+                        "spellId": 12431,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "uncertain": false
+                        },
+                        "category": "Defensive",
+                        "cooldown": {
+                            "seconds": 30,
+                            "base_seconds": 30,
                             "applied": []
                         }
                     }
@@ -4037,6 +3995,8 @@
                             "description": "Your Shout abilities have additional effects. $@spellicon6673 $@spellname6673: Grants you an additional $s6% attack power. $@spellicon97462 $@spellname97462: Grants an additional $s4% health and duration increased by ${$s5/1000} sec. $@spellicon12323 $@spellname12323: Radius increased by $s3% $@spellicon384100 $@spellname384100: Radius increased by $s1%. $@spellicon5246 $@spellname5246: Cooldown reduced by ${$s2/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -4068,8 +4028,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_warrior_commandingshout.jpg",
-                            "created_at": "2026-07-30T14:03:59.000000Z",
-                            "updated_at": "2026-09-06T04:00:33.000000Z",
+                            "created_at": "2026-08-03T12:23:40.000000Z",
+                            "updated_at": "2026-09-08T00:07:09.000000Z",
                             "effects": [
                                 {
                                     "id": 22518,
@@ -4079,13 +4039,15 @@
                                     "base_value": 100,
                                     "scaled_value": 100,
                                     "misc_value": 6,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22519,
@@ -4095,13 +4057,15 @@
                                     "base_value": -15000,
                                     "scaled_value": -15000,
                                     "misc_value": 11,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22520,
@@ -4111,13 +4075,15 @@
                                     "base_value": 100,
                                     "scaled_value": 100,
                                     "misc_value": 6,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22521,
@@ -4127,13 +4093,15 @@
                                     "base_value": 2,
                                     "scaled_value": 2,
                                     "misc_value": 3,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22522,
@@ -4143,13 +4111,15 @@
                                     "base_value": 3000,
                                     "scaled_value": 3000,
                                     "misc_value": 1,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-09-02T11:58:24.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22523,
@@ -4159,13 +4129,15 @@
                                     "base_value": 3,
                                     "scaled_value": 3,
                                     "misc_value": null,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:03:59.000000Z",
-                                    "updated_at": "2026-08-07T17:36:59.000000Z"
+                                    "created_at": "2026-08-03T12:23:40.000000Z",
+                                    "updated_at": "2026-08-03T12:23:40.000000Z"
                                 }
                             ]
                         },
@@ -4191,8 +4163,8 @@
             "spellId": 12479,
             "category": "Offensive",
             "description": {
-                "text": "You gain 2% Haste for each enemy or ally within 10 yards, up to (varies)% Haste.",
-                "uncertain": true
+                "text": "You gain 2% Haste for each enemy or ally within 10 yards, up to 8% Haste.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4331,7 +4303,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4348,29 +4320,13 @@
             "modifiers": {
                 "named": [
                     {
-                        "spellId": 12445,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Your attacks trigger Lightning Strikes 30% more often.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12195,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Strikes have a (varies)% chance to make your next 2 Shield Slams have no cooldown.",
-                            "uncertain": true
+                            "text": "Lightning Strikes have a 101% chance to make your next 2 Shield Slams have no cooldown.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4396,13 +4352,29 @@
                         }
                     },
                     {
+                        "spellId": 12443,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Lightning Strikes generate 3 Rage. Revenge and Execute damage increased by 25%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 12449,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Strikes have a (varies)% chance to make your next 2 Shield Slams have no cooldown.",
-                            "uncertain": true
+                            "text": "Lightning Strikes have a 15% chance to make your next 2 Shield Slams have no cooldown.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -4431,12 +4403,12 @@
                 "baseline": [],
                 "potential": [
                     {
-                        "spellId": 12443,
-                        "relationship_type": "mentions",
+                        "spellId": 12445,
+                        "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Strikes generate 3 Rage. Revenge and Execute damage increased by 25%.",
+                            "text": "Your attacks trigger Lightning Strikes 30% more often.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -4746,7 +4718,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -4882,8 +4854,8 @@
             "spellId": 12341,
             "category": "Utility",
             "description": {
-                "text": "Snares all enemies within (varies) yards, reducing their movement speed by 70% for 8. Spurs all allies within (varies) yards, increasing their movement speed by 30% for 4.",
-                "uncertain": true
+                "text": "Snares all enemies within 12 yards, reducing their movement speed by 70% for 8. Spurs all allies within 6 yards, increasing their movement speed by 30% for 4.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -4982,7 +4954,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5162,8 +5134,8 @@
             "spellId": 12346,
             "category": "Other",
             "description": {
-                "text": "Lets loose a rallying cry, granting all party or raid members within (varies) yards 10% temporary and maximum health for 10. Health granted increased by 50% when not in a raid.",
-                "uncertain": true
+                "text": "Lets loose a rallying cry, granting all party or raid members within 40 yards 10% temporary and maximum health for 10. Health granted increased by 50% when not in a raid.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -5432,7 +5404,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within 10 yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5523,6 +5495,22 @@
                         }
                     },
                     {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 11707,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -5578,22 +5566,6 @@
                         "description": {
                             "text": "Damage from Rend has a chance to generate 5 Rage.",
                             "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12741,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
-                            "uncertain": true
                         },
                         "category": "Other",
                         "cooldown": {
@@ -5724,7 +5696,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to (varies) times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -5744,22 +5716,6 @@
                             "uncertain": true
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -5799,7 +5755,23 @@
                         }
                     },
                     {
-                        "spellId": 12742,
+                        "spellId": 13550,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 13551,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -5827,7 +5799,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -5879,7 +5851,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within 10 yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -5954,6 +5926,22 @@
                         }
                     },
                     {
+                        "spellId": 12443,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Lightning Strikes generate 3 Rage. Revenge and Execute damage increased by 25%.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 12327,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -5963,6 +5951,22 @@
                             "uncertain": false
                         },
                         "category": "Defensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -6023,7 +6027,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "(varies by condition — check in-game) a (varies)% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
+                            "text": "(varies by condition — check in-game) a 20% chance to immediately refund (varies by condition — check in-game)% of the Rage spent.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6246,47 +6250,15 @@
                         }
                     },
                     {
-                        "spellId": 12443,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Lightning Strikes generate 3 Rage. Revenge and Execute damage increased by 25%.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12202,
                         "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to (varies) times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
                             "uncertain": true
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -6315,7 +6287,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to (varies) times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -6430,7 +6402,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -6461,22 +6433,6 @@
                             "base_seconds": null,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 12521,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Second Wind reduces damage taken by 10% to 40%, with larger attacks being reduced by more.\r\n\r\nWhile Shield Wall is active, healing reductions do not apply to you.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ],
                 "baseline": [],
@@ -6489,6 +6445,22 @@
                         "description": {
                             "text": "When your health is brought below 35%, you gain a Second Wind, healing you for (varies)% of your max health over 2. This effect cannot occur more than once every (varies) sec.",
                             "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12521,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Second Wind reduces damage taken by 10% to 40%, with larger attacks being reduced by more.\r\n\r\nWhile Shield Wall is active, healing reductions do not apply to you.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -6532,7 +6504,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within 10 yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -6600,6 +6572,22 @@
                             "uncertain": false
                         },
                         "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -6755,22 +6743,6 @@
                         }
                     },
                     {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12518,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -6799,7 +6771,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": {
@@ -6874,8 +6846,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                            "uncertain": true
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -6923,7 +6895,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within 10 yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -7035,8 +7007,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Using Shield Slam increases the damage of Shield Slam by 10% and the block value of your shield by 5% for 16. Stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Using Shield Slam increases the damage of Shield Slam by 10% and the block value of your shield by 5% for 16. Stacking up to 3 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7110,6 +7082,22 @@
                         }
                     },
                     {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
                         "spellId": 11918,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7147,8 +7135,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Strikes have a (varies)% chance to make your next 2 Shield Slams have no cooldown.",
-                            "uncertain": true
+                            "text": "Lightning Strikes have a 101% chance to make your next 2 Shield Slams have no cooldown.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7211,8 +7199,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Lightning Strikes have a (varies)% chance to make your next 2 Shield Slams have no cooldown.",
-                            "uncertain": true
+                            "text": "Lightning Strikes have a 15% chance to make your next 2 Shield Slams have no cooldown.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7259,8 +7247,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Using Shield Slam increases the damage of Shield Slam by 10% and the block value of your shield by 5% for 16. Stacking up to (varies) times.",
-                            "uncertain": true
+                            "text": "Using Shield Slam increases the damage of Shield Slam by 10% and the block value of your shield by 5% for 16. Stacking up to 3 times.",
+                            "uncertain": false
                         },
                         "category": "Other",
                         "cooldown": {
@@ -7295,6 +7283,22 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12514,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Protect an ally, causing 40% of all Physical damage they take to be transfered to you. When the target takes Physical damage, your Shield Slam cooldown has a 30% chance to be reset. Bodyguard is cancelled if the target is further than 20 yards from you. Lasts 1 min.\r\n\r\nOnly one target can be Bodyguarded at a time.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -7482,22 +7486,6 @@
                         }
                     },
                     {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 11744,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7535,7 +7523,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to (varies) times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 5 or more targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7583,7 +7571,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to (varies) times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
+                            "text": "Colossal Might increases damage dealt by your next Demolish by 5%, stacking up to 5 times. (varies by condition — check in-game) grants a stack of Colossal Might and (varies by condition — check in-game) grants a stack of Colossal Might when it strikes 3 or more targets.",
                             "uncertain": true
                         },
                         "category": "Other",
@@ -7674,22 +7662,6 @@
                         }
                     },
                     {
-                        "spellId": 12514,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Protect an ally, causing 40% of all Physical damage they take to be transfered to you. When the target takes Physical damage, your Shield Slam cooldown has a 30% chance to be reset. Bodyguard is cancelled if the target is further than 20 yards from you. Lasts 1 min.\r\n\r\nOnly one target can be Bodyguarded at a time.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12515,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -7768,22 +7740,6 @@
             "formulaModifierSpellIds": [],
             "modifiers": {
                 "named": [
-                    {
-                        "spellId": 12373,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
-                            "uncertain": true
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
                     {
                         "spellId": 12373,
                         "relationship_type": "modifies_cooldown",
@@ -7879,22 +7835,6 @@
                             "base_seconds": 180,
                             "applied": []
                         }
-                    },
-                    {
-                        "spellId": 12521,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Second Wind reduces damage taken by 10% to 40%, with larger attacks being reduced by more.\r\n\r\nWhile Shield Wall is active, healing reductions do not apply to you.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
                     }
                 ],
                 "baseline": [],
@@ -7905,8 +7845,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                            "uncertain": true
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -7922,6 +7862,22 @@
                         "modifier_unit": null,
                         "description": {
                             "text": "Shield Slam reduces the remaining cooldown of Shield Wall by 6 sec.",
+                            "uncertain": false
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12521,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Second Wind reduces damage taken by 10% to 40%, with larger attacks being reduced by more.\r\n\r\nWhile Shield Wall is active, healing reductions do not apply to you.",
                             "uncertain": false
                         },
                         "category": "Other",
@@ -7948,6 +7904,8 @@
                             "description": "Shield Wall gains $s2 additional charge and its cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -7979,8 +7937,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_warrior_stalwartprotector.jpg",
-                            "created_at": "2026-07-30T14:04:01.000000Z",
-                            "updated_at": "2026-09-06T04:00:31.000000Z",
+                            "created_at": "2026-08-03T12:23:41.000000Z",
+                            "updated_at": "2026-09-08T00:07:08.000000Z",
                             "effects": [
                                 {
                                     "id": 22784,
@@ -7990,13 +7948,15 @@
                                     "base_value": -60000,
                                     "scaled_value": -60000,
                                     "misc_value": 1929,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:04:01.000000Z",
-                                    "updated_at": "2026-09-02T11:58:25.000000Z"
+                                    "created_at": "2026-08-03T12:23:41.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22785,
@@ -8006,13 +7966,15 @@
                                     "base_value": 1,
                                     "scaled_value": 1,
                                     "misc_value": 1929,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:04:01.000000Z",
-                                    "updated_at": "2026-09-02T11:58:25.000000Z"
+                                    "created_at": "2026-08-03T12:23:41.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 }
                             ]
                         },
@@ -8037,6 +7999,8 @@
                             "description": "Shield Wall gains $s2 additional charge and its cooldown is reduced by ${$s1/-1000} sec.",
                             "variables": null,
                             "charges": null,
+                            "max_stacks": null,
+                            "proc_chance": null,
                             "cooldown_seconds": null,
                             "cooldown_scaling_note": null,
                             "duration_seconds": null,
@@ -8068,8 +8032,8 @@
                             "is_mobility": false,
                             "is_passive": true,
                             "icon_name": "ability_warrior_stalwartprotector.jpg",
-                            "created_at": "2026-07-30T14:04:01.000000Z",
-                            "updated_at": "2026-09-06T04:00:31.000000Z",
+                            "created_at": "2026-08-03T12:23:41.000000Z",
+                            "updated_at": "2026-09-08T00:07:08.000000Z",
                             "effects": [
                                 {
                                     "id": 22784,
@@ -8079,13 +8043,15 @@
                                     "base_value": -60000,
                                     "scaled_value": -60000,
                                     "misc_value": 1929,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:04:01.000000Z",
-                                    "updated_at": "2026-09-02T11:58:25.000000Z"
+                                    "created_at": "2026-08-03T12:23:41.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 },
                                 {
                                     "id": 22785,
@@ -8095,13 +8061,15 @@
                                     "base_value": 1,
                                     "scaled_value": 1,
                                     "misc_value": 1929,
+                                    "radius_yards": null,
+                                    "chain_targets": null,
                                     "affected_schools": null,
                                     "sp_coefficient": null,
                                     "pvp_coefficient": null,
                                     "rank_op": null,
                                     "rank_values": null,
-                                    "created_at": "2026-07-30T14:04:01.000000Z",
-                                    "updated_at": "2026-09-02T11:58:25.000000Z"
+                                    "created_at": "2026-08-03T12:23:41.000000Z",
+                                    "updated_at": "2026-09-08T00:05:09.000000Z"
                                 }
                             ]
                         },
@@ -8126,8 +8094,8 @@
             "spellId": 12344,
             "category": "Crowd Control",
             "description": {
-                "text": "Sends a wave of force in a frontal cone, causing 80 damage and stunning all enemies within (varies) yards for 2.",
-                "uncertain": true
+                "text": "Sends a wave of force in a frontal cone, causing 80 damage and stunning all enemies within 10 yards for 2.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -8138,7 +8106,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within 10 yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8213,63 +8181,15 @@
                         }
                     },
                     {
-                        "spellId": 11840,
-                        "relationship_type": "mentions",
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
                         },
-                        "category": "Crowd Control",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11841,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Crowd Control",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11885,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Utility",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12277,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Crowd Control",
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -8425,15 +8345,47 @@
                         }
                     },
                     {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
+                        "spellId": 11840,
+                        "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
                         },
-                        "category": "Offensive",
+                        "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 11841,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 11885,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Utility",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -8450,6 +8402,22 @@
                             "uncertain": false
                         },
                         "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12277,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Crowd Control",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -8533,22 +8501,6 @@
                 "named": [
                     {
                         "spellId": 12373,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Cooldown of (varies by condition — check in-game), Intervene, (varies by condition — check in-game)Spell Reflection, Storm Bolt, and Pummel reduced by 10%. Successfully interrupting an enemy increases the damage you deal to them by (varies)% for 10.",
-                            "uncertain": true
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12373,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -8584,22 +8536,6 @@
                 "potential": [
                     {
                         "spellId": 11886,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Spell Reflection reflects the next 2 incoming spells cast on you and reflected spells deal 100% extra damage to the attacker. Spell Reflection's cooldown is increased by 10 sec.",
-                            "uncertain": false
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11886,
                         "relationship_type": "modifies_cooldown",
                         "modifier_value": 10,
                         "modifier_unit": "seconds",
@@ -8620,29 +8556,13 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                            "uncertain": true
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
                             "seconds": 30,
                             "base_seconds": 30,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11737,
-                        "relationship_type": "modifies_charges",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Hardened by battle, your Stamina is increased by 40% and your Armor is increased by 70% of your Strength.",
-                            "uncertain": false
-                        },
-                        "category": "Defensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -8807,7 +8727,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within 10 yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -8882,22 +8802,6 @@
                         }
                     },
                     {
-                        "spellId": 12444,
-                        "relationship_type": "modifies_cooldown",
-                        "modifier_value": 10,
-                        "modifier_unit": "seconds",
-                        "description": {
-                            "text": "Storm Bolt also hits 2 additional nearby (varies):targets;, stunning them for 2 sec, but its cooldown is increased by 10 sec.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12381,
                         "relationship_type": "modifies",
                         "modifier_value": null,
@@ -8907,6 +8811,22 @@
                             "uncertain": false
                         },
                         "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -9046,15 +8966,15 @@
                         }
                     },
                     {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
+                        "spellId": 12444,
+                        "relationship_type": "modifies_cooldown",
+                        "modifier_value": 10,
+                        "modifier_unit": "seconds",
                         "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
+                            "text": "Storm Bolt also hits 2 additional nearby targets, stunning them for 2 sec, but its cooldown is increased by 10 sec.",
+                            "uncertain": false
                         },
-                        "category": "Offensive",
+                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -9065,109 +8985,9 @@
             },
             "hasPotentialImprovement": true,
             "cooldown": {
-                "seconds": 40,
+                "seconds": 30,
                 "base_seconds": 30,
-                "applied": [
-                    {
-                        "spell": {
-                            "id": 12444,
-                            "patch_id": 1,
-                            "spell_id": 436162,
-                            "name": "Storm Bolts",
-                            "school": "Physical",
-                            "description": "Storm Bolt also hits $s1 additional nearby $Ltarget:targets;, stunning them for $s2 sec, but its cooldown is increased by ${$s3/1000} sec.",
-                            "variables": null,
-                            "charges": null,
-                            "cooldown_seconds": null,
-                            "cooldown_scaling_note": null,
-                            "duration_seconds": null,
-                            "pvp_duration_seconds": null,
-                            "pairs_with_category": null,
-                            "requires_stealth": false,
-                            "requires_target_out_of_combat": false,
-                            "not_in_spellbook": true,
-                            "mechanic": null,
-                            "usable_while_cc": null,
-                            "bypasses_active_defense": false,
-                            "silence_immune_by_school": false,
-                            "cc_immunity_note": null,
-                            "grants_cc_immunity_override": null,
-                            "cc_immunity_gating_spell_id": null,
-                            "grants_cc_immunity": [],
-                            "grants_school_immunity": null,
-                            "school_immunity_override": null,
-                            "spell_type": "None",
-                            "range_yards": null,
-                            "dr_category": null,
-                            "conditional_dr_gating_spell_id": null,
-                            "conditional_dr_category": null,
-                            "category": "Other",
-                            "cast_type": "instant",
-                            "chain_target": null,
-                            "is_peel": false,
-                            "is_interrupt": false,
-                            "is_mobility": false,
-                            "is_passive": true,
-                            "icon_name": "warrior_talent_icon_stormbolt.jpg",
-                            "created_at": "2026-07-30T14:04:00.000000Z",
-                            "updated_at": "2026-09-06T04:00:34.000000Z",
-                            "effects": [
-                                {
-                                    "id": 22670,
-                                    "spell_id": 12444,
-                                    "effect_index": 1,
-                                    "type": "Add Flat Modifier (107): Spell Effect 2",
-                                    "base_value": 2,
-                                    "scaled_value": 2,
-                                    "misc_value": 12,
-                                    "affected_schools": null,
-                                    "sp_coefficient": null,
-                                    "pvp_coefficient": null,
-                                    "rank_op": null,
-                                    "rank_values": null,
-                                    "created_at": "2026-07-30T14:04:00.000000Z",
-                                    "updated_at": "2026-09-02T11:58:25.000000Z"
-                                },
-                                {
-                                    "id": 22671,
-                                    "spell_id": 12444,
-                                    "effect_index": 2,
-                                    "type": "Dummy",
-                                    "base_value": 2,
-                                    "scaled_value": 2,
-                                    "misc_value": null,
-                                    "affected_schools": null,
-                                    "sp_coefficient": null,
-                                    "pvp_coefficient": null,
-                                    "rank_op": null,
-                                    "rank_values": null,
-                                    "created_at": "2026-07-30T14:04:00.000000Z",
-                                    "updated_at": "2026-08-07T17:36:59.000000Z"
-                                },
-                                {
-                                    "id": 22672,
-                                    "spell_id": 12444,
-                                    "effect_index": 3,
-                                    "type": "Add Flat Modifier (107): Spell Cooldown",
-                                    "base_value": 10000,
-                                    "scaled_value": 10000,
-                                    "misc_value": 11,
-                                    "affected_schools": null,
-                                    "sp_coefficient": null,
-                                    "pvp_coefficient": null,
-                                    "rank_op": null,
-                                    "rank_values": null,
-                                    "created_at": "2026-07-30T14:04:00.000000Z",
-                                    "updated_at": "2026-09-02T11:58:25.000000Z"
-                                }
-                            ]
-                        },
-                        "relationship_type": "modifies_cooldown",
-                        "modifier_value": 10,
-                        "modifier_unit": "seconds",
-                        "selection_spell_id": 12444
-                    }
-                ]
+                "applied": []
             },
             "charges": {
                 "charges": null,
@@ -9184,8 +9004,8 @@
             "spellId": 12444,
             "category": "Other",
             "description": {
-                "text": "Storm Bolt also hits 2 additional nearby (varies):targets;, stunning them for 2 sec, but its cooldown is increased by 10 sec.",
-                "uncertain": true
+                "text": "Storm Bolt also hits 2 additional nearby targets, stunning them for 2 sec, but its cooldown is increased by 10 sec.",
+                "uncertain": false
             },
             "formulaModifierSpellIds": [],
             "modifiers": {
@@ -9204,14 +9024,14 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
             "drCategory": null
         },
         {
-            "spellId": 12742,
+            "spellId": 13551,
             "category": "Other",
             "description": {
                 "text": "Whirlwind and Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
@@ -9311,7 +9131,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -9453,7 +9273,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within (varies) yards(varies by condition — check in-game).",
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9471,6 +9291,8 @@
                                         "description": "Reduces the cooldown of Heroic Leap by ${$m1/-1000} sec and Heroic Leap also increases your movement speed by $202164s1% for $202164d.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9502,8 +9324,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "ability_heroicleap.jpg",
-                                        "created_at": "2026-07-30T14:03:58.000000Z",
-                                        "updated_at": "2026-09-06T04:00:18.000000Z"
+                                        "created_at": "2026-08-03T12:23:40.000000Z",
+                                        "updated_at": "2026-09-08T00:06:57.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -15,
@@ -9519,7 +9341,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within (varies) yards(varies by condition — check in-game).",
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9535,7 +9357,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within (varies) yards(varies by condition — check in-game).",
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
                             "uncertain": true
                         },
                         "category": "Crowd Control",
@@ -9551,7 +9373,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within (varies) yards(varies by condition — check in-game).",
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9567,7 +9389,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within (varies) yards(varies by condition — check in-game).",
+                            "text": "Leap through the air toward a target location, slamming down with destructive force to deal 1.2 Physical damage to all enemies within 8 yards(varies by condition — check in-game).",
                             "uncertain": true
                         },
                         "category": "Mobility",
@@ -9585,6 +9407,8 @@
                                         "description": "Reduces the cooldown of Heroic Leap by ${$m1/-1000} sec and Heroic Leap also increases your movement speed by $202164s1% for $202164d.",
                                         "variables": null,
                                         "charges": null,
+                                        "max_stacks": null,
+                                        "proc_chance": null,
                                         "cooldown_seconds": null,
                                         "cooldown_scaling_note": null,
                                         "duration_seconds": null,
@@ -9616,8 +9440,8 @@
                                         "is_mobility": false,
                                         "is_passive": true,
                                         "icon_name": "ability_heroicleap.jpg",
-                                        "created_at": "2026-07-30T14:03:58.000000Z",
-                                        "updated_at": "2026-09-06T04:00:18.000000Z"
+                                        "created_at": "2026-08-03T12:23:40.000000Z",
+                                        "updated_at": "2026-09-08T00:06:57.000000Z"
                                     },
                                     "relationship_type": "modifies_cooldown",
                                     "modifier_value": -15,
@@ -9633,8 +9457,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Taunts all enemies within (varies) yds to attack you for 6, interrupts all spellcasting within (varies) yds and prevents any spell in that school from being cast for 6. Increases the threat you generate against the target by 800%.",
-                            "uncertain": true
+                            "text": "Taunts all enemies within 14 yds to attack you for 6, interrupts all spellcasting within 14 yds and prevents any spell in that school from being cast for 6. Increases the threat you generate against the target by 800%.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -9652,8 +9476,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within (varies) yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
-                            "uncertain": true
+                            "text": "Unleash a series of precise and powerful strikes against your target, dealing 24 damage to it, and 8 damage to enemies within 10 yds of it. Deals reduced damage beyond 8 targets. While channeling Demolish, you take 10% less damage and are immune to stuns, knockbacks, and forced movement effects. You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.",
+                            "uncertain": false
                         },
                         "category": "Defensive",
                         "cooldown": {
@@ -9668,8 +9492,8 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Taunts all enemies within (varies) yds to attack you for 6, and increases the threat you generate against them by 800% for 6.",
-                            "uncertain": true
+                            "text": "Taunts all enemies within 10 yds to attack you for 6, and increases the threat you generate against them by 800% for 6.",
+                            "uncertain": false
                         },
                         "category": "Utility",
                         "cooldown": {
@@ -9721,7 +9545,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": false,
+            "isSelected": true,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -9731,7 +9555,7 @@
             "spellId": 12192,
             "category": "Offensive",
             "description": {
-                "text": "Blasts all enemies within (varies) yards for 435,222 Stormstrike damage, roots them for 4, and reduces their movement speed by 20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
+                "text": "Blasts all enemies within 8 yards for 435,222 Stormstrike damage, roots them for 4, and reduces their movement speed by 20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -9743,7 +9567,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within 10 yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -9878,6 +9702,22 @@
                         "cooldown": {
                             "seconds": 6,
                             "base_seconds": 6,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
                             "applied": []
                         }
                     },
@@ -10158,22 +9998,6 @@
                         }
                     },
                     {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12453,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -10212,7 +10036,7 @@
             "spellId": 12339,
             "category": "Offensive",
             "description": {
-                "text": "Blasts all enemies within (varies) yards for 20 Physical damage, roots them for 4, and reduces their movement speed by 20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
+                "text": "Blasts all enemies within 8 yards for 20 Physical damage, roots them for 4, and reduces their movement speed by 20% for 10. Deals reduced damage beyond 5 targets.(varies by condition — check in-game)",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],
@@ -10224,7 +10048,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within 10 yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -10347,47 +10171,15 @@
                         }
                     },
                     {
-                        "spellId": 11840,
-                        "relationship_type": "mentions",
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
                         },
-                        "category": "Crowd Control",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11841,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Crowd Control",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 11885,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Utility",
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -10404,22 +10196,6 @@
                             "uncertain": false
                         },
                         "category": "Other",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12277,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
-                            "uncertain": false
-                        },
-                        "category": "Crowd Control",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -10564,22 +10340,6 @@
                             "uncertain": false
                         },
                         "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
-                        "spellId": 12741,
-                        "relationship_type": "mentions",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Other",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -10783,22 +10543,6 @@
                         }
                     },
                     {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 11760,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -10815,7 +10559,87 @@
                         }
                     },
                     {
-                        "spellId": 12742,
+                        "spellId": 11840,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 11841,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 11885,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Utility",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12277,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4.",
+                            "uncertain": false
+                        },
+                        "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 13550,
+                        "relationship_type": "mentions",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Thunder Clap affects all targets with Rend, causing them to Bleed for (varies) damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Other",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 13551,
                         "relationship_type": "mentions",
                         "modifier_value": null,
                         "modifier_unit": null,
@@ -10903,7 +10727,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "pvp_talent",
             "isPriority": false,
             "offensiveDefensive": null,
@@ -11212,7 +11036,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Demoralizes all enemies within (varies) yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
+                            "text": "Demoralizes all enemies within 10 yards, reducing the damage they do by 25% for 8. Generates 0 Rage.",
                             "uncertain": true
                         },
                         "category": "Offensive",
@@ -11280,6 +11104,22 @@
                             "uncertain": false
                         },
                         "category": "Crowd Control",
+                        "cooldown": {
+                            "seconds": null,
+                            "base_seconds": null,
+                            "applied": []
+                        }
+                    },
+                    {
+                        "spellId": 12144,
+                        "relationship_type": "modifies",
+                        "modifier_value": null,
+                        "modifier_unit": null,
+                        "description": {
+                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
+                            "uncertain": true
+                        },
+                        "category": "Offensive",
                         "cooldown": {
                             "seconds": null,
                             "base_seconds": null,
@@ -11435,22 +11275,6 @@
                         }
                     },
                     {
-                        "spellId": 12144,
-                        "relationship_type": "modifies",
-                        "modifier_value": null,
-                        "modifier_unit": null,
-                        "description": {
-                            "text": "Wounds the target, causing (varies) Physical damage instantly and an additional (varies) Bleed damage over 15.",
-                            "uncertain": true
-                        },
-                        "category": "Offensive",
-                        "cooldown": {
-                            "seconds": null,
-                            "base_seconds": null,
-                            "applied": []
-                        }
-                    },
-                    {
                         "spellId": 12518,
                         "relationship_type": "mentions",
                         "modifier_value": null,
@@ -11479,7 +11303,7 @@
                 "base_charges": null,
                 "applied": []
             },
-            "isSelected": true,
+            "isSelected": false,
             "source": "talent",
             "isPriority": false,
             "offensiveDefensive": {

@@ -1,5 +1,5 @@
 # Druid — Druid of the Claw Hero Talents
-# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
+# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Ravage (id=441583) [Spell Family (7), Passive] 
@@ -377,8 +377,9 @@ Effects          :
 #1 (id=1284826)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 #2 (id=1284870)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
-                   Base Value: 8 | Scaled Value: 8 | Misc Value: 22 | Misc Value 2: 3345 (Label) | Target: Self (1)
+                   Base Value: 8 | Scaled Value: 8 | PvP Coefficient: 1.25 | Misc Value: 22 | Misc Value 2: 3345 (Label) | Target: Self (1)
                    Affected Spells (Label): Dreadful Wound (441812), Dreadful Wound (451177)
+Hotfixed         : PvP Coefficient (1 -> 1.25)
 #3 (id=1284871)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
                    Base Value: 15 | Scaled Value: 15 | Misc Value: 22 | Misc Value 2: 3345 (Label) | Target: Self (1)
                    Affected Spells (Label): Dreadful Wound (441812), Dreadful Wound (451177)

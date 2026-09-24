@@ -1,5 +1,5 @@
 # Death Knight — Deathbringer Hero Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69814 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69933 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Grim Reaper (id=434905) [Spell Family (15), Passive] 
@@ -102,7 +102,8 @@ Family Flags     : 43, 120
 Attributes       : Initiates Combat (Enables Auto-Attack) (41), Do Not Chain To Crowd-Controlled Targets (200), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1133377)  : School Damage (2): shadowfrost | Attributes: Chain from Initial Target (7), Enforce Line of Sight To Chain Targets (16)
-                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 4.4226 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 5.30712 | Target: Targeted Enemy (6)
+Hotfixed         : AP Coefficient (4.4226 -> 5.30712)
 #2 (id=1133380)  : Trigger Spell (64): Reaper's Mark
                    Base Value: 0 | Scaled Value: 0 | Delay: 10_ms | Trigger Spell: 434765 | Target: Targeted Enemy (6)
 #3 (id=1138466)  : Energize Power (30)
@@ -171,9 +172,10 @@ Effects          :
                    Affected Spells: Blood Boil (50842)
                    Family Flags: 18
 #3 (id=1183141)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
                    Affected Spells: Blood Boil (50842)
                    Family Flags: 18
+Hotfixed         : Base Value (30 -> 50)
 #4 (id=1183142)  : Apply Aura (6) | Dummy (4)
                    Base Value: 60 | Scaled Value: 60 | Trigger Spell: 443532 | Target: Self (1)
 Description      : $?a137008[Blood Boil deals $s3% increased damage][Rime empowered Howling Blast deals $s4% increased damage to its main target], and is now Shadowfrost.
@@ -417,9 +419,10 @@ Effects          :
                    Affected Spells: Glacial Advance (195975), Glacial Advance (232752)
                    Family Flags: 50
 #3 (id=1278009)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
                    Affected Spells: Death Strike (49998), Death Strike Off-Hand (66188)
                    Family Flags: 4
+Hotfixed         : Base Value (12 -> 20)
 #4 (id=1297344)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : $?c2[Frost Strike damage is increased by $s1% and Glacial Advance damage is increased by $s2%.
