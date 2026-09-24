@@ -210,9 +210,25 @@
             },
             hide() { this.tip = null; },
          }">
+        @php
+            // $budget is the tree's point cap when one is known, null when it is not — see
+            // config/talent_gates.php for why the class tree deliberately has none. Over budget
+            // is shown rather than prevented: the picker does not yet model auto-granted
+            // talents, so refusing a click could refuse a legal one.
+            $budget = $budget ?? null;
+            $over = $budget !== null && $pointsSpent > $budget;
+
+            // Built in one piece rather than with @if in the middle of the sentence: Livewire
+            // wraps a conditional in <!--[if BLOCK]--> markers, which splits the rendered text in
+            // the markup even though it reads correctly on screen.
+            $spentLabel = '— '.$pointsSpent
+                .($budget !== null ? ' / '.$budget : '')
+                .' point'.($pointsSpent === 1 ? '' : 's').' spent'
+                .($over ? ' (over)' : '');
+        @endphp
         <p class="text-[11px] font-semibold text-ink-muted uppercase tracking-wide mb-2">
             {{ $label }}
-            <span class="text-ink-subtle normal-case font-normal">— {{ $pointsSpent }} point{{ $pointsSpent === 1 ? '' : 's' }} spent</span>
+            <span class="normal-case font-normal {{ $over ? 'text-red-400' : 'text-ink-subtle' }}">{{ $spentLabel }}</span>
         </p>
         <div class="bg-surface-2/40 border border-line rounded-lg">
             <div class="relative" style="width: {{ $containerWidth }}px; height: {{ $containerHeight }}px;">

@@ -196,3 +196,53 @@ test('the points-spent counter reflects the click that just happened, not the on
     $component->call('toggleEntry', $fixture['node']->id, $fixture['rank2']->id);
     expect($component->instance()->specPointsSpent)->toBe(0);
 });
+
+/*
+ * The spec tree's point budget — 2026-09-25.
+ *
+ * Nothing used to cap or even show a budget, so a guide author could pour forty points into a
+ * thirty-four point tree and the counter just counted up. 34 is observed, not looked up: every
+ * level-90 character synced to the site shows exactly that many summed ranks in its spec tree,
+ * across all twelve classes. The class tree deliberately has no budget — see
+ * config/talent_gates.php for why one cannot be derived honestly.
+ */
+test('the spec tree shows its budget, and says so when a build goes past it', function () {
+    $fixture = makeGridFixture();
+
+    config(['talent_gates.budgets.spec' => 1]);
+
+    $component = Livewire::test(TalentSelector::class, ['specId' => $fixture['spec']->id, 'layout' => 'grid']);
+    $component->assertSee('0 / 1 points spent');
+
+    $component->call('toggleEntry', $fixture['node']->id, $fixture['rank1']->id)
+        ->assertSee('1 / 1 point spent')
+        ->assertDontSee('(over)');
+
+    // Rank 2 is two points in a one-point budget: shown, not blocked. The picker does not model
+    // auto-granted talents yet, so refusing the click could refuse a legal one.
+    $component->call('cycleNode', $fixture['node']->id)
+        ->assertSee('2 / 1 points spent')
+        ->assertSee('(over)');
+});
+
+test('a tree with no budget prints a bare count, with nothing to compare it against', function () {
+    $fixture = makeGridFixture();
+
+    // The class tree is the real case: no source states its total, and the ranks we can observe
+    // include auto-granted talents by a class-specific amount this schema does not record.
+    expect(config('talent_gates.budgets.class'))->toBeNull();
+
+    config(['talent_gates.budgets.spec' => null]);
+
+    Livewire::test(TalentSelector::class, ['specId' => $fixture['spec']->id, 'layout' => 'grid'])
+        // "0 points spent", not "0 / N points spent" — the label is built in one piece, so the
+        // bare form appearing at all is what proves no budget was printed for this tree.
+        ->assertSee('0 points spent');
+});
+
+test('the final class-tree gate is the Midnight number, not the retired one', function () {
+    // Blizzard's own Midnight announcement: "the point requirement to unlock the final node will
+    // be increasing from twenty to twenty-three". The 20 carried over from the prior expansion
+    // and was flagged unverified in config the whole time.
+    expect(collect(config('talent_gates.gates'))->firstWhere('display_row', 8)['points_required'])->toBe(23);
+});

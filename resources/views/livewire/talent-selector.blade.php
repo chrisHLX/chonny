@@ -204,7 +204,7 @@
                 </div>
 
                 <div class="flex-shrink-0">
-                    @include('livewire.partials.talent-tree-grid', ['nodes' => $specTalentNodes, 'edges' => $specTalentEdges, 'label' => ($specialization?->name ?? 'Spec').' Talents', 'chosenEntries' => $chosenEntries, 'pointsSpent' => $specPointsSpent])
+                    @include('livewire.partials.talent-tree-grid', ['nodes' => $specTalentNodes, 'edges' => $specTalentEdges, 'label' => ($specialization?->name ?? 'Spec').' Talents', 'chosenEntries' => $chosenEntries, 'pointsSpent' => $specPointsSpent, 'budget' => config('talent_gates.budgets.spec')])
                 </div>
 
                 @if (!$moduleHeroTreeId && !$readOnly && count($heroTreeOptions) > 1)
