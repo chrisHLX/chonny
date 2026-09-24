@@ -1303,6 +1303,7 @@ class Builder extends Component
             // confident-sounding "The go" would invite authors to leave it alone.
             UserGuideSectionKind::Sequence => 'Untitled sequence',
             UserGuideSectionKind::Defensives => 'Watch out for',
+            UserGuideSectionKind::Synergy => 'How this ability changes',
             UserGuideSectionKind::Text => 'Notes',
         };
     }

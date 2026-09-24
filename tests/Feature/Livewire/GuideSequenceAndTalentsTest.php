@@ -66,9 +66,16 @@ test('the retired chain and go kinds no longer exist', function () {
         ->and(UserGuideSectionKind::tryFrom('go'))->toBeNull()
         ->and(UserGuideSectionKind::tryFrom('sequence'))->toBe(UserGuideSectionKind::Sequence);
 
-    // Three kinds, and only one of them is an ability sequence.
+    // The kinds, in the order the builder offers them. Synergy joined on 2026-09-25.
     expect(collect(UserGuideSectionKind::cases())->map->value->all())
-        ->toBe(['sequence', 'defensives', 'text']);
+        ->toBe(['sequence', 'defensives', 'synergy', 'text']);
+
+    // Only a Sequence tallies diminishing returns across its blocks: a Synergy section is one
+    // ability and the talents that change it, which is not a chain and has no control time.
+    expect(UserGuideSectionKind::Synergy->tracksControl())->toBeFalse()
+        ->and(UserGuideSectionKind::Synergy->usesOpponent())->toBeFalse()
+        ->and(UserGuideSectionKind::Synergy->isSynergy())->toBeTrue()
+        ->and(UserGuideSectionKind::Sequence->isSynergy())->toBeFalse();
 });
 
 test('a request naming a retired kind creates nothing rather than falling back to a default', function () {

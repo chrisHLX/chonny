@@ -53,6 +53,19 @@ enum UserGuideSectionKind: string
      */
     case Defensives = 'defensives';
 
+    /**
+     * One ability and the talents that change it — Penance with Power of the Dark Side,
+     * Castigation and Harsh Discipline; Weal and Woe with Power Word: Shield.
+     *
+     * The first block is the SUBJECT (payload.role = 'subject'); the rest are its MODIFIERS. The
+     * author picks both, but does not have to go hunting: spell_relationships already knows which
+     * talents modify a given ability and by how much, so the builder offers that list and the
+     * author ticks what the point is about and writes why it matters. The numbers stay live — a
+     * patch that changes Castigation changes this section without anyone re-authoring it — while
+     * the reason it is worth knowing is the author's, which is the half no data has.
+     */
+    case Synergy = 'synergy';
+
     /** Prose. Markdown in the section's body; no abilities, no metrics. */
     case Text = 'text';
 
@@ -61,6 +74,7 @@ enum UserGuideSectionKind: string
         return match ($this) {
             self::Sequence => 'Sequence',
             self::Defensives => 'Enemy abilities',
+            self::Synergy => 'Ability & talents',
             self::Text => 'Notes',
         };
     }
@@ -71,6 +85,7 @@ enum UserGuideSectionKind: string
         return match ($this) {
             self::Sequence => 'An ordered run of abilities — a go, a chain, an opener, a rotation.',
             self::Defensives => 'Their CC, interrupts, offensive and defensive cooldowns — what to watch for and what to force.',
+            self::Synergy => 'One ability and the talents that change it, with what each one does to it.',
             self::Text => 'Free notes in Markdown.',
         };
     }
@@ -79,6 +94,15 @@ enum UserGuideSectionKind: string
     public function isSequence(): bool
     {
         return $this !== self::Text;
+    }
+
+    /**
+     * Whether this section is one subject ability plus the things that modify it, rather than a
+     * run of abilities. Its blocks are unordered in the DR sense and its first block is special.
+     */
+    public function isSynergy(): bool
+    {
+        return $this === self::Synergy;
     }
 
     /** Whether the palette should draw from an opponent rather than from the author's own comp. */
