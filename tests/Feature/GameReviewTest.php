@@ -421,18 +421,71 @@ class GameReviewTest extends TestCase
         $this->assertNotSame($first['lobbyId'], $second['lobbyId']);
     }
 
-    public function test_a_non_shuffle_round_is_skipped(): void
+    public function test_two_3v3_matches_against_the_same_team_stay_separate_games(): void
     {
+        // Only a round-based bracket groups. A shuffle lobby is six rounds that belong together; a
+        // 3v3 is one match and is its own review. Facing the same team twice in a session is
+        // ordinary, and roster-grouping it would weld the two games into one two-round game —
+        // which is exactly what the shuffle grouping does on purpose and must not do here.
         $user = User::factory()->create();
+        $ingest = app(\App\Http\Services\ArenaReviewIngestService::class);
 
-        $lines = $this->shuffleRoundLog();
-        $lines[0] = str_replace('Rated Solo Shuffle', '3v3', $lines[0]);
+        $as3v3 = fn (array $lines) => array_map(
+            fn ($l) => str_replace('Rated Solo Shuffle', '3v3', $l),
+            $lines
+        );
 
-        $result = app(\App\Http\Services\ArenaReviewIngestService::class)
-            ->ingestRound($user, implode("\n", $lines));
+        $first = $ingest->ingestRound($user, implode("\n", $as3v3($this->shuffleRoundLog())));
 
-        $this->assertSame('skipped', $result['status']);
-        $this->assertDatabaseCount('arena_rounds', 0);
+        $rematch = $as3v3(array_map(
+            fn ($l) => str_replace(['17:29:0', '17:31:0'], ['17:41:0', '17:43:0'], $l),
+            $this->shuffleRoundLog()
+        ));
+        $second = $ingest->ingestRound($user, implode("\n", $rematch));
+
+        $this->assertSame('stored', $first['status'], json_encode($first));
+        $this->assertSame('stored', $second['status'], json_encode($second));
+
+        // Twelve minutes apart with an identical roster — inside the shuffle grouping window, and
+        // still two separate games because 3v3 does not group at all.
+        $this->assertNotSame($first['lobbyId'], $second['lobbyId']);
+        $this->assertDatabaseCount('arena_rounds', 2);
+    }
+
+    public function test_a_players_own_3v3_is_reviewable_but_a_pulled_match_is_not(): void
+    {
+        // The archive holds two different things: games ingested from this machine's combat log,
+        // which carry `source: local-combatlog`, and 16 older ones pulled from the wowarenalogs
+        // feed, which are OTHER PEOPLE'S GAMES and carry no source at all. This used to be a
+        // Solo Shuffle filter, which excluded them by accident and took the player's own 3v3
+        // games with it.
+        $reviews = app(LobbyReviewService::class);
+        $arena = app(\App\Http\Services\ArenaLogService::class);
+
+        $dir = dirname($arena->metadataPath('probe'));
+        File::ensureDirectoryExists($dir);
+
+        $write = function (string $id, string $bracket, ?string $source) use ($arena) {
+            File::put($arena->metadataPath($id), json_encode([
+                'id' => $id, 'source' => $source, 'startTime' => 1790000000000,
+                'startInfo' => ['bracket' => $bracket, 'zoneId' => '1'], 'units' => [],
+            ]));
+        };
+
+        $mine = str_repeat('a', 32);
+        $theirs = str_repeat('b', 32);
+
+        $write($mine, '3v3', 'local-combatlog');
+        $write($theirs, '3v3', null);
+
+        try {
+            $ids = array_column($reviews->reviewable(), 'id');
+
+            $this->assertContains($mine, $ids, 'A 3v3 from this machine\'s own log is reviewable.');
+            $this->assertNotContains($theirs, $ids, 'A pulled match is somebody else\'s game.');
+        } finally {
+            File::delete([$arena->metadataPath($mine), $arena->metadataPath($theirs)]);
+        }
     }
 
     public function test_uploading_requires_a_signed_in_user(): void

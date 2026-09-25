@@ -53,9 +53,9 @@
     </template>
 
     <p class="text-xs text-ink-subtle">
-        Solo Shuffle only for now, and Advanced Combat Logging must have been on
-        (System → Network) — without it the log carries no specs and a round cannot be read. The
-        MindCollector addon turns both on for you.
+        Solo Shuffle and 3v3. A shuffle lobby becomes one game of six rounds; every 3v3 is its own.
+        Advanced Combat Logging must have been on (System → Network) — without it the log carries no
+        specs and a round cannot be read. The MindCollector addon turns both on for you.
     </p>
 </div>
 

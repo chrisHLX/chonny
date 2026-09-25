@@ -145,16 +145,18 @@ class LobbyReviewService
     // ---------------------------------------------------------------- building (console only)
 
     /**
-     * Every reviewable game in the archive: one entry per Solo Shuffle lobby.
+     * Every reviewable game in the local archive: one entry per Solo Shuffle lobby, one per match
+     * in any other bracket.
      *
-     * SHUFFLE ONLY, ON PURPOSE. Two reasons, and the second is the important one. A shuffle
-     * reliably produces the mirror this page is built around — two healers who swap sides every
-     * round — where a 3v3 only sometimes does. And the 16 oldest matches in the archive came from
-     * the wowarenalogs feed, so they are **other people's games**: they have no place on a page
-     * that is one signed-in player's record of their own matches. Restricting to the round-based
-     * bracket excludes them by construction rather than by a list of ids somebody has to maintain.
+     * ONLY GAMES FROM YOUR OWN COMBAT LOG. The archive holds two different things. Matches
+     * ingested by `wow:ingest-combatlog` carry `source: local-combatlog` — those are games the
+     * person at this machine played. The 16 oldest carry no source at all because they were pulled
+     * from the wowarenalogs feed: **other people's games**, which have no place on a page that is
+     * one player's record of their own matches.
      *
-     * When 3v3 comes back it needs an owner recorded at ingest, not a bracket check.
+     * This used to be a Solo Shuffle filter, which excluded them by accident rather than on
+     * purpose — and took the player's own 3v3 games with it. `source` says what the bracket only
+     * implied.
      *
      * @return array<int, array{id: string, matchIds: array<int, string>, bracket: string, startTime: int}>
      */
@@ -169,10 +171,11 @@ class LobbyReviewService
                 continue;
             }
 
-            if (! $this->ingest->isRoundBased($m['startInfo']['bracket'] ?? '')) {
+            if (($m['source'] ?? null) !== 'local-combatlog') {
                 continue;
             }
 
+            // A shuffle round groups into its lobby; every other bracket is its own review.
             $key = $m['lobbyId'] ?? $m['id'];
 
             $groups[$key] ??= [
@@ -223,10 +226,6 @@ class LobbyReviewService
         }
 
         $metadata = $this->ingest->deriveMetadata($lines, $startLine, $endLine, 1, $lobbyFirstLine);
-
-        if (! $this->ingest->isRoundBased($metadata['startInfo']['bracket'] ?? '')) {
-            return null;
-        }
 
         $raw = implode("\n", $lines);
         $combatants = [];

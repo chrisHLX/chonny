@@ -47,31 +47,51 @@
             </p>
         </div>
     @else
-        {{-- Game picker --}}
-        <div class="flex flex-wrap gap-2">
-            @foreach ($reviews as $r)
-                <button type="button"
-                        wire:click="open('{{ $r['id'] }}')"
-                        @class([
-                            'text-left px-3 py-2 rounded-lg border text-sm transition',
-                            'border-line-gold bg-gold-subtle text-ink' => $r['id'] === $reviewId,
-                            'border-line bg-surface-1 text-ink-muted hover:border-line-strong' => $r['id'] !== $reviewId,
-                        ])>
-                    <span class="block font-medium">{{ $r['bracket'] }}</span>
-                    <span class="block text-xs text-ink-subtle">
-                        @if ($r['playedAt'])
-                            {{ \Illuminate\Support\Carbon::parse($r['playedAt'])->format('j M Y H:i') }}
-                        @endif
-                        @if ($r['record'])
-                            · {{ $r['record']['won'] }}-{{ $r['record']['lost'] }}
-                        @endif
-                        @if ($r['mirrors'] > 0)
-                            · {{ $r['mirrors'] }} mirror{{ $r['mirrors'] === 1 ? '' : 's' }}
-                        @endif
+        {{-- Game picker, grouped by bracket so a session reads as "my shuffles, my 3v3s". --}}
+        @foreach ($reviewGroups as $bracket => $group)
+            <div class="space-y-2">
+                <h2 class="text-xs font-medium text-ink-subtle uppercase tracking-widest">
+                    {{ $bracket }}
+                    <span class="text-ink-subtle/70 normal-case tracking-normal">
+                        · {{ count($group) }} game{{ count($group) === 1 ? '' : 's' }}
                     </span>
-                </button>
-            @endforeach
-        </div>
+                </h2>
+
+                <div class="flex flex-wrap gap-2">
+                    @foreach ($group as $r)
+                        <button type="button"
+                                wire:click="open('{{ $r['id'] }}')"
+                                @class([
+                                    'text-left px-3 py-2 rounded-lg border text-sm transition',
+                                    'border-line-gold bg-gold-subtle text-ink' => $r['id'] === $reviewId,
+                                    'border-line bg-surface-1 text-ink-muted hover:border-line-strong' => $r['id'] !== $reviewId,
+                                ])>
+                            <span class="block font-medium">
+                                @if ($r['record'] && ($r['record']['won'] + $r['record']['lost']) > 0)
+                                    {{ $r['record']['won'] }}-{{ $r['record']['lost'] }}
+                                @else
+                                    &mdash;
+                                @endif
+                                @if ($r['youSpec'])
+                                    <span class="text-ink-muted font-normal">· {{ $r['youSpec'] }}</span>
+                                @endif
+                            </span>
+                            <span class="block text-xs text-ink-subtle">
+                                @if ($r['playedAt'])
+                                    {{ \Illuminate\Support\Carbon::parse($r['playedAt'])->format('j M, H:i') }}
+                                @endif
+                                @if ($r['rounds'] > 1)
+                                    · {{ $r['rounds'] }} rounds
+                                @endif
+                                @if ($r['mirrors'] > 0)
+                                    · {{ $r['mirrors'] }} mirror{{ $r['mirrors'] === 1 ? '' : 's' }}
+                                @endif
+                            </span>
+                        </button>
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
     @endif
 
     @if ($review)

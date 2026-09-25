@@ -77,6 +77,37 @@ class GameReview extends Component
             : [];
     }
 
+    /**
+     * Bracket order for the game list. Not alphabetical and not by how many games there are —
+     * Solo Shuffle leads because it is the bracket this was built for and the one that reliably
+     * produces a mirror. Anything unlisted sorts after, in its own group, rather than being
+     * dropped.
+     */
+    private const BRACKET_ORDER = ['Rated Solo Shuffle', '3v3', '2v2', '5v5'];
+
+    /**
+     * The player's games grouped by bracket, each group newest first.
+     *
+     * @return array<string, array<int, array<string, mixed>>>
+     */
+    public function reviewGroups(): array
+    {
+        $groups = [];
+
+        foreach ($this->reviews() as $review) {
+            $groups[$review['bracket'] ?: 'Other'][] = $review;
+        }
+
+        uksort($groups, function ($a, $b) {
+            $ai = array_search($a, self::BRACKET_ORDER, true);
+            $bi = array_search($b, self::BRACKET_ORDER, true);
+
+            return [$ai === false ? PHP_INT_MAX : $ai, $a] <=> [$bi === false ? PHP_INT_MAX : $bi, $b];
+        });
+
+        return $groups;
+    }
+
     public function review(): ?array
     {
         return $this->reviewId === null || ! auth()->check()
@@ -90,6 +121,7 @@ class GameReview extends Component
 
         return view('livewire.game-review', [
             'reviews' => $this->reviews(),
+            'reviewGroups' => $this->reviewGroups(),
             'review' => $review,
             'reviewId' => $this->reviewId,
             // Carried from the stored review rather than the service, so an old game keeps the

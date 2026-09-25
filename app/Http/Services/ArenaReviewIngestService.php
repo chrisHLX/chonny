@@ -52,7 +52,10 @@ class ArenaReviewIngestService
      */
     private const LOBBY_WINDOW_SECONDS = 1800;
 
-    public function __construct(private LobbyReviewService $reviews) {}
+    public function __construct(
+        private LobbyReviewService $reviews,
+        private CombatLogIngestService $ingest,
+    ) {}
 
     /**
      * Ingests one round's raw log text for a player.
@@ -75,7 +78,7 @@ class ArenaReviewIngestService
         $derived = $this->reviews->deriveRound($lines);
 
         if ($derived === null) {
-            return ['status' => 'skipped', 'reason' => 'Not a Solo Shuffle round.'];
+            return ['status' => 'skipped', 'reason' => 'Not an arena match.'];
         }
 
         $meta = $derived['metadata'];
@@ -96,7 +99,14 @@ class ArenaReviewIngestService
             : null;
 
         $rosterKey = $this->rosterKey($meta);
-        $lobbyId = $this->lobbyIdFor($user, $rosterKey, $playedAt, $meta['id']);
+
+        // ONLY A ROUND-BASED BRACKET GROUPS. A shuffle lobby is six rounds that belong together;
+        // a 3v3 is one match and is its own review. Grouping 3v3 by roster would weld two games
+        // against the same team into one two-round game, which happens often enough in a session
+        // to matter.
+        $lobbyId = $this->ingest->isRoundBased($meta['startInfo']['bracket'] ?? '')
+            ? $this->lobbyIdFor($user, $rosterKey, $playedAt, $meta['id'])
+            : $meta['id'];
 
         ArenaRound::updateOrCreate(
             ['user_id' => $user->id, 'match_id' => $meta['id']],
