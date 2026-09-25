@@ -3,7 +3,11 @@
 namespace App\Http\Services;
 
 use App\Models\ModuleGameBuild;
+use App\Models\Patch;
+use App\Models\Specialization;
 use App\Models\Spell;
+use App\Models\UserGuideBlock;
+use App\Models\UserGuideSection;
 use Illuminate\Support\Collection;
 
 /**
@@ -34,6 +38,80 @@ use Illuminate\Support\Collection;
 class SpellSynergyService
 {
     public function __construct(private readonly ModuleSpellReferenceService $spells) {}
+
+    /** @var array<int, array<int, array<string, mixed>>> section id => rows */
+    private array $sectionMemo = [];
+
+    /**
+     * A guide Synergy section's candidate rows, flattened for display.
+     *
+     * ONE COPY, called by both the builder and the read view. `UserGuideChainService`'s standing
+     * promise is that a reader sees exactly what the author saw; two implementations of "what
+     * changes this ability" would eventually disagree, and the disagreement would be invisible.
+     *
+     * Memoized per request: the blade reads it while rendering the attached talents and again for
+     * the add buttons, and modifiersFor() is real work.
+     *
+     * @return array<int, array{external_spell_id: int, name: string, effect: string, magnitude: ?string, source: string, source_spec_id: ?int}>
+     */
+    public function rowsForSection(UserGuideSection $section): array
+    {
+        if (array_key_exists($section->id, $this->sectionMemo)) {
+            return $this->sectionMemo[$section->id];
+        }
+
+        $subject = $section->blocks()->orderBy('position')->get()
+            ->first(fn (UserGuideBlock $b) => ($b->payload['role'] ?? null) === 'subject');
+
+        $externalId = $subject?->externalSpellId();
+        $patchId = Patch::where('is_current', true)->value('id');
+        $specId = (int) ($subject->payload['source_spec_id'] ?? 0);
+        $spec = $specId ? Specialization::find($specId) : null;
+
+        $spell = $externalId !== null && $patchId !== null
+            ? Spell::where('patch_id', $patchId)->where('spell_id', $externalId)->with('effects')->first()
+            : null;
+
+        if (! $spell || ! $spec) {
+            return $this->sectionMemo[$section->id] = [];
+        }
+
+        $groups = $this->candidatesFor($spell, new ModuleGameBuild([
+            'class_id' => $spec->class_id,
+            'specialization_id' => $spec->id,
+            'hero_talent_tree_id' => null,
+        ]));
+
+        $rows = [];
+
+        foreach ($groups['modifiers'] as $entry) {
+            $described = $this->describe($entry);
+            $rows[] = [
+                'external_spell_id' => (int) $described['spell']->spell_id,
+                'name' => $described['spell']->display_name,
+                'effect' => $described['effect'],
+                'magnitude' => $described['magnitude'],
+                'source' => 'relationship',
+                'source_spec_id' => $specId,
+            ];
+        }
+
+        // A formula term is a different KIND of fact about the same pair — "is a multiplier in its
+        // damage" rather than "modifies it" — so a talent in both is listed twice on purpose, each
+        // time saying what it does. Power of the Dark Side only ever appears this way.
+        foreach ($groups['formula'] as $talent) {
+            $rows[] = [
+                'external_spell_id' => (int) $talent->spell_id,
+                'name' => $talent->display_name,
+                'effect' => 'A term in its damage formula',
+                'magnitude' => null,
+                'source' => 'formula',
+                'source_spec_id' => $specId,
+            ];
+        }
+
+        return $this->sectionMemo[$section->id] = $rows;
+    }
 
     /**
      * Everything our data says changes $subject, for an author to choose from.

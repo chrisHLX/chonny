@@ -4,6 +4,7 @@ namespace App\Livewire\Guides;
 
 use App\Http\Services\CharacterTalentResolver;
 use App\Http\Services\FriendshipService;
+use App\Http\Services\SpellSynergyService;
 use App\Http\Services\UserGuideChainService;
 use App\Models\PageViewEvent;
 use App\Models\User;
@@ -11,6 +12,7 @@ use App\Models\UserGuide;
 use App\Models\UserGuideBlock;
 use App\Models\UserGuideComment;
 use App\Models\UserGuideLike;
+use App\Models\UserGuideSection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -99,6 +101,21 @@ class Show extends Component
     public function members()
     {
         return $this->guide->members()->with('specialization.gameClass')->get();
+    }
+
+    /**
+     * What our data says changes a Synergy section's subject ability.
+     *
+     * Computed on every read rather than stored with the section, so a patch that changes
+     * Castigation changes this guide without anyone re-authoring it — the same rule every other
+     * number in a guide follows. Delegated to the service the builder uses, so a reader sees what
+     * the author saw.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function synergyFactsFor(UserGuideSection $section): array
+    {
+        return app(SpellSynergyService::class)->rowsForSection($section);
     }
 
     /** The comp this guide is written against, when the author named one. */

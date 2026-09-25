@@ -720,7 +720,12 @@
                             <x-guides.metrics :metrics="$data['metrics']"/>
                         @endif
 
-                        <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :editable="true" :owner-id="$guide->user_id"/>
+                        @if ($section->kind->isSynergy())
+                            <x-guides.synergy :steps="$data['steps'] ?? []" :section="$section"
+                                              :editable="true" :candidates="$this->synergyCandidatesFor($section)"/>
+                        @else
+                            <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :editable="true" :owner-id="$guide->user_id"/>
+                        @endif
 
                         {{-- A placeholder row lands in the list the instant an ability is clicked,
                              so the plan visibly grows on the click rather than after the round trip.
@@ -753,7 +758,8 @@
                                 @if ($openPaletteFor === $section->id)
                                     Close
                                 @else
-                                    <x-mc-icon name="icon-scroll" class="w-3.5 h-3.5"/> Add an ability
+                                    <x-mc-icon name="icon-scroll" class="w-3.5 h-3.5"/>
+                                    {{ $section->kind->isSynergy() ? 'Choose the ability' : 'Add an ability' }}
                                 @endif
                             </span>
                             <span wire:loading wire:target="togglePalette({{ $section->id }})">Loading kit&hellip;</span>

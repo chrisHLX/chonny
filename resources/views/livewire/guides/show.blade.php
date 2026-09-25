@@ -248,9 +248,18 @@
                         @if ($data && $section->showsTimer())
                             <x-guides.metrics :metrics="$data['metrics']"/>
                         @endif
-                        <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :owner-id="$guide->user_id"
-                                                :notes="$this->notesByAnchor" :noting-on="$notingOn" :annotatable="true"
-                                                :author-label="$guide->authored_by_model"/>
+                        @if ($section->kind->isSynergy())
+                            {{-- Read view: the numbers resolve live, so a patch that changes a
+                                 talent changes this section without anyone re-authoring it. The
+                                 candidate facts are recomputed here rather than stored, same
+                                 reason. --}}
+                            <x-guides.synergy :steps="$data['steps'] ?? []" :section="$section"
+                                              :candidates="$this->synergyFactsFor($section)"/>
+                        @else
+                            <x-guides.section-steps :steps="$data['steps'] ?? []" :section="$section" :owner-id="$guide->user_id"
+                                                    :notes="$this->notesByAnchor" :noting-on="$notingOn" :annotatable="true"
+                                                    :author-label="$guide->authored_by_model"/>
+                        @endif
                     @endif
 
                     <x-guides.note-thread anchor="section:{{ $section->id }}"

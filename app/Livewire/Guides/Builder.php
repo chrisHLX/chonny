@@ -9,6 +9,7 @@ use App\Enums\UserGuideStatus;
 use App\Enums\UserGuideVisibility;
 use App\Http\Services\CcChainBuilder;
 use App\Http\Services\CharacterTalentResolver;
+use App\Http\Services\SpellSynergyService;
 use App\Http\Services\TalentSelectionService;
 use App\Http\Services\UserGuideChainService;
 use App\Http\Services\UserGuideDuplicator;
@@ -16,6 +17,7 @@ use App\Models\GameClass;
 use App\Models\PageViewEvent;
 use App\Models\Patch;
 use App\Models\Specialization;
+use App\Models\Spell;
 use App\Models\TalentBuildChoice;
 use App\Models\TalentNodeEntry;
 use App\Models\User;
@@ -845,6 +847,23 @@ class Builder extends Component
             return;
         }
 
+        // A Synergy section holds ONE ability from the palette — the subject the whole section is
+        // about. Its other blocks are the talents that change it, and those come from
+        // addSynergyModifier()'s own list instead, because a talent is not something the comp
+        // presses and the palette does not offer it.
+        //
+        // Checked BEFORE offersSpell() below, which builds the palette: there is nothing to
+        // validate once the answer is "this section already has its subject".
+        $role = [];
+
+        if ($section->kind->isSynergy()) {
+            if ($this->synergySubjectBlock($section) !== null) {
+                return;
+            }
+
+            $role = ['role' => 'subject'];
+        }
+
         // Only ever from the palette this section actually offers — a hand-crafted request must
         // not be able to attach an arbitrary spell id, one belonging to a spec outside the comp,
         // an offensive cooldown to a plain chain, or one of your own abilities to the opponent's
@@ -863,12 +882,81 @@ class Builder extends Component
             'payload' => [
                 'external_spell_id' => $externalSpellId,
                 'source_spec_id' => $specId,
+            ] + $role,
+            'added_by_user_id' => auth()->id(),
+        ]);
+
+        $this->touchSection($section);
+        $this->refreshGuide();
+    }
+
+    /**
+     * Attach a talent that changes this section's subject.
+     *
+     * VALIDATED THE SAME WAY A PALETTE PICK IS. addSpell() refuses anything the section's palette
+     * does not offer; this refuses anything SpellSynergyService does not list as touching the
+     * subject. Both answer "is this a thing this section could legitimately hold", so a
+     * hand-crafted request cannot attach an arbitrary spell id here either.
+     */
+    public function addSynergyModifier(int $sectionId, int $externalSpellId): void
+    {
+        $section = $this->ownedSection($sectionId);
+
+        if (! $section || ! $section->kind->isSynergy()) {
+            return;
+        }
+
+        $candidate = collect($this->synergyCandidatesFor($section))
+            ->firstWhere(fn (array $c) => (int) $c['external_spell_id'] === $externalSpellId);
+
+        if (! $candidate) {
+            return;
+        }
+
+        $already = $section->blocks()
+            ->get()
+            ->contains(fn (UserGuideBlock $b) => ($b->payload['role'] ?? null) === 'modifier'
+                && (int) ($b->payload['external_spell_id'] ?? 0) === $externalSpellId);
+
+        if ($already) {
+            return;
+        }
+
+        UserGuideBlock::create([
+            'user_guide_section_id' => $section->id,
+            'position' => (int) $section->blocks()->max('position') + 1,
+            'block_type' => UserGuideBlockType::Spell,
+            'payload' => [
+                'external_spell_id' => $externalSpellId,
+                'source_spec_id' => $candidate['source_spec_id'],
+                'role' => 'modifier',
             ],
             'added_by_user_id' => auth()->id(),
         ]);
 
         $this->touchSection($section);
         $this->refreshGuide();
+    }
+
+    /** The section's subject block — the one ability the whole section is about. */
+    private function synergySubjectBlock(UserGuideSection $section): ?UserGuideBlock
+    {
+        return $section->blocks()->orderBy('position')->get()
+            ->first(fn (UserGuideBlock $b) => ($b->payload['role'] ?? null) === 'subject');
+    }
+
+    /**
+     * Everything our data says changes this section's subject, for the author to pick from.
+     *
+     * Delegates to SpellSynergyService so the builder and the read view compute it from ONE place:
+     * UserGuideChainService's promise is that a reader sees what the author saw, and two copies of
+     * this would eventually make that untrue.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function synergyCandidatesFor(UserGuideSection $section): array
+    {
+        return app(SpellSynergyService::class)->rowsForSection($section);
     }
 
     /**
