@@ -20,6 +20,19 @@ Copy the `MindCollectorArenaLog` folder into:
 
 Restart WoW (or `/reload`). `/mcarenalog` prints the current state.
 
+## Solo Shuffle
+
+Works the same way — the addon keys off being in an arena instance and never looks at the
+bracket. A lobby imports as **six matches, one per round**, each with its own teams and its own
+result; `wow:ingest-combatlog` lists them `r1`..`r6`.
+
+One thing here is still unverified, because the addon has never been run in a real arena: if
+`PVP_MATCH_COMPLETE` fires at the end of each *round* rather than each lobby, this stops and
+restarts logging six times a lobby. The rounds themselves would still be logged — `PVP_MATCH_ACTIVE`
+turns it back on — but the saved-variable counter would count rounds, and whether a
+`LoggingCombat` toggle opens a fresh `WoWCombatLog-*.txt` is untested. Point the ingester at the
+whole `Logs/` directory if it does.
+
 ## Why not just leave `/combatlog` on
 
 Two reasons. It resets every session, so you would have to remember it every time. And left on

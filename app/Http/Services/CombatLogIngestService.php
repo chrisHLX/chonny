@@ -47,6 +47,34 @@ use Illuminate\Support\Facades\File;
  *   playerTeamRating <- ARENA_MATCH_END field (3 + myTeam)    16/16 against their metadata
  *   result            <- 2 when the logging player's team lost, 3 when it won
  *                        (10 losses and 6 wins in the archive, no exceptions)
+ *
+ * SOLO SHUFFLE IS SIX MATCHES IN ONE LOBBY, AND THE LOG SAYS SO ONLY IF YOU LOOK.
+ * Measured over the 21 real logs on the author's machine (326 shuffle rounds in 56 lobbies):
+ *
+ *   - A lobby writes **one ARENA_MATCH_START per round** and a **single ARENA_MATCH_END** at
+ *     the very end. Six STARTs, one END. Treating a second START as "the previous match never
+ *     closed" — right for 2v2/3v3, where starts and ends ran 142 to 141 — silently discarded
+ *     five rounds in six here: 326 rounds collapsed to 56 imports, 83% of the games thrown away
+ *     without a warning line.
+ *   - Every round re-emits the whole COMBATANT_INFO block, and **the team ids are reshuffled
+ *     each time**. A round's teams can only be read from that round's own block, which is what
+ *     makes a round — not a lobby — the unit that maps onto the existing metadata shape.
+ *   - **ARENA_MATCH_END's winningTeamId is meaningless for shuffle.** Across the 56 lobbies it
+ *     reads -1 twenty times, 0 twenty-two times and 1 fourteen times, and checked against the
+ *     final round's actual loser it agrees 19 times in 55 — chance. Anything derived from it,
+ *     including the `result` this class used to write for a shuffle, was a coin flip.
+ *   - The winner comes from the deaths instead. **UNIT_DIED's trailing field is
+ *     `unconsciousOnDeath`**: 1 for a Hunter's Feign Death, 0 for a real one. Filter on it and
+ *     **324 of the 326 rounds hold exactly one real death** — the round-ending one. The loser is
+ *     that player's team for that round, the winner is the other. (Without the filter the rule
+ *     falls apart: one BM Hunter in the sample lobby "dies" in all six rounds, twice in three of
+ *     them.) The 2 rounds with two real deaths are simultaneous kills; the last one is taken.
+ *   - **playerTeamRating is null for a shuffle round, deliberately.** Shuffle rating is personal
+ *     and the END line carries two numbers that are per-round team averages of a roster that
+ *     reshuffles every round. Nothing here can turn those into the player's rating, so this
+ *     writes no number rather than a plausible one.
+ *   - **isRanked is 0 on every `Rated Solo Shuffle` START line**, where 2v2/3v3 write 1. The
+ *     bracket name is the trustworthy half, so a "Rated " prefix sets the flag.
  */
 class CombatLogIngestService
 {
@@ -77,8 +105,31 @@ class CombatLogIngestService
     /** Only these are worth keeping — everything else in a log is levelling and open world. */
     public const WANTED_BRACKETS = ['2v2', '3v3', '5v5', 'Rated Solo Shuffle'];
 
+    /**
+     * A Solo Shuffle lobby is every pairing of six players, so it is always exactly this many
+     * rounds — 54 of the 55 complete lobbies measured, the other cut short by a log that began
+     * mid-lobby, and none longer. It is used only to notice that a lobby lost its ARENA_MATCH_END
+     * and that the next START therefore begins a new one, so the round counter restarts.
+     */
+    private const ROUNDS_PER_LOBBY = 6;
+
     /** @var array<string, int>|null spec external id => class id, memoised per run */
     private ?array $classBySpec = null;
+
+    /**
+     * Brackets that play several rounds under one ARENA_MATCH_START..END, matched on substring
+     * so an unranked or renamed variant is caught too. See the class docblock.
+     */
+    public function isRoundBased(string $bracket): bool
+    {
+        return str_contains($bracket, 'Solo Shuffle');
+    }
+
+    /** The bracket named by an ARENA_MATCH_START body. */
+    private function bracketOf(string $startBody): string
+    {
+        return explode(',', $startBody)[3] ?? '';
+    }
 
     /**
      * Splits a combat log into arena matches.
@@ -90,7 +141,13 @@ class CombatLogIngestService
      * A match is ARENA_MATCH_START .. ARENA_MATCH_END. A START with no END (the player alt-F4'd,
      * or the log was still being written) is dropped rather than half-imported.
      *
-     * @return \Generator<int, array{lines: array<int, string>, start: string, end: string}>
+     * EXCEPT IN SOLO SHUFFLE, where a START with no END is the normal case: a lobby writes six
+     * of them and one END. There a new START closes the round in progress and yields it, with
+     * `end` null and `sequence` saying which round it was. The drop rule still applies to every
+     * other bracket, so a genuinely truncated 3v3 is still discarded — the two cases are told
+     * apart by the bracket on the buffered START, never by whether an END turned up.
+     *
+     * @return \Generator<int, array{lines: array<int, string>, start: string, end: ?string, sequence: int}>
      */
     public function splitMatches(string $path): \Generator
     {
@@ -104,15 +161,37 @@ class CombatLogIngestService
 
         $current = null;
         $startLine = null;
+        $sequence = 0;
+        $lobbyFirstLine = null;
 
         try {
             while (($line = $this->readLine($handle, $path)) !== false) {
                 $body = $this->body($line);
 
                 if (str_starts_with($body, 'ARENA_MATCH_START,')) {
-                    // A second START before an END means the first match never closed. Drop it.
+                    $bufferedIsRound = $startLine !== null && $this->isRoundBased($this->bracketOf($startLine));
+
+                    // In a round-based bracket this START is the next round beginning, so the
+                    // buffered one is a complete round. Anywhere else it means the buffered match
+                    // never closed, and half a match is worse than none.
+                    if ($current !== null && $bufferedIsRound) {
+                        yield [
+                            'lines' => $current, 'start' => $startLine, 'end' => null,
+                            'sequence' => $sequence, 'lobbyFirstLine' => $lobbyFirstLine,
+                        ];
+                    }
+
+                    $continuesLobby = $bufferedIsRound
+                        && $this->isRoundBased($this->bracketOf($body))
+                        && $sequence < self::ROUNDS_PER_LOBBY;
+
+                    $sequence = $continuesLobby ? $sequence + 1 : 1;
                     $current = [$line];
                     $startLine = $body;
+                    // Every round of one lobby shares this, which is what makes the six of them
+                    // groupable after the fact. A lobby that starts mid-log keys off the first
+                    // round actually seen, which is stable for a given file.
+                    $lobbyFirstLine = $continuesLobby ? $lobbyFirstLine : $line;
 
                     continue;
                 }
@@ -124,9 +203,14 @@ class CombatLogIngestService
                 $current[] = $line;
 
                 if (str_starts_with($body, 'ARENA_MATCH_END,')) {
-                    yield ['lines' => $current, 'start' => $startLine, 'end' => $body];
+                    yield [
+                        'lines' => $current, 'start' => $startLine, 'end' => $body,
+                        'sequence' => $sequence, 'lobbyFirstLine' => $lobbyFirstLine,
+                    ];
                     $current = null;
                     $startLine = null;
+                    $sequence = 0;
+                    $lobbyFirstLine = null;
                 }
             }
         } finally {
@@ -137,19 +221,32 @@ class CombatLogIngestService
     /**
      * Builds the metadata for one split match, in the exact shape the archive already holds.
      *
+     * A Solo Shuffle round is one of these too — same shape, same keys, six players, so nothing
+     * downstream needs to learn what a round is. What differs is where three of the fields come
+     * from, and the class docblock says why for each.
+     *
      * @param  array<int, string>  $lines
+     * @param  string|null  $endLine  null for a shuffle round that ended because the next one began
+     * @param  string|null  $lobbyFirstLine  the first ARENA_MATCH_START line of this round's lobby,
+     *                                       timestamp included; null means this round IS the first
      */
-    public function deriveMetadata(array $lines, string $startLine, string $endLine): array
-    {
+    public function deriveMetadata(
+        array $lines,
+        string $startLine,
+        ?string $endLine = null,
+        int $sequence = 1,
+        ?string $lobbyFirstLine = null,
+    ): array {
         $start = explode(',', $startLine);
-        $end = explode(',', $endLine);
+        $end = $endLine === null ? [] : explode(',', $endLine);
 
         $zoneId = $start[1] ?? '';
         $bracket = $start[3] ?? '';
-        $isRanked = ($start[4] ?? '0') === '1';
+        $roundBased = $this->isRoundBased($bracket);
 
-        $winningTeamId = $end[1] ?? '';
-        $duration = (int) ($end[2] ?? 0);
+        // The ranked field reads 0 on every Rated Solo Shuffle line, so the bracket name is the
+        // half worth believing.
+        $isRanked = ($start[4] ?? '0') === '1' || str_starts_with($bracket, 'Rated');
 
         [$units, $teamByGuid] = $this->deriveUnits($lines);
 
@@ -168,19 +265,34 @@ class CombatLogIngestService
         // The team id comes from COMBATANT_INFO, never from `reaction` — see the class docblock.
         $myTeam = $myGuid !== null ? ($teamByGuid[$myGuid] ?? null) : null;
 
+        $startMs = $this->timestampMs($lines[0]);
+        $endMs = $this->timestampMs($lines[count($lines) - 1]);
+
+        $killedUnitId = null;
+
+        if ($roundBased) {
+            // The END line's winningTeamId is noise here and its ratings belong to a roster that
+            // reshuffles every round, so neither is read. The round-ending death carries the
+            // result instead, and the rating is left unwritten rather than invented.
+            [$killedUnitId, $losingTeam] = $this->roundLoser($lines, $teamByGuid);
+
+            $winningTeamId = $losingTeam === null ? '' : ($losingTeam === '0' ? '1' : '0');
+            $duration = $startMs !== null && $endMs !== null ? (int) round(($endMs - $startMs) / 1000) : 0;
+            $playerTeamRating = null;
+        } else {
+            $winningTeamId = $end[1] ?? '';
+            $duration = (int) ($end[2] ?? 0);
+
+            // Both teams' ratings are on the END line; ours is the one at our own team's index.
+            $playerTeamRating = $myTeam !== null && isset($end[3 + (int) $myTeam])
+                ? (int) $end[3 + (int) $myTeam]
+                : null;
+        }
+
         $result = null;
         if ($myTeam !== null && $winningTeamId !== '') {
             $result = $myTeam === $winningTeamId ? self::RESULT_WIN : self::RESULT_LOSS;
         }
-
-        // Both teams' ratings are on the END line; ours is the one at our own team's index.
-        $playerTeamRating = null;
-        if ($myTeam !== null && isset($end[3 + (int) $myTeam])) {
-            $playerTeamRating = (int) $end[3 + (int) $myTeam];
-        }
-
-        $startMs = $this->timestampMs($lines[0]);
-        $endMs = $this->timestampMs($lines[count($lines) - 1]);
 
         return [
             '__typename' => 'ArenaMatchDataStub',
@@ -191,6 +303,15 @@ class CombatLogIngestService
             'result' => $result,
             'winningTeamId' => $winningTeamId,
             'playerTeamRating' => $playerTeamRating,
+            // Named after wowarenalogs' ShuffleRoundStub, which modelled a round the same way.
+            // Null on a bracket that plays one game per lobby, so the shape never varies.
+            'killedUnitId' => $killedUnitId,
+            'sequenceNumber' => $roundBased ? $sequence : null,
+            // The six rounds of one lobby share this. It is the id round one would get, so for
+            // round one it equals `id` — one concept, not two. Null where a lobby is one game.
+            'lobbyId' => $roundBased
+                ? $this->matchId($this->timestampMs($lobbyFirstLine ?? $lines[0]), $zoneId, $units)
+                : null,
             'durationInSeconds' => $duration,
             'startTime' => $startMs,
             'endTime' => $endMs,
@@ -201,6 +322,55 @@ class CombatLogIngestService
             ],
             'units' => array_values($units),
         ];
+    }
+
+    /**
+     * The death that ended a Solo Shuffle round, and the team it cost the round.
+     *
+     * A round ends on one real death, so this is the whole result. The catch is that UNIT_DIED
+     * also fires for a Hunter's Feign Death — in the sample lobby one BM Hunter "dies" in all six
+     * rounds and twice in three of them, which is enough to invert half the results if taken at
+     * face value. The trailing `unconsciousOnDeath` field tells them apart, and with it 324 of
+     * the 326 shuffle rounds measured hold exactly one real death.
+     *
+     * The field is read as the LAST one rather than at a fixed index: Blizzard has appended to
+     * UNIT_DIED before (recapID), and an off-by-one here would silently read a raid-flag mask as
+     * a boolean. A line too short to carry it at all is counted as a real death, which is how
+     * this behaves on a pre-flag log.
+     *
+     * Simultaneous kills — 2 of the 326 — take the later death, since that is the one the round
+     * ended on.
+     *
+     * @param  array<int, string>  $lines
+     * @param  array<string, string>  $teamByGuid
+     * @return array{0: ?string, 1: ?string} the GUID that died, and its arena team id
+     */
+    private function roundLoser(array $lines, array $teamByGuid): array
+    {
+        $guid = null;
+
+        foreach ($lines as $line) {
+            $body = $this->body($line);
+
+            if (! str_starts_with($body, 'UNIT_DIED,')) {
+                continue;
+            }
+
+            $fields = str_getcsv($body);
+            $dead = $fields[5] ?? null;
+
+            if (! $dead || ! str_starts_with($dead, 'Player-')) {
+                continue;
+            }
+
+            if (count($fields) > 9 && (string) end($fields) !== '0') {
+                continue;
+            }
+
+            $guid = $dead;
+        }
+
+        return [$guid, $guid === null ? null : ($teamByGuid[$guid] ?? null)];
     }
 
     /**

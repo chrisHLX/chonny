@@ -1,8 +1,18 @@
-## Interface: 120007
+## Interface: 120100,120007
 ## Title: MindCollector Arena Log
 ## Notes: Turns combat logging on when an arena starts and off when it ends, so WoWCombatLog.txt holds your games and nothing else.
 ## Author: MindCollector
 ## Version: 1.0
 ## SavedVariables: MindCollectorArenaLogDB
+
+# Two versions on purpose. The client this was installed against is 12.1.0.69933 (tocversion
+# 120100); 120007 is kept alongside it so the addon still loads on a 12.0.7 client rather than
+# silently not loading on one of them.
+#
+# A STALE INTERFACE LINE FAILS SILENTLY — no error, no slash command, while the addon still shows
+# ticked in the AddOn List, and "Load out of date AddOns" does not reliably override it. That is
+# what happened to MindCollectorExport in 2026-08 when its line still read 110107. If /mcarenalog
+# does nothing after a reload, suspect this line first: run /dump GetBuildInfo() in-game and add
+# the fourth return value (tocversion) to the front of the list.
 
 main.lua

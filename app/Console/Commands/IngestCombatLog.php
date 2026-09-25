@@ -28,6 +28,12 @@ use Illuminate\Support\Facades\File;
  *   php artisan wow:ingest-combatlog path/to/logs/          # every .txt/.log/.gz in a folder
  *   php artisan wow:ingest-combatlog <file> --dry-run       # list what it would import
  *
+ * A SOLO SHUFFLE LOBBY IMPORTS AS SIX MATCHES, one per round, each with its own roster teams and
+ * its own result — because that is what a round is, and because the log re-states the teams every
+ * round. They are listed with an `r1`..`r6` marker. Until 2026-09-25 only the sixth round of each
+ * lobby survived the split, which threw away 83% of the shuffle games in a real log; see
+ * CombatLogIngestService's docblock for the measurement.
+ *
  * Re-running over a log that keeps growing is safe and cheap: a match's id is derived from its
  * start instant, arena and roster, so an already-imported match is skipped rather than
  * duplicated. That makes "point it at the same file after every session" the intended workflow.
@@ -71,7 +77,9 @@ class IngestCombatLog extends Command
             $this->line('<fg=gray>'.basename($file).'</>');
 
             foreach ($ingest->splitMatches($file) as $match) {
-                $metadata = $ingest->deriveMetadata($match['lines'], $match['start'], $match['end']);
+                $metadata = $ingest->deriveMetadata(
+                    $match['lines'], $match['start'], $match['end'], $match['sequence'], $match['lobbyFirstLine']
+                );
                 $bracket = $metadata['startInfo']['bracket'] ?: 'unknown';
 
                 if (! $this->option('all-brackets') && ! in_array($bracket, CombatLogIngestService::WANTED_BRACKETS, true)) {
@@ -92,10 +100,15 @@ class IngestCombatLog extends Command
                     continue;
                 }
 
+                // A shuffle lobby produces six of these, so the round number is the only thing
+                // distinguishing six otherwise identical lines.
+                $round = $metadata['sequenceNumber'] === null ? '' : ' r'.$metadata['sequenceNumber'];
+
                 $summary = sprintf(
-                    '  %-18s %s  %ds  %d players%s',
+                    '  %-18s %s%-3s  %ds  %d players%s',
                     $bracket,
                     $this->when($metadata),
+                    $round,
                     $metadata['durationInSeconds'],
                     count($withSpec),
                     $metadata['result'] === null ? '' : ($metadata['result'] === CombatLogIngestService::RESULT_WIN ? '  WON' : '  lost')
