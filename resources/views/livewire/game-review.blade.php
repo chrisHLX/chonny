@@ -145,6 +145,43 @@
             </div>
         </section>
 
+        {{-- Moments: what happened in each round, found from the cooldowns. --}}
+        @php
+            $roundsWithMoments = collect($review['rounds'])->filter(fn ($r) => ($r['moments'] ?? []) !== []);
+        @endphp
+
+        @if ($roundsWithMoments->isNotEmpty())
+            <section class="linear-card p-5 sm:p-6 space-y-5">
+                <div>
+                    <h2 class="page-section-title">The moments</h2>
+                    <p class="page-section-desc">
+                        Every point in the game where somebody spent something they could not spend
+                        again for a while, and what followed. These are found from the cooldowns
+                        themselves, not from a fixed slice of the clock, so a moment is as long as
+                        the players made it.
+                    </p>
+                </div>
+
+                @foreach ($roundsWithMoments as $round)
+                    <div class="space-y-3">
+                        @if (count($review['rounds']) > 1)
+                            <h3 class="text-sm font-medium text-ink">
+                                Round {{ $round['sequence'] }}
+                                <span @class([
+                                    'text-xs font-normal ml-1',
+                                    'text-green-400' => $round['result'] === 'won',
+                                    'text-red-400' => $round['result'] === 'lost',
+                                    'text-ink-subtle' => $round['result'] === null,
+                                ])>{{ $round['result'] ?? 'unknown' }}</span>
+                            </h3>
+                        @endif
+
+                        @include('livewire.partials.game-review-moments', ['round' => $round])
+                    </div>
+                @endforeach
+            </section>
+        @endif
+
         {{-- Mirrors --}}
         @forelse ($review['mirrors'] as $mirror)
             @php

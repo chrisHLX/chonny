@@ -2296,6 +2296,56 @@ class ArenaLogService
      * a separate, more granular healer/dps/tank map with its own consumer — not merged with this
      * one, since neither page needs what the other tracks.)
      */
+    /**
+     * Where a `wow:forget-games` cutoff is remembered.
+     *
+     * Deleting games states an intent that a later sync would otherwise undo without asking: the
+     * archive is derived from combat logs that are never touched, so re-importing is the default
+     * behaviour and re-importing what somebody just deleted is the wrong default. A plain file in
+     * the archive, so it travels with the archive and can be removed by hand.
+     */
+    public const FORGET_MARKER = 'forgotten-before.txt';
+
+    public static function rememberForgetCutoff(\Illuminate\Support\Carbon $cutoff): void
+    {
+        $path = config('arena_logs.archive_path').'/'.self::FORGET_MARKER;
+        File::ensureDirectoryExists(dirname($path));
+        File::put($path, $cutoff->toDateTimeString().'
+');
+    }
+
+    public static function forgetCutoff(): ?\Illuminate\Support\Carbon
+    {
+        $path = config('arena_logs.archive_path').'/'.self::FORGET_MARKER;
+
+        if (! File::exists($path)) {
+            return null;
+        }
+
+        try {
+            return \Illuminate\Support\Carbon::parse(trim(File::get($path)));
+        } catch (\Throwable) {
+            return null;
+        }
+    }
+
+    /** @var array<string, ?Specialization> memoised per request; a log asks for the same six repeatedly */
+    private array $specByExternalId = [];
+
+    /**
+     * The Specialization behind a combat log's spec id, with its class eager-loaded.
+     *
+     * The same five-line lookup appears inline in several places in this class already. A log
+     * resolves the same handful of specs once per event-heavy pass, so this memoises rather than
+     * re-querying — the moment detector alone would otherwise run it thousands of times.
+     */
+    public function specForExternalId(string $externalSpecId): ?Specialization
+    {
+        return $this->specByExternalId[$externalSpecId] ??= Specialization::with('gameClass')
+            ->where('external_spec_id', $externalSpecId)
+            ->first();
+    }
+
     public function isHealerSpec(string $classSlug, string $specSlug): bool
     {
         foreach (self::HEALER_SPEC_SLUGS as [$c, $s]) {

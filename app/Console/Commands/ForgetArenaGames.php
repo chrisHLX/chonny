@@ -168,10 +168,15 @@ class ForgetArenaGames extends Command
         $reviewQuery->delete();
         $roundQuery->delete();
 
+        // Remember the cutoff, so the deletion sticks. Ingest re-imports anything missing from
+        // the archive and can see every log file on the machine, so without this a later bare
+        // `wow:sync` rebuilds exactly what was just removed — which it did, once, immediately.
+        ArenaLogService::rememberForgetCutoff($cutoff);
+
         $this->newLine();
         $this->info(sprintf('Removed %d round(s) from the archive and %d review(s).', count($doomed), $reviewCount));
-        $this->line('  <fg=gray>A bare `wow:sync` re-scans every log file and would bring these back —</>');
-        $this->line("  <fg=gray>use `wow:sync --since={$cutoff->toDateString()}` to keep them gone.</>");
+        $this->line("  <fg=gray>`wow:sync` will now ignore anything before {$cutoff->toDateString()} unless you pass</>");
+        $this->line('  <fg=gray>--since= yourself. Delete '.ArenaLogService::FORGET_MARKER.' in the archive to undo that.</>');
 
         return self::SUCCESS;
     }

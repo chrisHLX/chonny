@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Services\ArenaLogService;
 use App\Http\Services\LobbyReviewService;
 use App\Models\ArenaReview;
 use App\Models\User;
@@ -70,7 +71,11 @@ class SyncArena extends Command
         // --since is what makes `wow:forget-games` stick. Ingest re-imports anything missing from
         // the archive, and it can see every log file on the machine, so without a floor a sync
         // rebuilds exactly what was just deleted.
-        if ($since = $this->option('since')) {
+        // A remembered `wow:forget-games` cutoff is the default floor. Passing --since overrides
+        // it; there is no way to accidentally resurrect what was deliberately deleted.
+        $since = $this->option('since') ?: ArenaLogService::forgetCutoff()?->toDateTimeString();
+
+        if ($since) {
             try {
                 $floor = \Illuminate\Support\Carbon::parse($since)->startOfDay()->getTimestampMs();
             } catch (\Throwable) {
@@ -80,6 +85,10 @@ class SyncArena extends Command
             }
 
             $targets = $targets->filter(fn ($t) => ($t['startTime'] ?? 0) >= $floor);
+
+            if (! $this->option('since')) {
+                $this->line("  <fg=gray>ignoring games before {$since} (remembered from wow:forget-games)</>");
+            }
         }
 
         if (! $this->option('fresh')) {

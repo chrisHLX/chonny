@@ -42,6 +42,7 @@ class LobbyReviewService
         private ArenaLogService $arena,
         private CombatantThroughputService $throughput,
         private CombatLogIngestService $ingest,
+        private ArenaMomentService $moments,
     ) {}
 
     // ---------------------------------------------------------------- reading (page-safe)
@@ -246,6 +247,10 @@ class LobbyReviewService
             'metadata' => $metadata,
             'throughput' => $this->throughput->measure($lines),
             'combatants' => $combatants,
+            // Derived HERE, while the raw log is in hand. An uploaded round's text is discarded
+            // immediately afterwards, so a moment not captured now can never be recovered without
+            // asking the player to upload the game again.
+            'moments' => $this->moments->detect($lines, $metadata),
         ];
     }
 
@@ -360,6 +365,7 @@ class LobbyReviewService
                 'killedName' => $names[$meta['killedUnitId'] ?? ''] ?? null,
                 'unattributedPetDamage' => $measured['unattributedPetDamage'] ?? 0,
                 'unparsedEvents' => $measured['unparsed'] ?? 0,
+                'moments' => $round['moments'] ?? [],
             ];
         }
 
@@ -416,10 +422,14 @@ class LobbyReviewService
                 }
             }
 
+            $rawLog = gzdecode(File::get($this->arena->rawLogPath($matchId)));
+
             $derived[] = [
                 'metadata' => $meta,
                 'throughput' => $this->throughput->forMatch($matchId) ?? [],
                 'combatants' => $combatants,
+                'moments' => $rawLog === false ? [] : $this->moments->detect(explode('
+', $rawLog), $meta),
             ];
         }
 
