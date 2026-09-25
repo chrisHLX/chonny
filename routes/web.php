@@ -160,6 +160,20 @@ Route::prefix('wow')->group(function () {
     Route::get('/game-review/{id?}', \App\Livewire\GameReview::class)
         ->middleware('auth')
         ->name('game-review');
+
+    // The upload the page's button drives. One arena round per request, gzipped by the browser —
+    // a whole combat log cannot be posted (nginx is on its 1MB default here and PHP allows 2MB),
+    // and the client only ever finds round boundaries; all parsing is server side. See
+    // App\Http\Services\ArenaReviewIngestService.
+    Route::post('/game-review/upload-round', [\App\Http\Controllers\ArenaUploadController::class, 'round'])
+        ->middleware('auth')
+        ->name('game-review.upload-round');
+
+    // Called once after a batch of rounds, so a lobby's six are assembled together rather than
+    // six times over.
+    Route::post('/game-review/assemble', [\App\Http\Controllers\ArenaUploadController::class, 'assemble'])
+        ->middleware('auth')
+        ->name('game-review.assemble');
     Route::get('/spells', SpellExplorer::class)->name('spells.explore');
     Route::get('/spell-finder', \App\Livewire\SpellFinder::class)->name('spell-finder');
     // One permanent, linkable page per spell. Renders the same <x-spells.detail> the site-wide

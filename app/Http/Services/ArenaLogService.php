@@ -473,6 +473,21 @@ class ArenaLogService
         }
 
         $rawLog = gzdecode(File::get($rawPath));
+
+        return $rawLog === false ? null : $this->extractCombatantInfoFromLog($rawLog, $playerGuid);
+    }
+
+    /**
+     * The same extraction against log text already in memory.
+     *
+     * Split out so an uploaded round can be parsed without ever being written to the archive: a
+     * player uploading their own games has no `raw/{matchId}.log.gz` on the server and is never
+     * going to get one, because the raw log is not retained. See ArenaReviewIngestService.
+     *
+     * @return array{talents: array, pvpTalentIds: array, stats: ?array, gear: ?array}|null
+     */
+    public function extractCombatantInfoFromLog(string $rawLog, string $playerGuid): ?array
+    {
         $guid = preg_quote($playerGuid, '/');
 
         // Lazily skip everything up to the first `,[` after this player's COMBATANT_INFO —

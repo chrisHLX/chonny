@@ -3,49 +3,63 @@
 namespace App\Console\Commands;
 
 use App\Http\Services\LobbyReviewService;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 /**
- * Turns an archived game into the review artifact that `/wow/game-review` reads.
+ * Assembles a review for a game in the LOCAL archive, and optionally stores it for a user.
  *
  * SOLO SHUFFLE ONLY for now — see LobbyReviewService::reviewable() for why, the short version
- * being that the 16 oldest matches in the archive are other people's games and this page is one
+ * being that the 16 oldest matches in the archive are other people's games and a review is one
  * signed-in player's record of their own. One review covers a lobby's six rounds, grouped by
- * `metadata.lobbyId`, which is written at ingest.
+ * `metadata.lobbyId`, written at ingest.
  *
- * WHY A COMMAND AND NOT A LIVE PAGE QUERY. `data/arena-logs/metadata/*` and `raw/*` are
- * gitignored (CLAUDE.md rule 14), so a page that read them would work perfectly here and be
- * empty for every real visitor. This writes `data/arena-logs/lobby-reviews/{id}.json` and the
- * page reads only that.
+ * THIS IS THE LOCAL PATH, NOT THE PRODUCTION ONE. Real players' games arrive through the browser
+ * upload on /wow/game-review, which stores them straight to `arena_reviews` — see
+ * ArenaReviewIngestService. This command exists because the archive is here on a dev machine and
+ * is gitignored, so it is the only way to review a game already sitting in `data/arena-logs/`.
+ * Both routes call LobbyReviewService::assemble(), so a review means the same thing either way.
  *
- * THE OUTPUT IS GITIGNORED, NOT COMMITTED. It was briefly committed, which was wrong: a review is
- * a player's own game, not repo data, and committing it published it. Reviews reach production by
- * being uploaded by their owner.
+ * WITHOUT --user IT SAVES NOTHING. A review is owned by somebody; there is no unowned review to
+ * write. Run it bare to check what a game looks like, with --user to keep it.
  *
- *   php artisan wow:review-lobby                 # every game not yet reviewed
- *   php artisan wow:review-lobby --all           # rewrite every review
- *   php artisan wow:review-lobby --latest        # just the most recent game
- *   php artisan wow:review-lobby <id>            # one lobby or match id
- *   php artisan wow:review-lobby <id> --print    # also print the mirror comparison
+ *   php artisan wow:review-lobby --latest --print
+ *   php artisan wow:review-lobby --all --user=you@example.com
+ *   php artisan wow:review-lobby <lobbyId> --user=1 --print
  */
 class ReviewLobby extends Command
 {
     protected $signature = 'wow:review-lobby
-        {id? : A lobby id, or a match id for a non-shuffle bracket}
-        {--all : Rebuild every review, not just the missing ones}
+        {id? : A lobby id from the local archive}
+        {--all : Every reviewable game, not just the most recent}
         {--latest : Only the most recently played game}
-        {--print : Print the mirror comparison as well as writing the artifact}';
+        {--print : Print the mirror comparison}
+        {--user= : Store the review for this user (id or email). Without it, nothing is saved.}';
 
-    protected $description = 'Write data/arena-logs/lobby-reviews/{id}.json for an archived game';
+    protected $description = 'Assemble a review for an archived game, optionally storing it for a user';
 
     public function handle(LobbyReviewService $reviews): int
     {
         $targets = $reviews->reviewable();
 
         if ($targets === []) {
-            $this->warn('No games in the archive. Run wow:ingest-combatlog first.');
+            $this->warn('No Solo Shuffle games in the archive. Run wow:ingest-combatlog first.');
 
             return self::FAILURE;
+        }
+
+        $user = null;
+
+        if ($ref = $this->option('user')) {
+            $user = is_numeric($ref)
+                ? User::find((int) $ref)
+                : User::where('email', $ref)->first();
+
+            if (! $user) {
+                $this->error("No user matching '{$ref}'.");
+
+                return self::FAILURE;
+            }
         }
 
         if ($id = $this->argument('id')) {
@@ -56,44 +70,41 @@ class ReviewLobby extends Command
 
                 return self::FAILURE;
             }
-        } elseif ($this->option('latest')) {
+        } elseif ($this->option('latest') || ! $this->option('all')) {
             $targets = [$targets[0]];
-        } elseif (! $this->option('all')) {
-            $targets = array_values(array_filter(
-                $targets,
-                fn ($t) => ! file_exists($reviews->artifactPath($t['id']))
-            ));
-
-            if ($targets === []) {
-                $this->info('Every game already has a review. --all rewrites them.');
-
-                return self::SUCCESS;
-            }
         }
 
-        $written = 0;
+        $assembled = 0;
+        $stored = 0;
 
         foreach ($targets as $t) {
-            $review = $reviews->build($t['id']);
+            $review = $reviews->buildFromArchive($t['id']);
 
             if ($review === null) {
-                $this->warn("  {$t['id']} — could not be built, skipped");
+                $this->warn("  {$t['id']} — could not be assembled, skipped");
 
                 continue;
             }
 
-            $reviews->write($t['id']);
-            $written++;
+            $assembled++;
+
+            if ($user !== null) {
+                $row = $reviews->store($user, $review);
+                $stored++;
+            }
 
             $record = $review['record'];
             $this->line(sprintf(
-                '  <fg=green>%s</>  %-18s %d round(s)  %d-%d  %d mirror(s)',
+                '  <fg=green>%s</>  %-18s %d round(s)  %d-%d  %d mirror(s)%s',
                 substr($t['id'], 0, 12),
                 $review['bracket'],
                 count($review['rounds']),
                 $record['won'],
                 $record['lost'],
-                count($review['mirrors'])
+                count($review['mirrors']),
+                $user !== null
+                    ? '  stored for '.$user->email.(isset($row) && $row->battlenet_character_id ? ' (character linked)' : '')
+                    : ''
             ));
 
             foreach ($review['rounds'] as $r) {
@@ -108,9 +119,14 @@ class ReviewLobby extends Command
         }
 
         $this->newLine();
-        $this->info("Wrote {$written} review(s) to ".LobbyReviewService::ARTIFACT_DIR.'/.');
-        $this->line('  <fg=gray>These are one player\'s own games, so they are gitignored, not committed —</>');
-        $this->line('  <fg=gray>they reach production by being uploaded, never by a deploy.</>');
+        $this->info("Assembled {$assembled} review(s).");
+
+        if ($user === null) {
+            $this->line('  <fg=gray>Nothing was saved — a review is owned by a user. Pass --user to keep it.</>');
+        } else {
+            $this->line("  <fg=gray>{$stored} stored for {$user->email}. They are database rows, not files:</>");
+            $this->line('  <fg=gray>a review is that player\'s own game and is never committed or deployed.</>');
+        }
 
         return self::SUCCESS;
     }
@@ -138,10 +154,7 @@ class ReviewLobby extends Command
             $this->line("      {$m['primaryMetricLabel']}: {$m['primaryDeltaPercent']}% difference");
 
             if (! ($m['statDiff']['unavailable'] ?? true)) {
-                $statRows = array_map(
-                    fn ($r) => [$r['stat'], $r['a'], $r['b']],
-                    $m['statDiff']['rows']
-                );
+                $statRows = array_map(fn ($r) => [$r['stat'], $r['a'], $r['b']], $m['statDiff']['rows']);
                 $this->table(['stat (rating)', $nameA, $nameB], $statRows);
             }
 

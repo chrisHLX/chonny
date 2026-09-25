@@ -29,19 +29,6 @@ class GameReviewTest extends TestCase
 
     private const TEST_REVIEW_ID = 'ffffffffffffffffffffffffffffffff';
 
-    protected function tearDown(): void
-    {
-        // The artifact directory is real, committed repo data — a fixture written into it would
-        // otherwise be indistinguishable from a genuine review.
-        $path = app(LobbyReviewService::class)->artifactPath(self::TEST_REVIEW_ID);
-
-        if (File::exists($path)) {
-            File::delete($path);
-        }
-
-        parent::tearDown();
-    }
-
     /**
      * Builds a log line with a given event, leading fields and trailing fields, padded in the
      * middle to the exact real field count — which is what the parser anchors on.
@@ -197,18 +184,25 @@ class GameReviewTest extends TestCase
 
     // ------------------------------------------------------------------ the page
 
-    private function writeFixtureReview(): void
+    /**
+     * Stores a review row for a user, the way an upload or `wow:review-lobby --user` would.
+     */
+    private function storeFixtureReview(User $user): void
     {
-        $service = app(LobbyReviewService::class);
-        $path = $service->artifactPath(self::TEST_REVIEW_ID);
-        File::ensureDirectoryExists(dirname($path));
-
         $totals = fn (int $heal, int $absorb) => [
             'healingEffective' => $heal, 'healingOverheal' => 0, 'absorbDone' => $absorb,
             'damageDone' => 0, 'damageTaken' => 0, 'deaths' => 0, 'feigns' => 0,
         ];
 
-        File::put($path, json_encode([
+        $side = fn (string $name, bool $isYou, array $t) => [
+            'guid' => 'Player-1-'.strtoupper(substr($name, 0, 3)), 'name' => $name, 'isYou' => $isYou,
+            'totals' => $t, 'perRound' => [1 => $t], 'roundsPlayed' => 1, 'buildChangedMidGame' => false,
+        ];
+
+        $me = $side('Skylake-Frostmourne', true, $totals(100, 50));
+        $them = $side('Marky-Magtheridon', false, $totals(90, 60));
+
+        app(LobbyReviewService::class)->store($user, [
             'id' => self::TEST_REVIEW_ID,
             'bracket' => 'Rated Solo Shuffle',
             'playedAt' => '2026-09-25T17:29:00+00:00',
@@ -219,23 +213,12 @@ class GameReviewTest extends TestCase
                     'unattributedPetDamage' => 0, 'unparsedEvents' => 0],
             ],
             'players' => [
-                ['guid' => 'Player-1-AAA', 'name' => 'Skylake-Frostmourne', 'isYou' => true,
-                    'spec' => ['externalId' => 256, 'label' => 'Discipline Priest'],
-                    'totals' => $totals(100, 50), 'perRound' => [1 => $totals(100, 50)],
-                    'roundsPlayed' => 1, 'buildChangedMidGame' => false],
-                ['guid' => 'Player-1-BBB', 'name' => 'Marky-Magtheridon', 'isYou' => false,
-                    'spec' => ['externalId' => 256, 'label' => 'Discipline Priest'],
-                    'totals' => $totals(90, 60), 'perRound' => [1 => $totals(90, 60)],
-                    'roundsPlayed' => 1, 'buildChangedMidGame' => false],
+                $me + ['spec' => ['externalId' => 256, 'label' => 'Discipline Priest']],
+                $them + ['spec' => ['externalId' => 256, 'label' => 'Discipline Priest']],
             ],
             'mirrors' => [[
                 'specLabel' => 'Discipline Priest', 'specExternalId' => 256, 'involvesYou' => true,
-                'a' => ['guid' => 'Player-1-AAA', 'name' => 'Skylake-Frostmourne', 'isYou' => true,
-                    'totals' => $totals(100, 50), 'perRound' => [1 => $totals(100, 50)],
-                    'roundsPlayed' => 1, 'buildChangedMidGame' => false],
-                'b' => ['guid' => 'Player-1-BBB', 'name' => 'Marky-Magtheridon', 'isYou' => false,
-                    'totals' => $totals(90, 60), 'perRound' => [1 => $totals(90, 60)],
-                    'roundsPlayed' => 1, 'buildChangedMidGame' => false],
+                'a' => $me, 'b' => $them,
                 'roundsOpposed' => 1, 'roundsTogether' => 0,
                 'primaryMetric' => 'healingAndAbsorbs', 'primaryMetricLabel' => 'Effective healing + absorbs',
                 'primaryDeltaPercent' => 0.0,
@@ -249,7 +232,7 @@ class GameReviewTest extends TestCase
             ]],
             'limitations' => ['Throughput is not adjusted for pressure.'],
             'generatedAt' => '2026-09-25T18:00:00+00:00',
-        ], JSON_PRETTY_PRINT));
+        ]);
     }
 
     public function test_the_page_renders_over_http_with_its_layout(): void
@@ -257,9 +240,9 @@ class GameReviewTest extends TestCase
         // Livewire::test() renders a component WITHOUT its layout, so a missing ->layout() call
         // passes every Livewire assertion while the real URL 500s. That is exactly how the
         // Matchup Lab shipped its first green run (2026-09-23).
-        $this->writeFixtureReview();
-
-        $this->actingAs(User::factory()->create());
+        $user = User::factory()->create();
+        $this->storeFixtureReview($user);
+        $this->actingAs($user);
 
         $this->get(route('game-review'))->assertOk();
         $this->get(route('game-review', ['id' => self::TEST_REVIEW_ID]))->assertOk();
@@ -267,39 +250,61 @@ class GameReviewTest extends TestCase
 
     public function test_the_page_is_not_public(): void
     {
-        // A review names five other players with their talents and their gear. It is a signed-in
-        // player's record of their own games, never a public browser — this shipped open for
-        // about twenty minutes on 2026-09-25.
-        $this->writeFixtureReview();
+        $this->storeFixtureReview(User::factory()->create());
 
         $this->get(route('game-review'))->assertRedirect(route('login'));
         $this->get(route('game-review', ['id' => self::TEST_REVIEW_ID]))->assertRedirect(route('login'));
     }
 
-    public function test_the_page_shows_a_mirror_comparison_from_the_artifact(): void
+    public function test_one_player_cannot_see_another_players_review(): void
     {
-        $this->writeFixtureReview();
+        // The whole reason reviews moved out of committed files and into owned rows. A review names
+        // five other players with their talents and their gear; it belongs to whoever uploaded it.
+        $owner = User::factory()->create();
+        $stranger = User::factory()->create();
+        $this->storeFixtureReview($owner);
 
-        Livewire::actingAs(User::factory()->create())
+        $this->assertNotEmpty(app(LobbyReviewService::class)->index($owner));
+        $this->assertSame([], app(LobbyReviewService::class)->index($stranger));
+        $this->assertNull(app(LobbyReviewService::class)->load($stranger, self::TEST_REVIEW_ID));
+
+        $this->actingAs($stranger)
+            ->get(route('game-review', ['id' => self::TEST_REVIEW_ID]))
+            ->assertOk()
+            ->assertDontSee('Skylake')
+            ->assertDontSee('Lenience');
+    }
+
+    public function test_the_page_shows_a_mirror_comparison_for_its_owner(): void
+    {
+        $user = User::factory()->create();
+        $this->storeFixtureReview($user);
+
+        Livewire::actingAs($user)
             ->test(\App\Livewire\GameReview::class, ['id' => self::TEST_REVIEW_ID])
             ->assertSee('Discipline Priest mirror')
             ->assertSee('Lenience')
             ->assertSee('Weal and Woe')
             ->assertSee('Inner Light')
             ->assertSee('Purification')
-            ->assertSee('What this cannot tell you');
+            ->assertSee('What this cannot tell you')
+            // The upload control is an included partial with an inline script; if the include or
+            // the script ever fails to compile it renders as nothing rather than erroring.
+            ->assertSee('Upload matches')
+            ->assertSee('window.arenaUpload', false);
     }
 
     public function test_the_page_works_with_the_raw_archive_completely_absent(): void
     {
-        // Rule 14: data/arena-logs/metadata and raw are gitignored, so anything a page reads from
-        // them is silently broken for every real user while looking perfect in dev. Pointing the
-        // archive at an empty directory is the only way a dev run can catch that.
-        $this->writeFixtureReview();
+        // Rule 14: the archive is gitignored, so anything a page reads from it is silently broken
+        // for every real user while looking perfect in dev. Reviews are rows precisely so this
+        // cannot happen, and pointing the archive at an empty directory proves it.
+        $user = User::factory()->create();
+        $this->storeFixtureReview($user);
 
         config(['arena_logs.archive_path' => sys_get_temp_dir().'/mc-archive-absent-'.uniqid()]);
 
-        $this->actingAs(User::factory()->create())
+        $this->actingAs($user)
             ->get(route('game-review', ['id' => self::TEST_REVIEW_ID]))
             ->assertOk()
             ->assertSee('Discipline Priest mirror');
@@ -307,9 +312,10 @@ class GameReviewTest extends TestCase
 
     public function test_an_unknown_review_id_falls_back_instead_of_erroring(): void
     {
-        $this->writeFixtureReview();
+        $user = User::factory()->create();
+        $this->storeFixtureReview($user);
 
-        Livewire::actingAs(User::factory()->create())
+        Livewire::actingAs($user)
             ->test(\App\Livewire\GameReview::class, ['id' => 'not-a-real-id'])
             ->assertSet('reviewId', fn ($id) => $id !== 'not-a-real-id');
     }
@@ -319,5 +325,150 @@ class GameReviewTest extends TestCase
         // Rule 33's reasoning: limits that live in one method cannot be trimmed a line at a time
         // by a layout change, but they can still be emptied — so the emptiness is asserted.
         $this->assertNotEmpty(app(LobbyReviewService::class)->limitations());
+    }
+
+    // ------------------------------------------------------------------ upload
+
+    public function test_uploading_a_round_stores_it_and_assembles_a_review(): void
+    {
+        $user = User::factory()->create();
+
+        $round = implode("\n", $this->shuffleRoundLog());
+
+        $result = app(\App\Http\Services\ArenaReviewIngestService::class)->ingestRound($user, $round);
+
+        $this->assertSame('stored', $result['status'], json_encode($result));
+        $this->assertDatabaseCount('arena_rounds', 1);
+
+        $review = app(\App\Http\Services\ArenaReviewIngestService::class)
+            ->assembleLobby($user, $result['lobbyId']);
+
+        $this->assertNotNull($review);
+        $this->assertSame($user->id, $review->user_id);
+        $this->assertSame('Rated Solo Shuffle', $review->bracket);
+        $this->assertSame(1, $review->rounds);
+    }
+
+    public function test_uploading_the_same_round_twice_does_not_duplicate_it(): void
+    {
+        // A player re-uploading a growing log must not get two of everything. The match id is
+        // derived from the round's own start instant, arena and roster, which is what makes
+        // "point it at the same file again" the intended workflow.
+        $user = User::factory()->create();
+        $round = implode("\n", $this->shuffleRoundLog());
+        $ingest = app(\App\Http\Services\ArenaReviewIngestService::class);
+
+        $ingest->ingestRound($user, $round);
+        $ingest->ingestRound($user, $round);
+
+        $this->assertDatabaseCount('arena_rounds', 1);
+    }
+
+    public function test_uploaded_rounds_are_grouped_into_one_lobby_and_renumbered(): void
+    {
+        // The regression this guards, caught by uploading a real lobby: an uploaded round arrives
+        // alone, so it derives a lobby id of itself and a sequence of 1. Six rounds became six
+        // separate one-round games, each reading 1-0. The server groups them by roster and time and
+        // numbers them by when they were played, because the client is not told to know.
+        $user = User::factory()->create();
+        $ingest = app(\App\Http\Services\ArenaReviewIngestService::class);
+
+        $lobbyIds = [];
+
+        // Three rounds of one lobby: same six players, same arena, minutes apart. Deliberately
+        // uploaded out of order, which is what a parallel upload does.
+        foreach (['17:33:00', '17:29:00', '17:31:00'] as $at) {
+            $lines = $this->shuffleRoundLog();
+            $lines = array_map(fn ($l) => str_replace('17:29:00', $at, $l), $lines);
+            $result = $ingest->ingestRound($user, implode("\n", $lines));
+
+            $this->assertSame('stored', $result['status'], json_encode($result));
+            $lobbyIds[] = $result['lobbyId'];
+        }
+
+        $this->assertCount(1, array_unique($lobbyIds), 'All three rounds belong to one lobby.');
+        $this->assertDatabaseCount('arena_rounds', 3);
+
+        $review = $ingest->assembleLobby($user, $lobbyIds[0]);
+
+        $this->assertSame(3, $review->rounds);
+        $this->assertSame([1, 2, 3], array_column($review->payload['rounds'], 'sequence'));
+
+        // Earliest start is round one, whatever order it was uploaded in.
+        $this->assertSame(
+            ['17:29', '17:31', '17:33'],
+            collect(\App\Models\ArenaRound::where('user_id', $user->id)->orderBy('sequence')->get())
+                ->map(fn ($r) => $r->played_at->format('H:i'))->all()
+        );
+    }
+
+    public function test_a_second_lobby_with_the_same_roster_much_later_is_kept_separate(): void
+    {
+        // Without a time bound, grouping on the roster alone would weld two genuinely separate
+        // lobbies into one twelve-round game. Real lobbies run about fifteen minutes.
+        $user = User::factory()->create();
+        $ingest = app(\App\Http\Services\ArenaReviewIngestService::class);
+
+        $first = $ingest->ingestRound($user, implode("\n", $this->shuffleRoundLog()));
+
+        $later = array_map(
+            fn ($l) => str_replace(['17:29:0', '17:31:0'], ['22:29:0', '22:31:0'], $l),
+            $this->shuffleRoundLog()
+        );
+        $second = $ingest->ingestRound($user, implode("\n", $later));
+
+        $this->assertSame('stored', $second['status'], json_encode($second));
+        $this->assertNotSame($first['lobbyId'], $second['lobbyId']);
+    }
+
+    public function test_a_non_shuffle_round_is_skipped(): void
+    {
+        $user = User::factory()->create();
+
+        $lines = $this->shuffleRoundLog();
+        $lines[0] = str_replace('Rated Solo Shuffle', '3v3', $lines[0]);
+
+        $result = app(\App\Http\Services\ArenaReviewIngestService::class)
+            ->ingestRound($user, implode("\n", $lines));
+
+        $this->assertSame('skipped', $result['status']);
+        $this->assertDatabaseCount('arena_rounds', 0);
+    }
+
+    public function test_uploading_requires_a_signed_in_user(): void
+    {
+        $this->post(route('game-review.upload-round'))->assertRedirect(route('login'));
+        $this->post(route('game-review.assemble'))->assertRedirect(route('login'));
+    }
+
+    /**
+     * A minimal but structurally real Solo Shuffle round: the bracket line, a COMBATANT_INFO per
+     * player with the spec at field 24 and the bracketed talent/pvp/gear groups the extractor
+     * needs, one cast so every unit has flags, and the real death that ends the round.
+     *
+     * @return array<int, string>
+     */
+    private function shuffleRoundLog(): array
+    {
+        $combatant = function (string $guid, string $team, string $spec) {
+            $stats = implode(',', array_fill(0, 22, '0'));
+
+            return "COMBATANT_INFO,{$guid},{$team},{$stats},{$spec},"
+                .'[(82567,103692,1),(82580,103705,1)],(0,408557,236499,355897),'
+                .'[(271555,344,(),(13452),()),(240952,331,(),(),())],[],0,0,0,0';
+        };
+
+        // 22 stat fields sit between the team and the spec id, so the spec lands at index 24
+        // counting the GUID as 0 — the offset CombatLogIngestService documents.
+        return [
+            '9/25/2026 17:29:00.0000  ARENA_MATCH_START,2563,42,Rated Solo Shuffle,0',
+            '9/25/2026 17:29:00.0000  '.$combatant('Player-1-AAA', '0', '256'),
+            '9/25/2026 17:29:00.0000  '.$combatant('Player-1-BBB', '0', '259'),
+            '9/25/2026 17:29:00.0000  '.$combatant('Player-1-CCC', '1', '105'),
+            '9/25/2026 17:29:01.0000  SPELL_CAST_SUCCESS,Player-1-AAA,"Me-Realm",0x511,0x0,Player-1-CCC,"Foe-Realm",0x548,0x0,47750,"Penance",0x2',
+            '9/25/2026 17:29:02.0000  SPELL_CAST_SUCCESS,Player-1-BBB,"Ally-Realm",0x512,0x0,Player-1-CCC,"Foe-Realm",0x548,0x0,408,"Kidney Shot",0x1',
+            '9/25/2026 17:31:00.0000  UNIT_DIED,0000000000000000,nil,0x80000000,0x80000000,Player-1-CCC,"Foe-Realm",0x548,0x80000000,0',
+            '9/25/2026 17:31:01.0000  ARENA_MATCH_END,-1,121,1674,1667',
+        ];
     }
 }

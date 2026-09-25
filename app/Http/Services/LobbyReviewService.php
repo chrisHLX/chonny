@@ -2,25 +2,33 @@
 
 namespace App\Http\Services;
 
+use App\Models\ArenaReview;
+use App\Models\BattlenetAccount;
+use App\Models\BattlenetCharacter;
 use App\Models\Specialization;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
 
 /**
- * Assembles one reviewable game — a Solo Shuffle lobby's six rounds, or a single 3v3 match — into
- * a committed artifact, and reads that artifact back for the page.
- *
- * WHY AN ARTIFACT AND NOT A LIVE READ. `data/arena-logs/metadata/*` and `raw/*` are gitignored
- * (CLAUDE.md rule 14), so anything a page reads from them works on a dev machine and is silently
- * empty for every real user. `build()` reads the archive and is console-only; `load()` and
- * `index()` read `data/arena-logs/lobby-reviews/*.json`, which is committed, and are the ONLY
- * methods a view may call. Keeping the two halves in one class on purpose: the reason they are
- * separate is easier to hold onto when they sit next to each other.
+ * Assembles one reviewable game — a Solo Shuffle lobby's six rounds — and reads it back for the
+ * page.
  *
  * WHAT A REVIEW ANSWERS. It came out of a real question — "I went 5-1, was my healing better than
  * the other Disc Priest, and was it talents or gear?" — which nothing here could answer. The
  * comparison that makes that tractable is a MIRROR: the same spec on both sides has the identical
  * kit, so every difference left is build, gear or play. `mirrors` is auto-detected; a review with
  * no mirror is still written, it just has an empty one.
+ *
+ * REVIEWS ARE USER DATA IN THE DATABASE, NOT FILES. They were briefly committed to the repo,
+ * which published them. Everything the page reads is an `arena_reviews` row scoped to
+ * `auth()->id()`. This also answers CLAUDE.md rule 14 better than the committed artifact did: a
+ * row is present in production by definition, so there is no gitignored-input trap to fall into.
+ *
+ * ASSEMBLY IS INPUT-AGNOSTIC ON PURPOSE. {@see assemble()} takes already-derived rounds and knows
+ * nothing about where they came from, because they arrive two completely different ways: from the
+ * local archive via `wow:review-lobby`, and from a player's browser upload via
+ * ArenaReviewIngestService. One assembler, so a mirror comparison cannot mean two different things
+ * depending on the route it took.
  *
  * WHAT IT DELIBERATELY DOES NOT SAY. See limitations() — one method, same reasoning as rule 33's
  * `MatchupLab::limitations()`: honest-limits copy that lives in one place cannot be trimmed a line
@@ -30,8 +38,6 @@ use Illuminate\Support\Facades\File;
  */
 class LobbyReviewService
 {
-    public const ARTIFACT_DIR = 'data/arena-logs/lobby-reviews';
-
     public function __construct(
         private ArenaLogService $arena,
         private CombatantThroughputService $throughput,
@@ -41,73 +47,99 @@ class LobbyReviewService
     // ---------------------------------------------------------------- reading (page-safe)
 
     /**
-     * Every written review, newest game first. Reads only the committed artifact directory.
+     * One player's own reviews, newest game first. Always scoped to a user — there is no
+     * unscoped read, deliberately.
      *
-     * @return array<int, array{id: string, bracket: string, playedAt: ?string, record: ?array, rounds: int, you: ?string}>
+     * @return array<int, array<string, mixed>>
      */
-    public function index(): array
+    public function index(User $user): array
     {
-        $dir = base_path(self::ARTIFACT_DIR);
-
-        if (! File::isDirectory($dir)) {
-            return [];
-        }
-
-        $rows = [];
-
-        foreach (File::glob($dir.'/*.json') as $path) {
-            $r = json_decode(File::get($path), true);
-
-            if (! is_array($r) || ! isset($r['id'])) {
-                continue;
-            }
-
-            // Belt and braces with reviewable()'s filter: an artifact written before the
-            // shuffle-only rule, or left behind by a rename, must not surface.
-            if (! $this->ingest->isRoundBased($r['bracket'] ?? '')) {
-                continue;
-            }
-
-            $you = collect($r['players'] ?? [])->firstWhere('isYou', true);
-
-            $rows[] = [
-                'id' => $r['id'],
-                'bracket' => $r['bracket'] ?? 'unknown',
-                'playedAt' => $r['playedAt'] ?? null,
-                'record' => $r['record'] ?? null,
-                'rounds' => count($r['rounds'] ?? []),
-                'you' => $you['name'] ?? null,
-                'youSpec' => $you['spec']['label'] ?? null,
-                'mirrors' => count($r['mirrors'] ?? []),
-            ];
-        }
-
-        usort($rows, fn ($a, $b) => ($b['playedAt'] ?? '') <=> ($a['playedAt'] ?? ''));
-
-        return $rows;
+        return ArenaReview::query()
+            ->where('user_id', $user->id)
+            ->orderByDesc('played_at')
+            ->get()
+            ->map(fn (ArenaReview $r) => [
+                'id' => $r->lobby_id,
+                'bracket' => $r->bracket,
+                'playedAt' => $r->played_at?->toIso8601String(),
+                'record' => ['won' => $r->rounds_won, 'lost' => $r->rounds_lost],
+                'rounds' => $r->rounds,
+                'you' => $r->character_name,
+                'youSpec' => $r->payload['players'] ? collect($r->payload['players'])
+                    ->firstWhere('isYou', true)['spec']['label'] ?? null : null,
+                'mirrors' => $r->mirrors,
+            ])
+            ->all();
     }
 
-    /** One written review, or null. Reads only the committed artifact. */
-    public function load(string $id): ?array
+    /** One of this player's reviews, or null. Never reads another player's row. */
+    public function load(User $user, string $lobbyId): ?array
     {
-        $path = $this->artifactPath($id);
+        $row = ArenaReview::query()
+            ->where('user_id', $user->id)
+            ->where('lobby_id', $lobbyId)
+            ->first();
 
-        if (! File::exists($path)) {
+        return $row?->payload;
+    }
+
+    /**
+     * Saves an assembled review for a player, replacing any earlier copy of the same lobby so a
+     * re-upload or a re-assembly after a parser fix updates in place.
+     */
+    public function store(User $user, array $review): ArenaReview
+    {
+        $you = collect($review['players'] ?? [])->firstWhere('isYou', true);
+
+        return ArenaReview::updateOrCreate(
+            ['user_id' => $user->id, 'lobby_id' => $review['id']],
+            [
+                'battlenet_character_id' => $this->characterIdFor($user, $you['name'] ?? null),
+                'character_name' => $you['name'] ?? null,
+                'bracket' => $review['bracket'],
+                'played_at' => $review['playedAt'] ?? null,
+                'rounds' => count($review['rounds'] ?? []),
+                'rounds_won' => $review['record']['won'] ?? 0,
+                'rounds_lost' => $review['record']['lost'] ?? 0,
+                'mirrors' => count($review['mirrors'] ?? []),
+                'payload' => $review,
+            ]
+        );
+    }
+
+    /**
+     * Links a game to one of the player's own characters by the name the combat log carries.
+     *
+     * The log writes `Skylake-Frostmourne-US`; the account's synced characters carry name and
+     * realm separately, with the realm as a slug. Matching is on name plus realm with punctuation
+     * dropped, because a realm like "Moon Guard" is `moon-guard` as a slug and `MoonGuard` in the
+     * log. Returns null rather than guessing when nothing matches — a review whose character
+     * cannot be identified is still that player's game, and still worth keeping.
+     */
+    private function characterIdFor(User $user, ?string $logName): ?int
+    {
+        if ($logName === null || ! str_contains($logName, '-')) {
             return null;
         }
 
-        $r = json_decode(File::get($path), true);
+        $parts = explode('-', $logName);
+        $name = $parts[0];
+        $realm = $parts[1] ?? '';
+        $normalise = fn (?string $v) => strtolower(preg_replace('/[^a-z0-9]/i', '', (string) $v));
 
-        if (! is_array($r) || ! $this->ingest->isRoundBased($r['bracket'] ?? '')) {
+        $accountIds = BattlenetAccount::where('user_id', $user->id)->pluck('id');
+
+        if ($accountIds->isEmpty()) {
             return null;
         }
 
-        return $r;
-    }
-
-    public function artifactPath(string $id): string
-    {
-        return base_path(self::ARTIFACT_DIR.'/'.preg_replace('/[^a-f0-9]/i', '', $id).'.json');
+        return BattlenetCharacter::query()
+            ->whereIn('battlenet_account_id', $accountIds)
+            ->where('name', $name)
+            ->get()
+            ->first(fn (BattlenetCharacter $c) => $normalise($c->realm_slug) === $normalise($realm)
+                || $normalise($c->realm_name) === $normalise($realm))
+            ?->id;
     }
 
     // ---------------------------------------------------------------- building (console only)
@@ -161,30 +193,100 @@ class LobbyReviewService
     }
 
     /**
-     * Assembles the review. Reads the archive, so console only.
+     * Derives ONE round from its own raw log lines: the metadata, every player's throughput, and
+     * every player's COMBATANT_INFO build/gear/stats.
+     *
+     * This is the only place raw log text is needed, and it is deliberately the boundary. A
+     * browser-uploaded round is derived here once and the raw text is then thrown away, so what
+     * this returns is everything a review can ever be rebuilt from.
+     *
+     * @param  array<int, string>  $lines
+     * @return array{metadata: array, throughput: array, combatants: array<string, array>}|null
      */
-    public function build(string $id): ?array
+    public function deriveRound(array $lines, ?string $lobbyFirstLine = null): ?array
     {
-        $group = collect($this->reviewable())->firstWhere('id', $id);
+        $startLine = null;
+        $endLine = null;
 
-        if (! $group) {
+        foreach ($lines as $line) {
+            $body = trim(explode('  ', $line, 2)[1] ?? '');
+
+            if (str_starts_with($body, 'ARENA_MATCH_START,')) {
+                $startLine = $body;
+            } elseif (str_starts_with($body, 'ARENA_MATCH_END,')) {
+                $endLine = $body;
+            }
+        }
+
+        if ($startLine === null) {
+            return null;
+        }
+
+        $metadata = $this->ingest->deriveMetadata($lines, $startLine, $endLine, 1, $lobbyFirstLine);
+
+        if (! $this->ingest->isRoundBased($metadata['startInfo']['bracket'] ?? '')) {
+            return null;
+        }
+
+        $raw = implode("\n", $lines);
+        $combatants = [];
+
+        foreach ($metadata['units'] as $unit) {
+            if (! str_starts_with($unit['id'], 'Player-') || ($unit['spec'] ?? '0') === '0') {
+                continue;
+            }
+
+            $ci = $this->arena->extractCombatantInfoFromLog($raw, $unit['id']);
+
+            if ($ci !== null) {
+                $combatants[$unit['id']] = $ci;
+            }
+        }
+
+        return [
+            'metadata' => $metadata,
+            'throughput' => $this->throughput->measure($lines),
+            'combatants' => $combatants,
+        ];
+    }
+
+    /**
+     * Assembles a review from already-derived rounds.
+     *
+     * KNOWS NOTHING ABOUT WHERE THEY CAME FROM. Rounds reach this two ways — read out of the local
+     * archive by `wow:review-lobby`, or uploaded from a player's browser — and a mirror comparison
+     * must not mean two different things depending on which. That is why gathering lives in
+     * buildFromArchive() and ArenaReviewIngestService rather than in here.
+     *
+     * @param  array<int, array{metadata: array, throughput: array, combatants: array}>  $derived
+     */
+    public function assemble(string $id, array $derived): ?array
+    {
+        if ($derived === []) {
             return null;
         }
 
         $rounds = [];
         $players = [];
         $specCache = [];
+        $bracket = null;
+        $first = null;
+        $startTime = null;
 
-        foreach ($group['matchIds'] as $matchId) {
-            $meta = json_decode(File::get($this->arena->metadataPath($matchId)), true);
+        // Rounds can arrive in any order from an upload, so the sequence decides, not the array.
+        usort($derived, fn ($a, $b) => ($a['metadata']['sequenceNumber'] ?? 1) <=> ($b['metadata']['sequenceNumber'] ?? 1));
 
-            if (! is_array($meta)) {
-                continue;
-            }
-
+        foreach ($derived as $round) {
+            $meta = $round['metadata'];
+            $measured = $round['throughput'] ?? ['players' => [], 'unattributedPetDamage' => 0, 'unparsed' => 0];
             $sequence = $meta['sequenceNumber'] ?? 1;
-            $measured = $this->throughput->forMatch($matchId) ?? ['players' => [], 'unattributedPetDamage' => 0, 'unparsed' => 0];
+            $bracket ??= $meta['startInfo']['bracket'] ?? 'unknown';
+            $first ??= $meta;
             $names = [];
+
+            if (isset($meta['startTime'])) {
+                $startTime = $startTime === null ? $meta['startTime'] : min($startTime, $meta['startTime']);
+            }
 
             foreach ($meta['units'] as $unit) {
                 if (! str_starts_with($unit['id'], 'Player-') || ($unit['spec'] ?? '0') === '0') {
@@ -213,19 +315,19 @@ class LobbyReviewService
                     'teamByRound' => [],
                 ];
 
-                // Build, gear and stats are read once, from the first round the player appears in.
-                // Re-read every round only far enough to notice a change: a shuffle lets you
+                // Build, gear and stats are taken from the first round the player appears in.
+                // Later rounds are compared only far enough to notice a change: a shuffle lets you
                 // respec between rounds, and a review that silently showed round one's build for
                 // all six would be wrong in exactly the case worth knowing about.
-                $ci = $this->arena->extractCombatantInfo($matchId, $guid);
+                $ci = $round['combatants'][$guid] ?? null;
 
                 if ($ci) {
                     $signature = md5(json_encode($ci['talents'] ?? []).json_encode($ci['pvpTalentIds'] ?? []));
 
                     if ($players[$guid]['rawTalentSignature'] === null) {
                         $players[$guid]['rawTalentSignature'] = $signature;
-                        $players[$guid]['gear'] = $ci['gear'];
-                        $players[$guid]['stats'] = $ci['stats'];
+                        $players[$guid]['gear'] = $ci['gear'] ?? null;
+                        $players[$guid]['stats'] = $ci['stats'] ?? null;
                         $players[$guid]['build'] = $this->resolveBuild($ci, $players[$guid]['spec']['id']);
                     } elseif ($players[$guid]['rawTalentSignature'] !== $signature) {
                         $players[$guid]['buildChangedMidGame'] = true;
@@ -233,21 +335,21 @@ class LobbyReviewService
                 }
 
                 $t = $measured['players'][$guid] ?? [];
-                $round = array_fill_keys(array_keys($players[$guid]['totals']), 0);
+                $perRound = array_fill_keys(array_keys($players[$guid]['totals']), 0);
 
-                foreach ($round as $k => $_) {
-                    $round[$k] = (int) ($t[$k] ?? 0);
-                    $players[$guid]['totals'][$k] += $round[$k];
+                foreach ($perRound as $k => $_) {
+                    $perRound[$k] = (int) ($t[$k] ?? 0);
+                    $players[$guid]['totals'][$k] += $perRound[$k];
                 }
 
-                $players[$guid]['perRound'][$sequence] = $round;
+                $players[$guid]['perRound'][$sequence] = $perRound;
                 $players[$guid]['roundsPlayed']++;
                 $players[$guid]['teamByRound'][$sequence] = $this->teamOf($meta, $guid);
             }
 
             $rounds[] = [
                 'sequence' => $sequence,
-                'matchId' => $matchId,
+                'matchId' => $meta['id'] ?? null,
                 'durationSeconds' => $meta['durationInSeconds'] ?? 0,
                 'result' => match ($meta['result'] ?? null) {
                     CombatLogIngestService::RESULT_WIN => 'won',
@@ -257,21 +359,17 @@ class LobbyReviewService
                 'winningTeamId' => $meta['winningTeamId'] ?? null,
                 'killedUnitId' => $meta['killedUnitId'] ?? null,
                 'killedName' => $names[$meta['killedUnitId'] ?? ''] ?? null,
-                'unattributedPetDamage' => $measured['unattributedPetDamage'],
-                'unparsedEvents' => $measured['unparsed'],
+                'unattributedPetDamage' => $measured['unattributedPetDamage'] ?? 0,
+                'unparsedEvents' => $measured['unparsed'] ?? 0,
             ];
         }
 
-        usort($rounds, fn ($a, $b) => $a['sequence'] <=> $b['sequence']);
-
-        $first = json_decode(File::get($this->arena->metadataPath($group['matchIds'][0])), true);
-
         return [
             'id' => $id,
-            'bracket' => $group['bracket'],
+            'bracket' => $bracket,
             'zoneId' => $first['startInfo']['zoneId'] ?? null,
             'isRanked' => $first['startInfo']['isRanked'] ?? null,
-            'playedAt' => $group['startTime'] ? date('c', (int) ($group['startTime'] / 1000)) : null,
+            'playedAt' => $startTime ? date('c', (int) ($startTime / 1000)) : null,
             'record' => [
                 'won' => count(array_filter($rounds, fn ($r) => $r['result'] === 'won')),
                 'lost' => count(array_filter($rounds, fn ($r) => $r['result'] === 'lost')),
@@ -284,20 +382,49 @@ class LobbyReviewService
         ];
     }
 
-    /** Writes the artifact and returns its path. */
-    public function write(string $id): ?string
+    /**
+     * Gathers a lobby's rounds out of the LOCAL archive and assembles them. Console only — the
+     * archive is gitignored, so this path does not exist in production.
+     */
+    public function buildFromArchive(string $id): ?array
     {
-        $review = $this->build($id);
+        $group = collect($this->reviewable())->firstWhere('id', $id);
 
-        if ($review === null) {
+        if (! $group) {
             return null;
         }
 
-        $path = $this->artifactPath($id);
-        File::ensureDirectoryExists(dirname($path));
-        File::put($path, json_encode($review, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)."\n");
+        $derived = [];
 
-        return $path;
+        foreach ($group['matchIds'] as $matchId) {
+            $meta = json_decode(File::get($this->arena->metadataPath($matchId)), true);
+
+            if (! is_array($meta)) {
+                continue;
+            }
+
+            $combatants = [];
+
+            foreach ($meta['units'] as $unit) {
+                if (! str_starts_with($unit['id'], 'Player-') || ($unit['spec'] ?? '0') === '0') {
+                    continue;
+                }
+
+                $ci = $this->arena->extractCombatantInfo($matchId, $unit['id']);
+
+                if ($ci !== null) {
+                    $combatants[$unit['id']] = $ci;
+                }
+            }
+
+            $derived[] = [
+                'metadata' => $meta,
+                'throughput' => $this->throughput->forMatch($matchId) ?? [],
+                'combatants' => $combatants,
+            ];
+        }
+
+        return $this->assemble($id, $derived);
     }
 
     // ---------------------------------------------------------------- the comparison

@@ -26,7 +26,7 @@
 <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-8">
 
     <header class="space-y-2">
-        <h1 class="font-display italic text-3xl sm:text-4xl text-ink">Game Review</h1>
+        <h1 class="font-display italic text-3xl sm:text-4xl text-ink">Match Review</h1>
         <p class="text-ink-muted max-w-3xl">
             A played game read back from its own combat log — who won each round, what every player
             actually put out, and where two players of the same spec differed. The same-spec
@@ -35,13 +35,15 @@
         </p>
     </header>
 
+    @include('livewire.partials.game-review-upload')
+
     @if ($reviews === [])
         <div class="linear-card p-6">
-            <h2 class="text-ink font-semibold mb-2">No games reviewed yet</h2>
+            <h2 class="text-ink font-semibold mb-2">No games yet</h2>
             <p class="text-ink-muted text-sm">
-                Reviews are built from your own combat log and committed as files. Run
-                <code class="text-gold">php artisan wow:ingest-combatlog</code> then
-                <code class="text-gold">php artisan wow:review-lobby</code>.
+                Install the MindCollector addon, play some Solo Shuffle, then upload your combat log
+                above. The addon turns combat logging on when an arena starts and off when it ends,
+                so the file stays small and holds your games and nothing else.
             </p>
         </div>
     @else
