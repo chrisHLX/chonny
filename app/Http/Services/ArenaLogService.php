@@ -2,9 +2,9 @@
 
 namespace App\Http\Services;
 
+use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\SpellRelationship;
-use App\Models\Specialization;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 
@@ -95,13 +95,13 @@ class ArenaLogService
             'variables' => ['matchId' => $matchId],
         ]);
 
-        if (!$resp->successful()) {
+        if (! $resp->successful()) {
             return null;
         }
 
         $match = $resp->json('data.matchById');
 
-        return (!$match || empty($match['logObjectUrl'])) ? null : $match;
+        return (! $match || empty($match['logObjectUrl'])) ? null : $match;
     }
 
     /**
@@ -121,7 +121,7 @@ class ArenaLogService
     {
         $primary = config('arena_logs.archive_path')."/raw/{$matchId}.log.gz";
 
-        if (!File::exists($primary)) {
+        if (! File::exists($primary)) {
             $fallback = config('arena_logs.archive_path')."/season-current/raw/{$matchId}.log.gz";
 
             if (File::exists($fallback)) {
@@ -140,7 +140,7 @@ class ArenaLogService
     {
         $primary = config('arena_logs.archive_path')."/metadata/{$matchId}.json";
 
-        if (!File::exists($primary)) {
+        if (! File::exists($primary)) {
             $fallback = config('arena_logs.archive_path')."/season-current/metadata/{$matchId}.json";
 
             if (File::exists($fallback)) {
@@ -160,7 +160,7 @@ class ArenaLogService
     {
         $logResp = Http::timeout(30)->get($match['logObjectUrl']);
 
-        if (!$logResp->successful()) {
+        if (! $logResp->successful()) {
             return ['error' => "Failed to download raw log: HTTP {$logResp->status()}"];
         }
 
@@ -248,7 +248,7 @@ class ArenaLogService
             'variables' => ['bracket' => $bracket, 'compQueryString' => $compQueryString, 'count' => $count, 'offset' => $offset],
         ]);
 
-        if (!$resp->successful()) {
+        if (! $resp->successful()) {
             return [];
         }
 
@@ -383,7 +383,7 @@ class ArenaLogService
         $metaPath = $this->metadataPath($matchId);
         $rawPath = $this->rawLogPath($matchId);
 
-        if (!File::exists($metaPath) || !File::exists($rawPath)) {
+        if (! File::exists($metaPath) || ! File::exists($rawPath)) {
             throw new \RuntimeException("Match {$matchId} is not on file — run wow:fetch-arena-log first.");
         }
 
@@ -393,7 +393,7 @@ class ArenaLogService
         $players = [];
 
         foreach ($metadata['units'] ?? [] as $unit) {
-            if (!str_starts_with($unit['id'], 'Player-') || $unit['spec'] === '0') {
+            if (! str_starts_with($unit['id'], 'Player-') || $unit['spec'] === '0') {
                 continue;
             }
 
@@ -408,7 +408,7 @@ class ArenaLogService
             $seenIds = [];
             foreach ($matches as $m) {
                 $spellId = (int) $m[1];
-                if (!isset($seenIds[$spellId])) {
+                if (! isset($seenIds[$spellId])) {
                     $seenIds[$spellId] = true;
                     $spells[] = ['spellId' => $spellId, 'name' => $m[2]];
                 }
@@ -449,7 +449,18 @@ class ArenaLogService
      * (2026-08-27) that real rated 3v3 only ever populates 3 of the 4 possible slots; 0s are
      * filtered out here rather than passed through as fake "talent id 0" picks.
      *
-     * @return array{talents: array<int, array{nodeId:int, entryId:int, rank:int}>, pvpTalentIds: array<int>}|null
+     * GEAR AND THE STAT BLOCK are extracted too, by a second, independent pass — see
+     * extractCombatantStatsAndGear(). Deliberately separate: the talent/PvP regex above is the
+     * verified part and must not be put at risk by a parser for fields nothing depended on until
+     * now. If that second pass fails, `stats` and `gear` come back null and everything else is
+     * untouched.
+     *
+     * @return array{
+     *   talents: array<int, array{nodeId:int, entryId:int, rank:int}>,
+     *   pvpTalentIds: array<int>,
+     *   stats: ?array,
+     *   gear: ?array
+     * }|null
      *         null when the match isn't on file, or the player's GUID has no COMBATANT_INFO line
      *         (e.g. a spectator-only or otherwise incomplete log).
      */
@@ -457,7 +468,7 @@ class ArenaLogService
     {
         $rawPath = $this->rawLogPath($matchId);
 
-        if (!File::exists($rawPath)) {
+        if (! File::exists($rawPath)) {
             return null;
         }
 
@@ -470,7 +481,7 @@ class ArenaLogService
         // immediately following it (before the gear list's own opening bracket).
         $pattern = '/COMBATANT_INFO,'.$guid.',.*?,\[((?:\(\d+,\d+,\d+\),?)*)\],\((\d+,\d+,\d+,\d+)\),\[/';
 
-        if (!preg_match($pattern, $rawLog, $m)) {
+        if (! preg_match($pattern, $rawLog, $m)) {
             return null;
         }
 
@@ -487,7 +498,154 @@ class ArenaLogService
             fn ($id) => $id !== 0
         ));
 
-        return compact('talents', 'pvpTalentIds');
+        ['stats' => $stats, 'gear' => $gear] = $this->extractCombatantStatsAndGear($rawLog, $playerGuid);
+
+        return compact('talents', 'pvpTalentIds', 'stats', 'gear');
+    }
+
+    /**
+     * The secondary-stat block and the equipped-item levels from one player's COMBATANT_INFO.
+     *
+     * WHY THE LABELS ARE ANCHORED FROM BOTH ENDS AND THE MIDDLE IS LEFT RAW. The documented
+     * layout between `faction` and `currentSpecID` is 21 fields (strength … armor), but the live
+     * 12.1.0 client writes **22** — measured on a real log, 2026-09-25. One field in the
+     * dodge/parry/block/crit/speed/lifesteal run is undocumented, so counting forward from the
+     * start mislabels everything after it: a naive read put `armor` on a versatility value.
+     *
+     * What is safe is each end. `strength, agility, stamina, intellect` lead; `armor` is last,
+     * preceded by the versatility triple, mastery, avoidance and the haste triple. The two
+     * triples are the anchor, and this VERIFIES them rather than assuming: haste's three values
+     * must be equal to each other and versatility's three to each other. When they are not, the
+     * alignment is wrong for that client build, so `aligned` comes back false and only the raw
+     * block is offered — a wrong mastery number is worse than no mastery number.
+     *
+     * Values are RATINGS, not percentages. They are comparable between two characters of the
+     * same level and nothing else.
+     *
+     * Item levels: the gear array is `(itemId, ilvl, (enchants), (bonusIds), (gems))` per slot,
+     * with `(0,0,…)` for an empty one. Median is reported alongside the mean because a shirt or
+     * tabard sits at ilvl 1 and drags a mean down by twenty-odd points — measured 319.3 mean
+     * against a 344 median on a real character whose every real piece was 344.
+     *
+     * @return array{stats: ?array, gear: ?array}
+     */
+    private function extractCombatantStatsAndGear(string $rawLog, string $playerGuid): array
+    {
+        $guid = preg_quote($playerGuid, '/');
+
+        if (! preg_match('/^.*COMBATANT_INFO,'.$guid.',.*$/m', $rawLog, $lineMatch)) {
+            return ['stats' => null, 'gear' => null];
+        }
+
+        $fields = $this->splitTopLevel(explode('  ', $lineMatch[0], 2)[1] ?? $lineMatch[0]);
+
+        // fields: 0 event, 1 guid, 2 team, 3.. stats, then specID, then [talents], (pvp), [gear].
+        $firstBracket = null;
+        foreach ($fields as $i => $f) {
+            if (str_starts_with(ltrim($f), '[')) {
+                $firstBracket = $i;
+
+                break;
+            }
+        }
+
+        if ($firstBracket === null || $firstBracket < 6) {
+            return ['stats' => null, 'gear' => null];
+        }
+
+        // Everything between the team and the spec id. The spec id is the field immediately
+        // before the talent bracket.
+        $block = array_map('intval', array_slice($fields, 3, $firstBracket - 4));
+
+        $stats = ['raw' => $block, 'aligned' => false];
+
+        if (count($block) >= 13) {
+            $tail = array_slice($block, -9);   // haste×3, avoidance, mastery, vers×3, armor
+            [$hm, $hr, $hs, $avoidance, $mastery, $vd, $vh, $vt, $armor] = $tail;
+
+            if ($hm === $hr && $hr === $hs && $vd === $vh && $vh === $vt) {
+                $stats = [
+                    'raw' => $block,
+                    'aligned' => true,
+                    'strength' => $block[0],
+                    'agility' => $block[1],
+                    'stamina' => $block[2],
+                    'intellect' => $block[3],
+                    'haste' => $hs,
+                    'avoidance' => $avoidance,
+                    'mastery' => $mastery,
+                    'versatility' => $vh,
+                    'armor' => $armor,
+                    'secondaryTotal' => $hs + $mastery + $vh,
+                ];
+            }
+        }
+
+        $gear = null;
+        // [talents] then the (pvp) 4-tuple then [gear].
+        $gearField = $fields[$firstBracket + 2] ?? null;
+
+        if ($gearField !== null && str_starts_with(ltrim($gearField), '[')) {
+            $ilvls = [];
+
+            foreach ($this->splitTopLevel(trim(trim(ltrim($gearField)), '[]')) as $item) {
+                $parts = $this->splitTopLevel(trim(trim($item), '()'));
+
+                if (count($parts) >= 2 && (int) $parts[0] !== 0) {
+                    $ilvls[] = (int) $parts[1];
+                }
+            }
+
+            if ($ilvls !== []) {
+                sort($ilvls);
+                $mid = (int) floor(count($ilvls) / 2);
+
+                $gear = [
+                    'items' => count($ilvls),
+                    'itemLevels' => $ilvls,
+                    'min' => $ilvls[0],
+                    'max' => $ilvls[count($ilvls) - 1],
+                    'median' => count($ilvls) % 2 ? $ilvls[$mid] : (int) round(($ilvls[$mid - 1] + $ilvls[$mid]) / 2),
+                    'mean' => round(array_sum($ilvls) / count($ilvls), 1),
+                ];
+            }
+        }
+
+        return ['stats' => $stats, 'gear' => $gear];
+    }
+
+    /**
+     * Splits on commas that are not inside `(` or `[`. COMBATANT_INFO nests both several levels
+     * deep, so `explode(',')` shreds the talent, gear and aura groups.
+     *
+     * @return array<int, string>
+     */
+    private function splitTopLevel(string $s): array
+    {
+        $out = [];
+        $depth = 0;
+        $buf = '';
+
+        foreach (str_split($s) as $ch) {
+            if ($ch === '(' || $ch === '[') {
+                $depth++;
+            } elseif ($ch === ')' || $ch === ']') {
+                $depth--;
+            }
+
+            if ($ch === ',' && $depth === 0) {
+                $out[] = $buf;
+                $buf = '';
+
+                continue;
+            }
+
+            $buf .= $ch;
+        }
+
+        $out[] = $buf;
+
+        return $out;
     }
 
     /**
@@ -544,7 +702,7 @@ class ArenaLogService
         $spec = Specialization::find($specId);
         $patchId = \App\Models\Patch::where('is_current', true)->value('id');
 
-        if (!$spec || !$patchId) {
+        if (! $spec || ! $patchId) {
             return ['talents' => [], 'pvpTalents' => []];
         }
 
@@ -579,7 +737,7 @@ class ArenaLogService
         // (stored - raw) offset for pass 2's median.
         foreach ($rawTalents as $t) {
             $node = $nodesByExternalId->get($t['nodeId']);
-            if (!$node || $node->entries->isEmpty()) {
+            if (! $node || $node->entries->isEmpty()) {
                 continue;
             }
 
@@ -588,11 +746,11 @@ class ArenaLogService
             }
 
             $entry = $node->entries->firstWhere('rank', $t['rank']) ?? $node->entries->first();
-            if (!$entry || !$entry->spell) {
+            if (! $entry || ! $entry->spell) {
                 continue;
             }
 
-            if (!isset($talentsByNodeId[$t['nodeId']]) || $t['rank'] > $talentsByNodeId[$t['nodeId']]['rank']) {
+            if (! isset($talentsByNodeId[$t['nodeId']]) || $t['rank'] > $talentsByNodeId[$t['nodeId']]['rank']) {
                 $talentsByNodeId[$t['nodeId']] = [
                     'name' => $entry->spell->display_name,
                     'spellId' => $entry->spell->spell_id,
@@ -623,7 +781,7 @@ class ArenaLogService
                 }
 
                 $node = $nodesByExternalId->get($t['nodeId']);
-                if (!$node) {
+                if (! $node) {
                     continue;
                 }
 
@@ -655,7 +813,7 @@ class ArenaLogService
         $pvpTalents = [];
         $pvpIds = $combatantInfo['pvpTalentIds'] ?? [];
 
-        if (!empty($pvpIds)) {
+        if (! empty($pvpIds)) {
             $spells = Spell::whereIn('spell_id', $pvpIds)->where('patch_id', $patchId)->get()->keyBy('spell_id');
 
             // Internal pvp_talents.id (not the spell_id resolved above) — a real spec's PvP
@@ -729,7 +887,7 @@ class ArenaLogService
         $rawPath = $this->rawLogPath($matchId);
         $metaPath = $this->metadataPath($matchId);
 
-        if (!File::exists($rawPath) || !File::exists($metaPath)) {
+        if (! File::exists($rawPath) || ! File::exists($metaPath)) {
             return null;
         }
 
@@ -745,7 +903,7 @@ class ArenaLogService
         $specExternalByGuid = [];
 
         foreach ($meta['units'] ?? [] as $u) {
-            if (!str_starts_with($u['id'] ?? '', 'Player-')) {
+            if (! str_starts_with($u['id'] ?? '', 'Player-')) {
                 continue;
             }
 
@@ -806,15 +964,15 @@ class ArenaLogService
         $state = [];
 
         foreach (explode("\n", $raw) as $line) {
-            if (!str_contains($line, $destGuid)) {
+            if (! str_contains($line, $destGuid)) {
                 continue;
             }
 
-            if (!preg_match('/^([\d\/: .-]+)\s+(SPELL_AURA_APPLIED(?:_DOSE)?|SPELL_AURA_REMOVED(?:_DOSE)?),(Player-[^,]+),"[^"]*",[^,]*,[^,]*,(Player-[^,]+),/', $line, $m)) {
+            if (! preg_match('/^([\d\/: .-]+)\s+(SPELL_AURA_APPLIED(?:_DOSE)?|SPELL_AURA_REMOVED(?:_DOSE)?),(Player-[^,]+),"[^"]*",[^,]*,[^,]*,(Player-[^,]+),/', $line, $m)) {
                 continue;
             }
 
-            if ($m[4] !== $destGuid || !$sourceFilter($m[3])) {
+            if ($m[4] !== $destGuid || ! $sourceFilter($m[3])) {
                 continue;
             }
 
@@ -832,7 +990,7 @@ class ArenaLogService
             if ($eventType === 'SPELL_AURA_APPLIED') {
                 $isDebuffLine = str_contains(trim(end($fields)), 'DEBUFF');
 
-                if (($auraType === 'BUFF' && $isDebuffLine) || ($auraType === 'DEBUFF' && !$isDebuffLine)) {
+                if (($auraType === 'BUFF' && $isDebuffLine) || ($auraType === 'DEBUFF' && ! $isDebuffLine)) {
                     continue;
                 }
 
@@ -894,7 +1052,7 @@ class ArenaLogService
             'variables' => ['bracket' => $bracket, 'compQueryString' => (string) $specExternalId, 'count' => $count, 'offset' => $offset],
         ]);
 
-        if (!$resp->successful()) {
+        if (! $resp->successful()) {
             return [];
         }
 
@@ -954,7 +1112,7 @@ class ArenaLogService
             'variables' => ['bracket' => $bracket, 'count' => $count, 'offset' => $offset],
         ]);
 
-        if (!$resp->successful()) {
+        if (! $resp->successful()) {
             return [];
         }
 
@@ -1069,7 +1227,7 @@ class ArenaLogService
 
         for ($page = 0; $page < $pages; $page++) {
             foreach ($this->searchMatchesForSpec($specExternalId, $bracket, $page * 50, 50) as $c) {
-                if (!isset($seen[$c['matchId']])) {
+                if (! isset($seen[$c['matchId']])) {
                     $seen[$c['matchId']] = true;
                     $candidates[] = $c;
                 }
@@ -1248,7 +1406,7 @@ class ArenaLogService
             $existing[$s['spellId']] = $s['name'];
         }
 
-        if (!in_array($matchId, $seenMatchIds, true)) {
+        if (! in_array($matchId, $seenMatchIds, true)) {
             $seenMatchIds[] = $matchId;
         }
 
@@ -1289,7 +1447,7 @@ class ArenaLogService
     {
         $path = base_path("data/arena-logs/spell-usage/{$classSlug}/{$specSlug}.txt");
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return collect();
         }
 
@@ -1339,7 +1497,7 @@ class ArenaLogService
 
         foreach ($files as $filename => $flags) {
             $path = "{$dir}/{$filename}";
-            if (!File::exists($path)) {
+            if (! File::exists($path)) {
                 continue;
             }
 
@@ -1386,7 +1544,7 @@ class ArenaLogService
     {
         $path = base_path("data/arena-logs/rotations/{$classSlug}/{$specSlug}.json");
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             return null;
         }
 
@@ -1567,7 +1725,7 @@ class ArenaLogService
         foreach ($rowsBySpellId as $row) {
             $name = $row['spell']->name;
 
-            if (!isset($byName[$name])) {
+            if (! isset($byName[$name])) {
                 $byName[$name] = ['name' => $name, 'casts' => 0, 'damage' => 0, 'candidates' => []];
             }
 
@@ -1591,7 +1749,7 @@ class ArenaLogService
             $dbSiblings = Spell::where('patch_id', $patchId)->where('name', $name)->where('not_in_spellbook', false)->get();
 
             foreach ($dbSiblings as $sibling) {
-                if (!collect($group['candidates'])->contains('id', $sibling->id)) {
+                if (! collect($group['candidates'])->contains('id', $sibling->id)) {
                     $group['candidates'][] = $sibling;
                 }
             }
@@ -1649,7 +1807,7 @@ class ArenaLogService
         $metaPath = $this->metadataPath($matchId);
         $rawPath = $this->rawLogPath($matchId);
 
-        if (!File::exists($metaPath) || !File::exists($rawPath)) {
+        if (! File::exists($metaPath) || ! File::exists($rawPath)) {
             return null;
         }
 
@@ -1734,19 +1892,19 @@ class ArenaLogService
      * work here.
      *
      * @return array{matchStart: float, casts: array<int, array{time: float, spellId: int, name: string}>}|null
-     *         null when the match isn't on file or has no parseable timestamped lines at all.
+     *                                                                                                          null when the match isn't on file or has no parseable timestamped lines at all.
      */
     public function findOpenerWindow(string $matchId, string $playerGuid, int $windowSeconds = 10): ?array
     {
         $rawPath = $this->rawLogPath($matchId);
 
-        if (!File::exists($rawPath)) {
+        if (! File::exists($rawPath)) {
             return null;
         }
 
         $raw = gzdecode(File::get($rawPath));
 
-        if (!preg_match('/^([\d\/: .-]+)\s+\S/m', $raw, $firstLine)) {
+        if (! preg_match('/^([\d\/: .-]+)\s+\S/m', $raw, $firstLine)) {
             return null;
         }
 
@@ -1809,7 +1967,7 @@ class ArenaLogService
 
         foreach ($result['players'] as $player) {
             $spec = Specialization::where('external_spec_id', $player['spec'])->first();
-            if (!$spec) {
+            if (! $spec) {
                 continue;
             }
             $class = \App\Models\GameClass::find($spec->class_id);
@@ -1878,7 +2036,7 @@ class ArenaLogService
 
     private function parseLogTimestamp(string $raw): float
     {
-        if (!preg_match('/(\d{1,2}):(\d{2}):(\d{2})\.(\d+)/', trim($raw), $m)) {
+        if (! preg_match('/(\d{1,2}):(\d{2}):(\d{2})\.(\d+)/', trim($raw), $m)) {
             return 0.0;
         }
 
@@ -1957,14 +2115,14 @@ class ArenaLogService
         $metaPath = $this->metadataPath($matchId);
         $rawPath = $this->rawLogPath($matchId);
 
-        if (!File::exists($metaPath) || !File::exists($rawPath)) {
+        if (! File::exists($metaPath) || ! File::exists($rawPath)) {
             return null;
         }
 
         $meta = json_decode(File::get($metaPath), true);
         $raw = gzdecode(File::get($rawPath));
 
-        if (!preg_match_all('/^([\d\/: .-]+)\s+(?:PARTY_KILL|UNIT_DIED),[^,]*,[^,]*,[^,]*,[^,]*,(Player-[^,]+),"([^"]*)"/m', $raw, $deaths, PREG_SET_ORDER)) {
+        if (! preg_match_all('/^([\d\/: .-]+)\s+(?:PARTY_KILL|UNIT_DIED),[^,]*,[^,]*,[^,]*,[^,]*,(Player-[^,]+),"([^"]*)"/m', $raw, $deaths, PREG_SET_ORDER)) {
             return null;
         }
         if ($deaths === []) {
@@ -1977,7 +2135,7 @@ class ArenaLogService
 
         $isHealer = function (int $extSpecId) {
             $spec = Specialization::where('external_spec_id', $extSpecId)->first();
-            if (!$spec || !$spec->gameClass) {
+            if (! $spec || ! $spec->gameClass) {
                 return false;
             }
             foreach (self::HEALER_SPEC_SLUGS as [$c, $s]) {
@@ -1992,7 +2150,7 @@ class ArenaLogService
         $roster = [];
         $killedSpec = null;
         foreach ($meta['units'] ?? [] as $u) {
-            if (!str_starts_with($u['id'], 'Player-') || !isset($u['spec']) || (int) $u['spec'] === 0) {
+            if (! str_starts_with($u['id'], 'Player-') || ! isset($u['spec']) || (int) $u['spec'] === 0) {
                 continue;
             }
             $spec = Specialization::with('gameClass')->where('external_spec_id', (int) $u['spec'])->first();
@@ -2016,7 +2174,7 @@ class ArenaLogService
                 $name = $m[5];
                 $isCC = isset($ccByCategory[$spellId]);
                 $isWatched = $this->matchesAny($name, [...self::WATCHED_DEFENSIVES, ...self::WATCHED_OFFENSIVES, ...self::WATCHED_TRINKETS]);
-                if (!$isCC && !$isWatched) {
+                if (! $isCC && ! $isWatched) {
                     continue;
                 }
 
@@ -2038,7 +2196,7 @@ class ArenaLogService
             preg_match_all('/^([\d\/: .-]+)\s+SPELL_CAST_SUCCESS,'.$g.',"[^"]*",[^,]*,[^,]*,[^,]*,(?:"[^"]*"|nil),[^,]*,[^,]*,(\d+),"([^"]*)"/m', $raw, $casts, PREG_SET_ORDER);
             foreach ($casts as $c) {
                 $name = $c[3];
-                if (!$this->matchesAny($name, [...self::WATCHED_DEFENSIVES, ...self::WATCHED_OFFENSIVES, ...self::WATCHED_TRINKETS])) {
+                if (! $this->matchesAny($name, [...self::WATCHED_DEFENSIVES, ...self::WATCHED_OFFENSIVES, ...self::WATCHED_TRINKETS])) {
                     continue;
                 }
                 $t = $this->parseLogTimestamp($c[1]);
@@ -2076,7 +2234,7 @@ class ArenaLogService
                 $amountIdx = 19;
                 $ability = '(melee)';
             } else {
-                if (!preg_match('/^\d+,"([^"]*)",[^,]*,(.*)$/', $d[4], $sub)) {
+                if (! preg_match('/^\d+,"([^"]*)",[^,]*,(.*)$/', $d[4], $sub)) {
                     continue;
                 }
                 $ability = $sub[1];
@@ -2148,12 +2306,12 @@ class ArenaLogService
     {
         $metaPath = $this->metadataPath($matchId);
 
-        if (!File::exists($metaPath)) {
+        if (! File::exists($metaPath)) {
             return false;
         }
 
         $spec = Specialization::find($specializationId);
-        if (!$spec) {
+        if (! $spec) {
             return false;
         }
 
@@ -2199,7 +2357,7 @@ class ArenaLogService
     public function resolveOpposingTeamSpecs(string $matchId, string $healerName, ?\Illuminate\Support\Collection $specsByExternalId = null): array
     {
         $metaPath = $this->metadataPath($matchId);
-        if (!File::exists($metaPath)) {
+        if (! File::exists($metaPath)) {
             return [];
         }
 
@@ -2222,7 +2380,7 @@ class ArenaLogService
 
         $result = [];
         foreach ($units as $u) {
-            if (!str_starts_with($u['id'] ?? '', 'Player-')) {
+            if (! str_starts_with($u['id'] ?? '', 'Player-')) {
                 continue;
             }
             if (($u['reaction'] ?? null) === $healerReaction) {
@@ -2230,12 +2388,12 @@ class ArenaLogService
             }
 
             $spec = $specsByExternalId->get((int) ($u['spec'] ?? 0));
-            if (!$spec || !$spec->gameClass) {
+            if (! $spec || ! $spec->gameClass) {
                 continue;
             }
 
             $pair = ['classSlug' => $spec->gameClass->slug, 'specSlug' => $spec->slug];
-            if (!in_array($pair, $result, true)) {
+            if (! in_array($pair, $result, true)) {
                 $result[] = $pair;
             }
 

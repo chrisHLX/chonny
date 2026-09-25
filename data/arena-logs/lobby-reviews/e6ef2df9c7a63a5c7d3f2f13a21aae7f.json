@@ -1,0 +1,5054 @@
+{
+    "id": "e6ef2df9c7a63a5c7d3f2f13a21aae7f",
+    "bracket": "3v3",
+    "zoneId": "1911",
+    "isRanked": true,
+    "playedAt": "2026-08-28T22:40:51+00:00",
+    "record": {
+        "won": 1,
+        "lost": 0
+    },
+    "rounds": [
+        {
+            "sequence": 1,
+            "matchId": "e6ef2df9c7a63a5c7d3f2f13a21aae7f",
+            "durationSeconds": 143,
+            "result": "won",
+            "winningTeamId": "1",
+            "killedUnitId": null,
+            "killedName": null,
+            "unattributedPetDamage": 0,
+            "unparsedEvents": 0
+        }
+    ],
+    "players": [
+        {
+            "guid": "Player-11-0B58A8C7",
+            "name": "Erebbuss-Tichondrius-US",
+            "isYou": false,
+            "spec": {
+                "externalId": 258,
+                "id": 28,
+                "name": "Shadow",
+                "classSlug": "priest",
+                "specSlug": "shadow",
+                "label": "Shadow Priest"
+            },
+            "gear": {
+                "items": 15,
+                "itemLevels": [
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    344,
+                    344,
+                    344,
+                    344,
+                    344,
+                    344
+                ],
+                "min": 331,
+                "max": 344,
+                "median": 331,
+                "mean": 336.2
+            },
+            "stats": {
+                "raw": [
+                    428,
+                    619,
+                    51213,
+                    3945,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    11,
+                    0,
+                    1430,
+                    1430,
+                    1430,
+                    0,
+                    108,
+                    1644,
+                    1644,
+                    1644,
+                    976
+                ],
+                "aligned": true,
+                "strength": 428,
+                "agility": 619,
+                "stamina": 51213,
+                "intellect": 3945,
+                "haste": 1430,
+                "avoidance": 0,
+                "mastery": 108,
+                "versatility": 1644,
+                "armor": 976,
+                "secondaryTotal": 3182
+            },
+            "build": {
+                "talents": [
+                    {
+                        "name": "Voidform",
+                        "spellId": 228260,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2778,
+                        "entryId": 3343
+                    },
+                    {
+                        "name": "Dispel Magic",
+                        "spellId": 528,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2604,
+                        "entryId": 3132
+                    },
+                    {
+                        "name": "Subservient Shadows",
+                        "spellId": 1228516,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2793,
+                        "entryId": 3360
+                    },
+                    {
+                        "name": "Inescapable Torment",
+                        "spellId": 373427,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2811,
+                        "entryId": 3384
+                    },
+                    {
+                        "name": "Idol of Y'Shaarj",
+                        "spellId": 373310,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2819,
+                        "entryId": 3395
+                    },
+                    {
+                        "name": "Mindbender",
+                        "spellId": 1230339,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2802,
+                        "entryId": 3373
+                    },
+                    {
+                        "name": "Screams of the Void",
+                        "spellId": 375767,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2814,
+                        "entryId": 3389
+                    },
+                    {
+                        "name": "Shadowy Apparitions",
+                        "spellId": 341491,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2764,
+                        "entryId": 3325
+                    },
+                    {
+                        "name": "Maddening Tentacles",
+                        "spellId": 1279353,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2806,
+                        "entryId": 3378
+                    },
+                    {
+                        "name": "Crushing Void",
+                        "spellId": 1279354,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2817,
+                        "entryId": 3393
+                    },
+                    {
+                        "name": "Haunting Shadows",
+                        "spellId": 1279355,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2779,
+                        "entryId": 3344
+                    },
+                    {
+                        "name": "Tormenting Whispers",
+                        "spellId": 1250492,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2769,
+                        "entryId": 3332
+                    },
+                    {
+                        "name": "Maddening Touch",
+                        "spellId": 391228,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2784,
+                        "entryId": 3349
+                    },
+                    {
+                        "name": "Psychic Link",
+                        "spellId": 199484,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2755,
+                        "entryId": 3314
+                    },
+                    {
+                        "name": "Shadow Word: Madness",
+                        "spellId": 335467,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2754,
+                        "entryId": 3313
+                    },
+                    {
+                        "name": "Tormented Spirits",
+                        "spellId": 391284,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2815,
+                        "entryId": 3390
+                    },
+                    {
+                        "name": "Auspicious Spirits",
+                        "spellId": 155271,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2805,
+                        "entryId": 3377
+                    },
+                    {
+                        "name": "Surge of Insanity",
+                        "spellId": 391399,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2771,
+                        "entryId": 3334
+                    },
+                    {
+                        "name": "Shadowy Insight",
+                        "spellId": 375888,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2776,
+                        "entryId": 3341
+                    },
+                    {
+                        "name": "Descending Darkness",
+                        "spellId": 1242666,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2770,
+                        "entryId": 3333
+                    },
+                    {
+                        "name": "Spiritual Guidance",
+                        "spellId": 1250818,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2559,
+                        "entryId": 3083
+                    },
+                    {
+                        "name": "Angelic Bulwark",
+                        "spellId": 108945,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2562,
+                        "entryId": 3086
+                    },
+                    {
+                        "name": "Protective Light",
+                        "spellId": 193063,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2564,
+                        "entryId": 3089
+                    },
+                    {
+                        "name": "Light's Inspiration",
+                        "spellId": 373450,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2566,
+                        "entryId": 3091
+                    },
+                    {
+                        "name": "Angel's Mercy",
+                        "spellId": 238100,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2567,
+                        "entryId": 3092
+                    },
+                    {
+                        "name": "Twist of Fate",
+                        "spellId": 390972,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2569,
+                        "entryId": 3095
+                    },
+                    {
+                        "name": "Power Infusion",
+                        "spellId": 10060,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2558,
+                        "entryId": 3082
+                    },
+                    {
+                        "name": "Translucent Image",
+                        "spellId": 373446,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2570,
+                        "entryId": 3096
+                    },
+                    {
+                        "name": "Improved Fade",
+                        "spellId": 390670,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2571,
+                        "entryId": 3098
+                    },
+                    {
+                        "name": "Strength of Resolve",
+                        "spellId": 1250820,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2572,
+                        "entryId": 3099
+                    },
+                    {
+                        "name": "Twin Disciplines",
+                        "spellId": 1251077,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2573,
+                        "entryId": 3100
+                    },
+                    {
+                        "name": "Painful Invocation",
+                        "spellId": 1251030,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2603,
+                        "entryId": 3131
+                    },
+                    {
+                        "name": "Inspiration",
+                        "spellId": 390676,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2576,
+                        "entryId": 3104
+                    },
+                    {
+                        "name": "Move with Grace",
+                        "spellId": 390620,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2578,
+                        "entryId": 3107
+                    },
+                    {
+                        "name": "Angelic Feather",
+                        "spellId": 121536,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2581,
+                        "entryId": 3110
+                    },
+                    {
+                        "name": "Shadow Word: Death",
+                        "spellId": 32379,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2587,
+                        "entryId": 3118
+                    },
+                    {
+                        "name": "Leap of Faith",
+                        "spellId": 73325,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2589,
+                        "entryId": 3120
+                    },
+                    {
+                        "name": "Tentacle Slam",
+                        "spellId": 1227280,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2763,
+                        "entryId": 3324
+                    },
+                    {
+                        "name": "Phantasm",
+                        "spellId": 108942,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2561,
+                        "entryId": 3085
+                    },
+                    {
+                        "name": "Devour Matter",
+                        "spellId": 451840,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2824,
+                        "entryId": 3400
+                    },
+                    {
+                        "name": "Void Infusion",
+                        "spellId": 450612,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2825,
+                        "entryId": 3401
+                    },
+                    {
+                        "name": "Inner Quietus",
+                        "spellId": 448278,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2826,
+                        "entryId": 3402
+                    },
+                    {
+                        "name": "Quickened Pulse",
+                        "spellId": 1266845,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2828,
+                        "entryId": 3404
+                    },
+                    {
+                        "name": "Collapsing Void",
+                        "spellId": 448403,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2830,
+                        "entryId": 3407
+                    },
+                    {
+                        "name": "Void Blast",
+                        "spellId": 450405,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2833,
+                        "entryId": 3412
+                    },
+                    {
+                        "name": "Voidwraith",
+                        "spellId": 451234,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2834,
+                        "entryId": 3413
+                    },
+                    {
+                        "name": "Voidtouched",
+                        "spellId": 407430,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2777,
+                        "entryId": 3342
+                    },
+                    {
+                        "name": "Instilled Doubt",
+                        "spellId": 1242862,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2797,
+                        "entryId": 3367
+                    },
+                    {
+                        "name": "Twins of the Sun Priestess",
+                        "spellId": 373466,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2601,
+                        "entryId": 3129
+                    },
+                    {
+                        "name": "Spell Warding",
+                        "spellId": 390667,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2605,
+                        "entryId": 3134
+                    },
+                    {
+                        "name": "Desperate Prayer",
+                        "spellId": 19236,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2607,
+                        "entryId": 3136
+                    },
+                    {
+                        "name": "Fade",
+                        "spellId": 586,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2609,
+                        "entryId": 3138
+                    },
+                    {
+                        "name": "Shadowfiend",
+                        "spellId": 34433,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2782,
+                        "entryId": 3347
+                    },
+                    {
+                        "name": "Dark Enlightenment",
+                        "spellId": 1250835,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2611,
+                        "entryId": 3140
+                    },
+                    {
+                        "name": "Sanguine Teachings",
+                        "spellId": 373218,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2612,
+                        "entryId": 3141
+                    },
+                    {
+                        "name": "Overwhelming Shadows",
+                        "spellId": 1266883,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2835,
+                        "entryId": 3414
+                    },
+                    {
+                        "name": "Touch of the Void",
+                        "spellId": 1266856,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2836,
+                        "entryId": 3415
+                    },
+                    {
+                        "name": "Voidheart",
+                        "spellId": 449880,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2837,
+                        "entryId": 3416
+                    },
+                    {
+                        "name": "Mass Dispel",
+                        "spellId": 32375,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2613,
+                        "entryId": 3142
+                    },
+                    {
+                        "name": "Body and Soul",
+                        "spellId": 64129,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2614,
+                        "entryId": 3143
+                    },
+                    {
+                        "name": "Void Apparitions",
+                        "spellId": 1264096,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2823,
+                        "entryId": 3399
+                    },
+                    {
+                        "name": "Mind Blast",
+                        "spellId": 8092,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2588,
+                        "entryId": 3119
+                    },
+                    {
+                        "name": "Psychic Scream",
+                        "spellId": 8122,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2579,
+                        "entryId": 3108
+                    },
+                    {
+                        "name": "Void Torrent",
+                        "spellId": 263165,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2827,
+                        "entryId": 3403
+                    },
+                    {
+                        "name": "Shadeburst",
+                        "spellId": 73510,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2786,
+                        "entryId": 5267
+                    },
+                    {
+                        "name": "Mind's Eye",
+                        "spellId": 407470,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2795,
+                        "entryId": 3363
+                    },
+                    {
+                        "name": "Improved Voidform",
+                        "spellId": 341240,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2785,
+                        "entryId": 3350
+                    },
+                    {
+                        "name": "Sheer Terror",
+                        "spellId": 390919,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2575,
+                        "entryId": 3102
+                    },
+                    {
+                        "name": "Psychic Voice",
+                        "spellId": 196704,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2584,
+                        "entryId": 3113
+                    },
+                    {
+                        "name": "Mind Control",
+                        "spellId": 605,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2585,
+                        "entryId": 3115
+                    },
+                    {
+                        "name": "Void Leech",
+                        "spellId": 451311,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 2832,
+                        "entryId": 3410
+                    },
+                    {
+                        "name": "Dark Energy",
+                        "spellId": 451018,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 2829,
+                        "entryId": 3406
+                    },
+                    {
+                        "name": "Darkening Horizon",
+                        "spellId": 449912,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 2831,
+                        "entryId": 3409
+                    },
+                    {
+                        "name": "Intangibility",
+                        "spellId": 288733,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2757,
+                        "entryId": 3317
+                    },
+                    {
+                        "name": "Focused Power",
+                        "spellId": 1249230,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2563,
+                        "entryId": 3088
+                    },
+                    {
+                        "name": "Invoked Nightmare",
+                        "spellId": 1279350,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2756,
+                        "entryId": 3316
+                    }
+                ],
+                "pvpTalents": [
+                    {
+                        "name": "Psyfiend",
+                        "spellId": 211522,
+                        "pvpTalentId": 280
+                    },
+                    {
+                        "name": "Driven to Madness",
+                        "spellId": 199259,
+                        "pvpTalentId": 278
+                    },
+                    {
+                        "name": "Phase Shift",
+                        "spellId": 408557,
+                        "pvpTalentId": 283
+                    }
+                ]
+            },
+            "rawTalentSignature": "aaea48a3040c61204af899c7bbf16e62",
+            "buildChangedMidGame": false,
+            "perRound": {
+                "1": {
+                    "healingEffective": 1449428,
+                    "healingOverheal": 291175,
+                    "absorbDone": 588443,
+                    "damageDone": 8437339,
+                    "damageTaken": 2816526,
+                    "deaths": 1,
+                    "feigns": 0
+                }
+            },
+            "totals": {
+                "healingEffective": 1449428,
+                "healingOverheal": 291175,
+                "absorbDone": 588443,
+                "damageDone": 8437339,
+                "damageTaken": 2816526,
+                "deaths": 1,
+                "feigns": 0
+            },
+            "roundsPlayed": 1,
+            "teamByRound": {
+                "1": "side2"
+            }
+        },
+        {
+            "guid": "Player-11-0BA0AA1A",
+            "name": "Shinigammi-Tichondrius-US",
+            "isYou": false,
+            "spec": {
+                "externalId": 70,
+                "id": 25,
+                "name": "Retribution",
+                "classSlug": "paladin",
+                "specSlug": "retribution",
+                "label": "Retribution Paladin"
+            },
+            "gear": {
+                "items": 15,
+                "itemLevels": [
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    344,
+                    344,
+                    344,
+                    344,
+                    344
+                ],
+                "min": 331,
+                "max": 344,
+                "median": 331,
+                "mean": 335.3
+            },
+            "stats": {
+                "raw": [
+                    3265,
+                    258,
+                    54009,
+                    771,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    89,
+                    0,
+                    290,
+                    290,
+                    290,
+                    0,
+                    1015,
+                    1813,
+                    1813,
+                    1813,
+                    2248
+                ],
+                "aligned": true,
+                "strength": 3265,
+                "agility": 258,
+                "stamina": 54009,
+                "intellect": 771,
+                "haste": 290,
+                "avoidance": 0,
+                "mastery": 1015,
+                "versatility": 1813,
+                "armor": 2248,
+                "secondaryTotal": 3118
+            },
+            "build": {
+                "talents": [
+                    {
+                        "name": "Wake of Ashes",
+                        "spellId": 255937,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2505,
+                        "entryId": 3018
+                    },
+                    {
+                        "name": "Blade of Justice",
+                        "spellId": 184575,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2455,
+                        "entryId": 2954
+                    },
+                    {
+                        "name": "Divine Storm",
+                        "spellId": 53385,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2464,
+                        "entryId": 2964
+                    },
+                    {
+                        "name": "Final Verdict",
+                        "spellId": 383328,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2485,
+                        "entryId": 2991
+                    },
+                    {
+                        "name": "Highlord's Wrath",
+                        "spellId": 404512,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2500,
+                        "entryId": 3011
+                    },
+                    {
+                        "name": "Judge, Jury and Executioner",
+                        "spellId": 406157,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2510,
+                        "entryId": 3024
+                    },
+                    {
+                        "name": "Blessed Champion",
+                        "spellId": 403010,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2502,
+                        "entryId": 3014
+                    },
+                    {
+                        "name": "Jurisdiction",
+                        "spellId": 402971,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2490,
+                        "entryId": 2998
+                    },
+                    {
+                        "name": "Consecrated Ground",
+                        "spellId": 204054,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2243,
+                        "entryId": 2694
+                    },
+                    {
+                        "name": "Avenging Wrath",
+                        "spellId": 31884,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2476,
+                        "entryId": 2980
+                    },
+                    {
+                        "name": "Lay on Hands",
+                        "spellId": 633,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2244,
+                        "entryId": 2695
+                    },
+                    {
+                        "name": "Blinding Light",
+                        "spellId": 115750,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2245,
+                        "entryId": 2696
+                    },
+                    {
+                        "name": "Cavalier",
+                        "spellId": 230332,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2249,
+                        "entryId": 2700
+                    },
+                    {
+                        "name": "Light's Revocation",
+                        "spellId": 146956,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2251,
+                        "entryId": 2703
+                    },
+                    {
+                        "name": "Holy Aegis",
+                        "spellId": 385515,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2252,
+                        "entryId": 2704
+                    },
+                    {
+                        "name": "Blessing of Sacrifice",
+                        "spellId": 6940,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2254,
+                        "entryId": 2706
+                    },
+                    {
+                        "name": "Unbreakable Spirit",
+                        "spellId": 114154,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2255,
+                        "entryId": 2707
+                    },
+                    {
+                        "name": "Seal of Might",
+                        "spellId": 385450,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2259,
+                        "entryId": 2713
+                    },
+                    {
+                        "name": "Divine Steed",
+                        "spellId": 190784,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2263,
+                        "entryId": 2719
+                    },
+                    {
+                        "name": "Expurgation",
+                        "spellId": 383344,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2465,
+                        "entryId": 2965
+                    },
+                    {
+                        "name": "Burning Crusade",
+                        "spellId": 403026,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2503,
+                        "entryId": 3015
+                    },
+                    {
+                        "name": "Sanctified Plates",
+                        "spellId": 402964,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2266,
+                        "entryId": 2723
+                    },
+                    {
+                        "name": "Seething Flames",
+                        "spellId": 405355,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2508,
+                        "entryId": 3022
+                    },
+                    {
+                        "name": "Zealot's Fervor",
+                        "spellId": 403509,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2496,
+                        "entryId": 3005
+                    },
+                    {
+                        "name": "Execution Sentence",
+                        "spellId": 343527,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2507,
+                        "entryId": 3021
+                    },
+                    {
+                        "name": "Holy Flames",
+                        "spellId": 406545,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2494,
+                        "entryId": 3002
+                    },
+                    {
+                        "name": "Divine Wrath",
+                        "spellId": 406872,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2506,
+                        "entryId": 3020
+                    },
+                    {
+                        "name": "Judgment of Justice",
+                        "spellId": 403495,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2475,
+                        "entryId": 2979
+                    },
+                    {
+                        "name": "Blades of Light",
+                        "spellId": 403664,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2504,
+                        "entryId": 3017
+                    },
+                    {
+                        "name": "Empyrean Legacy",
+                        "spellId": 387170,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2509,
+                        "entryId": 3023
+                    },
+                    {
+                        "name": "Unbound Freedom",
+                        "spellId": 305394,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2270,
+                        "entryId": 2727
+                    },
+                    {
+                        "name": "Rush of Light",
+                        "spellId": 407067,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2492,
+                        "entryId": 3000
+                    },
+                    {
+                        "name": "Heart of the Crusader",
+                        "spellId": 406154,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2497,
+                        "entryId": 3008
+                    },
+                    {
+                        "name": "Wrathful Descent",
+                        "spellId": 431551,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2515,
+                        "entryId": 3029
+                    },
+                    {
+                        "name": "Higher Calling",
+                        "spellId": 431687,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2516,
+                        "entryId": 3030
+                    },
+                    {
+                        "name": "Sacrosanct Crusade",
+                        "spellId": 431730,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2517,
+                        "entryId": 3031
+                    },
+                    {
+                        "name": "Light's Deliverance",
+                        "spellId": 425518,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2520,
+                        "entryId": 3035
+                    },
+                    {
+                        "name": "Zealous Vindication",
+                        "spellId": 431463,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2521,
+                        "entryId": 3036
+                    },
+                    {
+                        "name": "Hammerfall",
+                        "spellId": 432463,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2522,
+                        "entryId": 3037
+                    },
+                    {
+                        "name": "Undisputed Ruling",
+                        "spellId": 432626,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2524,
+                        "entryId": 3040
+                    },
+                    {
+                        "name": "Shake the Heavens",
+                        "spellId": 431533,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2525,
+                        "entryId": 3041
+                    },
+                    {
+                        "name": "Vengeful Wrath",
+                        "spellId": 1241958,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2284,
+                        "entryId": 2745
+                    },
+                    {
+                        "name": "Light's Countenance",
+                        "spellId": 469325,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2287,
+                        "entryId": 2748
+                    },
+                    {
+                        "name": "Empyreal Ward",
+                        "spellId": 387791,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2292,
+                        "entryId": 2756
+                    },
+                    {
+                        "name": "Lightbearer",
+                        "spellId": 469416,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2294,
+                        "entryId": 2758
+                    },
+                    {
+                        "name": "Blessing of Dusk",
+                        "spellId": 1241945,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2296,
+                        "entryId": 2760
+                    },
+                    {
+                        "name": "Inspired Guard",
+                        "spellId": 469439,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2297,
+                        "entryId": 2761
+                    },
+                    {
+                        "name": "Holy Ritual",
+                        "spellId": 199422,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2299,
+                        "entryId": 2764
+                    },
+                    {
+                        "name": "Lead the Charge",
+                        "spellId": 469780,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2300,
+                        "entryId": 2765
+                    },
+                    {
+                        "name": "Crusade",
+                        "spellId": 1253598,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2513,
+                        "entryId": 3027
+                    },
+                    {
+                        "name": "Light's Judicator",
+                        "spellId": 1261525,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2527,
+                        "entryId": 3044
+                    },
+                    {
+                        "name": "Divine Hammer",
+                        "spellId": 432929,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2528,
+                        "entryId": 3045
+                    },
+                    {
+                        "name": "Shield of Vengeance",
+                        "spellId": 1261562,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2303,
+                        "entryId": 2768
+                    },
+                    {
+                        "name": "Fist of Justice",
+                        "spellId": 234299,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2306,
+                        "entryId": 2771
+                    },
+                    {
+                        "name": "Guided Prayer",
+                        "spellId": 404357,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2308,
+                        "entryId": 2773
+                    },
+                    {
+                        "name": "Rebuke",
+                        "spellId": 96231,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2311,
+                        "entryId": 2776
+                    },
+                    {
+                        "name": "Light Within",
+                        "spellId": 1261113,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2514,
+                        "entryId": 3028
+                    },
+                    {
+                        "name": "Greater Judgment",
+                        "spellId": 231663,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2247,
+                        "entryId": 2698
+                    },
+                    {
+                        "name": "Auras of the Resolute",
+                        "spellId": 385633,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2246,
+                        "entryId": 2697
+                    },
+                    {
+                        "name": "Light's Guidance",
+                        "spellId": 427445,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2518,
+                        "entryId": 3032
+                    },
+                    {
+                        "name": "Hammer of Wrath",
+                        "spellId": 1241288,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2242,
+                        "entryId": 2693
+                    },
+                    {
+                        "name": "Swift Justice",
+                        "spellId": 383228,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2474,
+                        "entryId": 2977
+                    },
+                    {
+                        "name": "Art of War",
+                        "spellId": 406064,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2487,
+                        "entryId": 2995
+                    },
+                    {
+                        "name": "Improved Judgment",
+                        "spellId": 405461,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2495,
+                        "entryId": 3003
+                    },
+                    {
+                        "name": "Sacrifice of the Just",
+                        "spellId": 384820,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2250,
+                        "entryId": 2701
+                    },
+                    {
+                        "name": "Holy Blade",
+                        "spellId": 383342,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2486,
+                        "entryId": 2993
+                    },
+                    {
+                        "name": "Quickened Invocation",
+                        "spellId": 379391,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2272,
+                        "entryId": 2731
+                    },
+                    {
+                        "name": "Healing Hands",
+                        "spellId": 326734,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2275,
+                        "entryId": 2735
+                    },
+                    {
+                        "name": "Sanctification",
+                        "spellId": 432977,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 2523,
+                        "entryId": 3039
+                    },
+                    {
+                        "name": "Unrelenting Charger",
+                        "spellId": 432990,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 2519,
+                        "entryId": 3034
+                    },
+                    {
+                        "name": "Divine Purpose",
+                        "spellId": 408459,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2258,
+                        "entryId": 2711
+                    },
+                    {
+                        "name": "Worthy Sacrifice",
+                        "spellId": 469279,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2298,
+                        "entryId": 2762
+                    },
+                    {
+                        "name": "Blessing of Freedom",
+                        "spellId": 1044,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2262,
+                        "entryId": 2718
+                    },
+                    {
+                        "name": "Seal of the Templar",
+                        "spellId": 1263252,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 2526,
+                        "entryId": 3043
+                    },
+                    {
+                        "name": "Crusading Strikes",
+                        "spellId": 404542,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2501,
+                        "entryId": 3013
+                    }
+                ],
+                "pvpTalents": [
+                    {
+                        "name": "Searing Glare",
+                        "spellId": 410126,
+                        "pvpTalentId": 256
+                    },
+                    {
+                        "name": "Blessing of Spellwarding",
+                        "spellId": 204018,
+                        "pvpTalentId": 255
+                    },
+                    {
+                        "name": "Blessing of Sanctuary",
+                        "spellId": 210256,
+                        "pvpTalentId": 251
+                    }
+                ]
+            },
+            "rawTalentSignature": "d6223bf9ec4235b4a38c7fa3a36e3362",
+            "buildChangedMidGame": false,
+            "perRound": {
+                "1": {
+                    "healingEffective": 2477171,
+                    "healingOverheal": 937439,
+                    "absorbDone": 1000449,
+                    "damageDone": 5010255,
+                    "damageTaken": 11799086,
+                    "deaths": 1,
+                    "feigns": 0
+                }
+            },
+            "totals": {
+                "healingEffective": 2477171,
+                "healingOverheal": 937439,
+                "absorbDone": 1000449,
+                "damageDone": 5010255,
+                "damageTaken": 11799086,
+                "deaths": 1,
+                "feigns": 0
+            },
+            "roundsPlayed": 1,
+            "teamByRound": {
+                "1": "side2"
+            }
+        },
+        {
+            "guid": "Player-162-099F341C",
+            "name": "Bearmaggedon-EmeraldDream-US",
+            "isYou": false,
+            "spec": {
+                "externalId": 105,
+                "id": 8,
+                "name": "Restoration",
+                "classSlug": "druid",
+                "specSlug": "restoration",
+                "label": "Restoration Druid"
+            },
+            "gear": {
+                "items": 16,
+                "itemLevels": [
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    344,
+                    344,
+                    344,
+                    344,
+                    344
+                ],
+                "min": 331,
+                "max": 344,
+                "median": 331,
+                "mean": 335.1
+            },
+            "stats": {
+                "raw": [
+                    291,
+                    684,
+                    53144,
+                    3578,
+                    0,
+                    0,
+                    0,
+                    0,
+                    47,
+                    47,
+                    47,
+                    98,
+                    0,
+                    381,
+                    381,
+                    381,
+                    0,
+                    1295,
+                    1393,
+                    1393,
+                    1393,
+                    1198
+                ],
+                "aligned": true,
+                "strength": 291,
+                "agility": 684,
+                "stamina": 53144,
+                "intellect": 3578,
+                "haste": 381,
+                "avoidance": 0,
+                "mastery": 1295,
+                "versatility": 1393,
+                "armor": 1198,
+                "secondaryTotal": 3069
+            },
+            "build": {
+                "talents": [
+                    {
+                        "name": "Swiftmend",
+                        "spellId": 18562,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 775,
+                        "entryId": 910
+                    },
+                    {
+                        "name": "Lifebloom",
+                        "spellId": 33763,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 773,
+                        "entryId": 908
+                    },
+                    {
+                        "name": "Nature's Swiftness",
+                        "spellId": 132158,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 776,
+                        "entryId": 911
+                    },
+                    {
+                        "name": "Soul of the Forest",
+                        "spellId": 158478,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 789,
+                        "entryId": 928
+                    },
+                    {
+                        "name": "Efflorescence",
+                        "spellId": 145205,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 795,
+                        "entryId": 936
+                    },
+                    {
+                        "name": "Rampant Growth",
+                        "spellId": 404521,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 812,
+                        "entryId": 955
+                    },
+                    {
+                        "name": "Renewing Surge",
+                        "spellId": 470562,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 811,
+                        "entryId": 954
+                    },
+                    {
+                        "name": "Regenesis",
+                        "spellId": 383191,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 813,
+                        "entryId": 957
+                    },
+                    {
+                        "name": "Cenarius' Guidance",
+                        "spellId": 393371,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 834,
+                        "entryId": 985
+                    },
+                    {
+                        "name": "Power of the Archdruid",
+                        "spellId": 392302,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 815,
+                        "entryId": 959
+                    },
+                    {
+                        "name": "Call of the Elder Druid",
+                        "spellId": 426784,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 825,
+                        "entryId": 973
+                    },
+                    {
+                        "name": "Thriving Vegetation",
+                        "spellId": 447131,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 837,
+                        "entryId": 989
+                    },
+                    {
+                        "name": "Embrace of the Dream",
+                        "spellId": 392124,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 833,
+                        "entryId": 984
+                    },
+                    {
+                        "name": "Photosynthesis",
+                        "spellId": 274902,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 841,
+                        "entryId": 993
+                    },
+                    {
+                        "name": "Harmonious Blooming",
+                        "spellId": 392256,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 842,
+                        "entryId": 994
+                    },
+                    {
+                        "name": "Ironbark",
+                        "spellId": 102342,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 797,
+                        "entryId": 938
+                    },
+                    {
+                        "name": "Improved Regrowth",
+                        "spellId": 231032,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 784,
+                        "entryId": 921
+                    },
+                    {
+                        "name": "Starsurge",
+                        "spellId": 197626,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 646,
+                        "entryId": 756
+                    },
+                    {
+                        "name": "Natural Recovery",
+                        "spellId": 377796,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 650,
+                        "entryId": 760
+                    },
+                    {
+                        "name": "Astral Influence",
+                        "spellId": 197524,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 654,
+                        "entryId": 765
+                    },
+                    {
+                        "name": "Nurturing Instinct",
+                        "spellId": 33873,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 656,
+                        "entryId": 768
+                    },
+                    {
+                        "name": "Verdant Heart",
+                        "spellId": 301768,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 658,
+                        "entryId": 770
+                    },
+                    {
+                        "name": "Ursoc's Spirit",
+                        "spellId": 449182,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 659,
+                        "entryId": 771
+                    },
+                    {
+                        "name": "Frenzied Regeneration",
+                        "spellId": 22842,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 660,
+                        "entryId": 772
+                    },
+                    {
+                        "name": "Thick Hide",
+                        "spellId": 16931,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 667,
+                        "entryId": 780
+                    },
+                    {
+                        "name": "Improved Stampeding Roar",
+                        "spellId": 288826,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 669,
+                        "entryId": 783
+                    },
+                    {
+                        "name": "Lycara's Teachings",
+                        "spellId": 378988,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 672,
+                        "entryId": 787
+                    },
+                    {
+                        "name": "Stampeding Roar",
+                        "spellId": 106898,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 673,
+                        "entryId": 788
+                    },
+                    {
+                        "name": "Well-Honed Instincts",
+                        "spellId": 377847,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 674,
+                        "entryId": 789
+                    },
+                    {
+                        "name": "Feline Swiftness",
+                        "spellId": 131768,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 675,
+                        "entryId": 790
+                    },
+                    {
+                        "name": "Lingering Healing",
+                        "spellId": 231040,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 678,
+                        "entryId": 794
+                    },
+                    {
+                        "name": "Forestwalk",
+                        "spellId": 400129,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 681,
+                        "entryId": 798
+                    },
+                    {
+                        "name": "Innervate",
+                        "spellId": 29166,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 682,
+                        "entryId": 799
+                    },
+                    {
+                        "name": "Fluid Form",
+                        "spellId": 449193,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 683,
+                        "entryId": 800
+                    },
+                    {
+                        "name": "Sunfire",
+                        "spellId": 93402,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 688,
+                        "entryId": 805
+                    },
+                    {
+                        "name": "Grove Guardians",
+                        "spellId": 1226140,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 802,
+                        "entryId": 943
+                    },
+                    {
+                        "name": "Wild Synthesis",
+                        "spellId": 400533,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 814,
+                        "entryId": 958
+                    },
+                    {
+                        "name": "Wildstalker's Power",
+                        "spellId": 439926,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 995,
+                        "entryId": 1186
+                    },
+                    {
+                        "name": "Strategic Infusion",
+                        "spellId": 439890,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 997,
+                        "entryId": 1189
+                    },
+                    {
+                        "name": "Lethal Preservation",
+                        "spellId": 455461,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 998,
+                        "entryId": 1190
+                    },
+                    {
+                        "name": "Vigorous Creepers",
+                        "spellId": 440119,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1001,
+                        "entryId": 1194
+                    },
+                    {
+                        "name": "Hunt Beneath the Open Skies",
+                        "spellId": 439868,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1003,
+                        "entryId": 1197
+                    },
+                    {
+                        "name": "Patient Custodian",
+                        "spellId": 1270592,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1004,
+                        "entryId": 1198
+                    },
+                    {
+                        "name": "Gift of the Wild",
+                        "spellId": 1262034,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 695,
+                        "entryId": 808
+                    },
+                    {
+                        "name": "Oakskin",
+                        "spellId": 449191,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 696,
+                        "entryId": 809
+                    },
+                    {
+                        "name": "Matted Fur",
+                        "spellId": 385786,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 697,
+                        "entryId": 810
+                    },
+                    {
+                        "name": "Starlight Conduit",
+                        "spellId": 451211,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 698,
+                        "entryId": 812
+                    },
+                    {
+                        "name": "Aessina's Renewal",
+                        "spellId": 474678,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 671,
+                        "entryId": 785
+                    },
+                    {
+                        "name": "Improved Barkskin",
+                        "spellId": 327993,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 706,
+                        "entryId": 822
+                    },
+                    {
+                        "name": "Omen of Clarity",
+                        "spellId": 113043,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 777,
+                        "entryId": 912
+                    },
+                    {
+                        "name": "Lifetreading",
+                        "spellId": 1217941,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 801,
+                        "entryId": 942
+                    },
+                    {
+                        "name": "Rampancy",
+                        "spellId": 1270586,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1006,
+                        "entryId": 1201
+                    },
+                    {
+                        "name": "Bursting Growth",
+                        "spellId": 440120,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1007,
+                        "entryId": 1202
+                    },
+                    {
+                        "name": "Green Thumb",
+                        "spellId": 1270565,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1008,
+                        "entryId": 1203
+                    },
+                    {
+                        "name": "Everbloom",
+                        "spellId": 392167,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 845,
+                        "entryId": 997
+                    },
+                    {
+                        "name": "Rejuvenation",
+                        "spellId": 774,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 657,
+                        "entryId": 769
+                    },
+                    {
+                        "name": "Thriving Growth",
+                        "spellId": 439528,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1000,
+                        "entryId": 1193
+                    },
+                    {
+                        "name": "Improved Nature's Cure",
+                        "spellId": 392378,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 705,
+                        "entryId": 821
+                    },
+                    {
+                        "name": "Wild Growth",
+                        "spellId": 48438,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 649,
+                        "entryId": 759
+                    },
+                    {
+                        "name": "Nature's Splendor",
+                        "spellId": 392288,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 783,
+                        "entryId": 919
+                    },
+                    {
+                        "name": "Flash of Clarity",
+                        "spellId": 392220,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 804,
+                        "entryId": 5244
+                    },
+                    {
+                        "name": "Germination",
+                        "spellId": 155675,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 800,
+                        "entryId": 5243
+                    },
+                    {
+                        "name": "Convoke the Spirits",
+                        "spellId": 391528,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 824,
+                        "entryId": 972
+                    },
+                    {
+                        "name": "Stonebark",
+                        "spellId": 197061,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 806,
+                        "entryId": 948
+                    },
+                    {
+                        "name": "Wild Charge",
+                        "spellId": 102401,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 644,
+                        "entryId": 753
+                    },
+                    {
+                        "name": "Mass Entanglement",
+                        "spellId": 102359,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 651,
+                        "entryId": 761
+                    },
+                    {
+                        "name": "Mighty Bash",
+                        "spellId": 5211,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 676,
+                        "entryId": 792
+                    },
+                    {
+                        "name": "Master Shapeshifter",
+                        "spellId": 289237,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 831,
+                        "entryId": 982
+                    },
+                    {
+                        "name": "Bond with Nature",
+                        "spellId": 439929,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 999,
+                        "entryId": 1191
+                    },
+                    {
+                        "name": "Implant",
+                        "spellId": 440118,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 1002,
+                        "entryId": 1196
+                    },
+                    {
+                        "name": "Root Network",
+                        "spellId": 439882,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 1005,
+                        "entryId": 1200
+                    },
+                    {
+                        "name": "Flower Walk",
+                        "spellId": 439901,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 996,
+                        "entryId": 1188
+                    },
+                    {
+                        "name": "Circle of the Wild",
+                        "spellId": 474530,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 699,
+                        "entryId": 813
+                    },
+                    {
+                        "name": "Cyclone",
+                        "spellId": 33786,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 668,
+                        "entryId": 782
+                    },
+                    {
+                        "name": "Verdant Infusion",
+                        "spellId": 392410,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 782,
+                        "entryId": 917
+                    }
+                ],
+                "pvpTalents": [
+                    {
+                        "name": "Early Spring",
+                        "spellId": 203624,
+                        "pvpTalentId": 85
+                    },
+                    {
+                        "name": "Forest Guardian",
+                        "spellId": 1217474,
+                        "pvpTalentId": 89
+                    },
+                    {
+                        "name": "Disentanglement",
+                        "spellId": 233673,
+                        "pvpTalentId": 80
+                    }
+                ]
+            },
+            "rawTalentSignature": "516f673cc1fe99721e3f2764a588326b",
+            "buildChangedMidGame": false,
+            "perRound": {
+                "1": {
+                    "healingEffective": 10101779,
+                    "healingOverheal": 5380839,
+                    "absorbDone": 0,
+                    "damageDone": 253663,
+                    "damageTaken": 2273411,
+                    "deaths": 1,
+                    "feigns": 0
+                }
+            },
+            "totals": {
+                "healingEffective": 10101779,
+                "healingOverheal": 5380839,
+                "absorbDone": 0,
+                "damageDone": 253663,
+                "damageTaken": 2273411,
+                "deaths": 1,
+                "feigns": 0
+            },
+            "roundsPlayed": 1,
+            "teamByRound": {
+                "1": "side2"
+            }
+        },
+        {
+            "guid": "Player-57-0DF8F1C3",
+            "name": "Paco-Illidan-US",
+            "isYou": true,
+            "spec": {
+                "externalId": 1468,
+                "id": 12,
+                "name": "Preservation",
+                "classSlug": "evoker",
+                "specSlug": "preservation",
+                "label": "Preservation Evoker"
+            },
+            "gear": {
+                "items": 16,
+                "itemLevels": [
+                    1,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331
+                ],
+                "min": 1,
+                "max": 331,
+                "median": 331,
+                "mean": 310.4
+            },
+            "stats": {
+                "raw": [
+                    300,
+                    464,
+                    48570,
+                    3367,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1046,
+                    1046,
+                    1046,
+                    0,
+                    230,
+                    1670,
+                    1670,
+                    1670,
+                    2891
+                ],
+                "aligned": true,
+                "strength": 300,
+                "agility": 464,
+                "stamina": 48570,
+                "intellect": 3367,
+                "haste": 1046,
+                "avoidance": 0,
+                "mastery": 230,
+                "versatility": 1670,
+                "armor": 2891,
+                "secondaryTotal": 2946
+            },
+            "build": {
+                "talents": [
+                    {
+                        "name": "Essence Attunement",
+                        "spellId": 375722,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1157,
+                        "entryId": 1373
+                    },
+                    {
+                        "name": "Essence Burst",
+                        "spellId": 369297,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1153,
+                        "entryId": 1369
+                    },
+                    {
+                        "name": "Dream Breath",
+                        "spellId": 355936,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1146,
+                        "entryId": 1361
+                    },
+                    {
+                        "name": "Temporal Compression",
+                        "spellId": 362874,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1152,
+                        "entryId": 1368
+                    },
+                    {
+                        "name": "Unshakable",
+                        "spellId": 1239581,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1160,
+                        "entryId": 1376
+                    },
+                    {
+                        "name": "Call of Ysera",
+                        "spellId": 373834,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1181,
+                        "entryId": 1405
+                    },
+                    {
+                        "name": "Lifebind",
+                        "spellId": 373270,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1156,
+                        "entryId": 1372
+                    },
+                    {
+                        "name": "Time Lord",
+                        "spellId": 372527,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1174,
+                        "entryId": 1395
+                    },
+                    {
+                        "name": "Golden Hour",
+                        "spellId": 378196,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1163,
+                        "entryId": 1380
+                    },
+                    {
+                        "name": "Flow State",
+                        "spellId": 385696,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1175,
+                        "entryId": 1397
+                    },
+                    {
+                        "name": "Grace Period",
+                        "spellId": 376239,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1183,
+                        "entryId": 1408
+                    },
+                    {
+                        "name": "Ancient Flame",
+                        "spellId": 369990,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1038,
+                        "entryId": 1240
+                    },
+                    {
+                        "name": "Obsidian Bulwark",
+                        "spellId": 375406,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1042,
+                        "entryId": 1244
+                    },
+                    {
+                        "name": "Attuned to the Dream",
+                        "spellId": 376930,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1045,
+                        "entryId": 1248
+                    },
+                    {
+                        "name": "Sleep Walk",
+                        "spellId": 360806,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1046,
+                        "entryId": 1249
+                    },
+                    {
+                        "name": "Cauterizing Flame",
+                        "spellId": 374251,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1047,
+                        "entryId": 1250
+                    },
+                    {
+                        "name": "Enkindled",
+                        "spellId": 375554,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1048,
+                        "entryId": 1252
+                    },
+                    {
+                        "name": "Draconic Legacy",
+                        "spellId": 376166,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1052,
+                        "entryId": 1256
+                    },
+                    {
+                        "name": "Obsidian Scales",
+                        "spellId": 363916,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1055,
+                        "entryId": 1260
+                    },
+                    {
+                        "name": "Landslide",
+                        "spellId": 358385,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1056,
+                        "entryId": 1261
+                    },
+                    {
+                        "name": "Instinctive Arcana",
+                        "spellId": 376164,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1061,
+                        "entryId": 1267
+                    },
+                    {
+                        "name": "Inner Radiance",
+                        "spellId": 386405,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1062,
+                        "entryId": 1268
+                    },
+                    {
+                        "name": "Natural Convergence",
+                        "spellId": 369913,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1063,
+                        "entryId": 1269
+                    },
+                    {
+                        "name": "Time Dilation",
+                        "spellId": 357170,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1158,
+                        "entryId": 1374
+                    },
+                    {
+                        "name": "Rewind",
+                        "spellId": 363534,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1154,
+                        "entryId": 1370
+                    },
+                    {
+                        "name": "Reversion",
+                        "spellId": 366155,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1147,
+                        "entryId": 1362
+                    },
+                    {
+                        "name": "Echo",
+                        "spellId": 364343,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1141,
+                        "entryId": 1356
+                    },
+                    {
+                        "name": "Scarlet Adaptation",
+                        "spellId": 372469,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1064,
+                        "entryId": 1270
+                    },
+                    {
+                        "name": "Panacea",
+                        "spellId": 387761,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1072,
+                        "entryId": 1279
+                    },
+                    {
+                        "name": "Extended Flight",
+                        "spellId": 375517,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1073,
+                        "entryId": 1281
+                    },
+                    {
+                        "name": "Tip the Scales",
+                        "spellId": 370553,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1074,
+                        "entryId": 1282
+                    },
+                    {
+                        "name": "Renewing Blaze",
+                        "spellId": 374348,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1078,
+                        "entryId": 1287
+                    },
+                    {
+                        "name": "Reverberations",
+                        "spellId": 431615,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1301,
+                        "entryId": 1547
+                    },
+                    {
+                        "name": "Afterimage",
+                        "spellId": 431875,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1302,
+                        "entryId": 1548
+                    },
+                    {
+                        "name": "Golden Opportunity",
+                        "spellId": 432004,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1306,
+                        "entryId": 1554
+                    },
+                    {
+                        "name": "Nozdormu Adept",
+                        "spellId": 431715,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1307,
+                        "entryId": 1555
+                    },
+                    {
+                        "name": "Warp",
+                        "spellId": 429483,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1308,
+                        "entryId": 1556
+                    },
+                    {
+                        "name": "Primacy",
+                        "spellId": 431657,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1309,
+                        "entryId": 1557
+                    },
+                    {
+                        "name": "Temporal Burst",
+                        "spellId": 431695,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1311,
+                        "entryId": 1559
+                    },
+                    {
+                        "name": "Instability Matrix",
+                        "spellId": 431484,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1303,
+                        "entryId": 1549
+                    },
+                    {
+                        "name": "Heavy Wingbeats",
+                        "spellId": 368838,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1086,
+                        "entryId": 1293
+                    },
+                    {
+                        "name": "Chrono Flame",
+                        "spellId": 431442,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1310,
+                        "entryId": 1558
+                    },
+                    {
+                        "name": "Verdant Embrace",
+                        "spellId": 360995,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1065,
+                        "entryId": 1271
+                    },
+                    {
+                        "name": "Expunge",
+                        "spellId": 365585,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1057,
+                        "entryId": 1262
+                    },
+                    {
+                        "name": "Lifeforce Mender",
+                        "spellId": 376179,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1197,
+                        "entryId": 1425
+                    },
+                    {
+                        "name": "Life-Giver's Flame",
+                        "spellId": 371426,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1190,
+                        "entryId": 1416
+                    },
+                    {
+                        "name": "Time of Need",
+                        "spellId": 368412,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1194,
+                        "entryId": 1420
+                    },
+                    {
+                        "name": "Energy Loop",
+                        "spellId": 372233,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1193,
+                        "entryId": 1419
+                    },
+                    {
+                        "name": "Renewing Breath",
+                        "spellId": 371257,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1196,
+                        "entryId": 1423
+                    },
+                    {
+                        "name": "Rescue",
+                        "spellId": 370665,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1041,
+                        "entryId": 1243
+                    },
+                    {
+                        "name": "Oppressing Roar",
+                        "spellId": 372048,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1050,
+                        "entryId": 1254
+                    },
+                    {
+                        "name": "Blast Furnace",
+                        "spellId": 375510,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1060,
+                        "entryId": 1265
+                    },
+                    {
+                        "name": "Terror of the Skies",
+                        "spellId": 371032,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1066,
+                        "entryId": 1272
+                    },
+                    {
+                        "name": "Leaping Flames",
+                        "spellId": 369939,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1067,
+                        "entryId": 1273
+                    },
+                    {
+                        "name": "Foci of Life",
+                        "spellId": 375574,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1069,
+                        "entryId": 1275
+                    },
+                    {
+                        "name": "Lush Growth",
+                        "spellId": 375561,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1071,
+                        "entryId": 1278
+                    },
+                    {
+                        "name": "Aerial Mastery",
+                        "spellId": 365933,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1076,
+                        "entryId": 1285
+                    },
+                    {
+                        "name": "Inherent Resistance",
+                        "spellId": 375544,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1079,
+                        "entryId": 1289
+                    },
+                    {
+                        "name": "Titan's Gift",
+                        "spellId": 443264,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1200,
+                        "entryId": 1430
+                    },
+                    {
+                        "name": "Lifespark",
+                        "spellId": 443177,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1201,
+                        "entryId": 1431
+                    },
+                    {
+                        "name": "Overclock",
+                        "spellId": 1260647,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1312,
+                        "entryId": 1560
+                    },
+                    {
+                        "name": "Chronal Dynamo",
+                        "spellId": 1291522,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1313,
+                        "entryId": 1561
+                    },
+                    {
+                        "name": "Chronoboon",
+                        "spellId": 1260484,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1314,
+                        "entryId": 1562
+                    },
+                    {
+                        "name": "Merithra's Blessing",
+                        "spellId": 1256577,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1204,
+                        "entryId": 1434
+                    },
+                    {
+                        "name": "Spiritual Clarity",
+                        "spellId": 376150,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 1170,
+                        "entryId": 1389
+                    },
+                    {
+                        "name": "Just in Time",
+                        "spellId": 376204,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 1164,
+                        "entryId": 1382
+                    },
+                    {
+                        "name": "Temporality",
+                        "spellId": 431873,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 1305,
+                        "entryId": 1552
+                    },
+                    {
+                        "name": "Time Convergence",
+                        "spellId": 431984,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 1304,
+                        "entryId": 1551
+                    },
+                    {
+                        "name": "Wings of Liberty",
+                        "spellId": 1241704,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 1199,
+                        "entryId": 1429
+                    },
+                    {
+                        "name": "Stasis",
+                        "spellId": 370537,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 1182,
+                        "entryId": 1407
+                    },
+                    {
+                        "name": "Time Spiral",
+                        "spellId": 374968,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 1075,
+                        "entryId": 1283
+                    }
+                ],
+                "pvpTalents": [
+                    {
+                        "name": "Obsidian Mettle",
+                        "spellId": 378444,
+                        "pvpTalentId": 125
+                    },
+                    {
+                        "name": "Nullifying Shroud",
+                        "spellId": 1241352,
+                        "pvpTalentId": 129
+                    },
+                    {
+                        "name": "Emerald Communion",
+                        "spellId": 370960,
+                        "pvpTalentId": 134
+                    }
+                ]
+            },
+            "rawTalentSignature": "31ddcdcb934c3e72e0581a304e9d043a",
+            "buildChangedMidGame": false,
+            "perRound": {
+                "1": {
+                    "healingEffective": 11863942,
+                    "healingOverheal": 3860707,
+                    "absorbDone": 542000,
+                    "damageDone": 2526480,
+                    "damageTaken": 3883038,
+                    "deaths": 0,
+                    "feigns": 0
+                }
+            },
+            "totals": {
+                "healingEffective": 11863942,
+                "healingOverheal": 3860707,
+                "absorbDone": 542000,
+                "damageDone": 2526480,
+                "damageTaken": 3883038,
+                "deaths": 0,
+                "feigns": 0
+            },
+            "roundsPlayed": 1,
+            "teamByRound": {
+                "1": "side1"
+            }
+        },
+        {
+            "guid": "Player-76-0C22320D",
+            "name": "Badplyrbase-Sargeras-US",
+            "isYou": false,
+            "spec": {
+                "externalId": 254,
+                "id": 14,
+                "name": "Marksmanship",
+                "classSlug": "hunter",
+                "specSlug": "marksmanship",
+                "label": "Marksmanship Hunter"
+            },
+            "gear": {
+                "items": 15,
+                "itemLevels": [
+                    318,
+                    318,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    344,
+                    344,
+                    344,
+                    344,
+                    344
+                ],
+                "min": 318,
+                "max": 344,
+                "median": 331,
+                "mean": 333.6
+            },
+            "stats": {
+                "raw": [
+                    454,
+                    3135,
+                    45720,
+                    609,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    98,
+                    0,
+                    142,
+                    142,
+                    142,
+                    0,
+                    1284,
+                    1627,
+                    1627,
+                    1627,
+                    1710
+                ],
+                "aligned": true,
+                "strength": 454,
+                "agility": 3135,
+                "stamina": 45720,
+                "intellect": 609,
+                "haste": 142,
+                "avoidance": 0,
+                "mastery": 1284,
+                "versatility": 1627,
+                "armor": 1710,
+                "secondaryTotal": 3053
+            },
+            "build": {
+                "talents": [
+                    {
+                        "name": "Lunar Calling",
+                        "spellId": 1253852,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1568,
+                        "entryId": 1871
+                    },
+                    {
+                        "name": "Arcane Talons",
+                        "spellId": 1253846,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1569,
+                        "entryId": 1872
+                    },
+                    {
+                        "name": "Invigorating Pulse",
+                        "spellId": 450379,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1570,
+                        "entryId": 1873
+                    },
+                    {
+                        "name": "Moon's Blessing",
+                        "spellId": 1253825,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1571,
+                        "entryId": 1874
+                    },
+                    {
+                        "name": "Lunar Storm",
+                        "spellId": 1253732,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1573,
+                        "entryId": 1876
+                    },
+                    {
+                        "name": "Sanctified Armaments",
+                        "spellId": 1253831,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1575,
+                        "entryId": 1879
+                    },
+                    {
+                        "name": "Don't Look Back",
+                        "spellId": 450373,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1576,
+                        "entryId": 1880
+                    },
+                    {
+                        "name": "Can't Miss, Won't Miss",
+                        "spellId": 1253830,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1577,
+                        "entryId": 1881
+                    },
+                    {
+                        "name": "Precision Strikes",
+                        "spellId": 1267003,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1320,
+                        "entryId": 1565
+                    },
+                    {
+                        "name": "Rejuvenating Wind",
+                        "spellId": 385539,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1321,
+                        "entryId": 1566
+                    },
+                    {
+                        "name": "Unnatural Causes",
+                        "spellId": 459527,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1324,
+                        "entryId": 1570
+                    },
+                    {
+                        "name": "Specialized Arsenal",
+                        "spellId": 459542,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1326,
+                        "entryId": 1572
+                    },
+                    {
+                        "name": "Lone Survivor",
+                        "spellId": 388039,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1327,
+                        "entryId": 1573
+                    },
+                    {
+                        "name": "Disruptive Rounds",
+                        "spellId": 343244,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1330,
+                        "entryId": 1578
+                    },
+                    {
+                        "name": "Trigger Finger",
+                        "spellId": 459534,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1331,
+                        "entryId": 1580
+                    },
+                    {
+                        "name": "Natural Mending",
+                        "spellId": 270581,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1333,
+                        "entryId": 1583
+                    },
+                    {
+                        "name": "Counter Shot",
+                        "spellId": 147362,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1334,
+                        "entryId": 1584
+                    },
+                    {
+                        "name": "Padded Armor",
+                        "spellId": 459450,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1336,
+                        "entryId": 1586
+                    },
+                    {
+                        "name": "Keen Eyesight",
+                        "spellId": 378004,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1338,
+                        "entryId": 1589
+                    },
+                    {
+                        "name": "Posthaste",
+                        "spellId": 109215,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1339,
+                        "entryId": 1590
+                    },
+                    {
+                        "name": "Improved Snaring",
+                        "spellId": 1268868,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1341,
+                        "entryId": 1592
+                    },
+                    {
+                        "name": "Improved Traps",
+                        "spellId": 343247,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1344,
+                        "entryId": 1597
+                    },
+                    {
+                        "name": "Hunter's Avoidance",
+                        "spellId": 384799,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1347,
+                        "entryId": 1600
+                    },
+                    {
+                        "name": "Improved Aspect of the Turtle",
+                        "spellId": 1258485,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1348,
+                        "entryId": 1601
+                    },
+                    {
+                        "name": "Trueshot",
+                        "spellId": 288613,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1409,
+                        "entryId": 1677
+                    },
+                    {
+                        "name": "Unmatched Precision",
+                        "spellId": 1232955,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1419,
+                        "entryId": 1689
+                    },
+                    {
+                        "name": "Windrunner Quiver",
+                        "spellId": 473523,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1427,
+                        "entryId": 1699
+                    },
+                    {
+                        "name": "Critical Precision",
+                        "spellId": 1277572,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1410,
+                        "entryId": 1678
+                    },
+                    {
+                        "name": "Volley",
+                        "spellId": 260243,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1425,
+                        "entryId": 1697
+                    },
+                    {
+                        "name": "Salvo",
+                        "spellId": 400456,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1430,
+                        "entryId": 1702
+                    },
+                    {
+                        "name": "Rapid Fire",
+                        "spellId": 257044,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1377,
+                        "entryId": 1635
+                    },
+                    {
+                        "name": "Penetrating Shots",
+                        "spellId": 459783,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1403,
+                        "entryId": 1670
+                    },
+                    {
+                        "name": "Master Marksman",
+                        "spellId": 260309,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1405,
+                        "entryId": 1673
+                    },
+                    {
+                        "name": "Quick Draw",
+                        "spellId": 459794,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1387,
+                        "entryId": 1649
+                    },
+                    {
+                        "name": "Precise Shots",
+                        "spellId": 260240,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1378,
+                        "entryId": 1636
+                    },
+                    {
+                        "name": "Small Game Hunter",
+                        "spellId": 459802,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1416,
+                        "entryId": 5237
+                    },
+                    {
+                        "name": "Focus Fire",
+                        "spellId": 1277546,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1426,
+                        "entryId": 1698
+                    },
+                    {
+                        "name": "Aimed Shot",
+                        "spellId": 19434,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1368,
+                        "entryId": 1626
+                    },
+                    {
+                        "name": "Bullseye",
+                        "spellId": 204089,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1414,
+                        "entryId": 1683
+                    },
+                    {
+                        "name": "Intimidation",
+                        "spellId": 474421,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1351,
+                        "entryId": 1604
+                    },
+                    {
+                        "name": "Unload",
+                        "spellId": 1277548,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1431,
+                        "entryId": 1703
+                    },
+                    {
+                        "name": "Focused Aim",
+                        "spellId": 378767,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1422,
+                        "entryId": 1694
+                    },
+                    {
+                        "name": "Surging Shots",
+                        "spellId": 391559,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1397,
+                        "entryId": 1661
+                    },
+                    {
+                        "name": "Light Ammo",
+                        "spellId": 378913,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1406,
+                        "entryId": 1674
+                    },
+                    {
+                        "name": "Lock and Load",
+                        "spellId": 194595,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1388,
+                        "entryId": 1650
+                    },
+                    {
+                        "name": "Scout's Instincts",
+                        "spellId": 459455,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1352,
+                        "entryId": 1605
+                    },
+                    {
+                        "name": "Improved Feign Death",
+                        "spellId": 1258486,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1353,
+                        "entryId": 1607
+                    },
+                    {
+                        "name": "Touch of Grass",
+                        "spellId": 1258402,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1356,
+                        "entryId": 1611
+                    },
+                    {
+                        "name": "Binding Shot",
+                        "spellId": 109248,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1357,
+                        "entryId": 1612
+                    },
+                    {
+                        "name": "Tranquilizing Shot",
+                        "spellId": 19801,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1358,
+                        "entryId": 1613
+                    },
+                    {
+                        "name": "Radiant Edge",
+                        "spellId": 1264903,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1578,
+                        "entryId": 1882
+                    },
+                    {
+                        "name": "Moonlight Chakram",
+                        "spellId": 1264902,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1579,
+                        "entryId": 1883
+                    },
+                    {
+                        "name": "Camouflage",
+                        "spellId": 199483,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1363,
+                        "entryId": 1620
+                    },
+                    {
+                        "name": "Combat Experience",
+                        "spellId": 1268871,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1364,
+                        "entryId": 1621
+                    },
+                    {
+                        "name": "Take Aim",
+                        "spellId": 1273132,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1432,
+                        "entryId": 1704
+                    },
+                    {
+                        "name": "No Scope",
+                        "spellId": 473385,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1408,
+                        "entryId": 1676
+                    },
+                    {
+                        "name": "Explosive Shot",
+                        "spellId": 212431,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 1411,
+                        "entryId": 1679
+                    },
+                    {
+                        "name": "Eagle's Accuracy",
+                        "spellId": 473369,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 4345,
+                        "entryId": 5236
+                    },
+                    {
+                        "name": "Sentinel",
+                        "spellId": 1253599,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 1572,
+                        "entryId": 1875
+                    },
+                    {
+                        "name": "Survival of the Fittest",
+                        "spellId": 264735,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 1346,
+                        "entryId": 1599
+                    },
+                    {
+                        "name": "Stargazer",
+                        "spellId": 1253751,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 1567,
+                        "entryId": 1869
+                    },
+                    {
+                        "name": "Conditioning",
+                        "spellId": 1253887,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 1574,
+                        "entryId": 1877
+                    },
+                    {
+                        "name": "Scare Beast",
+                        "spellId": 1513,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 1328,
+                        "entryId": 1575
+                    },
+                    {
+                        "name": "Territorial Instincts",
+                        "spellId": 459507,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 1329,
+                        "entryId": 1576
+                    },
+                    {
+                        "name": "Devilsaur Tranquilizer",
+                        "spellId": 459991,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 1342,
+                        "entryId": 1594
+                    },
+                    {
+                        "name": "Aspect of the Hydra",
+                        "spellId": 470945,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 1399,
+                        "entryId": 1665
+                    },
+                    {
+                        "name": "Tenacious",
+                        "spellId": 474456,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 1404,
+                        "entryId": 1671
+                    },
+                    {
+                        "name": "Avian Specialization",
+                        "spellId": 466867,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 1398,
+                        "entryId": 1662
+                    },
+                    {
+                        "name": "On Target",
+                        "spellId": 471348,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 1402,
+                        "entryId": 1669
+                    },
+                    {
+                        "name": "Twilight Requiem",
+                        "spellId": 1264904,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 1580,
+                        "entryId": 1884
+                    },
+                    {
+                        "name": "Tar-Coated Bindings",
+                        "spellId": 459460,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 1359,
+                        "entryId": 1614
+                    },
+                    {
+                        "name": "Roar of Sacrifice",
+                        "spellId": 53480,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 1365,
+                        "entryId": 1622
+                    },
+                    {
+                        "name": "Tactical Reload",
+                        "spellId": 1301406,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 1418,
+                        "entryId": 5234
+                    }
+                ],
+                "pvpTalents": [
+                    {
+                        "name": "Survival Tactics",
+                        "spellId": 202746,
+                        "pvpTalentId": 144
+                    },
+                    {
+                        "name": "Scatter Shot",
+                        "spellId": 213691,
+                        "pvpTalentId": 437
+                    },
+                    {
+                        "name": "Chimaeral Sting",
+                        "spellId": 356719,
+                        "pvpTalentId": 145
+                    }
+                ]
+            },
+            "rawTalentSignature": "9be5cb7d480a48a7965aa055016ec3f5",
+            "buildChangedMidGame": false,
+            "perRound": {
+                "1": {
+                    "healingEffective": 15679,
+                    "healingOverheal": 199403,
+                    "absorbDone": 872547,
+                    "damageDone": 9015726,
+                    "damageTaken": 5461338,
+                    "deaths": 0,
+                    "feigns": 3
+                }
+            },
+            "totals": {
+                "healingEffective": 15679,
+                "healingOverheal": 199403,
+                "absorbDone": 872547,
+                "damageDone": 9015726,
+                "damageTaken": 5461338,
+                "deaths": 0,
+                "feigns": 3
+            },
+            "roundsPlayed": 1,
+            "teamByRound": {
+                "1": "side1"
+            }
+        },
+        {
+            "guid": "Player-60-0F35225A",
+            "name": "Lunar-Stormrage-US",
+            "isYou": false,
+            "spec": {
+                "externalId": 70,
+                "id": 25,
+                "name": "Retribution",
+                "classSlug": "paladin",
+                "specSlug": "retribution",
+                "label": "Retribution Paladin"
+            },
+            "gear": {
+                "items": 17,
+                "itemLevels": [
+                    1,
+                    1,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    331,
+                    344,
+                    344,
+                    344,
+                    344,
+                    344,
+                    344
+                ],
+                "min": 1,
+                "max": 344,
+                "median": 331,
+                "mean": 296.8
+            },
+            "stats": {
+                "raw": [
+                    3252,
+                    260,
+                    51454,
+                    773,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    98,
+                    0,
+                    145,
+                    145,
+                    145,
+                    0,
+                    1141,
+                    1969,
+                    1969,
+                    1969,
+                    2230
+                ],
+                "aligned": true,
+                "strength": 3252,
+                "agility": 260,
+                "stamina": 51454,
+                "intellect": 773,
+                "haste": 145,
+                "avoidance": 0,
+                "mastery": 1141,
+                "versatility": 1969,
+                "armor": 2230,
+                "secondaryTotal": 3255
+            },
+            "build": {
+                "talents": [
+                    {
+                        "name": "Wake of Ashes",
+                        "spellId": 255937,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2505,
+                        "entryId": 3018
+                    },
+                    {
+                        "name": "Blade of Justice",
+                        "spellId": 184575,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2455,
+                        "entryId": 2954
+                    },
+                    {
+                        "name": "Divine Storm",
+                        "spellId": 53385,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2464,
+                        "entryId": 2964
+                    },
+                    {
+                        "name": "Final Verdict",
+                        "spellId": 383328,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2485,
+                        "entryId": 2991
+                    },
+                    {
+                        "name": "Highlord's Wrath",
+                        "spellId": 404512,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2500,
+                        "entryId": 3011
+                    },
+                    {
+                        "name": "Jurisdiction",
+                        "spellId": 402971,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2490,
+                        "entryId": 2998
+                    },
+                    {
+                        "name": "Consecrated Ground",
+                        "spellId": 204054,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2243,
+                        "entryId": 2694
+                    },
+                    {
+                        "name": "Avenging Wrath",
+                        "spellId": 31884,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2476,
+                        "entryId": 2980
+                    },
+                    {
+                        "name": "Radiant Glory",
+                        "spellId": 458359,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2511,
+                        "entryId": 3025
+                    },
+                    {
+                        "name": "Lay on Hands",
+                        "spellId": 633,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2244,
+                        "entryId": 2695
+                    },
+                    {
+                        "name": "Blinding Light",
+                        "spellId": 115750,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2245,
+                        "entryId": 2696
+                    },
+                    {
+                        "name": "Cavalier",
+                        "spellId": 230332,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2249,
+                        "entryId": 2700
+                    },
+                    {
+                        "name": "Light's Revocation",
+                        "spellId": 146956,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2251,
+                        "entryId": 2703
+                    },
+                    {
+                        "name": "Blessing of Sacrifice",
+                        "spellId": 6940,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2254,
+                        "entryId": 2706
+                    },
+                    {
+                        "name": "Unbreakable Spirit",
+                        "spellId": 114154,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2255,
+                        "entryId": 2707
+                    },
+                    {
+                        "name": "Seal of Might",
+                        "spellId": 385450,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2259,
+                        "entryId": 2713
+                    },
+                    {
+                        "name": "Divine Steed",
+                        "spellId": 190784,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2263,
+                        "entryId": 2719
+                    },
+                    {
+                        "name": "Burn to Ash",
+                        "spellId": 446663,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2512,
+                        "entryId": 3026
+                    },
+                    {
+                        "name": "Expurgation",
+                        "spellId": 383344,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2465,
+                        "entryId": 2965
+                    },
+                    {
+                        "name": "Burning Crusade",
+                        "spellId": 403026,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2503,
+                        "entryId": 3015
+                    },
+                    {
+                        "name": "Sanctified Plates",
+                        "spellId": 402964,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2266,
+                        "entryId": 2723
+                    },
+                    {
+                        "name": "Seething Flames",
+                        "spellId": 405355,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2508,
+                        "entryId": 3022
+                    },
+                    {
+                        "name": "Zealot's Fervor",
+                        "spellId": 403509,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2496,
+                        "entryId": 3006
+                    },
+                    {
+                        "name": "Holy Flames",
+                        "spellId": 406545,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2494,
+                        "entryId": 3002
+                    },
+                    {
+                        "name": "Divine Wrath",
+                        "spellId": 406872,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2506,
+                        "entryId": 3020
+                    },
+                    {
+                        "name": "Judgment of Justice",
+                        "spellId": 403495,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2475,
+                        "entryId": 2979
+                    },
+                    {
+                        "name": "Blades of Light",
+                        "spellId": 403664,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2504,
+                        "entryId": 3017
+                    },
+                    {
+                        "name": "Empyrean Legacy",
+                        "spellId": 387170,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2509,
+                        "entryId": 3023
+                    },
+                    {
+                        "name": "Unbound Freedom",
+                        "spellId": 305394,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2270,
+                        "entryId": 2727
+                    },
+                    {
+                        "name": "Rush of Light",
+                        "spellId": 407067,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2492,
+                        "entryId": 3000
+                    },
+                    {
+                        "name": "Heart of the Crusader",
+                        "spellId": 406154,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2497,
+                        "entryId": 3008
+                    },
+                    {
+                        "name": "Aurora",
+                        "spellId": 439760,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2544,
+                        "entryId": 3065
+                    },
+                    {
+                        "name": "Sun Sear",
+                        "spellId": 431413,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2546,
+                        "entryId": 3068
+                    },
+                    {
+                        "name": "Luminosity",
+                        "spellId": 431402,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2548,
+                        "entryId": 3071
+                    },
+                    {
+                        "name": "Second Sunrise",
+                        "spellId": 431474,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2549,
+                        "entryId": 3072
+                    },
+                    {
+                        "name": "Walk Into Light",
+                        "spellId": 1263782,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2550,
+                        "entryId": 3073
+                    },
+                    {
+                        "name": "Eternal Flame",
+                        "spellId": 156322,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2551,
+                        "entryId": 3074
+                    },
+                    {
+                        "name": "Sun's Avatar",
+                        "spellId": 431425,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2554,
+                        "entryId": 3078
+                    },
+                    {
+                        "name": "Vengeful Wrath",
+                        "spellId": 1241958,
+                        "rank": 2,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2284,
+                        "entryId": 2745
+                    },
+                    {
+                        "name": "Empyreal Ward",
+                        "spellId": 387791,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2292,
+                        "entryId": 2756
+                    },
+                    {
+                        "name": "Blessing of Dusk",
+                        "spellId": 1241945,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2296,
+                        "entryId": 2760
+                    },
+                    {
+                        "name": "Inspired Guard",
+                        "spellId": 469439,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2297,
+                        "entryId": 2761
+                    },
+                    {
+                        "name": "Crusade",
+                        "spellId": 1253598,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2513,
+                        "entryId": 3027
+                    },
+                    {
+                        "name": "Endless Gleam",
+                        "spellId": 1263787,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2555,
+                        "entryId": 3079
+                    },
+                    {
+                        "name": "Born in Sunlight",
+                        "spellId": 1263920,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2556,
+                        "entryId": 3080
+                    },
+                    {
+                        "name": "Solar Grace",
+                        "spellId": 431404,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2557,
+                        "entryId": 3081
+                    },
+                    {
+                        "name": "Shield of Vengeance",
+                        "spellId": 1261562,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2303,
+                        "entryId": 2768
+                    },
+                    {
+                        "name": "Fist of Justice",
+                        "spellId": 234299,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2306,
+                        "entryId": 2771
+                    },
+                    {
+                        "name": "Guided Prayer",
+                        "spellId": 404357,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2308,
+                        "entryId": 2773
+                    },
+                    {
+                        "name": "Rebuke",
+                        "spellId": 96231,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2311,
+                        "entryId": 2776
+                    },
+                    {
+                        "name": "Light Within",
+                        "spellId": 1261113,
+                        "rank": 2,
+                        "treeType": "spec",
+                        "resolvedByOffset": false,
+                        "nodeId": 2514,
+                        "entryId": 3028
+                    },
+                    {
+                        "name": "Dawnlight",
+                        "spellId": 431377,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": false,
+                        "nodeId": 2553,
+                        "entryId": 3077
+                    },
+                    {
+                        "name": "Greater Judgment",
+                        "spellId": 231663,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2247,
+                        "entryId": 2698
+                    },
+                    {
+                        "name": "Auras of the Resolute",
+                        "spellId": 385633,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2246,
+                        "entryId": 2697
+                    },
+                    {
+                        "name": "Hammer of Wrath",
+                        "spellId": 1241288,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2242,
+                        "entryId": 2693
+                    },
+                    {
+                        "name": "Holy Aegis",
+                        "spellId": 385515,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2252,
+                        "entryId": 2704
+                    },
+                    {
+                        "name": "Light's Countenance",
+                        "spellId": 469325,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2287,
+                        "entryId": 2748
+                    },
+                    {
+                        "name": "Lightbearer",
+                        "spellId": 469416,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2294,
+                        "entryId": 2758
+                    },
+                    {
+                        "name": "Blessing of Protection",
+                        "spellId": 1022,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2256,
+                        "entryId": 2708
+                    },
+                    {
+                        "name": "Blessing of Dawn",
+                        "spellId": 183416,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2278,
+                        "entryId": 2740
+                    },
+                    {
+                        "name": "Holy Ritual",
+                        "spellId": 199422,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": false,
+                        "nodeId": 2299,
+                        "entryId": 2764
+                    },
+                    {
+                        "name": "Swift Justice",
+                        "spellId": 383228,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2474,
+                        "entryId": 2977
+                    },
+                    {
+                        "name": "Art of War",
+                        "spellId": 406064,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2487,
+                        "entryId": 2995
+                    },
+                    {
+                        "name": "Improved Judgment",
+                        "spellId": 405461,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2495,
+                        "entryId": 3003
+                    },
+                    {
+                        "name": "Sacrifice of the Just",
+                        "spellId": 384820,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2250,
+                        "entryId": 2701
+                    },
+                    {
+                        "name": "Holy Blade",
+                        "spellId": 383342,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2486,
+                        "entryId": 2993
+                    },
+                    {
+                        "name": "Quickened Invocation",
+                        "spellId": 379391,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2272,
+                        "entryId": 2731
+                    },
+                    {
+                        "name": "Healing Hands",
+                        "spellId": 326734,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2275,
+                        "entryId": 2735
+                    },
+                    {
+                        "name": "Blessing of An'she",
+                        "spellId": 445200,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 2545,
+                        "entryId": 3066
+                    },
+                    {
+                        "name": "Gleaming Rays",
+                        "spellId": 431480,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 2547,
+                        "entryId": 3070
+                    },
+                    {
+                        "name": "Will of the Dawn",
+                        "spellId": 431406,
+                        "rank": 1,
+                        "treeType": "hero",
+                        "resolvedByOffset": true,
+                        "nodeId": 2552,
+                        "entryId": 3076
+                    },
+                    {
+                        "name": "Divine Purpose",
+                        "spellId": 408459,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2258,
+                        "entryId": 2711
+                    },
+                    {
+                        "name": "Blessing of Freedom",
+                        "spellId": 1044,
+                        "rank": 1,
+                        "treeType": "class",
+                        "resolvedByOffset": true,
+                        "nodeId": 2262,
+                        "entryId": 2718
+                    },
+                    {
+                        "name": "Crusading Strikes",
+                        "spellId": 404542,
+                        "rank": 1,
+                        "treeType": "spec",
+                        "resolvedByOffset": true,
+                        "nodeId": 2501,
+                        "entryId": 3013
+                    }
+                ],
+                "pvpTalents": [
+                    {
+                        "name": "Blessing of Sanctuary",
+                        "spellId": 210256,
+                        "pvpTalentId": 251
+                    },
+                    {
+                        "name": "Hallowed Ground",
+                        "spellId": 216868,
+                        "pvpTalentId": 253
+                    },
+                    {
+                        "name": "Blessing of Spellwarding",
+                        "spellId": 204018,
+                        "pvpTalentId": 255
+                    }
+                ]
+            },
+            "rawTalentSignature": "f0dd92df457ef5be3d666525893823a3",
+            "buildChangedMidGame": false,
+            "perRound": {
+                "1": {
+                    "healingEffective": 1577399,
+                    "healingOverheal": 659902,
+                    "absorbDone": 577096,
+                    "damageDone": 6825589,
+                    "damageTaken": 4412696,
+                    "deaths": 0,
+                    "feigns": 0
+                }
+            },
+            "totals": {
+                "healingEffective": 1577399,
+                "healingOverheal": 659902,
+                "absorbDone": 577096,
+                "damageDone": 6825589,
+                "damageTaken": 4412696,
+                "deaths": 0,
+                "feigns": 0
+            },
+            "roundsPlayed": 1,
+            "teamByRound": {
+                "1": "side1"
+            }
+        }
+    ],
+    "mirrors": [
+        {
+            "specLabel": "Retribution Paladin",
+            "specExternalId": 70,
+            "involvesYou": false,
+            "a": {
+                "guid": "Player-11-0BA0AA1A",
+                "name": "Shinigammi-Tichondrius-US",
+                "isYou": false,
+                "totals": {
+                    "healingEffective": 2477171,
+                    "healingOverheal": 937439,
+                    "absorbDone": 1000449,
+                    "damageDone": 5010255,
+                    "damageTaken": 11799086,
+                    "deaths": 1,
+                    "feigns": 0
+                },
+                "perRound": {
+                    "1": {
+                        "healingEffective": 2477171,
+                        "healingOverheal": 937439,
+                        "absorbDone": 1000449,
+                        "damageDone": 5010255,
+                        "damageTaken": 11799086,
+                        "deaths": 1,
+                        "feigns": 0
+                    }
+                },
+                "roundsPlayed": 1,
+                "buildChangedMidGame": false
+            },
+            "b": {
+                "guid": "Player-60-0F35225A",
+                "name": "Lunar-Stormrage-US",
+                "isYou": false,
+                "totals": {
+                    "healingEffective": 1577399,
+                    "healingOverheal": 659902,
+                    "absorbDone": 577096,
+                    "damageDone": 6825589,
+                    "damageTaken": 4412696,
+                    "deaths": 0,
+                    "feigns": 0
+                },
+                "perRound": {
+                    "1": {
+                        "healingEffective": 1577399,
+                        "healingOverheal": 659902,
+                        "absorbDone": 577096,
+                        "damageDone": 6825589,
+                        "damageTaken": 4412696,
+                        "deaths": 0,
+                        "feigns": 0
+                    }
+                },
+                "roundsPlayed": 1,
+                "buildChangedMidGame": false
+            },
+            "roundsOpposed": 1,
+            "roundsTogether": 0,
+            "primaryMetric": "damageDone",
+            "primaryMetricLabel": "Damage done",
+            "primaryDeltaPercent": -36.2,
+            "talentDiff": {
+                "onlyA": [
+                    {
+                        "name": "Judge, Jury and Executioner",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Blessed Champion",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Execution Sentence",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Wrathful Descent",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Higher Calling",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Sacrosanct Crusade",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Light's Deliverance",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Zealous Vindication",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Hammerfall",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Undisputed Ruling",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Shake the Heavens",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Lead the Charge",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Light's Judicator",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Divine Hammer",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Light's Guidance",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Sanctification",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Unrelenting Charger",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Worthy Sacrifice",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Seal of the Templar",
+                        "rank": 1
+                    }
+                ],
+                "onlyB": [
+                    {
+                        "name": "Radiant Glory",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Burn to Ash",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Aurora",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Sun Sear",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Luminosity",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Second Sunrise",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Walk Into Light",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Eternal Flame",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Sun's Avatar",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Endless Gleam",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Born in Sunlight",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Solar Grace",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Dawnlight",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Blessing of Protection",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Blessing of Dawn",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Blessing of An'she",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Gleaming Rays",
+                        "rank": 1
+                    },
+                    {
+                        "name": "Will of the Dawn",
+                        "rank": 1
+                    }
+                ],
+                "differentRank": [
+                    {
+                        "name": "Zealot's Fervor",
+                        "aRank": 1,
+                        "bRank": 2
+                    }
+                ],
+                "unavailable": false
+            },
+            "pvpTalentDiff": {
+                "shared": [
+                    "Blessing of Spellwarding",
+                    "Blessing of Sanctuary"
+                ],
+                "onlyA": [
+                    "Searing Glare"
+                ],
+                "onlyB": [
+                    "Hallowed Ground"
+                ]
+            },
+            "statDiff": {
+                "unavailable": false,
+                "rows": [
+                    {
+                        "stat": "intellect",
+                        "a": 771,
+                        "b": 773
+                    },
+                    {
+                        "stat": "haste",
+                        "a": 290,
+                        "b": 145
+                    },
+                    {
+                        "stat": "mastery",
+                        "a": 1015,
+                        "b": 1141
+                    },
+                    {
+                        "stat": "versatility",
+                        "a": 1813,
+                        "b": 1969
+                    },
+                    {
+                        "stat": "armor",
+                        "a": 2248,
+                        "b": 2230
+                    },
+                    {
+                        "stat": "secondaryTotal",
+                        "a": 3118,
+                        "b": 3255
+                    }
+                ]
+            },
+            "gearDiff": {
+                "unavailable": false,
+                "a": {
+                    "items": 15,
+                    "median": 331,
+                    "max": 344,
+                    "min": 331
+                },
+                "b": {
+                    "items": 17,
+                    "median": 331,
+                    "max": 344,
+                    "min": 1
+                },
+                "medianDelta": 0
+            }
+        }
+    ],
+    "limitations": [
+        "Throughput is not adjusted for pressure. A healer who gets focused heals more, and nothing here can separate \"healed more\" from \"was attacked more\" — which is why damage taken sits next to it.",
+        "Only a mirror is a fair output comparison. Two different specs doing different amounts of healing or damage is their kit, not their play.",
+        "Overheal is not simply waste. Pre-shielding and topping before a go are deliberate, and a build that front-loads absorbs will always read as wasting more.",
+        "Stat figures are ratings, not percentages, and are only comparable between characters of the same level.",
+        "Item level is read from the equipped list, so a shirt or tabard at ilvl 1 pulls the mean down — the median is the number to read.",
+        "A pet whose summon happened before the round began cannot be credited to its owner; that damage is reported per round as unattributed rather than assigned.",
+        "Solo Shuffle rounds carry no rating, because the log's two figures are per-round team averages of a roster that reshuffles every round.",
+        "Six rounds is a very small sample, and who you were given each round moves the result more than anything measured here."
+    ],
+    "generatedAt": "2026-09-25T08:15:32+00:00"
+}

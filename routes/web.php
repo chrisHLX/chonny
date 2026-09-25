@@ -148,6 +148,11 @@ Route::prefix('wow')->group(function () {
     // data/matchup-profiles/README.md. Sits next to /wow/comps deliberately: same picker, same
     // mental model, one step further on.
     Route::get('/matchup-lab', \App\Livewire\MatchupLab::class)->name('matchup-lab');
+
+    // One played game read back from its own combat log — rounds, per-player output, and the
+    // same-spec mirror comparison. Reads ONLY the committed review artifact, never the gitignored
+    // archive (rule 14); `wow:review-lobby` is what writes it. See App\Livewire\GameReview.
+    Route::get('/game-review/{id?}', \App\Livewire\GameReview::class)->name('game-review');
     Route::get('/spells', SpellExplorer::class)->name('spells.explore');
     Route::get('/spell-finder', \App\Livewire\SpellFinder::class)->name('spell-finder');
     // One permanent, linkable page per spell. Renders the same <x-spells.detail> the site-wide

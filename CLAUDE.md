@@ -88,6 +88,7 @@ php artisan migrate:fresh --seed
 php artisan import:spelldata wow                 # normal form — no patch arg, see Rules
 php artisan wow:patch-update {build}             # orchestrates a full patch bump
 php artisan wow:ingest-combatlog                 # import YOUR games from WoWCombatLog.txt
+php artisan wow:review-lobby                     # committed review artifact that /wow/game-review reads
 php artisan wow:refresh-match-derived            # after ANY match-data change
 php artisan wow:apply-icon-manifest              # icons without Blizzard credentials
 php artisan wow:precompute-spell-kits            # after a resolver/display change
@@ -332,6 +333,15 @@ fingerprint; falls back to a live compute when stale (6,964ms/3,042 queries vs 9
 - `/wow/matchup-lab` — `MatchupLab`. Two comps on one clock: whose kill window opens first,
   and why, read at three execution settings. The only page answering a question about a
   *matchup* rather than about one spec or one comp.
+- `/wow/game-review/{id?}` — `GameReview`. The matchup read **backwards**, off a game that
+  actually happened: rounds won and lost, every player's effective healing, absorbs, overheal and
+  damage, and a **same-spec mirror** diff of talents, PvP talents, gear and stats. The mirror is
+  the unit because an identical kit leaves only build, gear and play. Reads **only**
+  `data/arena-logs/lobby-reviews/*.json` (committed, written by `wow:review-lobby`) — never the
+  gitignored archive, per rule 14, and there is a test that deletes the archive and still expects
+  it to render. Throughput comes from `CombatantThroughputService`, the first thing here to
+  measure output at all; its field offsets are read from the end of each log line and every one
+  was measured, not assumed.
 - `/wow-comps` — `WowComps`, the heaviest page. Tabs: Active Abilities, Offensive/Defensive
   Cooldowns, Crowd Control, Mobility, Burst Window, Example CC Chains.
 - `/guides/{slug}/edit` — `Guides\Builder` + `Guides\Palette`; `/g/{username}/{slug}` —
@@ -551,6 +561,23 @@ it probably doesn't belong.
     `playerTeamRating` is `ARENA_MATCH_END` field `3 + myTeam`; `result` is 2 for a loss, 3 for a
     win. **Advanced Combat Logging must be on** or the log carries no `COMBATANT_INFO`, so no
     specs, so nothing downstream can use the match.
+
+    **A Solo Shuffle lobby is six matches, and none of its END line is usable** (measured over
+    326 rounds in 56 lobbies, 2026-09-25). It writes one `ARENA_MATCH_START` **per round** and a
+    single `ARENA_MATCH_END`; the old "a second START means the first never closed" rule — right
+    for 2v2/3v3, where starts and ends ran 142 to 141 — kept only round six and silently dropped
+    83% of the games. Each round re-emits the whole `COMBATANT_INFO` block with **re-dealt team
+    ids**, so a round's teams can only come from its own block. `winningTeamId` on the END line is
+    noise for shuffle (-1 twenty times, 0 twenty-two, 1 fourteen; it agrees with the final round's
+    real loser 19 times in 55 — chance), and its two ratings are per-round averages of a roster
+    that reshuffles, so `playerTeamRating` is written **null** rather than guessed. The winner
+    comes from the deaths: **`UNIT_DIED`'s trailing field is `unconsciousOnDeath`** — 1 for a
+    Hunter's Feign Death, 0 for a real one — and with that filter 324 of 326 rounds hold exactly
+    one real death, the round-ending one. Without it a single feigning Hunter "dies" six times a
+    lobby and inverts half the results. `isRanked` reads **0** on every `Rated Solo Shuffle` line,
+    so the bracket name carries it instead. Verified independently: a 3-3 lobby is a draw, and the
+    derived per-round record predicts the END line's `-1` draw flag in **55 of 55** lobbies while
+    reading nothing from that field.
 
     **The WoWArenaLogs pullers are dead and stay dead** — `wow:pull-latest-matches`,
     `wow:pull-scarce-specs`, `wow:discover-all-specs`, `wow:pull-low-rated-spec`,
