@@ -246,3 +246,102 @@ test('the final class-tree gate is the Midnight number, not the retired one', fu
     // and was flagged unverified in config the whole time.
     expect(collect(config('talent_gates.gates'))->firstWhere('display_row', 8)['points_required'])->toBe(23);
 });
+
+/*
+ * A chosen hero tree fills itself — 2026-09-25, from the report that a guide's Disc Priest build
+ * had "no hero talent selected".
+ *
+ * A hero tree is not a point pool: every node is granted by levelling, so the tree is complete
+ * once chosen and the only decision inside it is which side of a CHOICE node to take. The picker
+ * used to make an author click all fourteen by hand.
+ */
+function makeHeroFixture(): array
+{
+    $f = makeGridFixture();
+
+    $hero = TalentTree::create([
+        'patch_id' => $f['patch']->id, 'class_id' => $f['class']->id,
+        'spec_id' => null, 'type' => 'hero', 'name' => 'Oracle', 'external_tree_id' => 2,
+    ]);
+    $hero->specializations()->attach($f['spec']->id);
+
+    // Granted: one entry, two ranks. The top rank is what the game gives.
+    $granted = TalentNode::create([
+        'talent_tree_id' => $hero->id, 'external_node_id' => 50, 'type' => 'PASSIVE',
+        'max_ranks' => 2, 'pos_x' => 100, 'pos_y' => 100,
+    ]);
+    $gSpell = Spell::create(['patch_id' => $f['patch']->id, 'spell_id' => 700, 'name' => 'Granted Passive']);
+    TalentNodeEntry::create(['talent_node_id' => $granted->id, 'spell_id' => $gSpell->id, 'rank' => 1, 'max_rank' => 2]);
+    $gTop = TalentNodeEntry::create(['talent_node_id' => $granted->id, 'spell_id' => $gSpell->id, 'rank' => 2, 'max_rank' => 2]);
+
+    // A real choice: two different spells on one node. The author decides this one.
+    $choice = TalentNode::create([
+        'talent_tree_id' => $hero->id, 'external_node_id' => 51, 'type' => 'CHOICE',
+        'max_ranks' => 1, 'pos_x' => 100, 'pos_y' => 200,
+    ]);
+    $left = Spell::create(['patch_id' => $f['patch']->id, 'spell_id' => 701, 'name' => 'Left Option']);
+    $right = Spell::create(['patch_id' => $f['patch']->id, 'spell_id' => 702, 'name' => 'Right Option']);
+    TalentNodeEntry::create(['talent_node_id' => $choice->id, 'spell_id' => $left->id, 'rank' => 1, 'max_rank' => 1]);
+    TalentNodeEntry::create(['talent_node_id' => $choice->id, 'spell_id' => $right->id, 'rank' => 1, 'max_rank' => 1]);
+
+    return $f + compact('hero', 'granted', 'gTop', 'choice');
+}
+
+test('choosing a hero tree grants its nodes at top rank and leaves the CHOICE node to the author', function () {
+    $f = makeHeroFixture();
+    $user = User::create(['name' => 'Hero', 'email' => 'hero@example.com', 'password' => bcrypt('secret')]);
+
+    $component = Livewire::actingAs($user)
+        ->test(TalentSelector::class, ['specId' => $f['spec']->id, 'layout' => 'grid'])
+        ->set('heroTreeId', $f['hero']->id);
+
+    $chosen = $component->get('chosenEntries');
+
+    // Granted, and at rank 2 — the whole node is given, not partially bought.
+    expect($chosen[$f['granted']->id])->toBe($f['gTop']->id)
+        // The choice is the one thing a build actually decides here.
+        ->and($chosen)->not->toHaveKey($f['choice']->id);
+
+    // And it is saved, not just held in component state.
+    $build = TalentBuild::where('user_id', $user->id)->where('spec_id', $f['spec']->id)->first();
+    expect(
+        TalentBuildChoice::where('talent_build_id', $build->id)->where('talent_node_id', $f['granted']->id)->first()->chosen_entry_id
+    )->toBe($f['gTop']->id);
+});
+
+test('a read-only view is never filled in, because it shows what its source reported', function () {
+    $f = makeHeroFixture();
+
+    // A synced character's real loadout: hero tree chosen, and only the choice node picked. Filling
+    // the rest would invent talents Blizzard did not report for that character.
+    $choiceEntry = $f['choice']->entries()->first();
+
+    $component = Livewire::test(TalentSelector::class, [
+        'specId' => $f['spec']->id,
+        'layout' => 'grid',
+        'readOnly' => true,
+        'presetChosenEntries' => [$f['choice']->id => $choiceEntry->id],
+    ]);
+
+    expect($component->get('chosenEntries'))->toBe([$f['choice']->id => $choiceEntry->id]);
+});
+
+test('an existing build with a hero tree picked is completed on mount, without disturbing its other picks', function () {
+    $f = makeHeroFixture();
+    $user = User::create(['name' => 'Returner', 'email' => 'returner@example.com', 'password' => bcrypt('secret')]);
+
+    // The shape that was reported: a saved build that knows its hero tree via one pick in it, but
+    // has none of the granted nodes.
+    $choiceEntry = $f['choice']->entries()->first();
+    $spec = Livewire::actingAs($user)->test(TalentSelector::class, ['specId' => $f['spec']->id, 'layout' => 'grid']);
+    $spec->call('toggleEntry', $f['choice']->id, $choiceEntry->id);
+    $spec->call('toggleEntry', $f['node']->id, $f['rank1']->id);
+
+    // Mount again, as a later page load would.
+    $reopened = Livewire::actingAs($user)->test(TalentSelector::class, ['specId' => $f['spec']->id, 'layout' => 'grid']);
+    $chosen = $reopened->get('chosenEntries');
+
+    expect($chosen[$f['granted']->id])->toBe($f['gTop']->id)
+        ->and($chosen[$f['choice']->id])->toBe($choiceEntry->id)
+        ->and($chosen[$f['node']->id])->toBe($f['rank1']->id);
+});

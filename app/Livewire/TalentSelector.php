@@ -189,6 +189,7 @@ class TalentSelector extends Component
             $this->chosenPvpTalentIds = $presetPvpTalentIds ?? [];
             $this->deriveHeroTreeFromChosenEntries();
 
+            // No grantSelectedHeroTree() here on purpose — see that method's docblock.
             return;
         }
 
@@ -210,6 +211,73 @@ class TalentSelector extends Component
         $this->chosenEntries = $build->choices()->pluck('chosen_entry_id', 'talent_node_id')->all();
         $this->chosenPvpTalentIds = $build->pvpChoices()->orderBy('slot')->pluck('pvp_talent_id')->values()->all();
         $this->deriveHeroTreeFromChosenEntries();
+        $this->grantSelectedHeroTree();
+    }
+
+    /**
+     * Fills the selected hero tree, because the game does.
+     *
+     * A hero tree is not a point pool. Every node in it is granted by levelling — Warcraft Wiki on
+     * the system: "Points are earned at every level from 71 to 80, so that by level 80 every
+     * talent in the tree will be acquired", and Midnight adds a column to each. So a chosen hero
+     * tree is COMPLETE, and the only real decision inside it is which side of a CHOICE node to
+     * take. Until now this picker asked an author to click all fourteen one at a time, and a guide
+     * whose author had picked Oracle but not worked through the grid rendered with no hero talents
+     * at all, which is what was reported.
+     *
+     * CHOICE nodes are left alone, and that is the whole point of the rule: they are the only part
+     * of a hero tree a build actually decides. A node is treated as a choice when Blizzard types it
+     * CHOICE or when its entries name more than one distinct spell.
+     *
+     * A multi-rank granted node is filled to its TOP rank, since the whole thing is granted rather
+     * than partially bought.
+     *
+     * NEVER IN readOnly MODE. A read-only view shows exactly the picks its caller supplied — a
+     * synced character's real loadout, or an archived match's talents — and filling gaps there
+     * would be inventing talents the source did not report. Guarded twice: the early return here,
+     * and persistIfAuthenticated()'s own no-op.
+     *
+     * Existing picks are never overwritten, so this is idempotent and safe to run on every mount.
+     */
+    private function grantSelectedHeroTree(): void
+    {
+        if ($this->readOnly || $this->heroTreeId === null) {
+            return;
+        }
+
+        $granted = [];
+
+        foreach ($this->heroTalentNodes as $node) {
+            if (isset($this->chosenEntries[$node->id])) {
+                continue;
+            }
+
+            $entries = $node->entries;
+
+            if ($node->type === 'CHOICE' || $entries->pluck('spell_id')->unique()->count() > 1) {
+                continue;
+            }
+
+            $entry = $entries->sortByDesc('rank')->first();
+
+            if ($entry) {
+                $granted[] = [$node, $entry];
+            }
+        }
+
+        if ($granted === []) {
+            return;
+        }
+
+        foreach ($granted as [$node, $entry]) {
+            $this->chosenEntries[$node->id] = $entry->id;
+        }
+
+        $this->persistIfAuthenticated(function (TalentSelectionService $service, TalentBuild $build) use ($granted) {
+            foreach ($granted as [$node, $entry]) {
+                $service->saveChoice($build, $node, $entry);
+            }
+        });
     }
 
     /**
@@ -262,6 +330,8 @@ class TalentSelector extends Component
                 fn (TalentSelectionService $service, TalentBuild $build) => $service->pruneNodeChoices($build, $staleNodeIds->all())
             );
         }
+
+        $this->grantSelectedHeroTree();
 
         $this->dispatch('talents-changed', selectedSpellIds: $this->selectedSpellIds->all());
     }
