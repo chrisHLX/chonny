@@ -30,6 +30,7 @@ class SyncArena extends Command
         {path? : A combat log or a directory of them. Defaults to WOW_COMBATLOG_PATH.}
         {--user= : Whose games these are (id or email). Defaults to the only user, if there is one.}
         {--fresh : Re-review every game, not just the ones without a review}
+        {--since= : Ignore games played before this date (e.g. today, 2026-09-25)}
         {--skip-ingest : Only re-review what is already in the archive}';
 
     protected $description = 'Read your combat log, review any new games, and report what changed';
@@ -65,6 +66,21 @@ class SyncArena extends Command
         // Only the games that have no review yet, unless asked for all of them. A re-review is
         // cheap per game but there is no reason to redo forty of them after one session.
         $targets = collect($reviews->reviewable());
+
+        // --since is what makes `wow:forget-games` stick. Ingest re-imports anything missing from
+        // the archive, and it can see every log file on the machine, so without a floor a sync
+        // rebuilds exactly what was just deleted.
+        if ($since = $this->option('since')) {
+            try {
+                $floor = \Illuminate\Support\Carbon::parse($since)->startOfDay()->getTimestampMs();
+            } catch (\Throwable) {
+                $this->error("Could not read '{$since}' as a date.");
+
+                return self::FAILURE;
+            }
+
+            $targets = $targets->filter(fn ($t) => ($t['startTime'] ?? 0) >= $floor);
+        }
 
         if (! $this->option('fresh')) {
             $known = ArenaReview::where('user_id', $user->id)->pluck('lobby_id')->flip();
