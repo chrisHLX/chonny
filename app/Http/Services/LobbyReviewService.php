@@ -35,6 +35,7 @@ class LobbyReviewService
     public function __construct(
         private ArenaLogService $arena,
         private CombatantThroughputService $throughput,
+        private CombatLogIngestService $ingest,
     ) {}
 
     // ---------------------------------------------------------------- reading (page-safe)
@@ -58,6 +59,12 @@ class LobbyReviewService
             $r = json_decode(File::get($path), true);
 
             if (! is_array($r) || ! isset($r['id'])) {
+                continue;
+            }
+
+            // Belt and braces with reviewable()'s filter: an artifact written before the
+            // shuffle-only rule, or left behind by a rename, must not surface.
+            if (! $this->ingest->isRoundBased($r['bracket'] ?? '')) {
                 continue;
             }
 
@@ -91,7 +98,11 @@ class LobbyReviewService
 
         $r = json_decode(File::get($path), true);
 
-        return is_array($r) ? $r : null;
+        if (! is_array($r) || ! $this->ingest->isRoundBased($r['bracket'] ?? '')) {
+            return null;
+        }
+
+        return $r;
     }
 
     public function artifactPath(string $id): string
@@ -102,7 +113,16 @@ class LobbyReviewService
     // ---------------------------------------------------------------- building (console only)
 
     /**
-     * Every reviewable game in the archive: one entry per shuffle lobby, one per other match.
+     * Every reviewable game in the archive: one entry per Solo Shuffle lobby.
+     *
+     * SHUFFLE ONLY, ON PURPOSE. Two reasons, and the second is the important one. A shuffle
+     * reliably produces the mirror this page is built around — two healers who swap sides every
+     * round — where a 3v3 only sometimes does. And the 16 oldest matches in the archive came from
+     * the wowarenalogs feed, so they are **other people's games**: they have no place on a page
+     * that is one signed-in player's record of their own matches. Restricting to the round-based
+     * bracket excludes them by construction rather than by a list of ids somebody has to maintain.
+     *
+     * When 3v3 comes back it needs an owner recorded at ingest, not a bracket check.
      *
      * @return array<int, array{id: string, matchIds: array<int, string>, bracket: string, startTime: int}>
      */
@@ -117,7 +137,10 @@ class LobbyReviewService
                 continue;
             }
 
-            // A shuffle round groups by its lobby; everything else is its own review.
+            if (! $this->ingest->isRoundBased($m['startInfo']['bracket'] ?? '')) {
+                continue;
+            }
+
             $key = $m['lobbyId'] ?? $m['id'];
 
             $groups[$key] ??= [

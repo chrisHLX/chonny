@@ -150,9 +150,16 @@ Route::prefix('wow')->group(function () {
     Route::get('/matchup-lab', \App\Livewire\MatchupLab::class)->name('matchup-lab');
 
     // One played game read back from its own combat log — rounds, per-player output, and the
-    // same-spec mirror comparison. Reads ONLY the committed review artifact, never the gitignored
-    // archive (rule 14); `wow:review-lobby` is what writes it. See App\Livewire\GameReview.
-    Route::get('/game-review/{id?}', \App\Livewire\GameReview::class)->name('game-review');
+    // same-spec mirror comparison. See App\Livewire\GameReview.
+    //
+    // AUTH, AND SCOPED TO THE VIEWER'S OWN GAMES. This is a signed-in player's record of their
+    // own matches, not a public browser: a review names five other players with their talents and
+    // their gear. It shipped public for about twenty minutes on 2026-09-25 and was closed as soon
+    // as that was noticed. Do not remove this middleware — the component scopes by
+    // auth()->id() as well, and both halves are meant to be there.
+    Route::get('/game-review/{id?}', \App\Livewire\GameReview::class)
+        ->middleware('auth')
+        ->name('game-review');
     Route::get('/spells', SpellExplorer::class)->name('spells.explore');
     Route::get('/spell-finder', \App\Livewire\SpellFinder::class)->name('spell-finder');
     // One permanent, linkable page per spell. Renders the same <x-spells.detail> the site-wide

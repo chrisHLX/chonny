@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Http\Services\CombatantThroughputService;
 use App\Http\Services\LobbyReviewService;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\File;
 use Livewire\Livewire;
@@ -258,15 +259,29 @@ class GameReviewTest extends TestCase
         // Matchup Lab shipped its first green run (2026-09-23).
         $this->writeFixtureReview();
 
+        $this->actingAs(User::factory()->create());
+
         $this->get(route('game-review'))->assertOk();
         $this->get(route('game-review', ['id' => self::TEST_REVIEW_ID]))->assertOk();
+    }
+
+    public function test_the_page_is_not_public(): void
+    {
+        // A review names five other players with their talents and their gear. It is a signed-in
+        // player's record of their own games, never a public browser — this shipped open for
+        // about twenty minutes on 2026-09-25.
+        $this->writeFixtureReview();
+
+        $this->get(route('game-review'))->assertRedirect(route('login'));
+        $this->get(route('game-review', ['id' => self::TEST_REVIEW_ID]))->assertRedirect(route('login'));
     }
 
     public function test_the_page_shows_a_mirror_comparison_from_the_artifact(): void
     {
         $this->writeFixtureReview();
 
-        Livewire::test(\App\Livewire\GameReview::class, ['id' => self::TEST_REVIEW_ID])
+        Livewire::actingAs(User::factory()->create())
+            ->test(\App\Livewire\GameReview::class, ['id' => self::TEST_REVIEW_ID])
             ->assertSee('Discipline Priest mirror')
             ->assertSee('Lenience')
             ->assertSee('Weal and Woe')
@@ -284,7 +299,8 @@ class GameReviewTest extends TestCase
 
         config(['arena_logs.archive_path' => sys_get_temp_dir().'/mc-archive-absent-'.uniqid()]);
 
-        $this->get(route('game-review', ['id' => self::TEST_REVIEW_ID]))
+        $this->actingAs(User::factory()->create())
+            ->get(route('game-review', ['id' => self::TEST_REVIEW_ID]))
             ->assertOk()
             ->assertSee('Discipline Priest mirror');
     }
@@ -293,7 +309,8 @@ class GameReviewTest extends TestCase
     {
         $this->writeFixtureReview();
 
-        Livewire::test(\App\Livewire\GameReview::class, ['id' => 'not-a-real-id'])
+        Livewire::actingAs(User::factory()->create())
+            ->test(\App\Livewire\GameReview::class, ['id' => 'not-a-real-id'])
             ->assertSet('reviewId', fn ($id) => $id !== 'not-a-real-id');
     }
 

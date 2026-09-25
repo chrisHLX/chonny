@@ -6,15 +6,21 @@ use App\Http\Services\LobbyReviewService;
 use Illuminate\Console\Command;
 
 /**
- * Turns an archived game into the committed review artifact that `/wow/game-review` reads.
+ * Turns an archived game into the review artifact that `/wow/game-review` reads.
  *
- * A Solo Shuffle lobby is one review covering its six rounds; every other bracket is one review
- * per match. The grouping key is `metadata.lobbyId`, written at ingest.
+ * SOLO SHUFFLE ONLY for now — see LobbyReviewService::reviewable() for why, the short version
+ * being that the 16 oldest matches in the archive are other people's games and this page is one
+ * signed-in player's record of their own. One review covers a lobby's six rounds, grouped by
+ * `metadata.lobbyId`, which is written at ingest.
  *
  * WHY A COMMAND AND NOT A LIVE PAGE QUERY. `data/arena-logs/metadata/*` and `raw/*` are
  * gitignored (CLAUDE.md rule 14), so a page that read them would work perfectly here and be
- * empty for every real visitor. This writes `data/arena-logs/lobby-reviews/{id}.json`, which is
- * committed, and the page reads only that.
+ * empty for every real visitor. This writes `data/arena-logs/lobby-reviews/{id}.json` and the
+ * page reads only that.
+ *
+ * THE OUTPUT IS GITIGNORED, NOT COMMITTED. It was briefly committed, which was wrong: a review is
+ * a player's own game, not repo data, and committing it published it. Reviews reach production by
+ * being uploaded by their owner.
  *
  *   php artisan wow:review-lobby                 # every game not yet reviewed
  *   php artisan wow:review-lobby --all           # rewrite every review
@@ -103,7 +109,8 @@ class ReviewLobby extends Command
 
         $this->newLine();
         $this->info("Wrote {$written} review(s) to ".LobbyReviewService::ARTIFACT_DIR.'/.');
-        $this->line('  <fg=gray>Commit them — the page reads the artifact, not the archive.</>');
+        $this->line('  <fg=gray>These are one player\'s own games, so they are gitignored, not committed —</>');
+        $this->line('  <fg=gray>they reach production by being uploaded, never by a deploy.</>');
 
         return self::SUCCESS;
     }

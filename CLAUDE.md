@@ -336,12 +336,24 @@ fingerprint; falls back to a live compute when stale (6,964ms/3,042 queries vs 9
 - `/wow/game-review/{id?}` — `GameReview`. The matchup read **backwards**, off a game that
   actually happened: rounds won and lost, every player's effective healing, absorbs, overheal and
   damage, and a **same-spec mirror** diff of talents, PvP talents, gear and stats. The mirror is
-  the unit because an identical kit leaves only build, gear and play. Reads **only**
-  `data/arena-logs/lobby-reviews/*.json` (committed, written by `wow:review-lobby`) — never the
-  gitignored archive, per rule 14, and there is a test that deletes the archive and still expects
-  it to render. Throughput comes from `CombatantThroughputService`, the first thing here to
-  measure output at all; its field offsets are read from the end of each log line and every one
-  was measured, not assumed.
+  the unit because an identical kit leaves only build, gear and play.
+  - **`auth` middleware, and private to the viewer.** A review names five other players with
+    their talents and their gear. It is a signed-in player's record of their own games, never a
+    public browser — it shipped public for about twenty minutes on 2026-09-25. The route's
+    middleware and the component's own scoping are both meant to be there.
+  - **Solo Shuffle only** (`LobbyReviewService::reviewable()` filters on `isRoundBased()`). A
+    shuffle reliably produces the mirror; more importantly the 16 oldest archive matches came
+    from the wowarenalogs feed and are **other people's games**, which the bracket filter
+    excludes by construction rather than by a maintained list of ids. Bringing 3v3 back needs an
+    owner recorded at ingest, not a bracket check.
+  - **The review artifact is gitignored, not committed.** It was briefly committed, which
+    published it. A review is user data; it reaches production by being uploaded by its owner,
+    never by a deploy.
+  - Reads **only** `data/arena-logs/lobby-reviews/*.json`, never the gitignored archive, per
+    rule 14 — there is a test that deletes the archive and still expects the page to render.
+    Throughput comes from `CombatantThroughputService`, the first thing here to measure output at
+    all; its field offsets are read from the end of each log line and every one was measured, not
+    assumed.
 - `/wow-comps` — `WowComps`, the heaviest page. Tabs: Active Abilities, Offensive/Defensive
   Cooldowns, Crowd Control, Mobility, Burst Window, Example CC Chains.
 - `/guides/{slug}/edit` — `Guides\Builder` + `Guides\Palette`; `/g/{username}/{slug}` —
