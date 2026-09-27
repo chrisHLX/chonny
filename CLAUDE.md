@@ -51,6 +51,8 @@ exist to be corrected. The spell/talent/match-data pipeline underneath must stay
 | `wow-spells.md`, `wow-spell-data-model.md` | Spell data model notes. |
 | `dr-categories-reference.md` | 2022-era community DR guide. **Stale — confirmed wrong twice.** A hint, never authority. |
 | `arena-log-api.md` | WoWArenaLogs API shape. |
+| `match-review.md` | **Reading your own played games: the pipeline, the combat log's measured field offsets, and what has been observed from real matches.** Every offset is read from the END of a line and the crit flag is at `-4`, not `-5` — a trailing `ST`/`AOE` tag shifts the documented suffix and a crit silently reads as no-crit. Also holds the first observations that **contradict curated data** (Avatar is classified `mixed` and is used purely offensively) and the honest way to measure a defensive (against the moment before it, never the round average). **Read before measuring anything from a combat log, or before asserting how an ability is used in play.** |
+| `addon-upgrades.md` | What Chriso wants next from the capture side — automatic ingest, a desktop viewer over the archive, configurable paths. Wants, not design. |
 | `spellbook-verifier.md` | Addon export → snapshot → diff pipeline. |
 | `app/Http/Services/playstyle-analysis.md` | Per-player talent-usage read. |
 | `guide-writing.md` | **How to draft a machine guide.** The length budget (the 2026-09 batch averaged 7,900 reader-facing chars; the limit is now 2,300), the shape, and the errors the last batch made. Read with `docs/guides/reader-corrections-2026-09-23.md`. |
