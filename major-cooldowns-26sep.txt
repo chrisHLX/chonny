@@ -1,0 +1,700 @@
+MAJOR COOLDOWNS — 15 games of Disc Priest / Unholy DK / Windwalker Monk, 26 Sep 2026
+
+  dmg done     damage the cooldown's SUBJECT dealt during it, against their own rate for the
+               rest of that round. 1.00x = the cooldown changed nothing.
+  dmg taken    damage they took during it, against what they were taking in the same length of
+               time immediately before. +60% = they took 60% less than a moment earlier.
+  subject      the caster, except for an external (Power Infusion, Pain Suppression, Ironbark),
+               where it is the ally it was cast on — shown as 'spell -> name'.
+  window       the spell's own duration. A cooldown with no duration is skipped, not guessed.
+
+================================================================================================
+
+﻿
+=== 19:26  WON   67s
+    Discipline Priest + Unholy Death Knight + Windwalker Monk
+    vs Mistweaver Monk + Elemental Shaman + Arms Warrior
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Blinding Sleet               19s     1.34x  no pressure
+    Hozzaarr (Unholy Death K) Army of the Dead             20s     1.61x        -401%
+    Captnmurphy (Windwalker Mon) Leg Sweep                    21s     2.39x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                       22s     1.19x         +39%
+    Skylake (Discipline Pri) Power Infusion               41s     1.56x         -23%
+    Captnmurphy (Windwalker Mon) Zenith                       41s     2.20x         +62%
+    Hozzaarr (Unholy Death K) Icebound Fortitude           54s     0.70x        +100%
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Mçkw (Arms Warrior)   Avatar                        9s     1.41x  no pressure
+    Mçkw (Arms Warrior)   Bladestorm                   11s     2.24x        -208%
+    Mçkw (Arms Warrior)   Die by the Sword             25s     1.14x         +62%
+    Dianpaoer (Elemental Sham) Astral Shift                 25s     1.50x         -67%
+    Mçkw (Arms Warrior)   Berserker Shout              26s     1.24x         +72%
+    Dianpaoer (Elemental Sham) Tremor Totem                 26s     1.77x         -49%
+    Dianpaoer (Elemental Sham) Spiritwalker's Grace         34s     2.32x        -114%
+    Dianpaoer (Elemental Sham) Stormkeeper                  36s     2.33x        -130%
+    Mçkw (Arms Warrior)   Intimidating Shout           38s     1.26x         +52%
+    Xjc (Mistweaver Mon)   Invoke Chi-Ji, the Red Crane   49s     0.00x        -188%
+
+=== 19:29  WON   124s
+    Discipline Priest + Unholy Death Knight + Windwalker Monk
+    vs Fire Mage + Preservation Evoker + Windwalker Monk
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Blinding Sleet                9s     0.15x  no pressure
+    Skylake (Discipline Pri) Power Infusion               10s     1.40x  no pressure
+    Hozzaarr (Unholy Death K) Army of the Dead             11s     1.02x  no pressure
+    Hozzaarr (Unholy Death K) Anti-Magic Zone              12s     0.74x  no pressure
+    Captnmurphy (Windwalker Mon) Leg Sweep                    13s     2.24x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                       14s     1.73x  no pressure
+    Skylake (Discipline Pri) Pain Suppression             23s     1.47x         +98%
+    Hozzaarr (Unholy Death K) Icebound Fortitude           24s     1.72x        +100%
+    Hozzaarr (Unholy Death K) Lichborne                    38s     1.40x         +29%
+    Captnmurphy (Windwalker Mon) Zenith                       38s     1.71x         +46%
+    Skylake (Discipline Pri) Pain Suppression             57s     1.07x         +61%
+    Captnmurphy (Windwalker Mon) Leg Sweep                    71s     1.61x  no pressure
+    Hozzaarr (Unholy Death K) Blinding Sleet               73s     1.63x         -19%
+    Captnmurphy (Windwalker Mon) Zenith                       75s     1.33x         -31%
+    Hozzaarr (Unholy Death K) Army of the Dead            102s     0.80x         +81%
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Ffz (Fire Mage)        Alter Time                    8s     1.61x  no pressure
+    Ffz (Fire Mage)        Combustion                   10s     1.44x        -250%
+    Insidedog (Windwalker Mon) Leg Sweep                    12s     0.00x  no pressure
+    Anaegnir (Preservation E) Obsidian Scales              18s     1.20x         +25%
+    Insidedog (Windwalker Mon) Zenith                       18s     1.11x         +20%
+    Anaegnir (Preservation E) Oppressing Roar              20s     0.00x         +29%
+    Ffz (Fire Mage)        Mass Invisibility            26s     1.40x         -51%
+    Ffz (Fire Mage)        Ice Block                    31s     0.85x         +25%
+    Anaegnir (Preservation E) Deep Breath                  38s     0.97x         +23%
+    Insidedog (Windwalker Mon) Zenith                       40s     1.94x         +20%
+    Anaegnir (Preservation E) Rewind                       42s     0.00x  no pressure
+    Ffz (Fire Mage)        Alter Time                   49s     0.67x         +39%
+    Anaegnir (Preservation E) Obsidian Scales              60s     1.44x         +17%
+    Anaegnir (Preservation E) Tail Swipe                   62s     1.46x  no pressure
+    Insidedog (Windwalker Mon) Leg Sweep                    63s     1.77x  no pressure
+    Anaegnir (Preservation E) Time Dilation                73s     2.60x          -8%
+    Ffz (Fire Mage)        Combustion                   75s     2.51x         +29%
+    Anaegnir (Preservation E) Time Dilation                83s     0.47x         +32%
+    Insidedog (Windwalker Mon) Zenith                       83s     2.40x          +3%
+    Ffz (Fire Mage)        Alter Time                   91s     1.09x         +41%
+    Anaegnir (Preservation E) Obsidian Scales             101s     0.87x         -85%
+    Anaegnir (Preservation E) Oppressing Roar             107s     0.75x         -20%
+
+=== 19:35  WON   136s
+    Discipline Priest + Unholy Death Knight + Windwalker Monk
+    vs Affliction Warlock + Holy Paladin + Frost Mage
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Blinding Sleet               14s     0.64x  no pressure
+    Hozzaarr (Unholy Death K) Army of the Dead             15s     0.91x  no pressure
+    Captnmurphy (Windwalker Mon) Leg Sweep                    15s     0.00x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                       17s     0.01x  no pressure
+    Skylake (Discipline Pri) Power Infusion               18s     0.01x  no pressure
+    Hozzaarr (Unholy Death K) Lichborne                    28s     0.55x  no pressure
+    Skylake (Discipline Pri) Pain Suppression             37s     1.71x         +70%
+    Hozzaarr (Unholy Death K) Icebound Fortitude           63s     0.87x         +26%
+    Captnmurphy (Windwalker Mon) Touch of Karma               82s     1.64x        +100%
+    Hozzaarr (Unholy Death K) Wraith Walk                  83s     0.06x         -27%
+    Captnmurphy (Windwalker Mon) Zenith                       89s     3.36x         +93%
+    Skylake (Discipline Pri) Pain Suppression             92s     1.03x         +85%
+    Hozzaarr (Unholy Death K) Anti-Magic Zone              95s     1.05x         +78%
+    Hozzaarr (Unholy Death K) Blinding Sleet              105s     1.23x         +50%
+    Captnmurphy (Windwalker Mon) Leg Sweep                   114s     0.97x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                      116s     1.74x  no pressure
+    Hozzaarr (Unholy Death K) Army of the Dead            116s     0.87x         +33%
+    Hozzaarr (Unholy Death K) Lichborne                   129s     0.79x          -7%
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Squivv (Affliction War) Dark Pact                    22s     1.90x  no pressure
+    Gingaminga (Frost Mage) Frozen Orb                   24s     1.46x         -28%
+    Squivv (Affliction War) Dark Harvest                 25s     3.21x  no pressure
+    Squivv (Affliction War) Unending Resolve             28s     2.22x  no pressure
+    Squivv (Affliction War) Summon Darkglare             38s     1.70x        -238%
+    Him (Holy Paladin)     Aura Mastery                 44s     0.13x  no pressure
+    Him (Holy Paladin)     Avenging Crusader            59s     0.63x         +34%
+    Him (Holy Paladin)     Blessing of Sacrifice        64s     1.44x         +82%
+    Gingaminga (Frost Mage) Frozen Orb                   66s     1.21x        -159%
+    Squivv (Affliction War) Dark Pact                    68s     1.55x        +100%
+    Gingaminga (Frost Mage) Ray of Frost                 69s     0.87x  no pressure
+    Squivv (Affliction War) Dark Harvest                 87s     0.66x  no pressure
+    Gingaminga (Frost Mage) Ray of Frost                 94s     1.51x  no pressure
+    Him (Holy Paladin)     Divine Protection           107s     6.73x         +36%
+    Him (Holy Paladin)     Avenging Crusader           114s     6.99x         -28%
+    Squivv (Affliction War) Dark Pact                   116s     0.42x         +37%
+    Gingaminga (Frost Mage) Frozen Orb                  118s     2.45x  no pressure
+    Gingaminga (Frost Mage) Ray of Frost                120s     1.21x  no pressure
+
+=== 19:43  WON   126s
+    Windwalker Monk + Discipline Priest + Unholy Death Knight
+    vs Affliction Warlock + Holy Paladin + Frost Mage
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Blinding Sleet               13s     0.00x  no pressure
+    Hozzaarr (Unholy Death K) Army of the Dead             14s     1.07x  no pressure
+    Captnmurphy (Windwalker Mon) Leg Sweep                    14s     0.93x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                       15s     0.55x        -260%
+    Hozzaarr (Unholy Death K) Wraith Walk                  18s     0.02x         -75%
+    Skylake (Discipline Pri) Power Infusion               30s     1.39x         +71%
+    Skylake (Discipline Pri) Pain Suppression             32s     1.37x         +77%
+    Hozzaarr (Unholy Death K) Lichborne                    32s     1.00x         +82%
+    Hozzaarr (Unholy Death K) Icebound Fortitude           41s     1.43x         +83%
+    Captnmurphy (Windwalker Mon) Zenith                       47s     1.27x        -181%
+    Captnmurphy (Windwalker Mon) Touch of Karma               66s     0.84x        +100%
+    Skylake (Discipline Pri) Pain Suppression             69s     0.91x         +96%
+    Hozzaarr (Unholy Death K) Blinding Sleet               83s     1.10x         -44%
+    Skylake (Discipline Pri) Ultimate Penitence          105s     6.74x  no pressure
+    Hozzaarr (Unholy Death K) Army of the Dead            107s     1.04x          +3%
+    Captnmurphy (Windwalker Mon) Zenith                      117s     1.31x         +96%
+    Captnmurphy (Windwalker Mon) Leg Sweep                   123s     0.00x  no pressure
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Squivv (Affliction War) Dark Pact                    15s     1.32x  no pressure
+    Gingaminga (Frost Mage) Frozen Orb                   18s     2.47x  no pressure
+    Squivv (Affliction War) Summon Darkglare             25s     1.05x  no pressure
+    Him (Holy Paladin)     Avenging Crusader            27s     6.32x         +18%
+    Squivv (Affliction War) Dark Harvest                 30s     2.26x  no pressure
+    Squivv (Affliction War) Unending Resolve             43s     0.98x         +25%
+    Him (Holy Paladin)     Aura Mastery                 53s     0.00x  no pressure
+    Squivv (Affliction War) Dark Pact                    60s     0.51x         +25%
+    Gingaminga (Frost Mage) Frozen Orb                   63s     2.11x  no pressure
+    Gingaminga (Frost Mage) Ray of Frost                 66s     5.20x  no pressure
+    Him (Holy Paladin)     Blessing of Sacrifice        67s     0.35x         +17%
+    Him (Holy Paladin)     Avenging Crusader            94s     0.00x  no pressure
+    Gingaminga (Frost Mage) Ice Block                   103s     0.02x  no pressure
+    Squivv (Affliction War) Dark Pact                   106s     2.14x         -67%
+    Him (Holy Paladin)     Divine Protection           108s     0.00x         +68%
+    Gingaminga (Frost Mage) Frozen Orb                  120s     0.37x         +63%
+    Squivv (Affliction War) Dark Harvest                120s     2.62x         +50%
+
+=== 19:47  LOST  44s
+    Windwalker Monk + Unholy Death Knight + Discipline Priest
+    vs Restoration Druid + Affliction Warlock + Assassination Rogue
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Skylake (Discipline Pri) Pain Suppression             21s     5.32x         +60%
+    Hozzaarr (Unholy Death K) Blinding Sleet               22s     0.27x  no pressure
+    Hozzaarr (Unholy Death K) Army of the Dead             24s     1.46x  no pressure
+    Captnmurphy (Windwalker Mon) Leg Sweep                    25s    13.25x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                       26s     2.90x         +68%
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Qttrrog (Assassination) Kingsbane                    16s     0.98x  no pressure
+    Qttrrog (Assassination) Deathmark                    17s     1.37x  no pressure
+    Greenbolt (Affliction War) Summon Darkglare             19s     0.75x  no pressure
+    Greenbolt (Affliction War) Dark Harvest                 21s     0.58x  no pressure
+    Qttrrog (Assassination) Evasion                      27s     2.05x         +30%
+
+=== 19:51  WON   44s
+    Discipline Priest + Windwalker Monk + Unholy Death Knight
+    vs Discipline Priest + Retribution Paladin + Havoc Demon Hunter
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Blinding Sleet               15s     0.04x  no pressure
+    Hozzaarr (Unholy Death K) Army of the Dead             17s     1.43x  no pressure
+    Captnmurphy (Windwalker Mon) Leg Sweep                    17s     1.75x         +70%
+    Captnmurphy (Windwalker Mon) Zenith                       18s     1.09x         +64%
+    Skylake (Discipline Pri) Power Infusion               19s     1.09x         +64%
+    Hozzaarr (Unholy Death K) Lichborne                    26s     3.02x  no pressure
+    Hozzaarr (Unholy Death K) Icebound Fortitude           28s     3.40x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                       37s     0.81x  no pressure
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Mcdues (Discipline Pri) Power Infusion               11s     1.43x  no pressure
+    Scarred (Havoc Demon Hu) The Hunt                     13s     2.98x  no pressure
+    Biiggwhammy (Retribution Pa) Execution Sentence           13s     3.51x  no pressure
+    Biiggwhammy (Retribution Pa) Avenging Wrath               13s     2.10x  no pressure
+    Biiggwhammy (Retribution Pa) Divine Protection            15s     3.03x        +100%
+    Scarred (Havoc Demon Hu) Darkness                     18s     1.52x  no pressure
+    Scarred (Havoc Demon Hu) Sigil of Misery              23s     0.19x  no pressure
+    Mcdues (Discipline Pri) Leap of Faith                38s     0.32x         +41%
+
+=== 19:54  LOST  63s
+    Discipline Priest + Unholy Death Knight + Windwalker Monk
+    vs Mistweaver Monk + Shadow Priest + Survival Hunter
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Lichborne                     9s     0.43x          -8%
+    Skylake (Discipline Pri) Pain Suppression             11s     0.44x         +66%
+    Hozzaarr (Unholy Death K) Blinding Sleet               12s     0.16x         +81%
+    Captnmurphy (Windwalker Mon) Leg Sweep                    13s     2.21x         +31%
+    Hozzaarr (Unholy Death K) Army of the Dead             13s     1.57x        -228%
+    Captnmurphy (Windwalker Mon) Zenith                       14s     1.33x        -113%
+    Hozzaarr (Unholy Death K) Icebound Fortitude           17s     1.57x         +20%
+    Skylake (Discipline Pri) Power Infusion               35s     0.90x          -7%
+    Skylake (Discipline Pri) Pain Suppression             35s     0.61x         +23%
+    Hozzaarr (Unholy Death K) Anti-Magic Zone              39s     0.57x         +80%
+    Captnmurphy (Windwalker Mon) Zenith                       39s     1.64x        -137%
+    Captnmurphy (Windwalker Mon) Touch of Karma               59s     0.12x         +99%
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Mikejason (Mistweaver Mon) Invoke Chi-Ji, the Red Crane   14s     1.25x  no pressure
+    Mikejason (Mistweaver Mon) Leg Sweep                    16s     1.77x  no pressure
+    Qpertuafgdhj (Shadow Priest) Desperate Prayer             28s     0.30x         +43%
+    Kåmusåri (Survival Hunte) Aspect of the Eagle          28s     1.93x         +18%
+    Kåmusåri (Survival Hunte) Roar of Sacrifice            29s     2.39x  no pressure
+    Kåmusåri (Survival Hunte) Takedown                     33s     3.37x  no pressure
+    Kåmusåri (Survival Hunte) Boomstick                    35s     5.64x  no pressure
+    Qpertuafgdhj (Shadow Priest) Power Infusion               44s     1.95x          +7%
+    Qpertuafgdhj (Shadow Priest) Vampiric Embrace             44s     2.23x         -35%
+    Kåmusåri (Survival Hunte) Survival of the Fittest      62s     0.04x         +91%
+
+=== 19:57  WON   237s
+    Discipline Priest + Windwalker Monk + Unholy Death Knight
+    vs Retribution Paladin + Discipline Priest + Havoc Demon Hunter
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Skylake (Discipline Pri) Pain Suppression             10s     0.11x         +73%
+    Hozzaarr (Unholy Death K) Blinding Sleet               15s     0.10x  no pressure
+    Captnmurphy (Windwalker Mon) Leg Sweep                    16s     0.09x         +54%
+    Hozzaarr (Unholy Death K) Army of the Dead             16s     1.42x        -448%
+    Captnmurphy (Windwalker Mon) Zenith                       17s     1.94x         -92%
+    Captnmurphy (Windwalker Mon) Invoke Xuen, the White Tiger   23s     1.39x         -21%
+    Captnmurphy (Windwalker Mon) Celestial Conduit            26s     1.53x         +79%
+    Captnmurphy (Windwalker Mon) Zenith                       37s     1.67x          -1%
+    Hozzaarr (Unholy Death K) Anti-Magic Zone              43s     0.82x         +61%
+    Skylake (Discipline Pri) Pain Suppression             45s     0.82x         +74%
+    Skylake (Discipline Pri) Power Infusion               46s     0.99x         +83%
+    Hozzaarr (Unholy Death K) Icebound Fortitude           61s     1.20x        -126%
+    Skylake (Discipline Pri) Ultimate Penitence           74s     6.70x  no pressure
+    Captnmurphy (Windwalker Mon) Leg Sweep                    75s     1.10x         +53%
+    Hozzaarr (Unholy Death K) Blinding Sleet               86s     0.26x         +49%
+    Captnmurphy (Windwalker Mon) Zenith                       88s     0.92x         +39%
+    Hozzaarr (Unholy Death K) Army of the Dead            113s     0.98x         +50%
+    Captnmurphy (Windwalker Mon) Invoke Xuen, the White Tiger  120s     1.07x         +55%
+    Captnmurphy (Windwalker Mon) Celestial Conduit           121s     2.78x  no pressure
+    Captnmurphy (Windwalker Mon) Leg Sweep                   138s     0.00x  no pressure
+    Skylake (Discipline Pri) Pain Suppression            143s     0.30x         -18%
+    Hozzaarr (Unholy Death K) Blinding Sleet              147s     0.53x         +81%
+    Hozzaarr (Unholy Death K) Lichborne                   164s     2.66x         +45%
+    Captnmurphy (Windwalker Mon) Zenith                      167s     2.05x         +76%
+    Skylake (Discipline Pri) Power Infusion              173s     0.81x         +91%
+    Captnmurphy (Windwalker Mon) Leg Sweep                   188s     0.33x  no pressure
+    Hozzaarr (Unholy Death K) Army of the Dead            203s     1.07x         +25%
+    Hozzaarr (Unholy Death K) Icebound Fortitude          208s     1.80x         +65%
+    Captnmurphy (Windwalker Mon) Invoke Xuen, the White Tiger  224s     1.22x  no pressure
+    Captnmurphy (Windwalker Mon) Celestial Conduit           227s     3.48x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                      229s     1.17x  no pressure
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Mcdues (Discipline Pri) Power Infusion                7s     0.48x  no pressure
+    Biiggwhammy (Retribution Pa) Execution Sentence            8s     0.89x  no pressure
+    Biiggwhammy (Retribution Pa) Avenging Wrath                9s     1.54x  no pressure
+    Scarred (Havoc Demon Hu) The Hunt                     10s     0.07x  no pressure
+    Biiggwhammy (Retribution Pa) Divine Protection            12s     0.43x  no pressure
+    Mcdues (Discipline Pri) Ultimate Penitence           18s     1.82x  no pressure
+    Scarred (Havoc Demon Hu) Darkness                     29s     0.71x         +31%
+    Biiggwhammy (Retribution Pa) Blessing of Spellwarding     30s     0.76x         +99%
+    Biiggwhammy (Retribution Pa) Blessing of Sacrifice        40s     2.33x         +40%
+    Scarred (Havoc Demon Hu) Sigil of Misery              62s     0.79x  no pressure
+    Biiggwhammy (Retribution Pa) Execution Sentence           70s     2.56x        -113%
+    Biiggwhammy (Retribution Pa) Avenging Wrath               71s     2.05x          +6%
+    Mcdues (Discipline Pri) Leap of Faith                73s     1.84x         +69%
+    Scarred (Havoc Demon Hu) The Hunt                     74s     4.31x  no pressure
+    Mcdues (Discipline Pri) Pain Suppression             80s     1.26x         +93%
+    Biiggwhammy (Retribution Pa) Divine Protection            85s     0.88x        +100%
+    Mcdues (Discipline Pri) Power Infusion              130s     1.44x         +15%
+    Biiggwhammy (Retribution Pa) Execution Sentence          133s     1.44x         +44%
+    Biiggwhammy (Retribution Pa) Avenging Wrath              135s     1.65x         +36%
+    Biiggwhammy (Retribution Pa) Divine Shield               139s     1.96x        +100%
+    Scarred (Havoc Demon Hu) The Hunt                    142s     1.81x  no pressure
+    Biiggwhammy (Retribution Pa) Divine Protection           157s     1.71x        +100%
+    Scarred (Havoc Demon Hu) Sigil of Misery             164s     0.04x  no pressure
+    Biiggwhammy (Retribution Pa) Blessing of Sacrifice       173s     0.68x         +81%
+    Mcdues (Discipline Pri) Pain Suppression            183s     0.11x         +80%
+    Mcdues (Discipline Pri) Leap of Faith               184s     0.22x         +97%
+    Biiggwhammy (Retribution Pa) Execution Sentence          194s     3.06x         -19%
+    Biiggwhammy (Retribution Pa) Avenging Wrath              195s     2.07x          -4%
+    Scarred (Havoc Demon Hu) The Hunt                    207s     3.39x  no pressure
+    Mcdues (Discipline Pri) Pain Suppression            211s     0.84x         +15%
+
+=== 20:02  WON   75s
+    Windwalker Monk + Discipline Priest + Unholy Death Knight
+    vs Restoration Shaman + Unholy Death Knight + Beast Mastery Hunter
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Blinding Sleet                5s     0.40x  no pressure
+    Hozzaarr (Unholy Death K) Army of the Dead              6s     1.21x  no pressure
+    Captnmurphy (Windwalker Mon) Leg Sweep                     7s     1.17x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                        8s     1.01x  no pressure
+    Skylake (Discipline Pri) Power Infusion               10s     0.85x  no pressure
+    Skylake (Discipline Pri) Power Infusion               10s     0.54x  no pressure
+    Hozzaarr (Unholy Death K) Icebound Fortitude           20s     1.64x         +53%
+    Skylake (Discipline Pri) Pain Suppression             21s     1.54x         +71%
+    Captnmurphy (Windwalker Mon) Touch of Karma               26s     1.60x         +99%
+    Captnmurphy (Windwalker Mon) Zenith                       30s     1.28x         +41%
+    Skylake (Discipline Pri) Pain Suppression             37s     0.60x         +84%
+    Skylake (Discipline Pri) Ultimate Penitence           59s     4.36x  no pressure
+    Captnmurphy (Windwalker Mon) Leg Sweep                    59s     2.71x          +1%
+    Captnmurphy (Windwalker Mon) Zenith                       71s     0.27x        +100%
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Üuü (Unholy Death K) Blinding Sleet                9s     0.01x  no pressure
+    Letmeshoo (Beast Mastery) Bestial Wrath                10s     2.15x  no pressure
+    Teriyke (Restoration Sh) Astral Shift                 12s       —         -49%
+    Teriyke (Restoration Sh) Healing Tide Totem           12s       —          +3%
+    Üuü (Unholy Death K) Army of the Dead             13s     1.42x        -317%
+    Teriyke (Restoration Sh) Capacitor Totem              17s       —         +10%
+    Teriyke (Restoration Sh) Spiritwalker's Grace         33s       —         +20%
+    Üuü (Unholy Death K) Anti-Magic Zone              33s     1.47x         +64%
+    Letmeshoo (Beast Mastery) Roar of Sacrifice            35s     1.55x         +66%
+    Letmeshoo (Beast Mastery) Bestial Wrath                46s     0.97x  no pressure
+    Üuü (Unholy Death K) Lichborne                    53s     1.50x        -941%
+    Teriyke (Restoration Sh) Spirit Link Totem            57s       —         -30%
+    Üuü (Unholy Death K) Icebound Fortitude           60s     1.45x         +20%
+    Üuü (Unholy Death K) Death Pact                   60s     0.79x         +46%
+    Letmeshoo (Beast Mastery) Survival of the Fittest      72s     0.00x         +51%
+
+=== 20:08  WON   118s
+    Discipline Priest + Unholy Death Knight + Windwalker Monk
+    vs Beast Mastery Hunter + Discipline Priest + Feral Druid
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Icebound Fortitude           12s     0.35x         +19%
+    Skylake (Discipline Pri) Pain Suppression             13s     0.45x         +60%
+    Hozzaarr (Unholy Death K) Army of the Dead             15s     1.31x        -245%
+    Captnmurphy (Windwalker Mon) Zenith                       28s     1.52x  no pressure
+    Skylake (Discipline Pri) Power Infusion               29s     1.12x  no pressure
+    Hozzaarr (Unholy Death K) Blinding Sleet               43s     0.97x         +41%
+    Captnmurphy (Windwalker Mon) Leg Sweep                    49s     1.41x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                       50s     1.19x        -210%
+    Skylake (Discipline Pri) Pain Suppression             57s     0.88x         +43%
+    Hozzaarr (Unholy Death K) Anti-Magic Zone              57s     0.90x         +62%
+    Hozzaarr (Unholy Death K) Lichborne                    76s     0.89x         -58%
+    Captnmurphy (Windwalker Mon) Zenith                       91s     1.27x         +52%
+    Captnmurphy (Windwalker Mon) Leg Sweep                   106s     5.71x        +100%
+    Hozzaarr (Unholy Death K) Army of the Dead            108s     0.63x         +77%
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Gochuxx (Discipline Pri) Power Infusion               10s     0.54x  no pressure
+    Splitbreed (Beast Mastery) Bestial Wrath                11s     0.65x  no pressure
+    Meowzetzan (Feral Druid) Incarnation: Avatar of Ashamane   11s     1.34x  no pressure
+    Splitbreed (Beast Mastery) Survival of the Fittest      30s     1.85x         +94%
+    Meowzetzan (Feral Druid) Mighty Bash                  37s     0.57x          -6%
+    Splitbreed (Beast Mastery) Bestial Wrath                42s     0.84x         +52%
+    Meowzetzan (Feral Druid) Barkskin                     51s     1.51x         +82%
+    Gochuxx (Discipline Pri) Leap of Faith                51s     0.75x        +100%
+    Gochuxx (Discipline Pri) Ultimate Penitence           56s     4.75x  no pressure
+    Splitbreed (Beast Mastery) Roar of Sacrifice            70s     1.69x         +54%
+    Splitbreed (Beast Mastery) Bestial Wrath                75s     2.13x  no pressure
+    Splitbreed (Beast Mastery) Aspect of the Cheetah        75s     5.29x  no pressure
+    Gochuxx (Discipline Pri) Pain Suppression             76s     1.35x         +81%
+    Meowzetzan (Feral Druid) Mighty Bash                 100s     3.07x         -27%
+    Meowzetzan (Feral Druid) Incarnation: Avatar of Ashamane  103s     0.45x         -32%
+    Splitbreed (Beast Mastery) Bestial Wrath               105s     1.80x  no pressure
+
+=== 20:13  LOST  82s
+    Discipline Priest + Unholy Death Knight + Windwalker Monk
+    vs Restoration Druid + Unholy Death Knight + Beast Mastery Hunter
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Army of the Dead              7s     1.42x        -672%
+    Skylake (Discipline Pri) Power Infusion                7s     0.67x         +42%
+    Hozzaarr (Unholy Death K) Icebound Fortitude           10s     1.72x         +53%
+    Hozzaarr (Unholy Death K) Blinding Sleet               12s     2.04x         +94%
+    Captnmurphy (Windwalker Mon) Leg Sweep                    15s     1.45x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                       16s     1.82x         +32%
+    Skylake (Discipline Pri) Pain Suppression             40s     0.96x         +15%
+    Hozzaarr (Unholy Death K) Lichborne                    41s     0.87x         +14%
+    Captnmurphy (Windwalker Mon) Zenith                       44s     1.29x  no pressure
+    Skylake (Discipline Pri) Pain Suppression             53s     1.56x         +68%
+    Hozzaarr (Unholy Death K) Anti-Magic Zone              54s     1.81x         +79%
+    Captnmurphy (Windwalker Mon) Leg Sweep                    66s     0.70x  no pressure
+    Captnmurphy (Windwalker Mon) Touch of Karma               71s     1.11x         +61%
+    Captnmurphy (Windwalker Mon) Zenith                       77s     0.51x         +41%
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Whâle (Unholy Death K) Army of the Dead              4s     1.32x  no pressure
+    Ketaa (Beast Mastery)  Bestial Wrath                 6s     0.72x  no pressure
+    Whâle (Unholy Death K) Icebound Fortitude           16s     1.58x         +42%
+    Maxdruid (Restoration Dr) Barkskin                     17s     0.00x         -53%
+    Whâle (Unholy Death K) Blinding Sleet               17s     1.74x         +57%
+    Whâle (Unholy Death K) Anti-Magic Zone              22s     1.29x  no pressure
+    Ketaa (Beast Mastery)  Survival of the Fittest      27s     0.67x         +93%
+    Maxdruid (Restoration Dr) Ironbark                     27s     1.24x         +15%
+    Ketaa (Beast Mastery)  Roar of Sacrifice            28s     1.30x         +33%
+    Whâle (Unholy Death K) Death Pact                   28s     1.11x          +4%
+    Ketaa (Beast Mastery)  Bestial Wrath                37s     1.82x         +12%
+    Ketaa (Beast Mastery)  Bestial Wrath                67s     1.20x         +73%
+    Ketaa (Beast Mastery)  Survival of the Fittest      68s     2.02x  no pressure
+    Whâle (Unholy Death K) Lichborne                    69s     0.16x         +35%
+    Whâle (Unholy Death K) Wraith Walk                  75s     0.07x        -113%
+    Whâle (Unholy Death K) Blinding Sleet               82s     0.00x        +100%
+
+=== 20:19  WON   83s
+    Unholy Death Knight + Windwalker Monk + Discipline Priest
+    vs Restoration Druid + Unholy Death Knight + Beast Mastery Hunter
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Army of the Dead              6s     1.17x  no pressure
+    Skylake (Discipline Pri) Power Infusion                7s     0.97x  no pressure
+    Hozzaarr (Unholy Death K) Icebound Fortitude           10s     0.74x         -61%
+    Skylake (Discipline Pri) Pain Suppression             11s     0.77x         +44%
+    Captnmurphy (Windwalker Mon) Leg Sweep                    15s     1.73x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                       16s     2.26x  no pressure
+    Skylake (Discipline Pri) Ultimate Penitence           18s     3.94x  no pressure
+    Hozzaarr (Unholy Death K) Lichborne                    25s     1.69x        -110%
+    Captnmurphy (Windwalker Mon) Zenith                       38s     1.12x         +35%
+    Hozzaarr (Unholy Death K) Blinding Sleet               41s     1.09x         +81%
+    Skylake (Discipline Pri) Pain Suppression             51s     1.47x         +48%
+    Hozzaarr (Unholy Death K) Anti-Magic Zone              61s     1.14x         +45%
+    Captnmurphy (Windwalker Mon) Leg Sweep                    66s     0.99x  no pressure
+    Captnmurphy (Windwalker Mon) Zenith                       81s     0.40x  no pressure
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Whâle (Unholy Death K) Army of the Dead              6s     1.93x  no pressure
+    Ketaa (Beast Mastery)  Bestial Wrath                12s     0.72x  no pressure
+    Whâle (Unholy Death K) Blinding Sleet               15s     1.11x         -72%
+    Whâle (Unholy Death K) Icebound Fortitude           17s     2.76x         -74%
+    Ketaa (Beast Mastery)  Roar of Sacrifice            21s     3.18x         -14%
+    Ketaa (Beast Mastery)  Survival of the Fittest      22s     2.02x         +57%
+    Ketaa (Beast Mastery)  Bestial Wrath                42s     0.91x         +38%
+    Maxdruid (Restoration Dr) Ironbark                     45s     0.62x         +37%
+    Whâle (Unholy Death K) Wraith Walk                  52s     0.07x          +9%
+    Ketaa (Beast Mastery)  Bestial Wrath                73s     1.40x         -77%
+    Ketaa (Beast Mastery)  Survival of the Fittest      74s     3.50x         -18%
+    Ketaa (Beast Mastery)  Aspect of the Turtle         75s     0.84x         +84%
+
+=== 20:22  LOST  74s
+    Discipline Priest + Windwalker Monk + Unholy Death Knight
+    vs Shadow Priest + Restoration Shaman + Affliction Warlock
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Skylake (Discipline Pri) Power Infusion               11s     0.46x  no pressure
+    Hozzaarr (Unholy Death K) Blinding Sleet               15s     0.00x  no pressure
+    Hozzaarr (Unholy Death K) Army of the Dead             16s     1.30x        -615%
+    Captnmurphy (Windwalker Mon) Leg Sweep                    18s     0.32x          -3%
+    Captnmurphy (Windwalker Mon) Zenith                       19s     1.34x         -82%
+    Hozzaarr (Unholy Death K) Icebound Fortitude           20s     1.25x         +96%
+    Captnmurphy (Windwalker Mon) Zenith                       47s     2.34x          +7%
+    Skylake (Discipline Pri) Pain Suppression             50s     2.50x         +98%
+    Captnmurphy (Windwalker Mon) Touch of Karma               51s     2.44x         +80%
+    Hozzaarr (Unholy Death K) Lichborne                    63s     1.36x         -41%
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Jags (Shadow Priest)   Power Infusion                7s     0.91x  no pressure
+    Jags (Shadow Priest)   Vampiric Embrace              9s     1.04x  no pressure
+    Strongpisser (Restoration Sh) Healing Tide Totem           17s     0.00x  no pressure
+    Bahbi (Affliction War) Dark Pact                    19s     0.77x  no pressure
+    Bahbi (Affliction War) Dark Harvest                 31s     2.26x         -88%
+    Bahbi (Affliction War) Malevolence                  45s     1.45x         -24%
+    Strongpisser (Restoration Sh) Capacitor Totem              46s     2.74x  no pressure
+    Bahbi (Affliction War) Summon Darkglare             48s     1.45x         -21%
+    Strongpisser (Restoration Sh) Tremor Totem                 54s     2.43x  no pressure
+    Jags (Shadow Priest)   Leap of Faith                59s     2.36x         +52%
+    Bahbi (Affliction War) Dark Pact                    68s     0.37x         +91%
+
+=== 20:25  LOST  97s
+    Discipline Priest + Windwalker Monk + Unholy Death Knight
+    vs Restoration Druid + Fury Warrior + Frost Mage
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Blinding Sleet               12s     0.66x  no pressure
+    Skylake (Discipline Pri) Power Infusion               12s     1.27x        -310%
+    Hozzaarr (Unholy Death K) Army of the Dead             13s     1.31x  no pressure
+    Captnmurphy (Windwalker Mon) Leg Sweep                    16s     3.81x         +19%
+    Captnmurphy (Windwalker Mon) Zenith                       17s     1.50x         -72%
+    Hozzaarr (Unholy Death K) Anti-Magic Shell             34s     1.62x         +84%
+    Skylake (Discipline Pri) Pain Suppression             34s     1.59x         +81%
+    Captnmurphy (Windwalker Mon) Touch of Karma               49s     2.55x        +100%
+    Captnmurphy (Windwalker Mon) Zenith                       52s     2.61x         +50%
+    Hozzaarr (Unholy Death K) Lichborne                    56s     0.34x        -218%
+    Skylake (Discipline Pri) Pain Suppression             66s     1.05x         +82%
+    Hozzaarr (Unholy Death K) Icebound Fortitude           69s     1.52x         +99%
+    Hozzaarr (Unholy Death K) Anti-Magic Shell             76s     2.98x  no pressure
+    Hozzaarr (Unholy Death K) Blinding Sleet               82s     1.93x         +69%
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Qttr (Frost Mage)      Frozen Orb                   10s     1.29x  no pressure
+    Qttr (Frost Mage)      Alter Time                   13s     1.50x        -742%
+    Seowood (Restoration Dr) Ironbark                     18s     1.24x         +34%
+    Wär (Fury Warrior)    Enraged Regeneration         19s     1.11x         +61%
+    Wär (Fury Warrior)    Recklessness                 22s     2.25x         +51%
+    Wär (Fury Warrior)    Avatar                       22s     2.07x         +30%
+    Qttr (Frost Mage)      Mass Invisibility            28s     0.47x          +6%
+    Seowood (Restoration Dr) Ursol's Vortex               30s     0.88x  no pressure
+    Qttr (Frost Mage)      Ray of Frost                 32s     1.36x         -59%
+    Qttr (Frost Mage)      Ice Block                    53s     0.59x         +37%
+    Wär (Fury Warrior)    Intimidating Shout           54s     0.46x        -418%
+    Wär (Fury Warrior)    Recklessness                 58s     1.63x         +68%
+    Wär (Fury Warrior)    Avatar                       58s     1.17x         +70%
+    Seowood (Restoration Dr) Innervate                    59s     4.06x  no pressure
+    Qttr (Frost Mage)      Frozen Orb                   59s     1.86x          -9%
+    Qttr (Frost Mage)      Ray of Frost                 73s     3.15x         -47%
+    Qttr (Frost Mage)      Alter Time                   77s     1.15x          +7%
+    Qttr (Frost Mage)      Ray of Frost                 91s     2.68x         +44%
+
+=== 20:30  LOST  133s
+    Unholy Death Knight + Discipline Priest + Windwalker Monk
+    vs Fury Warrior + Restoration Druid + Frost Mage
+
+  YOUR TEAM
+    who                    cooldown                      at   dmg done    dmg taken
+    Hozzaarr (Unholy Death K) Army of the Dead              9s     1.03x  no pressure
+    Hozzaarr (Unholy Death K) Icebound Fortitude           13s     0.94x  no pressure
+    Skylake (Discipline Pri) Pain Suppression             17s     1.48x         +45%
+    Skylake (Discipline Pri) Power Infusion               19s     1.84x         +77%
+    Captnmurphy (Windwalker Mon) Zenith                       19s     1.84x         +82%
+    Hozzaarr (Unholy Death K) Blinding Sleet               20s     1.19x         +83%
+    Captnmurphy (Windwalker Mon) Leg Sweep                    22s     1.68x         +99%
+    Hozzaarr (Unholy Death K) Lichborne                    25s     1.04x         -92%
+    Captnmurphy (Windwalker Mon) Touch of Karma               32s     1.56x  no pressure
+    Skylake (Discipline Pri) Pain Suppression             45s     0.78x         +62%
+    Captnmurphy (Windwalker Mon) Zenith                       54s     2.07x         +26%
+    Skylake (Discipline Pri) Ultimate Penitence           55s     5.11x  no pressure
+    Hozzaarr (Unholy Death K) Wraith Walk                  70s     0.99x         +43%
+    Captnmurphy (Windwalker Mon) Leg Sweep                    76s     1.82x         +44%
+    Captnmurphy (Windwalker Mon) Zenith                       80s     1.54x          +6%
+    Hozzaarr (Unholy Death K) Blinding Sleet               81s     0.71x         -35%
+    Hozzaarr (Unholy Death K) Anti-Magic Zone              97s     1.03x          -2%
+    Hozzaarr (Unholy Death K) Army of the Dead            108s     0.94x         +15%
+    Hozzaarr (Unholy Death K) Lichborne                   122s     0.97x         +23%
+    Captnmurphy (Windwalker Mon) Leg Sweep                   128s     0.00x  no pressure
+
+  THEM
+    who                    cooldown                      at   dmg done    dmg taken
+    Qttr (Frost Mage)      Frozen Orb                    7s     1.75x  no pressure
+    Qttr (Frost Mage)      Ray of Frost                 13s     2.55x  no pressure
+    Wär (Fury Warrior)    Enraged Regeneration         20s     0.08x         +27%
+    Wär (Fury Warrior)    Intimidating Shout           25s     0.65x          -2%
+    Seowood (Restoration Dr) Ironbark                     26s     1.66x         +10%
+    Qttr (Frost Mage)      Ray of Frost                 29s     1.61x  no pressure
+    Wär (Fury Warrior)    Recklessness                 31s     2.86x         +12%
+    Wär (Fury Warrior)    Avatar                       31s     2.32x         +30%
+    Qttr (Frost Mage)      Frozen Orb                   40s     0.99x         +47%
+    Qttr (Frost Mage)      Mass Invisibility            63s     1.10x         +73%
+    Qttr (Frost Mage)      Ray of Frost                 66s     1.53x  no pressure
+    Qttr (Frost Mage)      Frozen Orb                   79s     1.56x         +79%
+    Wär (Fury Warrior)    Recklessness                 80s     1.53x         -43%
+    Wär (Fury Warrior)    Avatar                       81s     1.77x          +8%
+    Seowood (Restoration Dr) Innervate                    83s     1.25x         +81%
+    Seowood (Restoration Dr) Dash                        101s     0.27x  no pressure
+    Qttr (Frost Mage)      Ray of Frost                119s     2.40x  no pressure
+    Wär (Fury Warrior)    Intimidating Shout          121s     1.57x         +43%
+    Seowood (Restoration Dr) Ironbark                    122s     1.25x         +60%
+    Wär (Fury Warrior)    Recklessness                123s     1.16x         +79%
+    Wär (Fury Warrior)    Avatar                      123s     0.70x         +84%
+    Qttr (Frost Mage)      Frozen Orb                  128s     0.62x  no pressure
+
+
+================================================================================================
+ACROSS ALL 15 MATCHES — what each major cooldown actually did
+================================================================================================
+
+spec                     cooldown                   casts    dmg done    dmg reduced   reads as
+------------------------------------------------------------------------------------------------
+
+Affliction Warlock       Dark Pact                      8      1.12x     +37% (n5)   defensive
+Affliction Warlock       Dark Harvest                   6      1.93x     -19% (n2)   offensive
+Affliction Warlock       Summon Darkglare               4      1.24x    -129% (n2)   pressed INTO more damage
+Affliction Warlock       Unending Resolve               2      1.60x     +25% (n1)   both
+
+Beast Mastery Hunter     Bestial Wrath                 12      1.28x     +20% (n5)   neither stands out
+Beast Mastery Hunter     Survival of the Fittest        6      1.68x     +56% (n5)   both
+Beast Mastery Hunter     Roar of Sacrifice              4      1.93x     +35% (n4)   both
+
+Discipline Priest        Pain Suppression              29      1.18x    +63% (n29)   defensive
+Discipline Priest        Power Infusion                20      0.99x    +10% (n10)   neither stands out
+Discipline Priest        Ultimate Penitence             7      4.77x           —   offensive
+Discipline Priest        Leap of Faith                  4      0.78x     +77% (n4)   defensive
+
+Feral Druid              Incarnation: Avatar of Ashamane     2      0.89x     -32% (n1)   pressed INTO more damage
+Feral Druid              Mighty Bash                    2      1.82x     -17% (n2)   offensive
+
+Fire Mage                Alter Time                     3      1.13x     +40% (n2)   defensive
+Fire Mage                Combustion                     2      1.97x    -111% (n2)   offensive
+
+Frost Mage               Frozen Orb                    12      1.51x      -1% (n6)   offensive
+Frost Mage               Ray of Frost                  11      2.19x     -20% (n3)   offensive
+Frost Mage               Ice Block                      2      0.30x     +37% (n1)   defensive
+Frost Mage               Alter Time                     2      1.32x    -367% (n2)   pressed INTO more damage
+Frost Mage               Mass Invisibility              2      0.78x     +39% (n2)   defensive
+
+Fury Warrior             Recklessness                   5      1.89x     +34% (n5)   both
+Fury Warrior             Avatar                         5      1.60x     +44% (n5)   both
+Fury Warrior             Intimidating Shout             3      0.89x    -126% (n3)   pressed INTO more damage
+Fury Warrior             Enraged Regeneration           2      0.60x     +44% (n2)   defensive
+
+Havoc Demon Hunter       The Hunt                       5      2.51x           —   offensive
+Havoc Demon Hunter       Sigil of Misery                3      0.34x           —   neither stands out
+Havoc Demon Hunter       Darkness                       2      1.11x     +31% (n1)   defensive
+
+Holy Paladin             Avenging Crusader              4      3.48x      +8% (n3)   offensive
+Holy Paladin             Aura Mastery                   2      0.07x           —   neither stands out
+Holy Paladin             Blessing of Sacrifice          2      0.89x     +50% (n2)   defensive
+Holy Paladin             Divine Protection              2      3.36x     +52% (n2)   both
+
+Mistweaver Monk          Invoke Chi-Ji, the Red Crane     2      0.63x    -188% (n1)   pressed INTO more damage
+
+Preservation Evoker      Obsidian Scales                3      1.17x     -14% (n3)   neither stands out
+Preservation Evoker      Oppressing Roar                2      0.37x      +4% (n2)   neither stands out
+Preservation Evoker      Time Dilation                  2      1.54x     +12% (n2)   offensive
+
+Restoration Druid        Ironbark                       5      1.20x     +31% (n5)   defensive
+Restoration Druid        Innervate                      2      2.66x     +81% (n1)   both
+
+Restoration Shaman       Healing Tide Totem             2      0.00x      +3% (n1)   neither stands out
+Restoration Shaman       Capacitor Totem                2      2.74x     +10% (n1)   offensive
+
+Retribution Paladin      Execution Sentence             5      2.29x     -29% (n3)   offensive
+Retribution Paladin      Avenging Wrath                 5      1.88x     +13% (n3)   offensive
+Retribution Paladin      Divine Protection              4      1.51x    +100% (n3)   both
+Retribution Paladin      Blessing of Sacrifice          2      1.51x     +61% (n2)   both
+
+Shadow Priest            Power Infusion                 2      1.43x      +7% (n1)   offensive
+Shadow Priest            Vampiric Embrace               2      1.64x     -35% (n1)   offensive
+
+Unholy Death Knight      Blinding Sleet                26      0.74x    +41% (n15)   defensive
+Unholy Death Knight      Army of the Dead              25      1.21x   -189% (n14)   pressed INTO more damage
+Unholy Death Knight      Icebound Fortitude            18      1.48x    +32% (n16)   both
+Unholy Death Knight      Lichborne                     16      1.17x    -89% (n14)   pressed INTO more damage
+Unholy Death Knight      Anti-Magic Zone               10      1.08x     +58% (n8)   defensive
+Unholy Death Knight      Wraith Walk                    5      0.24x     -33% (n5)   pressed INTO more damage
+Unholy Death Knight      Death Pact                     2      0.95x     +25% (n2)   defensive
+Unholy Death Knight      Anti-Magic Shell               2      2.30x     +84% (n1)   both
+
+Windwalker Monk          Zenith                        43      1.50x     -3% (n33)   offensive
+Windwalker Monk          Leg Sweep                     29      1.80x    +47% (n10)   both
+Windwalker Monk          Touch of Karma                 8      1.48x     +91% (n7)   both
+Windwalker Monk          Invoke Xuen, the White Tiger     3      1.23x     +17% (n2)   neither stands out
+Windwalker Monk          Celestial Conduit              3      2.60x     +79% (n1)   both
+
+Skipped — no usable duration on the spell row, so no window to measure:
+  Gladiator's Medallion          66 cast(s)
+  Evangelism                     35 cast(s)
+  Fortifying Brew                13 cast(s)
+  Divine Toll                    10 cast(s)
+  Intimidation                   9 cast(s)
+  Nature's Swiftness             7 cast(s)
+  Incarnation: Tree of Life      7 cast(s)
+  Touch of Death                 5 cast(s)
+  Greater Invisibility           5 cast(s)
+  Champion's Spear               4 cast(s)
