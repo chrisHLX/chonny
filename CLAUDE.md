@@ -469,7 +469,11 @@ author. 16 drafts live in `data/machine-guides/`.
   Blizzard's node id. **Hero-tree talents ALSO exist as copies in the spec trees under the same
   Blizzard node id** (Infliction of Sorrow: San'layn and the Unholy spec tree), so a name or even a
   node id can match two rows; keep the later row, as `resolveCombatantTalents()` does with
-  `keyBy('external_node_id')`.
+  `keyBy('external_node_id')`. **And a talent node id is NOT stable across environments:** the
+  import merges talent nodes that share a name and keeps one, and which survives differs between
+  databases built from identical files (Detox: node 101150 locally, 101090 on production). The
+  guide resolver treats `#node` as a disambiguator and falls back to the name when it names exactly
+  one node.
 - **A guide drawn from observed play carries its level** (`evidence_level`, `evidence_games`,
   `evidence_note`, from the draft's `"evidence"` object; see `guides-from-play.md`).
 - `Guides\Show` bylines a machine guide "{model} guide · drafted by a model" instead of

@@ -418,8 +418,18 @@ class AuthorMachineGuide extends Command
             $nodes = $byName[$name] ?? throw new \RuntimeException("Talent '{$name}' is not in {$spec->name}'s trees on the current patch.");
 
             if (($m[3] ?? '') !== '') {
-                $nodes = array_filter($nodes, fn ($id) => $external[$id] === (int) $m[3], ARRAY_FILTER_USE_KEY)
-                    ?: throw new \RuntimeException("Talent '{$name}' is not on node #{$m[3]} in {$spec->name}'s trees.");
+                $onNode = array_filter($nodes, fn ($id) => $external[$id] === (int) $m[3], ARRAY_FILTER_USE_KEY);
+
+                // The import MERGES talent nodes that share a name and keeps one, and which one
+                // survives differs between environments (Detox: node 101150 locally, 101090 on
+                // production, from identical files). The node id is a disambiguator, not identity:
+                // when it is missing here but the name still names exactly one node, that node is
+                // the same talent. A name on several nodes still fails below.
+                if ($onNode === []) {
+                    $this->line("  <fg=yellow>'{$name}' is not on node #{$m[3]} here; matched by name instead.</>");
+                } else {
+                    $nodes = $onNode;
+                }
             }
 
             // Hero-tree talents ALSO appear as copies in the spec trees, under the same Blizzard node
