@@ -160,6 +160,43 @@ class Show extends Component
         return app(CharacterTalentResolver::class)->forCharacter($character, $match['spec_external_id'] ?? null);
     }
 
+    // ---------------------------------------------------------- the builds the guide is written for
+
+    /**
+     * Which roster slot's talent build is open (its position), or null. A UI toggle: it only ever
+     * selects among THIS guide's own slots (slotBuildView() re-derives the slot from the guide),
+     * so a forged value can open nothing that is not already on this page.
+     */
+    public ?int $openBuildSlot = null;
+
+    /**
+     * The team slots that carry their own talent build — for a guide drawn from play, the build
+     * the player actually had. Cheap: no calculator is built until a slot is opened.
+     */
+    #[Computed]
+    public function slotBuilds()
+    {
+        return $this->guide->members()->whereNotNull('talent_build_id')->with(['specialization.gameClass', 'talentBuild'])->orderBy('position')->get();
+    }
+
+    #[Computed]
+    public function slotBuildView(): ?array
+    {
+        if ($this->openBuildSlot === null) {
+            return null;
+        }
+
+        $member = $this->slotBuilds->firstWhere('position', $this->openBuildSlot);
+
+        return $member?->talentBuild ? app(CharacterTalentResolver::class)->forBuild($member->talentBuild) : null;
+    }
+
+    public function toggleSlotBuild(int $position): void
+    {
+        $this->openBuildSlot = $this->openBuildSlot === $position ? null : $position;
+        unset($this->slotBuildView);
+    }
+
     public function toggleAuthorBuild(): void
     {
         $this->showAuthorBuild = ! $this->showAuthorBuild;

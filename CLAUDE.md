@@ -457,6 +457,13 @@ author. 16 drafts live in `data/machine-guides/`.
   user can read their drafts, edit them and publish them. A person's guide is managed by its author
   only. **`guides:author` rewrites `status` on every run**: without `--draft` it publishes, with it it
   unpublishes, whatever the admin set by hand.
+- **A draft can attach each roster spec's talent build** (`"builds"`), written onto the guide's own
+  slot build the way the builder's "use my character's talents" does, and shown on the page
+  ("Talents this guide is written for"). Talents are referenced `Name[:rank][#node]`; `#node` is
+  Blizzard's node id. **Hero-tree talents ALSO exist as copies in the spec trees under the same
+  Blizzard node id** (Infliction of Sorrow: San'layn and the Unholy spec tree), so a name or even a
+  node id can match two rows; keep the later row, as `resolveCombatantTalents()` does with
+  `keyBy('external_node_id')`.
 - **A guide drawn from observed play carries its level** (`evidence_level`, `evidence_games`,
   `evidence_note`, from the draft's `"evidence"` object; see `guides-from-play.md`).
 - `Guides\Show` bylines a machine guide "{model} guide · drafted by a model" instead of

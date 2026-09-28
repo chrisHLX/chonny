@@ -2,7 +2,7 @@
   "slug": "unholy-dk-gladiator",
   "type": "class",
   "title": "Unholy DK — how a Gladiator bursts",
-  "summary": "A 4x Gladiator Unholy DK in 7 Gladiator-level games: Blinding Sleet, then Army and Dark Transformation within a second. Vampiric Strike does the damage.",
+  "summary": "A 4x Gladiator Unholy DK: Blinding Sleet, then Army, then Dark Transformation within a second, because Dark Transformation empowers the Army already out.",
   "evidence": {
     "level": "Gladiator",
     "games": 7,
@@ -11,11 +11,96 @@
   "team": [
     "deathknight/unholy"
   ],
+  "builds": {
+    "deathknight/unholy": {
+      "talents": [
+        "Blinding Sleet#76044",
+        "Runic Attenuation#76045",
+        "Anti-Magic Barrier#76046",
+        "Assimilation#76048",
+        "Gloom Ward:2#76052",
+        "Will of the Necropolis:2#76054",
+        "Runic Protection#76055",
+        "Blood Draw#76056",
+        "Grip of the Dead#76057",
+        "Unholy Endurance#76058",
+        "Brittle#76061",
+        "Anti-Magic Zone#76065",
+        "Improved Death Strike#76067",
+        "Veteran of the Third War#76068",
+        "Unholy Momentum:2#76069",
+        "Death Strike#76071",
+        "Cleaving Strikes#76073",
+        "Unholy Bond#76076",
+        "Blood Scent#76078",
+        "Rune Mastery:2#76079",
+        "Icebound Fortitude#76081",
+        "Coldthirst#76083",
+        "Mind Freeze#76084",
+        "Suppression#76087",
+        "Osmosis#76088",
+        "Magus of the Dead#76148",
+        "Commander of the Dead:2#76149",
+        "Unholy Aura:2#76150",
+        "Cycle of Death#76155",
+        "Coil of Devastation#76156",
+        "Morbidity#76160",
+        "Foul Infections#76162",
+        "Harbinger of Doom#76178",
+        "Soul Reaper#76179",
+        "Outnumber#76182",
+        "Unholy Devotion#76184",
+        "Dark Transformation#76185",
+        "Outbreak#76189",
+        "Scourge Strike#76190",
+        "Sudden Doom#76191",
+        "Festering Scythe#76193",
+        "Ghoulish Frenzy#76194",
+        "Army of the Dead#76196",
+        "Ebon Fever#76197",
+        "Infliction of Sorrow#95033",
+        "Incite Terror#95040",
+        "Inevitable#95045",
+        "The Blood is Life#95046",
+        "Gift of the San'layn#95053",
+        "Frenzied Bloodthirst#95065",
+        "Doomed Bidding#108130",
+        "Death's Echo#102007",
+        "Null Magic#102008",
+        "Blightburst#108126",
+        "Reaping#109392",
+        "Putrefy#108129",
+        "Clawing Shadows#108131",
+        "Putrid Echoes#108151",
+        "Lord of the Dead#109458",
+        "Transfusion#109736",
+        "Thrill of Blood#109737",
+        "Visceral Strength#109738",
+        "Enfeeble#110029",
+        "Necromancer's Cunning#110260",
+        "Forbidden Knowledge:2#110354",
+        "Vampiric Strike#95051",
+        "Raise Dead#76072",
+        "Asphyxiate#76064",
+        "Raise Abomination#76176",
+        "Blood-Soaked Ground#95048",
+        "Bloody Fortitude#95056",
+        "Vampiric Speed#95064",
+        "Sanguine Scent#95055",
+        "Wraith Walk#76074"
+      ],
+      "pvp": [
+        "Spellwarden",
+        "Life and Death",
+        "Necrotic Wounds"
+      ]
+    }
+  },
   "sections": [
     {
       "kind": "text",
-      "title": "Vampiric Strike is the damage; Army is the timing",
-      "body": "Vampiric Strike did 14% of his damage at 8.9 casts a minute, Putrefy 10%, Necrotic Coil 7%. His pets did over a quarter between them. Dread Plague's burst when dispelled, from the Life and Death PvP talent, added 6%. PvP talents in all 7 games: Spellwarden, Life and Death, Necrotic Wounds. One player's play across 10.5 minutes of arena: a proposal to correct."
+      "title": "Why Army goes first: four talents set the order",
+      "body": "Commander of the Dead: Dark Transformation gives his Lesser Ghouls and Magus +25% damage for 30s, so the Army is out first. Gift of the San'layn: inside Dark Transformation his strike becomes Vampiric Strike, his biggest hitter. Reaping: Dark Transformation resets Soul Reaper and lets it hit any target. Forbidden Knowledge: Army turns Death Coil into Necrotic Coil for 30s."
     },
     {
       "kind": "sequence",
@@ -29,7 +114,7 @@
         {
           "spec": "deathknight/unholy",
           "spell": "Blinding Sleet",
-          "note": "1.3s before Army, 5 of 9 times: their team disoriented as the pets land."
+          "note": "1.3s before Army, 5 of 9 times: disorients those in front as the ghouls arrive."
         }
       ]
     },
@@ -40,38 +125,43 @@
         {
           "spec": "deathknight/unholy",
           "spell": "Army of the Dead",
-          "note": "The go starts here. 9 in 7 games."
+          "note": "Starts the go. Forbidden Knowledge: Death Coil is Necrotic Coil for 30s."
         },
         {
           "spec": "deathknight/unholy",
           "spell": "Dark Transformation",
-          "note": "Within a second of Army, 7 of 9 times."
+          "note": "Within 1s of Army, 7 of 9: Commander of the Dead gives the Army +25%."
         },
         {
           "spec": "deathknight/unholy",
           "spell": "Soul Reaper",
-          "note": "About 1s later, 6 of 9 times."
+          "note": "About 1s later, 6 of 9: Reaping just reset it and lets it hit any target."
         },
         {
           "spec": "deathknight/unholy",
           "spell": "Putrefy",
-          "note": "About 2.4s after Army. 10% of his damage."
+          "note": "About 2.4s after Army. Necrotic Wounds: absorbs 8% of their healing, up to 3."
         }
       ]
     },
     {
       "kind": "sequence",
-      "title": "Burst: what fills it",
+      "title": "Burst: what fills it, and why then",
       "steps": [
         {
           "spec": "deathknight/unholy",
           "spell": "Vampiric Strike",
-          "note": "His biggest hitter: 14% of damage, 8.9 casts a minute."
+          "note": "73% inside Dark Transformation (Gift of the San'layn). 14% of his damage."
         },
         {
           "spec": "deathknight/unholy",
           "spell": "Necrotic Coil",
-          "note": "Straight after Putrefy. 7% of damage."
+          "note": "Every one inside Army. Pressed near full runic power: median 86 of 100."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Death Coil",
+          "note": "Outside Army: spends runic power at a median 76 of 100, before it caps."
         }
       ]
     },
@@ -94,7 +184,7 @@
     {
       "kind": "text",
       "title": "Land the burst on their healer's CC",
-      "body": "The DK and Monk usually burst together. It killed when their healer was locked out or kicked during those 6 seconds (3 of 5 at this level) and rarely when their healer was free (1 of 7). The damage and the lockout were both there, and mostly not at the same time. The full comp read is in the Walking Dead guide."
+      "body": "The DK and Monk usually burst together. It killed when their healer was locked out or kicked during those 6 seconds (3 of 5 at this level) and rarely when their healer was free (1 of 7). His build, the same in all 7 games, is attached: open it above. Life and Death punishes a dispel of Dread Plague: 6% of his damage. The full comp read is in the Walking Dead guide."
     }
   ]
 }

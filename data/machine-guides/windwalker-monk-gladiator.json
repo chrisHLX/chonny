@@ -2,7 +2,7 @@
   "slug": "windwalker-monk-gladiator",
   "type": "class",
   "title": "Windwalker Monk — how a Gladiator bursts",
-  "summary": "A 6x Gladiator Windwalker in 7 Gladiator-level games: Leg Sweep, Badge and Zenith together, then Strike of the Windlord and Fists of Fury.",
+  "summary": "A 6x Gladiator Windwalker: Leg Sweep, Badge and Zenith together, then Rising Sun Kick, because Zenith resets it and cuts every chi cost by 1.",
   "evidence": {
     "level": "Gladiator",
     "games": 7,
@@ -11,11 +11,101 @@
   "team": [
     "monk/windwalker"
   ],
+  "builds": {
+    "monk/windwalker": {
+      "talents": [
+        "Sharp Reflexes#101036",
+        "Ascension#101037",
+        "Brawler's Intensity#101038",
+        "Glory of the Dawn#101039",
+        "Communion With Wind#101041",
+        "Universal Energy#101046",
+        "Momentum Boost#101048",
+        "Touch of the Tiger#101049",
+        "Zenith#101053",
+        "Teachings of the Monastery#101054",
+        "Dual Threat#101055",
+        "Sequenced Strikes#101059",
+        "Dance of Chi-Ji#101060",
+        "Dance of the Wind#101137",
+        "Improved Touch of Death#101140",
+        "Grace of the Crane#101146",
+        "Tiger's Lust#101147",
+        "Wind's Reach#101148",
+        "Detox#101150",
+        "Calming Presence#101153",
+        "Tiger Fang#101159",
+        "Zenith Stomp#101162",
+        "Peace and Prosperity#101163",
+        "Yu'lon's Grace#101165",
+        "Ferocity of Xuen:2#101166",
+        "Transcendence#101167",
+        "Lighter Than Air#101168",
+        "Chi Proficiency:2#101169",
+        "Flow of Chi#101170",
+        "Fortifying Brew#101173",
+        "Windwalking#101175",
+        "Martial Instincts:2#101179",
+        "Tiger Tail Sweep#101182",
+        "Ancient Arts:2#101184",
+        "Fast Feet#101185",
+        "Rising Star#101205",
+        "Weapon of Wind#101206",
+        "Martial Agility#101208",
+        "Memory of the Monastery#101209",
+        "Xuen's Battlegear#101210",
+        "Crane Vortex#101211",
+        "Sunfire Spiral#101213",
+        "Combo Breaker#101215",
+        "Hit Combo#101216",
+        "Combat Wisdom#101217",
+        "Fists of Fury#101218",
+        "Vigilant Watch#101244",
+        "Martial Precision#101246",
+        "Veteran's Eye#101249",
+        "One Versus Many#101250",
+        "Efficient Training#101251",
+        "Wisdom of the Wall#101252",
+        "Against All Odds#101253",
+        "Skyfire Heel#104128",
+        "Rushing Wind Kick#108946",
+        "Shado Over the Battlefield#109697",
+        "Stand Ready#109698",
+        "Weapons of the Wall#109699",
+        "Vivacious Vivification#110023",
+        "Spear Hand Strike#110098",
+        "Tigereye Brew#110436",
+        "Paralysis#101142",
+        "Rising Sun Kick#101186",
+        "Flurry Strikes#101248",
+        "Inner Peace#101214",
+        "Hardened Soles:2#101047",
+        "Spiritual Focus#101052",
+        "Ring of Peace#101136",
+        "Disable#101149",
+        "Ironshell Brew#101174",
+        "Escape from Reality#101176",
+        "Celerity#101183",
+        "Revolving Whirl#101203",
+        "Strike of the Windlord#101207",
+        "Whirling Steel#101245",
+        "Pride of Pandaria#101247",
+        "Combat Stance#101254",
+        "Crashing Fists#101057",
+        "Strength of Spirit#110022"
+      ],
+      "pvp": [
+        "Turbo Fists",
+        "Ride the Wind",
+        "Wind Waker"
+      ]
+    }
+  },
   "sections": [
     {
       "kind": "text",
-      "title": "Spinning Crane Kick and Rising Sun Kick are the damage",
-      "body": "Spinning Crane Kick did 17% of his damage, Rising Sun Kick 14%, Fists of Fury 12%, Blackout Kick 9%, Tiger Palm 8.5% and Rushing Wind Kick 8%. Tiger Palm was his most-pressed button at 6.4 a minute. Touch of Death's 5% is finishes, not burst. PvP talents: Turbo Fists and Wind Waker in all 7 games. One player's play across 10.5 minutes of arena: a proposal to correct."
+      "title": "Why the burst sits inside Zenith",
+      "body": "Zenith resets Rising Sun Kick and cuts every chi cost by 1 for 15s, so his chi spenders cluster inside it: 70% of his Strike of the Windlords, 60% of his Fists of Fury. The free buttons come from procs: Dance of Chi-Ji made 57% of his Spinning Crane Kicks free, and Blackout Kick! 79% of his Blackout Kicks. Hit Combo pays for never pressing the same button twice."
     },
     {
       "kind": "sequence",
@@ -34,7 +124,7 @@
         {
           "spec": "monk/windwalker",
           "spell": "Leg Sweep",
-          "note": "0.9s before Zenith, 7 of 18 times."
+          "note": "0.9s before Zenith, 7 of 18 times: the burst opens on a stunned target."
         }
       ]
     },
@@ -45,17 +135,17 @@
         {
           "spec": "monk/windwalker",
           "spell": "Zenith",
-          "note": "18 in 7 games, one about every 35s of arena."
+          "note": "Resets Rising Sun Kick; every chi cost -1 for 15s. 18 in 7 games."
         },
         {
           "spec": "monk/windwalker",
           "spell": "Strike of the Windlord",
-          "note": "Often the first press into Zenith. 6% of damage."
+          "note": "70% inside Zenith, where it costs a chi less. 6% of his damage."
         },
         {
           "spec": "monk/windwalker",
           "spell": "Fists of Fury",
-          "note": "Within 5s of Zenith, 9 of 18 times. 12% of damage."
+          "note": "Within 5s of Zenith, 9 of 18. Turbo Fists: slows 90% and parries meanwhile."
         },
         {
           "spec": "monk/windwalker",
@@ -66,22 +156,32 @@
     },
     {
       "kind": "sequence",
-      "title": "Burst: what fills it",
+      "title": "Burst: what fills it, and why then",
       "steps": [
         {
           "spec": "monk/windwalker",
           "spell": "Rising Sun Kick",
-          "note": "Often straight into Zenith. 14% of damage."
+          "note": "Straight into Zenith, which resets it. 14% of his damage."
         },
         {
           "spec": "monk/windwalker",
           "spell": "Spinning Crane Kick",
-          "note": "His biggest source: 17% of damage."
+          "note": "Free 57% of the time (Dance of Chi-Ji). His biggest source: 17%."
+        },
+        {
+          "spec": "monk/windwalker",
+          "spell": "Blackout Kick",
+          "note": "Free 79% of the time: Blackout Kick! from Tiger Palm or a free Crane Kick."
+        },
+        {
+          "spec": "monk/windwalker",
+          "spell": "Tiger Palm",
+          "note": "At full energy 67% of the time: spends it before it caps, builds chi."
         },
         {
           "spec": "monk/windwalker",
           "spell": "Rushing Wind Kick",
-          "note": "8% of damage."
+          "note": "Only pressed when it procs. 8% of his damage."
         }
       ]
     },
@@ -99,7 +199,7 @@
     {
       "kind": "text",
       "title": "Land the burst on their healer's CC",
-      "body": "The Monk and DK usually burst together. It killed when their healer was locked out or kicked during those 6 seconds (3 of 5 at this level) and rarely when their healer was free (1 of 7). The damage and the lockout were both there, and mostly not at the same time. The full comp read is in the Walking Dead guide."
+      "body": "The Monk and DK usually burst together. It killed when their healer was locked out or kicked during those 6 seconds (3 of 5 at this level) and rarely when their healer was free (1 of 7). The attached build is the one he played in 2 of 7 games; the rest differed in a few talents and the third PvP talent (Grapple Weapon 4, Ride the Wind 3)."
     }
   ]
 }

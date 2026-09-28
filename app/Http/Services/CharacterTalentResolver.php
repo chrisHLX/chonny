@@ -36,6 +36,37 @@ class CharacterTalentResolver
      * The character's build for one spec (its active spec when none is named), resolved — or null
      * when there is no snapshot for it.
      */
+    /**
+     * The same view for a saved build — a guide slot's own build (TalentSelectionService::
+     * getOrCreateGuideMemberBuild). A guide drawn from play attaches the build the player actually
+     * had, and the page shows it with the same read-only calculator a character's build uses.
+     * Everything is already resolved to this patch's rows, so nothing is ever "unresolved" here.
+     */
+    public function forBuild(\App\Models\TalentBuild $build): ?array
+    {
+        $build->loadMissing(['specialization', 'choices', 'pvpChoices']);
+
+        if (! $build->specialization) {
+            return null;
+        }
+
+        $chosen = $build->choices->pluck('chosen_entry_id', 'talent_node_id')->map(fn ($id) => (int) $id)->all();
+        $hero = TalentTree::where('type', 'hero')
+            ->whereHas('nodes', fn ($q) => $q->whereIn('id', array_keys($chosen)))
+            ->value('name');
+
+        return [
+            'spec' => $build->specialization,
+            'chosenEntries' => $chosen,
+            'pvpTalentIds' => $build->pvpChoices->sortBy('slot')->pluck('pvp_talent_id')->map(fn ($id) => (int) $id)->values()->all(),
+            'unresolved' => [],
+            'pvpUnresolved' => [],
+            'resolvedCount' => count($chosen),
+            'totalCount' => count($chosen),
+            'heroTree' => $hero,
+        ];
+    }
+
     public function forCharacter(BattlenetCharacter $character, ?int $specExternalId = null): ?array
     {
         $snapshots = collect($character->talents ?? []);

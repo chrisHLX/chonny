@@ -474,8 +474,23 @@ When a game needs looking into, list its events on **one clock**:
   the rotation evidence: count how often a pattern repeats ("Blinding Sleet 1.3s before Army, 5 of
   9") rather than describing one burst.
 
-It does not read resources (runes, runic power, chi, energy) yet, so it shows *what* was pressed
-and *when*, not *why then*.
+It also reads **the why**:
+
+- **The resource each ability was pressed with.** Every `SPELL_CAST_SUCCESS` line carries the
+  power the cast was paid from, read from the end: `powerType -9, current -8, max -7, cost -6`
+  (then `posX, posY, uiMapID, facing, level`). Types: 3 energy, 5 runes, 6 runic power (logged
+  x10), 12 chi. **A free cast reports the caster's main power (energy) whatever the spell costs**,
+  so for a proc-free button only the "cost 0" share means anything.
+- **The buffs up when each ability was pressed**, against the share of all the player's casts with
+  that buff up, so a proc that drives a button stands out from one that is simply always on.
+  **A buff counts only if it went up at least 0.1s before the cast**: the log writes the aura a
+  cast creates on the line just before the cast itself, and without the gap every self-buff reads
+  as 100%.
+- **The build**, most common across the games, as a guide draft's `"builds"` entry (talents with
+  `:rank` and `#node`).
+
+`php tools/match-review/describe.php "Name" ...` prints what a talent or spell does, as the site
+resolves it: the source for a why that rests on a talent.
 
 ### What is useful, and what misleads
 

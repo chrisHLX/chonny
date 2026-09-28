@@ -16,6 +16,7 @@ const ARCHIVE = 'D:/MindCollector/arena-logs';
 const BEFORE = 3.0;   // seconds of casts shown before a major cooldown
 const AFTER = 10.0;   // and after it
 const MAJOR = 45;     // a cooldown this long or longer is a burst anchor
+const POWER = [0 => 'mana', 1 => 'rage', 2 => 'focus', 3 => 'energy', 4 => 'combo points', 5 => 'runes', 6 => 'runic power', 12 => 'chi'];
 
 $player = $argv[1] ?? 'Hozzaarr';
 $only = null;
@@ -63,6 +64,12 @@ $minutes = 0;
 $anchors = [];
 $pairs = [];
 $specName = '?';
+$buildOf = [];
+$resource = [];
+$withBuff = [];
+$buffCasts = [];
+$buffAll = [];
+$allCasts = 0;
 
 foreach ($games as $m) {
     $unit = null;
@@ -82,11 +89,20 @@ foreach ($games as $m) {
     // Talents, exactly as the log's COMBATANT_INFO recorded them for this game.
     if ($spec && ($info = $arena->extractCombatantInfoFromLog($raw, $guid))) {
         $t = $arena->resolveCombatantTalents($info, $spec->id);
+        $externalNode = App\Models\TalentNode::whereIn('id', array_column($t['talents'] ?? [], 'nodeId'))->pluck('external_node_id', 'id')->all();
         $talentSets[$m['clock']] = array_values(array_unique(array_column($t['talents'] ?? [], 'name')));
+        // The build as a guide draft names it: talents by name (":rank" when above 1), PvP by name.
+        $buildOf[$m['clock']] = [
+            // Blizzard's node id on every talent: a name can sit on several nodes (Dance of the Wind is
+            // on three), and the node id is what the log records and survives a patch.
+            'talents' => array_values(array_unique(array_map(fn ($x) => $x['name'].(($x['rank'] ?? 1) > 1 ? ':'.$x['rank'] : '').'#'.($externalNode[$x['nodeId']] ?? ''), $t['talents'] ?? []))),
+            'pvp' => array_values(array_unique(array_column($t['pvpTalents'] ?? [], 'name'))),
+        ];
         $pvpSets[$m['clock']] = array_values(array_unique(array_column($t['pvpTalents'] ?? [], 'name')));
     }
 
     $pets = [];
+    $active = [];
     $t0 = null;
     $casts = [];
     foreach (explode("\n", $raw) as $line) {
@@ -105,6 +121,19 @@ foreach ($games as $m) {
 
             continue;
         }
+        // Buffs on the player (their own procs and cooldowns, and anything a teammate put on them).
+        if (in_array($event, ['SPELL_AURA_APPLIED', 'SPELL_AURA_REMOVED', 'SPELL_AURA_APPLIED_DOSE', 'SPELL_AURA_REFRESH'], true) && str_contains($body, ',BUFF')) {
+            $f = str_getcsv($body);
+            if ($f[5] === $guid) {
+                if ($event === 'SPELL_AURA_REMOVED') {
+                    unset($active[$f[10]]);
+                } elseif (! isset($active[$f[10]])) {
+                    $active[$f[10]] = $s; // when it went up: a buff the cast itself creates is logged just before it
+                }
+            }
+
+            continue;
+        }
         if ($event === 'SPELL_CAST_SUCCESS') {
             $f = str_getcsv($body);
             if ($f[1] !== $guid && ! str_starts_with($f[1], 'Player-') && ($f[13] ?? '') === $guid) {
@@ -113,6 +142,23 @@ foreach ($games as $m) {
             if ($f[1] === $guid) {
                 $casts[] = ['t' => round($s - $t0, 2), 'spell' => $f[10]];
                 $castCount[$f[10]] = ($castCount[$f[10]] ?? 0) + 1;
+                // THE WHY, part 1: the resource the cast was paid from, read from the END of the
+                // line (powerType, current, max, cost sit just before posX, posY, map, facing, level).
+                $n = count($f);
+                $type = (int) ($f[$n - 9] ?? -1);
+                if (isset(POWER[$type])) {
+                    $scale = $type === 6 ? 10 : 1; // runic power is logged x10
+                    $resource[$f[10]][] = ['type' => POWER[$type], 'cur' => (int) $f[$n - 8] / $scale, 'max' => (int) $f[$n - 7] / $scale, 'cost' => (int) $f[$n - 6] / $scale];
+                }
+                // THE WHY, part 2: which buffs were up when it was pressed.
+                $buffCasts[$f[10]] = ($buffCasts[$f[10]] ?? 0) + 1;
+                $allCasts++;
+                // Only buffs that were up BEFORE the press: the log writes the aura a cast creates on
+                // the line just before the cast, so without this every self-buff reads as 100%.
+                foreach (array_keys(array_filter($active, fn ($since) => $s - $since >= 0.1)) as $b) {
+                    $withBuff[$f[10]][$b] = ($withBuff[$f[10]][$b] ?? 0) + 1;
+                    $buffAll[$b] = ($buffAll[$b] ?? 0) + 1;
+                }
             }
 
             continue;
@@ -197,3 +243,43 @@ foreach ($anchors as $cd => $list) {
         printf("      %s %6.1fs  %s\n", $a['game'], $a['t'], $a['seq']);
     }
 }
+
+echo "\n=== THE WHY 1: THE RESOURCE EACH ABILITY WAS PRESSED WITH (median at the moment of the cast)\n";
+foreach (array_slice($castCount, 0, 22, true) as $k => $c) {
+    if (! isset($resource[$k])) {
+        continue;
+    }
+    $r = $resource[$k];
+    $cur = array_column($r, 'cur');
+    sort($cur);
+    $cost = array_column($r, 'cost');
+    sort($cost);
+    $nearMax = count(array_filter($r, fn ($x) => $x['max'] > 0 && $x['cur'] >= 0.9 * $x['max']));
+    $free = count(array_filter($r, fn ($x) => $x['cost'] == 0));
+    printf("   %-28s %-12s median %5s of %-5s cost %-4s | within 10%% of max %3d%% | cost 0 %3d%%\n", $k, $r[0]['type'],
+        $cur[intdiv(count($cur), 2)], $r[0]['max'], $cost[intdiv(count($cost), 2)], round(100 * $nearMax / count($r)), round(100 * $free / count($r)));
+}
+
+echo "\n=== THE WHY 2: BUFFS UP WHEN EACH ABILITY WAS PRESSED (share of its casts, against all of this player's casts)\n";
+echo "   only buffs up for 30%+ of an ability's casts and at least 1.5x more often than across all casts\n";
+foreach (array_slice($castCount, 0, 22, true) as $k => $c) {
+    $rows = [];
+    foreach ($withBuff[$k] ?? [] as $b => $n) {
+        $share = $n / max(1, $buffCasts[$k]);
+        $base = ($buffAll[$b] ?? 0) / max(1, $allCasts);
+        if ($share >= 0.3 && $base > 0 && $share / $base >= 1.5) {
+            $rows[$b] = [$share, $base];
+        }
+    }
+    uasort($rows, fn ($a, $b) => ($b[0] / $b[1]) <=> ($a[0] / $a[1]));
+    if ($rows) {
+        printf("   %-28s %s\n", $k, implode(', ', array_map(fn ($b, $v) => sprintf('%s %d%% (vs %d%%)', $b, 100 * $v[0], 100 * $v[1]), array_keys($rows), $rows)));
+    }
+}
+
+echo "\n=== THE BUILD (for a guide draft's \"build\"; the most common across these games)\n";
+$counted = array_count_values(array_map('json_encode', $buildOf));
+arsort($counted);
+$top = json_decode(array_key_first($counted), true);
+printf("   used in %d of %d games\n", reset($counted), count($buildOf));
+echo json_encode($top, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES).PHP_EOL;

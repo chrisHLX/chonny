@@ -206,6 +206,34 @@
         </div>
     @endif
 
+    {{-- The talents the guide is written for: each slot's own build, when it has one. A guide
+         drawn from play attaches the build the player actually had, so every cooldown and talent
+         modifier on this page resolves for it. Loaded on demand, like the character's build. --}}
+    @if ($this->slotBuilds->isNotEmpty())
+        <div class="linear-card p-4 mb-8">
+            <p class="text-[10px] uppercase tracking-[0.13em] text-ink-subtle mb-3">Talents this guide is written for</p>
+            <div class="flex flex-wrap gap-2">
+                @foreach ($this->slotBuilds as $slot)
+                    <button type="button" wire:click="toggleSlotBuild({{ $slot->position }})"
+                            wire:loading.attr="disabled" wire:target="toggleSlotBuild"
+                            class="{{ $openBuildSlot === $slot->position ? 'btn-secondary' : 'btn-ghost' }} inline-flex items-center gap-2">
+                        <x-spec-icon :spec="$slot->specialization" size="w-4 h-4"/>
+                        {{ $slot->specialization?->name }} {{ $slot->specialization?->gameClass?->name }}
+                    </button>
+                @endforeach
+            </div>
+            <div wire:loading.flex wire:target="toggleSlotBuild" class="mt-4 items-center gap-3 text-[12.5px] text-ink-muted">
+                Loading talents&hellip;
+            </div>
+            @if ($openBuildSlot !== null && $this->slotBuildView)
+                <div class="mt-5 pt-5 border-t border-line">
+                    <x-battlenet.talent-build :view="$this->slotBuildView"
+                                              :key="'slot-talents-'.$guide->id.'-'.$openBuildSlot"/>
+                </div>
+            @endif
+        </div>
+    @endif
+
     <x-guides.health :health="$this->health"/>
 
     {{-- Sections ------------------------------------------------------------------ --}}

@@ -97,6 +97,39 @@ The same applies to an opener: the setup CC and the first cooldowns are two sect
 
 ---
 
+## Say why, and attach the build it is true for
+
+**A step says why it is pressed there, not only that it is.** "Within 1s of Army" is the what;
+"Commander of the Dead gives the Army +25%" is the why. A why comes from one of three places, and
+each has a tool (see `match-review-operations.md`):
+
+- **A talent or PvP talent** that changes the ability or what it does to the next one.
+  `php tools/match-review/describe.php "Talent name" ...` prints the site's own resolved text.
+  Quote what it says; never fill in a number it leaves unresolved.
+- **A proc or buff** that was up when it was pressed: "free 57% of the time (Dance of Chi-Ji)".
+  `rotation.php` measures it against all of the player's casts, so a coincidence does not read
+  as a reason.
+- **The resource**: "at full energy 67% of the time: spends it before it caps".
+
+**Attach the build.** A why that rests on a talent is only true for a build that has it. A draft's
+`"builds"` gives each roster spec the build it is written for, and the page shows it ("Talents this
+guide is written for") and resolves every cooldown and description through it:
+
+```json
+"builds": {
+  "deathknight/unholy": {
+    "talents": ["Commander of the Dead:2#76149", "Gift of the San'layn#95053", "..."],
+    "pvp": ["Spellwarden", "Life and Death", "Necrotic Wounds"]
+  }
+}
+```
+
+Talents are named `Name`, `Name:rank` above rank 1, and `Name#node`: Blizzard's node id, needed
+because a name can sit on several nodes. `rotation.php` prints a player's build in exactly this
+form, ready to paste. An unknown talent fails loudly, and `--dry-run` resolves every one.
+
+---
+
 ## Step notes — what a good one looks like
 
 A note says **why this step, here** in one clause. Condition, cost, or interaction.

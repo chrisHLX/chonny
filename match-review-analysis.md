@@ -493,9 +493,28 @@ in 4.
   Tiger Palm 8.5% (the most-pressed, 6.4 a minute), Rushing Wind Kick 8%, Strike of the Windlord
   6%, Touch of Death 5% (finishes).
 
-Both are one player each, and describe what they did, not what is optimal. Resources (runes,
-runic power, chi, energy) are not read yet, so the guides cannot say why a button was pressed
-when it was.
+Both are one player each, and describe what they did, not what is optimal.
+
+**Why they press what they press** (added 2026-09-29, from the resource on each cast, the buffs up
+when it was pressed, and the talents' own text):
+
+- **DK.** Army first, Dark Transformation within a second: *Commander of the Dead* makes Dark
+  Transformation give the Lesser Ghouls and Magus +25% for 30s, so the Army has to be out.
+  *Gift of the San'layn* turns his strike into Vampiric Strike inside Dark Transformation: 73%
+  of his Vampiric Strikes were. *Reaping* makes Dark Transformation reset Soul Reaper and lets it
+  hit any target: 78% of his Soul Reapers had it up. *Forbidden Knowledge* turns Death Coil into
+  Necrotic Coil for 30s after Army: every Necrotic Coil was inside it, pressed near full runic
+  power (median 86 of 100). *Necrotic Wounds* makes Putrefy absorb 8% of the target's healing,
+  stacking to 3. Death Coil outside Army went out at a median 76 runic power.
+- **Monk.** *Zenith* resets Rising Sun Kick and cuts every chi cost by 1 for 15s, so the chi
+  spenders cluster inside it (Strike of the Windlord 70%, Fists of Fury 60%). *Dance of Chi-Ji*
+  made 57% of his Spinning Crane Kicks free (up for 56% of them, against 12% of all casts);
+  *Blackout Kick!* (Combo Breaker, and Sequenced Strikes after a free Crane Kick) made 79% of his
+  Blackout Kicks free. Tiger Palm went out at full energy 67% of the time. Rushing Wind Kick was
+  only ever pressed with its proc up. *Hit Combo* pays for never repeating a button.
+
+Both guides carry the player's own build, which the page shows and resolves every cooldown
+through.
 
 #### Level of play (added 2026-09-28)
 
