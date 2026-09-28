@@ -470,6 +470,13 @@ When a game needs looking into, list its events on **one clock**:
    finding survives a change of definition are judgements. They are written in `match-review-analysis.md` next to the numbers they rest on, so they can
    be checked.
 
+**Raw output on the site.** `/wow/game-review/analysis` (auth-only, linked from Match Review)
+shows the signed-in player's own tool output, read from
+`storage/app/private/match-review/{user id}/*.txt` on the server. The output names every
+opponent, so it is **uploaded, never committed or deployed**: save each tool's console output to a
+`.txt` file and upload it with the base64-over-exec method in CLAUDE.md, then `chown` it to
+`www-data`. Chriso is user 8 on production.
+
 **To become a command**, the draft needs: the team and date range as arguments rather than
 hard-coded; a written output (JSON, not console text) that the review page could read; the
 experience lookup folded in; and tests against a fixture log, the way `ArenaMomentTest` does for
