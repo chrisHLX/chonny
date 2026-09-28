@@ -66,6 +66,8 @@ class RegisteredUserController extends Controller
             return $toComp;
         }
 
-        return redirect(route('dashboard', absolute: false));
+        // Back to what they were opening when sign-up stopped them (a machine guide is gated behind
+        // an account), otherwise the dashboard. Login has always done this; sign-up now matches.
+        return redirect()->intended(route('dashboard', absolute: false));
     }
 }

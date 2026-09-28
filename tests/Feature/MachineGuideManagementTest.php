@@ -73,13 +73,26 @@ class MachineGuideManagementTest extends TestCase
         $this->actingAs($admin)->get(route('guides.edit', ['guide' => $guide->slug]))->assertOk();
     }
 
+    public function test_a_guest_can_read_a_machine_guide(): void
+    {
+        // Guides stay public to read (a same-day sign-up wall was reversed, 2026-09-29).
+        $engine = User::factory()->create(['username' => 'mindcollector']);
+        $guide = $this->guide($engine, 'Claude Opus 5', UserGuideStatus::Published);
+
+        $this->get(route('guides.show', ['username' => 'mindcollector', 'guide' => $guide->slug]))
+            ->assertOk()
+            ->assertSee('Make this plan yours')
+            ->assertSee('Sign up free to copy it');
+    }
+
     public function test_the_level_of_play_shows_on_the_guide(): void
     {
         $engine = User::factory()->create(['username' => 'mindcollector']);
         $guide = $this->guide($engine, 'Claude Opus 5', UserGuideStatus::Published);
         $guide->update(['evidence_level' => 'Gladiator', 'evidence_games' => 7, 'evidence_note' => '26 Sep 2026 · 4 won, 3 lost']);
 
-        $this->get(route('guides.show', ['username' => 'mindcollector', 'guide' => $guide->slug]))
+        $this->actingAs(User::factory()->create())
+            ->get(route('guides.show', ['username' => 'mindcollector', 'guide' => $guide->slug]))
             ->assertOk()
             ->assertSee('Gladiator level')
             ->assertSee('drawn from 7 observed games')

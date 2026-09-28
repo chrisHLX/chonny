@@ -236,7 +236,7 @@ test('a signed-out visitor gets only the public side of the sidebar', function (
 
 // ------------------------------------------------------------------ signed-out visitors
 
-test('a signed-out reader of a public guide is invited to build their own; a signed-in one is not', function () {
+test('a signed-out reader is invited to copy the plan or try one with no account; a signed-in one copies directly', function () {
     $author = firstRunUser('author');
     $guide = firstRunGuide($author, [
         'status' => UserGuideStatus::Published,
@@ -244,9 +244,16 @@ test('a signed-out reader of a public guide is invited to build their own; a sig
     ]);
     $url = route('guides.show', ['username' => 'author', 'guide' => $guide->slug]);
 
-    $this->get($url)->assertOk()->assertSee('Build your own game plan')->assertSee('Try the planner');
+    // Merged 2026-09-29 into one "Make this plan yours" card for every reader: copying needs an
+    // account, and a guest keeps the no-account way in (a blank plan).
+    $this->get($url)->assertOk()
+        ->assertSee('Make this plan yours')
+        ->assertSee('Sign up free to copy it')
+        ->assertSee('Or try a blank plan, no account');
 
-    $this->actingAs(firstRunUser('reader'))->get($url)->assertOk()->assertDontSee('Build your own game plan');
+    $this->actingAs(firstRunUser('reader'))->get($url)->assertOk()
+        ->assertSee('Copy into my planner')
+        ->assertDontSee('Or try a blank plan, no account');
 });
 
 test('the landing page tells a signed-out visitor they can turn a comp into a plan', function () {

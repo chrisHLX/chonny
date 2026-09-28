@@ -67,7 +67,8 @@ class GuideSlotBuildTest extends TestCase
     {
         [$guide] = $this->guideWithSlotBuild();
 
-        $this->get(route('guides.show', ['username' => 'mindcollector', 'guide' => $guide->slug]))
+        $this->actingAs(User::factory()->create())
+            ->get(route('guides.show', ['username' => 'mindcollector', 'guide' => $guide->slug]))
             ->assertOk()
             ->assertSee('Talents this guide is written for')
             ->assertSee('Unholy Death Knight');
@@ -77,7 +78,8 @@ class GuideSlotBuildTest extends TestCase
     {
         [$guide] = $this->guideWithSlotBuild();
 
-        $component = Livewire::test(Show::class, ['username' => 'mindcollector', 'guide' => $guide]);
+        $component = Livewire::actingAs(User::factory()->create())
+            ->test(Show::class, ['username' => 'mindcollector', 'guide' => $guide]);
         $component->call('toggleSlotBuild', 0)->assertSet('openBuildSlot', 0);
         $this->assertNotNull($component->instance()->slotBuildView());
 

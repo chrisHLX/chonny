@@ -121,6 +121,24 @@ On 26 Sep, **7 of the 15 games** were Gladiator level with every player known (1
    corrections in, then re-author.
 6. **Opponents stay anonymous in the guide.** A guide names specs, never characters.
 
+## Public reading
+
+**Guides stay public to read. Acting on one needs an account** (2026-09-29). A sign-up wall
+across the machine guides was built and reversed the same day, on Gemini's recommendation (a
+language model's product advice, adopted by Chriso): a cold visitor will not create an account for
+content they have not sampled, so a wall trades reach for nothing. Instead:
+
+- **"Accurate for 12.1?"** at the top of every guide: a one-second yes/no vote, no account needed,
+  one per reader per patch (`user_guide_accuracy_votes`). It breaks the passive read, and a guide
+  voted inaccurate for the current patch is one for this loop to re-check.
+- **"Make this plan yours"** after the guide: copy it into the reader's planner as a private
+  draft (`UserGuideDuplicator`). This is where an account is asked for; a guest is sent to sign up
+  and brought back to the guide. A guest can still try a blank plan with no account.
+
+Gemini's other suggestions, **not built yet**: gating the interactive layer (quizzes, matchup
+decision trees, a deep-dive section per matchup) rather than the reading; saving a guide to a
+personal or guild collection; a Discord sign-in.
+
 ## What exists and what does not yet
 
 | Piece | State |

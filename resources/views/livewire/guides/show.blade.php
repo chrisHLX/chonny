@@ -36,6 +36,26 @@
 
             <h1 class="font-display text-3xl text-ink" style="text-wrap: balance">{{ $guide->title }}</h1>
 
+            {{-- One-second vote, no account needed: the smallest thing a reader can do, and it tells
+                 us which guides the current patch has made wrong. --}}
+            @if ($this->patchLabel)
+                @php $acc = $this->accuracy; @endphp
+                <div class="flex flex-wrap items-center gap-2 mt-3 text-[12.5px]">
+                    <span class="text-ink-muted">Accurate for {{ $this->patchLabel }}?</span>
+                    <button type="button" wire:click="voteAccuracy(true)"
+                            class="px-2.5 py-1 rounded border {{ $acc['mine'] === true ? 'border-gold text-gold bg-gold-subtle' : 'border-line-strong text-ink-muted hover:text-ink' }}">
+                        Yes <span class="tabular-nums">{{ $acc['yes'] }}</span>
+                    </button>
+                    <button type="button" wire:click="voteAccuracy(false)"
+                            class="px-2.5 py-1 rounded border {{ $acc['mine'] === false ? 'border-gold text-gold bg-gold-subtle' : 'border-line-strong text-ink-muted hover:text-ink' }}">
+                        No <span class="tabular-nums">{{ $acc['no'] }}</span>
+                    </button>
+                    @if ($acc['mine'] !== null)
+                        <span class="text-ink-subtle">Thanks. You can change it.</span>
+                    @endif
+                </div>
+            @endif
+
             <p class="text-[13px] text-ink-muted mt-2">
                 by <span class="text-ink" @if ($c = $guide->authorColor()) style="color: {{ $c }}" @endif>{{ $guide->authorLabel() }}</span>
                 @if ($this->authorCharacter && ($exp = $this->authorCharacter->bestExp()))
@@ -328,25 +348,29 @@
         @endif
     </p>
 
-    {{-- Signed-out readers only, and only here, after the guide: a shared guide link is how most
-         people first arrive, and someone who has just read one is the person most likely to want
-         to write their own. Nothing else on the page told them they could. --}}
-    @guest
-        <div class="linear-card border-line-gold p-5 mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
-            <div class="flex-1 min-w-0">
-                <h2 class="text-[15px] font-semibold text-ink">Build your own game plan</h2>
-                <p class="text-[13px] text-ink-muted mt-1 max-w-prose">
-                    Pick your comp and drag in the abilities you'd press. MindCollector works out how
-                    long the control lasts after diminishing returns and how often you can run it again.
-                    Try it now without an account. Sign up when you want to keep it.
-                </p>
-            </div>
-            <div class="flex items-center gap-2 shrink-0">
-                <x-guides.try-button label="Try the planner"/>
-                <a href="{{ route('register') }}" class="btn-ghost">Create an account</a>
-            </div>
+    {{-- After the guide, for every reader: reading is free, making the plan yours asks for an
+         account. A signed-in reader gets a private copy in the planner (UserGuideDuplicator); a
+         guest is sent to sign up and brought back here. A guest can still try a blank plan
+         without an account — the old prompt that lived here, kept as the second option. --}}
+    <div class="linear-card border-line-gold p-5 mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+        <div class="flex-1 min-w-0">
+            <h2 class="text-[15px] font-semibold text-ink">Make this plan yours</h2>
+            <p class="text-[13px] text-ink-muted mt-1 max-w-prose">
+                Copy it into your planner and change the comp, the timings and the notes for your own
+                team. MindCollector keeps the diminishing returns and cooldowns right as you edit. The
+                copy is private until you publish it.
+            </p>
         </div>
-    @endguest
+        <div class="flex flex-col sm:items-end gap-2 shrink-0">
+            <button type="button" wire:click="copyToPlanner" wire:loading.attr="disabled" wire:target="copyToPlanner"
+                    class="btn-primary">
+                @auth Copy into my planner @else Sign up free to copy it @endauth
+            </button>
+            @guest
+                <x-guides.try-button label="Or try a blank plan, no account" class="btn-ghost text-[12.5px]"/>
+            @endguest
+        </div>
+    </div>
 
     {{-- Feedback and comments ----------------------------------------------------
          Below the guide, never above it: the content is what someone came for, and asking for a
@@ -436,4 +460,5 @@
     </div>
 
     <livewire:spell-detail-modal/>
+
 </div>

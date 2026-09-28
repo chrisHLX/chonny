@@ -415,8 +415,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/browse-guides', \App\Livewire\Guides\Browse::class)->name('guides.browse');
 
 // Machine-drafted comp guides, on their own page rather than mixed into the listing above — see
-// Guides\MachineGuides for why. Public: the whole point is that anyone can read one and say where
-// it is wrong.
+// Guides\MachineGuides for why. Public, list and guides alike: gating them was tried and reversed
+// the same day (2026-09-29). Reading stays free; what needs an account is ACTING on a guide
+// (copying it into the planner), not reading it. See guides-from-play.md, "Public reading".
 Route::get('/claudes-comp-guides', \App\Livewire\Guides\MachineGuides::class)->name('guides.machine');
 
 // The MindCollector Brain: the arena model every machine-drafted guide is written from, published

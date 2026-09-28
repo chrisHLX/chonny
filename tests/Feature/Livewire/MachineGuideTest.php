@@ -49,7 +49,9 @@ function machineGuideFixture(array $attrs = []): UserGuide
 test('a machine guide says who drafted it and never claims a player wrote it', function () {
     $guide = machineGuideFixture();
 
-    $html = Livewire::test(Show::class, ['username' => 'mindcollector', 'guide' => $guide])->html();
+    // Signed in: machine guides are opened by members only (see the gate test below).
+    $html = Livewire::actingAs(User::factory()->create())
+        ->test(Show::class, ['username' => 'mindcollector', 'guide' => $guide])->html();
 
     expect($html)->toContain('Claude Opus 5')
         ->and($html)->toContain('drafted by a model')
@@ -145,7 +147,9 @@ test('a note cannot be attached to a step belonging to another guide', function 
 });
 
 test('a signed-out reader is told to sign in rather than silently losing the note', function () {
-    $guide = machineGuideFixture();
+    // A player's public guide: a guest cannot open a machine guide at all (2026-09-29), but can
+    // read a player's, and the note flow has to tell them to sign in there.
+    $guide = machineGuideFixture(['authored_by_model' => null]);
     $section = UserGuideSection::create([
         'user_guide_id' => $guide->id,
         'kind' => UserGuideSectionKind::Sequence,

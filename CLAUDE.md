@@ -452,6 +452,12 @@ author. 16 drafts live in `data/machine-guides/`.
   The brain document's section ids (`{#answer-pool}`) are comment anchors: **reword a heading
   freely, never change an id.**
 
+- **Guides stay public to read; acting on one needs an account** (2026-09-29, after a same-day
+  sign-up wall was reversed: a cold visitor will not sign up for content they have not sampled).
+  Any reader can vote whether a guide is accurate for the current patch without an account; copying
+  a guide into the planner asks a guest to sign up and returns them to the guide (sign-up now honours
+  the intended URL, as login always did). Inside a Livewire component `redirect()` is Livewire's own
+  redirector, not an HTTP response: store `url.intended` by hand.
 - **The site admin manages machine guides** (`UserGuide::isManagedBy()`, 2026-09-28): they stay owned
   by the engine account `mindcollector` (so their URLs and bylines never change), but an `is_admin`
   user can read their drafts, edit them and publish them. A person's guide is managed by its author

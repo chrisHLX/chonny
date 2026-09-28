@@ -6,13 +6,17 @@ use App\Http\Services\CharacterTalentResolver;
 use App\Http\Services\FriendshipService;
 use App\Http\Services\SpellSynergyService;
 use App\Http\Services\UserGuideChainService;
+use App\Http\Services\UserGuideDuplicator;
 use App\Models\PageViewEvent;
+use App\Models\Patch;
 use App\Models\User;
 use App\Models\UserGuide;
+use App\Models\UserGuideAccuracyVote;
 use App\Models\UserGuideBlock;
 use App\Models\UserGuideComment;
 use App\Models\UserGuideLike;
 use App\Models\UserGuideSection;
+use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -249,6 +253,89 @@ class Show extends Component
      * A toggle rather than a one-way vote: a reader who changes their mind should be able to
      * withdraw it, and the alternative is a number that can only ever go up.
      */
+    // ---------------------------------------------------------- acting on a guide
+
+    /**
+     * The patch a vote is about, as players say it: "12.1" from build "12.1.0.69933". A guide's
+     * accuracy resets with a patch rather than carrying last season's verdict.
+     */
+    #[Computed]
+    public function patchLabel(): ?string
+    {
+        $build = Patch::where('is_current', true)->value('build_version');
+
+        return $build ? implode('.', array_slice(explode('.', $build), 0, 2)) : null;
+    }
+
+    /** One vote per signed-in player, or per browser session for a guest. */
+    private function voterKey(): string
+    {
+        return auth()->check() ? 'u:'.auth()->id() : 's:'.hash('sha256', session()->getId());
+    }
+
+    /**
+     * "Was this guide accurate for 12.1?" — the tally, and what this reader said.
+     *
+     * @return array{yes: int, no: int, mine: ?bool}
+     */
+    #[Computed]
+    public function accuracy(): array
+    {
+        $votes = UserGuideAccuracyVote::where('user_guide_id', $this->guide->id)
+            ->where('build_version', (string) $this->patchLabel)
+            ->get(['voter_key', 'accurate']);
+        $mine = $votes->firstWhere('voter_key', $this->voterKey());
+
+        return [
+            'yes' => $votes->where('accurate', true)->count(),
+            'no' => $votes->where('accurate', false)->count(),
+            'mine' => $mine?->accurate,
+        ];
+    }
+
+    /**
+     * Cast or change the vote. No account needed: it is the smallest thing a reader can do, and
+     * it tells us which guides the current patch has made wrong. Throttled per voter.
+     */
+    public function voteAccuracy(bool $accurate): void
+    {
+        if ($this->patchLabel === null || ! RateLimiter::attempt('guide-accuracy:'.$this->voterKey(), 20, fn () => true, 60)) {
+            return;
+        }
+
+        UserGuideAccuracyVote::updateOrCreate(
+            ['user_guide_id' => $this->guide->id, 'voter_key' => $this->voterKey(), 'build_version' => $this->patchLabel],
+            ['accurate' => $accurate, 'user_id' => auth()->id()],
+        );
+
+        PageViewEvent::log('guide_show', slot: 'accuracy:'.($accurate ? 'yes' : 'no'));
+        unset($this->accuracy);
+    }
+
+    /**
+     * Copy this plan into the reader's own planner, as a private draft they can change for their
+     * team (UserGuideDuplicator: the comp, each slot's build, every section and step; never
+     * published, never public). This is where an account is asked for: reading is free, making
+     * the plan yours is not. A guest is sent to sign up and brought back to this guide.
+     */
+    public function copyToPlanner(): void
+    {
+        if (! auth()->check()) {
+            session()->put('url.intended', $this->guide->publicUrl() ?? url()->previous());
+            PageViewEvent::log('guide_show', slot: 'copy:signup');
+            $this->redirect(route('register'));
+
+            return;
+        }
+
+        abort_unless($this->guide->isReadableBy(auth()->user()), 404);
+
+        $copy = app(UserGuideDuplicator::class)->duplicate($this->guide, auth()->user());
+        PageViewEvent::log('guide_show', slot: 'copy');
+
+        $this->redirect(route('guides.edit', ['guide' => $copy->slug]));
+    }
+
     public function toggleLike(): void
     {
         $this->feedbackError = null;
