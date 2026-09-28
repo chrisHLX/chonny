@@ -433,6 +433,22 @@ When a game needs looking into, list its events on **one clock**:
   Disengage or a charge is better evidence than a computed distance.
 - **Hunter Feign Death writes `UNIT_DIED` with a trailing 1.** Filter on it (rule 12).
 
+### Damage, go composition, overlap and interrupts
+
+- **Damage by ability:** ours onto them, pets credited to owners, summed across the games.
+  Touch of Death finishes are included; read them as finishes.
+- **What killing goes had in common:** each of our goes is broken into its links (anchors, and
+  CC labelled healer or DPS) plus three flags (healer CC in the chain, a good go, 2+ of their
+  defensives already down). Compare the share of killing goes that had each against the share of
+  the rest. A link in every go (Dark Transformation) is the go itself, not what decides it.
+- **Overlapping defensives:** from `BUFF` auras on each player (`SPELL_AURA_APPLIED` /
+  `SPELL_AURA_REMOVED`), matched by name against the game's defensive list: two different
+  defensives on one player at once for 1s or more, before the first death.
+- **Interrupts:** `SPELL_INTERRUPT` (the timeline does not read it). The interrupted spell is
+  the second-to-last field. Count per side, on the healer, and inside the kicker's own go.
+- **One level of play at a time:** `killread.php --only=19:26,19:47,...` restricts every measure
+  to those games. A guide tagged with a level cites numbers from that level only.
+
 ### What is useful, and what misleads
 
 | Useful | Misleading |

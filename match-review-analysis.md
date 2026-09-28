@@ -440,6 +440,90 @@ The healer got CC'd in the middle of the enemy's go in both games. What differed
 our defensives had already gone into their previous go: drain, then kill, from their side.
 **Two games; a lead, not a finding.**
 
+#### Level of play (added 2026-09-28)
+
+By `guides-from-play.md`'s rule (Gladiator level = every player in the game has a Gladiator
+season):
+
+| Level | Games | Record |
+|---|---|---|
+| **Gladiator** | 19:26, 19:47, 19:51, 19:57, 20:13, 20:19, 20:22 | 4 W, 3 L |
+| Gladiator? (one player unknown) | 19:54, 20:08 | 1 W, 1 L |
+| Mixed | 19:29, 19:35, 19:43, 20:02, 20:25, 20:30 | 4 W, 2 L |
+
+#### Damage by ability
+
+Ours onto them, pets credited to their owners, all 15 games (162.6M in total). **No single
+ability carries the comp.** The top twelve each did 3–7%: Vampiric Strike and Rising Sun Kick
+6.7% each, Spinning Crane Kick 6.3%, Penance 4.8%, Fists of Fury and Tiger Palm 4.6%, the DK's
+melee 4.2%, Putrefy 4.0%, Rushing Wind Kick 3.9%, Blackout Kick 3.7%, Necrotic Bolt 3.5%, Dread
+Plague (Erupt) 3.1%. Touch of Death, for all its 740k finishes, is about 1.8%. The Gladiator-level
+games look the same, with Spinning Crane Kick first (7.5%).
+
+#### What our goes that killed had in common
+
+Each of our goes, split by whether a kill followed (in the window or 30s after):
+
+| In the go | All 15 games: killed (16) | not (24) | Gladiator level: killed (6) | not (10) |
+|---|---|---|---|---|
+| **Psychic Scream on their healer** | 69% | 50% | **100%** | 60% |
+| Touch of Death | 25% | 4% | 33% | 0% |
+| 2+ of their defensives already down | 81% | 50% | 67% | 50% |
+| Paralysis on their healer | 38% | 75% | 67% | 60% |
+| Asphyxiate on their healer | 38% | 63% | 67% | 60% |
+| Dark Transformation | 88% | 88% | 100% | 90% |
+| Zenith | 81% | 83% | 100% | 90% |
+| A good (tight) go | 63% | 54% | 33% | 60% |
+
+- **Psychic Scream on their healer is the clearest marker of a go that kills**, and at
+  Gladiator level it was in every one. Paralysis and Asphyxiate on the healer do not separate
+  in the same way; across all games, goes relying on them converted *less*.
+- Touch of Death shows up because it is the finish, not because it made the go.
+- Army, Dark Transformation and Zenith are in almost every go, killing or not. They are the go,
+  not what decides it.
+
+#### Overlapping defensives
+
+Two defensives on one player at once for a second or more, before the first death:
+
+| | Ours | Theirs |
+|---|---|---|
+| Wins (9) | 11 (1.2 a game) | 13 |
+| Losses (6) | **14 (2.3 a game)** | 9 |
+| Gladiator wins (4) | 3 | 5 |
+| Gladiator losses (3) | **5** | 4 |
+
+Nearly every one of ours is **Pain Suppression on the DK on top of his own Icebound Fortitude,
+Lichborne or Anti-Magic Zone**. Stacking doubled in the losses. Two defensives at once on a
+player who needed one is one fewer for the next go.
+
+#### Interrupts
+
+Measured for the first time (2026-09-28); the timeline did not read `SPELL_INTERRUPT` before.
+
+| | Our kicks | on their healer | inside our go | Their kicks |
+|---|---|---|---|---|
+| Wins | 24 | 6 | **18** | 2 |
+| Losses | 14 | 4 | **8** | 1 |
+
+- **The enemy barely kicked us: 3 times in 15 games.** Interrupts did not decide these games
+  from their side.
+- **In the wins, three of our four kicks landed inside our go; in the losses, just over half.**
+  Most of ours stop CC casts (Polymorph, Cyclone, Fear) or a caster's damage.
+
+#### Gladiator level only (7 games)
+
+The measures above, on the 7 Gladiator-level games alone, as the Walking Dead guide cites them:
+
+- Our goes followed by a kill: **55% in the wins (6 of 11), none in the losses (0 of 5).**
+- In the losses the enemy spent **more** defensives per go than the teams we beat (4.6 against
+  3.2).
+- Our healer was locked out at our player's death in all 3 losses (19:47, 20:13; 20:22 ended
+  the same second). The Medallion was already used in 2 of them (20:13, 20:22) and unused in
+  the third (19:47, silenced from the Rogue opener).
+- **Not confirmed at this level:** drain predicting the kill (16 goes are too few), tight goes
+  converting better (they did not), and overcommitment (none of ours in the losses).
+
 ### One hit, explained
 
 19:51 on 26 Sep, Unholy DK → Retribution Paladin, `Dread Plague (Erupt)`, **538,666**, overkill

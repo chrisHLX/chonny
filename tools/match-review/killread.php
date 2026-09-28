@@ -37,6 +37,14 @@ const LOCKOUT = ['Stun', 'Silence', 'Disorient', 'Incapacitate'];
 
 $detail = array_values(array_filter(array_slice($argv, 1), fn ($a) => $a !== '--strict'));
 define('STRICT', in_array('--strict', $argv, true));
+// --only=19:26,19:47,... restricts every measure to those games (e.g. one level of play).
+$only = null;
+foreach ($argv as $a) {
+    if (str_starts_with($a, '--only=')) {
+        $only = explode(',', substr($a, 7));
+    }
+}
+$detail = array_values(array_filter($detail, fn ($a) => ! str_starts_with($a, '--only=')));
 $svc = app(ArenaMomentService::class);
 $ref = new ReflectionClass($svc);
 $rosterFn = $ref->getMethod('roster');
@@ -80,6 +88,9 @@ $short = fn ($name) => explode('-', $name)[0];
 
 foreach ($games as $m) {
     $clock = date('H:i', intdiv($m['startTime'], 1000) + CLOCK_SHIFT);
+    if ($only !== null && ! in_array($clock, $only, true)) {
+        continue;
+    }
     $lines = gzfile(ARCHIVE."/raw/{$m['id']}.log.gz");
     $lines = array_map('rtrim', $lines);
     $roster = $rosterFn->invoke($svc, $m);
@@ -102,6 +113,9 @@ foreach ($games as $m) {
     $owner = [];
     $dmg = [];
     $heal = [];
+    $buffs = [];      // every BUFF aura on a roster player: [name, on, from, to]
+    $openBuff = [];
+    $interrupts = []; // SPELL_INTERRUPT: [t, src, dst, spell, interrupted]
     foreach ($lines as $line) {
         $s = $seconds($line);
         if ($s === null) {
@@ -110,6 +124,28 @@ foreach ($games as $m) {
         $t0 ??= $s;
         $body = explode('  ', $line, 2)[1] ?? '';
         $event = strtok($body, ',');
+        if ($event === 'SPELL_INTERRUPT') {
+            $f = str_getcsv($body);
+            if (isset($roster[$f[5]])) {
+                $interrupts[] = ['t' => round($s - $t0, 2), 'src' => $f[1], 'dst' => $f[5], 'spell' => $f[10], 'interrupted' => $f[count($f) - 2] ?? ''];
+            }
+
+            continue;
+        }
+        if (($event === 'SPELL_AURA_APPLIED' || $event === 'SPELL_AURA_REMOVED') && str_contains($body, ',BUFF')) {
+            $f = str_getcsv($body);
+            if (isset($roster[$f[5]])) {
+                $k = $f[5].'|'.$f[10];
+                if ($event === 'SPELL_AURA_APPLIED') {
+                    $openBuff[$k] = round($s - $t0, 2);
+                } elseif (isset($openBuff[$k])) {
+                    $buffs[] = ['name' => $f[10], 'on' => $f[5], 'from' => $openBuff[$k], 'to' => round($s - $t0, 2)];
+                    unset($openBuff[$k]);
+                }
+            }
+
+            continue;
+        }
         if ($event === 'SPELL_SUMMON') {
             $f = str_getcsv($body);
             $owner[$f[5]] = $f[1];
@@ -546,6 +582,56 @@ foreach ($games as $m) {
             break;
         }
     }
+    // LEVEL OF PLAY (guides-from-play.md): from all six players. Gladiator = every player has a
+    // Gladiator season; an unknown player (no public profile) makes the game borderline.
+    $gl = array_map(fn ($r) => $xp[$r['name']] ?? null, array_values($roster));
+    $unknown = count(array_filter($gl, fn ($x) => $x === null || isset($x['error'])));
+    $allGlad = count(array_filter($gl, fn ($x) => ($x['glad_seasons'] ?? 0) > 0)) === count($gl);
+    $g['level'] = $allGlad ? 'Gladiator' : ($unknown > 0 && count(array_filter($gl, fn ($x) => ($x['glad_seasons'] ?? 0) > 0)) + $unknown === count($gl) ? 'Gladiator?' : 'mixed');
+
+    // DAMAGE BY ABILITY, ours onto them, pets credited to owners.
+    $g['abilities'] = [];
+    foreach ($dmg as $x) {
+        $who = $credit($x['src']);
+        if ($sideOf($who) === 'us' && $sideOf($x['dst']) === 'them') {
+            $key = $short($roster[$who]['name']).': '.$x['spell'];
+            $g['abilities'][$key] = ($g['abilities'][$key] ?? 0) + $x['amount'];
+        }
+    }
+
+    // OVERLAPPING DEFENSIVES: two defensive buffs on the same player at once for 1s or more.
+    // A defensive is anything this game's commitments labelled defensive, matched by name.
+    $defNames = array_unique(array_column(array_filter($tl['commitments'], fn ($c) => $c['cat'] === 'defensive'), 'spell'));
+    $g['overlaps'] = ['us' => [], 'them' => []];
+    $db = array_values(array_filter($buffs, fn ($b) => in_array($b['name'], $defNames, true)));
+    for ($i = 0; $i < count($db); $i++) {
+        for ($j = $i + 1; $j < count($db); $j++) {
+            if ($db[$i]['on'] !== $db[$j]['on'] || $db[$i]['name'] === $db[$j]['name']) {
+                continue;
+            }
+            $o = $overlap($db[$i]['from'], $db[$i]['to'], $db[$j]['from'], $db[$j]['to']);
+            if ($o >= 1.0 && $db[$i]['from'] <= $firstDeath) {
+                $g['overlaps'][$sideOf($db[$i]['on'])][] = sprintf('%s + %s on %s at %.0fs (%.0fs)',
+                    $db[$i]['name'], $db[$j]['name'], $short($roster[$db[$i]['on']]['name']), max($db[$i]['from'], $db[$j]['from']), $o);
+            }
+        }
+    }
+
+    // INTERRUPTS: who kicked whom, and whether it landed inside the kicker's go.
+    $g['interrupts'] = ['us' => [], 'them' => []];
+    foreach ($interrupts as $x) {
+        $sd = $sideOf($credit($x['src']));
+        if ($sd === null) {
+            continue;
+        }
+        $inGo = false;
+        foreach ($goes[$sd] as $go) {
+            $inGo = $inGo || ($x['t'] >= $go['from'] && $x['t'] <= $go['to']);
+        }
+        $onHealer = ($healers[$sideOf($x['dst'])] ?? null) === $x['dst'];
+        $g['interrupts'][$sd][] = ['onHealer' => $onHealer, 'inGo' => $inGo, 'text' => sprintf('%.0fs %s > %s (%s)', $x['t'], $x['spell'], $onHealer ? 'healer' : $short($roster[$x['dst']]['name']), $x['interrupted'])];
+    }
+
     $g['enemy'] = [];
     foreach ($roster as $gg => $r) {
         if ($sideOf($gg) !== 'them') {
@@ -782,14 +868,14 @@ foreach (array_slice($every, 0, 10) as $r) {
 echo '
 === REVIEW TABLE
 ';
-echo '| Game | Result | MMR (us / them) | Enemy team (healer first; Gladiator seasons, or best rank if none; highest 3v3) | Our goes (followed by a kill) | Defensives spent before the first death (us / them) | First death | Our healer at that death |
+echo '| Game | Level | Result | MMR (us / them) | Enemy team (healer first; Gladiator seasons, or best rank if none; highest 3v3) | Our goes (followed by a kill) | Defensives spent before the first death (us / them) | First death | Our healer at that death |
 ';
-echo '|---|---|---|---|---|---|---|---|
+echo '|---|---|---|---|---|---|---|---|---|
 ';
 foreach ($all as $g) {
     $k = $g['kill'];
-    printf('| %s | %s | %s / %s | %s | %d (%d) | %d / %d | %s | %s |
-', $g['time'], $g['won'] ? 'W' : 'L', $g['mmr'][0] ?? '?', $g['mmr'][1] ?? '?',
+    printf('| %s | %s | %s | %s / %s | %s | %d (%d) | %d / %d | %s | %s |
+', $g['time'], $g['level'], $g['won'] ? 'W' : 'L', $g['mmr'][0] ?? '?', $g['mmr'][1] ?? '?',
         implode(' · ', array_column($g['enemy'], 'cell')), $g['ourGoes'], $g['ourGoesKill'],
         $g['defsSpent']['us'], $g['defsSpent']['them'],
         $k ? ($k['side'] === 'us' ? 'ours: ' : 'theirs: ').$k['died'].' to '.explode(' at ', $k['kb'])[0] : '-',
@@ -866,4 +952,107 @@ foreach (['W' => true, 'L' => false] as $k => $w) {
     $t2 = array_sum(array_map(fn ($g) => $g['defsSpent']['them'], $set));
     printf('   %s: ours %d of %d (%d%%) outside their goes | theirs %d of %d (%d%%) outside ours
 ', $w ? 'WINS  ' : 'LOSSES', $o, $t, round(100 * $o / max(1, $t)), $o2, $t2, round(100 * $o2 / max(1, $t2)));
+}
+
+// ---- LEVEL OF PLAY
+echo "\n=== LEVEL OF PLAY (guides-from-play.md: Gladiator = all six players have a Gladiator season; ? = an unknown player)\n";
+foreach (['Gladiator', 'Gladiator?', 'mixed'] as $lv) {
+    $set = array_values(array_filter($all, fn ($g) => $g['level'] === $lv));
+    printf("   %-11s %2d games (%d won, %d lost): %s\n", $lv, count($set), count(array_filter($set, fn ($g) => $g['won'])),
+        count(array_filter($set, fn ($g) => ! $g['won'])), implode(' ', array_map(fn ($g) => $g['time'].($g['won'] ? 'W' : 'L'), $set)));
+}
+
+// ---- DAMAGE BY ABILITY
+$abilityTable = function (array $set, string $title) {
+    $t = [];
+    foreach ($set as $g) {
+        foreach ($g['abilities'] as $k => $v) {
+            $t[$k] = ($t[$k] ?? 0) + $v;
+        }
+    }
+    arsort($t);
+    $total = max(1, array_sum($t));
+    echo "   $title (".count($set).' games, '.number_format($total)." total)\n";
+    foreach (array_slice($t, 0, 12, true) as $k => $v) {
+        printf("      %-45s %12s  %4.1f%%\n", $k, number_format($v), 100 * $v / $total);
+    }
+};
+echo "\n=== DAMAGE BY ABILITY, ours onto them (pets credited to owners; Touch of Death finishes included, see note in the analysis)\n";
+$abilityTable($all, 'all games');
+$abilityTable(array_filter($all, fn ($g) => $g['level'] === 'Gladiator'), 'Gladiator-level games');
+
+// ---- WHAT OUR KILLING GOES HAD IN COMMON
+echo "\n=== OUR GOES: what the ones followed by a kill had, against the ones that were not\n";
+$feature = function (array $r) {
+    $f = [];
+    foreach (explode(' -', preg_replace('/-[0-9.]+s->/', ',', $r['chain'])) as $part) {
+        foreach (array_map('trim', explode(',', $part)) as $link) {
+            if ($link === '') {
+                continue;
+            }
+            $link = rtrim($link, '*');
+            $f[preg_replace('/ > (target|cross)$/', ' > dps', $link)] = true;
+        }
+    }
+    $f['[healer CC in the chain]'] = $r['healerCcInChain'] > 0;
+    $f['[good go (tight)]'] = $r['quality'] === 'good';
+    $f['[2+ of their defensives already down]'] = $r['drained'] >= 2;
+
+    return array_keys(array_filter($f));
+};
+$kills = array_values(array_filter($ours, fn ($r) => $r['killLater']));
+$nokill = array_values(array_filter($ours, fn ($r) => ! $r['killLater']));
+$share = function (array $rows) use ($feature) {
+    $c = [];
+    foreach ($rows as $r) {
+        foreach ($feature($r) as $f) {
+            $c[$f] = ($c[$f] ?? 0) + 1;
+        }
+    }
+
+    return array_map(fn ($n) => $n / max(1, count($rows)), $c);
+};
+$a = $share($kills);
+$b = $share($nokill);
+$keys = array_unique(array_merge(array_keys($a), array_keys($b)));
+usort($keys, fn ($x, $y) => (($a[$y] ?? 0) - ($b[$y] ?? 0)) <=> (($a[$x] ?? 0) - ($b[$x] ?? 0)));
+printf("   %-48s %8s %8s\n", 'in the go', 'kill ('.count($kills).')', 'none ('.count($nokill).')');
+foreach ($keys as $k) {
+    if (($a[$k] ?? 0) + ($b[$k] ?? 0) < 0.15) {
+        continue;
+    }
+    printf("   %-48s %7d%% %7d%%\n", mb_substr($k, 0, 48), round(100 * ($a[$k] ?? 0)), round(100 * ($b[$k] ?? 0)));
+}
+
+// ---- OVERLAPPING DEFENSIVES
+echo "\n=== OVERLAPPING DEFENSIVES before the first death (two on one player at once, 1s+)\n";
+foreach ([true => 'WINS', false => 'LOSSES'] as $w => $lb) {
+    $set = array_filter($all, fn ($g) => $g['won'] === (bool) $w);
+    printf("   %s: ours %d in %d games, theirs %d\n", $lb, array_sum(array_map(fn ($g) => count($g['overlaps']['us']), $set)), count($set),
+        array_sum(array_map(fn ($g) => count($g['overlaps']['them']), $set)));
+}
+foreach ($all as $g) {
+    foreach (['us', 'them'] as $sd) {
+        foreach ($g['overlaps'][$sd] as $o) {
+            printf("      %s %s %-4s %s\n", $g['time'], $g['won'] ? 'W' : 'L', $sd, $o);
+        }
+    }
+}
+
+// ---- INTERRUPTS
+echo "\n=== INTERRUPTS\n";
+foreach ([true => 'WINS', false => 'LOSSES'] as $w => $lb) {
+    $set = array_filter($all, fn ($g) => $g['won'] === (bool) $w);
+    foreach (['us', 'them'] as $sd) {
+        $x = array_merge(...array_values(array_map(fn ($g) => $g['interrupts'][$sd], $set)));
+        printf("   %-6s %-4s kicks %2d | on the healer %2d | inside own go %2d\n", $lb, $sd, count($x),
+            count(array_filter($x, fn ($i) => $i['onHealer'])), count(array_filter($x, fn ($i) => $i['inGo'])));
+    }
+}
+foreach ($all as $g) {
+    foreach (['us', 'them'] as $sd) {
+        foreach ($g['interrupts'][$sd] as $i) {
+            printf("      %s %s %-4s %s%s\n", $g['time'], $g['won'] ? 'W' : 'L', $sd, $i['text'], $i['inGo'] ? '  [in go]' : '');
+        }
+    }
 }

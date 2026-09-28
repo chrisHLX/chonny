@@ -56,6 +56,7 @@ exist to be corrected. The spell/talent/match-data pipeline underneath must stay
 | `addon-upgrades.md` | What Chriso wants next from the capture side — automatic ingest, a desktop viewer over the archive, configurable paths. Wants, not design. |
 | `spellbook-verifier.md` | Addon export → snapshot → diff pipeline. |
 | `app/Http/Services/playstyle-analysis.md` | Per-player talent-usage read. |
+| `guides-from-play.md` | **How the games we play become guides, and why.** Started 2026-09-28 from a review of 26 Sep's games: the goal is a growing, evolving system for arena guides and player development. Play → review tools → `match-review-analysis.md` (the evidence) → a guide tagged with the **level of play** it is drawn from (Gladiator level = every player in the game has a Gladiator season) → readers' corrections → back into the analysis and the Brain. **Read before drafting any guide from match data.** |
 | `guide-writing.md` | **How to draft a machine guide.** The length budget (the 2026-09 batch averaged 7,900 reader-facing chars; the limit is now 2,300), the shape, and the errors the last batch made. Read with `docs/guides/reader-corrections-2026-09-23.md`. |
 | `docs/guides/` | Reader feedback on the machine guides: the full export, plus the distilled corrections. **Export before re-authoring** — anchored comments are cascade-deleted. |
 | `module-upload-format.md` | Shape for drafting module content. |

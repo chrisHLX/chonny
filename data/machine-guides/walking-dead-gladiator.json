@@ -1,0 +1,79 @@
+{
+  "slug": "walking-dead-gladiator",
+  "title": "Walking Dead — Gladiator level",
+  "summary": "From 7 games where all six players were Gladiators (26 Sep, 4 won). Fear their healer into Army and Zenith. They beat us by CC on our Priest at the kill.",
+  "team": [
+    "priest/discipline",
+    "deathknight/unholy",
+    "monk/windwalker"
+  ],
+  "sections": [
+    {
+      "kind": "text",
+      "title": "Fear their healer, then go",
+      "body": "All 6 of our goes that led to a kill had Psychic Scream on their healer; 6 of the other 10 did. Kills came off Army of the Dead and Dark Transformation with Zenith. We killed a Ret twice, an Elemental and an Unholy DK. Touch of Death finished 2 of the 4 at 3-9% health: it ends a go, it does not make one. Seven games is a start, so read this as a proposal to correct."
+    },
+    {
+      "kind": "sequence",
+      "title": "The go that killed",
+      "steps": [
+        {
+          "spec": "priest/discipline",
+          "spell": "Psychic Scream",
+          "note": "On their healer. In every go that killed; 60% of the rest."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Army of the Dead",
+          "note": "With Dark Transformation: the DK's half of every kill."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Dark Transformation",
+          "note": "Pressed in all 6 goes that killed."
+        },
+        {
+          "spec": "monk/windwalker",
+          "spell": "Zenith",
+          "note": "The Monk's half. In all 6 goes that killed."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Asphyxiate",
+          "note": "Onto their healer as the fear ends. The 20:19 kill: healer stunned as the DK died."
+        },
+        {
+          "spec": "monk/windwalker",
+          "spell": "Touch of Death",
+          "note": "The finish at 3-9% health. 2 of the 4 kills."
+        }
+      ]
+    },
+    {
+      "kind": "defensives",
+      "title": "Hold the trinket for their kill, and do not stack on the DK",
+      "steps": [
+        {
+          "spec": "priest/discipline",
+          "spell": "Gladiator's Medallion",
+          "note": "For the CC that comes with their cooldowns. Already used in 2 of 3 losses."
+        },
+        {
+          "spec": "priest/discipline",
+          "spell": "Pain Suppression",
+          "note": "Not on top of Icebound or Lichborne: stacked 5 times in 3 losses, 3 in 4 wins."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Icebound Fortitude",
+          "note": "The DK's own big one. Pain Suppression on top of it was the usual overlap."
+        }
+      ]
+    },
+    {
+      "kind": "text",
+      "title": "What beat us: answers on time, CC on our Priest at the kill",
+      "body": "In the 3 losses the enemy spent more defensives per go than the teams we beat (4.6 against 3.2), and none of our goes led to a kill. Every kill on us came with our Priest locked out: Garrote, Strangulate, Silence. We lost to Resto Druid/Affliction/Assassination, Resto Druid/Unholy/BM (1-1 in a rematch) and Resto Shaman/Shadow Priest/Affliction."
+    }
+  ]
+}
