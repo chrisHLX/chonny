@@ -1,4 +1,5 @@
 <?php
+
 // The kill read + pressure/CC-timing measures from match-review-operations.md (findings: match-review-analysis.md), over every 3v3 game with
 // Skylake + Hozzaarr on a given day. Throwaway: the spec is the doc; this is a first pass at it.
 //   php killread.php [HH:MM ...]   -- no args: summary of every game; with times: detail for those
@@ -32,7 +33,7 @@ const RACIALS = ['Stoneform', 'Fireblood', 'Will of the Forsaken', 'Gift of the 
     'Ancestral Call', 'Escape Artist', 'Every Man for Himself', "Light's Judgment", 'Arcane Pulse', 'Spatial Rift',
     "Regeneratin'", 'Hyper Organic Light Originator', 'Wing Buffet', 'Azerite Surge', 'Sharpen Blade'];       // enemy team Gladiator seasons at or above this = experienced
 const CLOCK_SHIFT = 0; // PHP here already renders the in-game clock used in the doc
-const LOCKOUT = ["Stun", "Silence", "Disorient", "Incapacitate"];
+const LOCKOUT = ['Stun', 'Silence', 'Disorient', 'Incapacitate'];
 
 $detail = array_values(array_filter(array_slice($argv, 1), fn ($a) => $a !== '--strict'));
 define('STRICT', in_array('--strict', $argv, true));
@@ -112,6 +113,7 @@ foreach ($games as $m) {
         if ($event === 'SPELL_SUMMON') {
             $f = str_getcsv($body);
             $owner[$f[5]] = $f[1];
+
             continue;
         }
         if ($event === 'SPELL_CAST_SUCCESS') {
@@ -119,6 +121,7 @@ foreach ($games as $m) {
             if (! str_starts_with($f[1], 'Player-') && str_starts_with($f[13] ?? '', 'Player-')) {
                 $owner[$f[1]] ??= $f[13];
             }
+
             continue;
         }
         // Healing: effective = amount - overheal (offsets from the END, see "What the combat log
@@ -130,6 +133,7 @@ foreach ($games as $m) {
                 $heal[] = ['t' => round($s - $t0, 2), 'src' => $f[1], 'dst' => $f[5],
                     'amount' => max(0, (int) $f[$n - 5] - (int) $f[$n - 3]), 'hot' => $event === 'SPELL_PERIODIC_HEAL', 'spell' => $f[10]];
             }
+
             continue;
         }
         if ($event === 'SPELL_ABSORBED') {
@@ -139,6 +143,7 @@ foreach ($games as $m) {
                 $heal[] = ['t' => round($s - $t0, 2), 'src' => $f[$n - 10], 'dst' => $f[5],
                     'amount' => (int) $f[$n - 3], 'hot' => false, 'spell' => 'absorb: '.$f[$n - 5]];
             }
+
             continue;
         }
         if (! in_array($event, ['SPELL_DAMAGE', 'SPELL_PERIODIC_DAMAGE', 'RANGE_DAMAGE', 'SWING_DAMAGE_LANDED'], true)) {
@@ -167,7 +172,6 @@ foreach ($games as $m) {
 
         return $src;
     };
-
 
     // ---- intervals
     $union = function (array $iv): array {
@@ -338,7 +342,7 @@ foreach ($games as $m) {
             $hHot = array_sum(array_column(array_filter($hh, fn ($x) => $x['hot']), 'amount'));
             // Drain: their defensives cast BEFORE this go and still on cooldown when it starts.
             $drained = array_values(array_filter($tl['commitments'], fn ($c) => $sideOf($c['who']) === $other
-                && $c['cat'] === 'defensive' && $c['t'] < $from && $c['t'] + $c['cooldown'] > $from));
+                && $c['cat'] === 'defensive' && $c['t'] < $from && $from < $c['t'] + $c['cooldown']));
             $ourDmg = array_sum(array_column(array_filter($dmg, fn ($x) => $sideOf($x['dst']) === $other
                 && $sideOf($credit($x['src'])) === $side && $x['t'] >= $from && $x['t'] <= $to), 'amount'));
             $specTag = fn ($c) => $c['spell'].' ('.($roster[$c['who']]['healer'] ? $label($c['who']) : $roster[$c['who']]['spec']).')';
@@ -459,6 +463,7 @@ foreach ($games as $m) {
             $last = end($baits);
             if ($last && $last['game'] === $clock && $last['side'] === $side && $last['drewKey'] === $drewKey) {
                 $baits[count($baits) - 1]['cc'] .= ' + '.$c['spell'];
+
                 continue;
             }
             $baits[] = [
@@ -725,23 +730,23 @@ foreach ($racials as $k => $games) {
     printf("   %s: %d, games %s\n", $k, count($games), implode(' ', array_unique($games)));
 }
 
-echo "
+echo '
 === BAIT: CC outside a go that drew a defensive
-";
+';
 foreach (['us' => 'OUR CC', 'them' => 'THEIR CC'] as $side => $lb) {
     $rows = array_values(array_filter($baits, fn ($b) => $b['side'] === $side));
-    printf("   %s: %d drew a defensive outside a go; %d were bait (no offensive cooldown until it expired)
-",
+    printf('   %s: %d drew a defensive outside a go; %d were bait (no offensive cooldown until it expired)
+',
         $lb, count($rows), count(array_filter($rows, fn ($b) => $b['bait'])));
     foreach ($rows as $b) {
-        printf("      %s %s %6.1fs %-20s drew %-40s | defensive up %ss, next offensive %s | %s
-",
+        printf('      %s %s %6.1fs %-20s drew %-40s | defensive up %ss, next offensive %s | %s
+',
             $b['game'], $b['won'] ? 'W' : 'L', $b['t'], $b['cc'], $b['drew'], $b['expiresIn'],
             $b['goAfter'] !== null ? '+'.$b['goAfter'].'s' : 'never', $b['bait'] ? 'BAIT' : 'go came while it was up');
     }
 }
 
-echo "\n=== EXECUTION: good goes (every link within ".TIGHT_LINK."s) and bad goes (needed a link up to ".LOOSE_LINK."s, through an offensive cooldown)\n";
+echo "\n=== EXECUTION: good goes (every link within ".TIGHT_LINK.'s) and bad goes (needed a link up to '.LOOSE_LINK."s, through an offensive cooldown)\n";
 foreach (['us' => 'our', 'them' => 'their'] as $sd => $who) {
     foreach (['good', 'bad'] as $q) {
         foreach (['won' => true, 'lost' => false] as $wl => $w) {
@@ -774,17 +779,17 @@ foreach (array_slice($every, 0, 10) as $r) {
 }
 
 // ---- THE REVIEW TABLE: the first product. One row per game.
-echo "
+echo '
 === REVIEW TABLE
-";
-echo "| Game | Result | MMR (us / them) | Enemy team (healer first; Gladiator seasons, or best rank if none; highest 3v3) | Our goes (followed by a kill) | Defensives spent before the first death (us / them) | First death | Our healer at that death |
-";
-echo "|---|---|---|---|---|---|---|---|
-";
+';
+echo '| Game | Result | MMR (us / them) | Enemy team (healer first; Gladiator seasons, or best rank if none; highest 3v3) | Our goes (followed by a kill) | Defensives spent before the first death (us / them) | First death | Our healer at that death |
+';
+echo '|---|---|---|---|---|---|---|---|
+';
 foreach ($all as $g) {
     $k = $g['kill'];
-    printf("| %s | %s | %s / %s | %s | %d (%d) | %d / %d | %s | %s |
-", $g['time'], $g['won'] ? 'W' : 'L', $g['mmr'][0] ?? '?', $g['mmr'][1] ?? '?',
+    printf('| %s | %s | %s / %s | %s | %d (%d) | %d / %d | %s | %s |
+', $g['time'], $g['won'] ? 'W' : 'L', $g['mmr'][0] ?? '?', $g['mmr'][1] ?? '?',
         implode(' · ', array_column($g['enemy'], 'cell')), $g['ourGoes'], $g['ourGoesKill'],
         $g['defsSpent']['us'], $g['defsSpent']['them'],
         $k ? ($k['side'] === 'us' ? 'ours: ' : 'theirs: ').$k['died'].' to '.explode(' at ', $k['kb'])[0] : '-',
@@ -792,11 +797,11 @@ foreach ($all as $g) {
 }
 
 // ---- HOW THEY ANSWERED OUR GOES: defensives (eat it) against CC (peel it)
-echo "
+echo '
 === HOW THEY ANSWERED OUR GOES: defensives spent vs CC landed on us, per go
-";
-printf("   %-6s %-2s %5s | %-8s | %-14s %-16s | %-11s %-13s | %s
-", 'game', '', 'goes', 'defs/go', 'CC on DPS/go', 'CC on healer/go', 'DPS locked', 'healer locked', 'followed by a kill');
+';
+printf('   %-6s %-2s %5s | %-8s | %-14s %-16s | %-11s %-13s | %s
+', 'game', '', 'goes', 'defs/go', 'CC on DPS/go', 'CC on healer/go', 'DPS locked', 'healer locked', 'followed by a kill');
 $agg = ['W' => [], 'L' => []];
 foreach ($all as $g) {
     $rows = array_values(array_filter($g['goRows'], fn ($r) => $r['side'] === 'us'));
@@ -806,8 +811,8 @@ foreach ($all as $g) {
     $n = count($rows);
     $avg = fn ($k) => array_sum(array_column($rows, $k)) / $n;
     $wl = $g['won'] ? 'W' : 'L';
-    printf("   %-6s %-2s %5d | %8.1f | %14.1f %16.1f | %10d%% %12d%% | %d of %d
-", $g['time'], $wl, $n, $avg('defs'),
+    printf('   %-6s %-2s %5d | %8.1f | %14.1f %16.1f | %10d%% %12d%% | %d of %d
+', $g['time'], $wl, $n, $avg('defs'),
         $avg('ansCcDps'), $avg('ansCcHealer'), round(100 * $avg('dpsLockedShare')), round(100 * $avg('healerLockedShare')),
         count(array_filter($rows, fn ($r) => $r['killLater'])), $n);
     foreach ($rows as $r) {
@@ -817,21 +822,21 @@ foreach ($all as $g) {
 foreach (['W' => 'games won', 'L' => 'games lost', 'L-' => 'games lost without 19:47'] as $k => $lb) {
     $rows = $k === 'L-' ? array_filter($agg['L'], fn ($r) => $r['game'] !== '19:47') : $agg[$k];
     $n = max(1, count($rows));
-    printf("   %-26s goes %2d | defs/go %.1f | CC on DPS/go %.1f, on healer/go %.1f | DPS locked %d%%, healer locked %d%% of the go
-", $lb, count($rows),
+    printf('   %-26s goes %2d | defs/go %.1f | CC on DPS/go %.1f, on healer/go %.1f | DPS locked %d%%, healer locked %d%% of the go
+', $lb, count($rows),
         array_sum(array_column($rows, 'defs')) / $n, array_sum(array_column($rows, 'ansCcDps')) / $n, array_sum(array_column($rows, 'ansCcHealer')) / $n,
         round(100 * array_sum(array_column($rows, 'dpsLockedShare')) / $n), round(100 * array_sum(array_column($rows, 'healerLockedShare')) / $n));
 }
 
-echo "
+echo '
 === TIMING: our healer locked out as our cooldowns went off (1s before to 4s after the first offensive cast)
-";
+';
 foreach (['W' => 'games won', 'L' => 'games lost', 'L-' => 'games lost without 19:47'] as $k => $lb) {
     $rows = $k === 'L-' ? array_filter($agg['L'], fn ($r) => $r['game'] !== '19:47') : $agg[$k];
     $n = max(1, count($rows));
     $hl = array_filter($rows, fn ($r) => $r['healerLockedAtCds']);
-    printf("   %-26s goes %2d | healer locked at our cooldowns in %2d (%d%%), those followed by a kill: %d | DPS locked in that stretch %.1fs per go | goes where healer was free: %d, followed by a kill %d
-",
+    printf('   %-26s goes %2d | healer locked at our cooldowns in %2d (%d%%), those followed by a kill: %d | DPS locked in that stretch %.1fs per go | goes where healer was free: %d, followed by a kill %d
+',
         $lb, count($rows), count($hl), round(100 * count($hl) / $n), count(array_filter($hl, fn ($r) => $r['killLater'])),
         array_sum(array_column($rows, 'dpsLockedAtCds')) / $n,
         count($rows) - count($hl), count(array_filter($rows, fn ($r) => ! $r['healerLockedAtCds'] && $r['killLater'])));
@@ -839,18 +844,18 @@ foreach (['W' => 'games won', 'L' => 'games lost', 'L-' => 'games lost without 1
 foreach ($all as $g) {
     foreach ($g['goRows'] as $r) {
         if ($r['side'] === 'us' && $r['healerLockedAtCds']) {
-            printf("      %s %s  %5.1fs  %s
-", $g['time'], $g['won'] ? 'W' : 'L', $r['from'], mb_substr($r['chain'], 0, 150));
+            printf('      %s %s  %5.1fs  %s
+', $g['time'], $g['won'] ? 'W' : 'L', $r['from'], mb_substr($r['chain'], 0, 150));
         }
     }
 }
 
-echo "
+echo '
 === OVERCOMMITMENT: defensives spent before the first death while the other side was NOT in a go
-";
+';
 foreach ($all as $g) {
-    printf("   %s %s | ours %d of %d spent outside their goes | theirs %d of %d outside ours
-", $g['time'], $g['won'] ? 'W' : 'L',
+    printf('   %s %s | ours %d of %d spent outside their goes | theirs %d of %d outside ours
+', $g['time'], $g['won'] ? 'W' : 'L',
         $g['defsOutsideTheirGo']['us'], $g['defsSpent']['us'], $g['defsOutsideTheirGo']['them'], $g['defsSpent']['them']);
 }
 foreach (['W' => true, 'L' => false] as $k => $w) {
@@ -859,6 +864,6 @@ foreach (['W' => true, 'L' => false] as $k => $w) {
     $t = array_sum(array_map(fn ($g) => $g['defsSpent']['us'], $set));
     $o2 = array_sum(array_map(fn ($g) => $g['defsOutsideTheirGo']['them'], $set));
     $t2 = array_sum(array_map(fn ($g) => $g['defsSpent']['them'], $set));
-    printf("   %s: ours %d of %d (%d%%) outside their goes | theirs %d of %d (%d%%) outside ours
-", $w ? 'WINS  ' : 'LOSSES', $o, $t, round(100 * $o / max(1, $t)), $o2, $t2, round(100 * $o2 / max(1, $t2)));
+    printf('   %s: ours %d of %d (%d%%) outside their goes | theirs %d of %d (%d%%) outside ours
+', $w ? 'WINS  ' : 'LOSSES', $o, $t, round(100 * $o / max(1, $t)), $o2, $t2, round(100 * $o2 / max(1, $t2)));
 }

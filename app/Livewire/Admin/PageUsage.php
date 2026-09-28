@@ -43,6 +43,7 @@ class PageUsage extends Component
         'wow_comps' => 'WoW Comps',
         'matchup_lab' => 'Matchup Lab',
         'game_review' => 'Game Review',
+        'game_review_analysis' => 'Game Review — raw analysis',
         'top_damage_rotations' => 'Top Burst Windows',
         'burst_window_talents' => 'Burst Window Talent View',
         'class_guide' => 'Class Guide',

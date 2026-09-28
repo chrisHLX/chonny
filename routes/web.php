@@ -157,6 +157,13 @@ Route::prefix('wow')->group(function () {
     // their gear. It shipped public for about twenty minutes on 2026-09-25 and was closed as soon
     // as that was noticed. Do not remove this middleware — the component scopes by
     // auth()->id() as well, and both halves are meant to be there.
+    // The review tools' raw output (tools/match-review/), uploaded by its owner, never deployed.
+    // Registered BEFORE /game-review/{id?} so 'analysis' is not read as a review id. Same auth
+    // rule as the page below: it names every opponent. See App\Livewire\GameReviewAnalysis.
+    Route::get('/game-review/analysis', \App\Livewire\GameReviewAnalysis::class)
+        ->middleware('auth')
+        ->name('game-review.analysis');
+
     Route::get('/game-review/{id?}', \App\Livewire\GameReview::class)
         ->middleware('auth')
         ->name('game-review');

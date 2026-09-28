@@ -1,4 +1,5 @@
 <?php
+
 // Look up every player in games.json: highest 3v3 rating, Gladiator / Rank 1 seasons, current 3v3.
 require __DIR__.'/../../vendor/autoload.php';
 $app = require __DIR__.'/../../bootstrap/app.php';
@@ -36,11 +37,13 @@ foreach (array_keys($names) as $full) {
     } catch (Throwable $e) {
         $out[$full] = ['error' => $e->getMessage()];
         echo "$full ERROR {$e->getMessage()}\n";
+
         continue;
     }
     if ($r['statistics'] === null) {
         $out[$full] = ['error' => "no profile ($slug)"];
         echo "$full no profile ($slug)\n";
+
         continue;
     }
     $s = $sync->parseStatistics($r['statistics']);

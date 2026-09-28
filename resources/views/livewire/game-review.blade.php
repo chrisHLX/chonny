@@ -33,6 +33,7 @@
             comparison is the one that means anything: identical kit, so what is left is build,
             gear and play.
         </p>
+        <a href="{{ route('game-review.analysis') }}" class="inline-block text-sm text-gold hover:text-gold-light">Raw analysis output &rarr;</a>
     </header>
 
     @include('livewire.partials.game-review-upload')
