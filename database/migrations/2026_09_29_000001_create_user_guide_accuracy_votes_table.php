@@ -21,6 +21,12 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // The first run on MySQL created the table and then failed on the unique index's generated
+        // name (over MySQL's 64 characters; SQLite, which the tests use, has no such limit). MySQL
+        // does not roll DDL back, so that run left an empty, index-less table behind. It can hold
+        // no votes (the feature never ran), so it is dropped and made properly.
+        Schema::dropIfExists('user_guide_accuracy_votes');
+
         Schema::create('user_guide_accuracy_votes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_guide_id')->constrained()->cascadeOnDelete();
@@ -30,8 +36,9 @@ return new class extends Migration
             $table->boolean('accurate');
             $table->timestamps();
 
-            $table->unique(['user_guide_id', 'voter_key', 'build_version']);
-            $table->index(['user_guide_id', 'build_version']);
+            // Named by hand: the generated names run past MySQL's 64-character limit.
+            $table->unique(['user_guide_id', 'voter_key', 'build_version'], 'guide_accuracy_voter_unique');
+            $table->index(['user_guide_id', 'build_version'], 'guide_accuracy_tally_index');
         });
     }
 
