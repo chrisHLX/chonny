@@ -468,6 +468,35 @@ inside a killing peak were both the DK's Mind Freeze on their healer (19:26, 19:
 
 Each peak is listed with its abilities in the raw output (`killread-26sep`, "every go").
 
+#### How our DK and Monk play their specs (2026-09-28)
+
+`tools/match-review/rotation.php`, on the 7 Gladiator-level games (10.5 minutes of arena).
+The source for the two class guides.
+
+**Unholy DK** (4x Gladiator). PvP talents in all 7: Spellwarden, Life and Death, Necrotic Wounds.
+
+- **The burst opens the same way almost every time:** Death Grip (about 2s before Army, 4 of 9),
+  Blinding Sleet (1.3s before, 5 of 9), Army of the Dead, Dark Transformation within a second
+  (7 of 9), Soul Reaper about a second later (6 of 9), Putrefy about 2.4s after Army, then
+  Necrotic Coil and Vampiric Strike. Asphyxiate lands 4–10s after Army in 4 of 9.
+- **Damage:** Vampiric Strike 14% (8.9 casts a minute), Putrefy 10%, pet Necrotic Bolt 8%,
+  Necrotic Coil 7%, Dread Plague's dispel burst 6%, Death Coil 6%. Pets over a quarter in all.
+
+**Windwalker Monk** (6x Gladiator). PvP talents in all 7: Turbo Fists, Wind Waker; Grapple Weapon
+in 4.
+
+- **The burst:** Paralysis before 11 of 18 Zeniths, Ring of Peace about 2s before Leg Sweep
+  (6 times), Leg Sweep 0.9s before Zenith (7 of 18), Gladiator's Badge with Zenith (11 of 18),
+  then Rising Sun Kick or Strike of the Windlord within half a second, Fists of Fury within 5s
+  (9 of 18).
+- **Damage:** Spinning Crane Kick 17%, Rising Sun Kick 14%, Fists of Fury 12%, Blackout Kick 9%,
+  Tiger Palm 8.5% (the most-pressed, 6.4 a minute), Rushing Wind Kick 8%, Strike of the Windlord
+  6%, Touch of Death 5% (finishes).
+
+Both are one player each, and describe what they did, not what is optimal. Resources (runes,
+runic power, chi, energy) are not read yet, so the guides cannot say why a button was pressed
+when it was.
+
 #### Level of play (added 2026-09-28)
 
 By `guides-from-play.md`'s rule (Gladiator level = every player in the game has a Gladiator

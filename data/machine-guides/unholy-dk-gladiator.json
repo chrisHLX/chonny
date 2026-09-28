@@ -1,0 +1,100 @@
+{
+  "slug": "unholy-dk-gladiator",
+  "type": "class",
+  "title": "Unholy DK — how a Gladiator bursts",
+  "summary": "A 4x Gladiator Unholy DK in 7 Gladiator-level games: Blinding Sleet, then Army and Dark Transformation within a second. Vampiric Strike does the damage.",
+  "evidence": {
+    "level": "Gladiator",
+    "games": 7,
+    "note": "26 Sep 2026 · one player (4x Gladiator) in Walking Dead · every player a Gladiator"
+  },
+  "team": [
+    "deathknight/unholy"
+  ],
+  "sections": [
+    {
+      "kind": "text",
+      "title": "Vampiric Strike is the damage; Army is the timing",
+      "body": "Vampiric Strike did 14% of his damage at 8.9 casts a minute, Putrefy 10%, Necrotic Coil 7%. His pets did over a quarter between them. Dread Plague's burst when dispelled, from the Life and Death PvP talent, added 6%. PvP talents in all 7 games: Spellwarden, Life and Death, Necrotic Wounds. One player's play across 10.5 minutes of arena: a proposal to correct."
+    },
+    {
+      "kind": "sequence",
+      "title": "Setup: crowd control before Army",
+      "steps": [
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Death Grip",
+          "note": "About 2s before Army, 4 of 9 times."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Blinding Sleet",
+          "note": "1.3s before Army, 5 of 9 times: their team disoriented as the pets land."
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Burst: offensive cooldowns, all within three seconds",
+      "steps": [
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Army of the Dead",
+          "note": "The go starts here. 9 in 7 games."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Dark Transformation",
+          "note": "Within a second of Army, 7 of 9 times."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Soul Reaper",
+          "note": "About 1s later, 6 of 9 times."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Putrefy",
+          "note": "About 2.4s after Army. 10% of his damage."
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Burst: what fills it",
+      "steps": [
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Vampiric Strike",
+          "note": "His biggest hitter: 14% of damage, 8.9 casts a minute."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Necrotic Coil",
+          "note": "Straight after Putrefy. 7% of damage."
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Burst: crowd control and the kick on their healer",
+      "steps": [
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Asphyxiate",
+          "note": "4 to 10s after Army, in 4 of 9 bursts: as the damage peaks."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Mind Freeze",
+          "note": "On their healer inside the burst: both kicks in a killing peak were his."
+        }
+      ]
+    },
+    {
+      "kind": "text",
+      "title": "Land the burst on their healer's CC",
+      "body": "The DK and Monk usually burst together. It killed when their healer was locked out or kicked during those 6 seconds (3 of 5 at this level) and rarely when their healer was free (1 of 7). The damage and the lockout were both there, and mostly not at the same time. The full comp read is in the Walking Dead guide."
+    }
+  ]
+}

@@ -130,6 +130,7 @@ On 26 Sep, **7 of the 15 games** were Gladiator level with every player known (1
 | Experience lookup | draft script; uses the site's own Blizzard parsers |
 | Raw output on the site | `/wow/game-review/analysis`, uploaded by its owner |
 | Level of play on a guide | `user_guides.evidence_level` / `evidence_games` / `evidence_note`, set from a draft's `"evidence"` object by `guides:author` and shown under the byline (2026-09-28) |
+| Class guides from play | `unholy-dk-gladiator.json` and `windwalker-monk-gladiator.json`, drafted 2026-09-28 from `rotation.php` on the 7 Gladiator-level games. `guides:author` writes class guides when a draft says `"type": "class"` |
 | First guide from play | `data/machine-guides/walking-dead-gladiator.json`, drafted 2026-09-28 from the 7 Gladiator-level games of 26 Sep. Authored as a **draft** for the site admin to read and publish |
 | The loop as one command | not yet: the scripts need the team and dates as arguments, JSON output, tests |
 | Folding role and any-comp findings into the Brain | not yet done for 26 Sep |

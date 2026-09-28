@@ -461,6 +461,22 @@ When a game needs looking into, list its events on **one clock**:
 - **Report the peak without Touch of Death** beside it: a 740k finish on a target at 3–9% is a
   finish, not burst.
 
+### How one player plays their spec (`rotation.php`)
+
+`php tools/match-review/rotation.php <character> [--only=...]` reads, for one player:
+
+- **The talents and PvP talents the log recorded** in each game (COMBATANT_INFO through
+  `ArenaLogService::resolveCombatantTalents()`), split into every game and some games.
+- **Casts per minute** of arena, with each major cooldown's length.
+- **Damage by ability**, the player's and their pets', onto enemy players.
+- **Which major cooldowns go out together**, and the median gap between them.
+- **Every cast from 3s before to 10s after each major cooldown**, in order, with offsets. This is
+  the rotation evidence: count how often a pattern repeats ("Blinding Sleet 1.3s before Army, 5 of
+  9") rather than describing one burst.
+
+It does not read resources (runes, runic power, chi, energy) yet, so it shows *what* was pressed
+and *when*, not *why then*.
+
 ### What is useful, and what misleads
 
 | Useful | Misleading |

@@ -124,13 +124,15 @@ class AuthorMachineGuide extends Command
             }
         }
 
+        $this->guideType($draft);
+
         $guide = DB::transaction(function () use ($draft, $author) {
             $guide = UserGuide::where('user_id', $author->id)->where('slug', $draft['slug'])->first();
 
             $attributes = [
                 'user_id' => $author->id,
                 'authored_by_model' => $this->option('model'),
-                'type' => UserGuideType::Comp,
+                'type' => $this->guideType($draft),
                 'title' => $draft['title'],
                 'summary' => $draft['summary'] ?? null,
                 // The level of play a guide from observed games is drawn from (guides-from-play.md).
@@ -175,6 +177,23 @@ class AuthorMachineGuide extends Command
      * or a pair of abilities no single build can hold, should be found while the draft is still a
      * file being edited — not after it is published and a reader has to point it out.
      */
+    /**
+     * A comp guide (2-3 specs) unless the draft says `"type": "class"`: one spec, a rotation or a
+     * technique, with that spec's whole kit (see UserGuideType). A class guide names exactly one
+     * spec in `team`, because that is the only shape the page can lay out.
+     */
+    private function guideType(array $draft): UserGuideType
+    {
+        $type = UserGuideType::tryFrom($draft['type'] ?? UserGuideType::Comp->value)
+            ?? throw new \RuntimeException("Unknown guide type '{$draft['type']}': use 'comp' or 'class'.");
+
+        if (count($draft['team'] ?? []) > $type->maxMembers()) {
+            throw new \RuntimeException("A {$type->value} guide names at most {$type->maxMembers()} spec(s) in 'team'.");
+        }
+
+        return $type;
+    }
+
     private function preflight(array $draft): void
     {
         foreach (['slug', 'title', 'team', 'sections'] as $required) {
@@ -182,6 +201,8 @@ class AuthorMachineGuide extends Command
                 throw new \RuntimeException("Draft is missing '{$required}'.");
             }
         }
+
+        $this->guideType($draft);
 
         foreach (array_merge($draft['team'] ?? [], $draft['enemy'] ?? []) as $ref) {
             $this->spec($ref);

@@ -1,0 +1,105 @@
+{
+  "slug": "windwalker-monk-gladiator",
+  "type": "class",
+  "title": "Windwalker Monk — how a Gladiator bursts",
+  "summary": "A 6x Gladiator Windwalker in 7 Gladiator-level games: Leg Sweep, Badge and Zenith together, then Strike of the Windlord and Fists of Fury.",
+  "evidence": {
+    "level": "Gladiator",
+    "games": 7,
+    "note": "26 Sep 2026 · one player (6x Gladiator) in Walking Dead · every player a Gladiator"
+  },
+  "team": [
+    "monk/windwalker"
+  ],
+  "sections": [
+    {
+      "kind": "text",
+      "title": "Spinning Crane Kick and Rising Sun Kick are the damage",
+      "body": "Spinning Crane Kick did 17% of his damage, Rising Sun Kick 14%, Fists of Fury 12%, Blackout Kick 9%, Tiger Palm 8.5% and Rushing Wind Kick 8%. Tiger Palm was his most-pressed button at 6.4 a minute. Touch of Death's 5% is finishes, not burst. PvP talents: Turbo Fists and Wind Waker in all 7 games. One player's play across 10.5 minutes of arena: a proposal to correct."
+    },
+    {
+      "kind": "sequence",
+      "title": "Setup: crowd control before Zenith",
+      "steps": [
+        {
+          "spec": "monk/windwalker",
+          "spell": "Paralysis",
+          "note": "Before 11 of 18 Zeniths."
+        },
+        {
+          "spec": "monk/windwalker",
+          "spell": "Ring of Peace",
+          "note": "Before Leg Sweep 6 times, about 2s earlier."
+        },
+        {
+          "spec": "monk/windwalker",
+          "spell": "Leg Sweep",
+          "note": "0.9s before Zenith, 7 of 18 times."
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Burst: offensive cooldowns, pressed together",
+      "steps": [
+        {
+          "spec": "monk/windwalker",
+          "spell": "Zenith",
+          "note": "18 in 7 games, one about every 35s of arena."
+        },
+        {
+          "spec": "monk/windwalker",
+          "spell": "Strike of the Windlord",
+          "note": "Often the first press into Zenith. 6% of damage."
+        },
+        {
+          "spec": "monk/windwalker",
+          "spell": "Fists of Fury",
+          "note": "Within 5s of Zenith, 9 of 18 times. 12% of damage."
+        },
+        {
+          "spec": "monk/windwalker",
+          "spell": "Touch of Death",
+          "note": "The finish at 3-9% health. Not burst."
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Burst: what fills it",
+      "steps": [
+        {
+          "spec": "monk/windwalker",
+          "spell": "Rising Sun Kick",
+          "note": "Often straight into Zenith. 14% of damage."
+        },
+        {
+          "spec": "monk/windwalker",
+          "spell": "Spinning Crane Kick",
+          "note": "His biggest source: 17% of damage."
+        },
+        {
+          "spec": "monk/windwalker",
+          "spell": "Rushing Wind Kick",
+          "note": "8% of damage."
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Burst: the kick on their healer",
+      "steps": [
+        {
+          "spec": "monk/windwalker",
+          "spell": "Spear Hand Strike",
+          "note": "0.4 a minute here. Both kicks in a killing peak were the DK's Mind Freeze."
+        }
+      ]
+    },
+    {
+      "kind": "text",
+      "title": "Land the burst on their healer's CC",
+      "body": "The Monk and DK usually burst together. It killed when their healer was locked out or kicked during those 6 seconds (3 of 5 at this level) and rarely when their healer was free (1 of 7). The damage and the lockout were both there, and mostly not at the same time. The full comp read is in the Walking Dead guide."
+    }
+  ]
+}
