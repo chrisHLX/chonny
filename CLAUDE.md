@@ -452,6 +452,13 @@ author. 16 drafts live in `data/machine-guides/`.
   The brain document's section ids (`{#answer-pool}`) are comment anchors: **reword a heading
   freely, never change an id.**
 
+- **The site admin manages machine guides** (`UserGuide::isManagedBy()`, 2026-09-28): they stay owned
+  by the engine account `mindcollector` (so their URLs and bylines never change), but an `is_admin`
+  user can read their drafts, edit them and publish them. A person's guide is managed by its author
+  only. **`guides:author` rewrites `status` on every run**: without `--draft` it publishes, with it it
+  unpublishes, whatever the admin set by hand.
+- **A guide drawn from observed play carries its level** (`evidence_level`, `evidence_games`,
+  `evidence_note`, from the draft's `"evidence"` object; see `guides-from-play.md`).
 - `Guides\Show` bylines a machine guide "{model} guide · drafted by a model" instead of
   "Player-written guide", and closes by saying the mechanics are derived while **the plan is a
   guess** — inviting correction. Do not let a model's draft render like a derived fact.

@@ -230,7 +230,8 @@ class Builder extends Component
     #[Computed]
     public function isAuthor(): bool
     {
-        return $this->guide->isOwnedBy(auth()->user());
+        // The site admin counts as the author of a machine-drafted guide (UserGuide::isManagedBy).
+        return $this->guide->isManagedBy(auth()->user());
     }
 
     /**
@@ -1419,7 +1420,7 @@ class Builder extends Component
      */
     private function authorOnly(): bool
     {
-        return $this->guide->isOwnedBy(auth()->user());
+        return $this->guide->isManagedBy(auth()->user());
     }
 
     /** Credit a change inside a section to whoever made it. */

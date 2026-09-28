@@ -41,6 +41,9 @@ class UserGuide extends Model
         'last_edited_by_user_id',
         'patch_id',
         'authored_build_version',
+        'evidence_level',
+        'evidence_games',
+        'evidence_note',
         'title',
         'slug',
         'summary',
@@ -54,6 +57,7 @@ class UserGuide extends Model
         'published_at' => 'datetime',
         'friends_can_edit' => 'boolean',
         'guild_can_edit' => 'boolean',
+        'evidence_games' => 'integer',
     ];
 
     /**
@@ -408,6 +412,24 @@ class UserGuide extends Model
     }
 
     /**
+     * Who holds the author's powers — publishing, visibility, sharing, deleting comments.
+     *
+     * The author, and for a MACHINE-DRAFTED guide the site admin as well. Machine guides are owned
+     * by the engine account (`mindcollector`), which nobody signs into; without this they could only
+     * ever be changed by re-running guides:author. The admin managing them keeps them owned by the
+     * engine account, so their URLs (/g/mindcollector/...) and bylines do not change. A person's
+     * guide is never managed by anyone but its author.
+     */
+    public function isManagedBy(?User $user): bool
+    {
+        if ($this->isOwnedBy($user)) {
+            return true;
+        }
+
+        return $user !== null && (bool) $user->is_admin && $this->isMachineAuthored();
+    }
+
+    /**
      * Who may change this guide's content — its comp, sections, steps, notes and title.
      *
      * The author always. Beyond that, only through the two switches the author controls (see the
@@ -430,7 +452,7 @@ class UserGuide extends Model
             return false;
         }
 
-        if ($this->isOwnedBy($user)) {
+        if ($this->isManagedBy($user)) {
             return true;
         }
 

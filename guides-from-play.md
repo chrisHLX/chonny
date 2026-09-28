@@ -105,8 +105,9 @@ On 26 Sep, **7 of the 15 games** were Gladiator level with every player known (1
 
 ## Rules for a guide drawn from play
 
-1. **It states its evidence:** level, number of games, date range. "Drawn from 7
-   Gladiator-level games, 26 Sep 2026."
+1. **It states its evidence** in the draft's `"evidence"` object: `level`, `games`, and a one-line
+   `note` (date range, record). The page shows it under the byline: "Gladiator level · drawn
+   from 7 observed games · 26 Sep 2026 · 4 won, 3 lost".
 2. **A claim resting on a handful of games is reasoning, not settled fact.** It is written as
    a proposal with its reason (the Brain's Part 0), never asserted. As games accumulate, it
    can firm up.
@@ -128,7 +129,7 @@ On 26 Sep, **7 of the 15 games** were Gladiator level with every player known (1
 | Review measures and review table | draft scripts in `tools/match-review/`, run by hand |
 | Experience lookup | draft script; uses the site's own Blizzard parsers |
 | Raw output on the site | `/wow/game-review/analysis`, uploaded by its owner |
-| Level of play on a guide | **not yet a field.** Stated in the title and summary until `user_guides` has one |
-| First guide from play | `data/machine-guides/walking-dead-gladiator.json`, drafted 2026-09-28 from the 7 Gladiator-level games of 26 Sep. Passes `--dry-run`; **not yet published** |
+| Level of play on a guide | `user_guides.evidence_level` / `evidence_games` / `evidence_note`, set from a draft's `"evidence"` object by `guides:author` and shown under the byline (2026-09-28) |
+| First guide from play | `data/machine-guides/walking-dead-gladiator.json`, drafted 2026-09-28 from the 7 Gladiator-level games of 26 Sep. Authored as a **draft** for the site admin to read and publish |
 | The loop as one command | not yet: the scripts need the team and dates as arguments, JSON output, tests |
 | Folding role and any-comp findings into the Brain | not yet done for 26 Sep |

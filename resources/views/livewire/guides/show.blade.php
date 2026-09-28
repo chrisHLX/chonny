@@ -16,6 +16,18 @@
                 <p class="text-[11px] uppercase tracking-[0.16em] text-gold font-medium mb-2">
                     {{ $guide->authored_by_model }} guide &middot; drafted by a model
                 </p>
+                @if ($guide->evidence_level)
+                    {{-- The level of play it is drawn from (guides-from-play.md): what validates it. --}}
+                    <p class="text-[12px] text-ink-muted mb-2">
+                        <span class="text-gold">{{ $guide->evidence_level }} level</span>
+                        @if ($guide->evidence_games)
+                            &middot; drawn from {{ $guide->evidence_games }} observed {{ Str::plural('game', $guide->evidence_games) }}
+                        @endif
+                        @if ($guide->evidence_note)
+                            &middot; {{ $guide->evidence_note }}
+                        @endif
+                    </p>
+                @endif
             @else
                 <p class="text-[11px] uppercase tracking-[0.16em] text-violet font-medium mb-2">
                     Player-written guide

@@ -133,6 +133,11 @@ class AuthorMachineGuide extends Command
                 'type' => UserGuideType::Comp,
                 'title' => $draft['title'],
                 'summary' => $draft['summary'] ?? null,
+                // The level of play a guide from observed games is drawn from (guides-from-play.md).
+                // Written every run like every other field, so dropping it from a draft clears it.
+                'evidence_level' => $draft['evidence']['level'] ?? null,
+                'evidence_games' => $draft['evidence']['games'] ?? null,
+                'evidence_note' => $draft['evidence']['note'] ?? null,
                 'status' => $this->option('draft') ? UserGuideStatus::Draft : UserGuideStatus::Published,
                 'visibility' => UserGuideVisibility::Public,
                 'slug' => $draft['slug'],

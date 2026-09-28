@@ -284,7 +284,7 @@ class Show extends Component
             return;
         }
 
-        if ($comment->user_id === auth()->id() || $this->guide->isOwnedBy(auth()->user())) {
+        if ($comment->user_id === auth()->id() || $this->guide->isManagedBy(auth()->user())) {
             $comment->delete();
             unset($this->comments);
         }
