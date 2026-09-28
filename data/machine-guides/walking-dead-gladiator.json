@@ -16,17 +16,33 @@
     {
       "kind": "text",
       "title": "Fear their healer, then go",
-      "body": "All 6 of our goes that led to a kill had Psychic Scream on their healer; 6 of the other 10 did. Kills came off Army of the Dead and Dark Transformation with Zenith. We killed a Ret twice, an Elemental and an Unholy DK. Touch of Death finished 2 of the 4 at 3-9% health: it ends a go, it does not make one. Seven games is a start, so read this as a proposal to correct."
+      "body": "All 6 of our goes that led to a kill had Psychic Scream on their healer; 6 of the other 10 did. The DK and Monk usually burst together; it killed when their healer was locked out or kicked during those 6 seconds. We killed a Ret twice, an Elemental and an Unholy DK. Touch of Death finished 2 of the 4. Seven games is a start: a proposal to correct."
     },
     {
       "kind": "sequence",
-      "title": "The go that killed",
+      "title": "Main go: crowd control on their healer, on top of the burst",
       "steps": [
         {
           "spec": "priest/discipline",
           "spell": "Psychic Scream",
-          "note": "On their healer. In every go that killed; 60% of the rest."
+          "note": "On their healer during the burst. Locked or kicked then: 3 of 5 killed; free: 1 of 7."
         },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Asphyxiate",
+          "note": "Onto their healer as the fear ends. The 20:19 kill: healer stunned as the DK died."
+        },
+        {
+          "spec": "deathknight/unholy",
+          "spell": "Mind Freeze",
+          "note": "Or kick their healer inside the burst: 2 of the 6 goes that killed."
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "title": "Main go: offensive cooldowns",
+      "steps": [
         {
           "spec": "deathknight/unholy",
           "spell": "Army of the Dead",
@@ -41,11 +57,6 @@
           "spec": "monk/windwalker",
           "spell": "Zenith",
           "note": "The Monk's half. In all 6 goes that killed."
-        },
-        {
-          "spec": "deathknight/unholy",
-          "spell": "Asphyxiate",
-          "note": "Onto their healer as the fear ends. The 20:19 kill: healer stunned as the DK died."
         },
         {
           "spec": "monk/windwalker",

@@ -440,6 +440,34 @@ The healer got CC'd in the middle of the enemy's go in both games. What differed
 our defensives had already gone into their previous go: drain, then kill, from their side.
 **Two games; a lead, not a finding.**
 
+#### Peak burst: do the DK and Monk land their damage together, on their healer's CC? (2026-09-28)
+
+For each of our goes, the **6 seconds with the most damage from the DK and Monk** (pets credited),
+what landed in it, and whether their healer was locked out 2s or more, or kicked, during it.
+
+- **The peak holds 40–49% of a go's DPS damage in 6 seconds.** Killing goes peaked higher (1.41M
+  against 1.07M), partly from Touch of Death finishes.
+- **The peak usually comes late**, often 8–25 seconds after the go's first link: the cooldowns
+  go out, and the damage arrives after them.
+- **The DK and Monk usually burst together.** In 28 of 40 goes both did at least a quarter of
+  the peak (a *joint* peak), and joint peaks were bigger (1.26M against 0.90M, Touch of Death
+  excluded). Bursting together did not convert on its own (36% against 50% for one player's peak).
+- **What converted was the joint burst landing on their healer's CC or a kick:**
+
+| Our peak 6 seconds | All 15 games | Gladiator level |
+|---|---|---|
+| Joint burst **and** their healer locked 2s+ or kicked | **5 of 8 followed by a kill (63%)** | **3 of 5 (60%)** |
+| Joint burst, their healer free | 5 of 20 (25%) | 1 of 7 (14%) |
+| Any peak, healer locked or kicked | 6 of 10 (60%) | 4 of 6 (67%) |
+| Any peak, healer free | 10 of 30 (33%) | 2 of 10 (20%) |
+
+**Only 8 of our 28 joint bursts landed on CC or a kick on their healer.** The rest landed while
+their healer was free to answer. That is the most concrete, fixable thing these games show: the
+damage and the lockout are both there, and mostly not at the same time. The two kicks that landed
+inside a killing peak were both the DK's Mind Freeze on their healer (19:26, 19:57).
+
+Each peak is listed with its abilities in the raw output (`killread-26sep`, "every go").
+
 #### Level of play (added 2026-09-28)
 
 By `guides-from-play.md`'s rule (Gladiator level = every player in the game has a Gladiator

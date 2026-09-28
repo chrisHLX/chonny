@@ -78,6 +78,25 @@ Five things, from Part 16 of the model. Most belong in a heading or a note, not 
 
 ---
 
+## Offensive cooldowns and crowd control are separate sections
+
+**Never put a go's offensive cooldowns and its crowd control under one heading.** They are two
+different jobs, done by different buttons, often by different players, and a reader looks for
+them separately. A section titled "The go that killed" that runs Psychic Scream, Army of the
+Dead, Zenith, Asphyxiate and Touch of Death together reads as one list and hides which part is
+the damage and which part is the lockout (Chriso, on the first guide drawn from play,
+2026-09-28).
+
+Split them, and let the headings say they belong to the same go:
+
+- **"Main go: offensive cooldowns"**: what is pressed for damage, in order.
+- **"Main go: crowd control on their healer"**: what locks the healer out, and when it lands
+  against the cooldowns.
+
+The same applies to an opener: the setup CC and the first cooldowns are two sections.
+
+---
+
 ## Step notes — what a good one looks like
 
 A note says **why this step, here** in one clause. Condition, cost, or interaction.

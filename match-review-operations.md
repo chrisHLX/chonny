@@ -449,6 +449,18 @@ When a game needs looking into, list its events on **one clock**:
 - **One level of play at a time:** `killread.php --only=19:26,19:47,...` restricts every measure
   to those games. A guide tagged with a level cites numbers from that level only.
 
+### Peak burst
+
+- **The peak:** inside each go, the 6s window (sliding, anchored on each damage event) with the
+  most damage from the attacking side's DPS, pets credited to owners. Record its damage, its share
+  of the go's DPS damage, when it starts relative to the go, and every ability that landed in it.
+- **Joint peak:** both DPS did at least 25% of it. Tells whether the damage was stacked or one
+  player's.
+- **Aligned peak:** the defending healer was locked out for 2s+ of those 6 seconds, or kicked
+  during them. This is the measure that separates goes that kill; a joint burst on its own does not.
+- **Report the peak without Touch of Death** beside it: a 740k finish on a target at 3–9% is a
+  finish, not burst.
+
 ### What is useful, and what misleads
 
 | Useful | Misleading |

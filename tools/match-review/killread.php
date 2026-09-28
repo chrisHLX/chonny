@@ -18,6 +18,7 @@ const DMG_LOOKBACK = 10.0;
 const TIGHT_LINK = 5.0;   // links this close (from the chain's end) make a GOOD go
 const LOOSE_LINK = 10.0;  // links up to this far still join, but only through an offensive cooldown: a BAD go
 const OFFENSIVE_HOLD = 5.0; // an offensive cast counts as 'ending' this long after it, for linking
+const PEAK_SECONDS = 6.0; // the burst window: the 6s of a go with the most damage from its DPS
 const RESPONSE = 5.0;     // a defensive this soon after a CC is an answer to it
 const KILL_LATER = 30.0;  // a go 'converts' if a kill lands in its window or this long after it
 const HIGH_XP = 10;
@@ -401,7 +402,61 @@ foreach ($games as $m) {
                 }
             }
             $burst = [[$tOff - 1, $tOff + 4]];
+            // PEAK BURST: the 6s inside the go with the most damage from the attacking DPS (pets
+            // credited), what landed in it, and whether the defending healer was locked out or
+            // kicked during it. The question (Chriso, 2026-09-28): do the DK and Monk land their
+            // damage abilities close together, on top of CC or a kick on their healer?
+            $burstHits = array_values(array_filter($dmg, function ($x) use ($credit, $sideOf, $roster, $side, $other, $from, $to) {
+                $who = $credit($x['src']);
+
+                return $x['t'] >= $from && $x['t'] <= $to && $sideOf($x['dst']) === $other
+                    && $sideOf($who) === $side && isset($roster[$who]) && ! $roster[$who]['healer'];
+            }));
+            usort($burstHits, fn ($a, $b) => $a['t'] <=> $b['t']);
+            $peak = ['sum' => 0, 'from' => $from];
+            $j = 0;
+            $run = 0;
+            for ($i = 0; $i < count($burstHits); $i++) {
+                $run += $burstHits[$i]['amount'];
+                while ($burstHits[$i]['t'] - $burstHits[$j]['t'] > PEAK_SECONDS) {
+                    $run -= $burstHits[$j]['amount'];
+                    $j++;
+                }
+                if ($run > $peak['sum']) {
+                    $peak = ['sum' => $run, 'from' => $burstHits[$j]['t']];
+                }
+            }
+            $peakWin = [[$peak['from'], $peak['from'] + PEAK_SECONDS]];
+            $peakAbilities = [];
+            foreach ($burstHits as $x) {
+                if ($x['t'] >= $peak['from'] && $x['t'] <= $peak['from'] + PEAK_SECONDS) {
+                    $k = $short($roster[$credit($x['src'])]['name']).': '.$x['spell'];
+                    $peakAbilities[$k] = ($peakAbilities[$k] ?? 0) + $x['amount'];
+                }
+            }
+            arsort($peakAbilities);
+            // Each DPS player's share of the peak: a JOINT peak is one where both did 25%+.
+            $peakBy = [];
+            foreach ($peakAbilities as $k => $v) {
+                $pl = explode(': ', $k)[0];
+                $peakBy[$pl] = ($peakBy[$pl] ?? 0) + $v;
+            }
+            $peakJoint = count($peakBy) >= 2 && min($peakBy) / max(1, array_sum($peakBy)) >= 0.25;
+            // The same peak without Touch of Death: a 740k finish on a target at 3-9% is not burst.
+            $noTod = array_sum(array_filter($peakAbilities, fn ($v, $k) => ! str_ends_with($k, 'Touch of Death'), ARRAY_FILTER_USE_BOTH));
+            $defHealer = $healers[$other] ?? null;
+            $peakKicks = array_filter($interrupts, fn ($x) => $x['t'] >= $peak['from'] && $x['t'] <= $peak['from'] + PEAK_SECONDS
+                && $sideOf($credit($x['src'])) === $side);
             $goRows[] = [
+                'peakDamage' => $peak['sum'],
+                'peakJoint' => $peakJoint,
+                'peakNoTod' => $noTod,
+                'peakFrom' => round($peak['from'] - $from, 1),
+                'peakAbilities' => $peakAbilities,
+                'peakGoShare' => array_sum(array_column($burstHits, 'amount')) > 0 ? $peak['sum'] / array_sum(array_column($burstHits, 'amount')) : 0,
+                'peakHealerLocked' => $defHealer ? round($cross($locked[$defHealer], $peakWin), 1) : 0,
+                'peakHealerKicked' => count(array_filter($peakKicks, fn ($x) => $x['dst'] === $defHealer)),
+                'peakKicks' => count($peakKicks),
                 'healerLockedAtCds' => $atkHealerId ? $cross($locked[$atkHealerId], $burst) > 0 : false,
                 'dpsLockedAtCds' => array_sum(array_map(fn ($pl) => $cross($locked[$pl], $burst), $atkDps)),
                 'ansCcDps' => count(array_filter($ansCc, fn ($c) => $c['on'] !== $atkHealerId)),
@@ -1055,4 +1110,46 @@ foreach ($all as $g) {
             printf("      %s %s %-4s %s%s\n", $g['time'], $g['won'] ? 'W' : 'L', $sd, $i['text'], $i['inGo'] ? '  [in go]' : '');
         }
     }
+}
+
+// ---- PEAK BURST: the 6s with the most DK + Monk damage in each of our goes
+echo "\n=== PEAK BURST: the ".PEAK_SECONDS."s of each of our goes with the most DPS damage, and their healer during it\n";
+$peakRow = function (string $lb, array $rows) {
+    $n = max(1, count($rows));
+    $locked = array_filter($rows, fn ($r) => $r['peakHealerLocked'] >= 2.0);
+    $kicked = array_filter($rows, fn ($r) => $r['peakHealerKicked'] > 0);
+    $either = array_filter($rows, fn ($r) => $r['peakHealerLocked'] >= 2.0 || $r['peakHealerKicked'] > 0);
+    printf("   %-30s goes %2d | peak %6sk in 6s (%d%% of the go's DPS damage) | healer locked 2s+ during it: %2d (%d%%) | healer kicked in it: %d | either: %d%% | abilities in the peak %.1f\n",
+        $lb, count($rows), number_format(array_sum(array_column($rows, 'peakDamage')) / $n / 1000),
+        round(100 * array_sum(array_column($rows, 'peakGoShare')) / $n), count($locked), round(100 * count($locked) / $n), count($kicked),
+        round(100 * count($either) / $n), array_sum(array_map(fn ($r) => count($r['peakAbilities']), $rows)) / $n);
+};
+$peakRow('goes followed by a kill', array_filter($ours, fn ($r) => $r['killLater']));
+$peakRow('goes not followed by a kill', array_filter($ours, fn ($r) => ! $r['killLater']));
+$peakRow('goes in games won', array_filter($ours, fn ($r) => $r['won']));
+$peakRow('goes in games lost', array_filter($ours, fn ($r) => ! $r['won']));
+foreach ([[true, 'JOINT peak (DK and Monk each 25%+)'], [false, 'one player peak']] as [$al, $lb]) {
+    $rows = array_filter($ours, fn ($r) => $r['peakJoint'] === $al);
+    printf('   %-42s goes %2d, followed by a kill %d%% | peak without Touch of Death %sk
+', $lb, count($rows),
+        $rows ? round(100 * count(array_filter($rows, fn ($r) => $r['killLater'])) / count($rows)) : 0,
+        $rows ? number_format(array_sum(array_column($rows, 'peakNoTod')) / count($rows) / 1000) : 0);
+}
+foreach ([[true, true, 'JOINT peak AND their healer locked/kicked'], [true, false, 'joint peak, healer free'], [false, true, 'one player, healer locked/kicked'], [false, false, 'one player, healer free']] as [$jt, $al, $lb]) {
+    $rows = array_filter($ours, fn ($r) => $r['peakJoint'] === $jt && ($r['peakHealerLocked'] >= 2.0 || $r['peakHealerKicked'] > 0) === $al);
+    printf('   %-42s goes %2d, followed by a kill %d%%
+', $lb, count($rows),
+        $rows ? round(100 * count(array_filter($rows, fn ($r) => $r['killLater'])) / count($rows)) : 0);
+}
+foreach ([[true, 'peak WITH healer locked 2s+ or kicked'], [false, 'peak with their healer FREE']] as [$al, $lb]) {
+    $rows = array_filter($ours, fn ($r) => ($r['peakHealerLocked'] >= 2.0 || $r['peakHealerKicked'] > 0) === $al);
+    printf("   %-38s goes %2d, followed by a kill %d%%\n", $lb, count($rows),
+        $rows ? round(100 * count(array_filter($rows, fn ($r) => $r['killLater'])) / count($rows)) : 0);
+}
+echo "   --- every go: game, go start, peak starts (s into the go), peak damage, their healer locked / kicked in it, kill after?, what landed\n";
+foreach ($ours as $r) {
+    $top = array_slice($r['peakAbilities'], 0, 5, true);
+    printf("   %s %s %6.1fs  +%4.1fs %6sk  locked %3.1fs kicked %d  %-4s  %s\n", $r['game'], $r['won'] ? 'W' : 'L', $r['from'], $r['peakFrom'],
+        number_format($r['peakDamage'] / 1000), $r['peakHealerLocked'], $r['peakHealerKicked'], $r['killLater'] ? 'KILL' : '',
+        implode(', ', array_map(fn ($k, $v) => $k.' '.round($v / 1000).'k', array_keys($top), $top)));
 }
