@@ -475,7 +475,8 @@ shows the signed-in player's own tool output, read from
 `storage/app/private/match-review/{user id}/*.txt` on the server. The output names every
 opponent, so it is **uploaded, never committed or deployed**: save each tool's console output to a
 `.txt` file and upload it with the base64-over-exec method in CLAUDE.md, then `chown` it to
-`www-data`. Chriso is user 8 on production.
+`www-data`. Reviews belong to Chriso's account, `christian@mindcollector.com`, which is user 2 on
+production (user 8 is a different account of his).
 
 **To become a command**, the draft needs: the team and date range as arguments rather than
 hard-coded; a written output (JSON, not console text) that the review page could read; the
