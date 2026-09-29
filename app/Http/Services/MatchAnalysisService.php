@@ -85,6 +85,7 @@ class MatchAnalysisService
             'whoYouPlayed' => $this->whoYouPlayed($won, $lost, $xp),
             'comparisons' => $this->comparisons($games, $won, $lost),
             'patterns' => $this->patterns($games, $won, $lost),
+            'faults' => $this->faults($lost, $xp),
             'takeaways' => $logger ? $this->takeaways($logger, $games, $won, $lost) : [],
             'pendingExperience' => $pending,
         ];
@@ -280,10 +281,21 @@ class MatchAnalysisService
 
         if ($logger['healer'] && $ourDeaths->isNotEmpty()) {
             $locked = $ourDeaths->filter(fn ($d) => $d['healer']['state'] === 'locked' || ($d['healer']['state'] === 'ended' && $d['healer']['endedAgo'] <= 1));
-            $trinketGone = $locked->filter(fn ($d) => collect($d['healer']['medallionUsedAt'])->contains(fn ($t) => $t < $d['t'] - 5));
+            $trinketGone = $locked->filter(fn ($d) => collect($d['healer']['medallionUsedAt'])->contains(fn ($t) => $t < $d['t'] - 5 && $t > $d['t'] - self::MEDALLION_COOLDOWN));
             $out[] = sprintf('When your team died, you were locked out at that moment in %d of %d losses%s.',
                 $locked->count(), $ourDeaths->count(),
                 $locked->isNotEmpty() ? sprintf('; your Medallion had already been used earlier in %d of those. Keep it for the CC that comes with their cooldowns', $trinketGone->count()) : '');
+        }
+
+        if ($logger['healer']) {
+            $all = $games->flatMap(fn ($g) => collect($g['a']['goes'])->where('side', 'us')->map(fn ($go) => $go + ['me' => collect($g['a']['players'])->firstWhere('logger', true)['guid']]));
+            if ($all->isNotEmpty() && isset($all->first()['healerCcBy'])) {
+                $mine = $all->filter(fn ($go) => in_array($go['me'], $go['healerCcBy'] ?? [], true));
+                $inBurst = $all->filter(fn ($go) => in_array($go['me'], $go['peak']['healerCcBy'] ?? [], true));
+                $rate = fn ($set) => $set->isEmpty() ? 'n/a' : round(100 * $set->where('killLater', true)->count() / $set->count()).'%';
+                $out[] = sprintf('Your CC was on their healer in %d of your team\'s %d goes (%s of those led to a kill, %s of the rest), but on them during the burst itself in only %d (%s).',
+                    $mine->count(), $all->count(), $rate($mine), $rate($all->diffKeys($mine)), $inBurst->count(), $rate($inBurst));
+            }
         }
 
         if (! $logger['healer']) {
@@ -482,6 +494,114 @@ class MatchAnalysisService
         }
 
         return $out;
+    }
+
+    // ------------------------------------------------------------------ where the losses came from
+
+    /** Gladiator's Medallion's cooldown, from the spell data. */
+    private const MEDALLION_COOLDOWN = 120;
+
+    /** How much each kind of mistake counts. Shown on the page; changing one changes every split. */
+    public const FAULT_WEIGHTS = [
+        'locked_trinket_used' => 2,
+        'locked_trinket_unused' => 1,
+        'overlap' => 1,
+        'defensive_outside' => 1,
+        'burst_healer_free' => 1,
+        'them_experience' => 2,
+        'them_mmr' => 1,
+        'them_answered' => 1,
+    ];
+
+    /**
+     * A rough split of the losses: every mistake the log can pin on a button, owned by the player
+     * who pressed it, plus what the other team did that was nobody's fault on ours. Weighted by
+     * FAULT_WEIGHTS and turned into shares. AN ESTIMATE FROM RULES, NOT A VERDICT: the log cannot see
+     * positioning, calls, or a mistake nobody pressed a button for, and the page says so.
+     */
+    private function faults(Collection $lost, array $xp): array
+    {
+        if ($lost->isEmpty() || ! isset($lost->first()['a']['overlaps']['rows'])) {
+            return $lost->isEmpty() ? [] : ['outdated' => true];
+        }
+
+        $w = self::FAULT_WEIGHTS;
+        $owners = [];
+        $games = [];
+
+        foreach ($lost as $g) {
+            $a = $g['a'];
+            $players = collect($a['players'])->keyBy('guid');
+            $label = fn ($guid) => isset($players[$guid]) ? $players[$guid]['spec'] : 'Your team';
+            $isOurs = fn ($guid) => isset($players[$guid]) && $players[$guid]['side'] === 'us';
+            $ourHealer = collect($a['players'])->first(fn ($p) => $p['side'] === 'us' && $p['healer']);
+            $items = [];
+            $add = function (string $owner, ?string $class, string $kind, string $text, ?string $spell = null) use (&$items, &$owners, $w) {
+                $items[] = ['owner' => $owner, 'class' => $class, 'weight' => $w[$kind], 'text' => $text, 'spell' => $spell];
+                $owners[$owner] ??= ['weight' => 0, 'class' => $class, 'ours' => ! str_starts_with($owner, 'Them')];
+                $owners[$owner]['weight'] += $w[$kind];
+            };
+
+            // The healer at the moment our player died.
+            $death = collect($a['deaths'])->firstWhere('side', 'us');
+            if ($death && $ourHealer && ($death['healer']['state'] === 'locked' || ($death['healer']['state'] === 'ended' && $death['healer']['endedAgo'] <= 1))) {
+                // "Already used" only while it was still on cooldown: 120s is Gladiator's Medallion's
+                // cooldown in the spell data. One used longer ago than that was back, and unused.
+                $used = collect($death['healer']['medallionUsedAt'])->filter(fn ($t) => $t < $death['t'] - 5 && $t > $death['t'] - self::MEDALLION_COOLDOWN)->max();
+                $dead = $label($death['who']);
+                $used !== null
+                    ? $add($ourHealer['spec'], $ourHealer['classSlug'] ?? null, 'locked_trinket_used', sprintf('Locked out when your %s died; Medallion used %ds earlier', $dead, round($death['t'] - $used)), "Gladiator's Medallion")
+                    : $add($ourHealer['spec'], $ourHealer['classSlug'] ?? null, 'locked_trinket_unused', sprintf('Locked out when your %s died, with the Medallion unused', $dead), "Gladiator's Medallion");
+            }
+
+            // A defensive stacked on one that was already up: the second one's owner.
+            foreach ($a['overlaps']['rows'] as $o) {
+                if ($o['side'] === 'us' && $isOurs($o['second']['by'])) {
+                    $add($label($o['second']['by']), $players[$o['second']['by']]['classSlug'] ?? null, 'overlap',
+                        sprintf('%s on your %s while %s was up (%ss together)', $o['second']['spell'], $label($o['on']), $o['first']['spell'], $o['seconds']), $o['second']['spell']);
+                }
+            }
+
+            // A defensive spent while they were not in a go.
+            foreach ($a['defensives']['us']['rows'] as $d) {
+                if ($d['outside'] && $isOurs($d['who'])) {
+                    $add($label($d['who']), $players[$d['who']]['classSlug'] ?? null, 'defensive_outside', sprintf('%s while they were not in a go', $d['spell']), $d['spell']);
+                }
+            }
+
+            // A burst that landed with their healer free.
+            foreach (collect($a['goes'])->where('side', 'us') as $go) {
+                if ($go['peak']['healerLocked'] < 2.0 && ! $go['peak']['healerKicked']) {
+                    $add('Your team (burst timing)', null, 'burst_healer_free', 'Your hardest 6 seconds landed with their healer free');
+                }
+            }
+
+            // What the other team brought.
+            $gladOf = fn (string $side) => collect($a['players'])->where('side', $side)->sum(fn ($p) => $xp[$p['name']]['gladSeasons'] ?? 0);
+            if ($gladOf('them') >= $gladOf('us') + 3) {
+                $add('Them: more experienced', null, 'them_experience', sprintf('%d Gladiator seasons between them, %d between you', $gladOf('them'), $gladOf('us')));
+            }
+            if (($a['mmr']['them'] ?? 0) - ($a['mmr']['us'] ?? 0) >= 50) {
+                $add('Them: higher MMR', null, 'them_mmr', sprintf('%d MMR above yours', $a['mmr']['them'] - $a['mmr']['us']));
+            }
+            $ours = collect($a['goes'])->where('side', 'us');
+            if ($ours->isNotEmpty() && $ours->where('killLater', true)->isEmpty() && $ours->avg('defs') >= 2) {
+                $add('Them: answered every go', null, 'them_answered', sprintf('Your %d goes forced %.1f defensives each and none led to a kill', $ours->count(), $ours->avg('defs')));
+            }
+
+            $games[] = ['time' => substr($g['playedAt'], 11, 5), 'items' => $items];
+        }
+
+        $total = max(1, array_sum(array_column($owners, 'weight')));
+        uasort($owners, fn ($x, $y) => $y['weight'] <=> $x['weight']);
+        $spells = collect($games)->flatMap(fn ($g) => array_column($g['items'], 'spell'))->filter()->unique()->values()->all();
+
+        return [
+            'shares' => collect($owners)->map(fn ($o, $name) => ['owner' => $name, 'class' => $o['class'], 'ours' => $o['ours'], 'share' => (int) round(100 * $o['weight'] / $total), 'weight' => $o['weight']])->values()->all(),
+            'games' => $games,
+            'weights' => $w,
+            'icons' => $this->icons->for($spells),
+        ];
     }
 
     private function clock(float $seconds): string

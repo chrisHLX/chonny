@@ -25,8 +25,11 @@ class RoundAnalysisService
      * Bumped when a measure's definition or the stored shape changes, so stored analyses can be told
      * apart. 2 (2026-09-29): each go keeps its links, the defensives it forced and its burst as
      * structured rows (who, what, when, on whom), so a go can be drawn with icons like a guide.
+     * 3 (2026-09-29): who applied each overlapping defensive, who spent each defensive outside the
+     * enemy's goes, and whose CC was on their healer during each burst — so a loss's mistakes can
+     * be owned by the player whose button it was ("Where the losses came from").
      */
-    public const VERSION = 2;
+    public const VERSION = 3;
 
     /** Crowd control that takes a player out: a slow or root does not stop a healer healing. */
     private const LOCKOUT = ['Stun', 'Silence', 'Disorient', 'Incapacitate'];
@@ -183,9 +186,9 @@ class RoundAnalysisService
                 if (isset($roster[$f[5]])) {
                     $k = $f[5].'|'.$f[10];
                     if ($event === 'SPELL_AURA_APPLIED') {
-                        $open[$k] = $t;
+                        $open[$k] = [$t, $f[1]];
                     } elseif (isset($open[$k])) {
-                        $buffs[] = ['name' => $f[10], 'on' => $f[5], 'from' => $open[$k], 'to' => $t];
+                        $buffs[] = ['name' => $f[10], 'on' => $f[5], 'from' => $open[$k][0], 'to' => $t, 'by' => $open[$k][1]];
                         unset($open[$k]);
                     }
                 }
@@ -338,6 +341,10 @@ class RoundAnalysisService
         $atkHealer = $healers[$side] ?? null;
         $peakWin = [[$peak['from'], $peak['from'] + self::PEAK]];
         $peakKicks = array_filter($interrupts, fn ($x) => $x['t'] >= $peak['from'] && $x['t'] <= $peak['from'] + self::PEAK && $sideOf($credit($x['src'])) === $side && $x['dst'] === $defHealer);
+        $peakCcBy = array_values(array_unique(array_map(fn ($c) => $credit($c['by']), array_filter($tl['control'], fn ($c) => $c['on'] === $defHealer
+            && in_array($c['dr'], self::LOCKOUT, true) && $c['from'] < $peak['from'] + self::PEAK && $c['to'] > $peak['from']))));
+        $goCcOnHealerBy = array_values(array_unique(array_map(fn ($c) => $credit($c['by']), array_filter($tl['control'], fn ($c) => $c['on'] === $defHealer
+            && in_array($c['dr'], self::LOCKOUT, true) && $c['from'] >= $from && $c['from'] <= $to))));
         $burst = [[$go['firstOffensive'] - 1, $go['firstOffensive'] + 4]];
 
         return [
@@ -366,9 +373,11 @@ class RoundAnalysisService
                 'joint' => count($byPlayer) >= 2 && min($byPlayer) / max(1, array_sum($byPlayer)) >= 0.25,
                 'healerLocked' => $defHealer ? round($this->cross($locked[$defHealer], $peakWin), 1) : 0.0,
                 'healerKicked' => count($peakKicks) > 0,
+                'healerCcBy' => $peakCcBy,
                 'abilities' => array_slice($byAbility, 0, 5, true),
             ],
             'ownHealerLockedAtCds' => $atkHealer ? $this->cross($locked[$atkHealer], $burst) > 0 : false,
+            'healerCcBy' => $goCcOnHealerBy,
         ];
     }
 
@@ -435,8 +444,12 @@ class RoundAnalysisService
         $out = [];
         foreach (['us' => 'them', 'them' => 'us'] as $side => $opp) {
             $spent = array_values(array_filter($tl['commitments'], fn ($c) => $sideOf($c['who']) === $side && $c['cat'] === 'defensive' && $c['t'] <= $firstDeath));
-            $outside = array_filter($spent, fn ($c) => ! collect($goes[$opp])->contains(fn ($g) => $c['t'] >= $g['from'] && $c['t'] <= $g['to']));
-            $out[$side] = ['spent' => count($spent), 'outsideTheirGoes' => count($outside)];
+            $isOutside = fn ($c) => ! collect($goes[$opp])->contains(fn ($g) => $c['t'] >= $g['from'] && $c['t'] <= $g['to']);
+            $out[$side] = [
+                'spent' => count($spent),
+                'outsideTheirGoes' => count(array_filter($spent, $isOutside)),
+                'rows' => array_map(fn ($c) => ['t' => $c['t'], 'spell' => $c['spell'], 'who' => $c['who'], 'outside' => $isOutside($c)], $spent),
+            ];
         }
 
         return $out;
@@ -447,12 +460,19 @@ class RoundAnalysisService
     {
         $names = array_unique(array_column(array_filter($tl['commitments'], fn ($c) => $c['cat'] === 'defensive'), 'spell'));
         $db = array_values(array_filter($buffs, fn ($b) => in_array($b['name'], $names, true)));
-        $out = ['us' => 0, 'them' => 0];
+        $out = ['us' => 0, 'them' => 0, 'rows' => []];
         for ($i = 0; $i < count($db); $i++) {
             for ($j = $i + 1; $j < count($db); $j++) {
-                if ($db[$i]['on'] === $db[$j]['on'] && $db[$i]['name'] !== $db[$j]['name'] && $db[$i]['from'] <= $firstDeath
-                    && min($db[$i]['to'], $db[$j]['to']) - max($db[$i]['from'], $db[$j]['from']) >= 1.0) {
+                $both = min($db[$i]['to'], $db[$j]['to']) - max($db[$i]['from'], $db[$j]['from']);
+                if ($db[$i]['on'] === $db[$j]['on'] && $db[$i]['name'] !== $db[$j]['name'] && $db[$i]['from'] <= $firstDeath && $both >= 1.0) {
                     $out[$sideOf($db[$i]['on'])]++;
+                    // The one applied SECOND is the overlap: it went on while the first was up.
+                    [$first, $second] = $db[$i]['from'] <= $db[$j]['from'] ? [$db[$i], $db[$j]] : [$db[$j], $db[$i]];
+                    $out['rows'][] = [
+                        'side' => $sideOf($db[$i]['on']), 'on' => $first['on'], 't' => $second['from'], 'seconds' => round($both, 1),
+                        'first' => ['spell' => $first['name'], 'by' => $first['by'] ?? null],
+                        'second' => ['spell' => $second['name'], 'by' => $second['by'] ?? null],
+                    ];
                 }
             }
         }

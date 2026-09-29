@@ -112,6 +112,72 @@
             </section>
         @endif
 
+        {{-- Where the losses came from: a rough split, and the ledger behind it --}}
+        @php $f = $analysis['faults'] ?? []; @endphp
+        @if ($f['outdated'] ?? false)
+            <div class="linear-card p-5 text-[13px] text-ink-muted">These games were analysed before mistakes were stored with their owners. Upload them again to see where the losses came from.</div>
+        @elseif (! empty($f['shares']))
+            @php
+                $classColors = config('wow_classes.colors', []);
+                $shareColor = fn ($sh) => $sh['class'] ? ($classColors[$sh['class']] ?? '#8A8A9A') : ($sh['ours'] ? '#52525F' : '#7B6EE8');
+            @endphp
+            <section class="linear-card p-5">
+                <h2 class="text-[17px] font-semibold text-ink">Where the losses came from</h2>
+                <p class="text-[12.5px] text-ink-muted mt-1 mb-4">
+                    A rough split, not a verdict. Every mistake the log can pin on a button counts toward whoever pressed it;
+                    what the other team did well is theirs. It cannot see positioning, calls, or a mistake nobody pressed a button for.
+                </p>
+
+                <div class="flex h-3 rounded overflow-hidden mb-3">
+                    @foreach ($f['shares'] as $sh)
+                        <div style="width: {{ $sh['share'] }}%; background: {{ $shareColor($sh) }}" title="{{ $sh['owner'] }}: {{ $sh['share'] }}%"></div>
+                    @endforeach
+                </div>
+                <div class="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
+                    @foreach ($f['shares'] as $sh)
+                        <p class="flex items-center gap-2 text-[13px]">
+                            <span class="w-2.5 h-2.5 rounded-sm shrink-0" style="background: {{ $shareColor($sh) }}"></span>
+                            <span class="flex-1 {{ $sh['ours'] ? 'text-ink' : 'text-ink-muted' }}">{{ $sh['owner'] }}</span>
+                            <span class="tabular-nums font-semibold text-ink">{{ $sh['share'] }}%</span>
+                        </p>
+                    @endforeach
+                </div>
+
+                <details class="mt-4 pt-4 border-t border-line">
+                    <summary class="cursor-pointer text-[12.5px] text-gold">The ledger: every item, loss by loss</summary>
+                    <div class="mt-3 space-y-4">
+                        @foreach ($f['games'] as $g)
+                            <div>
+                                <p class="text-[11px] uppercase tracking-[0.13em] text-ink-subtle mb-1.5">Lost at {{ $g['time'] }}</p>
+                                <ul class="space-y-1">
+                                    @foreach ($g['items'] as $i)
+                                        <li class="flex items-center gap-2.5 text-[12.5px]">
+                                            @if ($i['spell'])
+                                                <x-spell-icon :spell="$f['icons'][$i['spell']] ?? (object) ['icon_name' => null, 'display_name' => $i['spell']]" size="w-5 h-5"/>
+                                            @else
+                                                <span class="w-5 h-5 shrink-0"></span>
+                                            @endif
+                                            <span class="flex-1 text-ink-muted">{{ $i['text'] }}</span>
+                                            <span class="shrink-0 text-[11.5px]" style="color: {{ $i['class'] ? ($classColors[$i['class']] ?? '#8A8A9A') : '#8A8A9A' }}">{{ $i['owner'] }}</span>
+                                            <span class="shrink-0 text-[11px] text-ink-subtle tabular-nums w-6 text-right">+{{ $i['weight'] }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endforeach
+                        <p class="text-[11.5px] text-ink-subtle">
+                            Weights: locked out when a teammate died with the Medallion already on cooldown {{ $f['weights']['locked_trinket_used'] }}, with it available {{ $f['weights']['locked_trinket_unused'] }};
+                            a defensive stacked on one already up {{ $f['weights']['overlap'] }} (whoever put the second one on);
+                            a defensive spent while they were not in a go {{ $f['weights']['defensive_outside'] }};
+                            a burst that landed with their healer free {{ $f['weights']['burst_healer_free'] }} (the team).
+                            Theirs: {{ $f['weights']['them_experience'] }} for 3+ more Gladiator seasons, {{ $f['weights']['them_mmr'] }} for 50+ more MMR,
+                            {{ $f['weights']['them_answered'] }} when your goes forced defensives and none killed.
+                        </p>
+                    </div>
+                </details>
+            </section>
+        @endif
+
         {{-- The patterns, as abilities --}}
         @if (($analysis['patterns']['outdated'] ?? false))
             <div class="linear-card p-5 text-[13px] text-ink-muted">These games were analysed before goes were stored in full. Upload them again to see the patterns as abilities.</div>

@@ -30,8 +30,9 @@ class MatchAnalysisTest extends TestCase
         $go = fn (bool $kill, int $drained, bool $aligned) => [
             'side' => 'us', 'from' => 10, 'to' => 30, 'good' => true, 'chain' => 'Army of the Dead', 'healerCc' => 1,
             'defs' => 2, 'defNames' => [], 'drained' => $drained, 'kill' => null, 'killLater' => $kill,
-            'peak' => ['damage' => 1000000, 'joint' => true, 'healerLocked' => $aligned ? 3.0 : 0.0, 'healerKicked' => false, 'abilities' => []],
+            'peak' => ['damage' => 1000000, 'joint' => true, 'healerLocked' => $aligned ? 3.0 : 0.0, 'healerKicked' => false, 'abilities' => [], 'healerCcBy' => $aligned ? ['P-1'] : []],
             'ownHealerLockedAtCds' => false,
+            'healerCcBy' => ['P-1'],
             'links' => [
                 ['t' => 0.0, 'spell' => 'Psychic Scream', 'cat' => 'control', 'role' => 'healer', 'by' => 'P-1', 'on' => 'E-1', 'gap' => 0.0],
                 ['t' => 1.0, 'spell' => 'Army of the Dead', 'cat' => 'offensive', 'role' => null, 'by' => 'P-2', 'on' => null, 'gap' => 0.0],
@@ -56,8 +57,15 @@ class MatchAnalysisTest extends TestCase
                     'shares' => [], 'goStartedAgo' => 8, 'defensives30s' => [],
                     'healer' => ['state' => $won ? 'none' : 'locked', 'endedAgo' => null, 'medallionUsedAt' => $won ? [] : [20]],
                 ]],
-                'defensives' => ['us' => ['spent' => 3, 'outsideTheirGoes' => 0], 'them' => ['spent' => 4, 'outsideTheirGoes' => 0]],
-                'overlaps' => ['us' => $won ? 0 : 2, 'them' => 0],
+                'defensives' => [
+                    'us' => ['spent' => 3, 'outsideTheirGoes' => $won ? 0 : 1, 'rows' => $won ? [] : [['t' => 5, 'spell' => 'Lichborne', 'who' => 'P-2', 'outside' => true]]],
+                    'them' => ['spent' => 4, 'outsideTheirGoes' => 0, 'rows' => []],
+                ],
+                'overlaps' => ['us' => $won ? 0 : 1, 'them' => 0, 'rows' => $won ? [] : [[
+                    'side' => 'us', 'on' => 'P-2', 't' => 40, 'seconds' => 6.0,
+                    'first' => ['spell' => 'Icebound Fortitude', 'by' => 'P-2'],
+                    'second' => ['spell' => 'Pain Suppression', 'by' => 'P-1'],
+                ]]],
                 'kicks' => [],
                 'lockout' => [],
             ], $over)],
@@ -169,5 +177,60 @@ class MatchAnalysisTest extends TestCase
         $id = ArenaRound::where('match_id', 'm1')->value('id');
 
         $this->assertTrue(app(MatchAnalysisService::class)->game($user, $id)['outdated']);
+    }
+
+    public function test_a_loss_is_split_by_who_pressed_the_button(): void
+    {
+        $user = User::factory()->create();
+        $this->storeGame($user, 'm1', '2026-09-26 19:26:00', true);
+        $this->storeGame($user, 'm3', '2026-09-26 19:50:00', false);
+
+        $s = app(MatchAnalysisService::class)->sessions($user)[0];
+        $f = app(MatchAnalysisService::class)->build($user, $s['date'], $s['bracket'], $s['team'])['faults'];
+        $items = collect($f['games'][0]['items']);
+
+        // The overlap belongs to whoever put the SECOND defensive on: Pain Suppression, the Priest.
+        $overlap = $items->first(fn ($i) => str_contains($i['text'], 'while Icebound Fortitude was up'));
+        $this->assertSame('Discipline Priest', $overlap['owner']);
+        // The Medallion was used 40s before the death (still on its 120s cooldown): weight 2.
+        $locked = $items->first(fn ($i) => str_contains($i['text'], 'Locked out when'));
+        $this->assertSame(['Discipline Priest', 2], [$locked['owner'], $locked['weight']]);
+        // A defensive outside their goes is the DK's own.
+        $this->assertSame('Unholy Death Knight', $items->first(fn ($i) => str_contains($i['text'], 'Lichborne while'))['owner']);
+        $total = array_sum(array_column($f['shares'], 'share'));
+        $this->assertTrue($total >= 98 && $total <= 102, "shares add up to 100 give or take rounding, got {$total}");
+    }
+
+    public function test_a_medallion_back_off_cooldown_counts_as_available(): void
+    {
+        $user = User::factory()->create();
+        $this->storeGame($user, 'm3', '2026-09-26 19:50:00', false, ['deaths' => [[
+            't' => 200, 'who' => 'P-2', 'side' => 'us', 'killingBlow' => ['spell' => 'Execute', 'amount' => 1, 'hpBefore' => 1],
+            'shares' => [], 'goStartedAgo' => 5, 'defensives30s' => [],
+            'healer' => ['state' => 'locked', 'endedAgo' => null, 'medallionUsedAt' => [20]],
+        ]]]);
+
+        $s = app(MatchAnalysisService::class)->sessions($user)[0];
+        $f = app(MatchAnalysisService::class)->build($user, $s['date'], $s['bracket'], $s['team'])['faults'];
+        $locked = collect($f['games'][0]['items'])->first(fn ($i) => str_contains($i['text'], 'Locked out when'));
+
+        $this->assertStringContainsString('with the Medallion unused', $locked['text'], 'used 180s earlier: it was back');
+        $this->assertSame(1, $locked['weight']);
+    }
+
+    public function test_their_experience_is_theirs_not_yours(): void
+    {
+        $user = User::factory()->create();
+        $this->storeGame($user, 'm3', '2026-09-26 19:50:00', false);
+        foreach (['Healz' => 0, 'Dk' => 1, 'Druid' => 5, 'Mage' => 4] as $n => $glad) {
+            Cache::put('player_experience:v1:'.md5(mb_strtolower("{$n}-Realm-US")), ['found' => true, 'exp3v3' => 2400, 'gladSeasons' => $glad, 'rankOneSeasons' => 0, 'legendSeasons' => 0, 'bestRank' => 'Gladiator'], 60);
+        }
+
+        $s = app(MatchAnalysisService::class)->sessions($user)[0];
+        $f = app(MatchAnalysisService::class)->build($user, $s['date'], $s['bracket'], $s['team'])['faults'];
+        $them = collect($f['shares'])->firstWhere('owner', 'Them: more experienced');
+
+        $this->assertNotNull($them);
+        $this->assertFalse($them['ours']);
     }
 }
