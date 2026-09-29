@@ -569,6 +569,31 @@ judgement. `/wow/match-analysis` produces it for any player from their own uploa
   bracket and team, and a shuffle's team changes every round); a model-written summary over the
   tables; a player's own rotation (`rotation.php`).
 
+## Where the losses came from: the rules (2026-09-29)
+
+`MatchAnalysisService::faults()`, shown on `/wow/match-analysis`. In each loss, every mistake the
+log can pin on a button counts toward whoever pressed it, and what the other team brought counts
+toward them. Weights are in `MatchAnalysisService::FAULT_WEIGHTS`; changing one changes every split.
+
+| Item | Owner | Weight |
+|---|---|---|
+| Our healer locked out when a teammate died, Medallion still on its 120s cooldown | our healer | 2 |
+| The same, Medallion available (unused, or used more than 120s before) | our healer | 1 |
+| A defensive stacked on one already up, 1s+ together, before the first death | whoever applied the **second** one | 1 |
+| A defensive spent while they were not in a go, before the first death | whoever spent it | 1 |
+| A go whose 6-second peak landed with their healer free (not locked 2s+, not kicked) | the team (burst timing) | 1 |
+| Their team had 3+ more Gladiator seasons | them | 2 |
+| Their MMR 50+ above ours | them | 1 |
+| Our goes forced 2+ defensives each on average and none led to a kill | them | 1 |
+
+What it needs from each game (RoundAnalysisService v3): who applied each overlapping defensive
+(the `BUFF` aura's source), who spent each defensive and whether it was outside the enemy's goes,
+and whose lockout was on their healer during each go and each burst.
+
+**An estimate from rules, not a verdict.** It cannot see positioning, calls, or a mistake nobody
+pressed a button for; a player who never pressed anything collects no share. The page says so,
+shows every item in a ledger, and prints the weights.
+
 ## Measurement rules from earlier studies
 
 Methods the first studies settled. Their results are in `match-review-analysis.md`.

@@ -468,6 +468,57 @@ inside a killing peak were both the DK's Mind Freeze on their healer (19:26, 19:
 
 Each peak is listed with its abilities in the raw output (`killread-26sep`, "every go").
 
+#### The healer's CC on their healer, and where the losses came from (2026-09-29)
+
+Chriso's read, as the healer: in the losses, if he had not overlapped defensives and had got more
+CC on their Druid during the goes, the team would have had a better chance. Tested on the stored
+analyses of all 15 games (`/wow/match-analysis`, RoundAnalysisService v3).
+
+**CC on their healer during our goes: supported.**
+
+| Our goes | Led to a kill |
+|---|---|
+| With the Priest's CC on their healer in the go | **11 of 23 (48%)** |
+| Without it | 5 of 17 (29%) |
+| Anyone's CC on their healer in the go | 14 of 36 (39%) |
+
+**Against the Resto Druid, the lever is timing, not how often.** The Priest was already fearing the
+Druid in 6 of the 11 goes against him (1 led to a kill; 0 of the 5 without). But the team's hardest
+6 seconds landed while the Druid was locked out or kicked in only 4 of those 11. At 20:25 and twice
+at 20:30 the fear landed on the Druid and the burst came while he was free. Across all 40 goes,
+the Priest's CC was on their healer in 23, **but on them during the burst itself in only 7**.
+
+So the actionable version is: **land the fear with the DK and Monk's burst**, not more fears. That
+is the same finding as *Peak burst* above (a joint burst on their healer's CC killed 5 of 8 times,
+5 of 20 with their healer free), now with the healer's own part in it.
+
+**Overlapping defensives: supported, and the DK stacks too.** Every overlap now has an owner: the
+player who put the second defensive on. In the losses: the Priest's Pain Suppression on the DK or
+Monk while their own defensive was up (19:47, 19:54, 20:25 twice), and the DK stacking his own
+Icebound Fortitude, Lichborne and Anti-Magic Shell on each other or on top of Pain Suppression
+(19:54 twice, 20:13, 20:25 twice). At 19:54 all of it happened inside 17 seconds, before their
+first offensive cooldown.
+
+**Where the losses came from: a rough split.** Every mistake the log can pin on a button, owned by
+whoever pressed it, plus what the other team brought, weighted and turned into shares (the rules
+and weights are in `match-review-operations.md`, "Where the losses came from"):
+
+| Owner | Share | From |
+|---|---|---|
+| **Discipline Priest** | **32%** | locked out when a teammate died with the Medallion on cooldown (19:54, 20:13, 20:22, 20:30) or available (19:47); four overlaps; one defensive outside their goes |
+| Your team (burst timing) | 23% | ten bursts that landed with their healer free |
+| **Unholy DK** | **18%** | five overlaps of his own defensives; three defensives outside their goes |
+| Them: answered every go | 11% | five losses where our goes forced defensives and none killed |
+| Them: more experienced | 9% | 19:47 (14 Gladiator seasons to our 11) and 20:22 (26 to 11) |
+| Windwalker Monk | 5% | one overlap, one defensive outside their goes |
+| Them: higher MMR | 2% | 19:54 (+112) |
+
+The split agrees with Chriso's sense of it: the largest single share is the healer's, and most of
+it is timing: the Medallion gone before the enemy's kill go, Pain Suppression on top of a
+defensive already up. Next is the team's burst landing on a free healer, which is partly the
+healer's too (see above). **It is an estimate from rules, not a verdict.** The log cannot see
+positioning, calls, or a mistake nobody pressed a button for, and the weights are judgement.
+
 #### How our DK and Monk play their specs (2026-09-28)
 
 `tools/match-review/rotation.php`, on the 7 Gladiator-level games (10.5 minutes of arena).
