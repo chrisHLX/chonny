@@ -23,7 +23,7 @@ class MatchAnalysisService
     /** Below this many games on either side of a comparison, it is a lead. */
     private const LEAD_BELOW = 10;
 
-    public function __construct(private PlayerExperienceService $experience) {}
+    public function __construct(private PlayerExperienceService $experience, private SpellIconIndex $icons) {}
 
     /**
      * The days, brackets and teams this player has analysed games for, newest first.
@@ -84,6 +84,7 @@ class MatchAnalysisService
             'levels' => collect($rows)->groupBy('level')->map(fn ($g) => ['games' => $g->count(), 'won' => $g->where('won', true)->count()])->all(),
             'whoYouPlayed' => $this->whoYouPlayed($won, $lost, $xp),
             'comparisons' => $this->comparisons($games, $won, $lost),
+            'patterns' => $this->patterns($games, $won, $lost),
             'takeaways' => $logger ? $this->takeaways($logger, $games, $won, $lost) : [],
             'pendingExperience' => $pending,
         ];
@@ -107,6 +108,7 @@ class MatchAnalysisService
 
                 return [
                     'id' => $r->id,
+                    'matchId' => $r->match_id,
                     'playedAt' => (string) $r->played_at,
                     'date' => substr((string) $r->played_at, 0, 10),
                     'bracket' => $r->bracket,
@@ -129,6 +131,7 @@ class MatchAnalysisService
         $dead = $first ? $players->firstWhere('guid', $first['who']) : null;
 
         return [
+            'id' => $g['id'],
             'time' => substr($g['playedAt'], 11, 5),
             'won' => $a['won'],
             'level' => $this->level($players, $xp),
@@ -300,6 +303,190 @@ class MatchAnalysisService
         }
 
         return $out;
+    }
+
+    // ------------------------------------------------------------------ one game, drawn as goes
+
+    /**
+     * One of the player's games as its goes, both sides, in time order: each drawn like a guide
+     * sequence (links with icons, the CC marked by who it landed on), with what it forced, what it
+     * hit hardest with, and how it ended. Null for a round that is not the player's.
+     */
+    public function game(User $user, int $roundId): ?array
+    {
+        $g = $this->rounds($user)->firstWhere('id', $roundId);
+        if (! $g || ! isset($g['a']['goes'][0]['links']) && $g['a']['goes'] !== []) {
+            return $g ? ['outdated' => true] : null;
+        }
+
+        $a = $g['a'];
+        $players = collect($a['players'])->keyBy('guid');
+        $xp = [];
+        foreach ($players as $p) {
+            $xp[$p['name']] = $this->experience->cached($p['name']);
+        }
+        $who = fn (?string $guid) => $guid && isset($players[$guid])
+            ? ['name' => $this->short($players[$guid]['name']), 'spec' => $players[$guid]['spec'], 'class' => $players[$guid]['classSlug'] ?? null, 'side' => $players[$guid]['side']]
+            : null;
+        $deathAt = collect($a['deaths'])->keyBy(fn ($d) => (string) $d['t']);
+
+        $goes = collect($a['goes'])->sortBy('from')->values()->map(function ($go) use ($who, $a) {
+            $killed = $go['kill'] ? $who($go['kill']) : null;
+            $laterKill = ! $killed && $go['killLater']
+                ? collect($a['deaths'])->first(fn ($d) => $d['side'] !== $go['side'] && $d['t'] > $go['to'])
+                : null;
+
+            return [
+                'side' => $go['side'],
+                'at' => $this->clock($go['from']),
+                'good' => $go['good'],
+                'target' => $who($go['target'] ?? null),
+                'drained' => $go['drained'],
+                'outcome' => $killed ? 'killed' : ($laterKill ? 'set up a kill' : 'no kill'),
+                'killed' => $killed ?? ($laterKill ? $who($laterKill['who']) : null),
+                'links' => $this->mergeLinks(array_map(fn ($l) => $l + ['byWho' => $who($l['by']), 'onWho' => $who($l['on'])], $go['links'])),
+                'forced' => array_map(fn ($f) => $f + ['whoPlayer' => $who($f['who'])], $go['forced']),
+                'burst' => array_map(fn ($b) => $b + ['whoPlayer' => $who($b['who'])], $go['burst']),
+                'burstTotal' => $go['peak']['damage'],
+                'burstOnHealerCc' => $go['peak']['healerLocked'] >= 2.0 || $go['peak']['healerKicked'],
+            ];
+        });
+
+        $names = $goes->flatMap(fn ($go) => array_merge(array_column($go['links'], 'spell'), array_column($go['forced'], 'spell'), array_column($go['burst'], 'spell')))
+            ->merge(collect($a['deaths'])->map(fn ($d) => $d['killingBlow']['spell'] ?? null))->filter()->unique()->values()->all();
+
+        return [
+            'row' => $this->row($g, $xp),
+            'players' => $players->map(fn ($p) => ['name' => $this->short($p['name']), 'spec' => $p['spec'], 'class' => $p['classSlug'] ?? null, 'side' => $p['side'], 'xp' => $this->xpCell($xp[$p['name']] ?? null)])->groupBy('side')->all(),
+            'goes' => $goes->all(),
+            'deaths' => collect($a['deaths'])->map(fn ($d) => [
+                'at' => $this->clock($d['t']), 'who' => $who($d['who']), 'side' => $d['side'],
+                'blow' => $d['killingBlow'], 'healer' => $this->healerState($d['healer']),
+            ])->all(),
+            'icons' => $this->icons->for($names),
+        ];
+    }
+
+    // ------------------------------------------------------------------ patterns, as icons
+
+    /**
+     * The patterns behind the wins and the losses, as abilities rather than percentages: what the
+     * goes that killed contained, what answered the player's goes, what killed them and what they
+     * killed with, where their burst came from, and what the enemy's killing goes contained.
+     */
+    private function patterns(Collection $games, Collection $won, Collection $lost): array
+    {
+        if (! isset($games->first()['a']['goes'][0]['links']) && $games->first()['a']['goes'] !== []) {
+            return ['outdated' => true];
+        }
+
+        $goes = fn (Collection $set, string $side) => $set->flatMap(fn ($g) => collect($g['a']['goes'])->where('side', $side));
+        $linkKey = fn ($l) => $l['spell'].($l['cat'] === 'control' ? '|'.($l['role'] ?? 'cross') : '');
+        $share = function (Collection $rows, callable $keys) {
+            $count = [];
+            foreach ($rows as $r) {
+                foreach (array_unique($keys($r)) as $k) {
+                    $count[$k] = ($count[$k] ?? 0) + 1;
+                }
+            }
+
+            return collect($count)->map(fn ($n) => $rows->isEmpty() ? 0 : $n / $rows->count());
+        };
+        $chip = fn (string $key, $value, ?string $hint = null) => ['spell' => explode('|', $key)[0], 'role' => explode('|', $key)[1] ?? null, 'value' => $value, 'hint' => $hint];
+
+        // 1. What your goes that killed had, against your goes that did not.
+        $ours = $goes($games, 'us');
+        $kill = $share($ours->where('killLater', true), fn ($g) => array_map($linkKey, $g['links']));
+        $none = $share($ours->where('killLater', false), fn ($g) => array_map($linkKey, $g['links']));
+        $killing = $kill->map(fn ($v, $k) => ['k' => $k, 'lift' => $v - ($none[$k] ?? 0), 'v' => $v])
+            ->filter(fn ($x) => $x['v'] >= 0.25)->sortByDesc('lift')->take(6)
+            ->map(fn ($x) => $chip($x['k'], round(100 * $x['v']).'%', round(100 * ($none[$x['k']] ?? 0)).'% of the rest'))->values()->all();
+
+        // 2. What answered your goes: their defensives per go, in wins against losses.
+        $answers = function (Collection $set) use ($goes) {
+            $rows = $goes($set, 'us');
+            $count = [];
+            foreach ($rows as $g) {
+                foreach ($g['forced'] as $f) {
+                    $count[$f['spell']] = ($count[$f['spell']] ?? 0) + 1;
+                }
+            }
+            arsort($count);
+
+            return ['goes' => $rows->count(), 'top' => array_slice($count, 0, 6, true)];
+        };
+        $answerChips = fn (array $a) => collect($a['top'])->map(fn ($n, $spell) => ['spell' => $spell, 'role' => null, 'value' => $n.'×', 'hint' => round($n / max(1, $a['goes']), 1).' per go'])->values()->all();
+        [$aw, $al] = [$answers($won), $answers($lost)];
+
+        // 3. What killed you, and what you killed with.
+        $blows = function (Collection $set, string $side) {
+            return $set->map(fn ($g) => collect($g['a']['deaths'])->firstWhere('side', $side)['killingBlow']['spell'] ?? null)
+                ->filter()->countBy()->sortDesc()->take(6)->map(fn ($n, $spell) => ['spell' => $spell, 'role' => null, 'value' => $n.'×', 'hint' => null])->values()->all();
+        };
+
+        // 4. Where your burst came from.
+        $burst = [];
+        foreach ($ours as $g) {
+            foreach ($g['burst'] as $b) {
+                $burst[$b['spell']] = ($burst[$b['spell']] ?? 0) + $b['amount'];
+            }
+        }
+        arsort($burst);
+        $burstTotal = max(1, array_sum($burst));
+
+        // 5. What the enemy's goes that killed you had.
+        $theirs = $goes($lost, 'them')->where('killLater', true);
+        $theirKill = $share($theirs, fn ($g) => array_map($linkKey, $g['links']))->sortDesc()->take(6)
+            ->map(fn ($v, $k) => $chip($k, round(100 * $v).'%'))->values()->all();
+
+        $out = [
+            ['title' => 'Your goes that killed', 'note' => 'What your goes that led to a kill contained, most distinctive first. The small number is how often the rest of your goes had it.',
+                'columns' => [['label' => $ours->where('killLater', true)->count().' goes that killed', 'chips' => $killing]]],
+            ['title' => 'What answered your goes', 'note' => 'Their defensives inside your goes. In the games you lost they had more to spend, or spent it better.',
+                'columns' => [['label' => 'In wins ('.$aw['goes'].' goes)', 'chips' => $answerChips($aw)], ['label' => 'In losses ('.$al['goes'].' goes)', 'chips' => $answerChips($al)]]],
+            ['title' => 'How the games ended', 'note' => 'The killing blow of the first death.',
+                'columns' => [['label' => 'You killed with', 'chips' => $blows($won, 'them')], ['label' => 'You died to', 'chips' => $blows($lost, 'us')]]],
+            ['title' => 'Where your burst came from', 'note' => 'The abilities in your 6-second peaks, by share of that damage.',
+                'columns' => [['label' => 'Your peaks', 'chips' => collect(array_slice($burst, 0, 8, true))->map(fn ($v, $spell) => ['spell' => $spell, 'role' => null, 'value' => round(100 * $v / $burstTotal).'%', 'hint' => null])->values()->all()]]],
+            ['title' => 'The goes that beat you', 'note' => 'What their goes contained when they led to a kill on you.',
+                'columns' => [['label' => $theirs->count().' of their goes that killed', 'chips' => $theirKill]]],
+        ];
+
+        $names = collect($out)->flatMap(fn ($p) => collect($p['columns'])->flatMap(fn ($c) => array_column($c['chips'], 'spell')))->unique()->values()->all();
+
+        return ['sections' => $out, 'icons' => $this->icons->for($names)];
+    }
+
+    /**
+     * One area CC is one step, not one per player it hit: a Leg Sweep that stunned two players
+     * logged two auras. Same spell, same caster, within half a second: one link, labelled by the
+     * most important player it landed on (their healer, then the target), with how many others.
+     */
+    private function mergeLinks(array $links): array
+    {
+        $rank = ['healer' => 0, 'target' => 1, 'cross' => 2];
+        $out = [];
+        foreach ($links as $l) {
+            $last = $out ? count($out) - 1 : null;
+            if ($last !== null && $l['cat'] === 'control' && $out[$last]['cat'] === 'control'
+                && $out[$last]['spell'] === $l['spell'] && $out[$last]['by'] === $l['by'] && abs($l['t'] - $out[$last]['t']) <= 0.5) {
+                $out[$last]['alsoHit'] = ($out[$last]['alsoHit'] ?? 0) + 1;
+                if (($rank[$l['role']] ?? 3) < ($rank[$out[$last]['role']] ?? 3)) {
+                    $out[$last]['role'] = $l['role'];
+                    $out[$last]['onWho'] = $l['onWho'];
+                }
+
+                continue;
+            }
+            $out[] = $l + ['alsoHit' => 0];
+        }
+
+        return $out;
+    }
+
+    private function clock(float $seconds): string
+    {
+        return sprintf('%d:%02d', intdiv((int) $seconds, 60), (int) $seconds % 60);
     }
 
     // ------------------------------------------------------------------ formatting

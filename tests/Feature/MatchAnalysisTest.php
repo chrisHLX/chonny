@@ -32,6 +32,13 @@ class MatchAnalysisTest extends TestCase
             'defs' => 2, 'defNames' => [], 'drained' => $drained, 'kill' => null, 'killLater' => $kill,
             'peak' => ['damage' => 1000000, 'joint' => true, 'healerLocked' => $aligned ? 3.0 : 0.0, 'healerKicked' => false, 'abilities' => []],
             'ownHealerLockedAtCds' => false,
+            'links' => [
+                ['t' => 0.0, 'spell' => 'Psychic Scream', 'cat' => 'control', 'role' => 'healer', 'by' => 'P-1', 'on' => 'E-1', 'gap' => 0.0],
+                ['t' => 1.0, 'spell' => 'Army of the Dead', 'cat' => 'offensive', 'role' => null, 'by' => 'P-2', 'on' => null, 'gap' => 0.0],
+            ],
+            'forced' => [['t' => 3.0, 'spell' => 'Ironbark', 'who' => 'E-1']],
+            'burst' => [['who' => 'P-2', 'spell' => 'Vampiric Strike', 'amount' => 400000]],
+            'target' => 'E-2',
         ];
 
         ArenaRound::create([
@@ -114,5 +121,53 @@ class MatchAnalysisTest extends TestCase
 
         $this->actingAs($owner)->get(route('match-analysis'))
             ->assertOk()->assertSee('Who you played')->assertSee('Restoration Druid');
+    }
+
+    public function test_the_patterns_are_drawn_as_abilities(): void
+    {
+        $user = User::factory()->create();
+        $this->storeGame($user, 'm1', '2026-09-26 19:26:00', true);
+        $this->storeGame($user, 'm2', '2026-09-26 19:50:00', false);
+
+        $this->actingAs($user)->get(route('match-analysis'))
+            ->assertOk()
+            ->assertSee('Your goes that killed')
+            ->assertSee('What answered your goes')
+            ->assertSee('Ironbark')
+            ->assertSee('on their healer');
+    }
+
+    public function test_a_game_opens_as_its_goes_for_its_owner_only(): void
+    {
+        $owner = User::factory()->create();
+        $this->storeGame($owner, 'm1', '2026-09-26 19:26:00', true);
+        $id = ArenaRound::where('match_id', 'm1')->value('id');
+
+        $game = app(MatchAnalysisService::class)->game($owner, $id);
+        $this->assertCount(2, $game['goes']);
+        $this->assertSame('Psychic Scream', $game['goes'][0]['links'][0]['spell']);
+        $this->assertSame('healer', $game['goes'][0]['links'][0]['role']);
+
+        $this->assertNull(app(MatchAnalysisService::class)->game(User::factory()->create(), $id), 'another player cannot open it');
+
+        \Livewire\Livewire::actingAs($owner)->test(\App\Livewire\MatchAnalysis::class)
+            ->call('openGame', $id)
+            ->assertSee('Your go')
+            ->assertSee('Forced from them')
+            ->assertSee('Back to the session');
+    }
+
+    public function test_a_game_analysed_before_goes_were_stored_in_full_says_to_upload_it_again(): void
+    {
+        $user = User::factory()->create();
+        $this->storeGame($user, 'm1', '2026-09-26 19:26:00', true, ['goes' => [[
+            'side' => 'us', 'from' => 10, 'to' => 30, 'good' => true, 'chain' => 'Army of the Dead', 'healerCc' => 0,
+            'defs' => 1, 'defNames' => [], 'drained' => 0, 'kill' => null, 'killLater' => false,
+            'peak' => ['damage' => 1, 'joint' => false, 'healerLocked' => 0.0, 'healerKicked' => false, 'abilities' => []],
+            'ownHealerLockedAtCds' => false,
+        ]]]);
+        $id = ArenaRound::where('match_id', 'm1')->value('id');
+
+        $this->assertTrue(app(MatchAnalysisService::class)->game($user, $id)['outdated']);
     }
 }

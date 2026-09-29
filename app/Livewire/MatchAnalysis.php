@@ -20,6 +20,12 @@ class MatchAnalysis extends Component
     /** "date|bracket|teamKey" — which session is open. */
     public ?string $session = null;
 
+    /**
+     * Which of the viewer's games is open, drawn as its goes (an arena_rounds id), or null for the
+     * session read. Only ever resolves to the viewer's own rounds (MatchAnalysisService::game()).
+     */
+    public ?int $game = null;
+
     public function mount(): void
     {
         PageViewEvent::log('match_analysis');
@@ -40,6 +46,17 @@ class MatchAnalysis extends Component
         }
     }
 
+    public function openGame(int $roundId): void
+    {
+        $this->game = $roundId;
+        PageViewEvent::log('match_analysis', slot: 'game');
+    }
+
+    public function closeGame(): void
+    {
+        $this->game = null;
+    }
+
     private function key(?array $s): ?string
     {
         return $s ? $s['date'].'|'.$s['bracket'].'|'.$s['team'] : null;
@@ -52,9 +69,12 @@ class MatchAnalysis extends Component
             $analysis = app(MatchAnalysisService::class)->build(auth()->user(), ...$parts);
         }
 
+        $game = $this->game ? app(MatchAnalysisService::class)->game(auth()->user(), $this->game) : null;
+
         return view('livewire.match-analysis', [
             'sessions' => $this->sessions(),
             'analysis' => $analysis,
+            'gameView' => $game,
         ])->layout('layouts.app', [
             'title' => 'Your analysis — your arena games, explained | MindCollector',
             'description' => 'Your own arena games read back: who you really played, what differed between the games you won and lost, and what to change.',

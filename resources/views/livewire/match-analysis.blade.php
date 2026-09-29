@@ -11,7 +11,60 @@
         </p>
     </header>
 
-    @if ($sessions === [])
+    @if ($gameView)
+        @php $classColors = config('wow_classes.colors', []); @endphp
+        <button type="button" wire:click="closeGame" class="text-sm text-ink-muted hover:text-gold">&larr; Back to the session</button>
+
+        @if ($gameView['outdated'] ?? false)
+            <div class="linear-card p-6 text-ink-muted">
+                This game was analysed before games were stored as goes. Upload it again to see it drawn out.
+            </div>
+        @else
+            @php $r = $gameView['row']; @endphp
+            <div class="linear-card p-5">
+                <div class="flex flex-wrap items-baseline gap-3">
+                    <h2 class="font-display text-2xl {{ $r['won'] ? 'text-gold' : 'text-ink' }}">{{ $r['won'] ? 'Won' : 'Lost' }} at {{ $r['time'] }}</h2>
+                    <span class="text-[12.5px] text-ink-muted">{{ $r['level'] }} level · MMR {{ $r['mmr']['us'] ?? '–' }} against {{ $r['mmr']['them'] ?? '–' }}</span>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4 mt-4">
+                    @foreach (['us' => 'Your team', 'them' => 'Their team'] as $side => $label)
+                        <div>
+                            <p class="text-[10px] uppercase tracking-[0.13em] text-ink-subtle mb-1.5">{{ $label }}</p>
+                            @foreach ($gameView['players'][$side] ?? [] as $p)
+                                <p class="text-[13px]"><span style="color: {{ $classColors[$p['class'] ?? ''] ?? '#8A8A9A' }}">{{ $p['spec'] }}</span> <span class="text-ink-subtle text-[11.5px]">{{ $p['xp'] }}</span></p>
+                            @endforeach
+                        </div>
+                    @endforeach
+                </div>
+                @if ($gameView['deaths'] !== [])
+                    <div class="mt-4 pt-4 border-t border-line space-y-1.5">
+                        @foreach ($gameView['deaths'] as $d)
+                            <p class="flex items-center gap-2 text-[13px]">
+                                <span class="text-ink-subtle tabular-nums w-9">{{ $d['at'] }}</span>
+                                @if ($d['blow'])
+                                    <x-spell-icon :spell="$gameView['icons'][$d['blow']['spell']] ?? (object) ['icon_name' => null, 'display_name' => $d['blow']['spell']]" size="w-5 h-5"/>
+                                @endif
+                                <span class="{{ $d['side'] === 'us' ? 'text-ink' : 'text-gold' }}">
+                                    {{ $d['side'] === 'us' ? 'Your' : 'Their' }} {{ $d['who']['spec'] ?? '' }} died{{ $d['blow'] ? ' to '.$d['blow']['spell'] : '' }}
+                                </span>
+                                @if ($d['side'] === 'us')
+                                    <span class="text-ink-subtle text-[12px]">· your healer {{ $d['healer'] }}</span>
+                                @endif
+                            </p>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+
+            <div class="space-y-4">
+                @forelse ($gameView['goes'] as $go)
+                    <x-review.go :go="$go" :icons="$gameView['icons']"/>
+                @empty
+                    <p class="text-ink-muted">No goes in this game: nobody pressed an offensive cooldown.</p>
+                @endforelse
+            </div>
+        @endif
+    @elseif ($sessions === [])
         <div class="linear-card p-6 text-ink-muted">
             No analysed games yet. Upload your games on
             <a href="{{ route('game-review') }}" class="text-gold hover:text-gold-light">Match Review</a>;
@@ -30,7 +83,7 @@
         </div>
     @endif
 
-    @if ($analysis)
+    @if ($analysis && ! $gameView)
         @php $wp = $analysis['whoYouPlayed']; @endphp
 
         {{-- Summary line --}}
@@ -57,6 +110,32 @@
                     @endforeach
                 </ul>
             </section>
+        @endif
+
+        {{-- The patterns, as abilities --}}
+        @if (($analysis['patterns']['outdated'] ?? false))
+            <div class="linear-card p-5 text-[13px] text-ink-muted">These games were analysed before goes were stored in full. Upload them again to see the patterns as abilities.</div>
+        @elseif (! empty($analysis['patterns']['sections']))
+            @foreach ($analysis['patterns']['sections'] as $pattern)
+                <section class="linear-card p-5">
+                    <h2 class="text-[17px] font-semibold text-ink">{{ $pattern['title'] }}</h2>
+                    <p class="text-[12.5px] text-ink-muted mt-1 mb-4">{{ $pattern['note'] }}</p>
+                    <div class="grid {{ count($pattern['columns']) > 1 ? 'md:grid-cols-2' : '' }} gap-5">
+                        @foreach ($pattern['columns'] as $col)
+                            <div>
+                                <p class="text-[10px] uppercase tracking-[0.13em] text-ink-subtle mb-2">{{ $col['label'] }}</p>
+                                <div class="grid {{ count($pattern['columns']) > 1 ? 'grid-cols-1' : 'sm:grid-cols-2 lg:grid-cols-3' }} gap-2">
+                                    @forelse ($col['chips'] as $chip)
+                                        <x-review.chip :chip="$chip" :icons="$analysis['patterns']['icons']"/>
+                                    @empty
+                                        <p class="text-[12px] text-ink-subtle">None</p>
+                                    @endforelse
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </section>
+            @endforeach
         @endif
 
         {{-- Who you played --}}
@@ -115,7 +194,8 @@
 
         {{-- The review table --}}
         <section>
-            <h2 class="page-section-title mb-3">Every game</h2>
+            <h2 class="page-section-title mb-1">Every game</h2>
+            <p class="text-[12.5px] text-ink-muted mb-3">Open a game to see it drawn out as its goes.</p>
             <div class="overflow-x-auto linear-card">
                 <table class="w-full text-[12.5px]">
                     <thead class="text-ink-subtle text-left">
@@ -127,7 +207,7 @@
                     </thead>
                     <tbody>
                         @foreach ($analysis['games'] as $g)
-                            <tr class="border-b border-line last:border-0 align-top">
+                            <tr wire:click="openGame({{ $g['id'] }})" class="border-b border-line last:border-0 align-top cursor-pointer hover:bg-surface-2" title="Open this game as its goes">
                                 <td class="p-2.5 tabular-nums text-ink">{{ $g['time'] }}</td>
                                 <td class="p-2.5">{{ $g['level'] }}</td>
                                 <td class="p-2.5 {{ $g['won'] ? 'text-gold' : 'text-ink-muted' }}">{{ $g['won'] ? 'Won' : 'Lost' }}</td>

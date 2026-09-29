@@ -21,8 +21,12 @@ namespace App\Http\Services;
  */
 class RoundAnalysisService
 {
-    /** Bumped when a measure's definition changes, so stored analyses can be told apart. */
-    public const VERSION = 1;
+    /**
+     * Bumped when a measure's definition or the stored shape changes, so stored analyses can be told
+     * apart. 2 (2026-09-29): each go keeps its links, the defensives it forced and its burst as
+     * structured rows (who, what, when, on whom), so a go can be drawn with icons like a guide.
+     */
+    public const VERSION = 2;
 
     /** Crowd control that takes a player out: a slow or root does not stop a healer healing. */
     private const LOCKOUT = ['Stun', 'Silence', 'Disorient', 'Incapacitate'];
@@ -226,12 +230,12 @@ class RoundAnalysisService
             $events = [];
             foreach ($tl['commitments'] as $c) {
                 if ($sideOf($c['who']) === $side && in_array($c['cat'], ['offensive', 'mixed'], true)) {
-                    $events[] = ['t' => $c['t'], 'end' => $c['t'] + self::OFFENSIVE_HOLD, 'spell' => $c['spell'], 'cat' => 'offensive', 'on' => null];
+                    $events[] = ['t' => $c['t'], 'end' => $c['t'] + self::OFFENSIVE_HOLD, 'spell' => $c['spell'], 'cat' => 'offensive', 'on' => null, 'by' => $c['who']];
                 }
             }
             foreach ($tl['control'] as $c) {
                 if (in_array($c['dr'], self::LOCKOUT, true) && $sideOf($c['on']) === $other && $sideOf($credit($c['by'])) === $side) {
-                    $events[] = ['t' => $c['from'], 'end' => $c['to'], 'spell' => $c['spell'], 'cat' => 'control', 'on' => $c['on']];
+                    $events[] = ['t' => $c['from'], 'end' => $c['to'], 'spell' => $c['spell'], 'cat' => 'control', 'on' => $c['on'], 'by' => $credit($c['by'])];
                 }
             }
             usort($events, fn ($a, $b) => $a['t'] <=> $b['t']);
@@ -317,14 +321,19 @@ class RoundAnalysisService
         }
         $byAbility = [];
         $byPlayer = [];
+        $burstRows = [];
         foreach ($hits as $x) {
             if ($x['t'] >= $peak['from'] && $x['t'] <= $peak['from'] + self::PEAK) {
                 $who = $credit($x['src']);
                 $byAbility[$roster[$who]['name'].': '.$x['spell']] = ($byAbility[$roster[$who]['name'].': '.$x['spell']] ?? 0) + $x['amount'];
                 $byPlayer[$who] = ($byPlayer[$who] ?? 0) + $x['amount'];
+                $k = $who.'|'.$x['spell'];
+                $burstRows[$k] ??= ['who' => $who, 'spell' => $x['spell'], 'amount' => 0];
+                $burstRows[$k]['amount'] += $x['amount'];
             }
         }
         arsort($byAbility);
+        usort($burstRows, fn ($a, $b) => $b['amount'] <=> $a['amount']);
         $defHealer = $healers[$other] ?? null;
         $atkHealer = $healers[$side] ?? null;
         $peakWin = [[$peak['from'], $peak['from'] + self::PEAK]];
@@ -337,6 +346,15 @@ class RoundAnalysisService
             'to' => round($to, 2),
             'good' => $go['maxGap'] <= self::TIGHT_LINK,
             'chain' => implode(', ', array_map(fn ($e) => $e['spell'].(isset($e['role']) ? ' > '.$e['role'] : ''), $go['casts'])),
+            // The go as rows, for drawing it like a guide sequence: each link in order, who pressed
+            // or applied it, on whom, seconds from the go's start, and the gap that joined it.
+            'links' => array_map(fn ($e) => [
+                't' => round($e['t'] - $from, 1), 'spell' => $e['spell'], 'cat' => $e['cat'],
+                'role' => $e['role'] ?? null, 'by' => $e['by'] ?? null, 'on' => $e['on'], 'gap' => $e['gap'],
+            ], $go['casts']),
+            'forced' => array_map(fn ($c) => ['t' => round($c['t'] - $from, 1), 'spell' => $c['spell'], 'who' => $c['who']], $defs),
+            'burst' => array_slice($burstRows, 0, 6),
+            'target' => $go['target'],
             'healerCc' => count(array_filter($go['casts'], fn ($e) => ($e['role'] ?? null) === 'healer')),
             'defs' => count($defs),
             'defNames' => array_column($defs, 'spell'),
@@ -484,6 +502,7 @@ class RoundAnalysisService
                 'name' => $u['name'],
                 'spec' => trim(($spec?->name ?? '?').' '.($spec?->gameClass?->name ?? '')),
                 'specExternalId' => (int) $u['spec'],
+                'classSlug' => $spec?->gameClass?->slug,
                 'side' => $sideOf($u['id']),
                 'healer' => $roster[$u['id']]['healer'],
                 'logger' => $u['id'] === $logger,
