@@ -10,7 +10,9 @@
     {{-- Provenance is the first thing on the page, not a footnote.
          Everything else on this site is derived from real match evidence; this is one player's
          own plan, and a reader has to be able to tell the difference at a glance. --}}
-    <div class="flex items-start justify-between gap-6 mb-6 pb-6 border-b border-line">
+    {{-- Stacked below sm: side by side, the action column took half a phone's width and
+         squeezed the title to three words a line (reported 2026-09-29). --}}
+    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 mb-6 pb-6 border-b border-line">
         <div class="flex-1 min-w-0">
             @if ($guide->isMachineAuthored())
                 <p class="text-[11px] uppercase tracking-[0.16em] text-gold font-medium mb-2">
@@ -34,7 +36,7 @@
                 </p>
             @endif
 
-            <h1 class="font-display text-3xl text-ink" style="text-wrap: balance">{{ $guide->title }}</h1>
+            <h1 class="font-display text-[26px] sm:text-3xl leading-tight text-ink" style="text-wrap: balance">{{ $guide->title }}</h1>
 
             {{-- One-second vote, no account needed: the smallest thing a reader can do, and it tells
                  us which guides the current patch has made wrong. --}}
@@ -90,7 +92,14 @@
             @endif
         </div>
 
-        <div class="flex flex-col items-end gap-2 shrink-0">
+        {{-- Rendered only when it holds something, so a reader with no actions gets no empty
+             block above the title on a phone. A guest plan is editable signed out (GuestPlanService). --}}
+        @php
+            $canEdit = $guide->isEditableBy(auth()->user());
+            $canBefriend = auth()->check() && ! $guide->isOwnedBy(auth()->user()) && $guide->user;
+        @endphp
+        @if ($canEdit || $canBefriend)
+        <div class="flex flex-wrap items-center gap-2 order-first sm:order-none sm:flex-col sm:items-end shrink-0">
             {{-- Edit for anyone allowed to — the author, or a friend/guildmate they opened it to. --}}
             @if ($guide->isEditableBy(auth()->user()))
                 <a href="{{ route('guides.edit', $guide->slug) }}" wire:navigate class="btn-ghost">Edit</a>
@@ -115,6 +124,7 @@
                 @endif
             @endauth
         </div>
+        @endif
     </div>
 
     {{-- The comp ------------------------------------------------------------------ --}}

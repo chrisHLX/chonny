@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\PageViewEvent;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 /**
@@ -143,6 +144,7 @@ class PageUsage extends Component
         $humanSessions = function (array $range) {
             return PageViewEvent::human()->whereBetween('created_at', $range)->distinct()->count('session_id');
         };
+        $engaged = fn (array $range) => DB::query()->fromSub(self::engagedSessions($range), 'e')->count();
 
         $out = [];
 
@@ -150,12 +152,13 @@ class PageUsage extends Component
             $current = $window($days);
             $previous = $window($days, $days);
 
-            $views = $humanViews($current);
-            $before = $humanViews($previous);
+            $now = $engaged($current);
+            $before = $engaged($previous);
 
             $out[$days] = [
                 'label' => $label,
-                'views' => $views,
+                'engaged' => $now,
+                'views' => $humanViews($current),
                 'sessions' => $humanSessions($current),
                 'bots' => PageViewEvent::where('is_bot', true)->whereNull('slot')
                     ->whereBetween('created_at', $current)->count(),
@@ -163,11 +166,34 @@ class PageUsage extends Component
                 // no way to tell which half they were.
                 'unclassified' => PageViewEvent::unclassified()->whereNull('slot')
                     ->whereBetween('created_at', $current)->count(),
-                'change' => $before > 0 ? (int) round(100 * ($views - $before) / $before) : null,
+                'change' => $before > 0 ? (int) round(100 * ($now - $before) / $before) : null,
             ];
         }
 
         return $out;
+    }
+
+    /**
+     * Sessions that behaved like a person: signed in, or kept their cookie across two or more
+     * tracked events (a second page, a class pick, a tab). The session ids, as a query.
+     *
+     * WHY "HUMAN" IS NOT ENOUGH. `is_bot = false` only means the agent did not declare itself a
+     * crawler, and plenty of automation sends a browser string. Read against nginx for
+     * 2026-09-15..29: of 84–257 browser-agent addresses a day, 2–6 ever sent a Livewire request
+     * (a click, a filter, a quiz answer); 781 of 857 anonymous "human" sessions since 24 Sep held
+     * exactly one row, and the quiz page's 223 views came from 223 sessions. A script drops the
+     * cookie every request, so it never reaches a second row. A person who reads one page and
+     * leaves is excluded too — this undercounts readers to stop counting scripts.
+     *
+     * @param  array{0: mixed, 1: mixed}  $range
+     */
+    private static function engagedSessions(array $range): \Illuminate\Database\Eloquent\Builder
+    {
+        return PageViewEvent::human()
+            ->whereBetween('created_at', $range)
+            ->select('session_id')
+            ->groupBy('session_id')
+            ->havingRaw('count(*) >= 2 or max(user_id) is not null');
     }
 
     /**
@@ -187,10 +213,24 @@ class PageUsage extends Component
             ->groupBy('day', 'is_bot')
             ->get();
 
+        // Engaged sessions per day, grouped by the day of each session's first event.
+        $engaged = DB::query()
+            ->fromSub(
+                PageViewEvent::human()->where('created_at', '>=', $since)
+                    ->selectRaw('session_id, DATE(min(created_at)) as day')
+                    ->groupBy('session_id')
+                    ->havingRaw('count(*) >= 2 or max(user_id) is not null'),
+                'e'
+            )
+            ->selectRaw('day, count(*) as c')
+            ->groupBy('day')
+            ->pluck('c', 'day');
+
         return collect($rows->groupBy('day'))->map(fn ($group, $day) => [
             'day' => $day,
             'human' => (int) ($group->firstWhere('is_bot', 0)->c ?? 0),
             'bot' => (int) ($group->firstWhere('is_bot', 1)->c ?? 0),
+            'engaged' => (int) ($engaged[$day] ?? 0),
         ])->values()->sortBy('day')->values();
     }
 
@@ -201,9 +241,14 @@ class PageUsage extends Component
      */
     public function getReferrersProperty(): Collection
     {
+        // Engaged sessions only: referrer spam ("bestrankchecker.online", a dozen "SEO checker"
+        // domains) arrives as one cookieless hit and never reaches a second row.
+        $range = [now()->subDays(30), now()];
+
         return PageViewEvent::human()
             ->whereNotNull('referrer_host')
-            ->where('created_at', '>=', now()->subDays(30))
+            ->whereBetween('created_at', $range)
+            ->whereIn('session_id', self::engagedSessions($range))
             ->selectRaw('referrer_host, count(*) as c, count(distinct session_id) as sessions')
             ->groupBy('referrer_host')
             ->orderByDesc('c')
@@ -228,7 +273,15 @@ class PageUsage extends Component
             ->get()
             ->groupBy('page');
 
-        return $rows->map(function ($group, $page) use ($labels) {
+        $engaged = PageViewEvent::human()
+            ->whereNull('slot')
+            ->where('created_at', '>=', $since)
+            ->whereIn('session_id', self::engagedSessions([$since, now()]))
+            ->selectRaw('page, count(distinct session_id) as s')
+            ->groupBy('page')
+            ->pluck('s', 'page');
+
+        return $rows->map(function ($group, $page) use ($labels, $engaged) {
             $human = $group->firstWhere('is_bot', 0);
 
             return [
@@ -237,10 +290,11 @@ class PageUsage extends Component
                 'tracked' => isset($labels[$page]),
                 'views' => (int) ($human->c ?? 0),
                 'sessions' => (int) ($human->sessions ?? 0),
+                'engaged' => (int) ($engaged[$page] ?? 0),
                 'bots' => (int) ($group->firstWhere('is_bot', 1)->c ?? 0),
                 'unclassified' => (int) ($group->firstWhere('is_bot', null)->c ?? 0),
             ];
-        })->sortByDesc('views')->values();
+        })->sortBy([fn ($a, $b) => $b['engaged'] <=> $a['engaged'], fn ($a, $b) => $b['views'] <=> $a['views']])->values();
     }
 
     public function getSummaryProperty(): array

@@ -48,7 +48,7 @@
             @endguest
         </div>
     @elseif ($question)
-        <div class="linear-card p-5" wire:key="q-{{ $attempt->id }}-{{ $index }}">
+        <div class="linear-card p-5" wire:key="q-{{ $index }}">
             @if ($question->subject)
                 <div class="flex items-center gap-3 mb-4">
                     @if ($question->subject['icon'])

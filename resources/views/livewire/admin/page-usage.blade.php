@@ -17,7 +17,7 @@
                     <p class="text-[11px] text-ink-subtle uppercase tracking-wider">{{ $o['label'] }}</p>
 
                     <div class="flex items-baseline gap-2.5 mt-2">
-                        <p class="text-[26px] font-semibold text-ink leading-none tabular-nums">{{ number_format($o['views']) }}</p>
+                        <p class="text-[26px] font-semibold text-ink leading-none tabular-nums">{{ number_format($o['engaged']) }}</p>
                         @if ($o['change'] !== null)
                             <span @class([
                                 'text-[12px] font-medium tabular-nums',
@@ -28,7 +28,11 @@
                         @endif
                     </div>
                     <p class="text-[12px] text-ink-muted mt-1">
-                        views from {{ number_format($o['sessions']) }} visitor session(s)
+                        engaged visitors &mdash; signed in, or went past one page
+                    </p>
+                    <p class="text-[11px] text-ink-subtle mt-1"
+                       title="A browser user agent is not proof of a person: scripts that send one drop their cookie every request, so each view is a new one-page session.">
+                        {{ number_format($o['views']) }} browser-agent views from {{ number_format($o['sessions']) }} sessions, most of them one page and gone
                     </p>
 
                     <div class="flex flex-wrap gap-x-4 gap-y-1 mt-3 pt-3 border-t border-line text-[11px]">
@@ -76,8 +80,14 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="flex gap-1.5 mt-1.5" title="Engaged visitors that day: signed in, or went past one page">
+                    @foreach ($daily as $d)
+                        <span class="flex-1 text-center text-[10px] tabular-nums {{ $d['engaged'] > 0 ? 'text-ink' : 'text-ink-subtle' }}">{{ $d['engaged'] }}</span>
+                    @endforeach
+                </div>
                 <div class="flex justify-between text-[10px] text-ink-subtle mt-1.5">
                     <span>{{ $daily->first()['day'] }}</span>
+                    <span>engaged visitors per day, under each bar</span>
                     <span>{{ $daily->last()['day'] }}</span>
                 </div>
             @endif
@@ -91,6 +101,7 @@
                     <thead>
                         <tr class="text-[10px] uppercase tracking-wide text-ink-subtle text-left">
                             <th class="font-medium py-1.5 pr-3">Page</th>
+                            <th class="font-medium py-1.5 px-3 text-right" title="Sessions that were signed in or went past one page">Engaged</th>
                             <th class="font-medium py-1.5 px-3 text-right">Views</th>
                             <th class="font-medium py-1.5 px-3 text-right">Sessions</th>
                             <th class="font-medium py-1.5 pl-3 text-right">Crawlers</th>
@@ -105,7 +116,8 @@
                                         <span class="text-[10px] text-ink-subtle" title="Logged but not listed in PageUsage::PAGES">&middot; untracked</span>
                                     @endunless
                                 </td>
-                                <td class="py-1.5 px-3 text-right text-ink tabular-nums">{{ number_format($row['views']) }}</td>
+                                <td class="py-1.5 px-3 text-right text-ink tabular-nums">{{ number_format($row['engaged']) }}</td>
+                                <td class="py-1.5 px-3 text-right text-ink-muted tabular-nums">{{ number_format($row['views']) }}</td>
                                 <td class="py-1.5 px-3 text-right text-ink-muted tabular-nums">{{ number_format($row['sessions']) }}</td>
                                 <td class="py-1.5 pl-3 text-right text-ink-subtle tabular-nums">{{ number_format($row['bots']) }}</td>
                             </tr>
@@ -119,7 +131,7 @@
         <div class="linear-card p-5">
             <p class="text-[12px] font-medium text-ink mb-1">Referrers &mdash; last 30 days</p>
             <p class="text-[11px] text-ink-subtle mb-3">
-                Own-domain referrals are excluded: internal navigation is not a referral, and it buried the real sources.
+                Engaged visitors only &mdash; referrer spam arrives as one cookieless hit. Own-domain referrals are excluded: internal navigation is not a referral.
             </p>
             @if ($referrers->isEmpty())
                 <p class="text-[12px] text-ink-subtle">Nothing yet. Referrers have only been recorded since 2026-09-24.</p>

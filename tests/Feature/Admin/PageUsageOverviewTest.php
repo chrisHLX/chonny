@@ -91,4 +91,36 @@ class PageUsageOverviewTest extends TestCase
         $this->assertSame(1, $overview[7]['bots']);
         $this->assertSame(1, $overview[7]['unclassified'], 'Pre-instrumentation rows are shown, never merged in.');
     }
+
+    public function test_engaged_visitors_exclude_one_row_cookieless_sessions(): void
+    {
+        // Measured 2026-09-29: 781 of 857 anonymous "human" sessions since 24 Sep held one row,
+        // and nginx showed 2-6 browser addresses a day doing anything at all.
+        $admin = User::factory()->create(['is_admin' => true]);
+        $member = User::factory()->create();
+        $at = now()->subDay();
+
+        PageViewEvent::insert([
+            // A browser that kept its cookie across two pages.
+            ['page' => 'landing', 'is_bot' => false, 'session_id' => 'kept', 'user_id' => null, 'referrer_host' => 'google.com', 'created_at' => $at],
+            ['page' => 'wow_comps', 'is_bot' => false, 'session_id' => 'kept', 'user_id' => null, 'referrer_host' => null, 'created_at' => $at],
+            // A signed-in visitor counts on one page.
+            ['page' => 'home', 'is_bot' => false, 'session_id' => 'member', 'user_id' => $member->id, 'referrer_host' => null, 'created_at' => $at],
+            // Three one-hit scripts with browser agents, one carrying referrer spam.
+            ['page' => 'wow_quiz_play', 'is_bot' => false, 'session_id' => 's1', 'user_id' => null, 'referrer_host' => 'bestrankchecker.online', 'created_at' => $at],
+            ['page' => 'wow_quiz_play', 'is_bot' => false, 'session_id' => 's2', 'user_id' => null, 'referrer_host' => null, 'created_at' => $at],
+            ['page' => 'wow_quiz_play', 'is_bot' => false, 'session_id' => 's3', 'user_id' => null, 'referrer_host' => null, 'created_at' => $at],
+        ]);
+
+        $page = Livewire::actingAs($admin)->test(\App\Livewire\Admin\PageUsage::class)->instance();
+
+        $this->assertSame(2, $page->overview[7]['engaged']);
+        $this->assertSame(6, $page->overview[7]['views'], 'The raw figure is still shown beneath.');
+        $this->assertSame(['google.com'], $page->referrers->pluck('referrer_host')->all());
+        $this->assertSame(2, $page->daily->sum('engaged'));
+
+        $quiz = $page->topPages->firstWhere('page', 'wow_quiz_play');
+        $this->assertSame(0, $quiz['engaged']);
+        $this->assertSame(3, $quiz['views']);
+    }
 }

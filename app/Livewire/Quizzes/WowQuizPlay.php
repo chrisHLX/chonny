@@ -28,6 +28,10 @@ class WowQuizPlay extends Component
     #[Locked]
     public ?int $attemptId = null;
 
+    /** The dealt-but-unsaved quiz in this session; it becomes $attemptId on the first answer. */
+    #[Locked]
+    public ?string $pendingKey = null;
+
     #[Locked]
     public int $index = 0;
 
@@ -48,13 +52,19 @@ class WowQuizPlay extends Component
 
         PageViewEvent::log('wow_quiz_play', $spec->class_id, $spec->id, (string) $level);
 
-        $this->attemptId = $quizzes->start('wow', WowQuiz::subjectFor($spec), $level, auth()->user(), session()->getId())?->id;
+        // Dealt, not saved: a row is written on the first answer (see QuizService::PENDING_KEY).
+        $this->pendingKey = $quizzes->prepare('wow', WowQuiz::subjectFor($spec), $level);
     }
 
     public function answer(string $key, QuizService $quizzes): void
     {
+        if (! $this->attemptId && $this->pendingKey) {
+            $this->attemptId = $quizzes->begin($this->pendingKey, auth()->user(), session()->getId())?->id;
+            $this->pendingKey = null;
+        }
+
         $attempt = $this->attempt();
-        if ($attempt) {
+        if ($attempt?->exists) {
             $quizzes->answer($attempt, $this->index, $key);
         }
     }
@@ -86,7 +96,11 @@ class WowQuizPlay extends Component
 
     private function attempt(): ?QuizAttempt
     {
-        $attempt = $this->attemptId ? QuizAttempt::find($this->attemptId) : null;
+        if (! $this->attemptId) {
+            return app(QuizService::class)->pending($this->pendingKey);
+        }
+
+        $attempt = QuizAttempt::find($this->attemptId);
 
         return $attempt && $attempt->belongsToViewer(auth()->user(), session()->getId()) ? $attempt : null;
     }

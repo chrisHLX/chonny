@@ -192,8 +192,7 @@ test('the play page never shows the right answer before the player picks', funct
     quizSpec();
 
     $play = Livewire::test(WowQuizPlay::class, ['classSlug' => 'monk', 'specSlug' => 'windwalker', 'level' => 3]);
-    $attempt = QuizAttempt::find($play->get('attemptId'));
-    $question = $attempt->question(0);
+    $question = app(QuizService::class)->pending($play->get('pendingKey'))->question(0);
 
     $play->assertDontSee($question->explanation)
         ->assertDontSeeHtml('border-green-500');
@@ -201,6 +200,30 @@ test('the play page never shows the right answer before the player picks', funct
     $play->call('answer', $question->correctKey)
         ->assertSee($question->explanation)
         ->assertSee('Correct');
+});
+
+test('opening a quiz saves nothing; the first answer saves the attempt', function () {
+    fakeQuizFacts();
+    quizSpec();
+
+    // Every crawler GET used to write a row: 486-845 a day with none completed (2026-09-25..28).
+    $play = Livewire::test(WowQuizPlay::class, ['classSlug' => 'monk', 'specSlug' => 'windwalker', 'level' => 1]);
+    $question = app(QuizService::class)->pending($play->get('pendingKey'))->question(0);
+
+    expect(QuizAttempt::count())->toBe(0)
+        ->and($play->get('attemptId'))->toBeNull();
+    $play->assertSee($question->prompt);
+
+    $play->call('answer', $question->correctKey);
+
+    $attempt = QuizAttempt::find($play->get('attemptId'));
+    expect(QuizAttempt::count())->toBe(1)
+        ->and($attempt->answered)->toBe(1)
+        ->and($attempt->score)->toBe(1)
+        ->and($attempt->question(0)->prompt)->toBe($question->prompt)
+        ->and($play->get('pendingKey'))->toBeNull();
+
+    $play->call('next')->assertSet('index', 1);
 });
 
 test('a player cannot answer someone else\'s attempt', function () {

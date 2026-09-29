@@ -35,7 +35,70 @@ class QuizService
      */
     public const GUEST_SESSIONS_KEY = 'quiz.guest_session_ids';
 
-    /** Returns null when the game data can't make a quiz for this subject and level. */
+    /**
+     * Session key holding quizzes that have been dealt but not yet answered, token => attributes.
+     *
+     * WHY AN ATTEMPT IS NOT SAVED ON PAGE LOAD. Until 2026-09-29 opening a quiz page wrote a
+     * QuizAttempt row, so every crawler GET made one: 486–845 a day from 25 Sep, with none
+     * completed, while nginx showed 2–6 visitors a day doing anything at all. The table was
+     * measuring crawl rate. A row is now written on the first answer, which a crawler never sends.
+     *
+     * Held in the session rather than a public property because a Livewire snapshot is readable in
+     * the browser and the dealt questions carry the answer key.
+     */
+    public const PENDING_KEY = 'quiz.pending';
+
+    /** Pending quizzes kept per session; a player retaking levels only needs the newest few. */
+    private const PENDING_LIMIT = 5;
+
+    /**
+     * Deal a quiz without saving it. Returns a token for begin(), or null when the game data can't
+     * make a quiz for this subject and level.
+     */
+    public function prepare(string $game, string $subject, int $level): ?string
+    {
+        $questions = $this->game($game)->questions($subject, $level, self::QUESTIONS_PER_LEVEL);
+
+        if ($questions === []) {
+            return null;
+        }
+
+        $token = bin2hex(random_bytes(8));
+        $pending = session(self::PENDING_KEY, []);
+        $pending[$token] = [
+            'game' => $game,
+            'subject' => $subject,
+            'level' => $level,
+            'questions' => array_map(fn (QuizQuestion $q) => $q->toArray(), $questions),
+        ];
+        session()->put(self::PENDING_KEY, array_slice($pending, -self::PENDING_LIMIT, null, true));
+
+        return $token;
+    }
+
+    /** The dealt quiz as an unsaved attempt, for rendering before the first answer. */
+    public function pending(?string $token): ?QuizAttempt
+    {
+        $data = $token ? (session(self::PENDING_KEY, [])[$token] ?? null) : null;
+
+        return $data ? new QuizAttempt([...$data, 'answers' => [], 'answered' => 0, 'score' => 0, 'total' => count($data['questions'])]) : null;
+    }
+
+    /** Save a dealt quiz as a real attempt — called on the player's first answer. */
+    public function begin(?string $token, ?User $user, string $sessionId): ?QuizAttempt
+    {
+        $data = $token ? (session(self::PENDING_KEY, [])[$token] ?? null) : null;
+
+        if (! $data) {
+            return null;
+        }
+
+        session()->forget(self::PENDING_KEY.'.'.$token);
+
+        return $this->create($data['game'], $data['subject'], $data['level'], array_map(fn (array $q) => QuizQuestion::fromArray($q), $data['questions']), $user, $sessionId);
+    }
+
+    /** Deal and save in one step. Returns null when the game data can't make a quiz for this subject and level. */
     public function start(string $game, string $subject, int $level, ?User $user, string $sessionId): ?QuizAttempt
     {
         $questions = $this->game($game)->questions($subject, $level, self::QUESTIONS_PER_LEVEL);
@@ -44,6 +107,12 @@ class QuizService
             return null;
         }
 
+        return $this->create($game, $subject, $level, $questions, $user, $sessionId);
+    }
+
+    /** @param  array<int, QuizQuestion>  $questions */
+    private function create(string $game, string $subject, int $level, array $questions, ?User $user, string $sessionId): QuizAttempt
+    {
         if (! $user) {
             $known = session(self::GUEST_SESSIONS_KEY, []);
             if (! in_array($sessionId, $known, true)) {

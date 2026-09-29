@@ -157,6 +157,58 @@ of the gap is audience quality rather than the hook. It is not enough to explain
 
 ---
 
+## 1d. 15–29 Sep: after the crawler filter
+
+Read 2026-09-29 from `page_view_events` and nginx together, covering 15 → 29 Sep.
+
+**The crawler filter works, and "human" still mostly isn't people.** `is_bot` catches agents that
+*declare* themselves. From 24 Sep the page showed 170–315 "human" views a day. Four independent
+signs that most of those were automation sending a browser string:
+
+| Sign | Measured |
+|---|---|
+| One row per session | 781 of 857 anonymous "human" sessions since 24 Sep held exactly one row. On 29 Sep: 138 views from 136 sessions. A browser keeps its cookie; a script drops it. |
+| The quiz page | 223 "human" `wow_quiz_play` views from **223** sessions. Quiz attempts started: 486, 466, 501, 845 a day (25–28 Sep), **0 completed**. Opening the page wrote the row. |
+| Browser strings | The most common agent among one-page IPs (147 IPs) claims iOS 13.2.3 (2019), a known crawler disguise. One IP loaded `/modules` 212 times in a day. |
+| Nobody clicks | nginx: of 84–257 browser-agent IPs a day, **2–6** ever sent `POST /livewire/update` (any click, filter or answer). |
+
+**Real users**, counted as an IP that sent at least one Livewire request, excluding the owner's
+home connection and phone (and a few of these are still scripts: a login/register scanner at
+45.148.10.x, Google Cloud addresses that load `/` four times):
+
+| First seen | People |
+|---|---|
+| 15–16 Sep | 8 |
+| 17–18 Sep | **46**, mostly referred by reddit.com and the Reddit app |
+| 19–23 Sep | 25 |
+| 24–29 Sep | **8** |
+
+That is 87 in the fortnight, of whom 12 returned on another day. What they used: WoW Comps, the
+guides (the owner's, the machine drafts, czaroko21's), the Rogue PvP guide, top damage rotations,
+the quiz, and about ten started plans in the builder. Sign-ups: 2 (19 and 20 Sep), none since;
+the only signed-in activity after 24 Sep is the owner.
+
+**Sources**, as external referrers landing on MindCollector pages (not `/`, which the trophy
+site shares in the same log): Google 8 → **43** week on week, Reddit 5 → 1. Google is indexing
+the site and sending arrivals who read one page and leave. The ~120 hits each "from" t.co,
+facebook.com, news.ycombinator.com and binance.com, and the dozen "SEO checker" domains in
+`referrer_host`, are referrer spam.
+
+**The story is the July one again.** A Reddit post brought people who used the site; the post
+aged out within about five days; nothing replaced it.
+
+**What changed in the code (2026-09-29).**
+- **A quiz attempt is saved on the first answer, not on page load** (`QuizService::prepare()` /
+  `begin()`). The dealt questions wait in the session, never in a Livewire property, because the
+  snapshot is readable and carries the answer key. `quiz_attempts` counts from before this date
+  are crawl rate, not play.
+- **`/admin/page-usage` leads with engaged visitors**: a session that was signed in or kept its
+  cookie across two tracked events. Referrers are filtered to those sessions, and top pages rank
+  by them. The raw browser-agent views are still shown beneath. This undercounts: a person who
+  reads one guide and leaves is not counted. That is the accepted cost of not counting scripts.
+
+---
+
 ## 2. The measurement trap that nearly produced the wrong conclusion
 
 **Recorded because it will recur.**

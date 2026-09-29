@@ -190,8 +190,7 @@ test('the drill page never shows the right answer before the player picks', func
     drillSpec();
 
     $play = Livewire::test(ConceptDrillPlay::class, ['classSlug' => 'monk', 'specSlug' => 'windwalker', 'conceptSlug' => 'crowd-control']);
-    $attempt = QuizAttempt::find($play->get('attemptId'));
-    $question = $attempt->question(0);
+    $question = app(QuizService::class)->pending($play->get('pendingKey'))->question(0);
 
     $play->assertDontSee($question->explanation);
 
