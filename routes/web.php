@@ -160,6 +160,13 @@ Route::prefix('wow')->group(function () {
     // The review tools' raw output (tools/match-review/), uploaded by its owner, never deployed.
     // Registered BEFORE /game-review/{id?} so 'analysis' is not read as a review id. Same auth
     // rule as the page below: it names every opponent. See App\Livewire\GameReviewAnalysis.
+    // "Your analysis": the uploaded games combined into the match-review-analysis.md read, for any
+    // player. Auth and scoped to the viewer's own games, like the review itself. See
+    // App\Livewire\MatchAnalysis and MatchAnalysisService.
+    Route::get('/match-analysis', \App\Livewire\MatchAnalysis::class)
+        ->middleware('auth')
+        ->name('match-analysis');
+
     Route::get('/game-review/analysis', \App\Livewire\GameReviewAnalysis::class)
         ->middleware('auth')
         ->name('game-review.analysis');

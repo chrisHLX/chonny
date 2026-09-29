@@ -358,6 +358,11 @@ fingerprint; falls back to a live compute when stale (6,964ms/3,042 queries vs 9
     Throughput comes from `CombatantThroughputService`, the first thing here to measure output at
     all; its field offsets are read from the end of each log line and every one was measured, not
     assumed.
+- `/wow/match-analysis` — `MatchAnalysis`, **"Your analysis"**: a player's own uploaded games combined
+  into the wins-against-losses read (review table, who you played, what differed, a takeaway for your
+  role). Auth, scoped to the viewer. Each game is measured at upload by `RoundAnalysisService` (the raw
+  log is discarded straight after) and every player's experience is looked up by a queued job. See
+  `match-review-operations.md`, "Your analysis".
 - `/wow-comps` — `WowComps`, the heaviest page. Tabs: Active Abilities, Offensive/Defensive
   Cooldowns, Crowd Control, Mobility, Burst Window, Example CC Chains.
 - `/guides/{slug}/edit` — `Guides\Builder` + `Guides\Palette`; `/g/{username}/{slug}` —

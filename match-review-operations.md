@@ -544,6 +544,31 @@ moments. The spec in this section is what it would implement.
 
 ---
 
+## "Your analysis": the same read for any player (2026-09-29)
+
+The read `match-review-analysis.md` holds for one team was produced by questions, scripts and
+judgement. `/wow/match-analysis` produces it for any player from their own uploads:
+
+| Step | Where | When |
+|---|---|---|
+| Measure each game | `RoundAnalysisService::analyse()`, stored in `arena_rounds.payload['analysis']` | at upload, inside `LobbyReviewService::deriveRound()`, **while the raw log is still in hand** (it is discarded straight after) |
+| Look up every player's experience | `FetchPlayerExperience` job → `PlayerExperienceService`, cached 7 days per character | queued at upload; the page never waits on Blizzard |
+| Combine the games | `MatchAnalysisService::build()`: review table, who you played, what differed (each comparison with its sample, "lead" under 10), a takeaway for the uploader's role | on page load, from stored payloads only |
+
+- **`RoundAnalysisService` is the product definition of the measures.** `killread.php` stays the
+  research tool; a definition that changes there reaches players only when it is carried into the
+  service, with a test. The service was checked against `killread.php` on the 26 Sep games and
+  matched on every figure (goes, kills after, drain, burst, lockout at death, defensives outside
+  goes, overlaps, kicks, both MMRs).
+- **"Us" is the logging player's side** (affiliation 1, then `reaction`), so it works for whoever
+  uploads, with no names in the code.
+- **A game uploaded before 2026-09-29 has no analysis** and cannot get one without being uploaded
+  again: the raw log was not kept. `php artisan wow:upload-rounds {user} {files...}` feeds round logs
+  through the browser-upload path for testing or backfill from an archive.
+- **Not yet in it:** Solo Shuffle as its own read (rounds are analysed, but the page groups by day,
+  bracket and team, and a shuffle's team changes every round); a model-written summary over the
+  tables; a player's own rotation (`rotation.php`).
+
 ## Measurement rules from earlier studies
 
 Methods the first studies settled. Their results are in `match-review-analysis.md`.

@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Jobs\FetchPlayerExperience;
 use App\Models\ArenaReview;
 use App\Models\ArenaRound;
 use App\Models\User;
@@ -119,6 +120,13 @@ class ArenaReviewIngestService
                 'payload' => $derived,
             ]
         );
+
+        // Every player's experience, looked up in the background for "Your analysis" (Blizzard
+        // takes about a second a character, which a page must never wait on).
+        $players = array_column($derived['analysis']['players'] ?? [], 'name');
+        if ($players !== [] && config('services.battlenet.client_id')) {
+            FetchPlayerExperience::dispatch($players);
+        }
 
         return [
             'status' => 'stored',

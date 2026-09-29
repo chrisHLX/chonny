@@ -43,6 +43,7 @@ class LobbyReviewService
         private CombatantThroughputService $throughput,
         private CombatLogIngestService $ingest,
         private ArenaMomentService $moments,
+        private RoundAnalysisService $analysis,
     ) {}
 
     // ---------------------------------------------------------------- reading (page-safe)
@@ -251,6 +252,9 @@ class LobbyReviewService
             // immediately afterwards, so a moment not captured now can never be recovered without
             // asking the player to upload the game again.
             'moments' => $this->moments->detect($lines, $metadata),
+            // Same reason: the goes, the kill read, the peak burst and the rest of the measures
+            // match-review-operations.md defines, which "Your analysis" combines across games.
+            'analysis' => $this->analysis->analyse($lines, $metadata),
         ];
     }
 

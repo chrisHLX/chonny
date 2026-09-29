@@ -119,7 +119,8 @@ class ArenaMomentService
     // ------------------------------------------------------------------ reading
 
     /** @return array<string, array{name: string, side: mixed, healer: bool, spec: string}> */
-    private function roster(array $metadata): array
+    /** Public for RoundAnalysisService, which reads the same timeline. */
+    public function roster(array $metadata): array
     {
         $roster = [];
 
@@ -145,7 +146,11 @@ class ArenaMomentService
         return $roster;
     }
 
-    private function readTimeline(array $lines, array $roster): array
+    /**
+     * Every commitment, CC aura, damage event, health reading and death in a round. Public so that
+     * RoundAnalysisService measures from exactly the timeline the moments are found from.
+     */
+    public function readTimeline(array $lines, array $roster): array
     {
         $cooldowns = $this->cooldowns();
         $cc = $this->crowdControl();
@@ -458,7 +463,8 @@ class ArenaMomentService
             ->all();
     }
 
-    private function crowdControl(): array
+    /** spell_id => dr_category for the current patch. Public for RoundAnalysisService. */
+    public function crowdControl(): array
     {
         return $this->crowdControl ??= Spell::query()
             ->where('patch_id', Patch::where('is_current', true)->value('id'))

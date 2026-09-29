@@ -1,0 +1,157 @@
+{{-- One persistent root (rule 25): never wrapped in an @if. --}}
+<div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+
+    <header class="space-y-2">
+        <a href="{{ route('game-review') }}" class="text-sm text-ink-muted hover:text-gold">&larr; Match Review</a>
+        <h1 class="font-display italic text-3xl sm:text-4xl text-ink">Your analysis</h1>
+        <p class="text-ink-muted max-w-3xl">
+            Your uploaded games, read back: who you really played, what was different between the games
+            you won and the ones you lost, and what to change. Every number comes from your own combat
+            logs. Small samples are marked as leads: they describe these games, not the game.
+        </p>
+    </header>
+
+    @if ($sessions === [])
+        <div class="linear-card p-6 text-ink-muted">
+            No analysed games yet. Upload your games on
+            <a href="{{ route('game-review') }}" class="text-gold hover:text-gold-light">Match Review</a>;
+            each one is analysed as it arrives.
+        </div>
+    @else
+        <div class="flex flex-wrap gap-2">
+            @foreach ($sessions as $s)
+                @php $k = $s['date'].'|'.$s['bracket'].'|'.$s['team']; @endphp
+                <button type="button" wire:click="open('{{ $k }}')"
+                        class="{{ $session === $k ? 'btn-secondary' : 'btn-ghost' }} text-left">
+                    <span class="block text-[13px] text-ink">{{ \Illuminate\Support\Carbon::parse($s['date'])->format('j M') }} · {{ $s['bracket'] }} · {{ $s['games'] }} games</span>
+                    <span class="block text-[11px] text-ink-subtle">{{ $s['label'] }}</span>
+                </button>
+            @endforeach
+        </div>
+    @endif
+
+    @if ($analysis)
+        @php $wp = $analysis['whoYouPlayed']; @endphp
+
+        {{-- Summary line --}}
+        <div class="linear-card p-5">
+            <p class="text-[15px] text-ink">
+                <span class="font-semibold">{{ $analysis['record']['won'] }} won, {{ $analysis['record']['lost'] }} lost</span>
+                <span class="text-ink-muted">as</span>
+                @foreach ($analysis['team'] as $p)
+                    <span class="text-ink">{{ $p['spec'] }}</span> <span class="text-ink-subtle text-[12px]">({{ $p['xp'] }})</span>@if (! $loop->last), @endif
+                @endforeach
+            </p>
+            @if ($analysis['pendingExperience'] > 0)
+                <p class="text-[12px] text-ink-subtle mt-2">Still looking up {{ $analysis['pendingExperience'] }} players' experience from Blizzard. Refresh in a minute.</p>
+            @endif
+        </div>
+
+        {{-- Your takeaway --}}
+        @if ($analysis['takeaways'] !== [])
+            <section class="linear-card border-line-gold p-5">
+                <h2 class="text-[11px] uppercase tracking-[0.13em] text-gold font-semibold mb-3">Your takeaway</h2>
+                <ul class="space-y-2 text-[14px] text-ink">
+                    @foreach ($analysis['takeaways'] as $t)
+                        <li>{{ $t }}</li>
+                    @endforeach
+                </ul>
+            </section>
+        @endif
+
+        {{-- Who you played --}}
+        <section>
+            <h2 class="page-section-title mb-3">Who you played</h2>
+            <div class="overflow-x-auto linear-card">
+                <table class="w-full text-[13px]">
+                    <thead class="text-ink-subtle text-left">
+                        <tr class="border-b border-line">
+                            <th class="p-3"></th><th class="p-3">Their MMR</th><th class="p-3">MMR gap</th>
+                            <th class="p-3">Their Gladiator seasons</th><th class="p-3">Their best 3v3 rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (['won' => 'Games won', 'lost' => 'Games lost'] as $k => $label)
+                            <tr class="border-b border-line last:border-0">
+                                <td class="p-3 text-ink">{{ $label }} ({{ $wp[$k]['games'] }})</td>
+                                <td class="p-3 tabular-nums">{{ $wp[$k]['theirMmr'] ?? '–' }}</td>
+                                <td class="p-3 tabular-nums">{{ isset($wp[$k]['mmrDiff']) ? sprintf('%+d', $wp[$k]['mmrDiff']) : '–' }}</td>
+                                <td class="p-3 tabular-nums">{{ $wp[$k]['theirGladSeasons'] ?? '–' }}</td>
+                                <td class="p-3 tabular-nums">{{ $wp[$k]['theirBestExp'] ?? '–' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-[12px] text-ink-subtle mt-2">
+                Gladiator seasons are per Battle.net account and lifetime; the rating is the character's highest ever.
+                Early in a season MMR runs low, so experience says more about the level you played at.
+            </p>
+        </section>
+
+        {{-- What differed --}}
+        <section>
+            <h2 class="page-section-title mb-3">What was different</h2>
+            <div class="space-y-2">
+                @foreach ($analysis['comparisons'] as $c)
+                    <div class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+                        <p class="flex-1 text-[13.5px] text-ink">{{ $c['label'] }}</p>
+                        <div class="flex gap-4 text-[13px] shrink-0">
+                            @foreach (['left', 'right'] as $side)
+                                <span class="tabular-nums">
+                                    <span class="text-ink-subtle">{{ $c[$side]['label'] }}</span>
+                                    <span class="text-ink font-semibold">{{ $c[$side]['value'] ?? '–' }}{{ $c[$side]['value'] !== null ? $c['unit'] : '' }}</span>
+                                    <span class="text-ink-subtle text-[11px]">({{ $c[$side]['n'] }} {{ $c['of'] }})</span>
+                                </span>
+                            @endforeach
+                            @if ($c['lead'])
+                                <span class="badge-gray self-center">lead</span>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </section>
+
+        {{-- The review table --}}
+        <section>
+            <h2 class="page-section-title mb-3">Every game</h2>
+            <div class="overflow-x-auto linear-card">
+                <table class="w-full text-[12.5px]">
+                    <thead class="text-ink-subtle text-left">
+                        <tr class="border-b border-line">
+                            <th class="p-2.5">Game</th><th class="p-2.5">Level</th><th class="p-2.5">Result</th><th class="p-2.5">MMR (you / them)</th>
+                            <th class="p-2.5">Their team (healer first)</th><th class="p-2.5">Your goes (kill after)</th>
+                            <th class="p-2.5">Defensives before the first death (you / them)</th><th class="p-2.5">First death</th><th class="p-2.5">Your healer then</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($analysis['games'] as $g)
+                            <tr class="border-b border-line last:border-0 align-top">
+                                <td class="p-2.5 tabular-nums text-ink">{{ $g['time'] }}</td>
+                                <td class="p-2.5">{{ $g['level'] }}</td>
+                                <td class="p-2.5 {{ $g['won'] ? 'text-gold' : 'text-ink-muted' }}">{{ $g['won'] ? 'Won' : 'Lost' }}</td>
+                                <td class="p-2.5 tabular-nums">{{ $g['mmr']['us'] ?? '–' }} / {{ $g['mmr']['them'] ?? '–' }}</td>
+                                <td class="p-2.5">
+                                    @foreach ($g['enemies'] as $e)
+                                        <span class="block">{{ $e['spec'] }} <span class="text-ink-subtle">{{ $e['xp'] }}</span></span>
+                                    @endforeach
+                                </td>
+                                <td class="p-2.5 tabular-nums">{{ $g['goes'] }} ({{ $g['goesKill'] }})</td>
+                                <td class="p-2.5 tabular-nums">{{ $g['defensives']['us'] }} / {{ $g['defensives']['them'] }}</td>
+                                <td class="p-2.5">
+                                    @if ($g['firstDeath'])
+                                        {{ $g['firstDeath']['side'] === 'us' ? 'Your' : 'Their' }} {{ $g['firstDeath']['spec'] }}@if ($g['firstDeath']['to']), to {{ $g['firstDeath']['to'] }}@endif
+                                    @else
+                                        –
+                                    @endif
+                                </td>
+                                <td class="p-2.5">{{ $g['ourHealerAtDeath'] ?? '–' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    @endif
+</div>
