@@ -552,3 +552,63 @@ real character's Spell Power would need Blizzard's character-statistics endpoint
 achievement counters. Even then the result is an unbuffed tooltip number, not damage done in a
 game: the target's versatility, absorbs and defensives are not in it. `brain.md` {#timeline}'s
 rule stands — no damage model, and nothing here predicts an outcome.
+
+## 2026-09-30 — What a match review found against the curated control data
+
+Found while reviewing 14 Jungle games and comparing a Feral and a Hunter with others in the
+archive (`match-review-analysis.md`, "30 Sep: the Jungle"). The first item was a measurement bug
+and is fixed. The rest are open, for the domain expert.
+
+### FIXED (in the reader, not the data) — Garrote's aura is a bleed
+
+`cc-synergies-overrides.txt` holds 703 Garrote as a 3-second Silence. That is right for a palette
+and a CC chain, and the line stays. But anything that reads control as an *aura* must not use it:
+over 541 auras in the archive the 703 aura runs a median **18.0s**, and 91% run more than a second
+past 3.0. The silence is 1330 "Garrote - Silence" (382 auras, 3.0s). `ArenaMomentService` now
+skips 703 when reading auras. Any other consumer that measures a CC by how long its aura lasted
+has the same problem.
+
+### OPEN — three curated arena durations shorter than what lands
+
+Aura lengths on players across the whole archive, against `pvp_duration_seconds`:
+
+| Spell | Curated | Auras | Median | 90th percentile | Longest | More than 1s over |
+|---|---|---|---|---|---|---|
+| 163505 Rake (the stun) | 3.0s | 626 | 3.6s | 4.0s | 6.0s | 209 (33%) |
+| 1234195 Void Nova | 2.0s | 401 | 3.0s | 4.0s | 5.2s | 215 (54%) |
+| 179057 Chaos Nova | 3.0s | 199 | 2.0s | 4.0s | 5.0s | 20 (10%) |
+
+- **Rake:** the site's own text for *Pouncing Strikes* says "While stealthed, Rake will also stun
+  the target for 4". A 4.0s ceiling with DR'd repeats below it fits the 3.6 median. **Looks like
+  the curated 3.0 should be 4.0; not changed.**
+- **Void Nova:** more than half of its auras outlast the curated 2.0 by a second. Not changed.
+- **Chaos Nova:** the median is under the curated figure and the tail is over it. Possibly a
+  talent that lengthens it; nothing here says which.
+- A long aura can also be one that was refreshed without a REMOVED line between, so the "longest"
+  column is weaker evidence than the median.
+
+### OPEN — effects every comparison player had that the spell data does not hold
+
+Self-applied buffs and damage on nearly every 2100+ Feral and Hunter in these logs, none of which
+resolves through `describe.php`: *Rune of Masterful Cunning* (1287771), *Rune of Lynxlike
+Reflexes* (1287978), *Rune of Lingering* (1287663), *Rune of Unleashed Fire*, *Arcanoweave
+Insight* (1229746), *Might of the Void*, *Seized Power*. One Feral in 15 games had none of the
+runes while eight others had Masterful Cunning up 64–76% of the time. The log's gear line does not
+name what grants them. The trinkets are the same pair on both sides, and so are the weapon, chest
+and leg enchant ids. **The one enchant that differs is on the rings:** the Feral without the runes
+has 7965 on both, and the seven other players whose rings were read (four Ferals, three Hunters)
+have 7969, 8027 or 8023. That is a lead, not a finding: nothing here ties a ring enchant to a
+buff, and the runes were confirmed per group, not for each of those seven.
+**Who can settle it: anyone who can read the buff's source in game.**
+
+### OPEN — descriptions that did not resolve, or resolved to the wrong copy
+
+Seen through `tools/match-review/describe.php` (so without a talent build):
+- **Tranquilizing Shot** printed another talent's text ("Mend Pet heals for an additional …").
+  The lookup takes the first copy with a description; the pressable copy is a different row.
+- **Bloody Frenzy:** "causes your Barbed Shot to deal damage **0%** faster".
+- **Heart of the Wild:** "(varies by condition — check in-game)" three times over. The logs show
+  what the caster-form version does for a Feral: a Wild Growth, with no cast line of its own,
+  every 120–126 seconds for a player who uses it on cooldown. Inferred from that timing, not read
+  from a cast event.
+- **Moment of Clarity:** "can accumulate up to (varies) charges".

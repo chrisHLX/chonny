@@ -217,6 +217,28 @@ class ArenaMomentTest extends TestCase
         $this->assertSame(3.5, $moments[0]['controlOnHealer'][0]['held']);
     }
 
+    public function test_a_garrote_bleed_is_not_read_as_a_silence(): void
+    {
+        // 703 is curated as a Silence because pressing it silences, but its aura in the log is the
+        // bleed. The silence is 1330. Reading the bleed as control showed a healer locked out for
+        // eighteen seconds at a time.
+        $this->spell(1, 'Avatar', 90);
+        $this->spell(703, 'Garrote', null, 'Silence');
+        $this->spell(1330, 'Garrote - Silence', null, 'Silence');
+
+        $timeline = app(ArenaMomentService::class)->readTimeline([
+            $this->cast('Player-A', 1, 'Avatar', '10:00:10.0000'),
+            $this->aura('SPELL_AURA_APPLIED', 'Player-A', 'Player-F', 703, 'Garrote', '10:00:10.5000'),
+            $this->aura('SPELL_AURA_APPLIED', 'Player-A', 'Player-F', 1330, 'Garrote - Silence', '10:00:10.5000'),
+            $this->aura('SPELL_AURA_REMOVED', 'Player-A', 'Player-F', 1330, 'Garrote - Silence', '10:00:13.5000'),
+            $this->aura('SPELL_AURA_REMOVED', 'Player-A', 'Player-F', 703, 'Garrote', '10:00:28.5000'),
+        ], app(ArenaMomentService::class)->roster($this->metadata()));
+
+        $this->assertCount(1, $timeline['control']);
+        $this->assertSame('Garrote - Silence', $timeline['control'][0]['spell']);
+        $this->assertSame(3.0, $timeline['control'][0]['to'] - $timeline['control'][0]['from']);
+    }
+
     public function test_control_from_a_totem_does_not_crash_or_guess_who_broke_it(): void
     {
         // A Capacitor Totem stuns, and a totem is not in the roster — so there is no side to

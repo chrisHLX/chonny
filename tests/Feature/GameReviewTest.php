@@ -294,6 +294,42 @@ class GameReviewTest extends TestCase
             ->assertSee('window.arenaUpload', false);
     }
 
+    public function test_the_game_list_shows_each_teams_average_experience(): void
+    {
+        $user = User::factory()->create();
+        $player = fn (string $name, bool $isYou, string $side) => [
+            'guid' => 'Player-1-'.$name, 'name' => "{$name}-Realm-US", 'isYou' => $isYou,
+            'spec' => ['externalId' => 256, 'label' => 'Discipline Priest'], 'teamByRound' => [1 => $side],
+        ];
+        $xp = fn (int $exp) => ['found' => true, 'exp3v3' => $exp, 'gladSeasons' => 0, 'rankOneSeasons' => 0, 'legendSeasons' => 0, 'bestRank' => null];
+
+        app(LobbyReviewService::class)->store($user, [
+            'id' => 'three-v-three', 'bracket' => '3v3', 'playedAt' => '2026-09-30T14:00:00+00:00',
+            'record' => ['won' => 1, 'lost' => 0],
+            'rounds' => [['sequence' => 1, 'matchId' => 'm', 'durationSeconds' => 120, 'result' => 'won', 'killedName' => null]],
+            'players' => [
+                $player('Me', true, 'side1'), $player('Mate', false, 'side1'), $player('Pal', false, 'side1'),
+                $player('Foe', false, 'side2'), $player('Rival', false, 'side2'), $player('Hidden', false, 'side2'),
+            ],
+            'mirrors' => [],
+        ]);
+
+        // Us 2000/2200/2400 → 2200. Them 1800 and 2000 → 1900; Hidden has no public profile, so it
+        // is left out rather than averaged in as zero.
+        foreach (['Me' => 2000, 'Mate' => 2200, 'Pal' => 2400, 'Foe' => 1800, 'Rival' => 2000] as $n => $e) {
+            \Illuminate\Support\Facades\Cache::put('player_experience:v1:'.md5(mb_strtolower("{$n}-Realm-US")), $xp($e), 60);
+        }
+        \Illuminate\Support\Facades\Cache::put('player_experience:v1:'.md5(mb_strtolower('Hidden-Realm-US')), ['found' => false], 60);
+
+        $index = app(LobbyReviewService::class)->index($user);
+        $this->assertSame(['mode' => 'teams', 'us' => 2200, 'them' => 1900, 'pending' => 0], $index[0]['experience']);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\GameReview::class, ['id' => 'three-v-three'])
+            ->assertSee('avg exp 2,200')
+            ->assertSee('vs 1,900');
+    }
+
     public function test_the_page_works_with_the_raw_archive_completely_absent(): void
     {
         // Rule 14: the archive is gitignored, so anything a page reads from it is silently broken

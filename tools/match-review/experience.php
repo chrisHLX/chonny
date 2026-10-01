@@ -1,6 +1,8 @@
 <?php
 
 // Look up every player in games.json: highest 3v3 rating, Gladiator / Rank 1 seasons, current 3v3.
+//   php experience.php [games file]   -- another games file (same shape) adds to experience.json;
+//   players already looked up are kept and not asked for again.
 require __DIR__.'/../../vendor/autoload.php';
 $app = require __DIR__.'/../../bootstrap/app.php';
 $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
@@ -9,7 +11,7 @@ use App\Http\Services\BattlenetCharacterSyncService;
 use App\Http\Services\BattlenetClient;
 
 $dir = __DIR__;
-$games = json_decode(file_get_contents("$dir/games.json"), true);
+$games = json_decode(file_get_contents($argv[1] ?? "$dir/games.json"), true);
 $client = app(BattlenetClient::class);
 $sync = app(BattlenetCharacterSyncService::class);
 
@@ -20,8 +22,12 @@ foreach ($games as $g) {
     }
 }
 
-$out = [];
+// With a games file given, add to what is there. The default run still rebuilds from scratch.
+$out = isset($argv[1]) && is_file("$dir/experience.json") ? json_decode(file_get_contents("$dir/experience.json"), true) : [];
 foreach (array_keys($names) as $full) {
+    if (isset($out[$full]) && ! isset($out[$full]['error'])) {
+        continue;
+    }
     [$name, $realm, $region] = explode('-', $full, 3);
     // Realm slug: lowercase, apostrophes dropped, spaces to hyphens; CamelCase realms (Area52,
     // BleedingHollow) get a hyphen at each word boundary.

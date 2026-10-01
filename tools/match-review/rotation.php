@@ -4,6 +4,8 @@
 // what they press and how often, where their damage comes from, and the exact order of their
 // casts around each major cooldown. The evidence for a class guide (guides-from-play.md).
 //   php tools/match-review/rotation.php Hozzaarr [--only=19:26,...]
+//   --with=Doubletapz,Jmjay   teammates who must be in the game (default Hozzaarr,Skylake; --with= for any game)
+//   --date=2026-09-30         one day, on the clock the game times print in
 require __DIR__.'/../../vendor/autoload.php';
 $app = require __DIR__.'/../../bootstrap/app.php';
 $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
@@ -26,6 +28,17 @@ foreach ($argv as $a) {
     }
 }
 
+$with = ['Hozzaarr', 'Skylake'];
+$onDate = null;
+foreach ($argv as $a) {
+    if (str_starts_with($a, '--with=')) {
+        $with = array_values(array_filter(explode(',', substr($a, 7))));
+    }
+    if (str_starts_with($a, '--date=')) {
+        $onDate = substr($a, 7);
+    }
+}
+
 $arena = app(ArenaLogService::class);
 $cooldowns = Spell::where('patch_id', Patch::where('is_current', true)->value('id'))
     ->where('cooldown_seconds', '>=', MAJOR)->pluck('cooldown_seconds', 'name')->all();
@@ -37,7 +50,10 @@ foreach (glob(ARCHIVE.'/metadata/*.json') as $file) {
         continue;
     }
     $names = array_column($m['units'], 'name');
-    if (! preg_grep('/^Hozzaarr-/', $names) || ! preg_grep('/^Skylake-/', $names)) {
+    if (array_filter($with, fn ($w) => ! preg_grep('/^'.preg_quote($w, '/').'-/', $names)) || ! preg_grep('/^'.preg_quote($player, '/').'-/', $names)) {
+        continue;
+    }
+    if ($onDate !== null && date('Y-m-d', intdiv($m['startTime'], 1000)) !== $onDate) {
         continue;
     }
     $clock = date('H:i', intdiv($m['startTime'], 1000));

@@ -73,6 +73,26 @@ class ArenaMomentService
         'SPELL_DAMAGE', 'SPELL_PERIODIC_DAMAGE', 'RANGE_DAMAGE', 'SWING_DAMAGE', 'SWING_DAMAGE_LANDED',
     ];
 
+    /**
+     * SPELLS WHOSE PRESS IS CONTROL BUT WHOSE AURA IS NOT.
+     *
+     * Control is read here as an aura: it starts when the aura lands and ends when it comes off.
+     * That is wrong for Garrote. 703 is curated as a 3-second Silence, which is right for a palette
+     * or a CC chain (pressing it from stealth silences), but the 703 aura in a combat log is the
+     * BLEED: across 541 auras in the archive its median length is 18.0s, and 91% run more than a
+     * second past the curated 3.0 (measured 2026-09-30). The silence itself is its own aura, 1330
+     * "Garrote - Silence", which sits at 3.0s and is read normally.
+     *
+     * Reading 703 as control put a healer "locked out" for the whole bleed: one 111-second game
+     * showed 82 seconds of lockout on a Priest, and 34 with the bleed left out. No other lockout
+     * spell's aura is a different effect from its control. The next furthest from their curated
+     * lengths (Void Nova, the Rake stun) run a second or two over, which is a question about the
+     * curated number, not about what the aura is. So this is a list of one, by measurement.
+     *
+     * The curated line is correct and stays (rule 6); only the aura reading skips it.
+     */
+    private const AURA_IS_NOT_THE_CONTROL = [703];
+
     private ?array $cooldowns = null;
 
     private ?array $crowdControl = null;
@@ -228,7 +248,7 @@ class ArenaMomentService
             }
 
             if ($event === 'SPELL_AURA_APPLIED') {
-                if (array_key_exists($dst, $roster) && isset($cc[$spellId])) {
+                if (array_key_exists($dst, $roster) && isset($cc[$spellId]) && ! in_array($spellId, self::AURA_IS_NOT_THE_CONTROL, true)) {
                     $open["{$dst}|{$spellId}"] = ['t' => $t, 'by' => $src, 'spell' => $spellName];
                 }
 

@@ -44,6 +44,7 @@ class LobbyReviewService
         private CombatLogIngestService $ingest,
         private ArenaMomentService $moments,
         private RoundAnalysisService $analysis,
+        private PlayerExperienceService $experience,
     ) {}
 
     // ---------------------------------------------------------------- reading (page-safe)
@@ -56,10 +57,17 @@ class LobbyReviewService
      */
     public function index(User $user): array
     {
-        return ArenaReview::query()
+        $rows = ArenaReview::query()
             ->where('user_id', $user->id)
             ->orderByDesc('played_at')
-            ->get()
+            ->get();
+
+        // One cache read for every player on the list, not one per player per game.
+        $xp = $this->experience->cachedMany($rows
+            ->flatMap(fn (ArenaReview $r) => array_column($r->payload['players'] ?? [], 'name'))
+            ->all());
+
+        return $rows
             ->map(fn (ArenaReview $r) => [
                 'id' => $r->lobby_id,
                 'bracket' => $r->bracket,
@@ -70,8 +78,97 @@ class LobbyReviewService
                 'youSpec' => $r->payload['players'] ? collect($r->payload['players'])
                     ->firstWhere('isYou', true)['spec']['label'] ?? null : null,
                 'mirrors' => $r->mirrors,
+                'experience' => $this->gameExperience($r->payload, $xp),
             ])
             ->all();
+    }
+
+    /**
+     * Average highest 3v3 rating of each side, per round, from the cached lookups
+     * (PlayerExperienceService). "us" is the logging player's side IN THAT ROUND: a shuffle
+     * re-deals teams every round, so a lobby has no fixed "us".
+     *
+     * `known` counts players with a public profile, `pending` those not looked up yet. A player with
+     * no profile is left out of the average rather than counted as zero.
+     *
+     * @param  array<string, array|null>|null  $xp  name => cached lookup; read here when not given
+     * @return array<int, array{us: array, them: array}> keyed by round sequence
+     */
+    public function experienceByRound(array $review, ?array $xp = null): array
+    {
+        $players = $review['players'] ?? [];
+        $xp ??= $this->experience->cachedMany(array_column($players, 'name'));
+        $you = collect($players)->firstWhere('isYou', true);
+        $out = [];
+
+        foreach ($review['rounds'] ?? [] as $round) {
+            $seq = $round['sequence'];
+            $ourSide = $you['teamByRound'][$seq] ?? null;
+
+            if ($ourSide === null) {
+                continue;
+            }
+
+            $sides = ['us' => [], 'them' => []];
+            $pending = ['us' => 0, 'them' => 0];
+
+            foreach ($players as $p) {
+                $side = $p['teamByRound'][$seq] ?? null;
+
+                if ($side === null) {
+                    continue;
+                }
+
+                $key = $side === $ourSide ? 'us' : 'them';
+                $x = $xp[$p['name']] ?? null;
+
+                if ($x === null) {
+                    $pending[$key]++;
+                } elseif (($x['found'] ?? false) && ($x['exp3v3'] ?? null) !== null) {
+                    $sides[$key][] = (int) $x['exp3v3'];
+                }
+            }
+
+            $out[$seq] = collect($sides)->map(fn ($v, $k) => [
+                'avg' => $v === [] ? null : (int) round(array_sum($v) / count($v)),
+                'known' => count($v),
+                'pending' => $pending[$k],
+            ])->all();
+        }
+
+        return $out;
+    }
+
+    /**
+     * What the game list shows. A single-round game (2v2, 3v3) has a fixed us and them; a shuffle
+     * lobby does not, so it gets the average of the five other players instead.
+     *
+     * @return array{mode: string, us?: ?int, them?: ?int, lobby?: ?int, pending: int}|null
+     */
+    private function gameExperience(array $review, array $xp): ?array
+    {
+        $rounds = $review['rounds'] ?? [];
+
+        if (count($rounds) === 1) {
+            $r = $this->experienceByRound($review, $xp)[$rounds[0]['sequence']] ?? null;
+
+            return $r === null ? null : [
+                'mode' => 'teams',
+                'us' => $r['us']['avg'],
+                'them' => $r['them']['avg'],
+                'pending' => $r['us']['pending'] + $r['them']['pending'],
+            ];
+        }
+
+        $others = collect($review['players'] ?? [])->reject(fn ($p) => $p['isYou']);
+        $values = $others->map(fn ($p) => $xp[$p['name']] ?? null);
+        $known = $values->filter(fn ($x) => ($x['found'] ?? false) && ($x['exp3v3'] ?? null) !== null)->pluck('exp3v3');
+
+        return [
+            'mode' => 'lobby',
+            'lobby' => $known->isEmpty() ? null : (int) round($known->avg()),
+            'pending' => $values->filter(fn ($x) => $x === null)->count(),
+        ];
     }
 
     /** One of this player's reviews, or null. Never reads another player's row. */

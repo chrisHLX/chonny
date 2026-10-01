@@ -106,6 +106,24 @@ event's *target*. A pet already out before logging started cannot be attributed 
 **`UNIT_DIED`'s trailing field is `unconsciousOnDeath`** — 1 for a feign, 0 for a real death.
 Without that filter one Beast Mastery Hunter "dies" six times a lobby.
 
+**The Garrote aura is the bleed, not the silence** (found 2026-09-30). Control is read as an aura:
+it starts when the aura lands and ends when it comes off. Spell 703 is curated as a 3-second
+Silence, which is right for a palette, but the 703 aura in a log is the bleed: **541 auras in the
+archive, median 18.0s, 91% more than a second past the curated 3.0**. The silence is its own aura,
+1330 "Garrote - Silence", at 3.0s. Reading 703 as lockout showed a Priest locked out for 82 seconds
+of a 111-second game (34 without it) and called a healer "locked out at the death" who was not.
+`ArenaMomentService::AURA_IS_NOT_THE_CONTROL` skips it; the curated line stays. It was the only
+spell of its kind in a scan of all 162 curated CC spells. The two next furthest from their curated
+lengths are small and are recorded in `knowledge-gaps.md` (the Rake stun, Void Nova).
+
+**Some presses are logged from the pet, not the player.** One Hunter's Master's Call appears only
+as the pet's `SPELL_CAST_SUCCESS` (pressed off the pet bar), where other Hunters' appears as their
+own. Counting the player's casts alone read 0 uses for a button pressed seven times. Count a pet's
+cooldown presses under its owner, and one press can log once per unit it touches.
+
+**A shapeshift that breaks a root or snare writes `SPELL_DISPEL`** with the form as the spell
+(`Cat Form` removing `Crippling Poison`). That is how a deliberate shift is told from a wasted one.
+
 ### COMBATANT_INFO
 
 **The stat block is 22 fields on this client where the documented layout is 21.** One field in the
@@ -117,6 +135,11 @@ if they do not match, the block is reported unaligned rather than shown wrong. V
 
 **Gear** is `(itemId, ilvl, (enchants), (bonusIds), (gems))` per slot, two fields after the talent
 bracket. Read the **median** ilvl — a shirt or tabard at ilvl 1 drags a mean down twenty points.
+
+**A Hunter's talent bracket can open `[,(` instead of `[(`**: a leading empty entry, on 108 of
+3,598 archived lines, all Hunters (81 of 163 Beast Mastery, 27 of 69 Marksmanship). The extractor
+required `[(` and returned nothing for those players, so they showed no talents, gear or stats.
+Fixed 2026-09-30 in `extractCombatantInfoFromLog()`.
 
 **The talent `entryId` is not `talent_node_entries.external_talent_id`** — two genuinely different
 Blizzard id spaces, 0 of 17 matched. `nodeId` does match `external_node_id`.
@@ -490,7 +513,53 @@ It also reads **the why**:
   `:rank` and `#node`).
 
 `php tools/match-review/describe.php "Name" ...` prints what a talent or spell does, as the site
-resolves it: the source for a why that rests on a talent.
+resolves it: the source for a why that rests on a talent. **It can pick the wrong copy:** for
+Tranquilizing Shot it printed another talent's text (rule 3). Read the result before citing it.
+
+`rotation.php` takes `--with=Name,Name` (teammates who must be in the game; `--with=` for any game
+the player is in) and `--date=YYYY-MM-DD`. The default is still the 26 Sep team.
+
+### One spec, side by side (`specread.php`)
+
+`rotation.php` describes one player. To ask how one player differs from others of the same spec,
+the same things have to be measured the same way for each and put in columns:
+
+```
+php -d memory_limit=1G tools/match-review/specread.php --spec=103 --since=2026-09-01 --with=Doubletapz
+    --deaths=Crawlordx "--col=Crawlordx:Crawlordx" "--col=Rastic <2150:Rastic:0:2149"
+    "--col=Rastic 2150+:Rastic:2150:9999" "--col=Others 2100+:*:2100:9999"
+```
+
+- **A column is `Label:Name[:minMMR:maxMMR[:W|L]]`.** `*` is every other player of the spec not
+  named in another column. The MMR is the player's own team's, from `ARENA_MATCH_END`. `--with`
+  restricts the first column's player to games with that teammate.
+- **Everything is per minute alive**, from the match start to the player's death or the end. A
+  player who dies early would otherwise read as doing less.
+- **What it measures:** damage out (pets credited), its share on their healer and on the most-hit
+  target; damage in; healing on self and on teammates; presses a minute; time in gaps over 2.5s
+  between presses, less time locked out; time locked out; lockout this player landed on their
+  healer and their DPS, by spell; interrupts; deaths; each offensive cooldown against a teammate's
+  and against lockout on their healer in the next 8s; every 20s+ cooldown as uses a game, first
+  press and median gap; presses of each ability; damage and healing by ability; own buffs' uptime;
+  own debuffs on enemies (share of time at least one enemy has it, and the average count); the
+  resource each press was made at.
+- **Defensives carry the health they were pressed at** (median, and the share at 50% or lower).
+  Health comes from damage and heal events on the player, so it is stale when nothing hits them.
+- **`--deaths=Name`** prints each real death: health at 20s down to 1s before, damage in by
+  source, every defensive and self-heal the player pressed with its health, what teammates put on
+  them, control on them, lockout on their healer, and the enemy's offensive cooldowns.
+
+What to watch for when reading it:
+
+- **A comparison player in another comp is not the spec.** Where one well-sampled player and the
+  pool of others disagree, the difference is that player's build or comp. Say which it is.
+- **The pool of "others" is mostly opponents of the logging player**, so it loses more than it
+  wins. It shows what higher-MMR players press, not what wins.
+- **A button never pressed may not be talented.** Check the talents before calling it a gap. It
+  may also be pressed from the pet (above).
+- **Before calling a press wasted, look for what it did.** A third of one Feral's Cat Form presses
+  broke a snare.
+- **Base cooldowns only** (rule 34): "was it available" is not known, only "was it pressed".
 
 ### What is useful, and what misleads
 
@@ -518,11 +587,19 @@ resolves it: the source for a why that rests on a talent.
    | `rosters.py` | every 3v3 game with Skylake + Hozzaarr: result, both MMRs, enemy specs → `games.json` | `python tools/match-review/rosters.py` |
    | `experience.php` | every player in `games.json` → exp, Gladiator/Legend seasons → `experience.json` | `php tools/match-review/experience.php` |
    | `killread.php` | goes (as chains, good and bad), drain, bait, utilities, healer sustain, CC timing, the kill read; per game and averaged over wins and losses. Pass `HH:MM` to print a game go by go; `--strict` for offensive-only goes | `php -d memory_limit=1G tools/match-review/killread.php 20:13 20:19` |
+   | `specread.php` | one spec, several players side by side, and one player's deaths (see *One spec, side by side*) | above |
+   | `feralread.php` | Feral only: combo points, every proc's fate, Tiger's Fury, Incarnation windows cast by cast, damage per energy, damage inside goes. Two auras share the Incarnation name: 252071 is only the Prowl-in-combat flag | `--col` as in `specread.php`, `--windows=Name` |
+
+   **Another team or day:** `killread.php --me=Crawlordx --mate=Doubletapz --date=2026-09-30`.
+   `--me` is the player whose side is "us", `--mate` a teammate who must be in the game, `--date`
+   one day on the printed clock (HH:MM repeats across days). `experience.php <games file>` adds
+   the players in any file of the same shape to `experience.json` without asking again for ones
+   it already holds; with no argument it still rebuilds from `games.json`.
 
    `killread.php` reaches the private `readTimeline()` through reflection, so it measures from the
    same timeline the Moments section does, and it reads `experience.json` to group by opponent
-   experience. The team (Skylake + Hozzaarr), the archive path, and a game-clock offset are
-   hard-coded. **Their JSON output is gitignored**: it names other players, exactly like the review
+   experience. The archive path and a game-clock offset are hard-coded; the team defaults to
+   Skylake + Hozzaarr. **Their JSON output is gitignored**: it names other players, exactly like the review
    artifact that once got committed.
 3. **Reading the output is AI analysis (or a person).** The scripts produce numbers. Deciding which
    numbers answer the question, which game is an outlier, what a rematch shows, and whether a
@@ -562,6 +639,12 @@ judgement. `/wow/match-analysis` produces it for any player from their own uploa
   goes, overlaps, kicks, both MMRs).
 - **"Us" is the logging player's side** (affiliation 1, then `reaction`), so it works for whoever
   uploads, with no names in the code.
+- **Games read from your own combat log get it from `wow:sync`** (2026-09-30), which the log
+  manager runs after every game. Until then `wow:sync` wrote only the review (`arena_reviews`), so
+  a locally played game never reached `/wow/match-analysis`. It now feeds each round's
+  `raw/{id}.log.gz` from the archive through `ingestRound()`, gives the round the archive's lobby
+  id (so the upload page's assembler never builds a second copy of a shuffle), and looks up
+  experience directly, because no queue worker runs locally. `--skip-analysis` turns it off.
 - **A game uploaded before 2026-09-29 has no analysis** and cannot get one without being uploaded
   again: the raw log was not kept. `php artisan wow:upload-rounds {user} {files...}` feeds round logs
   through the browser-upload path for testing or backfill from an archive.
@@ -593,6 +676,61 @@ and whose lockout was on their healer during each go and each burst.
 **An estimate from rules, not a verdict.** It cannot see positioning, calls, or a mistake nobody
 pressed a button for; a player who never pressed anything collects no share. The page says so,
 shows every item in a ledger, and prints the weights.
+
+**Known flaw (2026-09-30): the Medallion and overlap rules ignore whether the press was needed.**
+On the 26 Sep losses, 9 of the healer's 14 points came from presses made with a teammate 2–4
+seconds from death. The overlap rule also counts Lichborne (no damage reduction) and Anti-Magic
+Shell (magic only) as defensives to stack on. Read a flagged press with `warrant.php` (below)
+before accepting it. The findings are in `match-review-analysis.md`, *Was the trinket warranted*.
+
+### Was it warranted (`warrant.php`)
+
+`php -d memory_limit=1G tools/match-review/warrant.php [--only=HH:MM,...]` measures the kill read
+plus these, per game:
+
+- **Each Medallion of ours:** every debuff that came off within 0.4s of it. The lockout it broke
+  is not always the first match: at 20:13 a slow and a Freezing Trap came off together. It also
+  records the CC's nominal time left (after DR), each teammate's health, and the incoming rate in
+  the 3s before and in the saved window. Then what the trinketer pressed and healed in the window,
+  and the next lockout on them.
+- **Each of our overlaps:** the target's health when the second defensive went on, the incoming
+  rate before and during, the physical share of the damage, and the lowest health during and 3s
+  after.
+- **Incoming = damage + `SPELL_ABSORBED`.** Without absorbs a shielded player looks safe.
+- **Time to live** = current health ÷ incoming per second. Health (current and max) is read from
+  damage and heal events whose advanced-info unit is the target.
+- **At each of our deaths:** our healer's debuffs and when their Medallion was last used.
+- **Every defensive (both sides), with its reasons and a verdict:** danger > cc > insure > focus >
+  alone > none. The definitions are in `match-review-analysis.md`, *Why each defensive was
+  pressed*, and at the top of the block in the script. How each is measured:
+  - The **target** is the matching `SPELL_CAST_SUCCESS`'s destination, so Pain Suppression counts
+    on the ally.
+  - The **buff window** is its own `BUFF` aura; failing that, the spell's duration.
+  - **"Ate a CC"** is `SPELL_MISSED` with miss type `IMMUNE` (field 12) on a spell whose
+    `dr_category` is a lockout. Slows are excluded: Judgment of Justice is often missed IMMUNE
+    and meant nothing.
+  - **"Grants immunity"** comes from `ModuleSpellReferenceService::ccImmunityGrantedBy()`.
+    Unmapped mechanic codes are dropped (Lichborne carries codes 1, 10 and 23 besides Fear).
+  - **"Their cooldowns running"** means an offensive cast whose own `duration_seconds` (12s when
+    null) covers the moment. Their go window alone is too wide, because it runs 15s past the last
+    cast.
+  - **"Alone"** is never given to the healer's own press.
+  - **Rows print for our side only.** The per-player summary includes theirs.
+- **Whether the reason was valid (ours only).** The verdict definitions are in
+  `match-review-analysis.md`, *Was the reason valid*. How it is measured:
+  - **Replay without it:** each covered enemy hit grows by `r/(1-r)`, using `DEFENSIVE_EFFECT`
+    in the script, whose values come from the spells' `Modify Damage Taken%` effects. Absorbs come
+    from `SPELL_ABSORBED` lines naming the defensive. For a Leech defensive (Lichborne), it is the
+    `SPELL_HEAL` "Leech" lines above the player's Leech rate over the previous 10s.
+  - **Health without it** = logged health minus the running total added back, from the press to
+    3s after the buff ends. The healer's response to a lower bar is not modelled.
+  - **The enemy's output and the target's share** are taken over the 3s before against the buff
+    window. A swap is a share at least halved while total output held. A fall is total output
+    under half.
+  - **Their cooldowns' time left** is their offensive casts' own `duration_seconds` (12s when
+    null) minus elapsed. At `TAIL` (3s) or less, a danger press is LATE.
+  - **Cost** is whether the player fell to `DANGER_HP` or died before the button was back. It uses
+    base cooldowns, so it overstates; it does not yet discriminate.
 
 ## Measurement rules from earlier studies
 
@@ -628,10 +766,19 @@ Methods the first studies settled. Their results are in `match-review-analysis.m
 - **The go's target is inferred** as the enemy the attacking side damaged most in the window.
   A go that switched target part-way labels the first target's CC as cross CC.
 - **Pet CC has no caster:** Intimidation and Freezing Trap show as "by ?" when a pet applied them.
+- **"Lockout ended Ns before" used to name the first lockout in the last 10 seconds, not the
+  latest** (fixed 2026-09-30). It read 8s at a death where another lockout had ended 1.4s before.
+- **Some labels still name the 26 Sep team:** "games lost without 19:47" and "DK and Monk" print
+  for any team. The numbers under them are right.
 - **A utility is counted, not matched to what it answered.** That is the next step, above.
 
 ### Everything else
 
+- **Analyses stored before RoundAnalysisService v4 overstate lockout in any game against a Rogue
+  who pressed Garrote** (2026-09-30). `/wow/match-analysis` reads stored payloads, so those games
+  keep the old figures, and the loss split's "healer locked out at a death" item with them, until
+  they are derived again. For a game read from your own log that is
+  `php artisan wow:sync --fresh --skip-ingest`; an uploaded game has to be uploaded again.
 - **Zone-effect defensives measure only the caster.** Aura Mastery reads 0.07x.
 - **Health reads `?` for a player who is not being hit** — HP is sampled from damage events only.
   Reading it from heal events too would fix it.

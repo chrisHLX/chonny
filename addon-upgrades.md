@@ -15,6 +15,13 @@ into one to see its data.
 **3. Choose where the files go.** The app should let me set the archive location (and where to
 read WoW's combat logs from) instead of editing `.env` by hand.
 
+## Status (2026-09-30)
+
+All three have a first version in `tools/log-manager/` (**MindCollector Logs**, a tray app;
+see its README). It reads each game in when the arena ends, moves WoW's logs to
+`D:\MindCollector\wow-logs` once they are fully read and WoW has let go of them, lists the
+archive, and sets the folders. The paragraphs below describe the manual path it wraps.
+
 ## How it works today, for reference
 
 - The `MindCollectorArenaLog` addon only turns combat logging on when an arena starts and off

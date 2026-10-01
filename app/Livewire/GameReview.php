@@ -90,11 +90,11 @@ class GameReview extends Component
      *
      * @return array<string, array<int, array<string, mixed>>>
      */
-    public function reviewGroups(): array
+    public function reviewGroups(?array $reviews = null): array
     {
         $groups = [];
 
-        foreach ($this->reviews() as $review) {
+        foreach ($reviews ?? $this->reviews() as $review) {
             $groups[$review['bracket'] ?: 'Other'][] = $review;
         }
 
@@ -118,11 +118,13 @@ class GameReview extends Component
     public function render()
     {
         $review = $this->review();
+        $reviews = $this->reviews();
 
         return view('livewire.game-review', [
-            'reviews' => $this->reviews(),
-            'reviewGroups' => $this->reviewGroups(),
+            'reviews' => $reviews,
+            'reviewGroups' => $this->reviewGroups($reviews),
             'review' => $review,
+            'roundExperience' => $review ? app(LobbyReviewService::class)->experienceByRound($review) : [],
             'reviewId' => $this->reviewId,
             // Carried from the stored review rather than the service, so an old game keeps the
             // limits it was assembled with instead of silently acquiring today's wording.

@@ -494,7 +494,12 @@ class ArenaLogService
         // that's always the start of the talent bracket, since nothing earlier in the line
         // contains a literal `[`. Capture the talent bracket's contents, then the PvP 4-tuple
         // immediately following it (before the gear list's own opening bracket).
-        $pattern = '/COMBATANT_INFO,'.$guid.',.*?,\[((?:\(\d+,\d+,\d+\),?)*)\],\((\d+,\d+,\d+,\d+)\),\[/';
+        //
+        // The bracket can open `[,(` rather than `[(`: a leading empty entry, seen only on
+        // Hunters (108 of 3,598 archived lines on 2026-09-30: 81 of 163 Beast Mastery, 27 of 69
+        // Marksmanship, no other spec). Without the optional comma those players came back
+        // null here, so a review showed them with no talents, no gear and no stats.
+        $pattern = '/COMBATANT_INFO,'.$guid.',.*?,\[,?((?:\(\d+,\d+,\d+\),?)*)\],\((\d+,\d+,\d+,\d+)\),\[/';
 
         if (! preg_match($pattern, $rawLog, $m)) {
             return null;

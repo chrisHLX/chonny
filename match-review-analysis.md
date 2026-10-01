@@ -81,6 +81,30 @@ experience read 2026-09-28.
 **Our team's experience:** Disc Priest 1x Glad 2243 · Unholy DK 4x Glad 2526 · Windwalker 6x Glad
 2673 (11 Gladiator seasons).
 
+**Corrected 2026-09-30: every lockout figure for 19:47 was too high.** That game was against an
+Assassination Rogue, and the timeline read the Garrote *bleed* as a silence (the method is in
+`match-review-operations.md`, "What the combat log actually says"). With the bleed left out:
+
+| 19:47 | As first written | Corrected |
+|---|---|---|
+| Our healer at the Monk's death | locked out at the death | last lockout (a Cyclone) ended **8s before**; he was never Garrote-silenced in this game |
+| Our healer locked out, share of our go | 75% | 43% |
+| Our DPS locked out, share of our go | 82% | 25% |
+| Our healer locked out, whole game | | 17s of 44s |
+
+What that changes below, each marked where it stands:
+- **Our healer locked out at our death: 3 of 6 losses, not 4** (19:54, 20:13, 20:30), with 20:22
+  ending the same second as before.
+- **19:47 is no longer "the rule's one clean case"** of a Medallion held through a silence while a
+  teammate died. The Priest was bleeding, not silenced, when the Monk died.
+- **The loss split's Priest share is a point too high** (the 19:47 "Medallion available" item).
+  The stored analyses behind that split were measured before the fix.
+- 19:47 was called the outlier that "produced every difference in the CC averages on its own".
+  Most of that outlier was the bleed. Losses now average 21.5% healer lockout in our goes against
+  16.8% in wins, with 19:47 included.
+
+No other 26 Sep game had a Rogue in it, so nothing else moves.
+
 #### The review table
 
 | Game | Result | MMR (us / them) | Enemy team (healer first; Gladiator seasons, or best rank if none; highest 3v3) | Our goes (followed by a kill) | Defensives spent before the first death (us / them) | First death | Our healer at that death |
@@ -89,7 +113,7 @@ experience read 2026-09-28.
 | 19:29 | W | 1961 / 1986 | Preservation 3x Glad 2461 · Fire Mage 1x Glad 1962 · Windwalker Duelist 2369 | 3 (2) | 9 / 12 | theirs: Ffz (Fire) to Strike of the Windlord 48,583 | - |
 | 19:35 | W | 1999 / 2047 | Holy Paladin Elite 2216 · Affliction Legend (Shuffle) 2067 · Frost Mage Duelist 1997 | 4 (2) | 10 / 11 | theirs: Squivv (Affliction) to Melee 646 | - |
 | 19:43 | W | 2041 / 1968 | Holy Paladin Elite 2216 · Affliction Legend (Shuffle) 2067 · Frost Mage Duelist 1997 | 3 (1) | 9 / 13 | theirs: Squivv (Affliction) to Penance 14,473 | - |
-| 19:47 | L | 2061 / 2098 | Resto Druid 4x Glad 2535 · Affliction 6x Glad 2594 · Assassination 4x Glad 2140 | 1 (0) | 2 / 4 | ours: Captnmurphy (Windwalker) to Sudden Demise 76,336 | LOCKED OUT at the death |
+| 19:47 | L | 2061 / 2098 | Resto Druid 4x Glad 2535 · Affliction 6x Glad 2594 · Assassination 4x Glad 2140 | 1 (0) | 2 / 4 | ours: Captnmurphy (Windwalker) to Sudden Demise 76,336 | ~~LOCKED OUT at the death~~ lockout ended 8s before (corrected 2026-09-30) |
 | 19:51 | W | 2036 / 2049 | Disc Priest 3x Glad 2248 · Ret 1x Glad 2570 · Havoc 1x Glad 2447 | 1 (1) | 3 / 3 | theirs: Biiggwhammy (Retribution) to Dread Plague (Erupt) 538,666 | - |
 | 19:54 | L | 2071 / 2183 | Mistweaver (no profile) · Shadow Priest 5x Glad 2418 · Survival 5x Glad 2555 | 3 (0) | 7 / 3 | ours: Hozzaarr (Unholy) to Shadowy Apparition 6,299 | LOCKED OUT at the death |
 | 19:57 | W | 2057 / 2014 | Disc Priest 3x Glad 2248 · Ret 1x Glad 2570 · Havoc 1x Glad 2447 | 5 (2) | 12 / 21 | theirs: Biiggwhammy (Retribution) to Touch of Death 726,364 | - |
@@ -170,7 +194,7 @@ defensives. The question was whether that is how the teams that beat us generall
 | 19:29 | W | 3 | 3.3 | 3.7 | 1.3 | 14% | 20% | 2 of 3 |
 | 19:35 | W | 4 | 2.2 | 3.2 | 2.0 | 12% | 31% | 2 of 4 |
 | 19:43 | W | 3 | 3.3 | 3.0 | 2.3 | 11% | 28% | 1 of 3 |
-| 19:47 | L | 1 | 4.0 | 2.0 | 3.0 | 82% | 75% | 0 of 1 |
+| 19:47 | L | 1 | 4.0 | 2.0 | ~~3.0~~ 2.0 | ~~82%~~ 25% | ~~75%~~ 43% | 0 of 1 |
 | 19:51 | W | 1 | 3.0 | 2.0 | 1.0 | 9% | 6% | 1 of 1 |
 | **19:54** | **L** | 3 | **1.3** | 1.3 | 2.0 | 7% | 28% | 0 of 3 |
 | 19:57 | W | 5 | 3.8 | 2.6 | 1.4 | 3% | 12% | 2 of 5 |
@@ -277,7 +301,7 @@ Averaged per game, with the go as defined above (the chain, good and bad):
 | Our defensives per their go | 2.8 | 3.5 | |
 | Our healer locked out, share of *our* go time | 17% | 27% | 19% (first pass) |
 | Our healer locked out, share of *their* go time | 20% | 28% | 18% (first pass) |
-| **Our healer locked out at the moment of our death** (enemy healer, in wins) | **2 of 8** | **4 of 6** (a fifth ended 0s before) | |
+| **Our healer locked out at the moment of our death** (enemy healer, in wins) | **2 of 8** | ~~4 of 6~~ **3 of 6** (a fourth ended 0s before; corrected 2026-09-30, see the top of this section) | |
 
 What that says about each half of the read:
 
@@ -291,8 +315,9 @@ What that says about each half of the read:
 - **"They CC'd the healer more easily":** **not by volume.** Without the one 44-second outlier
   (19:47), our healer was locked out for about the same share of go time in wins and losses.
 - **"...and at better times":** **yes, this is the difference.** At the moment our player died,
-  our healer was locked out in 4 of 6 losses, and in a fifth the lockout ended that same second.
-  When we got a kill, their healer was locked out in only 2 of 8.
+  our healer was locked out in 3 of 6 losses (first written as 4; 19:47 was the Garrote bleed),
+  and in a fourth the lockout ended that same second. When we got a kill, their healer was locked
+  out in only 2 of 8.
 
 So the losses read as: our goes forced as much as in the wins, or more, but never converted, and
 the enemy's CC landed on the healer at the kill rather than spread across the game.
@@ -505,7 +530,7 @@ and weights are in `match-review-operations.md`, "Where the losses came from"):
 
 | Owner | Share | From |
 |---|---|---|
-| **Discipline Priest** | **32%** | locked out when a teammate died with the Medallion on cooldown (19:54, 20:13, 20:22, 20:30) or available (19:47); four overlaps; one defensive outside their goes |
+| **Discipline Priest** | **32%** | locked out when a teammate died with the Medallion on cooldown (19:54, 20:13, 20:22, 20:30) or available (19:47: ~~counted~~ not a lockout, corrected 2026-09-30); four overlaps; one defensive outside their goes |
 | Your team (burst timing) | 23% | ten bursts that landed with their healer free |
 | **Unholy DK** | **18%** | five overlaps of his own defensives; three defensives outside their goes |
 | Them: answered every go | 11% | five losses where our goes forced defensives and none killed |
@@ -518,6 +543,214 @@ it is timing: the Medallion gone before the enemy's kill go, Pain Suppression on
 defensive already up. Next is the team's burst landing on a free healer, which is partly the
 healer's too (see above). **It is an estimate from rules, not a verdict.** The log cannot see
 positioning, calls, or a mistake nobody pressed a button for, and the weights are judgement.
+
+**Challenged the next day: see *Was the trinket warranted* below.** Most of the Priest's share
+comes from Medallions and overlaps pressed with a teammate two to four seconds from death.
+
+#### Was the trinket warranted, and was the second defensive needed? (2026-09-30)
+
+Chriso's objection to the split above: it scores the Medallion by whether it was on cooldown at a
+death, and an overlap by whether two defensives were up at once. Neither asks what the trinket
+broke, or whether one defensive was enough for the damage coming in. Measured on the six losses
+with `tools/match-review/warrant.php`:
+
+- **For each Medallion:** what came off at that moment, and what our other players were taking in
+  the seconds of CC it saved.
+- **For each overlap:** the target's health when the second defensive went on, and the damage
+  coming in (absorbs included).
+- **Time to live** for both: health divided by the incoming rate over the previous 3 seconds.
+  It is a rate, not a forecast, but it separates "about to die" from "comfortable".
+
+**The Priest's Medallion in the losses:**
+
+| Game | What came off | Teammate at the trinket | Time to live | What followed |
+|---|---|---|---|---|
+| 19:47 | never used | | | Monk died at 35.9s with the Medallion up. ~~The Priest was in Garrote (30.2–38.0s)~~: that aura was the bleed, and his last lockout ended at 28.3s (corrected 2026-09-30) |
+| 19:54 | Psychic Scream, 1.1s in (~4.9s left) | DK 34%, 83k/s | ~4s | 650k healing in the saved seconds; DK died 14s later, Priest in Intimidation |
+| 20:13 | Freezing Trap, 0.7s in | DK 31%, 86k/s | ~4s | DK died 10s later, Priest in Strangulate (64.2–68.2s) |
+| 20:22 | Psychic Scream, 1.6s in (~4.4s left) | Monk 62%, 52k/s | ~13s | 637k healing in the saved seconds; Monk died 40s later |
+| 20:25 | **only Thunder Clap (a slow)** | DK 47%, 139k/s | ~4s | Pain Suppression 0.5s later; DK died at 93.8s with the Priest in Cyclone + Polymorph |
+| 20:30 | Cyclone and Polymorph, 1.1s in (~3.9s left) | DK 50%, 155k/s, then 227k/s | ~2–3s | DK still fell to 27% with the Priest free; died 90s later |
+
+- **Three of the five (19:54, 20:13, 20:30) were pressed with the DK about 2–4 seconds from death.**
+  Holding the Medallion meant sitting in a fear, a trap or a Cyclone while that happened. The rule
+  scores all three as the heaviest fault because the *next* CC came before the Medallion was back,
+  14, 10 and 90 seconds later. That is a question about the second CC, not the first trinket.
+- **20:22 is arguable.** The Monk had about 13 seconds at the incoming rate.
+- **The one the log reads as spent badly is 20:25, and the rule does not flag it.** Nothing but a
+  Thunder Clap came off, and the DK's death 60 seconds later (93.8s) came with the Priest
+  Cycloned, the Medallion still on cooldown. A Medallion breaks Cyclone (it did at 20:30). Positions exist only on casts, so
+  whether the slow was keeping him out of range cannot be seen.
+- ~~**19:47 is the rule's one clean case:** the Medallion unused through a Garrote silence while
+  the Monk died.~~ **Wrong (2026-09-30).** There was no silence to break: the Priest had the
+  Garrote bleed on him, and nothing that locked him out in the last 8 seconds. The rule has no
+  clean case left in these six losses.
+
+**The overlaps the Priest put on in the losses:**
+
+| Game | On | Already up | Health | Incoming, 3s before | Time to live | Then |
+|---|---|---|---|---|---|---|
+| 19:47, 21.1s | Monk | Fortifying Brew | 47% | 148k/s | 3.4s | fell to 25% **with both up**; died 15s later |
+| 19:54, 10.9s | DK | Lichborne | 77% | 110k/s | 7.2s | not inside their go |
+| 20:25, 34.2s | DK | Anti-Magic Shell | 41% | 165k/s | 2.7s | the damage during it was 100% physical |
+| 20:25, 66.4s | DK | Lichborne | 29% | 134k/s | 2.3s | |
+
+- **Three of the four went on with the target under 3.5 seconds from death.** At 19:47 two were
+  not enough: the Monk still fell to 25%. That points the other way from the claim: more was
+  needed, not less.
+- **Two of the "defensives" already up do not reduce physical damage.** Lichborne is 6% Leech and
+  fear/charm/sleep immunity, no damage reduction at all. Anti-Magic Shell absorbs magic only. The
+  overlap measure matches any labelled defensive by name, so Pain Suppression on top of either
+  counts as stacking. It is not stacking in any sense that matters.
+- **The arguable one is 19:54 at 10.9s:** 77% health, outside their go, about 7 seconds to live.
+
+**The DK's own stacks.** ~~Two read as unneeded by health alone~~ (corrected the same day by the
+classifier below): at 19:54 (16.8s) his Icebound Fortitude at 71% health **broke a Leg Sweep**. At
+20:25 (75.6s) his Anti-Magic Shell went on with the Frost Mage's Ray of Frost and the Warrior's
+Avatar running on him. His other two (20:13 at 41.0s, 49% at 196k/s; 20:25 at 68.8s, 38% at
+72k/s) were under real pressure. **Health alone cannot judge a defensive that also breaks CC.**
+
+**What this changes.** Of the Priest's 14 weighted points in the split, 9 come from decisions made
+with a teammate about 2–4 seconds from death: the three Medallions and three overlaps above. The
+rules punish the Priest for keeping the DK alive through one go and then being CC'd in the next.
+What the log does support against the Priest is narrower:
+
+- the Medallion at 20:25;
+- ~~the unused one at 19:47~~ (not a case: see the correction above);
+- possibly 20:22 and the 19:54 Pain Suppression.
+
+The larger thread is the one in *The rematch* above: **their second CC on the Priest landed while
+the DK was already low.** Drain, then kill.
+
+**For the rules, not yet changed:**
+- Score a Medallion only when nothing that locks you out came off, or when no teammate was in
+  danger. A time to live over about 8 seconds would be the first cut.
+- Score an overlap only when the target was not in danger, or when the first defensive does not
+  cover the incoming school.
+- Any threshold is judgement.
+
+`RoundAnalysisService` would need to store time to live at each defensive and trinket. Games
+already uploaded would have to be uploaded again to get it, because the raw log is discarded.
+
+#### Why each defensive was pressed (2026-09-30)
+
+Chriso's follow-up: a defensive is not only for health. Icebound Fortitude also breaks stuns and
+makes the DK immune to them, so he may press it to burst without being stunned. Or the enemy's
+cooldowns were up and it went on before the damage did. Every defensive in the 15 games
+(`warrant.php`) is given every reason the log can show, and a verdict from the strongest:
+
+| Reason | What the log shows |
+|---|---|
+| **danger** | 5s or less to live at the rate of the previous 3s, or 35% health or lower |
+| **cc** | a lockout came off the target as it was pressed, or a stun, fear or incapacitate hit them `IMMUNE` while it was up (`SPELL_MISSED ... IMMUNE`: seen, not inferred) |
+| **insure** | the target was in their own go (an offensive cast 3s before to 8s after), and the spell grants CC immunity by its own effects (`ccImmunityGrantedBy()`): Icebound Fortitude stuns, Lichborne fear |
+| **focus** | their go was on the target, with their offensive cooldowns actually running (inside each one's duration) |
+| **alone** | a DPS pressed it while our healer was locked out |
+| **none** | none of these |
+
+| Player | Defensives | danger | cc | insure | focus | alone | none |
+|---|---|---|---|---|---|---|---|
+| Discipline Priest | 25 | 18 | 0 | 0 | 6 | 0 | **1** |
+| Unholy DK | 42 | 14 | 12 | 3 | 9 | 0 | **4** |
+| Windwalker Monk | 12 | 3 | 1 | 0 | 3 | 1 | **4** |
+| Their teams | 110 | 48 | 12 | 2 | 10 | 4 | **34** |
+
+- **The Priest's defensives are almost all under danger.** 18 of 25 had the target five seconds
+  or less from death, and 6 more went on with the enemy's cooldowns running. The one with no
+  reason is the 19:54 Pain Suppression already noted (77%, about 7 seconds to live).
+- **The DK's Icebound Fortitude and Lichborne are CC answers as often as health answers.** 12 of
+  his 42 broke a lockout or ate one: Shockwave, Storm Bolt, Rake, Binding Shot, Leg Sweep,
+  Chaos Nova, Capacitor Totem, and Howl of Terror, Psychic Scream, Intimidating Shout and Sigil
+  of Misery with Lichborne. Three more were the pre-emptive stun or fear immunity inside his own
+  go (19:35, 19:54, 19:57). Your read is right, and the old overlap rule could not see any of it.
+- **The Monk's Fortifying Brew is the least explained:** 4 of 12, all at 67–100% health with 11
+  or more seconds to live.
+- **The enemy pressed a third of theirs with no reason the log shows** (34 of 110, against 9 of 79
+  of ours). That is not yet a finding. It may be reactions to our CC casts before they land, which
+  this does not read.
+
+**What it cannot see:** a CC being cast at the player when the defensive went on (a Hammer of
+Justice in flight), positioning, a call. So **none** means *no reason in the log*, not *wrong*.
+The thresholds (5s, 35%) are judgement, and Wraith Walk is labelled a defensive although it is
+mobility.
+
+#### Was the reason valid? (2026-09-30)
+
+Chriso: having a reason is not the same as the reason being a good one. The test has two halves.
+Did the defensive do the job its reason claims, and what did it cost? Measured by `warrant.php`
+on our 79 defensives.
+
+**The job: replay the window without it.**
+- Each enemy hit the defensive covered is added back at its own reduction, from the spell's
+  effects: Pain Suppression 40%, Icebound Fortitude 30%, Fortifying Brew 20%, Anti-Magic Zone 15%
+  of magic.
+- Absorbs are added back from the defensive's own `SPELL_ABSORBED` lines. Lichborne is his Leech
+  healing above his normal rate (Vampiric Aura raises Leech while it is up).
+- Health without it = logged health minus everything added back, checked to 3s after it ends.
+
+**Three things decide a press where the damage then stopped:**
+- **Did they swap?** Their damage moved to someone else: the defensive worked by being seen.
+- **Did their whole output fall?** Something else ended their go.
+- **Were their cooldowns ending?** If their offensive cooldowns had 3s or less left, or none were
+  up, the burst was ending on its own, and the defensive covered its tail.
+
+| Verdict | Meaning |
+|---|---|
+| VALID | would have died without it, removed 20%+ of max health, a lockout hit it immune, broke a CC during a go, or forced a swap |
+| VALID AT PRESS | in danger when pressed, their cooldowns still up, then the damage stopped. Right on what could be known. Why it stopped is open (below). |
+| PARTLY | removed 8–20% of max health |
+| LATE | in danger, but their cooldowns had 3s or less left: the burst was already ending |
+| WEAK | broke a CC outside any go; stun/fear immunity that no CC tested; or the damage never came (under 8% removed) |
+
+| Player | VALID | VALID AT PRESS | PARTLY | LATE | WEAK |
+|---|---|---|---|---|---|
+| Discipline Priest (25) | 8 | 9 | 5 | 3 | **0** |
+| Unholy DK (40) | 13 | 8 | 1 | 2 | **16** |
+| Windwalker Monk (12) | 6 | 0 | 2 | 1 | **3** |
+
+(Two DK presses at 19:51 have no reading: he took no damage, so his health was never logged.)
+
+- **Every one of the Priest's defensives held up. In the losses none was late or weak** (5 VALID,
+  4 VALID AT PRESS, 1 PARTLY). Four forced a clean swap or would otherwise have been a death:
+  - 19:47: the Monk's damage share went 100% → 47%;
+  - 19:54 at 35.5s: the DK would have reached −4%;
+  - 20:25 at 66.4s: 66% → 21%;
+  - 19:57 at 143s: the DK would have reached −29% (a win).
+
+  All three LATE presses are in wins (19:29, 19:35, 19:57), where a late Pain Suppression cost
+  nothing.
+- **The DK's weak presses are CC breaks outside any go, and damage that never came.** In the
+  losses, the CC breaks were:
+  - Icebound Fortitude on a Leg Sweep at 19:54 (16.8s), with nothing of theirs running. This
+    reverses the defence of it above: it had a reason, just not a good one;
+  - Lichborne on Intimidating Shout at 20:25 (55.8s) and at 20:30 (25.5s).
+
+  The ones where the damage never came:
+  - Icebound Fortitude at 20:25 (68.8s): 0% removed;
+  - Anti-Magic Zone at 20:30 (97.3s);
+  - Wraith Walk at 20:30 (70.2s).
+
+  A fear broken outside a go may still have stopped a go from starting, which the log cannot
+  show.
+- **By reason:**
+  - *danger*: 35 presses, 0 weak, 6 late;
+  - *cc*: 7 valid, 5 weak (all quiet-moment breaks);
+  - *insure*: 1 of 3 tested (the other two, Icebound Fortitude at 19:35 and 19:57, took no stun);
+  - *focus*: 5 valid, 7 partly, 6 weak;
+  - *none*: 6 of 8 weak.
+
+  A pre-emptive press is the gamble. A press in danger almost never is.
+- **Lichborne's Leech bought 0–8% of his health** across these games. Pressed in danger it is worth
+  its fear immunity, not its healing.
+
+**Open: why the damage stopped.** In 17 presses the enemy's whole output fell to 2–48% while
+their cooldowns still had 4–22 seconds to run. No swap, no expiry. The next measure is whether our
+CC landed on their DPS in that second (a peel), or their team turned to CC our healer.
+
+**The cost half does not discriminate yet.** In the losses almost every defensive was still on
+cooldown when its player died. That is because the cooldowns are the data's base values, not
+talent-modified ones: Fortifying Brew reads 360s (rule 34). "Missing at the death" needs the
+player's real cooldown, which the log's `COMBATANT_INFO` talents could supply.
 
 #### How our DK and Monk play their specs (2026-09-28)
 
@@ -645,11 +878,465 @@ The measures above, on the 7 Gladiator-level games alone, as the Walking Dead gu
 - Our goes followed by a kill: **55% in the wins (6 of 11), none in the losses (0 of 5).**
 - In the losses the enemy spent **more** defensives per go than the teams we beat (4.6 against
   3.2).
-- Our healer was locked out at our player's death in all 3 losses (19:47, 20:13; 20:22 ended
-  the same second). The Medallion was already used in 2 of them (20:13, 20:22) and unused in
-  the third (19:47, silenced from the Rogue opener).
+- Our healer was locked out at our player's death in 1 of the 3 losses (20:13), and at 20:22 the
+  lockout ended the same second. The Medallion was already used in both. **Corrected 2026-09-30:**
+  this read "all 3", counting 19:47, where the Priest's last lockout had ended 8 seconds earlier
+  and the aura on him was the Garrote bleed.
 - **Not confirmed at this level:** drain predicting the kill (16 goes are too few), tight goes
   converting better (they did not), and overcommitment (none of ours in the losses).
+
+### 30 Sep: the Jungle, 14 games of 3v3, and our Feral and Hunter against higher-rated ones
+
+Feral (Crawlordx), Beast Mastery Hunter (Doubletapz), Discipline Priest (Jmjay). 7 won, 7 lost.
+Written 2026-09-30. Times are the clock the tools print.
+
+**The questions.** What separated the wins from the losses? And how do our Feral and our Hunter
+play differently from the higher-rated Ferals and Hunters in the same archive?
+
+**The sample.**
+- **Our games:** 14, all on 30 Sep, our MMR 1914–2106 as the log records it.
+- **Our experience:** Feral 1x Glad 2645 · Hunter Legend (Shuffle) 2215, no Gladiator season ·
+  Priest 1x Glad, 1054 on this character.
+- **Ferals to compare with:** Rastic, 46 games on 30 Sep at 1930–2301 MMR, healed by Skylake, in
+  Feral / Mage / Discipline. He is the large sample. Plus seven games of seven other Ferals at
+  2119–2309 (Zyhsul 5x Glad 3011, Badkittylolz 12x Glad 2809, Meowzetzan 8x Glad 2853, Hawtpants,
+  Wokcats, Gdru, Sufferpoints), three of them in our comp.
+- **Hunters to compare with:** ten games of eight Beast Mastery Hunters at 2072–2202 (Joonixo 5x
+  Glad 2815, Shootonface 4x Glad, Splitbreed 3x Glad, Ketaa, Letmeshoo, Notdru, Leitador,
+  Alphaswagboy). **17.6 minutes in all, and they went 3–7**, because most were the teams Skylake's
+  side beat. Read the Hunter comparison as "what higher-MMR Hunters press", not "what wins".
+- **Rastic's rating is MMR, not experience:** his own profile reads Duelist, 2125 highest. He is
+  the comparison because of what he did in 46 games we can measure, not because of a title.
+- Not used: the 9 Jungle games from May (a Resto Druid healer at 1437–1684), and Marksmanship
+  Hunters, a different spec.
+
+Produced with `killread.php`, `rotation.php` and the new `specread.php`
+(`match-review-operations.md`, "One spec, side by side"). Raw output:
+`storage/app/private/match-review/jungle-2026-09-30/`.
+
+#### The review table
+
+| Game | Result | MMR (us / them) | Enemy team (healer first; Gladiator seasons, or best rank if none; highest 3v3) | Our goes (followed by a kill) | Defensives spent before the first death (us / them) | First death | Our healer at that death |
+|---|---|---|---|---|---|---|---|
+| 17:50 | W | 1991 / 2006 | Resto Shaman 3x Glad 2231 · Arms 12x Glad 3081 · Havoc (no profile) | 3 (2) | 4 / 5 | theirs: Arms to Searing Light | - |
+| 17:56 | W | 2068 / 1889 | Preservation 1x Glad 2074 · Marksmanship Elite 1820 · Balance Elite 2082 | 3 (1) | 6 / 11 | theirs: Marksmanship to Ferocious Bite | - |
+| 18:02 | W | 2092 / 1859 | Resto Druid Legend (Shuffle) 1425 · Devourer Strategist 2009 · Elemental Legend (Shuffle) 2135 | 3 (2) | 8 / 5 | theirs: Elemental to Auto Shot | - |
+| 18:08 | L | 2106 / 1892 | Holy Paladin Duelist 1822 · Fire Mage 2x Glad 1850 · Destruction 2x Glad 2419 | 1 (0) | 2 / 1 | ours: **Feral** at 20s to Ignite | no lockout in last 10s |
+| 18:11 | W | 1953 / 2058 | Holy Priest 1x Glad 2270 · Fire Mage 1x Glad 1844 · Windwalker 1x Glad 1710 | 2 (2) | 5 / 5 | theirs: Windwalker to Kill Command | - |
+| 18:18 | L | 2038 / 2009 | Disc Priest 4x Glad 2516 · Enhancement 3x Glad 2710 · Assassination Elite 2446 | 1 (0) | 4 / 2 | ours: **Feral** at 43s to Sudden Demise | lockout ended 5s before |
+| 18:21 | L | 1970 / 2271 | Preservation 8x Glad 1800 · Fire Mage 6x Glad 2168 · Arms Elite 576 | 3 (0) | 11 / 12 | ours: **Hunter** at 151s to Pyroblast | lockout ended 1s before |
+| 18:25 | W | 1964 / 1972 | Disc Priest 1x Glad 2270 · Windwalker 1x Glad 1710 · Fire Mage 1x Glad 1844 | 5 (2) | 9 / 9 | theirs: Windwalker to Barbed Shot | - |
+| 18:42 | L | 2015 / 1959 | Resto Druid (no profile) · Ret 1x Glad 1968 · Balance 6x Glad 2081 | 3 (0) | 7 / 14 | ours: **Hunter** at 163s to Shooting Stars | lockout ended 0s before |
+| 18:49 | L | 1950 / 1998 | Resto Druid (no profile) · Ret 1x Glad 1968 · Balance 6x Glad 2081 | 5 (0) | 17 / 15 | ours: **Hunter** at 221s to Starsurge | lockout ended 1s before |
+| 18:56 | L | 1916 / 2238 | Holy Priest 3x Glad 2946 · Destruction 3x Glad 2645 · Assassination 4x Glad 2685 | 2 (0) | 12 / 20 | ours: **Feral** at 145s to Sudden Demise | LOCKED OUT at the death |
+| 19:02 | W | 1914 / 2034 | Holy Paladin 8x Glad 2505 · Marksmanship 7x Glad 2360 · Arcane 6x Glad 2168 | 5 (3) | 9 / 19 | theirs: Marksmanship to Unseen Slash | - |
+| 19:09 | L | 1969 / 2241 | Holy Priest 3x Glad 2946 · Destruction 3x Glad 2645 · Assassination 4x Glad 2685 | 3 (0) | 8 / 13 | ours: **Feral** at 107s to Sudden Demise | LOCKED OUT at the death |
+| 19:17 | W | 1965 / 1914 | Resto Druid Strategist 1985 · Ret Elite 1338 · Marksmanship Duelist 1895 | 4 (1) | 13 / 28 | theirs: Marksmanship to Melee | - |
+
+- **Three of the seven losses were to teams 270–320 MMR above us** (18:21, 18:56, 19:09). The
+  other four were at our MMR or below it (18:08, 18:18, 18:42, 18:49).
+- **Every kill we got was on a DPS, and every game we lost began with one of our DPS dying:** the
+  Feral four times, the Hunter three. The Priest never died first.
+- **Our healer was locked out at the death, or had been within the second before it, in 5 of the
+  7 losses.** The two exceptions are the two fastest losses, 18:08 and 18:18.
+- **The enemy's experience does not split these games** the way it did on 26 Sep: the teams we
+  beat average about 6 Gladiator seasons and the teams we lost to about 8, and we beat a 21-season
+  team (19:02) and a 15-season one (17:50).
+
+#### Wins against losses
+
+| Our goes | Games won (25 goes) | Games lost (18 goes) |
+|---|---|---|
+| Followed by a kill | **13 (52%)** | **0** |
+| Their defensives spent per go | 3.2 | 4.7 |
+| **Our healer locked out as our cooldowns went off** | **5 (20%)** | **11 (61%)** |
+| Our healer locked out, share of the go | 13% | 25% |
+| Our DPS locked out, share of the go | 5% | 14% |
+| Their lockout CC landed on our DPS, per go | 1.8 | 4.1 |
+| **Their healer locked out 2s+ during our hardest 6 seconds** | **15 (60%)** | **5 (28%)** |
+| Their healer locked out, share of the go | 33% | 22% |
+
+- **Our pressure forced more in the losses, and converted none of it.** That is the 26 Sep
+  finding again, with a different team: 4.7 defensives a go against 3.2, and no kill.
+- **The clearest difference is timing on both healers.** In the losses their healer was free
+  during our hardest six seconds in 13 of 18 goes, and our own healer was locked out as we
+  pressed our cooldowns in 11 of 18.
+- **Burst landing on their healer's lockout is what converted**, across all 43 goes:
+
+| Our hardest 6 seconds | Goes | Followed by a kill |
+|---|---|---|
+| Both DPS in it (25%+ each) **and** their healer locked out 2s+ | 19 | **9 (47%)** |
+| Both DPS in it, their healer free | 14 | 3 (21%) |
+| One player's burst | 10 | 1 (10%) |
+
+- **Drain, then kill, again.** With none or one of their defensives already on cooldown, 2 of 15
+  goes led to a kill. With three or more down, 11 of 28 did.
+- **The kills are the Hunter's damage.** In the last 10 seconds before each of our seven kills he
+  did 47–74% of the damage on the target in six of them. The Feral did 19–38% in those six, and
+  51% in the seventh (19:02).
+- **In goes that killed, Psychic Scream was on their healer in 85% and Cyclone in 31%**, against
+  63% and 13% in goes that did not. Freezing Trap on the healer is in nearly all of them either
+  way (85% and 70%).
+- **Kicks did not separate anything:** 12 of ours in the wins and 15 in the losses.
+
+#### The four losses at our own MMR, and how each death happened
+
+Read with `specread.php --deaths=`: health every few seconds before the death, every defensive
+the player pressed and the health it was pressed at.
+
+| Game | Who died | What the log shows |
+|---|---|---|
+| **18:08**, lost in 33s to a 1892 team | Feral, at 20s | **100% to dead in 12 seconds under one Combustion, and one defensive pressed: Survival Instincts at 14%, 1.3s before the death.** No Barkskin, Bear Form, Frenzied Regeneration, Regrowth or Medallion. Our healer was never locked out. The Fire Mage did 980k of it. |
+| **18:18**, lost in 47s | Feral, at 43s | A Rogue opener. Our healer was locked out for 16 of the 24 seconds from 14.6s. The Feral took a 5-second Kidney Shot, then was **free for the last 11 seconds at 25–56% health**. He pressed Barkskin (59%), Bear Form (28%) and Frenzied Regeneration (21%). **Survival Instincts and his Medallion were not pressed at any point.** |
+| **18:42**, lost at 163s | Hunter | **100% to dead in 4 seconds inside a Mighty Bash**, 11 seconds after Avenging Wrath and Execution Sentence. **His Medallion, Aspect of the Turtle and Exhilaration were not pressed once in the whole game.** Our healer's Hammer of Justice ended 3s before, and a Cyclone caught him in the last second. |
+| **18:49**, the same team, lost at 221s | Hunter | 78% to dead in 3 seconds. **Aspect of the Turtle at 2% health, 0.1s before the death.** Survival of the Fittest went out 16s earlier at 70%. |
+
+The three against teams far above us:
+
+- **18:21** (their MMR 2271): the Hunter pressed Aspect of the Turtle and Exhilaration both at 1%
+  health about 55 seconds before he died, and had neither for the go that killed him.
+- **18:56 and 19:09** (2238 and 2241, the same team): the Feral died to a Kidney Shot both
+  times (1.9s and 0.8s after it ended, the second from 75% health in four seconds), with our
+  healer locked out. At 18:56 he had pressed **Barkskin at 99% health and the
+  Medallion at 98%** about 50 seconds earlier, and Survival Instincts 70 seconds earlier. At 19:09
+  Survival Instincts went out at 53%, 18 seconds before the death, and had run out 12 seconds
+  before it. It was pressed before their Deathmark, not during it.
+
+**Across all seven: Roar of Sacrifice was never pressed.** Not in these games, not in any of the
+14. It is in the Hunter's talents in every game.
+
+#### Our Feral beside the others
+
+Per minute alive unless it says otherwise. Crawlordx is 33 minutes; Rastic is 35 minutes below
+2150 MMR and 91 above; the seven others are 21 minutes.
+
+| | Crawlordx | Rastic under 2150 | Rastic 2150+ | 7 others at 2100+ |
+|---|---|---|---|---|
+| Damage onto enemy players | 1,967k | 2,311k | 2,762k | 1,962k |
+| Buttons pressed | **38.0** | 47.5 | 50.6 | 46.7 |
+| Rake | **4.6** | 7.0 | 7.8 | 5.0 |
+| Ferocious Bite | 2.5 | 5.5 | 5.0 | 2.2 |
+| Shred | 4.8 | 2.9 | 2.8 | 4.3 |
+| Regrowth | **1.4** | 1.7 | 2.9 | 2.8 |
+| Skull Bash | **1.2** | 2.5 | 2.8 | 3.7 |
+| Wild Charge | **0.7** | 1.5 | 1.7 | 1.6 |
+| Cat Form, pressed | **2.3** | 1.0 | 0.9 | 1.7 |
+| Healing on himself | **222k** | 341k | 374k | 451k |
+| Healing on teammates | **90k** | 171k | 295k | 163k |
+| Interrupts landed, per game | **0.8** | 1.3 | 2.5 | 2.7 |
+| Medallion, per game | **0.4** | 0.8 | 1.4 | 1.1 |
+| Their healer locked out by him, share of the game | **3%** | 15% | 14% | 6% |
+| Rake stuns landed, per 10 minutes | 9.0 | 14.5 | 12.8 | 11.3 |
+| Damage on the most-hit target, share | 83% | 73% | 63% | 68% |
+| Enemies with his Rip on them, average | 0.66 | 0.75 | 0.91 | 1.09 |
+| Locked out himself, share of the game | 10% | 13% | 12% | 12% |
+| Died, games | **4 of 14** | 0 of 18 | 6 of 28 | 2 of 7 |
+
+What holds against both Rastic and the seven others (the differences that are not one player's
+style):
+
+- **He presses about nine fewer buttons a minute** (38 against 47–51) while being locked out no
+  more than they are (10% against 12–13%). Time in gaps over 2.5 seconds between presses, not
+  counting time locked out, is 14% of the game for him and 9–12% for them.
+- **He heals much less:** 222k a minute on himself against 341–451k, and 90k on teammates against
+  163–295k. Regrowth on himself is 3.4 a game against 9.5 (Rastic at 2150+) and 8.4 (the others);
+  Rastic below 2150 is at 3.3, the same, so the button count alone does not separate them there.
+- **He interrupts less:** 0.8 a game against 1.3 (Rastic below 2150) and 2.5–2.7. He takes
+  *Savage Momentum* in every game, which takes 10 seconds off Tiger's Fury, Survival Instincts
+  and Dash per interrupt. Rastic takes it too and lands up to three times as many.
+- **He dies more:** first death in 4 of our 7 losses. Rastic did not die once in 18 games below
+  2150, the band our games were in.
+- **He presses Cat Form 2.3 times a minute against about 1.** Sorted by what each press did:
+
+| Cat Form presses | Crawlordx (77) | Rastic (119) |
+|---|---|---|
+| Broke a root or snare (a good press) | 13, 0.38 a minute | 18, 0.14 |
+| Straight after Cyclone, breaking nothing | **37 of his 51 Cyclones (73%)** | 60 of 263 (23%) |
+| Everything else | 27 | 41 |
+
+  Both have *Fluid Form*: "Shred, Rake, and Skull Bash can be used in any form and shift you into
+  Cat Form." After a Cyclone the next Rake does the shifting for free, and a Cat Form press there
+  is a global spent on nothing. That is about one a minute.
+
+What is Rastic's and may be the comp or the build, not a gap:
+
+- **Ferocious Bite twice as often, Shred half as often.** He takes *Apex Predator's Craving*
+  ("Rip damage has a chance to make your next Ferocious Bite free") in 40 of 46 games, with
+  *Rampant Ferocity* and *Blood Spattered*. The seven others bite no more than Crawlordx does.
+- **CC on the enemy healer.** Rastic locked their healer out for 14–15% of the game: Maim on the
+  healer 8–11 times per 10 minutes and Cyclone 8–10. Crawlordx: Maim 0.9, Cyclone 3.6, with his
+  Maim going on the kill target (13.5). In a Jungle the Hunter's trap and the Priest's fear are
+  the healer CC, and the seven others sit at 6%, close to him. **But inside our own games it
+  tracks the result:** Cyclone on their healer 4.9 per 10 minutes in the wins, 2.0 in the losses.
+- **Damage spread over two targets.** Rastic keeps Rip on 0.9 enemies on average at 2150+ and 63%
+  of his damage is on one target, against 0.66 and 83%.
+
+Things one side never pressed at all:
+
+- **Heart of the Wild's heal, 1 use in 15 games against 62 in 46.** Rastic's log shows a burst of
+  Wild Growth from him in caster form once every 2.0 minutes, with the gaps between them bunched
+  at 120–126 seconds. That is Heart of the Wild's 120-second cooldown (the spell data: "perform a
+  powerful off-role ability depending on your currently active shapeshift form"); the log writes
+  no cast line for it, so the link is **inferred from the timing, not read**. It is 262–274k of
+  his healing a minute. Crawlordx has the talent in 12 of 14 games and shows one such burst in 15.
+- **Remove Corruption: 0 casts against 72.** Rastic's removed Agony 29 times, Atrophic Poison 26,
+  Wound Poison 25, Deadly Poison 22, Crippling Poison 20, **Hex 10**, Curse of the Satyr 8. In our
+  14 games our players took Wound Poison 38 times, Deadly Poison 30, Crippling Poison 27, Atrophic
+  Poison 11, Kingsbane 5 and Hex 2. Three of our losses were to an Assassination Rogue.
+- **Typhoon: all 8 other Ferals took it**, and 5 of 8 took Incapacitating Roar where Crawlordx has
+  Mighty Bash. *Nurturing Instinct*, *Rejuvenation* and *Lore of the Grove* are in his build and
+  in nobody else's.
+- **PvP talents:** Rastic ran Wicked Claws in 46 of 46 (healing reduction from Rake and Rip);
+  Crawlordx in 9 of 14, with High Winds in 5 and Freedom of the Herd in 2.
+
+**When he presses defensives** (presses a game | median health when pressed):
+
+| | Crawlordx, wins | Crawlordx, losses | Rastic under 2150 | Rastic 2150+ |
+|---|---|---|---|---|
+| Regrowth on himself | 4.4, at 70% | **2.4**, at 52% | 3.3, at 82% | 9.5, at 72% |
+| Barkskin | 1.0, at 80% | 1.3, at 67% | 0.9, at 69% | 1.7, at 66% |
+| Frenzied Regeneration | 0.6, at 61% | 0.6, at 41% | 0.2, at 76% | 0.5, at 22% |
+| Survival Instincts | 0.1 | 0.7, at 53% | 0.3, at 54% | 0.5, at 38% |
+
+The medians are close. The deaths above are what differ: two with Survival Instincts unpressed or
+pressed at 14%, and two with everything spent a minute early.
+
+**Gear.** Median item level 344, the same as every Feral here.
+- Head, shoulders and feet have no enchant. Three of the four Ferals checked slot by slot have
+  all three (Badkittylolz, Sufferpoints, Zyhsul); Rastic has none of them either.
+- His wrists are a 331 Aspirant piece with no gem; the others wear a 344 piece, three of the four
+  with a gem in it.
+- Trinkets are the same pair everyone has (Medallion and Insignia of Alacrity).
+- **Every other Feral, and Doubletapz, carries self-applied buffs he never has:** *Rune of
+  Masterful Cunning* (up 64–76% of the game on them, 0% on him) and *Arcanoweave Insight*
+  (36–44%); the Ferals also have *Rune of Lynxlike Reflexes* (17–30%). They do 0.5–0.7% of their
+  damage through *Rune of Unleashed Fire*. None of these is in the site's spell data, and the
+  log's gear line does not say what grants them. The one enchant that differs is on the rings:
+  he has id 7965 on both, and the seven other players whose rings were read (four Ferals, three
+  Hunters, Doubletapz among them) have 7969, 8027 or 8023. **A lead, not a finding: worth a look
+  in game.**
+
+#### Our Hunter beside the others
+
+| | Doubletapz (33 min) | 8 others at 2050+ (18 min) |
+|---|---|---|
+| Damage onto enemy players, per minute | **2,292k** | 2,050k |
+| Their healer locked out by him, share of the game | **15%** | 12% |
+| Freezing Trap on their healer, per 10 minutes (average length) | **12.8 (4.2s)** | 9.1 (3.0s) |
+| His offensive cooldowns followed by 2s+ of lockout on their healer | **63%** | 42% |
+| Interrupts landed, per game | 1.1 | 1.4 |
+| Buttons pressed, per minute | 33.3 | 39.2 |
+| Time in gaps over 2.5s, not locked out | 23% | 15% |
+| Kill Command, per minute | 7.7 | 9.1 |
+| Cobra Shot, per minute | 6.5 | 3.0 |
+| Counter Shot, per game (first press, median) | 1.3 (at 74s) | 2.5 (at 26s) |
+| Disengage, per game | 0.9 | 2.3 |
+| Concussive Shot | 1 cast in 14 games | 1.3 a minute |
+| **Roar of Sacrifice, per game** | **0** | 0.9 |
+| Master's Call, per game | 0.5 | about 1.3 |
+| Exhilaration, per game (median health) | 0.6 (45%) | 0.9 (42%) |
+| Aspect of the Turtle, per game (median health) | 0.3 (**16%**; 2% in the losses) | 0.5 (26%) |
+| Survival of the Fittest, per game | 1.1 | 1.4 |
+| Medallion, per game | 0.4 | 0.6 |
+| Healing on himself, per minute | 97k | 180k |
+
+- **His damage and his control are better than the higher-MMR Hunters here.** More damage, more
+  and longer traps on the healer, and his Bestial Wrath lands with their healer locked out more
+  often. His interrupts are good ones: Cyclone 6 times, Polymorph 2, Fear 2.
+- **What he does not press is the defensive and utility half of the kit.**
+  - **Roar of Sacrifice, never.** The others pressed it 9 times in 10 games: 5 on their other DPS
+    (at 0–19%, 20–39% twice, 60–79% and 80–99% health) and 4 on themselves. Our Feral was the
+    first to die in four games.
+  - **His own defensives come late or not at all.** Aspect of the Turtle four times in 14 games,
+    at a median 16% health. Two of his three deaths are above: every button unpressed at 18:42,
+    Turtle at 2% at 18:49.
+  - **Counter Shot half as often and nearly a minute later** into the game.
+  - **Master's Call went on himself 6 times and on Jmjay once**, never on the Feral. (A Feral
+    breaks roots by shifting, so that may be right; it is here because it is measurable.)
+- **He fills with Cobra Shot where they press something else.** 6.5 a minute against 3.0, with
+  Kill Command 7.7 against 9.1. Cobra Shot is 5% of his damage.
+- **Gear:** his chest is item level 310 where every other Hunter's is 344, his boots are 331, and
+  head, shoulders and feet have no enchant (most of the others have two or three of those).
+- **Build:** all 8 others took *Bloody Frenzy*; he did not. 4 of 8 took *Kindred Beasts* where he
+  has *Chimaeral Sting*; Joonixo, the highest-rated, runs his exact three PvP talents.
+- **Tranquilizing Shot is not a lead.** He never pressed it and the others did about once a
+  minute, but what theirs removed was mostly Mark of the Wild, Power Word: Fortitude and Arcane
+  Intellect.
+
+#### What to change, in the order the evidence supports it
+
+1. **Both DPS: press the big defensive when their cooldowns go out, not at the bottom.** Four of
+   the seven losses were at our own MMR or below, and each is a DPS dying with buttons unpressed
+   or pressed at 2–14% health. Survival Instincts at the Combustion (18:08) and after the Kidney
+   Shot (18:18); Medallion into Turtle in the Mighty Bash (18:42). This is the largest and the
+   most certain.
+2. **Hunter: Roar of Sacrifice on the Feral.** Zero uses, and the Feral is the first death in
+   four games.
+3. **Go when their healer is locked out and ours is free.** Our burst landed on a locked healer
+   in 60% of goes in the wins and 28% in the losses; our healer was locked as our cooldowns went
+   in 61% of goes in the losses. The Hunter already lines his Bestial Wrath up with the trap
+   (63%). A go pressed into our own healer's CC is a go to delay by a few seconds.
+4. **Feral: more globals, and the right ones.** Drop the Cat Form press after Cyclone (about one
+   a minute), and spend the space on Regrowth, Skull Bash and Rake. He is nine buttons a minute
+   behind every other Feral in the archive without being locked out more.
+5. **Feral: Cyclone their healer.** 4.9 per 10 minutes in our wins, 2.0 in our losses, and it is
+   in 31% of the goes that killed against 13% of those that did not.
+6. **Feral: Heart of the Wild and Remove Corruption.** One use and zero uses, against a Feral who
+   presses them every two minutes and 1.6 times a game.
+7. **Gear, both.** The Feral: three missing enchants, a lower wrist piece, and the rune buffs
+   (start with the ring enchant). The Hunter: a 310 chest and the same three enchants.
+8. **Hunter: Counter Shot and Disengage earlier and more often,** in place of some Cobra Shots.
+
+#### What this cannot say
+
+- **One session.** 14 games, 7 losses, 7 deaths. Every per-game pattern here is a lead.
+- **Rastic is one player in a different comp**, with a Mage doing part of the control. Where he
+  and the seven others disagree (Ferocious Bite, healer CC), the difference is his, not the
+  spec's. The seven others are one game each.
+- **The Hunter comparison is 17.6 minutes of players who mostly lost.** It shows what they press,
+  and Doubletapz out-damages and out-controls them.
+- **Whether a defensive was available is not known.** Cooldowns are the data's base values
+  (rule 34), so "unpressed" is stated only where the button was never pressed in the game, or not
+  for longer than its base cooldown.
+- **The log cannot see** positioning, line of sight, a call, or who the team meant to kill.
+  "Buttons a minute" counts presses, not whether they were the right ones.
+- **Health is read from damage and heal events on the player**, so it is a second or so stale
+  when nothing is hitting them.
+
+#### Follow-up (2026-10-01): how Rastic's Feral spends, and what his build trades for it
+
+Chriso's read after the first pass: Rastic presses more, gets more out of the instant Regrowths
+that finishers give, builds towards free Ferocious Bites rather than Shred and Moonfire, Rakes
+and stuns more, and decurses whatever he can. Is that what the log shows? And what happens
+inside Incarnation, and inside a go, for him and for the high-rated Ferals Skylake's teams played?
+Measured with `tools/match-review/feralread.php`. The samples are the same as above: Crawlordx 14
+games, Rastic 18 below 2150 and 28 above, and the seven others one game each.
+
+**The build: Rastic drops every talent that makes Shred and Moonfire hit harder, and takes the
+three that feed Ferocious Bite.** Talents in Crawlordx's build in all 14 games and in none (or
+few) of Rastic's 46, and the reverse. The text is the site's spell data:
+
+| Only Crawlordx | What it does | Only Rastic | What it does |
+|---|---|---|---|
+| Moment of Clarity | Omen of Clarity procs 30% more often, stacks, and the next **Shred** does 15% more | Apex Predator's Craving (40 of 46) | Rip damage can make the next **Ferocious Bite free and deal maximum damage** |
+| Merciless Claws | **Shred** does 25% more to a bleeding target | Rampant Ferocity | **Ferocious Bite** also hits everything nearby, and spending extra energy on it adds up to 100% |
+| Lore of the Grove (12 of 14) | **Moonfire** does 10% more | Blood Spattered | **Ferocious Bite** does 8% more for each enemy carrying his Rip, up to 6 |
+| Nurturing Instinct | magical damage and healing 6% more | Primal Wrath (15 of 46) | a finisher that puts Rip on everyone within 10 yards |
+| Veinripper (Rastic 6 of 46) | Rip and Rake last 25% longer | Innervate (25 of 46) | mana for the healer |
+| Mighty Bash, Rejuvenation | | Incapacitating Roar, Typhoon, Forestwalk | |
+
+So "Shred and Moonfire more" is not a habit on top of the same build; it is what the build
+rewards. The question is which build is better, and the log can only compare what each produced:
+
+**Damage per press and per 100 energy spent** (a bleed's number includes every tick of it):
+
+| | Crawlordx | Rastic under 2150 | Rastic 2150+ | 7 others |
+|---|---|---|---|---|
+| Rip | 152k \| 764k | 187k \| 937k | 212k \| 1,060k | 143k \| 718k |
+| Rake | 63k \| **183k** | 49k \| 142k | 57k \| 165k | 59k \| 169k |
+| Ferocious Bite | 42k \| 170k | 47k \| 229k | 53k \| **286k** | 46k \| 188k |
+| Shred | 29k \| 123k | 26k \| 110k | 29k \| 118k | 22k \| 99k |
+| Moonfire | 26k \| **89k** | 23k \| 78k | 29k \| 98k | 22k \| 77k |
+
+- **For everyone, Moonfire and Shred are the least damage per energy**, Rake is about 1.5 times
+  Shred and twice Moonfire, and Rip is by far the most. Crawlordx's Shred talents buy him about
+  the same Shred as everyone else's (29k a press, the same as Rastic at 2150+). **Chriso's "the
+  Shreds don't add damage" is right in that sense:** each energy spent on Shred or Moonfire is
+  the worst trade on the bar. They are still the builders that reach a target Rake cannot
+  (Moonfire at range), which the log cannot score.
+- **Rastic's Rip and Bite hit harder** (Rip 187–212k a press against 152k; Bite 229–286k per 100
+  energy against 170k). That is Blood Spattered and Apex on the Bite, and Rip on more targets.
+
+**Combo points and free Bites.** Everyone spends five points on a finisher 79–97% of the time,
+Crawlordx included (Rip 89%, Bite 79%). The difference is how many finishers there are:
+
+| | Crawlordx | Rastic under 2150 | Rastic 2150+ | 7 others |
+|---|---|---|---|---|
+| Ferocious Bite pressed free | 0 of 84 | 32 of 191 | 116 of 457 | 1 of 47 |
+| Predatory Swiftness procs, per minute | 2.8 | 3.1 | 3.4 | 4.4 |
+| ... spent / let expire | 84% / 15% | 88% / 11% | 92% / 7% | 88% / 11% |
+| ... spent on Regrowth | 56% | 58% | 67% | 80% |
+| Sudden Ambush, spent on Rake / Shred | **48% / 50%** | 63% / 30% | 60% / 29% | 38% / 52% |
+
+- **The instant Regrowth is Predatory Swiftness, not Omen of Clarity.** "Your finishing moves
+  have a 100% chance per combo point to make your next Regrowth or Entangling Roots instant, free,
+  and castable in all forms." Omen of Clarity is Clearcasting, a free Shred off auto attacks.
+- **Rastic gets more instant Regrowths because he presses more finishers**, and the free Bites are
+  a quarter of his Bites at 2150+. He also lets fewer expire (7% against 15%) and puts more into
+  Regrowth rather than Entangling Roots (67% against 56%).
+- **Sudden Ambush** ("finishing moves ... make your next Rake, Shred or Swipe do 50% more and
+  critically strike") goes into Rake about twice as often as Shred for Rastic; Crawlordx splits it
+  evenly.
+
+**Rake stuns: the same rate, more Rakes.** A Rake stuns about as often per press for everyone
+(Crawlordx 20%, Rastic 17–21%, others 25%). Rastic lands more stuns because he presses 7.0–7.8
+Rakes a minute against 4.6.
+
+**Tiger's Fury: Crawlordx already snapshots his bleeds as well as anyone.** Rip pressed inside
+Tiger's Fury: 60% against Rastic's 60–69% and the others' 46%. Rake: 59% against 45–50% and 36%.
+That is not the difference. **What follows Tiger's Fury is:**
+
+| Presses in the 8s after Tiger's Fury | Crawlordx | Rastic under 2150 | Rastic 2150+ | 7 others |
+|---|---|---|---|---|
+| Rake | 1.26 | 0.92 | 0.98 | 0.61 |
+| Shred | 0.78 | 0.50 | 0.57 | 0.56 |
+| Ferocious Bite | **0.19** | **1.03** | **0.89** | 0.27 |
+| Control of any kind (Cyclone, Maim, Skull Bash, Roar, Roots…) | **0.60** | **1.03** | **1.10** | 0.63 |
+
+Rastic Bites and controls after Tiger's Fury where Crawlordx Rakes and Shreds. **But the seven
+others look like Crawlordx here, not Rastic**, so this is Rastic's build (free Bites) and comp,
+not something every high-rated Feral does.
+
+**Inside Incarnation (Berserk).** About 23–24 seconds a window for both.
+
+| Per window | Crawlordx (26) | Rastic under 2150 (28) | Rastic 2150+ (67) |
+|---|---|---|---|
+| Own damage per second inside / outside | 42k / 28k | 53k / 32k | 58k / 40k |
+| Ferocious Bite | 1.8 | 3.4 | 3.6 |
+| Rake | 2.1 | 2.9 | 3.6 |
+| Shred | 1.7 | 1.0 | 0.7 |
+| Prowl | 1.0 | 1.3 | 1.6 |
+| Feral Frenzy | 0.8 | 0.4 | 0.4 |
+| Skull Bash | 0.4 | 0.8 | 0.9 |
+
+- **How the window opens is the clearest difference.** Incarnation lets you Prowl once in combat
+  (its second aura, 252071, is exactly that flag), and a Rake from stealth stuns. Rastic opens
+  with **Prowl then Rake in 79 of 92 windows (86%)**. Crawlordx does in 15 of 26 (58%), and opens
+  with **Feral Frenzy in 9 of 26** (Rastic: 3 of 92), then Rip or Maim.
+- The seven others are mostly not in this: three of them play the other hero tree (Ravage), and
+  their Incarnation count per window reads 0.1.
+
+**Inside the team's goes** (offensive casts chained 10s apart, window to 15s after the last; the
+`--strict` go):
+
+| | Crawlordx | Rastic under 2150 | Rastic 2150+ | 7 others |
+|---|---|---|---|---|
+| Damage per second inside goes | 38k | 43k | 49k | 35k |
+| Share of own damage inside goes | 75% | 77% | 73% | 70% |
+| Rip, share of go damage | 17% | 21% | 21% | 23% |
+| Rake | 15% | 14% | 16% | 15% |
+| Ferocious Bite | 6% | 11% | 10% | 4% |
+| Shred | **7%** | 3% | 3% | 4% |
+| Moonfire | 7% | 6% | 6% | 6% |
+
+The seven, one game each (Shred, Moonfire, Rake, Bite, Rip as shares of their go damage):
+Meowzetzan 9/6/11/10/16, Sufferpoints 0/5/9/9/18, Wokcats 2/8/15/7/24, **Zyhsul (5x Glad,
+2309) 4/0/21/2/15**, Hawtpants 1/7/13/0/27, Gdru 5/6/17/10/21, Badkittylolz (12x Glad) 9/8/14/7/21.
+
+- **Chriso's read holds for Shred:** in goes it is 0–9% of the high-rated Ferals' damage (4%
+  pooled) against 7% of his. **Not for Moonfire:** 6–8% for five of the seven, the same as his.
+  Zyhsul pressed no Moonfire at all and put 21% into Rake.
+- Crawlordx does more damage per second in goes (38k) than the seven (35k), and less than Rastic.
+
+**What this adds to "What to change":**
+- **Open Incarnation with Prowl → Rake**, not Feral Frenzy. 86% of Rastic's windows against 58%.
+- **Spend Sudden Ambush on Rake**, not Shred. It makes the next one do 50% more and crit, and Rake
+  is the better trade per energy anyway.
+- **Let fewer Predatory Swiftness procs expire** (15% against 7%), and put them into Regrowth.
+- **The talent swap is a real option, not a proven one.** Rastic's Bite build out-damages the
+  Shred build here, but he is one player in another comp, and the seven others, most of whom take
+  neither Apex nor Blood Spattered, do no more damage than Crawlordx. Worth a session of games on
+  it, measured the same way.
 
 ### One hit, explained
 

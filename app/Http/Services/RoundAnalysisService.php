@@ -28,8 +28,12 @@ class RoundAnalysisService
      * 3 (2026-09-29): who applied each overlapping defensive, who spent each defensive outside the
      * enemy's goes, and whose CC was on their healer during each burst — so a loss's mistakes can
      * be owned by the player whose button it was ("Where the losses came from").
+     * 4 (2026-09-30): the Garrote bleed is no longer read as a silence (see
+     * ArenaMomentService::AURA_IS_NOT_THE_CONTROL). Every lockout figure in a game against a Rogue
+     * who pressed Garrote was too high before this: an analysis stored at 3 or lower from such a
+     * game overstates it and can call a healer locked out at a death when they were not.
      */
-    public const VERSION = 3;
+    public const VERSION = 4;
 
     /** Crowd control that takes a player out: a slow or root does not stop a healer healing. */
     private const LOCKOUT = ['Stun', 'Silence', 'Disorient', 'Incapacitate'];

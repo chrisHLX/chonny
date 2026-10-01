@@ -91,6 +91,21 @@
                                     · {{ $r['mirrors'] }} mirror{{ $r['mirrors'] === 1 ? '' : 's' }}
                                 @endif
                             </span>
+                            @php $x = $r['experience'] ?? null; @endphp
+                            @if ($x && $x['mode'] === 'teams' && ($x['us'] !== null || $x['them'] !== null))
+                                <span class="block text-xs text-ink-subtle"
+                                      title="Average highest 3v3 rating of each team, from each character's Blizzard profile as it is now. Players with no public profile are left out.">
+                                    avg exp {{ $x['us'] !== null ? number_format($x['us']) : '?' }}
+                                    vs {{ $x['them'] !== null ? number_format($x['them']) : '?' }}@if ($x['pending'] > 0)<span class="text-ink-subtle/70"> · {{ $x['pending'] }} not looked up</span>@endif
+                                </span>
+                            @elseif ($x && $x['mode'] === 'lobby' && $x['lobby'] !== null)
+                                <span class="block text-xs text-ink-subtle"
+                                      title="Teams change every round in a shuffle, so this is the average highest 3v3 rating of the five other players. Each round's teams are shown on the round.">
+                                    lobby avg exp {{ number_format($x['lobby']) }}@if ($x['pending'] > 0)<span class="text-ink-subtle/70"> · {{ $x['pending'] }} not looked up</span>@endif
+                                </span>
+                            @elseif ($x && $x['pending'] > 0)
+                                <span class="block text-xs text-ink-subtle/70">exp not looked up yet</span>
+                            @endif
                         </button>
                     @endforeach
                 </div>
@@ -139,6 +154,14 @@
                             ])>{{ $round['result'] ?? 'unknown' }}</span>
                         </div>
                         <div class="text-xs text-ink-subtle mt-1">{{ $clock($round['durationSeconds']) }}</div>
+                        @php $rx = $roundExperience[$round['sequence']] ?? null; @endphp
+                        @if ($rx && ($rx['us']['avg'] !== null || $rx['them']['avg'] !== null))
+                            <div class="text-xs text-ink-muted mt-1"
+                                 title="Average highest 3v3 rating: your team, then theirs. From each character's Blizzard profile as it is now; players with no public profile are left out.">
+                                exp {{ $rx['us']['avg'] !== null ? number_format($rx['us']['avg']) : '?' }}
+                                vs {{ $rx['them']['avg'] !== null ? number_format($rx['them']['avg']) : '?' }}
+                            </div>
+                        @endif
                         @if ($round['killedName'])
                             <div class="text-xs text-ink-muted mt-1 truncate" title="Died: {{ $round['killedName'] }}">
                                 died: {{ \Illuminate\Support\Str::before($round['killedName'], '-') }}

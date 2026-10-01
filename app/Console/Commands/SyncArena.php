@@ -3,10 +3,15 @@
 namespace App\Console\Commands;
 
 use App\Http\Services\ArenaLogService;
+use App\Http\Services\ArenaReviewIngestService;
 use App\Http\Services\LobbyReviewService;
+use App\Http\Services\PlayerExperienceService;
 use App\Models\ArenaReview;
+use App\Models\ArenaRound;
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
 
 /**
  * One command for the whole local loop: read the combat log, review what is new, say what changed.
@@ -32,7 +37,8 @@ class SyncArena extends Command
         {--user= : Whose games these are (id or email). Defaults to the only user, if there is one.}
         {--fresh : Re-review every game, not just the ones without a review}
         {--since= : Ignore games played before this date (e.g. today, 2026-09-25)}
-        {--skip-ingest : Only re-review what is already in the archive}';
+        {--skip-ingest : Only re-review what is already in the archive}
+        {--skip-analysis : Do not measure games for "Your analysis" or look up experience}';
 
     protected $description = 'Read your combat log, review any new games, and report what changed';
 
@@ -91,6 +97,10 @@ class SyncArena extends Command
             }
         }
 
+        // Everything inside the date floor, reviewed or not: "Your analysis" is filled from these
+        // separately, so a game reviewed before that step existed still gets analysed.
+        $inRange = $targets;
+
         if (! $this->option('fresh')) {
             $known = ArenaReview::where('user_id', $user->id)->pluck('lobby_id')->flip();
             $targets = $targets->reject(fn ($t) => $known->has($t['id']));
@@ -98,6 +108,7 @@ class SyncArena extends Command
 
         if ($targets->isEmpty()) {
             $this->info('No new games. '.$before.' already reviewed.');
+            $this->analyse($user, $inRange);
             $this->tip();
 
             return self::SUCCESS;
@@ -131,9 +142,99 @@ class SyncArena extends Command
         $after = ArenaReview::where('user_id', $user->id)->count();
         $this->newLine();
         $this->info(($after - $before).' new game(s). '.$after.' reviewed in total.');
+        $this->analyse($user, $inRange);
         $this->tip();
 
         return self::SUCCESS;
+    }
+
+    /**
+     * Puts every game's rounds on the account for "Your analysis" (/wow/match-analysis), and looks
+     * up the experience of everyone in them.
+     *
+     * A review and an analysis are two different stores: the review is `arena_reviews`, and the
+     * analysis reads `arena_rounds.payload['analysis']`, which only the browser upload path writes
+     * (ArenaReviewIngestService::ingestRound). Before this step a game synced here had a review and
+     * no analysis at all. The archive keeps each round's raw slice, so the upload path is fed that
+     * slice, which is exactly what a browser would send.
+     *
+     * The round is then given the ARCHIVE's lobby id. The upload path works out its own for a
+     * shuffle, and the upload page's "assemble" step rebuilds any lobby whose id it has no review
+     * for, which would put a second copy of every shuffle on the list.
+     *
+     * Experience is looked up here, not left to the queued job, because a local machine usually has
+     * no worker running and the review page reads only what is cached.
+     */
+    private function analyse(User $user, Collection $groups): void
+    {
+        if ($this->option('skip-analysis')) {
+            return;
+        }
+
+        $have = $this->option('fresh')
+            ? collect()
+            : ArenaRound::where('user_id', $user->id)->pluck('match_id')->flip();
+
+        $todo = $groups
+            ->flatMap(fn ($g) => collect($g['matchIds'])->map(fn ($m) => ['lobby' => $g['id'], 'match' => $m]))
+            ->reject(fn ($t) => $have->has($t['match']))
+            ->values();
+
+        $ingest = app(ArenaReviewIngestService::class);
+        $arena = app(ArenaLogService::class);
+        $stored = 0;
+
+        if ($todo->isNotEmpty()) {
+            $this->line("<fg=gray>Measuring {$todo->count()} round(s) for Your analysis…</>");
+        }
+
+        foreach ($todo as $t) {
+            $path = $arena->rawLogPath($t['match']);
+            $raw = File::exists($path) ? @gzdecode((string) File::get($path)) : false;
+
+            if ($raw === false || $raw === '') {
+                $this->warn("  no raw log for {$t['match']}");
+
+                continue;
+            }
+
+            $result = $ingest->ingestRound($user, $raw);
+
+            if ($result['status'] !== 'stored') {
+                $this->warn("  {$t['match']}: ".($result['reason'] ?? $result['status']));
+
+                continue;
+            }
+
+            ArenaRound::where('user_id', $user->id)->where('match_id', $result['matchId'])->update(['lobby_id' => $t['lobby']]);
+            $stored++;
+        }
+
+        if ($stored > 0) {
+            $this->info("{$stored} round(s) measured.");
+        }
+
+        if (! config('services.battlenet.client_id')) {
+            return;
+        }
+
+        // Everyone on every reviewed game, so the game list's averages fill in too.
+        $experience = app(PlayerExperienceService::class);
+        $names = ArenaReview::where('user_id', $user->id)->get()
+            ->flatMap(fn (ArenaReview $r) => array_column($r->payload['players'] ?? [], 'name'))
+            ->unique()
+            ->filter(fn ($n) => $experience->cached($n) === null)
+            ->values();
+
+        if ($names->isEmpty()) {
+            return;
+        }
+
+        $this->line("<fg=gray>Looking up experience for {$names->count()} player(s)…</>");
+
+        foreach ($names as $name) {
+            $experience->lookup($name);
+        }
     }
 
     private function tip(): void

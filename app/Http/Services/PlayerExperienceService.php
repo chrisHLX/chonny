@@ -35,6 +35,26 @@ class PlayerExperienceService
         return Cache::get($this->key($fullName));
     }
 
+    /**
+     * Several characters' cached experience in one cache round trip, keyed by the name given. A
+     * name not looked up yet maps to null, as in cached().
+     *
+     * @param  array<int, string>  $fullNames
+     * @return array<string, array|null>
+     */
+    public function cachedMany(array $fullNames): array
+    {
+        $fullNames = array_values(array_unique($fullNames));
+
+        if ($fullNames === []) {
+            return [];
+        }
+
+        $hits = Cache::many(array_map(fn ($n) => $this->key($n), $fullNames));
+
+        return array_combine($fullNames, array_map(fn ($n) => $hits[$this->key($n)] ?? null, $fullNames));
+    }
+
     /** Look the character up now (and cache it), unless it already is. */
     public function lookup(string $fullName): array
     {
