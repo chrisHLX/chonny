@@ -7,7 +7,10 @@
 #       file, then `php artisan wow:sync --skip-ingest` to build the reviews.
 #    3. Once a log is archived and WoW has let go of it, moves the log out of
 #       WoW's folder into the "move logs to" folder (default D:\MindCollector\wow-logs).
-#    4. Lists your archived games and lets you set the folders without editing .env.
+#    4. Lists your archived games, each with a card (wow:game-cards) shown as a page in
+#       Windows' built-in browser control, and lets you set the folders without editing .env.
+#    5. While you play, a small always-on-top panel shows the game you are in and takes
+#       notes; Ctrl+Shift+M marks a moment from inside WoW. See "Live" below.
 #
 #  Start it with "MindCollector Logs.vbs" (no console window). See README.md.
 #
@@ -44,9 +47,18 @@ $script:Repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $script:EnvFile = Join-Path $script:Repo '.env'
 $script:StateDir = Join-Path $env:APPDATA 'MindCollector'
 $script:SettingsFile = Join-Path $script:StateDir 'logs-app.json'
+$script:CardsDir = Join-Path $script:StateDir 'cards'
+$script:LegacyCardsFile = Join-Path $script:StateDir 'game-cards.json'
+$script:NotesFile = Join-Path $script:StateDir 'notes.json'
+$script:Cards = @{}
+$script:Experience = @{}
 $script:ActivityFile = Join-Path $script:StateDir 'logs-app.log'
 $script:ServerPort = 8321
 New-Item -ItemType Directory -Force -Path $script:StateDir | Out-Null
+# One previous activity log is kept as .old once the file passes 1 MB.
+if ((Test-Path $script:ActivityFile) -and (Get-Item $script:ActivityFile).Length -gt 1MB) {
+    Move-Item $script:ActivityFile "$($script:ActivityFile).old" -Force -ErrorAction SilentlyContinue
+}
 
 # Herd's `php` is a .bat shim. Run the real php.exe so a started server can be stopped again.
 function Resolve-PhpExe {
@@ -104,13 +116,14 @@ function Set-EnvValue([string]$key, [string]$value) {
 }
 
 function Load-Settings {
-    $s = @{ MoveTo = $null; AutoSync = $true; MoveAfterArchive = $true; Ingested = @{} }
+    $s = @{ MoveTo = $null; AutoSync = $true; MoveAfterArchive = $true; LivePanel = $true; Ingested = @{} }
     if (Test-Path $script:SettingsFile) {
         try {
             $j = Get-Content $script:SettingsFile -Raw -Encoding UTF8 | ConvertFrom-Json
             if ($j.MoveTo) { $s.MoveTo = $j.MoveTo }
             if ($null -ne $j.AutoSync) { $s.AutoSync = [bool]$j.AutoSync }
             if ($null -ne $j.MoveAfterArchive) { $s.MoveAfterArchive = [bool]$j.MoveAfterArchive }
+            if ($null -ne $j.LivePanel) { $s.LivePanel = [bool]$j.LivePanel }
             if ($j.Ingested) { foreach ($p in $j.Ingested.PSObject.Properties) { $s.Ingested[$p.Name] = $p.Value } }
         } catch { }
     }
@@ -144,7 +157,11 @@ if (-not $script:Settings.MoveTo) {
 function Write-Activity([string]$text) {
     $line = '[{0:dd MMM HH:mm:ss}] {1}' -f (Get-Date), $text
     try { Add-Content -Path $script:ActivityFile -Value $line -Encoding UTF8 } catch { }
-    if ($script:ActivityBox) { $script:ActivityBox.AppendText($line + "`r`n") }
+    if ($script:ActivityBox) {
+        # Keep the box to its last ~200 KB; the full history is in the file.
+        if ($script:ActivityBox.TextLength -gt 400000) { $script:ActivityBox.Text = $script:ActivityBox.Text.Substring(200000) }
+        $script:ActivityBox.AppendText($line + "`r`n")
+    }
 }
 
 function Set-Status([string]$text) {
@@ -162,7 +179,7 @@ function Get-CombatLogs {
 function Get-FileSig($f) { return "$($f.Length)|$($f.LastWriteTimeUtc.Ticks)" }
 
 function Test-WowRunning {
-    return [bool](Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Name -in @('Wow', 'WowT', 'WowB', 'WowClassic') })
+    return [bool](Get-Process -Name 'Wow', 'WowT', 'WowB', 'WowClassic' -ErrorAction SilentlyContinue)
 }
 
 # True when the last arena marker in the file's tail is ARENA_MATCH_END: the lobby is over.
@@ -247,19 +264,32 @@ function Start-NextStep {
     Write-Activity $step.Label
     Set-Status $step.Label
     $proc = Start-Hidden $script:Php ('artisan ' + $step.Args) $out
-    $script:Running = @{ Proc = $proc; Out = $out; Step = $step }
+    $script:Running = @{ Proc = $proc; Out = $out; Step = $step; Started = Get-Date }
 }
 
+# Longest a job may run. Reading a session's log is the slow one (a 292 MB log is a few minutes);
+# anything past this is hung, and one hung job would otherwise block every job after it.
+$script:StepLimitMinutes = 15
+
 function Poll-Step {
-    if (-not $script:Running -or -not $script:Running.Proc.HasExited) { return }
+    if (-not $script:Running) { return }
+    if (-not $script:Running.Proc.HasExited) {
+        if (((Get-Date) - $script:Running.Started).TotalMinutes -lt $script:StepLimitMinutes) { return }
+        # cmd runs php under it: end the whole tree, then carry on as a failed step.
+        $kill = Start-Hidden "$env:WINDIR\System32\taskkill.exe" "/T /F /PID $($script:Running.Proc.Id)"
+        $kill.WaitForExit(5000) | Out-Null
+        Write-Activity "Stopped '$($script:Running.Step.Label)' after $($script:StepLimitMinutes) minutes without finishing."
+        $script:Running.Proc.WaitForExit(5000) | Out-Null
+    }
     $r = $script:Running
     $script:Running = $null
-    $r.Proc.WaitForExit()
-    $output = Get-Content $r.Out -Raw -Encoding UTF8
+    $output = $null
+    try { $output = Get-Content $r.Out -Raw -Encoding UTF8 } catch { }
     Remove-Item $r.Out -Force -ErrorAction SilentlyContinue
     $output = if ($output) { $output.Trim() } else { '' }
     foreach ($l in ($output -split "`r?`n")) { if ($l.Trim()) { Write-Activity ('    ' + $l.TrimEnd()) } }
-    & $r.Step.OnDone ($r.Proc.ExitCode -eq 0) $output $r.Step.Data
+    $ok = $r.Proc.HasExited -and $r.Proc.ExitCode -eq 0
+    & $r.Step.OnDone $ok $output $r.Step.Data
     if ($script:Steps.Count -eq 0 -and -not $script:Running) { Set-Status (Get-IdleStatus) }
     Start-NextStep
 }
@@ -328,10 +358,41 @@ function Invoke-SyncPass([bool]$manual) {
             if (-not $ok) { Write-Activity 'Building reviews failed - the games are archived; reviews will build on the next sync.' }
             Invoke-MovePass
         }
+        Add-CardsStep
         Start-NextStep
     } else {
         if ($manual) { Write-Activity 'Nothing new to read.' }
         Invoke-MovePass
+    }
+}
+
+# --- Game cards --------------------------------------------------------------
+# `wow:game-cards` writes one card per game (who you played and their experience, how each
+# death happened, goes, defensives, interrupts, and for a loss what the rules flag). The sync has
+# already measured everything; this only formats it, so it is quick.
+
+# Each card is its own file in cards\ beside a small index.json, and only cards whose game changed
+# are drawn again (see BuildGameCards). The app reads the index and opens a card's file on click.
+function Add-CardsStep {
+    Add-Step 'Updating game cards' ("wow:game-cards --dir=`"" + $script:CardsDir + "`" --notes=`"" + $script:NotesFile + "`"") {
+        param($ok, $output, $data)
+        if ($ok) { Load-Cards; Show-SelectedMatch }
+    }
+}
+
+function Load-Cards {
+    $script:Cards = @{}
+    $index = Join-Path $script:CardsDir 'index.json'
+    $script:CardsStale = -not (Test-Path $index)
+    if ($script:CardsStale) { return }
+    try {
+        $j = Get-Content $index -Raw -Encoding UTF8 | ConvertFrom-Json
+        foreach ($p in $j.games.PSObject.Properties) { $script:Cards[$p.Name] = Join-Path $script:CardsDir "$($p.Name).html" }
+        foreach ($p in $j.experience.PSObject.Properties) { $script:Experience[$p.Name] = $p.Value }
+        # The one-file-for-every-card version this replaced (15 MB by 2026-10-02).
+        if (Test-Path $script:LegacyCardsFile) { Remove-Item $script:LegacyCardsFile -Force -ErrorAction SilentlyContinue }
+    } catch {
+        Write-Activity "Could not read the game cards: $($_.Exception.Message)"
     }
 }
 
@@ -364,40 +425,72 @@ function Spec-Name([string]$id) {
 }
 
 function Load-Matches {
-    $script:MatchList.BeginUpdate()
-    $script:MatchList.Items.Clear()
-    $script:Games = @{}
     $dir = Join-Path (Get-ArchiveDir) 'metadata'
     if (-not (Test-Path $dir)) {
-        $script:MatchList.EndUpdate()
+        $script:MatchList.Items.Clear()
+        $script:Games = @{}
         $script:MatchCount.Text = "No archive at $dir"
         return
     }
 
     # Only games read from your own combat log; the archive also holds 16 other people's
-    # matches from the old wowarenalogs feed.
-    $all = foreach ($file in Get-ChildItem -Path $dir -Filter '*.json' -File) {
-        try {
-            $m = Get-Content $file.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
-            if ($m.source -eq 'local-combatlog') { $m }
-        } catch { }
+    # matches from the old wowarenalogs feed. An archive file is written once, so each is parsed
+    # once and kept (by name and write time): re-reading all of them froze the window for 1.3s
+    # after every sync at 679 rounds (2026-10-02), and that grew with every game.
+    if (-not $script:MetaCache) { $script:MetaCache = @{} }
+    $files = [IO.Directory]::GetFiles($dir, '*.json')
+    $seen = @{}
+    $all = New-Object System.Collections.ArrayList
+    foreach ($path in $files) {
+        $k = "$([IO.Path]::GetFileName($path))|$([IO.File]::GetLastWriteTimeUtc($path).Ticks)"
+        $seen[$k] = $true
+        if (-not $script:MetaCache.ContainsKey($k)) {
+            $m = $null
+            try { $m = [IO.File]::ReadAllText($path, [Text.Encoding]::UTF8) | ConvertFrom-Json } catch { }
+            $script:MetaCache[$k] = $(if ($m -and $m.source -eq 'local-combatlog') { $m } else { $false })
+        }
+        if ($script:MetaCache[$k]) { [void]$all.Add($script:MetaCache[$k]) }
     }
+    # Forget files that have gone (wow:forget-games) or been rewritten.
+    foreach ($k in @($script:MetaCache.Keys)) { if (-not $seen.ContainsKey($k)) { $script:MetaCache.Remove($k) } }
 
-    $groups = $all | Group-Object { if ($_.lobbyId) { $_.lobbyId } else { $_.id } }
-    $rows = foreach ($g in $groups) {
-        $rounds = @($g.Group | Sort-Object { [int64]$_.startTime })
-        [pscustomobject]@{ Key = $g.Name; Start = [int64]$rounds[0].startTime; Rounds = $rounds }
+    # Nothing new on disk and the list already drawn: leave it, and the selection, as they are.
+    $listKey = ($seen.Keys | Sort-Object) -join ';'
+    if ($script:MatchList.Items.Count -and $listKey -eq $script:ListKey) { return }
+    $script:ListKey = $listKey
+
+    # Rounds grouped into games by lobby (a shuffle) or by match, with plain loops: Group-Object,
+    # Sort-Object and Measure-Object took most of a second over 343 games.
+    $byGame = @{}
+    foreach ($m in $all) {
+        $key = if ($m.lobbyId) { [string]$m.lobbyId } else { [string]$m.id }
+        if (-not $byGame.ContainsKey($key)) { $byGame[$key] = New-Object System.Collections.ArrayList }
+        [void]$byGame[$key].Add($m)
     }
+    # Sort-Object, not [Array]::Sort: PowerShell converts the arrays to call that and it sorts the
+    # copies, leaving the list in the order the files came off disk (2026-10-02).
+    $rows = foreach ($key in $byGame.Keys) {
+        $rounds = @($byGame[$key] | Sort-Object { [int64]$_.startTime })
+        [pscustomobject]@{ Key = $key; Start = [int64]$rounds[0].startTime; Rounds = $rounds }
+    }
+    $sorted = @($rows | Sort-Object Start -Descending)
 
-    foreach ($row in ($rows | Sort-Object Start -Descending)) {
+    $selected = if ($script:MatchList.SelectedItems.Count) { [string]$script:MatchList.SelectedItems[0].Tag } else { $null }
+    $won = [Drawing.Color]::FromArgb(134, 239, 172)
+    $lostColor = [Drawing.Color]::FromArgb(252, 165, 165)
+    $items = New-Object System.Collections.ArrayList
+    $script:Games = @{}
+    foreach ($row in $sorted) {
         $first = $row.Rounds[0]
         $you = Get-You $first
-        $won = @($row.Rounds | Where-Object { $_.result -eq 3 }).Count
-        $lost = @($row.Rounds | Where-Object { $_.result -eq 2 }).Count
-        $result = if ($row.Rounds.Count -gt 1 -or $first.lobbyId) { "$won-$lost" }
+        $w = 0; $l = 0; $secs = 0
+        foreach ($r in $row.Rounds) {
+            if ($r.result -eq 3) { $w++ } elseif ($r.result -eq 2) { $l++ }
+            $secs += [int]$r.durationInSeconds
+        }
+        $result = if ($row.Rounds.Count -gt 1 -or $first.lobbyId) { "$w-$l" }
                   elseif ($first.result -eq 3) { 'Won' } elseif ($first.result -eq 2) { 'Lost' } else { '?' }
         $played = [DateTimeOffset]::FromUnixTimeMilliseconds($row.Start).UtcDateTime
-        $secs = ($row.Rounds | Measure-Object -Property durationInSeconds -Sum).Sum
 
         $item = New-Object System.Windows.Forms.ListViewItem($played.ToString('ddd dd MMM  HH:mm'))
         [void]$item.SubItems.Add(($first.startInfo.bracket -replace '^Rated ', ''))
@@ -406,23 +499,65 @@ function Load-Matches {
         [void]$item.SubItems.Add((Format-Duration $secs))
         [void]$item.SubItems.Add($(if ($first.playerTeamRating) { [string]$first.playerTeamRating } else { '' }))
         $item.Tag = $row.Key
-        if ($result -eq 'Won' -or ($won -gt $lost)) { $item.ForeColor = [Drawing.Color]::FromArgb(134, 239, 172) }
-        elseif ($result -eq 'Lost' -or ($lost -gt $won)) { $item.ForeColor = [Drawing.Color]::FromArgb(252, 165, 165) }
-        [void]$script:MatchList.Items.Add($item)
+        if ($result -eq 'Won' -or ($w -gt $l)) { $item.ForeColor = $won }
+        elseif ($result -eq 'Lost' -or ($l -gt $w)) { $item.ForeColor = $lostColor }
+        [void]$items.Add($item)
         $script:Games[$row.Key] = $row.Rounds
     }
+
+    $script:MatchList.BeginUpdate()
+    $script:MatchList.Items.Clear()
+    $script:MatchList.Items.AddRange([Windows.Forms.ListViewItem[]]$items.ToArray())
+    # Keep the game you were reading selected across a refresh.
+    if ($selected) { foreach ($it in $script:MatchList.Items) { if ($it.Tag -eq $selected) { $it.Selected = $true; break } } }
     $script:MatchList.EndUpdate()
-    $script:MatchCount.Text = "$($rows.Count) game(s) in $(Get-ArchiveDir)"
+    $script:MatchCount.Text = "$($sorted.Count) game(s) in $(Get-ArchiveDir)"
+    # Archive times are WoW's wall clock stored as UTC, the same clock notes are stamped with.
+    $script:NewestGame = if ($sorted.Count) { [DateTimeOffset]::FromUnixTimeMilliseconds($sorted[0].Start).UtcDateTime } else { $null }
+    Update-NoteBar
+}
+
+function Show-SelectedMatch {
+    if ($script:MatchList -and $script:MatchList.SelectedItems.Count) { Show-MatchDetail $script:MatchList.SelectedItems[0].Tag }
+}
+
+# The card view is Windows' built-in browser control (IE11). Each card is written to one of two
+# files in turn: navigating to the file that is already showing does not reload it.
+$script:CardFlip = 0
+
+function Show-Html([string]$html) {
+    # The card keeps its open tab in the page title ("tab:damage"), read from the live page. The next
+    # card is written opening the same tab, so switching games keeps you on it.
+    try { $title = [string]$script:CardView.Document.Title } catch { $title = '' }
+    if ($title -match '^tab:([a-z]+)$') { $script:CardTab = $Matches[1] }
+    if ($script:CardTab) { $html = $html.Replace('onload="showTab(''summary'')"', "onload=`"showTab('$($script:CardTab)')`"") }
+    $script:CardFlip = 1 - $script:CardFlip
+    $path = Join-Path $script:StateDir ("card-{0}.html" -f $script:CardFlip)
+    [IO.File]::WriteAllText($path, $html, (New-Object System.Text.UTF8Encoding($false)))
+    $script:CardView.Navigate($path)
+}
+
+function Get-PlainPage([string]$bodyHtml) {
+    return '<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><style>' +
+        'html,body{margin:0;background:#111116;color:#F0F0F2}body{font-family:Segoe UI,Arial;font-size:13px;padding:16px;line-height:1.5}' +
+        '.muted{color:#8A8A9A}table{border-collapse:collapse}td{padding:3px 14px 3px 0}h2{font-size:16px;margin:0 0 10px}' +
+        '</style></head><body>' + $bodyHtml + '</body></html>'
 }
 
 function Show-MatchDetail([string]$key) {
+    if ($script:Cards.ContainsKey($key) -and (Test-Path $script:Cards[$key])) {
+        Show-Html ([IO.File]::ReadAllText($script:Cards[$key], [Text.Encoding]::UTF8))
+        return
+    }
+
+    if (-not $script:Games -or -not $script:Games.ContainsKey($key)) { return }
     $rounds = $script:Games[$key]
-    if (-not $rounds) { return }
-    $sb = New-Object System.Text.StringBuilder
+    $enc = { param($t) [System.Net.WebUtility]::HtmlEncode([string]$t) }
     $first = $rounds[0]
     $played = [DateTimeOffset]::FromUnixTimeMilliseconds([int64]$first.startTime).UtcDateTime
-    [void]$sb.AppendLine("$($first.startInfo.bracket)   $($played.ToString('dddd dd MMMM yyyy, HH:mm'))")
-    [void]$sb.AppendLine('')
+    $sb = New-Object System.Text.StringBuilder
+    [void]$sb.Append("<h2>$(& $enc $first.startInfo.bracket) <span class='muted'>$($played.ToString('ddd d MMM, HH:mm'))</span></h2>")
+    [void]$sb.Append("<p class='muted'>No analysis for this game yet. It appears after the next sync; until then, the basics from the archive.</p><table>")
 
     # Every player who appeared in any round, once.
     $players = @{}
@@ -431,24 +566,330 @@ function Show-MatchDetail([string]$key) {
             if ($u.id -like 'Player-*' -and $u.spec -ne '0' -and -not $players.ContainsKey($u.id)) { $players[$u.id] = $u }
         }
     }
-    [void]$sb.AppendLine('Players')
     foreach ($u in ($players.Values | Sort-Object { if ($_.affiliation -eq 1) { 0 } else { 1 } }, name)) {
-        $mark = if ($u.affiliation -eq 1) { '  (you)' } else { '' }
-        [void]$sb.AppendLine(('  {0,-34} {1}{2}' -f $u.name, (Spec-Name $u.spec), $mark))
+        $you = if ($u.affiliation -eq 1) { " <span style='color:#C8952C'>YOU</span>" } else { '' }
+        [void]$sb.Append("<tr><td><b>$(& $enc (Short-Name $u.name))</b>$you</td><td class='muted'>$(& $enc (Spec-Name $u.spec))</td></tr>")
     }
-    [void]$sb.AppendLine('')
-
-    [void]$sb.AppendLine($(if ($rounds.Count -gt 1) { 'Rounds' } else { 'Result' }))
+    [void]$sb.Append('</table><p>')
     $i = 0
     foreach ($r in $rounds) {
         $i++
-        $res = if ($r.result -eq 3) { 'Won ' } elseif ($r.result -eq 2) { 'Lost' } else { '?   ' }
-        $label = if ($r.sequenceNumber) { "Round $($r.sequenceNumber)" } else { "Game" }
-        [void]$sb.AppendLine(('  {0,-9} {1}  {2}' -f $label, $res, (Format-Duration $r.durationInSeconds)))
+        $res = if ($r.result -eq 3) { "<b style='color:#86efac'>Won</b>" } elseif ($r.result -eq 2) { "<b style='color:#fca5a5'>Lost</b>" } else { '?' }
+        $label = if ($rounds.Count -gt 1) { "Round $i" } else { 'Game' }
+        [void]$sb.Append("$label &nbsp;$res&nbsp; <span class='muted'>$(Format-Duration $r.durationInSeconds)</span><br>")
     }
-    [void]$sb.AppendLine('')
-    [void]$sb.AppendLine("Archive id: $($first.id)$(if ($first.lobbyId) { "   lobby: $($first.lobbyId)" })")
-    $script:DetailBox.Text = $sb.ToString()
+    [void]$sb.Append('</p>')
+    Show-Html (Get-PlainPage $sb.ToString())
+}
+
+# --- Notes -------------------------------------------------------------------
+# notes.json holds every note and mark: when it was written (the machine's clock, which is the
+# clock WoW writes into the log), the round it was written in when the panel knew it
+# (`roundStart`, the ARENA_MATCH_START time), and the text. wow:game-cards puts each on its game.
+
+function Load-Notes {
+    $script:Notes = New-Object System.Collections.ArrayList
+    if (-not (Test-Path $script:NotesFile)) { return }
+    try {
+        $j = Get-Content $script:NotesFile -Raw -Encoding UTF8 | ConvertFrom-Json
+        foreach ($n in @($j.notes)) { if ($n) { [void]$script:Notes.Add($n) } }
+    } catch {
+        Write-Activity "Could not read your notes file: $($_.Exception.Message)"
+    }
+}
+
+function Save-Notes {
+    $json = @{ notes = @($script:Notes) } | ConvertTo-Json -Depth 4
+    [IO.File]::WriteAllText($script:NotesFile, $json, (New-Object System.Text.UTF8Encoding($false)))
+    $script:NotesDirty = $true
+}
+
+function Add-Note([string]$kind, [string]$text, [datetime]$at) {
+    $n = [pscustomobject]@{
+        id = [guid]::NewGuid().ToString('N')
+        at = $at.ToString('yyyy-MM-dd HH:mm:ss')
+        roundStart = $script:Live.RoundStart
+        visit = $script:Live.Visit
+        zone = $script:Live.Zone
+        bracket = $script:Live.Bracket
+        round = $script:Live.Round
+        kind = $kind
+        text = $text
+    }
+    [void]$script:Notes.Add($n)
+    Save-Notes
+    Update-LivePanel
+    return $n
+}
+
+# Notes written on the Matches page, away from a game. `game` puts a note on the selected game (its
+# lobby id, the same key the cards use); `kind = next` puts it on the first game that starts after
+# it was written, so it is waiting there when the next sync builds that game's card.
+function Add-PageNote([bool]$forNext) {
+    $text = $script:NoteBox.Text.Trim()
+    if (-not $text) { return }
+    $key = $null
+    if (-not $forNext) {
+        if (-not $script:MatchList.SelectedItems.Count) { Set-Status 'Pick a game first, or use For next game.'; return }
+        $key = [string]$script:MatchList.SelectedItems[0].Tag
+    }
+    $n = [pscustomobject]@{
+        id = [guid]::NewGuid().ToString('N')
+        at = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+        kind = $(if ($forNext) { 'next' } else { 'note' })
+        game = $key
+        text = $text
+    }
+    [void]$script:Notes.Add($n)
+    Save-Notes
+    $script:NoteBox.Text = ''
+    Write-Activity $(if ($forNext) { "Note for your next game: $text" } else { "Note added to the game: $text" })
+    Update-NoteBar
+    # Rebuild the cards now when nothing else is running; otherwise the timer does it when idle.
+    if (-not $script:Running -and $script:Steps.Count -eq 0 -and $script:Php -and $script:Live.State -ne 'live') {
+        $script:NotesDirty = $false
+        Add-CardsStep; Start-NextStep
+    }
+}
+
+# How many "next game" notes are still waiting: written after the newest game in the archive started.
+function Update-NoteBar {
+    if (-not $script:NoteWaiting) { return }
+    $newest = $script:NewestGame
+    $waiting = @($script:Notes | Where-Object {
+        $_.kind -eq 'next' -and (-not $newest -or [datetime]::ParseExact([string]$_.at, 'yyyy-MM-dd HH:mm:ss', $null) -gt $newest)
+    })
+    $script:NoteWaiting.Text = if ($waiting.Count) { "$($waiting.Count) waiting for your next game: " + (($waiting | ForEach-Object { $_.text }) -join ' | ') } else { '' }
+}
+
+# --- Live: the game you are in ------------------------------------------------
+# While WoW runs, the newest combat log is followed a second at a time. What it holds, measured on
+# real games (2026-10-01): logging starts as you zone in (ZONE_CHANGE, about a minute of prep, and
+# only your own team appears in it); ARENA_MATCH_START and every player's COMBATANT_INFO (team at
+# field 2, spec at field 25) are written as the gates open; every player had a name in some event
+# within five seconds of that in the last 12 games; a shuffle writes a START per round and one
+# ARENA_MATCH_END for the lobby. So the enemy cannot be shown in the prep room, only at the gates.
+
+$script:Live = @{ File = $null; Offset = 0; Carry = (New-Object byte[] 0); State = 'idle'; Zone = ''; Bracket = ''
+    Round = 0; RoundStart = $null; RoundStartAt = $null; Visit = $null; Players = [ordered]@{}; Unnamed = 0; Logger = $null
+    Changed = $false; Asked = @{}; LastGrowth = $null; EndedAt = $null }
+
+function Reset-LiveVisit([string]$zone, [datetime]$at) {
+    $script:LiveOpenedByHand = $false
+    $script:Live.State = 'prep'; $script:Live.Zone = $zone; $script:Live.Bracket = ''; $script:Live.Round = 0
+    $script:Live.RoundStart = $null; $script:Live.RoundStartAt = $null; $script:Live.Visit = $at.ToString('yyyy-MM-dd HH:mm:ss')
+    $script:Live.Players = [ordered]@{}; $script:Live.Unnamed = 0; $script:Live.Changed = $true
+}
+
+function ConvertFrom-LogTime([string]$line) {
+    $sep = $line.IndexOf('  ')
+    if ($sep -lt 10) { return $null }
+    $stamp = $line.Substring(0, $sep)
+    $dot = $stamp.IndexOf('.')
+    if ($dot -gt 0) { $stamp = $stamp.Substring(0, $dot) }
+    $t = [datetime]::MinValue
+    if ([datetime]::TryParseExact($stamp, 'M/d/yyyy H:mm:ss', [Globalization.CultureInfo]::InvariantCulture, 'None', [ref]$t)) { return $t }
+    return $null
+}
+
+# New bytes since last time, cut at the last whole line; the rest waits for the next read.
+function Read-LiveText {
+    $files = Get-CombatLogs
+    if (-not $files.Count) { return $null }
+    $f = $files[0]
+    if ($script:Live.File -ne $f.FullName) {
+        # A new session's file, or the app just started: catch up on the last megabyte, which
+        # holds a game already under way.
+        $script:Live.File = $f.FullName
+        $script:Live.Offset = [Math]::Max(0, $f.Length - 1MB)
+        $script:Live.Carry = New-Object byte[] 0
+    }
+    if ($f.Length -lt $script:Live.Offset) { $script:Live.Offset = 0 }
+    if ($f.Length -eq $script:Live.Offset) { return $null }
+
+    $fs = [IO.File]::Open($f.FullName, 'Open', 'Read', 'ReadWrite, Delete')
+    try {
+        $fs.Seek($script:Live.Offset, 'Begin') | Out-Null
+        $want = [int][Math]::Min($fs.Length - $script:Live.Offset, 8MB)
+        $buf = New-Object byte[] ($script:Live.Carry.Length + $want)
+        [Array]::Copy($script:Live.Carry, $buf, $script:Live.Carry.Length)
+        $read = $fs.Read($buf, $script:Live.Carry.Length, $want)
+        $script:Live.Offset += $read
+        # When WoW last wrote, not when this read: catching up after a restart is not a live game.
+        if ($read -gt 0) { $script:Live.LastGrowth = $f.LastWriteTime }
+    } finally { $fs.Dispose() }
+
+    $total = $script:Live.Carry.Length + $read
+    $cut = [Array]::LastIndexOf($buf, [byte]10, $total - 1)
+    if ($cut -lt 0) {
+        $script:Live.Carry = New-Object byte[] $total
+        [Array]::Copy($buf, $script:Live.Carry, $total)
+        return $null
+    }
+    $rest = $total - $cut - 1
+    $script:Live.Carry = New-Object byte[] $rest
+    if ($rest -gt 0) { [Array]::Copy($buf, $cut + 1, $script:Live.Carry, 0, $rest) }
+    return [Text.Encoding]::UTF8.GetString($buf, 0, $cut)
+}
+
+function Read-LiveLine([string]$line) {
+    $sep = $line.IndexOf('  ')
+    if ($sep -lt 0) { return }
+    $body = $line.Substring($sep + 2)
+    $L = $script:Live
+
+    if ($body.StartsWith('ZONE_CHANGE,')) {
+        $q1 = $body.IndexOf('"'); $q2 = $body.LastIndexOf('"')
+        $at = ConvertFrom-LogTime $line
+        if ($q2 -gt $q1 -and $at) { Reset-LiveVisit $body.Substring($q1 + 1, $q2 - $q1 - 1) $at }
+        return
+    }
+    if ($body.StartsWith('ARENA_MATCH_START,')) {
+        $f = $body.Split(',')
+        $at = ConvertFrom-LogTime $line
+        if (-not $at) { return }
+        if (-not $L.Visit) { Reset-LiveVisit '' $at }
+        $L.State = 'live'; $L.Bracket = ($f[3] -replace '^Rated ', ''); $L.Round++
+        $L.RoundStartAt = $at; $L.RoundStart = $at.ToString('yyyy-MM-dd HH:mm:ss')
+        $L.Players = [ordered]@{}; $L.Unnamed = 0; $L.Changed = $true
+        # Notes written in the prep room belong to the round that follows.
+        $moved = $false
+        foreach ($n in $script:Notes) {
+            if ($n.visit -eq $L.Visit -and -not $n.roundStart) { $n.roundStart = $L.RoundStart; $n.round = $L.Round; $n.bracket = $L.Bracket; $moved = $true }
+        }
+        if ($moved) { Save-Notes }
+        return
+    }
+    if ($body.StartsWith('COMBATANT_INFO,')) {
+        $f = $body.Split(',')
+        if ($f.Count -gt 25 -and -not $L.Players.Contains($f[1])) { $L.Players[$f[1]] = @{ Team = $f[2]; Spec = $f[25]; Name = $null }; $L.Unnamed++; $L.Changed = $true }
+        return
+    }
+    if ($body.StartsWith('ARENA_MATCH_END,')) { $L.State = 'ended'; $L.EndedAt = Get-Date; $L.Changed = $true; return }
+
+    # Ordinary events carry source and target as GUID, "name", flags: the players' names, and
+    # which player is you (affiliation "mine" is the lowest flag bit).
+    # Nothing left to learn from ordinary events once everyone is named: most lines stop here.
+    if ($L.Logger -and $L.Unnamed -le 0) { return }
+    $f = $body.Split(',')
+    if ($f.Count -lt 8) { return }
+    foreach ($ix in @(1, 5)) {
+        $guid = $f[$ix]
+        if (-not $guid.StartsWith('Player-')) { continue }
+        if ($L.Players.Contains($guid) -and -not $L.Players[$guid].Name) {
+            # WoW sometimes writes a player's name without the realm ("Dragonz", 2026-10-01). Only
+            # Name-Realm-Region can be looked up, so show the short one until the full one appears.
+            $n = $f[$ix + 1].Trim('"')
+            if ($n.Contains('-')) { $L.Players[$guid].Name = $n; $L.Unnamed--; $L.Changed = $true }
+            elseif (-not $L.Players[$guid].Short) { $L.Players[$guid].Short = $n; $L.Changed = $true }
+        }
+        if (-not $L.Logger -and $f[$ix + 2].StartsWith('0x')) {
+            try { if (([Convert]::ToInt32($f[$ix + 2].Substring(2), 16) -band 0xF) -eq 1) { $L.Logger = $guid; $L.Changed = $true } } catch { }
+        }
+    }
+}
+
+# How long the panel stays up once a game is over, and how long a silent log means it is over.
+$script:LiveLingerSeconds = 15
+$script:LiveSilenceSeconds = 90
+
+# The column is in use while something is half-written in the note box.
+function Test-LivePanelInUse {
+    return [bool]$script:NoteBox.Text.Trim()
+}
+
+# The panel goes once the game is over, unless you are writing in it. Over means: the lobby's
+# ARENA_MATCH_END was read, or the log has said nothing for LiveSilenceSeconds. The second is
+# needed because WoW holds back the last lines of a game (the END among them) and writes them only
+# later, often as the next arena starts (seen 2026-10-01: a game's lines stopped at 15:31:16 and
+# no END had been written three minutes on). A game in progress writes every second.
+function Close-LivePanelIfOver([bool]$wowRunning) {
+    if (-not $script:LiveShown -or $script:LiveOpenedByHand -or (Test-LivePanelInUse)) { return }
+    $L = $script:Live
+    $now = Get-Date
+    $over = (-not $wowRunning) -or
+        ($L.State -eq 'ended' -and $L.EndedAt -and ($now - $L.EndedAt).TotalSeconds -ge $script:LiveLingerSeconds) -or
+        ($L.State -in @('prep', 'live') -and $L.LastGrowth -and ($now - $L.LastGrowth).TotalSeconds -ge $script:LiveSilenceSeconds)
+    if ($over) {
+        # Not again for this visit; the next arena opens it as usual, and the tray menu brings it back.
+        $script:LiveDismissed = $L.Visit
+        Hide-LivePanel
+    }
+}
+
+function Update-Live {
+    if (-not $script:Settings.LivePanel) { return }
+    $wow = Test-WowRunning
+    Close-LivePanelIfOver $wow
+    if (-not $wow) { return }
+    $text = Read-LiveText
+    if ($text) { foreach ($line in $text.Split("`n")) { Read-LiveLine $line.TrimEnd("`r") } }
+
+    if ($script:Live.Changed) {
+        $script:Live.Changed = $false
+        $fresh = $script:Live.LastGrowth -and ((Get-Date) - $script:Live.LastGrowth).TotalSeconds -lt $script:LiveSilenceSeconds
+        if ($fresh -and $script:Live.State -in @('prep', 'live') -and $script:LiveDismissed -ne $script:Live.Visit) { Show-LivePanel $false }
+        Update-LivePanel
+        Request-LiveExperience
+    }
+    if ($script:LiveShown) { Update-LiveClock }
+}
+
+# Anyone in the game whose experience is not on file, looked up once each (about a second each).
+function Request-LiveExperience {
+    $names = @($script:Live.Players.Values | Where-Object { $_.Name -and -not $script:Experience.ContainsKey($_.Name) -and -not $script:Live.Asked.ContainsKey($_.Name) } | ForEach-Object { $_.Name })
+    if (-not $names.Count -or -not $script:Php) { return }
+    foreach ($n in $names) { $script:Live.Asked[$n] = $true }
+    Add-Step "Looking up $($names.Count) player(s) in this game" ('wow:experience ' + (($names | ForEach-Object { '"' + $_ + '"' }) -join ' ')) {
+        param($ok, $output, $data)
+        if (-not $ok) { return }
+        try {
+            $line = $output -split "`r?`n" | Where-Object { $_.StartsWith('{') } | Select-Object -Last 1
+            $j = $line | ConvertFrom-Json
+            foreach ($p in $j.PSObject.Properties) { $script:Experience[$p.Name] = $p.Value }
+            Update-LivePanel
+        } catch { }
+    }
+    Start-NextStep
+}
+
+# --- The hotkey ----------------------------------------------------------------
+# Ctrl+Shift+M from anywhere, WoW included, marks the moment. A hidden window owns the hotkey and
+# queues the time of each press; the timer turns them into marks.
+Add-Type -ReferencedAssemblies System.Windows.Forms -TypeDefinition @"
+using System;
+using System.Collections.Concurrent;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+public class MindCollectorHotkey : NativeWindow, IDisposable {
+    [DllImport("user32.dll")] static extern bool RegisterHotKey(IntPtr h, int id, uint mods, uint vk);
+    [DllImport("user32.dll")] static extern bool UnregisterHotKey(IntPtr h, int id);
+    public ConcurrentQueue<DateTime> Presses = new ConcurrentQueue<DateTime>();
+    public bool Registered;
+    public MindCollectorHotkey(uint mods, uint vk) {
+        CreateHandle(new CreateParams());
+        Registered = RegisterHotKey(Handle, 1, mods | 0x4000, vk);
+    }
+    protected override void WndProc(ref Message m) {
+        if (m.Msg == 0x0312) { Presses.Enqueue(DateTime.Now); }
+        base.WndProc(ref m);
+    }
+    public void Dispose() { UnregisterHotKey(Handle, 1); DestroyHandle(); }
+}
+public static class MindCollectorWin {
+    [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h, int cmd);
+    [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();
+}
+"@
+
+function Read-Hotkey {
+    if (-not $script:Hotkey) { return }
+    $t = [datetime]::MinValue
+    while ($script:Hotkey.Presses.TryDequeue([ref]$t)) {
+        [void](Add-Note 'mark' '' $t)
+        [System.Media.SystemSounds]::Asterisk.Play()
+        Write-Activity ("Marked a moment at {0:HH:mm:ss}" -f $t)
+    }
 }
 
 # --- Local site, for the full review ---------------------------------------
@@ -526,7 +967,7 @@ $appIcon = [Drawing.Icon]::FromHandle($bmp.GetHicon())
 $form = New-Object Windows.Forms.Form
 $form.Text = 'MindCollector Logs'
 $form.Icon = $appIcon
-$form.Size = New-Object Drawing.Size(980, 640)
+$form.Size = New-Object Drawing.Size(1500, 920)
 $form.MinimumSize = New-Object Drawing.Size(720, 460)
 $form.StartPosition = 'CenterScreen'
 $form.BackColor = $C.Bg
@@ -558,7 +999,8 @@ $body.Dock = 'Fill'; $body.Padding = New-Object Windows.Forms.Padding(16, 4, 16,
 $pageMatches = New-Object Windows.Forms.Panel
 $pageMatches.Dock = 'Fill'
 $split = New-Object Windows.Forms.SplitContainer
-$split.Dock = 'Fill'; $split.Orientation = 'Vertical'; $split.BackColor = $C.Line; $split.SplitterWidth = 4
+# List on the left, card on the right at full height, so a card is read without scrolling.
+$split.Dock = 'Fill'; $split.Orientation = 'Vertical'; $split.BackColor = $C.Line; $split.SplitterWidth = 4; $split.FixedPanel = 'Panel1'
 $script:MatchList = New-Object Windows.Forms.ListView
 $script:MatchList.Dock = 'Fill'; $script:MatchList.View = 'Details'; $script:MatchList.FullRowSelect = $true
 $script:MatchList.MultiSelect = $false; $script:MatchList.HideSelection = $false; $script:MatchList.BorderStyle = 'None'
@@ -566,12 +1008,34 @@ $script:MatchList.BackColor = $C.Panel; $script:MatchList.ForeColor = $C.Ink
 foreach ($col in @(@('Played', 125), @('Bracket', 90), @('Result', 52), @('You', 190), @('Length', 52), @('Rating', 52))) {
     [void]$script:MatchList.Columns.Add($col[0], $col[1])
 }
-$script:DetailBox = New-Object Windows.Forms.TextBox
-$script:DetailBox.Dock = 'Fill'; $script:DetailBox.Multiline = $true; $script:DetailBox.ReadOnly = $true; $script:DetailBox.ScrollBars = 'Vertical'
-$script:DetailBox.BackColor = $C.Raised; $script:DetailBox.ForeColor = $C.Ink; $script:DetailBox.Font = $fontMono; $script:DetailBox.BorderStyle = 'None'
-$script:DetailBox.Text = 'Pick a game to see who was in it and how each round went.'
+$script:CardView = New-Object Windows.Forms.WebBrowser
+$script:CardView.Dock = 'Fill'
+$script:CardView.ScriptErrorsSuppressed = $true
+$script:CardView.IsWebBrowserContextMenuEnabled = $false
+$script:CardView.AllowWebBrowserDrop = $false
+$script:CardView.WebBrowserShortcutsEnabled = $false
+$script:CardTab = $null
 $split.Panel1.Controls.Add($script:MatchList)
-$split.Panel2.Controls.Add($script:DetailBox)
+
+# Note bar under the card: write a note on the selected game, or one for the next game you play.
+$noteBar = New-Object Windows.Forms.Panel
+$noteBar.Dock = 'Bottom'; $noteBar.Height = 58; $noteBar.BackColor = $C.Panel; $noteBar.Padding = New-Object Windows.Forms.Padding(8, 6, 8, 4)
+$script:NoteBox = New-Object Windows.Forms.TextBox
+$script:NoteBox.Dock = 'Fill'; $script:NoteBox.BackColor = $C.Raised; $script:NoteBox.ForeColor = $C.Ink; $script:NoteBox.BorderStyle = 'FixedSingle'
+$noteButtons = New-Object Windows.Forms.FlowLayoutPanel
+$noteButtons.Dock = 'Right'; $noteButtons.AutoSize = $true; $noteButtons.WrapContents = $false; $noteButtons.Padding = New-Object Windows.Forms.Padding(6, 0, 0, 0)
+$btnNoteGame = New-Button 'Add to selected game' $true
+$btnNoteNext = New-Button 'For next game'
+$btnNoteGame.Margin = New-Object Windows.Forms.Padding(0, 0, 6, 0); $btnNoteNext.Margin = New-Object Windows.Forms.Padding(0)
+$noteButtons.Controls.AddRange(@($btnNoteGame, $btnNoteNext))
+$script:NoteWaiting = New-Object Windows.Forms.Label
+$script:NoteWaiting.Dock = 'Bottom'; $script:NoteWaiting.Height = 20; $script:NoteWaiting.ForeColor = $C.Gold; $script:NoteWaiting.TextAlign = 'MiddleLeft'; $script:NoteWaiting.AutoEllipsis = $true
+$noteRow = New-Object Windows.Forms.Panel
+$noteRow.Dock = 'Top'; $noteRow.Height = 28
+$noteRow.Controls.AddRange(@($script:NoteBox, $noteButtons))
+$noteBar.Controls.AddRange(@($noteRow, $script:NoteWaiting))
+
+$split.Panel2.Controls.AddRange(@($script:CardView, $noteBar))
 $script:MatchCount = New-Object Windows.Forms.Label
 $script:MatchCount.Dock = 'Bottom'; $script:MatchCount.Height = 24; $script:MatchCount.ForeColor = $C.Muted; $script:MatchCount.TextAlign = 'MiddleLeft'
 $pageMatches.Controls.AddRange(@($split, $script:MatchCount))
@@ -626,6 +1090,7 @@ function New-Check([string]$text, [bool]$checked) {
 }
 $chkAuto = New-Check 'Read new games automatically when an arena ends' $script:Settings.AutoSync
 $chkMove = New-Check "Move each combat log out of WoW's folder once it is archived (after WoW closes)" $script:Settings.MoveAfterArchive
+$chkLive = New-Check 'Show the game you are in beside the matches, to take notes (Ctrl+Shift+M marks a moment)' $script:Settings.LivePanel
 $chkStartup = New-Check 'Start MindCollector Logs when Windows starts (in the tray)' (Test-Path $script:StartupLink)
 
 $btnSave = New-Button 'Save settings' $true
@@ -645,6 +1110,8 @@ $btnSave.Add_Click({
         $script:Settings.MoveTo = $txtMove.Text
         $script:Settings.AutoSync = $chkAuto.Checked
         $script:Settings.MoveAfterArchive = $chkMove.Checked
+        $script:Settings.LivePanel = $chkLive.Checked
+        if (-not $chkLive.Checked) { Hide-LivePanel }
         Save-Settings
         Set-StartWithWindows $chkStartup.Checked
         Write-Activity 'Settings saved.'
@@ -687,6 +1154,7 @@ $menu = New-Object Windows.Forms.ContextMenuStrip
 [void]$menu.Items.Add('Open', $null, { $form.Show(); $form.WindowState = 'Normal'; $form.Activate() })
 [void]$menu.Items.Add('Sync now', $null, { Invoke-SyncPass $true })
 [void]$menu.Items.Add('Open Match Review', $null, { Open-Review })
+[void]$menu.Items.Add('Show this game', $null, { $script:LiveDismissed = $null; $script:LiveOpenedByHand = $true; Update-LivePanel; Show-LivePanel $true })
 [void]$menu.Items.Add('-')
 [void]$menu.Items.Add('Exit', $null, { $script:Exiting = $true; [Windows.Forms.Application]::Exit() })
 $script:Tray.ContextMenuStrip = $menu
@@ -697,6 +1165,202 @@ function Show-Balloon([string]$title, [string]$text) {
     $script:Tray.BalloonTipText = $text
     $script:Tray.ShowBalloonTip(5000)
 }
+
+# --- The live panel ------------------------------------------------------------
+# A small window that stays on top of WoW (in Windowed or Windowed Fullscreen mode; nothing can sit
+# over exclusive fullscreen). It appears WITHOUT taking focus, so it never pulls you out of the
+# game: click it when you want to type, click back into WoW to play.
+
+# Class colours, from config/wow_classes.php.
+$script:ClassColors = @{
+    'Warrior' = '#C79C6E'; 'Paladin' = '#F58CBA'; 'Hunter' = '#ABD473'; 'Rogue' = '#FFF569'; 'Priest' = '#FFFFFF'
+    'Death Knight' = '#C41F3B'; 'Shaman' = '#0070DE'; 'Mage' = '#69CCF0'; 'Warlock' = '#9482C9'; 'Monk' = '#00FF96'
+    'Druid' = '#FF7D0A'; 'Demon Hunter' = '#A330C9'; 'Evoker' = '#33937F'
+}
+
+function Get-SpecColor([string]$specId) {
+    $name = Spec-Name $specId
+    foreach ($k in $script:ClassColors.Keys) { if ($name.EndsWith($k)) { return [Drawing.ColorTranslator]::FromHtml($script:ClassColors[$k]) } }
+    return $C.Muted
+}
+
+# "This game" is a column on the Matches page, not a window of its own: it used to be a separate
+# always-on-top panel that opened over WoW at every arena, which got in the way (2026-10-02). The
+# main window can sit on another screen; this column shows while you are in an arena and never
+# takes focus. Notes are typed in the Matches page's one note box.
+$script:LivePane = New-Object Windows.Forms.Panel
+$script:LivePane.Dock = 'Right'; $script:LivePane.Width = 380; $script:LivePane.Visible = $false
+$script:LivePane.BackColor = $C.Panel; $script:LivePane.ForeColor = $C.Ink
+$script:LivePane.Padding = New-Object Windows.Forms.Padding(12, 10, 12, 12)
+
+$script:LiveTitle = New-Object Windows.Forms.Label
+$script:LiveTitle.Dock = 'Top'; $script:LiveTitle.Height = 26; $script:LiveTitle.ForeColor = $C.Gold
+$script:LiveTitle.Font = New-Object Drawing.Font('Segoe UI Semibold', 12)
+$script:LiveClock = New-Object Windows.Forms.Label
+$script:LiveClock.Dock = 'Top'; $script:LiveClock.Height = 22; $script:LiveClock.ForeColor = $C.Muted
+
+$script:LivePlayers = New-Object Windows.Forms.ListView
+$script:LivePlayers.Dock = 'Top'; $script:LivePlayers.Height = 232; $script:LivePlayers.View = 'Details'
+$script:LivePlayers.HeaderStyle = 'Nonclickable'; $script:LivePlayers.FullRowSelect = $true; $script:LivePlayers.BorderStyle = 'None'
+$script:LivePlayers.BackColor = $C.Raised; $script:LivePlayers.ForeColor = $C.Ink
+foreach ($col in @(@('Player', 112), @('Spec', 150), @('Glad', 42), @('Best', 52))) { [void]$script:LivePlayers.Columns.Add($col[0], $col[1]) }
+$script:GroupUs = New-Object Windows.Forms.ListViewGroup('Your team')
+$script:GroupThem = New-Object Windows.Forms.ListViewGroup('Them')
+[void]$script:LivePlayers.Groups.Add($script:GroupUs)
+[void]$script:LivePlayers.Groups.Add($script:GroupThem)
+
+$notesLabel = New-Object Windows.Forms.Label
+$notesLabel.Text = 'Notes'; $notesLabel.Dock = 'Top'; $notesLabel.Height = 26; $notesLabel.ForeColor = $C.Muted
+$notesLabel.Padding = New-Object Windows.Forms.Padding(0, 8, 0, 0)
+
+$script:LiveNotes = New-Object Windows.Forms.ListBox
+$script:LiveNotes.Dock = 'Fill'; $script:LiveNotes.BorderStyle = 'None'; $script:LiveNotes.IntegralHeight = $false
+$script:LiveNotes.BackColor = $C.Raised; $script:LiveNotes.ForeColor = $C.Ink; $script:LiveNotes.HorizontalScrollbar = $true
+
+# The note box under the card is this column's input too (Submit-LiveNote reads $script:LiveInput).
+$script:LiveInput = $script:NoteBox
+$hint = New-Object Windows.Forms.Label
+$hint.Dock = 'Bottom'; $hint.Height = 40; $hint.Padding = New-Object Windows.Forms.Padding(0, 6, 0, 0); $hint.ForeColor = $C.Muted; $hint.Font = New-Object Drawing.Font('Segoe UI', 8.5)
+$hint.Text = 'Type in the note box and press Enter. Ctrl+Shift+M marks a moment from in game; pick a mark here to write about it.'
+$liveClose = New-Object Windows.Forms.LinkLabel
+$liveClose.Text = 'Hide'; $liveClose.Dock = 'Top'; $liveClose.Height = 18; $liveClose.TextAlign = 'MiddleRight'
+$liveClose.LinkColor = $C.Muted; $liveClose.ActiveLinkColor = $C.Gold
+
+$script:LivePane.Controls.AddRange(@($script:LiveNotes, $notesLabel, $script:LivePlayers, $script:LiveClock, $script:LiveTitle, $liveClose, $hint))
+$pageMatches.Controls.Add($script:LivePane)
+
+# Shown and hidden in place; it never takes focus, so the window can sit on another screen.
+$script:LiveShown = $false
+function Show-LivePanel([bool]$activate) {
+    $script:LivePane.Visible = $true
+    $script:LiveShown = $true
+    Update-NoteTarget
+    if ($activate) { $form.Show(); $form.WindowState = 'Normal'; Show-Page 'Matches'; $form.Activate(); $script:NoteBox.Focus() }
+}
+
+function Hide-LivePanel {
+    $script:LivePane.Visible = $false
+    $script:LiveShown = $false
+    Update-NoteTarget
+}
+
+# Where the note box writes: the round you are in while this game's column shows, otherwise the
+# selected game. The button says which.
+function Test-NotesGoLive { return $script:LiveShown -and $script:Live.Visit -and $script:Live.State -in @('prep', 'live', 'ended') }
+function Update-NoteTarget {
+    if (-not $btnNoteGame) { return }
+    $sel = Get-SelectedLiveNote
+    $btnNoteGame.Text = if (Test-NotesGoLive) {
+        if ($sel -and $sel.kind -eq 'mark') { 'Write on mark' } elseif ($script:Live.Round -gt 1 -or $script:Live.Bracket -like '*Shuffle*') { "Add to round $($script:Live.Round)" } else { 'Add to this game' }
+    } else { 'Add to selected game' }
+}
+
+function Submit-Note {
+    if (Test-NotesGoLive) { Submit-LiveNote } else { Add-PageNote $false }
+}
+
+function Format-NoteClock($n) {
+    if (-not $n.roundStart) { return 'prep' }
+    $secs = ([datetime]::ParseExact($n.at, 'yyyy-MM-dd HH:mm:ss', $null) - [datetime]::ParseExact($n.roundStart, 'yyyy-MM-dd HH:mm:ss', $null)).TotalSeconds
+    if ($secs -lt 0) { return 'prep' }
+    return Format-Duration ([int]$secs)
+}
+
+function Update-LiveClock {
+    $L = $script:Live
+    $script:LiveClock.Text = switch ($L.State) {
+        'prep' { 'In the prep room. The other team shows when the gates open.' }
+        'live' { if ($L.RoundStartAt) { 'Gates opened ' + (Format-Duration ([int]((Get-Date) - $L.RoundStartAt).TotalSeconds)) + ' ago' } else { '' } }
+        'ended' { 'Game over. Add anything you want to remember.' }
+        default { 'Waiting for an arena game.' }
+    }
+}
+
+function Update-LivePanel {
+    if (-not $script:LivePane) { return }
+    $L = $script:Live
+    $bits = @($L.Zone, $L.Bracket) | Where-Object { $_ }
+    if ($L.Round -gt 1 -or $L.Bracket -like '*Shuffle*') { $bits += "Round $($L.Round)" }
+    $script:LiveTitle.Text = $(if ($bits) { $bits -join '  -  ' } else { 'This game' })
+    Update-LiveClock
+
+    # Players: your team (whoever shares your arena team id) first, each in their class colour.
+    $script:LivePlayers.BeginUpdate()
+    $script:LivePlayers.Items.Clear()
+    $myTeam = if ($L.Logger -and $L.Players.Contains($L.Logger)) { $L.Players[$L.Logger].Team } else { $null }
+    foreach ($guid in $L.Players.Keys) {
+        $p = $L.Players[$guid]
+        $shown = if ($p.Name) { Short-Name $p.Name } elseif ($p.Short) { $p.Short } else { $null }
+        $name = if ($shown) { $shown + $(if ($guid -eq $L.Logger) { ' (you)' } else { '' }) } else { '...' }
+        $x = if ($p.Name) { $script:Experience[$p.Name] } else { $null }
+        $glad = ''; $best = ''
+        if ($x -and $x.found) { $glad = [string]$x.gladSeasons; $best = $(if ($x.exp3v3) { [string]$x.exp3v3 } else { '' }) }
+        elseif ($x) { $best = 'none' }
+        elseif ($p.Name) { $best = '...' }
+        $item = New-Object Windows.Forms.ListViewItem($name)
+        [void]$item.SubItems.Add((Spec-Name $p.Spec))
+        [void]$item.SubItems.Add($glad)
+        [void]$item.SubItems.Add($best)
+        $item.ForeColor = Get-SpecColor $p.Spec
+        $item.Group = $(if ($myTeam -ne $null -and $p.Team -eq $myTeam) { $script:GroupUs } else { $script:GroupThem })
+        [void]$script:LivePlayers.Items.Add($item)
+    }
+    $script:LivePlayers.EndUpdate()
+
+    # This visit's notes, newest last.
+    # The list shows text; $script:LiveNoteRows holds the note behind each line, by index.
+    $keep = $(if ($script:LiveNotes.SelectedIndex -ge 0) { $script:LiveNoteRows[$script:LiveNotes.SelectedIndex].id } else { $null })
+    $script:Rebuilding = $true
+    $script:LiveNotes.BeginUpdate()
+    $script:LiveNotes.Items.Clear()
+    $script:LiveNoteRows = New-Object System.Collections.ArrayList
+    foreach ($n in $script:Notes) {
+        if (-not $L.Visit -or $n.visit -ne $L.Visit) { continue }
+        $label = if ($n.kind -eq 'mark') { '[mark] ' + $(if ($n.text) { $n.text } else { '(write about it)' }) } else { $n.text }
+        $round = if ($n.round -and ($L.Round -gt 1 -or $L.Bracket -like '*Shuffle*')) { "R$($n.round) " } else { '' }
+        $ix = $script:LiveNotes.Items.Add(('{0}{1,-5} {2}' -f $round, (Format-NoteClock $n), $label))
+        [void]$script:LiveNoteRows.Add($n)
+        if ($keep -and $n.id -eq $keep) { $script:LiveNotes.SelectedIndex = $ix }
+    }
+    $script:LiveNotes.EndUpdate()
+    $script:Rebuilding = $false
+    Update-NoteTarget
+}
+
+# Enter or the button: write onto the selected mark if one is picked, otherwise a new note.
+function Submit-LiveNote {
+    $text = $script:LiveInput.Text.Trim()
+    if (-not $text) { return }
+    $sel = Get-SelectedLiveNote
+    if ($sel -and $sel.kind -eq 'mark') {
+        $sel.text = $text
+        Save-Notes
+    } else {
+        [void](Add-Note 'note' $text (Get-Date))
+    }
+    $script:LiveInput.Text = ''
+    $script:LiveNotes.ClearSelected()
+    Update-LivePanel
+}
+
+function Get-SelectedLiveNote {
+    $i = $script:LiveNotes.SelectedIndex
+    if ($i -lt 0 -or -not $script:LiveNoteRows -or $i -ge $script:LiveNoteRows.Count) { return $null }
+    return $script:LiveNoteRows[$i]
+}
+
+$script:LiveNotes.Add_SelectedIndexChanged({
+    if ($script:Rebuilding) { return }
+    $sel = Get-SelectedLiveNote
+    Update-NoteTarget
+    if ($sel -and $sel.kind -eq 'mark') { $script:LiveInput.Text = $sel.text; $script:LiveInput.Focus() }
+})
+# Hide: not again for this arena visit; the next arena shows it as usual, the tray menu brings it back.
+$liveClose.Add_LinkClicked({
+    $script:LiveDismissed = $script:Live.Visit
+    $script:LiveOpenedByHand = $false
+    Hide-LivePanel
+})
 
 # Closing the window keeps it watching in the tray; Exit in the tray menu quits.
 $script:Exiting = $false
@@ -714,6 +1378,13 @@ $form.Add_FormClosing({
 
 $btnSync.Add_Click({ Invoke-SyncPass $true })
 $btnOpen.Add_Click({ Open-Review })
+$btnNoteGame.Add_Click({ Submit-Note })
+$btnNoteNext.Add_Click({ Add-PageNote $true })
+# Enter writes where the main button says: the round you are in, a picked mark, or the selected game.
+$script:NoteBox.Add_KeyDown({
+    param($s, $e)
+    if ($e.KeyCode -eq 'Enter') { $e.SuppressKeyPress = $true; Submit-Note }
+})
 $script:MatchList.Add_SelectedIndexChanged({
     if ($script:MatchList.SelectedItems.Count) { Show-MatchDetail $script:MatchList.SelectedItems[0].Tag }
 })
@@ -725,8 +1396,15 @@ $timer.Interval = 1000
 $timer.Add_Tick({
     try {
         Poll-Step
+        Read-Hotkey
+        Update-Live
         $script:Tick++
         if ($script:Tick % 10 -eq 0 -and $script:Settings.AutoSync) { Invoke-SyncPass $false }
+        # A note added after its game was synced: rebuild the cards once things are quiet.
+        if ($script:Tick % 10 -eq 5 -and $script:NotesDirty -and $script:Live.State -ne 'live' -and -not $script:Running -and $script:Steps.Count -eq 0) {
+            $script:NotesDirty = $false
+            Add-CardsStep; Start-NextStep
+        }
     } catch {
         $script:Running = $null
         Write-Activity "Error: $($_.Exception.Message)"
@@ -734,7 +1412,12 @@ $timer.Add_Tick({
 })
 
 $form.Add_Shown({
-    if (-not $script:Laidout) { $split.SplitterDistance = [int]($split.Width * 0.64); $script:Laidout = $true }
+    if (-not $script:Laidout) {
+        # Wide enough for the list's columns; the card takes the rest.
+        $split.SplitterDistance = [Math]::Min(580, [int]($split.Width * 0.42))
+        $script:Laidout = $true
+        Show-Html (Get-PlainPage "<p class='muted'>Pick a game to see who you played, how each death happened, and what to look at.</p>")
+    }
 })
 
 # The message loop runs without owning the form, so the window can come and go while the
@@ -742,7 +1425,14 @@ $form.Add_Shown({
 Show-Page 'Matches'
 Set-Status (Get-IdleStatus)
 Write-Activity "Started. Repo: $($script:Repo)"
+Load-Notes
+$script:NotesDirty = $false
 Load-Matches
+Load-Cards
+$script:Hotkey = New-Object MindCollectorHotkey(6, 0x4D)   # Ctrl (2) + Shift (4) + M
+if (-not $script:Hotkey.Registered) { Write-Activity 'Ctrl+Shift+M is taken by another program, so marking a moment from in game is off.' }
+# First run, or the cards file was cleared: build it once from what is already synced.
+if ($script:CardsStale -and $script:Php) { Add-CardsStep; Start-NextStep }
 $timer.Start()
 if (-not $Minimized) { $form.Show() }
 
@@ -750,6 +1440,7 @@ try {
     [Windows.Forms.Application]::Run()
 } finally {
     $timer.Stop()
+    if ($script:Hotkey) { $script:Hotkey.Dispose() }
     $script:Tray.Visible = $false
     $script:Tray.Dispose()
     if ($script:Server -and -not $script:Server.HasExited) { Stop-Process -Id $script:Server.Id -Force -ErrorAction SilentlyContinue }

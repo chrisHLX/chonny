@@ -32,6 +32,12 @@ use Illuminate\Support\Facades\File;
  */
 class SyncArena extends Command
 {
+    /** Experience is looked up only for games this recent (see analyse()). */
+    private const EXPERIENCE_RECENT_DAYS = 14;
+
+    /** At most this many Blizzard lookups (about a second each) per sync. */
+    private const EXPERIENCE_PER_RUN = 30;
+
     protected $signature = 'wow:sync
         {path? : A combat log or a directory of them. Defaults to WOW_COMBATLOG_PATH.}
         {--user= : Whose games these are (id or email). Defaults to the only user, if there is one.}
@@ -218,12 +224,20 @@ class SyncArena extends Command
             return;
         }
 
-        // Everyone on every reviewed game, so the game list's averages fill in too.
+        // The players of recent games, newest first, a bounded number per run. It used to be everyone
+        // on every reviewed game, which looked fine until the 7-day cache lapsed on the first week of
+        // games (2026-10-02): 424 players at about a second each, one sync blocking the desktop
+        // app's queue for seven minutes. Older games keep what their cards remembered
+        // (wow:game-cards), and a gap left by the cap fills on the next sync.
         $experience = app(PlayerExperienceService::class);
-        $names = ArenaReview::where('user_id', $user->id)->get()
+        $names = ArenaReview::where('user_id', $user->id)
+            ->where('played_at', '>=', now()->subDays(self::EXPERIENCE_RECENT_DAYS))
+            ->orderByDesc('played_at')
+            ->get()
             ->flatMap(fn (ArenaReview $r) => array_column($r->payload['players'] ?? [], 'name'))
             ->unique()
             ->filter(fn ($n) => $experience->cached($n) === null)
+            ->take(self::EXPERIENCE_PER_RUN)
             ->values();
 
         if ($names->isEmpty()) {

@@ -22,6 +22,11 @@ see its README). It reads each game in when the arena ends, moves WoW's logs to
 `D:\MindCollector\wow-logs` once they are fully read and WoW has let go of them, lists the
 archive, and sets the folders. The paragraphs below describe the manual path it wraps.
 
+Added 2026-10-01: each game has a card (`wow:game-cards`, `GameCardService`). The card shows
+opponents' experience, how each death happened, both sides' goes, and the loss rules. During
+play, a panel on top of WoW takes notes, and Ctrl+Shift+M marks a moment. Notes land on the
+game's card.
+
 ## How it works today, for reference
 
 - The `MindCollectorArenaLog` addon only turns combat logging on when an arena starts and off

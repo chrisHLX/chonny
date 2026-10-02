@@ -1338,6 +1338,82 @@ Meowzetzan 9/6/11/10/16, Sufferpoints 0/5/9/9/18, Wokcats 2/8/15/7/24, **Zyhsul 
   neither Apex nor Blood Spattered, do no more damage than Crawlordx. Worth a session of games on
   it, measured the same way.
 
+### 1 Oct: Skylake with LFG partners, against the same Skylake with a fixed team
+
+Chriso's question: was the 1–7 LFG session today his own play, after going 28–18 with a fixed
+Feral/Mage team on 30 Sep? Measured with `sessionread.php` and `specread.php`. The full write-up,
+with the question as he asked it, is `docs/reviews/2026-10-01-disc-lfg-session.md`.
+
+| | Fixed team, 30 Sep | LFG, 30 Sep | LFG, 1 Oct |
+|---|---|---|---|
+| 3v3 games | 46, 28–18 | 14, 5–9 | 8, 1–7 |
+| Enemy Gladiator seasons per game | 7.9 | 4.4 | 14.4 |
+| Their goes that killed one of us | 19% | 42% | 56% |
+| Skylake died first | 0 | 0 | 0 |
+| Last Pain Suppression before our first death, median | 43s | 44s | 38s |
+| Medallion available at our first death | 28% | 0% | 29% |
+
+- **His own measures barely move between groups** (lockout a minute, casts a minute, idle time,
+  Pain Suppression and Medallion timing). The team and the opponents moved: today's enemies had
+  nearly twice the Gladiator seasons.
+- **Two measures did move, and both fit "I didn't know when the go was":** his offensive cooldowns
+  had a teammate's within 6s 60% of the time, against 74% with the fixed team; he was locked out
+  within a second of pressing one 40% of the time, against 22%. His median first Medallion was at 37
+  seconds, against 78.
+- **The presses were needed; the stretch after them is where games went.** Checked with
+  `warrant.php` after Chriso objected that holding them would have lost the teammate sooner:
+  - In today's losses, 11 of his 13 defensive presses went on a teammate at 35% or below, or with
+    5s or less to live, inside an enemy go. None was weak, against 5 of 44 in the fixed team's
+    losses.
+  - His Medallions mostly broke Freezing Trap, Fear, Sleep Walk or Strangulate during their go.
+
+  With both Pain Suppression charges spent (modelled as two charges, 180s each, an upper bound),
+  enemy goes killed one of us 25% of the time with the fixed team, 67% with LFG on 30 Sep, and 86%
+  (6 of 7) today. With a charge left: 16%, 33%, 36%. Today's teams also kept attacking almost as
+  often in that stretch (1.3 goes a minute against 1.5). The first version of the review said to hold
+  the second charge; the data says play the no-charge stretch for time instead. A lead on 8 games.
+
+### 2 Oct: Disc talents, the Shadow Word: Pain build against the Radiance build
+
+Chriso's hypothesis: the Shadow Word: Pain talents give a lot more healing than the Radiance ones,
+because he spends fewer globals keeping someone healthy. He swapped mid-lobby on 2 Oct (shuffle
+`c8c8db8b…`):
+- **Rounds 1–3 (lost, lost, lost):** Harsh Discipline ×2 and Enduring Luminescence.
+- **Round 4 (lost):** switched to Encroaching Shadows, Revel in Darkness and Shield Discipline.
+- **Rounds 5–6 (won, won):** also Improved Purify and Inner Focus, in place of Mind Control and Weal
+  and Woe.
+
+His three Radiance-build 3v3 games were the 15:39–15:47 losses on 1 Oct. Measured with
+`specread.php` (new talent filter) and the lobby's stored per-round output. Same six players in every
+round, re-dealt.
+
+| Per minute alive, same lobby | Rounds 1–3, Radiance | Rounds 4–6, Shadow Word: Pain |
+|---|---|---|
+| Atonement healing | 1,154k | **1,682k (+46%)** |
+| Penance healing | 730k | 649k |
+| Shadow Word: Pain damage | 163k | **285k (+75%)**, on 1.55 enemies on average against 0.91 |
+| His damage onto enemies | 631k | **899k (+42%)** |
+| Casts | 25.2 | 24.8 |
+| Direct-heal casts (Shield, Radiance, Shadow Mend, Plea) | 7.4 | 8.0 |
+| His heal + absorb, against his team's damage taken | 110% | 112% |
+| Enemy team's damage taken, per second | 92.9k | **118.3k (+27%)** |
+
+- **"A lot more healing": not in total.** Atonement healing rose by nearly half, but Penance healing
+  and shield absorbs fell. Heal plus absorb against the damage his team took is the same (110% and
+  112%).
+- **"Fewer globals keeping someone healthy": not supported.** He pressed as many buttons, and slightly
+  more direct heals.
+- **What did change is damage.** The same globals did 42% more damage and still healed through
+  Atonement: 59% of his healing came from Atonement, against 47%. His side's enemies took 27% more
+  damage a second, and their healer healed more. That fits the Brain's hypothesis that damage spends
+  the other healer's globals (`{#damage}`).
+- **Not across all players.** Other Disc Priests in the archive show no healing gain from the same
+  talents: in 3v3, Atonement 909k with them against 1,073k without. His Shadow Word: Pain covers more
+  enemies than theirs (1.24 against 0.95), so the gain is in how he plays the build, not in the build
+  alone.
+- **Results cannot settle it.** 2–1 against 0–3 inside the lobby with teammates re-dealt each round,
+  and 0–6 over his six Radiance games in all. A lead.
+
 ### One hit, explained
 
 19:51 on 26 Sep, Unholy DK → Retribution Paladin, `Dread Plague (Erupt)`, **538,666**, overkill

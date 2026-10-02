@@ -61,12 +61,22 @@ $detail = array_values(array_filter(array_slice($argv, 1), fn ($a) => $a !== '--
 define('STRICT', in_array('--strict', $argv, true));
 // --only=19:26,19:47,... restricts every measure to those games (e.g. one level of play).
 $only = null;
+// --mate=Name: games with this teammate (default the 26 Sep team's Hozzaarr; * = any teammate).
+// --date=YYYY-MM-DD: only games started on that date (local clock, as the log names it).
+$mate = 'Hozzaarr';
+$onDate = null;
 foreach ($argv as $a) {
     if (str_starts_with($a, '--only=')) {
         $only = explode(',', substr($a, 7));
     }
+    if (str_starts_with($a, '--mate=')) {
+        $mate = substr($a, 7);
+    }
+    if (str_starts_with($a, '--date=')) {
+        $onDate = substr($a, 7);
+    }
 }
-$detail = array_values(array_filter($detail, fn ($a) => ! str_starts_with($a, '--only=')));
+$detail = array_values(array_filter($detail, fn ($a) => ! preg_match('/^--(only|mate|date)=/', $a)));
 $svc = app(ArenaMomentService::class);
 $ref = new ReflectionClass($svc);
 $rosterFn = $ref->getMethod('roster');
@@ -100,7 +110,10 @@ foreach (glob(ARCHIVE.'/metadata/*.json') as $file) {
         continue;
     }
     $names = array_column(array_filter($m['units'], fn ($u) => str_starts_with($u['id'], 'Player-')), 'name');
-    if (! preg_grep('/^Hozzaarr-/', $names) || ! preg_grep('/^'.ME.'-/', $names)) {
+    if (($mate !== '*' && ! preg_grep('/^'.preg_quote($mate, '/').'-/', $names)) || ! preg_grep('/^'.ME.'-/', $names)) {
+        continue;
+    }
+    if ($onDate !== null && date('Y-m-d', intdiv($m['startTime'], 1000) + CLOCK_SHIFT) !== $onDate) {
         continue;
     }
     $games[] = $m;

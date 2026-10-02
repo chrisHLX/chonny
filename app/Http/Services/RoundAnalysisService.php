@@ -32,8 +32,11 @@ class RoundAnalysisService
      * ArenaMomentService::AURA_IS_NOT_THE_CONTROL). Every lockout figure in a game against a Rogue
      * who pressed Garrote was too high before this: an analysis stored at 3 or lower from such a
      * game overstates it and can call a healer locked out at a death when they were not.
+     * 5 (2026-10-02): `breakdown` (each player's damage, healing and absorbs by ability, and time
+     * not pressing anything) and `checks` (offensive cooldowns left ready, defensives put on an
+     * immune teammate). Older analyses simply lack both; nothing else changed.
      */
-    public const VERSION = 4;
+    public const VERSION = 5;
 
     /** Crowd control that takes a player out: a slow or root does not stop a healer healing. */
     private const LOCKOUT = ['Stun', 'Silence', 'Disorient', 'Incapacitate'];
@@ -57,6 +60,15 @@ class RoundAnalysisService
     private const PEAK = 6.0;
 
     private const DAMAGE_EVENTS = ['SPELL_DAMAGE', 'SPELL_PERIODIC_DAMAGE', 'RANGE_DAMAGE', 'SWING_DAMAGE_LANDED'];
+
+    /** A gap between two casts longer than this counts as not pressing anything (specread.php's GAP). */
+    private const IDLE_GAP = 2.5;
+
+    /**
+     * Full immunities: a damage reduction or absorb put on top of one of these removes nothing.
+     * Blessing of Protection (physical) and Cloak of Shadows (magic) are partial, so they are not here.
+     */
+    private const IMMUNITIES = ['Ice Block', 'Divine Shield', 'Aspect of the Turtle', 'Netherwalk'];
 
     public function __construct(private ArenaMomentService $moments, private ArenaLogService $arena) {}
 
@@ -86,7 +98,7 @@ class RoundAnalysisService
         }
         unset($c);
 
-        [$dmg, $owner, $buffs, $interrupts, $end] = $this->secondPass($lines, $roster);
+        [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly] = $this->secondPass($lines, $roster);
         $credit = function (string $src) use ($roster, $owner) {
             for ($i = 0; $i < 3 && ! isset($roster[$src]) && isset($owner[$src]); $i++) {
                 $src = $owner[$src];
@@ -132,12 +144,19 @@ class RoundAnalysisService
             'overlaps' => $this->overlaps($tl, $buffs, $sideOf, $firstDeath),
             'kicks' => $this->kicks($interrupts, $sideOf, $credit, $healers, $goes),
             'lockout' => array_map(fn ($iv) => round($this->len($iv), 1), $locked),
+            'breakdown' => $this->breakdown($roster, $sideOf, $credit, array_merge($dmg, $swingOnly), $heals, $absorbs, $casts, $locked, $deaths, $metadata),
+            'checks' => $this->checks($tl, $roster, $sideOf, $deaths, $metadata, $this->overlaps($tl, $buffs, $sideOf, $firstDeath)),
         ];
     }
 
     // ------------------------------------------------------------------ reading
 
-    /** Damage with spell names, pet owners, buff auras and interrupts, on readTimeline's clock. */
+    /**
+     * Damage with spell names, pet owners, buff auras, interrupts, heals, absorbs and casts, on
+     * readTimeline's clock. Heal and absorb offsets are CombatantThroughputService's measured ones
+     * (amount -5 and overhealing -3 on a heal; shield caster -10, shield name -5 and absorbed -3 on
+     * SPELL_ABSORBED, checked on a 2 Oct line), read from the end of the line.
+     */
     private function secondPass(array $lines, array $roster): array
     {
         $t0 = null;
@@ -147,6 +166,15 @@ class RoundAnalysisService
         $open = [];
         $interrupts = [];
         $end = null;
+        $heals = [];
+        $absorbs = [];
+        $casts = [];
+        // Melee seen as SWING_DAMAGE only. $dmg reads SWING_DAMAGE_LANDED alone, which every measure
+        // above was checked against, so the extra hits go to the breakdown only. One hit is often
+        // logged as both events: collapsed on timestamp, source, target and amount, the way
+        // CombatantThroughputService does.
+        $landed = [];
+        $swingOnly = [];
 
         foreach ($lines as $line) {
             $s = $this->seconds($line);
@@ -174,6 +202,28 @@ class RoundAnalysisService
                 if (! str_starts_with($f[1], 'Player-') && str_starts_with($f[13] ?? '', 'Player-')) {
                     $owner[$f[1]] ??= $f[13];
                 }
+                if (isset($roster[$f[1]])) {
+                    $casts[$f[1]][] = $t;
+                }
+
+                continue;
+            }
+            if ($event === 'SPELL_HEAL' || $event === 'SPELL_PERIODIC_HEAL') {
+                $f = str_getcsv($body);
+                $amount = $f[count($f) - 5] ?? null;
+                $over = $f[count($f) - 3] ?? null;
+                if (isset($roster[$f[5]]) && is_numeric($amount) && is_numeric($over)) {
+                    $heals[] = ['src' => $f[1], 'dst' => $f[5], 'spell' => $f[10], 'eff' => (int) $amount - (int) $over, 'over' => (int) $over];
+                }
+
+                continue;
+            }
+            if ($event === 'SPELL_ABSORBED') {
+                $f = str_getcsv($body);
+                $amount = $f[count($f) - 3] ?? null;
+                if (isset($roster[$f[5]]) && is_numeric($amount)) {
+                    $absorbs[] = ['src' => $f[count($f) - 10] ?? '', 'dst' => $f[5], 'spell' => $f[count($f) - 5] ?? '?', 'amount' => (int) $amount];
+                }
 
                 continue;
             }
@@ -199,6 +249,15 @@ class RoundAnalysisService
 
                 continue;
             }
+            if ($event === 'SWING_DAMAGE') {
+                $f = str_getcsv($body);
+                $amount = $f[count($f) - 10] ?? null;
+                if (is_numeric($amount) && isset($roster[$f[5]]) && $f[1] !== $f[5]) {
+                    $swingOnly[strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5].'|'.$amount] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'amount' => (int) $amount, 'spell' => 'Melee'];
+                }
+
+                continue;
+            }
             if (! in_array($event, self::DAMAGE_EVENTS, true)) {
                 continue;
             }
@@ -207,6 +266,9 @@ class RoundAnalysisService
             $amount = $f[count($f) - ($swing ? 10 : 11)] ?? null;
             if (! is_numeric($amount) || ! isset($roster[$f[5]]) || $f[1] === $f[5]) {
                 continue;
+            }
+            if ($swing) {
+                $landed[strtok($line, ' ').'|'.$s.'|'.$f[1].'|'.$f[5].'|'.$amount] = true;
             }
             $base = $swing ? 9 : 12;
             $cur = $f[$base + 2] ?? null;
@@ -218,7 +280,164 @@ class RoundAnalysisService
             ];
         }
 
-        return [$dmg, $owner, $buffs, $interrupts, $end];
+        $swingOnly = array_values(array_diff_key($swingOnly, $landed));
+
+        return [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly];
+    }
+
+    // ------------------------------------------------------------------ breakdown and checks
+
+    /**
+     * Each player's output by ability: damage onto the other team's players, healing (effective and
+     * overheal) and absorbs onto their own team, and time spent not pressing anything. A pet's
+     * ability is credited to its owner as "pet: Name". The top abilities are kept and the rest summed,
+     * so a stored round stays small.
+     */
+    private function breakdown(array $roster, callable $sideOf, callable $credit, array $dmg, array $heals, array $absorbs,
+        array $casts, array $locked, array $deaths, array $metadata): array
+    {
+        $out = [];
+        $label = fn (string $src, string $spell) => isset($roster[$src]) ? $spell : 'pet: '.$spell;
+        $add = function (string $who, string $kind, string $spell, int $amount, int $over = 0) use (&$out) {
+            $out[$who][$kind][$spell] ??= ['amount' => 0, 'hits' => 0, 'over' => 0];
+            $out[$who][$kind][$spell]['amount'] += $amount;
+            $out[$who][$kind][$spell]['hits']++;
+            $out[$who][$kind][$spell]['over'] += $over;
+        };
+
+        foreach ($dmg as $x) {
+            $who = $credit($x['src']);
+            if (isset($roster[$who]) && $sideOf($x['dst']) !== null && $sideOf($x['dst']) !== $sideOf($who)) {
+                $add($who, 'damage', $label($x['src'], $x['spell']), $x['amount']);
+            }
+        }
+        foreach ($heals as $x) {
+            $who = $credit($x['src']);
+            if (isset($roster[$who]) && $sideOf($x['dst']) === $sideOf($who)) {
+                $add($who, 'healing', $label($x['src'], $x['spell']), $x['eff'], $x['over']);
+            }
+        }
+        foreach ($absorbs as $x) {
+            $who = $credit($x['src']);
+            if (isset($roster[$who]) && $sideOf($x['dst']) === $sideOf($who)) {
+                $add($who, 'absorbs', $x['spell'], $x['amount']);
+            }
+        }
+
+        $duration = (float) ($metadata['durationInSeconds'] ?? 0);
+        $diedAt = array_column($deaths, 't', 'who');
+        $rows = [];
+        foreach ($roster as $g => $r) {
+            $alive = max(1.0, min($diedAt[$g] ?? $duration, $duration ?: ($diedAt[$g] ?? 1.0)));
+            $rows[$g] = [
+                'alive' => round($alive, 1),
+                'idle' => round($this->idle($casts[$g] ?? [], $locked[$g] ?? [], $alive), 1),
+                'casts' => count(array_filter($casts[$g] ?? [], fn ($t) => $t <= $alive)),
+            ];
+            foreach (['damage', 'healing', 'absorbs'] as $kind) {
+                $rows[$g][$kind] = $this->topAbilities($out[$g][$kind] ?? []);
+            }
+        }
+
+        return $rows;
+    }
+
+    /** The top abilities by amount, with everything else summed into one "Other" row. */
+    private function topAbilities(array $byAbility, int $keep = 10): array
+    {
+        uasort($byAbility, fn ($a, $b) => $b['amount'] <=> $a['amount']);
+        $rows = [];
+        $other = ['amount' => 0, 'hits' => 0, 'over' => 0];
+        $i = 0;
+        foreach ($byAbility as $spell => $v) {
+            if ($v['amount'] <= 0 && $v['over'] <= 0) {
+                continue;
+            }
+            if ($i++ < $keep) {
+                $rows[] = ['spell' => $spell] + $v;
+            } else {
+                $other['amount'] += $v['amount'];
+                $other['hits'] += $v['hits'];
+                $other['over'] += $v['over'];
+            }
+        }
+        if ($other['hits'] > 0) {
+            $rows[] = ['spell' => 'Other'] + $other;
+        }
+
+        return $rows;
+    }
+
+    /**
+     * Seconds with nothing pressed, exactly as specread.php counts it: between the first and the last
+     * cast, a gap over IDLE_GAP counts its length beyond one global (1.5s), less any time spent
+     * locked out in it.
+     */
+    private function idle(array $castTimes, array $lockedIv, float $alive): float
+    {
+        sort($castTimes);
+        $idle = 0.0;
+        $prev = null;
+        foreach ($castTimes as $t) {
+            if ($t > $alive) {
+                break;
+            }
+            if ($prev !== null && $t - $prev > self::IDLE_GAP) {
+                $idle += max(0, ($t - $prev - 1.5) - $this->cross($lockedIv, [[$prev + 1.5, $t]]));
+            }
+            $prev = $t;
+        }
+
+        return $idle;
+    }
+
+    /**
+     * Losses the log and the spell data can show by themselves, for your side only.
+     *
+     * - An OFFENSIVE cooldown left sitting ready for at least one whole cooldown, counted from the
+     *   gates to the first press, between presses, and from the last press to your death or the end.
+     *   Cooldowns are the data's base values (rule 34): a talent that shortens one makes the real
+     *   ready time longer, so this is a lower bound. Defensives are left out on purpose: a defensive
+     *   held because nothing threatened you is not a loss.
+     * - A defensive put on a teammate who was already immune (IMMUNITIES), taken from the overlap
+     *   rows: the second one did nothing.
+     */
+    private function checks(array $tl, array $roster, callable $sideOf, array $deaths, array $metadata, array $overlaps): array
+    {
+        $duration = (float) ($metadata['durationInSeconds'] ?? 0);
+        $diedAt = array_column($deaths, 't', 'who');
+        $out = [];
+
+        $presses = [];
+        foreach ($tl['commitments'] as $c) {
+            if (in_array($c['cat'], ['offensive', 'mixed'], true) && $sideOf($c['who']) === 'us' && ($c['cooldown'] ?? 0) >= 30) {
+                $presses[$c['who'].'|'.$c['spell']][] = $c;
+            }
+        }
+        foreach ($presses as $list) {
+            usort($list, fn ($a, $b) => $a['t'] <=> $b['t']);
+            $cd = (float) $list[0]['cooldown'];
+            $end = min($diedAt[$list[0]['who']] ?? $duration, $duration);
+            $ready = $list[0]['t'];
+            for ($i = 1; $i < count($list); $i++) {
+                $ready += max(0, $list[$i]['t'] - $list[$i - 1]['t'] - $cd);
+            }
+            $ready += max(0, $end - end($list)['t'] - $cd);
+            $lost = (int) floor($ready / $cd);
+            if ($lost >= 1) {
+                $out[] = ['kind' => 'cooldown-ready', 'who' => $list[0]['who'], 'spell' => $list[0]['spell'],
+                    'ready' => round($ready), 'cooldown' => (int) $cd, 'presses' => count($list), 'lost' => $lost];
+            }
+        }
+
+        foreach ($overlaps['rows'] as $o) {
+            if ($o['side'] === 'us' && in_array($o['first']['spell'], self::IMMUNITIES, true) && $o['second']['by'] !== null && $o['second']['by'] !== $o['on']) {
+                $out[] = ['kind' => 'on-immune', 'who' => $o['second']['by'], 'spell' => $o['second']['spell'], 'on' => $o['on'],
+                    'immunity' => $o['first']['spell'], 't' => round($o['t'], 1)];
+            }
+        }
+
+        return $out;
     }
 
     // ------------------------------------------------------------------ goes

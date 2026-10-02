@@ -9,14 +9,20 @@
 //       --col="Me:Crawlordx" --col="Rastic 2150+:Rastic:2150:9999" --col="Others 2100+:*:2100:9999" \
 //       [--with=Doubletapz] [--deaths=Crawlordx]
 //
-//   --col=Label:Name[:minMMR:maxMMR[:W|L]]   one column. Name * is every other player of the spec.
+//   --col=Label:Name[:minMMR:maxMMR[:W|L[:+Talent|-Talent]]]   one column. Name * is every other player
+//                   of the spec. W|L may be left empty (Label:Name:0:9999::+Revel in Darkness).
+//                   +Talent / -Talent: only games where the player had (or lacked) that talent.
+//   --bracket=      3v3 (default), 2v2, or "Rated Solo Shuffle". In a shuffle each round is a game,
+//                   and a result is known only for the player who logged it (from its deaths, rule 12).
 //   --with=Name     columns naming the first column's player only count games this player was also in.
 //   --deaths=Name   print each real death of this player: health, defensives, lockout, their cooldowns.
 require __DIR__.'/../../vendor/autoload.php';
 $app = require __DIR__.'/../../bootstrap/app.php';
 $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
+use App\Http\Services\ArenaLogService;
 use App\Http\Services\ArenaMomentService;
+use App\Models\Specialization;
 use App\Models\Patch;
 use App\Models\Spell;
 
@@ -37,7 +43,8 @@ $cols = [];
 foreach ($argv as $a) {
     if (str_starts_with($a, '--col=')) {
         $p = explode(':', substr($a, 6));
-        $cols[] = ['label' => $p[0], 'name' => $p[1] ?? '*', 'lo' => (int) ($p[2] ?? 0), 'hi' => (int) ($p[3] ?? 99999), 'res' => $p[4] ?? null];
+        $cols[] = ['label' => $p[0], 'name' => $p[1] ?? '*', 'lo' => (int) ($p[2] ?? 0), 'hi' => (int) ($p[3] ?? 99999),
+            'res' => ($p[4] ?? '') !== '' ? $p[4] : null, 'talent' => ($p[5] ?? '') !== '' ? $p[5] : null];
     }
 }
 $named = array_values(array_filter(array_unique(array_column($cols, 'name')), fn ($n) => $n !== '*'));
@@ -83,6 +90,7 @@ $records = [];   // one per (game, player of the spec)
 $defNames = [];  // every spell the labels call defensive that a measured player pressed
 const SELF_CARE = ['Bear Form', 'Frenzied Regeneration', 'Regrowth', "Gladiator's Medallion", 'Exhilaration', 'Feign Death', 'Shadowmeld', 'Renewal'];
 $deathNotes = [];
+$specRows = [];
 
 foreach (glob(ARCHIVE.'/metadata/*.json') as $file) {
     $m = json_decode(preg_replace('/^\xEF\xBB\xBF/', '', file_get_contents($file)), true);
@@ -236,11 +244,24 @@ foreach (glob(ARCHIVE.'/metadata/*.json') as $file) {
         $mmr = $end ? (int) ($end[3 + (int) $team[$g]] ?? 0) : 0;
         $opp = $end ? (int) ($end[3 + (1 - (int) $team[$g])] ?? 0) : 0;
         $won = $end ? ((string) $end[1] === (string) $team[$g]) : null;
+        // A shuffle's END line is noise (rule 12). The round's own result, derived from its deaths,
+        // is known for the player who logged it; for everyone else it stays unknown.
+        if (str_contains($bracket, 'Shuffle')) {
+            $mmr = 0;
+            $opp = 0;
+            $won = ($u['affiliation'] ?? null) === 1 && isset($m['result']) ? (int) $m['result'] === 3 : null;
+        }
+        $talents = [];
+        if (array_filter($cols, fn ($c) => $c['talent'] !== null)) {
+            $ci = app(ArenaLogService::class)->extractCombatantInfo($m['id'], $g);
+            $specRow = $specRows[$specId] ??= Specialization::where('external_spec_id', $specId)->value('id');
+            $talents = $ci && $specRow ? array_column(app(ArenaLogService::class)->resolveCombatantTalents($ci, $specRow)['talents'] ?? [], 'name') : [];
+        }
         $alive = $deathAt[$g] ?? (float) $m['durationInSeconds'];
         $alive = max(1.0, min($alive, $last));
         $mine = fn ($src) => $credit($src) === $g;
 
-        $r = ['name' => $name, 'clock' => $clock, 'mmr' => $mmr, 'opp' => $opp, 'won' => $won, 'alive' => $alive,
+        $r = ['name' => $name, 'clock' => $clock, 'mmr' => $mmr, 'opp' => $opp, 'won' => $won, 'alive' => $alive, 'talents' => $talents,
             'mates' => array_map(fn ($x) => $short($roster[$x]['name']), $mates), 'died' => isset($deathAt[$g]),
             'diedFirst' => $firstDeath && $firstDeath['who'] === $g, 'teamLostADeath' => $firstDeath && $roster[$firstDeath['who']]['side'] === $side,
             'casts' => [], 'dmg' => [], 'dmgHealer' => 0, 'dmgTotal' => 0, 'dmgTop' => 0, 'heal' => [], 'healSelf' => 0, 'healMates' => 0,
@@ -465,6 +486,9 @@ $pick = function (array $col) use ($records, $named, $with, $cols) {
             return false;
         }
         if ($col['res'] !== null && $r['won'] !== ($col['res'] === 'W')) {
+            return false;
+        }
+        if ($col['talent'] !== null && in_array(substr($col['talent'], 1), $r['talents'], true) !== ($col['talent'][0] === '+')) {
             return false;
         }
 
