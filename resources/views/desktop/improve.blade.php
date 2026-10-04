@@ -50,6 +50,27 @@
     </div>
 @endif
 
+{{-- ============================== the one focus --}}
+@php $f = $m['focus']; @endphp
+<div class="box" style="border-color: #6B4E1A; background: #1E150A; margin-bottom: 16px">
+    <div class="label" style="color: #E8B84B">Your focus</div>
+    @if ($f)
+        <div><span class="ht" style="font-size: 17px">{{ $f['title'] }}</span>
+            <span class="muted">&nbsp;you {{ $f['you'] }} against {{ $f['others'] }} for other {{ $m['spec'] }}s</span></div>
+        <div class="small" style="margin-top: 4px">{{ $f['what'] }}</div>
+        @if ($f['session'])
+            <div class="line">
+                Last session ({{ $f['session']['day'] }}, {{ $f['session']['n'] }} game{{ $f['session']['n'] === 1 ? '' : 's' }}):
+                <b>{{ $f['session']['value'] }}</b>, against {{ $f['session']['before'] }} before it.
+                <span class="chip {{ ['better' => 'good', 'worse' => 'bad', 'same' => 'neutral'][$f['session']['moved']] }}">{{ ['better' => 'better', 'worse' => 'worse', 'same' => 'about the same'][$f['session']['moved']] }}</span>
+            </div>
+        @endif
+        <div class="small muted" style="margin-top: 6px">One thing at a time: the habit furthest behind the players you meet, on 10+ games on both sides. The detail is below.</div>
+    @else
+        <div class="small">Nothing measured puts you behind other {{ $m['spec'] }}s on 10 or more games. Keep playing: the habits below say where you stand.</div>
+    @endif
+</div>
+
 <div class="label">What to work on <span class="aside">your games against {{ $m['others'] }} other {{ $m['spec'] }}{{ $m['others'] === 1 ? '' : 's' }} in them ({{ $m['otherGames'] }} games, both teams). Furthest behind first.</span></div>
 
 @if ($m['v6'] < $m['games'])
@@ -78,6 +99,9 @@
         @foreach ($h['lines'] as $line)
             <div class="line">{{ $line }}</div>
         @endforeach
+        @if ($h['session'])
+            <div class="line small muted">Last session ({{ $h['session']['day'] }}): {{ $h['session']['value'] }}, against {{ $h['session']['before'] }} before it.</div>
+        @endif
         @if ($h['list'])
             <div class="list">
                 <span class="small muted">{{ $h['list']['label'] }}:</span><br>

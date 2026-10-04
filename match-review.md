@@ -156,3 +156,16 @@ line in `match-review-tools.md`, so the next session runs one command instead of
 - Clips or screenshots at each enemy cooldown: measure the combat log's write delay first.
 - The Improve, Comps and answer-sheet pages have been checked as text, not yet looked at on screen
   by anyone but the user.
+- **Moving the app's pages off IE11 onto WebView2 (Edge), when the design needs it.** Every page
+  is drawn in WinForms' `WebBrowser` control, which is IE11. That rule is why the pages use tables
+  only, with no CSS variables, flex or grid gaps, `<details>` or SVG charts. The WebView2 runtime
+  ships with Windows 11 (154.x on the dev machine, 4 Oct 2026). Switching needs three things:
+  - the `Microsoft.Web.WebView2` NuGet package's `Microsoft.Web.WebView2.WinForms.dll`,
+    `Microsoft.Web.WebView2.Core.dll` and `WebView2Loader.dll`, loaded with `Add-Type -Path`;
+  - a writable user data folder (`%APPDATA%\MindCollector\webview`);
+  - `EnsureCoreWebView2Async()` before the first `Navigate`. The app already navigates to the card
+    files by path (`MindCollectorLogs.ps1`), so only the control's creation changes.
+
+  The pages would not change at first, since modern CSS is a superset. Do this when a page needs
+  something IE11 cannot draw (a chart, a sticky header), not before. Until then the pages stay
+  IE11-safe.

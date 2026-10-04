@@ -67,7 +67,9 @@ class CompLibraryService
         $this->xp = $xp;
         $groups = [];
         foreach (ArenaRound::where('user_id', $user->id)->orderBy('played_at')->get() as $r) {
-            $a = $r->payload['analysis'] ?? null;
+            // Decoded once: Eloquent's array cast decodes the whole payload on every access.
+            $payload = $r->payload ?? [];
+            $a = $payload['analysis'] ?? null;
             if (! $a || empty($a['players'])) {
                 continue;
             }
@@ -84,7 +86,8 @@ class CompLibraryService
                 default => '',
             };
             $key = $prefix.$dps->pluck('spec')->implode('+');
-            $groups[$key][] = ['r' => $r, 'a' => $a, 'prefix' => $prefix, 'dps' => $dps->all(), 'healer' => $them->firstWhere('healer', true)];
+            $groups[$key][] = ['r' => $r, 'a' => $a, 'seconds' => (float) ($payload['metadata']['durationInSeconds'] ?? 0),
+                'prefix' => $prefix, 'dps' => $dps->all(), 'healer' => $them->firstWhere('healer', true)];
         }
 
         $out = [];
@@ -237,7 +240,7 @@ class CompLibraryService
                     'us' => collect($a['players'])->where('side', 'us')->sortByDesc('healer')->map($player)->values()->all(),
                 ],
                 'stats' => array_filter([
-                    'Length' => $this->clock((float) ($g['r']->payload['metadata']['durationInSeconds'] ?? 0)),
+                    'Length' => $this->clock($g['seconds']),
                     'Difficulty' => GameCardService::difficultyOf((int) (($a['mmr']['them'] ?? 0) - ($a['mmr']['us'] ?? 0)), isset($a['mmr']['us'], $a['mmr']['them']), $sum('them'), $sum('us'))['label']
                         .' ('.$sum('them').' Gladiator seasons to your '.$sum('us').')',
                     'Goes, yours / theirs' => $goes->where('side', 'us')->count().' / '.$goes->where('side', 'them')->count(),

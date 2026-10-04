@@ -62,9 +62,12 @@ class LobbyReviewService
             ->orderByDesc('played_at')
             ->get();
 
+        // Decoded once per review: Eloquent's array cast decodes the whole payload on every access.
+        $payloads = $rows->mapWithKeys(fn (ArenaReview $r) => [$r->id => $r->payload ?? []])->all();
+
         // One cache read for every player on the list, not one per player per game.
-        $xp = $this->experience->cachedMany($rows
-            ->flatMap(fn (ArenaReview $r) => array_column($r->payload['players'] ?? [], 'name'))
+        $xp = $this->experience->cachedMany(collect($payloads)
+            ->flatMap(fn (array $p) => array_column($p['players'] ?? [], 'name'))
             ->all());
 
         return $rows
@@ -75,10 +78,9 @@ class LobbyReviewService
                 'record' => ['won' => $r->rounds_won, 'lost' => $r->rounds_lost],
                 'rounds' => $r->rounds,
                 'you' => $r->character_name,
-                'youSpec' => $r->payload['players'] ? collect($r->payload['players'])
-                    ->firstWhere('isYou', true)['spec']['label'] ?? null : null,
+                'youSpec' => collect($payloads[$r->id]['players'] ?? [])->firstWhere('isYou', true)['spec']['label'] ?? null,
                 'mirrors' => $r->mirrors,
-                'experience' => $this->gameExperience($r->payload, $xp),
+                'experience' => $this->gameExperience($payloads[$r->id], $xp),
             ])
             ->all();
     }

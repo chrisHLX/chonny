@@ -108,8 +108,10 @@ the desktop and in the Start menu, run this once:
      with your Medallion ready.
    - **Time locked out**, in wins and losses, and for a damage dealer, **dying first**.
 
-   Each shows your number, the others', and your last 20 games against the ones before. The
-   furthest behind comes first. Under 10 games on either side a difference reads as a lead, not a
+   Each shows your number, the others', your last 20 games against the ones before, and your
+   **last session** (the last day you played) against everything before it. The furthest behind
+   comes first, and the top of the page names it as **your focus**: one habit at a time, with
+   whether the last session moved it. Under 10 games on either side a difference reads as a lead, not a
    finding. The page describes; whether a dispel is worth the global is your call.
    `wow:game-cards` writes the pages (`ImprovementService`) and redraws them only when a game
    changed. Dispels and big defensives need analysis version 6 (3 Oct): games synced before then

@@ -64,13 +64,18 @@ class ImprovementService
     {
         $this->xp = $xp;
         $rounds = ArenaRound::where('user_id', $user->id)->orderBy('played_at')->get()
-            ->map(fn (ArenaRound $r) => [
-                'at' => (string) $r->played_at,
-                'mins' => max(0.1, (float) ($r->payload['metadata']['durationInSeconds'] ?? 0) / 60),
-                'a' => $r->payload['analysis'] ?? null,
-                // Each player's damage taken (CombatantThroughputService), for healing against it.
-                'taken' => array_map(fn ($p) => (int) ($p['damageTaken'] ?? 0), $r->payload['throughput']['players'] ?? []),
-            ])
+            ->map(function (ArenaRound $r) {
+                // Decoded once: Eloquent's array cast decodes the whole payload on every access.
+                $payload = $r->payload ?? [];
+
+                return [
+                    'at' => (string) $r->played_at,
+                    'mins' => max(0.1, (float) ($payload['metadata']['durationInSeconds'] ?? 0) / 60),
+                    'a' => $payload['analysis'] ?? null,
+                    // Each player's damage taken (CombatantThroughputService), for healing against it.
+                    'taken' => array_map(fn ($p) => (int) ($p['damageTaken'] ?? 0), $payload['throughput']['players'] ?? []),
+                ];
+            })
             ->filter(fn ($r) => $r['a'] !== null && ! empty($r['a']['players']))
             ->values();
 
@@ -238,7 +243,20 @@ class ImprovementService
     {
         $recent = $mine->count() >= self::RECENT + 10 ? $mine->slice(-self::RECENT) : null;
         $earlier = $recent ? $mine->slice(0, $mine->count() - self::RECENT) : null;
-        $trend = fn (callable $value) => $recent ? ['recent' => $value($recent), 'earlier' => $value($earlier), 'n' => self::RECENT] : null;
+        // The last session (the last day this character played) against every game before it: the
+        // coach's "measure it again next session".
+        $lastDay = substr($mine->last()['at'], 0, 10);
+        $session = $mine->filter(fn ($r) => str_starts_with($r['at'], $lastDay))->values();
+        $beforeSession = $mine->reject(fn ($r) => str_starts_with($r['at'], $lastDay))->values();
+        $trend = fn (callable $value) => [
+            'recent' => $recent ? $value($recent) : null,
+            'earlier' => $recent ? $value($earlier) : null,
+            'n' => $recent ? self::RECENT : null,
+            'session' => $value($session),
+            'beforeSession' => $beforeSession->isNotEmpty() ? $value($beforeSession) : null,
+            'sessionN' => $session->count(),
+            'sessionDay' => $lastDay,
+        ];
 
         $habits = [];
 
@@ -415,7 +433,22 @@ class ImprovementService
                 $mine->where('difficulty', $label)->where('won', false)->count(),
             ]])->filter(fn ($wl) => array_sum($wl) > 0)->all(),
             'habits' => $habits,
+            'focus' => $this->focus($habits, (bool) $mine->first()['healer']),
         ];
+    }
+
+    /**
+     * The one thing to work on: the habit furthest behind the other players of the spec, on
+     * enough games on both sides to trust (a lead never becomes the focus). Damage and healing are
+     * what a game produces, not something done in it, so a habit behind comes first; and a
+     * healer's damage is never the focus, since it falls whenever there is more to heal.
+     */
+    private function focus(array $habits, bool $healer): ?array
+    {
+        $behind = collect($habits)->where('status', 'behind')
+            ->reject(fn ($h) => $healer && $h['key'] === 'damage');
+
+        return $behind->first(fn ($h) => ! in_array($h['key'], ['damage', 'healing'], true)) ?? $behind->first();
     }
 
     /**
@@ -450,7 +483,20 @@ class ImprovementService
             'status' => $status,
             'gap' => $gap,
             'lines' => $lines,
-            'trend' => $trend ? ['recent' => $fmt($trend['recent']), 'earlier' => $fmt($trend['earlier']), 'n' => $trend['n']] : null,
+            'trend' => $trend && $trend['n'] ? ['recent' => $fmt($trend['recent']), 'earlier' => $fmt($trend['earlier']), 'n' => $trend['n']] : null,
+            // The last session against the ones before it, with which way it moved.
+            'session' => $trend && $trend['beforeSession'] !== null && $trend['session'] !== null ? [
+                'value' => $fmt($trend['session']),
+                'before' => $fmt($trend['beforeSession']),
+                'n' => $trend['sessionN'],
+                'day' => \Illuminate\Support\Carbon::parse($trend['sessionDay'])->format('D j M'),
+                'moved' => match (true) {
+                    $trend['beforeSession'] == 0 && $trend['session'] == 0 => 'same',
+                    abs($trend['session'] - $trend['beforeSession']) <= 0.1 * max(abs($trend['beforeSession']), 0.0001) => 'same',
+                    ($trend['session'] > $trend['beforeSession']) === $moreIsBetter => 'better',
+                    default => 'worse',
+                },
+            ] : null,
             'caveat' => $caveat,
             'list' => $list,
         ];

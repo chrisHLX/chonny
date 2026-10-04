@@ -148,6 +148,39 @@ class ImprovementTest extends TestCase
         $this->assertStringContainsString('Time not pressing anything Behind other Discipline Priests', $page);
     }
 
+    public function test_the_page_names_one_focus_and_measures_the_last_session(): void
+    {
+        $user = User::factory()->create();
+        foreach (range(1, 10) as $i) {
+            $this->storeRound($user, $i);   // 2026-10-01
+        }
+        $this->storeRound($user, 11);
+        ArenaRound::where('match_id', 'm11')->update(['played_at' => '2026-10-02 09:00:00']);
+
+        $page = $this->text(app(ImprovementService::class)->build($user)['Healz-Realm-US']['html']);
+
+        // Their goes started with two big defensives down in all of yours and none of theirs: any
+        // against the others' none is the furthest behind, so it is the one focus.
+        $this->assertStringContainsString('Your focus Big defensives when their go started you 100% against 0% for other Discipline Priests', $page);
+        $this->assertStringContainsString('Last session (Fri 2 Oct, 1 game): 100% , against 100% before it. about the same', $page);
+        $this->assertStringContainsString('Last session (Fri 2 Oct): 15.0s, against 15.0s before it.', $page, 'every habit carries its last session');
+        $this->assertLessThan(strpos($page, 'What to work on'), strpos($page, 'Your focus'), 'the focus comes first');
+    }
+
+    public function test_the_focus_is_a_habit_before_an_outcome_and_never_a_healers_damage(): void
+    {
+        $focus = new \ReflectionMethod(ImprovementService::class, 'focus');
+        $pick = fn (array $keys, bool $healer) => $focus->invoke(app(ImprovementService::class),
+            array_map(fn ($k) => ['key' => $k, 'status' => 'behind'], $keys), $healer)['key'] ?? null;
+
+        // Ordered furthest behind first, as model() sorts them.
+        $this->assertSame('idle', $pick(['damage', 'idle'], true), "a Holy Paladin's damage gap is not the focus");
+        $this->assertSame('idle', $pick(['damage', 'idle'], false), 'a habit comes before an outcome');
+        $this->assertSame('damage', $pick(['damage'], false), "a damage dealer's damage, when nothing else is behind");
+        $this->assertNull($pick(['damage'], true));
+        $this->assertSame('healing', $pick(['damage', 'healing'], true));
+    }
+
     public function test_fewer_than_ten_games_is_a_lead_and_older_games_say_how_to_measure_them(): void
     {
         $user = User::factory()->create();
