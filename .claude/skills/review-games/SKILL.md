@@ -16,7 +16,10 @@ The method the match review settled, often after getting it wrong first. The map
 - **Games played while the desktop app was closed are not read in yet.** If recent games are
   missing, run `php artisan wow:sync` (it ingests WoW's log, then measures). Check
   `C:\World of Warcraft\_retail_\Logs` for a newer log than the last game in the archive.
-- Stored rounds: `App\Models\ArenaRound` for `user_id` 2, `payload['analysis']` (version 8).
+- Stored rounds: `App\Models\ArenaRound` for `user_id` 2, `payload['analysis']` (at
+  `RoundAnalysisService::VERSION`; a round's own is `payload['analysis']['version']`).
+  Dispels count only spells with a Dispel effect in the spell data: a shapeshift or Phantasm
+  breaking a slow is logged as a dispel too (`ImprovementService::dispelSpells()`).
   Raw logs: `D:/MindCollector/arena-logs/raw/{match}.log.gz`. Run PHP through the PowerShell tool;
   Bash has no PHP. Put one-off scripts in the scratchpad and copy them into `storage/app/` to run.
 

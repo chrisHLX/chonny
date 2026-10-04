@@ -98,8 +98,10 @@ the desktop and in the Start menu, run this once:
 7. **Improve: what to work on.** One page per character, with the habits the match reviews found
    mattered (`match-review-analysis.md`, 2 Oct), each measured against every other player of the
    same spec in your games, both teams, so "behind" means behind the players you actually meet:
-   - **Dispels:** what you took off your team, per minute your team carried a debuff that players of
-     your spec were seen removing. The debuffs left on your team most are listed.
+   - **Dispels:** what you dispelled off your team, per minute your team carried a debuff that
+     players of your spec were seen dispelling. Only a dispel counts (a spell with a Dispel effect
+     in the spell data), not a shapeshift or Phantasm breaking a slow. The debuffs left on your
+     team most are listed.
    - **Crowd control on their healer:** the share of your team's goes with your CC on their healer,
      how often those goes killed, and which spells you used.
    - **Big defensives when their go started:** how often their go began with two or more of your
@@ -108,10 +110,12 @@ the desktop and in the Start menu, run this once:
      with your Medallion ready.
    - **Time locked out**, in wins and losses, and for a damage dealer, **dying first**.
 
-   Each shows your number, the others', your last 20 games against the ones before, and your
-   **last session** (the last day you played) against everything before it. The furthest behind
-   comes first, and the top of the page names it as **your focus**: one habit at a time, with
-   whether the last session moved it. Under 10 games on either side a difference reads as a lead, not a
+   Each shows your number, the others', your last 20 games against the ones before, and a small
+   **chart by session** (each day you played, with the other players' level dashed). Your **last
+   session** is set against the range of your sessions before it (3+ games each, 3 or more of
+   them): outside it, it is your best or worst session yet; inside, within your usual range. The
+   furthest behind comes first, and the top of the page names it as **your focus**: one habit at
+   a time, with its chart. Under 10 games on either side a difference reads as a lead, not a
    finding. The page describes; whether a dispel is worth the global is your call.
    `wow:game-cards` writes the pages (`ImprovementService`) and redraws them only when a game
    changed. Dispels and big defensives need analysis version 6 (3 Oct): games synced before then
@@ -140,8 +144,16 @@ the desktop and in the Start menu, run this once:
 
    Under 10 games a page says it is a lead. `wow:game-cards` writes the pages
    (`CompLibraryService`) and redraws them only when a game changed.
-9. **Settings** holds the three folders, auto-sync, auto-move, and "start with Windows". "Start
+9. **Settings** holds the folders, auto-sync, auto-move, and "start with Windows". "Start
    with Windows" puts a shortcut in your Startup folder, so the app starts in the tray.
+   **"Back up games to"** (empty by default) keeps a second copy of the game archive and your
+   notes in a folder you choose: another drive, or a cloud-synced folder. It copies everything
+   when you first set it, then new games after each sync. It uses robocopy, which copies only
+   new and changed files and never deletes from the copy. The archive cannot be rebuilt once a
+   combat log is gone, so this is the copy that matters. The moved logs are not included.
+10. **A new patch or log format is flagged.** Each game records the combat log version and patch
+    it was written in. When either differs from the one the measures were checked on, the tray
+    says so once ("Check before trusting new games"). `docs/combat-log-ingest.md` says what to do.
 
 Closing the window keeps the app running in the tray. To quit, right-click the tray icon and
 choose **Exit**.
@@ -150,8 +162,8 @@ choose **Exit**.
 
 - The WoW Logs folder and the archive are the two `.env` keys the site reads. The app edits
   those keys, so the site and the app always agree.
-- "Move WoW logs to", the checkboxes, and which files have already been read are stored in
-  `%APPDATA%\MindCollector\logs-app.json`.
+- "Move WoW logs to", "Back up games to", the checkboxes, and which files have already been read
+  are stored in `%APPDATA%\MindCollector\logs-app.json`.
 - The Activity tab is also written to `%APPDATA%\MindCollector\logs-app.log`.
 
 ## Things to know

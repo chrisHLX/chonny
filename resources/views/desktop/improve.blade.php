@@ -14,7 +14,8 @@
     .habit .ht { font-size: 15px; font-weight: 600; margin-right: 8px; vertical-align: middle; }
     .habit .what { margin: 4px 0 8px; }
     .nums { width: 100%; }
-    .nums td { width: 33%; vertical-align: top; padding: 2px 0; }
+    .nums td { width: 22%; vertical-align: top; padding: 2px 0; }
+    .nums td.chart { width: 34%; }
     .nums .v { font-size: 20px; font-weight: 600; }
     .nums .k { font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: #8A8A9A; }
     .habit .caveat { margin-top: 8px; color: #52525F; font-size: 11.5px; }
@@ -55,17 +56,34 @@
 <div class="box" style="border-color: #6B4E1A; background: #1E150A; margin-bottom: 16px">
     <div class="label" style="color: #E8B84B">Your focus</div>
     @if ($f)
-        <div><span class="ht" style="font-size: 17px">{{ $f['title'] }}</span>
-            <span class="muted">&nbsp;you {{ $f['you'] }} against {{ $f['others'] }} for other {{ $m['spec'] }}s</span></div>
-        <div class="small" style="margin-top: 4px">{{ $f['what'] }}</div>
-        @if ($f['session'])
-            <div class="line">
-                Last session ({{ $f['session']['day'] }}, {{ $f['session']['n'] }} game{{ $f['session']['n'] === 1 ? '' : 's' }}):
-                <b>{{ $f['session']['value'] }}</b>, against {{ $f['session']['before'] }} before it.
-                <span class="chip {{ ['better' => 'good', 'worse' => 'bad', 'same' => 'neutral'][$f['session']['moved']] }}">{{ ['better' => 'better', 'worse' => 'worse', 'same' => 'about the same'][$f['session']['moved']] }}</span>
-            </div>
+        <table style="width: 100%"><tr>
+        <td style="vertical-align: top">
+            <div><span class="ht" style="font-size: 17px">{{ $f['title'] }}</span>
+                <span class="muted">&nbsp;you {{ $f['you'] }} against {{ $f['others'] }} for other {{ $m['spec'] }}s</span></div>
+            <div class="small" style="margin-top: 4px">{{ $f['what'] }}</div>
+            @if ($s = $f['session'])
+                <div class="line">
+                    Last session ({{ $s['day'] }}, {{ $s['n'] }} game{{ $s['n'] === 1 ? '' : 's' }}): <b>{{ $s['value'] }}</b>.
+                    @if ($s['moved'])
+                        Your {{ $s['sessions'] }} sessions of 3+ games before it ran {{ $s['range'][0] }} to {{ $s['range'][1] }}.
+                        <span class="chip {{ ['best' => 'good', 'worst' => 'bad', 'within' => 'neutral'][$s['moved']] }}">{{ ['best' => 'your best session yet', 'worst' => 'your worst session yet', 'within' => 'within your usual range'][$s['moved']] }}</span>
+                    @elseif ($s['range'])
+                        Your sessions before it ran {{ $s['range'][0] }} to {{ $s['range'][1] }}; under 3 games is too few to read on its own.
+                    @else
+                        Against {{ $s['before'] }} before it: too few sessions of 3+ games yet to say whether it stands out.
+                    @endif
+                </div>
+            @endif
+            <div class="small muted" style="margin-top: 6px">One thing at a time: the habit furthest behind the players you meet, on 10+ games on both sides. The detail is below.</div>
+        </td>
+        @if ($f['chartWide'])
+            <td style="width: 310px; vertical-align: top; padding-left: 12px">
+                <div class="small subtle" style="margin-bottom: 2px">By session, {{ $f['chartWide']['from'] }} to {{ $f['chartWide']['to'] }}</div>
+                @include('desktop.partials.spark', ['s' => $f['chartWide']])
+                <div class="small subtle" style="margin-top: 2px">Dashed: other {{ $m['spec'] }}s</div>
+            </td>
         @endif
-        <div class="small muted" style="margin-top: 6px">One thing at a time: the habit furthest behind the players you meet, on 10+ games on both sides. The detail is below.</div>
+        </tr></table>
     @else
         <div class="small">Nothing measured puts you behind other {{ $m['spec'] }}s on 10 or more games. Keep playing: the habits below say where you stand.</div>
     @endif
@@ -95,12 +113,23 @@
                     <div class="k">Your last {{ $h['trend']['n'] }}</div><div class="v">{{ $h['trend']['recent'] }}</div><div class="small subtle">{{ $h['trend']['earlier'] }} before that</div>
                 @endif
             </td>
+            <td class="chart">
+                @if ($h['chart'])
+                    <div class="k">By session</div>
+                    @include('desktop.partials.spark', ['s' => $h['chart']])
+                    <div class="small subtle">{{ $h['chart']['from'] }} to {{ $h['chart']['to'] }} &middot; dashed: others</div>
+                @endif
+            </td>
         </tr></table>
         @foreach ($h['lines'] as $line)
             <div class="line">{{ $line }}</div>
         @endforeach
-        @if ($h['session'])
-            <div class="line small muted">Last session ({{ $h['session']['day'] }}): {{ $h['session']['value'] }}, against {{ $h['session']['before'] }} before it.</div>
+        @if ($s = $h['session'])
+            <div class="line small muted">{{ $s['line'] }}
+                @if ($s['moved'] === 'best' || $s['moved'] === 'worst')
+                    <span class="chip {{ $s['moved'] === 'best' ? 'good' : 'bad' }}">{{ $s['moved'] === 'best' ? 'your best session yet' : 'your worst session yet' }}</span>
+                @endif
+            </div>
         @endif
         @if ($h['list'])
             <div class="list">

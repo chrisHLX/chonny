@@ -72,13 +72,15 @@ class IngestCombatLog extends Command
         $skipped = 0;
         $ignored = 0;
         $incomplete = 0;
+        // The log format or patch differing from the one the offsets were measured on, once each.
+        $warnings = [];
 
         foreach ($files as $file) {
             $this->line('<fg=gray>'.basename($file).'</>');
 
             foreach ($ingest->splitMatches($file) as $match) {
                 $metadata = $ingest->deriveMetadata(
-                    $match['lines'], $match['start'], $match['end'], $match['sequence'], $match['lobbyFirstLine']
+                    $match['lines'], $match['start'], $match['end'], $match['sequence'], $match['lobbyFirstLine'], $match['header']
                 );
                 $bracket = $metadata['startInfo']['bracket'] ?: 'unknown';
 
@@ -86,6 +88,10 @@ class IngestCombatLog extends Command
                     $ignored++;
 
                     continue;
+                }
+
+                if ($warning = $ingest->headerWarning($match['header'])) {
+                    $warnings[$warning] = true;
                 }
 
                 // A match nobody's spec could be read from is not usable by anything downstream:
@@ -145,6 +151,11 @@ class IngestCombatLog extends Command
         }
         if ($incomplete) {
             $this->line("  {$incomplete} had no combatant info — Advanced Combat Logging was off.");
+        }
+        // "WARNING:" is what the desktop app looks for to raise it in the tray.
+        foreach (array_keys($warnings) as $warning) {
+            $this->newLine();
+            $this->warn('WARNING: '.$warning);
         }
 
         if ($imported > 0 && ! $this->option('dry-run')) {

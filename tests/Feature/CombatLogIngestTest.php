@@ -184,6 +184,35 @@ class CombatLogIngestTest extends TestCase
         $this->assertStringContainsString('ARENA_MATCH_END,0', $found[1]['end']);
     }
 
+    public function test_each_match_records_the_log_format_and_patch_and_a_change_is_flagged(): void
+    {
+        // Every offset is read from the end of a line, so a format that adds a field would shift
+        // them all without an error. The header WoW writes when logging (re)starts says which.
+        $header = fn (int $v, string $build) => $this->line('09:59:00.0000', "COMBAT_LOG_VERSION,{$v},ADVANCED_LOG_ENABLED,1,BUILD_VERSION,{$build},PROJECT_ID,1");
+        $path = tempnam(sys_get_temp_dir(), 'mclog');
+        file_put_contents($path, implode('', array_merge(
+            [$header(CombatLogIngestService::VERIFIED_LOG_VERSION, CombatLogIngestService::VERIFIED_BUILD)],
+            $this->match(winner: '1'),
+            [$header(23, '12.2.0')],
+            $this->match(winner: '0'),
+        )));
+
+        $service = app(CombatLogIngestService::class);
+        $found = iterator_to_array($service->splitMatches($path));
+        unlink($path);
+
+        $this->assertSame(['version' => 22, 'advanced' => true, 'build' => '12.1.0'], $found[0]['header']);
+        $this->assertSame(23, $found[1]['header']['version'], 'each match keeps the header in force when it started');
+
+        $meta = $service->deriveMetadata($found[0]['lines'], $found[0]['start'], $found[0]['end'], 1, null, $found[0]['header']);
+        $this->assertSame('12.1.0', $meta['combatLog']['build']);
+
+        $this->assertNull($service->headerWarning($found[0]['header']));
+        $this->assertStringContainsString('format changed to version 23', $service->headerWarning($found[1]['header']));
+        $this->assertStringContainsString('A new patch, 12.2.0', $service->headerWarning(['version' => 22, 'advanced' => true, 'build' => '12.2.0']));
+        $this->assertNull($service->headerWarning(null), 'a browser upload has no header to check');
+    }
+
     public function test_a_solo_shuffle_lobby_splits_into_one_match_per_round(): void
     {
         // The regression this guards: a lobby writes six ARENA_MATCH_STARTs and ONE

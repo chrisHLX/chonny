@@ -1625,6 +1625,42 @@ started**: the go killed through a full set of answers, with his own defensive l
 pressed. That is the 30 Sep pattern again (*Our Hunter beside the others*). The healer was a
 different LFG player in two of the four.
 
+### 4 Oct: Skylake's dispels moved, and the dispel measure was counting shapeshifts
+
+**After the 2 Oct read, Skylake's Purifies on teammates rose session by session.** Counted from
+the stored dispel rows, Purify onto someone else only:
+
+| Session | Games | Purify on a teammate | Per game |
+|---|---|---|---|
+| 25 Sep | 14 | 17 | 1.2 |
+| 26 Sep | 15 | 10 | 0.7 |
+| 30 Sep | 66 | 67 | 1.0 |
+| 1 Oct | 11 | 13 | 1.2 |
+| 2 Oct | 17 | 37 | 2.2 |
+| 3 Oct | 8 | 30 | **3.75** |
+
+Per minute of something to dispel, 3 Oct was 1.46 against 0.27–0.56 in his five earlier sessions
+of 3+ games: outside his range, not noise. The same session's idle time was his worst (28%
+against 17–24%). A change he made after the read, then, and one with a visible cost; whether it
+won games is not yet answerable on 8 of them (4-4).
+
+**The Improve page's dispel count included removals that are not dispels.** The log records a
+SPELL_DISPEL for any removal: Phantasm stripping a slow when a Priest fades, a Druid's shapeshift
+breaking a root, Blessing of Freedom, Cleanse the Weak's extra removals.
+- Crawlordx: **115 of 133** "dispels" were Cat or Bear Form. Remove Corruption on a teammate: 8
+  in 36 games.
+- Skylake: 36 of 245 were Phantasm.
+- The "something to dispel" lists took in what only those remove: 16 of the 91 debuffs on the
+  Disc Priest list (Crippling Poison, Consecration, Chains of Ice) had only ever been removed by
+  Phantasm.
+
+Now a dispel is a spell whose spell data carries a `Dispel (38)` effect (Purify, Cleanse,
+Remove Corruption, Nature's Cure, Detox, Purify Spirit, Cleanse Spirit). None of the impostors
+has one. Every number above moved: Skylake 0.43 → 0.39 against 1.24 → 1.16; Dijonhoney from
+"level" to **behind** (1.03 against 1.59), which made dispels his focus; Crawlordx from about
+two a minute to 0.62 against 2.19. `dispelread.php` was already right: it decides what is
+purifiable from Purify alone.
+
 ### One hit, explained
 
 19:51 on 26 Sep, Unholy DK → Retribution Paladin, `Dread Plague (Erupt)`, **538,666**, overkill

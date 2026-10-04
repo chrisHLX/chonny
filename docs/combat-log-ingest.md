@@ -43,3 +43,22 @@ This is rule 12's full text.
     sharply"*) and `UNAUTHENTICATED` behind a Battle.net sign-in from 2026-09-23. Signing in
     would make it permitted; the reason they built the gate has not changed, so do not resume
     bulk pulling through it.
+
+## The format and patch each game was logged in (from 4 Oct 2026)
+
+WoW writes a header whenever logging starts, so before every arena the addon logs:
+`COMBAT_LOG_VERSION,22,ADVANCED_LOG_ENABLED,1,BUILD_VERSION,12.1.0,PROJECT_ID,1`. Each match now
+records the header in force when it started (`combatLog` in its metadata: `version`, `advanced`,
+`build`). Matches ingested earlier have none; every one said only `wowVersion: retail`.
+
+Every offset above was measured on format **22** in patch **12.1.0**, and is read from the end of
+the line. A format that adds a field would shift them all without one error. So
+`wow:ingest-combatlog` prints `WARNING:` when a match's header differs from
+`CombatLogIngestService::VERIFIED_LOG_VERSION` / `VERIFIED_BUILD`, and the desktop app raises it
+in the tray:
+- **A new format version:** re-measure the offsets against a fresh game before trusting it.
+- **A new patch only:** import the spell data, then check one new game's card against what
+  happened.
+
+Then move the constant. A browser upload sends only the match, without a header, so it is not
+checked.

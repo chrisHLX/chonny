@@ -145,6 +145,13 @@ line in `match-review-tools.md`, so the next session runs one command instead of
   (`CooldownLedgerService::takes()`).
 - **The Garrote aura is the 18-second bleed, not the 3-second silence.**
 - **`collect(...)->first()` is null on an empty side**: `null + [...]` throws.
+- **A removal in the log is not a dispel.** SPELL_DISPEL also records Phantasm, a shapeshift
+  breaking a root and Blessing of Freedom: 115 of a Feral's 133 "dispels" were Cat or Bear Form.
+  A dispel is a spell with a `Dispel (38)` effect in the spell data
+  (`ImprovementService::dispelSpells()`).
+- **A session is read against the player's range of sessions, never their average.** Against the
+  average, an ordinary 4-game session read as "better". A rate on a small denominator needs a
+  floor too: two dispels on a session's few seconds of poison read as 15 a minute.
 
 ## Open items
 
@@ -157,8 +164,11 @@ line in `match-review-tools.md`, so the next session runs one command instead of
 - The Improve, Comps and answer-sheet pages have been checked as text, not yet looked at on screen
   by anyone but the user.
 - **Moving the app's pages off IE11 onto WebView2 (Edge), when the design needs it.** Every page
-  is drawn in WinForms' `WebBrowser` control, which is IE11. That rule is why the pages use tables
-  only, with no CSS variables, flex or grid gaps, `<details>` or SVG charts. The WebView2 runtime
+  is drawn in WinForms' `WebBrowser` control, which is IE11: no CSS variables, flex or grid gaps,
+  `<details>` or `position: sticky`. **Inline SVG does work**, so charts need no move. Every page
+  sets `X-UA-Compatible: IE=edge`, and a test render on 4 Oct 2026 read `documentMode` 11 and drew
+  an SVG line chart. `WebBrowser.DrawToBitmap` also screenshots a page with no window on screen,
+  which is how to look at one without the user. The WebView2 runtime
   ships with Windows 11 (154.x on the dev machine, 4 Oct 2026). Switching needs three things:
   - the `Microsoft.Web.WebView2` NuGet package's `Microsoft.Web.WebView2.WinForms.dll`,
     `Microsoft.Web.WebView2.Core.dll` and `WebView2Loader.dll`, loaded with `Add-Type -Path`;
@@ -167,5 +177,5 @@ line in `match-review-tools.md`, so the next session runs one command instead of
     files by path (`MindCollectorLogs.ps1`), so only the control's creation changes.
 
   The pages would not change at first, since modern CSS is a superset. Do this when a page needs
-  something IE11 cannot draw (a chart, a sticky header), not before. Until then the pages stay
-  IE11-safe.
+  something IE11 cannot draw (a sticky header, CSS variables), not before. Until then the pages
+  stay IE11-safe.

@@ -119,11 +119,13 @@ function Set-EnvValue([string]$key, [string]$value) {
 
 function Load-Settings {
     # Character: the full name (Name-Realm-Region) the Matches list and the Improve page show; '' is all.
-    $s = @{ MoveTo = $null; AutoSync = $true; MoveAfterArchive = $true; LivePanel = $true; Character = ''; Ingested = @{} }
+    # BackupTo: a second copy of the archive and notes ('' is off); see Invoke-BackupPass.
+    $s = @{ MoveTo = $null; BackupTo = ''; AutoSync = $true; MoveAfterArchive = $true; LivePanel = $true; Character = ''; Ingested = @{} }
     if (Test-Path $script:SettingsFile) {
         try {
             $j = Get-Content $script:SettingsFile -Raw -Encoding UTF8 | ConvertFrom-Json
             if ($j.MoveTo) { $s.MoveTo = $j.MoveTo }
+            if ($j.BackupTo) { $s.BackupTo = [string]$j.BackupTo }
             if ($null -ne $j.AutoSync) { $s.AutoSync = [bool]$j.AutoSync }
             if ($null -ne $j.MoveAfterArchive) { $s.MoveAfterArchive = [bool]$j.MoveAfterArchive }
             if ($null -ne $j.LivePanel) { $s.LivePanel = [bool]$j.LivePanel }
@@ -243,6 +245,7 @@ $script:Steps = New-Object System.Collections.Queue
 $script:Running = $null
 $script:ImportedThisRun = 0
 $script:RetryAfter = [DateTime]::MinValue
+$script:Warned = @{}
 
 # $data rides along on the step and comes back to $onDone, so the callbacks need no closures.
 # (GetNewClosure() moves a scriptblock into its own module, where this script's functions and
@@ -346,6 +349,14 @@ function Invoke-SyncPass([bool]$manual) {
                 Save-Settings
                 $m = [regex]::Match($output, 'Imported (\d+) match')
                 if ($m.Success) { $script:ImportedThisRun += [int]$m.Groups[1].Value }
+                # A new log format or patch (CombatLogIngestService::headerWarning): once a run.
+                foreach ($w in [regex]::Matches($output, 'WARNING: ([^\r\n]+)')) {
+                    $text = $w.Groups[1].Value
+                    if (-not $script:Warned.ContainsKey($text)) {
+                        $script:Warned[$text] = $true
+                        Show-Balloon 'Check before trusting new games' $text
+                    }
+                }
             } else {
                 $script:RetryAfter = (Get-Date).AddMinutes(2)
                 Write-Activity 'Reading the log failed. The usual cause is MySQL not running - start Herd. Trying again in 2 minutes.'
@@ -368,6 +379,7 @@ function Invoke-SyncPass([bool]$manual) {
             }
             if (-not $ok) { Write-Activity 'Building reviews failed - the games are archived; reviews will build on the next sync.' }
             Invoke-MovePass
+            Invoke-BackupPass
         }
         Add-CardsStep
         Start-NextStep
@@ -443,6 +455,39 @@ function Invoke-MovePass {
         if (-not (Test-FileFree $f.FullName)) { continue }
         Move-CombatLog $f
     }
+}
+
+# --- Backup ------------------------------------------------------------------
+# A second copy of the game archive and notes.json, in a folder the user picks (another drive, or
+# a cloud-synced folder). Once a combat log is gone the archive cannot be rebuilt, and until
+# 4 Oct 2026 it lived on one drive only. Robocopy copies only new and changed files and never
+# deletes from the copy, so a game lost here survives there. It runs hidden, in the background,
+# and Poll-Backup reports how it went.
+$script:BackupProc = $null
+
+function Invoke-BackupPass {
+    $to = $script:Settings.BackupTo
+    if (-not $to -or $script:BackupProc) { return }
+    $to = $to.TrimEnd('\')
+    $from = (Get-ArchiveDir).TrimEnd('\')
+    $dest = Join-Path $to 'arena-logs'
+    try {
+        New-Item -ItemType Directory -Force -Path $dest | Out-Null
+        if (Test-Path $script:NotesFile) { Copy-Item $script:NotesFile (Join-Path $to 'notes.json') -Force }
+    } catch {
+        Write-Activity "Backup to $to failed: $($_.Exception.Message)"
+        return
+    }
+    $script:BackupProc = Start-Hidden "$env:WINDIR\System32\robocopy.exe" ("`"$from`" `"$dest`" /E /XO /R:1 /W:1 /NP /NFL /NDL /NJH /NJS")
+}
+
+function Poll-Backup {
+    $p = $script:BackupProc
+    if (-not $p -or -not $p.HasExited) { return }
+    $script:BackupProc = $null
+    # Robocopy's exit code: 0 nothing new, 1 copied, 2-7 extra or mismatched files (still a copy), 8+ failed.
+    if ($p.ExitCode -ge 8) { Write-Activity "Backup to $($script:Settings.BackupTo) failed (robocopy exit code $($p.ExitCode))." }
+    elseif ($p.ExitCode -band 1) { Write-Activity "Backed up new games to $($script:Settings.BackupTo)." }
 }
 
 # --- Matches ---------------------------------------------------------------
@@ -1042,9 +1087,9 @@ function Read-Hotkey {
 # --- Local site, for the full review ---------------------------------------
 
 function Test-PortOpen([int]$port) {
-    $c = New-Object Net.Sockets.TcpClient
-    try { $ar = $c.BeginConnect('127.0.0.1', $port, $null, $null); return ($ar.AsyncWaitHandle.WaitOne(300) -and $c.Connected) }
-    catch { return $false } finally { $c.Close() }
+    $tcp = New-Object Net.Sockets.TcpClient
+    try { $ar = $tcp.BeginConnect('127.0.0.1', $port, $null, $null); return ($ar.AsyncWaitHandle.WaitOne(300) -and $tcp.Connected) }
+    catch { return $false } finally { $tcp.Close() }
 }
 
 function Open-Review {
@@ -1263,12 +1308,13 @@ function Add-FolderRow([string]$label, [string]$hint, [string]$value) {
 $txtWow = Add-FolderRow "WoW's Logs folder" 'Where WoW writes WoWCombatLog-*.txt. Saved to .env as WOW_COMBATLOG_PATH.' ((Get-WowLogsDir) -as [string])
 $txtArchive = Add-FolderRow 'Game archive' 'Where each game is stored once read (raw/ + metadata/). Saved to .env as ARENA_LOG_ARCHIVE_PATH. Changing it does not move games already there.' (Get-ArchiveDir)
 $txtMove = Add-FolderRow 'Move WoW logs to' "Where a combat log goes once all of it is archived, so WoW's folder stays empty." $script:Settings.MoveTo
+$txtBackup = Add-FolderRow 'Back up games to' 'A second copy of the game archive and your notes, refreshed after each sync: another drive or a cloud-synced folder. Leave empty for none.' $script:Settings.BackupTo
 
 function New-Check([string]$text, [bool]$checked) {
-    $c = New-Object Windows.Forms.CheckBox
-    $c.Text = $text; $c.Checked = $checked; $c.AutoSize = $true; $c.Margin = New-Object Windows.Forms.Padding(0, 8, 0, 0)
-    $grid.Controls.Add((New-Object Windows.Forms.Label)); $grid.Controls.Add($c); $grid.Controls.Add((New-Object Windows.Forms.Label))
-    return $c
+    $cb = New-Object Windows.Forms.CheckBox
+    $cb.Text = $text; $cb.Checked = $checked; $cb.AutoSize = $true; $cb.Margin = New-Object Windows.Forms.Padding(0, 8, 0, 0)
+    $grid.Controls.Add((New-Object Windows.Forms.Label)); $grid.Controls.Add($cb); $grid.Controls.Add((New-Object Windows.Forms.Label))
+    return $cb
 }
 $chkAuto = New-Check 'Read new games automatically when an arena ends' $script:Settings.AutoSync
 $chkMove = New-Check "Move each combat log out of WoW's folder once it is archived (after WoW closes)" $script:Settings.MoveAfterArchive
@@ -1283,6 +1329,17 @@ $pageSettings.Controls.Add($grid)
 $btnSave.Add_Click({
     try {
         if ($txtWow.Text -and -not (Test-Path $txtWow.Text)) { throw "WoW's Logs folder does not exist: $($txtWow.Text)" }
+        $backup = $txtBackup.Text.Trim().TrimEnd('\')
+        if ($backup) {
+            if (-not (Test-Path ([IO.Path]::GetPathRoot($backup)))) { throw "The backup drive does not exist: $backup" }
+            # With a trailing separator, so arena-logs-backup beside arena-logs is allowed.
+            $a = $txtArchive.Text.TrimEnd('\') + '\'
+            $b = $backup + '\'
+            if ($b.StartsWith($a, [StringComparison]::OrdinalIgnoreCase) -or $a.StartsWith($b, [StringComparison]::OrdinalIgnoreCase)) {
+                throw 'The backup folder cannot be inside the game archive, or hold it.'
+            }
+        }
+        $backupChanged = $backup -ne $script:Settings.BackupTo
         $archiveChanged = (Get-ArchiveDir) -ne $txtArchive.Text
         if ($txtWow.Text -ne (Get-WowLogsDir)) { Set-EnvValue 'WOW_COMBATLOG_PATH' $txtWow.Text }
         if ($archiveChanged) {
@@ -1290,6 +1347,7 @@ $btnSave.Add_Click({
             Set-EnvValue 'ARENA_LOG_ARCHIVE_PATH' $txtArchive.Text
         }
         $script:Settings.MoveTo = $txtMove.Text
+        $script:Settings.BackupTo = $backup
         $script:Settings.AutoSync = $chkAuto.Checked
         $script:Settings.MoveAfterArchive = $chkMove.Checked
         $script:Settings.LivePanel = $chkLive.Checked
@@ -1299,6 +1357,8 @@ $btnSave.Add_Click({
         Write-Activity 'Settings saved.'
         Set-Status (Get-IdleStatus)
         if ($archiveChanged) { Load-Matches }
+        # The first copy of everything, straight away; later ones follow each sync.
+        if ($backup -and $backupChanged) { Write-Activity "Backing up the game archive to $backup..."; Invoke-BackupPass }
     } catch {
         [Windows.Forms.MessageBox]::Show($_.Exception.Message, 'MindCollector Logs') | Out-Null
     }
@@ -1621,6 +1681,7 @@ $timer.Interval = 1000
 $timer.Add_Tick({
     try {
         Poll-Step
+        Poll-Backup
         Read-Hotkey
         Update-Live
         $script:Tick++

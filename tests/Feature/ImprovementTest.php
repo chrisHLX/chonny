@@ -5,6 +5,10 @@ namespace Tests\Feature;
 use App\Http\Services\CooldownLedgerService;
 use App\Http\Services\ImprovementService;
 use App\Models\ArenaRound;
+use App\Models\Game;
+use App\Models\Patch;
+use App\Models\Spell;
+use App\Models\SpellEffect;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -17,6 +21,22 @@ use Tests\TestCase;
 class ImprovementTest extends TestCase
 {
     use RefreshDatabase;
+
+    /**
+     * What counts as a dispel comes from the spell data: a Dispel effect. Phantasm has none, so the
+     * slow it strips when a Priest fades is not a dispel.
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $game = Game::create(['name' => 'WoW', 'slug' => 'wow']);
+        $patch = Patch::create(['game_id' => $game->id, 'build_version' => '12.1.0.test', 'is_current' => true]);
+        foreach ([[527, 'Purify', 'Dispel (38)'], [32375, 'Mass Dispel', 'Dispel (38)'], [108942, 'Phantasm', 'Proc Trigger Spell (42): Phantasm']] as [$id, $name, $type]) {
+            $spell = Spell::create(['patch_id' => $patch->id, 'spell_id' => $id, 'name' => $name]);
+            SpellEffect::create(['spell_id' => $spell->id, 'effect_index' => 1, 'type' => $type]);
+        }
+    }
 
     private function players(): array
     {
@@ -33,7 +53,7 @@ class ImprovementTest extends TestCase
      * off six times, ours once. Our healer is locked out 30s, theirs 6s, and our Hunter dies while
      * our healer is locked out with the Medallion never pressed.
      */
-    private function storeRound(User $user, int $i, int $version = 6): void
+    private function storeRound(User $user, int $i, int $version = 6, string $day = '2026-10-01', int $ourDispels = 1): void
     {
         $analysis = [
             'version' => $version,
@@ -76,12 +96,15 @@ class ImprovementTest extends TestCase
 
         if ($version >= 6) {
             $analysis['dispels'] = array_merge(
-                [['t' => 20, 'by' => 'P-1', 'on' => 'P-2', 'spell' => 'Purify', 'removed' => 'Polymorph']],
+                array_fill(0, $ourDispels, ['t' => 20, 'by' => 'P-1', 'on' => 'P-2', 'spell' => 'Purify', 'removed' => 'Polymorph']),
                 array_fill(0, 6, ['t' => 30, 'by' => 'E-1', 'on' => 'E-2', 'spell' => 'Purify', 'removed' => 'Polymorph']),
                 // A Mass Dispel is a long cooldown: it neither counts as a dispel nor makes its debuff "dispellable".
                 [['t' => 40, 'by' => 'E-1', 'on' => 'E-2', 'spell' => 'Mass Dispel', 'removed' => 'Cyclone']],
+                // Phantasm stripping a slow from our Priest as they fade: in the log, not a dispel.
+                [['t' => 25, 'by' => 'P-1', 'on' => 'P-1', 'spell' => 'Phantasm', 'removed' => 'Crippling Poison']],
             );
             $analysis['debuffs'] = [
+                'P-1' => [['Crippling Poison', 0, 30]],
                 'P-2' => [['Polymorph', 0, 60], ['Cyclone', 60, 66]],
                 'E-2' => [['Polymorph', 0, 60]],
             ];
@@ -89,7 +112,7 @@ class ImprovementTest extends TestCase
 
         ArenaRound::create([
             'user_id' => $user->id, 'match_id' => "m{$i}", 'lobby_id' => "m{$i}", 'roster_key' => 'x', 'sequence' => 1,
-            'bracket' => '3v3', 'played_at' => sprintf('2026-10-01 14:%02d:00', $i),
+            'bracket' => '3v3', 'played_at' => sprintf('%s 14:%02d:00', $day, $i),
             'payload' => ['metadata' => ['durationInSeconds' => 120], 'analysis' => $analysis,
                 // Each team took 3M.
                 'throughput' => ['players' => ['P-1' => ['damageTaken' => 1000000], 'P-2' => ['damageTaken' => 2000000], 'E-1' => ['damageTaken' => 1000000], 'E-2' => ['damageTaken' => 2000000]]]],
@@ -124,6 +147,7 @@ class ImprovementTest extends TestCase
         $this->assertStringContainsString('You 1.00 10 games Other Discipline Priests 6.00', $page);
         $this->assertStringContainsString('Your team carried one for 30s a minute (30s for the others)', $page, 'Cyclone, only ever Mass Dispelled, is not counted');
         $this->assertStringContainsString('Left on your team most: Polymorph 60s a game', $page);
+        $this->assertStringNotContainsString('Crippling Poison', $page, 'only Phantasm removed it: no dispel could have');
         // Locked out 15s a minute against 3s.
         $this->assertStringContainsString('Time locked out Behind other Discipline Priests', $page);
         $this->assertStringContainsString('You 15.0s', $page);
@@ -162,9 +186,51 @@ class ImprovementTest extends TestCase
         // Their goes started with two big defensives down in all of yours and none of theirs: any
         // against the others' none is the furthest behind, so it is the one focus.
         $this->assertStringContainsString('Your focus Big defensives when their go started you 100% against 0% for other Discipline Priests', $page);
-        $this->assertStringContainsString('Last session (Fri 2 Oct, 1 game): 100% , against 100% before it. about the same', $page);
+        // One session before it: too few to give a range, so no verdict on it either way.
+        $this->assertStringContainsString('Last session (Fri 2 Oct, 1 game): 100% . Against 100% before it: too few sessions of 3+ games yet to say whether it stands out.', $page);
         $this->assertStringContainsString('Last session (Fri 2 Oct): 15.0s, against 15.0s before it.', $page, 'every habit carries its last session');
         $this->assertLessThan(strpos($page, 'What to work on'), strpos($page, 'Your focus'), 'the focus comes first');
+    }
+
+    public function test_a_session_is_read_against_the_range_of_the_sessions_before_it(): void
+    {
+        $user = User::factory()->create();
+        // Four sessions of three games: one dispel a game, then one, then two, then four.
+        $n = 0;
+        foreach (['2026-10-01' => 1, '2026-10-02' => 1, '2026-10-03' => 2, '2026-10-04' => 4] as $day => $dispels) {
+            foreach (range(1, 3) as $i) {
+                $this->storeRound($user, ++$n, day: $day, ourDispels: $dispels);
+            }
+        }
+
+        $html = app(ImprovementService::class)->build($user)['Healz-Realm-US']['html'];
+        $page = $this->text($html);
+
+        // A minute of Polymorph a game: 1.00, 1.00, 2.00 and 4.00 a minute.
+        $this->assertStringContainsString('Last session (Sun 4 Oct): 4.00; your sessions before it ran 1.00 to 2.00. your best session yet', $page);
+        // The same every session: inside the range, so no chip on the habit.
+        $this->assertStringContainsString('Last session (Sun 4 Oct): 15.0s; your sessions before it ran 15.0s to 15.0s.', $page);
+        $this->assertStringNotContainsString('15.0s to 15.0s. your', $page);
+
+        // One line per habit by session, four points each, with the others' level dashed.
+        preg_match_all('/<polyline[^>]*points="([^"]+)"/', $html, $lines);
+        $this->assertNotEmpty($lines[1]);
+        foreach ($lines[1] as $points) {
+            $this->assertCount(4, explode(' ', $points));
+        }
+        $this->assertStringContainsString('stroke-dasharray', $html);
+        $this->assertStringContainsString('By session, 1 Oct to 4 Oct', $page, 'the focus carries the larger chart');
+
+        // Lower is better for time locked out: a session under the range is the best yet.
+        $session = new \ReflectionMethod(ImprovementService::class, 'session');
+        $read = fn (array $vs, bool $more) => $session->invoke(app(ImprovementService::class), [
+            'series' => array_map(fn ($v, $i) => ['day' => '2026-10-0'.($i + 1), 'v' => $v, 'n' => 3], $vs, array_keys($vs)),
+            'beforeLast' => 1.0,
+        ], $more, fn ($v) => (string) $v)['moved'];
+        $this->assertSame('best', $read([10, 12, 14, 8], false));
+        $this->assertSame('worst', $read([10, 12, 14, 8], true));
+        $this->assertSame('within', $read([10, 12, 14, 11], true));
+        $this->assertNull($read([10, 12, 11], true), 'two sessions before it are too few for a range');
     }
 
     public function test_the_focus_is_a_habit_before_an_outcome_and_never_a_healers_damage(): void

@@ -245,7 +245,7 @@ Battle.net and Google OAuth need their redirect URLs registered with the provide
 
 Your own combat log → `wow:ingest-combatlog` → the archive (`D:/MindCollector/arena-logs`,
 gitignored) → `wow:sync` → `RoundAnalysisService` measures each round once into
-`arena_rounds.payload` (version 8) → `wow:game-cards` renders the desktop app's pages (game cards,
+`arena_rounds.payload` (at `RoundAnalysisService::VERSION`) → `wow:game-cards` renders the desktop app's pages (game cards,
 Improve per character, the comp library) as HTML files → the app
 (`tools/log-manager/MindCollectorLogs.ps1`) shows them. `/wow/match-analysis` reads the same
 payloads on the site. **Read `match-review.md` before changing any of it**: what to re-run after a

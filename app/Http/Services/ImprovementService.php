@@ -3,7 +3,10 @@
 namespace App\Http\Services;
 
 use App\Models\ArenaRound;
+use App\Models\Patch;
+use App\Models\Spell;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
 /**
@@ -35,8 +38,26 @@ class ImprovementService
     /** The newest rounds, compared with everything before them, for a trend. */
     private const RECENT = 20;
 
+    /** A session (a day played) needs this many games to count toward the usual range... */
+    private const SESSION_MIN = 3;
+
+    /** ...and the range needs this many such sessions before the last one is read against it. */
+    private const SESSIONS_FOR_RANGE = 3;
+
     /** Dispels on a long cooldown that would make "could have dispelled" unfair (Cyclone via Mass Dispel). */
     private const NOT_A_ROUTINE_DISPEL = ['Mass Dispel'];
+
+    /** What a game produces rather than something done in it: listed after the habits, focus last. */
+    private const OUTCOMES = ['damage', 'healing'];
+
+    /** Seconds of dispellable debuffs on the team before a dispel rate is read at all. */
+    private const DISPEL_MIN_SECONDS = 60;
+
+    /** The spell data's effect type that makes a spell a dispel (Purify, Cleanse, Nature's Cure). */
+    private const DISPEL_EFFECT = 'Dispel (38)';
+
+    /** @var array<string, true> the spells that count as a dispel, by name */
+    private array $dispelSpells = [];
 
     public function __construct(private SpellIconIndex $icons) {}
 
@@ -49,7 +70,10 @@ class ImprovementService
             ->map(fn ($r) => $r->id.':'.$r->updated_at)->implode(',');
         // Experience moves each game's difficulty, so it moves the page.
         $rounds .= '|'.md5(json_encode(array_map(fn ($x) => $x['gladSeasons'] ?? null, $xp)));
-        $code = implode('|', array_map(fn ($f) => $f.':'.filemtime($f), [__FILE__, resource_path('views/desktop/improve.blade.php'), resource_path('views/desktop/partials/styles.blade.php')]));
+        $code = implode('|', array_map(fn ($f) => $f.':'.filemtime($f), [__FILE__, resource_path('views/desktop/improve.blade.php'),
+            resource_path('views/desktop/partials/styles.blade.php'), resource_path('views/desktop/partials/spark.blade.php')]));
+        // Which spells dispel comes from the spell data, so a re-import can move the page.
+        $code .= '|spells:'.app(TalentSelectionService::class)->spellCacheVersion();
 
         return md5($rounds.$code);
     }
@@ -79,6 +103,7 @@ class ImprovementService
             ->filter(fn ($r) => $r['a'] !== null && ! empty($r['a']['players']))
             ->values();
 
+        $this->dispelSpells = $this->dispelSpells();
         $dispelSets = $this->dispelSets($rounds);
 
         // One row per (round, player): every player in every stored round, both teams.
@@ -110,6 +135,31 @@ class ImprovementService
     // ------------------------------------------------------------------ measuring
 
     /**
+     * The spells that count as a dispel: those whose spell data carries a Dispel effect (Purify,
+     * Cleanse, Remove Corruption, Detox), less the long-cooldown ones.
+     *
+     * The combat log records a removal for more than a dispel. Phantasm strips a slow when a Priest
+     * fades; a Druid's shapeshift breaks a root; Blessing of Freedom; Cleanse the Weak's extra
+     * removals, which come free with one Cleanse. Counted as dispels (to 4 Oct 2026), a Feral's
+     * shapeshifts were 115 of its 133 "dispels". The debuffs only those remove (Crippling Poison,
+     * Chains of Ice: 16 of the 91 on a Disc Priest's list) read as chances to dispel that no dispel
+     * could take.
+     *
+     * @return array<string, true>
+     */
+    private function dispelSpells(): array
+    {
+        $names = Spell::query()
+            ->where('patch_id', Patch::where('is_current', true)->value('id'))
+            ->whereHas('effects', fn ($q) => $q->where('type', self::DISPEL_EFFECT))
+            ->whereNotIn('name', self::NOT_A_ROUTINE_DISPEL)
+            ->pluck('name')
+            ->all();
+
+        return array_fill_keys($names, true);
+    }
+
+    /**
      * For each spec, the debuffs its players' dispels were seen removing, across every stored round.
      *
      * @return array<string, array<string, true>>
@@ -120,7 +170,7 @@ class ImprovementService
         foreach ($rounds as $r) {
             $specOf = collect($r['a']['players'])->pluck('spec', 'guid');
             foreach ($r['a']['dispels'] ?? [] as $d) {
-                if (! in_array($d['spell'], self::NOT_A_ROUTINE_DISPEL, true) && isset($specOf[$d['by']])) {
+                if (isset($this->dispelSpells[$d['spell']]) && isset($specOf[$d['by']])) {
                     $sets[$specOf[$d['by']]][$d['removed']] = true;
                 }
             }
@@ -154,7 +204,7 @@ class ImprovementService
                 $opp += $this->len($this->union($iv));
             }
         }
-        $removed = $v6 ? collect($a['dispels'] ?? [])->where('by', $guid)->whereNotIn('spell', self::NOT_A_ROUTINE_DISPEL)->count() : 0;
+        $removed = $v6 ? collect($a['dispels'] ?? [])->where('by', $guid)->filter(fn ($d) => isset($this->dispelSpells[$d['spell']]))->count() : 0;
 
         $teamGoes = collect($a['goes'])->where('side', $side);
         $theirGoes = collect($a['goes'])->where('side', '!=', $side);
@@ -243,26 +293,25 @@ class ImprovementService
     {
         $recent = $mine->count() >= self::RECENT + 10 ? $mine->slice(-self::RECENT) : null;
         $earlier = $recent ? $mine->slice(0, $mine->count() - self::RECENT) : null;
-        // The last session (the last day this character played) against every game before it: the
-        // coach's "measure it again next session".
-        $lastDay = substr($mine->last()['at'], 0, 10);
-        $session = $mine->filter(fn ($r) => str_starts_with($r['at'], $lastDay))->values();
-        $beforeSession = $mine->reject(fn ($r) => str_starts_with($r['at'], $lastDay))->values();
+        // Sessions: the days this character played, oldest first. The last is the coach's "measure
+        // it again next session"; see session() for what it is set against.
+        $sessions = $mine->groupBy(fn ($r) => substr($r['at'], 0, 10))->sortKeys();
+        $beforeLast = $mine->reject(fn ($r) => str_starts_with($r['at'], (string) $sessions->keys()->last()))->values();
         $trend = fn (callable $value) => [
             'recent' => $recent ? $value($recent) : null,
             'earlier' => $recent ? $value($earlier) : null,
             'n' => $recent ? self::RECENT : null,
-            'session' => $value($session),
-            'beforeSession' => $beforeSession->isNotEmpty() ? $value($beforeSession) : null,
-            'sessionN' => $session->count(),
-            'sessionDay' => $lastDay,
+            'series' => $sessions->map(fn ($rs, $day) => ['day' => $day, 'v' => $value($rs->values()), 'n' => $rs->count()])->values()->all(),
+            'beforeLast' => $beforeLast->isNotEmpty() ? $value($beforeLast) : null,
         ];
 
         $habits = [];
 
         // 1. Dispels, per minute your team carried something you could have taken off.
         if ($dispellable && $mine->where('v6', true)->isNotEmpty()) {
-            $rate = fn (Collection $rs) => ($o = $rs->where('v6', true)->sum('opp')) > 0 ? $rs->where('v6', true)->sum('removed') / ($o / 60) : null;
+            // Under a minute of chances, a rate says nothing: two dispels on a session's few seconds
+            // of poison read as 15 a minute (a Feral, 26 Sep).
+            $rate = fn (Collection $rs) => ($o = $rs->where('v6', true)->sum('opp')) >= self::DISPEL_MIN_SECONDS ? $rs->where('v6', true)->sum('removed') / ($o / 60) : null;
             $perMin = fn (Collection $rs) => ($m = $rs->where('v6', true)->sum('mins')) > 0 ? $rs->where('v6', true)->sum('opp') / $m : null;
             $carried = [];
             foreach ($mine->where('v6', true) as $r) {
@@ -273,13 +322,13 @@ class ImprovementService
             arsort($carried);
             $games = max(1, $mine->where('v6', true)->count());
             $habits[] = $this->habit('dispels', 'Dispels', true,
-                'Debuffs you took off your team, per minute your team carried one that '.$this->plural($spec).' were seen removing.',
+                'Debuffs you dispelled off your team, per minute your team carried one that '.$this->plural($spec).' were seen dispelling.',
                 $rate($mine), $rate($others), $mine->where('v6', true)->count(), $others->where('v6', true)->count(), 2, '',
                 [
                     sprintf('Your team carried one for %s a minute (%s for the others).', $this->secs($perMin($mine)), $this->secs($perMin($others))),
                 ],
                 $trend($rate),
-                'Whether a dispel is worth a global is your call: it costs a heal, and some debuffs punish the dispeller (Unstable Affliction).',
+                'Only a dispel counts, not a shapeshift or Phantasm breaking a slow. Whether a dispel is worth a global is your call: it costs a heal, and some debuffs punish the dispeller (Unstable Affliction).',
                 $this->iconRows(array_map(fn ($s) => $this->secs($s / $games).' a game', array_slice($carried, 0, 6, true)), 'Left on your team most'),
             );
         }
@@ -408,9 +457,11 @@ class ImprovementService
             );
         }
 
-        // Behind the others first, then level, then ahead; within each, the larger gap first.
+        // Behind the others first, then level, then ahead; within each, habits before outcomes (the
+        // focus's own rule, so the list never leads with what the focus skips), then the larger gap.
         $order = ['behind' => 0, 'lead' => 1, 'level' => 2, 'ahead' => 3, 'none' => 4];
-        usort($habits, fn ($x, $y) => [$order[$x['status']], -abs($x['gap'] ?? 0)] <=> [$order[$y['status']], -abs($y['gap'] ?? 0)]);
+        $outcome = fn (array $h) => (int) in_array($h['key'], self::OUTCOMES, true);
+        usort($habits, fn ($x, $y) => [$order[$x['status']], $outcome($x), -abs($x['gap'] ?? 0)] <=> [$order[$y['status']], $outcome($y), -abs($y['gap'] ?? 0)]);
 
         $won = $mine->where('won', true)->count();
 
@@ -433,7 +484,9 @@ class ImprovementService
                 $mine->where('difficulty', $label)->where('won', false)->count(),
             ]])->filter(fn ($wl) => array_sum($wl) > 0)->all(),
             'habits' => $habits,
-            'focus' => $this->focus($habits, (bool) $mine->first()['healer']),
+            'focus' => ($focus = $this->focus($habits, (bool) $mine->first()['healer']))
+                ? $focus + ['chartWide' => $this->spark($focus['series'], $focus['ref'], 300, 64)]
+                : null,
         ];
     }
 
@@ -448,7 +501,7 @@ class ImprovementService
         $behind = collect($habits)->where('status', 'behind')
             ->reject(fn ($h) => $healer && $h['key'] === 'damage');
 
-        return $behind->first(fn ($h) => ! in_array($h['key'], ['damage', 'healing'], true)) ?? $behind->first();
+        return $behind->first(fn ($h) => ! in_array($h['key'], self::OUTCOMES, true)) ?? $behind->first();
     }
 
     /**
@@ -484,21 +537,81 @@ class ImprovementService
             'gap' => $gap,
             'lines' => $lines,
             'trend' => $trend && $trend['n'] ? ['recent' => $fmt($trend['recent']), 'earlier' => $fmt($trend['earlier']), 'n' => $trend['n']] : null,
-            // The last session against the ones before it, with which way it moved.
-            'session' => $trend && $trend['beforeSession'] !== null && $trend['session'] !== null ? [
-                'value' => $fmt($trend['session']),
-                'before' => $fmt($trend['beforeSession']),
-                'n' => $trend['sessionN'],
-                'day' => \Illuminate\Support\Carbon::parse($trend['sessionDay'])->format('D j M'),
-                'moved' => match (true) {
-                    $trend['beforeSession'] == 0 && $trend['session'] == 0 => 'same',
-                    abs($trend['session'] - $trend['beforeSession']) <= 0.1 * max(abs($trend['beforeSession']), 0.0001) => 'same',
-                    ($trend['session'] > $trend['beforeSession']) === $moreIsBetter => 'better',
-                    default => 'worse',
-                },
-            ] : null,
+            'session' => $trend ? $this->session($trend, $moreIsBetter, $fmt) : null,
+            'series' => $trend['series'] ?? [],
+            'ref' => $others,
+            'chart' => $this->spark($trend['series'] ?? [], $others),
             'caveat' => $caveat,
             'list' => $list,
+        ];
+    }
+
+    /**
+     * The last session set against the player's own sessions before it: their range, never their
+     * average. Against the average, one Feral's 16% idle read as "better" after sessions of 24, 16
+     * and 13%: an ordinary session made to look like progress. Outside the range it is the best or
+     * worst session yet, which is plainly checkable; inside it, within the usual swing. The range
+     * takes sessions of SESSION_MIN games or more, and needs SESSIONS_FOR_RANGE of them.
+     */
+    private function session(array $trend, bool $moreIsBetter, callable $fmt): ?array
+    {
+        $last = end($trend['series']);
+        if (! $last || $last['v'] === null || $trend['beforeLast'] === null) {
+            return null;
+        }
+        $past = collect(array_slice($trend['series'], 0, -1))->where('n', '>=', self::SESSION_MIN)->whereNotNull('v')->pluck('v');
+        $range = $past->count() >= self::SESSIONS_FOR_RANGE ? [$past->min(), $past->max()] : null;
+        $moved = $range && $last['n'] >= self::SESSION_MIN ? match (true) {
+            $last['v'] > $range[1] => $moreIsBetter ? 'best' : 'worst',
+            $last['v'] < $range[0] => $moreIsBetter ? 'worst' : 'best',
+            default => 'within',
+        } : null;
+        $day = Carbon::parse($last['day'])->format('D j M');
+
+        return [
+            'value' => $fmt($last['v']),
+            'n' => $last['n'],
+            'day' => $day,
+            'before' => $fmt($trend['beforeLast']),
+            'range' => $range ? [$fmt($range[0]), $fmt($range[1])] : null,
+            'sessions' => $past->count(),
+            'moved' => $moved,
+            'line' => "Last session ({$day}): ".$fmt($last['v']).($range
+                ? '; your sessions before it ran '.$fmt($range[0]).' to '.$fmt($range[1]).'.'
+                : ', against '.$fmt($trend['beforeLast']).' before it.'),
+        ];
+    }
+
+    /**
+     * A small line of one habit by session, drawn as inline SVG (the app's IE11 control draws it:
+     * match-review.md): a point per session, oldest first, and the other players' level dashed.
+     *
+     * @param  array<int, array{day: string, v: ?float, n: int}>  $series
+     * @return array{w: int, h: int, points: string, last: array{0: float, 1: float}, ref: ?float, from: string, to: string}|null
+     */
+    private function spark(array $series, ?float $ref, int $w = 180, int $h = 40): ?array
+    {
+        $pts = array_values(array_filter($series, fn ($s) => $s['v'] !== null && is_finite($s['v'])));
+        if (count($pts) < 2) {
+            return null;
+        }
+        $ref = $ref !== null && is_finite($ref) ? $ref : null;
+        $all = array_merge(array_column($pts, 'v'), $ref === null ? [] : [$ref]);
+        [$lo, $hi] = [min($all), max($all)];
+        $pad = ($hi - $lo) * 0.15 ?: max(abs($hi) * 0.5, 0.01);
+        [$lo, $hi] = [$lo - $pad, $hi + $pad];
+        $x = fn (int $i) => round(4 + $i * ($w - 8) / (count($pts) - 1), 1);
+        $y = fn (float $v) => round(($h - 4) - ($v - $lo) / ($hi - $lo) * ($h - 8), 1);
+        $last = count($pts) - 1;
+
+        return [
+            'w' => $w,
+            'h' => $h,
+            'points' => implode(' ', array_map(fn ($i) => $x($i).','.$y($pts[$i]['v']), array_keys($pts))),
+            'last' => [$x($last), $y($pts[$last]['v'])],
+            'ref' => $ref === null ? null : $y($ref),
+            'from' => Carbon::parse($pts[0]['day'])->format('j M'),
+            'to' => Carbon::parse($pts[$last]['day'])->format('j M'),
         ];
     }
 

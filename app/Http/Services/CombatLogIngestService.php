@@ -113,8 +113,67 @@ class CombatLogIngestService
      */
     private const ROUNDS_PER_LOBBY = 6;
 
+    /**
+     * The combat log format every field offset here was measured on (the header's
+     * COMBAT_LOG_VERSION), and the patch it was measured in (BUILD_VERSION). Offsets are read from
+     * the END of a line (docs/combat-log-ingest.md), so a new format that adds a field shifts every
+     * one of them without a single error, and the games still look fine. Each match records its
+     * header (`combatLog` in the metadata) and the ingest warns when either differs: re-measure,
+     * then move these.
+     */
+    public const VERIFIED_LOG_VERSION = 22;
+
+    public const VERIFIED_BUILD = '12.1.0';
+
     /** @var array<string, int>|null spec external id => class id, memoised per run */
     private ?array $classBySpec = null;
+
+    /**
+     * The log's header line, which WoW writes at the top of a file and again whenever logging
+     * restarts (the addon restarts it for every arena):
+     *   COMBAT_LOG_VERSION,22,ADVANCED_LOG_ENABLED,1,BUILD_VERSION,12.1.0,PROJECT_ID,1
+     *
+     * @return array{version: int, advanced: bool, build: string}|null
+     */
+    public function logHeader(string $body): ?array
+    {
+        if (! str_starts_with($body, 'COMBAT_LOG_VERSION,')) {
+            return null;
+        }
+        $f = explode(',', trim($body));
+        $kv = [];
+        for ($i = 0; $i + 1 < count($f); $i += 2) {
+            $kv[$f[$i]] = $f[$i + 1];
+        }
+
+        return [
+            'version' => (int) ($kv['COMBAT_LOG_VERSION'] ?? 0),
+            'advanced' => ($kv['ADVANCED_LOG_ENABLED'] ?? '0') === '1',
+            'build' => (string) ($kv['BUILD_VERSION'] ?? ''),
+        ];
+    }
+
+    /**
+     * What a match's header means for trusting it: null when it is the format and patch the
+     * offsets were measured on, or when there is no header (a browser upload sends only the match).
+     */
+    public function headerWarning(?array $header): ?string
+    {
+        if ($header === null) {
+            return null;
+        }
+        if ($header['version'] !== self::VERIFIED_LOG_VERSION) {
+            return "The combat log format changed to version {$header['version']}; every field offset was measured on "
+                .self::VERIFIED_LOG_VERSION.'. Re-measure them (docs/combat-log-ingest.md) before trusting these games, '
+                .'then set CombatLogIngestService::VERIFIED_LOG_VERSION.';
+        }
+        if ($header['build'] !== self::VERIFIED_BUILD) {
+            return "A new patch, {$header['build']} (the offsets were checked on ".self::VERIFIED_BUILD.'). Import the new '
+                ."spell data, check one new game's card against what happened, then set CombatLogIngestService::VERIFIED_BUILD.";
+        }
+
+        return null;
+    }
 
     /**
      * Brackets that play several rounds under one ARENA_MATCH_START..END, matched on substring
@@ -147,7 +206,9 @@ class CombatLogIngestService
      * other bracket, so a genuinely truncated 3v3 is still discarded — the two cases are told
      * apart by the bracket on the buffered START, never by whether an END turned up.
      *
-     * @return \Generator<int, array{lines: array<int, string>, start: string, end: ?string, sequence: int}>
+     * Each match also carries the log header in force when it started (`header`, see logHeader()).
+     *
+     * @return \Generator<int, array{lines: array<int, string>, start: string, end: ?string, sequence: int, lobbyFirstLine: ?string, header: ?array}>
      */
     public function splitMatches(string $path): \Generator
     {
@@ -163,10 +224,17 @@ class CombatLogIngestService
         $startLine = null;
         $sequence = 0;
         $lobbyFirstLine = null;
+        // The header in force, and the one in force when the buffered match started.
+        $header = null;
+        $matchHeader = null;
 
         try {
             while (($line = $this->readLine($handle, $path)) !== false) {
                 $body = $this->body($line);
+
+                if (str_starts_with($body, 'COMBAT_LOG_VERSION,')) {
+                    $header = $this->logHeader($body);
+                }
 
                 if (str_starts_with($body, 'ARENA_MATCH_START,')) {
                     $bufferedIsRound = $startLine !== null && $this->isRoundBased($this->bracketOf($startLine));
@@ -177,9 +245,10 @@ class CombatLogIngestService
                     if ($current !== null && $bufferedIsRound) {
                         yield [
                             'lines' => $current, 'start' => $startLine, 'end' => null,
-                            'sequence' => $sequence, 'lobbyFirstLine' => $lobbyFirstLine,
+                            'sequence' => $sequence, 'lobbyFirstLine' => $lobbyFirstLine, 'header' => $matchHeader,
                         ];
                     }
+                    $matchHeader = $header;
 
                     $continuesLobby = $bufferedIsRound
                         && $this->isRoundBased($this->bracketOf($body))
@@ -205,7 +274,7 @@ class CombatLogIngestService
                 if (str_starts_with($body, 'ARENA_MATCH_END,')) {
                     yield [
                         'lines' => $current, 'start' => $startLine, 'end' => $body,
-                        'sequence' => $sequence, 'lobbyFirstLine' => $lobbyFirstLine,
+                        'sequence' => $sequence, 'lobbyFirstLine' => $lobbyFirstLine, 'header' => $matchHeader,
                     ];
                     $current = null;
                     $startLine = null;
@@ -229,6 +298,7 @@ class CombatLogIngestService
      * @param  string|null  $endLine  null for a shuffle round that ended because the next one began
      * @param  string|null  $lobbyFirstLine  the first ARENA_MATCH_START line of this round's lobby,
      *                                       timestamp included; null means this round IS the first
+     * @param  array|null  $header  the log header in force (logHeader()); null when the text had none
      */
     public function deriveMetadata(
         array $lines,
@@ -236,6 +306,7 @@ class CombatLogIngestService
         ?string $endLine = null,
         int $sequence = 1,
         ?string $lobbyFirstLine = null,
+        ?array $header = null,
     ): array {
         $start = explode(',', $startLine);
         $end = $endLine === null ? [] : explode(',', $endLine);
@@ -298,6 +369,9 @@ class CombatLogIngestService
             '__typename' => 'ArenaMatchDataStub',
             'id' => $this->matchId($startMs, $zoneId, $units),
             'wowVersion' => 'retail',
+            // The log format and patch the match was written in (headerWarning()). Null for
+            // matches ingested before 4 Oct 2026, and for a browser upload, which has no header.
+            'combatLog' => $header,
             // No remote object: the log lives next to this file, in the archive's own raw/ dir.
             'logObjectUrl' => null,
             'result' => $result,

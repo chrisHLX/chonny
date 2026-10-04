@@ -286,6 +286,14 @@ Verified: Shield Discipline → *"restore 0.5% of your maximum mana"* (`$47755s1
 
 **Widened again the same day** — a report of missing icons on `/claudes-counters` (which renders spells straight off `spell_class_availability`, passive/hidden ones included — NOT the kit subset). `fetch-spell-icons.php` now also targets **every `spells.id` with a `spell_class_availability` row for the current patch** (~12,800). This is the widest reasonable target — if a spell is available to any class/spec it can surface on some spec page — and subsumes every other source query for coverage. First full run: **4,847 spells got icons** (3,190 via same-name sibling recovery — Shadow Word: Death, Mass Dispel, Vampiric Embrace, Holy Nova, etc.), **3,475 landed in the "no API" bucket** (hidden/internal/removed/test records with no Blizzard media entry anywhere and no sibling that has one — these render `<x-spell-icon>`'s placeholder `<div>`, never a broken image; the run is just noisier). ~22k API requests, one-time. Then 16 more resolved by hand via `wow:resolve-wowhead-icons --apply` (all 9 Hunter pet-family CC abilities — Tendon Rip, Web Spray, Lock Jaw, etc.; the 6 slow/root debuff spell_ids — Earthbind, Cripple, Chilled, Earthgrab, Freeze; and Absolute Zero), each filename verified 200 on Blizzard's own icon CDN before adding, per that file's own rule. **Final: 3 rendered spells still icon-less** — Seduction (2 internal `(desc=Command Demon Ability)` copies) and Fatebound Coin (Tails); Wowhead has filenames but they 404 on Blizzard's CDN at every path/size/region, so they stay as placeholders. `spells` with `icon_name` set went from ~4,480 to 9,356; manifest from ~4,480 to 9,356 entries.
 
+**Adding one icon: never commit the regenerated manifest (2026-10-04).** `fetch-spell-icons.php`
+rewrites `icon-manifest.json`'s whole `spells` section from the *local* database. Run to add
+Virulent Plague (191587, via `wow:resolve-wowhead-icons 191587 --apply`, then `--limit=1`), it
+also dropped 9 entries the dev database no longer carries (racials: Blood Fury, Berserking,
+Arcane Torrent) and renamed 22 from numbered files to named ones. Restore the committed manifest
+and add the one line by hand. The image goes in with it (`storage/app/public/spell-icons/`), and
+`deploy.sh` applies the manifest.
+
 ## Four dump values that were never stored, and four rendering bugs — fixed 2026-09-24
 
 Patch bump to **12.1.0.69933** (SimC `midnight`; see CLAUDE.md rule 6a for why
