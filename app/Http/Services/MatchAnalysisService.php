@@ -583,9 +583,15 @@ class MatchAnalysisService
             // cooldown in the spell data. One used longer ago than that was back, and unused.
             $used = collect($death['healer']['medallionUsedAt'])->filter(fn ($t) => $t < $death['t'] - 5 && $t > $death['t'] - self::MEDALLION_COOLDOWN)->max();
             $dead = $label($death['who']);
-            $used !== null
-                ? $add($ourHealer['spec'], $ourHealer['classSlug'] ?? null, 'locked_trinket_used', sprintf('Locked out when your %s died; Medallion used %ds earlier', $dead, round($death['t'] - $used)), "Gladiator's Medallion")
-                : $add($ourHealer['spec'], $ourHealer['classSlug'] ?? null, 'locked_trinket_unused', sprintf('Locked out when your %s died, with the Medallion unused', $dead), "Gladiator's Medallion");
+            // A Medallion that broke crowd control or went out with someone in danger was needed
+            // (version 9): being locked out again later is the other team's play, not a fault.
+            $neededEarlier = $used !== null && collect($a['defensives']['us']['rows'] ?? [])
+                ->contains(fn ($d) => $d['spell'] === "Gladiator's Medallion" && abs($d['t'] - $used) < 0.2 && ! empty($d['needed']));
+            if ($used === null) {
+                $add($ourHealer['spec'], $ourHealer['classSlug'] ?? null, 'locked_trinket_unused', sprintf('Locked out when your %s died, with the Medallion unused', $dead), "Gladiator's Medallion");
+            } elseif (! $neededEarlier) {
+                $add($ourHealer['spec'], $ourHealer['classSlug'] ?? null, 'locked_trinket_used', sprintf('Locked out when your %s died; Medallion used %ds earlier', $dead, round($death['t'] - $used)), "Gladiator's Medallion");
+            }
         }
 
         // Two defensives on one player at once is NOT a fault, and was taken out of these rules on
@@ -598,7 +604,7 @@ class MatchAnalysisService
         // A defensive spent while they were not in a go. Not one pressed just before the presser
         // was locked out: going in before you lose the chance is the point of it.
         foreach ($a['defensives']['us']['rows'] as $d) {
-            if ($d['outside'] && $isOurs($d['who']) && empty($d['beforeLockout'])) {
+            if ($d['outside'] && $isOurs($d['who']) && empty($d['beforeLockout']) && empty($d['needed'])) {
                 $add($label($d['who']), $players[$d['who']]['classSlug'] ?? null, 'defensive_outside', sprintf('%s while they were not in a go', $d['spell']), $d['spell']);
             }
         }

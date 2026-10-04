@@ -201,6 +201,30 @@ class MatchAnalysisTest extends TestCase
         $this->assertTrue($total >= 98 && $total <= 102, "shares add up to 100 give or take rounding, got {$total}");
     }
 
+    public function test_a_needed_medallion_is_not_charged_when_the_next_lockout_comes(): void
+    {
+        $user = User::factory()->create();
+        // The Medallion at 20s broke crowd control (version 9 says needed); the healer was locked
+        // out again when the DK died at 60s. Being locked out again is the other team's play.
+        $this->storeGame($user, 'm3', '2026-09-26 19:50:00', false, [
+            'deaths' => [[
+                't' => 60, 'who' => 'P-2', 'side' => 'us', 'killingBlow' => ['spell' => 'Execute', 'amount' => 1, 'hpBefore' => 1],
+                'shares' => [], 'goStartedAgo' => 5, 'defensives30s' => [],
+                'healer' => ['state' => 'locked', 'endedAgo' => null, 'medallionUsedAt' => [20]],
+            ]],
+            'defensives' => [
+                'us' => ['spent' => 1, 'outsideTheirGoes' => 1, 'rows' => [['t' => 20, 'spell' => "Gladiator's Medallion", 'who' => 'P-1', 'outside' => true, 'needed' => true]]],
+                'them' => ['spent' => 0, 'outsideTheirGoes' => 0, 'rows' => []],
+            ],
+        ]);
+
+        $s = app(MatchAnalysisService::class)->sessions($user)[0];
+        $items = collect(app(MatchAnalysisService::class)->build($user, $s['date'], $s['bracket'], $s['team'])['faults']['games'][0]['items'] ?? []);
+
+        $this->assertNull($items->first(fn ($i) => str_contains($i['text'], 'Locked out when')), 'a needed Medallion is not a fault');
+        $this->assertNull($items->first(fn ($i) => str_contains($i['text'], "Gladiator's Medallion while they were not in a go")), 'nor is it "outside their go"');
+    }
+
     public function test_a_medallion_back_off_cooldown_counts_as_available(): void
     {
         $user = User::factory()->create();

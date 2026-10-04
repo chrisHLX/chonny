@@ -47,8 +47,10 @@ class RoundAnalysisService
      * classification gained Alter Time, Intervene and Leap of Faith as defensives and five main
      * offensive cooldowns, and lost eleven heals on a rotation. Every defensive count, overlap and
      * go can differ from version 7.
+     * 9 (2026-10-04): each defensive row says whether it was needed (warrant()): whom it went on,
+     * their health and time to live, warrant.php's reasons, and `needed`.
      */
-    public const VERSION = 8;
+    public const VERSION = 9;
 
     /** A defensive pressed this long or less before its owner was locked out went in before the chance was lost. */
     private const BEFORE_LOCKOUT = 4.0;
@@ -166,7 +168,8 @@ class RoundAnalysisService
                 array_map(fn ($d) => $this->killRead($d, $tl, $dmg, $locked, $healers, $roster, $sideOf, $credit, $goes), $deaths),
                 $lines, $metadata, $sideOf, $credit, $named, $failed, $locked, $goes,
             ),
-            'defensives' => $this->defensives($tl, $sideOf, $goes, $firstDeath, $roster, $locked),
+            'defensives' => $this->warrant($this->defensives($tl, $sideOf, $goes, $firstDeath, $roster, $locked),
+                $named, $dmg, $locked, $healers, $tl, $sideOf, $credit),
             'overlaps' => $this->overlaps($tl, $buffs, $sideOf, $firstDeath),
             'kicks' => $this->kicks($interrupts, $sideOf, $credit, $healers, $goes),
             'lockout' => array_map(fn ($iv) => round($this->len($iv), 1), $locked),
@@ -581,7 +584,7 @@ class RoundAnalysisService
                     $casts[$f[1]][] = $t;
                 }
                 // Every press by name, pets included (credited later), for the answer sheet.
-                $named[] = ['src' => $f[1], 'spell' => $f[10], 't' => $t];
+                $named[] = ['src' => $f[1], 'spell' => $f[10], 't' => $t, 'dst' => $f[5]];
 
                 continue;
             }
@@ -685,6 +688,8 @@ class RoundAnalysisService
                 't' => $t, 'src' => $f[1], 'dst' => $f[5], 'amount' => (int) $amount,
                 'spell' => $swing ? 'Melee' : $f[10],
                 'hpAfter' => is_numeric($cur) && is_numeric($max) && $max > 0 ? round(100 * $cur / $max, 1) : null,
+                // Absolute health, for time to live (warrant()).
+                'hpNow' => is_numeric($cur) ? (int) $cur : null,
             ];
         }
 
@@ -1095,6 +1100,83 @@ class RoundAnalysisService
         }
 
         return $out;
+    }
+
+    /**
+     * Was each defensive needed? (version 9). The second of the three questions for reading a
+     * defensive (match-review-operations.md), stored so pages that read only stored data can ask
+     * it. Until now only tools/match-review/warrant.php could, from the raw log. Each row gains:
+     *
+     * - `on`: whom it went on: the cast's own target when that was a teammate (Pain Suppression),
+     *   otherwise its presser;
+     * - `hp` and `ttl`: that player's health, and their time to live at the damage rate of the 3s
+     *   before (health / incoming per second; absorbs are not counted, so it reads long);
+     * - `reasons`, warrant.php's: `danger` (5s or less to live, or 35% health or lower), `cc` (a
+     *   lockout came off the target as it was pressed), `focus` (an enemy offensive cooldown pressed
+     *   in the 12s before), `alone` (a damage dealer pressed it while their healer was locked out);
+     * - `needed`: danger or cc. A needed press is never a mistake to fix.
+     *
+     * warrant.php's replay (taking each defensive's reduction off the hits it covered) stays a
+     * research step; it needs per-spell reduction values this does not carry.
+     */
+    private function warrant(array $defensives, array $named, array $dmg, array $locked, array $healers, array $tl, callable $sideOf, callable $credit): array
+    {
+        $hits = [];
+        $health = [];
+        foreach ($dmg as $x) {
+            $hits[$x['dst']][] = [$x['t'], $x['amount']];
+            if ($x['hpAfter'] !== null) {
+                $health[$x['dst']][] = [$x['t'], $x['hpAfter'], $x['hpNow']];
+            }
+        }
+        $offensive = [];
+        foreach ($tl['commitments'] as $c) {
+            if (in_array($c['cat'], ['offensive', 'mixed'], true)) {
+                $offensive[$sideOf($c['who'])][] = (float) $c['t'];
+            }
+        }
+
+        foreach ($defensives as $side => &$block) {
+            foreach ($block['rows'] as &$row) {
+                $t = (float) $row['t'];
+                $cast = collect($named)->first(fn ($n) => $credit($n['src']) === $row['who'] && $n['spell'] === $row['spell'] && abs($n['t'] - $t) <= 0.1);
+                $on = $cast && $sideOf($cast['dst']) === $side ? $cast['dst'] : $row['who'];
+
+                $last = null;
+                foreach ($health[$on] ?? [] as $h) {
+                    if ($h[0] > $t + 0.05) {
+                        break;
+                    }
+                    $last = $h;
+                }
+                $incoming = array_sum(array_map(fn ($h) => $h[1], array_filter($hits[$on] ?? [], fn ($h) => $h[0] >= $t - 3 && $h[0] <= $t + 0.05))) / 3;
+                $ttl = $last && $last[2] !== null && $incoming > 0 ? round($last[2] / $incoming, 1) : null;
+                $hp = $last ? $last[1] : null;
+
+                $reasons = [];
+                if (($ttl !== null && $ttl <= 5) || ($hp !== null && $hp <= 35)) {
+                    $reasons[] = 'danger';
+                }
+                if (collect($locked[$on] ?? [])->contains(fn ($iv) => $iv[1] >= $t - 0.1 && $iv[1] <= $t + 0.5 && $iv[0] < $t)) {
+                    $reasons[] = 'cc';
+                }
+                $enemy = $side === 'us' ? 'them' : 'us';
+                if (collect($offensive[$enemy] ?? [])->contains(fn ($x) => $x <= $t && $x >= $t - 12)) {
+                    $reasons[] = 'focus';
+                }
+                $healer = $healers[$side] ?? null;
+                if ($healer && $row['who'] !== $healer && collect($locked[$healer] ?? [])->contains(fn ($iv) => $t >= $iv[0] && $t <= $iv[1])) {
+                    $reasons[] = 'alone';
+                }
+
+                $row += ['on' => $on, 'hp' => $hp, 'ttl' => $ttl, 'reasons' => $reasons,
+                    'needed' => in_array('danger', $reasons, true) || in_array('cc', $reasons, true)];
+            }
+            unset($row);
+        }
+        unset($block);
+
+        return $defensives;
     }
 
     /** Two different defensives on one player at once for a second or more, before the first death. */

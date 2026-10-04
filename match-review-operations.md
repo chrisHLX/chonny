@@ -973,6 +973,11 @@ Methods the first studies settled. Their results are in `match-review-analysis.m
   keep the old figures, and the loss split's "healer locked out at a death" item with them, until
   they are derived again. For a game read from your own log that is
   `php artisan wow:sync --fresh --skip-ingest`; an uploaded game has to be uploaded again.
+- **Since version 9 (2026-10-04) the stored analysis also says whether each defensive was
+  needed** (`RoundAnalysisService::warrant()`): whom it went on, health, time to live, the reasons
+  and `needed`. The loss rules no longer charge a needed press, and the Improve page reports the
+  share. The replay (what the defensive removed) is still `warrant.php`'s alone. The paragraph
+  below is what was true before.
 - **The stored per-game analysis carries the ledger's coverage, but not the warrant verdicts**
   (2026-10-02; coverage added 2026-10-03). Since `RoundAnalysisService` version 6, every go
   stores `cover`: the defending side's damage defensives back as it started, with cooldowns

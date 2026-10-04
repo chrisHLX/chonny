@@ -217,6 +217,9 @@ class ImprovementService
             'healBy' => $healBy,
             'teamTaken' => array_sum(array_map(fn ($g) => $r['taken'][$g] ?? 0, $team)),
             'defs' => $defs->count(),
+            // Version 9: pressed with its target in danger, or to break crowd control.
+            'defsNeeded' => $defs->filter(fn ($d) => ! empty($d['needed']))->count(),
+            'defsWarranted' => $defs->filter(fn ($d) => array_key_exists('needed', $d))->count(),
             'defsOutside' => $defs->where('outside', true)->count(),
             'lockout' => (float) ($a['lockout'][$guid] ?? 0),
             'diedFirst' => $teamFirst !== null && $teamFirst['who'] === $guid && ! $won,
@@ -311,6 +314,11 @@ class ImprovementService
         $outside = fn (Collection $rs) => ($d = $rs->sum('defs')) > 0 ? $rs->sum('defsOutside') / $d : null;
         if ($mine->sum('defs') > 0) {
             $lines = [];
+            $needed = fn (Collection $rs) => ($n = $rs->sum('defsWarranted')) > 0 ? $rs->sum('defsNeeded') / $n : null;
+            if ($mine->sum('defsWarranted') > 0) {
+                $lines[] = sprintf('Pressed with the target in danger or to break crowd control: %s of yours, %s of theirs. The rest is not wrong, only not explained by the log.',
+                    $this->pct($needed($mine)), $this->pct($needed($others)));
+            }
             if ($mine->first()['healer']) {
                 $faults = $mine->where('medallionFault', true)->count();
                 $lines[] = sprintf('A teammate died while you were locked out with your Medallion ready: %d time%s in %d games.', $faults, $faults === 1 ? '' : 's', $mine->count());

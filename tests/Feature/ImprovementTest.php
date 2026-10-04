@@ -54,8 +54,8 @@ class ImprovementTest extends TestCase
                 'healer' => ['state' => 'locked', 'endedAgo' => null, 'medallionUsedAt' => []],
             ]],
             'defensives' => [
-                'us' => ['spent' => 1, 'outsideTheirGoes' => 0, 'rows' => [['t' => 85, 'spell' => 'Pain Suppression', 'who' => 'P-1', 'outside' => false]]],
-                'them' => ['spent' => 1, 'outsideTheirGoes' => 1, 'rows' => [['t' => 50, 'spell' => 'Pain Suppression', 'who' => 'E-1', 'outside' => true]]],
+                'us' => ['spent' => 1, 'outsideTheirGoes' => 0, 'rows' => [['t' => 85, 'spell' => 'Pain Suppression', 'who' => 'P-1', 'outside' => false, 'needed' => true]]],
+                'them' => ['spent' => 1, 'outsideTheirGoes' => 1, 'rows' => [['t' => 50, 'spell' => 'Pain Suppression', 'who' => 'E-1', 'outside' => true, 'needed' => false]]],
             ],
             'overlaps' => ['us' => 0, 'them' => 0, 'rows' => []],
             'kicks' => [],
@@ -129,6 +129,7 @@ class ImprovementTest extends TestCase
         $this->assertStringContainsString('You 15.0s', $page);
         $this->assertStringContainsString('Their go killed one of you: none down no goes, one down no goes, two or more 100% (10 of 10).', $page);
         $this->assertStringContainsString('A teammate died while you were locked out with your Medallion ready: 10 times in 10 games.', $page);
+        $this->assertStringContainsString('Pressed with the target in danger or to break crowd control: 100% of yours, 0% of theirs', $page, 'version 9: was it needed');
         $this->assertStringContainsString('Psychic Scream 10×', $page);
         $this->assertStringContainsString('Crowd control on their healer Ahead of other Discipline Priests', $page, 'any against their none is ahead, not level');
         $this->assertLessThan(strpos($page, 'Ahead of other'), strpos($page, 'Behind other'), 'behind first');

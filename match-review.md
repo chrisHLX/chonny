@@ -67,6 +67,7 @@ player's side. Its `VERSION` says what a stored round holds:
 | 6 | `dispels`, each player's `debuffs` from the other side, `cover` on every go (the cooldown ledger) |
 | 7 | `answers` on our first death (the answer sheet), `beforeLockout` on defensive rows |
 | 8 | spells used both ways read per press; short defensives (Feint) in the timeline; the 2026-10-04 tag promotions |
+| 9 | each defensive row says whether it was needed: whom it went on, health, time to live, warrant.php's reasons, `needed` (danger or breaking crowd control) |
 
 | Piece | File | What it decides |
 |---|---|---|
@@ -146,9 +147,8 @@ line in `match-review-tools.md`, so the next session runs one command instead of
 
 ## Open items
 
-- Skull Bash is not flagged as an interrupt (the flag needs `import:spelldata`).
-- The warrant read (question 2) is not stored, so stored data cannot say whether a defensive was
-  needed. It needs health at each press, stored at sync.
+- The warrant read is stored (version 9) without its replay: whether a defensive *did* its job
+  (the damage it removed) still needs `warrant.php` and the raw log.
 - Comp advice needs other players' games against the same comp: pooling uploads needs an opt-in.
 - A before-the-gates card needs the addon to read enemy specs in the prep room; the combat log has
   only your own team until the gates open.
