@@ -18,8 +18,11 @@ that do the job); **clean formatting** (resolved, finished output — no broken 
 placeholder symbols, no `(varies)` or raw formula text, no duplicate spells); **clean data**
 (accurate, current spells, abilities, talents, mechanics).
 
-**Current focus: game plans.** Players build and share arena plans; machine-drafted guides
-exist to be corrected. The spell/talent/match-data pipeline underneath must stay correct.
+**Current focus: a coach for one player** (since 2026-10-02). Read each player's own arena games
+against the players they meet, name what to work on, and measure it next session. The work lives
+in the match review and the desktop app: **`match-review.md`** is its map. Game plans and guides
+remain, as the baseline a player is measured against, and the spell/talent/match-data pipeline
+underneath must stay correct: every read sees a button only through it.
 
 ### What "done" looks like for the spell data
 
@@ -33,37 +36,17 @@ exist to be corrected. The spell/talent/match-data pipeline underneath must stay
 
 ## Where things are written down
 
+**`docs/README.md` maps every doc in the repo**: its area, whether it is current, dormant or
+history, and what it is for. Start there. The ones most work needs:
+
 | File | What it is |
 |---|---|
-| `docs/history/engineering-log-2026.md` | **The archive.** Every dated feature write-up, bug trace, dead end and reversal through 2026-09-18. Not loaded into context. |
-| `DEPLOY.md` | Production deploy runbook. |
-| `game-data.md` | Spell-data import pipeline, folder-by-folder, with dated findings. |
-| `spell-acquisition-model.md` | Architecture map of every acquisition script/command/service. |
-| `AbilityFinder` / `wow:abilities` | **Find abilities by curated property, for drafting a sequence.** Fields only, never descriptions — a text search for "what separates players" was ~60% wrong because *immune to knockback* and *causes a knockback* share a word. Reads the matchup profiles, so duplicate spell_id copies and abilities nobody takes are excluded for free. `--vocabulary` lists what is queryable **and what has no field at all**. |
-| `arena-structure.md` | **The arena model (v2).** Go/anti-go cycle, the answer pool, overlap, globals-denied, rating ladder, and what a guide must answer before it has steps. Every claim tagged [OBS]/[DER]/[HYP] — a [HYP] may be *written* in a guide, never *asserted as settled*. The split is by confidence, not permission (Part 0, corrected 2026-09-23): propose a kill target, rank it, give the reason, say it is reasoning. Read before building anything that generates or scores a plan. |
-| `arena-open-questions.md` | What the model still guesses at, with who can settle each one. Answered questions graduate into `arena-structure.md`. |
-| `docs/arena/sources/chriso-scope-correction-2026-09-23.md` | **Why the model proposes rather than refuses.** Humility over prohibition; the game's own facts are the constraint, not prose in a doc. Read before adding any "we can't do X" line to the framework. |
-| `docs/arena/sources/` | Verbatim sources behind the model, plus a distilled note per source. **Never edit or delete a raw file** — re-distillation runs against it. Tiers differ: the Kalvish transcript and the player's own review are players; `gemini-cooldown-graph-2026-09-23.md` is a language model that had `arena-structure.md` in its context, so its agreement is never corroboration. |
-| `docs/arena/synthesis-process.md` | **How to fold a new prose source into the model.** Run this whenever the user adds a transcript. Raw → distilled note → diff against the model → update questions → report what changed. |
-| `data/matchup-profiles/README.md` | The Matchup Lab's per-spec artifact: what a profile holds, why control and defensives read different duration columns, and the three things it structurally cannot say. |
-| `data/brain/brain.md` | The reader-facing statement of the model, rendered at `/brain`. **Every machine-drafted guide is written from it.** |
-| `knowledge-gaps.md` | Append-only ledger of module-prose vs spell-data discrepancies. |
-| `wow-spells.md`, `wow-spell-data-model.md` | Spell data model notes. |
-| `dr-categories-reference.md` | 2022-era community DR guide. **Stale — confirmed wrong twice.** A hint, never authority. |
-| `arena-log-api.md` | WoWArenaLogs API shape. |
-| `match-review-operations.md` | **How to review your own played games: the method, not the findings.** The pipeline, the combat log's measured field offsets, what a go is and how it is detected, every measure and how it is taken, and the draft scripts in `tools/match-review/` that produce the review table. Every offset is read from the END of a line and the crit flag is at `-4`, not `-5` — a trailing `ST`/`AOE` tag shifts the documented suffix and a crit silently reads as no-crit. A defensive is measured against the moment before it, never the round average. A CC is read as an aura, and the Garrote aura is the 18-second bleed, not the 3-second silence: it once made a healer read as locked out at a death when he was not. `specread.php` puts several players of one spec side by side. Record both MMRs and every player's experience from the Blizzard profile API, since early-season MMR is deflated. **Read before measuring anything from a combat log or running a review.** |
-| `match-review-analysis.md` | **What reviews have found, and what it is taken to mean.** The review tables, the loss patterns, the observations that **contradict curated data** (Avatar is classified `mixed` and is used purely offensively), and every interpretation with the numbers it rests on. Findings go here; methods go in `match-review-operations.md`. **Read before asserting how an ability is used in play or why games were won or lost.** |
-| `match-review-tools.md` | **Every tool the AI match analysis has built, what it is and why**, the one-off scripts worth rewriting, and what the analysis depends on (spell table, the arena model, goes). Read before writing a new analysis script: most questions are a column choice in an existing tool. |
-| `addon-upgrades.md` | What Chriso wants next from the capture side — automatic ingest, a desktop viewer over the archive, configurable paths. Wants, not design. |
-| `spellbook-verifier.md` | Addon export → snapshot → diff pipeline. |
-| `app/Http/Services/playstyle-analysis.md` | Per-player talent-usage read. |
-| `guides-from-play.md` | **How the games we play become guides, and why.** Started 2026-09-28 from a review of 26 Sep's games: the goal is a growing, evolving system for arena guides and player development. Play → review tools → `match-review-analysis.md` (the evidence) → a guide tagged with the **level of play** it is drawn from (Gladiator level = every player in the game has a Gladiator season) → readers' corrections → back into the analysis and the Brain. **Read before drafting any guide from match data.** |
-| `guide-writing.md` | **How to draft a machine guide.** The length budget (the 2026-09 batch averaged 7,900 reader-facing chars; the limit is now 2,300), the shape, and the errors the last batch made. Read with `docs/guides/reader-corrections-2026-09-23.md`. |
-| `docs/guides/` | Reader feedback on the machine guides: the full export, plus the distilled corrections. **Export before re-authoring** — anchored comments are cascade-deleted. |
-| `module-upload-format.md` | Shape for drafting module content. |
-| `docs/learning/question-audit-2026-09-24.md` | **The authored question bank read against the Brain and the spell data.** 9 questions contradict the model, 4 have a defensible distractor, 5 contradict live spell data — two of them stating a PvE crowd control duration. The case for generating facts rather than writing them. |
-| `monetisation-read.md` | **Usage read against the case for a paywall (2026-09-24).** The sixteen days after the guide builder shipped: 3 sign-ups, 3 guide authors, 2 comments, ~79% crawler traffic. Records why `session_id` cannot measure retention here. |
-| `system-integration.md` | **How the learning platform joins the spell data, the guides and the Brain.** The three grounding layers, the finding that the old questions went stale on doctrine rather than numbers, and the staged path. Read before touching modules, diagnostics or concept mastery. |
+| `match-review.md` | **The current work, end to end:** the match review, the desktop app, what is measured where, the data files, the tools. Read before touching any of it. |
+| `arena-structure.md` (public at `/brain`) | The arena model every guide and every coaching read is written from. [OBS]/[DER]/[HYP] tags. |
+| `docs/history/engineering-log-2026.md` | The archive (not loaded): search it for the *why* behind a rule. |
+| `game-data.md`, `spell-acquisition-model.md` | The spell-data import pipeline. |
+| `DEPLOY.md` | Production, and working on it from Claude Code. |
+| `AbilityFinder` / `wow:abilities --vocabulary` | Find abilities by curated property. Fields only, never descriptions. |
 
 These are reference, not gates. Implementation decisions are yours. A note that something "can
 break" is a warning to check before relying on it, not a rule that blocks the work.
@@ -101,6 +84,14 @@ php artisan wow:build-matchup-profiles           # AFTER the kits, never before
 php artisan wow:abilities --vocabulary           # drafting aid: what is queryable, and what is not
 php artisan wow:rebuild-spell-counters           # backfill only; import already does it
 php artisan wow:import-murlok-defaults --all --apply   # on-demand only, see Rules
+```
+
+**Your games (the match review and the desktop app; `match-review.md`):**
+```bash
+php artisan wow:sync                             # ingest + review + measure new games
+php -d memory_limit=2G artisan wow:sync --skip-ingest --fresh   # re-measure everything after a measure changes (~8 min)
+php artisan wow:game-cards --dir="$APPDATA/MindCollector/cards" --notes="$APPDATA/MindCollector/notes.json"   # the app's pages
+php -d memory_limit=3G tools/match-review/tagaudit.php    # tags against how spells are pressed; proposes only
 ```
 
 **Machine-drafted guides:**
@@ -182,68 +173,18 @@ bumps the spell cache version, regenerates the spell kits, runs a smoke test, an
 
 ### Working on production (SSH, deploys, permissions)
 
-**When the user asks you to deploy or check something on live, do it — this is the method.**
-Don't stop at "I can't SSH from here".
-
-**The box:** Ubuntu 22.04 on Vultr, `45.76.116.44` (== `mindcollector.com`), `root`, code at
-`/var/www/mindcollector`, deployed from `github.com/chrisHLX/chonny` (no CI/CD — push to GitHub,
-then run `deploy.sh` on the server). The password is in
-`C:\Users\chris\Desktop\mytho\MINDCOLLECTOR.txt`. Read that file; don't guess usernames or keys.
-The local `id_ed25519` key is **not** accepted.
-
-**How to connect — paramiko, not `ssh`.** The Bash tool's native `ssh`/`scp` can't answer a
-password prompt. Use `python -m pip install paramiko` and a small helper, `prod_ssh.py`, in the
-scratchpad. It takes `(command, exec_timeout_seconds)` as argv, uses password auth, and prints
-stdout and stderr. Put `sys.stdout.reconfigure(encoding="utf-8", errors="replace")` at the top,
-or a `●` from `systemctl status` crashes it on the Windows console. The scratchpad is per-session,
-so re-create the helper with the Write tool if it's missing.
-
-- **SFTP is broken on this server** (`sftp.put()` → bare `FileNotFoundError`, even to `/tmp`).
-  **Upload files by base64-over-exec**: base64 the local file in Python, then run
-  `base64 -d > /path << 'B64EOF' ... B64EOF` through `exec_command`.
-- **Complex remote PHP: never `tinker --execute`** through Bash → python argv → SSH. Backslashes
-  and namespace separators get mangled. Upload a standalone script that bootstraps Laravel
-  (`require vendor/autoload.php; $app = require bootstrap/app.php; ...`) and run `php /tmp/x.php`.
-  `php artisan tinker file.php` hangs waiting on stdin.
-- **Redis cache is DB 1**, not 0 (`predis`, no `REDIS_CACHE_DB` set). Use `redis-cli -n 1 ...` for
-  anything `Cache::`-related, or it looks empty.
-
-**Permissions / auto mode — the reason deploys have failed:**
-- The user has allow rules for `Bash(python *prod_ssh.py*)` and `Bash(python *run.py*)` in
-  `.claude/settings.local.json`. **The command must START with `python` to match them.** A leading
-  `MSYS_NO_PATHCONV=1`, a `cd && python ...`, or a `cat > file <<EOF; python ...` compound does
-  **not** match. It falls through to the auto-mode classifier, which denies production access.
-- So: write helper files with the **Write** tool first, then run a bare
-  `python "<scratchpad>/prod_ssh.py" "cd /var/www/mindcollector && ./deploy.sh" 600`. Start the
-  remote command with `cd` (not a bare `/var/...` path) so git-bash's MSYS path conversion doesn't
-  rewrite it to `C:/Program Files/Git/var/...`. Then you need no `MSYS_NO_PATHCONV` prefix.
-- **Allowed this way:** reads (logs, `git status`, `systemctl status`, read-only DB queries) and
-  `./deploy.sh`.
-- **Blocked even with the rule:** one-off production DB writes (classifier: "Modify Shared
-  Resources"). Give those to the user as a ready-to-paste `!` command instead of retrying.
-- **Never add an allow rule for yourself.** The classifier denies it ("Instruction Poisoning").
-  If a rule is missing, say so up front and ask the user to add it via `/permissions`.
-
-**Deploying:**
-- **Always `cd /var/www/mindcollector && ./deploy.sh`, never a bare `git pull`.** With OPcache's
-  `validate_timestamps=Off`, workers keep running old bytecode after a pull. Stale queue workers
-  and the Redis entries they wrote go stale the same way. This caused real 500s on `/wow-comps`
-  (2026-08-28). Bumping the cache version alone did **not** fix it: the stale entry was already
-  written under the current version.
-- `deploy.sh` restarts php-fpm, restarts the queue workers, bumps the spell cache version,
-  regenerates kits, runs migrations, runs composer/npm if lockfiles or assets changed, and
-  smoke-tests `/`, `/wow-comps`, `/spells`. It logs to `storage/logs/deploy-*.log`. Full runbook:
-  `DEPLOY.md`.
-- Commit and push locally first (only when the user asks for a commit). Check the server's
-  `git status` if a pull might conflict with untracked files.
-
-**Queue workers:** 2 Supervisor-managed (`laravel-worker_00`, `mindcollector-worker`), 90s timeout
-each, default queue, restarted by `deploy.sh`. **No scheduler:** root's crontab is empty, so every
-`Schedule::command(...)` in `routes/console.php` (e.g. `next-steps:expire`) is inert on live.
-
-**Performance ceiling:** the 1 vCPU is the bottleneck, not RAM. `/` and `/wow-comps` take about
-0.12s of CPU and `/spell-counters` about 0.57s. Latency scales linearly under concurrency.
-`pm.max_children = 12` is already at CPU saturation; more workers won't help, a second vCPU would.
+**When asked to deploy or check something live, do it.** The full method, and why each step is
+there: `DEPLOY.md`, "Working from Claude Code". The essentials:
+- Ubuntu on Vultr, `45.76.116.44` (`mindcollector.com`), `root`, code at `/var/www/mindcollector`.
+  The password is in `C:\Users\chris\Desktop\mytho\MINDCOLLECTOR.txt`; the local key is not accepted.
+- Connect with paramiko through `prod_ssh.py` in the scratchpad (re-create it each session with
+  the Write tool). SFTP is broken: upload by base64 over exec.
+- **The Bash command must START with `python`** to match the user's allow rules
+  (`python "<scratchpad>/prod_ssh.py" "cd /var/www/mindcollector && ./deploy.sh" 600`). Start the
+  remote command with `cd`, so git-bash does not rewrite the path.
+- **Deploy only with `./deploy.sh`, never a bare `git pull`** (OPcache keeps old bytecode).
+- One-off production DB writes are blocked: hand the user a ready-to-paste command. Never add an
+  allow rule for yourself. Redis cache is DB 1. No scheduler runs.
 
 ### Required environment variables
 
@@ -278,6 +219,16 @@ Battle.net and Google OAuth need their redirect URLs registered with the provide
   `min(8)`. It turned away real people on every attempt.
 
 ## Architecture
+
+### The match review and the desktop app (the current work)
+
+Your own combat log → `wow:ingest-combatlog` → the archive (`D:/MindCollector/arena-logs`,
+gitignored) → `wow:sync` → `RoundAnalysisService` measures each round once into
+`arena_rounds.payload` (version 8) → `wow:game-cards` renders the desktop app's pages (game cards,
+Improve per character, the comp library) as HTML files → the app
+(`tools/log-manager/MindCollectorLogs.ps1`) shows them. `/wow/match-analysis` reads the same
+payloads on the site. **Read `match-review.md` before changing any of it**: what to re-run after a
+change, the data files that decide what is seen, the reading rules and the traps.
 
 Laravel + Livewire 3 + Alpine + Tailwind. Redis queues.
 
@@ -332,55 +283,12 @@ fingerprint; falls back to a live compute when stale (6,964ms/3,042 queries vs 9
 
 ### Pages
 
-- `/` — `Landing` (public front page: feed of game plans + comp shortcuts). Signed-in players
-  redirect to `dashboard`.
-- `/dashboard` — `Home` (feed, your guides, characters, friends).
-- `/wow/matchup-lab` — `MatchupLab`. Two comps on one clock: whose kill window opens first,
-  and why, read at three execution settings. The only page answering a question about a
-  *matchup* rather than about one spec or one comp.
-- `/wow/game-review/{id?}` — `GameReview`. The matchup read **backwards**, off a game that
-  actually happened: rounds won and lost, every player's effective healing, absorbs, overheal and
-  damage, and a **same-spec mirror** diff of talents, PvP talents, gear and stats. The mirror is
-  the unit because an identical kit leaves only build, gear and play.
-  - **`auth` middleware, and private to the viewer.** A review names five other players with
-    their talents and their gear. It is a signed-in player's record of their own games, never a
-    public browser — it shipped public for about twenty minutes on 2026-09-25. The route's
-    middleware and the component's own scoping are both meant to be there.
-  - **Solo Shuffle only** (`LobbyReviewService::reviewable()` filters on `isRoundBased()`). A
-    shuffle reliably produces the mirror; more importantly the 16 oldest archive matches came
-    from the wowarenalogs feed and are **other people's games**, which the bracket filter
-    excludes by construction rather than by a maintained list of ids. Bringing 3v3 back needs an
-    owner recorded at ingest, not a bracket check.
-  - **The review artifact is gitignored, not committed.** It was briefly committed, which
-    published it. A review is user data; it reaches production by being uploaded by its owner,
-    never by a deploy.
-  - Reads **only** `data/arena-logs/lobby-reviews/*.json`, never the gitignored archive, per
-    rule 14 — there is a test that deletes the archive and still expects the page to render.
-    Throughput comes from `CombatantThroughputService`, the first thing here to measure output at
-    all; its field offsets are read from the end of each log line and every one was measured, not
-    assumed.
-- `/wow/match-analysis` — `MatchAnalysis`, **"Your analysis"**: a player's own uploaded games combined
-  into the wins-against-losses read (review table, who you played, what differed, a takeaway for your
-  role). Auth, scoped to the viewer. Each game is measured at upload by `RoundAnalysisService` (the raw
-  log is discarded straight after) and every player's experience is looked up by a queued job. See
-  `match-review-operations.md`, "Your analysis".
-- `/wow-comps` — `WowComps`, the heaviest page. Tabs: Active Abilities, Offensive/Defensive
-  Cooldowns, Crowd Control, Mobility, Burst Window, Example CC Chains.
-- `/guides/{slug}/edit` — `Guides\Builder` + `Guides\Palette`; `/g/{username}/{slug}` —
-  `Guides\Show`; plus `/browse-guides` and `/claudes-comp-guides` (machine-drafted).
-- `/pvp-guides/{class}/{spec}` — `PvpGuides` shell over four panels (kit, burst, spells,
-  counters), each also standalone at `/class-guide`, `/burst-guides`, `/spells`,
-  `/spell-counters`.
-- `/spell/{id}` — `SpellDetail`; shared `SpellDetailModal` everywhere else.
-- `/wow/quiz` — `Quizzes\WowQuizIndex` / `WowQuizPlay`, plus concept drills at
-  `/wow/quiz/{class}/{spec}/drill/{concept}` (`Quizzes\ConceptDrillPlay`). A level and a concept
-  are two ways of choosing the same generated question types; `App\Learning\ConceptCoverage` maps
-  concept → `brain.md` sections → types, and names why four of the seven concepts have none.
-  Drill results are **never** written to `UserConceptMastery` — see the Rules.
-- `/characters` — `Battlenet\Characters` / `CharacterShow`.
-- `/top-damage-rotations`, `/cc-chains`, `/cc-review`, `/friends`, `/guilds`, `/profile`.
-- Admin: `/admin/content`, `/admin/talent-builds`, `/admin/page-usage`, `/admin/weak-areas`,
-  `/admin/diagnostic-stats`, `/admin/api-usage`.
+`/` Landing (signed-in players go to `/dashboard`) · `/wow-comps` (the heaviest page) ·
+`/wow/matchup-lab` · `/wow/game-review/{id?}` and `/wow/match-analysis` (a signed-in player's OWN
+games: auth, scoped to the viewer, never public) · the guide builder and readers
+(`/guides/{slug}/edit`, `/g/{user}/{slug}`, `/browse-guides`, `/claudes-comp-guides`) ·
+`/pvp-guides/{class}/{spec}` · `/spell/{id}` · `/wow/quiz` · `/characters` · admin pages.
+What each does, and the decisions behind it: `docs/site-pages.md`.
 
 ### Guides
 
@@ -395,96 +303,19 @@ sign-up).
 
 ### Machine-drafted guides
 
-Guides a model wrote, **published to be corrected**. The correction is the point, not the guide:
-the one input the game data cannot supply is what forces what (`arena-structure.md` Parts 6, 11),
-and a specific, checkable, wrong-in-places plan is far cheaper to correct than a right one is to
-author. 16 drafts live in `data/machine-guides/`.
-
-- `user_guides.authored_by_model` is a **name** ("Claude Opus 5"), not a boolean — the byline
-  prints it, and a second model later is plausible. NULL means a person wrote it.
-  `scopeMachineAuthored()` / `scopeHumanAuthored()`.
-- **`guides:author {path}`** (`--author=mindcollector`, `--model=`, `--draft`) publishes from a
-  committed JSON draft — a single file or a whole directory. **Never author a guide through
-  tinker:** a guide written in a REPL exists only in that database, can't be reviewed in a diff,
-  can't be re-run after a patch changes an ability, and can't be reproduced on another
-  environment. **Idempotent by slug** — re-running replaces sections and steps wholesale (the
-  draft file is the source of truth) while keeping the guide row, so its URL, views and reader
-  notes survive an edit. Abilities are referenced **by name** and resolved to an external spell id
-  once, against the current patch; an unknown name **fails loudly** rather than writing a step
-  that renders "ability no longer found". Nothing about a spell is frozen in — cooldowns, DR
-  maths and immunities resolve live on every page load, same as a player's guide.
-- **A draft must name a build one character could actually have.** `guides:author --dry-run`
-  resolves every reference and prints talent conflicts without writing a row; a real publish runs
-  the same check and **warns**. `TalentFeasibilityService` flags two abilities of one spec that sit
-  on the same `CHOICE` node — Shadowfury/Howl of Terror, Mighty Bash/Incapacitating Roar,
-  Avenging Wrath/Avenging Crusader. The first reader caught one of these by eye ("the idea is
-  correct, the spells available is not"); the check then found **four impossible plans across the
-  11 published drafts**. Matched **by name**, never by id: `talent_node_entries.spell_id` is an FK
-  to `spells.id` while guide blocks store the external id, and the talent entry's copy is routinely
-  not the pressable copy a step resolves to. It checks choice-node exclusivity only — not point
-  totals or gate rows — because that is the constraint that makes a plan impossible rather than
-  merely expensive. It is a warning, not a failure: a defensives section may legitimately name an
-  alternative the enemy might have taken.
-- **The data does not model who a spell can be cast on.** Banish (demons/elementals) and Shackle
-  Horror (pets/NPCs) both shipped in published plans as control on players, hedged as "probably
-  doesn't work, but if it does it's free". The hedging was the error. Nothing in the pipeline can
-  catch this class of mistake — see `knowledge-gaps.md`, 2026-09-18.
-- **Re-authoring DESTROYS anchored reader comments.** `user_guide_comments.user_guide_section_id`
-  and `user_guide_block_id` are `cascadeOnDelete` and `guides:author` replaces sections wholesale,
-  so every note attached to a section or step dies on a re-run — 26 of 33 in the 2026-09-23 sweep.
-  **Run `guides:export-feedback` and commit the output before re-authoring anything.**
-- **`guides:export-feedback`** (`--out=`, `--all`) writes every machine guide, its steps and every
-  note as markdown. **This is the loop**: corrections come back here and get folded into
-  `arena-structure.md`, which is the only thing carrying knowledge between sessions. Markdown on
-  purpose — a note is unreadable without the step it is attached to. Run it **on the server**,
-  where the notes are.
-- **Two different things are both called "notes", and readers were confusing them.** The
-  *author's* annotation on a step (`payload.note` on the block, attributed by model name) and a
-  *reader's* criticism of it (`user_guide_comments`). Keep them visually distinct — the first
-  reader couldn't tell whether his note was overwriting the author's.
-- **Reader comments anchor per section**, not per step. Step-anchored comments still exist, are
-  still rendered and still exported; a block-anchored comment also records its section id.
-  Un-anchored comments are the thread at the foot of the page. A comment's anchor is re-derived
-  from the guide's own rows, never trusted from the request.
-- **`/claudes-comp-guides` is not `/wow/claudes-guides`.** The first (`Guides\MachineGuides`) is
-  machine-drafted `user_guides` — commentable, correctable. The second is hand-authored JSON per
-  class/spec under `data/claudes-guides/`, read-only, no comments, carrying its own `"patch"`
-  field unrelated to the DB.
-- **Every machine-drafted guide is written from `arena-structure.md`, whose public statement is
-  `/brain` (`data/brain/brain.md`, rendered by `App\Livewire\Brain`).** Before drafting a guide,
-  read the model; a claim that is `[HYP]` there must not be asserted as fact in a guide. Comments
-  on `/brain` are corrections to the model itself and outrank a correction to any single guide —
-  they are the top of the same feedback loop `guides:export-feedback` sits at the bottom of.
-  The brain document's section ids (`{#answer-pool}`) are comment anchors: **reword a heading
-  freely, never change an id.**
-
-- **Guides stay public to read; acting on one needs an account** (2026-09-29, after a same-day
-  sign-up wall was reversed: a cold visitor will not sign up for content they have not sampled).
-  Any reader can vote whether a guide is accurate for the current patch without an account; copying
-  a guide into the planner asks a guest to sign up and returns them to the guide (sign-up now honours
-  the intended URL, as login always did). Inside a Livewire component `redirect()` is Livewire's own
-  redirector, not an HTTP response: store `url.intended` by hand.
-- **The site admin manages machine guides** (`UserGuide::isManagedBy()`, 2026-09-28): they stay owned
-  by the engine account `mindcollector` (so their URLs and bylines never change), but an `is_admin`
-  user can read their drafts, edit them and publish them. A person's guide is managed by its author
-  only. **`guides:author` rewrites `status` on every run**: without `--draft` it publishes, with it it
-  unpublishes, whatever the admin set by hand.
-- **A draft can attach each roster spec's talent build** (`"builds"`), written onto the guide's own
-  slot build the way the builder's "use my character's talents" does, and shown on the page
-  ("Talents this guide is written for"). Talents are referenced `Name[:rank][#node]`; `#node` is
-  Blizzard's node id. **Hero-tree talents ALSO exist as copies in the spec trees under the same
-  Blizzard node id** (Infliction of Sorrow: San'layn and the Unholy spec tree), so a name or even a
-  node id can match two rows; keep the later row, as `resolveCombatantTalents()` does with
-  `keyBy('external_node_id')`. **And a talent node id is NOT stable across environments:** the
-  import merges talent nodes that share a name and keeps one, and which survives differs between
-  databases built from identical files (Detox: node 101150 locally, 101090 on production). The
-  guide resolver treats `#node` as a disambiguator and falls back to the name when it names exactly
-  one node.
-- **A guide drawn from observed play carries its level** (`evidence_level`, `evidence_games`,
-  `evidence_note`, from the draft's `"evidence"` object; see `guides-from-play.md`).
-- `Guides\Show` bylines a machine guide "{model} guide · drafted by a model" instead of
-  "Player-written guide", and closes by saying the mechanics are derived while **the plan is a
-  guess** — inviting correction. Do not let a model's draft render like a derived fact.
+Guides a model wrote, **published to be corrected**: drafts in `data/machine-guides/`. Everything
+about them is in `docs/machine-guides.md`. The rules that bite:
+- **Author only with `guides:author {path}`**, `--dry-run` first (resolves every ability by name,
+  flags talent conflicts). Never through tinker. Idempotent by slug.
+- **Re-authoring DESTROYS anchored reader comments** (cascade delete). Run
+  `guides:export-feedback` on the server and commit its output first.
+- `guides:author` rewrites `status` on every run: `--draft` unpublishes.
+- A draft must name a build one character can have (`TalentFeasibilityService`). Talent node ids
+  are not stable across environments; names are the key.
+- The data cannot model who a spell may be cast on (Banish and Shackle Horror shipped as player CC).
+- Every guide is written from `arena-structure.md` (public at `/brain`); a [HYP] is never asserted.
+- `/claudes-comp-guides` (machine `user_guides`, commentable) is not `/wow/claudes-guides`
+  (hand-authored JSON, read-only). Machine guides stay out of player listings (rule 30).
 
 ### Dormant: the learning platform
 
@@ -589,49 +420,21 @@ it probably doesn't belong.
 11. **Hand-promoted classification JSON.** `data/arena-logs/spell-classification/*.json` is
     reviewed and promoted by hand, not computed live. When re-promoting `classify-cooldowns.php`
     output, **keep the hand-written entries** (e.g. Gladiator's Medallion) or they drop out of
-    every Defensive Cooldowns tab and guide palette.
+    every Defensive Cooldowns tab and guide palette. Two smaller files in the same folder decide
+    what the match analysis SEES: `contextual-cooldowns.json` (spells read per press, Vanish) and
+    `short-defensives.json` (defensives under the 45s timeline floor that still count, Feint).
+    `tools/match-review/tagaudit.php` proposes changes to all of them from how spells are pressed;
+    it never writes them (`match-review-operations.md`, "Making the tags better from play").
 
 ### Arena logs
 
-12. **New matches come from YOUR OWN combat log.** `wow:ingest-combatlog` reads
-    `WoWCombatLog.txt` and writes the archive's own `raw/` + `metadata/` files directly, so the
-    archive is a growing corpus again with no third party involved. Everything the WoWArenaLogs
-    API returned is in the log already, and the derivation was checked field by field against
-    their metadata for all 16 matches we hold both halves of — bracket, zone, ranked, duration,
-    winner, rating, result and the full roster matched 16/16. See `CombatLogIngestService` and
-    `tools/wow-addon/MindCollectorArenaLog/`.
-
-    **Two mappings that are NOT guessable and were fitted to that archive.** `reaction` is
-    friendly-or-hostile *as seen by the logging player*, so it is **not** the arena team id — the
-    team only ever comes from `COMBATANT_INFO` field 2, and the two disagree in 12 of 16 matches.
-    `playerTeamRating` is `ARENA_MATCH_END` field `3 + myTeam`; `result` is 2 for a loss, 3 for a
-    win. **Advanced Combat Logging must be on** or the log carries no `COMBATANT_INFO`, so no
-    specs, so nothing downstream can use the match.
-
-    **A Solo Shuffle lobby is six matches, and none of its END line is usable** (measured over
-    326 rounds in 56 lobbies, 2026-09-25). It writes one `ARENA_MATCH_START` **per round** and a
-    single `ARENA_MATCH_END`; the old "a second START means the first never closed" rule — right
-    for 2v2/3v3, where starts and ends ran 142 to 141 — kept only round six and silently dropped
-    83% of the games. Each round re-emits the whole `COMBATANT_INFO` block with **re-dealt team
-    ids**, so a round's teams can only come from its own block. `winningTeamId` on the END line is
-    noise for shuffle (-1 twenty times, 0 twenty-two, 1 fourteen; it agrees with the final round's
-    real loser 19 times in 55 — chance), and its two ratings are per-round averages of a roster
-    that reshuffles, so `playerTeamRating` is written **null** rather than guessed. The winner
-    comes from the deaths: **`UNIT_DIED`'s trailing field is `unconsciousOnDeath`** — 1 for a
-    Hunter's Feign Death, 0 for a real one — and with that filter 324 of 326 rounds hold exactly
-    one real death, the round-ending one. Without it a single feigning Hunter "dies" six times a
-    lobby and inverts half the results. `isRanked` reads **0** on every `Rated Solo Shuffle` line,
-    so the bracket name carries it instead. Verified independently: a 3-3 lobby is a draw, and the
-    derived per-round record predicts the END line's `-1` draw flag in **55 of 55** lobbies while
-    reading nothing from that field.
-
-    **The WoWArenaLogs pullers are dead and stay dead** — `wow:pull-latest-matches`,
-    `wow:pull-scarce-specs`, `wow:discover-all-specs`, `wow:pull-low-rated-spec`,
-    `wow:discover-spec-spells`. That API returned `SEARCH_DISABLED` from 2026-09-09 (deliberate
-    anti-scraping: *"automated scraping of search results has driven our hosting costs up
-    sharply"*) and `UNAUTHENTICATED` behind a Battle.net sign-in from 2026-09-23. Signing in
-    would make it permitted; the reason they built the gate has not changed, so do not resume
-    bulk pulling through it.
+12. **New matches come from YOUR OWN combat log** (`wow:ingest-combatlog`,
+    `CombatLogIngestService`). The WoWArenaLogs pullers are dead and stay dead (search disabled
+    from 2026-09-09, sign-in gated from 09-23: do not resume bulk pulling). Advanced Combat Logging
+    must be on. A team comes only from `COMBATANT_INFO` field 2, never `reaction`. A Solo Shuffle
+    lobby is six matches with one unusable END line, and each round's winner comes from its
+    deaths: `UNIT_DIED`'s trailing `unconsciousOnDeath` filters a Hunter's Feign Death. Every
+    measured offset and the checks behind them: `docs/combat-log-ingest.md`.
 
 13. **Do not cull the archive again.** The 2026-09-05 cull of the oldest 500 matches is permanent
     and unrecoverable — those came from a feed that no longer serves us. New matches only ever
