@@ -188,6 +188,7 @@
 132469 | Knockback | | | 1 |  | ||| |||  Typhoon
 136511 | | | | |  | ||| |||  Ring of Frost (wrong-copy fix 2026-08-17, see note below — real tag moved to 113724)
 147362 | | | | 1 |  | ||| |||  Counter Shot
+106839 | | | | 1 |  | ||| |||  Skull Bash (the pressable copy, 15s cooldown; flagged 2026-10-04 from tools/match-review/tagaudit.php: 280 presses in the archive were invisible as interrupts. The only class interrupt found missing the flag.)
 # Rake's Stun tag was misapplied to spell_id 155722 (the base Bleed ability, mechanic=Bleed) in
 # the original dr-categories-reference.md bulk-apply pass — confirmed 2026-08-17 via direct user
 # correction ("Rake from stealth stuns the target for 3s... no CD") plus the spell's own

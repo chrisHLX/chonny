@@ -1,6 +1,6 @@
 {
     "shapeVersion": 1,
-    "generatedAt": "2026-10-03T17:26:40+00:00",
+    "generatedAt": "2026-10-04T00:18:27+00:00",
     "class": "druid",
     "className": "Druid",
     "spec": "feral",
@@ -177,6 +177,13 @@
         }
     ],
     "interrupts": [
+        {
+            "spellId": 106839,
+            "name": "Skull Bash",
+            "icon": "inv_bone_skull_04.jpg",
+            "cooldown": 15,
+            "charges": null
+        },
         {
             "spellId": 132469,
             "name": "Typhoon",
