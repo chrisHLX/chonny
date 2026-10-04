@@ -21,7 +21,7 @@ use Illuminate\Support\Collection;
 class MatchAnalysisService
 {
     /** Below this many games on either side of a comparison, it is a lead. */
-    private const LEAD_BELOW = 10;
+    public const LEAD_BELOW = 10;
 
     public function __construct(private PlayerExperienceService $experience, private SpellIconIndex $icons) {}
 
@@ -505,7 +505,6 @@ class MatchAnalysisService
     public const FAULT_WEIGHTS = [
         'locked_trinket_used' => 2,
         'locked_trinket_unused' => 1,
-        'overlap' => 1,
         'defensive_outside' => 1,
         'burst_healer_free' => 1,
         'them_experience' => 2,
@@ -589,17 +588,17 @@ class MatchAnalysisService
                 : $add($ourHealer['spec'], $ourHealer['classSlug'] ?? null, 'locked_trinket_unused', sprintf('Locked out when your %s died, with the Medallion unused', $dead), "Gladiator's Medallion");
         }
 
-        // A defensive stacked on one that was already up: the second one's owner.
-        foreach ($a['overlaps']['rows'] as $o) {
-            if ($o['side'] === 'us' && $isOurs($o['second']['by'])) {
-                $add($label($o['second']['by']), $players[$o['second']['by']]['classSlug'] ?? null, 'overlap',
-                    sprintf('%s on your %s while %s was up (%ss together)', $o['second']['spell'], $label($o['on']), $o['first']['spell'], $o['seconds']), $o['second']['spell']);
-            }
-        }
+        // Two defensives on one player at once is NOT a fault, and was taken out of these rules on
+        // 2026-10-03. Most of the healer's "overlaps" went on a teammate seconds from death
+        // (match-review-analysis.md, "Was the trinket warranted"), and holding Pain Suppression
+        // because Barkskin was up lost a game the same day: the healer was about to be locked out
+        // for nine seconds. Whether a second defensive was needed depends on what was coming, which
+        // a count cannot see. The overlaps are still stored and still counted as a description.
 
-        // A defensive spent while they were not in a go.
+        // A defensive spent while they were not in a go. Not one pressed just before the presser
+        // was locked out: going in before you lose the chance is the point of it.
         foreach ($a['defensives']['us']['rows'] as $d) {
-            if ($d['outside'] && $isOurs($d['who'])) {
+            if ($d['outside'] && $isOurs($d['who']) && empty($d['beforeLockout'])) {
                 $add($label($d['who']), $players[$d['who']]['classSlug'] ?? null, 'defensive_outside', sprintf('%s while they were not in a go', $d['spell']), $d['spell']);
             }
         }

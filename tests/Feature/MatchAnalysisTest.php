@@ -189,9 +189,9 @@ class MatchAnalysisTest extends TestCase
         $f = app(MatchAnalysisService::class)->build($user, $s['date'], $s['bracket'], $s['team'])['faults'];
         $items = collect($f['games'][0]['items']);
 
-        // The overlap belongs to whoever put the SECOND defensive on: Pain Suppression, the Priest.
-        $overlap = $items->first(fn ($i) => str_contains($i['text'], 'while Icebound Fortitude was up'));
-        $this->assertSame('Discipline Priest', $overlap['owner']);
+        // Two defensives at once is not a fault (2026-10-03): Pain Suppression on top of Icebound
+        // Fortitude is stored, never charged to anyone.
+        $this->assertNull($items->first(fn ($i) => str_contains($i['text'], 'Icebound Fortitude')));
         // The Medallion was used 40s before the death (still on its 120s cooldown): weight 2.
         $locked = $items->first(fn ($i) => str_contains($i['text'], 'Locked out when'));
         $this->assertSame(['Discipline Priest', 2], [$locked['owner'], $locked['weight']]);

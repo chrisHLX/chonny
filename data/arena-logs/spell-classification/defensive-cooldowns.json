@@ -1,14 +1,5 @@
 [
     {
-        "spellId": 136,
-        "name": "Mend Pet",
-        "cooldownSeconds": 10,
-        "charges": null,
-        "signals": [
-            "Periodic Heal (real magnitude)"
-        ]
-    },
-    {
         "spellId": 498,
         "name": "Divine Protection",
         "cooldownSeconds": 60,
@@ -126,15 +117,6 @@
         ]
     },
     {
-        "spellId": 5394,
-        "name": "Healing Stream Totem",
-        "cooldownSeconds": 30,
-        "charges": 0,
-        "signals": [
-            "Via sibling spell_id 52042: Direct Heal (real magnitude)"
-        ]
-    },
-    {
         "spellId": 6262,
         "name": "Healthstone",
         "cooldownSeconds": 60,
@@ -168,15 +150,6 @@
         "charges": null,
         "signals": [
             "Immunity"
-        ]
-    },
-    {
-        "spellId": 18562,
-        "name": "Swiftmend",
-        "cooldownSeconds": 15,
-        "charges": 1,
-        "signals": [
-            "Direct Heal (real magnitude)"
         ]
     },
     {
@@ -235,15 +208,6 @@
         ]
     },
     {
-        "spellId": 33076,
-        "name": "Prayer of Mending",
-        "cooldownSeconds": 12,
-        "charges": 1,
-        "signals": [
-            "Via sibling spell_id 33110: Direct Heal (real magnitude)"
-        ]
-    },
-    {
         "spellId": 33206,
         "name": "Pain Suppression",
         "cooldownSeconds": 180,
@@ -297,15 +261,6 @@
         "charges": null,
         "signals": [
             "Absorb (shield)"
-        ]
-    },
-    {
-        "spellId": 48438,
-        "name": "Wild Growth",
-        "cooldownSeconds": 10,
-        "charges": null,
-        "signals": [
-            "Periodic Heal (real magnitude)"
         ]
     },
     {
@@ -410,15 +365,6 @@
         ]
     },
     {
-        "spellId": 73685,
-        "name": "Unleash Life",
-        "cooldownSeconds": 20,
-        "charges": 1,
-        "signals": [
-            "Direct Heal (real magnitude)"
-        ]
-    },
-    {
         "spellId": 86659,
         "name": "Guardian of Ancient Kings",
         "cooldownSeconds": 180,
@@ -508,24 +454,6 @@
         "charges": null,
         "signals": [
             "Via sibling spell_id 113862: Damage Taken%, self takes LESS (-60)"
-        ]
-    },
-    {
-        "spellId": 115008,
-        "name": "Chi Torpedo",
-        "cooldownSeconds": 20,
-        "charges": 2,
-        "signals": [
-            "Immunity"
-        ]
-    },
-    {
-        "spellId": 115151,
-        "name": "Renewing Mist",
-        "cooldownSeconds": 9,
-        "charges": 2,
-        "signals": [
-            "Via sibling spell_id 119611: Periodic Heal (real magnitude)"
         ]
     },
     {
@@ -619,15 +547,6 @@
         "charges": null,
         "signals": [
             "Absorb (shield)"
-        ]
-    },
-    {
-        "spellId": 194509,
-        "name": "Power Word: Radiance",
-        "cooldownSeconds": 18,
-        "charges": 1,
-        "signals": [
-            "Direct Heal (real magnitude)"
         ]
     },
     {
@@ -814,16 +733,6 @@
         ]
     },
     {
-        "spellId": 366155,
-        "name": "Reversion",
-        "cooldownSeconds": 9,
-        "charges": 2,
-        "signals": [
-            "Absorb (shield)",
-            "Periodic Heal (real magnitude)"
-        ]
-    },
-    {
         "spellId": 374227,
         "name": "Zephyr",
         "cooldownSeconds": 120,
@@ -915,21 +824,39 @@
         ]
     },
     {
-        "spellId": 1267068,
-        "name": "Stormstream Totem",
-        "cooldownSeconds": 30,
-        "charges": 0,
-        "signals": [
-            "Via sibling spell_id 1267745: Direct Heal (real magnitude)"
-        ]
-    },
-    {
         "spellId": 1277297,
         "name": "Ignore Pain",
         "cooldownSeconds": 20,
         "charges": null,
         "signals": [
             "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 342245,
+        "name": "Alter Time",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Promoted 2026-10-04 from tools/match-review/tagaudit.php, by how it is pressed in the archive: a Mage's reset to earlier health; pressed before the presser died in 23 of 307 presses"
+        ]
+    },
+    {
+        "spellId": 3411,
+        "name": "Intervene",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Promoted 2026-10-04 from tools/match-review/tagaudit.php, by how it is pressed in the archive: 64% of presses with the ally in danger or under the enemy's go"
+        ]
+    },
+    {
+        "spellId": 73325,
+        "name": "Leap of Faith",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Promoted 2026-10-04 from tools/match-review/tagaudit.php, by how it is pressed in the archive: a pull to safety; 53% of presses in danger or under the enemy's go"
         ]
     }
 ]

@@ -42,6 +42,9 @@ class ArenaMomentService
      */
     public const MIN_COOLDOWN_SECONDS = 45;
 
+    /** A short defensive (short-defensives.json) counts from this cooldown (see cooldowns()). */
+    public const DEFENSIVE_FLOOR = 15;
+
     /**
      * ONLY A COOLDOWN THIS LONG ANCHORS A MOMENT.
      *
@@ -476,11 +479,37 @@ class ArenaMomentService
 
     private function cooldowns(): array
     {
-        return $this->cooldowns ??= Spell::query()
-            ->where('patch_id', Patch::where('is_current', true)->value('id'))
+        if ($this->cooldowns !== null) {
+            return $this->cooldowns;
+        }
+        $patch = Patch::where('is_current', true)->value('id');
+        $map = Spell::query()
+            ->where('patch_id', $patch)
             ->where('cooldown_seconds', '>=', self::MIN_COOLDOWN_SECONDS)
             ->pluck('cooldown_seconds', 'spell_id')
             ->all();
+
+        // A few SHORT DEFENSIVES matter too. Feint (15s) and Crimson Vial (30s) are answers a player
+        // holds for a go, and under the 45s floor they were missing from every death read, overlap
+        // and defensive count (the tag audit, 2026-10-04: Feint at 49 deaths). They come in by name
+        // from a curated list, NOT by a lower floor for every defensive: that was tried the same
+        // day and brought in Blink and the Mage barriers, pressed every time they are back, which
+        // took one game's defensive count from 11 to 48.
+        $names = array_column(json_decode((string) @file_get_contents(base_path('data/arena-logs/spell-classification/short-defensives.json')), true) ?: [], 'name');
+        if ($names) {
+            Spell::query()
+                ->where('patch_id', $patch)
+                ->where('cooldown_seconds', '>=', self::DEFENSIVE_FLOOR)
+                ->where('cooldown_seconds', '<', self::MIN_COOLDOWN_SECONDS)
+                ->get(['spell_id', 'name', 'cooldown_seconds'])
+                ->each(function ($s) use (&$map, $names) {
+                    if (in_array($s->display_name, $names, true)) {
+                        $map[$s->spell_id] = $s->cooldown_seconds;
+                    }
+                });
+        }
+
+        return $this->cooldowns = $map;
     }
 
     /** spell_id => dr_category for the current patch. Public for RoundAnalysisService. */

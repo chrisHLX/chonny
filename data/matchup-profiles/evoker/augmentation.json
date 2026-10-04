@@ -1,12 +1,20 @@
 {
     "shapeVersion": 1,
-    "generatedAt": "2026-09-24T09:54:59+00:00",
+    "generatedAt": "2026-10-03T17:26:33+00:00",
     "class": "evoker",
     "className": "Evoker",
     "spec": "augmentation",
     "specName": "Augmentation",
     "buildName": "Default Build",
     "offensive": [
+        {
+            "spellId": 370553,
+            "name": "Tip the Scales",
+            "icon": "ability_evoker_tipthescales.jpg",
+            "cooldown": 120,
+            "charges": null,
+            "duration": null
+        },
         {
             "spellId": 357208,
             "name": "Fire Breath",

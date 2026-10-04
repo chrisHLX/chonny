@@ -874,5 +874,50 @@
         "signals": [
             "Via sibling spell_id 376080: Energize/resource gen (+100)"
         ]
+    },
+    {
+        "spellId": 205180,
+        "name": "Summon Darkglare",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Promoted 2026-10-04 from tools/match-review/tagaudit.php, by how it is pressed in the archive: Affliction's main cooldown; 73% of presses in the presser's own go"
+        ]
+    },
+    {
+        "spellId": 1122,
+        "name": "Summon Infernal",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Promoted 2026-10-04 from tools/match-review/tagaudit.php, by how it is pressed in the archive: Destruction's main cooldown"
+        ]
+    },
+    {
+        "spellId": 265187,
+        "name": "Summon Demonic Tyrant",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Promoted 2026-10-04 from tools/match-review/tagaudit.php, by how it is pressed in the archive: Demonology's main cooldown"
+        ]
+    },
+    {
+        "spellId": 370553,
+        "name": "Tip the Scales",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Promoted 2026-10-04 from tools/match-review/tagaudit.php, by how it is pressed in the archive: damage x4.5 in the 6s after, 68% in the presser's own go"
+        ]
+    },
+    {
+        "spellId": 186289,
+        "name": "Aspect of the Eagle",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Promoted 2026-10-04 from tools/match-review/tagaudit.php, by how it is pressed in the archive: Survival's burst window; damage x2.5 after, 71% in the presser's own go"
+        ]
     }
 ]

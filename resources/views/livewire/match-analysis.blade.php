@@ -167,8 +167,7 @@
                         @endforeach
                         <p class="text-[11.5px] text-ink-subtle">
                             Weights: locked out when a teammate died with the Medallion already on cooldown {{ $f['weights']['locked_trinket_used'] }}, with it available {{ $f['weights']['locked_trinket_unused'] }};
-                            a defensive stacked on one already up {{ $f['weights']['overlap'] }} (whoever put the second one on);
-                            a defensive spent while they were not in a go {{ $f['weights']['defensive_outside'] }};
+                            a defensive spent while they were not in a go, unless you were locked out just after {{ $f['weights']['defensive_outside'] }};
                             a burst that landed with their healer free {{ $f['weights']['burst_healer_free'] }} (the team).
                             Theirs: {{ $f['weights']['them_experience'] }} for 3+ more Gladiator seasons, {{ $f['weights']['them_mmr'] }} for 50+ more MMR,
                             {{ $f['weights']['them_answered'] }} when your goes forced defensives and none killed.

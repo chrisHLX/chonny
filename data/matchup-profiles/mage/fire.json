@@ -1,6 +1,6 @@
 {
     "shapeVersion": 1,
-    "generatedAt": "2026-09-24T09:55:07+00:00",
+    "generatedAt": "2026-10-03T17:26:41+00:00",
     "class": "mage",
     "className": "Mage",
     "spec": "fire",
@@ -58,6 +58,15 @@
             "cooldown": 120,
             "charges": null,
             "duration": null,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 342245,
+            "name": "Alter Time",
+            "icon": "spell_mage_altertime.jpg",
+            "cooldown": 60,
+            "charges": null,
+            "duration": 20,
             "kind": "cooldown"
         },
         {

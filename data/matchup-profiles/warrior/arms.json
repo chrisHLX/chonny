@@ -1,6 +1,6 @@
 {
     "shapeVersion": 1,
-    "generatedAt": "2026-09-24T09:54:57+00:00",
+    "generatedAt": "2026-10-03T17:26:32+00:00",
     "class": "warrior",
     "className": "Warrior",
     "spec": "arms",
@@ -126,6 +126,15 @@
             "charges": null,
             "duration": 2,
             "kind": "immunity"
+        },
+        {
+            "spellId": 3411,
+            "name": "Intervene",
+            "icon": "ability_warrior_victoryrush.jpg",
+            "cooldown": 30,
+            "charges": 1,
+            "duration": null,
+            "kind": "cooldown"
         },
         {
             "spellId": 202168,

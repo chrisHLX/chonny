@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-24T09:53:53+00:00",
-    "spellCacheVersion": 21,
+    "generatedAt": "2026-10-03T17:25:27+00:00",
+    "spellCacheVersion": 22,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -4320,7 +4320,11 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null,
+            "offensiveDefensive": {
+                "offensive": false,
+                "defensive": true,
+                "label": "Defensive"
+            },
             "drCategory": null
         },
         {
@@ -8315,11 +8319,7 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": {
-                "offensive": false,
-                "defensive": true,
-                "label": "Defensive"
-            },
+            "offensiveDefensive": null,
             "drCategory": null
         },
         {

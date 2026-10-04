@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-24T09:54:48+00:00",
-    "spellCacheVersion": 21,
+    "generatedAt": "2026-10-03T17:26:18+00:00",
+    "spellCacheVersion": 22,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -532,7 +532,11 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": null,
+            "offensiveDefensive": {
+                "offensive": true,
+                "defensive": false,
+                "label": "Offensive Buff"
+            },
             "drCategory": null
         },
         {
@@ -5171,11 +5175,7 @@
             "isSelected": true,
             "source": "baseline",
             "isPriority": true,
-            "offensiveDefensive": {
-                "offensive": false,
-                "defensive": true,
-                "label": "Defensive"
-            },
+            "offensiveDefensive": null,
             "drCategory": null
         },
         {

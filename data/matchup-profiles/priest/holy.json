@@ -1,6 +1,6 @@
 {
     "shapeVersion": 1,
-    "generatedAt": "2026-09-24T09:55:11+00:00",
+    "generatedAt": "2026-10-03T17:26:45+00:00",
     "class": "priest",
     "className": "Priest",
     "spec": "holy",
@@ -60,6 +60,15 @@
             "cooldown": 90,
             "charges": null,
             "duration": 10,
+            "kind": "cooldown"
+        },
+        {
+            "spellId": 73325,
+            "name": "Leap of Faith",
+            "icon": "priest_spell_leapoffaith_a.jpg",
+            "cooldown": 45,
+            "charges": 2,
+            "duration": 4,
             "kind": "cooldown"
         },
         {

@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-09-24T09:54:43+00:00",
-    "spellCacheVersion": 21,
+    "generatedAt": "2026-10-03T17:26:14+00:00",
+    "spellCacheVersion": 22,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -4033,7 +4033,11 @@
             "isSelected": true,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null,
+            "offensiveDefensive": {
+                "offensive": false,
+                "defensive": true,
+                "label": "Defensive"
+            },
             "drCategory": null
         },
         {

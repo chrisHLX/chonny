@@ -35,8 +35,23 @@ class RoundAnalysisService
      * 5 (2026-10-02): `breakdown` (each player's damage, healing and absorbs by ability, and time
      * not pressing anything) and `checks` (offensive cooldowns left ready, defensives put on an
      * immune teammate). Older analyses simply lack both; nothing else changed.
+     * 6 (2026-10-03): `dispels` (every friendly dispel of a debuff: who took what off whom),
+     * `debuffs` (each player's debuffs from the other side, merged per name, so the chance to
+     * dispel can be measured against what any dispel was seen removing), and `cover` on every go
+     * (the defending side's damage defensives back as it started, cooldowns resolved from each
+     * player's own talents: CooldownLedgerService). Older analyses lack all three.
+     * 7 (2026-10-03): each of our deaths carries `answers`, the answer sheet for the go that killed
+     * (withAnswers()), and each defensive row `beforeLockout`.
+     * 8 (2026-10-04): spells used both ways are classified per press (classifyContextual()), the
+     * timeline takes defensive-tagged cooldowns down to 15s (ArenaMomentService), and the
+     * classification gained Alter Time, Intervene and Leap of Faith as defensives and five main
+     * offensive cooldowns, and lost eleven heals on a rotation. Every defensive count, overlap and
+     * go can differ from version 7.
      */
-    public const VERSION = 5;
+    public const VERSION = 8;
+
+    /** A defensive pressed this long or less before its owner was locked out went in before the chance was lost. */
+    private const BEFORE_LOCKOUT = 4.0;
 
     /** Crowd control that takes a player out: a slow or root does not stop a healer healing. */
     private const LOCKOUT = ['Stun', 'Silence', 'Disorient', 'Incapacitate'];
@@ -70,7 +85,7 @@ class RoundAnalysisService
      */
     private const IMMUNITIES = ['Ice Block', 'Divine Shield', 'Aspect of the Turtle', 'Netherwalk'];
 
-    public function __construct(private ArenaMomentService $moments, private ArenaLogService $arena) {}
+    public function __construct(private ArenaMomentService $moments, private ArenaLogService $arena, private CooldownLedgerService $ledger) {}
 
     /**
      * @param  array<int, string>  $lines  one round's raw log lines
@@ -98,7 +113,8 @@ class RoundAnalysisService
         }
         unset($c);
 
-        [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly] = $this->secondPass($lines, $roster);
+        [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly, $dispelEvents, $debuffSpans, $named, $failed] = $this->secondPass($lines, $roster);
+        $this->classifyContextual($tl, $dmg, $sideOf);
         $credit = function (string $src) use ($roster, $owner) {
             for ($i = 0; $i < 3 && ! isset($roster[$src]) && isset($owner[$src]); $i++) {
                 $src = $owner[$src];
@@ -133,20 +149,373 @@ class RoundAnalysisService
             }
         }
 
+        // The defending side's damage defensives back as each go started (the cooldown ledger).
+        $cover = $this->cover($lines, $metadata, $roster, $sideOf, $tl);
+        foreach ($goRows as &$row) {
+            $row['cover'] = $cover ? $cover($row['side'] === 'us' ? 'them' : 'us', (float) $row['from']) : null;
+        }
+        unset($row);
+
         return [
             'version' => self::VERSION,
             'won' => (int) ($metadata['result'] ?? 0) === 3,
             'mmr' => $this->mmr($end, $metadata),
             'players' => $this->players($metadata, $roster, $sideOf, $logger['id'] ?? null),
             'goes' => $goRows,
-            'deaths' => array_map(fn ($d) => $this->killRead($d, $tl, $dmg, $locked, $healers, $roster, $sideOf, $credit, $goes), $deaths),
-            'defensives' => $this->defensives($tl, $sideOf, $goes, $firstDeath, $roster),
+            'deaths' => $this->withAnswers(
+                array_map(fn ($d) => $this->killRead($d, $tl, $dmg, $locked, $healers, $roster, $sideOf, $credit, $goes), $deaths),
+                $lines, $metadata, $sideOf, $credit, $named, $failed, $locked, $goes,
+            ),
+            'defensives' => $this->defensives($tl, $sideOf, $goes, $firstDeath, $roster, $locked),
             'overlaps' => $this->overlaps($tl, $buffs, $sideOf, $firstDeath),
             'kicks' => $this->kicks($interrupts, $sideOf, $credit, $healers, $goes),
             'lockout' => array_map(fn ($iv) => round($this->len($iv), 1), $locked),
             'breakdown' => $this->breakdown($roster, $sideOf, $credit, array_merge($dmg, $swingOnly), $heals, $absorbs, $casts, $locked, $deaths, $metadata),
             'checks' => $this->checks($tl, $roster, $sideOf, $deaths, $metadata, $this->overlaps($tl, $buffs, $sideOf, $firstDeath)),
+            'dispels' => $this->dispels($dispelEvents, $sideOf, $credit),
+            'debuffs' => $this->debuffs($debuffSpans, $sideOf, $credit),
         ];
+    }
+
+    // ------------------------------------------------------------------ spells used both ways
+
+    /** @var array<string, true>|null names read per press, from contextual-cooldowns.json */
+    private ?array $contextual = null;
+
+    /**
+     * Spells used both ways (Vanish, Mass Invisibility, Master's Call...) are classified per press,
+     * not per spell (version 8). A single tag is wrong for half their presses: the tag audit
+     * (tools/match-review/tagaudit.php, 2026-10-04) found each going out defensively in about half
+     * and offensively in about a third.
+     *
+     * A press is DEFENSIVE when its presser was in danger (35% health or lower, or lost 25% in the
+     * 3s before) or the other team was in a go (an offensive cooldown of theirs in the 10s before)
+     * and their own was not (none of their team's within 5s). Otherwise it is UTILITY, and counts
+     * as neither a defensive nor the start of a go. The list is data, not code:
+     * data/arena-logs/spell-classification/contextual-cooldowns.json.
+     */
+    private function classifyContextual(array &$tl, array $dmg, callable $sideOf): void
+    {
+        $this->contextual ??= array_fill_keys(array_column(
+            json_decode((string) @file_get_contents(base_path('data/arena-logs/spell-classification/contextual-cooldowns.json')), true) ?: [], 'name'), true);
+        if (! $this->contextual) {
+            return;
+        }
+
+        $hp = [];
+        foreach ($dmg as $x) {
+            if ($x['hpAfter'] !== null) {
+                $hp[$x['dst']][] = [$x['t'], $x['hpAfter']];
+            }
+        }
+        $hpAt = function (string $who, float $t) use ($hp) {
+            $last = null;
+            foreach ($hp[$who] ?? [] as [$x, $p]) {
+                if ($x > $t) {
+                    break;
+                }
+                $last = $p;
+            }
+
+            return $last;
+        };
+        $offensive = [];
+        foreach ($tl['commitments'] as $c) {
+            if (in_array($c['cat'], ['offensive', 'mixed'], true) && ! isset($this->contextual[$c['spell']])) {
+                $offensive[$sideOf($c['who'])][] = (float) $c['t'];
+            }
+        }
+
+        foreach ($tl['commitments'] as &$c) {
+            if (! isset($this->contextual[$c['spell']])) {
+                continue;
+            }
+            $t = (float) $c['t'];
+            $side = $sideOf($c['who']);
+            $now = $hpAt($c['who'], $t);
+            $before = $hpAt($c['who'], $t - 3);
+            $danger = $now !== null && ($now <= 35 || ($before !== null && $before - $now >= 25));
+            $theirGo = collect($offensive[$side === 'us' ? 'them' : 'us'] ?? [])->contains(fn ($x) => $x <= $t && $x >= $t - 10);
+            $ourGo = collect($offensive[$side] ?? [])->contains(fn ($x) => abs($x - $t) <= 5);
+            $c['cat'] = $danger || ($theirGo && ! $ourGo) ? 'defensive' : 'utility';
+            $c['contextual'] = true;
+        }
+        unset($c);
+    }
+
+    // ------------------------------------------------------------------ dispels and the ledger
+
+    /**
+     * Every dispel that took a debuff off a teammate (or yourself). Enemy-side dispels of buffs
+     * (Mass Dispel, Purge) are a different job and are not kept.
+     *
+     * @return array<int, array{t: float, by: string, on: string, spell: string, removed: string}>
+     */
+    private function dispels(array $events, callable $sideOf, callable $credit): array
+    {
+        $out = [];
+        foreach ($events as $e) {
+            $by = $credit($e['src']);
+            if ($e['type'] !== 'DEBUFF' || $sideOf($by) === null || $sideOf($by) !== $sideOf($e['dst'])) {
+                continue;
+            }
+            $out[] = ['t' => $e['t'], 'by' => $by, 'on' => $e['dst'], 'spell' => $e['spell'], 'removed' => $e['removed']];
+        }
+
+        return $out;
+    }
+
+    /**
+     * Each player's debuffs from the other side, merged per debuff name. What could have been
+     * dispelled is decided later, against what any dispel was SEEN removing across stored games:
+     * the spell data has no dispel type.
+     *
+     * @return array<string, array<int, array{0: string, 1: float, 2: float}>> guid => [name, from, to]
+     */
+    private function debuffs(array $spans, callable $sideOf, callable $credit): array
+    {
+        $byName = [];
+        foreach ($spans as $s) {
+            $src = $sideOf($credit($s['src']));
+            if ($src === null || $src === $sideOf($s['dst'])) {
+                continue;
+            }
+            $byName[$s['dst']][$s['name']][] = [$s['from'], $s['to']];
+        }
+
+        $out = [];
+        foreach ($byName as $guid => $names) {
+            foreach ($names as $name => $iv) {
+                foreach ($this->union($iv) as [$from, $to]) {
+                    $out[$guid][] = [$name, round($from, 1), round($to, 1)];
+                }
+            }
+        }
+
+        return $out;
+    }
+
+    /**
+     * The answer sheet for each of our deaths (version 7): every button our team had for the go that
+     * killed, and what happened to it between the go starting and the death: pressed in the go,
+     * ready and never pressed, or already on cooldown when it began. Plus each player's lockout in
+     * that stretch, and the free moment before their longest lockout: the last chance to press
+     * something before losing the chance (3 Oct, 11:50: the healer was free 14.1-15.8s, then locked
+     * out nine seconds while the Druid died).
+     *
+     * It lists what was THERE; it does not say what would have won. Which answer fits which threat
+     * is the player's read, and the card shows the threats beside it. A round is never left
+     * unanalysed because of it.
+     */
+    private function withAnswers(array $deaths, array $lines, array $metadata, callable $sideOf, callable $credit,
+        array $named, array $failed, array $locked, array $goes): array
+    {
+        if (! collect($deaths)->contains('side', 'us')) {
+            return $deaths;
+        }
+
+        try {
+            $pressed = [];
+            foreach ($named as $c) {
+                $who = $credit($c['src']);
+                if ($sideOf($who) !== null) {
+                    $pressed[$who][$c['spell']][] = (float) $c['t'];
+                }
+            }
+            $kits = $this->kits($lines, $metadata, $sideOf, $pressed);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return $deaths;
+        }
+
+        // Our first death only: after it the round is usually decided, and a shuffle round ends there.
+        $first = collect($deaths)->where('side', 'us')->sortBy('t')->keys()->first();
+        foreach ($deaths as $i => &$d) {
+            if ($i !== $first) {
+                continue;
+            }
+            $to = (float) $d['t'];
+            $from = $d['goStartedAgo'] !== null ? $to - $d['goStartedAgo'] : max(0.0, $to - 30);
+
+            $rows = [];
+            foreach ($kits as $who => $kit) {
+                if ($sideOf($who) !== 'us') {
+                    continue;
+                }
+                foreach ($kit as $k) {
+                    $times = $pressed[$who][$k['spell']] ?? [];
+                    $in = collect($times)->first(fn ($p) => $p >= $from - 0.5 && $p <= $to);
+                    $earlier = array_filter($times, fn ($p) => $p < $from - 0.5 && $from < $p + $k['cd']);
+                    $down = $in === null && count($earlier) >= $k['charges'];
+                    $rows[] = [
+                        'who' => $who, 'spell' => $k['spell'], 'kind' => $k['kind'], 'cd' => $k['cd'],
+                        'state' => $in !== null ? 'pressed' : ($down ? 'down' : 'ready'),
+                        'at' => $in !== null ? round($in, 1) : null,
+                        'back' => $down ? round(min(array_map(fn ($p) => $p + $k['cd'], $earlier)), 1) : null,
+                        // Tried and refused by crowd control, range or line of sight ("Can't do that
+                        // while fleeing"): the press was meant. "Not yet recovered" is the global
+                        // cooldown being pressed through, and says nothing.
+                        'tried' => collect($failed)->filter(fn ($f) => $f['who'] === $who && $f['spell'] === $k['spell'] && $f['t'] >= $from && $f['t'] <= $to
+                                && preg_match('/while|line of sight|range/i', $f['why']))
+                            ->map(fn ($f) => ['t' => round($f['t'], 1), 'why' => $f['why']])->unique('why')->values()->all(),
+                    ];
+                }
+            }
+
+            $lockout = [];
+            foreach ($kits as $who => $kit) {
+                if ($sideOf($who) !== 'us') {
+                    continue;
+                }
+                $iv = array_values(array_filter(array_map(fn ($x) => [max($x[0], $from), min($x[1], $to)], $locked[$who] ?? []), fn ($x) => $x[1] > $x[0]));
+                if (! $iv) {
+                    continue;
+                }
+                // Back-to-back lockouts (a fear into a stun) are one stretch to the player.
+                $stretches = [];
+                foreach ($iv as [$a, $b]) {
+                    if ($stretches && $a - $stretches[count($stretches) - 1][1] <= 0.3) {
+                        $stretches[count($stretches) - 1][1] = max($stretches[count($stretches) - 1][1], $b);
+                    } else {
+                        $stretches[] = [$a, $b];
+                    }
+                }
+                usort($stretches, fn ($x, $y) => ($y[1] - $y[0]) <=> ($x[1] - $x[0]));
+                [$la, $lb] = $stretches[0];
+                $before = collect($stretches)->filter(fn ($s) => $s[1] <= $la)->max(fn ($s) => $s[1]) ?? $from;
+                $lockout[$who] = [
+                    'seconds' => round($this->len($iv), 1),
+                    'longest' => [round($la, 1), round($lb, 1)],
+                    'freeBefore' => $la - $before >= 0.5 ? [round($before, 1), round($la, 1)] : null,
+                ];
+            }
+
+            $d['answers'] = ['from' => round($from, 1), 'rows' => $rows, 'lockout' => $lockout];
+        }
+        unset($d);
+
+        return $deaths;
+    }
+
+    /**
+     * Each player's buttons that can answer a go: defensives and the trinket, crowd control with a
+     * cooldown that takes a player out (a peel), and interrupts. From their spec's matchup profile
+     * (the default build), their own PvP talents, and anything else they pressed that the data calls
+     * defensive or crowd control; a talent they did not take is dropped (CooldownLedgerService::takes).
+     * Cooldowns are their own, talent-resolved.
+     *
+     * @return array<string, array<int, array{spell: string, kind: string, cd: float, charges: int}>>
+     */
+    private function kits(array $lines, array $metadata, callable $sideOf, array $pressed): array
+    {
+        $ccById = $this->moments->crowdControl();
+        $ccByName = \App\Models\Spell::where('patch_id', \App\Models\Patch::where('is_current', true)->value('id'))
+            ->whereIn('spell_id', array_keys($ccById))->get(['spell_id', 'name'])
+            ->mapWithKeys(fn ($s) => [$s->display_name => $ccById[$s->spell_id]])->all();
+        $classes = $this->arena->offensiveDefensiveClassification();
+        // byName is keyed by the name exactly as the classification file spells it.
+        $defensive = fn (string $n) => (bool) (($classes['byName'][$n] ?? $classes['byName'][strtolower($n)] ?? [])['defensive'] ?? false);
+        $peel = fn (?string $dr) => in_array($dr, self::LOCKOUT, true);
+
+        $raw = implode("\n", $lines);
+        $kits = [];
+        foreach ($metadata['units'] ?? [] as $u) {
+            $guid = $u['id'] ?? '';
+            $spec = $sideOf($guid) ? $this->arena->specForExternalId((string) $u['spec']) : null;
+            if (! $spec) {
+                continue;
+            }
+            $build = $this->ledger->build($this->arena->extractCombatantInfoFromLog($raw, $guid) ?? [], $spec);
+            $profile = $this->ledger->profile($spec->gameClass?->slug, $spec->slug);
+
+            $want = [];
+            foreach ($profile['answers'] ?? [] as $a) {
+                $want[$a['name']] = ($a['kind'] ?? '') === 'trinket' ? 'trinket' : 'defensive';
+            }
+            foreach ($profile['control'] ?? [] as $c) {
+                if ($peel($c['drCategory'] ?? null) && ($c['cooldown'] ?? 0) >= 15) {
+                    $want[$c['name']] ??= 'control';
+                }
+            }
+            foreach ($profile['interrupts'] ?? [] as $i) {
+                $want[$i['name']] ??= 'interrupt';
+            }
+            // Their own talents and PvP talents: Roar of Sacrifice is a talent, not in the profile.
+            foreach ($build['names'] as $name) {
+                if ($defensive($name)) {
+                    $want[$name] ??= 'defensive';
+                } elseif ($peel($ccByName[$name] ?? null)) {
+                    $want[$name] ??= 'control';
+                }
+            }
+            foreach (array_keys($pressed[$guid] ?? []) as $name) {
+                // A spell used both ways (Vanish) is one of their answers when they have it.
+                if ($defensive($name) || isset($this->contextual[$name])) {
+                    $want[$name] ??= 'defensive';
+                } elseif ($peel($ccByName[$name] ?? null)) {
+                    $want[$name] ??= 'control';
+                }
+            }
+
+            foreach ($want as $name => $kind) {
+                // Pressing it proves they have it; otherwise a talent they did not take is not theirs.
+                if (! isset($pressed[$guid][$name]) && ! $this->ledger->takes($name, $spec, $build)) {
+                    continue;
+                }
+                $cd = $this->ledger->cooldown($name, $spec, $build);
+                // A short-cooldown "defensive" found by name is a heal on a rotation (Power Word:
+                // Radiance, Healing Stream Totem, Wild Growth), not an answer held for a go. The
+                // profile's own answers (Fade, 20s) are kept whatever their cooldown.
+                $fromProfile = in_array($name, array_column($profile['answers'] ?? [], 'name'), true);
+                if (! $cd || ($kind === 'control' && $cd['cd'] < 15) || ($kind === 'defensive' && ! $fromProfile && $cd['cd'] < 30)) {
+                    continue;
+                }
+                $kits[$guid][] = ['spell' => $name, 'kind' => $kind, 'cd' => $cd['cd'], 'charges' => $cd['charges']];
+            }
+        }
+
+        return $kits;
+    }
+
+    /**
+     * A function from (side, moment) to that side's damage defensives back at that moment. Null when
+     * the cooldowns cannot be resolved; a round is never left unanalysed because of the ledger.
+     */
+    private function cover(array $lines, array $metadata, array $roster, callable $sideOf, array $tl): ?\Closure
+    {
+        try {
+            $presses = [];
+            foreach ($tl['commitments'] as $c) {
+                if ($c['cat'] === 'defensive') {
+                    $presses[$c['who']][$c['spell']][] = (float) $c['t'];
+                }
+            }
+
+            $raw = implode("\n", $lines);
+            $answers = ['us' => [], 'them' => []];
+            foreach ($metadata['units'] ?? [] as $u) {
+                $guid = $u['id'] ?? '';
+                $side = $sideOf($guid);
+                $spec = $side ? $this->arena->specForExternalId((string) $u['spec']) : null;
+                if (! $spec) {
+                    continue;
+                }
+                $build = $this->ledger->build($this->arena->extractCombatantInfoFromLog($raw, $guid) ?? [], $spec);
+                $names = array_unique(array_merge($this->ledger->profileAnswers($spec->gameClass?->slug, $spec->slug), array_keys($presses[$guid] ?? [])));
+                foreach ($names as $name) {
+                    if ($cd = $this->ledger->cooldown($name, $spec, $build)) {
+                        $answers[$side][] = ['who' => $guid, 'spell' => $name, 'cd' => $cd['cd'], 'charges' => $cd['charges']];
+                    }
+                }
+            }
+        } catch (\Throwable $e) {
+            report($e);
+
+            return null;
+        }
+
+        return fn (string $side, float $t) => CooldownLedgerService::coverage($answers[$side], $presses, $t);
     }
 
     // ------------------------------------------------------------------ reading
@@ -175,6 +544,12 @@ class RoundAnalysisService
         // CombatantThroughputService does.
         $landed = [];
         $swingOnly = [];
+        $dispels = [];
+        $debuffs = [];
+        $openDebuffs = [];
+        $named = [];
+        $failed = [];
+        $t = 0.0;
 
         foreach ($lines as $line) {
             $s = $this->seconds($line);
@@ -205,6 +580,16 @@ class RoundAnalysisService
                 if (isset($roster[$f[1]])) {
                     $casts[$f[1]][] = $t;
                 }
+                // Every press by name, pets included (credited later), for the answer sheet.
+                $named[] = ['src' => $f[1], 'spell' => $f[10], 't' => $t];
+
+                continue;
+            }
+            if ($event === 'SPELL_CAST_FAILED') {
+                $f = str_getcsv($body);
+                if (isset($roster[$f[1]])) {
+                    $failed[] = ['who' => $f[1], 'spell' => $f[10], 't' => $t, 'why' => $f[count($f) - 1]];
+                }
 
                 continue;
             }
@@ -231,6 +616,29 @@ class RoundAnalysisService
                 $f = str_getcsv($body);
                 if (isset($roster[$f[5]])) {
                     $interrupts[] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'spell' => $f[10]];
+                }
+
+                continue;
+            }
+            if ($event === 'SPELL_DISPEL') {
+                // ...,dispel spell id,name,school,removed id,removed name,school,BUFF|DEBUFF
+                $f = str_getcsv($body);
+                if (isset($roster[$f[5]])) {
+                    $dispels[] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'spell' => $f[10], 'removed' => $f[13] ?? '?', 'type' => $f[15] ?? ''];
+                }
+
+                continue;
+            }
+            if (($event === 'SPELL_AURA_APPLIED' || $event === 'SPELL_AURA_REMOVED') && str_contains($body, ',DEBUFF')) {
+                $f = str_getcsv($body);
+                if (isset($roster[$f[5]])) {
+                    $k = $f[5].'|'.$f[10].'|'.$f[1];
+                    if ($event === 'SPELL_AURA_APPLIED') {
+                        $openDebuffs[$k] ??= ['dst' => $f[5], 'src' => $f[1], 'name' => $f[10], 'from' => $t];
+                    } elseif (isset($openDebuffs[$k])) {
+                        $debuffs[] = $openDebuffs[$k] + ['to' => $t];
+                        unset($openDebuffs[$k]);
+                    }
                 }
 
                 continue;
@@ -281,8 +689,12 @@ class RoundAnalysisService
         }
 
         $swingOnly = array_values(array_diff_key($swingOnly, $landed));
+        // A debuff still up when the log stops ran to the end of the round.
+        foreach ($openDebuffs as $o) {
+            $debuffs[] = $o + ['to' => $t];
+        }
 
-        return [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly];
+        return [$dmg, $owner, $buffs, $interrupts, $end, $heals, $absorbs, $casts, $swingOnly, $dispels, $debuffs, $named, $failed];
     }
 
     // ------------------------------------------------------------------ breakdown and checks
@@ -661,17 +1073,24 @@ class RoundAnalysisService
 
     // ------------------------------------------------------------------ the rest
 
-    /** Defensives each side spent before the first death, and how many outside the other side's goes. */
-    private function defensives(array $tl, callable $sideOf, array $goes, float $firstDeath, array $roster): array
+    /**
+     * Defensives each side spent before the first death, and how many outside the other side's goes.
+     * `beforeLockout` (version 7): the presser was locked out within BEFORE_LOCKOUT seconds after.
+     * A defensive has to go out before its owner loses the chance to press it, so one pressed then
+     * is not "outside their go" in any sense that matters (the 3 Oct game this came from: Pain
+     * Suppression held at 14s, the healer locked out 15.8-24.7s, the Druid dead at 22.8s).
+     */
+    private function defensives(array $tl, callable $sideOf, array $goes, float $firstDeath, array $roster, array $locked): array
     {
         $out = [];
         foreach (['us' => 'them', 'them' => 'us'] as $side => $opp) {
             $spent = array_values(array_filter($tl['commitments'], fn ($c) => $sideOf($c['who']) === $side && $c['cat'] === 'defensive' && $c['t'] <= $firstDeath));
             $isOutside = fn ($c) => ! collect($goes[$opp])->contains(fn ($g) => $c['t'] >= $g['from'] && $c['t'] <= $g['to']);
+            $before = fn ($c) => collect($locked[$c['who']] ?? [])->contains(fn ($iv) => $iv[0] > $c['t'] && $iv[0] <= $c['t'] + self::BEFORE_LOCKOUT);
             $out[$side] = [
                 'spent' => count($spent),
                 'outsideTheirGoes' => count(array_filter($spent, $isOutside)),
-                'rows' => array_map(fn ($c) => ['t' => $c['t'], 'spell' => $c['spell'], 'who' => $c['who'], 'outside' => $isOutside($c)], $spent),
+                'rows' => array_map(fn ($c) => ['t' => $c['t'], 'spell' => $c['spell'], 'who' => $c['who'], 'outside' => $isOutside($c), 'beforeLockout' => $before($c)], $spent),
             ];
         }
 
