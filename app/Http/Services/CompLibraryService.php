@@ -199,11 +199,54 @@ class CompLibraryService
 
             return $known->isEmpty() ? null : (int) $known->sum(fn ($p) => $this->xp[$p['name']]['gladSeasons'] ?? 0);
         };
-        $list = $games->sortByDesc(fn ($g) => (string) $g['r']->played_at)->map(function ($g) use ($gladOf, $nameOf) {
-            $first = collect($g['a']['deaths'])->sortBy('t')->first();
+        $colors = config('wow_classes.colors');
+        $list = $games->sortByDesc(fn ($g) => (string) $g['r']->played_at)->map(function ($g) use ($gladOf, $nameOf, $colors) {
+            $a = $g['a'];
+            $first = collect($a['deaths'])->sortBy('t')->first();
             $p = $first ? $nameOf($g, $first['who']) : null;
+            $goes = collect($a['goes']);
+            $kicks = collect($a['kicks'] ?? []);
+            $healer = collect($a['players'])->first(fn ($x) => $x['side'] === 'us' && $x['healer']);
+            // Each player, for the row's detail panel: experience as the profile shows it now.
+            $player = function ($x) use ($colors) {
+                $xp = $this->xp[$x['name']] ?? null;
+
+                return [
+                    'name' => explode('-', $x['name'])[0],
+                    'spec' => $x['spec'],
+                    'color' => $colors[$x['classSlug'] ?? ''] ?? '#8A8A9A',
+                    'you' => ! empty($x['logger']),
+                    'xp' => match (true) {
+                        $xp === null => 'not looked up',
+                        ! ($xp['found'] ?? false) => 'no profile',
+                        default => implode(' · ', array_filter([
+                            ($xp['gladSeasons'] ?? 0) > 0 ? $xp['gladSeasons'].'× Glad' : null,
+                            'best '.($xp['exp3v3'] ?? '?'),
+                            $xp['bestRank'] ?? null,
+                        ])),
+                    },
+                    'glad' => ($xp['gladSeasons'] ?? 0) > 0,
+                ];
+            };
+            $sum = fn (string $side) => (int) collect($a['players'])->where('side', $side)->sum(fn ($x) => $this->xp[$x['name']]['gladSeasons'] ?? 0);
 
             return [
+                'id' => 'g'.substr(md5((string) $g['r']->id), 0, 8),
+                'players' => [
+                    'them' => collect($a['players'])->where('side', 'them')->sortByDesc('healer')->map($player)->values()->all(),
+                    'us' => collect($a['players'])->where('side', 'us')->sortByDesc('healer')->map($player)->values()->all(),
+                ],
+                'stats' => array_filter([
+                    'Length' => $this->clock((float) ($g['r']->payload['metadata']['durationInSeconds'] ?? 0)),
+                    'Difficulty' => GameCardService::difficultyOf((int) (($a['mmr']['them'] ?? 0) - ($a['mmr']['us'] ?? 0)), isset($a['mmr']['us'], $a['mmr']['them']), $sum('them'), $sum('us'))['label']
+                        .' ('.$sum('them').' Gladiator seasons to your '.$sum('us').')',
+                    'Goes, yours / theirs' => $goes->where('side', 'us')->count().' / '.$goes->where('side', 'them')->count(),
+                    'Goes that killed, yours / theirs' => $goes->where('side', 'us')->filter(fn ($x) => $x['kill'] || $x['killLater'])->count().' / '.$goes->where('side', 'them')->filter(fn ($x) => $x['kill'] || $x['killLater'])->count(),
+                    'Defensives before the first death, yours / theirs' => ($a['defensives']['us']['spent'] ?? 0).' / '.($a['defensives']['them']['spent'] ?? 0),
+                    'Interrupts, yours / theirs' => $kicks->where('side', 'us')->count().' / '.$kicks->where('side', 'them')->count(),
+                    'Your healer locked out' => $healer ? round($a['lockout'][$healer['guid']] ?? 0, 1).'s' : null,
+                ], fn ($v) => $v !== null),
+
                 'when' => $g['r']->played_at?->format('D j M, H:i'),
                 'who' => explode('-', collect($g['a']['players'])->first(fn ($x) => ! empty($x['logger']))['name'] ?? '?')[0],
                 'won' => $g['a']['won'],

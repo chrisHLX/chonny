@@ -19,8 +19,22 @@
     .rows tr + tr td { border-top: 1px solid #1E1E26; }
     .rows .v { text-align: right; white-space: nowrap; color: #8A8A9A; padding-left: 10px; }
     .big { font-size: 20px; font-weight: 600; }
+    tr.game td { cursor: pointer; }
+    tr.game:hover td { background: #1E1E26; }
+    tr.more td { padding: 4px 0 12px 22px; }
+    .who td { padding: 2px 14px 2px 0; }
+    .arrow { color: #52525F; width: 14px; }
     .sub { margin: 2px 0 8px; }
 </style>
+<script>
+    // A game's detail row opens and closes under it. IE11: no classList on table rows.
+    function toggle(id) {
+        var row = document.getElementById(id), arrow = document.getElementById(id + '-a');
+        var open = row.style.display === 'none';
+        row.style.display = open ? '' : 'none';
+        if (arrow) { arrow.innerHTML = open ? '&#9662;' : '&#9656;'; }
+    }
+</script>
 </head>
 <body>
 
@@ -161,12 +175,13 @@
 
 {{-- ============================== every game --}}
 <div class="section">
-    <div class="label">Every game against them</div>
+    <div class="label">Every game against them <span class="aside">click a game for every player's experience and the game's numbers</span></div>
     <div class="box">
         <table class="stats">
-            <tr><td class="small muted">Played</td><td class="small muted">You</td><td class="small muted">Result</td><td class="small muted">MMR (you / them)</td><td class="small muted">Their Gladiator seasons</td><td class="small muted">First death</td></tr>
+            <tr><td class="arrow"></td><td class="small muted">Played</td><td class="small muted">You</td><td class="small muted">Result</td><td class="small muted">MMR (you / them)</td><td class="small muted">Their Gladiator seasons</td><td class="small muted">First death</td></tr>
             @foreach ($c['list'] as $row)
-                <tr>
+                <tr class="game" onclick="toggle('{{ $row['id'] }}')">
+                    <td class="arrow" id="{{ $row['id'] }}-a">&#9656;</td>
                     <td>{{ $row['when'] }}</td>
                     <td>{{ $row['who'] }}</td>
                     <td><span class="chip {{ $row['won'] ? 'won' : 'lost' }}">{{ $row['won'] ? 'WON' : 'LOST' }}</span></td>
@@ -174,6 +189,32 @@
                     <td>{{ $row['glad'] ?? 'not looked up' }}</td>
                     <td class="muted">{{ $row['death'] ?? '-' }}</td>
                 </tr>
+                <tr class="more" id="{{ $row['id'] }}" style="display: none"><td colspan="7">
+                    <table class="two"><tr>
+                        <td class="col left">
+                            @foreach (['them' => 'Them', 'us' => 'Your team'] as $side => $title)
+                                <div class="label" style="margin-top: 6px">{{ $title }}</div>
+                                <table class="who">
+                                    @foreach ($row['players'][$side] as $pl)
+                                        <tr>
+                                            <td><span class="name" style="color: {{ $pl['color'] }}">{{ $pl['name'] }}</span>@if ($pl['you'])<span class="you">YOU</span>@endif</td>
+                                            <td class="muted small">{{ $pl['spec'] }}</td>
+                                            <td class="small">@if ($pl['glad'])<span class="chip glad">{{ $pl['xp'] }}</span>@else<span class="muted">{{ $pl['xp'] }}</span>@endif</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            @endforeach
+                        </td>
+                        <td class="col right">
+                            <div class="label" style="margin-top: 6px">The game</div>
+                            <table class="rows">
+                                @foreach ($row['stats'] as $label => $value)
+                                    <tr><td class="small">{{ $label }}</td><td class="v">{{ $value }}</td></tr>
+                                @endforeach
+                            </table>
+                        </td>
+                    </tr></table>
+                </td></tr>
             @endforeach
         </table>
     </div>
