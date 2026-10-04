@@ -26,6 +26,12 @@ the desktop and in the Start menu, run this once:
      title);
    - how each death happened: the killing blow, who did the damage, your healer's state, and the
      defensives used in the last 30 seconds;
+   - for your team's first death, **what your team had for their go**: their offensive cooldowns
+     and their crowd control on you, each player's lockout with the free moment before it, and
+     every button your team had, sorted into ready and never pressed, pressed in their go, or
+     already on cooldown (analysis version 7, 3 Oct);
+   - whether the game was **harder, even or easier** before anyone pressed anything (the MMR gap
+     and the Gladiator seasons on each side);
    - both sides' goes, defensives, interrupts, and time spent crowd-controlled;
    - for a loss, what the site's loss rules flag. That is an estimate, not a verdict;
    - **checks**: losses the log shows by itself. These are an offensive cooldown left sitting
@@ -85,7 +91,45 @@ the desktop and in the Start menu, run this once:
 
    A shuffle has **Rounds**, **Damage & healing** and **Notes**. The tab you are on stays open as
    you click from game to game.
-6. **Settings** holds the three folders, auto-sync, auto-move, and "start with Windows". "Start
+6. **Character, in the bar beside the pages.** The app finds your characters from the games
+   themselves: each game marks the character whose log it came from. Pick one and the Matches list
+   shows only that character's games, and the Improve page shows that character. "All characters"
+   shows every game. The choice is remembered.
+7. **Improve: what to work on.** One page per character, with the habits the match reviews found
+   mattered (`match-review-analysis.md`, 2 Oct), each measured against every other player of the
+   same spec in your games, both teams, so "behind" means behind the players you actually meet:
+   - **Dispels:** what you took off your team, per minute your team carried a debuff that players of
+     your spec were seen removing. The debuffs left on your team most are listed.
+   - **Crowd control on their healer:** the share of your team's goes with your CC on their healer,
+     how often those goes killed, and which spells you used.
+   - **Big defensives when their go started:** how often their go began with two or more of your
+     team's 90s+ defensives on cooldown, and how often each case killed one of you.
+   - **Defensives outside their goes**, and for a healer, a teammate dying while you were locked out
+     with your Medallion ready.
+   - **Time locked out**, in wins and losses, and for a damage dealer, **dying first**.
+
+   Each shows your number, the others', and your last 20 games against the ones before. The
+   furthest behind comes first. Under 10 games on either side a difference reads as a lead, not a
+   finding. The page describes; whether a dispel is worth the global is your call.
+   `wow:game-cards` writes the pages (`ImprovementService`) and redraws them only when a game
+   changed. Dispels and big defensives need analysis version 6 (3 Oct): games synced before then
+   need `php artisan wow:sync --skip-ingest --fresh` once.
+8. **Comps: the comp library.** Every enemy comp you have met, grouped by their two DPS specs with
+   any healer (exact three-spec teams barely repeat; the DPS pair is how comps are named, and TSG
+   is a Warrior and a Death Knight whoever heals). Nicknames come from the repo's own guide titles.
+   The list follows the character picker and shows that character's games and record against
+   each. A comp's page reads every game against it, on any character:
+   - **their goes:** how many a game, when the first comes, the offensive cooldowns in them and
+     which they press together, their crowd-control chains on you that repeated, what they put on
+     your healer, and whom the goes were on;
+   - **who dies:** yours and theirs, killing blows, and whether your healer was locked out;
+   - **defensives traded:** what they answer your goes with, what their goes force from you, and
+     how often a go of theirs killed with your big defensives up or down;
+   - **ready and never pressed when they killed**, from the losses' answer sheets.
+
+   Under 10 games a page says it is a lead. `wow:game-cards` writes the pages
+   (`CompLibraryService`) and redraws them only when a game changed.
+9. **Settings** holds the three folders, auto-sync, auto-move, and "start with Windows". "Start
    with Windows" puts a shortcut in your Startup folder, so the app starts in the tray.
 
 Closing the window keeps the app running in the tray. To quit, right-click the tray icon and

@@ -198,6 +198,57 @@ class GameCardTest extends TestCase
         $this->assertStringContainsString('HealzYOU Pain Suppression on Hunter at 0:56, who was already in Aspect of the Turtle: it removed nothing', $card);
     }
 
+    public function test_a_loss_shows_what_the_team_had_for_their_go_and_how_hard_it_was(): void
+    {
+        $user = User::factory()->create();
+        $players = $this->threes();
+        $peak = ['damage' => 0, 'joint' => false, 'healerLocked' => 0, 'healerKicked' => false, 'healerCcBy' => [], 'abilities' => []];
+        ArenaRound::create([
+            'user_id' => $user->id, 'match_id' => 'm1', 'lobby_id' => 'm1', 'roster_key' => 'x', 'sequence' => 1,
+            'bracket' => '3v3', 'played_at' => '2026-10-03 11:50:00',
+            'payload' => ['metadata' => ['durationInSeconds' => 41], 'analysis' => [
+                'version' => 7, 'won' => false, 'mmr' => ['us' => 1950, 'them' => 2136],
+                'players' => $players,
+                'goes' => [['side' => 'them', 'from' => 7.2, 'to' => 30, 'good' => true, 'kill' => true, 'killLater' => true, 'chain' => '', 'peak' => $peak,
+                    'links' => [
+                        ['t' => 0, 'spell' => 'Bladestorm', 'cat' => 'offensive', 'role' => null, 'by' => 'E-1', 'on' => null],
+                        ['t' => 8.6, 'spell' => 'Holy Word: Chastise', 'cat' => 'control', 'role' => 'healer', 'by' => 'E-2', 'on' => 'P-1'],
+                    ]]],
+                'deaths' => [[
+                    't' => 22.8, 'who' => 'P-2', 'side' => 'us', 'killingBlow' => ['spell' => 'Execute', 'amount' => 1, 'hpBefore' => 11],
+                    'shares' => [], 'goStartedAgo' => 15.6, 'defensives30s' => [],
+                    'healer' => ['state' => 'locked', 'endedAgo' => null, 'medallionUsedAt' => [14.1]],
+                    'answers' => ['from' => 7.2, 'lockout' => ['P-1' => ['seconds' => 8.6, 'longest' => [15.8, 24.7], 'freeBefore' => [14.1, 15.8]]], 'rows' => [
+                        ['who' => 'P-1', 'spell' => 'Pain Suppression', 'kind' => 'defensive', 'cd' => 180, 'state' => 'ready', 'at' => null, 'back' => null,
+                            'tried' => [['t' => 19.5, 'why' => "Can't do that while fleeing"]]],
+                        ['who' => 'P-2', 'spell' => 'Roar of Sacrifice', 'kind' => 'defensive', 'cd' => 120, 'state' => 'ready', 'at' => null, 'back' => null, 'tried' => []],
+                        ['who' => 'P-2', 'spell' => 'Aspect of the Turtle', 'kind' => 'defensive', 'cd' => 135, 'state' => 'ready', 'at' => null, 'back' => null, 'tried' => []],
+                        ['who' => 'P-1', 'spell' => "Gladiator's Medallion", 'kind' => 'trinket', 'cd' => 120, 'state' => 'pressed', 'at' => 14.1, 'back' => null, 'tried' => []],
+                        ['who' => 'P-2', 'spell' => 'Camouflage', 'kind' => 'defensive', 'cd' => 60, 'state' => 'down', 'at' => null, 'back' => 60.7, 'tried' => []],
+                    ]],
+                ]],
+                'defensives' => ['us' => ['spent' => 1, 'outsideTheirGoes' => 1, 'rows' => [['t' => 5, 'spell' => 'Barkskin', 'who' => 'P-2', 'outside' => true, 'beforeLockout' => true]]],
+                    'them' => ['spent' => 0, 'outsideTheirGoes' => 0, 'rows' => []]],
+                'overlaps' => ['us' => 0, 'them' => 0, 'rows' => []], 'kicks' => [], 'lockout' => ['P-1' => 8.6],
+            ]],
+        ]);
+
+        $card = $this->text(app(GameCardService::class)->build($user), 'm1');
+
+        $this->assertStringContainsString('Harder Their MMR 186 above yours, 0 Gladiator seasons to your 0', $card);
+        $this->assertStringContainsString('What your team had for their go from 0:07 to the death', $card);
+        $this->assertStringContainsString('Their offensive cooldowns: Bladestorm Lock', $card);
+        $this->assertStringContainsString('Their crowd control on you: Holy Word: Chastise on Healz, 0:15', $card);
+        $this->assertStringContainsString('Healz locked out 8.6s of it, the longest stretch 8.9s from 0:15. Free 0:14 to 0:15 just before it', $card);
+        // The dying Hunter's own defensives first, then the healer's, with the refused press.
+        $this->assertStringContainsString('Ready, never pressed', $card);
+        $this->assertLessThan(strpos($card, 'Pain Suppression Healz'), strpos($card, 'Roar of Sacrifice Hunter'));
+        $this->assertStringContainsString('Pain Suppression Healz tried 0:19 (while fleeing)', $card);
+        $this->assertStringContainsString("Pressed in their go Gladiator's Medallion Healz 0:14", $card);
+        $this->assertStringContainsString('On cooldown when it began Camouflage Hunter back at 1:00', $card);
+        $this->assertStringNotContainsString('Barkskin while they were not in a go', $card, 'pressed just before a lockout is not a fault');
+    }
+
     public function test_a_game_measured_before_the_breakdown_says_how_to_get_it(): void
     {
         $user = User::factory()->create();

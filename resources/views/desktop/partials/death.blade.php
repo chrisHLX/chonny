@@ -43,3 +43,59 @@
         <span class="muted">No defensives in the last 30s.</span>
     @endif
 </div>
+
+{{-- The answer sheet (RoundAnalysisService version 7): their go beside every button your team had for it. --}}
+@if (! empty($d['answers']))
+    @php $s = $d['answers']; @endphp
+    <div class="answers">
+        <div class="label" style="margin-top: 12px">What your team had for their go <span class="aside">from {{ $s['from'] }} to the death: what was there, not what would have won</span></div>
+
+        @if ($s['offensive'])
+            <div class="line small"><span class="muted">Their offensive cooldowns:&nbsp;</span>
+                @foreach ($s['offensive'] as $x)
+                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span></span>
+                @endforeach
+            </div>
+        @endif
+        @if ($s['control'])
+            <div class="line small"><span class="muted">Their crowd control on you:&nbsp;</span>
+                @foreach ($s['control'] as $x)
+                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span class="muted">on {{ $x['on'] }}, {{ $x['clock'] }}</span></span>
+                @endforeach
+            </div>
+        @endif
+        @foreach ($s['lockout'] as $l)
+            <div class="line small">
+                <b style="color: {{ $l['color'] }}">{{ $l['name'] }}</b> locked out {{ $l['seconds'] }}s of it, the longest stretch {{ $l['longest'] }}s from {{ $l['longestFrom'] }}.
+                @if ($l['free'])
+                    <span class="gold">Free {{ $l['free'] }} just before it: the last moment to press something.</span>
+                @endif
+            </div>
+        @endforeach
+
+        @if ($s['ready'])
+            <div class="line"><span class="chip warn">Ready, never pressed</span> <span class="small muted">&nbsp;the dying player's own first, then the team's defensives, crowd control to peel, interrupts, Medallions</span></div>
+            <div class="line small">
+                @foreach ($s['ready'] as $x)
+                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> @if ($x['tried'])<span class="gold">tried {{ $x['tried'] }}</span>@endif</span>
+                @endforeach
+            </div>
+        @endif
+        @if ($s['pressed'])
+            <div class="line"><span class="chip neutral">Pressed in their go</span></div>
+            <div class="line small">
+                @foreach ($s['pressed'] as $x)
+                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> <span class="muted">{{ $x['clock'] }}</span></span>
+                @endforeach
+            </div>
+        @endif
+        @if ($s['down'])
+            <div class="line"><span class="chip neutral">On cooldown when it began</span></div>
+            <div class="line small">
+                @foreach ($s['down'] as $x)
+                    <span class="def">@if ($x['icon'])<img class="spell-ic" src="{{ $x['icon'] }}">@endif{{ $x['spell'] }} <span style="color: {{ $x['color'] }}">{{ $x['name'] }}</span> <span class="muted">back at {{ $x['back'] }}</span></span>
+                @endforeach
+            </div>
+        @endif
+    </div>
+@endif

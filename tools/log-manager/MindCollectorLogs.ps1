@@ -11,6 +11,8 @@
 #       Windows' built-in browser control, and lets you set the folders without editing .env.
 #    5. While you play, a small always-on-top panel shows the game you are in and takes
 #       notes; Ctrl+Shift+M marks a moment from inside WoW. See "Live" below.
+#    6. A character picker (your characters, found from the games) filters the list, and the
+#       Improve page shows what that character has to work on (wow:game-cards writes it).
 #
 #  Start it with "MindCollector Logs.vbs" (no console window). See README.md.
 #
@@ -116,7 +118,8 @@ function Set-EnvValue([string]$key, [string]$value) {
 }
 
 function Load-Settings {
-    $s = @{ MoveTo = $null; AutoSync = $true; MoveAfterArchive = $true; LivePanel = $true; Ingested = @{} }
+    # Character: the full name (Name-Realm-Region) the Matches list and the Improve page show; '' is all.
+    $s = @{ MoveTo = $null; AutoSync = $true; MoveAfterArchive = $true; LivePanel = $true; Character = ''; Ingested = @{} }
     if (Test-Path $script:SettingsFile) {
         try {
             $j = Get-Content $script:SettingsFile -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -124,6 +127,7 @@ function Load-Settings {
             if ($null -ne $j.AutoSync) { $s.AutoSync = [bool]$j.AutoSync }
             if ($null -ne $j.MoveAfterArchive) { $s.MoveAfterArchive = [bool]$j.MoveAfterArchive }
             if ($null -ne $j.LivePanel) { $s.LivePanel = [bool]$j.LivePanel }
+            if ($null -ne $j.Character) { $s.Character = [string]$j.Character }
             if ($j.Ingested) { foreach ($p in $j.Ingested.PSObject.Properties) { $s.Ingested[$p.Name] = $p.Value } }
         } catch { }
     }
@@ -162,6 +166,13 @@ function Write-Activity([string]$text) {
         if ($script:ActivityBox.TextLength -gt 400000) { $script:ActivityBox.Text = $script:ActivityBox.Text.Substring(200000) }
         $script:ActivityBox.AppendText($line + "`r`n")
     }
+}
+
+# An error the script does not catch stops the app, and the .vbs launcher has no console to show
+# it, so it used to vanish without a word (2026-10-03). Say why in the activity log first.
+trap {
+    Write-Activity "Stopped by an error: $($_.Exception.Message) (line $($_.InvocationInfo.ScriptLineNumber))"
+    break
 }
 
 function Set-Status([string]$text) {
@@ -376,18 +387,43 @@ function Invoke-SyncPass([bool]$manual) {
 function Add-CardsStep {
     Add-Step 'Updating game cards' ("wow:game-cards --dir=`"" + $script:CardsDir + "`" --notes=`"" + $script:NotesFile + "`"") {
         param($ok, $output, $data)
-        if ($ok) { Load-Cards; Show-SelectedMatch }
+        if ($ok) {
+            Load-Cards; Show-SelectedMatch
+            if ($script:PageImprove -and $script:PageImprove.Visible) { Show-Improve }
+            if ($script:PageComps -and $script:PageComps.Visible) { Update-CompList; Show-SelectedComp }
+        }
     }
 }
 
 function Load-Cards {
     $script:Cards = @{}
+    # The Improve page of each character you have played, by full name (ImprovementService).
+    $script:ImproveFiles = @{}
     $index = Join-Path $script:CardsDir 'index.json'
     $script:CardsStale = -not (Test-Path $index)
     if ($script:CardsStale) { return }
     try {
         $j = Get-Content $index -Raw -Encoding UTF8 | ConvertFrom-Json
         foreach ($p in $j.games.PSObject.Properties) { $script:Cards[$p.Name] = Join-Path $script:CardsDir "$($p.Name).html" }
+        if ($j.characters) {
+            foreach ($p in $j.characters.PSObject.Properties) {
+                $script:ImproveFiles[$p.Name] = [pscustomobject]@{ File = (Join-Path $script:CardsDir $p.Value.file); Games = [int]$p.Value.games }
+            }
+        }
+        # The comp library: one page per enemy comp (CompLibraryService), with which of your
+        # characters met it and how often.
+        $script:Comps = New-Object System.Collections.ArrayList
+        if ($j.comps) {
+            foreach ($p in $j.comps.PSObject.Properties) {
+                $chars = @{}
+                if ($p.Value.characters) { foreach ($q in $p.Value.characters.PSObject.Properties) { $chars[$q.Name] = [pscustomobject]@{ Games = [int]$q.Value.games; Won = [int]$q.Value.won; Lost = [int]$q.Value.lost } } }
+                [void]$script:Comps.Add([pscustomobject]@{
+                    Key = $p.Name; Nick = [string]$p.Value.nick; Name = ($p.Name -replace '\+', ' + ')
+                    Games = [int]$p.Value.games; Won = [int]$p.Value.won; Lost = [int]$p.Value.lost; Last = [string]$p.Value.last
+                    Characters = $chars; File = (Join-Path $script:CardsDir $p.Value.file)
+                })
+            }
+        }
         foreach ($p in $j.experience.PSObject.Properties) { $script:Experience[$p.Name] = $p.Value }
         # The one-file-for-every-card version this replaced (15 MB by 2026-10-02).
         if (Test-Path $script:LegacyCardsFile) { Remove-Item $script:LegacyCardsFile -Force -ErrorAction SilentlyContinue }
@@ -454,8 +490,9 @@ function Load-Matches {
     # Forget files that have gone (wow:forget-games) or been rewritten.
     foreach ($k in @($script:MetaCache.Keys)) { if (-not $seen.ContainsKey($k)) { $script:MetaCache.Remove($k) } }
 
-    # Nothing new on disk and the list already drawn: leave it, and the selection, as they are.
-    $listKey = ($seen.Keys | Sort-Object) -join ';'
+    # Nothing new on disk, the same character picked, and the list already drawn: leave it, and the
+    # selection, as they are.
+    $listKey = (($seen.Keys | Sort-Object) -join ';') + '|' + $script:Settings.Character
     if ($script:MatchList.Items.Count -and $listKey -eq $script:ListKey) { return }
     $script:ListKey = $listKey
 
@@ -471,9 +508,25 @@ function Load-Matches {
     # copies, leaving the list in the order the files came off disk (2026-10-02).
     $rows = foreach ($key in $byGame.Keys) {
         $rounds = @($byGame[$key] | Sort-Object { [int64]$_.startTime })
-        [pscustomobject]@{ Key = $key; Start = [int64]$rounds[0].startTime; Rounds = $rounds }
+        [pscustomobject]@{ Key = $key; Start = [int64]$rounds[0].startTime; Rounds = $rounds; You = (Get-You $rounds[0]) }
     }
-    $sorted = @($rows | Sort-Object Start -Descending)
+    $allRows = @($rows | Sort-Object Start -Descending)
+
+    # Your characters: the logging character of each game (affiliation 1), so nothing has to be set
+    # up. Most-played first.
+    $chars = @{}
+    foreach ($row in $allRows) {
+        if (-not $row.You) { continue }
+        $n = [string]$row.You.name
+        if (-not $chars.ContainsKey($n)) { $chars[$n] = [pscustomobject]@{ Name = $n; Games = 0; Spec = (Spec-Name $row.You.spec) } }
+        $chars[$n].Games++
+    }
+    $script:MyChars = @($chars.Values | Sort-Object Games -Descending)
+    if ($script:Settings.Character -and -not $chars.ContainsKey($script:Settings.Character)) { $script:Settings.Character = '' }
+    Update-CharacterPicker
+
+    $pick = $script:Settings.Character
+    $sorted = if ($pick) { @($allRows | Where-Object { $_.You -and $_.You.name -eq $pick }) } else { $allRows }
 
     $selected = if ($script:MatchList.SelectedItems.Count) { [string]$script:MatchList.SelectedItems[0].Tag } else { $null }
     $won = [Drawing.Color]::FromArgb(134, 239, 172)
@@ -482,7 +535,7 @@ function Load-Matches {
     $script:Games = @{}
     foreach ($row in $sorted) {
         $first = $row.Rounds[0]
-        $you = Get-You $first
+        $you = $row.You
         $w = 0; $l = 0; $secs = 0
         foreach ($r in $row.Rounds) {
             if ($r.result -eq 3) { $w++ } elseif ($r.result -eq 2) { $l++ }
@@ -511,10 +564,43 @@ function Load-Matches {
     # Keep the game you were reading selected across a refresh.
     if ($selected) { foreach ($it in $script:MatchList.Items) { if ($it.Tag -eq $selected) { $it.Selected = $true; break } } }
     $script:MatchList.EndUpdate()
-    $script:MatchCount.Text = "$($sorted.Count) game(s) in $(Get-ArchiveDir)"
-    # Archive times are WoW's wall clock stored as UTC, the same clock notes are stamped with.
-    $script:NewestGame = if ($sorted.Count) { [DateTimeOffset]::FromUnixTimeMilliseconds($sorted[0].Start).UtcDateTime } else { $null }
+    $script:MatchCount.Text = if ($pick) { "$($sorted.Count) of $($allRows.Count) game(s), $(Short-Name $pick) only, in $(Get-ArchiveDir)" } else { "$($sorted.Count) game(s) in $(Get-ArchiveDir)" }
+    # Archive times are WoW's wall clock stored as UTC, the same clock notes are stamped with. The
+    # newest game of any character: a "for next game" note waits for whichever you play next.
+    $script:NewestGame = if ($allRows.Count) { [DateTimeOffset]::FromUnixTimeMilliseconds($allRows[0].Start).UtcDateTime } else { $null }
     Update-NoteBar
+}
+
+# The character picker in the nav bar: "All characters", then each character you have played, most
+# games first, the one showing in gold. Filled from the archive by Load-Matches; the choice is kept
+# in Settings.Character. No game count: the list counts archived games and the Improve page counts
+# measured ones, and the two differ (games before a wow:forget-games cutoff are archived, never
+# measured).
+function Update-CharacterPicker {
+    if (-not $script:CharMenu) { return }
+    $current = [string]$script:Settings.Character
+    $script:CharMenu.Items.Clear()
+    $entries = @([pscustomobject]@{ Key = ''; Text = 'All characters' })
+    # Not $c: PowerShell names ignore case, and $c would hide the colour table $C.
+    foreach ($ch in $script:MyChars) { $entries += [pscustomobject]@{ Key = $ch.Name; Text = ('{0}  {1}  {2}' -f (Short-Name $ch.Name), $script:Dot, $ch.Spec) } }
+    foreach ($e in $entries) {
+        $item = New-Object Windows.Forms.ToolStripMenuItem($e.Text)
+        $item.Tag = $e.Key
+        $item.ForeColor = $(if ($e.Key -eq $current) { $C.Gold } else { $C.Ink })
+        $item.Padding = New-Object Windows.Forms.Padding(4, 3, 4, 3)
+        $item.Add_Click({ Select-Character ([string]$this.Tag) })
+        [void]$script:CharMenu.Items.Add($item)
+        if ($e.Key -eq $current) { $script:CharButton.Text = $e.Text + '  ' + $script:Arrow }
+    }
+}
+
+function Select-Character([string]$key) {
+    if ($key -eq [string]$script:Settings.Character) { return }
+    $script:Settings.Character = $key
+    Save-Settings
+    Load-Matches
+    if ($script:PageImprove.Visible) { Show-Improve }
+    if ($script:PageComps.Visible) { Update-CompList }
 }
 
 function Show-SelectedMatch {
@@ -535,6 +621,67 @@ function Show-Html([string]$html) {
     $path = Join-Path $script:StateDir ("card-{0}.html" -f $script:CardFlip)
     [IO.File]::WriteAllText($path, $html, (New-Object System.Text.UTF8Encoding($false)))
     $script:CardView.Navigate($path)
+}
+
+# The Improve page: what to work on for the picked character, or your most-played one when the
+# picker says "All characters". wow:game-cards writes one page per character (ImprovementService).
+function Show-Improve {
+    if (-not $script:ImproveView) { return }
+    $full = [string]$script:Settings.Character
+    if (-not $full -or -not $script:ImproveFiles -or -not $script:ImproveFiles.ContainsKey($full)) {
+        $full = $null; $most = -1
+        if ($script:ImproveFiles) {
+            foreach ($k in $script:ImproveFiles.Keys) { if ($script:ImproveFiles[$k].Games -gt $most) { $most = $script:ImproveFiles[$k].Games; $full = $k } }
+        }
+    }
+    if (-not $full -or -not (Test-Path $script:ImproveFiles[$full].File)) {
+        $path = Join-Path $script:StateDir 'improve-empty.html'
+        [IO.File]::WriteAllText($path, (Get-PlainPage "<h2>What to work on</h2><p class='muted'>This page is built with the game cards after a sync. Play a game, or press Sync now, and it appears here.</p>"), (New-Object System.Text.UTF8Encoding($false)))
+    } else {
+        $path = $script:ImproveFiles[$full].File
+    }
+    # Navigating to the page already showing does not reload it.
+    if ($script:ImproveView.Url -and $script:ImproveView.Url.IsFile -and $script:ImproveView.Url.LocalPath -eq $path) { $script:ImproveView.Refresh() }
+    else { $script:ImproveView.Navigate($path) }
+}
+
+# The Comps page: every enemy comp you have met (the picked character's only, unless "All
+# characters"), most games first; the selected one's page on the right.
+function Update-CompList {
+    if (-not $script:CompList) { return }
+    $pick = [string]$script:Settings.Character
+    $selected = if ($script:CompList.SelectedItems.Count) { [string]$script:CompList.SelectedItems[0].Tag } else { $null }
+    $rows = @($script:Comps | Where-Object { -not $pick -or $_.Characters.ContainsKey($pick) } | Sort-Object @{ Expression = { if ($pick) { $_.Characters[$pick].Games } else { $_.Games } }; Descending = $true }, @{ Expression = 'Last'; Descending = $true })
+    $script:CompList.BeginUpdate()
+    $script:CompList.Items.Clear()
+    # Not $c: PowerShell names ignore case, and $c would hide the colour table $C.
+    foreach ($cp in $rows) {
+        $item = New-Object Windows.Forms.ListViewItem($(if ($cp.Nick) { "$($cp.Nick)  $($script:Dot)  $($cp.Name)" } else { $cp.Name }))
+        # The picked character's own games and record; every character's with "All characters".
+        $mine = if ($pick) { $cp.Characters[$pick] } else { $cp }
+        [void]$item.SubItems.Add([string]$mine.Games)
+        [void]$item.SubItems.Add("$($mine.Won)-$($mine.Lost)")
+        [void]$item.SubItems.Add($(if ($cp.Last.Length -ge 10) { ([datetime]$cp.Last).ToString('ddd dd MMM') } else { '' }))
+        $item.Tag = $cp.File
+        [void]$script:CompList.Items.Add($item)
+    }
+    if ($selected) { foreach ($it in $script:CompList.Items) { if ($it.Tag -eq $selected) { $it.Selected = $true; break } } }
+    $script:CompList.EndUpdate()
+    $script:CompCount.Text = "$($rows.Count) comp(s), grouped by their two DPS specs with any healer. Each comp's page reads every game you played against it, on any character."
+    if (-not $script:CompList.SelectedItems.Count) {
+        $path = Join-Path $script:StateDir 'comp-empty.html'
+        $msg = if ($rows.Count) { 'Pick a comp to see how it played against you: its goes, its crowd control on you, who died, and how defensives were traded.' } else { 'The comp library is built with the game cards after a sync.' }
+        [IO.File]::WriteAllText($path, (Get-PlainPage "<p class='muted'>$msg</p>"), (New-Object System.Text.UTF8Encoding($false)))
+        $script:CompView.Navigate($path)
+    }
+}
+
+function Show-SelectedComp {
+    if (-not $script:CompList.SelectedItems.Count) { return }
+    $path = [string]$script:CompList.SelectedItems[0].Tag
+    if (-not (Test-Path $path)) { return }
+    if ($script:CompView.Url -and $script:CompView.Url.IsFile -and $script:CompView.Url.LocalPath -eq $path) { $script:CompView.Refresh() }
+    else { $script:CompView.Navigate($path) }
 }
 
 function Get-PlainPage([string]$bodyHtml) {
@@ -1040,6 +1187,41 @@ $script:MatchCount = New-Object Windows.Forms.Label
 $script:MatchCount.Dock = 'Bottom'; $script:MatchCount.Height = 24; $script:MatchCount.ForeColor = $C.Muted; $script:MatchCount.TextAlign = 'MiddleLeft'
 $pageMatches.Controls.AddRange(@($split, $script:MatchCount))
 
+# Improve page: what to work on, for the character picked in the nav bar.
+$script:PageImprove = New-Object Windows.Forms.Panel
+$script:PageImprove.Dock = 'Fill'
+$script:ImproveView = New-Object Windows.Forms.WebBrowser
+$script:ImproveView.Dock = 'Fill'
+$script:ImproveView.ScriptErrorsSuppressed = $true
+$script:ImproveView.IsWebBrowserContextMenuEnabled = $false
+$script:ImproveView.AllowWebBrowserDrop = $false
+$script:ImproveView.WebBrowserShortcutsEnabled = $false
+$script:PageImprove.Controls.Add($script:ImproveView)
+
+# Comps page: the comp library, list on the left and the comp's page on the right, like Matches.
+$script:PageComps = New-Object Windows.Forms.Panel
+$script:PageComps.Dock = 'Fill'
+$compSplit = New-Object Windows.Forms.SplitContainer
+$compSplit.Dock = 'Fill'; $compSplit.Orientation = 'Vertical'; $compSplit.BackColor = $C.Line; $compSplit.SplitterWidth = 4; $compSplit.FixedPanel = 'Panel1'
+$script:CompList = New-Object Windows.Forms.ListView
+$script:CompList.Dock = 'Fill'; $script:CompList.View = 'Details'; $script:CompList.FullRowSelect = $true
+$script:CompList.MultiSelect = $false; $script:CompList.HideSelection = $false; $script:CompList.BorderStyle = 'None'
+$script:CompList.BackColor = $C.Panel; $script:CompList.ForeColor = $C.Ink
+foreach ($col in @(@('Comp', 330), @('Games', 52), @('Record', 56), @('Last met', 90))) { [void]$script:CompList.Columns.Add($col[0], $col[1]) }
+$script:CompView = New-Object Windows.Forms.WebBrowser
+$script:CompView.Dock = 'Fill'
+$script:CompView.ScriptErrorsSuppressed = $true
+$script:CompView.IsWebBrowserContextMenuEnabled = $false
+$script:CompView.AllowWebBrowserDrop = $false
+$script:CompView.WebBrowserShortcutsEnabled = $false
+$compSplit.Panel1.Controls.Add($script:CompList)
+$compSplit.Panel2.Controls.Add($script:CompView)
+$script:CompCount = New-Object Windows.Forms.Label
+$script:CompCount.Dock = 'Bottom'; $script:CompCount.Height = 24; $script:CompCount.ForeColor = $C.Muted; $script:CompCount.TextAlign = 'MiddleLeft'
+$script:PageComps.Controls.AddRange(@($compSplit, $script:CompCount))
+$script:CompList.Add_SelectedIndexChanged({ Show-SelectedComp })
+$script:CompSplit = $compSplit
+
 # Activity page
 $pageActivity = New-Object Windows.Forms.Panel
 $pageActivity.Dock = 'Fill'
@@ -1123,13 +1305,19 @@ $btnSave.Add_Click({
 })
 
 # Nav buttons switch pages
-$pages = [ordered]@{ 'Matches' = $pageMatches; 'Activity' = $pageActivity; 'Settings' = $pageSettings }
+$pages = [ordered]@{ 'Matches' = $pageMatches; 'Improve' = $script:PageImprove; 'Comps' = $script:PageComps; 'Activity' = $pageActivity; 'Settings' = $pageSettings }
 $navButtons = @{}
 function Show-Page([string]$name) {
     foreach ($k in $pages.Keys) {
         $pages[$k].Visible = ($k -eq $name)
         $navButtons[$k].ForeColor = $(if ($k -eq $name) { $C.Gold } else { $C.Muted })
         $navButtons[$k].FlatAppearance.BorderColor = $(if ($k -eq $name) { $C.Gold } else { $C.Bg })
+    }
+    if ($name -eq 'Improve') { Show-Improve }
+    if ($name -eq 'Comps') {
+        # Room for the comp names; the page takes the rest.
+        if (-not $script:CompSplitLaidOut -and $script:CompSplit.Width -gt 0) { $script:CompSplit.SplitterDistance = [Math]::Min(560, [int]($script:CompSplit.Width * 0.4)); $script:CompSplitLaidOut = $true }
+        Update-CompList
     }
 }
 foreach ($k in $pages.Keys) {
@@ -1142,6 +1330,43 @@ foreach ($k in $pages.Keys) {
     $nav.Controls.Add($b)
     $body.Controls.Add($pages[$k])
 }
+
+# Which character: filters the Matches list and picks the Improve page. Your characters are found
+# from the games themselves, so there is nothing to set up. A button and a dark menu rather than a
+# ComboBox: a WinForms ComboBox keeps Windows' blue selection and a white arrow box whatever its
+# colours are set to (2026-10-03).
+Add-Type -ReferencedAssemblies System.Windows.Forms, System.Drawing -TypeDefinition @"
+using System.Drawing;
+using System.Windows.Forms;
+public class MindCollectorMenuColors : ProfessionalColorTable {
+    static readonly Color Bg = Color.FromArgb(24, 24, 30), Hover = Color.FromArgb(44, 44, 56);
+    public override Color ToolStripDropDownBackground { get { return Bg; } }
+    public override Color ImageMarginGradientBegin { get { return Bg; } }
+    public override Color ImageMarginGradientMiddle { get { return Bg; } }
+    public override Color ImageMarginGradientEnd { get { return Bg; } }
+    public override Color MenuBorder { get { return Hover; } }
+    public override Color MenuItemBorder { get { return Hover; } }
+    public override Color MenuItemSelected { get { return Hover; } }
+    public override Color MenuItemSelectedGradientBegin { get { return Hover; } }
+    public override Color MenuItemSelectedGradientEnd { get { return Hover; } }
+    public override Color SeparatorDark { get { return Hover; } }
+    public override Color SeparatorLight { get { return Hover; } }
+}
+"@
+# Built from char codes: this script stays plain ASCII.
+$script:Arrow = [string][char]0x25BE
+$script:Dot = [string][char]0x00B7
+
+$charLabel = New-Object Windows.Forms.Label
+$charLabel.Text = 'Character'; $charLabel.AutoSize = $true; $charLabel.ForeColor = $C.Muted
+$charLabel.Margin = New-Object Windows.Forms.Padding(28, 8, 6, 0)
+$script:CharButton = New-Button ('All characters  ' + $script:Arrow)
+$script:CharButton.Margin = New-Object Windows.Forms.Padding(0, 2, 0, 0)
+$script:CharMenu = New-Object Windows.Forms.ContextMenuStrip
+$script:CharMenu.Renderer = New-Object Windows.Forms.ToolStripProfessionalRenderer((New-Object MindCollectorMenuColors))
+$script:CharMenu.BackColor = $C.Raised; $script:CharMenu.ForeColor = $C.Ink; $script:CharMenu.ShowImageMargin = $false; $script:CharMenu.Font = $fontUi
+$script:CharButton.Add_Click({ $script:CharMenu.Show($script:CharButton, 0, $script:CharButton.Height) })
+$nav.Controls.AddRange(@($charLabel, $script:CharButton))
 
 $form.Controls.AddRange(@($body, $nav, $header))
 

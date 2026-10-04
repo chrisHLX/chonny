@@ -156,7 +156,8 @@ class GameCardService
             'teams' => ['them' => $players->where('side', 'them')->values()->all(), 'us' => $players->where('side', 'us')->values()->all()],
             'glad' => ['them' => $glad('them'), 'us' => $glad('us')],
             'missingXp' => $players->where('xp.state', '!=', 'ok')->count(),
-            'deaths' => array_map(fn ($d) => $this->death($d, $players), $a['deaths']),
+            'deaths' => array_map(fn ($d) => $this->death($d, $players, $a['goes']), $a['deaths']),
+            'difficulty' => $this->difficulty($a, $players),
             // [label, yours, theirs, whether more is better for the side that has it]
             'stats' => [
                 ['Goes (bursts)', $side('us')->count(), $side('them')->count(), true],
@@ -205,7 +206,7 @@ class GameCardService
                 'duration' => $this->clock((float) ($this->payload($round)['metadata']['durationInSeconds'] ?? 0)),
                 'with' => $ps->where('side', 'us')->where('you', false)->values()->all(),
                 'against' => $ps->where('side', 'them')->values()->all(),
-                'death' => isset($a['deaths'][0]) ? $this->death($a['deaths'][0], $ps) : null,
+                'death' => isset($a['deaths'][0]) ? $this->death($a['deaths'][0], $ps, $a['goes']) : null,
                 'look' => $look,
                 // Your own only, like $look: the other players change every round.
                 'checks' => $this->checkRows(isset($a['checks']) ? array_values(array_filter($a['checks'], fn ($c) => $c['who'] === ($you['guid'] ?? null))) : null, $ps),
@@ -382,7 +383,43 @@ class GameCardService
         });
     }
 
-    private function death(array $d, Collection $players): array
+    /**
+     * How hard the game was before anyone pressed anything: the MMR gap and the Gladiator seasons on
+     * each side. A loss to a team 186 MMR above you with five Gladiator seasons to your one reads
+     * differently from a loss at even odds, and the card should say so beside the result.
+     *
+     * @return array{label: string, tone: string, text: string}|null
+     */
+    private function difficulty(array $a, Collection $players): ?array
+    {
+        return self::difficultyOf((int) (($a['mmr']['them'] ?? 0) - ($a['mmr']['us'] ?? 0)), isset($a['mmr']['us'], $a['mmr']['them']),
+            (int) $players->where('side', 'them')->sum(fn ($p) => $p['xp']['glad'] ?? 0), (int) $players->where('side', 'us')->sum(fn ($p) => $p['xp']['glad'] ?? 0));
+    }
+
+    /**
+     * Harder: their MMR 50+ above yours, or 3+ more Gladiator seasons (the loss rules' own
+     * thresholds). Easier: the same the other way. Both, or neither, is even.
+     *
+     * @return array{label: string, tone: string, text: string}
+     */
+    public static function difficultyOf(int $mmrGap, bool $haveMmr, int $theirGlad, int $ourGlad): array
+    {
+        $harder = ($haveMmr && $mmrGap >= 50) || $theirGlad - $ourGlad >= 3;
+        $easier = ($haveMmr && $mmrGap <= -50) || $ourGlad - $theirGlad >= 3;
+        $parts = [];
+        if ($haveMmr && abs($mmrGap) >= 10) {
+            $parts[] = sprintf('their MMR %d %s yours', abs($mmrGap), $mmrGap > 0 ? 'above' : 'below');
+        }
+        $parts[] = sprintf('%d Gladiator season%s to your %d', $theirGlad, $theirGlad === 1 ? '' : 's', $ourGlad);
+
+        return match (true) {
+            $harder && ! $easier => ['label' => 'Harder', 'tone' => 'bad', 'text' => ucfirst(implode(', ', $parts))],
+            $easier && ! $harder => ['label' => 'Easier', 'tone' => 'good', 'text' => ucfirst(implode(', ', $parts))],
+            default => ['label' => 'Even', 'tone' => 'neutral', 'text' => ucfirst(implode(', ', $parts))],
+        };
+    }
+
+    private function death(array $d, Collection $players, array $goes = []): array
     {
         $p = $players->firstWhere('guid', $d['who']);
         $byName = $players->keyBy('full');
@@ -423,6 +460,58 @@ class GameCardService
                 'spell' => $x['spell'], 'icon' => $this->spellIcon($icons, $x['spell']),
                 'who' => $this->short($x['who']), 'ago' => $x['ago'],
             ], $d['defensives30s']),
+            'answers' => isset($d['answers']) ? $this->answers($d, $players, $goes) : null,
+        ];
+    }
+
+    /**
+     * The answer sheet for one of our deaths (RoundAnalysisService version 7): their go, split into
+     * its offensive cooldowns and its crowd control (two jobs, two lists), each player's lockout in
+     * it with the free moment before the longest one, and every button our team had, sorted into
+     * ready-and-never-pressed, pressed, and already on cooldown.
+     *
+     * "Ready" is ordered most direct first: the dying player's own defensives, then the rest of the
+     * team's (a healer's externals among them), then crowd control to peel, interrupts, and the
+     * Medallions. It lists what was there; which one fitted the go is the player's read.
+     */
+    private function answers(array $d, Collection $players, array $goes): array
+    {
+        $s = $d['answers'];
+        $byGuid = $players->keyBy('guid');
+        $go = collect($goes)->first(fn ($g) => $g['side'] !== $d['side'] && abs($g['from'] - $s['from']) < 0.3);
+        $links = collect($go['links'] ?? []);
+        $icons = $this->icons->for(array_merge(array_column($s['rows'], 'spell'), $links->pluck('spell')->all()));
+        $who = fn ($guid) => ['name' => $byGuid[$guid]['name'] ?? '?', 'color' => $byGuid[$guid]['color'] ?? '#8A8A9A'];
+        $cell = fn (array $r) => ['spell' => $r['spell'], 'icon' => $this->spellIcon($icons, $r['spell'])] + $who($r['who']);
+
+        $rank = fn (array $r) => match (true) {
+            $r['kind'] === 'defensive' && $r['who'] === $d['who'] => 0,
+            $r['kind'] === 'defensive' => ($byGuid[$r['who']]['healer'] ?? false) ? 1 : 2,
+            $r['kind'] === 'control' => 3,
+            $r['kind'] === 'interrupt' => 4,
+            default => 5,
+        };
+        $rows = collect($s['rows']);
+
+        return [
+            'from' => $this->clock($s['from']),
+            'offensive' => $links->whereIn('cat', ['offensive', 'mixed'])->unique('spell')
+                ->map(fn ($l) => ['spell' => $l['spell'], 'icon' => $this->spellIcon($icons, $l['spell'])] + $who($l['by']))->values()->all(),
+            'control' => $links->where('cat', 'control')
+                ->map(fn ($l) => ['spell' => $l['spell'], 'icon' => $this->spellIcon($icons, $l['spell']), 'clock' => $this->clock(($go['from'] ?? 0) + $l['t']),
+                    'on' => isset($l['on'], $byGuid[$l['on']]) ? $byGuid[$l['on']]['name'] : null, 'onUs' => isset($l['on'], $byGuid[$l['on']]) && $byGuid[$l['on']]['side'] === $d['side']] + $who($l['by']))
+                ->filter(fn ($l) => $l['onUs'])->values()->all(),
+            'lockout' => collect($s['lockout'])->map(fn ($l, $guid) => $who($guid) + [
+                'seconds' => $l['seconds'],
+                'longest' => round($l['longest'][1] - $l['longest'][0], 1),
+                'longestFrom' => $this->clock($l['longest'][0]),
+                'free' => $l['freeBefore'] ? $this->clock($l['freeBefore'][0]).' to '.$this->clock($l['freeBefore'][1]) : null,
+            ])->sortByDesc('seconds')->values()->all(),
+            'ready' => $rows->where('state', 'ready')->sortBy(fn ($r) => [$rank($r), $byGuid[$r['who']]['name'] ?? ''])
+                ->map(fn ($r) => $cell($r) + ['tried' => collect($r['tried'])->map(fn ($t) => $this->clock($t['t']).' ('.lcfirst(preg_replace("/^Can't do that /", '', $t['why'])).')')->implode(', ')])
+                ->values()->all(),
+            'pressed' => $rows->where('state', 'pressed')->sortBy('at')->map(fn ($r) => $cell($r) + ['clock' => $this->clock($r['at'])])->values()->all(),
+            'down' => $rows->where('state', 'down')->map(fn ($r) => $cell($r) + ['back' => $this->clock($r['back'])])->values()->all(),
         ];
     }
 

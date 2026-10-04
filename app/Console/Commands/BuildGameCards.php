@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Services\CompLibraryService;
 use App\Http\Services\GameCardService;
+use App\Http\Services\ImprovementService;
 use App\Models\ArenaRound;
 use App\Models\User;
 use Illuminate\Console\Command;
@@ -20,6 +22,10 @@ use Illuminate\Support\Facades\File;
  * directly. It used to be one JSON holding every card, redrawn in full each time: 15.6 MB and 4s
  * for 146 games on 2026-10-02. The experience in the index is fed back in, so a player's
  * experience outlives its 7-day cache. `--fresh` redraws everything (after a spell-data change).
+ *
+ * It also writes the Improve page for each character you have played (`improve-{hash}.html`,
+ * ImprovementService), listed under `characters` in the index by full character name, and the comp
+ * library: a page per enemy comp (`comp-{hash}.html`, CompLibraryService) listed under `comps`.
  */
 class BuildGameCards extends Command
 {
@@ -31,7 +37,7 @@ class BuildGameCards extends Command
 
     protected $description = 'Write a summary card for each synced game, for the MindCollector Logs desktop app';
 
-    public function handle(GameCardService $cards): int
+    public function handle(GameCardService $cards, ImprovementService $improve, CompLibraryService $library): int
     {
         $user = $this->resolveUser();
 
@@ -68,16 +74,73 @@ class BuildGameCards extends Command
                     $drawn++;
                 }
             }
-            // A game no longer synced (wow:forget-games) loses its card.
+            // A game no longer synced (wow:forget-games) loses its card. The Improve pages are not
+            // cards and are tidied below.
             foreach (File::glob("{$dir}/*.html") as $file) {
-                if (! isset($built['games'][basename($file, '.html')])) {
+                if (! preg_match('/^(improve|comp)-/', basename($file)) && ! isset($built['games'][basename($file, '.html')])) {
                     File::delete($file);
                 }
             }
         }
 
+        // The Improve page, one per character you have played (ImprovementService). Drawn again only
+        // when a round or the page's code changed: notes and experience do not move it.
+        $characters = $index['characters'] ?? [];
+        $improveSig = $improve->signature($user, $built['experience']);
+        $improveDrawn = 0;
+        $have = $dir && ($index['improveSig'] ?? null) === $improveSig && ! $this->option('fresh')
+            && collect($characters)->every(fn ($c) => File::exists("{$dir}/{$c['file']}"));
+        if (! $have) {
+            $characters = [];
+            foreach ($improve->build($user, $built['experience']) as $full => $c) {
+                $file = 'improve-'.substr(md5($full), 0, 10).'.html';
+                $characters[$full] = ['name' => $c['name'], 'spec' => $c['spec'], 'games' => $c['games'], 'file' => $file];
+                if ($dir) {
+                    File::put("{$dir}/{$file}", $c['html']);
+                    $improveDrawn++;
+                }
+            }
+            if ($dir) {
+                foreach (File::glob("{$dir}/improve-*.html") as $file) {
+                    if (! in_array(basename($file), array_column($characters, 'file'), true)) {
+                        File::delete($file);
+                    }
+                }
+            }
+        }
+
+        // The comp library: one page per enemy comp (CompLibraryService), drawn again only when a
+        // round, the page's code or anyone's experience changed.
+        $comps = $index['comps'] ?? [];
+        $compSig = $library->signature($user, $built['experience']);
+        $compsDrawn = 0;
+        $haveComps = $dir && ($index['compSig'] ?? null) === $compSig && ! $this->option('fresh')
+            && collect($comps)->every(fn ($c) => File::exists("{$dir}/{$c['file']}"));
+        if (! $haveComps) {
+            $comps = [];
+            foreach ($library->build($user, $built['experience']) as $key => $c) {
+                $file = 'comp-'.substr(md5($key), 0, 10).'.html';
+                $comps[$key] = array_diff_key($c, ['html' => true]) + ['file' => $file];
+                if ($dir) {
+                    File::put("{$dir}/{$file}", $c['html']);
+                    $compsDrawn++;
+                }
+            }
+            if ($dir) {
+                foreach (File::glob("{$dir}/comp-*.html") as $file) {
+                    if (! in_array(basename($file), array_column($comps, 'file'), true)) {
+                        File::delete($file);
+                    }
+                }
+            }
+        }
+
         $games = array_map(fn ($g) => array_diff_key($g, ['html' => true]), $built['games']);
-        $json = json_encode(['generatedAt' => now()->toIso8601String(), 'games' => $games, 'experience' => $built['experience']], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $json = json_encode([
+            'generatedAt' => now()->toIso8601String(), 'games' => $games, 'experience' => $built['experience'],
+            'characters' => $characters, 'improveSig' => $improveSig,
+            'comps' => $comps, 'compSig' => $compSig,
+        ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
         if (! $dir) {
             $this->line($json);
@@ -86,7 +149,9 @@ class BuildGameCards extends Command
         }
 
         File::put("{$dir}/index.json", $json);
-        $this->info(sprintf('%d game card(s); %d drawn, %d unchanged. In %s', count($games), $drawn, count($games) - $drawn, $dir));
+        $this->info(sprintf('%d game card(s); %d drawn, %d unchanged. %d Improve page(s) %s. %d comp page(s) %s. In %s',
+            count($games), $drawn, count($games) - $drawn, count($characters), $improveDrawn ? 'drawn' : 'unchanged',
+            count($comps), $compsDrawn ? 'drawn' : 'unchanged', $dir));
 
         return self::SUCCESS;
     }
