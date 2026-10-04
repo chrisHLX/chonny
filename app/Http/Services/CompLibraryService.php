@@ -16,8 +16,9 @@ use Illuminate\Support\Collection;
  * GROUPED BY THE TWO DPS SPECS, ANY HEALER. Exact three-spec teams barely repeat: 221 different
  * line-ups in 258 rounds on 2026-10-04, only 4 met three times. The DPS pair is how players name a
  * comp anyway (TSG is a Warrior and a Death Knight, whoever heals), and it gave 28 comps met three
- * or more times. The healers each one ran are listed inside. A 3v3 and a Solo Shuffle round are
- * both three players a side and are pooled; 2v2 is its own group.
+ * or more times. The healers each one ran are listed inside. Each bracket is its own library:
+ * 3v3, Solo Shuffle and 2v2 are never pooled, because a shuffle team is three strangers re-dealt
+ * every round and does not play like a premade.
  *
  * Built only from what RoundAnalysisService stored, like the cards and the Improve page. Every
  * figure carries its count, and under MatchAnalysisService::LEAD_BELOW games a page says it is a
@@ -75,9 +76,15 @@ class CompLibraryService
             if ($dps->isEmpty()) {
                 continue;
             }
-            $two = $r->bracket === '2v2';
-            $key = ($two ? '2v2:' : '').$dps->pluck('spec')->implode('+');
-            $groups[$key][] = ['r' => $r, 'a' => $a, 'two' => $two, 'dps' => $dps->all(), 'healer' => $them->firstWhere('healer', true)];
+            // Each bracket is its own library: a Solo Shuffle team is three strangers re-dealt every
+            // round and does not play like a 3v3 team that queued together (Chriso, 2026-10-04).
+            $prefix = match (true) {
+                $r->bracket === '2v2' => '2v2:',
+                str_contains($r->bracket, 'Shuffle') => 'shuffle:',
+                default => '',
+            };
+            $key = $prefix.$dps->pluck('spec')->implode('+');
+            $groups[$key][] = ['r' => $r, 'a' => $a, 'prefix' => $prefix, 'dps' => $dps->all(), 'healer' => $them->firstWhere('healer', true)];
         }
 
         $out = [];
@@ -190,7 +197,8 @@ class CompLibraryService
 
         return [
             'key' => $key,
-            'name' => ($games->first()['two'] ? '2v2: ' : '').$dps->pluck('spec')->implode(' + '),
+            'name' => (['2v2:' => '2v2: ', 'shuffle:' => 'Solo Shuffle: '][$games->first()['prefix']] ?? '')
+                .$dps->pluck('spec')->implode(' + '),
             'nick' => $nick,
             'games' => $games->count(),
             'lead' => $games->count() < MatchAnalysisService::LEAD_BELOW,

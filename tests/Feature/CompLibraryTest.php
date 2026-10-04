@@ -17,11 +17,11 @@ class CompLibraryTest extends TestCase
     use RefreshDatabase;
 
     /** A TSG game: Arms and Unholy with $healer. Their go opens Storm Bolt then Strangulate on our healer. */
-    private function storeTsg(User $user, string $id, string $at, bool $won, array $healer): void
+    private function storeTsg(User $user, string $id, string $at, bool $won, array $healer, string $bracket = '3v3'): void
     {
         $peak = ['damage' => 0, 'joint' => false, 'healerLocked' => 0, 'healerKicked' => false, 'healerCcBy' => [], 'abilities' => []];
         ArenaRound::create([
-            'user_id' => $user->id, 'match_id' => $id, 'lobby_id' => $id, 'roster_key' => 'x', 'sequence' => 1, 'bracket' => '3v3', 'played_at' => $at,
+            'user_id' => $user->id, 'match_id' => $id, 'lobby_id' => $id, 'roster_key' => 'x', 'sequence' => 1, 'bracket' => $bracket, 'played_at' => $at,
             'payload' => ['metadata' => ['durationInSeconds' => 60], 'analysis' => [
                 'version' => 7, 'won' => $won, 'mmr' => ['us' => 2000, 'them' => 2000],
                 'players' => [
@@ -88,6 +88,19 @@ class CompLibraryTest extends TestCase
         $this->assertStringContainsString('What their goes force from you 1 a go Pain Suppression 2×', $page);
         $this->assertStringContainsString('Desperate Prayer (you) 1 of 1', $page);
         $this->assertStringContainsString('Fewer than 10 games', $page);
+    }
+
+    public function test_solo_shuffle_never_counts_toward_a_3v3_comp(): void
+    {
+        $user = User::factory()->create();
+        $this->storeTsg($user, 'm1', '2026-10-03 11:50:00', false, ['spec' => 'Holy Priest', 'classSlug' => 'priest']);
+        $this->storeTsg($user, 's1', '2026-10-03 10:41:00', true, ['spec' => 'Holy Priest', 'classSlug' => 'priest'], 'Rated Solo Shuffle');
+
+        $comps = app(CompLibraryService::class)->build($user);
+
+        $this->assertSame(1, $comps['Arms Warrior+Unholy Death Knight']['games'], 'the 3v3 comp holds only the 3v3 game');
+        $this->assertSame(1, $comps['shuffle:Arms Warrior+Unholy Death Knight']['games']);
+        $this->assertSame('Solo Shuffle: Arms Warrior + Unholy Death Knight', $comps['shuffle:Arms Warrior+Unholy Death Knight']['name']);
     }
 
     public function test_the_command_writes_a_page_per_comp_and_lists_them(): void

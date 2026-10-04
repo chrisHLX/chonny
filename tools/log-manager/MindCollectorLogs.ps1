@@ -418,7 +418,7 @@ function Load-Cards {
                 $chars = @{}
                 if ($p.Value.characters) { foreach ($q in $p.Value.characters.PSObject.Properties) { $chars[$q.Name] = [pscustomobject]@{ Games = [int]$q.Value.games; Won = [int]$q.Value.won; Lost = [int]$q.Value.lost } } }
                 [void]$script:Comps.Add([pscustomobject]@{
-                    Key = $p.Name; Nick = [string]$p.Value.nick; Name = ($p.Name -replace '\+', ' + ')
+                    Key = $p.Name; Nick = [string]$p.Value.nick; Name = [string]$p.Value.name
                     Games = [int]$p.Value.games; Won = [int]$p.Value.won; Lost = [int]$p.Value.lost; Last = [string]$p.Value.last
                     Characters = $chars; File = (Join-Path $script:CardsDir $p.Value.file)
                 })

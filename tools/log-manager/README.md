@@ -117,6 +117,8 @@ the desktop and in the Start menu, run this once:
 8. **Comps: the comp library.** Every enemy comp you have met, grouped by their two DPS specs with
    any healer (exact three-spec teams barely repeat; the DPS pair is how comps are named, and TSG
    is a Warrior and a Death Knight whoever heals). Nicknames come from the repo's own guide titles.
+   3v3, Solo Shuffle and 2v2 are separate comps, never pooled: a shuffle team is three strangers
+   re-dealt every round and does not play like a premade.
    The list follows the character picker and shows that character's games and record against
    each. A comp's page reads every game against it, on any character:
    - **their goes:** how many a game, when the first comes, the offensive cooldowns in them and
