@@ -167,5 +167,6 @@
                 document.getElementById('global-loading-spinner').classList.remove('hidden');
             });
         </script>
+        @include('partials.page-view-beacon')
     </body>
 </html>

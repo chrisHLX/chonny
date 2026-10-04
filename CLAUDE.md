@@ -539,6 +539,10 @@ it probably doesn't belong.
     `PAGES` entry is indistinguishable from not tracking at all — a confirmed real gap. Sub-views
     that must not round-trip Livewire use an Alpine `fetch` beacon to `TrackController` with an
     allowlist, surfaced by their own `PageUsage` breakdown rather than a `PAGES` entry.
+    **`is_bot = false` is not a person.** From 4 Oct 2026 a page view counts as seen by a browser
+    only when the layout's signed beacon confirms it (`confirmed_at`,
+    `PageViewEvent::scopeConfirmed()`). The 2–3 Oct "Google spike" was 154 Alibaba Cloud
+    addresses faking the referrer, and none of them ran the page (`monetisation-read.md`, 1e).
 
 29. **Guide URLs resolve slugs per author**, via an explicit binding in
     `AppServiceProvider::boot()` (not the routes file, so `route:cache` can't drop it). Implicit

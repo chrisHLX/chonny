@@ -237,6 +237,10 @@ Route::prefix('wow')->group(function () {
 Route::post('/track/wow-comps-tab', [\App\Http\Controllers\TrackController::class, 'wowCompsTab'])
     ->name('track.wow-comps-tab');
 
+// The layout's beacon: a browser confirming it ran the page (TrackController::seen).
+Route::post('/track/seen', [\App\Http\Controllers\TrackController::class, 'seen'])
+    ->name('track.seen');
+
 // ------- Old paths, kept working permanently -------
 //
 // One 301 per old page, each also forwarding anything after it ({rest}), which is what keeps the

@@ -161,6 +161,9 @@ class PageUsage extends Component
                 'engaged' => $now,
                 'views' => $humanViews($current),
                 'sessions' => $humanSessions($current),
+                // Views a browser confirmed by running the page: one-page readers in, scrapers out.
+                'browser' => PageViewEvent::human()->confirmed()->whereNull('slot')->whereBetween('created_at', $current)->count(),
+                'browserSessions' => PageViewEvent::human()->confirmed()->whereBetween('created_at', $current)->distinct()->count('session_id'),
                 'bots' => PageViewEvent::where('is_bot', true)->whereNull('slot')
                     ->whereBetween('created_at', $current)->count(),
                 // Rows from before the user agent was read at all. Not assumed human: there is
@@ -184,7 +187,9 @@ class PageUsage extends Component
      * (a click, a filter, a quiz answer); 781 of 857 anonymous "human" sessions since 24 Sep held
      * exactly one row, and the quiz page's 223 views came from 223 sessions. A script drops the
      * cookie every request, so it never reaches a second row. A person who reads one page and
-     * leaves is excluded too — this undercounts readers to stop counting scripts.
+     * leaves is excluded too — this undercounts readers to stop counting scripts. From 4 Oct 2026
+     * the `browser` counts include that reader: a view a browser confirmed by running the page
+     * (PageViewEvent::scopeConfirmed), which a scraper fetching HTML cannot.
      *
      * @param  array{0: mixed, 1: mixed}  $range
      */
@@ -227,11 +232,15 @@ class PageUsage extends Component
             ->groupBy('day')
             ->pluck('c', 'day');
 
+        $browser = PageViewEvent::human()->confirmed()->whereNull('slot')->where('created_at', '>=', $since)
+            ->selectRaw('DATE(created_at) as day, count(*) as c')->groupBy('day')->pluck('c', 'day');
+
         return collect($rows->groupBy('day'))->map(fn ($group, $day) => [
             'day' => $day,
             'human' => (int) ($group->firstWhere('is_bot', 0)->c ?? 0),
             'bot' => (int) ($group->firstWhere('is_bot', 1)->c ?? 0),
             'engaged' => (int) ($engaged[$day] ?? 0),
+            'browser' => (int) ($browser[$day] ?? 0),
         ])->values()->sortBy('day')->values();
     }
 
@@ -282,7 +291,10 @@ class PageUsage extends Component
             ->groupBy('page')
             ->pluck('s', 'page');
 
-        return $rows->map(function ($group, $page) use ($labels, $engaged) {
+        $browser = PageViewEvent::human()->confirmed()->whereNull('slot')->where('created_at', '>=', $since)
+            ->selectRaw('page, count(*) as c')->groupBy('page')->pluck('c', 'page');
+
+        return $rows->map(function ($group, $page) use ($labels, $engaged, $browser) {
             $human = $group->firstWhere('is_bot', 0);
 
             return [
@@ -292,6 +304,7 @@ class PageUsage extends Component
                 'views' => (int) ($human->c ?? 0),
                 'sessions' => (int) ($human->sessions ?? 0),
                 'engaged' => (int) ($engaged[$page] ?? 0),
+                'browser' => (int) ($browser[$page] ?? 0),
                 'bots' => (int) ($group->firstWhere('is_bot', 1)->c ?? 0),
                 'unclassified' => (int) ($group->firstWhere('is_bot', null)->c ?? 0),
             ];

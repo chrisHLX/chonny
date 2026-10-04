@@ -41,4 +41,27 @@ class TrackController extends Controller
 
         return response()->noContent();
     }
+
+    /**
+     * A browser ran the page: the layout's beacon sends the view's id and its signature, and the
+     * view is marked confirmed. Only once, only within the hour, and only for an id the page was
+     * given, so a replayed or guessed id confirms nothing.
+     */
+    public function seen(Request $request)
+    {
+        try {
+            $id = (int) $request->input('id');
+
+            if ($id > 0 && hash_equals(PageViewEvent::signature($id), (string) $request->input('sig'))) {
+                PageViewEvent::whereKey($id)
+                    ->whereNull('confirmed_at')
+                    ->where('created_at', '>=', now()->subHour())
+                    ->update(['confirmed_at' => now()]);
+            }
+        } catch (\Throwable $e) {
+            report($e);
+        }
+
+        return response()->noContent();
+    }
 }

@@ -33,5 +33,6 @@
                 {{ $slot }}
             </div>
         </div>
+        @include('partials.page-view-beacon')
     </body>
 </html>

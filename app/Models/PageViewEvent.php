@@ -12,7 +12,23 @@ class PageViewEvent extends Model
 
     protected $fillable = ['page', 'class_id', 'spec_id', 'slot', 'session_id', 'user_id', 'is_bot', 'referrer_host'];
 
-    protected $casts = ['is_bot' => 'boolean'];
+    protected $casts = ['is_bot' => 'boolean', 'confirmed_at' => 'datetime'];
+
+    /**
+     * Views a browser confirmed by running the page (TrackController::seen), from 4 Oct 2026.
+     * The one count a script sending a browser user agent cannot inflate without running the
+     * page: a person who reads one page and leaves is counted, a scraper fetching HTML is not.
+     */
+    public function scopeConfirmed($query)
+    {
+        return $query->whereNotNull('confirmed_at');
+    }
+
+    /** What the page's beacon sends back with the id, so it confirms only views it was given. */
+    public static function signature(int $id): string
+    {
+        return substr(hash_hmac('sha256', 'page-view:'.$id, (string) config('app.key')), 0, 20);
+    }
 
     /**
      * Real visitors only. `is_bot` is NULL for everything logged before 2026-09-24, when the
@@ -41,7 +57,7 @@ class PageViewEvent extends Model
     public static function log(string $page, ?int $classId = null, ?int $specId = null, ?string $slot = null): void
     {
         try {
-            static::create([
+            $row = static::create([
                 'page' => $page,
                 'class_id' => $classId,
                 'spec_id' => $specId,
@@ -54,6 +70,10 @@ class PageViewEvent extends Model
                 'is_bot' => BotDetector::isBot(request()->userAgent()),
                 'referrer_host' => BotDetector::referrerHost(request()->headers->get('referer')),
             ]);
+            // The request's first view is the page's; the layout's beacon confirms it.
+            if (! request()->attributes->has('page_view_id')) {
+                request()->attributes->set('page_view_id', $row->id);
+            }
         } catch (\Throwable $e) {
             Log::error('PageViewEvent::log failed', ['page' => $page, 'error' => $e->getMessage()]);
         }

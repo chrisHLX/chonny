@@ -34,6 +34,10 @@
                        title="A browser user agent is not proof of a person: scripts that send one drop their cookie every request, so each view is a new one-page session.">
                         {{ number_format($o['views']) }} browser-agent views from {{ number_format($o['sessions']) }} sessions, most of them one page and gone
                     </p>
+                    <p class="text-[11px] text-ink-muted mt-1"
+                       title="A view counts here when the browser ran the page and sent its beacon back. A scraper that fetches the HTML never does. Counted from 4 Oct 2026.">
+                        <span class="text-violet tabular-nums">{{ number_format($o['browser']) }}</span> views seen by a browser, from {{ number_format($o['browserSessions']) }} sessions
+                    </p>
 
                     <div class="flex flex-wrap gap-x-4 gap-y-1 mt-3 pt-3 border-t border-line text-[11px]">
                         <span class="text-ink-subtle">
@@ -85,9 +89,14 @@
                         <span class="flex-1 text-center text-[10px] tabular-nums {{ $d['engaged'] > 0 ? 'text-ink' : 'text-ink-subtle' }}">{{ $d['engaged'] }}</span>
                     @endforeach
                 </div>
+                <div class="flex gap-1.5 mt-0.5" title="Views a browser confirmed by running the page, from 4 Oct 2026">
+                    @foreach ($daily as $d)
+                        <span class="flex-1 text-center text-[10px] tabular-nums {{ $d['browser'] > 0 ? 'text-violet' : 'text-ink-subtle' }}">{{ $d['browser'] }}</span>
+                    @endforeach
+                </div>
                 <div class="flex justify-between text-[10px] text-ink-subtle mt-1.5">
                     <span>{{ $daily->first()['day'] }}</span>
-                    <span>engaged visitors per day, under each bar</span>
+                    <span>under each bar: engaged visitors, then <span class="text-violet">views seen by a browser</span></span>
                     <span>{{ $daily->last()['day'] }}</span>
                 </div>
             @endif
@@ -102,6 +111,7 @@
                         <tr class="text-[10px] uppercase tracking-wide text-ink-subtle text-left">
                             <th class="font-medium py-1.5 pr-3">Page</th>
                             <th class="font-medium py-1.5 px-3 text-right" title="Sessions that were signed in or went past one page">Engaged</th>
+                            <th class="font-medium py-1.5 px-3 text-right" title="Views a browser confirmed by running the page, from 4 Oct 2026">Browser</th>
                             <th class="font-medium py-1.5 px-3 text-right">Views</th>
                             <th class="font-medium py-1.5 px-3 text-right">Sessions</th>
                             <th class="font-medium py-1.5 pl-3 text-right">Crawlers</th>
@@ -117,6 +127,7 @@
                                     @endunless
                                 </td>
                                 <td class="py-1.5 px-3 text-right text-ink tabular-nums">{{ number_format($row['engaged']) }}</td>
+                                <td class="py-1.5 px-3 text-right text-violet tabular-nums">{{ number_format($row['browser']) }}</td>
                                 <td class="py-1.5 px-3 text-right text-ink-muted tabular-nums">{{ number_format($row['views']) }}</td>
                                 <td class="py-1.5 px-3 text-right text-ink-muted tabular-nums">{{ number_format($row['sessions']) }}</td>
                                 <td class="py-1.5 pl-3 text-right text-ink-subtle tabular-nums">{{ number_format($row['bots']) }}</td>

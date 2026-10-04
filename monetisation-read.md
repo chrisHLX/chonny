@@ -207,6 +207,32 @@ aged out within about five days; nothing replaced it.
   by them. The raw browser-agent views are still shown beneath. This undercounts: a person who
   reads one guide and leaves is not counted. That is the accepted cost of not counting scripts.
 
+## 1e. 24 Sep – 4 Oct: the "Google spike" was a scraper
+
+Google-referred views jumped from about 10 a day to **57 on 2 Oct and 147 on 3 Oct**, 209 of
+them on spell pages, and on 3 Oct this was reported to the user as Google starting to send
+traffic. **It was not.** Read against nginx:
+- **The scraper:** 188 of the 370 Google-referred requests on 3 Oct came from **154 Alibaba
+  Cloud addresses** (`47.79.x.x`). Every request carried the referrer `https://www.google.com/`,
+  and **none loaded the site's CSS, JavaScript or Livewire**. A browser always does.
+- **A vulnerability scanner used the same disguise:** `93.152.221.226` probed `/.env.production`,
+  `/phpinfo.php`, `/config/secrets.yml` and similar. Every one returns 404, checked over https on
+  4 Oct. The 20 probes that got a 200 were query strings on `/` (`/?phpinfo=1`), which Laravel
+  ignores; they got the normal landing page.
+- **Real Google visitors**, counted as addresses that came from Google *and* loaded the site's
+  assets: **about 20 in 14 days**, 0 to 4 a day. All real browsers were 4 to 30 addresses a day,
+  the owner included.
+- **Since 24 Sep:** 0 sign-ups (11 users in all), and no uploaded games from anyone but the
+  owner.
+
+**What changed (2026-10-04).** A page view is now confirmed when the browser runs the page: the
+layout sends a signed beacon (`TrackController::seen`) that sets `page_view_events.confirmed_at`.
+`/admin/page-usage` shows the confirmed count beside the others: in the headline cards, under
+each day's bar, and as a column in the pages table. It counts the one-page reader the engaged
+measure leaves out, and not a script that fetches HTML. A crawler that runs scripts (Googlebot
+renders pages) still counts as a crawler: only `is_bot = false` rows are counted. Views from
+before 4 Oct have no confirmation and cannot be given one.
+
 ---
 
 ## 2. The measurement trap that nearly produced the wrong conclusion
