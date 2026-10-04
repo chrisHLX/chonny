@@ -127,7 +127,14 @@ the desktop and in the Start menu, run this once:
    - **who dies:** yours and theirs, killing blows, and whether your healer was locked out;
    - **defensives traded:** what they answer your goes with, what their goes force from you, and
      how often a go of theirs killed with your big defensives up or down;
-   - **ready and never pressed when they killed**, from the losses' answer sheets.
+   - **ready and never pressed when they killed**, from the losses' answer sheets;
+   - **less against more experienced teams**: the comp's games split by the team's Gladiator
+     seasons (experience, not MMR: MMR is deflated early in a season and missing in Solo
+     Shuffle), at the line that divides them most evenly. Each side shows your record, their
+     goes, how often a go killed, your first death, your goes' kill rate and what they answered
+     with. It appears once each side has 2 games;
+   - **every game against them**: when, on which character, the result, both MMRs, their
+     Gladiator seasons and the first death.
 
    Under 10 games a page says it is a lead. `wow:game-cards` writes the pages
    (`CompLibraryService`) and redraws them only when a game changed.

@@ -192,6 +192,28 @@ class CompLibraryService
         })->countBy();
 
         $pct = fn (int $n, int $of) => $of > 0 ? sprintf('%d%% (%d of %d)', round(100 * $n / $of), $n, $of) : '-';
+
+        // ---- each game, and the comp split by how experienced the team was
+        $gladOf = function (array $g) {
+            $known = collect($g['a']['players'])->where('side', 'them')->filter(fn ($p) => isset($this->xp[$p['name']]) && ($this->xp[$p['name']]['found'] ?? false));
+
+            return $known->isEmpty() ? null : (int) $known->sum(fn ($p) => $this->xp[$p['name']]['gladSeasons'] ?? 0);
+        };
+        $list = $games->sortByDesc(fn ($g) => (string) $g['r']->played_at)->map(function ($g) use ($gladOf, $nameOf) {
+            $first = collect($g['a']['deaths'])->sortBy('t')->first();
+            $p = $first ? $nameOf($g, $first['who']) : null;
+
+            return [
+                'when' => $g['r']->played_at?->format('D j M, H:i'),
+                'who' => explode('-', collect($g['a']['players'])->first(fn ($x) => ! empty($x['logger']))['name'] ?? '?')[0],
+                'won' => $g['a']['won'],
+                'mmr' => isset($g['a']['mmr']['us'], $g['a']['mmr']['them']) ? $g['a']['mmr']['us'].' / '.$g['a']['mmr']['them'] : null,
+                'glad' => $gladOf($g),
+                'death' => $p ? ($p['side'] === 'us' ? 'yours: ' : 'theirs: ').($p['healer'] ? 'healer ('.$p['spec'].')' : $p['spec']).' at '.$this->clock($first['t']) : null,
+            ];
+        })->values()->all();
+
+        $byExperience = $this->byExperience($games, $gladOf, $pct);
         $ofGoes = fn (Collection $counts, int $total, int $take = 6) => $counts->take($take)->map(fn ($n, $k) => ['label' => $k, 'value' => $pct($n, $total)])->values()->all();
         $median = fn (Collection $v) => $v->isEmpty() ? null : round($v->sort()->values()->median(), 1);
 
@@ -244,8 +266,82 @@ class CompLibraryService
                     'two' => $pct($bucket(2, 99)->filter(fn ($go) => $go['kill'] || $go['killLater'])->count(), $bucket(2, 99)->count()),
                 ],
             ],
+            'list' => $list,
+            'byExperience' => $byExperience,
             'unused' => ['losses' => $sheets->count(), 'rows' => $this->withIcons($unused->take(8)->map(fn ($n, $s) => ['label' => $s, 'value' => $n.' of '.$sheets->count()])->values()->all(), true)],
         ];
+    }
+
+    /** Fewer games than this on either side and the experience comparison waits. */
+    private const EXPERIENCE_SIDE_MIN = 2;
+
+    /**
+     * The comp split by how experienced the team was: their Gladiator seasons, summed over the
+     * three (or two) of them whose profile was found. Experience, not MMR, because early in a
+     * season MMR is deflated and a Solo Shuffle round has none (rule 12), while a Gladiator title
+     * says what a player has done. Split at the line that divides the comp's own games most
+     * evenly, so each comp compares its own stronger and weaker teams; a game none of whose players
+     * were looked up stays out.
+     *
+     * @return array{state: string, threshold?: int, lower?: array, higher?: array, need?: int, known: int}
+     */
+    private function byExperience(Collection $games, callable $gladOf, callable $pct): array
+    {
+        $known = $games->map(fn ($g) => $g + ['_glad' => $gladOf($g)])->filter(fn ($g) => $g['_glad'] !== null)->values();
+        if ($known->count() < 2 * self::EXPERIENCE_SIDE_MIN) {
+            return ['state' => 'few', 'known' => $known->count(), 'need' => 2 * self::EXPERIENCE_SIDE_MIN - $known->count()];
+        }
+        // The dividing line: of every value a team has (above the lowest), the one that splits the
+        // games most evenly. Many teams share a count (often 0), so a plain median can leave one
+        // side empty.
+        $threshold = null;
+        $best = PHP_INT_MAX;
+        foreach ($known->pluck('_glad')->unique()->sort()->values()->slice(1) as $line) {
+            $up = $known->filter(fn ($g) => $g['_glad'] >= $line)->count();
+            $down = $known->count() - $up;
+            if ($up >= self::EXPERIENCE_SIDE_MIN && $down >= self::EXPERIENCE_SIDE_MIN && abs($up - $down) < $best) {
+                $best = abs($up - $down);
+                $threshold = (int) $line;
+            }
+        }
+        if ($threshold === null) {
+            return ['state' => 'flat', 'known' => $known->count()];
+        }
+        $higher = $known->filter(fn ($g) => $g['_glad'] >= $threshold);
+        $lower = $known->filter(fn ($g) => $g['_glad'] < $threshold);
+
+        $measure = function (Collection $set) use ($pct) {
+            $theirGoes = $set->flatMap(fn ($g) => collect($g['a']['goes'])->where('side', 'them'));
+            $ourGoes = $set->flatMap(fn ($g) => collect($g['a']['goes'])->where('side', 'us'));
+            $firstGo = $set->map(fn ($g) => collect($g['a']['goes'])->where('side', 'them')->min('from'))->filter(fn ($v) => $v !== null)->values();
+            $deathAt = $set->reject(fn ($g) => $g['a']['won'])
+                ->map(fn ($g) => collect($g['a']['deaths'])->where('side', 'us')->sortBy('t')->first()['t'] ?? null)->filter(fn ($v) => $v !== null)->values();
+            $offensive = $theirGoes->flatMap(fn ($go) => collect($go['links'] ?? [])->whereIn('cat', ['offensive', 'mixed'])->pluck('spell')->unique())->countBy()->sortDesc();
+            $answers = $ourGoes->flatMap(fn ($go) => collect($go['forced'] ?? [])->pluck('spell'))->countBy()->sortDesc();
+            $won = $set->filter(fn ($g) => $g['a']['won'])->count();
+            $median = fn (Collection $v) => $v->isEmpty() ? '-' : round($v->sort()->values()->median()).'s';
+
+            return [
+                'Games' => $set->count(),
+                'Your record' => $won.'-'.($set->count() - $won),
+                'Their Gladiator seasons, median' => (int) $set->pluck('_glad')->sort()->values()->median(),
+                'Their goes a game' => number_format($theirGoes->count() / max(1, $set->count()), 1),
+                'Their first go' => $median($firstGo),
+                'Their goes that killed one of you' => $pct($theirGoes->filter(fn ($go) => $go['kill'] || $go['killLater'])->count(), $theirGoes->count()),
+                'Your first death, in losses' => $median($deathAt),
+                'Your goes that killed' => $pct($ourGoes->filter(fn ($go) => $go['kill'] || $go['killLater'])->count(), $ourGoes->count()),
+                'Their answers to your go, each' => number_format($ourGoes->sum(fn ($go) => count($go['forced'] ?? [])) / max(1, $ourGoes->count()), 1),
+                'Their offensive cooldowns, most used' => $offensive->take(3)->keys()->implode(', ') ?: '-',
+                'What they answered your goes with' => $answers->take(3)->keys()->implode(', ') ?: '-',
+            ];
+        };
+
+        return ['state' => 'split', 'threshold' => $threshold, 'known' => $known->count(), 'lower' => $measure($lower), 'higher' => $measure($higher)];
+    }
+
+    private function clock(float $seconds): string
+    {
+        return sprintf('%d:%02d', intdiv((int) $seconds, 60), (int) $seconds % 60);
     }
 
     /**

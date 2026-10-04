@@ -132,6 +132,53 @@
     </tr></table>
 </div>
 
+{{-- ============================== by their experience --}}
+@php $x = $c['byExperience']; @endphp
+<div class="section">
+    <div class="label">Less against more experienced teams <span class="aside">their Gladiator seasons between them; experience rather than MMR, which is deflated early in a season and missing in Solo Shuffle</span></div>
+    <div class="box">
+        @if ($x['state'] === 'split')
+            <table class="stats">
+                <tr>
+                    <td class="small muted"></td>
+                    <td class="n small muted" style="width: 170px">Under {{ $x['threshold'] }} season{{ $x['threshold'] === 1 ? '' : 's' }}</td>
+                    <td class="n small muted" style="width: 170px">{{ $x['threshold'] }} or more</td>
+                </tr>
+                @foreach ($x['lower'] as $label => $value)
+                    <tr><td>{{ $label }}</td><td class="n">{{ $value }}</td><td class="n">{{ $x['higher'][$label] }}</td></tr>
+                @endforeach
+            </table>
+            @if ($x['known'] < 10)
+                <div class="line small muted">{{ $x['known'] }} games with experience on file: a lead, not a finding.</div>
+            @endif
+        @elseif ($x['state'] === 'flat')
+            <div class="small muted">Every team of this comp you met had about the same experience, so there is nothing to split yet.</div>
+        @else
+            <div class="small muted">{{ $x['known'] }} game{{ $x['known'] === 1 ? '' : 's' }} with experience on file; {{ $x['need'] }} more and this compares the less and more experienced teams.</div>
+        @endif
+    </div>
+</div>
+
+{{-- ============================== every game --}}
+<div class="section">
+    <div class="label">Every game against them</div>
+    <div class="box">
+        <table class="stats">
+            <tr><td class="small muted">Played</td><td class="small muted">You</td><td class="small muted">Result</td><td class="small muted">MMR (you / them)</td><td class="small muted">Their Gladiator seasons</td><td class="small muted">First death</td></tr>
+            @foreach ($c['list'] as $row)
+                <tr>
+                    <td>{{ $row['when'] }}</td>
+                    <td>{{ $row['who'] }}</td>
+                    <td><span class="chip {{ $row['won'] ? 'won' : 'lost' }}">{{ $row['won'] ? 'WON' : 'LOST' }}</span></td>
+                    <td class="muted">{{ $row['mmr'] ?? 'none in Solo Shuffle' }}</td>
+                    <td>{{ $row['glad'] ?? 'not looked up' }}</td>
+                    <td class="muted">{{ $row['death'] ?? '-' }}</td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
+</div>
+
 @if ($c['unused']['losses'])
     <div class="section">
         <div class="label">Ready and never pressed when they killed <span class="aside">your team's defensives and Medallions, in {{ $c['unused']['losses'] }} loss{{ $c['unused']['losses'] === 1 ? '' : 'es' }} with an answer sheet</span></div>

@@ -29,7 +29,7 @@ class CompLibraryTest extends TestCase
                     ['guid' => 'P-2', 'name' => 'Boom-Realm-US', 'spec' => 'Balance Druid', 'classSlug' => 'druid', 'side' => 'us', 'healer' => false, 'logger' => false],
                     ['guid' => 'E-1', 'name' => 'War-Realm-US', 'spec' => 'Arms Warrior', 'classSlug' => 'warrior', 'side' => 'them', 'healer' => false, 'logger' => false],
                     ['guid' => 'E-2', 'name' => 'Dk-Realm-US', 'spec' => 'Unholy Death Knight', 'classSlug' => 'deathknight', 'side' => 'them', 'healer' => false, 'logger' => false],
-                    ['guid' => 'E-3', 'name' => 'Heal-Realm-US', 'side' => 'them', 'healer' => true, 'logger' => false] + $healer,
+                    $healer + ['guid' => 'E-3', 'name' => 'Heal-Realm-US', 'side' => 'them', 'healer' => true, 'logger' => false],
                 ],
                 'goes' => [
                     ['side' => 'them', 'from' => 8, 'to' => 30, 'kill' => ! $won, 'killLater' => ! $won, 'target' => 'P-2', 'peak' => $peak, 'drained' => 0,
@@ -88,6 +88,30 @@ class CompLibraryTest extends TestCase
         $this->assertStringContainsString('What their goes force from you 1 a go Pain Suppression 2×', $page);
         $this->assertStringContainsString('Desperate Prayer (you) 1 of 1', $page);
         $this->assertStringContainsString('Fewer than 10 games', $page);
+    }
+
+    public function test_a_comp_compares_its_less_and_more_experienced_teams(): void
+    {
+        $user = User::factory()->create();
+        // Two games against a team with no Gladiator seasons (both won), two against one with 12 (both lost).
+        $this->storeTsg($user, 'a', '2026-10-01 10:00:00', true, ['spec' => 'Holy Priest', 'classSlug' => 'priest']);
+        $this->storeTsg($user, 'b', '2026-10-01 10:10:00', true, ['spec' => 'Holy Priest', 'classSlug' => 'priest']);
+        $this->storeTsg($user, 'c', '2026-10-01 10:20:00', false, ['spec' => 'Restoration Druid', 'classSlug' => 'druid', 'name' => 'Glad-Realm-US']);
+        $this->storeTsg($user, 'd', '2026-10-01 10:30:00', false, ['spec' => 'Restoration Druid', 'classSlug' => 'druid', 'name' => 'Glad-Realm-US']);
+        $xp = [
+            'War-Realm-US' => ['found' => true, 'gladSeasons' => 0], 'Dk-Realm-US' => ['found' => true, 'gladSeasons' => 0],
+            'Heal-Realm-US' => ['found' => true, 'gladSeasons' => 0], 'Glad-Realm-US' => ['found' => true, 'gladSeasons' => 12],
+        ];
+
+        $page = $this->text(app(CompLibraryService::class)->build($user, $xp)['Arms Warrior+Unholy Death Knight']['html']);
+
+        $this->assertStringContainsString('Less against more experienced teams', $page);
+        $this->assertStringContainsString('Under 12 seasons 12 or more', $page);
+        $this->assertStringContainsString('Your record 2-0 0-2', $page);
+        $this->assertStringContainsString('Their Gladiator seasons, median 0 12', $page);
+        $this->assertStringContainsString('4 games with experience on file: a lead', $page);
+        $this->assertStringContainsString('Every game against them', $page);
+        $this->assertStringContainsString('2000 / 2000 12', $page, 'each game with its MMR and their seasons');
     }
 
     public function test_solo_shuffle_never_counts_toward_a_3v3_comp(): void
