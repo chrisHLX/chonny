@@ -5,6 +5,12 @@ true, consulted for a task. **Dormant**: describes code that is still there but 
 direction. **History**: a record; never edit it to change the past. Start with `CLAUDE.md` (rules
 and orientation), then the area you are working in.
 
+**Which docs to read for a task** is CLAUDE.md's "Before you start" table. **An older doc that
+cites "CLAUDE.md's ... section"** by a name CLAUDE.md no longer has ("Canonical Context Module
+Template", "AI-Assisted Game Data", "Synergies tab", "the patch row is relabelled in place") is
+pointing at the old 790KB CLAUDE.md: search `docs/history/engineering-log-2026.md` for that
+heading. Rules are still cited by number and still mean the same rule.
+
 ## The current work: the coach, the match review, the desktop app
 
 | File | Status | What it is |
@@ -20,6 +26,7 @@ and orientation), then the area you are working in.
 | `docs/ai/ask-about-this-game.md` | proposal | "Ask about this game": a model answering from stored measurements. Not built. |
 | `docs/testers/how-to-test.md` | current | How a tester runs the app. |
 | `docs/combat-log-ingest.md` | reference | How a combat log becomes archive games: team ids, Solo Shuffle, Feign Death, the checks behind each (rule 12 in full). |
+| `.claude/skills/review-games/SKILL.md` | current | The project skill for reviewing games: loads itself on a "look at my games" request. |
 
 ## The arena model
 

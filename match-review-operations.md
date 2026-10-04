@@ -7,13 +7,17 @@ and the tools that take them. **Findings and their interpretation are in
 
 Written 2026-09-27, split from the findings 2026-09-28. `addon-upgrades.md` holds what Chriso
 wants next from the capture side.
-CLAUDE.md's rule 12 holds the Solo Shuffle log structure and is not repeated here.
+`docs/combat-log-ingest.md` (rule 12 in full) holds the Solo Shuffle log structure and is not
+repeated here. **The whole pipeline as it stands, from the log to the desktop app's pages, with
+the analysis versions and what to re-run after a change, is `match-review.md`.** Read that first.
 
 ---
 
-## Where it stands
+## Where it stands: the review path (written 2026-09-27)
 
-Deployed and live at commit `575ea01`. `/wow/game-review` is **auth-gated and scoped to the
+The game-review path below is unchanged. Everything built on it since (the per-round analysis
+in `RoundAnalysisService`, versions 5 to 9, and the desktop app's pages) is mapped in
+`match-review.md`. `/wow/game-review` is **auth-gated and scoped to the
 signed-in user** — it shipped public for about twenty minutes on 2026-09-25 and that must not
 recur; the route middleware and the component's own scoping are both load-bearing.
 
@@ -58,6 +62,8 @@ before real uploads started.
 | Assemble and store a review | `LobbyReviewService` |
 | Browser upload | `ArenaReviewIngestService`, `ArenaUploadController` |
 | The page | `App\Livewire\GameReview` |
+| Measure each round (goes, deaths, the ledger, answer sheets, warrant) | `RoundAnalysisService`, `CooldownLedgerService` (see `match-review.md`) |
+| The desktop app's pages | `GameCardService`, `ImprovementService`, `CompLibraryService`, via `wow:game-cards` |
 
 Local loop: `php artisan wow:sync` then `tools/arena.bat`. `wow:forget-games --before=` removes
 games and **records its cutoff** so a later bare sync cannot resurrect them — it did exactly that
@@ -613,7 +619,7 @@ What to watch for when reading it:
 shows the signed-in player's own tool output, read from
 `storage/app/private/match-review/{user id}/*.txt` on the server. The output names every
 opponent, so it is **uploaded, never committed or deployed**: save each tool's console output to a
-`.txt` file and upload it with the base64-over-exec method in CLAUDE.md, then `chown` it to
+`.txt` file and upload it with the base64-over-exec method in `DEPLOY.md` ("Working from Claude Code"), then `chown` it to
 `www-data`. Reviews belong to Chriso's account, `christian@mindcollector.com`, which is user 2 on
 production (user 8 is a different account of his).
 

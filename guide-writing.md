@@ -4,7 +4,14 @@ How to draft a comp guide for `data/machine-guides/`. Short on purpose — if th
 long it has stopped being usable for the same reason the guides did.
 
 **Read first:** `arena-structure.md` (the model), and
-`docs/guides/reader-corrections-2026-09-23.md` (what the last 16 got wrong).
+`docs/guides/reader-corrections-2026-09-23.md` (what the last 16 got wrong). Authoring, the
+talent check and the feedback export (run it before re-authoring): `docs/machine-guides.md`.
+
+**A guide drawn from played games** also follows `guides-from-play.md` (it carries its level of
+play and its evidence) and takes its claims from `match-review-analysis.md`. What a comp did
+against the user (its goes, the cooldowns it presses together, its crowd-control chains, who
+dies) is already measured by `CompLibraryService`, one page per comp in the desktop app. Read
+that before writing a "vs" section: it is evidence, the model is reasoning.
 
 ---
 

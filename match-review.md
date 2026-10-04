@@ -14,6 +14,7 @@ stored, what to re-run after a change, and which docs hold the detail.
 | `tools/log-manager/README.md` | the desktop app, page by page |
 | `guides-from-play.md` | how played games become guides, and the level-of-play rule |
 | `docs/reviews/`, `docs/ai/` | one-off session reviews; the "Ask about this game" design (not built) |
+| `.claude/skills/review-games/SKILL.md` | the workflow for "look at my games" requests: find and sync the games, use the tools, read them honestly, write the findings down |
 
 ---
 
@@ -88,8 +89,8 @@ goes, the deaths, the answer sheets and the comp library.
 | File | Decides |
 |---|---|
 | `data/arena-logs/spell-classification/{offensive-spells,offensive-buffs,defensive-cooldowns,mixed-cooldowns}.json` | offensive, defensive or mixed. Hand-promoted (rule 11); the site's WoW Comps tabs read them too |
-| `.../contextual-cooldowns.json` | spells read per press (Vanish, Mass Invisibility, Master's Call...) |
-| `.../short-defensives.json` | defensives under the 45s floor that still count (Feint, Crimson Vial, Fade...) |
+| `data/arena-logs/spell-classification/contextual-cooldowns.json` | spells read per press (Vanish, Mass Invisibility, Master's Call...) |
+| `data/arena-logs/spell-classification/short-defensives.json` | defensives under the 45s floor that still count (Feint, Crimson Vial, Fade...) |
 | `spells.dr_category` (curated, `cc-synergies-overrides.txt`) | what counts as crowd control, and which kind |
 | `data/matchup-profiles/{class}/{spec}.json` | each spec's answers, control and interrupts (default build); the answer sheet starts here |
 

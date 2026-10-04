@@ -24,6 +24,27 @@ in the match review and the desktop app: **`match-review.md`** is its map. Game 
 remain, as the baseline a player is measured against, and the spell/talent/match-data pipeline
 underneath must stay correct: every read sees a button only through it.
 
+### Before you start: read the docs for the task
+
+Find the task below and read its files **before** writing anything. Each is there because a
+session that skipped it got something wrong that the doc already settled. The user should
+never have to remind you of these.
+
+| The task | Read first | Also |
+|---|---|---|
+| **Review games**: "look at my games", "why did we lose", match analysis, coaching, comparing a player or teammate | `match-review.md`, then `match-review-operations.md` (the method) and `match-review-analysis.md` (past findings) | The `review-games` skill carries the workflow. The user's characters and teammates are in memory. Read defensives through the three questions; never call a count a fault |
+| **Change a measure** (`RoundAnalysisService`, `ArenaMomentService`, `CooldownLedgerService`) | `match-review.md` ("what to re-run"), `match-review-operations.md` | Bump `RoundAnalysisService::VERSION` and say what it adds; re-measure with `wow:sync --skip-ingest --fresh` |
+| **Change the desktop app** (cards, Improve, Comps, `MindCollectorLogs.ps1`) | `match-review.md` (traps), `tools/log-manager/README.md` | IE11 views; the script stays ASCII; never name a PowerShell variable `$c` |
+| **Tags, classification, short defensives, spells used both ways** | `match-review-operations.md`, "Making the tags better from play"; rule 11 | Run `tagaudit.php`; record decisions in `reviewed.json`; bump the cache, then kits, then profiles |
+| **Write or correct a guide** | `guide-writing.md` (budget and shape), `docs/guides/reader-corrections-2026-09-23.md`, `arena-structure.md` / `data/brain/brain.md` | `docs/machine-guides.md` (authoring, feedback export first). If drawn from played games: `guides-from-play.md` and `match-review-analysis.md` |
+| **The arena model, the Brain, a new prose source** | `arena-structure.md`, `arena-open-questions.md`, `docs/arena/synthesis-process.md` | `docs/arena/sources/chriso-scope-correction-2026-09-23.md` before adding any "we can't" line |
+| **Matchup Lab** | `data/matchup-profiles/README.md`, rules 31–34 | `arena-structure.md` Part 19 |
+| **Spell data, import, a patch** | `game-data.md`, `spell-acquisition-model.md`, rules 1–11 | `knowledge-gaps.md`; `dr-categories-reference.md` is stale, a hint only |
+| **A page of the site** | `docs/site-pages.md`, the Web/Livewire rules (22–30) | Check the real URL serves (Environment, "Looking at a page") |
+| **Deploy or check production** | `DEPLOY.md`, "Working from Claude Code" | Production runs whatever branch is checked out there; push it, then `./deploy.sh` |
+| **Quizzes, modules, diagnostics** (dormant platform) | `system-integration.md`, rules 35–38 | `docs/archive/` for how the old pieces work |
+| **Product, usage, pricing** | `VISION.md`, `monetisation-read.md` | |
+
 ### What "done" looks like for the spell data
 
 - **Nothing unresolved in displayed text** — no `(varies)`, `$s1`, `${...}`, `$lWord:Words;`,

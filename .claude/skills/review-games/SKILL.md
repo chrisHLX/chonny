@@ -1,6 +1,6 @@
 ---
 name: review-games
-description: Review a player's own WoW arena games from the MindCollector archive: "look at my last games", "why did we lose", "is my teammate the problem", "what should I work on", "compare me to other Disc Priests". Use for any question answered from combat logs, the match review, or the desktop app's measurements.
+description: Review a player's own WoW arena games from the MindCollector archive - match analysis, game review, coaching. "look at my last games", "why did we lose", "is my teammate the problem", "what should I work on", "compare me to other Disc Priests", "how do I beat TSG". Use for any question answered from combat logs, the match review, the comp library, or the desktop app's measurements.
 ---
 
 # Reviewing arena games
