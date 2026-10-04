@@ -857,6 +857,12 @@ Nearly every one of ours is **Pain Suppression on the DK on top of his own Icebo
 Lichborne or Anti-Magic Zone**. Stacking doubled in the losses. Two defensives at once on a
 player who needed one is one fewer for the next go.
 
+**Corrected (2026-09-30, then 2026-10-03): do not read this as "avoid overlaps".** Three of the
+healer's four overlaps went on with the target under 3.5 seconds from death (*Was the trinket
+warranted* below). On 3 Oct, holding Pain Suppression because Barkskin was up lost a game: the
+healer was locked out for nine seconds straight after. The overlap rule is no longer a fault
+anywhere.
+
 #### Interrupts
 
 Measured for the first time (2026-09-28); the timeline did not read `SPELL_INTERRUPT` before.
@@ -1413,6 +1419,211 @@ round, re-dealt.
   alone.
 - **Results cannot settle it.** 2–1 against 0–3 inside the lobby with teammates re-dealt each round,
   and 0–6 over his six Radiance games in all. A lead.
+
+### 2 Oct: every game pooled, and the cooldown ledger
+
+Chriso's questions: which patterns hold across all of his games, not one session? And does
+"drain, then kill" get to the root, or is the root that defensives are tied to cooldown timers?
+A 60s Barkskin fairly answers a 60s Kingsbane. Pain Suppression and Frenzied Regeneration may
+still be needed if the healer is CC'd and no peel goes out, and then the team has nothing for the
+next go. The method, and why it is written down, is in `match-review-operations.md`, *Reading
+defensives: three questions, in order*.
+
+**The sample.** Every stored game of user 2: 246, by logging character Skylake (Disc, 102 3v3 and
+18 shuffle rounds), Dijonhoney (Holy Paladin, 57), Crawlordx (Feral, 32) and Env (Assassination,
+30). That is 684 enemy goes. Read with `patternread.php` and `cdledger.php`.
+
+#### What holds over every game, and what does not
+
+- **Drain, then kill holds in all seven character-and-bracket groups.** Our goes started with 2+
+  of their defensives down led to a kill in 29–60% of cases, against 11–22% with 0–1 down
+  (Skylake 3v3 29% against 20%, 325 goes; Crawlordx 3v3 33% against 11%).
+- **Burst landing on their healer's CC does not hold in the largest sample.** Over Skylake's 325
+  3v3 goes, 26% killed with their healer locked out 2s+ at our peak, and 26% with them free. It
+  held in the 26 Sep and Jungle sessions and in shuffle (43% against 28%). **Unsettled**, not a
+  finding.
+- **"No go converted in the losses" is close to true by definition.** A loss is our team dying.
+  Compare goes by condition across all goes instead.
+- **Skylake is locked out more in losses:** 12.4s a minute against 8.4s in 3v3, and 11.2s against
+  6.6s in shuffle. He was locked out, or within a second of it, at our first death in 27 of 49 3v3
+  losses. Opponent strength is a confound.
+- **"Dying with the Medallion available" was listed as a DPS habit on 2 Oct without asking whether
+  a lockout was on the player at the death.** Unchecked; see the operations file's question 2.
+
+#### The cooldown ledger
+
+Every cooldown resolved from the player's own talents (`--cds`). "Big" means a 90s or longer
+cooldown. Whether their go killed one of us:
+
+| Our big answers down as their go started | 3v3 | Shuffle |
+|---|---|---|
+| none | **12%** (27 of 221) | 14% (12 of 86) |
+| one | 22% (19 of 86) | 20% (5 of 25) |
+| two or more | **38%** (57 of 149) | 35% (31 of 88) |
+
+**It is not just that late goes kill more.** Inside the same stretch of game time (3v3):
+
+| Their go started | none down | one down | two or more down |
+|---|---|---|---|
+| before 60s | 15% (26/179) | 41% (9/22) | 35% (6/17) |
+| 60–120s | **3%** (1/36) | 17% (5/29) | **43%** (23/53) |
+| after 120s | 0% (0/6) | 14% (5/35) | 35% (28/79) |
+
+**Going while our own answers are down.** At each of our goes, how many of our big answers were
+down, then whether their next go killed:
+
+| When we went | 3v3 | Shuffle |
+|---|---|---|
+| none down | 14% (32 of 225) | 23% (19 of 82) |
+| one down | 17% (9 of 53) | 32% (6 of 19) |
+| two or more down | **43%** (52 of 121) | 37% (22 of 59) |
+
+**The trade, press by press.** Each of our defensives pressed inside their go, against the
+offensives that drew it. "Fair" means it came back within 15s of their first offensive of that go.
+
+| | Presses (3v3) | Still down at their next go | That go killed |
+|---|---|---|---|
+| fair | 215 | 24% | 32% (12 of 38) |
+| expensive | 554 | **95%** | 39% (150 of 384) |
+
+What that says about Chriso's framing:
+
+- **Cadence is real.** An expensive answer is almost always still down when their next go
+  arrives (95% against 24%). That is the Barkskin-against-Kingsbane point, measured.
+- **But one expensive press is not what loses.** The next go killed about as often after a fair
+  press as after an expensive one (32% against 39%). The line is crossed at the **second** big
+  answer: one down is 17–22%, two or more is 35–43%.
+- **So the root is the team's state at the next exchange, not the press.** Judge a single press
+  by whether it was needed (`warrant.php`; the healer's were, on 26 Sep and 1 Oct). Judge the
+  team by what it holds when an exchange starts. **With two or more big answers down, don't go;
+  play for time until they are back.** That is the 1 Oct conclusion. Over all the games, our
+  going with two or more down was followed by their go killing us 43% of the time in 3v3, against
+  14% with none down.
+- **Whether waiting would have helped is reasoning, not measurement.** The ledger shows that the
+  state predicts the kill. It cannot show that holding our go would have moved theirs.
+
+**What it cannot see:** which player a defensive went on (coverage is the team's), charges that
+recharge one at a time (coverage overstated), and default-build answers a player did not take
+(coverage overstated). The full list is in the operations file.
+
+### 2 Oct: two of Chriso's hypotheses, tested
+
+**"I dispel less because of the pressure on us, or because I'm busy fearing."** Not supported.
+Read with `dispelread.php`, 3v3 since 20 Sep. "Something to dispel" is a debuff that Purify itself
+was seen removing somewhere in the archive (71 of them). The spell data has no dispel type.
+
+| Disc Priest | Games | Seconds a minute with something to dispel | Removed per minute of that |
+|---|---|---|---|
+| Skylake | 102 | 105 | **0.34** |
+| Originull (8× Gladiator, RMP) | 15 | 119 | 1.34 |
+| Jmjay | 14 | 108 | 0.93 |
+| All other Disc Priests | 66 | 117 | 1.30 |
+
+- **His team has as much to dispel as anyone's.** He removes about a quarter as much of it.
+- **Under pressure he dispels more, not less:** 0.43 a minute in his high team-damage games
+  against 0.24, 0.41 when he was locked out most against 0.26, and 0.36 when he feared most
+  against 0.29. So the gap is a priority, not a side effect of pressure.
+- **It is not crowd control.** Every Disc Priest rarely removes CC from a teammate. Counting a
+  teammate in purifiable lockout or root for 2s+, with the priest free as it landed, the removal
+  rate is Skylake 6%, Originull 4%, the rest 8%. The gap is damage over time and debuffs:
+  Shadow Word: Pain, Searing Light, Judgment, Moonfire, Chilled.
+- **Whether those dispels are worth a global is judgement the log cannot settle.** A Purify
+  costs a Penance. Unstable Affliction punishes the dispeller. Purify's 8s cooldown is not
+  modelled here.
+
+**"Against comps that force nearly all our defensives in the first go, we shouldn't rush in."**
+The first half holds. The second is not supported in these games: it reads the other way, as a
+lead. From the stored analysis of Skylake's 102 3v3 games:
+
+- **Their first go forcing 4+ of our defensives (Medallion aside): won 10 of 27 (37%),** against
+  53–62% when it forced fewer.
+- **Against comps averaging 3+ forced:** we went first and won 12 of 21 (57%); they went first and
+  we won 7 of 20 (35%). Against every other comp, going first made no difference (56% against
+  55%). Taking the initiative against a burst-heavy comp makes them answer instead of open. That
+  fits drain from both sides, but 41 games is a lead, and going first may also mean the opening
+  was already good.
+- **Our first CC:** on their kill target, won 24 of 36 (67%); on their healer, 16 of 36 (44%);
+  cross-CC, 13 of 30 (43%). Against a Resto Druid, opening CC on the Druid won 1 of 6, and on
+  anyone else 8 of 17.
+- **Comp-specific advice is thin from one player's games.** In 102 games, only three enemy comps
+  were met three or more times. Advice per comp needs other players' games against that comp,
+  and the spell data's model of it, alongside the player's own.
+
+### 3 Oct: Skylake with Doubletapz and a Balance Druid, two fast losses
+
+Chriso's read: Doubletapz did not have the reaction time to stop the enemy's crowd control at
+this rating. Both games were lost to the first death, which came about 15 seconds into the
+enemy's first go:
+
+| Game | Them | First death | Crowd control on Skylake |
+|---|---|---|---|
+| 11:50, 41s, MMR 2105 / 2101 | Holy Priest, Unholy DK (7× Glad), Arms (10 Gladiator seasons between them) | Balance Druid at 22.8s, to Execute | Intimidating Shout, Holy Word: Chastise, Storm Bolt with Psychic Scream, Strangulate: **all instant** |
+| 11:53, 30s, MMR 2071 / 2088 | Holy Priest, Frost Mage (2× Glad 2626), Assassination | Balance Druid at 24.4s, to a Kidney Shot go | Cheap Shot, **Polymorph (1.1s cast)**, Chastise, Psychic Scream |
+
+- **In 11:50 there was nothing to kick.** Every lockout on the healer was instant. Skylake used
+  the Medallion at 14.1s on the Intimidating Shout, was then held from 15.8s to 24.7s, and tried
+  Pain Suppression four times at 20.2–20.9s ("can't do that while fleeing / silenced"). The
+  Druid died at 22.8s.
+- **In 11:53 the one kickable crowd control on Skylake went through with Counter Shot ready.**
+  The Polymorph began at 13.6s, and at 13.7s Doubletapz pressed Intimidation on their healer.
+- **Every control Doubletapz landed in both games went on their healer, inside the enemy's go**
+  (Intimidation at 11.2s and 13.7s, Freezing Trap at 15.8s; a trap at 12.7s in 11:50 caught no
+  one). Bestial Wrath went out at 15.5s in 11:50, with their Bladestorm, Avatar and Army running.
+  He answered their go with ours. Roar of Sacrifice was not pressed, as in all 14 games of 30 Sep.
+
+**Reaction time is not what the log shows** (`kickread.php`, 19 games since 1 Sep, against 66
+games of other Hunters in the archive): with an enemy cast-time crowd control going, Doubletapz
+alive, free and with Counter Shot ready, **he kicked 11% of the chances, the same as every other
+Hunter (11%), and his kicks landed a median 1.0s after the cast began (others 1.1s).** He presses
+Counter Shot 1.1 times a game against their 2.0, so it is ready more often and used less often.
+The difference is what he spends his globals on during the enemy's go, not how fast he presses.
+Two games are a lead; range and line of sight are not in the log.
+
+#### The Pain Suppression that was held because of the overlap rule (11:50)
+
+Chriso: "I trinketed the fear, and normally I'd Pain Suppression, but I saw Barkskin go out on the
+Druid, and the analysis keeps pointing at overlapping defensives, so I didn't. I got chain-CC'd and
+he died. I changed my play because of the data, and that lost us the game."
+
+The log agrees, second by second:
+
+| Time | Druid's health (damage that second) | What happened |
+|---|---|---|
+| 13.9s | 61% | Barkskin on the Druid |
+| 14.1s | 61% (0) | Skylake's Medallion breaks Intimidating Shout. **He is free until 15.8s** |
+| 15.8s | 58% | Holy Word: Chastise on Skylake |
+| 16.2s | 50% (86k) | Colossus Smash on the Druid |
+| 17.5–20.7s | 50% → 36% (96–160k a second) | Storm Bolt and Psychic Scream, then Strangulate on Skylake until 24.7s. He tries Pain Suppression four times, 20.2–20.9s: "can't do that while fleeing", then "silenced" |
+| 21–22.8s | 11% → dead (270k, 152k) | Execute |
+
+**The overlap rule was wrong here, and so is the narrower one proposed after *Was the trinket
+warranted*.** At 14.1s the Druid was at 61% with Barkskin up and almost nothing coming in, so
+both "two defensives at once" and "score an overlap only when the target was not in danger" call
+a Pain Suppression then a waste. What made it right was what was **about** to happen: the
+enemy's go was running (Bladestorm, Avatar, Army from 7.2s) and they still held every lockout
+for the healer. A press that has to go out before the healer is locked out is decided by the
+**healer's lockout risk**, not by the target's health. None of the rules measures that yet.
+
+**And the product taught the wrong lesson.** The overlap item is still a fault in
+`MatchAnalysisService::faults()`, so it shows on the game card's "Worth a look" and in the loss
+split, and *Overlapping defensives* above still reads "stacking doubled in the losses" without the
+correction under it. Chriso acted on it, against what `warrant.php` had already shown about his
+presses.
+
+#### Crawlordx with Doubletapz and LFG healers, four losses (3 Oct)
+
+| Game | MMR (us / them) | Their Gladiator seasons (ours: 1) | First death |
+|---|---|---|---|
+| 11:59, 45s | 1951 / 2012 | 1 | Doubletapz at 31s, to Bladestorm. Survival of the Fittest 1s before |
+| 12:01, 115s | 1930 / 2116 | 4 | Doubletapz at 106s, to Execute |
+| 12:14, 152s | 1968 / 2154 | 5 | Doubletapz at 134s, our healer locked. Survival of the Fittest 4s before |
+| 12:18, 33s | 1960 / 1962 | 7 | Doubletapz at 22s, to The Hunt |
+
+The enemy MMR was 61–186 higher in three of the four. Doubletapz was the first death in all
+four, and **in three of them none of our team's big defensives were down when the killing go
+started**: the go killed through a full set of answers, with his own defensive late or not
+pressed. That is the 30 Sep pattern again (*Our Hunter beside the others*). The healer was a
+different LFG player in two of the four.
 
 ### One hit, explained
 

@@ -437,6 +437,9 @@ How these are measured in practice:
   to break CC, and is not there when the real go comes.
 - **Read the health beside every defensive.** A defensive pressed at 70% health, or to break a CC,
   is a different decision from one pressed at 30%. The event timeline shows both.
+- **Before writing any finding about defensives, read them in the order set out in *Reading
+  defensives: three questions, in order* (below).** Overcommitment and overlap counts are where
+  that reading starts, never where it ends.
 
 ### Building one game's timeline
 
@@ -662,8 +665,8 @@ toward them. Weights are in `MatchAnalysisService::FAULT_WEIGHTS`; changing one 
 |---|---|---|
 | Our healer locked out when a teammate died, Medallion still on its 120s cooldown | our healer | 2 |
 | The same, Medallion available (unused, or used more than 120s before) | our healer | 1 |
-| A defensive stacked on one already up, 1s+ together, before the first death | whoever applied the **second** one | 1 |
-| A defensive spent while they were not in a go, before the first death | whoever spent it | 1 |
+| ~~A defensive stacked on one already up~~ | **removed 2026-10-03** | |
+| A defensive spent while they were not in a go, before the first death, **unless its owner was locked out within 4s after** (`beforeLockout`, version 7) | whoever spent it | 1 |
 | A go whose 6-second peak landed with their healer free (not locked 2s+, not kicked) | the team (burst timing) | 1 |
 | Their team had 3+ more Gladiator seasons | them | 2 |
 | Their MMR 50+ above ours | them | 1 |
@@ -677,7 +680,41 @@ and whose lockout was on their healer during each go and each burst.
 pressed a button for; a player who never pressed anything collects no share. The page says so,
 shows every item in a ledger, and prints the weights.
 
-**Known flaw (2026-09-30): the Medallion and overlap rules ignore whether the press was needed.**
+**The overlap rule was removed on 2026-10-03, after it changed how Chriso played and lost a game.**
+He held Pain Suppression because Barkskin was up, as the rule taught, then was locked out for nine
+seconds while the Druid died (`match-review-analysis.md`, "The Pain Suppression that was held").
+A second defensive is right or wrong by what is coming: the enemy go live and their crowd control
+ready for the healer. Neither a count nor the target's health sees that. Overlaps are still stored
+and counted as a description, never charged to anyone.
+
+**What a loss now shows instead: the answer sheet** (`RoundAnalysisService` version 7,
+`withAnswers()`). For our first death, from the start of the go that killed to the death:
+- **Their go:** offensive cooldowns and crowd control on us, as two separate lists.
+- **Each of our players' lockout in it:** the longest stretch, and the free moment just before it.
+  That moment is the last chance to press something, and it is where the 3 Oct decision was.
+- **Every button our team had:** defensives and the trinket, crowd control with a cooldown that
+  takes a player out (a peel), and interrupts. Each is sorted into *ready and never pressed*,
+  *pressed in their go*, or *on cooldown when it began*. Presses refused by crowd control, range
+  or line of sight ("Can't do that while fleeing") are shown as tried.
+
+Each player's buttons are built by `kits()`:
+- the spec's matchup profile, plus their own talents and PvP talents (Roar of Sacrifice is a
+  talent, not in the profile), plus anything they pressed that the data calls defensive or
+  crowd control;
+- a talent they did not take is dropped (`CooldownLedgerService::takes()`), so a Druid with
+  Mighty Bash is never shown with Incapacitating Roar ready;
+- cooldowns are the player's own, talent-resolved.
+
+The sheet lists what was there and does not say what would have won. "Ready" is ordered most
+direct first: the dying player's own defensives, the rest of the team's, peels, interrupts,
+Medallions. Charges are modelled as in the ledger.
+
+**Difficulty beside the result.** The card and the Improve page call a game *harder* when the
+enemy's MMR was 50+ above yours or they had 3+ more Gladiator seasons, *easier* the other way, and
+*even* otherwise (`GameCardService::difficultyOf()`, the loss rules' own thresholds). The Improve
+page shows your record in each.
+
+**Known flaw (2026-09-30): the Medallion rule ignores whether the press was needed.**
 On the 26 Sep losses, 9 of the healer's 14 points came from presses made with a teammate 2–4
 seconds from death. The overlap rule also counts Lichborne (no damage reduction) and Anti-Magic
 Shell (magic only) as defensives to stack on. Read a flagged press with `warrant.php` (below)
@@ -730,7 +767,164 @@ plus these, per game:
   - **Their cooldowns' time left** is their offensive casts' own `duration_seconds` (12s when
     null) minus elapsed. At `TAIL` (3s) or less, a danger press is LATE.
   - **Cost** is whether the player fell to `DANGER_HP` or died before the button was back. It uses
-    base cooldowns, so it overstates; it does not yet discriminate.
+    base cooldowns, so it overstates; it does not yet discriminate. `cdledger.php` (below) answers
+    the cost question with talent-resolved cooldowns.
+
+## Reading defensives: three questions, in order (2026-10-02)
+
+**Why this section exists.** The same mistake has been made three times. A review counts
+defensives (spent outside a go, stacked, Medallion gone at a death) and calls the count a fault.
+Chriso then asks whether the press was needed, and it usually was: the teammate was seconds
+from death. Then he asks what happened *next*, and that is where the game went. On 26 Sep the
+faults split blamed the healer for Medallions pressed with the DK 2–4 seconds from death. On 1 Oct
+the first draft said "hold the second Pain Suppression charge", and the data said the opposite. On
+2 Oct the pooled read listed "dying with the Medallion available" as a habit, without asking
+whether anything was on the player for a Medallion to break.
+
+`warrant.php` already answered the second question. The reviews skipped it because nothing
+made it a required step, and the stored per-game analysis (what `patternread.php`, `/wow/match-analysis`
+and the planned "Ask about this game" read) does not carry its verdicts. A review that reads only
+stored data cannot see them.
+
+**Ask these three questions, in this order, and never stop after the first:**
+
+1. **What was pressed, and when?** The counts: defensives per go, outside their goes, overlaps,
+   Medallion at a death. This says where to look, nothing more.
+2. **Was each press needed?** (`warrant.php`.) Time to live, what the Medallion broke, whether the
+   damage came. A press with the target under about 5 seconds from death is not a mistake to
+   fix. **A Medallion still up at a death means nothing unless a lockout was on that player at
+   the time:** it breaks CC; it does not reduce damage.
+3. **What did it leave for the next go?** (`cdledger.php`.) Even a needed press costs the
+   team the button until it is back. The question is how many big answers the team holds when
+   the next exchange starts, and whether the team chose to start that exchange.
+
+The conclusion lives at step 3, and so does the advice: **don't start an exchange with two or more
+big answers down; play for time until they are back.** That is Chriso's conclusion from the 1 Oct
+review, and the pooled ledger supports it (`match-review-analysis.md`, *The cooldown ledger*).
+
+### The cooldown ledger (`cdledger.php`)
+
+`php -d memory_limit=2G tools/match-review/cdledger.php [--bracket=3v3|shuffle|all] [--cds] [--games]`
+
+It reads stored per-game analysis only (no raw log), so it runs over every uploaded game.
+
+**Every cooldown is resolved from the player's own talents**, not the spell table's base value
+(rule 34). `payload.combatants` holds each player's `COMBATANT_INFO` talents and PvP talents.
+`ArenaLogService::resolveCombatantTalents()` turns them into talent entries, and their
+`spell_id`s, internal ones per rule 2, become the selection that
+`ModuleSpellReferenceService::effectiveCooldown()` / `effectiveCharges()` read. That is the same
+path the spell pages use for a saved build. `--cds` prints every resolved value against its base,
+so a wrong one can be caught. The first run read Fortifying Brew as 90–120s, not the base 360s,
+and Combustion as 60s, not 120s. **Check `--cds` after a patch.** A modifier the data cannot size
+silently leaves the base value.
+
+The spell is looked up by name, preferring the pressable copy (rule 3). The Medallion is fixed at
+120s.
+
+**What a side could press** is the spec's matchup-profile `answers` list (the default build), plus
+every defensive the player actually pressed in that game. **Big answers** are those on a 90s or
+longer cooldown. The Medallion is excluded from coverage, because it breaks CC rather than
+reducing damage.
+
+**The three reads:**
+
+| Read | Question | How |
+|---|---|---|
+| Coverage at their go | How many of our answers were back when their go started, and did it kill? | each answer is ready unless pressed within its resolved cooldown, counting charges; split by **big answers down: none, one, two or more**, and again **inside bands of game time** (before 60s, 60–120s, after 120s), because dampening makes late goes likelier to kill and late goes also find more down |
+| Going while down | Did their next go kill more often when we had last gone with big answers down? | at each of our goes, our big answers down; then whether their next go killed |
+| The trade | Was each press fair on cadence? | for each defensive of ours pressed inside their go: when it is back, minus when the **first** of the offensives that drew it is back. A charge still left counts as back at once. **Fair** if back within 15s (`FAIR_SLACK`), otherwise **expensive**. Then: did their next go come before it was back, and did it kill? |
+
+**Reading the trade.** Chriso's rule of thumb: a 60s Barkskin into a 60s Kingsbane and a 60s
+Combustion is a fair trade, because all three come back together. A 180s Pain Suppression into
+the same go is not: the next time those 60s cooldowns come round, Pain Suppression is not there.
+The pooled ledger bears out the cadence half. An expensive press was still down at their next go
+95% of the time, against 24% for a fair one. **The verdict on any single press does not predict
+the next go's outcome** (it killed 39% after expensive presses, 32% after fair ones, in 3v3). What
+predicts it is how many big answers are down in total. So judge one press with `warrant.php`, and
+judge the team's state with the coverage read.
+
+**Before the game.** The pre-game version of this is a cadence table: their offensives with
+their cooldowns, and our answers grouped by cooldown. Answer the 60s cooldowns with 60–90s
+answers. Keep the big ones for the go that also has CC on our healer or no peel. The Matchup Lab
+(`CooldownGraphService`) already pairs each threat with the answers that cover it, from default
+builds. It does not yet show cadence (which answer comes back in time for the threat's next use)
+or count how many big answers a team can lose before a go kills. That count is the ledger's
+finding: one.
+
+**What it cannot see:**
+- **A defensive's target is not stored**, so coverage is the team's, not the attacked player's.
+  Pain Suppression on the DK and Pain Suppression on the Monk read the same.
+- **Charges are modelled as independent**, each back one cooldown after its own press. In game a
+  second charge starts recharging only after the first is back, so two charges spent close
+  together come back later than modelled. Coverage is overstated, never understated.
+- **Default-build answers a player did not take** count as available whenever they were not
+  pressed. Any such answer understates "down".
+- **Whether going later would have moved their go.** The ledger shows that exchanges started with
+  two or more big answers down kill far more often. It cannot show that waiting would have
+  delayed their go, since their timing is theirs. Holding a go keeps our own offensive
+  cooldowns and positioning back for theirs, which is the reasoning, not a measurement.
+
+## Making the tags better from play (`tagaudit.php`, 2026-10-04)
+
+Every feature sees a button only through the spell data's tags. Three kinds of gap hide a button:
+- **No tag at all.** Vanish, Alter Time, Mass Invisibility, Evangelism and Skull Bash (not even
+  as an interrupt) were all untagged on 4 Oct. A death read listed "nothing pressed" while
+  Vanish went out.
+- **Tagged, but under the timeline's 45s floor** (`ArenaMomentService::MIN_COOLDOWN_SECONDS`).
+  Feint is tagged defensive and was still missing from 49 deaths, because the goes, the kill
+  read, the overlaps and the defensive counts only read cooldowns of 45s or more.
+- **Tagged as the wrong thing.** Heals on a rotation (Power Word: Radiance, Wild Growth) are
+  tagged defensive. Divine Hymn and Tranquility have no cooldown at all in the data.
+
+**The audit reads each spell by how it is pressed.** For every press it records:
+- whether the target was in danger: 35% or lower, or lost 25% in the 3s before. Read on the
+  teammate it went on when it was cast on one, otherwise on the caster;
+- whether the other team was in a go, or our own;
+- whether the caster was locked out;
+- the caster's damage done and damage taken in the 6s after, against the 6s before.
+
+A press is *defensive in context* when its target was in danger, or the other team was in a go
+and ours was not. It is *offensive in context* when our go was on and no one was in danger.
+
+**It proposes and never applies.** A heuristic misreads some spells. Alter Time "looks
+offensive" because Mages press it ahead of the enemy's burst rather than in danger. The
+classification files stay hand-promoted (rule 11):
+1. run the audit;
+2. read the proposals;
+3. edit `data/arena-logs/spell-classification/*.json` by hand;
+4. re-measure with `wow:sync --skip-ingest --fresh`.
+
+**Spells used both ways are read per press** (`RoundAnalysisService::classifyContextual()`,
+version 8). Vanish, Mass Invisibility, Master's Call, Nether Ward, Evangelism and Tremor Totem are
+listed in `data/arena-logs/spell-classification/contextual-cooldowns.json`. A press of one counts
+as **defensive** when its presser was in danger, or the other team was in a go and theirs was not.
+Otherwise it counts as **utility**, which is neither a defensive nor the start of a go. In the
+answer sheet such a spell is one of the player's answers once they have pressed it in the round.
+
+**Short defensives come in by a curated list, not a lower floor.**
+`data/arena-logs/spell-classification/short-defensives.json` holds Feint, Crimson Vial, Spell
+Reflection, Frenzied Regeneration and Fade. Each enters the timeline from a 15s cooldown
+(`ArenaMomentService::DEFENSIVE_FLOOR`). A blanket 15s floor for every defensive-tagged spell
+was tried first and reverted the same day. It brought in Blink and the Mage barriers, pressed
+every time they are back, and one game's "defensives before the first death" went from 11 to 48.
+With the list, that game reads 29: the extra presses are real Feints and Fades.
+
+**What was promoted on 2026-10-04**, by judgement from the audit and the spells' own jobs:
+- **Defensive:** Alter Time, Intervene, Leap of Faith.
+- **Offensive:** Summon Darkglare, Summon Infernal, Summon Demonic Tyrant, Tip the Scales, Aspect of
+  the Eagle.
+- **Removed from defensive:** Power Word: Radiance, Prayer of Mending, Swiftmend, Wild Growth,
+  Renewing Mist, Reversion, Unleash Life, Healing Stream Totem, Stormstream Totem, Mend Pet and
+  Chi Torpedo. They are heals on a rotation, or mobility.
+- **Left alone:** mobility spells, short rotational cooldowns, and spells whose job was unclear
+  (Abyssal Gaze, Cauterizing Flame).
+- **Still open:** Skull Bash is not flagged as an interrupt. That flag lives in the curated import
+  files and needs `import:spelldata`.
+
+The classification also feeds the spec kits and matchup profiles. After a change, bump the spell
+cache version, then run `wow:precompute-spell-kits` and `wow:build-matchup-profiles` (rules 17,
+19 and 31), then re-measure. Frost Mage's answers gained Alter Time this way, and Discipline's
+gained Leap of Faith and lost Power Word: Radiance.
 
 ## Measurement rules from earlier studies
 
@@ -779,6 +973,15 @@ Methods the first studies settled. Their results are in `match-review-analysis.m
   keep the old figures, and the loss split's "healer locked out at a death" item with them, until
   they are derived again. For a game read from your own log that is
   `php artisan wow:sync --fresh --skip-ingest`; an uploaded game has to be uploaded again.
+- **The stored per-game analysis carries the ledger's coverage, but not the warrant verdicts**
+  (2026-10-02; coverage added 2026-10-03). Since `RoundAnalysisService` version 6, every go
+  stores `cover`: the defending side's damage defensives back as it started, with cooldowns
+  resolved from each player's own talents by `CooldownLedgerService`, the same class
+  `cdledger.php` now reads through. Version 6 also stores `dispels` and each player's `debuffs`
+  from the other side, which the desktop app's Improve page measures against
+  (`ImprovementService`). The warrant read (question 2) still needs health and time to live,
+  which only the raw log has. It is not stored, so anything reading only stored data can say what a
+  defensive left for the next go but not whether it was needed.
 - **Zone-effect defensives measure only the caster.** Aura Mastery reads 0.07x.
 - **Health reads `?` for a player who is not being hit** — HP is sampled from damage events only.
   Reading it from heal events too would fix it.
