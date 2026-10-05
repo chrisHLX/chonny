@@ -218,7 +218,7 @@ test('the sidebar puts your own pages in one block, separate from the public sit
             'Your space', 'Newbie', 'Home', 'My Guides', 'My Characters', 'Profile &amp; settings',
             'Explore', 'Guides', 'Claude', '3v3 Comps',
             'Social', 'Friends', 'Guilds',
-            'Class data', 'Class Guides', 'Training', 'Class quizzes', 'The Brain',
+            'Class data', 'Class Guides', 'Training', 'Class quizzes', 'Arena basics check',
         ], false)
         ->assertDontSee('Your Profile')
         // Credits/XP live in the account menu now, which comes after everything above.

@@ -101,6 +101,7 @@ class PageUsage extends Component
      */
     private const WOW_COMPS_TAB_LABELS = [
         'playbook' => 'How to play it',
+        'basics' => 'Basics',
         'offensive' => 'Offensive Cooldowns',
         'defensive' => 'Defensive Cooldowns',
         'synergies' => 'Crowd Control',

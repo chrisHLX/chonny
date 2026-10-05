@@ -47,10 +47,13 @@ function playbookFixture(): array
     $hoj = playbookSpell(6, 'Hammer of Justice', ['dr_category' => 'Stun', 'cast_type' => 'instant', 'pvp_duration_seconds' => 5]);
     $cyclone = (new Spell)->forceFill(['id' => 7, 'spell_id' => 33786, 'name' => 'Cyclone', 'dr_category' => 'Disorient', 'cast_type' => 'cast', 'pvp_duration_seconds' => 5]);
     $mystery = playbookSpell(8, 'Mystery Strike', ['cooldown_seconds' => 90]);
-    // Kill-target control: Kidney Shot lands on the target in play, Binding Shot does not, and
+    // Kill-target control: players put Kidney Shot on the target and split on Maim, Binding Shot
+    // and Chaos Nova (range decides the first two), and
     // Mystery Bash has never been seen, so it comes from the kit.
     $kidney = playbookSpell(9, 'Kidney Shot', ['dr_category' => 'Stun', 'cast_type' => 'instant']);
-    $binding = playbookSpell(10, 'Binding Shot', ['dr_category' => 'Stun', 'cast_type' => 'instant']);
+    $binding = playbookSpell(10, 'Binding Shot', ['dr_category' => 'Stun', 'cast_type' => 'instant', 'range_yards' => '30 yards']);
+    $maim = playbookSpell(12, 'Maim', ['dr_category' => 'Stun', 'cast_type' => 'instant', 'range_yards' => '5 yards']);
+    $chaosNova = playbookSpell(13, 'Chaos Nova', ['dr_category' => 'Stun', 'cast_type' => 'instant']);
     $mysteryBash = playbookSpell(11, 'Mystery Bash', ['dr_category' => 'Stun', 'cast_type' => 'instant']);
 
     $offensive = ['offensive' => true, 'defensive' => false, 'label' => 'Offensive Buff'];
@@ -72,6 +75,8 @@ function playbookFixture(): array
             playbookEntry($cyclone),
             playbookEntry($kidney),
             playbookEntry($mysteryBash),
+            playbookEntry($maim),
+            playbookEntry($chaosNova),
         ], 3),
     ];
 
@@ -115,7 +120,7 @@ test('the healer lock joins each spec\'s usual combo, stuns first, and says what
         ->and($steps[1]['options'][0]['mi'])->toBe(1);
 });
 
-test('kill-target control comes from where it lands in play, then from the kit', function () {
+test('kill-target control comes from where players put it, then from the kit', function () {
     [$comp, $chain, $synergies] = playbookFixture();
     $pb = app(CompPlaybookService::class)->build($comp, [1 => 'healer'], $chain, $synergies);
 
@@ -123,7 +128,13 @@ test('kill-target control comes from where it lands in play, then from the kit',
 
     expect($keep->has('Kidney Shot'))->toBeTrue()
         ->and($keep['Kidney Shot']['share'])->toBeGreaterThan(0.5)
+        ->and($keep['Kidney Shot']['split'])->toBeFalse()
+        // Players split on Maim and Binding Shot; range settles it (Chriso): the melee one goes on
+        // the kill target the melee is already hitting, the ranged one reaches their healer.
+        ->and($keep['Maim']['split'])->toBeFalse()
         ->and($keep->has('Binding Shot'))->toBeFalse()
+        // Split with no range in the data: shown both ways.
+        ->and($keep['Chaos Nova']['split'])->toBeTrue()
         ->and($keep['Mystery Bash']['share'])->toBeNull()
         // The healer's own stun is in the lock, so it is not offered for the kill target too.
         ->and($keep->has('Hammer of Justice'))->toBeFalse();

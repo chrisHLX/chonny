@@ -23,7 +23,7 @@ class TrackController extends Controller
      * arbitrary strings into `page_view_events.slot`.
      */
     private const WOW_COMPS_TABS = [
-        'playbook', 'offensive', 'defensive', 'synergies', 'pvptalents',
+        'playbook', 'basics', 'offensive', 'defensive', 'synergies', 'pvptalents',
         'active', 'passive', 'rotation',
     ];
 

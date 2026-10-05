@@ -39,8 +39,9 @@
   log is discarded straight after) and every player's experience is looked up by a queued job. See
   `match-review-operations.md`, "Your analysis".
 - `/wow/comps` (was `/wow-comps`) — `WowComps`, the heaviest page. Tabs: **How to play it** (first
-  and default since 2026-10-05), Offensive/Defensive Cooldowns, Mobility, Crowd Control, PvP Talents,
-  Burst Window.
+  and default since 2026-10-05), **Basics**, Offensive/Defensive Cooldowns, Mobility, Crowd Control, PvP Talents,
+  Burst Window. Since 2026-10-05 the eight basics are their own **Basics** tab, so "How to play
+  it" starts with the team's plan (Chriso: people had to scroll past the basics to reach it).
   - **How to play it** (`CompPlaybookService`, `livewire/partials/comp-playbook.blade.php`) is a
     plain guide for a player new to arena, so someone can be sent to the page: eight basics (shown
     alone before anything is picked, with a link to the basics check), then for the three specs:
@@ -52,10 +53,15 @@
       Psychic Scream, so Jungle reads "Maim or Intimidation > Freezing Trap > Psychic Scream". One
       step per kind of control, stuns first; two players with the same kind are alternatives. A
       spec seen controlling a healer in under 10 goes falls back to the CC formula's pick.
-    - **Kill-target control is where each stun or silence lands in play:** listed when it lands on
-      the target at least 1.25x as often as on the healer (Kidney Shot 158 to 71), never when it
-      does not (Binding Shot 74 to 75, which the formula used to reserve). Seen under 20 times, the
-      kit's stuns and silences round it out. A run holding a kill-target stun is skipped for the lock.
+    - **Kill-target control is where players put each stun or silence, counted per player:** each
+      player with 5+ placements votes their share on the target, so one prolific player cannot
+      decide it (per cast, Rastic's Maim on the healer 108 to 36 outvoted Crawlordx's on the target
+      64 to 22). Mean vote 0.6+: kill target (Kidney Shot 0.62, Storm Bolt, Leg Sweep). 0.4–0.6:
+      split, settled by **range** (Chriso: the melee is already on the kill target, ranged control
+      reaches the healer): melee (10 yd or less) goes on the target (Maim 0.50), ranged on the healer
+      (Binding Shot 0.54). Split with no range in the data: shown **both ways** (Chaos Nova). Only
+      stuns and silences can be kill-target control; a healer's own stuns stay in its lock. Under 2 voters or 20 placements, the kit's stuns and silences round it out. A run
+      holding a kill-target stun is skipped for the lock; a healer's split stun stays in the lock.
     - **Not measured yet:** roots and Solar Beam's silence are not control in the goes, so a Balance
       Druid's "root, beam" cannot come from play.
     - "Never crowd control the player you are hitting" was removed as a basic (Chriso, 2026-10-05).

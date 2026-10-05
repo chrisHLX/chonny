@@ -71,8 +71,16 @@ class CompPlaybookService
     /** A control spell's placement is read from play once it has landed this often on a healer or a target. */
     private const MIN_PLACEMENTS = 20;
 
-    /** "On the kill target": landing there at least this many times as often as on the healer. */
-    private const KILL_TARGET_MARGIN = 1.25;
+    /** Players whose habit is counted before a spell's placement is read from play. */
+    private const MIN_VOTERS = 2;
+
+    /** The mean player's share on the target: at or above this, a kill-target spell; between
+     *  SPLIT_VOTE and this, players use it both ways and the guide shows both. */
+    private const TARGET_VOTE = 0.6;
+
+    private const SPLIT_VOTE = 0.4;
+
+    private const MELEE_YARDS = 10;
 
     private const MEDALLION = "Gladiator's Medallion";
 
@@ -133,7 +141,7 @@ class CompPlaybookService
 
             if ($data && ($data['healerGoes'] ?? 0) >= self::MIN_HEALER_GOES) {
                 $run = collect($data['healerRuns'] ?? [])->first(fn ($r) => collect($r['chain'])
-                    ->every(fn ($name) => $kit->has($name) && ! $this->onKillTarget($name)));
+                    ->every(fn ($name) => $kit->has($name) && ! $this->onKillTarget($name, $kit[$name]['spell'])));
             }
 
             if ($run) {
@@ -147,7 +155,7 @@ class CompPlaybookService
             // Too rarely seen: the formula's choice for this player, if it made one.
             foreach ($primary['sequence'] ?? [] as $step) {
                 if (($labelToIndex[$step['label']] ?? null) === $mi && $kit->has($step['spell']->display_name)
-                    && ! $this->onKillTarget($step['spell']->display_name)) {
+                    && ! $this->onKillTarget($step['spell']->display_name, $step['spell'])) {
                     $picked[] = ['mi' => $mi, 'entry' => $kit[$step['spell']->display_name], 'share' => null];
 
                     break;
@@ -165,7 +173,9 @@ class CompPlaybookService
 
         foreach ($slots->values() as $i => $group) {
             $options = $group->unique(fn ($p) => $p['entry']['spell']->display_name)
-                ->map(fn ($p) => ['spell' => $p['entry']['spell'], 'mi' => $p['mi'], 'share' => $p['share']])
+                ->map(fn ($p) => ['spell' => $p['entry']['spell'], 'mi' => $p['mi'], 'share' => $p['share'],
+                    'split' => in_array($p['entry']['drCategory'], ['Stun', 'Silence'], true)
+                        && $this->verdict($p['entry']['spell']->display_name, $p['entry']['spell']) === 'split'])
                 ->values()->all();
             $spell = $options[0]['spell'];
             $dr = $group->first()['entry']['drCategory'];
@@ -280,12 +290,12 @@ class CompPlaybookService
      * The formula's single reserved pick was wrong both ways (Chriso, 2026-10-05): it kept Binding
      * Shot for the kill target, which play splits evenly and good players open on the healer, and
      * Rogue/Mage/Druid lost Kidney Shot. So:
-     *  - a spell seen in enough goes is listed only if it lands on the target clearly more often
-     *    than on the healer (onKillTarget());
+     *  - a spell seen in enough goes is listed if players mostly put it on the target, or if they
+     *    are split (verdict()); a split spell can be in the healer lock too, marked both ways;
      *  - a spell too rarely seen is rounded out from the kit: a damage dealer's stun or silence,
      *    not curated as healer-only, not stealth-only.
      *
-     * @return array<int, array{spell: mixed, mi: int, share: ?float}>
+     * @return array<int, array{spell: mixed, mi: int, share: ?float, split: bool}>
      */
     private function killTargetControl(array $comp, callable $isHealer, array $lockNames): array
     {
@@ -297,18 +307,22 @@ class CompPlaybookService
                 $name = $spell->display_name;
 
                 if (! ($e['isSelected'] ?? true) || ! in_array($e['drCategory'], ['Stun', 'Silence'], true)
-                    || in_array($name, $lockNames, true) || isset($out[$name]) || $spell->requires_stealth) {
+                    || (in_array($name, $lockNames, true) && $this->verdict($name, $spell) !== 'split')
+                    || isset($out[$name]) || $spell->requires_stealth) {
                     continue;
                 }
 
-                $placed = $this->placement($name);
+                $verdict = $this->verdict($name, $spell);
 
-                if ($placed !== null) {
-                    if ($this->onKillTarget($name)) {
-                        $out[$name] = ['spell' => $spell, 'mi' => $mi, 'share' => $placed['target'] / max(1, $placed['healer'] + $placed['target'] + $placed['cross'])];
-                    }
-                } elseif (! $isHealer($mi) && $spell->chain_target !== 'healer') {
-                    $out[$name] = ['spell' => $spell, 'mi' => $mi, 'share' => null];
+                // A healer's stuns are its part of the healer lock, not ones to keep for the kill.
+                if ($isHealer($mi)) {
+                    continue;
+                }
+
+                if ($verdict === 'target' || $verdict === 'split') {
+                    $out[$name] = ['spell' => $spell, 'mi' => $mi, 'share' => $this->placement($name)['vote'], 'split' => $verdict === 'split'];
+                } elseif ($verdict === null && $spell->chain_target !== 'healer') {
+                    $out[$name] = ['spell' => $spell, 'mi' => $mi, 'share' => null, 'split' => false];
                 }
             }
         }
@@ -327,19 +341,56 @@ class CompPlaybookService
     {
         $seen = $this->goCooldowns()['control'][$name] ?? null;
 
-        return $seen && $seen['healer'] + $seen['target'] >= self::MIN_PLACEMENTS ? $seen : null;
+        return $seen && $seen['healer'] + $seen['target'] >= self::MIN_PLACEMENTS && ($seen['voters'] ?? 0) >= self::MIN_VOTERS
+            ? $seen : null;
     }
 
     /**
-     * Seen often enough, and on the target clearly more than on the healer. The margin is what
-     * keeps Binding Shot (healer 75, target 74 across every Hunter) out and Kidney Shot (target
-     * 158, healer 71) in.
+     * 'target', 'split', 'healer', or null when too rarely seen. Read from the per-player vote
+     * (wow:go-cooldowns), not the per-cast count: per cast, whoever plays most decides it, and
+     * Rastic's Maim on the healer (108 to 36) outvoted Crawlordx's on the target (64 to 22).
+     * Counted per player, Maim is split (0.50), Kidney Shot goes on the target (0.62), Hammer of
+     * Justice on the healer (0.17).
      */
-    private function onKillTarget(string $name): bool
+    private function verdict(string $name, $spell = null): ?string
     {
-        $seen = $this->placement($name);
+        $vote = $this->placement($name)['vote'] ?? null;
 
-        return $seen !== null && $seen['target'] >= self::KILL_TARGET_MARGIN * $seen['healer'];
+        $verdict = match (true) {
+            $vote === null => null,
+            $vote >= self::TARGET_VOTE => 'target',
+            $vote >= self::SPLIT_VOTE => 'split',
+            default => 'healer',
+        };
+
+        // Only a stun or silence holds through damage, so only those can belong to the kill target.
+        if ($verdict !== null && $spell && ! in_array($spell->dr_category, ['Stun', 'Silence'], true)) {
+            return 'healer';
+        }
+
+        // A split is settled by range (Chriso, 2026-10-05): a melee player is already standing
+        // on the kill target, so a melee stun goes there (Maim, Kidney Shot), and a ranged one
+        // reaches their healer from wherever you are (Binding Shot). Unknown range stays split.
+        if ($verdict === 'split' && ($melee = $this->isMelee($spell)) !== null) {
+            return $melee ? 'target' : 'healer';
+        }
+
+        return $verdict;
+    }
+
+    private function onKillTarget(string $name, $spell = null): bool
+    {
+        return $this->verdict($name, $spell) === 'target';
+    }
+
+    /** Same yardstick as CcFormulaService::isMeleeRange(): 10 yards or less. Null when unknown. */
+    private function isMelee($spell): ?bool
+    {
+        if (! $spell || ! preg_match('/(\d+)/', (string) $spell->range_yards, $m)) {
+            return null;
+        }
+
+        return (int) $m[1] <= self::MELEE_YARDS;
     }
 
     /**

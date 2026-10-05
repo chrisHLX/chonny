@@ -303,6 +303,10 @@
                     <x-mc-icon name="icon-compass" class="w-3.5 h-3.5"/>
                     How to play it
                 </button>
+                <button type="button" @click="selectTab('basics')" class="tab-btn flex items-center gap-1.5" :class="tab === 'basics' ? 'tab-active' : 'tab-inactive'" title="How a game of arena is won, in eight lines">
+                    <x-mc-icon name="icon-leaf" class="w-3.5 h-3.5"/>
+                    Basics
+                </button>
                 <button type="button" @click="selectTab('offensive')" class="tab-btn flex items-center gap-1.5" :class="tab === 'offensive' ? 'tab-active' : 'tab-inactive'" title="Real, arena-log-verified offensive cooldowns for this exact spec">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
                     Offensive Cooldowns
@@ -392,7 +396,10 @@
                  its own owner (class/spec) label — same "don't group by column, let each card
                  say who it belongs to" pattern as the Synergies boxes. --}}
             <div x-show="tab === 'playbook'" x-cloak>
-                @include('livewire.partials.comp-playbook')
+                @include('livewire.partials.comp-playbook', ['part' => 'plan'])
+            </div>
+            <div x-show="tab === 'basics'" x-cloak>
+                @include('livewire.partials.comp-playbook', ['part' => 'basics'])
             </div>
 
             @php

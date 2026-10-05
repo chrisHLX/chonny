@@ -212,7 +212,7 @@
         {{-- Training: class quizzes. Open by default since 2026-09-17 (new persist key), when the
              old module pages were hidden and this became the class quizzes' home. Always open while
              you are on one of its own pages. --}}
-        @php $onTrainingPage = request()->routeIs('training') || request()->routeIs('modules.*') || request()->routeIs('collection.index') || request()->routeIs('wow-quiz*') || request()->routeIs('strategy') || request()->routeIs('brain'); @endphp
+        @php $onTrainingPage = request()->routeIs('training') || request()->routeIs('modules.*') || request()->routeIs('collection.index') || request()->routeIs('wow-quiz*') || request()->routeIs('wow-basics'); @endphp
         <div x-data="{ open: $persist(true).as('nav_training_open_v2') }">
             <button type="button" @click="open = !open"
                     class="w-full flex items-center justify-between px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest hover:text-ink-muted transition-colors">
@@ -228,19 +228,13 @@
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                     Class quizzes
                 </a>
-                <a href="{{ route('strategy') }}" wire:navigate
-                   class="sidebar-item text-[12px] {{ request()->routeIs('strategy') ? 'active !text-accent' : '' }}">
+                <a href="{{ route('wow-basics') }}" wire:navigate
+                   class="sidebar-item text-[12px] {{ request()->routeIs('wow-basics') ? 'active !text-accent' : '' }}">
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Strategy
+                    Arena basics check
                 </a>
-                {{-- Moved here from Explore, 2026-09-24. It is a document you read to understand
-                     the model, which is what the rest of this section is; next to the comp tools
-                     it read as another tool. --}}
-                <a href="{{ route('brain') }}" wire:navigate
-                   class="sidebar-item text-[12px] {{ request()->routeIs('brain') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    The Brain
-                </a>
+                {{-- Strategy and The Brain left the sidebar on 2026-10-05 (Chriso). Both pages still
+                     work: the basics check links each answer to its section of /brain. --}}
                 {{-- Diagnostic, Quizzes and Progress are hidden (2026-09-17): they belong to the old
                      learning-module system. The routes still work; the links come back once class
                      quizzes are built out. See CLAUDE.md, "Old Training pages hidden". --}}

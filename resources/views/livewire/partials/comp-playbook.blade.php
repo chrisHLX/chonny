@@ -1,5 +1,7 @@
 {{-- "How to play it": WowComps' plain guide for a player new to arena (CompPlaybookService).
-     Expects $comp, $playbook (null until all three slots are filled), $drBadge, $openSpell.
+     Expects $comp, $playbook (null until all three slots are filled), $drBadge, $openSpell, and
+     optionally $part: 'plan' (the "How to play it" tab: the team's plan only, so it starts at the
+     top), 'basics' (the Basics tab: the eight lines), or both when absent (nothing picked yet).
      Offensive cooldowns and crowd control are separate sections on purpose (guide-writing.md):
      two jobs, often two players, and a reader looks for them separately. --}}
 @php
@@ -23,10 +25,12 @@
     };
 @endphp
 
+@php $part ??= 'all'; @endphp
 <div class="space-y-4">
+    @if ($part !== 'plan')
     {{-- The basics. Every line here is from the arena model (arena-structure.md) or a confirmed
          game fact (DR: full, half, then immune, reset after 20s; dr-categories-reference.md). --}}
-    <div class="linear-card p-5" x-data="{ open: {{ $playbook ? 'false' : 'true' }} }">
+    <div class="linear-card p-5" x-data="{ open: true }">
         <button type="button" @click="open = !open" class="w-full flex items-center justify-between text-left">
             <span>
                 <span class="text-[11px] uppercase tracking-wide text-gold font-semibold">New to arena?</span>
@@ -56,7 +60,10 @@
         </ol>
     </div>
 
-    @if (! $playbook)
+    @endif
+
+    @if ($part === 'basics')
+    @elseif (! $playbook)
         <div class="linear-card p-5 text-[13px] text-ink-muted">
             Pick a spec for all three slots to see how that team plays: who locks their healer, which buttons go together, and what to save.
         </div>
@@ -84,7 +91,7 @@
                                         @if ($oi > 0)
                                             <span class="text-[12px] text-ink-subtle">or</span>
                                         @endif
-                                        {!! $chip($o['spell'], $o['mi'], $who($o['mi'])) !!}
+                                        {!! $chip($o['spell'], $o['mi'], $who($o['mi']).($o['split'] ? ' · both ways' : '')) !!}
                                     @endforeach
                                     <span class="{{ $drBadge[$step['dr']] ?? 'badge-gray' }}">{{ $step['dr'] }}</span>
                                     @if ($step['seconds'])
@@ -141,10 +148,15 @@
             @if ($playbook['keep'])
                 <div class="flex flex-wrap items-center gap-2 mt-3">
                     @foreach ($playbook['keep'] as $k)
-                        {!! $chip($k['spell'], $k['mi'], $k['share'] !== null ? round($k['share'] * 100).'% on the target' : null) !!}
+                        {!! $chip($k['spell'], $k['mi'], $k['split'] ? 'both ways' : null) !!}
                     @endforeach
                 </div>
                 <p class="text-[12px] text-ink-muted mt-2">Stuns and silences hold through damage, so they keep your target still while you hit them. Land one as your cooldowns go out.</p>
+                @if (collect($playbook['keep'])->contains('split', true))
+                    <p class="text-[12px] text-ink-subtle mt-1">
+                        <span class="text-ink-muted">Both ways:</span> players are split on this one. Some open on their healer with it, some keep it for the kill. Pick one plan with your team, and do not spend it twice.
+                    </p>
+                @endif
             @else
                 <p class="text-[12px] text-ink-muted mt-2">None: in real games this team's control goes on their healer.</p>
             @endif

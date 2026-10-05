@@ -39,6 +39,9 @@ class BuildGoCooldowns extends Command
 
     public const PATH = 'data/comp-playbook/go-cooldowns.json';
 
+    /** Placements on a healer or a target a player needs before their habit counts as a vote. */
+    private const VOTE_MIN = 5;
+
     /** Seconds between one player's controls on the healer for them to be one run. */
     private const RUN_GAP = 6.0;
 
@@ -74,7 +77,7 @@ class BuildGoCooldowns extends Command
                         // someone else ("cross"). Pooled by spell across specs, since where a stun
                         // goes is the spell's job more than the spec's.
                         if (($link['cat'] ?? null) === 'control' && in_array($link['role'] ?? null, ['healer', 'target', 'cross'], true)) {
-                            $control[$link['spell']][$link['role']] = ($control[$link['spell']][$link['role']] ?? 0) + 1;
+                            $control[$link['spell']][$link['by']][$link['role']] = ($control[$link['spell']][$link['by']][$link['role']] ?? 0) + 1;
 
                             if ($link['role'] === 'healer' && $spec) {
                                 $onHealer[$spec][$link['by']][] = $link;
@@ -150,13 +153,34 @@ class BuildGoCooldowns extends Command
             'generatedAt' => now()->toDateString(),
             'rounds' => $rounds,
             'specs' => $specs,
-            'control' => collect($control)->sortKeys()->map(fn ($roles) => [
-                'healer' => $roles['healer'] ?? 0, 'target' => $roles['target'] ?? 0, 'cross' => $roles['cross'] ?? 0,
-            ])->all(),
+            'control' => collect($control)->sortKeys()->map(fn ($byPlayer) => $this->placement($byPlayer))->all(),
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)."\n");
 
         $this->info(count($specs).' specs from '.$rounds.' rounds -> '.self::PATH);
 
         return self::SUCCESS;
+    }
+
+    /**
+     * Where one spell lands, counted per player as well as per cast. Per cast, one player who
+     * plays a lot decides it: Rastic puts Maim on the healer 108 to 36 and Crawlordx on the target
+     * 64 to 22, and Rastic's count won. `vote` is the mean, over players with at least
+     * VOTE_MIN placements on a healer or a target, of each one's share on the target; `voters`
+     * is how many there were. A vote near the middle means players use it both ways.
+     *
+     * @param  array<string, array<string, int>>  $byPlayer  guid => role => count
+     */
+    private function placement(array $byPlayer): array
+    {
+        $sum = fn (string $role) => array_sum(array_map(fn ($r) => $r[$role] ?? 0, $byPlayer));
+        $shares = collect($byPlayer)
+            ->filter(fn ($r) => ($r['healer'] ?? 0) + ($r['target'] ?? 0) >= self::VOTE_MIN)
+            ->map(fn ($r) => ($r['target'] ?? 0) / (($r['healer'] ?? 0) + ($r['target'] ?? 0)));
+
+        return [
+            'healer' => $sum('healer'), 'target' => $sum('target'), 'cross' => $sum('cross'),
+            'voters' => $shares->count(),
+            'vote' => $shares->isEmpty() ? null : round($shares->avg(), 2),
+        ];
     }
 }
