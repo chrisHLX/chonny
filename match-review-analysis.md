@@ -1661,6 +1661,63 @@ has one. Every number above moved: Skylake 0.43 → 0.39 against 1.24 → 1.16; 
 two a minute to 0.62 against 2.19. `dispelread.php` was already right: it decides what is
 purifiable from Purify alone.
 
+### 5 Oct: Dijonhoney with two new players, and what "the basics" look like in a log
+
+Three 3v3 games on Holy Paladin with Chîll (Fire Mage) and Absolace (BM Hunter), both new to
+arena. Between games Chriso gave them one plan: *I Hammer of Justice their healer, you crowd
+control the other one and press Combustion and Bestial Wrath together.* All three lost; three games
+are a lead, not a pattern. Read with `basicsread.py` and `killread.php`.
+
+| Game | MMR (us / them) | Them | Result |
+|---|---|---|---|
+| 12:42, 325s | 1704 / 1802 | Havoc, Windwalker, Holy Paladin | Chîll died at 310s, Absolace at 324s |
+| 12:54, 608s | 1685 / 1845 | Devourer DH, Arms, Holy Paladin | **their Arms dead at 18s**, then a 3v2 lost at 576–608s |
+| 13:06, 166s | 1673 / 1660 | Unholy DK, Windwalker, Resto Druid | Chîll died at 157s (Touch of Death), Absolace at 166s |
+
+**The plan, followed once, worked at once.** 12:54: Hammer of Justice on their healer at 7.5s,
+Freezing Trap on her at 11.8s, Dragon's Breath at 11.3s, Combustion at 12.9s, Bestial Wrath at
+13.1s. The Warrior died at 17.6s. That go's best six seconds did 997k against 631k for the 27
+goes across the three games that killed nothing, and their healer was locked for six of them.
+At 12:42, before the plan, Combustion and Bestial Wrath were 6–7s apart every time, and their
+healer was locked for 0.0s in the peak of all nine of our goes.
+
+**Three things a new player does that the app does not check, because experienced players don't:**
+- **Crowd control on the player you are killing.** 12:42: three of the five Freezing Traps, three
+  Scatter Shots and six Dragon's Breaths went on the Windwalker, while the two DPS put 9.8M into
+  him. Only one Trap went on their healer.
+- **Big cooldowns spread out, and not pressed.** 13:06: Combustion at 22s and 91s. Bestial Wrath
+  (30s cooldown) was pressed once in 166s, at 123s. Polymorph was kicked twice.
+- **Casting into a ready kick.** 12:54: the DH kicked Chîll 12 times, five of them Polymorph.
+
+**The 3v2 (12:54, 18s to 608s).** Three against a Devourer DH and his Holy Paladin for nine and a
+half minutes:
+- Our damage went into the DH (about 2.3M a minute) for five minutes. He healed himself 10.6M over
+  the game and his healer gave him 11.2M; he fell to 27%, 15% and 11% in different minutes and
+  never died.
+- Their healer spent 165s of the game in our crowd control (Polymorph, Trap, Binding Shot, Hammer
+  of Justice), about 30% of the time. The DH, the only player hurting us, spent about 30s in it
+  and did 33.5M: 15.4M into Chîll, 15.4M into Dijonhoney.
+- At 5:00 the team turned on the healer: 2.8M into her in a minute, down to 14%, and she spent
+  Medallion and Divine Shield. The next minute the damage went back to the DH.
+- **Our healer ran out of mana first:** Dijonhoney 2% at 551s, theirs 16% at 593s. He healed 37M,
+  17.6M of it on Chîll. Dijonhoney was the first of ours to die, at 576s, to Cull.
+- **Done well:** Absolace kicked the DH's Consume and Devour eight times, and Combustion and Bestial
+  Wrath stayed within 2s of each other in four of the first five goes. From 285s on, four of
+  the five were 9–16s apart. That fits Chriso's "they stopped coordinating".
+
+**What it means for the product (Chriso's idea).** The app reads a player who already does the
+basics and asks what is left: defensives at their goes, dispels per chance, sessions against a
+range. These two players need a level below that, and each of the basics is something the log
+can check:
+- Did the two big cooldowns go out together?
+- Was their healer in crowd control when they did?
+- Did any of our crowd control land on the player we were hitting?
+- Did the player doing their damage ever get crowd controlled?
+- Did we change target when one would not die?
+
+What the log cannot say: what Chriso told them between games and when, and whether swapping to
+the healer at 5:00 and staying on her would have won. That would be [HYP].
+
 ### One hit, explained
 
 19:51 on 26 Sep, Unholy DK → Retribution Paladin, `Dread Plague (Erupt)`, **538,666**, overkill

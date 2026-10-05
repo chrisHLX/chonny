@@ -74,6 +74,7 @@ how a page looks needs only `wow:game-cards`.
 | A desktop view, `GameCardService`, `ImprovementService`, `CompLibraryService` | `wow:game-cards` (it notices the code change); `--fresh` redraws everything |
 | `MindCollectorLogs.ps1` | restart the app: tray icon, **Exit**, reopen |
 | Anything the website's `/wow/coach` shows | deploy (`./deploy.sh`); the next upload redraws a player's pages |
+| A re-measure, or a big batch of new games | `php -d memory_limit=2G artisan wow:go-cooldowns`, then commit `data/comp-playbook/go-cooldowns.json`: the site's comp page ("How to play it") reads which buttons each spec presses in its goes from it |
 
 ---
 
@@ -113,6 +114,7 @@ goes, the deaths, the answer sheets and the comp library.
 | `data/arena-logs/spell-classification/short-defensives.json` | defensives under the 45s floor that still count (Feint, Crimson Vial, Fade...) |
 | `spells.dr_category` (curated, `cc-synergies-overrides.txt`) | what counts as crowd control, and which kind |
 | `data/matchup-profiles/{class}/{spec}.json` | each spec's answers, control and interrupts (default build); the answer sheet starts here |
+| `data/comp-playbook/go-cooldowns.json` (`wow:go-cooldowns`) | what each spec presses in its goes, counted from every measured round; the comp page's burst reads it. Under 20 goes or 5 players, a spec is "not enough measured" |
 
 **Improve them from play with `tools/match-review/tagaudit.php`.** It sets every spell's tags
 beside how it is pressed, and writes proposals. It never applies them. The loop and the 2026-10-04

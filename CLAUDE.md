@@ -113,6 +113,7 @@ php artisan wow:sync                             # ingest + review + measure new
 php -d memory_limit=2G artisan wow:sync --skip-ingest --fresh   # re-measure everything after a measure changes (~8 min)
 php artisan wow:game-cards --dir="$APPDATA/MindCollector/cards" --notes="$APPDATA/MindCollector/notes.json"   # the app's pages
 php -d memory_limit=3G tools/match-review/tagaudit.php    # tags against how spells are pressed; proposes only
+php -d memory_limit=2G artisan wow:go-cooldowns          # what each spec presses in its goes -> the comp page's "How to play it"; commit the file
 ```
 
 **Machine-drafted guides:**

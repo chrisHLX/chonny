@@ -77,7 +77,7 @@
 @endphp
 
 <div class="max-w-7xl mx-auto px-4 py-8 space-y-5" x-data="{
-        tab: 'synergies',
+        tab: 'playbook',
         classPickerSlot: null,
         pendingSlot: null,
         pendingPreset: null,
@@ -297,6 +297,12 @@
             {{-- Tab bar — same .tab-btn/.tab-active pattern as Spell Explorer. Pure client-side
                  (Alpine `tab` state on the outer x-data), so switching never round-trips. --}}
             <div class="flex flex-wrap items-center gap-1 linear-card !hover:border-line p-1 w-fit">
+                {{-- First and default (2026-10-05): the plain guide for a player new to arena. The
+                     tabs after it are the reference it is built from. --}}
+                <button type="button" @click="selectTab('playbook')" class="tab-btn flex items-center gap-1.5" :class="tab === 'playbook' ? 'tab-active' : 'tab-inactive'" title="How this team plays, for a player new to arena">
+                    <x-mc-icon name="icon-compass" class="w-3.5 h-3.5"/>
+                    How to play it
+                </button>
                 <button type="button" @click="selectTab('offensive')" class="tab-btn flex items-center gap-1.5" :class="tab === 'offensive' ? 'tab-active' : 'tab-inactive'" title="Real, arena-log-verified offensive cooldowns for this exact spec">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
                     Offensive Cooldowns
@@ -385,6 +391,10 @@
                  members are merged into one flex-wrap grid, sorted by name, each card carrying
                  its own owner (class/spec) label — same "don't group by column, let each card
                  say who it belongs to" pattern as the Synergies boxes. --}}
+            <div x-show="tab === 'playbook'" x-cloak>
+                @include('livewire.partials.comp-playbook')
+            </div>
+
             @php
                 // Extracted to App\Support\CooldownTabs 2026-09-08 so the user guide builder's
                 // "go" palette asks the same question instead of reimplementing it — the rule and
@@ -1191,5 +1201,8 @@
         @endif
 
         <livewire:spell-detail-modal/>
+    @else
+        {{-- No spec picked yet: the basics alone, so a new player landing here has something to read. --}}
+        @include('livewire.partials.comp-playbook')
     @endif
 </div>

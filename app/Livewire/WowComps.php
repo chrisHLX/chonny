@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Enums\UserGuideType;
 use App\Http\Services\ArenaLogService;
 use App\Http\Services\CcFormulaService;
+use App\Http\Services\CompPlaybookService;
 use App\Http\Services\IntendedCompService;
 use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\SpecKitComputer;
@@ -970,9 +971,24 @@ class WowComps extends Component
         })->all();
     }
 
+    /**
+     * The "How to play it" tab: a plain guide to the three chosen specs for a player new to arena,
+     * built only from what this page already computed. Null until all three slots are filled.
+     * See CompPlaybookService.
+     */
+    public function getPlaybookProperty(): ?array
+    {
+        if (! $this->compIsComplete()) {
+            return null;
+        }
+
+        return app(CompPlaybookService::class)->build($this->comp, $this->specRoleMap, $this->suggestedChain, $this->synergies);
+    }
+
     public function render()
     {
         return view('livewire.wow-comps', [
+            'playbook' => $this->playbook,
             'classSpecs' => $this->classSpecs,
             'specRoleMap' => $this->specRoleMap,
             'presets' => $this->presets,

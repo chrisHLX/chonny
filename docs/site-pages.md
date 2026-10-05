@@ -38,8 +38,20 @@
   role). Auth, scoped to the viewer. Each game is measured at upload by `RoundAnalysisService` (the raw
   log is discarded straight after) and every player's experience is looked up by a queued job. See
   `match-review-operations.md`, "Your analysis".
-- `/wow-comps` — `WowComps`, the heaviest page. Tabs: Active Abilities, Offensive/Defensive
-  Cooldowns, Crowd Control, Mobility, Burst Window, Example CC Chains.
+- `/wow/comps` (was `/wow-comps`) — `WowComps`, the heaviest page. Tabs: **How to play it** (first
+  and default since 2026-10-05), Offensive/Defensive Cooldowns, Mobility, Crowd Control, PvP Talents,
+  Burst Window.
+  - **How to play it** (`CompPlaybookService`, `livewire/partials/comp-playbook.blade.php`) is a
+    plain guide for a player new to arena, so someone can be sent to the page: eight basics (shown
+    alone before anything is picked), then for the three specs: lock their healer (the first three
+    steps of `CcFormulaService`'s chain, each saying whether it can be kicked and whether damage
+    breaks it), the buttons to press together (what each spec presses in at least half its goes,
+    from `data/comp-playbook/go-cooldowns.json`, never guessed from the spell data), what to save
+    for the kill target, what never to put on it, defensives one at a time, kicks and peels.
+  - **Why counted from play:** the longest cooldown made Shattering Throw Arms's big button, and the
+    classifier's Buff/Spell label made Tricks of the Trade Subtlety's. A spec with too few measured
+    goes says so. It does not say which defensives can go on a teammate: the data has no
+    personal/external split (see `MatchupProfileService`).
 - `/guides/{slug}/edit` — `Guides\Builder` + `Guides\Palette`; `/g/{username}/{slug}` —
   `Guides\Show`; plus `/browse-guides` and `/claudes-comp-guides` (machine-drafted).
 - `/pvp-guides/{class}/{spec}` — `PvpGuides` shell over four panels (kit, burst, spells,
