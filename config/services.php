@@ -99,4 +99,10 @@ return [
         'feedback_webhook_url' => env('DISCORD_FEEDBACK_WEBHOOK_URL'),
     ],
 
+    // Where `wow:push-rounds` sends this PC's games (the desktop app's "Website key"), for /wow/coach.
+    'mindcollector' => [
+        'site' => env('MINDCOLLECTOR_SITE', 'https://www.mindcollector.com'),
+        'key' => env('MINDCOLLECTOR_KEY'),
+    ],
+
 ];

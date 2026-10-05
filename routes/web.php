@@ -188,6 +188,14 @@ Route::prefix('wow')->group(function () {
     Route::post('/game-review/assemble', [\App\Http\Controllers\ArenaUploadController::class, 'assemble'])
         ->middleware('auth')
         ->name('game-review.assemble');
+
+    // "Your coach": the desktop app's pages (games, Improve, Comps) for a signed-in player, built on
+    // the server from the games the app uploads. Private to the player: they name everyone in them.
+    // See App\Http\Controllers\CoachController.
+    Route::get('/coach', [\App\Http\Controllers\CoachController::class, 'index'])->middleware('auth')->name('coach');
+    Route::get('/coach/page/{file}', [\App\Http\Controllers\CoachController::class, 'page'])
+        ->where('file', '[a-z0-9-]+\.html')->middleware('auth')->name('coach.page');
+    Route::post('/coach/key', [\App\Http\Controllers\CoachController::class, 'key'])->middleware('auth')->name('coach.key');
     Route::get('/spells', SpellExplorer::class)->name('spells.explore');
     Route::get('/spell-finder', \App\Livewire\SpellFinder::class)->name('spell-finder');
     // One permanent, linkable page per spell. Renders the same <x-spells.detail> the site-wide

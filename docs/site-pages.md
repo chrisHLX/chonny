@@ -29,6 +29,10 @@
     Throughput comes from `CombatantThroughputService`, the first thing here to measure output at
     all; its field offsets are read from the end of each log line and every one was measured, not
     assumed.
+- `/wow/coach` — `CoachController`, **"Your coach"**: the desktop app's pages (each game, Improve,
+  Comps, Shuffle) for a signed-in player, built on the server from the games the app uploads with the
+  player's key (made on this page, shown once). Auth, read only from the viewer's own folder. One copy
+  of every page with the app; see `match-review.md`, "The same pages on the website".
 - `/wow/match-analysis` — `MatchAnalysis`, **"Your analysis"**: a player's own uploaded games combined
   into the wins-against-losses read (review table, who you played, what differed, a takeaway for your
   role). Auth, scoped to the viewer. Each game is measured at upload by `RoundAnalysisService` (the raw

@@ -45,6 +45,7 @@ class PageUsage extends Component
         'matchup_lab' => 'Matchup Lab',
         'game_review' => 'Game Review',
         'match_analysis' => 'Your analysis',
+        'coach' => 'Your coach',
         'game_review_analysis' => 'Game Review — raw analysis',
         'top_damage_rotations' => 'Top Burst Windows',
         'burst_window_talents' => 'Burst Window Talent View',

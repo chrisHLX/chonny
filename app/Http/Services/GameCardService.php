@@ -86,11 +86,19 @@ class GameCardService
                 $notesByGame[$lobby] ?? [],
                 $names->mapWithKeys(fn ($n) => [$n => $xp[$n] ?? null])->all(),
             ]));
+            $shuffle = $rounds->count() > 1 || str_contains($rounds->first()->bracket, 'Shuffle');
+            $first = $this->payload($rounds->first())['analysis'];
+            $me = collect($first['players'])->firstWhere('logger', true);
+            $won = $rounds->filter(fn (ArenaRound $r) => $this->payload($r)['analysis']['won'])->count();
             $entry = [
                 'playedAt' => (string) $rounds->first()->played_at,
                 'bracket' => $rounds->first()->bracket,
                 'notes' => $rounds->sum(fn (ArenaRound $r) => count($notesByRound[$r->id] ?? [])) + count($notesByGame[$lobby] ?? []),
                 'sig' => $sig,
+                // For a list of games that cannot read the archive (the website's /wow/coach).
+                'you' => $me ? explode('-', $me['name'])[0] : null,
+                'record' => [$won, $rounds->count() - $won],
+                'against' => $shuffle ? [] : collect($first['players'])->where('side', 'them')->pluck('spec')->sort()->values()->all(),
             ];
 
             if (($known[$lobby] ?? null) === $sig) {
@@ -99,7 +107,6 @@ class GameCardService
                 continue;
             }
 
-            $shuffle = $rounds->count() > 1 || str_contains($rounds->first()->bracket, 'Shuffle');
             $vm = $shuffle ? $this->shuffleModel($rounds, $xp, $notesByRound) : $this->gameModel($rounds->first(), $xp, $notesByRound);
             $vm['gameNotes'] = $this->gameNoteRows($notesByGame[$lobby] ?? []);
 
@@ -644,7 +651,7 @@ class GameCardService
 
     private function fileUrl(string $relative): string
     {
-        return 'file:///'.str_replace('\\', '/', storage_path('app/public/'.$relative));
+        return \App\Support\DesktopAsset::url($relative);
     }
 
     private function clock(float $seconds): string

@@ -45,6 +45,25 @@ The website reads the same `arena_rounds` payloads: `/wow/match-analysis` ("Your
 `MatchAnalysisService`) for any signed-in player, who can also upload games in the browser
 (`ArenaReviewIngestService`; the raw log is discarded once derived).
 
+**The same pages on the website: `/wow/coach` ("Your coach", from 5 Oct 2026).** One copy of every
+page, drawn for two readers:
+- **Upload:** with a key from `/wow/coach`, the app runs `wow:push-rounds` after each sync. Each
+  round's archived slice goes to `/api/coach/round` (`Api\CoachUploadController`), in 768 KB pieces
+  when larger, since nginx takes 1 MB a request. It goes through the same `ingestRound()` as
+  `wow:sync`, so the server measures it exactly as the PC does. The server never takes a measurement
+  from the client.
+- **Build:** `/api/coach/done` queues `BuildCoachPages`, which runs `wow:game-cards --web` into
+  `storage/app/coach/{user}`. A full build peaked at 324 MB, so it never runs inside a page view. It
+  must finish inside the queue's 90s `retry_after`.
+- **Serve:** the page lists the games, characters and comps from that folder's `index.json`, and
+  shows each page in a frame, read only from the viewer's own folder.
+- **What a change needs:** a page or service change reaches the app at the next card build and the
+  site at the next deploy. A measure change (`VERSION` up) makes the app send every round again,
+  because the server keeps no raw log.
+- **Limits:** a large round can need 170 MB to measure, so both upload endpoints raise the request's
+  128 MB limit (`CoachUploadController::roomToMeasure()`). Images go through `App\Support\DesktopAsset`:
+  `file:///` for the app, `/storage/...` for the site.
+
 **Nothing is calculated when a page opens.** A change to a measure needs a re-measure; a change to
 how a page looks needs only `wow:game-cards`.
 
@@ -54,6 +73,7 @@ how a page looks needs only `wow:game-cards`.
 | A classification file (it also feeds the site) | first bump the spell cache version, then `wow:precompute-spell-kits`, then `wow:build-matchup-profiles` (rules 17, 19, 31), then re-measure |
 | A desktop view, `GameCardService`, `ImprovementService`, `CompLibraryService` | `wow:game-cards` (it notices the code change); `--fresh` redraws everything |
 | `MindCollectorLogs.ps1` | restart the app: tray icon, **Exit**, reopen |
+| Anything the website's `/wow/coach` shows | deploy (`./deploy.sh`); the next upload redraws a player's pages |
 
 ---
 

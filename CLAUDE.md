@@ -305,8 +305,9 @@ fingerprint; falls back to a live compute when stale (6,964ms/3,042 queries vs 9
 ### Pages
 
 `/` Landing (signed-in players go to `/dashboard`) · `/wow-comps` (the heaviest page) ·
-`/wow/matchup-lab` · `/wow/game-review/{id?}` and `/wow/match-analysis` (a signed-in player's OWN
-games: auth, scoped to the viewer, never public) · the guide builder and readers
+`/wow/matchup-lab` · `/wow/game-review/{id?}`, `/wow/match-analysis` and `/wow/coach` (the desktop
+app's pages, uploaded by the app with the player's key) — a signed-in player's OWN games: auth,
+scoped to the viewer, never public · the guide builder and readers
 (`/guides/{slug}/edit`, `/g/{user}/{slug}`, `/browse-guides`, `/claudes-comp-guides`) ·
 `/pvp-guides/{class}/{spec}` · `/spell/{id}` · `/wow/quiz` · `/characters` · admin pages.
 What each does, and the decisions behind it: `docs/site-pages.md`.

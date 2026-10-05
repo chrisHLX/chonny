@@ -156,6 +156,13 @@ the desktop and in the Start menu, run this once:
    when you first set it, then new games after each sync. It uses robocopy, which copies only
    new and changed files and never deletes from the copy. The archive cannot be rebuilt once a
    combat log is gone, so this is the copy that matters. The moved logs are not included.
+   **"Website key"** sends your games to your account on the website after each sync, so the same
+   pages are at mindcollector.com/wow/coach when you are away from the PC. Make the key on that page
+   (it is shown once) and paste it here. The app runs `php artisan wow:push-rounds`, which sends each
+   game's archived slice of the log, in pieces when it is over 768 KB. The server measures it with the
+   same code and builds your pages in the background. A change to a measure
+   (`RoundAnalysisService::VERSION`) makes it send everything again, since the server keeps no raw log.
+   What has been sent is in `storage/app/pushed-rounds.json`.
 10. **A new patch or log format is flagged.** Each game records the combat log version and patch
     it was written in. When either differs from the one the measures were checked on, the tray
     says so once ("Check before trusting new games"). `docs/combat-log-ingest.md` says what to do.

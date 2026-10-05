@@ -657,7 +657,7 @@ class ImprovementService
         return ['label' => $label, 'rows' => collect($values)->map(fn ($v, $spell) => [
             'spell' => $spell,
             'value' => $v,
-            'icon' => ($s = $icons[$spell] ?? null)?->icon_name ? 'file:///'.str_replace('\\', '/', storage_path('app/public/spell-icons/'.$s->icon_name)) : null,
+            'icon' => \App\Support\DesktopAsset::icon(($icons[$spell] ?? null)?->icon_name),
         ])->values()->all()];
     }
 

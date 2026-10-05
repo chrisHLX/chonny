@@ -33,7 +33,8 @@ class BuildGameCards extends Command
         {--dir= : The folder to write the cards and index.json into. Prints the index when omitted.}
         {--user= : Whose games (id or email). Defaults to the only user who has any.}
         {--notes= : The notes file the desktop app writes, to put your notes on each game}
-        {--fresh : Redraw every card, not just the ones that changed}';
+        {--fresh : Redraw every card, not just the ones that changed}
+        {--web : Point images at /storage/... for the website (/wow/coach) instead of file:/// paths}';
 
     protected $description = 'Write a summary card for each synced game, for the MindCollector Logs desktop app';
 
@@ -43,6 +44,9 @@ class BuildGameCards extends Command
 
         if (! $user) {
             return self::FAILURE;
+        }
+        if ($this->option('web')) {
+            config(['desktop.web_assets' => true]);
         }
 
         $dir = $this->option('dir');

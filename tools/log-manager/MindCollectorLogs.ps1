@@ -382,6 +382,7 @@ function Invoke-SyncPass([bool]$manual) {
             Invoke-BackupPass
         }
         Add-CardsStep
+        Add-PushStep
         Start-NextStep
     } else {
         if ($manual) { Write-Activity 'Nothing new to read.' }
@@ -396,6 +397,16 @@ function Invoke-SyncPass([bool]$manual) {
 
 # Each card is its own file in cards\ beside a small index.json, and only cards whose game changed
 # are drawn again (see BuildGameCards). The app reads the index and opens a card's file on click.
+# Your games to the website (/wow/coach), once there is a key (MINDCOLLECTOR_KEY, from Settings).
+# The server measures and draws them itself; this only sends what it has not had yet.
+function Add-PushStep {
+    if (-not (Get-EnvValue 'MINDCOLLECTOR_KEY')) { return }
+    Add-Step 'Sending games to the website' 'wow:push-rounds' {
+        param($ok, $output, $data)
+        if (-not $ok) { Write-Activity 'Sending games to the website failed - they will go with the next sync.' }
+    }
+}
+
 function Add-CardsStep {
     Add-Step 'Updating game cards' ("wow:game-cards --dir=`"" + $script:CardsDir + "`" --notes=`"" + $script:NotesFile + "`"") {
         param($ok, $output, $data)
@@ -1316,6 +1327,19 @@ function Add-FolderRow([string]$label, [string]$hint, [string]$value) {
 $txtWow = Add-FolderRow "WoW's Logs folder" 'Where WoW writes WoWCombatLog-*.txt. Saved to .env as WOW_COMBATLOG_PATH.' ((Get-WowLogsDir) -as [string])
 $txtArchive = Add-FolderRow 'Game archive' 'Where each game is stored once read (raw/ + metadata/). Saved to .env as ARENA_LOG_ARCHIVE_PATH. Changing it does not move games already there.' (Get-ArchiveDir)
 $txtMove = Add-FolderRow 'Move WoW logs to' "Where a combat log goes once all of it is archived, so WoW's folder stays empty." $script:Settings.MoveTo
+# A text row like a folder row, without the Browse button.
+function Add-TextRow([string]$label, [string]$hint, [string]$value) {
+    $l = New-Object Windows.Forms.Label
+    $l.Text = $label; $l.AutoSize = $true; $l.Margin = New-Object Windows.Forms.Padding(0, 10, 8, 0)
+    $t = New-Object Windows.Forms.TextBox
+    $t.Text = $value; $t.Dock = 'Fill'; $t.BackColor = $C.Raised; $t.ForeColor = $C.Ink; $t.BorderStyle = 'FixedSingle'; $t.Margin = New-Object Windows.Forms.Padding(0, 6, 8, 0)
+    $h = New-Object Windows.Forms.Label
+    $h.Text = $hint; $h.AutoSize = $true; $h.ForeColor = $C.Muted; $h.Margin = New-Object Windows.Forms.Padding(0, 2, 0, 6)
+    $grid.Controls.Add($l); $grid.Controls.Add($t); $grid.Controls.Add((New-Object Windows.Forms.Label))
+    $grid.Controls.Add((New-Object Windows.Forms.Label)); $grid.Controls.Add($h); $grid.Controls.Add((New-Object Windows.Forms.Label))
+    return $t
+}
+$txtKey = Add-TextRow 'Website key' 'Sends your games to mindcollector.com/wow/coach after each sync, to review them away from the PC. Make the key on that page. Saved to .env as MINDCOLLECTOR_KEY. Leave empty to keep them on this PC.' ((Get-EnvValue 'MINDCOLLECTOR_KEY') -as [string])
 $txtBackup = Add-FolderRow 'Back up games to' 'A second copy of the game archive and your notes, refreshed after each sync: another drive or a cloud-synced folder. Leave empty for none.' $script:Settings.BackupTo
 
 function New-Check([string]$text, [bool]$checked) {
@@ -1348,6 +1372,10 @@ $btnSave.Add_Click({
             }
         }
         $backupChanged = $backup -ne $script:Settings.BackupTo
+        $key = $txtKey.Text.Trim()
+        if ($key -and $key -notmatch '^mc_[A-Za-z0-9]{40}$') { throw 'That is not a website key: it starts mc_ and is 43 characters. Make one on mindcollector.com/wow/coach.' }
+        $keyChanged = $key -ne [string](Get-EnvValue 'MINDCOLLECTOR_KEY')
+        if ($keyChanged) { Set-EnvValue 'MINDCOLLECTOR_KEY' $key }
         $archiveChanged = (Get-ArchiveDir) -ne $txtArchive.Text
         if ($txtWow.Text -ne (Get-WowLogsDir)) { Set-EnvValue 'WOW_COMBATLOG_PATH' $txtWow.Text }
         if ($archiveChanged) {
@@ -1367,6 +1395,8 @@ $btnSave.Add_Click({
         if ($archiveChanged) { Load-Matches }
         # The first copy of everything, straight away; later ones follow each sync.
         if ($backup -and $backupChanged) { Write-Activity "Backing up the game archive to $backup..."; Invoke-BackupPass }
+        # A new key: send what the website does not have yet, straight away.
+        if ($key -and $keyChanged) { Add-PushStep; Start-NextStep }
     } catch {
         [Windows.Forms.MessageBox]::Show($_.Exception.Message, 'MindCollector Logs') | Out-Null
     }

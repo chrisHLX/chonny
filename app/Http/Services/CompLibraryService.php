@@ -425,8 +425,7 @@ class CompLibraryService
         $icons = $this->icons->for(array_map(fn ($r) => $spell($r['label']), $rows));
 
         return array_map(fn ($r) => $r + [
-            'icon' => ($s = $icons[$spell($r['label'])] ?? null)?->icon_name
-                ? 'file:///'.str_replace('\\', '/', storage_path('app/public/spell-icons/'.$s->icon_name)) : null,
+            'icon' => \App\Support\DesktopAsset::icon(($s = $icons[$spell($r['label'])] ?? null)?->icon_name),
             'tip' => $s ? $this->tip($s->name) : null,
         ], $rows);
     }

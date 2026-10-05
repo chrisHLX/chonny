@@ -42,6 +42,8 @@ class ArenaUploadController extends Controller
             'round' => ['required', 'file', 'max:12288'],
         ]);
 
+        // The biggest rounds need more than a request's default 128 MB to measure.
+        Api\CoachUploadController::roomToMeasure();
         $raw = file_get_contents($request->file('round')->getRealPath());
 
         if ($raw === false) {

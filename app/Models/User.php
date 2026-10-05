@@ -40,7 +40,25 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'coach_token_hash',
     ];
+
+    /**
+     * A new key for the desktop app to upload this player's games with (/api/coach), replacing any
+     * earlier one. Returned once; only its hash is stored.
+     */
+    public function issueCoachToken(): string
+    {
+        $token = 'mc_'.\Illuminate\Support\Str::random(40);
+        $this->forceFill(['coach_token_hash' => hash('sha256', $token), 'coach_token_at' => now()])->save();
+
+        return $token;
+    }
+
+    public static function forCoachToken(?string $token): ?self
+    {
+        return $token ? static::where('coach_token_hash', hash('sha256', $token))->first() : null;
+    }
 
     /**
      * Get the attributes that should be cast.

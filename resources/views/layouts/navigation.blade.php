@@ -152,6 +152,17 @@
             Game Review
         </a>
 
+        {{-- The desktop app's pages for your own games, uploaded by the app. See CoachController. --}}
+        @auth
+            <a href="{{ route('coach') }}"
+               class="sidebar-item {{ request()->routeIs('coach') ? 'active' : '' }}">
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z"/>
+                </svg>
+                Your coach
+            </a>
+        @endauth
+
         @auth
             <p class="px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Social</p>
 
