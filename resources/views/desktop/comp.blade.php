@@ -25,6 +25,22 @@
     .who td { padding: 2px 14px 2px 0; }
     .arrow { color: #52525F; width: 14px; }
     .sub { margin: 2px 0 8px; }
+    /* A spell you can click for its tooltip. */
+    tr.spell td { cursor: pointer; }
+    tr.spell:hover td { background: #18181E; }
+    .sp { border-bottom: 1px dotted #52525F; }
+    tr.tip td { padding: 0 0 6px 0; border-top: 0 !important; }
+    .tipbox { background: #18181E; border: 1px solid #2C2C38; border-radius: 4px; padding: 6px 9px; font-size: 12px; color: #C9C9D2; line-height: 1.45; }
+    .tipbox .facts { color: #E8B84B; font-size: 11.5px; margin-top: 3px; }
+    /* Their usual go, in sentences. */
+    .usual { border-color: #6B4E1A; background: #1E150A; margin-bottom: 12px; }
+    .usual .line { margin: 3px 0; }
+    /* A crowd-control run: numbered steps, each with whom it landed on. */
+    .run { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #1E1E26; }
+    .run .head2 { font-size: 11.5px; color: #8A8A9A; margin-bottom: 2px; }
+    .steps td { padding: 3px 0; vertical-align: middle; }
+    .steps td.num { width: 20px; color: #E8B84B; font-weight: 600; }
+    .steps td.on { text-align: right; white-space: nowrap; padding-left: 10px; }
 </style>
 <script>
     // A game's detail row opens and closes under it. IE11: no classList on table rows.
@@ -38,20 +54,37 @@
 </head>
 <body>
 
-{{-- A list of label/value rows, with icons where the label is a spell. --}}
+{{-- A list of label/value rows, with icons where the label is a spell. A spell with a tooltip
+     is a clickable row; its tooltip opens in a row under it. --}}
 @php
-    $list = function (array $rows, string $empty = 'None seen.') {
+    $tipN = 0;
+    // One spell's row (its cells after the name in $after) and its hidden tooltip row.
+    $spellRow = function (array $r, string $after, int $cols, string $lead = '') use (&$tipN) {
+        $icon = ! empty($r['icon']) ? '<img class="spell-ic" src="'.e($r['icon']).'">' : '';
+        if (empty($r['tip'])) {
+            return '<tr>'.$lead.'<td>'.$icon.e($r['label']).'</td>'.$after.'</tr>';
+        }
+        $id = 'tip'.(++$tipN);
+        $tip = $r['tip'];
+
+        return '<tr class="spell" onclick="toggle(\''.$id.'\')">'.$lead.'<td>'.$icon.'<span class="sp">'.e($r['label']).'</span></td>'.$after.'</tr>'
+            .'<tr class="tip" id="'.$id.'" style="display: none"><td colspan="'.$cols.'"><div class="tipbox">'
+            .($tip['text'] ? e($tip['text']) : '').($tip['facts'] ? '<div class="facts">'.e($tip['facts']).'</div>' : '')
+            .'</div></td></tr>';
+    };
+    $list = function (array $rows, string $empty = 'None seen.') use ($spellRow) {
         if (! $rows) {
             return '<div class="muted small">'.e($empty).'</div>';
         }
         $html = '<table class="rows">';
         foreach ($rows as $r) {
-            $icon = ! empty($r['icon']) ? '<img class="spell-ic" src="'.e($r['icon']).'">' : '';
-            $html .= '<tr><td>'.$icon.e($r['label']).'</td><td class="v">'.e($r['value']).'</td></tr>';
+            $html .= $spellRow($r, '<td class="v">'.e($r['value']).'</td>', 2);
         }
 
         return $html.'</table>';
     };
+    $roleChip = ['your healer' => 'warn', 'their kill target' => 'bad', 'your other DPS' => 'neutral'];
+    $b = fn (array $spells) => implode(' with ', array_map(fn ($s) => '<b>'.e($s).'</b>', $spells));
     $g = $c['goes'];
     $d = $c['deaths'];
     $t = $c['trading'];
@@ -86,6 +119,30 @@
 {{-- ============================== their goes --}}
 <div class="section">
     <div class="label">Their goes <span class="aside">{{ $g['count'] }} in all, {{ $g['perGame'] }} a game{{ $g['firstAt'] !== null ? ', the first at '.$g['firstAt'].'s (median)' : '' }}. Killed one of you: {{ $g['killed'] }}</span></div>
+    @php $u = $g['usual']; @endphp
+    @if ($g['count'])
+        <div class="box usual">
+            <div class="label" style="color: #E8B84B">What to expect</div>
+            <div class="line">&bull; They go {{ $g['perGame'] == 1 ? 'once' : $g['perGame'].' times' }} a game{{ $g['firstAt'] !== null ? ', the first at about '.$g['firstAt'].'s' : '' }}.</div>
+            @if ($u['set'])
+                <div class="line">&bull; Their go is usually {!! $b($u['set']['spells']) !!} <span class="muted">({{ $u['set']['n'] }} of {{ $g['count'] }} goes)</span>.</div>
+            @endif
+            @if ($u['chain'])
+                <div class="line">&bull; Their crowd control that repeats most:
+                    @foreach ($u['chain']['steps'] as $st)
+                        {{ $loop->first ? '' : 'then ' }}<b>{{ $st['label'] }}</b> on {{ $st['on'] }}{{ $loop->last ? '' : ',' }}
+                    @endforeach
+                    <span class="muted">({{ $u['chain']['n'] }} goes)</span>.</div>
+            @endif
+            @if ($u['healerCc'])
+                <div class="line">&bull; On your healer most: {!! implode(' and ', array_map(fn ($s) => '<b>'.e($s).'</b>', $u['healerCc'])) !!}.</div>
+            @endif
+            @if ($u['target'])
+                <div class="line">&bull; They went on <b>{{ $u['target']['who'] }}</b> most <span class="muted">({{ $u['target']['n'] }} of {{ $g['count'] }})</span>, and {{ $u['kills'] }} of their {{ $g['count'] }} goes killed one of you.</div>
+            @endif
+            <div class="small muted" style="margin-top: 4px">Click any spell below for what it does.</div>
+        </div>
+    @endif
     <table class="two"><tr>
         <td class="col left"><div class="box">
             <div class="label">Offensive cooldowns <span class="aside">share of their goes with it</span></div>
@@ -96,8 +153,19 @@
             @endif
         </div></td>
         <td class="col right"><div class="box">
-            <div class="label">Crowd control on you <span class="aside">runs seen in 2+ goes</span></div>
-            {!! $list($g['chains'], 'No chain repeated in two goes.') !!}
+            <div class="label">Crowd control on you <span class="aside">the same order seen in 2+ of their goes</span></div>
+            @forelse ($g['chains'] as $ch)
+                <div class="run">
+                    <div class="head2">Seen in <b style="color: #F0F0F2">{{ $ch['n'] }} goes</b></div>
+                    <table class="steps" style="width: 100%">
+                        @foreach ($ch['steps'] as $st)
+                            {!! $spellRow($st, '<td class="on"><span class="chip '.($roleChip[$st['on']] ?? 'neutral').'">'.e($st['on']).'</span></td>', 3, '<td class="num">'.$loop->iteration.'</td>') !!}
+                        @endforeach
+                    </table>
+                </div>
+            @empty
+                <div class="muted small">No order of crowd control repeated in two goes.</div>
+            @endforelse
             <div class="label" style="margin-top: 10px">On your healer</div>
             {!! $list($g['onHealer']) !!}
             <div class="label" style="margin-top: 10px">Whom their goes were on</div>

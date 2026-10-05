@@ -80,7 +80,12 @@ class CompLibraryTest extends TestCase
         $this->assertStringContainsString('healed by Holy Priest (1)', $page);
         $this->assertStringContainsString('Restoration Druid (1)', $page);
         $this->assertStringContainsString('Army of the Dead + Avatar 100% (2 of 2)', $page, 'the cooldowns they press together');
-        $this->assertStringContainsString('Storm Bolt > healer → Strangulate > healer 2 goes', $page, 'the crowd-control run seen in both goes');
+        // The crowd-control run seen in both goes, as numbered steps with whom each landed on.
+        $this->assertStringContainsString('Seen in 2 goes 1 Storm Bolt your healer 2 Strangulate your healer', $page);
+        // And in the summary that opens the section.
+        $this->assertStringContainsString('They go once a game, the first at about 8s.', $page);
+        $this->assertStringContainsString('Their go is usually Army of the Dead with Avatar (2 of 2 goes) .', $page);
+        $this->assertStringContainsString('Their crowd control that repeats most: Storm Bolt on your healer, then Strangulate on your healer (2 goes) .', $page);
         $this->assertStringContainsString('Whom their goes were on Balance Druid 100% (2 of 2)', $page);
         $this->assertStringContainsString('Yours, in 1 loss Balance Druid 100% (1 of 1)', $page);
         $this->assertStringContainsString('Your healer locked out at it: 100% (1 of 1)', $page);

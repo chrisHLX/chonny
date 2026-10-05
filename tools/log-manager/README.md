@@ -124,12 +124,17 @@ the desktop and in the Start menu, run this once:
    any healer (exact three-spec teams barely repeat; the DPS pair is how comps are named, and TSG
    is a Warrior and a Death Knight whoever heals). Nicknames come from the repo's own guide titles.
    3v3, Solo Shuffle and 2v2 are separate comps, never pooled: a shuffle team is three strangers
-   re-dealt every round and does not play like a premade.
+   re-dealt every round and does not play like a premade. The **Comps** tab lists 3v3 comps and
+   the **Shuffle** tab Solo Shuffle ones (2v2 comps are built but not listed).
    The list follows the character picker and shows that character's games and record against
-   each. A comp's page reads every game against it, on any character:
-   - **their goes:** how many a game, when the first comes, the offensive cooldowns in them and
-     which they press together, their crowd-control chains on you that repeated, what they put on
-     your healer, and whom the goes were on;
+   each. A comp's page reads every game against it, on any character. **Click any spell** for
+   its tooltip: the description the site shows for it, its cooldown and its arena duration.
+   - **their goes:** opens with **What to expect**, the section in a few sentences (their usual
+     pair of cooldowns, the crowd control that repeats most, what they put on your healer, whom
+     they go for). Then the offensive cooldowns in their goes and which they press together, their
+     crowd control on you in the same order in 2+ goes (numbered steps, each marked with whom it
+     landed on: your healer, their kill target, or your other DPS), what they put on your healer,
+     and whom the goes were on;
    - **who dies:** yours and theirs, killing blows, and whether your healer was locked out;
    - **defensives traded:** what they answer your goes with, what their goes force from you, and
      how often a go of theirs killed with your big defensives up or down;

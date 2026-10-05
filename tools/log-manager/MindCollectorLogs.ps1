@@ -692,16 +692,23 @@ function Show-Improve {
 
 # The Comps page: every enemy comp you have met (the picked character's only, unless "All
 # characters"), most games first; the selected one's page on the right.
+# The Comps tab lists 3v3 comps and the Shuffle tab Solo Shuffle ones: the same page, one bracket
+# each (CompLibraryService keys a shuffle comp 'shuffle:...' and a 2v2 one '2v2:...').
+$script:CompBracket = '3v3'
+
 function Update-CompList {
     if (-not $script:CompList) { return }
     $pick = [string]$script:Settings.Character
     $selected = if ($script:CompList.SelectedItems.Count) { [string]$script:CompList.SelectedItems[0].Tag } else { $null }
-    $rows = @($script:Comps | Where-Object { -not $pick -or $_.Characters.ContainsKey($pick) } | Sort-Object @{ Expression = { if ($pick) { $_.Characters[$pick].Games } else { $_.Games } }; Descending = $true }, @{ Expression = 'Last'; Descending = $true })
+    $inBracket = if ($script:CompBracket -eq 'shuffle') { { $_.Key -like 'shuffle:*' } } else { { $_.Key -notlike '*:*' } }
+    $rows = @($script:Comps | Where-Object $inBracket | Where-Object { -not $pick -or $_.Characters.ContainsKey($pick) } | Sort-Object @{ Expression = { if ($pick) { $_.Characters[$pick].Games } else { $_.Games } }; Descending = $true }, @{ Expression = 'Last'; Descending = $true })
     $script:CompList.BeginUpdate()
     $script:CompList.Items.Clear()
     # Not $c: PowerShell names ignore case, and $c would hide the colour table $C.
     foreach ($cp in $rows) {
-        $item = New-Object Windows.Forms.ListViewItem($(if ($cp.Nick) { "$($cp.Nick)  $($script:Dot)  $($cp.Name)" } else { $cp.Name }))
+        # The tab already says the bracket, so the name drops its 'Solo Shuffle: ' prefix.
+        $name = if ($cp.Name -match '^[^:]+:\s*(.+)$') { $Matches[1] } else { $cp.Name }
+        $item = New-Object Windows.Forms.ListViewItem($(if ($cp.Nick) { "$($cp.Nick)  $($script:Dot)  $name" } else { $name }))
         # The picked character's own games and record; every character's with "All characters".
         $mine = if ($pick) { $cp.Characters[$pick] } else { $cp }
         [void]$item.SubItems.Add([string]$mine.Games)
@@ -712,7 +719,8 @@ function Update-CompList {
     }
     if ($selected) { foreach ($it in $script:CompList.Items) { if ($it.Tag -eq $selected) { $it.Selected = $true; break } } }
     $script:CompList.EndUpdate()
-    $script:CompCount.Text = "$($rows.Count) comp(s), grouped by their two DPS specs with any healer. Each comp's page reads every game you played against it, on any character."
+    $bracketText = if ($script:CompBracket -eq 'shuffle') { 'Solo Shuffle' } else { '3v3' }
+    $script:CompCount.Text = "$($rows.Count) $bracketText comp(s), grouped by their two DPS specs with any healer. Each comp's page reads every game you played against it, on any character."
     if (-not $script:CompList.SelectedItems.Count) {
         $path = Join-Path $script:StateDir 'comp-empty.html'
         $msg = if ($rows.Count) { 'Pick a comp to see how it played against you: its goes, its crowd control on you, who died, and how defensives were traded.' } else { 'The comp library is built with the game cards after a sync.' }
@@ -1365,16 +1373,25 @@ $btnSave.Add_Click({
 })
 
 # Nav buttons switch pages
-$pages = [ordered]@{ 'Matches' = $pageMatches; 'Improve' = $script:PageImprove; 'Comps' = $script:PageComps; 'Activity' = $pageActivity; 'Settings' = $pageSettings }
+# Comps and Shuffle share one panel; CompBracket decides which comps it lists.
+$pages = [ordered]@{ 'Matches' = $pageMatches; 'Improve' = $script:PageImprove; 'Comps' = $script:PageComps; 'Shuffle' = $script:PageComps; 'Activity' = $pageActivity; 'Settings' = $pageSettings }
 $navButtons = @{}
 function Show-Page([string]$name) {
+    # Hide every panel first, then show the one picked: two tabs share a panel.
+    foreach ($k in $pages.Keys) { $pages[$k].Visible = $false }
+    $pages[$name].Visible = $true
     foreach ($k in $pages.Keys) {
-        $pages[$k].Visible = ($k -eq $name)
         $navButtons[$k].ForeColor = $(if ($k -eq $name) { $C.Gold } else { $C.Muted })
         $navButtons[$k].FlatAppearance.BorderColor = $(if ($k -eq $name) { $C.Gold } else { $C.Bg })
     }
     if ($name -eq 'Improve') { Show-Improve }
-    if ($name -eq 'Comps') {
+    if ($name -eq 'Comps' -or $name -eq 'Shuffle') {
+        $bracket = if ($name -eq 'Shuffle') { 'shuffle' } else { '3v3' }
+        if ($script:CompBracket -ne $bracket) {
+            $script:CompBracket = $bracket
+            # A comp picked on the other tab is not in this list.
+            $script:CompList.SelectedItems.Clear()
+        }
         # Room for the comp names; the page takes the rest.
         if (-not $script:CompSplitLaidOut -and $script:CompSplit.Width -gt 0) { $script:CompSplit.SplitterDistance = [Math]::Min(560, [int]($script:CompSplit.Width * 0.4)); $script:CompSplitLaidOut = $true }
         Update-CompList
