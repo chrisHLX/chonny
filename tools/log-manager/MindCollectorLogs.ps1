@@ -385,7 +385,12 @@ function Invoke-SyncPass([bool]$manual) {
         Add-PushStep
         Start-NextStep
     } else {
-        if ($manual) { Write-Activity 'Nothing new to read.' }
+        if ($manual) {
+            Write-Activity 'Nothing new to read.'
+            # Sync now still sends what the website does not have yet (a first upload goes 150 at a time).
+            Add-PushStep
+            Start-NextStep
+        }
         Invoke-MovePass
     }
 }
