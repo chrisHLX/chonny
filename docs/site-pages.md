@@ -43,11 +43,22 @@
   Burst Window.
   - **How to play it** (`CompPlaybookService`, `livewire/partials/comp-playbook.blade.php`) is a
     plain guide for a player new to arena, so someone can be sent to the page: eight basics (shown
-    alone before anything is picked), then for the three specs: lock their healer (the first three
-    steps of `CcFormulaService`'s chain, each saying whether it can be kicked and whether damage
-    breaks it), the buttons to press together (what each spec presses in at least half its goes,
-    from `data/comp-playbook/go-cooldowns.json`, never guessed from the spell data), what to save
-    for the kill target, what never to put on it, defensives one at a time, kicks and peels.
+    alone before anything is picked, with a link to the basics check), then for the three specs:
+    lock their healer, the buttons to press together, control for the player being killed,
+    defensives one at a time, kicks and peels. Everything from play is in
+    `data/comp-playbook/go-cooldowns.json` (`wow:go-cooldowns`):
+    - **The healer lock is each spec's signature combo put together** (Chriso's idea, 2026-10-05):
+      a Hunter's most common run on the healer is Intimidation > Freezing Trap, a Disc Priest's is
+      Psychic Scream, so Jungle reads "Maim or Intimidation > Freezing Trap > Psychic Scream". One
+      step per kind of control, stuns first; two players with the same kind are alternatives. A
+      spec seen controlling a healer in under 10 goes falls back to the CC formula's pick.
+    - **Kill-target control is where each stun or silence lands in play:** listed when it lands on
+      the target at least 1.25x as often as on the healer (Kidney Shot 158 to 71), never when it
+      does not (Binding Shot 74 to 75, which the formula used to reserve). Seen under 20 times, the
+      kit's stuns and silences round it out. A run holding a kill-target stun is skipped for the lock.
+    - **Not measured yet:** roots and Solar Beam's silence are not control in the goes, so a Balance
+      Druid's "root, beam" cannot come from play.
+    - "Never crowd control the player you are hitting" was removed as a basic (Chriso, 2026-10-05).
   - **Why counted from play:** the longest cooldown made Shattering Throw Arms's big button, and the
     classifier's Buff/Spell label made Tricks of the Trade Subtlety's. A spec with too few measured
     goes says so. It does not say which defensives can go on a teammate: the data has no
@@ -58,6 +69,13 @@
   counters), each also standalone at `/class-guide`, `/burst-guides`, `/spells`,
   `/spell-counters`.
 - `/spell/{id}` — `SpellDetail`; shared `SpellDetailModal` everywhere else.
+- `/wow/quiz/basics/{class?}/{spec?}` — `Quizzes\BasicsCheckPlay`, the **arena basics check**: one
+  question per basic (the comp page's list), built by `App\Quiz\Wow\BasicsCheck` from the spec the
+  player plays where the data allows (their go button and a partner's from the go-cooldowns file,
+  their DR, their defensives; kick questions from the game's cast-time control), authored where it
+  cannot (what a go is, when to swap, line of sight), every answer from an [OBS]/[DER] claim with its
+  brain.md anchor. The result says basic by basic what to work on. No mastery written (rule 35).
+  Linked from the quiz index and the comp page's basics.
 - `/wow/quiz` — `Quizzes\WowQuizIndex` / `WowQuizPlay`, plus concept drills at
   `/wow/quiz/{class}/{spec}/drill/{concept}` (`Quizzes\ConceptDrillPlay`). A level and a concept
   are two ways of choosing the same generated question types; `App\Learning\ConceptCoverage` maps

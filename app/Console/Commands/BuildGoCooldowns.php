@@ -7,10 +7,19 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
 /**
- * Which offensive cooldowns each spec actually presses in a go, counted over every measured round
+ * Which offensive cooldowns each spec actually presses in a go, and where each crowd control spell
+ * lands in one (their healer, the go's target, or someone else), counted over every measured round
  * (both sides of every game), written to a committed file the comp page's "How to play it" reads.
  *
  *   php artisan wow:go-cooldowns
+ *
+ * Each spec's own runs of control on the healer ("healerRuns": Intimidation > Freezing Trap for a
+ * Hunter, Psychic Scream for a Disc Priest) were added the same day, from Chriso's idea: a comp's
+ * healer lock is mostly its specs' signature combos put together.
+ *
+ * The placements were added the same day, because the kill-target pick was wrong: the CC formula
+ * reserved Binding Shot for the kill target, while in play it lands on the healer 43 times to the
+ * target's 26; and Kidney Shot, which lands on the target 158 times to 71, was missing.
  *
  * Built 2026-10-05 because neither guess from the spell data names a spec's big button: the
  * longest cooldown made Shattering Throw Arms's lead, and the classifier's Buff/Spell label made
@@ -30,14 +39,20 @@ class BuildGoCooldowns extends Command
 
     public const PATH = 'data/comp-playbook/go-cooldowns.json';
 
+    /** Seconds between one player's controls on the healer for them to be one run. */
+    private const RUN_GAP = 6.0;
+
     public function handle(): int
     {
         $count = [];
+        $control = [];
+        $runs = [];
+        $healerGoes = [];
         $goes = [];
         $players = [];
         $rounds = 0;
 
-        ArenaRound::query()->select('id', 'payload')->chunkById(50, function ($rows) use (&$count, &$goes, &$players, &$rounds) {
+        ArenaRound::query()->select('id', 'payload')->chunkById(50, function ($rows) use (&$count, &$control, &$runs, &$healerGoes, &$goes, &$players, &$rounds) {
             foreach ($rows as $round) {
                 $analysis = $round->payload['analysis'] ?? null;
 
@@ -50,12 +65,47 @@ class BuildGoCooldowns extends Command
 
                 foreach ($analysis['goes'] ?? [] as $go) {
                     $pressed = [];
+                    $onHealer = [];
 
                     foreach ($go['links'] ?? [] as $link) {
                         $spec = $specOf[$link['by'] ?? ''] ?? null;
 
+                        // Where crowd control lands inside a go: their healer, the go's target, or
+                        // someone else ("cross"). Pooled by spell across specs, since where a stun
+                        // goes is the spell's job more than the spec's.
+                        if (($link['cat'] ?? null) === 'control' && in_array($link['role'] ?? null, ['healer', 'target', 'cross'], true)) {
+                            $control[$link['spell']][$link['role']] = ($control[$link['spell']][$link['role']] ?? 0) + 1;
+
+                            if ($link['role'] === 'healer' && $spec) {
+                                $onHealer[$spec][$link['by']][] = $link;
+                            }
+                        }
+
                         if (($link['cat'] ?? null) === 'offensive' && $spec) {
                             $pressed[$spec][$link['by']][$link['spell']] = true;
+                        }
+                    }
+
+                    // Each player's own run of control on the healer: their spells in order, each
+                    // within RUN_GAP of the last. Hunter's "Intimidation > Freezing Trap" is one.
+                    foreach ($onHealer as $spec => $byPlayer) {
+                        foreach ($byPlayer as $links) {
+                            $run = [];
+                            $last = null;
+
+                            foreach ($links as $link) {
+                                if ($last !== null && $link['t'] - $last > self::RUN_GAP) {
+                                    break;
+                                }
+                                if (! in_array($link['spell'], $run, true)) {
+                                    $run[] = $link['spell'];
+                                }
+                                $last = $link['t'];
+                            }
+
+                            $healerGoes[$spec] = ($healerGoes[$spec] ?? 0) + 1;
+                            $key = implode(' > ', $run);
+                            $runs[$spec][$key] = ($runs[$spec][$key] ?? 0) + 1;
                         }
                     }
 
@@ -73,15 +123,25 @@ class BuildGoCooldowns extends Command
             }
         });
 
-        ksort($count);
+        // Every spec seen doing either: a healer can lock a healer without ever pressing an
+        // offensive cooldown in a go.
+        $all = array_unique([...array_keys($count), ...array_keys($runs)]);
+        sort($all);
         $specs = [];
 
-        foreach ($count as $spec => $spells) {
+        foreach ($all as $spec) {
+            $spells = $count[$spec] ?? [];
+            $specRuns = $runs[$spec] ?? [];
             arsort($spells);
+            arsort($specRuns);
             $specs[(string) $spec] = [
-                'goes' => $goes[$spec],
-                'players' => count($players[$spec]),
+                'goes' => $goes[$spec] ?? 0,
+                'players' => count($players[$spec] ?? []),
                 'spells' => collect($spells)->map(fn ($n, $name) => ['name' => $name, 'share' => round($n / $goes[$spec], 2)])->values()->all(),
+                'healerGoes' => $healerGoes[$spec] ?? 0,
+                'healerRuns' => collect($specRuns)->take(6)
+                    ->map(fn ($n, $run) => ['chain' => explode(' > ', $run), 'share' => round($n / $healerGoes[$spec], 2)])
+                    ->values()->all(),
             ];
         }
 
@@ -90,6 +150,9 @@ class BuildGoCooldowns extends Command
             'generatedAt' => now()->toDateString(),
             'rounds' => $rounds,
             'specs' => $specs,
+            'control' => collect($control)->sortKeys()->map(fn ($roles) => [
+                'healer' => $roles['healer'] ?? 0, 'target' => $roles['target'] ?? 0, 'cross' => $roles['cross'] ?? 0,
+            ])->all(),
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)."\n");
 
         $this->info(count($specs).' specs from '.$rounds.' rounds -> '.self::PATH);

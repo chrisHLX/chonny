@@ -36,7 +36,7 @@ class WowAbilityFacts
      * be missing the new fields, and every question type that reads them would skip in silence,
      * which is the kind of quiet no-op this constant exists to prevent.
      */
-    public const SHAPE_VERSION = 2;
+    public const SHAPE_VERSION = 3;
 
     /** Every class has these (Gladiator's Medallion), so they say nothing about a spec. */
     public const UNIVERSAL_SPELL_IDS = [336126];
@@ -83,6 +83,8 @@ class WowAbilityFacts
                         className: $className,
                         pvpDuration: $e['spell']->pvp_duration_seconds !== null ? (float) $e['spell']->pvp_duration_seconds : null,
                         usableWhileCc: self::ccTokens($e['spell']),
+                        castType: $e['spell']->cast_type,
+                        externalId: $e['spell']->spell_id,
                     );
                 })
                 ->filter(fn (WowAbility $a) => $a->drCategory || $a->offensive || $a->defensive || $a->interrupt)
@@ -176,6 +178,8 @@ class WowAbilityFacts
                     drCategory: $s->dr_category,
                     pvpDuration: $s->pvp_duration_seconds !== null ? (float) $s->pvp_duration_seconds : null,
                     usableWhileCc: self::ccTokens($s),
+                    castType: $s->cast_type,
+                    externalId: $s->spell_id,
                 ))->toArray())
                 ->unique('name')
                 ->values()

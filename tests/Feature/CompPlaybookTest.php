@@ -41,12 +41,17 @@ function playbookFixture(): array
 {
     $combustion = playbookSpell(1, 'Combustion', ['cooldown_seconds' => 60]);
     $pyroblast = playbookSpell(2, 'Pyroblast', ['cooldown_seconds' => 30]);
-    $polymorph = playbookSpell(3, 'Polymorph', ['dr_category' => 'Incapacitate']);
+    $polymorph = playbookSpell(3, 'Polymorph', ['dr_category' => 'Incapacitate', 'cast_type' => 'cast', 'pvp_duration_seconds' => 6]);
     $iceBlock = playbookSpell(4, 'Ice Block', ['cooldown_seconds' => 240]);
     $medallion = playbookSpell(5, "Gladiator's Medallion", ['cooldown_seconds' => 120]);
-    $hoj = playbookSpell(6, 'Hammer of Justice', ['dr_category' => 'Stun']);
-    $cyclone = (new Spell)->forceFill(['id' => 7, 'spell_id' => 33786, 'name' => 'Cyclone', 'dr_category' => 'Disorient']);
+    $hoj = playbookSpell(6, 'Hammer of Justice', ['dr_category' => 'Stun', 'cast_type' => 'instant', 'pvp_duration_seconds' => 5]);
+    $cyclone = (new Spell)->forceFill(['id' => 7, 'spell_id' => 33786, 'name' => 'Cyclone', 'dr_category' => 'Disorient', 'cast_type' => 'cast', 'pvp_duration_seconds' => 5]);
     $mystery = playbookSpell(8, 'Mystery Strike', ['cooldown_seconds' => 90]);
+    // Kill-target control: Kidney Shot lands on the target in play, Binding Shot does not, and
+    // Mystery Bash has never been seen, so it comes from the kit.
+    $kidney = playbookSpell(9, 'Kidney Shot', ['dr_category' => 'Stun', 'cast_type' => 'instant']);
+    $binding = playbookSpell(10, 'Binding Shot', ['dr_category' => 'Stun', 'cast_type' => 'instant']);
+    $mysteryBash = playbookSpell(11, 'Mystery Bash', ['dr_category' => 'Stun', 'cast_type' => 'instant']);
 
     $offensive = ['offensive' => true, 'defensive' => false, 'label' => 'Offensive Buff'];
     $defensive = ['offensive' => false, 'defensive' => true, 'label' => 'Defensive'];
@@ -59,29 +64,28 @@ function playbookFixture(): array
             playbookEntry($polymorph),
             playbookEntry($iceBlock, ['offensiveDefensive' => $defensive]),
             playbookEntry($medallion, ['offensiveDefensive' => $defensive]),
+            playbookEntry($binding),
         ], 2),
         // A spec nobody has measured goes in: it must say so, not guess a button.
-        playbookMember('Druid', 'Unmeasured', 99999, [playbookEntry($mystery, ['offensiveDefensive' => $offensive]), playbookEntry($cyclone)], 3),
+        playbookMember('Druid', 'Unmeasured', 99999, [
+            playbookEntry($mystery, ['offensiveDefensive' => $offensive]),
+            playbookEntry($cyclone),
+            playbookEntry($kidney),
+            playbookEntry($mysteryBash),
+        ], 3),
     ];
 
+    // The formula's chain: only the unmeasured player's step is used (Cyclone).
     $chain = ['primary' => [
         'poolEmpty' => false,
         'sequence' => [
-            ['spell' => $hoj, 'label' => 'Holy Paladin', 'stealthNote' => null, 'castType' => 'instant', 'durationSeconds' => 5.0],
-            ['spell' => $polymorph, 'label' => 'Fire Mage', 'stealthNote' => null, 'castType' => 'cast', 'durationSeconds' => 6.0],
-            ['spell' => $cyclone, 'label' => 'Unmeasured Druid', 'stealthNote' => null, 'castType' => 'cast', 'durationSeconds' => 5.0],
+            ['spell' => $hoj, 'label' => 'Holy Paladin'],
+            ['spell' => $cyclone, 'label' => 'Unmeasured Druid'],
         ],
         'killTarget' => null,
     ]];
 
-    $synergies = [
-        'groups' => ['Diminishing Returns Groups' => collect([$hoj, $polymorph, $cyclone])],
-        'dr_by_id' => [6 => 'Stun', 3 => 'Incapacitate', 7 => 'Disorient'],
-        'owner_map' => [6 => 0, 3 => 1, 7 => 2],
-        'cooldown_by_id' => [],
-        'interrupts' => collect(),
-        'peels' => collect(),
-    ];
+    $synergies = ['owner_map' => [], 'cooldown_by_id' => [], 'interrupts' => collect(), 'peels' => collect()];
 
     return [$comp, $chain, $synergies];
 }
@@ -93,18 +97,36 @@ test('the guide waits for all three slots', function () {
     expect(app(CompPlaybookService::class)->build($comp, [], $chain, $synergies))->toBeNull();
 });
 
-test('the healer lock says what can be kicked and what damage does to it', function () {
+test('the healer lock joins each spec\'s usual combo, stuns first, and says what can be kicked', function () {
     [$comp, $chain, $synergies] = playbookFixture();
     $pb = app(CompPlaybookService::class)->build($comp, [1 => 'healer'], $chain, $synergies);
 
-    $notes = collect($pb['lock']['steps'])->map(fn ($s) => implode(' ', $s['notes']));
+    $steps = collect($pb['lock']['steps']);
+    $names = $steps->map(fn ($s) => collect($s['options'])->pluck('spell.name')->implode(' or '))->all();
+    $notes = $steps->map(fn ($s) => implode(' ', $s['notes']));
 
-    expect($pb['lock']['seconds'])->toBe(16.0)
+    // Paladin and Mage from their measured runs on the healer; the unmeasured Druid from the formula.
+    expect($names)->toBe(['Hammer of Justice', 'Polymorph', 'Cyclone'])
+        ->and($pb['lock']['seconds'])->toBe(16.0)
         ->and($notes[0])->toContain('cannot be kicked')
         ->and($notes[1])->toContain('kick can stop it')->toContain('Breaks if their healer takes damage')
         // Cyclone is a Disorient that does not break: its target is immune instead.
         ->and($notes[2])->toContain('cannot be hit or healed')->not->toContain('Breaks')
-        ->and($pb['lock']['steps'][1]['mi'])->toBe(1);
+        ->and($steps[1]['options'][0]['mi'])->toBe(1);
+});
+
+test('kill-target control comes from where it lands in play, then from the kit', function () {
+    [$comp, $chain, $synergies] = playbookFixture();
+    $pb = app(CompPlaybookService::class)->build($comp, [1 => 'healer'], $chain, $synergies);
+
+    $keep = collect($pb['keep'])->keyBy(fn ($k) => $k['spell']->name);
+
+    expect($keep->has('Kidney Shot'))->toBeTrue()
+        ->and($keep['Kidney Shot']['share'])->toBeGreaterThan(0.5)
+        ->and($keep->has('Binding Shot'))->toBeFalse()
+        ->and($keep['Mystery Bash']['share'])->toBeNull()
+        // The healer's own stun is in the lock, so it is not offered for the kill target too.
+        ->and($keep->has('Hammer of Justice'))->toBeFalse();
 });
 
 test('the burst comes from play, and an unmeasured spec says so instead of guessing', function () {
@@ -119,20 +141,18 @@ test('the burst comes from play, and an unmeasured spec says so instead of guess
         ->and($byMember->has(0))->toBeFalse();
 });
 
-test('breakable control, and defensives without the Medallion', function () {
+test('defensives leave out the Medallion', function () {
     [$comp, $chain, $synergies] = playbookFixture();
     $pb = app(CompPlaybookService::class)->build($comp, [1 => 'healer'], $chain, $synergies);
 
-    $breakable = collect($pb['breakable'])->keyBy(fn ($x) => $x['spell']->name);
-
-    expect($breakable->keys()->all())->toBe(['Polymorph', 'Cyclone'])
-        ->and($breakable['Cyclone']['immune'])->toBeTrue()
-        ->and(collect($pb['defensives'][1])->pluck('spell.name')->all())->toBe(['Ice Block']);
+    expect(collect($pb['defensives'][1])->pluck('spell.name')->all())->toBe(['Ice Block']);
 });
 
 test('the comps page shows the basics before anything is picked', function () {
     $this->get(route('wow-comps'))
         ->assertOk()
         ->assertSee('How a game is won')
-        ->assertSee('Never crowd control the player you are hitting');
+        ->assertSee('Use line of sight')
+        ->assertSee(route('wow-basics'), false)
+        ->assertDontSee('Never crowd control the player you are hitting');
 });

@@ -9,6 +9,13 @@ project has built since: the spell data, the guides, and the Brain.
 > drills — `/wow/quiz/{class}/{spec}/drill/{concept}`, generated questions scored against a
 > concept with no `questions` row and no write to `UserConceptMastery`.
 >
+> **2026-10-05: the arena basics check** (`/wow/quiz/basics`, `App\Quiz\Wow\BasicsCheck`) is
+> Layers 1 and 2 together for a player new to arena: one question per basic, generated from the
+> player's spec where a field can carry it, authored from an [OBS]/[DER] claim (with its brain
+> anchor) where none can, and Chriso's line-of-sight note as a basic. It is the "test" end of a
+> loop whose "teach" end is the comp page's "How to play it" and whose "do" end is the player's
+> own games. It scores per basic, not per concept, and writes no mastery.
+>
 > Two things in the plan below turned out to be wrong, both in §2. The numeric-drift count of
 > "only 7" was measured over the prompts; over the options as well it is 16, and **three of those
 > answers are now wrong** — two of them state a crowd control duration in PvE seconds on a site

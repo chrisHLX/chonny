@@ -228,6 +228,12 @@ class WowComps extends Component
         ],
     ];
 
+    /** 'healer' | 'dps' | 'tank' for a class and spec slug; 'dps' when unmapped, as getSpecRoleMapProperty() does. */
+    public static function roleOf(string $classSlug, string $specSlug): string
+    {
+        return self::SPEC_ROLES[$classSlug][$specSlug] ?? 'dps';
+    }
+
     public function mount(): void
     {
         PageViewEvent::log('wow_comps');

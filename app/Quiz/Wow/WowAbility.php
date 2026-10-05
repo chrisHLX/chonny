@@ -20,6 +20,8 @@ final class WowAbility
      *                                             attributes — a real no, not a gap, because
      *                                             SpellDataFileParser reads every spell's whole
      *                                             attribute line on every import.
+     * @param  ?string  $castType  spells.cast_type: 'instant' or 'cast'. Only a cast can be kicked.
+     * @param  ?int  $externalId  Blizzard's spell id, for the few facts keyed by it (Cyclone)
      */
     public function __construct(
         public readonly int $spellId,
@@ -33,6 +35,8 @@ final class WowAbility
         public readonly ?string $className = null,
         public readonly ?float $pvpDuration = null,
         public readonly array $usableWhileCc = [],
+        public readonly ?string $castType = null,
+        public readonly ?int $externalId = null,
     ) {}
 
     public function usableWhile(string $token): bool

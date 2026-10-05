@@ -223,6 +223,9 @@ Route::prefix('wow')->group(function () {
     // Class quizzes (Training). Questions are built from live game data each attempt, so they stay
     // current when a patch changes the kit. The engine is game-neutral (App\Quiz); these routes and
     // their components are WoW's. See App\Quiz\QuizService.
+    // The arena basics check: one question per basic, flavoured by the spec you play. Before the
+    // index route, whose optional {classSlug} would otherwise take "basics". See App\Quiz\Wow\BasicsCheck.
+    Route::get('/quiz/basics/{classSlug?}/{specSlug?}', \App\Livewire\Quizzes\BasicsCheckPlay::class)->name('wow-basics');
     Route::get('/quiz/{classSlug?}/{specSlug?}', \App\Livewire\Quizzes\WowQuizIndex::class)->name('wow-quiz');
     Route::get('/quiz/{classSlug}/{specSlug}/level/{level}', \App\Livewire\Quizzes\WowQuizPlay::class)
         ->whereNumber('level')

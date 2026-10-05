@@ -23,7 +23,9 @@ use Illuminate\Support\Facades\File;
  *   cut to the first three steps a new player can actually land;
  * - the burst is what each spec presses in its goes, counted from every measured game
  *   (wow:go-cooldowns, a committed file), resolved through the page's own kit and build;
- * - breakable control, kicks and peels are getSynergiesProperty()'s groups.
+ * - the kill-target control is where each stun and silence lands in real goes (the same file),
+ *   rounded out from the kit for spells too rarely seen;
+ * - kicks and peels are getSynergiesProperty()'s groups.
  *
  * What it does not say, on purpose: which defensives can be cast on a teammate. Nothing in the
  * data separates a personal defensive from an external one (MatchupProfileService's docblock),
@@ -43,8 +45,14 @@ class CompPlaybookService
     /** Crowd control proper. A root on an offensive spell (The Hunt) does not make it control. */
     private const HARD_CC = ['Stun', 'Silence', 'Incapacitate', 'Disorient'];
 
-    /** A new player lands three in a row or none; the formula's fourth step is for later. */
-    private const LOCK_STEPS = 3;
+    /** One step per kind of control; there are four kinds of crowd control proper. */
+    private const LOCK_STEPS = 4;
+
+    /** The order a lock is laid out in: the instant stun opens, the long ones follow. */
+    private const LOCK_ORDER = ['Stun', 'Silence', 'Incapacitate', 'Disorient'];
+
+    /** A spec's signature runs are read from play once it has controlled a healer in this many goes. */
+    private const MIN_HEALER_GOES = 10;
 
     private const DEFENSIVES_PER_PLAYER = 4;
 
@@ -59,6 +67,12 @@ class CompPlaybookService
     private const HEALER_SHARE = 0.6;
 
     private ?array $goCooldowns = null;
+
+    /** A control spell's placement is read from play once it has landed this often on a healer or a target. */
+    private const MIN_PLACEMENTS = 20;
+
+    /** "On the kill target": landing there at least this many times as often as on the healer. */
+    private const KILL_TARGET_MARGIN = 1.25;
 
     private const MEDALLION = "Gladiator's Medallion";
 
@@ -79,12 +93,12 @@ class CompPlaybookService
         $labelToIndex = $members->mapWithKeys(fn ($m, $mi) => ["{$m['spec']->name} {$m['class']->name}" => $mi])->all();
         $isHealer = fn (int $mi) => ($roles[$comp[$mi]['spec']->id] ?? 'dps') === 'healer';
 
+        $lock = $this->healerLock($comp, $chain['primary'] ?? null, $labelToIndex);
+
         return [
-            'lock' => $this->healerLock($chain['primary'] ?? null, $labelToIndex),
+            'lock' => $lock,
             'burst' => $this->burst($comp, $isHealer),
-            'keep' => $this->killTargetControl($chain['primary'] ?? null, $labelToIndex),
-            'breakable' => $this->listed($synergies, fn ($spell) => in_array($synergies['dr_by_id'][$spell->id] ?? null, self::BREAKS_ON_DAMAGE, true),
-                $synergies['groups']['Diminishing Returns Groups'] ?? collect()),
+            'keep' => $this->killTargetControl($comp, $isHealer, collect($lock['steps'])->flatMap(fn ($s) => array_map(fn ($o) => $o['spell']->display_name, $s['options']))->all()),
             'defensives' => $this->defensives($comp),
             'kicks' => $this->listed($synergies, fn () => true, $synergies['interrupts']),
             'peels' => $this->listed($synergies, fn () => true, $synergies['peels']),
@@ -92,31 +106,78 @@ class CompPlaybookService
     }
 
     /**
-     * The first steps of the formula's chain, each with the one thing a new player needs to know
-     * about it: whether it can be kicked, whether hitting the healer ends it, and that a different
-     * kind of control is what keeps the next one full length.
+     * Their healer's lock, as the comp's specs' signature combos put together (Chriso,
+     * 2026-10-05): a Hunter opens "Intimidation > Freezing Trap", a Disc Priest "Psychic Scream",
+     * so Jungle locks with stun, trap, fear without anyone having to think about it.
+     *
+     * Each player brings its spec's most common run of control on the healer in real goes
+     * (wow:go-cooldowns, "healerRuns"), skipping any run that holds a stun real games put on the
+     * kill target (onKillTarget(): Kidney Shot). A spec too rarely seen brings what the CC formula
+     * gave it instead. The runs are then laid out one kind of control per step, stuns first:
+     * two players with the same kind become alternatives on one step ("Fear or Cyclone"), since
+     * the second would land at half length on the same healer.
+     *
+     * Not seen yet: roots, and Solar Beam's silence, which the goes do not record as control, so
+     * a Balance Druid's "root, beam" cannot come from play.
      */
-    private function healerLock(?array $primary, array $labelToIndex): array
+    private function healerLock(array $comp, ?array $primary, array $labelToIndex): array
     {
-        if (! $primary || $primary['poolEmpty']) {
-            return ['steps' => [], 'seconds' => 0.0];
+        $picked = [];   // [mi, spell, share|null] in the order each player presses them
+
+        foreach ($comp as $mi => $member) {
+            $kit = collect($member['entries'])
+                ->filter(fn ($e) => ($e['isSelected'] ?? true) && in_array($e['drCategory'], self::HARD_CC, true))
+                ->keyBy(fn ($e) => $e['spell']->display_name);
+            $data = $this->goCooldowns()['specs'][(string) $member['spec']->external_spec_id] ?? null;
+            $run = null;
+
+            if ($data && ($data['healerGoes'] ?? 0) >= self::MIN_HEALER_GOES) {
+                $run = collect($data['healerRuns'] ?? [])->first(fn ($r) => collect($r['chain'])
+                    ->every(fn ($name) => $kit->has($name) && ! $this->onKillTarget($name)));
+            }
+
+            if ($run) {
+                foreach ($run['chain'] as $name) {
+                    $picked[] = ['mi' => $mi, 'entry' => $kit[$name], 'share' => $run['share']];
+                }
+
+                continue;
+            }
+
+            // Too rarely seen: the formula's choice for this player, if it made one.
+            foreach ($primary['sequence'] ?? [] as $step) {
+                if (($labelToIndex[$step['label']] ?? null) === $mi && $kit->has($step['spell']->display_name)
+                    && ! $this->onKillTarget($step['spell']->display_name)) {
+                    $picked[] = ['mi' => $mi, 'entry' => $kit[$step['spell']->display_name], 'share' => null];
+
+                    break;
+                }
+            }
         }
+
+        $slots = collect($picked)
+            ->groupBy(fn ($p) => $p['entry']['drCategory'])
+            ->sortBy(fn ($group, $dr) => array_search($dr, self::LOCK_ORDER, true))
+            ->take(self::LOCK_STEPS);
 
         $steps = [];
         $seconds = 0.0;
 
-        foreach (array_slice($primary['sequence'], 0, self::LOCK_STEPS) as $i => $step) {
-            $spell = $step['spell'];
-            $dr = $spell->dr_category;
+        foreach ($slots->values() as $i => $group) {
+            $options = $group->unique(fn ($p) => $p['entry']['spell']->display_name)
+                ->map(fn ($p) => ['spell' => $p['entry']['spell'], 'mi' => $p['mi'], 'share' => $p['share']])
+                ->values()->all();
+            $spell = $options[0]['spell'];
+            $dr = $group->first()['entry']['drCategory'];
             $notes = [];
 
-            if ($step['stealthNote']) {
+            if ($spell->requires_stealth) {
                 $notes[] = 'Only from stealth, so only as the game opens.';
             } elseif ($i > 0) {
                 $notes[] = 'A different kind of control from the one before, so it lasts its full time.';
             }
 
-            $notes[] = match ($step['castType']) {
+            $notes[] = match ($spell->cast_type) {
                 'instant' => 'Instant: it cannot be kicked.',
                 'cast' => 'Has a cast time: their kick can stop it, so cast it while they are busy.',
                 default => null,
@@ -128,13 +189,16 @@ class CompPlaybookService
                 $notes[] = 'Breaks if their healer takes damage.';
             }
 
-            $seconds += (float) ($step['durationSeconds'] ?? 0);
+            if (count($options) > 1) {
+                $notes[] = 'One of these, not both: the same kind twice on her lasts half as long.';
+            }
+
+            $seconds += (float) ($spell->pvp_duration_seconds ?? 0);
 
             $steps[] = [
-                'spell' => $spell,
-                'mi' => $labelToIndex[$step['label']] ?? null,
+                'options' => $options,
                 'dr' => $dr,
-                'seconds' => $step['durationSeconds'],
+                'seconds' => $spell->pvp_duration_seconds,
                 'notes' => array_values(array_filter($notes)),
             ];
         }
@@ -209,11 +273,73 @@ class CompPlaybookService
         return $this->goCooldowns ??= File::exists($path) ? (json_decode(File::get($path), true) ?: []) : [];
     }
 
-    private function killTargetControl(?array $primary, array $labelToIndex): ?array
+    /**
+     * Control for the player being killed: stuns and silences (they hold through damage) that are
+     * not in the healer lock, chosen from where they land in real goes first and the kit second.
+     *
+     * The formula's single reserved pick was wrong both ways (Chriso, 2026-10-05): it kept Binding
+     * Shot for the kill target, which play splits evenly and good players open on the healer, and
+     * Rogue/Mage/Druid lost Kidney Shot. So:
+     *  - a spell seen in enough goes is listed only if it lands on the target clearly more often
+     *    than on the healer (onKillTarget());
+     *  - a spell too rarely seen is rounded out from the kit: a damage dealer's stun or silence,
+     *    not curated as healer-only, not stealth-only.
+     *
+     * @return array<int, array{spell: mixed, mi: int, share: ?float}>
+     */
+    private function killTargetControl(array $comp, callable $isHealer, array $lockNames): array
     {
-        $kill = $primary['killTarget'] ?? null;
+        $out = [];
 
-        return $kill ? ['spell' => $kill['spell'], 'mi' => $labelToIndex[$kill['label']] ?? null] : null;
+        foreach ($comp as $mi => $member) {
+            foreach ($member['entries'] as $e) {
+                $spell = $e['spell'];
+                $name = $spell->display_name;
+
+                if (! ($e['isSelected'] ?? true) || ! in_array($e['drCategory'], ['Stun', 'Silence'], true)
+                    || in_array($name, $lockNames, true) || isset($out[$name]) || $spell->requires_stealth) {
+                    continue;
+                }
+
+                $placed = $this->placement($name);
+
+                if ($placed !== null) {
+                    if ($this->onKillTarget($name)) {
+                        $out[$name] = ['spell' => $spell, 'mi' => $mi, 'share' => $placed['target'] / max(1, $placed['healer'] + $placed['target'] + $placed['cross'])];
+                    }
+                } elseif (! $isHealer($mi) && $spell->chain_target !== 'healer') {
+                    $out[$name] = ['spell' => $spell, 'mi' => $mi, 'share' => null];
+                }
+            }
+        }
+
+        // A kit spell whose aura is logged under a longer name ("Garrote" as "Garrote - Silence")
+        // is the same button: keep the one seen in play.
+        $seen = collect($out)->filter(fn ($k) => $k['share'] !== null)->keys();
+
+        return collect($out)
+            ->reject(fn ($k, $name) => $k['share'] === null && $seen->contains(fn ($s) => str_starts_with($s, $name.' ')))
+            ->sortByDesc(fn ($k) => $k['share'] ?? -1)->values()->all();
+    }
+
+    /** Where a control spell lands in real goes, or null when it is too rarely seen to say. */
+    private function placement(string $name): ?array
+    {
+        $seen = $this->goCooldowns()['control'][$name] ?? null;
+
+        return $seen && $seen['healer'] + $seen['target'] >= self::MIN_PLACEMENTS ? $seen : null;
+    }
+
+    /**
+     * Seen often enough, and on the target clearly more than on the healer. The margin is what
+     * keeps Binding Shot (healer 75, target 74 across every Hunter) out and Kidney Shot (target
+     * 158, healer 71) in.
+     */
+    private function onKillTarget(string $name): bool
+    {
+        $seen = $this->placement($name);
+
+        return $seen !== null && $seen['target'] >= self::KILL_TARGET_MARGIN * $seen['healer'];
     }
 
     /**
@@ -249,7 +375,6 @@ class CompPlaybookService
             ->unique('display_name')
             ->map(fn ($spell) => [
                 'spell' => $spell,
-                'immune' => isset(self::DAMAGE_IMMUNE[$spell->spell_id]),
                 'mi' => $synergies['owner_map'][$spell->id] ?? null,
                 'cooldown' => $synergies['cooldown_by_id'][$spell->id] ?? null,
             ])

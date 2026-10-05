@@ -39,17 +39,20 @@
                 ['A game is a series of goes.', 'Your team picks one enemy, locks their healer in crowd control, and presses its big damage buttons together. Then they try the same on you.'],
                 ['Press your big buttons together.', 'Two cooldowns a few seconds apart give their healer time to heal through each one.'],
                 ['Their healer first, then the damage.', 'Land the crowd control on their healer, and press your cooldowns while it holds.'],
-                ['Never crowd control the player you are hitting.', 'Most control breaks when its target takes damage. Stuns and silences do not.'],
                 ['The same kind of control gets shorter.', 'The second of one kind on the same player lasts half as long; the third does nothing. Use a different kind, or wait 20 seconds.'],
                 ['When they go on you, one defensive at a time.', 'Two pressed at once leave you nothing for their next go.'],
                 ['If the target will not die, change something.', 'Swap to whoever has the fewest defensives left, or back off until your cooldowns are back.'],
                 ['Kick what matters.', 'Their healer\'s heals during your go, and the crowd control they cast on your healer.'],
+                ['Use line of sight.', 'A spell needs line of sight to its target. Behind a pillar you cannot be cast on, and your healer cannot heal you either.'],
             ] as $n => [$head, $body])
                 <li class="flex gap-3">
                     <span class="text-gold font-semibold w-4 flex-shrink-0 text-right">{{ $n + 1 }}</span>
                     <span><span class="text-ink font-medium">{{ $head }}</span> {{ $body }}</span>
                 </li>
             @endforeach
+            <li class="pt-1 pl-7">
+                <a href="{{ route('wow-basics') }}" wire:navigate class="text-gold hover:text-gold-light">Check you have them: the arena basics check &rarr;</a>
+            </li>
         </ol>
     </div>
 
@@ -70,20 +73,22 @@
             @if (empty($playbook['lock']['steps']))
                 <p class="text-[13px] text-ink-subtle mt-2">This team has no crowd control in the data yet.</p>
             @else
-                <p class="text-[12px] text-ink-subtle mt-1">One after another, each as the last one ends. A different kind each time, so none is shortened.</p>
+                <p class="text-[12px] text-ink-subtle mt-1">Each player's usual combo on the healer in real games, put together. One after another, each as the last one ends, a different kind each time so none is shortened.</p>
                 <ol class="mt-3 space-y-3">
                     @foreach ($playbook['lock']['steps'] as $i => $step)
                         <li class="flex gap-3">
                             <span class="w-6 h-6 rounded-full bg-gold-subtle border border-line-gold text-gold text-[12px] font-semibold flex items-center justify-center flex-shrink-0">{{ $i + 1 }}</span>
                             <div class="min-w-0">
                                 <div class="flex flex-wrap items-center gap-2">
-                                    {!! $chip($step['spell'], $step['mi']) !!}
+                                    @foreach ($step['options'] as $oi => $o)
+                                        @if ($oi > 0)
+                                            <span class="text-[12px] text-ink-subtle">or</span>
+                                        @endif
+                                        {!! $chip($o['spell'], $o['mi'], $who($o['mi'])) !!}
+                                    @endforeach
                                     <span class="{{ $drBadge[$step['dr']] ?? 'badge-gray' }}">{{ $step['dr'] }}</span>
                                     @if ($step['seconds'])
                                         <span class="text-[12px] text-ink-muted">{{ $secs($step['seconds']) }}</span>
-                                    @endif
-                                    @if ($who($step['mi']))
-                                        <span class="text-[12px] text-ink-subtle">from your {{ $who($step['mi']) }}</span>
                                     @endif
                                 </div>
                                 @if ($step['notes'])
@@ -128,36 +133,21 @@
             </p>
         </div>
 
-        {{-- Save for the kill target / never on the kill target. --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="linear-card p-5">
-                <h3 class="text-[15px] text-ink font-semibold">Save for the player you are killing</h3>
-                @if ($playbook['keep'])
-                    <div class="flex flex-wrap items-center gap-2 mt-3">
-                        {!! $chip($playbook['keep']['spell'], $playbook['keep']['mi']) !!}
-                        <span class="{{ $drBadge[$playbook['keep']['spell']->dr_category] ?? 'badge-gray' }}">{{ $playbook['keep']['spell']->dr_category }}</span>
-                    </div>
-                    <p class="text-[12px] text-ink-muted mt-2">It holds through damage, so it keeps your target still while you hit them.</p>
-                @else
-                    <p class="text-[12px] text-ink-muted mt-2">Nothing left: every stun and silence this team has goes into locking their healer.</p>
-                @endif
-            </div>
-            <div class="linear-card p-5">
-                <h3 class="text-[15px] text-ink font-semibold">Never on the player you are hitting</h3>
-                @if ($playbook['breakable'])
-                    <div class="flex flex-wrap gap-2 mt-3">
-                        @foreach ($playbook['breakable'] as $x)
-                            {!! $chip($x['spell'], $x['mi']) !!}
-                        @endforeach
-                    </div>
-                    @php $immune = collect($playbook['breakable'])->where('immune', true)->pluck('spell.display_name')->implode(', '); @endphp
-                    <p class="text-[12px] text-ink-muted mt-2">
-                        These break when their target takes damage{{ $immune ? ", and {$immune} makes its target immune to it" : '' }}. Use them on their healer, or on whoever is hitting you.
-                    </p>
-                @else
-                    <p class="text-[12px] text-ink-muted mt-2">This team has no control that breaks on damage.</p>
-                @endif
-            </div>
+        {{-- Control for the kill target: where each spell lands in real games first, then the
+             kit's stuns and silences the healer lock does not use (CompPlaybookService::killTargetControl). --}}
+        <div class="linear-card p-5">
+            <p class="text-[11px] uppercase tracking-wide text-gold font-semibold">Your go, part 3</p>
+            <h3 class="text-[16px] text-ink font-semibold mt-0.5">On the player you are killing</h3>
+            @if ($playbook['keep'])
+                <div class="flex flex-wrap items-center gap-2 mt-3">
+                    @foreach ($playbook['keep'] as $k)
+                        {!! $chip($k['spell'], $k['mi'], $k['share'] !== null ? round($k['share'] * 100).'% on the target' : null) !!}
+                    @endforeach
+                </div>
+                <p class="text-[12px] text-ink-muted mt-2">Stuns and silences hold through damage, so they keep your target still while you hit them. Land one as your cooldowns go out.</p>
+            @else
+                <p class="text-[12px] text-ink-muted mt-2">None: in real games this team's control goes on their healer.</p>
+            @endif
         </div>
 
         {{-- Their go. --}}

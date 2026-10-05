@@ -9,6 +9,16 @@
             </p>
         </div>
 
+        {{-- New players start here: the basics before the kit (BasicsCheck). --}}
+        <a href="{{ route('wow-basics') }}" wire:navigate class="linear-card p-4 mb-6 flex items-center justify-between gap-4 border-line-gold hover:border-gold transition-colors">
+            <span>
+                <span class="block text-[11px] uppercase tracking-widest text-gold font-semibold">New to arena?</span>
+                <span class="block text-[15px] text-ink font-medium mt-0.5">Arena basics check</span>
+                <span class="block text-[12.5px] text-ink-muted mt-0.5">Eight questions on how arena is won, with your own spec's buttons. You'll see which basics to work on.</span>
+            </span>
+            <span class="text-gold text-[13px] shrink-0">Start &rarr;</span>
+        </a>
+
         {{-- Your results: every spec you have finished a level of, most recent first. --}}
         @if ($resultSpecs->isNotEmpty())
             <div class="mb-6">

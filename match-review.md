@@ -74,7 +74,7 @@ how a page looks needs only `wow:game-cards`.
 | A desktop view, `GameCardService`, `ImprovementService`, `CompLibraryService` | `wow:game-cards` (it notices the code change); `--fresh` redraws everything |
 | `MindCollectorLogs.ps1` | restart the app: tray icon, **Exit**, reopen |
 | Anything the website's `/wow/coach` shows | deploy (`./deploy.sh`); the next upload redraws a player's pages |
-| A re-measure, or a big batch of new games | `php -d memory_limit=2G artisan wow:go-cooldowns`, then commit `data/comp-playbook/go-cooldowns.json`: the site's comp page ("How to play it") reads which buttons each spec presses in its goes from it |
+| A re-measure, or a big batch of new games | `php -d memory_limit=2G artisan wow:go-cooldowns`, then commit `data/comp-playbook/go-cooldowns.json`: the site's comp page ("How to play it") reads from it which buttons each spec presses in its goes, each spec's usual control combo on the healer, and where each stun lands |
 
 ---
 

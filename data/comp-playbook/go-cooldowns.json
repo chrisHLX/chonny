@@ -14,6 +14,34 @@
                     "name": "Arcane Surge",
                     "share": 0.63
                 }
+            ],
+            "healerGoes": 21,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Polymorph"
+                    ],
+                    "share": 0.48
+                },
+                {
+                    "chain": [
+                        "Dragon's Breath"
+                    ],
+                    "share": 0.33
+                },
+                {
+                    "chain": [
+                        "Ring of Frost"
+                    ],
+                    "share": 0.14
+                },
+                {
+                    "chain": [
+                        "Ring of Frost",
+                        "Polymorph"
+                    ],
+                    "share": 0.05
+                }
             ]
         },
         "63": {
@@ -28,6 +56,48 @@
                     "name": "Meteor",
                     "share": 0.17
                 }
+            ],
+            "healerGoes": 128,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Polymorph"
+                    ],
+                    "share": 0.68
+                },
+                {
+                    "chain": [
+                        "Dragon's Breath"
+                    ],
+                    "share": 0.19
+                },
+                {
+                    "chain": [
+                        "Dragon's Breath",
+                        "Polymorph"
+                    ],
+                    "share": 0.06
+                },
+                {
+                    "chain": [
+                        "Ring of Frost"
+                    ],
+                    "share": 0.02
+                },
+                {
+                    "chain": [
+                        "Polymorph",
+                        "Dragon's Breath"
+                    ],
+                    "share": 0.02
+                },
+                {
+                    "chain": [
+                        "Dragon's Breath",
+                        "Ring of Frost"
+                    ],
+                    "share": 0.01
+                }
             ]
         },
         "64": {
@@ -41,6 +111,41 @@
                 {
                     "name": "Ray of Frost",
                     "share": 0.81
+                }
+            ],
+            "healerGoes": 70,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Polymorph"
+                    ],
+                    "share": 0.6
+                },
+                {
+                    "chain": [
+                        "Dragon's Breath"
+                    ],
+                    "share": 0.34
+                },
+                {
+                    "chain": [
+                        "Ring of Frost"
+                    ],
+                    "share": 0.03
+                },
+                {
+                    "chain": [
+                        "Dragon's Breath",
+                        "Polymorph"
+                    ],
+                    "share": 0.01
+                },
+                {
+                    "chain": [
+                        "Dragon's Breath",
+                        "Ring of Frost"
+                    ],
+                    "share": 0.01
                 }
             ]
         },
@@ -68,6 +173,35 @@
                     "name": "Sacred Weapon",
                     "share": 0.18
                 }
+            ],
+            "healerGoes": 217,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Hammer of Justice"
+                    ],
+                    "share": 0.81
+                },
+                {
+                    "chain": [
+                        "Blinding Light"
+                    ],
+                    "share": 0.1
+                },
+                {
+                    "chain": [
+                        "Hammer of Justice",
+                        "Blinding Light"
+                    ],
+                    "share": 0.07
+                },
+                {
+                    "chain": [
+                        "Blinding Light",
+                        "Hammer of Justice"
+                    ],
+                    "share": 0.02
+                }
             ]
         },
         "70": {
@@ -85,6 +219,35 @@
                 {
                     "name": "Avenging Wrath",
                     "share": 0.22
+                }
+            ],
+            "healerGoes": 181,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Hammer of Justice"
+                    ],
+                    "share": 0.86
+                },
+                {
+                    "chain": [
+                        "Blinding Light"
+                    ],
+                    "share": 0.12
+                },
+                {
+                    "chain": [
+                        "Hammer of Justice",
+                        "Blinding Light"
+                    ],
+                    "share": 0.01
+                },
+                {
+                    "chain": [
+                        "Blinding Light",
+                        "Hammer of Justice"
+                    ],
+                    "share": 0.01
                 }
             ]
         },
@@ -116,6 +279,48 @@
                     "name": "Wrecking Throw",
                     "share": 0.02
                 }
+            ],
+            "healerGoes": 121,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Intimidating Shout"
+                    ],
+                    "share": 0.37
+                },
+                {
+                    "chain": [
+                        "Storm Bolt"
+                    ],
+                    "share": 0.35
+                },
+                {
+                    "chain": [
+                        "Shockwave"
+                    ],
+                    "share": 0.18
+                },
+                {
+                    "chain": [
+                        "Intimidating Shout",
+                        "Storm Bolt"
+                    ],
+                    "share": 0.04
+                },
+                {
+                    "chain": [
+                        "Shockwave",
+                        "Intimidating Shout"
+                    ],
+                    "share": 0.02
+                },
+                {
+                    "chain": [
+                        "Storm Bolt",
+                        "Shockwave"
+                    ],
+                    "share": 0.02
+                }
             ]
         },
         "72": {
@@ -142,6 +347,34 @@
                     "name": "Shattering Throw",
                     "share": 0.08
                 }
+            ],
+            "healerGoes": 11,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Storm Bolt"
+                    ],
+                    "share": 0.36
+                },
+                {
+                    "chain": [
+                        "Shockwave"
+                    ],
+                    "share": 0.27
+                },
+                {
+                    "chain": [
+                        "Intimidating Shout"
+                    ],
+                    "share": 0.27
+                },
+                {
+                    "chain": [
+                        "Storm Bolt",
+                        "Intimidating Shout"
+                    ],
+                    "share": 0.09
+                }
             ]
         },
         "102": {
@@ -156,6 +389,48 @@
                     "name": "Incarnation: Chosen of Elune",
                     "share": 0.82
                 }
+            ],
+            "healerGoes": 34,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Cyclone"
+                    ],
+                    "share": 0.53
+                },
+                {
+                    "chain": [
+                        "Mighty Bash"
+                    ],
+                    "share": 0.35
+                },
+                {
+                    "chain": [
+                        "Incapacitating Roar"
+                    ],
+                    "share": 0.03
+                },
+                {
+                    "chain": [
+                        "Cyclone",
+                        "Incapacitating Roar"
+                    ],
+                    "share": 0.03
+                },
+                {
+                    "chain": [
+                        "Incapacitating Roar",
+                        "Cyclone"
+                    ],
+                    "share": 0.03
+                },
+                {
+                    "chain": [
+                        "Cyclone",
+                        "Mighty Bash"
+                    ],
+                    "share": 0.03
+                }
             ]
         },
         "103": {
@@ -169,6 +444,93 @@
                 {
                     "name": "Incarnation: Avatar of Ashamane",
                     "share": 0.63
+                }
+            ],
+            "healerGoes": 208,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Maim"
+                    ],
+                    "share": 0.31
+                },
+                {
+                    "chain": [
+                        "Cyclone"
+                    ],
+                    "share": 0.28
+                },
+                {
+                    "chain": [
+                        "Incapacitating Roar"
+                    ],
+                    "share": 0.1
+                },
+                {
+                    "chain": [
+                        "Incapacitating Roar",
+                        "Cyclone"
+                    ],
+                    "share": 0.07
+                },
+                {
+                    "chain": [
+                        "Maim",
+                        "Cyclone"
+                    ],
+                    "share": 0.07
+                },
+                {
+                    "chain": [
+                        "Rake"
+                    ],
+                    "share": 0.03
+                }
+            ]
+        },
+        "105": {
+            "goes": 0,
+            "players": 0,
+            "spells": [],
+            "healerGoes": 79,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Cyclone"
+                    ],
+                    "share": 0.54
+                },
+                {
+                    "chain": [
+                        "Maim"
+                    ],
+                    "share": 0.1
+                },
+                {
+                    "chain": [
+                        "Mighty Bash"
+                    ],
+                    "share": 0.06
+                },
+                {
+                    "chain": [
+                        "Rake",
+                        "Cyclone"
+                    ],
+                    "share": 0.06
+                },
+                {
+                    "chain": [
+                        "Incapacitating Roar"
+                    ],
+                    "share": 0.05
+                },
+                {
+                    "chain": [
+                        "Maim",
+                        "Cyclone"
+                    ],
+                    "share": 0.05
                 }
             ]
         },
@@ -192,6 +554,49 @@
                     "name": "Breath of Sindragosa",
                     "share": 0.67
                 }
+            ],
+            "healerGoes": 21,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Strangulate"
+                    ],
+                    "share": 0.57
+                },
+                {
+                    "chain": [
+                        "Absolute Zero"
+                    ],
+                    "share": 0.14
+                },
+                {
+                    "chain": [
+                        "Blinding Sleet"
+                    ],
+                    "share": 0.1
+                },
+                {
+                    "chain": [
+                        "Absolute Zero",
+                        "Strangulate"
+                    ],
+                    "share": 0.05
+                },
+                {
+                    "chain": [
+                        "Blinding Sleet",
+                        "Absolute Zero",
+                        "Strangulate"
+                    ],
+                    "share": 0.05
+                },
+                {
+                    "chain": [
+                        "Blinding Sleet",
+                        "Strangulate"
+                    ],
+                    "share": 0.05
+                }
             ]
         },
         "252": {
@@ -206,6 +611,48 @@
                     "name": "Army of the Dead",
                     "share": 0.61
                 }
+            ],
+            "healerGoes": 114,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Strangulate"
+                    ],
+                    "share": 0.51
+                },
+                {
+                    "chain": [
+                        "Asphyxiate"
+                    ],
+                    "share": 0.24
+                },
+                {
+                    "chain": [
+                        "Blinding Sleet"
+                    ],
+                    "share": 0.15
+                },
+                {
+                    "chain": [
+                        "Blinding Sleet",
+                        "Strangulate"
+                    ],
+                    "share": 0.07
+                },
+                {
+                    "chain": [
+                        "Strangulate",
+                        "Blinding Sleet"
+                    ],
+                    "share": 0.02
+                },
+                {
+                    "chain": [
+                        "Blinding Sleet",
+                        "Asphyxiate"
+                    ],
+                    "share": 0.01
+                }
             ]
         },
         "253": {
@@ -215,6 +662,48 @@
                 {
                     "name": "Bestial Wrath",
                     "share": 1
+                }
+            ],
+            "healerGoes": 112,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Intimidation",
+                        "Freezing Trap"
+                    ],
+                    "share": 0.32
+                },
+                {
+                    "chain": [
+                        "Binding Shot",
+                        "Freezing Trap"
+                    ],
+                    "share": 0.2
+                },
+                {
+                    "chain": [
+                        "Intimidation"
+                    ],
+                    "share": 0.16
+                },
+                {
+                    "chain": [
+                        "Freezing Trap"
+                    ],
+                    "share": 0.14
+                },
+                {
+                    "chain": [
+                        "Binding Shot"
+                    ],
+                    "share": 0.09
+                },
+                {
+                    "chain": [
+                        "Scatter Shot",
+                        "Freezing Trap"
+                    ],
+                    "share": 0.04
                 }
             ]
         },
@@ -229,6 +718,48 @@
                 {
                     "name": "Trueshot",
                     "share": 0.64
+                }
+            ],
+            "healerGoes": 104,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Intimidation",
+                        "Freezing Trap"
+                    ],
+                    "share": 0.32
+                },
+                {
+                    "chain": [
+                        "Freezing Trap"
+                    ],
+                    "share": 0.2
+                },
+                {
+                    "chain": [
+                        "Intimidation"
+                    ],
+                    "share": 0.16
+                },
+                {
+                    "chain": [
+                        "Binding Shot",
+                        "Freezing Trap"
+                    ],
+                    "share": 0.14
+                },
+                {
+                    "chain": [
+                        "Scatter Shot",
+                        "Freezing Trap"
+                    ],
+                    "share": 0.08
+                },
+                {
+                    "chain": [
+                        "Binding Shot"
+                    ],
+                    "share": 0.04
                 }
             ]
         },
@@ -248,6 +779,48 @@
                     "name": "Aspect of the Eagle",
                     "share": 0.5
                 }
+            ],
+            "healerGoes": 24,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Freezing Trap"
+                    ],
+                    "share": 0.5
+                },
+                {
+                    "chain": [
+                        "Intimidation",
+                        "Freezing Trap"
+                    ],
+                    "share": 0.21
+                },
+                {
+                    "chain": [
+                        "Binding Shot"
+                    ],
+                    "share": 0.08
+                },
+                {
+                    "chain": [
+                        "Intimidation"
+                    ],
+                    "share": 0.08
+                },
+                {
+                    "chain": [
+                        "Intimidation",
+                        "Scatter Shot"
+                    ],
+                    "share": 0.04
+                },
+                {
+                    "chain": [
+                        "Freezing Trap",
+                        "Intimidation"
+                    ],
+                    "share": 0.04
+                }
             ]
         },
         "256": {
@@ -266,6 +839,28 @@
                     "name": "Mindgames",
                     "share": 0.01
                 }
+            ],
+            "healerGoes": 291,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Psychic Scream"
+                    ],
+                    "share": 0.93
+                },
+                {
+                    "chain": [
+                        "Mind Control"
+                    ],
+                    "share": 0.06
+                },
+                {
+                    "chain": [
+                        "Mind Control",
+                        "Psychic Scream"
+                    ],
+                    "share": 0
+                }
             ]
         },
         "257": {
@@ -275,6 +870,48 @@
                 {
                     "name": "Power Infusion",
                     "share": 1
+                }
+            ],
+            "healerGoes": 80,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Holy Word: Chastise"
+                    ],
+                    "share": 0.33
+                },
+                {
+                    "chain": [
+                        "Holy Word: Chastise",
+                        "Psychic Scream"
+                    ],
+                    "share": 0.33
+                },
+                {
+                    "chain": [
+                        "Psychic Scream"
+                    ],
+                    "share": 0.16
+                },
+                {
+                    "chain": [
+                        "Mind Control"
+                    ],
+                    "share": 0.08
+                },
+                {
+                    "chain": [
+                        "Holy Word: Chastise",
+                        "Mind Control"
+                    ],
+                    "share": 0.04
+                },
+                {
+                    "chain": [
+                        "Psychic Scream",
+                        "Holy Word: Chastise"
+                    ],
+                    "share": 0.03
                 }
             ]
         },
@@ -298,6 +935,41 @@
                     "name": "Halo",
                     "share": 0.04
                 }
+            ],
+            "healerGoes": 88,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Silence"
+                    ],
+                    "share": 0.48
+                },
+                {
+                    "chain": [
+                        "Psychic Scream"
+                    ],
+                    "share": 0.26
+                },
+                {
+                    "chain": [
+                        "Psychic Scream",
+                        "Silence"
+                    ],
+                    "share": 0.13
+                },
+                {
+                    "chain": [
+                        "Silence",
+                        "Psychic Scream"
+                    ],
+                    "share": 0.11
+                },
+                {
+                    "chain": [
+                        "Mind Control"
+                    ],
+                    "share": 0.02
+                }
             ]
         },
         "259": {
@@ -316,6 +988,46 @@
                     "name": "Thistle Tea",
                     "share": 0.12
                 }
+            ],
+            "healerGoes": 150,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Blind"
+                    ],
+                    "share": 0.25
+                },
+                {
+                    "chain": [
+                        "Garrote - Silence"
+                    ],
+                    "share": 0.23
+                },
+                {
+                    "chain": [
+                        "Sap"
+                    ],
+                    "share": 0.17
+                },
+                {
+                    "chain": [
+                        "Kidney Shot"
+                    ],
+                    "share": 0.11
+                },
+                {
+                    "chain": [
+                        "Garrote - Silence",
+                        "Cheap Shot"
+                    ],
+                    "share": 0.05
+                },
+                {
+                    "chain": [
+                        "Cheap Shot"
+                    ],
+                    "share": 0.04
+                }
             ]
         },
         "261": {
@@ -329,6 +1041,46 @@
                 {
                     "name": "Goremaw's Bite",
                     "share": 0.52
+                }
+            ],
+            "healerGoes": 58,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Kidney Shot"
+                    ],
+                    "share": 0.38
+                },
+                {
+                    "chain": [
+                        "Blind"
+                    ],
+                    "share": 0.21
+                },
+                {
+                    "chain": [
+                        "Cheap Shot"
+                    ],
+                    "share": 0.16
+                },
+                {
+                    "chain": [
+                        "Sap"
+                    ],
+                    "share": 0.12
+                },
+                {
+                    "chain": [
+                        "Gouge"
+                    ],
+                    "share": 0.07
+                },
+                {
+                    "chain": [
+                        "Sap",
+                        "Blind"
+                    ],
+                    "share": 0.03
                 }
             ]
         },
@@ -344,6 +1096,28 @@
                     "name": "Ascendance",
                     "share": 0.65
                 }
+            ],
+            "healerGoes": 29,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Hex"
+                    ],
+                    "share": 0.72
+                },
+                {
+                    "chain": [
+                        "Capacitor Totem"
+                    ],
+                    "share": 0.24
+                },
+                {
+                    "chain": [
+                        "Capacitor Totem",
+                        "Hex"
+                    ],
+                    "share": 0.03
+                }
             ]
         },
         "263": {
@@ -357,6 +1131,54 @@
                 {
                     "name": "Ascendance",
                     "share": 0.19
+                }
+            ],
+            "healerGoes": 13,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Hex"
+                    ],
+                    "share": 0.62
+                },
+                {
+                    "chain": [
+                        "Capacitor Totem"
+                    ],
+                    "share": 0.38
+                }
+            ]
+        },
+        "264": {
+            "goes": 0,
+            "players": 0,
+            "spells": [],
+            "healerGoes": 31,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Hex"
+                    ],
+                    "share": 0.45
+                },
+                {
+                    "chain": [
+                        "Capacitor Totem"
+                    ],
+                    "share": 0.26
+                },
+                {
+                    "chain": [
+                        "Lightning Lasso"
+                    ],
+                    "share": 0.26
+                },
+                {
+                    "chain": [
+                        "Hex",
+                        "Lightning Lasso"
+                    ],
+                    "share": 0.03
                 }
             ]
         },
@@ -376,6 +1198,47 @@
                     "name": "Malevolence",
                     "share": 0.3
                 }
+            ],
+            "healerGoes": 64,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Fear"
+                    ],
+                    "share": 0.41
+                },
+                {
+                    "chain": [
+                        "Howl of Terror"
+                    ],
+                    "share": 0.33
+                },
+                {
+                    "chain": [
+                        "Mortal Coil"
+                    ],
+                    "share": 0.14
+                },
+                {
+                    "chain": [
+                        "Seduction"
+                    ],
+                    "share": 0.05
+                },
+                {
+                    "chain": [
+                        "Mortal Coil",
+                        "Fear"
+                    ],
+                    "share": 0.03
+                },
+                {
+                    "chain": [
+                        "Fear",
+                        "Howl of Terror"
+                    ],
+                    "share": 0.03
+                }
             ]
         },
         "266": {
@@ -385,6 +1248,21 @@
                 {
                     "name": "Summon Demonic Tyrant",
                     "share": 1
+                }
+            ],
+            "healerGoes": 5,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Fear"
+                    ],
+                    "share": 0.6
+                },
+                {
+                    "chain": [
+                        "Howl of Terror"
+                    ],
+                    "share": 0.4
                 }
             ]
         },
@@ -403,6 +1281,46 @@
                 {
                     "name": "Soul Fire",
                     "share": 0.58
+                }
+            ],
+            "healerGoes": 52,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Fear"
+                    ],
+                    "share": 0.38
+                },
+                {
+                    "chain": [
+                        "Mortal Coil"
+                    ],
+                    "share": 0.27
+                },
+                {
+                    "chain": [
+                        "Howl of Terror"
+                    ],
+                    "share": 0.17
+                },
+                {
+                    "chain": [
+                        "Seduction"
+                    ],
+                    "share": 0.13
+                },
+                {
+                    "chain": [
+                        "Shadowfury"
+                    ],
+                    "share": 0.02
+                },
+                {
+                    "chain": [
+                        "Mortal Coil",
+                        "Fear"
+                    ],
+                    "share": 0.02
                 }
             ]
         },
@@ -426,6 +1344,35 @@
                     "name": "Celestial Conduit",
                     "share": 0.02
                 }
+            ],
+            "healerGoes": 77,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Paralysis"
+                    ],
+                    "share": 0.7
+                },
+                {
+                    "chain": [
+                        "Leg Sweep"
+                    ],
+                    "share": 0.23
+                },
+                {
+                    "chain": [
+                        "Paralysis",
+                        "Leg Sweep"
+                    ],
+                    "share": 0.05
+                },
+                {
+                    "chain": [
+                        "Leg Sweep",
+                        "Paralysis"
+                    ],
+                    "share": 0.01
+                }
             ]
         },
         "270": {
@@ -435,6 +1382,50 @@
                 {
                     "name": "Touch of Death",
                     "share": 1
+                }
+            ],
+            "healerGoes": 33,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Leg Sweep"
+                    ],
+                    "share": 0.33
+                },
+                {
+                    "chain": [
+                        "Paralysis"
+                    ],
+                    "share": 0.27
+                },
+                {
+                    "chain": [
+                        "Paralysis",
+                        "Leg Sweep"
+                    ],
+                    "share": 0.12
+                },
+                {
+                    "chain": [
+                        "Leg Sweep",
+                        "Paralysis"
+                    ],
+                    "share": 0.09
+                },
+                {
+                    "chain": [
+                        "Paralysis",
+                        "Song of Chi-Ji"
+                    ],
+                    "share": 0.06
+                },
+                {
+                    "chain": [
+                        "Leg Sweep",
+                        "Song of Chi-Ji",
+                        "Paralysis"
+                    ],
+                    "share": 0.03
                 }
             ]
         },
@@ -450,6 +1441,49 @@
                     "name": "The Hunt",
                     "share": 0.84
                 }
+            ],
+            "healerGoes": 79,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Chaos Nova"
+                    ],
+                    "share": 0.41
+                },
+                {
+                    "chain": [
+                        "Imprison"
+                    ],
+                    "share": 0.41
+                },
+                {
+                    "chain": [
+                        "Sigil of Misery"
+                    ],
+                    "share": 0.06
+                },
+                {
+                    "chain": [
+                        "Imprison",
+                        "Sigil of Misery"
+                    ],
+                    "share": 0.06
+                },
+                {
+                    "chain": [
+                        "Chaos Nova",
+                        "Sigil of Misery"
+                    ],
+                    "share": 0.04
+                },
+                {
+                    "chain": [
+                        "Imprison",
+                        "Chaos Nova",
+                        "Sigil of Misery"
+                    ],
+                    "share": 0.01
+                }
             ]
         },
         "1467": {
@@ -463,6 +1497,28 @@
                 {
                     "name": "Tip the Scales",
                     "share": 0.71
+                }
+            ],
+            "healerGoes": 8,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Sleep Walk"
+                    ],
+                    "share": 0.5
+                },
+                {
+                    "chain": [
+                        "Terror of the Skies",
+                        "Sleep Walk"
+                    ],
+                    "share": 0.25
+                },
+                {
+                    "chain": [
+                        "Terror of the Skies"
+                    ],
+                    "share": 0.25
                 }
             ]
         },
@@ -478,6 +1534,28 @@
                     "name": "Deep Breath",
                     "share": 0.61
                 }
+            ],
+            "healerGoes": 43,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Sleep Walk"
+                    ],
+                    "share": 0.88
+                },
+                {
+                    "chain": [
+                        "Terror of the Skies"
+                    ],
+                    "share": 0.09
+                },
+                {
+                    "chain": [
+                        "Terror of the Skies",
+                        "Sleep Walk"
+                    ],
+                    "share": 0.02
+                }
             ]
         },
         "1473": {
@@ -486,6 +1564,15 @@
             "spells": [
                 {
                     "name": "Tip the Scales",
+                    "share": 1
+                }
+            ],
+            "healerGoes": 2,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Sleep Walk"
+                    ],
                     "share": 1
                 }
             ]
@@ -506,7 +1593,283 @@
                     "name": "The Hunt",
                     "share": 0.56
                 }
+            ],
+            "healerGoes": 19,
+            "healerRuns": [
+                {
+                    "chain": [
+                        "Imprison"
+                    ],
+                    "share": 0.58
+                },
+                {
+                    "chain": [
+                        "Void Nova"
+                    ],
+                    "share": 0.32
+                },
+                {
+                    "chain": [
+                        "Void Nova",
+                        "Sigil of Misery",
+                        "Imprison"
+                    ],
+                    "share": 0.05
+                },
+                {
+                    "chain": [
+                        "Sigil of Misery"
+                    ],
+                    "share": 0.05
+                }
             ]
+        }
+    },
+    "control": {
+        "Absolute Zero": {
+            "healer": 6,
+            "target": 13,
+            "cross": 12
+        },
+        "Asphyxiate": {
+            "healer": 33,
+            "target": 18,
+            "cross": 3
+        },
+        "Axe Toss": {
+            "healer": 0,
+            "target": 8,
+            "cross": 4
+        },
+        "Binding Shot": {
+            "healer": 75,
+            "target": 74,
+            "cross": 79
+        },
+        "Blind": {
+            "healer": 87,
+            "target": 1,
+            "cross": 4
+        },
+        "Blinding Light": {
+            "healer": 109,
+            "target": 86,
+            "cross": 87
+        },
+        "Blinding Sleet": {
+            "healer": 51,
+            "target": 66,
+            "cross": 79
+        },
+        "Capacitor Totem": {
+            "healer": 24,
+            "target": 44,
+            "cross": 49
+        },
+        "Chaos Nova": {
+            "healer": 63,
+            "target": 100,
+            "cross": 95
+        },
+        "Cheap Shot": {
+            "healer": 45,
+            "target": 112,
+            "cross": 71
+        },
+        "Cyclone": {
+            "healer": 274,
+            "target": 64,
+            "cross": 206
+        },
+        "Dragon's Breath": {
+            "healer": 89,
+            "target": 112,
+            "cross": 151
+        },
+        "Fear": {
+            "healer": 87,
+            "target": 33,
+            "cross": 42
+        },
+        "Freezing Trap": {
+            "healer": 235,
+            "target": 15,
+            "cross": 16
+        },
+        "Garrote - Silence": {
+            "healer": 85,
+            "target": 173,
+            "cross": 111
+        },
+        "Gouge": {
+            "healer": 26,
+            "target": 15,
+            "cross": 17
+        },
+        "Hammer of Justice": {
+            "healer": 447,
+            "target": 96,
+            "cross": 39
+        },
+        "Hex": {
+            "healer": 52,
+            "target": 1,
+            "cross": 23
+        },
+        "Holy Word: Chastise": {
+            "healer": 70,
+            "target": 16,
+            "cross": 11
+        },
+        "Howl of Terror": {
+            "healer": 42,
+            "target": 63,
+            "cross": 76
+        },
+        "Imprison": {
+            "healer": 60,
+            "target": 15,
+            "cross": 47
+        },
+        "Incapacitating Roar": {
+            "healer": 94,
+            "target": 66,
+            "cross": 80
+        },
+        "Intimidating Shout": {
+            "healer": 77,
+            "target": 58,
+            "cross": 59
+        },
+        "Intimidation": {
+            "healer": 155,
+            "target": 29,
+            "cross": 13
+        },
+        "Kidney Shot": {
+            "healer": 71,
+            "target": 158,
+            "cross": 29
+        },
+        "Leg Sweep": {
+            "healer": 57,
+            "target": 105,
+            "cross": 89
+        },
+        "Lightning Lasso": {
+            "healer": 14,
+            "target": 7,
+            "cross": 7
+        },
+        "Maim": {
+            "healer": 152,
+            "target": 114,
+            "cross": 47
+        },
+        "Mighty Bash": {
+            "healer": 45,
+            "target": 26,
+            "cross": 35
+        },
+        "Mind Control": {
+            "healer": 58,
+            "target": 9,
+            "cross": 74
+        },
+        "Mortal Coil": {
+            "healer": 36,
+            "target": 97,
+            "cross": 61
+        },
+        "Paralysis": {
+            "healer": 106,
+            "target": 12,
+            "cross": 30
+        },
+        "Polymorph": {
+            "healer": 229,
+            "target": 39,
+            "cross": 115
+        },
+        "Psychic Scream": {
+            "healer": 434,
+            "target": 215,
+            "cross": 228
+        },
+        "Rake": {
+            "healer": 22,
+            "target": 205,
+            "cross": 87
+        },
+        "Ring of Frost": {
+            "healer": 21,
+            "target": 38,
+            "cross": 54
+        },
+        "Sap": {
+            "healer": 39,
+            "target": 5,
+            "cross": 7
+        },
+        "Scatter Shot": {
+            "healer": 40,
+            "target": 22,
+            "cross": 117
+        },
+        "Seduction": {
+            "healer": 13,
+            "target": 6,
+            "cross": 7
+        },
+        "Shadowfury": {
+            "healer": 5,
+            "target": 6,
+            "cross": 4
+        },
+        "Shockwave": {
+            "healer": 40,
+            "target": 104,
+            "cross": 80
+        },
+        "Sigil of Misery": {
+            "healer": 22,
+            "target": 18,
+            "cross": 25
+        },
+        "Silence": {
+            "healer": 97,
+            "target": 3,
+            "cross": 5
+        },
+        "Sleep Walk": {
+            "healer": 88,
+            "target": 4,
+            "cross": 18
+        },
+        "Song of Chi-Ji": {
+            "healer": 7,
+            "target": 6,
+            "cross": 2
+        },
+        "Storm Bolt": {
+            "healer": 78,
+            "target": 114,
+            "cross": 55
+        },
+        "Strangulate": {
+            "healer": 91,
+            "target": 11,
+            "cross": 1
+        },
+        "Terror of the Skies": {
+            "healer": 15,
+            "target": 24,
+            "cross": 21
+        },
+        "Void Nova": {
+            "healer": 10,
+            "target": 31,
+            "cross": 24
         }
     }
 }

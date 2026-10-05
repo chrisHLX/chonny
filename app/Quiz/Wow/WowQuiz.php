@@ -3,6 +3,7 @@
 namespace App\Quiz\Wow;
 
 use App\Learning\ConceptCoverage;
+use App\Livewire\WowComps;
 use App\Models\Concept;
 use App\Models\Specialization;
 use App\Quiz\GameQuiz;
@@ -53,6 +54,12 @@ class WowQuiz implements GameQuiz
         return "spec:{$spec->id}";
     }
 
+    /** The arena basics check, flavoured by the spec the player plays (BasicsCheck). */
+    public static function basicsSubjectFor(Specialization $spec): string
+    {
+        return "basics:{$spec->id}";
+    }
+
     public static function drillSubjectFor(Concept $concept, Specialization $spec): string
     {
         return "concept:{$concept->id}:{$spec->id}";
@@ -64,6 +71,10 @@ class WowQuiz implements GameQuiz
             return $this->drillQuestions($subject, $count);
         }
 
+        if (str_starts_with($subject, 'basics:')) {
+            return $this->basicsQuestions((int) substr($subject, 7));
+        }
+
         $spec = str_starts_with($subject, 'spec:')
             ? Specialization::with('gameClass')->find((int) substr($subject, 5))
             : null;
@@ -73,6 +84,37 @@ class WowQuiz implements GameQuiz
         }
 
         return $this->builder($spec, WowQuestionBuilder::LEVEL_TYPES[$level] ?? [])->build($level, $count);
+    }
+
+    /**
+     * One question per basic, whatever $count asks for: the result reads basic by basic.
+     *
+     * @return array<int, \App\Quiz\QuizQuestion>
+     */
+    private function basicsQuestions(int $specId): array
+    {
+        $spec = Specialization::with('gameClass')->find($specId);
+
+        if (! $spec) {
+            return [];
+        }
+
+        // Partners for the "press together" question: damage specs only, by Blizzard's spec id,
+        // which is what the go-cooldowns file is keyed by.
+        $specNames = Specialization::with('gameClass')->whereNotNull('external_spec_id')->get()
+            ->filter(fn (Specialization $s) => $s->gameClass && WowComps::roleOf($s->gameClass->slug, $s->slug) === 'dps')
+            ->mapWithKeys(fn (Specialization $s) => [$s->external_spec_id => ['label' => "{$s->name} {$s->gameClass->name}", 'class' => $s->gameClass->name]])
+            ->all();
+
+        return (new BasicsCheck(
+            specLabel: trim("{$spec->name} {$spec->gameClass?->name}"),
+            abilities: $this->facts->specAbilities($spec),
+            ccPool: $this->facts->ccPool(),
+            externalSpecId: $spec->external_spec_id,
+            healer: $spec->gameClass && WowComps::roleOf($spec->gameClass->slug, $spec->slug) === 'healer',
+            specNames: $specNames,
+            className: $spec->gameClass?->name,
+        ))->build();
     }
 
     /** @return array<int, \App\Quiz\QuizQuestion> */
