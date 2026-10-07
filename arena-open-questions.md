@@ -236,6 +236,8 @@ example, so a result here tests the damage trade only.
 
 ANSWER:
 
+*First read, 2026-10-07 (`tools/match-review/popstate.php`, 793 rounds):* the team that won more such exchanges (a defensive pressed outside the other team's goes, none of the other team's within 15s) won 51% against 44%, on only 205 rounds where the counts differ. The broader form is clearer: holding more defensives than the other team at 2:00 went with 53% wins against 32%, and having spent more offensive cooldowns with winning, not losing. See `docs/learning/population-findings-2026-10-07-trading.md`.
+
 **C15. What does holding a cooldown actually cost in uses?** [ARCHIVE] — *new (Part 20.3).*
 The arithmetic is settled: a cooldown only starts coming back once pressed, so holding it can lose
 a use over a round. How much it costs in practice is not: for each major cooldown, how long it sat

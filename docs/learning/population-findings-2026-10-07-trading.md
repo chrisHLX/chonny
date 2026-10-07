@@ -28,3 +28,29 @@ defensives down, graded; answers per go, shown and not graded).
 **Savage Momentum.** A Feral lands 0.58 kicks a free minute at the median this season (0.0 at the
 25th percentile, 1.03 at the 75th). At 10s each that brings a 3-minute Survival Instincts back in
 about 2:44 at the median and 2:34 at the 75th percentile, not 2:30.
+
+## Is the relative resource state visible? (same day, `tools/match-review/popstate.php`)
+
+793 archived rounds, both teams. At fixed points in the round (nobody dead yet), each team's
+defensives and offensive cooldowns on cooldown, from the timeline; the win rate of the team with
+more of its own up than the other team's against the team with fewer.
+
+| At | More of our DEFENSIVES up than theirs | Fewer | | More of our OFFENSIVES up (held) | Fewer (spent) |
+|---|---|---|---|---|---|
+| 0:30 | 54% (351) | 50% (233) | | 50% (293) | 52% (299) |
+| 1:00 | **59%** (329) | 45% (191) | | 50% (260) | **58%** (232) |
+| 1:30 | 55% (264) | 43% (143) | | 47% (226) | 54% (161) |
+| 2:00 | **53%** (163) | **32%** (98) | | **40%** (131) | 51% (112) |
+| 3:00 | 40% (53) | 28% (25) | | 27% (30) | 46% (41) |
+
+**Both halves of the trade show.** Holding more answers than the other team goes with winning,
+and the gap widens through the round (5 points at 0:30, 21 at 2:00). Offensive cooldowns run the
+other way: the team that has *spent* more of its offensives wins more. Read together that is
+resource conversion: offence spent to take their defensives, while keeping yours. It matches
+Part 20.3's "holding has a cost" for offence, and Part 2 for defence. A correlation, with the
+usual confound (a winning team gets the chances to press its offensives), so not a proof of what
+to do.
+
+**C14, free exchanges** (a defensive pressed outside the other team's goes, with none of the other
+team's within 15s): rare under this narrow definition, 205 rounds where the teams differ. The team
+that won more of them won 51% against 44%. Leaning the right way, not yet settled.
