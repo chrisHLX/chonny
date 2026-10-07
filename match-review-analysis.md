@@ -1752,3 +1752,38 @@ or duration extensions (Death Coil adds 1s each) — **[HYP], not measured.**
 
 ---
 
+
+### 7 Oct: Rel (Doubletapz, Cindogz) against your other damage partners
+
+Chriso's read: Rel plays well inside a structured go and is lost under pressure, in unstructured
+play and on defence, and his deaths get put on the healer. Rel is Doubletapz (BM Hunter) and
+Cindogz (Devourer DH, some Havoc), confirmed by Chriso. Every team game in the archive (3v3, 2v2)
+where the logger had a damage partner: Rel 132 rounds, 81 other partners 407 rounds.
+`tools/match-review/partnerread.php --partner=Doubletapz,Cindogz --label=Rel`.
+
+| | Rel | Other partners |
+|---|---|---|
+| Won | 45% | 50% (Rastic 60%) |
+| Died first in a loss | 46% | 49% |
+| Locked out in the 3s before that death | 6 of 34 (18%) | 19 of 99 (19%) |
+| **His own defensives still ready at that death, when free to press** | **2.4** (Doubletapz 3.7, Cindogz 1.8) | **1.2** (Rastic 0.5, Kickbotmacro 0.6; Bagsy 3.6) |
+| Our healer locked out at that death | 16 of 34 (47%) | 48 of 99 (48%) |
+| Their goes aimed at him, answered with his own defensive | 64% | 75% |
+| Died inside a go aimed at him | 12% | 13% |
+| Health when he pressed a defensive (median) | 63% | 70% |
+| His crowd control on them during their goes | 0.67 a go | 1.80 a go |
+
+**What holds.** He dies free to act with more of his own answers unpressed than almost any
+partner: on Doubletapz, 3.7 of them. That is the defensive-play part of Chriso's read, and in
+Part 20's terms the worst trade there is: buttons kept, never turned into state. It is not chain
+crowd control (locked out at 18% of those deaths, the same as everyone), and not the healer more
+than anyone else's (our healer was locked at 47% of his deaths against 48% of the others').
+
+**What does not separate him.** How often he dies first, dies inside a go on him, or answers it
+at all is close to the others. The peel gap (0.67 against 1.80) is mostly spec: within a spec it
+closes (BM 1.0 against 1.0 on 8 rounds; Havoc 0.6 against 0.67), and there is no other Devourer to
+set Cindogz against.
+
+**Not measurable.** "Follows my lead" and "can't adapt when it is unstructured" are comms and
+decisions; the log holds neither (Part 14.2, 20.5). Casts a minute by phase was tried as an
+"unstructured play" proxy and dropped: short windows and automatic casts made it meaningless.
