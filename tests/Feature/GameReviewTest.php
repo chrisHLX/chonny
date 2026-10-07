@@ -288,8 +288,17 @@ class GameReviewTest extends TestCase
             ->assertSee('Inner Light')
             ->assertSee('Purification')
             ->assertSee('What this cannot tell you')
-            // The upload control is an included partial with an inline script; if the include or
-            // the script ever fails to compile it renders as nothing rather than erroring.
+            // The upload moved to "Your games" (2026-10-05); this page links back there.
+            ->assertDontSee('Upload matches')
+            ->assertSee(route('coach'), false);
+    }
+
+    public function test_the_upload_lives_on_your_games(): void
+    {
+        // The upload control is an included partial with an inline script; if the include or the
+        // script ever fails to compile it renders as nothing rather than erroring.
+        Livewire::actingAs(User::factory()->create())
+            ->test(\App\Livewire\GamesUpload::class)
             ->assertSee('Upload matches')
             ->assertSee('window.arenaUpload', false);
     }

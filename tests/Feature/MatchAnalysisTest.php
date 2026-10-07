@@ -72,15 +72,16 @@ class MatchAnalysisTest extends TestCase
         ]);
     }
 
-    public function test_the_page_needs_an_account(): void
+    public function test_the_old_page_now_opens_your_games(): void
     {
-        $this->get(route('match-analysis'))->assertRedirect(route('login'));
+        // Retired into "Your games" on 2026-10-05; the component below is kept, unrouted.
+        $this->get(route('match-analysis'))->assertRedirect('/wow/coach');
     }
 
     public function test_a_player_with_no_games_is_told_how_to_get_some(): void
     {
-        $this->actingAs(User::factory()->create())->get(route('match-analysis'))
-            ->assertOk()->assertSee('No analysed games yet');
+        \Livewire\Livewire::actingAs(User::factory()->create())->test(\App\Livewire\MatchAnalysis::class)
+            ->assertSee('No analysed games yet');
     }
 
     public function test_it_reads_wins_against_losses_with_a_takeaway_for_the_healer(): void
@@ -124,11 +125,11 @@ class MatchAnalysisTest extends TestCase
         $owner = User::factory()->create();
         $this->storeGame($owner, 'm1', '2026-09-26 19:26:00', true);
 
-        $this->actingAs(User::factory()->create())->get(route('match-analysis'))
-            ->assertOk()->assertSee('No analysed games yet')->assertDontSee('Restoration Druid');
+        \Livewire\Livewire::actingAs(User::factory()->create())->test(\App\Livewire\MatchAnalysis::class)
+            ->assertSee('No analysed games yet')->assertDontSee('Restoration Druid');
 
-        $this->actingAs($owner)->get(route('match-analysis'))
-            ->assertOk()->assertSee('Who you played')->assertSee('Restoration Druid');
+        \Livewire\Livewire::actingAs($owner)->test(\App\Livewire\MatchAnalysis::class)
+            ->assertSee('Who you played')->assertSee('Restoration Druid');
     }
 
     public function test_the_patterns_are_drawn_as_abilities(): void
@@ -137,8 +138,7 @@ class MatchAnalysisTest extends TestCase
         $this->storeGame($user, 'm1', '2026-09-26 19:26:00', true);
         $this->storeGame($user, 'm2', '2026-09-26 19:50:00', false);
 
-        $this->actingAs($user)->get(route('match-analysis'))
-            ->assertOk()
+        \Livewire\Livewire::actingAs($user)->test(\App\Livewire\MatchAnalysis::class)
             ->assertSee('Your goes that killed')
             ->assertSee('What answered your goes')
             ->assertSee('Ironbark')

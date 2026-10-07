@@ -142,26 +142,15 @@
             Matchup Lab
         </a>
 
-        {{-- After the two forward-looking pages: this is the same matchup read backwards, off a
-             game that actually happened. See App\Livewire\GameReview. --}}
-        <a href="{{ route('game-review') }}" wire:navigate
-           class="sidebar-item {{ request()->routeIs('game-review') ? 'active' : '' }}">
+        {{-- Your own games: one page since 2026-10-05 (Game Review and Your coach merged). Shown
+             signed out too, so the page is found; it asks for a sign-in. See CoachController. --}}
+        <a href="{{ route('coach') }}"
+           class="sidebar-item {{ request()->routeIs('coach') || request()->routeIs('game-review') ? 'active' : '' }}">
             <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m3 6V7m3 10v-4M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
             </svg>
-            Game Review
+            Your games
         </a>
-
-        {{-- The desktop app's pages for your own games, uploaded by the app. See CoachController. --}}
-        @auth
-            <a href="{{ route('coach') }}"
-               class="sidebar-item {{ request()->routeIs('coach') ? 'active' : '' }}">
-                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z"/>
-                </svg>
-                Your coach
-            </a>
-        @endauth
 
         @auth
             <p class="px-2.5 pt-3 pb-1 text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Social</p>

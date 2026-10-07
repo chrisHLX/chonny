@@ -163,12 +163,14 @@ Route::prefix('wow')->group(function () {
     // "Your analysis": the uploaded games combined into the match-review-analysis.md read, for any
     // player. Auth and scoped to the viewer's own games, like the review itself. See
     // App\Livewire\MatchAnalysis and MatchAnalysisService.
-    Route::get('/match-analysis', \App\Livewire\MatchAnalysis::class)
-        ->middleware('auth')
-        ->name('match-analysis');
+    // Retired 2026-10-05 into "Your games" (/wow/coach), whose Improve tab replaces it. The route
+    // name stays so old links and redirects keep resolving.
+    Route::redirect('/match-analysis', '/wow/coach')->name('match-analysis');
 
+    // The review tools' raw output: admin only since 2026-10-05, when the player-facing pages
+    // became "Your games".
     Route::get('/game-review/analysis', \App\Livewire\GameReviewAnalysis::class)
-        ->middleware('auth')
+        ->middleware(['auth', 'can:admin'])
         ->name('game-review.analysis');
 
     Route::get('/game-review/{id?}', \App\Livewire\GameReview::class)

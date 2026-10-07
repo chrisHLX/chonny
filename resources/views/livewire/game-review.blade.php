@@ -26,27 +26,25 @@
 <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-8">
 
     <header class="space-y-2">
-        <h1 class="font-display italic text-3xl sm:text-4xl text-ink">Match Review</h1>
+        <a href="{{ route('coach') }}" class="inline-block text-sm text-gold hover:text-gold-light">&larr; Your games</a>
+        <h1 class="font-display italic text-3xl sm:text-4xl text-ink">Same-spec review</h1>
         <p class="text-ink-muted max-w-3xl">
-            A played game read back from its own combat log — who won each round, what every player
+            A Solo Shuffle lobby read back from its own combat log — who won each round, what every player
             actually put out, and where two players of the same spec differed. The same-spec
             comparison is the one that means anything: identical kit, so what is left is build,
-            gear and play.
+            gear and play. Upload games on <a href="{{ route('coach') }}" class="text-gold hover:underline">Your games</a>.
         </p>
-        <div class="flex flex-wrap gap-4">
-            <a href="{{ route('match-analysis') }}" class="inline-block text-sm text-gold hover:text-gold-light font-medium">Your analysis: why you won and lost &rarr;</a>
+        @can('admin')
             <a href="{{ route('game-review.analysis') }}" class="inline-block text-sm text-ink-muted hover:text-gold">Raw analysis output &rarr;</a>
-        </div>
+        @endcan
     </header>
-
-    @include('livewire.partials.game-review-upload')
 
     @if ($reviews === [])
         <div class="linear-card p-6">
             <h2 class="text-ink font-semibold mb-2">No games yet</h2>
             <p class="text-ink-muted text-sm">
-                Install the MindCollector addon, play some Solo Shuffle, then upload your combat log
-                above. The addon turns combat logging on when an arena starts and off when it ends,
+                Install the MindCollector addon, play some Solo Shuffle, then upload your combat log on
+                <a href="{{ route('coach') }}" class="text-gold hover:underline">Your games</a>. The addon turns combat logging on when an arena starts and off when it ends,
                 so the file stays small and holds your games and nothing else.
             </p>
         </div>

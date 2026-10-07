@@ -8,17 +8,17 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 /**
- * Usage analytics for every page tracked in PAGES below — the whole WoW-facing surface (WoW
+ * Usage analytics for every page tracked in PAGES below â€” the whole WoW-facing surface (WoW
  * Comps, Spell Explorer, Top Burst Windows, PvP Guides and its four embedded panels, Top 10 CC
- * Chains, the per-spell detail page, etc.) — sourced from PageViewEvent (see that model and
- * CLAUDE.md's "diagnostic quiz analytics" investigation — same session this was built in). The
+ * Chains, the per-spell detail page, etc.) â€” sourced from PageViewEvent (see that model and
+ * CLAUDE.md's "diagnostic quiz analytics" investigation â€” same session this was built in). The
  * summary / top-classes / top-specs sections all iterate PAGES, so a new slug added there
  * appears in every section automatically.
  *
  * A row with class_id null is a bare page view; a row with class_id set is a real class/spec
  * selection. This split matters: SpellExplorer::mount() always lands on the alphabetically-first
  * class by default, so attributing that landing view to a class would make it look artificially
- * popular regardless of real interest — same mistake Admin\DiagnosticStats::getSummaryProperty()
+ * popular regardless of real interest â€” same mistake Admin\DiagnosticStats::getSummaryProperty()
  * had before this session's fix, deliberately avoided here from the start rather than repeated.
  * Only an explicit pick (SpellExplorer::updatedClassId()/updatedSpecId(),
  * WowComps::logSlotSelection(), TopDamageRotations::selectSpec()) is counted toward "most viewed
@@ -27,10 +27,10 @@ use Livewire\Component;
 class PageUsage extends Component
 {
     /**
-     * Every page slug tracked here — keys are the exact `$page` string passed to
+     * Every page slug tracked here â€” keys are the exact `$page` string passed to
      * `PageViewEvent::log()`, values are the display label used by the admin dashboard. Any new
      * user-facing route/page must add an entry here (see CLAUDE.md's "any new route or page must
-     * be tracked as a page view" rule) — logging events that never appear in this list is
+     * be tracked as a page view" rule) â€” logging events that never appear in this list is
      * equivalent to not tracking them at all, confirmed as a real gap: `top_damage_rotations`
      * (the "Top Burst Windows" page) was already calling PageViewEvent::log() from day one but was
      * never added here, so its views were being recorded with nowhere to see them.
@@ -45,9 +45,9 @@ class PageUsage extends Component
         'matchup_lab' => 'Matchup Lab',
         'game_review' => 'Game Review',
         'match_analysis' => 'Your analysis',
-        'coach' => 'Your coach',
+        'coach' => 'Your games',
         'basics_check' => 'Arena basics check',
-        'game_review_analysis' => 'Game Review — raw analysis',
+        'game_review_analysis' => 'Game Review â€” raw analysis',
         'top_damage_rotations' => 'Top Burst Windows',
         'burst_window_talents' => 'Burst Window Talent View',
         'class_guide' => 'Class Guide',
@@ -80,7 +80,7 @@ class PageUsage extends Component
      * getPvpGuidesTabBreakdownProperty() + its own blade section instead.
      *
      * Unlike WoW Comps' tabs (an Alpine-only bar needing a fetch() beacon), these rows DO carry
-     * class_id/spec_id — a PvP Guides tab switch is a real Livewire round trip on a page that
+     * class_id/spec_id â€” a PvP Guides tab switch is a real Livewire round trip on a page that
      * already knows which spec is open, so which spec a tab is opened for is recorded for free.
      */
     private const PVP_GUIDES_TAB_LABELS = [
@@ -114,7 +114,7 @@ class PageUsage extends Component
     /**
      * WoW Comps "Common picks" preset keys (the `page_view_events.slot` value on a
      * 'wow_comps_preset' row, written by WowComps::applyPreset()) => display label. Same
-     * not-a-PAGES-entry reasoning as WOW_COMPS_TAB_LABELS above — surfaced by
+     * not-a-PAGES-entry reasoning as WOW_COMPS_TAB_LABELS above â€” surfaced by
      * getPresetBreakdownProperty() + its own blade section. A preset click also logs the
      * normal per-slot attributed rows, so it already shows up in top classes/specs/slot
      * breakdown; this is the extra "which preset" dimension.
@@ -129,7 +129,7 @@ class PageUsage extends Component
      * The headline: real visitors, over a window, with the crawler share alongside.
      *
      * WHY THIS IS AT THE TOP NOW. Until 2026-09-24 this page showed all-time totals with no
-     * window and no bot filter, and roughly half of every number was a crawler — measured
+     * window and no bot filter, and roughly half of every number was a crawler â€” measured
      * against nginx's own logs, 3,559 of 7,766 served pages over a fortnight were self-declared
      * bots. A tripling of crawler discovery read as a tripling of audience. Bots are still
      * counted and still shown, just never mixed into "visitors".
@@ -187,11 +187,11 @@ class PageUsage extends Component
      *
      * WHY "HUMAN" IS NOT ENOUGH. `is_bot = false` only means the agent did not declare itself a
      * crawler, and plenty of automation sends a browser string. Read against nginx for
-     * 2026-09-15..29: of 84–257 browser-agent addresses a day, 2–6 ever sent a Livewire request
+     * 2026-09-15..29: of 84â€“257 browser-agent addresses a day, 2â€“6 ever sent a Livewire request
      * (a click, a filter, a quiz answer); 781 of 857 anonymous "human" sessions since 24 Sep held
      * exactly one row, and the quiz page's 223 views came from 223 sessions. A script drops the
      * cookie every request, so it never reaches a second row. A person who reads one page and
-     * leaves is excluded too — this undercounts readers to stop counting scripts. From 4 Oct 2026
+     * leaves is excluded too â€” this undercounts readers to stop counting scripts. From 4 Oct 2026
      * the `browser` counts include that reader: a view a browser confirmed by running the page
      * (PageViewEvent::scopeConfirmed), which a scraper fetching HTML cannot.
      *
@@ -207,7 +207,7 @@ class PageUsage extends Component
     }
 
     /**
-     * Real visitors per day, with the crawler line beside it — the two moved in opposite
+     * Real visitors per day, with the crawler line beside it â€” the two moved in opposite
      * directions in September and only the combined figure was visible.
      *
      * @return Collection<int, array{day: string, human: int, bot: int}>
@@ -271,7 +271,7 @@ class PageUsage extends Component
     }
 
     /**
-     * Pages ranked by REAL visitors over 30 days, with the crawler count beside each — the
+     * Pages ranked by REAL visitors over 30 days, with the crawler count beside each â€” the
      * question "what are people actually looking at" in one table rather than a block per page.
      */
     public function getTopPagesProperty(): Collection
@@ -326,7 +326,7 @@ class PageUsage extends Component
     }
 
     /**
-     * Top classes by real selection count, per page — @return array<string, Collection>
+     * Top classes by real selection count, per page â€” @return array<string, Collection>
      */
     public function getTopClassesProperty(): array
     {
@@ -343,7 +343,7 @@ class PageUsage extends Component
     }
 
     /**
-     * Top class+spec combos by real selection count, per page — @return array<string, Collection>
+     * Top class+spec combos by real selection count, per page â€” @return array<string, Collection>
      */
     public function getTopSpecsProperty(): array
     {
@@ -361,9 +361,9 @@ class PageUsage extends Component
     }
 
     /**
-     * WowComps only — which slot (Healer / DPS 1 / DPS 2) a spec gets picked into most, since a
+     * WowComps only â€” which slot (Healer / DPS 1 / DPS 2) a spec gets picked into most, since a
      * spec's popularity in this comp-building context is partly about role fit, not just overall
-     * interest. Mirrors WowComps::$slots's own index order (0 = Healer, 1/2 = DPS) — cosmetic
+     * interest. Mirrors WowComps::$slots's own index order (0 = Healer, 1/2 = DPS) â€” cosmetic
      * labels only, disambiguating the two same-named "DPS" slots for display.
      */
     private const SLOT_LABELS = [0 => 'Healer', 1 => 'DPS 1', 2 => 'DPS 2'];
@@ -389,7 +389,7 @@ class PageUsage extends Component
     }
 
     /**
-     * WoW Comps only — how often each tab in the (Alpine-only, non-round-tripping) tab bar is
+     * WoW Comps only â€” how often each tab in the (Alpine-only, non-round-tripping) tab bar is
      * opened, from the fire-and-forget beacon in wow-comps.blade.php's selectTab(). Counts an
      * actual switch INTO a tab, not re-clicks of the already-active one (selectTab() no-ops
      * those) and not the default tab landed on at page load.
@@ -413,7 +413,7 @@ class PageUsage extends Component
     }
 
     /**
-     * WoW Comps only — how often each "Common picks" preset button is used, from the
+     * WoW Comps only â€” how often each "Common picks" preset button is used, from the
      * 'wow_comps_preset' row WowComps::applyPreset() logs alongside the normal per-slot
      * attributed rows.
      */
@@ -436,10 +436,10 @@ class PageUsage extends Component
     }
 
     /**
-     * Claude's Counters / Spell Counters — which matchup got picked most, from the `slot` column
+     * Claude's Counters / Spell Counters â€” which matchup got picked most, from the `slot` column
      * the page's old two-spec matchup picker used to write. Frozen/historical only as of
      * 2026-09-04: that picker (and the attributed log call behind it) was removed when the page
-     * was rewritten to a plain per-class counters list with no matchup concept at all — this
+     * was rewritten to a plain per-class counters list with no matchup concept at all â€” this
      * still reads real past data correctly, it just won't gain any new rows going forward. Left
      * in rather than deleted since the history itself is still real and accurate.
      */
@@ -455,7 +455,7 @@ class PageUsage extends Component
     }
 
     /**
-     * PvP Guides only — how often each tab is opened, and for which spec. Counts a real switch
+     * PvP Guides only â€” how often each tab is opened, and for which spec. Counts a real switch
      * INTO a tab (PvpGuides::selectTab() no-ops a re-click of the active tab and nothing logs
      * the tab landed on at page load), so this reads as "which question people actually came
      * with" rather than raw clicks.
@@ -503,7 +503,7 @@ class PageUsage extends Component
 
             // The comp builder -> guide funnel (added 2026-09-16). Not a PAGES entry: it is a click
             // on /wow-comps, not a page, and the comp key rides in `slot`. The split matters more
-            // than the total — a guest click is a sign-up prompt that may not be taken, so counting
+            // than the total â€” a guest click is a sign-up prompt that may not be taken, so counting
             // them together would overstate how many plans actually get started.
             (object) [
                 'label' => 'Comp builder: "write a plan for this comp" (signed in)',

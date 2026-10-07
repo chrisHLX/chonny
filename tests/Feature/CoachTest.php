@@ -107,4 +107,21 @@ class CoachTest extends TestCase
         config(['desktop.web_assets' => true]);
         $this->assertSame('/storage/spell-icons/a.jpg', DesktopAsset::icon('a.jpg'));
     }
+
+    public function test_your_games_has_the_reviews_and_the_upload_and_a_browser_upload_builds_the_pages(): void
+    {
+        Queue::fake();
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->get(route('coach'))
+            ->assertOk()
+            ->assertSee('Your games')
+            ->assertSee('Same spec')
+            ->assertSee('Upload matches')
+            ->assertSee('window.arenaUpload', false);
+
+        // The browser upload builds the same pages the desktop app's upload does.
+        $this->actingAs($user)->postJson(route('game-review.assemble'))->assertOk();
+        Queue::assertPushed(BuildCoachPages::class, fn ($job) => $job->userId === $user->id);
+    }
 }

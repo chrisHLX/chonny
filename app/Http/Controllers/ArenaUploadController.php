@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\ArenaReviewIngestService;
+use App\Jobs\BuildCoachPages;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -88,6 +89,10 @@ class ArenaUploadController extends Controller
                 ];
             }
         }
+
+        // The same pages the desktop app's upload builds (Your games), so a player who uploads in
+        // the browser, with nothing installed, gets Games, Improve and Comps too.
+        BuildCoachPages::dispatch($user->id);
 
         return response()->json(['status' => 'ok', 'assembled' => $assembled]);
     }

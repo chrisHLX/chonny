@@ -1,10 +1,10 @@
-{{-- "Your coach" (/wow/coach): the desktop app's pages on the website. See CoachController.
+{{-- "Your games" (/wow/coach): every page about the player's own games in one place. See CoachController.
      Layout in its own <style>, not new Tailwind classes, so it never waits on an asset build. --}}
 <x-app-layout>
 <style>
     .coach { display: grid; grid-template-columns: 320px 1fr; gap: 16px; align-items: start; }
-    .coach-list { max-height: calc(100vh - 210px); overflow-y: auto; }
-    .coach-frame { width: 100%; height: calc(100vh - 170px); min-height: 520px; border: 1px solid #1E1E26; border-radius: 8px; background: #111116; }
+    .coach-list { max-height: calc(100vh - 230px); overflow-y: auto; }
+    .coach-frame { width: 100%; height: calc(100vh - 190px); min-height: 520px; border: 1px solid #1E1E26; border-radius: 8px; background: #111116; }
     .coach-item { display: block; width: 100%; text-align: left; padding: 7px 10px; border-radius: 6px; font-size: 13px; color: #F0F0F2; }
     .coach-item:hover { background: #18181E; }
     .coach-item.on { background: #1E150A; box-shadow: inset 2px 0 0 #C8952C; }
@@ -19,35 +19,38 @@
     }
 </style>
 
+@php
+    // The app's pages need something built; until then the Upload tab is where a player starts.
+    $pageTabs = ['games' => 'Games', 'improve' => 'Improve', 'comps' => 'Comps', 'shuffle' => 'Shuffle'];
+    $startTab = $newKey || ! $built ? 'upload' : 'games';
+@endphp
+
 <div class="min-h-full py-6 px-4 lg:px-8">
-    <div class="mx-auto space-y-4" style="max-width: 1500px">
+    <div class="mx-auto space-y-4" style="max-width: 1500px" x-data="{ tab: @js($startTab), file: @js($games[0]['file'] ?? null) }">
         <div>
-            <h1 class="font-display text-[20px] font-bold text-ink">Your coach</h1>
-            <p class="text-[13px] text-ink-muted mt-0.5">The MindCollector Logs pages for your own games: each game, what to work on, and every comp you have met. Only you can see them.</p>
+            <h1 class="font-display text-[20px] font-bold text-ink">Your games</h1>
+            <p class="text-[13px] text-ink-muted mt-0.5">Each of your games, what to work on, every comp you have met, and same-spec reviews of your Solo Shuffles. Only you can see them.</p>
         </div>
 
-        @if ($newKey)
-            <div class="linear-card p-4 border-gold-muted">
-                <p class="text-[13px] text-ink font-semibold">Your desktop app key</p>
-                <p class="text-[12px] text-ink-muted mt-1">Paste it into MindCollector Logs, Settings, "Website key". It is shown this once; making a new one stops the old one working.</p>
-                <p class="mt-2 font-mono text-[13px] text-gold-light select-all break-all">{{ $newKey }}</p>
-            </div>
-        @endif
+        <div class="flex flex-wrap gap-1">
+            @foreach ($pageTabs + ['mirror' => 'Same spec', 'upload' => 'Upload'] as $key => $label)
+                <button type="button" class="coach-tab" :class="tab === '{{ $key }}' && 'on'" @click="tab = '{{ $key }}'">{{ $label }}</button>
+            @endforeach
+        </div>
 
-        @if (! $built)
-            <div class="linear-card p-5">
-                <p class="text-[14px] text-ink font-semibold">No games here yet</p>
-                <p class="text-[13px] text-ink-muted mt-1">The desktop app sends your games here after each sync once it has your key. Make a key below and paste it into the app's Settings.</p>
-            </div>
-        @else
-            <div x-data="{ tab: 'games', file: @js($games[0]['file'] ?? null) }" class="coach">
-                <div class="linear-card p-3">
-                    <div class="flex flex-wrap gap-1 mb-3">
-                        @foreach (['games' => 'Games', 'improve' => 'Improve', 'comps' => 'Comps', 'shuffle' => 'Shuffle'] as $key => $label)
-                            <button type="button" class="coach-tab" :class="tab === '{{ $key }}' && 'on'" @click="tab = '{{ $key }}'">{{ $label }}</button>
-                        @endforeach
-                    </div>
-                    <div class="coach-list">
+        {{-- The app's pages: a list on the left, the page in a frame on the right. --}}
+        <div x-show="['games', 'improve', 'comps', 'shuffle'].includes(tab)" x-cloak>
+            @if (! $built)
+                <div class="linear-card p-5">
+                    <p class="text-[14px] text-ink font-semibold">No games here yet</p>
+                    <p class="text-[13px] text-ink-muted mt-1">
+                        Upload your combat log on the <button type="button" class="text-gold hover:underline" @click="tab = 'upload'">Upload</button> tab,
+                        or let the desktop app send your games. Each game, what to work on and your comps appear here.
+                    </p>
+                </div>
+            @else
+                <div class="coach">
+                    <div class="linear-card p-3 coach-list">
                         <div x-show="tab === 'games'">
                             @foreach ($games as $g)
                                 <button type="button" class="coach-item" :class="file === '{{ $g['file'] }}' && 'on'" @click="file = '{{ $g['file'] }}'">
@@ -79,26 +82,54 @@
                             </div>
                         @endforeach
                     </div>
+                    <iframe class="coach-frame" :src="file ? '/wow/coach/page/' + file : 'about:blank'" title="The selected page"></iframe>
                 </div>
-                <iframe class="coach-frame" :src="file ? '/wow/coach/page/' + file : 'about:blank'" title="The selected page"></iframe>
-            </div>
-        @endif
+            @endif
+        </div>
 
-        <div class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3">
-            <div class="flex-1">
-                <p class="text-[13px] text-ink font-semibold">Desktop app key</p>
-                <p class="text-[12px] text-ink-muted">
-                    @if ($hasKey)
-                        You made one {{ \Illuminate\Support\Carbon::parse($keyMadeAt)->diffForHumans() }}. A new one replaces it.
-                    @else
-                        The desktop app needs a key to send your games here.
-                    @endif
-                </p>
+        {{-- Same spec: Game Review's lobby reviews (Solo Shuffle, you against the other player of
+             your spec), each on its own page. --}}
+        <div x-show="tab === 'mirror'" x-cloak class="linear-card p-4">
+            <p class="text-[13px] text-ink-muted mb-3">Your Solo Shuffle lobbies read round by round: every player's output, and where you and the other player of your spec differed in talents, gear and stats.</p>
+            @forelse ($mirrors as $m)
+                <a href="{{ route('game-review', ['id' => $m['id']]) }}" wire:navigate class="coach-item">
+                    {{ $m['playedAt'] ? \Illuminate\Support\Carbon::parse($m['playedAt'])->format('D j M, H:i') : '' }}
+                    &middot; <span class="{{ $m['record']['won'] > $m['record']['lost'] ? 'won' : 'lost' }}">{{ $m['record']['won'] }}-{{ $m['record']['lost'] }}</span>
+                    <span class="sub">{{ $m['you'] }}{{ $m['youSpec'] ? ' · '.$m['youSpec'] : '' }} &middot; {{ str_replace('Rated ', '', $m['bracket'] ?? '') }}</span>
+                </a>
+            @empty
+                <p class="text-[13px] text-ink-subtle">No Solo Shuffle lobbies yet. They appear here once you upload a log with one.</p>
+            @endforelse
+        </div>
+
+        {{-- Upload: in the browser (nothing to install), or from the desktop app with a key. --}}
+        <div x-show="tab === 'upload'" x-cloak class="space-y-4">
+            <livewire:games-upload/>
+
+            @if ($newKey)
+                <div class="linear-card p-4 border-gold-muted">
+                    <p class="text-[13px] text-ink font-semibold">Your desktop app key</p>
+                    <p class="text-[12px] text-ink-muted mt-1">Paste it into MindCollector Logs, Settings, "Website key". It is shown this once; making a new one stops the old one working.</p>
+                    <p class="mt-2 font-mono text-[13px] text-gold-light select-all break-all">{{ $newKey }}</p>
+                </div>
+            @endif
+
+            <div class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+                <div class="flex-1">
+                    <p class="text-[13px] text-ink font-semibold">Or let the desktop app send them</p>
+                    <p class="text-[12px] text-ink-muted">
+                        @if ($hasKey)
+                            You made a key {{ \Illuminate\Support\Carbon::parse($keyMadeAt)->diffForHumans() }}. A new one replaces it.
+                        @else
+                            MindCollector Logs sends each game after you play, once it has your key.
+                        @endif
+                    </p>
+                </div>
+                <form method="POST" action="{{ route('coach.key') }}">
+                    @csrf
+                    <button type="submit" class="btn-secondary text-[13px]">{{ $hasKey ? 'Make a new key' : 'Make a key' }}</button>
+                </form>
             </div>
-            <form method="POST" action="{{ route('coach.key') }}">
-                @csrf
-                <button type="submit" class="btn-secondary text-[13px]">{{ $hasKey ? 'Make a new key' : 'Make a key' }}</button>
-            </form>
         </div>
     </div>
 </div>
