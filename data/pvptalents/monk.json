@@ -1,6 +1,6 @@
 {
     "class": "Monk",
-    "fetched_at": "2026-09-24T08:13:25+00:00",
+    "fetched_at": "2026-10-06T22:35:06+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "specs": {
         "Windwalker": {
@@ -91,7 +91,7 @@
                     "name": "Perpetual Paralysis",
                     "spell_id": 357495,
                     "spell_name": "Perpetual Paralysis",
-                    "description": "Paralysis range reduced by 5 yards, but spreads to 2 new enemies when removed.",
+                    "description": "Paralysis range reduced by 5 yards, but spreads to 3 new enemies when removed.",
                     "unlock_player_level": 22,
                     "compatible_slots": [
                         1,
@@ -176,7 +176,7 @@
                     "name": "Healing Spheres",
                     "spell_id": 1243418,
                     "spell_name": "Healing Spheres",
-                    "description": "Your healing has a chance to coalesces a Healing Sphere out of the mists at your target's location after 1.5 sec. If allies walk through it, they consume the sphere, healing themselves for 1,682 and dispelling all harmful periodic magic effects.\r\n\r\nMaximum of 3 Healing Spheres can be active by the Monk at any given time.",
+                    "description": "Your healing has a chance to coalesces a Healing Sphere out of the mists at your target's location after 1.5 sec. If allies walk through it, they consume the sphere, healing themselves for 3,471 and dispelling all harmful periodic magic effects.\r\n\r\nMaximum of 5 Healing Spheres can be active by the Monk at any given time.",
                     "unlock_player_level": 25,
                     "compatible_slots": [
                         1,
@@ -405,7 +405,7 @@
                     "name": "Admonishment",
                     "spell_id": 207025,
                     "spell_name": "Admonishment",
-                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 10 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 6 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,

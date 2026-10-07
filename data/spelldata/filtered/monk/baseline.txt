@@ -4477,11 +4477,13 @@ Family Flags     : 48
 Attributes       : Do Not Display Range (126), Allow Cast While Channeling (308), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=726171)   : Direct Heal (10)
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 7.488 | Target: Targeted Ally (21)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 8.6112 | Target: Targeted Ally (21)
+Hotfixed         : SP Coefficient (7.488 -> 8.6112)
 #2 (id=893187)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0
 #3 (id=893188)   : Direct Heal (10)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 7.488 | Radius: 0 - 60 yards | Target: at Targeted Ally (132) -> At Ally in Area (31)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 8.6112 | Radius: 0 - 60 yards | Target: at Targeted Ally (132) -> At Ally in Area (31)
+Hotfixed         : SP Coefficient (7.488 -> 8.6112)
 Description      : $@spelldesc116680
 
 Name             : Strength of Spirit (id=274771) [Spell Family (53), Hidden] 
@@ -8757,7 +8759,7 @@ Name             : Pretense of Instability (id=393515) [Spell Family (53)]
 Class            : Monk
 School           : Physical
 Spell Type       : None
-Duration         : 5 seconds
+Duration         : 8 seconds
 Labels           : 16: Class Spells
                  : 22: Monk Spells
                  : 292
@@ -9831,7 +9833,8 @@ Family Flags     : 48
 Attributes       : Not Shapeshifted (16), Doesn't Reset Swing Timer if Instant (217), Heal Prediction (280), Allow Cast While Channeling (308), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1103894)  : Direct Heal (10)
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.2318 | Radius: 0 - 60 yards | Target: at Targeted Ally (132) -> At Ally in Area (31)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.71657 | Radius: 0 - 60 yards | Target: at Targeted Ally (132) -> At Ally in Area (31)
+Hotfixed         : SP Coefficient (3.2318 -> 3.71657)
                    Modified By: Devout Spirit (319919 effect#1)
 Description      : $@spelldesc274586
 Tooltip          : $@spelldesc274586

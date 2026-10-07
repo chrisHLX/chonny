@@ -750,7 +750,8 @@ Proc Chance      : 101%
 Attributes       : Passive (6), No Aura Icon (60), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1024228)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 5 | Scaled Value: 5 | Trigger Spell: 383764 | Target: Self (1)
+                   Base Value: 8 | Scaled Value: 8 | Trigger Spell: 383764 | Target: Self (1)
+Hotfixed         : Base Value (5 -> 8)
 #2 (id=1024229)  : Dummy (3)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Purify $s1% of your Staggered damage each time you gain $s2 sec of Shuffle duration.

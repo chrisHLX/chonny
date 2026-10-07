@@ -1,6 +1,6 @@
 {
     "class": "Warrior",
-    "fetched_at": "2026-09-24T08:13:06+00:00",
+    "fetched_at": "2026-10-06T22:34:48+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "specs": {
         "Protection": {
@@ -91,7 +91,7 @@
                     "name": "Dragon Charge",
                     "spell_id": 206572,
                     "spell_name": "Dragon Charge",
-                    "description": "Run at high speed at a distance in front of you. All enemies in your path will take 24 Physical damage and be knocked back.",
+                    "description": "Run at high speed at a distance in front of you. All enemies in your path will take 23 Physical damage and be knocked back.",
                     "unlock_player_level": 30,
                     "compatible_slots": [
                         1,
@@ -123,7 +123,7 @@
                     "name": "Oppressor",
                     "spell_id": 205800,
                     "spell_name": "Oppressor",
-                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 10 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 6 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,

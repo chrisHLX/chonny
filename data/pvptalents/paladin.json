@@ -1,6 +1,6 @@
 {
     "class": "Paladin",
-    "fetched_at": "2026-09-24T08:13:10+00:00",
+    "fetched_at": "2026-10-06T22:34:52+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "specs": {
         "Protection": {
@@ -91,7 +91,7 @@
                     "name": "Inquisition",
                     "spell_id": 207028,
                     "spell_name": "Inquisition",
-                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 10 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 6 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -187,7 +187,7 @@
                     "name": "Spellbreaker",
                     "spell_id": 469895,
                     "spell_name": "Spellbreaker",
-                    "description": "Eye for an Eye can now also trigger at 100% effectiveness from direct Magic damage.",
+                    "description": "Eye for an Eye can now also trigger at 150% effectiveness from direct Magic damage.",
                     "unlock_player_level": 60,
                     "compatible_slots": [
                         1,
@@ -352,7 +352,7 @@
                     "name": "Spellbreaker",
                     "spell_id": 469895,
                     "spell_name": "Spellbreaker",
-                    "description": "Eye for an Eye can now also trigger at 100% effectiveness from direct Magic damage.",
+                    "description": "Eye for an Eye can now also trigger at 150% effectiveness from direct Magic damage.",
                     "unlock_player_level": 60,
                     "compatible_slots": [
                         1,
@@ -453,7 +453,7 @@
                     "name": "Ultimate Retribution",
                     "spell_id": 355614,
                     "spell_name": "Ultimate Retribution",
-                    "description": "Mark an enemy player for retribution after they kill an ally within your active Aura. If the marked enemy is slain within 12 sec, cast Redemption on the fallen ally.",
+                    "description": "Mark an enemy player for retribution after they kill an ally within your active Aura. If the marked enemy is slain within 20 sec, cast Redemption on the fallen ally.",
                     "unlock_player_level": 38,
                     "compatible_slots": [
                         1,
@@ -533,7 +533,7 @@
                     "name": "Spellbreaker",
                     "spell_id": 469895,
                     "spell_name": "Spellbreaker",
-                    "description": "Eye for an Eye can now also trigger at 100% effectiveness from direct Magic damage.",
+                    "description": "Eye for an Eye can now also trigger at 150% effectiveness from direct Magic damage.",
                     "unlock_player_level": 60,
                     "compatible_slots": [
                         1,

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Http\Services\CooldownGraphService;
 use App\Http\Services\MatchupProfileService;
+use App\Http\Services\TradePlanService;
 use App\Models\GameClass;
 use App\Models\PageViewEvent;
 use App\Models\Patch;
@@ -482,15 +483,42 @@ class MatchupLab extends Component
                 'body' => 'We assume both their DPS are reachable on the same global, and that someone makes the call. Real games break both.',
             ],
             [
+                'title' => 'Cooldowns your play shortens',
+                'body' => 'Some answers come back sooner because of what you do (Savage Momentum takes 10s off Survival Instincts per kick). The data has no rate for that, so the trading plan uses the full cooldown.',
+            ],
+            [
                 'title' => 'One build per spec',
                 'body' => 'Read against each spec\'s default talents. A swap can change which go is even possible.',
             ],
         ];
     }
 
+    /**
+     * How the side being answered trades its answers against the other side's goes, from the same
+     * run (TradePlanService): each go's answers with their stacked reduction, what was left when
+     * the next go came, and a plan worded from their cadence. Follows the trigger table's toggle:
+     * "Answering A" is B's trading.
+     */
+    #[Computed]
+    public function tradePlan(): ?array
+    {
+        $result = $this->result();
+        if (! $result) {
+            return null;
+        }
+
+        $defender = $this->triggerSide === 'a' ? 'b' : 'a';
+        $answers = collect($this->sideForEngine($defender))
+            ->mapWithKeys(fn ($m) => [$m['profile']['specName'].' '.$m['profile']['className'] => $m['profile']['answers'] ?? []])
+            ->all();
+
+        return app(TradePlanService::class)->plan($result, $defender, $answers);
+    }
+
     public function render()
     {
         return view('livewire.matchup-lab', [
+            'tradePlan' => $this->tradePlan(),
             'classSpecs' => $this->classSpecs,
             'specRoles' => $this->specRoles(),
             'presets' => $this->presets(),

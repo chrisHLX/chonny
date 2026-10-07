@@ -330,6 +330,58 @@
             @endif
         </x-fold>
 
+        {{-- ---------- Trading: the counter to a go (TradePlanService) ----------
+             Follows the toggle above: "Answering Team A" is Team B's trading. A trade is judged by
+             what is still up when their NEXT go comes, not by how many answers it took. --}}
+        @if ($tradePlan)
+            @php
+                $defenderName = $sideName($tradePlan['defender']);
+                $attackerName = $sideName($tradePlan['attacker']);
+                $tradeTitle = 'How '.$defenderName.' trades its answers';
+                $tradeNote = $tradePlan['cadence'] ? 'They go about every '.(int) $tradePlan['cadence'].'s: what to spend, and what to keep for the next one.' : 'What to spend, and what to keep for the next go.';
+            @endphp
+            <x-fold :title="$tradeTitle" :note="$tradeNote">
+                @if ($tradePlan['advice'])
+                    <ul class="space-y-1.5 pb-3">
+                        @foreach ($tradePlan['advice'] as $line)
+                            <li class="text-[12px] text-ink leading-snug flex gap-2"><span class="text-gold shrink-0">&rsaquo;</span><span>{{ $line }}</span></li>
+                        @endforeach
+                    </ul>
+                @endif
+
+                <div class="space-y-1.5">
+                    @foreach (array_slice($tradePlan['goes'], 0, 8) as $go)
+                        <div class="flex flex-wrap items-center gap-2 text-[11px] rounded-lg border px-2.5 py-1.5 {{ $go['heldAtNext'] === 0 ? 'border-amber-500/40' : 'border-line' }}">
+                            <span class="text-ink-muted tabular-nums w-10 shrink-0">{{ intdiv($go['t'], 60) }}:{{ str_pad($go['t'] % 60, 2, '0', STR_PAD_LEFT) }}</span>
+                            <span class="text-ink-muted shrink-0">{{ $attackerName }} go on {{ $go['target'] ?? 'nobody reachable' }}:</span>
+                            @forelse ($go['spent'] as $s)
+                                <span class="inline-flex items-center gap-1">
+                                    <x-spell-icon :spell="(object) ['icon_name' => $s['icon'], 'display_name' => $s['spell']]" size="w-5 h-5"/>
+                                    <span class="text-ink">{{ $s['spell'] }}</span>
+                                    @if ($s['reduction'] !== null)
+                                        <span class="text-ink-subtle">{{ (int) round($s['reduction'] * 100) }}%</span>
+                                    @endif
+                                </span>
+                            @empty
+                                <span class="text-ink-subtle">{{ $go['killWindow'] || $go['lockedOut'] ? 'nothing left to press' : 'no cooldown spent' }}</span>
+                            @endforelse
+                            @if ($go['stack'])
+                                <span class="badge-gold !text-[9px]">together {{ $go['stack']['combined'] }}%, not {{ $go['stack']['added'] }}%</span>
+                            @endif
+                            @if ($go['heldAtNext'] !== null)
+                                <span class="ml-auto shrink-0 {{ $go['heldAtNext'] === 0 ? 'text-amber-400' : 'text-ink-muted' }}">{{ $go['heldAtNext'] }} left at their next go</span>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+
+                <p class="text-[10px] text-ink-subtle pt-2">
+                    Reductions are each spell's own damage-taken effect; two on one go multiply (20% and 50% let 40% through), so the second always adds less than its number.
+                    Across 795 real games, spending more answers per go did not win more; having one back when their next go came did.
+                </p>
+            </x-fold>
+        @endif
+
         <x-fold title="The numbers behind it">
             <div class="overflow-x-auto">
                 <table class="w-full text-[11px]">

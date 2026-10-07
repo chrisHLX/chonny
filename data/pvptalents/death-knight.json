@@ -1,6 +1,6 @@
 {
     "class": "Death Knight",
-    "fetched_at": "2026-09-24T08:13:08+00:00",
+    "fetched_at": "2026-10-06T22:34:50+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "specs": {
         "Blood": {
@@ -59,7 +59,7 @@
                     "name": "Death Chain",
                     "spell_id": 203173,
                     "spell_name": "Death Chain",
-                    "description": "Chains 3 enemies together, dealing 10.5 Shadow damage and causing 20% of all damage taken to also be received by the others in the chain. Lasts for 10 sec.",
+                    "description": "Chains 4 enemies together, dealing 61.3 Shadow damage and causing 20% of all damage taken to also be received by the others in the chain. Lasts for 10 sec.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -75,7 +75,7 @@
                     "name": "Murderous Intent",
                     "spell_id": 207018,
                     "spell_name": "Murderous Intent",
-                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 10 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 6 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -155,7 +155,7 @@
                     "name": "Price of Progress",
                     "spell_id": 1233429,
                     "spell_name": "Price of Progress",
-                    "description": "You sacrifice 1% of your health every 1 sec and in exchange you cannot be slowed below 90% of normal speed, and you are immune to forced movement effects and knockbacks. Lasts until canceled.",
+                    "description": "You sacrifice 1% of your health every 1.5 sec and in exchange you cannot be slowed below 100% of normal speed, and you are immune to forced movement effects and knockbacks. Lasts until canceled.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -485,7 +485,7 @@
                     "name": "Death's Cold Embrace",
                     "spell_id": 1218603,
                     "spell_name": "Death's Cold Embrace",
-                    "description": "Pillar of Frost grants you Remorseless Winter and increases its damage by 400% and its radius by 150%, but your movement speed is heavily reduced for its duration.\r\n\r\nPillar of Frost's cooldown is increased by 15 sec.",
+                    "description": "Pillar of Frost grants you Remorseless Winter and increases its damage by 450% and its radius by 150%, but your movement speed is heavily reduced for its duration.\r\n\r\nPillar of Frost's cooldown is increased by 15 sec.",
                     "unlock_player_level": 60,
                     "compatible_slots": [
                         1,

@@ -1,6 +1,6 @@
 {
     "class": "Mage",
-    "fetched_at": "2026-09-24T08:13:15+00:00",
+    "fetched_at": "2026-10-06T22:34:56+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "specs": {
         "Frost": {
@@ -11,7 +11,7 @@
                     "name": "Icy Feet",
                     "spell_id": 407581,
                     "spell_name": "Icy Feet",
-                    "description": "When your Frost Nova or Water Elemental's Freeze is dispelled or removed, become immune to snares for 3 sec. \r\n\r\nThis effect can only occur once every 10 sec.",
+                    "description": "When your Frost Nova or Water Elemental's Freeze is dispelled or removed, become immune to snares for 4 sec. \r\n\r\nThis effect can only occur once every 10 sec.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -75,7 +75,7 @@
                     "name": "Frost Bomb",
                     "spell_id": 390612,
                     "spell_name": "Frost Bomb",
-                    "description": "Places a Frost Bomb on the target. After 5 sec, the bomb explodes, dealing 3,886 Frost damage to the target and 1,933 Frost damage to all other enemies within 10 yards. All affected targets are slowed by 50% for 8 sec. \r\n\r\nIf Frost Bomb is dispelled before it explodes, gain a charge of Brain Freeze.",
+                    "description": "Places a Frost Bomb on the target. After 5 sec, the bomb explodes, dealing 9,661 Frost damage to the target and 4,898 Frost damage to all other enemies within 10 yards. All affected targets are slowed by 50% for 8 sec. \r\n\r\nIf Frost Bomb is dispelled before it explodes, gain a charge of Brain Freeze.",
                     "unlock_player_level": 20,
                     "compatible_slots": [
                         1,
@@ -91,7 +91,7 @@
                     "name": "Snowdrift",
                     "spell_id": 389794,
                     "spell_name": "Snowdrift",
-                    "description": "Summon a strong Blizzard that surrounds you for 6 sec that slows enemies by 70% and deals 84 Frost damage every 1 sec. \r\n\r\nEnemies that are caught in Snowdrift for 2 sec consecutively become Frozen in ice, stunned for 4 sec.",
+                    "description": "Summon a strong Blizzard that surrounds you for 6 sec that slows enemies by 70% and deals 83 Frost damage every 1 sec. \r\n\r\nEnemies that are caught in Snowdrift for 2 sec consecutively become Frozen in ice, stunned for 4 sec.",
                     "unlock_player_level": 20,
                     "compatible_slots": [
                         1,
@@ -176,7 +176,7 @@
                     "name": "World in Flames",
                     "spell_id": 203280,
                     "spell_name": "World in Flames",
-                    "description": "Empower Flamestrike, dealing up to 50% more damage based on enemies' distance to the center of Flamestrike.",
+                    "description": "Empower Flamestrike, dealing up to 75% more damage based on enemies' distance to the center of Flamestrike.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -240,7 +240,7 @@
                     "name": "Glass Cannon",
                     "spell_id": 390428,
                     "spell_name": "Glass Cannon",
-                    "description": "Increases damage of Fireball, Scorch, and Ignite by 20% but decreases your maximum health by 30%.\r\n",
+                    "description": "Increases damage of Fireball, Scorch, and Ignite by 25% but decreases your maximum health by 30%.\r\n",
                     "unlock_player_level": 20,
                     "compatible_slots": [
                         1,
@@ -357,7 +357,7 @@
                     "name": "Arcanosphere",
                     "spell_id": 353128,
                     "spell_name": "Arcanosphere",
-                    "description": "Builds a sphere of Arcane energy, gaining power over 4 sec. Upon release, the sphere passes through any barriers, knocking enemies back and dealing up to 18,861 Arcane damage.",
+                    "description": "Builds a sphere of Arcane energy, gaining power over 4 sec. Upon release, the sphere passes through any barriers, knocking enemies back and dealing up to 18,892 Arcane damage.",
                     "unlock_player_level": 55,
                     "compatible_slots": [
                         1,
@@ -437,7 +437,7 @@
                     "name": "Chrono Shift",
                     "spell_id": 235711,
                     "spell_name": "Chrono Shift",
-                    "description": "Arcane Barrage slows enemies by 50% and increases your movement speed by 10% for 5 sec.",
+                    "description": "Arcane Barrage slows enemies by 30% and increases your movement speed by 10% for 5 sec.",
                     "unlock_player_level": 30,
                     "compatible_slots": [
                         1,
