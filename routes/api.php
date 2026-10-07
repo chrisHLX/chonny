@@ -7,3 +7,4 @@ use Illuminate\Support\Facades\Route;
 // session and no CSRF). See CoachUploadController.
 Route::post('/coach/round', [CoachUploadController::class, 'round'])->name('api.coach.round');
 Route::post('/coach/done', [CoachUploadController::class, 'done'])->name('api.coach.done');
+Route::get('/coach/version', [CoachUploadController::class, 'version'])->name('api.coach.version');

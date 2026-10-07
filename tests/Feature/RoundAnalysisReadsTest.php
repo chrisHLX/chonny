@@ -102,4 +102,50 @@ class RoundAnalysisReadsTest extends TestCase
 
         $this->assertContains('alone', $rows['Frenzied Regeneration']['reasons'], 'pressed while the healer was locked out');
     }
+
+    public function test_habits_read_off_target_control_kicks_a_pets_target_and_failed_casts(): void
+    {
+        $roster = ['P-1' => [], 'P-2' => [], 'E-1' => [], 'E-2' => []];
+        // A pet's hits and presses are its owner's.
+        $credit = fn (string $src) => $src === 'Pet-1' ? 'P-1' : $src;
+        $dmg = [
+            ['t' => 10.0, 'src' => 'P-1', 'dst' => 'E-1', 'amount' => 1000, 'spell' => 'Fireball', 'hpAfter' => 90.0, 'hpNow' => 900],
+            ['t' => 10.5, 'src' => 'Pet-1', 'dst' => 'E-1', 'amount' => 100, 'spell' => 'Claw', 'hpAfter' => 89.0, 'hpNow' => 890],
+            ['t' => 20.0, 'src' => 'P-1', 'dst' => 'E-2', 'amount' => 1000, 'spell' => 'Fireball', 'hpAfter' => 90.0, 'hpNow' => 900],
+            // The pet still on the first target while its owner hits the second.
+            ['t' => 21.5, 'src' => 'Pet-1', 'dst' => 'E-1', 'amount' => 100, 'spell' => 'Claw', 'hpAfter' => 88.0, 'hpNow' => 880],
+        ];
+        $named = [
+            // Polymorph on their healer while hitting E-1: off target, what a focus macro is for.
+            ['src' => 'P-1', 'spell' => 'Polymorph', 't' => 11.0, 'dst' => 'E-2', 'id' => 118],
+            // A stun on the player being hit: on target.
+            ['src' => 'P-1', 'spell' => 'Hammer of Justice', 't' => 21.0, 'dst' => 'E-2', 'id' => 853],
+            ['src' => 'Pet-1', 'spell' => 'Claw', 't' => 10.5, 'dst' => 'E-1', 'id' => 16827],
+        ];
+        $interrupts = [
+            ['t' => 12.0, 'src' => 'P-1', 'dst' => 'E-1', 'spell' => 'Counterspell', 'stopped' => 'Flash Heal'],
+            ['t' => 30.0, 'src' => 'E-1', 'dst' => 'P-1', 'spell' => 'Pummel', 'stopped' => 'Polymorph'],
+        ];
+        $failed = [
+            ['who' => 'P-1', 'spell' => 'Hammer of Justice', 't' => 19.0, 'why' => 'Out of range'],
+            // Spam: a key pressed before the spell was back. Not a decision, not counted.
+            ['who' => 'P-1', 'spell' => 'Fireball', 't' => 19.5, 'why' => 'Not yet recovered'],
+        ];
+        $locked = ['P-1' => [[40.0, 45.0]]];
+        $metadata = ['durationInSeconds' => 60];
+        $ccMap = [118 => 'Incapacitate', 853 => 'Stun'];
+
+        $out = $this->invokePrivate('habits', [$roster, $this->sideOf(), $credit, $named, $dmg, $interrupts, $failed, $locked, [], $metadata, $ccMap]);
+        $me = $out['P-1'];
+
+        $this->assertSame(55.0, $me['free'], 'alive 60s, 5s of it locked out');
+        $this->assertSame(3, $me['control'], 'two pieces of control and a kick, each with a damage target to compare against');
+        $this->assertSame(1, $me['offTarget'], 'only the Polymorph went on someone other than the player being hit');
+        $this->assertSame(1, $me['kicks']);
+        $this->assertSame(['Polymorph' => 1], $me['kicked'], 'the interrupted spell, not the kick that did it');
+        $this->assertSame([2, 1], [$me['petHits'], $me['petOnTarget']]);
+        $this->assertSame(1, $me['casts']['pet: Claw']);
+        $this->assertSame(['Out of range'], array_keys($me['failed']));
+        $this->assertSame(['Hammer of Justice' => 1], $me['failed']['Out of range']['spells']);
+    }
 }

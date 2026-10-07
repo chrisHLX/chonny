@@ -48,6 +48,7 @@
     @php $noteCount = count($g['notes']) + count($g['gameNotes']); @endphp
     <div class="tabs">
         <a id="b-summary" onclick="showTab('summary')">Summary</a>
+        <a id="b-basics" onclick="showTab('basics')">Basics</a>
         <a id="b-damage" onclick="showTab('damage')">Damage &amp; healing</a>
         <a id="b-numbers" onclick="showTab('numbers')">Numbers</a>
         <a id="b-notes" onclick="showTab('notes')">Notes @if ($noteCount)<span class="cnt">{{ $noteCount }}</span>@endif</a>
@@ -80,6 +81,10 @@
         <div class="label">Checks <span class="aside">what the log shows by itself, for your team</span></div>
         <div class="box">@include('desktop.partials.checks', ['checks' => $g['checks']])</div>
     </div>
+    </div>
+
+    <div class="tab" id="t-basics">
+        @include('desktop.partials.basics', ['b' => $g['basics'] ?? null])
     </div>
 
     <div class="tab" id="t-damage">
@@ -127,6 +132,7 @@
     @php $noteCount = count($g['gameNotes']) + collect($g['rounds'])->sum(fn ($r) => count($r['notes'])); @endphp
     <div class="tabs">
         <a id="b-summary" onclick="showTab('summary')">Rounds</a>
+        <a id="b-basics" onclick="showTab('basics')">Basics</a>
         <a id="b-damage" onclick="showTab('damage')">Damage &amp; healing</a>
         <a id="b-notes" onclick="showTab('notes')">Notes @if ($noteCount)<span class="cnt">{{ $noteCount }}</span>@endif</a>
     </div>
@@ -177,6 +183,10 @@
         </div>
     @endforeach
 
+    </div>
+
+    <div class="tab" id="t-basics">
+        @include('desktop.partials.basics', ['b' => $g['basics'] ?? null])
     </div>
 
     <div class="tab" id="t-damage">

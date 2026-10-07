@@ -36,6 +36,7 @@ class GameCardService
         private PlayerExperienceService $experience,
         private MatchAnalysisService $analysis,
         private SpellIconIndex $icons,
+        private GameBasicsService $basics,
     ) {}
 
     /**
@@ -136,7 +137,10 @@ class GameCardService
      */
     private function codeFingerprint(): string
     {
-        $files = array_merge([__FILE__], glob(resource_path('views/desktop/*.blade.php')), glob(resource_path('views/desktop/partials/*.blade.php')));
+        // GameBasicsService and the norms it reads draw the Basics tab, so they redraw it too.
+        $files = array_merge([__FILE__, app_path('Http/Services/GameBasicsService.php'), base_path(\App\Console\Commands\BuildPopulation::NORMS)],
+            glob(resource_path('views/desktop/*.blade.php')), glob(resource_path('views/desktop/partials/*.blade.php')));
+        $files = array_values(array_filter($files, 'file_exists'));
         sort($files);
 
         return md5(implode('|', array_map(fn ($f) => $f.':'.filemtime($f), $files)));
@@ -179,6 +183,7 @@ class GameCardService
             'breakdown' => $this->breakdownModel(collect([$round]), $players),
             'checks' => $this->checkRows($a['checks'] ?? null, $players),
             'notes' => $this->noteRows($notes[$round->id] ?? [], $round),
+            'basics' => $this->basicsModel([$a]),
         ];
     }
 
@@ -231,7 +236,38 @@ class GameCardService
             'rounds' => $rows,
             // The same six players all lobby, so their output adds up across the rounds.
             'breakdown' => $this->breakdownModel($rounds, $roster, teams: false),
+            'basics' => $this->basicsModel($rounds->map(fn (ArenaRound $r) => $this->payload($r)['analysis'])->all()),
         ];
+    }
+
+    // ------------------------------------------------------------------ the basics (version 10)
+
+    /**
+     * The Basics tab (GameBasicsService): your team's goes, your crowd control and casts, your output
+     * against every player of your spec, and positioning and macros from your failed casts. Null for
+     * a game measured before version 10, which the tab says how to fix.
+     */
+    private function basicsModel(array $analyses): ?array
+    {
+        $b = $this->basics->forRounds($analyses);
+        if (! $b) {
+            return null;
+        }
+
+        $names = collect($b['sections'])->flatMap(fn ($s) => collect($s['rows'])->flatMap(fn ($r) => array_merge($r['spells'] ?? [], isset($r['macro']) ? [$r['macro']] : [])))->unique()->values()->all();
+        $icons = $names ? $this->icons->for($names) : [];
+        foreach ($b['sections'] as &$section) {
+            foreach ($section['rows'] as &$row) {
+                $row['icons'] = array_values(array_filter(array_map(fn ($n) => $this->spellIcon($icons, $n), $row['spells'] ?? [])));
+                if (isset($row['macro'])) {
+                    $row['macroIcon'] = $this->spellIcon($icons, $row['macro']);
+                }
+            }
+            unset($row);
+        }
+        unset($section);
+
+        return $b;
     }
 
     // ------------------------------------------------------------------ damage, healing, checks

@@ -100,6 +100,18 @@ class CoachUploadController extends Controller
      * After a batch: assemble the lobbies the batch completed, and build the player's pages in the
      * background (BuildCoachPages), once per batch rather than once per round.
      */
+    /**
+     * Which measure version this server stores (RoundAnalysisService::VERSION). The desktop app asks
+     * before sending, and marks a game sent at the lower of its own version and this one: a game the
+     * server measured with older code is sent again once the server is deployed, never lost.
+     */
+    public function version(Request $request): JsonResponse
+    {
+        abort_unless(User::forCoachToken($request->bearerToken()), 401);
+
+        return response()->json(['version' => \App\Http\Services\RoundAnalysisService::VERSION]);
+    }
+
     public function done(Request $request, ArenaReviewIngestService $ingest): JsonResponse
     {
         $user = User::forCoachToken($request->bearerToken());

@@ -8,7 +8,17 @@
 - `/wow/matchup-lab` — `MatchupLab`. Two comps on one clock: whose kill window opens first,
   and why, read at three execution settings. The only page answering a question about a
   *matchup* rather than about one spec or one comp.
-- `/wow/game-review/{id?}` — `GameReview`. The matchup read **backwards**, off a game that
+  - **How a side trades its answers** (2026-10-07, `TradePlanService`, follows the trigger table's
+    toggle): each enemy go with the answers it took, their stacked reduction **multiplied** from each
+    spell's own "Modify Damage Taken%" effect (Barkskin 20% + Survival Instincts 50% = 60%, not 70%),
+    what the thinnest player held when the next go came, and advice from their go cadence against
+    the side's cooldowns (alternate the short answers when they go often; two on one go is affordable
+    when they go rarely). Grounded in `docs/learning/population-findings-2026-10-07-trading.md`:
+    spending more per go did not win more, an answer back for the next go did. Cooldowns shortened
+    in play (Savage Momentum) are named as a limit, not modelled.
+- `/wow/game-review/{id?}` — `GameReview`, the **same-spec review** page that "Your games" links to
+  (the upload moved to Your games; the raw tool output at `/wow/game-review/analysis` is admin-only
+  since 2026-10-05). The matchup read **backwards**, off a game that
   actually happened: rounds won and lost, every player's effective healing, absorbs, overheal and
   damage, and a **same-spec mirror** diff of talents, PvP talents, gear and stats. The mirror is
   the unit because an identical kit leaves only build, gear and play.
@@ -29,11 +39,17 @@
     Throughput comes from `CombatantThroughputService`, the first thing here to measure output at
     all; its field offsets are read from the end of each log line and every one was measured, not
     assumed.
-- `/wow/coach` — `CoachController`, **"Your coach"**: the desktop app's pages (each game, Improve,
+- `/wow/coach` — `CoachController`, **"Your games"** (was "Your coach"; since 2026-10-05 the one page
+  for a player's own games, merged from Game Review, Your analysis and Your coach). Tabs: Games,
+  Improve, Comps, Shuffle (the app's pages), **Same spec** (the lobby reviews below, each opening on
+  its own page) and **Upload** (the browser upload, `GamesUpload`, plus the desktop app key). A
+  browser upload now builds the same pages as the app's (`ArenaUploadController::assemble`
+  dispatches `BuildCoachPages`), so a player needs nothing installed. Before the merge it was the desktop app's pages (each game, Improve,
   Comps, Shuffle) for a signed-in player, built on the server from the games the app uploads with the
   player's key (made on this page, shown once). Auth, read only from the viewer's own folder. One copy
   of every page with the app; see `match-review.md`, "The same pages on the website".
-- `/wow/match-analysis` — `MatchAnalysis`, **"Your analysis"**: a player's own uploaded games combined
+- `/wow/match-analysis` — **redirects to `/wow/coach` since 2026-10-05** (Improve replaces it; the
+  component and its service are kept, unrouted). Before that `MatchAnalysis`, **"Your analysis"**: a player's own uploaded games combined
   into the wins-against-losses read (review table, who you played, what differed, a takeaway for your
   role). Auth, scoped to the viewer. Each game is measured at upload by `RoundAnalysisService` (the raw
   log is discarded straight after) and every player's experience is looked up by a queued job. See

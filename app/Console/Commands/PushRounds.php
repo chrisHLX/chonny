@@ -33,6 +33,9 @@ class PushRounds extends Command
 
     protected $description = "Send this PC's games to your account on the website (/wow/coach)";
 
+    /** The measure version of every server deployed before /api/coach/version existed. */
+    private const BEFORE_VERSION_ENDPOINT = 9;
+
     /** Under nginx's 1 MB a request, with room for the headers. */
     private const CHUNK = 768 * 1024;
 
@@ -57,7 +60,17 @@ class PushRounds extends Command
 
         $statePath = storage_path('app/pushed-rounds.json');
         $state = File::exists($statePath) ? (json_decode(File::get($statePath), true) ?: []) : [];
-        $version = RoundAnalysisService::VERSION;
+        // The lower of this PC's measure version and the server's: a server still on older code
+        // stores older measures, and a round marked at the newer version would never be sent again
+        // after the server caught up. A server too old to answer predates version 10.
+        $client = fn () => Http::withToken($key)->acceptJson()->timeout(180);
+        try {
+            $asked = $client()->get("{$site}/api/coach/version");
+            $serverVersion = $asked->status() === 401 ? null : (int) ($asked->json('version') ?? self::BEFORE_VERSION_ENDPOINT);
+        } catch (\Throwable) {
+            $serverVersion = null;
+        }
+        $version = min(RoundAnalysisService::VERSION, $serverVersion ?? RoundAnalysisService::VERSION);
 
         $todo = ArenaRound::where('user_id', $user->id)->orderBy('played_at')->get(['match_id', 'lobby_id'])
             ->filter(fn ($r) => $this->option('all') || ($state[$r->match_id] ?? 0) < $version)
@@ -68,9 +81,8 @@ class PushRounds extends Command
             return self::SUCCESS;
         }
 
-        // A fresh request each time: a PendingRequest keeps the headers added to it, so one shared
-        // client sent the first round's X-Match on every round after it (2026-10-05).
-        $client = fn () => Http::withToken($key)->acceptJson()->timeout(180);
+        // A fresh request each time ($client above): a PendingRequest keeps the headers added to it,
+        // so one shared client sent the first round's X-Match on every round after it (2026-10-05).
         $sent = 0;
         $failed = 0;
         foreach ($todo->take((int) $this->option('limit')) as $r) {

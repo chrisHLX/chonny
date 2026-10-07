@@ -102,7 +102,10 @@
     <div class="box habit">
         <div>
             <span class="ht">{{ $h['title'] }}</span>
-            <span class="chip {{ $chip[$h['status']][0] }}">{{ $chip[$h['status']][1] }}</span>
+            {{-- Measured for you with nothing to set it against (your own failed casts: WoW logs no one
+                 else's) reads against your own sessions, not as "not measured". --}}
+            @php $c = $h['status'] === 'none' && $h['youN'] > 0 && $h['othersN'] === 0 ? ['neutral', 'Yours only: read it against your sessions'] : $chip[$h['status']]; @endphp
+            <span class="chip {{ $c[0] }}">{{ $c[1] }}</span>
         </div>
         <div class="what muted">{{ $h['what'] }}</div>
         <table class="nums"><tr>

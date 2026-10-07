@@ -114,6 +114,7 @@ php -d memory_limit=2G artisan wow:sync --skip-ingest --fresh   # re-measure eve
 php artisan wow:game-cards --dir="$APPDATA/MindCollector/cards" --notes="$APPDATA/MindCollector/notes.json"   # the app's pages
 php -d memory_limit=3G tools/match-review/tagaudit.php    # tags against how spells are pressed; proposes only
 php -d memory_limit=2G artisan wow:go-cooldowns          # what each spec presses in its goes -> the comp page's "How to play it"; commit the file
+php -d memory_limit=3G artisan wow:population           # every archived game, every player -> data/population/norms.json (Basics tab norms + evidence); --fresh after VERSION changes
 ```
 
 **Machine-drafted guides:**
@@ -306,8 +307,9 @@ fingerprint; falls back to a live compute when stale (6,964ms/3,042 queries vs 9
 ### Pages
 
 `/` Landing (signed-in players go to `/dashboard`) · `/wow-comps` (the heaviest page) ·
-`/wow/matchup-lab` · `/wow/game-review/{id?}`, `/wow/match-analysis` and `/wow/coach` (the desktop
-app's pages, uploaded by the app with the player's key) — a signed-in player's OWN games: auth,
+`/wow/matchup-lab` · `/wow/coach` (**"Your games"**: the desktop app's pages, uploaded by the app with
+the player's key or from the browser, plus the same-spec reviews at `/wow/game-review/{id?}`;
+`/wow/match-analysis` redirects there) — a signed-in player's OWN games: auth,
 scoped to the viewer, never public · the guide builder and readers
 (`/guides/{slug}/edit`, `/g/{user}/{slug}`, `/browse-guides`, `/claudes-comp-guides`) ·
 `/pvp-guides/{class}/{spec}` · `/spell/{id}` · `/wow/quiz` · `/characters` · admin pages.

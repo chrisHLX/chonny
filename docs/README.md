@@ -34,6 +34,7 @@ heading. Rules are still cited by number and still mean the same rule.
 |---|---|---|
 | `arena-structure.md` | current | The arena model (v2): the go/anti-go cycle, the answer pool, the rating ladder. Every claim tagged [OBS]/[DER]/[HYP]; a [HYP] may be written, never asserted as settled. Read before building anything that scores a plan. |
 | `data/brain/brain.md` | current | The model's public statement, rendered at `/brain`. Every machine guide is written from it. Section ids are comment anchors: never change one. |
+| `docs/arena/structure-summary.md` | current | The arena model on one page: the vocabulary, the match as setup → go → answer → reset, and what the analysis measures at each stage. Each line names its Part of `arena-structure.md`. |
 | `arena-open-questions.md` | current | What the model still guesses at, and who could settle each. |
 | `docs/arena/synthesis-process.md` | current | How to fold a new prose source (a transcript) into the model. |
 | `docs/arena/sources/` | history | Verbatim sources with a distilled note each. Never edit a raw file. The Gemini source had the model in its context, so its agreement is not corroboration. |
@@ -74,6 +75,8 @@ heading. Rules are still cited by number and still mean the same rule.
 |---|---|---|
 | `system-integration.md` | reference | How the learning platform could join the spell data, guides and the model. Read before touching modules, diagnostics or mastery. |
 | `docs/learning/question-audit-2026-09-24.md` | history | The authored question bank checked against the model and the spell data. |
+| `docs/learning/population-findings-2026-10-06.md` | current | Learning from every player in every game: which basics kill and which habits go with winning across 795 games and 1,193 players, with confound checks; macro and positioning signals from failed casts; how the tips re-test themselves (`wow:population`). Read before writing advice or a new tip. |
+| `docs/learning/population-findings-2026-10-07-trading.md` | current | Defensive trading across the archive: higher-rated sides spend more answers per go, but within a band spending more loses; what wins is an answer back for the next go. Stacked reductions multiply. Behind the Matchup Lab's trading plan and the Basics tab's answers line. |
 | `module-upload-format.md` | dormant | Shape for module content. |
 | `app/Http/Services/playstyle-analysis.md` | reference | The per-player talent-usage read. |
 | `docs/archive/` | dormant | Prompt inventory, the research feature, the next-step loop, the quiz runner, a seeder audit and a pricing audit: the earlier learning-platform direction. Kept for how the code works; not the direction. |

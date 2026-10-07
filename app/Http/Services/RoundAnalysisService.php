@@ -49,8 +49,15 @@ class RoundAnalysisService
      * go can differ from version 7.
      * 9 (2026-10-04): each defensive row says whether it was needed (warrant()): whom it went on,
      * their health and time to live, warrant.php's reasons, and `needed`.
+     * 10 (2026-10-06): `habits` per player (habits()): presses per ability, seconds free to act,
+     * single-target control and kicks cast on someone other than the player's damage target (what a
+     * focus or arena macro is for), how often a pet hits its owner's target, and for the logging
+     * player alone (the only one whose failures WoW writes) every failed cast by Blizzard's reason:
+     * out of range, not in line of sight, facing, cast while moving, trinket not ready... They feed
+     * the per-game basics, the macro and positioning tips, and the norms every player is compared
+     * with (wow:population).
      */
-    public const VERSION = 9;
+    public const VERSION = 10;
 
     /** A defensive pressed this long or less before its owner was locked out went in before the chance was lost. */
     private const BEFORE_LOCKOUT = 4.0;
@@ -177,6 +184,7 @@ class RoundAnalysisService
             'checks' => $this->checks($tl, $roster, $sideOf, $deaths, $metadata, $this->overlaps($tl, $buffs, $sideOf, $firstDeath)),
             'dispels' => $this->dispels($dispelEvents, $sideOf, $credit),
             'debuffs' => $this->debuffs($debuffSpans, $sideOf, $credit),
+            'habits' => $this->habits($roster, $sideOf, $credit, $named, $dmg, $interrupts, $failed, $locked, $deaths, $metadata, $ccMap),
         ];
     }
 
@@ -584,7 +592,7 @@ class RoundAnalysisService
                     $casts[$f[1]][] = $t;
                 }
                 // Every press by name, pets included (credited later), for the answer sheet.
-                $named[] = ['src' => $f[1], 'spell' => $f[10], 't' => $t, 'dst' => $f[5]];
+                $named[] = ['src' => $f[1], 'spell' => $f[10], 't' => $t, 'dst' => $f[5], 'id' => (int) $f[9]];
 
                 continue;
             }
@@ -618,7 +626,8 @@ class RoundAnalysisService
             if ($event === 'SPELL_INTERRUPT') {
                 $f = str_getcsv($body);
                 if (isset($roster[$f[5]])) {
-                    $interrupts[] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'spell' => $f[10]];
+                    // ...,kick id,kick name,school,stopped id,stopped name,school
+                    $interrupts[] = ['t' => $t, 'src' => $f[1], 'dst' => $f[5], 'spell' => $f[10], 'stopped' => $f[13] ?? '?'];
                 }
 
                 continue;
@@ -757,6 +766,151 @@ class RoundAnalysisService
         }
 
         return $rows;
+    }
+
+    // ------------------------------------------------------------------ habits (version 10)
+
+    /** How far back a player's last damage counts as "who they are hitting". */
+    private const TARGET_MEMORY = 4.0;
+
+    /** Spam, not a decision: a key pressed while the spell or the global cooldown is not back. */
+    private const FAIL_NOISE = ['Not yet recovered', "You can't do that yet", '尚未恢复'];
+
+    /**
+     * What a player's hands did, for every player (version 10, 2026-10-06):
+     *
+     *  - `casts`: presses per ability (a pet's as "pet: Name"), the raw material of a rotation read:
+     *    set against the median player of the spec (wow:population), "Kill Command 8 a minute, most
+     *    Beast Mastery Hunters 12" is a basic a new player can act on.
+     *  - `free`: seconds alive and not locked out. Output per FREE minute is the fair comparison:
+     *    damage falls when you are stunned, kicked or dead, and that is not a rotation fault.
+     *  - `control` / `offTarget`: single-target crowd control and kicks that landed on an enemy, and
+     *    how many of them went on someone other than the player's damage target (their last damage
+     *    within TARGET_MEMORY). Each of those is two target swaps unless the player uses a focus or
+     *    [@arena] macro, which is what those macros are for. The log cannot show which they did; it
+     *    shows how often the situation comes up.
+     *  - `kicks`: the player's own interrupts that stopped a cast; `kicked`: the player's own casts
+     *    that were interrupted, by spell (Polymorph cast into a ready kick is a basic).
+     *  - `petHits` / `petOnTarget`: a pet's hits on the enemy while its owner was hitting someone,
+     *    and how many landed on the owner's target. A pet left on another target is damage outside
+     *    the go.
+     *  - `failed` (the logging player only; WoW writes no one else's): each failed cast by Blizzard's
+     *    reason, with the spells it happened to. Out of range, line of sight, facing and casting while
+     *    moving are positioning; "Item is not ready yet" on the Medallion is a trinket pressed while it
+     *    was down. Spam (pressing before a spell is back) is left out.
+     */
+    private function habits(array $roster, callable $sideOf, callable $credit, array $named, array $dmg, array $interrupts,
+        array $failed, array $locked, array $deaths, array $metadata, array $ccMap): array
+    {
+        $duration = (float) ($metadata['durationInSeconds'] ?? 0);
+        $diedAt = array_column($deaths, 't', 'who');
+        $out = [];
+
+        // Who each player was hitting, from their own damage (a pet chooses its own target).
+        $hits = [];
+        foreach ($dmg as $x) {
+            if (isset($roster[$x['src']]) && $sideOf($x['dst']) !== null && $sideOf($x['dst']) !== $sideOf($x['src'])) {
+                $hits[$x['src']][] = [$x['t'], $x['dst']];
+            }
+        }
+        $targetAt = function (string $who, float $t) use ($hits): ?string {
+            $found = null;
+            foreach ($hits[$who] ?? [] as [$ht, $dst]) {
+                if ($ht >= $t) {
+                    break;
+                }
+                if ($ht >= $t - self::TARGET_MEMORY) {
+                    $found = $dst;
+                }
+            }
+
+            return $found;
+        };
+
+        foreach ($roster as $g => $r) {
+            $alive = max(1.0, min($diedAt[$g] ?? $duration, $duration ?: ($diedAt[$g] ?? 1.0)));
+            $out[$g] = [
+                'casts' => [],
+                'free' => round(max(0.0, $alive - $this->cross($locked[$g] ?? [], [[0.0, $alive]])), 1),
+                'control' => 0,
+                'offTarget' => 0,
+                'petHits' => 0,
+                'petOnTarget' => 0,
+                'kicks' => 0,
+                'kicked' => [],
+            ];
+        }
+
+        foreach ($named as $n) {
+            $who = $credit($n['src']);
+            if (! isset($out[$who])) {
+                continue;
+            }
+            $pet = ! isset($roster[$n['src']]);
+            $name = ($pet ? 'pet: ' : '').$n['spell'];
+            $out[$who]['casts'][$name] = ($out[$who]['casts'][$name] ?? 0) + 1;
+
+            // Single-target control on an enemy, cast by the player themself.
+            $dr = $ccMap[$n['id'] ?? 0] ?? null;
+            if (! $pet && in_array($dr, self::LOCKOUT, true) && $sideOf($n['dst']) !== null && $sideOf($n['dst']) !== $sideOf($who)) {
+                $this->countOffTarget($out[$who], $targetAt($who, $n['t']), $n['dst']);
+            }
+        }
+
+        foreach ($interrupts as $k) {
+            if (isset($out[$k['dst']])) {
+                $out[$k['dst']]['kicked'][$k['stopped']] = ($out[$k['dst']]['kicked'][$k['stopped']] ?? 0) + 1;
+            }
+            $who = $credit($k['src']);
+            if (isset($out[$who]) && isset($roster[$k['src']])) {
+                $out[$who]['kicks']++;
+                $this->countOffTarget($out[$who], $targetAt($who, $k['t']), $k['dst']);
+            }
+        }
+
+        foreach ($dmg as $x) {
+            $who = $credit($x['src']);
+            if (isset($roster[$x['src']]) || ! isset($out[$who]) || $sideOf($x['dst']) === null || $sideOf($x['dst']) === $sideOf($who)) {
+                continue;
+            }
+            $ownerTarget = $targetAt($who, $x['t']);
+            if ($ownerTarget !== null) {
+                $out[$who]['petHits']++;
+                $out[$who]['petOnTarget'] += $ownerTarget === $x['dst'] ? 1 : 0;
+            }
+        }
+
+        foreach ($failed as $f) {
+            if (! isset($out[$f['who']]) || in_array($f['why'], self::FAIL_NOISE, true)) {
+                continue;
+            }
+            $row = &$out[$f['who']]['failed'][$f['why']];
+            $row['n'] = ($row['n'] ?? 0) + 1;
+            $row['spells'][$f['spell']] = ($row['spells'][$f['spell']] ?? 0) + 1;
+            unset($row);
+        }
+
+        foreach ($out as &$row) {
+            arsort($row['casts']);
+            foreach ($row['failed'] ?? [] as &$reason) {
+                arsort($reason['spells']);
+                $reason['spells'] = array_slice($reason['spells'], 0, 4, true);
+            }
+            unset($reason);
+        }
+        unset($row);
+
+        return $out;
+    }
+
+    /** One control or kick that landed: off target when the player was hitting someone else. */
+    private function countOffTarget(array &$row, ?string $target, string $dst): void
+    {
+        if ($target === null) {
+            return;
+        }
+        $row['control']++;
+        $row['offTarget'] += $target !== $dst ? 1 : 0;
     }
 
     /** The top abilities by amount, with everything else summed into one "Other" row. */

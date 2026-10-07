@@ -74,7 +74,8 @@ how a page looks needs only `wow:game-cards`.
 | A desktop view, `GameCardService`, `ImprovementService`, `CompLibraryService` | `wow:game-cards` (it notices the code change); `--fresh` redraws everything |
 | `MindCollectorLogs.ps1` | restart the app: tray icon, **Exit**, reopen |
 | Anything the website's `/wow/coach` shows | deploy (`./deploy.sh`); the next upload redraws a player's pages |
-| A re-measure, or a big batch of new games | `php -d memory_limit=2G artisan wow:go-cooldowns`, then commit `data/comp-playbook/go-cooldowns.json`: the site's comp page ("How to play it") reads from it which buttons each spec presses in its goes, each spec's usual control combo on the healer, and where each stun lands |
+| A re-measure, a measure change, or a big batch of new games | `php -d memory_limit=3G artisan wow:population` (every archived game, both sides; `--fresh` after a VERSION change, about 8 minutes), then commit `data/population/norms.json`: the Basics tab's norms and the evidence every tip quotes (`docs/learning/population-findings-2026-10-06.md`) |
+| The same | `php -d memory_limit=2G artisan wow:go-cooldowns`, then commit `data/comp-playbook/go-cooldowns.json`: the site's comp page ("How to play it") reads from it which buttons each spec presses in its goes, each spec's usual control combo on the healer, and where each stun lands |
 
 ---
 
@@ -90,6 +91,7 @@ player's side. Its `VERSION` says what a stored round holds:
 | 7 | `answers` on our first death (the answer sheet), `beforeLockout` on defensive rows |
 | 8 | spells used both ways read per press; short defensives (Feint) in the timeline; the 2026-10-04 tag promotions |
 | 9 | each defensive row says whether it was needed: whom it went on, health, time to live, warrant.php's reasons, `needed` (danger or breaking crowd control) |
+| 10 | `habits` per player: presses per ability, seconds free to act, control and kicks off the damage target (the macro signal), kicks given and casts kicked by spell, a pet's hits on its owner's target; for the logger only, failed casts by Blizzard's reason (range, line of sight, facing, moving, Medallion not ready). Feeds each game's **Basics** tab, Improve's kicked and line-of-sight habits, and `wow:population` |
 
 | Piece | File | What it decides |
 |---|---|---|
@@ -114,6 +116,7 @@ goes, the deaths, the answer sheets and the comp library.
 | `data/arena-logs/spell-classification/short-defensives.json` | defensives under the 45s floor that still count (Feint, Crimson Vial, Fade...) |
 | `spells.dr_category` (curated, `cc-synergies-overrides.txt`) | what counts as crowd control, and which kind |
 | `data/matchup-profiles/{class}/{spec}.json` | each spec's answers, control and interrupts (default build); the answer sheet starts here |
+| `data/population/norms.json` (`wow:population`) | every spec's norms this season (output per free minute, presses per ability, time controlled, kicks), the habit and go outcome tables across every player in the archive, and the `evidence` table each Basics line quotes; a line with under 20 rounds on either side states no number |
 | `data/comp-playbook/go-cooldowns.json` (`wow:go-cooldowns`) | what each spec presses in its goes, counted from every measured round; the comp page's burst reads it. Under 20 goes or 5 players, a spec is "not enough measured" |
 
 **Improve them from play with `tools/match-review/tagaudit.php`.** It sets every spell's tags

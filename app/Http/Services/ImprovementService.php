@@ -277,6 +277,13 @@ class ImprovementService
             'defsWarranted' => $defs->filter(fn ($d) => array_key_exists('needed', $d))->count(),
             'defsOutside' => $defs->where('outside', true)->count(),
             'lockout' => (float) ($a['lockout'][$guid] ?? 0),
+            // Version 10 (`habits`): time free to act, your casts that were kicked, and, for the
+            // player who logged the game only (WoW writes no one else's), casts that failed for line
+            // of sight.
+            'v10' => ($a['version'] ?? 0) >= 10 && isset($a['habits'][$guid]),
+            'free' => (float) ($a['habits'][$guid]['free'] ?? 0),
+            'kicked' => array_sum($a['habits'][$guid]['kicked'] ?? []),
+            'losFails' => $p['logger'] ? (int) ($a['habits'][$guid]['failed']['Target not in line of sight']['n'] ?? 0) : null,
             'diedFirst' => $teamFirst !== null && $teamFirst['who'] === $guid && ! $won,
             'teamLost' => $teamFirst !== null && ! $won,
             // The one Medallion fault the log supports: a teammate died while you were locked out
@@ -454,6 +461,28 @@ class ImprovementService
                 $idle($mine), $idle($others), $withB($mine)->count(), $withB($others)->count(), 0, '%',
                 [], $trend($idle),
                 'A cast longer than 2.5s counts as a gap, and so does waiting out of sight on purpose.',
+            );
+        }
+
+        // 10. Your casts kicked, per minute free to act (version 10). Rounds with many casts
+        // interrupted won less often across the whole archive (wow:population, `castsInterrupted`).
+        $v10 = fn (Collection $rs) => $rs->where('v10', true);
+        if ($v10($mine)->isNotEmpty()) {
+            $kicked = fn (Collection $rs) => ($f = $v10($rs)->sum('free')) > 0 ? $v10($rs)->sum('kicked') / ($f / 60) : null;
+            $habits[] = $this->habit('kicked', 'Your casts kicked', false,
+                'Your casts that were interrupted, per minute you were alive and free to act.',
+                $kicked($mine), $kicked($others), $v10($mine)->count(), $v10($others)->count(), 2, '',
+                [], $trend($kicked),
+                'Casting into a ready kick is the common cause; a cast started to draw the kick out and stopped is the answer. Fewer casts also means fewer kicks, so read it beside your damage.',
+            );
+
+            // 11. Casts that failed for line of sight (yours only: WoW logs no one else's failures).
+            $los = fn (Collection $rs) => ($f = $v10($rs)->where('you', true)->sum('free')) > 0 ? $v10($rs)->where('you', true)->sum('losFails') / ($f / 60) : null;
+            $habits[] = $this->habit('los', 'Casts blocked by line of sight', false,
+                'Your casts that failed because the target was out of sight, per minute free to act. Only yours: WoW logs no other player\'s failed casts.',
+                $los($mine), null, $v10($mine)->count(), 0, 2, '',
+                [], $trend($los),
+                'Across the archive, rounds with many of these were won less often. A pillar between you and the target blocks heals and control alike: move before you press.',
             );
         }
 
