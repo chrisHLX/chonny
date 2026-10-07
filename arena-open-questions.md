@@ -225,6 +225,26 @@ trigger table is more usable than Part 3's single "enemy presses X → you press
 
 ANSWER:
 
+**C14. Do exchanges that force enemy defensives while spending none of ours win more games?**
+[ARCHIVE] — *new, from the player's Freezing Trap trade (Part 20.2).*
+The player's realisation: if crowd control costs your team more defensives than it forces, damage
+from range that forces their cooldowns wins the exchange. That such trades happen is his report;
+how often they decide games is untested. The archive can measure the part it sees: per go and per
+stretch between goes, enemy defensives forced against our defensives spent, and whether the side
+ahead on that balance more often wins the round. It cannot see the positioning half of his
+example, so a result here tests the damage trade only.
+
+ANSWER:
+
+**C15. What does holding a cooldown actually cost in uses?** [ARCHIVE] — *new (Part 20.3).*
+The arithmetic is settled: a cooldown only starts coming back once pressed, so holding it can lose
+a use over a round. How much it costs in practice is not: for each major cooldown, how long it sat
+ready before being pressed, how many uses a round got against how many it could have, and whether
+the held presses landed better (forced more, or answered a real go). That is the evidence for when
+holding is worth it, by player and spec, and it keeps Part 6's "use it early" tiering honest.
+
+ANSWER:
+
 **C9. How often is the correct save actually taken, by bracket?** [ARCHIVE]
 The Tier-2 probabilistic framing from Part 11, and the input to the "usage rate beats
 optimality" tiering in Part 6. Combat-log frequencies: trinket wasted, CC not

@@ -3,6 +3,10 @@
 The working model of what an arena game *is*, used when authoring a guide, scoring a
 plan, or deciding which spell-data facts matter and why.
 
+**A one-page summary** (the vocabulary, then the match as setup → go → answer → reset, with what
+the match analysis measures at each stage) is in `docs/arena/structure-summary.md`. Change this
+file first, then the summary.
+
 This is **version 2**, rewritten 2026-09-22. It replaces a longer v1 that was written
 mostly from reasoning. Two things changed it: the player's own line-by-line review of
 v1 (he had been playing again, and corrected it from experience), and a full
@@ -17,6 +21,7 @@ Sources are preserved verbatim in `docs/arena/sources/`:
 | `arena-structure-v1-2026-09-18.md` | v1, unedited. The reasoned framework. |
 | `arena-structure-v1-reviewed-by-chriso.md` | v1 with the player's inline corrections. **The primary correction record.** |
 | `kalvish-blizzcon-2026-awc-finals.md` | Calvish's post-tournament breakdown, incl. a game-by-game VOD review of the grand final. |
+| `chriso-chatgpt-resource-state-2026-10-07.md` | The player's Freezing Trap realisation, in a ChatGPT conversation that names what the model's mechanics serve: a relative resource state (Part 20). **The player's paragraph is first-hand; the rest is a language model**, so agreement is not corroboration. |
 | `gemini-cooldown-graph-2026-09-23.md` | A Gemini session proposing this model be drawn as curves over a round. **Not a player.** It had this document in its context, so agreement is not corroboration — see Part 19 and the distilled note's caveat. |
 
 ---
@@ -259,6 +264,11 @@ succeed."
 So: a go is a **commitment of scarce resources aimed at changing the answer pool**
 (Part 2). Killing is one way it pays. Emptying their buttons is another. Interrupting
 their go is a third.
+
+**The cycle is not the objective.** [DER, 2026-10-07] What every phase of it serves is a
+more favourable *relative* resource state than the opponent's, and a go is only one way to
+change that state: pressure, positioning and clean defensive trades are others. Part 20
+states this and what follows from it.
 
 ---
 
@@ -1197,3 +1207,98 @@ On top of the per-spec and per-comp terms already listed there:
 - **Per player slot**: which answers are self-only and which can be cast on a teammate.
   An external suppressed by CC on the *healer* is the mechanism in 19.1, and it cannot be
   computed without knowing who can cast what on whom.
+
+---
+
+## Part 20 — The objective: relative resource state
+
+Added 2026-10-07, from `docs/arena/sources/chriso-chatgpt-resource-state-2026-10-07-distilled.md`:
+the player's Freezing Trap realisation, articulated in a conversation with ChatGPT. **Weigh it
+accordingly.** The player's paragraph is first-hand; everything else in the source is a language
+model, whose agreement with this file is not corroboration. Almost all of this Part is `[DER]`: it
+states what Parts 1–19 already imply rather than adding a mechanic. Appended rather than placed
+at the front because every other document refers to the Parts by number.
+
+**What it adds is a statement of what the mechanics are for.** This file holds the answer pool,
+overlap, goes, resets, cadence and dampening, and never says what they serve. In that gap, the
+cycle of Part 1 (go → answer → reset) is easy to read as the way the game *should* be played,
+with the go as the point. It is not.
+
+### 20.1 The objective, as a lens [DER, from Parts 1, 2, 4 and 12]
+
+**The strategic objective is a more favourable relative resource state than the opponent's, such
+that a future commitment has better prospects of forcing a decisive outcome.** Relative: both
+teams' answer pools, not the enemy's alone (Part 2 counts theirs; Part 3's overlap is a loss in
+yours). Arena is not won by spending fewer resources or by spending more. It is won by the
+difference.
+
+**A go is one way to change that state, not the objective.** Others:
+- sustained pressure and damage (Part 4's third job);
+- crowd control and peels, in or out of a go;
+- positioning: line of sight, range, forcing movement (Part 14.1);
+- trading defensives cleanly (Part 3);
+- surviving an enemy go efficiently.
+
+So **do not send a go because one is available.** Judge an exchange by what it costs both teams
+and the state it leaves behind. This is the general form of Part 19.3's "the go that is not sent
+is a move".
+
+**It is a lens, not a complete theory of winning.** A team can hold more answers than its
+opponent and still lose to positioning, a chain it did not see coming, a wrong target or
+execution. The first and the last of those the log cannot see (Part 14).
+
+### 20.2 The player's trade: what a chain costs against what it forces [OBS, the player's report]
+
+> "If going for CC costs you more defensives then it's not worth it consequently if you can force
+> more enemy cool-downs while staying back and just doing damage then you win the trade you dont
+> need to force the same chain of go reset. Even though you don't spend resources and they might
+> not get used for 1 min eg freezing trap you have won the state by not having to used defensives
+> and still force them."
+>
+> "Basically say instead of freezing trap you pulled dps out of healers range and loss causing
+> them to retreat or use defensives whilst staying healthy. You didn't use trap but you
+> essentially got more value from positioning."
+
+Two things this adds to Part 4's third job. Pressure can **force their cooldowns while yours stay
+up**, which is a won exchange with no go in it. And positioning can do a crowd-control button's
+job without spending it. That such trades happen is the player's report; how often they decide
+games is untested (`arena-open-questions.md` C14).
+
+### 20.3 Keep it or spend it: one decision with two costs [DER]
+
+Two properties of cooldowns pull against each other, and neither is a rule alone.
+
+- **Preservation has value.** Not spending a resource is not automatically a failure to use it. A
+  button kept while the enemy's pool shrinks is worth more later than it was.
+- **Holding has a cost, because a cooldown only starts coming back once pressed.** A 2-minute
+  cooldown pressed at 0:30 gets three uses in a 5-minute round; held until 1:30, it gets two.
+
+The decision is between them: what using it now and starting its recharge is worth, against
+keeping it available for a better use. "Did we use our cooldown?" is the wrong question. "Did
+using it improve the state more than keeping it would have?" is the right one.
+
+**This does not weaken Part 6.** For most players a held cooldown is a cooldown never recognised
+as usable, so "use it early" stays the right advice below the top (Parts 6 and 16). This section
+explains why holding is *sometimes* correct; it is not advice to hold.
+
+### 20.4 A reset is not neutral [DER, Part 12 at the scale of one reset]
+
+Between goes, cooldowns come back, DRs recover, dampening moves the value of healing and
+defensives, and players move. **Each team recovers at a different rate**, so a reset favours
+whoever the resulting state favours. Part 12 asks which side the clock favours over a round; ask
+it between every two goes as well.
+
+### 20.5 Logs describe what happened; they do not determine the optimal action [DER]
+
+The same event can call for different correct actions depending on the state around it. In
+plain terms:
+- **strategy** is the state you are trying to create;
+- **tactics** are the sequence meant to create it;
+- **execution** is whether it happens under the game's conditions.
+
+A log can establish what happened, what was available and what state changed. **What the player
+should have done instead is not in the log.** It needs the objective, the state, the possible
+next states, the tactics the player had, execution, and what the log never recorded (positioning,
+comms). So a recommendation from a match review is an interpretation, never a fact extracted from
+the log. This is the boundary of the match review (`match-review.md`, reading rules) and of any
+AI coaching built on it.
