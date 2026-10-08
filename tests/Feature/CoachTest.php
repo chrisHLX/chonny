@@ -93,10 +93,14 @@ class CoachTest extends TestCase
         File::put(BuildCoachPages::dir($me->id).'/index.json', json_encode([
             'games' => ['abc123' => ['playedAt' => '2026-10-03 12:18:00', 'bracket' => '3v3', 'notes' => 0, 'sig' => 'x', 'you' => 'Skylake', 'record' => [1, 0], 'against' => ['Frost Mage']]],
             'characters' => [], 'comps' => [],
+            'classes' => ['Glad-Realm-US' => ['name' => 'Glad', 'spec' => 'Frost Mage', 'specId' => 64, 'class' => 'Mage', 'classSlug' => 'mage', 'color' => '#69CCF0',
+                'why' => '9× Glad, best 3000', 'games' => 2, 'won' => 1, 'lost' => 1, 'last' => '2026-10-03', 'file' => 'player-0123456789.html']],
         ]));
 
         $this->get(route('coach.page', 'abc123.html'))->assertRedirect(route('login'));
-        $this->actingAs($me)->get(route('coach'))->assertOk()->assertSee('Skylake')->assertSee('vs Frost Mage');
+        $this->actingAs($me)->get(route('coach'))->assertOk()->assertSee('Skylake')->assertSee('vs Frost Mage')
+            // The Classes tab: the strongest player of each spec met, under their class.
+            ->assertSee('Classes')->assertSee('player-0123456789.html')->assertSeeInOrder(['Mage', 'Glad', 'Frost Mage · 9× Glad, best 3000 · 2 rounds'], false);
         $this->actingAs($me)->get(route('coach.page', 'abc123.html'))->assertOk()->assertSee('my game', false);
         $this->actingAs($other)->get(route('coach.page', 'abc123.html'))->assertNotFound();
     }
@@ -123,5 +127,41 @@ class CoachTest extends TestCase
         // The browser upload builds the same pages the desktop app's upload does.
         $this->actingAs($user)->postJson(route('game-review.assemble'))->assertOk();
         Queue::assertPushed(BuildCoachPages::class, fn ($job) => $job->userId === $user->id);
+    }
+
+    public function test_the_app_reads_its_own_pages_back_with_its_key_and_nobody_elses(): void
+    {
+        $owner = User::factory()->create();
+        $other = User::factory()->create();
+        $ownerKey = $owner->issueCoachToken();
+        $otherKey = $other->issueCoachToken();
+        File::ensureDirectoryExists(BuildCoachPages::dir($owner->id));
+        File::put(BuildCoachPages::dir($owner->id).'/index.json', json_encode(['games' => ['abc123' => ['bracket' => '3v3']]]));
+        File::put(BuildCoachPages::dir($owner->id).'/abc123.html', '<html>owner game</html>');
+
+        $index = $this->withHeader('Authorization', "Bearer {$ownerKey}")->getJson('/api/coach/index')->assertOk();
+        $this->assertTrue($index->json('built'));
+        $this->assertSame('3v3', $index->json('games.abc123.bracket'));
+
+        $page = $this->withHeader('Authorization', "Bearer {$ownerKey}")->get('/api/coach/page/abc123.html')->assertOk();
+        $this->assertStringContainsString('owner game', $page->getContent());
+        $etag = $page->headers->get('ETag');
+        $this->assertNotEmpty($etag);
+
+        // Asked again with that ETag: unchanged, so no body.
+        $again = $this->withHeaders(['Authorization' => "Bearer {$ownerKey}", 'If-None-Match' => $etag])->get('/api/coach/page/abc123.html');
+        $again->assertStatus(304);
+        $this->assertSame('', $again->getContent());
+        $this->flushHeaders();
+
+        // Another player's key reads that player's (empty) folder, never this one.
+        $this->withHeader('Authorization', "Bearer {$otherKey}")->getJson('/api/coach/index')->assertOk()->assertJson(['built' => false]);
+        $this->withHeader('Authorization', "Bearer {$otherKey}")->get('/api/coach/page/abc123.html')->assertNotFound();
+
+        // No key, or a wrong one, reads nothing; a path outside the folder never matches the route.
+        // (withHeader persists across requests in a test, so the key is cleared first.)
+        $this->flushHeaders()->getJson('/api/coach/index')->assertStatus(401);
+        $this->withHeader('Authorization', 'Bearer mc_wrong')->get('/api/coach/page/abc123.html')->assertStatus(401);
+        $this->withHeader('Authorization', "Bearer {$ownerKey}")->get('/api/coach/page/..%2Findex.json')->assertNotFound();
     }
 }

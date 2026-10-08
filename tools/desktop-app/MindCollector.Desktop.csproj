@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    MindCollector, the downloadable desktop app: reads a player's combat log, sends finished arena
+    rounds to mindcollector.com with the player's key, and shows the pages the server builds.
+    Needs no copy of this project, no PHP and no database. See README.md.
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>MindCollector.Desktop</RootNamespace>
+    <AssemblyName>MindCollector</AssemblyName>
+    <ApplicationIcon>mindcollector.ico</ApplicationIcon>
+    <Version>0.1.0</Version>
+    <Product>MindCollector</Product>
+    <Company>MindCollector</Company>
+    <!-- One exe for testers: the .NET runtime is inside it, so nothing else needs installing. -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <!-- 155 MB uncompressed (2026-10-08); compressed inside the exe for sending to testers. -->
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2903.40" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="mindcollector.ico" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
