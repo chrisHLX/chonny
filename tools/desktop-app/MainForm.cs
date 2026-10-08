@@ -168,6 +168,8 @@ internal sealed class MainForm : Form
         _view.CoreWebView2.NewWindowRequested += (_, e) => { e.Handled = true; OpenUrl(e.Uri); };
         Blank("Pick a game to see who you played, how each death happened, and what to look at.");
 
+        CheckAddon();
+
         if (string.IsNullOrEmpty(_settings.Key))
         {
             SetStatus("Add your website key in Settings to start.");
@@ -367,7 +369,27 @@ internal sealed class MainForm : Form
         if (f.ShowDialog(this) == DialogResult.OK)
         {
             SetStatus($"Watching {_settings.WowLogsDir}");
+            CheckAddon();
             _ = RefreshIndexAsync();
+        }
+    }
+
+    /// <summary>Installs or updates the arena-log addon, and says so when anything changed or is wrong.</summary>
+    private void CheckAddon()
+    {
+        try
+        {
+            var outcome = AddonInstaller.Ensure(_settings.WowLogsDir);
+            Log(outcome.Message);
+            if (outcome.State is AddonInstaller.State.Installed or AddonInstaller.State.Updated)
+                _tray.ShowBalloonTip(6000, "Addon ready", outcome.Message, ToolTipIcon.Info);
+            else if (outcome.State != AddonInstaller.State.UpToDate)
+                SetStatus(outcome.Message);
+        }
+        catch (Exception e)
+        {
+            Log($"Could not install the addon: {e.Message}");
+            SetStatus($"Could not install the addon: {e.Message}");
         }
     }
 

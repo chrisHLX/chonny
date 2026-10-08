@@ -46,6 +46,7 @@ class PageUsage extends Component
         'game_review' => 'Game Review',
         'match_analysis' => 'Your analysis',
         'coach' => 'Your games',
+        'desktop_app' => 'Desktop app download (unlisted test link)',
         'basics_check' => 'Arena basics check',
         'game_review_analysis' => 'Game Review â€” raw analysis',
         'top_damage_rotations' => 'Top Burst Windows',

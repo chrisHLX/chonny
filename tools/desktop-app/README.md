@@ -22,12 +22,23 @@ is, for the archive and the research tools.
 4. **Shows the player's pages** (Games, Improve, Comps, Classes) from `GET /api/coach/index` and
    `GET /api/coach/page/{file}`, in WebView2. Unchanged pages are not downloaded again (ETag), and
    the last copy shows when offline. (`MainForm`)
-5. **Moves each log out of WoW's folder** once all of it is sent and WoW has let go of it: it copies,
+5. **Installs the arena-log addon** (`AddonInstaller`, at start and from Settings). The addon is
+   built into the app from `tools/wow-addon/MindCollectorArenaLog`, and goes into
+   `_retail_\Interface\AddOns`, beside the Logs folder. It never overwrites a copy it did not put
+   there (no `.installed-by-mindcollector` marker) unless the player clicks *Install the addon*.
+   A fix to the addon reaches every player with the next app version.
+6. **Moves each log out of WoW's folder** once all of it is sent and WoW has let go of it: it copies,
    checks the size, then deletes. Moved logs are kept. When the site's measure version goes up, the
    app sends every kept log again so old games are measured with the new code.
 
 Not in this version: the live game column, notes and the Ctrl+Shift+M hotkey (the PowerShell app
 has them), and linking one game logged by two players.
+
+## Getting it
+
+Signed-in players download it from **mindcollector.com/wow/coach/app** (`DesktopAppController`).
+The link is unlisted while two players test it. The exe is not in git; after `dotnet publish`, copy
+`publish\MindCollector.exe` to the server's `storage/app/desktop/MindCollector.exe`.
 
 ## Building
 
@@ -52,6 +63,10 @@ Both switches write their report to the app's data folder (`%APPDATA%\MindCollec
 - `MindCollector.exe --check-log "path\to\WoWCombatLog-....txt"` lists every round the app would
   send from that log and sends nothing (`check-log.txt`). Ask a tester for this when their games do
   not show up.
+- `MindCollector.exe --install-addon --logs FOLDER [--replace]` installs or updates the addon for that
+  WoW Logs folder (`install-addon.txt`). Checked against a fake WoW folder: installs when missing,
+  leaves an identical or a foreign copy alone, updates its own copy, replaces a foreign one only
+  with `--replace`, and writes nothing to a folder that is not WoW.
 - `MindCollector.exe --sync-once --server URL --key KEY --logs FOLDER [--move FOLDER]` runs one sync
   pass (`sync-once.txt`).
 

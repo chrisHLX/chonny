@@ -14,7 +14,7 @@
     <RootNamespace>MindCollector.Desktop</RootNamespace>
     <AssemblyName>MindCollector</AssemblyName>
     <ApplicationIcon>mindcollector.ico</ApplicationIcon>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Product>MindCollector</Product>
     <Company>MindCollector</Company>
     <!-- One exe for testers: the .NET runtime is inside it, so nothing else needs installing. -->
@@ -34,6 +34,13 @@
 
   <ItemGroup>
     <Content Include="mindcollector.ico" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <!-- The arena-log addon, built in from its one copy in the repo, so the app can install it
+       (AddonInstaller). Edit it in tools/wow-addon, never here. -->
+  <ItemGroup>
+    <EmbeddedResource Include="..\wow-addon\MindCollectorArenaLog\MindCollectorArenaLog.toc" LogicalName="addon/MindCollectorArenaLog.toc" />
+    <EmbeddedResource Include="..\wow-addon\MindCollectorArenaLog\main.lua" LogicalName="addon/main.lua" />
   </ItemGroup>
 
 </Project>

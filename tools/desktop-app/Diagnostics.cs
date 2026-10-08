@@ -3,12 +3,15 @@ using System.Text;
 namespace MindCollector.Desktop;
 
 /// <summary>
-/// Two switches that run without the window and write what they found to a text file in the app's
+/// Switches that run without the window and write what they found to a text file in the app's
 /// data folder (MINDCOLLECTOR_DATA, or %APPDATA%\MindCollector Desktop):
 ///
 ///   MindCollector.exe --check-log "path\to\WoWCombatLog-....txt"
 ///       Lists every arena round the app would send from that log: when it starts, its bracket and
 ///       its size. Sends nothing. What a tester runs when "my games did not show up".
+///
+///   MindCollector.exe --install-addon --logs FOLDER [--replace]
+///       Installs or updates the arena-log addon for that WoW Logs folder, as the app does at start.
 ///
 ///   MindCollector.exe --sync-once --server URL --key KEY --logs FOLDER [--move FOLDER]
 ///       One sync pass with these settings, as the window's timer would run it. For checking a
@@ -65,6 +68,22 @@ internal static class Diagnostics
         catch (Exception e)
         {
             Write("sync-once.txt", log + $"Error: {e.GetType().Name}: {e.Message}");
+            return 1;
+        }
+    }
+
+    /// <summary>`--install-addon --logs FOLDER [--replace]`: what the app does at start, reported to install-addon.txt.</summary>
+    public static int InstallAddon(string logsDir, bool replace)
+    {
+        try
+        {
+            var outcome = AddonInstaller.Ensure(logsDir, replace);
+            Write("install-addon.txt", $"{outcome.State}: {outcome.Message}{Environment.NewLine}{outcome.Folder}");
+            return outcome.State is AddonInstaller.State.NoWow or AddonInstaller.State.DifferentCopy ? 2 : 0;
+        }
+        catch (Exception e)
+        {
+            Write("install-addon.txt", $"Error: {e.Message}");
             return 1;
         }
     }

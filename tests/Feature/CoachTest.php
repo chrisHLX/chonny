@@ -129,6 +129,32 @@ class CoachTest extends TestCase
         Queue::assertPushed(BuildCoachPages::class, fn ($job) => $job->userId === $user->id);
     }
 
+    public function test_the_desktop_app_downloads_only_for_a_signed_in_player(): void
+    {
+        $path = \App\Http\Controllers\DesktopAppController::path();
+        $existed = is_file($path);
+        $original = $existed ? file_get_contents($path) : null;
+
+        try {
+            $this->get('/wow/coach/app')->assertRedirect(route('login'));
+
+            if (! $existed) {
+                $this->actingAs(User::factory()->create())->get('/wow/coach/app')->assertNotFound();
+                File::ensureDirectoryExists(dirname($path));
+                file_put_contents($path, 'MZ test exe');
+            }
+
+            $res = $this->actingAs(User::factory()->create())->get('/wow/coach/app')->assertOk();
+            $this->assertStringContainsString('MindCollector.exe', $res->headers->get('Content-Disposition'));
+        } finally {
+            if (! $existed) {
+                @unlink($path);
+            } elseif ($original !== null) {
+                file_put_contents($path, $original);
+            }
+        }
+    }
+
     public function test_the_app_reads_its_own_pages_back_with_its_key_and_nobody_elses(): void
     {
         $owner = User::factory()->create();

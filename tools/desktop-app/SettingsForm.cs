@@ -51,12 +51,28 @@ internal sealed class SettingsForm : Form
         grid.Controls.Add(new Label()); grid.Controls.Add(_startup); grid.Controls.Add(new Label());
         Row(grid, "Website", _server, null, "Leave as it is unless told otherwise.");
 
+        var install = Theme.Button("Install the addon");
+        install.Click += (_, _) =>
+        {
+            try
+            {
+                var outcome = AddonInstaller.Ensure(_wow.Text.Trim(), replaceDifferent: true);
+                _status.Text = outcome.Message;
+                _status.ForeColor = outcome.State == AddonInstaller.State.NoWow ? Theme.Lost : Theme.Won;
+            }
+            catch (Exception e)
+            {
+                _status.Text = $"Could not install the addon: {e.Message}";
+                _status.ForeColor = Theme.Lost;
+            }
+        };
+
         var save = Theme.Button("Save", primary: true);
         var cancel = Theme.Button("Cancel");
         save.Click += async (_, _) => await SaveAsync();
         cancel.Click += (_, _) => Close();
         var buttons = new FlowLayoutPanel { Dock = DockStyle.Bottom, FlowDirection = FlowDirection.RightToLeft, AutoSize = true };
-        buttons.Controls.AddRange([cancel, save]);
+        buttons.Controls.AddRange([cancel, save, install]);
         grid.Controls.Add(new Label()); grid.Controls.Add(_status); grid.Controls.Add(new Label());
 
         Controls.Add(grid);

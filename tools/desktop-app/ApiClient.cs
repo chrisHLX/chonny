@@ -31,7 +31,7 @@ public sealed class ApiClient : IDisposable
         _http = new HttpClient { Timeout = TimeSpan.FromMinutes(3) };
         _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", key);
         _http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        _http.DefaultRequestHeaders.UserAgent.ParseAdd("MindCollector-Desktop/0.1");
+        _http.DefaultRequestHeaders.UserAgent.ParseAdd("MindCollector-Desktop/0.2");
     }
 
     public sealed class KeyRejectedException() : Exception("The website did not accept this key. Make a new one on mindcollector.com/wow/coach.");
