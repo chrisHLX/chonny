@@ -1,7 +1,12 @@
-# MindCollector Logs
+# MindCollector Dev (was MindCollector Logs)
 
-A small Windows program that moves your arena games from WoW into the archive for you.
-Double-click **`MindCollector Logs.vbs`** to open it. To get a shortcut with the app's icon on
+A small Windows program that moves your arena games from WoW into the archive for you. Named
+**MindCollector Dev** since 2026-10-10 (it was MindCollector Logs), to tell it apart from the
+downloadable app testers use (`tools/desktop-app`, "MindCollector"), which needs no copy of this
+project and sends rounds to the site to be measured there. This one is the developer's: it keeps the
+archive, runs the measures locally and feeds the research tools. Re-run `Install-Shortcuts.ps1` after
+the rename; it removes the old shortcuts.
+Double-click **`MindCollector Logs.vbs`** (the launcher kept its file name) to open it. To get a shortcut with the app's icon on
 the desktop and in the Start menu, run this once:
 `powershell -ExecutionPolicy Bypass -File tools\log-manager\Install-Shortcuts.ps1`.
 

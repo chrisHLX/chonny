@@ -1,4 +1,4 @@
-# Puts a "MindCollector Logs" shortcut on the desktop and in the Start menu, with the app's icon.
+# Puts a "MindCollector Dev" shortcut (named "MindCollector Logs" until 2026-10-10; old shortcuts are removed) on the desktop and in the Start menu, with the app's icon.
 # Run once:  powershell -ExecutionPolicy Bypass -File tools\log-manager\Install-Shortcuts.ps1
 # Safe to re-run; it overwrites its own shortcuts and nothing else.
 
@@ -34,9 +34,14 @@ $w.Write($bytes)
 
 $shell = New-Object -ComObject WScript.Shell
 $targets = @(
-    (Join-Path ([Environment]::GetFolderPath('Desktop')) 'MindCollector Logs.lnk'),
-    (Join-Path ([Environment]::GetFolderPath('Programs')) 'MindCollector Logs.lnk')
+    (Join-Path ([Environment]::GetFolderPath('Desktop')) 'MindCollector Dev.lnk'),
+    (Join-Path ([Environment]::GetFolderPath('Programs')) 'MindCollector Dev.lnk')
 )
+# The old name's shortcuts, so the desktop does not show two.
+foreach ($folder in @('Desktop', 'Programs')) {
+    $old = Join-Path ([Environment]::GetFolderPath($folder)) 'MindCollector Logs.lnk'
+    if (Test-Path $old) { Remove-Item $old; "Removed $old" }
+}
 foreach ($path in $targets) {
     $lnk = $shell.CreateShortcut($path)
     $lnk.TargetPath = "$env:WINDIR\System32\wscript.exe"

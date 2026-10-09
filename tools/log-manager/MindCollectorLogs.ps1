@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------
-#  MindCollector Logs
+#  MindCollector Dev
 #
 #  A small window (and tray icon) over the arena-log workflow:
 #    1. Watches WoW's Logs folder for WoWCombatLog-*.txt.
@@ -39,7 +39,7 @@ Add-Type -AssemblyName System.Windows.Forms, System.Drawing
 $mutexCreated = $false
 $script:Mutex = New-Object System.Threading.Mutex($true, 'Local\MindCollectorLogs', [ref]$mutexCreated)
 if (-not $mutexCreated) {
-    [System.Windows.Forms.MessageBox]::Show('MindCollector Logs is already running - look for it in the tray.', 'MindCollector Logs') | Out-Null
+    [System.Windows.Forms.MessageBox]::Show('MindCollector Dev is already running - look for it in the tray.', 'MindCollector Dev') | Out-Null
     exit
 }
 
@@ -375,7 +375,7 @@ function Invoke-SyncPass([bool]$manual) {
                 Load-Matches
                 $m = [regex]::Match($output, '(\d+) new game')
                 $what = if ($m.Success) { "$($m.Groups[1].Value) new game(s) reviewed" } else { 'New games archived' }
-                Show-Balloon $what 'Open MindCollector Logs to see them.'
+                Show-Balloon $what 'Open MindCollector Dev to see them.'
             }
             if (-not $ok) { Write-Activity 'Building reviews failed - the games are archived; reviews will build on the next sync.' }
             Invoke-MovePass
@@ -1184,7 +1184,11 @@ function Open-Review {
 
 # --- Start with Windows ------------------------------------------------------
 
-$script:StartupLink = Join-Path ([Environment]::GetFolderPath('Startup')) 'MindCollector Logs.lnk'
+$script:StartupLink = Join-Path ([Environment]::GetFolderPath('Startup')) 'MindCollector Dev.lnk'
+# Named 'MindCollector Logs' until 2026-10-10, when it became 'MindCollector Dev' beside the downloadable
+# .NET app ('MindCollector'). A start-with-Windows shortcut of the old name is carried over.
+$oldStartup = Join-Path ([Environment]::GetFolderPath('Startup')) 'MindCollector Logs.lnk'
+if ((Test-Path $oldStartup) -and -not (Test-Path $script:StartupLink)) { Move-Item $oldStartup $script:StartupLink -ErrorAction SilentlyContinue }
 
 function Set-StartWithWindows([bool]$on) {
     if ($on) {
@@ -1237,7 +1241,7 @@ $g.Dispose()
 $appIcon = [Drawing.Icon]::FromHandle($bmp.GetHicon())
 
 $form = New-Object Windows.Forms.Form
-$form.Text = 'MindCollector Logs'
+$form.Text = 'MindCollector Dev'
 $form.Icon = $appIcon
 $form.Size = New-Object Drawing.Size(1500, 920)
 $form.MinimumSize = New-Object Drawing.Size(720, 460)
@@ -1250,7 +1254,7 @@ $form.Font = $fontUi
 $header = New-Object Windows.Forms.Panel
 $header.Dock = 'Top'; $header.Height = 70; $header.BackColor = $C.Panel; $header.Padding = New-Object Windows.Forms.Padding(16, 10, 16, 8)
 $title = New-Object Windows.Forms.Label
-$title.Text = 'MindCollector Logs'; $title.ForeColor = $C.Gold; $title.AutoSize = $true
+$title.Text = 'MindCollector Dev'; $title.ForeColor = $C.Gold; $title.AutoSize = $true
 $title.Font = New-Object Drawing.Font('Segoe UI Semibold', 14); $title.Location = New-Object Drawing.Point(14, 8)
 $script:StatusLabel = New-Object Windows.Forms.Label
 $script:StatusLabel.ForeColor = $C.Muted; $script:StatusLabel.AutoSize = $true; $script:StatusLabel.Location = New-Object Drawing.Point(16, 42)
@@ -1436,7 +1440,7 @@ function New-Check([string]$text, [bool]$checked) {
 $chkAuto = New-Check 'Read new games automatically when an arena ends' $script:Settings.AutoSync
 $chkMove = New-Check "Move each combat log out of WoW's folder once it is archived (after WoW closes)" $script:Settings.MoveAfterArchive
 $chkLive = New-Check 'Show the game you are in beside the matches, to take notes (Ctrl+Shift+M marks a moment)' $script:Settings.LivePanel
-$chkStartup = New-Check 'Start MindCollector Logs when Windows starts (in the tray)' (Test-Path $script:StartupLink)
+$chkStartup = New-Check 'Start MindCollector Dev when Windows starts (in the tray)' (Test-Path $script:StartupLink)
 
 $btnSave = New-Button 'Save settings' $true
 $btnSave.Margin = New-Object Windows.Forms.Padding(0, 16, 0, 0)
@@ -1483,7 +1487,7 @@ $btnSave.Add_Click({
         # A new key: send what the website does not have yet, straight away.
         if ($key -and $keyChanged) { Add-PushStep; Start-NextStep }
     } catch {
-        [Windows.Forms.MessageBox]::Show($_.Exception.Message, 'MindCollector Logs') | Out-Null
+        [Windows.Forms.MessageBox]::Show($_.Exception.Message, 'MindCollector Dev') | Out-Null
     }
 })
 
@@ -1569,7 +1573,7 @@ $form.Controls.AddRange(@($body, $nav, $header))
 # Tray
 $script:Tray = New-Object Windows.Forms.NotifyIcon
 $script:Tray.Icon = $appIcon
-$script:Tray.Text = 'MindCollector Logs'
+$script:Tray.Text = 'MindCollector Dev'
 $script:Tray.Visible = $true
 $menu = New-Object Windows.Forms.ContextMenuStrip
 [void]$menu.Items.Add('Open', $null, { $form.Show(); $form.WindowState = 'Normal'; $form.Activate() })
@@ -1791,7 +1795,7 @@ $form.Add_FormClosing({
         $e.Cancel = $true
         $form.Hide()
         if (-not $script:ToldAboutTray) {
-            Show-Balloon 'Still watching' 'MindCollector Logs keeps running in the tray. Right-click it to exit.'
+            Show-Balloon 'Still watching' 'MindCollector Dev keeps running in the tray. Right-click it to exit.'
             $script:ToldAboutTray = $true
         }
     }
