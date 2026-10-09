@@ -96,7 +96,16 @@ class ArenaMomentService
      */
     private const AURA_IS_NOT_THE_CONTROL = [703];
 
+    /**
+     * A cast of an aliased id (cast-aliases.json) this soon after the same player's commitment of
+     * the same name is that press again: The Hunt's impact, Doom Winds' ticks.
+     */
+    public const ALIAS_REPEAT = 12.0;
+
     private ?array $cooldowns = null;
+
+    /** @var array<int, int|null> an aliased cast id => the id whose tags it takes when it has none */
+    private array $aliasAs = [];
 
     private ?array $crowdControl = null;
 
@@ -180,6 +189,7 @@ class ArenaMomentService
         $classification = $this->arena->offensiveDefensiveClassification();
 
         $commitments = [];
+        $lastByName = [];
         $damage = [];
         $health = [];
         $control = [];
@@ -241,10 +251,19 @@ class ArenaMomentService
                     continue;
                 }
 
+                // An aliased cast soon after the same press: an impact or a tick, not a new press.
+                $alias = array_key_exists($spellId, $this->aliasAs);
+                if ($alias && $t - ($lastByName["{$src}|{$spellName}"] ?? -INF) < self::ALIAS_REPEAT) {
+                    continue;
+                }
+                $lastByName["{$src}|{$spellName}"] = $t;
+
                 $commitments[] = [
                     't' => $t, 'who' => $src, 'spell' => $spellName, 'spellId' => $spellId,
                     'cooldown' => (float) $cooldowns[$spellId],
-                    'kind' => $this->kindOf($spellName, $spellId, $classification) ?? 'cooldown',
+                    'kind' => $this->kindOf($spellName, $spellId, $classification)
+                        ?? ($alias && $this->aliasAs[$spellId] ? $this->kindOf($spellName, $this->aliasAs[$spellId], $classification) : null)
+                        ?? 'cooldown',
                 ];
 
                 continue;
@@ -507,6 +526,27 @@ class ArenaMomentService
                         $map[$s->spell_id] = $s->cooldown_seconds;
                     }
                 });
+        }
+
+        // CAST IDS THE SPELL DATA HAS NO COOLDOWN FOR. A classified cooldown is sometimes cast under
+        // a copy of the spell with no cooldown in the data, or one the data lacks: Radiant Glory's
+        // Avenging Wrath (cast by every Wake of Ashes, 833 of 897 Ret wings on 2026-10-08), Havoc's
+        // Metamorphosis, a talented Anti-Magic Shell, Smoke Bomb. They come in by a curated list
+        // (cast-aliases.json, found with tools/match-review/hiddencds.php) with the cooldown of the
+        // copy that has one, never by matching names: a name's copies include channel ticks and
+        // landings (Divine Hymn, Heroic Leap) that are not presses.
+        $aliases = json_decode((string) @file_get_contents(base_path('data/arena-logs/spell-classification/cast-aliases.json')), true)['aliases'] ?? [];
+        if ($aliases) {
+            $cds = Spell::query()->where('patch_id', $patch)
+                ->whereIn('spell_id', array_map(fn ($a) => $a['cooldownOf'] ?? $a['as'], $aliases))
+                ->pluck('cooldown_seconds', 'spell_id');
+            foreach ($aliases as $a) {
+                $cd = $cds[$a['cooldownOf'] ?? $a['as']] ?? null;
+                if ($cd > 0) {
+                    $map[$a['castId']] = $cd;
+                    $this->aliasAs[$a['castId']] = $a['as'] ?? null;
+                }
+            }
         }
 
         return $this->cooldowns = $map;

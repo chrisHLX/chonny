@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-04T00:17:39+00:00",
-    "spellCacheVersion": 23,
+    "generatedAt": "2026-10-07T21:48:54+00:00",
+    "spellCacheVersion": 27,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -5595,7 +5595,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Eye for an Eye can now also trigger at 100% effectiveness from direct Magic damage.",
+                            "text": "Eye for an Eye can now also trigger at 150% effectiveness from direct Magic damage.",
                             "uncertain": false
                         },
                         "category": "Defensive",
@@ -8057,7 +8057,7 @@
             "spellId": 7974,
             "category": "Other",
             "description": {
-                "text": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,487 Holy damage and radiates 2,607 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 6,076 and radiates 928 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
+                "text": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,433 Holy damage and radiates 2,649 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 5,998 and radiates 917 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -8267,7 +8267,7 @@
             "spellId": 7978,
             "category": "Other",
             "description": {
-                "text": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                "text": "You focus the assault on this target, increasing their damage taken by 3% for 10 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 6 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -12818,7 +12818,7 @@
             "spellId": 7984,
             "category": "Defensive",
             "description": {
-                "text": "Eye for an Eye can now also trigger at 100% effectiveness from direct Magic damage.",
+                "text": "Eye for an Eye can now also trigger at 150% effectiveness from direct Magic damage.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],

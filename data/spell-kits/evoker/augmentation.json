@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-04T00:16:45+00:00",
-    "spellCacheVersion": 23,
+    "generatedAt": "2026-10-07T21:47:49+00:00",
+    "spellCacheVersion": 27,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -634,7 +634,11 @@
             "isSelected": false,
             "source": "talent",
             "isPriority": true,
-            "offensiveDefensive": null,
+            "offensiveDefensive": {
+                "offensive": true,
+                "defensive": false,
+                "label": "Offensive Spell"
+            },
             "drCategory": null
         },
         {
@@ -1069,7 +1073,7 @@
             "spellId": 3828,
             "category": "Other",
             "description": {
-                "text": "Verdant Embrace tethers you to an ally, increasing movement speed by 40% and slowing and siphoning 475 life from enemies who come in contact with the tether.\r\n\r\nThe tether lasts up to 10 sec or until you move more than 30 yards away from your ally.",
+                "text": "Verdant Embrace tethers you to an ally, increasing movement speed by 40% and slowing and siphoning 1,140 life from enemies who come in contact with the tether.\r\n\r\nThe tether lasts up to 10 sec or until you move more than 30 yards away from your ally.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -4912,7 +4916,7 @@
             "spellId": 3819,
             "category": "Other",
             "description": {
-                "text": "Landslide causes enemies who are mid-air to be slammed to the ground, stunning them for 4 sec and Landslide's cooldown is reduced by 15 sec.",
+                "text": "Landslide causes enemies who are mid-air to be slammed to the ground, stunning them for 5 sec and Landslide's cooldown is reduced by 15 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6224,7 +6228,7 @@
                         "modifier_value": null,
                         "modifier_unit": null,
                         "description": {
-                            "text": "Verdant Embrace tethers you to an ally, increasing movement speed by 40% and slowing and siphoning 475 life from enemies who come in contact with the tether.\r\n\r\nThe tether lasts up to 10 sec or until you move more than 30 yards away from your ally.",
+                            "text": "Verdant Embrace tethers you to an ally, increasing movement speed by 40% and slowing and siphoning 1,140 life from enemies who come in contact with the tether.\r\n\r\nThe tether lasts up to 10 sec or until you move more than 30 yards away from your ally.",
                             "uncertain": false
                         },
                         "category": "Other",

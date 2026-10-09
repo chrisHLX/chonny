@@ -21,7 +21,7 @@
 
 @php
     // The app's pages need something built; until then the Upload tab is where a player starts.
-    $pageTabs = ['games' => 'Games', 'improve' => 'Improve', 'comps' => 'Comps', 'shuffle' => 'Shuffle'];
+    $pageTabs = ['games' => 'Games', 'improve' => 'Improve', 'comps' => 'Comps', 'shuffle' => 'Shuffle', 'classes' => 'Classes'];
     $startTab = $newKey || ! $built ? 'upload' : 'games';
 @endphp
 
@@ -29,7 +29,7 @@
     <div class="mx-auto space-y-4" style="max-width: 1500px" x-data="{ tab: @js($startTab), file: @js($games[0]['file'] ?? null) }">
         <div>
             <h1 class="font-display text-[20px] font-bold text-ink">Your games</h1>
-            <p class="text-[13px] text-ink-muted mt-0.5">Each of your games, what to work on, every comp you have met, and same-spec reviews of your Solo Shuffles. Only you can see them.</p>
+            <p class="text-[13px] text-ink-muted mt-0.5">Each of your games, what to work on, every comp you have met, the strongest player of each spec you have played against, and same-spec reviews of your Solo Shuffles. Only you can see them.</p>
         </div>
 
         <div class="flex flex-wrap gap-1">
@@ -39,7 +39,7 @@
         </div>
 
         {{-- The app's pages: a list on the left, the page in a frame on the right. --}}
-        <div x-show="['games', 'improve', 'comps', 'shuffle'].includes(tab)" x-cloak>
+        <div x-show="['games', 'improve', 'comps', 'shuffle', 'classes'].includes(tab)" x-cloak>
             @if (! $built)
                 <div class="linear-card p-5">
                     <p class="text-[14px] text-ink font-semibold">No games here yet</p>
@@ -81,6 +81,20 @@
                                 @endforelse
                             </div>
                         @endforeach
+                        {{-- The strongest player of each spec you met, by class. --}}
+                        <div x-show="tab === 'classes'" x-cloak>
+                            @forelse ($classes as $class => $players)
+                                <p class="text-[11px] uppercase tracking-wider text-ink-subtle px-2 pt-2">{{ $class }}</p>
+                                @foreach ($players as $pl)
+                                    <button type="button" class="coach-item" :class="file === '{{ $pl['file'] }}' && 'on'" @click="file = '{{ $pl['file'] }}'">
+                                        <span style="color: {{ $pl['color'] }}">{{ $pl['name'] }}</span>
+                                        <span class="sub">{{ $pl['spec'] }} &middot; {{ $pl['why'] }} &middot; {{ $pl['games'] }} round{{ $pl['games'] === 1 ? '' : 's' }}</span>
+                                    </button>
+                                @endforeach
+                            @empty
+                                <p class="text-[12px] text-ink-subtle p-2">None yet.</p>
+                            @endforelse
+                        </div>
                     </div>
                     <iframe class="coach-frame" :src="file ? '/wow/coach/page/' + file : 'about:blank'" title="The selected page"></iframe>
                 </div>

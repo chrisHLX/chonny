@@ -1,6 +1,6 @@
 {
     "shapeVersion": 1,
-    "generatedAt": "2026-10-07T00:14:28+00:00",
+    "generatedAt": "2026-10-07T21:49:38+00:00",
     "class": "paladin",
     "className": "Paladin",
     "spec": "holy",
@@ -60,6 +60,15 @@
             "charges": 1,
             "duration": 10,
             "kind": "immunity"
+        },
+        {
+            "spellId": 31821,
+            "name": "Aura Mastery",
+            "icon": "spell_holy_auramastery.jpg",
+            "cooldown": 150,
+            "charges": null,
+            "duration": 8,
+            "kind": "cooldown"
         },
         {
             "spellId": 336126,

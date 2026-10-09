@@ -416,10 +416,11 @@ class CompLibraryService
     }
 
     /**
-     * Adds each row's spell icon. A label may carry a suffix after the spell (" (you)"), which
-     * $stripSuffix drops for the lookup.
+     * Adds each row's spell icon and its click-to-open tooltip. A label may carry a suffix after the
+     * spell (" (you)"), which $stripSuffix drops for the lookup. Public for the Classes page
+     * (ClassLibraryService), so both draw a spell the same way.
      */
-    private function withIcons(array $rows, bool $stripSuffix = false): array
+    public function withIcons(array $rows, bool $stripSuffix = false): array
     {
         $spell = fn ($label) => $stripSuffix ? preg_replace('/ \([^)]*\)$/', '', $label) : $label;
         $icons = $this->icons->for(array_map(fn ($r) => $spell($r['label']), $rows));

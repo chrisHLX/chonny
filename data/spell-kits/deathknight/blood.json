@@ -1,6 +1,6 @@
 {
-    "generatedAt": "2026-10-04T00:16:51+00:00",
-    "spellCacheVersion": 23,
+    "generatedAt": "2026-10-07T21:47:57+00:00",
+    "spellCacheVersion": 27,
     "codeFingerprint": "dev",
     "entries": [
         {
@@ -2785,7 +2785,7 @@
             "spellId": 1070,
             "category": "Other",
             "description": {
-                "text": "Chains 3 enemies together, dealing 10.5 Shadow damage and causing 20% of all damage taken to also be received by the others in the chain. Lasts for 10 sec.",
+                "text": "Chains 4 enemies together, dealing 61.3 Shadow damage and causing 20% of all damage taken to also be received by the others in the chain. Lasts for 10 sec.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -5870,7 +5870,7 @@
             "spellId": 1071,
             "category": "Other",
             "description": {
-                "text": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                "text": "You focus the assault on this target, increasing their damage taken by 3% for 10 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 6 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
                 "uncertain": false
             },
             "formulaModifierSpellIds": [],
@@ -6204,7 +6204,7 @@
             "spellId": 724,
             "category": "Other",
             "description": {
-                "text": "You sacrifice 1% of your health every (varies) sec and in exchange you cannot be slowed below 90% of normal speed, and you are immune to forced movement effects and knockbacks. Lasts (varies).",
+                "text": "You sacrifice 1% of your health every (varies) sec and in exchange you cannot be slowed below 100% of normal speed, and you are immune to forced movement effects and knockbacks. Lasts (varies).",
                 "uncertain": true
             },
             "formulaModifierSpellIds": [],

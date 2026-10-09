@@ -1303,5 +1303,23 @@
         "signals": [
             "Via sibling spell_id 376080: School Damage (2): physical (base=0)"
         ]
+    },
+    {
+        "spellId": 442204,
+        "name": "Breath of Eons",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "hand-promoted 2026-10-08 from tagaudit.php: Augmentation's major cooldown: copies allies' damage onto the enemy; damage x12 after"
+        ]
+    },
+    {
+        "spellId": 1259431,
+        "name": "Predator's Wake",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "hand-promoted 2026-10-08 from tagaudit.php: Devourer's version of The Hunt (90s charge, Cosmic damage); 51% of presses in its own go, damage x2.3 after"
+        ]
     }
 ]

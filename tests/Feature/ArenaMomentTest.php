@@ -102,6 +102,40 @@ class ArenaMomentTest extends TestCase
         ]];
     }
 
+    /**
+     * A cooldown cast under an id with no cooldown in the spell data enters by the curated alias list
+     * (data/arena-logs/spell-classification/cast-aliases.json, read as committed): Radiant Glory's
+     * Avenging Wrath, cast by every Wake of Ashes, was missing from 833 of 897 Ret goes.
+     */
+    public function test_a_cooldown_cast_under_an_alias_id_enters_the_timeline_once_per_press(): void
+    {
+        $this->spell(31884, 'Avenging Wrath', 120);
+        $this->spell(454351, 'Avenging Wrath');
+        $this->spell(255937, 'Wake of Ashes', 30);
+        $this->spell(1246167, 'The Hunt', 90);
+        $this->spell(1246169, 'The Hunt');
+
+        $svc = app(ArenaMomentService::class);
+        $tl = $svc->readTimeline([
+            $this->cast('Player-A', 255937, 'Wake of Ashes', '10:00:10.0000'),
+            $this->cast('Player-A', 454351, 'Avenging Wrath', '10:00:10.1000'),
+            // A second log of the same press is not a second press.
+            $this->cast('Player-A', 454351, 'Avenging Wrath', '10:00:15.0000'),
+            $this->cast('Player-A', 255937, 'Wake of Ashes', '10:00:40.0000'),
+            $this->cast('Player-A', 454351, 'Avenging Wrath', '10:00:40.1000'),
+            // The Hunt: the press, then its impact under the alias id.
+            $this->cast('Player-B', 1246167, 'The Hunt', '10:00:50.0000'),
+            $this->cast('Player-B', 1246169, 'The Hunt', '10:00:51.5000'),
+        ], $svc->roster($this->metadata()));
+
+        $rows = array_map(fn ($c) => [$c['spell'], $c['t'], $c['cooldown'], $c['kind']], $tl['commitments']);
+        $this->assertSame([
+            ['Avenging Wrath', 0.1, 30.0, 'offensive'],   // on Wake of Ashes' cooldown, tagged as wings
+            ['Avenging Wrath', 30.1, 30.0, 'offensive'],
+            ['The Hunt', 40.0, 90.0, 'offensive'],
+        ], $rows, 'Wake of Ashes itself (30s) stays under the floor; its wings are the commitment');
+    }
+
     public function test_a_moment_is_found_from_cooldowns_not_from_a_fixed_window(): void
     {
         $this->spell(1, 'Avatar', 90);

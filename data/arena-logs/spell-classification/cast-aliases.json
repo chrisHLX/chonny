@@ -1,0 +1,60 @@
+{
+    "_about": "Cast ids the combat log writes for a classified cooldown that the timeline cannot see on its own, because that copy of the spell has no cooldown in the spell data (or is not in it at all). Each gives the cast the cooldown of `cooldownOf` (default `as`), and the tags of `as` when the cast id has none of its own. ArenaMomentService::cooldowns() reads it; a cast of an alias within ALIAS_REPEAT seconds of the same player's commitment of the same name is the same press (an impact, a tick) and is skipped. Found with tools/match-review/hiddencds.php, which lists every classified cooldown the timeline misses, spec by spec. Hand-curated like the rest of this folder (rule 11): the scan proposes, a person adds the line. Presses missed over 823 rounds on 2026-10-08 are in each note. Left out on purpose: Heroic Leap (52174, the landing, 345 leaps): it is tagged offensive, and as a commitment every leap would start a Warrior go; it is movement.",
+    "aliases": [
+        {
+            "castId": 454351,
+            "name": "Avenging Wrath",
+            "as": 31884,
+            "cooldownOf": 255937,
+            "note": "Radiant Glory: every Wake of Ashes casts an 8s Avenging Wrath under this id (833 of 897 Ret wings, every one beside a Wake of Ashes cast). Tagged as Avenging Wrath, on Wake of Ashes' 30s cooldown, which is how often a Radiant Glory Ret has wings."
+        },
+        {
+            "castId": 410358,
+            "name": "Anti-Magic Shell",
+            "as": 48707,
+            "note": "The Death Knight's Anti-Magic Shell under a talent; not in the spell data (348 presses, Unholy and Frost)."
+        },
+        {
+            "castId": 1246169,
+            "name": "The Hunt",
+            "as": 1246167,
+            "note": "Devourer's The Hunt: some presses log only this impact id (310 presses)."
+        },
+        {
+            "castId": 212182,
+            "name": "Smoke Bomb",
+            "note": "The Rogue's Smoke Bomb; no cooldown on this copy (174 presses with 359053).",
+            "cooldownOf": 76577
+        },
+        {
+            "castId": 359053,
+            "name": "Smoke Bomb",
+            "note": "Subtlety's Smoke Bomb copy; no cooldown on it.",
+            "cooldownOf": 76577
+        },
+        {
+            "castId": 200166,
+            "name": "Metamorphosis",
+            "note": "Havoc's Metamorphosis is cast under the leap's id; the cooldown sits on 191427 (all 121 presses missed).",
+            "cooldownOf": 191427
+        },
+        {
+            "castId": 199448,
+            "name": "Blessing of Sacrifice",
+            "as": 6940,
+            "note": "Ultimate Sacrifice, the PvP talent that replaces Blessing of Sacrifice; not in the spell data (109 presses)."
+        },
+        {
+            "castId": 392060,
+            "name": "Wailing Arrow",
+            "note": "Wailing Arrow as Marksmanship and Beast Mastery cast it; no cooldown on this copy (71 presses).",
+            "cooldownOf": 355589
+        },
+        {
+            "castId": 469270,
+            "name": "Doom Winds",
+            "note": "Doom Winds' storm, which logs a cast every tick; some presses log only these (40 presses). The repeat window keeps the ticks out.",
+            "cooldownOf": 384352
+        }
+    ]
+}

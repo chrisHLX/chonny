@@ -36,6 +36,7 @@ Desktop app (tools/log-manager/MindCollectorLogs.ps1) watches the Logs folder; w
         ├─ GameCardService      → {lobby}.html        one card per game (Matches page)
         ├─ ImprovementService   → improve-{hash}.html one per character (Improve page)
         ├─ CompLibraryService   → comp-{hash}.html    one per enemy comp (Comps page)
+        ├─ ClassLibraryService  → player-{hash}.html  the strongest player of each spec met (Classes page)
         └─ index.json            what the app lists; each set redrawn only when its signature changes
   ▼
 The app shows those HTML files in Windows' browser control (IE11: tables only, no CSS variables).
@@ -71,7 +72,7 @@ how a page looks needs only `wow:game-cards`.
 |---|---|
 | `RoundAnalysisService`, `ArenaMomentService`, `CooldownLedgerService`, a classification file | `php -d memory_limit=2G artisan wow:sync --skip-ingest --fresh` (about 8 minutes for 260 rounds), then `wow:game-cards` |
 | A classification file (it also feeds the site) | first bump the spell cache version, then `wow:precompute-spell-kits`, then `wow:build-matchup-profiles` (rules 17, 19, 31), then re-measure |
-| A desktop view, `GameCardService`, `ImprovementService`, `CompLibraryService` | `wow:game-cards` (it notices the code change); `--fresh` redraws everything |
+| A desktop view, `GameCardService`, `ImprovementService`, `CompLibraryService`, `ClassLibraryService` | `wow:game-cards` (it notices the code change); `--fresh` redraws everything |
 | `MindCollectorLogs.ps1` | restart the app: tray icon, **Exit**, reopen |
 | Anything the website's `/wow/coach` shows | deploy (`./deploy.sh`); the next upload redraws a player's pages |
 | A re-measure, a measure change, or a big batch of new games | `php -d memory_limit=3G artisan wow:population` (every archived game, both sides; `--fresh` after a VERSION change, about 8 minutes), then commit `data/population/norms.json`: the Basics tab's norms and the evidence every tip quotes (`docs/learning/population-findings-2026-10-06.md`) |
@@ -92,6 +93,7 @@ player's side. Its `VERSION` says what a stored round holds:
 | 8 | spells used both ways read per press; short defensives (Feint) in the timeline; the 2026-10-04 tag promotions |
 | 9 | each defensive row says whether it was needed: whom it went on, health, time to live, warrant.php's reasons, `needed` (danger or breaking crowd control) |
 | 10 | `habits` per player: presses per ability, seconds free to act, control and kicks off the damage target (the macro signal), kicks given and casts kicked by spell, a pet's hits on its owner's target; for the logger only, failed casts by Blizzard's reason (range, line of sight, facing, moving, Medallion not ready). Feeds each game's **Basics** tab, Improve's kicked and line-of-sight habits, and `wow:population` |
+| 11 | cooldowns cast under an id with no cooldown in the data enter the timeline by `cast-aliases.json`: Radiant Glory's Avenging Wrath (833 of 897 Ret wings were missing from every go), Havoc's Metamorphosis, a talented Anti-Magic Shell, Smoke Bomb, Ultimate Sacrifice, The Hunt, Wailing Arrow, Doom Winds; Aura Mastery, Breath of Eons and Predator's Wake tagged (2026-10-08) |
 
 | Piece | File | What it decides |
 |---|---|---|
@@ -114,13 +116,15 @@ goes, the deaths, the answer sheets and the comp library.
 | `data/arena-logs/spell-classification/{offensive-spells,offensive-buffs,defensive-cooldowns,mixed-cooldowns}.json` | offensive, defensive or mixed. Hand-promoted (rule 11); the site's WoW Comps tabs read them too |
 | `data/arena-logs/spell-classification/contextual-cooldowns.json` | spells read per press (Vanish, Mass Invisibility, Master's Call...) |
 | `data/arena-logs/spell-classification/short-defensives.json` | defensives under the 45s floor that still count (Feint, Crimson Vial, Fade...) |
+| `data/arena-logs/spell-classification/cast-aliases.json` | cooldowns cast under an id with no cooldown in the data, and the copy whose cooldown and tags they take (Radiant Glory's Avenging Wrath, Havoc's Metamorphosis, Smoke Bomb...). Found with `hiddencds.php` |
 | `spells.dr_category` (curated, `cc-synergies-overrides.txt`) | what counts as crowd control, and which kind |
 | `data/matchup-profiles/{class}/{spec}.json` | each spec's answers, control and interrupts (default build); the answer sheet starts here |
 | `data/population/norms.json` (`wow:population`) | every spec's norms this season (output per free minute, presses per ability, time controlled, kicks), the habit and go outcome tables across every player in the archive, and the `evidence` table each Basics line quotes; a line with under 20 rounds on either side states no number |
 | `data/comp-playbook/go-cooldowns.json` (`wow:go-cooldowns`) | what each spec presses in its goes, counted from every measured round; the comp page's burst reads it. Under 20 goes or 5 players, a spec is "not enough measured" |
 
-**Improve them from play with `tools/match-review/tagaudit.php`.** It sets every spell's tags
-beside how it is pressed, and writes proposals. It never applies them. The loop and the 2026-10-04
+**Improve them from play with `tools/match-review/tagaudit.php`** (spells untagged or tagged wrong)
+**and `hiddencds.php`** (tagged cooldowns the timeline cannot see, spec by spec). The tag audit sets
+every spell's tags beside how it is pressed, and writes proposals. Neither applies anything. The loop and the 2026-10-04
 decisions: `match-review-operations.md`, "Making the tags better from play".
 
 ---
@@ -142,13 +146,18 @@ Each one is here because breaking it produced a wrong answer at least once.
 6. **Describe; do not assign blame.** The coach asks what the player could control next time.
 7. **Test a player's own explanation before accepting it, and say when it fails.** Lower dispels
    were not caused by pressure; Doubletapz's kicks were not slow.
+8. **A log shows what happened, not what should have been done.** What the player should have
+   pressed instead is an interpretation: it depends on the state they were trying to create and on
+   what the log cannot see (positioning, comms). Say so when a review recommends anything
+   (`arena-structure.md` Part 20.5). An unpressed button is not a fault either: holding can be the
+   right trade, and spending can be (Part 20.3).
 
 ## The research tools
 
 `tools/match-review/` (indexed, with the question each answered, in `match-review-tools.md`):
 `patternread` (patterns over every stored game) · `cdledger` (the ledger) · `warrant` (was each
 defensive needed) · `dispelread` · `kickread` · `tagaudit` · `specread` (one spec, side by side) ·
-`feralread` · `killread` · `rotation` · `sessionread` · `describe`. Their output names other players
+`feralread` · `killread` · `rotation` · `sessionread` · `hiddencds` · `describe`. Their output names other players
 and is never committed.
 
 **Leave a tool behind.** A one-off script that answered a question becomes a tool here, plus a
@@ -163,7 +172,8 @@ line in `match-review-tools.md`, so the next session runs one command instead of
 - **A Blade directive glued to a letter is not compiled** (`a game@if`): the template then fails
   with an unbalanced `@endif`.
 - **The card cleanup deletes every `.html` that is not a game**, unless it is excluded by prefix.
-  It deleted the Improve pages on every run until `improve-` and `comp-` were exempted.
+  It deleted the Improve pages on every run until `improve-` and `comp-` were exempted (`player-`
+  too, since the Classes page). A new kind of page needs its prefix added there.
 - **The classification's `byName` is keyed by the exact name**, not lower case. Lower case missed
   Roar of Sacrifice.
 - **A talent is not "ready" unless the player took it**: profiles are the default build

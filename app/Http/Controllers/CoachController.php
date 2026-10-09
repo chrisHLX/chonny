@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\File;
  * "Your games" (/wow/coach, "Your coach" until 2026-10-05): the one place for a player's own games.
  * Merged that day from four pages (Chriso): this one (the desktop app's pages), Game Review (the
  * browser upload and the same-spec lobby review), "Your analysis" (retired: Improve replaces it) and
- * the raw review-tool output (admin only now). Tabs: Games, Improve, Comps, Shuffle (the app's
- * pages), Same spec (Game Review's lobby reviews, which open on their own page) and Upload (the
+ * the raw review-tool output (admin only now). Tabs: Games, Improve, Comps, Shuffle, Classes (the
+ * app's pages), Same spec (Game Review's lobby reviews, which open on their own page) and Upload (the
  * browser upload and the desktop app key). A browser upload builds the same pages as the app's.
  *
  * The desktop app's pages on the website, for review away from the PC. One copy of every page: the same templates and services draw them for the app
@@ -43,6 +43,8 @@ class CoachController extends Controller
             'characters' => collect($index['characters'] ?? [])->sortByDesc('games')->values()->all(),
             'comps' => $comps->filter(fn ($c) => ! str_contains($c['key'], ':'))->values()->all(),
             'shuffle' => $comps->filter(fn ($c) => str_starts_with($c['key'], 'shuffle:'))->values()->all(),
+            // The strongest player of each spec met, by class (ClassLibraryService).
+            'classes' => collect($index['classes'] ?? [])->sortBy(fn ($c) => $c['class'].'|'.$c['spec'].'|'.$c['name'])->groupBy('class')->all(),
             'mirrors' => app(LobbyReviewService::class)->index($user),
             'hasKey' => $user->coach_token_at !== null,
             'keyMadeAt' => $user->coach_token_at,

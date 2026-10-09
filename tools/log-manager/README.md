@@ -149,7 +149,37 @@ the desktop and in the Start menu, run this once:
 
    Under 10 games a page says it is a lead. `wow:game-cards` writes the pages
    (`CompLibraryService`) and redraws them only when a game changed.
-9. **Settings** holds the folders, auto-sync, auto-move, and "start with Windows". "Start
+9. **Classes: the strongest player of each spec you met** (from 7 Oct 2026). For every spec you
+   have played against, two players, grouped by class in the list:
+   - **the highest rated:** the one you met at the highest team MMR (3v3 and 2v2; a Solo Shuffle
+     round has none);
+   - **the most experienced:** the most Gladiator seasons on their profile, then Rank 1 titles,
+     then best 3v3 ever.
+
+   One player can be both. The list shows every character's games (the picker does not filter it),
+   with why each player is listed and your record against them. Click one for their page, read from
+   every round you played against them:
+   - **what they press:** every button, a minute free to act (alive and not crowd-controlled),
+     grouped as rotation, offensive cooldowns, defensives, crowd control, interrupts, movement,
+     other and pet. Beside each is the median player of the spec in the archive
+     (`data/population/norms.json`), and **you** when you have played the spec yourself. A gap of
+     half again, or under two thirds, is marked "more" or "less than most": a difference to read,
+     not a fault;
+   - **their output and habits** against the spec and you: damage (or healing) a minute free,
+     time idle, time crowd-controlled, kicks, crowd control landed and how much of it went off their
+     damage target;
+   - **in their team's goes:** the offensive cooldowns they pressed and their crowd control on you,
+     with whom it landed on;
+   - **their defensives:** which, at what health, how many outside your goes, and their casts your
+     team kicked;
+   - **where their output came from**, and every round against them.
+
+   Most of these players were met once or twice, and a page under 3 rounds says it is a glimpse.
+   Presses need analysis version 10 (6 Oct). `wow:game-cards` writes the pages
+   (`ClassLibraryService`, `player-{hash}.html`) and redraws them only when a game, the page's code,
+   the norms or anyone's experience changed. Why the top's habits are a level and not a recipe:
+   `docs/learning/population-findings-2026-10-07-top-tier.md`.
+10. **Settings** holds the folders, auto-sync, auto-move, and "start with Windows". "Start
    with Windows" puts a shortcut in your Startup folder, so the app starts in the tray.
    **"Back up games to"** (empty by default) keeps a second copy of the game archive and your
    notes in a folder you choose: another drive, or a cloud-synced folder. It copies everything
@@ -163,7 +193,7 @@ the desktop and in the Start menu, run this once:
    same code and builds your pages in the background. A change to a measure
    (`RoundAnalysisService::VERSION`) makes it send everything again, since the server keeps no raw log.
    What has been sent is in `storage/app/pushed-rounds.json`.
-10. **A new patch or log format is flagged.** Each game records the combat log version and patch
+11. **A new patch or log format is flagged.** Each game records the combat log version and patch
     it was written in. When either differs from the one the measures were checked on, the tray
     says so once ("Check before trusting new games"). `docs/combat-log-ingest.md` says what to do.
 

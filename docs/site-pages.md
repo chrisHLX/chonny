@@ -41,7 +41,9 @@
     assumed.
 - `/wow/coach` — `CoachController`, **"Your games"** (was "Your coach"; since 2026-10-05 the one page
   for a player's own games, merged from Game Review, Your analysis and Your coach). Tabs: Games,
-  Improve, Comps, Shuffle (the app's pages), **Same spec** (the lobby reviews below, each opening on
+  Improve, Comps, Shuffle, **Classes** (the app's pages; Classes from 2026-10-07: the
+  highest-rated and the most experienced player of each spec you met, by class, each with a page
+  of what they pressed, `ClassLibraryService`), **Same spec** (the lobby reviews below, each opening on
   its own page) and **Upload** (the browser upload, `GamesUpload`, plus the desktop app key). A
   browser upload now builds the same pages as the app's (`ArenaUploadController::assemble`
   dispatches `BuildCoachPages`), so a player needs nothing installed. Before the merge it was the desktop app's pages (each game, Improve,

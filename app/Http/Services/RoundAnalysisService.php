@@ -56,8 +56,14 @@ class RoundAnalysisService
      * out of range, not in line of sight, facing, cast while moving, trinket not ready... They feed
      * the per-game basics, the macro and positioning tips, and the norms every player is compared
      * with (wow:population).
+     * 11 (2026-10-08): cooldowns cast under an id the spell data has no cooldown for now enter the
+     * timeline (cast-aliases.json): Radiant Glory's Avenging Wrath from every Wake of Ashes (833 of
+     * 897 Ret wings were missing from every go), Havoc's Metamorphosis, a talented Anti-Magic Shell,
+     * Smoke Bomb, Ultimate Sacrifice, The Hunt's impact, Wailing Arrow, Doom Winds. And three spells
+     * tagged from the audit: Aura Mastery (defensive), Breath of Eons and Predator's Wake
+     * (offensive). Ret, Havoc, Death Knight and Rogue goes and defensive counts can all differ.
      */
-    public const VERSION = 10;
+    public const VERSION = 11;
 
     /** A defensive pressed this long or less before its owner was locked out went in before the chance was lost. */
     private const BEFORE_LOCKOUT = 4.0;

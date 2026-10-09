@@ -50,7 +50,7 @@ function playbookFixture(): array
     // Kill-target control: players put Kidney Shot on the target and split on Maim, Binding Shot
     // and Chaos Nova (range decides the first two), and
     // Mystery Bash has never been seen, so it comes from the kit.
-    $kidney = playbookSpell(9, 'Kidney Shot', ['dr_category' => 'Stun', 'cast_type' => 'instant']);
+    $kidney = playbookSpell(9, 'Kidney Shot', ['dr_category' => 'Stun', 'cast_type' => 'instant', 'range_yards' => '5 yards']);
     $binding = playbookSpell(10, 'Binding Shot', ['dr_category' => 'Stun', 'cast_type' => 'instant', 'range_yards' => '30 yards']);
     $maim = playbookSpell(12, 'Maim', ['dr_category' => 'Stun', 'cast_type' => 'instant', 'range_yards' => '5 yards']);
     $chaosNova = playbookSpell(13, 'Chaos Nova', ['dr_category' => 'Stun', 'cast_type' => 'instant']);

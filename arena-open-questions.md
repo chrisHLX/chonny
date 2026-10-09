@@ -238,6 +238,8 @@ ANSWER:
 
 *First read, 2026-10-07 (`tools/match-review/popstate.php`, 793 rounds):* the team that won more such exchanges (a defensive pressed outside the other team's goes, none of the other team's within 15s) won 51% against 44%, on only 205 rounds where the counts differ. The broader form is clearer: holding more defensives than the other team at 2:00 went with 53% wins against 32%, and having spent more offensive cooldowns with winning, not losing. See `docs/learning/population-findings-2026-10-07-trading.md`.
 
+*Second read, same day, by tier (`tools/match-review/popelite.py`):* free exchanges mark the level more than the winner. Teams at 2100+ MMR gave away 0.09 a round against 0.21 below, and teams averaging a 2400+ best 3v3 gave away 0.07 against 0.25 for teams below 1900. Inside a game they are too rare to separate winners: most rounds tie at zero. Among the top games, holding more defensives than the other team at 2:00 separated the winner in 74% of 27 rounds (58% below the top). See `docs/learning/population-findings-2026-10-07-top-tier.md`.
+
 **C15. What does holding a cooldown actually cost in uses?** [ARCHIVE] — *new (Part 20.3).*
 The arithmetic is settled: a cooldown only starts coming back once pressed, so holding it can lose
 a use over a round. How much it costs in practice is not: for each major cooldown, how long it sat

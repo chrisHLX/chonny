@@ -419,6 +419,7 @@ function Add-CardsStep {
             Load-Cards; Show-SelectedMatch
             if ($script:PageImprove -and $script:PageImprove.Visible) { Show-Improve }
             if ($script:PageComps -and $script:PageComps.Visible) { Update-CompList; Show-SelectedComp }
+            if ($script:PageClasses -and $script:PageClasses.Visible) { Update-ClassList; Show-SelectedClass }
         }
     }
 }
@@ -449,6 +450,19 @@ function Load-Cards {
                     Key = $p.Name; Nick = [string]$p.Value.nick; Name = [string]$p.Value.name
                     Games = [int]$p.Value.games; Won = [int]$p.Value.won; Lost = [int]$p.Value.lost; Last = [string]$p.Value.last
                     Characters = $chars; File = (Join-Path $script:CardsDir $p.Value.file)
+                })
+            }
+        }
+        # The Classes page: for each spec met, its highest-rated and most experienced player
+        # (ClassLibraryService), one page each.
+        $script:Classes = New-Object System.Collections.ArrayList
+        if ($j.classes) {
+            foreach ($p in $j.classes.PSObject.Properties) {
+                [void]$script:Classes.Add([pscustomobject]@{
+                    Key = $p.Name; Name = [string]$p.Value.name; Spec = [string]$p.Value.spec; Class = [string]$p.Value.class
+                    Color = [string]$p.Value.color; Why = [string]$p.Value.why
+                    Games = [int]$p.Value.games; Won = [int]$p.Value.won; Lost = [int]$p.Value.lost
+                    File = (Join-Path $script:CardsDir $p.Value.file)
                 })
             }
         }
@@ -751,6 +765,48 @@ function Show-SelectedComp {
     if (-not (Test-Path $path)) { return }
     if ($script:CompView.Url -and $script:CompView.Url.IsFile -and $script:CompView.Url.LocalPath -eq $path) { $script:CompView.Refresh() }
     else { $script:CompView.Navigate($path) }
+}
+
+# The Classes page: for each spec you have played against, the highest-rated player of it you met
+# (their team's MMR) and the most experienced (Gladiator seasons), grouped by class. Every
+# character's games: the picker does not filter it. The player's page on the right.
+function Update-ClassList {
+    if (-not $script:ClassList) { return }
+    $selected = if ($script:ClassList.SelectedItems.Count) { [string]$script:ClassList.SelectedItems[0].Tag } else { $null }
+    $script:ClassList.BeginUpdate()
+    $script:ClassList.Items.Clear()
+    $script:ClassList.Groups.Clear()
+    $groups = @{}
+    foreach ($pl in @($script:Classes | Sort-Object Class, Spec, Name)) {
+        if (-not $groups.ContainsKey($pl.Class)) {
+            $groups[$pl.Class] = New-Object Windows.Forms.ListViewGroup($pl.Class)
+            [void]$script:ClassList.Groups.Add($groups[$pl.Class])
+        }
+        $item = New-Object Windows.Forms.ListViewItem($pl.Name, $groups[$pl.Class])
+        try { $item.ForeColor = [Drawing.ColorTranslator]::FromHtml($pl.Color) } catch { }
+        [void]$item.SubItems.Add($pl.Spec)
+        [void]$item.SubItems.Add($pl.Why)
+        [void]$item.SubItems.Add("$($pl.Games) ($($pl.Won)-$($pl.Lost))")
+        $item.Tag = $pl.File
+        [void]$script:ClassList.Items.Add($item)
+    }
+    if ($selected) { foreach ($it in $script:ClassList.Items) { if ($it.Tag -eq $selected) { $it.Selected = $true; break } } }
+    $script:ClassList.EndUpdate()
+    $script:ClassCount.Text = "$(@($script:Classes).Count) player(s): for each spec you have played against, the one you met at the highest team MMR and the one with the most Gladiator seasons. Rounds: how many you played against them, and your record."
+    if (-not $script:ClassList.SelectedItems.Count) {
+        $path = Join-Path $script:StateDir 'class-empty.html'
+        $msg = if (@($script:Classes).Count) { 'Pick a player to see what they pressed against you, beside the median player of their spec and beside you when you play it.' } else { 'The Classes page is built with the game cards after a sync.' }
+        [IO.File]::WriteAllText($path, (Get-PlainPage "<p class='muted'>$msg</p>"), (New-Object System.Text.UTF8Encoding($false)))
+        $script:ClassView.Navigate($path)
+    }
+}
+
+function Show-SelectedClass {
+    if (-not $script:ClassList.SelectedItems.Count) { return }
+    $path = [string]$script:ClassList.SelectedItems[0].Tag
+    if (-not (Test-Path $path)) { return }
+    if ($script:ClassView.Url -and $script:ClassView.Url.IsFile -and $script:ClassView.Url.LocalPath -eq $path) { $script:ClassView.Refresh() }
+    else { $script:ClassView.Navigate($path) }
 }
 
 function Get-PlainPage([string]$bodyHtml) {
@@ -1291,6 +1347,30 @@ $script:PageComps.Controls.AddRange(@($compSplit, $script:CompCount))
 $script:CompList.Add_SelectedIndexChanged({ Show-SelectedComp })
 $script:CompSplit = $compSplit
 
+# Classes page: the strongest player of each spec you met, grouped by class; their page on the right.
+$script:PageClasses = New-Object Windows.Forms.Panel
+$script:PageClasses.Dock = 'Fill'
+$classSplit = New-Object Windows.Forms.SplitContainer
+$classSplit.Dock = 'Fill'; $classSplit.Orientation = 'Vertical'; $classSplit.BackColor = $C.Line; $classSplit.SplitterWidth = 4; $classSplit.FixedPanel = 'Panel1'
+$script:ClassList = New-Object Windows.Forms.ListView
+$script:ClassList.Dock = 'Fill'; $script:ClassList.View = 'Details'; $script:ClassList.FullRowSelect = $true
+$script:ClassList.MultiSelect = $false; $script:ClassList.HideSelection = $false; $script:ClassList.BorderStyle = 'None'
+$script:ClassList.BackColor = $C.Panel; $script:ClassList.ForeColor = $C.Ink
+foreach ($col in @(@('Player', 120), @('Spec', 150), @('Why', 230), @('Rounds', 70))) { [void]$script:ClassList.Columns.Add($col[0], $col[1]) }
+$script:ClassView = New-Object Windows.Forms.WebBrowser
+$script:ClassView.Dock = 'Fill'
+$script:ClassView.ScriptErrorsSuppressed = $true
+$script:ClassView.IsWebBrowserContextMenuEnabled = $false
+$script:ClassView.AllowWebBrowserDrop = $false
+$script:ClassView.WebBrowserShortcutsEnabled = $false
+$classSplit.Panel1.Controls.Add($script:ClassList)
+$classSplit.Panel2.Controls.Add($script:ClassView)
+$script:ClassCount = New-Object Windows.Forms.Label
+$script:ClassCount.Dock = 'Bottom'; $script:ClassCount.Height = 24; $script:ClassCount.ForeColor = $C.Muted; $script:ClassCount.TextAlign = 'MiddleLeft'
+$script:PageClasses.Controls.AddRange(@($classSplit, $script:ClassCount))
+$script:ClassList.Add_SelectedIndexChanged({ Show-SelectedClass })
+$script:ClassSplit = $classSplit
+
 # Activity page
 $pageActivity = New-Object Windows.Forms.Panel
 $pageActivity.Dock = 'Fill'
@@ -1409,7 +1489,7 @@ $btnSave.Add_Click({
 
 # Nav buttons switch pages
 # Comps and Shuffle share one panel; CompBracket decides which comps it lists.
-$pages = [ordered]@{ 'Matches' = $pageMatches; 'Improve' = $script:PageImprove; 'Comps' = $script:PageComps; 'Shuffle' = $script:PageComps; 'Activity' = $pageActivity; 'Settings' = $pageSettings }
+$pages = [ordered]@{ 'Matches' = $pageMatches; 'Improve' = $script:PageImprove; 'Comps' = $script:PageComps; 'Shuffle' = $script:PageComps; 'Classes' = $script:PageClasses; 'Activity' = $pageActivity; 'Settings' = $pageSettings }
 $navButtons = @{}
 function Show-Page([string]$name) {
     # Hide every panel first, then show the one picked: two tabs share a panel.
@@ -1430,6 +1510,10 @@ function Show-Page([string]$name) {
         # Room for the comp names; the page takes the rest.
         if (-not $script:CompSplitLaidOut -and $script:CompSplit.Width -gt 0) { $script:CompSplit.SplitterDistance = [Math]::Min(560, [int]($script:CompSplit.Width * 0.4)); $script:CompSplitLaidOut = $true }
         Update-CompList
+    }
+    if ($name -eq 'Classes') {
+        if (-not $script:ClassSplitLaidOut -and $script:ClassSplit.Width -gt 0) { $script:ClassSplit.SplitterDistance = [Math]::Min(600, [int]($script:ClassSplit.Width * 0.42)); $script:ClassSplitLaidOut = $true }
+        Update-ClassList
     }
 }
 foreach ($k in $pages.Keys) {

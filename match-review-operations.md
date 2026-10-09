@@ -932,6 +932,57 @@ cache version, then run `wow:precompute-spell-kits` and `wow:build-matchup-profi
 19 and 31), then re-measure. Frost Mage's answers gained Alter Time this way, and Discipline's
 gained Leap of Faith and lost Power Word: Radiance.
 
+### Tagged, but cast under an id the timeline cannot see (`hiddencds.php`, 2026-10-08)
+
+A fourth kind of gap: the spell is tagged, but the log casts it under a copy of the spell that has
+no cooldown in the data, or that the data does not hold. The timeline takes a commitment only from
+a cast whose own id has a 45s+ cooldown, so the press never enters a go, a defensive count or an
+answer sheet. Chriso found the first: Shadow Priest and Ret goes showed Halo and Divine Toll, never
+Avenging Wrath.
+
+**Avenging Wrath was missing from 833 of 897 Ret presses.** With Radiant Glory, every Wake of Ashes
+casts an 8-second Avenging Wrath under 454351, which has no cooldown in the data (every one of the
+833 sat beside a Wake of Ashes cast). Wake of Ashes itself is on 30s, under the floor, so a
+Radiant Glory Ret's go showed neither. Only the 64 classic presses (31884, 120s) were seen.
+
+`tools/match-review/hiddencds.php` reads every archived round and sorts each use of a tagged
+cooldown into: seen, cast but not seen (with the cast ids and their cooldown in the data), or
+aura only (no cast of the name within 2s, so a talent or proc applied it). Casts of a name within
+10s are one press, so channel ticks (Divine Hymn, Tranquility, Doom Winds) do not read as hidden
+presses. Short rotational spells under the floor are left out; they are out on purpose.
+
+**The fix is a curated list, not a name match.**
+`data/arena-logs/spell-classification/cast-aliases.json` gives each hidden cast id the cooldown of
+the copy that has one (`cooldownOf`), and that copy's tags when the cast id has none (`as`). A cast
+of an alias within `ArenaMomentService::ALIAS_REPEAT` (12s) of the same player's commitment of the
+same name is the same press (The Hunt's impact, Doom Winds' ticks). Matching every copy by name was
+rejected: a name's copies include ticks and landings that are not presses. Added on 2026-10-08,
+presses found over 823 rounds:
+- Avenging Wrath (Radiant Glory, 454351), on Wake of Ashes' 30s: 833;
+- Anti-Magic Shell (410358, not in the data): 348;
+- The Hunt's impact (1246169): 310;
+- Smoke Bomb (212182, 359053): 174;
+- Havoc's Metamorphosis (200166; the cooldown sits on 191427): all 121;
+- Ultimate Sacrifice (199448, not in the data): 109;
+- Wailing Arrow (392060): 71;
+- Doom Winds' storm (469270): 40.
+
+**Left out on purpose:** Heroic Leap. The log writes only its landing (52174, 345 leaps), which is
+tagged offensive; as a commitment every leap would start a Warrior go.
+
+**Aura only, not added:** procs and talents that apply a cooldown's aura with no press (Havoc's
+Metamorphosis from Eye Beam under Demonic, Resto Shaman's Ascendance from Deeply Rooted Elements,
+Shadow's Halo, Lightsmith's armaments). They are windows, not decisions; the press that caused
+them is the commitment where it is one.
+
+**Promoted from the tag audit the same day:** Aura Mastery (defensive), Breath of Eons and
+Predator's Wake (Devourer's version of The Hunt) as offensive. Thunder Focus Tea, Prescience,
+Roll the Bones, Flare and Time Spiral were decided as untagged (`reviewed.json`).
+
+After either kind of change: `wow:sync --skip-ingest --fresh` (it is a measure change:
+`RoundAnalysisService::VERSION` 11), then `wow:population --fresh` and `wow:go-cooldowns`, so the
+norms and the comp page's "How to play it" see the presses too.
+
 ## Measurement rules from earlier studies
 
 Methods the first studies settled. Their results are in `match-review-analysis.md`.

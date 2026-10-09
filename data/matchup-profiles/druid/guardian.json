@@ -1,6 +1,6 @@
 {
     "shapeVersion": 1,
-    "generatedAt": "2026-10-07T00:14:27+00:00",
+    "generatedAt": "2026-10-07T21:49:37+00:00",
     "class": "druid",
     "className": "Druid",
     "spec": "guardian",
@@ -193,6 +193,13 @@
             "name": "Stampeding Roar",
             "icon": "spell_druid_stampedingroar_cat.jpg",
             "cooldown": 60,
+            "charges": null
+        },
+        {
+            "spellId": 102401,
+            "name": "Wild Charge",
+            "icon": "spell_druid_wildcharge.jpg",
+            "cooldown": 15,
             "charges": null
         }
     ],

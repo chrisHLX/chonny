@@ -169,7 +169,7 @@
 96231 | | | | 1 |  | ||| |||  Rebuke
 97547 | | | | 1 |  | ||| |||  Solar Beam
 102359 | Root | | 1 | | 6  | ||| |||  Mass Entanglement
-102401 | Root | | | | 0.5  | ||| |||  Wild Charge — is_peel removed 2026-10-05 (Chriso): a gap closer that roots on arrival, not a peel; it moves YOU to THEM.
+102401 | Root | | | | 0.5  | | | | 1 |||  Wild Charge — is_peel removed 2026-10-05 (Chriso): a gap closer that roots on arrival, not a peel; it moves YOU to THEM. is_mobility=1 added 2026-10-08 (the Classes page listed it as crowd control): like Charge (100), mobility first.
 102793 | Knockback | | 1 | |  | ||| |||  Ursol's Vortex
 107570 | Stun | | | | 3  | ||| |||  Storm Bolt
 132169 | Stun | | | | 3 | ||| |||  Storm Bolt (the REAL aura spell_id — 643 real instances confirmed; value copied from the already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)

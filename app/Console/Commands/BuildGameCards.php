@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Services\ClassLibraryService;
 use App\Http\Services\CompLibraryService;
 use App\Http\Services\GameCardService;
 use App\Http\Services\ImprovementService;
@@ -25,7 +26,9 @@ use Illuminate\Support\Facades\File;
  *
  * It also writes the Improve page for each character you have played (`improve-{hash}.html`,
  * ImprovementService), listed under `characters` in the index by full character name, and the comp
- * library: a page per enemy comp (`comp-{hash}.html`, CompLibraryService) listed under `comps`.
+ * library: a page per enemy comp (`comp-{hash}.html`, CompLibraryService) listed under `comps`,
+ * and the Classes page: for each spec met, the highest-rated and the most experienced player of it
+ * (`player-{hash}.html`, ClassLibraryService) listed under `classes`.
  */
 class BuildGameCards extends Command
 {
@@ -38,7 +41,7 @@ class BuildGameCards extends Command
 
     protected $description = 'Write a summary card for each synced game, for the MindCollector Logs desktop app';
 
-    public function handle(GameCardService $cards, ImprovementService $improve, CompLibraryService $library): int
+    public function handle(GameCardService $cards, ImprovementService $improve, CompLibraryService $library, ClassLibraryService $classLibrary): int
     {
         $user = $this->resolveUser();
 
@@ -81,7 +84,7 @@ class BuildGameCards extends Command
             // A game no longer synced (wow:forget-games) loses its card. The Improve pages are not
             // cards and are tidied below.
             foreach (File::glob("{$dir}/*.html") as $file) {
-                if (! preg_match('/^(improve|comp)-/', basename($file)) && ! isset($built['games'][basename($file, '.html')])) {
+                if (! preg_match('/^(improve|comp|player)-/', basename($file)) && ! isset($built['games'][basename($file, '.html')])) {
                     File::delete($file);
                 }
             }
@@ -139,11 +142,38 @@ class BuildGameCards extends Command
             }
         }
 
+        // The Classes page: the strongest player of each spec you met (ClassLibraryService), drawn
+        // again only when a round, the page's code, the norms or anyone's experience changed.
+        $classes = $index['classes'] ?? [];
+        $classSig = $classLibrary->signature($user, $built['experience']);
+        $playersDrawn = 0;
+        $haveClasses = $dir && ($index['classSig'] ?? null) === $classSig && ! $this->option('fresh')
+            && collect($classes)->every(fn ($c) => File::exists("{$dir}/{$c['file']}"));
+        if (! $haveClasses) {
+            $classes = [];
+            foreach ($classLibrary->build($user, $built['experience']) as $full => $c) {
+                $file = 'player-'.substr(md5($full), 0, 10).'.html';
+                $classes[$full] = array_diff_key($c, ['html' => true]) + ['file' => $file];
+                if ($dir) {
+                    File::put("{$dir}/{$file}", $c['html']);
+                    $playersDrawn++;
+                }
+            }
+            if ($dir) {
+                foreach (File::glob("{$dir}/player-*.html") as $file) {
+                    if (! in_array(basename($file), array_column($classes, 'file'), true)) {
+                        File::delete($file);
+                    }
+                }
+            }
+        }
+
         $games = array_map(fn ($g) => array_diff_key($g, ['html' => true]), $built['games']);
         $json = json_encode([
             'generatedAt' => now()->toIso8601String(), 'games' => $games, 'experience' => $built['experience'],
             'characters' => $characters, 'improveSig' => $improveSig,
             'comps' => $comps, 'compSig' => $compSig,
+            'classes' => $classes, 'classSig' => $classSig,
         ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
         if (! $dir) {
@@ -153,9 +183,9 @@ class BuildGameCards extends Command
         }
 
         File::put("{$dir}/index.json", $json);
-        $this->info(sprintf('%d game card(s); %d drawn, %d unchanged. %d Improve page(s) %s. %d comp page(s) %s. In %s',
+        $this->info(sprintf('%d game card(s); %d drawn, %d unchanged. %d Improve page(s) %s. %d comp page(s) %s. %d player page(s) %s. In %s',
             count($games), $drawn, count($games) - $drawn, count($characters), $improveDrawn ? 'drawn' : 'unchanged',
-            count($comps), $compsDrawn ? 'drawn' : 'unchanged', $dir));
+            count($comps), $compsDrawn ? 'drawn' : 'unchanged', count($classes), $playersDrawn ? 'drawn' : 'unchanged', $dir));
 
         return self::SUCCESS;
     }
