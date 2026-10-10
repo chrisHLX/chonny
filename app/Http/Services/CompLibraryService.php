@@ -228,7 +228,7 @@ class CompLibraryService
                 return [
                     'name' => explode('-', $x['name'])[0],
                     'spec' => $x['spec'],
-                    'color' => $colors[$x['classSlug'] ?? ''] ?? '#8A8A9A',
+                    'color' => $colors[$x['classSlug'] ?? ''] ?? '#B3B3B3',
                     'you' => ! empty($x['logger']),
                     'xp' => match (true) {
                         $xp === null => 'not looked up',

@@ -29,7 +29,7 @@
         <x-mc-icon name="icon-compass" class="w-10 h-10 text-gold mb-4"/>
 
         <h2 class="text-[16px] font-semibold text-ink-muted uppercase tracking-[0.15em] mb-1">Development Focus</h2>
-        <p class="text-[20px] font-display italic text-gold-light mb-4">{{ $profileTitle }}</p>
+        <p class="text-[20px] font-display text-gold-light mb-4">{{ $profileTitle }}</p>
 
         @if ($confidence)
             <span class="inline-block mb-4 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest rounded-full

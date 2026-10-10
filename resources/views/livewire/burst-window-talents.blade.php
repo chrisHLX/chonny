@@ -11,7 +11,7 @@
             {{ $spec?->name }} {{ $class?->name }}
         </h1>
         <p class="text-[12px] text-ink-muted mt-1">
-            The real talents selected in the archived match behind this spec's {{ $length }}s Peak Burst Example — shown in our own talent calculator, view only. Nothing here can be changed.
+            The real talents selected in the archived match behind this spec's {{ $length }}s Peak Burst Example, shown in our talent calculator. You can look but not change anything.
         </p>
     </div>
 

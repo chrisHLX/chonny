@@ -52,7 +52,7 @@
             <div class="flex items-center gap-2 mt-1.5">
                 <button type="button" wire:click="postNote" class="btn-secondary text-[12px]">Post comment</button>
                 <span class="text-[11px] text-ink-subtle">
-                    Yours &mdash; it sits under this section and changes nothing
+                    Yours. It sits under this section and doesn't change anything.
                     {{ $author ? 'in '.$author.'\'s plan' : 'in the guide' }}.
                 </span>
             </div>

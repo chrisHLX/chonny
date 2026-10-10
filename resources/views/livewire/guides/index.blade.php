@@ -31,8 +31,8 @@
             <x-mc-icon name="icon-lightning-circle" class="w-10 h-10 text-gold/40 mx-auto mb-4"/>
             <h2 class="text-[16px] font-semibold text-ink mb-2">Nothing here yet</h2>
             <p class="text-[14px] text-ink-muted max-w-lg mx-auto mb-6">
-                Two kinds. A <span class="text-ink">comp guide</span> is a 2v2 or 3v3 team &mdash; the
-                opener, the go, and the enemy's side &mdash; their CC, cooldowns and defensives to watch for. A
+                Two kinds. A <span class="text-ink">comp guide</span> is a 2v2 or 3v3 team:
+                the opener, the go, and the CC, cooldowns and defensives to watch for on the other side. A
                 <span class="text-ink">class guide</span> is one spec: a rotation, a technique, or a
                 specific matchup like Rogue vs Disc. Either way we work out how much control survives
                 diminishing returns and how often you can run it again.

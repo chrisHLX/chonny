@@ -93,7 +93,7 @@
             </div>
         @elseif ($event['peeledBy'])
             <p class="text-[11px] text-ink-subtle pt-0.5 border-t border-line/60">
-                Peeled off by {{ $event['peeledBy']['spell'] }} — nothing spent.
+                Peeled off by {{ $event['peeledBy']['spell'] }}, so nothing was spent.
             </p>
         @endif
     </div>

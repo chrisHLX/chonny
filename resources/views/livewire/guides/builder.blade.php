@@ -44,7 +44,7 @@
             @if ($this->isAuthor)
                 <button type="button" wire:click="duplicate"
                         wire:loading.attr="disabled" wire:target="duplicate"
-                        title="Copy this guide — same comp, talents and plan — to write another matchup from it"
+                        title="Copy this guide, with the same comp, talents and plan, to start another matchup from it"
                         class="text-[12px] text-ink-subtle hover:text-gold transition-colors">
                     <span wire:loading.remove wire:target="duplicate">Duplicate as a new guide</span>
                     <span wire:loading wire:target="duplicate">Copying&hellip;</span>
@@ -146,9 +146,9 @@
             <div class="flex items-baseline justify-between gap-4 mb-3">
                 <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">The matchup</h2>
                 @if ($this->members->isEmpty())
-                    <span class="text-[12px] text-gold">Start here &mdash; pick the spec this guide is for</span>
+                    <span class="text-[12px] text-gold">Start here: pick the spec this guide is for</span>
                 @else
-                    <span class="text-[12px] text-ink-subtle">One spec &mdash; add an opponent only if the guide is about a matchup</span>
+                    <span class="text-[12px] text-ink-subtle">One spec. Only add an opponent if the guide is about a matchup.</span>
                 @endif
             </div>
 
@@ -160,7 +160,7 @@
                 <span class="text-[12px] text-ink-subtle text-center sm:px-2">vs</span>
 
                 <div class="border border-line rounded p-3 bg-surface-2">
-                    <p class="text-[10px] uppercase tracking-[0.13em] text-ink-subtle mb-2">Opponent &mdash; optional</p>
+                    <p class="text-[10px] uppercase tracking-[0.13em] text-ink-subtle mb-2">Opponent (optional)</p>
                     @if ($guide->opponentSpec)
                         @php $oc = $classColors[$guide->opponentSpec->gameClass?->slug] ?? '#8A8A9A'; @endphp
                         <div class="flex items-center gap-2.5">
@@ -189,9 +189,9 @@
             <div class="flex items-baseline justify-between gap-4 mb-3">
                 <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">The comp</h2>
                 @if ($this->members->isEmpty())
-                    <span class="text-[12px] text-gold">Start here &mdash; pick the specs this plan is for</span>
+                    <span class="text-[12px] text-gold">Start here: pick the specs this plan is for</span>
                 @else
-                    <span class="text-[12px] text-ink-subtle">Up to {{ $guide->maxMembers() }} &mdash; two for 2v2, three for 3v3</span>
+                    <span class="text-[12px] text-ink-subtle">Up to {{ $guide->maxMembers() }}: two for 2v2, three for 3v3</span>
                 @endif
             </div>
 
@@ -221,11 +221,11 @@
                      slots read as something you still owe the page, when a general opener guide
                      is a perfectly good guide. --}}
                 <p class="text-[12px] text-ink-subtle mt-1" x-show="!open">
-                    Optional — leave blank for a general guide that works against any team.
+                    Optional. Leave it blank for a general guide that works against any team.
                 </p>
 
                 <p class="text-[12px] text-ink-subtle mt-1" x-show="open" x-cloak>
-                    Naming a team makes this a matchup guide — their CC, cooldowns and defensives fill
+                    Naming a team makes this a matchup guide. Their CC, cooldowns and defensives fill
                     the enemy sections, and people can find it by searching for that comp. Leave it
                     blank for a general guide.
                 </p>
@@ -288,7 +288,7 @@
                                 <span class="block text-[13px] font-medium text-ink">My friends can edit</span>
                                 <span class="block text-[11px] text-ink-subtle">
                                     @php $friendCount = auth()->user()->friendIds()->count(); @endphp
-                                    {{ $friendCount === 0 ? 'You have no friends added yet.' : $friendCount.' '.Str::plural('friend', $friendCount).' — follows your friends list.' }}
+                                    {{ $friendCount === 0 ? 'You have no friends added yet.' : $friendCount.' '.Str::plural('friend', $friendCount).'. It follows your friends list.' }}
                                 </span>
                             </span>
                         </button>
@@ -396,7 +396,7 @@
                                     <p class="text-[11.5px] text-red-400 mt-1">{{ $shareError }}</p>
                                 @else
                                     <p class="text-[11.5px] text-ink-subtle mt-1">
-                                        They need a MindCollector account already &mdash; we don't send invitations to
+                                        They need a MindCollector account already. We don't send invitations to
                                         addresses that haven't signed up.
                                     </p>
                                 @endif
@@ -427,7 +427,7 @@
             <div class="border-t border-line pt-4">
                 <div class="flex items-baseline justify-between gap-4 mb-3">
                     <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Written as</h2>
-                    <span class="text-[12px] text-ink-subtle">Optional &mdash; readers see this character's exp, gear and talents</span>
+                    <span class="text-[12px] text-ink-subtle">Optional. Readers see this character's experience, gear and talents.</span>
                 </div>
 
                 @if (! $this->hasBattlenet)
@@ -707,7 +707,7 @@
 
                     @if ($section->kind === UserGuideSectionKind::Text)
                         <textarea rows="6" maxlength="20000"
-                                  placeholder="Markdown supported — **bold**, lists, headings."
+                                  placeholder="You can use Markdown: **bold**, lists, headings."
                                   class="form-textarea w-full text-[13.5px]"
                                   x-on:change="$wire.setSectionBody({{ $section->id }}, $event.target.value)">{{ $section->body }}</textarea>
                         @if (filled($section->body))
@@ -772,7 +772,7 @@
                         @if ($section->kind === UserGuideSectionKind::Sequence && empty($data['steps']))
                             <button type="button" wire:click="suggestOpener({{ $section->id }})"
                                     wire:loading.attr="disabled" wire:target="suggestOpener({{ $section->id }})"
-                                    title="Fills this section with a control opener from your comp — change anything you like"
+                                    title="Fills this section with a crowd control opener from your comp. Change anything you like."
                                     class="btn-secondary w-full text-[12px] inline-flex items-center justify-center gap-1.5">
                                 <span wire:loading.remove wire:target="suggestOpener({{ $section->id }})"
                                       class="inline-flex items-center gap-1.5">
@@ -813,7 +813,7 @@
     @empty
         <div class="linear-card p-10 text-center mb-4">
             <p class="text-[14px] text-ink-muted max-w-lg mx-auto">
-                A guide is made of sections. Add a chain, a full go, some notes &mdash; or the enemy's
+                A guide is made of sections. Add a chain, a full go, some notes, or the enemy's
                 side: the CC, cooldowns and defensives to watch for.
             </p>
         </div>

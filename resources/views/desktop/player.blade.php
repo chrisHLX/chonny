@@ -17,28 +17,28 @@
     .two td.col.right { padding-left: 6px; }
     .rows { width: 100%; }
     .rows td { padding: 3px 0; vertical-align: middle; }
-    .rows tr + tr td { border-top: 1px solid #1E1E26; }
-    .rows .v { text-align: right; white-space: nowrap; color: #8A8A9A; padding-left: 10px; }
+    .rows tr + tr td { border-top: 1px solid #282828; }
+    .rows .v { text-align: right; white-space: nowrap; color: #B3B3B3; padding-left: 10px; }
     .sub { margin: 2px 0 8px; }
     tr.spell td { cursor: pointer; }
-    tr.spell:hover td { background: #18181E; }
-    .sp { border-bottom: 1px dotted #52525F; }
+    tr.spell:hover td { background: #181818; }
+    .sp { border-bottom: 1px dotted #6A6A6A; }
     tr.tip td { padding: 0 0 6px 0; border-top: 0 !important; }
-    .tipbox { background: #18181E; border: 1px solid #2C2C38; border-radius: 4px; padding: 6px 9px; font-size: 12px; color: #C9C9D2; line-height: 1.45; }
+    .tipbox { background: #181818; border: 1px solid #3E3E3E; border-radius: 4px; padding: 6px 9px; font-size: 12px; color: #C9C9D2; line-height: 1.45; }
     .tipbox .facts { color: #E8B84B; font-size: 11.5px; margin-top: 3px; }
     /* What they press: a spell, its bars, three numbers. */
     .press { width: 100%; }
     .press td { padding: 3px 0; vertical-align: middle; }
-    .press tr + tr td { border-top: 1px solid #1E1E26; }
+    .press tr + tr td { border-top: 1px solid #282828; }
     .press td.nm { width: 34%; white-space: nowrap; }
     .press td.bars { padding: 0 12px; }
     .press td.n { width: 58px; text-align: right; white-space: nowrap; }
     .press td.vs { width: 118px; text-align: right; white-space: nowrap; }
-    .press tr.hd td { color: #52525F; font-size: 11px; border-top: 0; }
+    .press tr.hd td { color: #6A6A6A; font-size: 11px; border-top: 0; }
     .press tr.g td { border-top: 0; padding-top: 8px; }
     .press .bar { margin: 1px 0; }
     .press .bar.m { height: 4px; }
-    .press .bar.m span { height: 4px; background: #52525F; }
+    .press .bar.m span { height: 4px; background: #6A6A6A; }
     .grp { margin: 10px 0 3px; color: #E8B84B; font-size: 11.5px; font-weight: 600; }
     .grp:first-child { margin-top: 0; }
     .pick { margin-right: 6px; }
@@ -139,7 +139,7 @@
         @if ($m['presses'])
             </table>
         @endif
-        <div class="small subtle" style="margin-top: 8px">Click a spell for what it does. A count includes every cast the log records, so a spell that fires by itself shows here too. "More" or "less than most" is a difference to read, not a fault: talents, the comp and the game decide a lot of it.</div>
+        <div class="small subtle" style="margin-top: 8px">Click a spell for what it does. A count includes every cast the log records, so a spell that fires by itself shows here too. "More" or "less than most" is worth a look, but talents, the comp and the game itself explain a lot of it.</div>
     </div>
 </div>
 

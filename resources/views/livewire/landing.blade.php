@@ -8,51 +8,50 @@
 <div class="max-w-6xl mx-auto px-4 py-6 sm:py-10">
 
     {{-- What the site is for, and the first thing to do ------------------------------------ --}}
-    <section class="linear-card border-line-gold relative overflow-hidden p-5 sm:p-8 mb-10">
-        <x-ornament.corner position="tr" class="absolute top-3 right-3 w-10 h-10 text-gold/20"/>
-
-        <p class="text-[11px] uppercase tracking-[0.14em] text-gold mb-2">World of Warcraft arena</p>
-        <h1 class="font-display text-[28px] sm:text-[38px] text-ink leading-tight max-w-3xl">
-            Plan your arena games. Share, analyse, climb.
-        </h1>
-        <p class="text-[14px] text-ink-muted mt-3 max-w-2xl">
-            Build a comp, then write the plan: the opener, the go, and the defensives to force.
-            Spells and talents maintained daily.
+    <section class="page-hero mb-8 -mx-2 sm:mx-0">
+        <p class="page-eyebrow">WoW arena</p>
+        <h1 class="page-title max-w-3xl">Plan your next arena game with your team.</h1>
+        <p class="text-[15px] text-ink-muted mt-4 max-w-2xl">
+            Pick your three specs, then write down the opener, the go and the defensives you want to
+            force. The spell and talent data comes from the live game.
         </p>
 
-        <div class="flex flex-col sm:flex-row sm:items-center gap-2 mt-6">
-            <a href="{{ route('wow-comps') }}" wire:navigate class="btn-primary justify-center">Build a 3v3 comp</a>
-            <x-guides.try-button class="btn-secondary justify-center w-full sm:w-auto" label="Try the planner, no sign-up"/>
-            <a href="{{ route('guides.browse') }}" wire:navigate class="text-[13px] text-ink-muted hover:text-gold sm:ml-2 text-center">Browse player guides &rarr;</a>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3 mt-7">
+            <a href="{{ route('wow-comps') }}" wire:navigate class="btn-primary">Build a 3v3 comp</a>
+            <x-guides.try-button class="btn-secondary w-full sm:w-auto" label="Try the planner without an account"/>
+            <a href="{{ route('guides.browse') }}" wire:navigate class="btn-ghost">Browse guides</a>
         </div>
-
-        @if (count($this->presets))
-            <div class="mt-6 pt-5 border-t border-line">
-                <p class="text-[11px] uppercase tracking-[0.13em] text-ink-subtle mb-2.5">Or open a common comp</p>
-                <div class="flex flex-wrap gap-2">
-                    @foreach ($this->presets as $preset)
-                        <a href="{{ route('wow-comps', ['preset' => $preset['key']]) }}" wire:navigate wire:key="preset-{{ $preset['key'] }}"
-                           class="flex items-center gap-2 rounded-md border border-line-strong hover:border-gold/60 bg-surface-2 px-3 py-2 transition-colors group">
-                            <span class="flex items-center gap-0.5">
-                                @foreach ($preset['specs'] as $spec)
-                                    <x-spec-icon :spec="$spec" size="w-6 h-6"/>
-                                @endforeach
-                            </span>
-                            <span class="text-[13px] text-ink group-hover:text-gold">{{ $preset['label'] }}</span>
-                        </a>
-                    @endforeach
-                </div>
-            </div>
-        @endif
     </section>
+
+    @if (count($this->presets))
+        <section class="mb-10">
+            <h2 class="text-[20px] font-bold text-ink mb-3">Start from a common comp</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                @foreach ($this->presets as $preset)
+                    <a href="{{ route('wow-comps', ['preset' => $preset['key']]) }}" wire:navigate wire:key="preset-{{ $preset['key'] }}"
+                       class="linear-card group flex items-center gap-3 p-3">
+                        <span class="flex items-center -space-x-1.5 shrink-0">
+                            @foreach ($preset['specs'] as $spec)
+                                <x-spec-icon :spec="$spec" size="w-11 h-11"/>
+                            @endforeach
+                        </span>
+                        <span class="text-[15px] font-bold text-ink">{{ $preset['label'] }}</span>
+                        <span class="ml-auto w-9 h-9 rounded-full bg-gold text-black flex items-center justify-center opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition shrink-0">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </span>
+                    </a>
+                @endforeach
+            </div>
+        </section>
+    @endif
 
     <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px]">
 
         {{-- The public feed --------------------------------------------------------------- --}}
         <section class="min-w-0">
             <div class="flex items-baseline justify-between gap-4 border-b border-line pb-2.5">
-                <h2 class="text-[13px] font-medium text-ink">What players are planning</h2>
-                <a href="{{ route('guides.browse') }}" wire:navigate class="text-[12px] text-ink-subtle hover:text-gold">All guides &rarr;</a>
+                <h2 class="text-[20px] font-bold text-ink">Latest guides</h2>
+                <a href="{{ route('guides.browse') }}" wire:navigate class="text-[13px] font-bold text-ink-muted hover:text-ink hover:underline">Show all</a>
             </div>
 
             <div wire:loading.class="opacity-60" wire:target="loadMore">
@@ -64,9 +63,9 @@
                     @endif
                 @empty
                     <div class="py-10 text-center">
-                        <p class="text-[13.5px] text-ink-muted">No guides published yet.</p>
-                        <div class="text-[12.5px] text-ink-subtle mt-1">
-                            <x-guides.try-button class="text-gold hover:text-gold-light" label="Write the first one"/> &mdash; no account needed.
+                        <p class="text-[14px] text-ink-muted">No guides yet.</p>
+                        <div class="text-[13px] text-ink-subtle mt-1">
+                            <x-guides.try-button class="text-gold hover:text-gold-light" label="Write the first one"/> <span>(you don't need an account)</span>
                         </div>
                     </div>
                 @endforelse
@@ -95,7 +94,7 @@
                 </a>
                 <a href="{{ route('top-cc-chains') }}" wire:navigate class="block py-1.5 group">
                     <span class="text-[13px] text-ink-muted group-hover:text-gold">Top 10 CC chains</span>
-                    <span class="block text-[11.5px] text-ink-subtle">The longest real control chains on file.</span>
+                    <span class="block text-[11.5px] text-ink-subtle">The longest crowd control chains we've recorded.</span>
                 </a>
             </div>
 

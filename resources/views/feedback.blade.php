@@ -4,7 +4,7 @@
 
             <div>
                 <h1 class="text-[17px] font-semibold text-ink">Feedback</h1>
-                <p class="text-[13px] text-ink-muted mt-0.5">Found a bug? Got an idea? Let us know — we read everything.</p>
+                <p class="text-[13px] text-ink-muted mt-0.5">Found a bug or have an idea? Tell us. We read all of it.</p>
             </div>
 
             @if(session('success'))

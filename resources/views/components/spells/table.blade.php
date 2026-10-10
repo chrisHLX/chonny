@@ -1,4 +1,4 @@
-@props(['entries', 'title' => 'Spells', 'description' => 'Full detail for every ability, plus what modifies or enhances each one — pulled live from the current game data.'])
+@props(['entries', 'title' => 'Spells', 'description' => 'Full detail for every ability, plus what changes or adds to each one, from the current game data.'])
 
 @php
     $baselineModifierNames = collect($entries)
@@ -160,7 +160,7 @@
                             <td class="pr-4 py-3 text-[12px] text-ink-muted max-w-md">
                                 {{ $entry['description']['text'] ?: '—' }}
                                 @if ($entry['description']['uncertain'])
-                                    <span class="text-[10px] text-ink-subtle italic block mt-0.5">Some values above vary by condition or aren't fully known — check in-game.</span>
+                                    <span class="text-[10px] text-ink-subtle italic block mt-0.5">Some values above depend on the situation or aren't fully known. Check them in game.</span>
                                 @endif
                                 @if (!empty($entry['formulaModifiers']) && $entry['formulaModifiers']->isNotEmpty())
                                     <span class="text-[10px] text-ink-subtle block mt-0.5">
@@ -184,7 +184,7 @@
                                     @endif
                                 </div>
                                 @if ($spell->cooldown_scaling_note)
-                                    <span class="block text-[10px] text-ink-subtle italic mt-1 whitespace-normal" title="This is a known, unresolved gap — see the spell's own talents for the real modifiers.">
+                                    <span class="block text-[10px] text-ink-subtle italic mt-1 whitespace-normal" title="We know about this gap and haven't solved it yet. The spell's own talents show the real modifiers.">
                                         {{ $spell->cooldown_scaling_note }}
                                     </span>
                                 @endif

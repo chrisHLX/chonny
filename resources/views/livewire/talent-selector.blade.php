@@ -13,12 +13,12 @@
                 @elseif ($isDefaultEditor)
                     <span class="badge-gold ml-1">Editing Default</span>
                 @elseif (!auth()->check())
-                    <span class="badge-gray ml-1">Preview — sign in to save</span>
+                    <span class="badge-gray ml-1">Preview. Sign in to save.</span>
                 @endif
             </p>
             <p class="text-[11px] text-ink-subtle mt-0.5">
                 @if ($readOnly)
-                    A real talent build from an archived match — nothing here can be changed.
+                    A real talent build from a recorded match. You can't change anything here.
                 @else
                     Pick your talents to see accurate cooldowns and modifiers below.
                 @endif
@@ -45,7 +45,7 @@
     <div class="px-5 py-4 border-b border-line bg-surface-2/40">
         <p class="text-[11px] font-semibold text-ink-muted uppercase tracking-wide mb-2">Import from Blizzard</p>
         <p class="text-[10px] text-ink-subtle mb-2">
-            Paste the "Export" string from the in-game talent UI (or Wowhead/Raidbots). This only sets your PvE tree picks — PvP talents aren't part of Blizzard's export format and still need to be chosen above.
+            Paste the "Export" string from the in-game talent UI (or Wowhead/Raidbots). This only sets your talent tree. PvP talents aren't in Blizzard's export string, so pick those above.
         </p>
 
         @if ($importPreview === null)
@@ -66,7 +66,7 @@
         @else
             <div class="rounded-lg border border-gold/40 bg-gold-subtle/30 p-3">
                 <p class="text-[11px] font-semibold text-gold mb-2">
-                    This will select {{ count($importPreview) }} talent(s) — review before applying:
+                    This will select {{ count($importPreview) }} talent(s). Check them before applying:
                 </p>
                 <div class="flex flex-wrap gap-1.5 mb-3">
                     @foreach ($importPreview as $row)
@@ -223,7 +223,7 @@
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                             </button>
                             <h3 class="font-display text-[16px] font-bold text-ink mb-1">Choose Your Hero Talent Tree</h3>
-                            <p class="text-[11px] text-ink-subtle mb-4">Only one is active at a time — picking a tree clears any points spent in the other.</p>
+                            <p class="text-[11px] text-ink-subtle mb-4">Only one can be active. Picking a tree clears any points spent in the other.</p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 @foreach ($heroTreeOptions as $option)
                                     @php $isActive = $option['tree']->id === $heroTreeId; @endphp

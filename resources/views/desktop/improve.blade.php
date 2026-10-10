@@ -17,11 +17,11 @@
     .nums td { width: 22%; vertical-align: top; padding: 2px 0; }
     .nums td.chart { width: 34%; }
     .nums .v { font-size: 20px; font-weight: 600; }
-    .nums .k { font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: #8A8A9A; }
-    .habit .caveat { margin-top: 8px; color: #52525F; font-size: 11.5px; }
+    .nums .k { font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: #B3B3B3; }
+    .habit .caveat { margin-top: 8px; color: #6A6A6A; font-size: 11.5px; }
     .habit .list { margin-top: 8px; }
-    .habit .list .def { color: #F0F0F2; }
-    .habit .list .def span { color: #8A8A9A; margin-left: 4px; }
+    .habit .list .def { color: #FFFFFF; }
+    .habit .list .def span { color: #B3B3B3; margin-left: 4px; }
 </style>
 </head>
 <body>

@@ -27,7 +27,7 @@
 <body onload="showTab('summary')">
 
 {{-- ============================== header --}}
-<div class="head">
+<div class="head {{ $g['won'] ? 'head-won' : 'head-lost' }}">
     @if ($g['kind'] === 'shuffle')
         <span class="chip {{ $g['won'] ? 'won' : 'lost' }}">{{ $g['record'][0] }}-{{ $g['record'][1] }}</span>
     @else
@@ -36,7 +36,7 @@
     <span class="title">{{ $g['bracket'] }}</span>
     <span class="when muted">{{ $g['playedAt'] }}@if ($g['kind'] === 'game') &nbsp;&middot;&nbsp; {{ $g['duration'] }}@endif</span>
     @if ($g['kind'] === 'game' && ($g['mmr']['us'] ?? null))
-        <span class="mmr muted">MMR <b style="color:#F0F0F2">{{ $g['mmr']['us'] }}</b> you &nbsp;&middot;&nbsp; <b style="color:#F0F0F2">{{ $g['mmr']['them'] ?? '?' }}</b> them</span>
+        <span class="mmr muted">MMR <b style="color:#FFFFFF">{{ $g['mmr']['us'] }}</b> you &nbsp;&middot;&nbsp; <b style="color:#FFFFFF">{{ $g['mmr']['them'] ?? '?' }}</b> them</span>
     @endif
     @if ($g['kind'] === 'game' && ! empty($g['difficulty']))
         <div class="small" style="margin-top: 6px"><span class="chip {{ $g['difficulty']['tone'] }}">{{ $g['difficulty']['label'] }}</span> <span class="muted">&nbsp;{{ $g['difficulty']['text'] }}</span></div>

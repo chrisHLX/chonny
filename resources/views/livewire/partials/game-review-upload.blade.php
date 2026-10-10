@@ -16,7 +16,7 @@
         <div>
             <h2 class="page-section-title">Upload matches</h2>
             <p class="page-section-desc">
-                Pick your <code class="text-gold">WoWCombatLog.txt</code> — it is in
+                Pick your <code class="text-gold">WoWCombatLog.txt</code>. It's in
                 <code class="text-ink-muted">World of Warcraft/_retail_/Logs/</code>. Your browser
                 finds the arena rounds in it and sends only those, so a 60MB log becomes a few
                 hundred KB per round. Re-uploading the same file is safe: a round already stored is
@@ -54,7 +54,7 @@
 
     <p class="text-xs text-ink-subtle">
         Solo Shuffle and 3v3. A shuffle lobby becomes one game of six rounds; every 3v3 is its own.
-        Advanced Combat Logging must have been on (System → Network) — without it the log carries no
+        Advanced Combat Logging has to be on (System → Network). Without it the log has no
         specs and a round cannot be read. The MindCollector addon turns both on for you.
     </p>
 </div>

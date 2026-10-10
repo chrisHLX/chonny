@@ -11,7 +11,7 @@
         <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-3">Start a guild</h2>
         <div class="flex flex-col sm:flex-row gap-2">
             <input type="text" wire:model="name" maxlength="60"
-                   placeholder="Name it — your team, your community, whatever you call yourselves"
+                   placeholder="Your team, your community, whatever you call yourselves"
                    class="form-input flex-1 text-[13.5px]"
                    wire:keydown.enter="create">
             <button type="button" wire:click="create" class="btn-primary shrink-0">Create</button>

@@ -75,7 +75,7 @@
                                                                         {{-- Shown before the pick, not after: knowing Sap needs the
                                                                              target out of combat matters while you are choosing. --}}
                                                                         @if ($entry['spell']->requires_target_out_of_combat)
-                                                                            <span class="text-[10px] text-violet" title="Requires stealth, and the target must be out of combat — realistically an opener.">stealth + OOC</span>
+                                                                            <span class="text-[10px] text-violet" title="Needs stealth and a target out of combat, so in practice it's an opener.">stealth + OOC</span>
                                                                         @elseif ($entry['spell']->requires_stealth)
                                                                             <span class="text-[10px] text-violet" title="Only applies its crowd control while you are stealthed.">from stealth</span>
                                                                         @elseif ($entry->drCategory() === null && isset($drBadge[$groupName]))

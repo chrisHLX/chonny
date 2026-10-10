@@ -3,7 +3,7 @@
 
     <header class="space-y-2">
         <a href="{{ route('game-review') }}" class="text-sm text-ink-muted hover:text-gold">&larr; Match Review</a>
-        <h1 class="font-display italic text-3xl sm:text-4xl text-ink">Your analysis</h1>
+        <h1 class="font-display text-3xl sm:text-4xl text-ink">Your analysis</h1>
         <p class="text-ink-muted max-w-3xl">
             Your uploaded games, read back: who you really played, what was different between the games
             you won and the ones you lost, and what to change. Every number comes from your own combat

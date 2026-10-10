@@ -25,7 +25,7 @@
                     <tr id="{{ $p['id'] }}" style="{{ $p['you'] ? '' : 'display:none' }}">
                         <td colspan="5" class="abil">
                             @foreach ($p['kinds'] as $k)
-                                <div class="small muted" style="margin:6px 0 2px">{{ $k['label'] }} <b style="color:#F0F0F2">{{ $k['total'] }}</b> &middot; {{ $k['perSecond'] }} a second alive</div>
+                                <div class="small muted" style="margin:6px 0 2px">{{ $k['label'] }} <b style="color:#FFFFFF">{{ $k['total'] }}</b> &middot; {{ $k['perSecond'] }} a second alive</div>
                                 <table class="ab">
                                     @foreach ($k['rows'] as $r)
                                         <tr>

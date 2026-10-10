@@ -22,7 +22,7 @@
                     <button type="button" wire:click="leave" class="btn-ghost">Leave</button>
                 @else
                     <button type="button" wire:click="destroy"
-                            wire:confirm="Delete this guild? Guides shared with it are kept — they just stop being visible to the guild."
+                            wire:confirm="Delete this guild? Guides shared with it are kept, but the guild won't see them any more."
                             class="btn-danger text-[12px]">Delete guild</button>
                 @endunless
             @else

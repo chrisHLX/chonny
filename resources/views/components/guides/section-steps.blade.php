@@ -87,7 +87,7 @@
                             @endif
 
                             @if ($cat && $pct === 0)
-                                <span class="badge-gray">Immune &mdash; no effect</span>
+                                <span class="badge-gray">Immune, no effect</span>
                             @elseif ($cat && $durLabel)
                                 <span class="badge-amber tabular-nums">{{ $durLabel }}</span>
                             @elseif ($cat && $pct < 100)
@@ -106,7 +106,7 @@
                                  cc-synergies-overrides.txt for why Cheap Shot deliberately carries
                                  neither. --}}
                             @if ($entry['spell']->requires_target_out_of_combat)
-                                <span class="badge-blue" title="Requires stealth, and the target must be out of combat — realistically an opener.">Stealth + target OOC</span>
+                                <span class="badge-blue" title="Needs stealth and a target out of combat, so in practice it's an opener.">Stealth + target OOC</span>
                             @elseif ($entry['spell']->requires_stealth)
                                 <span class="badge-blue" title="Only applies its crowd control while you are stealthed.">From stealth</span>
                             @elseif ($step['no_stealth_cc'] ?? null)
@@ -130,7 +130,7 @@
 
                         @if ($showTimer && $cat && $step['duration'] === null)
                             <p class="text-[11.5px] text-ink-subtle mt-0.5">
-                                No verified PvP duration on file{{ $section->kind->tracksControl() ? ' — not counted in the total' : '' }}.
+                                No verified PvP duration on file{{ $section->kind->tracksControl() ? ', so it isn\'t counted in the total' : '' }}.
                             </p>
                         @endif
 

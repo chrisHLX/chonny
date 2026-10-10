@@ -173,7 +173,7 @@ class ClassLibraryService
             'spec' => $p['spec'],
             'specId' => $specId,
             'class' => $spec?->gameClass?->name ?? '',
-            'color' => config('wow_classes.colors')[$p['classSlug'] ?? ''] ?? '#8A8A9A',
+            'color' => config('wow_classes.colors')[$p['classSlug'] ?? ''] ?? '#B3B3B3',
             'icon' => $spec?->icon_name ? DesktopAsset::url('spec-icons/'.$spec->icon_name) : null,
             'healer' => $healer,
             'xp' => $this->xpText($full),

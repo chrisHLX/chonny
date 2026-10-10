@@ -21,26 +21,26 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
-                // Headings: Archivo Black — heavy, squared grotesque for a strong
-                // poster-style headline. 'Archivo' (600–900) is the fallback for
-                // weights below black / before the webfont loads. Tracking is
-                // tightened slightly in `.font-display` (resources/css/app.css).
-                // Was Playfair Display.
-                display: ['Archivo Black', 'Archivo', 'Inter', ...defaultTheme.fontFamily.sans],
+                // Headings: Inter at heavy weight with tight tracking (.font-display in
+                // app.css), the way Spotify sets its titles. One family for the whole site:
+                // Archivo Black was a second and third webfont on every page (2026-10-11).
+                display: ['Inter', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                // Surfaces — deeper blue-blacks from the MindCollector palette
+                // Surfaces: Spotify's neutral greys (2026-10-11), the same steps the site and
+                // the desktop pages share (resources/views/desktop/partials/styles.blade.php,
+                // tools/desktop-app/Theme.cs). `frame` is the black around the panels.
+                frame: '#000000',
                 surface: {
-                    0: '#09090D',
-                    1: '#111116',
-                    2: '#18181E',
-                    3: '#1E1E26',
+                    0: '#121212',
+                    1: '#181818',
+                    2: '#232323',
+                    3: '#2A2A2A',
                 },
-                // Ink — slightly brighter primary, same muted/subtle hierarchy
                 ink: {
-                    DEFAULT: '#F0F0F2',
-                    muted: '#8A8A9A',
-                    subtle: '#52525F',
+                    DEFAULT: '#FFFFFF',
+                    muted: '#B3B3B3',
+                    subtle: '#6A6A6A',
                 },
                 // Gold — primary brand / CTA (replaces blue accent)
                 gold: {
@@ -63,10 +63,9 @@ export default {
                     hover: '#E8B84B',
                     muted: '#6B4E1A',
                 },
-                // Lines — slightly cooler/darker than before
                 line: {
-                    DEFAULT: '#1E1E26',
-                    strong: '#2C2C38',
+                    DEFAULT: '#282828',
+                    strong: '#3E3E3E',
                     gold: '#6B4E1A',
                 },
             },

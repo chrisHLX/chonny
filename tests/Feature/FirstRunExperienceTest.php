@@ -117,7 +117,7 @@ test('an unconfirmed account reaches Home on production, with a banner instead o
     $this->actingAs($user)
         ->get(route('dashboard'))
         ->assertOk()
-        ->assertSee('Confirm your email')
+        ->assertSee('confirm your email')
         ->assertSee('Send it again');
 
     $user->forceFill(['email_verified_at' => now()])->save();
@@ -125,7 +125,7 @@ test('an unconfirmed account reaches Home on production, with a banner instead o
     $this->actingAs($user->fresh())
         ->get(route('dashboard'))
         ->assertOk()
-        ->assertDontSee('Confirm your email');
+        ->assertDontSee('confirm your email');
 });
 
 // ------------------------------------------------------------------ the builder's first screen
@@ -213,10 +213,11 @@ test('the sidebar puts your own pages in one block, separate from the public sit
     $this->actingAs($user)
         ->get(route('dashboard'))
         ->assertOk()
-        // Your space, then the public site, social, class data, and Training last.
+        // Spotify's layout (2026-10-11): the public site in the top panel, then the library: your
+        // space, social, class data, and Training last.
         ->assertSeeInOrder([
-            'Your space', 'Newbie', 'Home', 'My Guides', 'My Characters', 'Profile &amp; settings',
-            'Explore', 'Guides', 'Claude', '3v3 Comps',
+            'Home', 'Guides', 'Claude', '3v3 Comps', 'Your games',
+            'Your library', 'Your space', 'Newbie', 'My Guides', 'My Characters', 'Profile &amp; settings',
             'Social', 'Friends', 'Guilds',
             'Class data', 'Class Guides', 'Training', 'Class quizzes', 'Arena basics check',
         ], false)

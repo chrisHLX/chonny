@@ -28,7 +28,7 @@
 
     <div class="flex flex-wrap items-center gap-1 mb-1.5">
         @if ($isAnchor)
-            <span class="badge-gold !text-[8px]" title="The cooldown this whole plan is built around — everything else is timed against it.">Anchor</span>
+            <span class="badge-gold !text-[8px]" title="The cooldown this plan is built around. Everything else is timed from it.">Anchor</span>
         @endif
         @if ($entry['drCategory'] ?? null)
             <span class="{{ $drBadge[$entry['drCategory']] ?? 'badge-gray' }} !text-[8px]">{{ $entry['drCategory'] }}</span>
@@ -38,7 +38,7 @@
             <span class="{{ $categoryBadge[$entry['category']] ?? 'badge-gray' }} !text-[8px]">{{ $entry['category'] }}</span>
         @endif
         @if ($entry['stacksOnAnotherGlobal'] ?? false)
-            <span class="badge-green !text-[8px]" title="In real windows this usually lands inside another ability's global — it costs you no tempo to press.">Free</span>
+            <span class="badge-green !text-[8px]" title="In real games this usually goes out inside another ability's global, so pressing it costs you no time.">Free</span>
         @endif
     </div>
 

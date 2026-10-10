@@ -15,7 +15,7 @@
                 : 'MindCollector — WoW Arena Game Plans, Comps & Spell Data';
             $seoDescription = trim($description ?? '') !== ''
                 ? $description
-                : 'Plan your WoW arena games: build your opener, your go and the defensives you need to force from real spell data — CC chains, diminishing returns, cooldowns and counters for every spec — and share the plan with your team.';
+                : 'WoW arena comps, game plans and spell data for every spec: cooldowns, crowd control, diminishing returns and counters, taken from the live game. Review your own games with the MindCollector app.';
             $seoImage = url($ogImage ?? '/android-chrome-512x512.png');
             $seoCanonical = url()->to(request()->getPathInfo());
 
@@ -69,11 +69,13 @@
         <link rel="shortcut icon" href="/favicon.ico">
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="manifest" href="/site.webmanifest">
+        @include('partials.fonts')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
-    <body class="font-sans antialiased bg-surface-0 text-ink">
-        <div class="flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
+    <body class="font-sans antialiased bg-frame text-ink">
+        {{-- Spotify's frame (2026-10-11): black around rounded panels, 8px apart, on a wide screen. --}}
+        <div class="flex h-screen overflow-hidden sm:p-2 sm:gap-2" x-data="{ sidebarOpen: false }">
             @livewireScriptConfig
 
             @include('layouts.navigation')
@@ -92,9 +94,9 @@
             </div>
 
             <!-- Main content -->
-            <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+            <div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-surface-0 sm:rounded-lg">
                 <!-- Mobile top bar -->
-                <div class="flex sm:hidden items-center gap-3 px-4 h-11 border-b border-gold/20 shrink-0">
+                <div class="flex sm:hidden items-center gap-3 px-4 h-12 border-b border-line shrink-0">
                     <button @click="sidebarOpen = true"
                             class="text-ink-muted hover:text-ink p-1 -ml-1 rounded transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -116,7 +118,7 @@
 
                 {{-- Bottom padding on phones clears the tab bar below, so the last thing on a page
                      can always be scrolled into view above it. --}}
-                <main class="flex-1 overflow-y-auto pb-20 sm:pb-0">
+                <main class="flex-1 overflow-y-auto pb-20 sm:pb-0 bg-[linear-gradient(180deg,rgba(200,149,44,0.09)_0,rgba(200,149,44,0.02)_240px,transparent_420px)]">
                     {{-- Replaces the "verify your email" wall that used to stand in front of Home (see
                          the note on the auth route group in routes/web.php). Asks, never blocks.
                          Uses hasVerifiedEmail() itself, so it follows the same rule the wall did and
@@ -126,7 +128,7 @@
                             <div class="border-b border-line-gold bg-gold-subtle px-4 py-2.5">
                                 <div class="max-w-6xl mx-auto flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px]">
                                     <span class="text-ink">
-                                        Confirm your email &mdash; we sent a link to
+                                        Please confirm your email. We sent a link to
                                         <span class="font-medium">{{ auth()->user()->email }}</span>.
                                         <span class="text-ink-muted">You'll need it to reset your password.</span>
                                     </span>

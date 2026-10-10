@@ -18,7 +18,7 @@
     <div class="linear-card border-line-gold p-4 mb-6">
         <p class="text-[13.5px] text-ink">
             <span class="text-gold font-semibold">Tell it where it's wrong.</span>
-            Every step takes a note — open a guide and say what a real player would do instead, and why.
+            You can leave a note on every step. Open a guide and say what a real player would do instead, and why.
         </p>
         <p class="text-[12px] text-ink-muted mt-1.5">
             Those notes are read and used to correct the model these are generated from, so a correction

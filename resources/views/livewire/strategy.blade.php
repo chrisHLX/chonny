@@ -7,7 +7,7 @@
 
     <header class="space-y-2">
         <div class="flex items-center gap-2.5 flex-wrap">
-            <h1 class="font-display italic text-3xl text-ink">{{ $document['title'] ?? 'Strategy' }}</h1>
+            <h1 class="font-display text-3xl text-ink">{{ $document['title'] ?? 'Strategy' }}</h1>
             @if (($document['status'] ?? null) === 'teaser')
                 <span class="badge-amber">Teaser</span>
             @endif
@@ -35,7 +35,7 @@
 
             <div class="space-y-1.5">
                 <div class="flex items-baseline gap-2.5 flex-wrap">
-                    <h2 class="font-display italic text-2xl text-ink">{{ $concept['name'] }}</h2>
+                    <h2 class="font-display text-2xl text-ink">{{ $concept['name'] }}</h2>
                     <span class="text-[11px] text-ink-subtle uppercase tracking-widest">{{ $concept['origin'] }}</span>
                 </div>
                 <p class="text-[13px] text-ink leading-relaxed max-w-2xl">{{ $concept['idea'] }}</p>

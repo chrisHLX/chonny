@@ -18,7 +18,7 @@
 
 @if (($round['moments'] ?? []) === [])
     <p class="text-sm text-ink-subtle">
-        No commitments detected in this round — nobody pressed anything on a real cooldown.
+        Nobody pressed a real cooldown this round.
     </p>
 @else
     <div class="space-y-3">
@@ -101,7 +101,7 @@
                         @if ($control['brokenBy'])
                             {{-- The name is the actionable part: a habit, not an accident. --}}
                             <span class="text-amber-300">
-                                — broken by
+                                &middot; broken by
                                 {{ implode(', ', array_map(fn ($b) => \Illuminate\Support\Str::before($b, '-'), $control['brokenBy'])) }}
                             </span>
                         @endif

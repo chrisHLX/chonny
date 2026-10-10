@@ -379,7 +379,7 @@ class GameCardService
             };
 
             return [
-                'name' => $who['name'] ?? '?', 'color' => $who['color'] ?? '#8A8A9A', 'you' => $who['you'] ?? false,
+                'name' => $who['name'] ?? '?', 'color' => $who['color'] ?? '#B3B3B3', 'you' => $who['you'] ?? false,
                 'spell' => $c['spell'], 'icon' => $this->spellIcon($icons, $c['spell']), 'text' => $text,
             ];
         }, $checks);
@@ -414,7 +414,7 @@ class GameCardService
                 'side' => $p['side'],
                 'healer' => $p['healer'],
                 'you' => $p['logger'],
-                'color' => $colors[$p['classSlug'] ?? ''] ?? '#8A8A9A',
+                'color' => $colors[$p['classSlug'] ?? ''] ?? '#B3B3B3',
                 'icon' => $spec?->icon_name ? $this->fileUrl('spec-icons/'.$spec->icon_name) : null,
                 'lockout' => $lockout[$p['guid']] ?? null,
                 'xp' => match (true) {
@@ -487,13 +487,13 @@ class GameCardService
             'clock' => $this->clock($d['t']),
             'name' => $p['name'] ?? '?',
             'spec' => $p['spec'] ?? '?',
-            'color' => $p['color'] ?? '#8A8A9A',
+            'color' => $p['color'] ?? '#B3B3B3',
             'icon' => $p['icon'] ?? null,
             'ours' => $d['side'] === 'us',
             'killingBlow' => $d['killingBlow'] ? ['spell' => $d['killingBlow']['spell'], 'icon' => $this->spellIcon($icons, $d['killingBlow']['spell'])] : null,
             'shares' => collect($d['shares'])->map(fn ($pct, $name) => [
                 'name' => isset($byName[$name]) ? $byName[$name]['name'] : $this->short($name),
-                'color' => $byName[$name]['color'] ?? '#52525F',
+                'color' => $byName[$name]['color'] ?? '#6A6A6A',
                 'pct' => $pct,
             ])->values()->all(),
             'healer' => $healer,
@@ -524,7 +524,7 @@ class GameCardService
         $go = collect($goes)->first(fn ($g) => $g['side'] !== $d['side'] && abs($g['from'] - $s['from']) < 0.3);
         $links = collect($go['links'] ?? []);
         $icons = $this->icons->for(array_merge(array_column($s['rows'], 'spell'), $links->pluck('spell')->all()));
-        $who = fn ($guid) => ['name' => $byGuid[$guid]['name'] ?? '?', 'color' => $byGuid[$guid]['color'] ?? '#8A8A9A'];
+        $who = fn ($guid) => ['name' => $byGuid[$guid]['name'] ?? '?', 'color' => $byGuid[$guid]['color'] ?? '#B3B3B3'];
         $cell = fn (array $r) => ['spell' => $r['spell'], 'icon' => $this->spellIcon($icons, $r['spell'])] + $who($r['who']);
 
         $rank = fn (array $r) => match (true) {
@@ -573,7 +573,7 @@ class GameCardService
 
                 return [
                     'owner' => $i['owner'],
-                    'color' => $bySpec[$i['owner']]['color'] ?? ($them ? '#8A8A9A' : '#C8952C'),
+                    'color' => $bySpec[$i['owner']]['color'] ?? ($them ? '#B3B3B3' : '#C8952C'),
                     'text' => $i['text'],
                     'icon' => $i['spell'] ? $this->spellIcon($icons, $i['spell']) : null,
                     'count' => $g->count(),

@@ -14,7 +14,7 @@
         <x-mc-icon name="icon-flask" class="w-4 h-4 text-gold shrink-0 mt-0.5"/>
         <p class="text-[12px] text-ink-muted leading-snug">
             <span class="text-gold font-semibold">Early days.</span>
-            Expect rough edges &mdash; and tell us what's missing.
+            Expect rough edges, and tell us what's missing.
         </p>
     </div>
 

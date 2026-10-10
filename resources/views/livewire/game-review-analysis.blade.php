@@ -3,7 +3,7 @@
 
     <header class="space-y-2">
         <a href="{{ route('game-review') }}" class="text-sm text-ink-muted hover:text-gold">&larr; Match Review</a>
-        <h1 class="font-display italic text-3xl sm:text-4xl text-ink">Raw analysis</h1>
+        <h1 class="font-display text-3xl sm:text-4xl text-ink">Raw analysis</h1>
         <p class="text-ink-muted max-w-3xl">
             The unedited output of the review tools, exactly as they printed it: the review table,
             every go as a chain, drain, timing, overcommitment, utilities and the kill read. The

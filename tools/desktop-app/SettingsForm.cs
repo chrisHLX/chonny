@@ -22,6 +22,7 @@ internal sealed class SettingsForm : Form
         _settings = settings;
         Text = "MindCollector settings";
         Icon = Theme.AppIcon();
+        Theme.DarkTitleBar(this);
         BackColor = Theme.Panel;
         ForeColor = Theme.Ink;
         Font = Theme.Ui;

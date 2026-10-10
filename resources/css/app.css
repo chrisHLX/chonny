@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Inter loads from the page head (resources/views/partials/fonts.blade.php), not an @import here:
+   an @import is fetched only after this file arrives, which held up every page's first paint. */
 
 @tailwind base;
 @tailwind components;
@@ -7,39 +8,47 @@
 @layer base {
     [x-cloak] { display: none !important; }
 
-    /* Heading treatment — same family as body text (Inter), set apart with a
-       little extra letter-spacing so titles read as deliberate rather than just
-       "big bold body text". Kept at base specificity so any explicit
-       `tracking-*` utility in a template still overrides it. */
-    .font-display { letter-spacing: -0.01em; }
+    /* Titles: Inter, heavy and tight, as Spotify sets them. Base specificity, so a template's own
+       font-* or tracking-* utility still wins. */
+    .font-display { font-weight: 800; letter-spacing: -0.025em; }
 
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar { width: 12px; height: 12px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #1E1E26; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #C8952C; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); border: 3px solid transparent; background-clip: padding-box; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background-color: rgba(255, 255, 255, 0.32); }
 
     select option {
-        background-color: #18181E;
-        color: #F0F0F2;
+        background-color: #232323;
+        color: #FFFFFF;
     }
 }
 
 @layer components {
-    /* Sidebar */
+    /* Sidebar: Spotify's library rows. The current page is white, with a gold mark. */
     .sidebar-item {
-        @apply flex items-center gap-2.5 px-2.5 py-1.5 rounded-md
-               text-[13px] font-medium text-ink-muted
-               hover:text-ink hover:bg-surface-2
+        @apply relative flex items-center gap-3 px-3 py-2 rounded-md
+               text-[13.5px] font-semibold text-ink-muted
+               hover:text-ink
                transition-colors cursor-pointer select-none;
     }
-    .sidebar-item.active { @apply text-gold bg-gold/10; }
+    .sidebar-item.active { @apply text-ink bg-surface-2; }
+    .sidebar-item.active::before { content: ''; @apply absolute left-0 top-2 bottom-2 w-[3px] rounded-full bg-gold; }
 
-    /* Cards */
+    /* Cards: no border, lifted on hover, as Spotify's shelves. */
     .linear-card {
-        @apply bg-surface-1 border border-line rounded-lg
-               hover:border-line-gold hover:shadow-gold-sm
-               transition-all duration-200;
+        @apply bg-surface-1 border border-transparent rounded-lg
+               hover:bg-surface-2
+               transition-colors duration-200;
     }
+
+    /* A page's opening block: a wash of gold into the page, a small label, a big title. */
+    .page-hero { @apply relative rounded-lg px-6 py-7 sm:px-8 sm:py-9 bg-gradient-to-b from-gold/[.16] via-gold/[.05] to-transparent; }
+    .page-eyebrow { @apply text-[11px] font-bold uppercase tracking-[.14em] text-ink-muted; }
+    .page-title { @apply font-display text-ink text-3xl sm:text-5xl leading-[1.05] mt-2; }
+
+    /* Filter chips, as Spotify's "Playlists / Artists" row. */
+    .chip { @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium bg-white/[.07] text-ink hover:bg-white/[.12] transition-colors; }
+    .chip-on { @apply bg-ink text-black hover:bg-ink; }
 
     /* Form controls */
     .form-input {
@@ -73,33 +82,34 @@
     .badge-red    { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-rose-500/10    text-rose-400    font-medium; }
     .badge-orange { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-orange-500/10  text-orange-400  font-medium; }
 
-    /* Tabs */
-    .tab-btn      { @apply px-3 py-1.5 text-[12px] font-medium rounded-md transition-colors; }
-    .tab-active   { @apply bg-gold/10 text-gold; }
-    .tab-inactive { @apply text-ink-muted hover:text-ink hover:bg-surface-2; }
+    /* Tabs: pills, the chosen one white (Spotify's chips). */
+    .tab-btn      { @apply px-3.5 py-1.5 text-[13px] font-medium rounded-full transition-colors; }
+    .tab-active   { @apply bg-ink text-black; }
+    .tab-inactive { @apply bg-white/[.07] text-ink hover:bg-white/[.12]; }
 
-    /* Buttons */
+    /* Buttons: pills. Primary is solid gold with black text and grows a little on hover. */
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold
-               bg-gold-gradient text-surface-0 rounded-md
-               hover:shadow-gold transition-all duration-200 cursor-pointer;
+        @apply inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-bold
+               bg-gold text-black rounded-full
+               hover:bg-gold-light hover:scale-[1.03] active:scale-100
+               transition duration-150 cursor-pointer;
     }
     .btn-secondary {
-        @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium
-               bg-surface-2 text-violet border border-violet/40
-               hover:bg-violet/10 hover:border-violet rounded-md
-               transition-all duration-200 cursor-pointer;
+        @apply inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-bold
+               text-ink border border-ink-subtle rounded-full
+               hover:border-ink hover:scale-[1.03] active:scale-100
+               transition duration-150 cursor-pointer;
     }
     .btn-ghost {
-        @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium
-               text-ink-muted border border-line rounded-md
-               hover:text-ink hover:border-line-strong
-               transition-colors duration-200 cursor-pointer;
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold
+               text-ink-muted rounded-full
+               hover:text-ink hover:bg-white/[.07]
+               transition-colors duration-150 cursor-pointer;
     }
     .btn-danger {
-        @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium
-               text-red-400 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20
-               rounded-md transition-colors;
+        @apply inline-flex items-center gap-1.5 px-4 py-1.5 text-[12px] font-semibold
+               text-red-300 bg-red-500/10 hover:bg-red-500/20
+               rounded-full transition-colors;
     }
 }
 
@@ -107,13 +117,13 @@
 .ck-editor__editable.ck-content {
     min-height: 400px;
     padding: 1rem;
-    background: #111116 !important;
-    color: #F0F0F2 !important;
-    border-color: #1E1E26 !important;
+    background: #181818 !important;
+    color: #FFFFFF !important;
+    border-color: #282828 !important;
 }
-.ck-editor__editable.ck-content h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #F0F0F2; }
-.ck-editor__editable.ck-content h2 { font-size: 1.1rem;  font-weight: 500; margin-bottom: 0.75rem; color: #F0F0F2; }
-.ck-editor__editable.ck-content p  { margin-bottom: 0.5rem; color: #8A8A9A; }
+.ck-editor__editable.ck-content h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #FFFFFF; }
+.ck-editor__editable.ck-content h2 { font-size: 1.1rem;  font-weight: 500; margin-bottom: 0.75rem; color: #FFFFFF; }
+.ck-editor__editable.ck-content p  { margin-bottom: 0.5rem; color: #B3B3B3; }
 
 /* Drag-to-order lists (quiz ordering type) */
 .ordering-list { list-style: none; padding: 0; }
@@ -123,12 +133,12 @@
     gap: 0.75rem;
     padding: 0.75rem 1rem;
     margin-bottom: 0.375rem;
-    background: #18181E;
-    border: 1px solid #1E1E26;
+    background: #181818;
+    border: 1px solid #282828;
     border-radius: 0.5rem;
     cursor: grab;
     user-select: none;
-    color: #F0F0F2;
+    color: #FFFFFF;
     font-size: 0.8125rem;
 }
 .ordering-item:active { cursor: grabbing; }

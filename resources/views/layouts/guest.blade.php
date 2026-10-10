@@ -13,6 +13,7 @@
         <link rel="shortcut icon" href="/favicon.ico">
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="manifest" href="/site.webmanifest">
+        @include('partials.fonts')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased bg-surface-0 text-ink">

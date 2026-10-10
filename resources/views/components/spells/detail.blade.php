@@ -76,13 +76,13 @@
     <p class="text-[13px] text-ink-muted leading-relaxed">{{ $profile['description']['text'] ?: 'No description available.' }}</p>
 
     @if ($profile['description']['uncertain'] ?? false)
-        <p class="text-[10px] text-ink-subtle italic mt-1.5">Some values above vary by condition or aren't fully known — check in-game.</p>
+        <p class="text-[10px] text-ink-subtle italic mt-1.5">Some values above depend on the situation or aren't fully known. Check them in game.</p>
     @endif
     @if ($profile['formulaModifiers']->isNotEmpty())
         <p class="text-[10px] text-ink-subtle mt-1.5"><span class="font-semibold">Scales with:</span> {{ $profile['formulaModifiers']->pluck('display_name')->implode(', ') }}</p>
     @endif
     @if (!$specId)
-        <p class="text-[10px] text-gold/70 italic mt-1.5">No spec context — showing base values, not talent-modified.</p>
+        <p class="text-[10px] text-gold/70 italic mt-1.5">No spec picked, so these are base values without talents.</p>
     @endif
 
     {{-- Numbers -------------------------------------------------------------------------- --}}
@@ -134,7 +134,7 @@
     @if ($spell->usable_while_cc || $spell->bypasses_active_defense || $spell->cc_immunity_note || $profile->grantsCcImmunity->isNotEmpty() || $profile->grantsSchoolImmunity || $isPhysicalActive)
         <div class="mt-2 pt-2 border-t border-line space-y-1">
             @if ($isPhysicalActive)
-                <p class="text-[10px] text-violet"><span class="font-semibold">Physical ability — not affected by Silence</span></p>
+                <p class="text-[10px] text-violet"><span class="font-semibold">Physical ability, so Silence doesn't stop it</span></p>
             @endif
             @if ($spell->usable_while_cc)
                 <p class="text-[10px] text-violet">
@@ -201,7 +201,7 @@
                          genuine act-through-CC abilities, and nothing in the data separates the
                          two. Saying so is more useful than pretending either way. --}}
                     <p class="text-[10px] text-ink-subtle italic mb-1">
-                        Flagged usable while affected — Blizzard's own attribute, but it also fires on auras that merely persist through the effect, so treat with care.
+                        Blizzard marks this as usable while affected, but that flag also appears on auras that simply carry on through the effect, so take it with a pinch of salt.
                     </p>
                     <div class="flex flex-wrap gap-1">
                         @foreach ($weakCounters->flatten()->sortBy(fn ($r) => $r->counterSpell->display_name) as $row)
@@ -266,7 +266,7 @@
 
             @if ($specId)
                 <p class="text-[10px] text-ink-subtle mb-1.5">
-                    Switched on = active in this build. Flick any of them to see the effect on the numbers above — nothing is saved.
+                    Switched on = active in this build. Flick any of them to see how the numbers above change. Nothing is saved.
                 </p>
             @else
                 {{-- With no spec there is no build for a talent to be on or off in, so the
@@ -293,7 +293,7 @@
                             <button type="button"
                                     wire:click="toggleTalent({{ $row['selectionSpellId'] }}, {{ $row['isActive'] ? 'true' : 'false' }})"
                                     aria-pressed="{{ $row['isActive'] ? 'true' : 'false' }}"
-                                    title="{{ $row['isActive'] ? 'Active — click to see this spell without it' : 'Not taken — click to see what it would do' }}"
+                                    title="{{ $row['isActive'] ? 'Active. Click to see this spell without it.' : 'Not taken. Click to see what it would do.' }}"
                                     class="relative w-7 h-4 rounded-full flex-shrink-0 transition-colors {{ $row['isActive'] ? 'bg-gold' : 'bg-surface-3 border border-line-strong' }}">
                                 <span class="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-surface-0 transition-all {{ $row['isActive'] ? 'left-[14px]' : 'left-[3px]' }}"></span>
                             </button>
@@ -326,7 +326,7 @@
                                  rank on file, and resolveRankAwareMagnitude() assumes the highest
                                  one rather than showing nothing. Say so instead of quietly
                                  presenting a max-rank number as if it were the only number. --}}
-                            <p class="text-[10px] text-ink-subtle italic mt-1">Not taken in this build — switching it on shows its effect at maximum rank.</p>
+                            <p class="text-[10px] text-ink-subtle italic mt-1">Not taken in this build. Switching it on shows its effect at full rank.</p>
                         @endif
                     </div>
                 </div>
@@ -341,7 +341,7 @@
                      something that is not a talent at all (the spec's own identity passive, the
                      spell itself). Switching that gate would put Shadow Priest wording on a Holy
                      Priest. See CLAUDE.md's "Talent toggles" section. --}}
-                <p class="text-[10px] text-ink-subtle italic mt-2">Switches change the numbers, not the description text — Blizzard writes that wording per spec, not per talent choice.</p>
+                <p class="text-[10px] text-ink-subtle italic mt-2">Switches change the numbers but not the description, because Blizzard writes that text per spec, not per talent.</p>
             @endif
         </div>
     @endif

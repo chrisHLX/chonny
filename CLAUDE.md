@@ -706,17 +706,25 @@ it probably doesn't belong.
 
 ### Tokens (`tailwind.config.js`)
 
-Fonts: `font-sans` = Inter (300–800); `font-display` = Playfair Display (italic, 400–900).
+**Spotify's desktop look (2026-10-11), one set of values everywhere:** the site, the desktop pages
+(`resources/views/desktop/partials/styles.blade.php`) and both apps' windows (`tools/desktop-app/Theme.cs`,
+the `$C` table in `MindCollectorLogs.ps1`). Black frame around rounded `surface-0` panels, `surface-1`
+cards with no border that lift on hover, pill buttons and pill tabs (the open tab white), gold for the
+one thing to press. Change a colour in all four places.
+
+Fonts: Inter only, linked from the page head (`partials/fonts.blade.php`), never `@import`ed from CSS.
+`font-display` is Inter at 800 with tight tracking; no italics.
 
 | Token | Value | Use |
 |---|---|---|
-| `surface-0` | `#09090D` | Page background |
-| `surface-1` | `#111116` | Cards, panels |
-| `surface-2` | `#18181E` | Elevated elements |
-| `surface-3` | `#1E1E26` | Modals, overlays |
-| `ink` | `#F0F0F2` | Primary text |
-| `ink-muted` | `#8A8A9A` | Secondary text |
-| `ink-subtle` | `#52525F` | Disabled/placeholder |
+| `frame` | `#000000` | The black around the panels |
+| `surface-0` | `#121212` | Page / panel background |
+| `surface-1` | `#181818` | Cards |
+| `surface-2` | `#232323` | Hover, elevated elements |
+| `surface-3` | `#2A2A2A` | Selected, modals, overlays |
+| `ink` | `#FFFFFF` | Primary text |
+| `ink-muted` | `#B3B3B3` | Secondary text |
+| `ink-subtle` | `#6A6A6A` | Disabled/placeholder |
 | `gold` | `#C8952C` | Brand/CTA primary |
 | `gold-light` | `#E8B84B` | Hover gold |
 | `gold-dark` | `#8B6420` | |
@@ -727,8 +735,8 @@ Fonts: `font-sans` = Inter (300–800); `font-display` = Playfair Display (itali
 | `violet-muted` | `#4A3FA8` | |
 | `violet-subtle` | `#18163A` | Faint violet tint |
 | `accent` | `#C8952C` | Alias for `gold` (compat) |
-| `line` | `#1E1E26` | Default border |
-| `line-strong` | `#2C2C38` | Stronger border |
+| `line` | `#282828` | Default border |
+| `line-strong` | `#3E3E3E` | Stronger border |
 | `line-gold` | `#6B4E1A` | Gold-tinted border |
 
 Gradients: `bg-gold-gradient`, `bg-gold-gradient-v`, `bg-violet-gradient`.
@@ -737,7 +745,8 @@ Class colours: `config/wow_classes.php` (Blizzard's own `RAID_CLASS_COLORS`).
 
 ### Component classes (`resources/css/app.css`)
 
-`.linear-card` · `.sidebar-item(.active)` · `.form-input|select|textarea|checkbox` ·
+`.linear-card` · `.sidebar-item(.active)` · `.page-hero` / `.page-eyebrow` / `.page-title` · `.chip(-on)` ·
+`.form-input|select|textarea|checkbox` ·
 `.page-section(-title|-desc)` · `.badge-green|amber|gold|blue|gray` ·
 `.tab-btn`/`.tab-active`/`.tab-inactive` · `.btn-primary|secondary|ghost|danger` ·
 `.ordering-list`/`.ordering-item` · `.prose-guide` (scoped on purpose — user-written content

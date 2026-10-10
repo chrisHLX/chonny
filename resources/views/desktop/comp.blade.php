@@ -16,28 +16,28 @@
     .two td.col.right { padding-left: 6px; }
     .rows { width: 100%; }
     .rows td { padding: 3px 0; vertical-align: middle; }
-    .rows tr + tr td { border-top: 1px solid #1E1E26; }
-    .rows .v { text-align: right; white-space: nowrap; color: #8A8A9A; padding-left: 10px; }
+    .rows tr + tr td { border-top: 1px solid #282828; }
+    .rows .v { text-align: right; white-space: nowrap; color: #B3B3B3; padding-left: 10px; }
     .big { font-size: 20px; font-weight: 600; }
     tr.game td { cursor: pointer; }
-    tr.game:hover td { background: #1E1E26; }
+    tr.game:hover td { background: #282828; }
     tr.more td { padding: 4px 0 12px 22px; }
     .who td { padding: 2px 14px 2px 0; }
-    .arrow { color: #52525F; width: 14px; }
+    .arrow { color: #6A6A6A; width: 14px; }
     .sub { margin: 2px 0 8px; }
     /* A spell you can click for its tooltip. */
     tr.spell td { cursor: pointer; }
-    tr.spell:hover td { background: #18181E; }
-    .sp { border-bottom: 1px dotted #52525F; }
+    tr.spell:hover td { background: #181818; }
+    .sp { border-bottom: 1px dotted #6A6A6A; }
     tr.tip td { padding: 0 0 6px 0; border-top: 0 !important; }
-    .tipbox { background: #18181E; border: 1px solid #2C2C38; border-radius: 4px; padding: 6px 9px; font-size: 12px; color: #C9C9D2; line-height: 1.45; }
+    .tipbox { background: #181818; border: 1px solid #3E3E3E; border-radius: 4px; padding: 6px 9px; font-size: 12px; color: #C9C9D2; line-height: 1.45; }
     .tipbox .facts { color: #E8B84B; font-size: 11.5px; margin-top: 3px; }
     /* Their usual go, in sentences. */
     .usual { border-color: #6B4E1A; background: #1E150A; margin-bottom: 12px; }
     .usual .line { margin: 3px 0; }
     /* A crowd-control run: numbered steps, each with whom it landed on. */
-    .run { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #1E1E26; }
-    .run .head2 { font-size: 11.5px; color: #8A8A9A; margin-bottom: 2px; }
+    .run { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #282828; }
+    .run .head2 { font-size: 11.5px; color: #B3B3B3; margin-bottom: 2px; }
     .steps td { padding: 3px 0; vertical-align: middle; }
     .steps td.num { width: 20px; color: #E8B84B; font-weight: 600; }
     .steps td.on { text-align: right; white-space: nowrap; padding-left: 10px; }
@@ -156,7 +156,7 @@
             <div class="label">Crowd control on you <span class="aside">the same order seen in 2+ of their goes</span></div>
             @forelse ($g['chains'] as $ch)
                 <div class="run">
-                    <div class="head2">Seen in <b style="color: #F0F0F2">{{ $ch['n'] }} goes</b></div>
+                    <div class="head2">Seen in <b style="color: #FFFFFF">{{ $ch['n'] }} goes</b></div>
                     <table class="steps" style="width: 100%">
                         @foreach ($ch['steps'] as $st)
                             {!! $spellRow($st, '<td class="on"><span class="chip '.($roleChip[$st['on']] ?? 'neutral').'">'.e($st['on']).'</span></td>', 3, '<td class="num">'.$loop->iteration.'</td>') !!}
@@ -217,7 +217,7 @@
 {{-- ============================== by their experience --}}
 @php $x = $c['byExperience']; @endphp
 <div class="section">
-    <div class="label">Less against more experienced teams <span class="aside">their Gladiator seasons between them; experience rather than MMR, which is deflated early in a season and missing in Solo Shuffle</span></div>
+    <div class="label">Less against more experienced teams <span class="aside">counted by their Gladiator seasons, since MMR runs low early in a season and Solo Shuffle doesn't show it</span></div>
     <div class="box">
         @if ($x['state'] === 'split')
             <table class="stats">

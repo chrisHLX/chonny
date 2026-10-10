@@ -65,7 +65,7 @@ test('SpellDetailModal renders without a spec context — shows base values, no 
     Livewire::test(SpellDetailModal::class)
         ->call('show', $fixture['spell']->id, null, null)
         ->assertSee('Kidney Shot')
-        ->assertSee('No spec context')
+        ->assertSee('No spec picked')
         ->assertOk();
 });
 

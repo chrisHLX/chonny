@@ -7,7 +7,7 @@
 
     <header class="pt-6 pb-4">
         <p class="text-[11px] uppercase tracking-[0.18em] text-gold mb-2">MindCollector</p>
-        <h1 class="font-display italic text-3xl sm:text-4xl text-ink">{{ $meta['title'] ?? 'The MindCollector Brain' }}</h1>
+        <h1 class="font-display text-3xl sm:text-4xl text-ink">{{ $meta['title'] ?? 'The MindCollector Brain' }}</h1>
 
         @if (! empty($meta['subtitle']))
             <p class="mt-2 text-ink-muted leading-relaxed">{{ $meta['subtitle'] }}</p>
@@ -25,7 +25,7 @@
 
     @if (empty($sections))
         <div class="linear-card p-5 text-ink-muted text-sm">
-            The document could not be read right now. Nothing has been lost &mdash; it lives in the
+            The document could not be read right now. Nothing is lost. It's kept in the
             repository at <code class="text-gold">data/brain/brain.md</code>.
         </div>
     @else
@@ -80,7 +80,7 @@
                 <section id="{{ $section['id'] }}" class="linear-card p-5 scroll-mt-6" wire:key="brain-{{ $section['id'] }}">
 
                     <div class="flex items-start justify-between gap-4 mb-3">
-                        <h2 class="font-display italic text-xl text-ink leading-snug">{{ $section['heading'] }}</h2>
+                        <h2 class="font-display text-xl text-ink leading-snug">{{ $section['heading'] }}</h2>
 
                         @if ($tier)
                             <span class="{{ $tier['class'] }} shrink-0 mt-1" title="{{ $tier['title'] }}">{{ $tier['label'] }}</span>

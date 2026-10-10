@@ -29,9 +29,9 @@
         <button type="button" wire:click="openTalents({{ $position }}, '{{ $side }}')"
                 class="mt-2 w-full text-left text-[11px] transition-colors {{ $member->talent_build_id ? 'text-gold hover:text-gold-light' : 'text-ink-subtle hover:text-gold' }}">
             @if ($member->talent_build_id)
-                &#9679; Custom talents &mdash; edit
+                &#9679; Custom talents &middot; edit
             @else
-                &#9675; Using the default build &mdash; choose talents
+                &#9675; Using the default build &middot; choose talents
             @endif
         </button>
 

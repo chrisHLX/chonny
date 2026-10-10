@@ -165,7 +165,7 @@
         <details class="linear-card px-6 py-4 group">
             <summary class="cursor-pointer text-[12px] font-semibold text-ink-muted list-none flex items-center gap-2">
                 <span class="text-ink-subtle group-open:rotate-90 transition-transform">▶</span>
-                The sample — {{ $playstyle['sampleSize'] }} matches
+                The sample: {{ $playstyle['sampleSize'] }} matches
             </summary>
             <div class="mt-3 overflow-x-auto">
                 <table class="w-full text-[11.5px]">

@@ -26,7 +26,7 @@
                 <x-ornament.corner position="br" class="bottom-0 right-0 w-10 h-10 text-gold/50"/>
                 <x-mc-icon name="icon-complete" class="w-12 h-12 text-gold mb-4"/>
                 <h2 class="text-[18px] font-semibold text-ink mb-1">Assessment Complete</h2>
-                <p class="text-[20px] font-display italic text-gold mt-2">{{ $profileTitle }}</p>
+                <p class="text-[20px] font-display text-gold mt-2">{{ $profileTitle }}</p>
                 @if ($confidence)
                     <span class="inline-block mt-2 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest rounded-full
                         {{ $confidence === 'high' ? 'bg-gold-subtle text-gold border border-gold/20' : ($confidence === 'low' ? 'bg-surface-3 text-ink-subtle border border-line' : 'bg-surface-3 text-ink-subtle border border-line') }}">

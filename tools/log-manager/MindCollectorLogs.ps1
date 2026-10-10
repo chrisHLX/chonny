@@ -834,8 +834,8 @@ function Show-SelectedClass {
 
 function Get-PlainPage([string]$bodyHtml) {
     return '<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><style>' +
-        'html,body{margin:0;background:#111116;color:#F0F0F2}body{font-family:Segoe UI,Arial;font-size:13px;padding:16px;line-height:1.5}' +
-        '.muted{color:#8A8A9A}table{border-collapse:collapse}td{padding:3px 14px 3px 0}h2{font-size:16px;margin:0 0 10px}' +
+        'html,body{margin:0;background:#121212;color:#FFFFFF}body{font-family:Segoe UI,Arial;font-size:13px;padding:16px;line-height:1.5}' +
+        '.muted{color:#B3B3B3}table{border-collapse:collapse}td{padding:3px 14px 3px 0}h2{font-size:16px;margin:0 0 10px}' +
         '</style></head><body>' + $bodyHtml + '</body></html>'
 }
 
@@ -1228,13 +1228,15 @@ function Set-StartWithWindows([bool]$on) {
 
 # --- Window ----------------------------------------------------------------
 
+# The site's colours, Spotify's greys (2026-10-11): the same as tailwind.config.js, the desktop pages
+# and the downloadable app (tools/desktop-app/Theme.cs).
 $C = @{
-    Bg     = [Drawing.Color]::FromArgb(9, 9, 13)
-    Panel  = [Drawing.Color]::FromArgb(17, 17, 22)
-    Raised = [Drawing.Color]::FromArgb(24, 24, 30)
-    Line   = [Drawing.Color]::FromArgb(44, 44, 56)
-    Ink    = [Drawing.Color]::FromArgb(240, 240, 242)
-    Muted  = [Drawing.Color]::FromArgb(138, 138, 154)
+    Bg     = [Drawing.Color]::FromArgb(0, 0, 0)
+    Panel  = [Drawing.Color]::FromArgb(18, 18, 18)
+    Raised = [Drawing.Color]::FromArgb(35, 35, 35)
+    Line   = [Drawing.Color]::FromArgb(40, 40, 40)
+    Ink    = [Drawing.Color]::FromArgb(255, 255, 255)
+    Muted  = [Drawing.Color]::FromArgb(179, 179, 179)
     Gold   = [Drawing.Color]::FromArgb(200, 149, 44)
 }
 $fontUi = New-Object Drawing.Font('Segoe UI', 9.5)

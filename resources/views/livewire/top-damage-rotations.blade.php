@@ -145,7 +145,7 @@
                     <div class="flex items-baseline gap-2 mb-3 flex-wrap">
                         <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">Peak Burst Example</p>
                         <span class="text-[10px] text-ink-subtle">
-                            {{ number_format($window['damage']) }} damage in {{ $fmtSeconds($window['durationSeconds']) }}{{ $window['killed'] ? ' — killed the target' : '' }}
+                            {{ number_format($window['damage']) }} damage in {{ $fmtSeconds($window['durationSeconds']) }}{{ $window['killed'] ? ', and the target died' : '' }}
                         </span>
                         @if ($rotUpdated)
                             <span class="text-[10px] text-ink-subtle/70 ml-auto" title="When this spec's match analysis was last run">Updated {{ $rotUpdated }}</span>
@@ -171,7 +171,7 @@
                                 <button type="button"
                                         wire:click="$dispatch('show-spell-detail', { spellId: {{ $stepSpell->id }}, classId: {{ $classId }}, specId: {{ $specId }} })"
                                         class="linear-card !p-2.5 w-36 flex-shrink-0 text-left hover:border-gold/40 transition-colors {{ $isAnchor ? '!border-gold/50' : '' }} {{ $isDrDimmed ? 'opacity-45' : '' }}"
-                                        @if ($isDrDimmed) title="Second use of this CC in the same go — diminished (50%)" @endif>
+                                        @if ($isDrDimmed) title="The second use of this crowd control in the same go lasts half as long" @endif>
                                     <div class="flex items-center gap-2">
                                         <x-spell-icon :spell="$stepSpell" size="w-8 h-8"/>
                                         <span class="min-w-0">

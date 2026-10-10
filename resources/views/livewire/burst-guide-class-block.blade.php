@@ -91,7 +91,7 @@
                         Aggregated from {{ number_format($evidence['anchoredWindows'] ?? 0) }} real burst windows
                         across {{ number_format($evidence['matches'] ?? 0) }} matches{{ $kills }}.
                         @if (($window['goLengthBasis'] ?? null) === 'measured')
-                            Window length measured from the data — this spec has no opener whose buff duration bounds it.
+                            The window's length comes from the data, because this spec has no opener buff that sets it.
                         @endif
                         @if (isset($evidence['gcdMeasured']) && !$evidence['gcdMeasured'])
                             Global cooldown could not be measured for this spec; the game's base 1.5s is assumed.
@@ -132,7 +132,7 @@
                             <div>
                                 <div class="flex items-baseline gap-2 mb-1.5">
                                     <span class="text-[10px] uppercase tracking-wider font-bold text-violet">Fill</span>
-                                    <span class="text-[10px] text-ink-subtle">Spend every remaining global on these — the number is how many times per window, on average.</span>
+                                    <span class="text-[10px] text-ink-subtle">Spend every other global on these. The number is how many times per window, on average.</span>
                                 </div>
                                 <div class="overflow-x-auto pb-1">
                                     <ul class="flex items-stretch gap-1.5 w-max">

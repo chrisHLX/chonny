@@ -543,7 +543,7 @@
                                                     <span class="badge-gold !text-[9px]" title="PvP Talent">PvP</span>
                                                 @endif
                                                 @if ($entry['hasPotentialImprovement'] ?? false)
-                                                    <span class="badge-gold !text-[9px]" title="An untaken talent would improve this — click for details">💡 Talent available</span>
+                                                    <span class="badge-gold !text-[9px]" title="A talent you haven't taken would improve this. Click for details.">💡 Talent available</span>
                                                 @endif
                                             </div>
                                             <div class="flex items-center gap-3 mt-2.5 pt-2.5 border-t border-line">
@@ -657,7 +657,7 @@
                                     <x-spell-icon :spell="$ex['spell']" size="w-5 h-5"/>
                                     <span class="text-[11px] text-ink-muted">{{ $ex['spell']->display_name }}</span>
                                     <span class="{{ $drBadge[$ex['dr']] ?? 'badge-gray' }} !text-[9px]">{{ $ex['dr'] }}</span>
-                                    <span class="text-[10px] text-ink-subtle">— {{ $ex['label'] }}</span>
+                                    <span class="text-[10px] text-ink-subtle">&middot; {{ $ex['label'] }}</span>
                                 </button>
                             @endforeach
                         </div>
@@ -702,7 +702,7 @@
                         <p class="text-[11px] uppercase tracking-wide text-gold font-semibold mb-3">Example CC Chains</p>
                         @foreach ([
                             ['label' => 'First Go', 'chain' => $suggestedChain['primary']],
-                            ['label' => 'Next Go (~20s later — categories reset, anything still on cooldown from the First Go is excluded)', 'chain' => $suggestedChain['nextGo']],
+                            ['label' => 'Next go (about 20s later: diminishing returns have reset, and anything still on cooldown from the first go is left out)', 'chain' => $suggestedChain['nextGo']],
                         ] as $goIndex => $go)
                             @php $chain = $go['chain']; @endphp
                             <div class="{{ $goIndex > 0 ? 'mt-4 pt-4 border-t border-line' : '' }}">
@@ -721,9 +721,9 @@
                                                             @if ($note['type'] === 'satisfied')
                                                                 requirement already satisfied by step {{ $note['satisfiedByStepNumber'] }}: {{ $note['satisfiedBySpellName'] }}
                                                             @elseif ($note['type'] === 'setup')
-                                                                requires setup: {{ $note['setupSpell']->display_name }} ({{ $note['setupSpell']->dr_category }}) — {{ $note['setupLabel'] }}, to hold the target in place first
+                                                                requires setup: {{ $note['setupSpell']->display_name }} ({{ $note['setupSpell']->dr_category }}): {{ $note['setupLabel'] }}, to hold the target in place first
                                                             @else
-                                                                ⚠ needs a {{ $note['neededCategory'] }} to land reliably — none available/unused in this comp
+                                                                ⚠ needs a {{ $note['neededCategory'] }} to land reliably, and this comp has none left to use
                                                             @endif
                                                         </p>
                                                     @endif
@@ -738,7 +738,7 @@
                                                         @if ($step['stealthNote'])
                                                             <span class="text-[10px] text-violet">[{{ $step['stealthNote'] }}]</span>
                                                         @endif
-                                                        <span class="text-[11px] text-ink-subtle">— {{ $step['label'] }}</span>
+                                                        <span class="text-[11px] text-ink-subtle">&middot; {{ $step['label'] }}</span>
                                                         <span class="text-[11px] text-ink-muted ml-auto">{{ $step['durationSeconds'] !== null ? rtrim(rtrim(number_format($step['durationSeconds'], 1), '0'), '.').'s' : 'no curated duration' }}</span>
                                                     </div>
                                                     <p class="text-[10px] text-ink-subtle pl-7">{{ $step['realRateLabel'] }}</p>
@@ -748,7 +748,7 @@
                                             <p class="text-[12px] text-ink-muted mt-3 pt-3 border-t border-line">
                                                 Estimated total healer lockdown: <span class="text-ink font-semibold">{{ round($chain['totalDuration'], 1) }}s</span>
                                                 @if ($chain['missingDuration'])
-                                                    <span class="text-ink-subtle">(at least one step has no curated duration — real total is somewhat higher)</span>
+                                                    <span class="text-ink-subtle">(at least one step has no confirmed duration, so the real total is a bit higher)</span>
                                                 @endif
                                             </p>
 
@@ -760,9 +760,9 @@
                                                         @php $ktNote = $kt['requirementNote']; @endphp
                                                         <p class="text-[11px] text-ink-subtle italic mb-1.5">
                                                             @if ($ktNote['type'] === 'setup')
-                                                                requires setup: {{ $ktNote['setupSpell']->display_name }} ({{ $ktNote['setupSpell']->dr_category }}) — {{ $ktNote['setupLabel'] }}, to hold the target in place first
+                                                                requires setup: {{ $ktNote['setupSpell']->display_name }} ({{ $ktNote['setupSpell']->dr_category }}): {{ $ktNote['setupLabel'] }}, to hold the target in place first
                                                             @else
-                                                                ⚠ needs a {{ $ktNote['neededCategory'] }} to land reliably — none available/unused in this comp
+                                                                ⚠ needs a {{ $ktNote['neededCategory'] }} to land reliably, and this comp has none left to use
                                                             @endif
                                                         </p>
                                                     @endif
@@ -770,7 +770,7 @@
                                                         <x-spell-icon :spell="$kt['spell']" size="w-6 h-6"/>
                                                         <span class="text-[13px] text-ink font-medium">{{ $kt['spell']->display_name }}</span>
                                                         <span class="{{ $drBadge[$kt['spell']->dr_category] ?? 'badge-gray' }}">{{ $kt['spell']->dr_category }}</span>
-                                                        <span class="text-[11px] text-ink-subtle">— {{ $kt['label'] }}</span>
+                                                        <span class="text-[11px] text-ink-subtle">&middot; {{ $kt['label'] }}</span>
                                                     </div>
                                                     <p class="text-[10px] text-ink-subtle pl-8">{{ $kt['realRateLabel'] }}</p>
                                                 @else
@@ -813,7 +813,7 @@
                                                                         @if ($left['stealthNote'])
                                                                             <span class="text-[10px] text-violet">[{{ $left['stealthNote'] }}]</span>
                                                                         @endif
-                                                                        <span class="text-[11px] text-ink-subtle">— {{ $left['label'] }}</span>
+                                                                        <span class="text-[11px] text-ink-subtle">&middot; {{ $left['label'] }}</span>
                                                                     </div>
                                                                 @endforeach
                                                             </div>
@@ -930,7 +930,7 @@
                                             <span class="text-[10px] text-ink-subtle font-mono">Dur {{ $flagDurationLabel }}</span>
                                         @endif
                                         @if ($ownerMember && $ownerMember['spec'])
-                                            <span class="text-[10px] text-ink-subtle">— {{ $ownerMember['spec']->name }}</span>
+                                            <span class="text-[10px] text-ink-subtle">&middot; {{ $ownerMember['spec']->name }}</span>
                                         @endif
                                     </button>
                                 @endforeach
@@ -1030,7 +1030,7 @@
                     @endphp
                     <div class="linear-card p-4">
                         @if (!$member['spec'])
-                            <p class="text-[11px] uppercase tracking-wide text-ink-subtle font-semibold">{{ $member['label'] }} — no spec selected</p>
+                            <p class="text-[11px] uppercase tracking-wide text-ink-subtle font-semibold">{{ $member['label'] }}: no spec picked</p>
                         @else
                             <div class="flex items-baseline justify-between gap-3 mb-3">
                                 <p class="text-[11px] uppercase tracking-wide font-semibold" style="{{ $memberColor ? 'color: '.$memberColor : '' }}">
@@ -1058,7 +1058,7 @@
                                         <div class="flex items-baseline gap-2 mb-2.5 flex-wrap">
                                             <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">Peak Burst Example</p>
                                             <span class="text-[10px] text-ink-subtle">
-                                                {{ number_format($topDps['damage']) }} damage in {{ $fmtSeconds($topDps['durationSeconds']) }}{{ $topDps['killed'] ? ' — killed the target' : '' }}
+                                                {{ number_format($topDps['damage']) }} damage in {{ $fmtSeconds($topDps['durationSeconds']) }}{{ $topDps['killed'] ? ', and the target died' : '' }}
                                             </span>
                                             @if ($rotUpdated)
                                                 <span class="text-[10px] text-ink-subtle/70 ml-auto" title="When this spec's match analysis was last run">Updated {{ $rotUpdated }}</span>
@@ -1092,7 +1092,7 @@
                                                     <button type="button"
                                                             wire:click="{!! $openSpell($member, $stepSpell->id) !!}"
                                                             class="linear-card !p-2.5 w-36 flex-shrink-0 text-left hover:border-gold/40 transition-colors {{ $isAnchor ? '!border-gold/50' : '' }} {{ $isDrDimmed ? 'opacity-45' : '' }}"
-                                                            @if ($isDrDimmed) title="Second use of this CC in the same go — diminished (50%)" @endif>
+                                                            @if ($isDrDimmed) title="The second use of this crowd control in the same go lasts half as long" @endif>
                                                         <div class="flex items-center gap-2">
                                                             <x-spell-icon :spell="$stepSpell" size="w-8 h-8"/>
                                                             <span class="min-w-0">
@@ -1189,7 +1189,7 @@
                                 No plan yet for <span class="text-gold">{{ $this->compLabel() }}</span>.
                             </p>
                             <p class="text-[12.5px] text-ink-subtle mt-0.5">
-                                Write the order you press it all in &mdash; opener, kill window, answers.
+                                Write down the order you press everything in: the opener, the kill window and your answers.
                                 {{-- Guests only, and kept deliberately short: this one clause is what
                                      makes clicking feel safe rather than like hitting a signup wall. --}}
                                 @guest<span class="text-ink-subtle/80">No account needed to try it.</span>@endguest

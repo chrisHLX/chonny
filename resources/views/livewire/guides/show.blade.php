@@ -347,9 +347,9 @@
     <p class="text-[11.5px] text-ink-subtle mt-8 pt-6 border-t border-line leading-relaxed max-w-prose">
         @if ($guide->isMachineAuthored())
             Drafted by {{ $guide->authored_by_model }} from MindCollector's game data and real match
-            windows &mdash; not by a player, and not verified by one. The mechanics are derived:
+            windows. No player wrote it or has checked it. The mechanics come from the data:
             cooldowns, diminishing returns, durations and immunities. <span class="text-ink">The plan
-            itself is a guess.</span> Add a note on any step you think is wrong, and say why &mdash;
+            itself is a guess.</span> Add a note on any step you think is wrong and say why:
             those notes are read and used to correct the model behind it.
         @else
             Written by a player, not derived from match data. Cooldowns, diminishing returns and durations
@@ -412,7 +412,7 @@
                         {{ $liked ? 'Liked' : 'Like this guide' }}
                     </button>
                     <p class="text-[11px] text-ink-subtle mt-1.5">
-                        {{ $liked ? 'Click again to take it back.' : 'One click — it helps other people find it.' }}
+                        {{ $liked ? 'Click again to take it back.' : 'One click. It helps other people find it.' }}
                     </p>
                 @else
                     <p class="text-[11.5px] text-ink-subtle mt-3">You cannot like your own guide.</p>

@@ -263,5 +263,5 @@ test('with no spec context no switch is offered at all', function () {
     $component = Livewire::test(SpellDetailModal::class)->call('show', $target->id);
 
     expect(substr_count($component->html(), 'toggleTalent('))->toBe(0);
-    $component->assertSee('No spec context');
+    $component->assertSee('No spec picked');
 });

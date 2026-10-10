@@ -27,12 +27,11 @@
 
     <header class="space-y-2">
         <a href="{{ route('coach') }}" class="inline-block text-sm text-gold hover:text-gold-light">&larr; Your games</a>
-        <h1 class="font-display italic text-3xl sm:text-4xl text-ink">Same-spec review</h1>
+        <h1 class="font-display text-3xl sm:text-4xl text-ink">Same-spec review</h1>
         <p class="text-ink-muted max-w-3xl">
-            A Solo Shuffle lobby read back from its own combat log — who won each round, what every player
-            actually put out, and where two players of the same spec differed. The same-spec
-            comparison is the one that means anything: identical kit, so what is left is build,
-            gear and play. Upload games on <a href="{{ route('coach') }}" class="text-gold hover:underline">Your games</a>.
+            One Solo Shuffle lobby, read from its combat log: who won each round, what each player did,
+            and where two players of the same spec differed. Two players of one spec have the same
+            buttons, so the differences come down to build, gear and play. Upload games on <a href="{{ route('coach') }}" class="text-gold hover:underline">Your games</a>.
         </p>
         @can('admin')
             <a href="{{ route('game-review.analysis') }}" class="inline-block text-sm text-ink-muted hover:text-gold">Raw analysis output &rarr;</a>
@@ -220,7 +219,7 @@
                 <div>
                     <h2 class="page-section-title">{{ $mirror['specLabel'] }} mirror</h2>
                     <p class="page-section-desc">
-                        {{ $nameA }} against {{ $nameB }} —
+                        {{ $nameA }} against {{ $nameB }}:
                         opposed in {{ $mirror['roundsOpposed'] }} round{{ $mirror['roundsOpposed'] === 1 ? '' : 's' }}@if ($mirror['roundsTogether'] > 0), on the same team in {{ $mirror['roundsTogether'] }}@endif.
                         Same spec, so the kit is identical.
                     </p>
@@ -305,7 +304,7 @@
                                 @endforeach
                             </dl>
                             <p class="text-xs text-ink-subtle mt-2">
-                                Median, not mean — a shirt or tabard sits at item level 1.
+                                This is the median item level. A shirt or tabard counts as item level 1, so the average would read low.
                             </p>
                         @endif
                     </div>
@@ -314,8 +313,7 @@
                         <h3 class="text-ink font-medium mb-3 text-sm">Stats <span class="text-ink-subtle font-normal">(ratings)</span></h3>
                         @if ($mirror['statDiff']['unavailable'] ?? true)
                             <p class="text-ink-subtle text-sm">
-                                The stat block did not verify against this client build, so it is not shown
-                                rather than shown wrong.
+                                We couldn't read the stats reliably from this game version, so they're left out.
                             </p>
                         @else
                             <table class="w-full text-sm">

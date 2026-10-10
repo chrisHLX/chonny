@@ -31,7 +31,7 @@
 
                 @if ($m['unknown_duration_steps'] > 0 && $m['control_seconds'] !== null)
                     <p class="text-[11px] text-amber-400">
-                        {{ $m['unknown_duration_steps'] }} {{ Str::plural('step', $m['unknown_duration_steps']) }} not counted &mdash; no verified duration
+                        {{ $m['unknown_duration_steps'] }} {{ Str::plural('step', $m['unknown_duration_steps']) }} not counted (no confirmed duration)
                     </p>
                 @endif
             </div>

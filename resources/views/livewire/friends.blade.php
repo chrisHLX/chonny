@@ -23,8 +23,8 @@
         <div class="flex items-center justify-between gap-3 flex-wrap mb-3" x-data="{ copied: false }">
             <p class="text-[13px] text-ink-muted">
                 Your handle is
-                <span class="font-mono text-gold">&#64;{{ auth()->user()->handle() }}</span>
-                &mdash; send it to a friend so they can add you.
+                <span class="font-mono text-gold">&#64;{{ auth()->user()->handle() }}</span>.
+                Send it to a friend so they can add you.
                 <a href="{{ route('profile.edit') }}#username" class="text-ink-subtle hover:text-gold underline">Change</a>
             </p>
             <button type="button" class="btn-ghost text-[12px]"

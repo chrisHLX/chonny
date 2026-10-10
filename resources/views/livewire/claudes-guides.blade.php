@@ -24,7 +24,7 @@
             <p class="text-[12.5px] text-ink-muted mt-1.5 max-w-2xl">{{ $guide['subtitle'] ?? '' }}</p>
         @else
             <p class="text-[12.5px] text-ink-muted mt-1.5 max-w-2xl">
-                Experimental, AI-synthesized PvP reads — real game data, Claude's own reasoning on top of it,
+                Experimental PvP reads written by Claude from real game data, and
                 clearly labelled as such. Pick a class/spec below to see one.
             </p>
         @endif

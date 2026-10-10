@@ -48,7 +48,7 @@
                                     @endphp
                                     <div class="flex items-center flex-wrap gap-1.5 {{ $weak ? 'opacity-60' : '' }}">
                                         <span class="text-[9px] text-ink-subtle uppercase tracking-wide"
-                                              @if ($weak) title="Blizzard's 'Allow While Stunned' attribute also fires on auras that merely persist through the effect — treat with care." @endif>
+                                              @if ($weak) title="Blizzard's 'Allow While Stunned' attribute also appears on auras that simply carry on through the effect, so take it with a pinch of salt." @endif>
                                             {{ $entries->first()->label() }} ({{ $entries->count() }}){{ $weak ? ' ?' : '' }}:
                                         </span>
                                         @foreach ($shown as $counter)

@@ -2,15 +2,17 @@
      Layout in its own <style>, not new Tailwind classes, so it never waits on an asset build. --}}
 <x-app-layout>
 <style>
-    .coach { display: grid; grid-template-columns: 320px 1fr; gap: 16px; align-items: start; }
-    .coach-list { max-height: calc(100vh - 230px); overflow-y: auto; }
-    .coach-frame { width: 100%; height: calc(100vh - 190px); min-height: 520px; border: 1px solid #1E1E26; border-radius: 8px; background: #111116; }
-    .coach-item { display: block; width: 100%; text-align: left; padding: 7px 10px; border-radius: 6px; font-size: 13px; color: #F0F0F2; }
-    .coach-item:hover { background: #18181E; }
-    .coach-item.on { background: #1E150A; box-shadow: inset 2px 0 0 #C8952C; }
-    .coach-item .sub { display: block; font-size: 11.5px; color: #8A8A9A; margin-top: 1px; }
-    .coach-tab { padding: 6px 12px; border-radius: 6px; font-size: 13px; color: #8A8A9A; border: 1px solid transparent; }
-    .coach-tab.on { color: #E8B84B; border-color: #6B4E1A; background: #1E150A; }
+    /* Spotify's library and player (2026-10-11): rows on the left, the page on the right. */
+    .coach { display: grid; grid-template-columns: 340px 1fr; gap: 8px; align-items: start; }
+    .coach-list { max-height: calc(100vh - 250px); overflow-y: auto; padding: 8px; border-radius: 8px; background: #181818; }
+    .coach-frame { width: 100%; height: calc(100vh - 210px); min-height: 520px; border: 0; border-radius: 8px; background: #121212; }
+    .coach-item { display: block; width: 100%; text-align: left; padding: 8px 10px; border-radius: 6px; font-size: 14px; font-weight: 600; color: #FFFFFF; }
+    .coach-item:hover { background: #232323; }
+    .coach-item.on { background: #2A2A2A; box-shadow: inset 3px 0 0 #C8952C; }
+    .coach-item .sub { display: block; font-size: 12.5px; font-weight: 400; color: #B3B3B3; margin-top: 2px; }
+    .coach-tab { padding: 6px 14px; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #FFFFFF; background: rgba(255,255,255,.07); }
+    .coach-tab:hover { background: rgba(255,255,255,.12); }
+    .coach-tab.on { color: #000000; background: #FFFFFF; }
     .won { color: #4ade80; } .lost { color: #f87171; }
     @media (max-width: 900px) {
         .coach { grid-template-columns: 1fr; }
@@ -25,14 +27,15 @@
     $startTab = $newKey || ! $built ? 'upload' : 'games';
 @endphp
 
-<div class="min-h-full py-6 px-4 lg:px-8">
+<div class="min-h-full py-4 px-4 lg:px-6">
     <div class="mx-auto space-y-4" style="max-width: 1500px" x-data="{ tab: @js($startTab), file: @js($games[0]['file'] ?? null) }">
-        <div>
-            <h1 class="font-display text-[20px] font-bold text-ink">Your games</h1>
-            <p class="text-[13px] text-ink-muted mt-0.5">Each of your games, what to work on, every comp you have met, the strongest player of each spec you have played against, and same-spec reviews of your Solo Shuffles. Only you can see them.</p>
+        <div class="page-hero !py-6">
+            <p class="page-eyebrow">Only you can see this page</p>
+            <h1 class="page-title">Your games</h1>
+            <p class="text-[14px] text-ink-muted mt-3 max-w-3xl">Every game you've uploaded, what to work on next, the comps you've played against and the best player of each spec you've met.</p>
         </div>
 
-        <div class="flex flex-wrap gap-1">
+        <div class="flex flex-wrap gap-2">
             @foreach ($pageTabs + ['mirror' => 'Same spec', 'upload' => 'Upload'] as $key => $label)
                 <button type="button" class="coach-tab" :class="tab === '{{ $key }}' && 'on'" @click="tab = '{{ $key }}'">{{ $label }}</button>
             @endforeach
@@ -41,11 +44,11 @@
         {{-- The app's pages: a list on the left, the page in a frame on the right. --}}
         <div x-show="['games', 'improve', 'comps', 'shuffle', 'classes'].includes(tab)" x-cloak>
             @if (! $built)
-                <div class="linear-card p-5">
-                    <p class="text-[14px] text-ink font-semibold">No games here yet</p>
-                    <p class="text-[13px] text-ink-muted mt-1">
-                        Upload your combat log on the <button type="button" class="text-gold hover:underline" @click="tab = 'upload'">Upload</button> tab,
-                        or let the desktop app send your games. Each game, what to work on and your comps appear here.
+                <div class="linear-card p-6">
+                    <p class="text-[16px] text-ink font-bold">No games here yet</p>
+                    <p class="text-[14px] text-ink-muted mt-1">
+                        Upload a combat log on the <button type="button" class="text-gold hover:underline" @click="tab = 'upload'">Upload</button> tab,
+                        or let the MindCollector app send your games as you play.
                     </p>
                 </div>
             @else
@@ -104,7 +107,7 @@
         {{-- Same spec: Game Review's lobby reviews (Solo Shuffle, you against the other player of
              your spec), each on its own page. --}}
         <div x-show="tab === 'mirror'" x-cloak class="linear-card p-4">
-            <p class="text-[13px] text-ink-muted mb-3">Your Solo Shuffle lobbies read round by round: every player's output, and where you and the other player of your spec differed in talents, gear and stats.</p>
+            <p class="text-[13px] text-ink-muted mb-3">Your Solo Shuffle lobbies, round by round: what every player did, and how you compared with the other player of your spec on talents, gear and stats.</p>
             @forelse ($mirrors as $m)
                 <a href="{{ route('game-review', ['id' => $m['id']]) }}" wire:navigate class="coach-item">
                     {{ $m['playedAt'] ? \Illuminate\Support\Carbon::parse($m['playedAt'])->format('D j M, H:i') : '' }}
@@ -112,7 +115,7 @@
                     <span class="sub">{{ $m['you'] }}{{ $m['youSpec'] ? ' · '.$m['youSpec'] : '' }} &middot; {{ str_replace('Rated ', '', $m['bracket'] ?? '') }}</span>
                 </a>
             @empty
-                <p class="text-[13px] text-ink-subtle">No Solo Shuffle lobbies yet. They appear here once you upload a log with one.</p>
+                <p class="text-[13px] text-ink-subtle">No Solo Shuffle lobbies yet. They'll show up once you upload a log with one in it.</p>
             @endforelse
         </div>
 
@@ -122,20 +125,20 @@
 
             @if ($newKey)
                 <div class="linear-card p-4 border-gold-muted">
-                    <p class="text-[13px] text-ink font-semibold">Your desktop app key</p>
-                    <p class="text-[12px] text-ink-muted mt-1">Paste it into MindCollector Logs, Settings, "Website key". It is shown this once; making a new one stops the old one working.</p>
+                    <p class="text-[14px] text-ink font-bold">Your app key</p>
+                    <p class="text-[13px] text-ink-muted mt-1">Paste it into the MindCollector app under Settings. We only show it once, and making a new key stops this one working.</p>
                     <p class="mt-2 font-mono text-[13px] text-gold-light select-all break-all">{{ $newKey }}</p>
                 </div>
             @endif
 
             <div class="linear-card p-4 flex flex-col sm:flex-row sm:items-center gap-3">
                 <div class="flex-1">
-                    <p class="text-[13px] text-ink font-semibold">Or let the desktop app send them</p>
-                    <p class="text-[12px] text-ink-muted">
+                    <p class="text-[14px] text-ink font-bold">Or let the app send them</p>
+                    <p class="text-[13px] text-ink-muted">
                         @if ($hasKey)
-                            You made a key {{ \Illuminate\Support\Carbon::parse($keyMadeAt)->diffForHumans() }}. A new one replaces it.
+                            You made a key {{ \Illuminate\Support\Carbon::parse($keyMadeAt)->diffForHumans() }}. Making a new one replaces it.
                         @else
-                            MindCollector Logs sends each game after you play, once it has your key.
+                            Once it has your key, the MindCollector app sends each game when it ends.
                         @endif
                     </p>
                 </div>

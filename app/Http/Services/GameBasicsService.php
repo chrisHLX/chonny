@@ -177,7 +177,7 @@ class GameBasicsService
             'label' => 'Answers your team spent per go of theirs',
             'value' => number_format($perGo, 1),
             'tone' => 'neutral',
-            'text' => 'Not graded: stronger teams spend more because stronger goes demand it, and within a rating band the sides spending more per go won less. Spend one answer a go when they go often, and keep the long ones for the go that comes with their big cooldowns; the Matchup Lab shows the plan for a matchup.',
+            'text' => 'This one isn\'t graded. Better teams spend more because their opponents hit harder, and at the same rating the sides that spent more per go won less. When they go often, spend one answer per go and keep the long ones for the go that comes with their big cooldowns. The Matchup Lab has a plan for each matchup.',
         ];
 
         return ['title' => 'Your answers to their goes', 'rows' => $rows];
@@ -241,7 +241,7 @@ class GameBasicsService
                 'label' => 'Light goes of theirs that drew two or more answers',
                 'value' => "{$over} of {$light->count()}",
                 'tone' => $over === 0 ? 'good' : 'neutral',
-                'text' => "A light go: one player's cooldowns, your healer free. Across every go like it, the side that pressed nothing won {$holdWon}% of rounds, against {$spendWon}% when two or more answers went out. A go that drew two may have hit harder than it looked, so this is a question to ask of the replay, not a fault.",
+                'text' => "A light go: one player's cooldowns, your healer free. Across every go like it, the side that pressed nothing won {$holdWon}% of rounds, against {$spendWon}% when two or more answers went out. A go that drew two may have hit harder than it looked, so check the replay before reading much into it.",
             ];
         }
 

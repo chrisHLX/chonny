@@ -2,7 +2,7 @@
     <header class="mb-5">
         <h2 class="page-section-title">Handle</h2>
         <p class="page-section-desc">
-            How other players see you and add you as a friend. It's also in your shared guide links &mdash;
+            How other players see you and add you as a friend. It's also in your shared guide links, and
             links you've already shared keep working after a change.
         </p>
     </header>

@@ -94,7 +94,7 @@
                             @endforeach
                         </ul>
                     @else
-                        <p class="text-[13px] text-ink-muted italic">No clear strengths yet — keep practicing.</p>
+                        <p class="text-[13px] text-ink-muted italic">No clear strengths yet. Keep practising.</p>
                     @endif
                 </div>
 
@@ -119,7 +119,7 @@
                             @endforeach
                         </ul>
                     @else
-                        <p class="text-[13px] text-ink-muted italic">No weak areas detected — great work.</p>
+                        <p class="text-[13px] text-ink-muted italic">No weak areas found. Nice work.</p>
                     @endif
                 </div>
             </div>
@@ -138,7 +138,7 @@
                     </p>
                     <a href="{{ route('register') }}"
                        class="inline-flex items-center justify-center gap-2 w-full py-2.5 text-[13px] font-semibold text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
-                        Sign up — it's free
+                        Sign up for free
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>
@@ -344,7 +344,7 @@
                                     @foreach ($question->answer['pairs']['keys'] as $key)
                                         <li>
                                             <select wire:model="answer.{{ $key }}" class="form-select">
-                                                <option value="">— Select —</option>
+                                                <option value="">Select one</option>
                                                 @foreach ($shuffledOptions[$question->id]['values'] ?? $question->answer['pairs']['values'] as $value)
                                                     <option value="{{ $value }}">{{ $value }}</option>
                                                 @endforeach
@@ -417,7 +417,7 @@
                     <svg class="w-4 h-4 shrink-0" fill="{{ $isFlagged ? 'currentColor' : 'none' }}" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v18l7-5 7 5V3a1 1 0 00-1-1H6a1 1 0 00-1 1z"/>
                     </svg>
-                    {{ $isFlagged ? 'Flagged — saved to your Library' : 'Flag this question to remember it later' }}
+                    {{ $isFlagged ? 'Flagged and saved to your Library' : 'Flag this question to remember it later' }}
                 </button>
             @endunless
         </div>

@@ -28,7 +28,7 @@
         <p class="text-[11.5px] text-ink-subtle">
             Written on patch {{ $health['authored_patch'] }} &middot; you're on {{ $health['current_patch'] }}.
             Every ability here still resolves, and its cooldowns and durations are read live from the
-            current patch &mdash; but the plan itself hasn't been reviewed since.
+            current patch, but nobody has reviewed the plan itself since.
         </p>
     </div>
 @endif

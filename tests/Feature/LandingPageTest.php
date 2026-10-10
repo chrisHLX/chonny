@@ -56,7 +56,7 @@ test('a visitor gets the front page at the site root, not a redirect to the comp
 
     $this->get('/')
         ->assertOk()
-        ->assertSee('Plan your arena games')
+        ->assertSee('Plan your next arena game')
         ->assertSee('Build a 3v3 comp')
         ->assertSee('RMD into Jungle');
 

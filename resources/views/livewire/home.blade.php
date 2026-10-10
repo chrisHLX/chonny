@@ -126,7 +126,7 @@
                             <p class="text-[12.5px] text-ink-subtle mt-1">
                                 <a href="{{ route('friends.index') }}" wire:navigate class="text-gold hover:text-gold-light">Add the players you queue with</a>
                                 or <a href="{{ route('guilds.index') }}" wire:navigate class="text-gold hover:text-gold-light">start a guild</a>
-                                &mdash; their guides show up here.
+                                and their guides will show up here.
                             </p>
                         @else
                             <p class="text-[13.5px] text-ink-muted">No guides published yet. Yours could be the first.</p>
@@ -202,7 +202,7 @@
                             @endif
                         </a>
                     @empty
-                        <p class="text-[12.5px] text-ink-subtle">Linked &mdash; no characters found yet.</p>
+                        <p class="text-[12.5px] text-ink-subtle">Linked. We haven't found any characters yet.</p>
                     @endforelse
                 @elseif ($this->battlenetAvailable)
                     <p class="text-[12.5px] text-ink-muted mb-2">Bring in your characters, ratings and talents, and sign guides with the one you play.</p>

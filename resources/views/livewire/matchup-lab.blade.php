@@ -43,7 +43,7 @@
      }">
 
     <header>
-        <h1 class="font-display italic text-3xl text-ink">Matchup Lab</h1>
+        <h1 class="font-display text-3xl text-ink">Matchup Lab</h1>
         <p class="text-[13px] text-ink-muted mt-1">Pick two teams. See who runs out of defensives first, and when.</p>
     </header>
 
@@ -148,7 +148,7 @@
         {{-- ---------- The answer ---------- --}}
         <div class="linear-card p-4 space-y-3"
              @if ($favoured) style="border-color: {{ $teamColours[$favoured] }}66" @endif>
-            <h2 class="font-display italic text-2xl text-ink">{{ $verdict['headline'] }}</h2>
+            <h2 class="font-display text-2xl text-ink">{{ $verdict['headline'] }}</h2>
             <p class="text-[12px] text-ink-muted leading-relaxed max-w-3xl">{{ $verdict['detail'] }}</p>
 
             @php
@@ -426,8 +426,8 @@
         </div>
         <p class="text-[11px] text-ink-muted pt-2.5 mt-2.5 border-t border-line">
             Think a reading here is wrong? Argue with
-            <a href="{{ route('brain') }}" wire:navigate class="text-gold hover:text-gold-light underline decoration-gold/30">the model behind it</a>
-            — a correction there changes every guide downstream.
+            <a href="{{ route('brain') }}" wire:navigate class="text-gold hover:text-gold-light underline decoration-gold/30">the model behind it</a>.
+            A correction there changes every guide built on it.
         </p>
     </x-fold>
 

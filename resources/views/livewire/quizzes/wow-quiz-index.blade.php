@@ -138,7 +138,7 @@
             <div class="mt-10">
                 <h2 class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold">Drills</h2>
                 <p class="text-[13px] text-ink-muted mt-1 mb-3">
-                    One idea at a time, as long as you like. Nothing here is written down anywhere — every question is
+                    One idea at a time, as long as you like. None of these are written in advance. Every question is
                     built from the spell data the moment you start, so the answers are whatever is true this patch.
                 </p>
 

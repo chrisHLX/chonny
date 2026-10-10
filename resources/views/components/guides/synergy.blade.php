@@ -26,7 +26,7 @@
 @if (! $subject)
     <p class="text-[13px] text-ink-subtle">
         {{ $editable
-            ? 'Add the ability this section is about — the talents that change it come next.'
+            ? 'Add the ability this section is about. The talents that change it come next.'
             : 'This section has no ability yet.' }}
     </p>
 @else
@@ -84,7 +84,7 @@
 
                         @if ($editable)
                             <textarea rows="2" maxlength="280"
-                                      placeholder="Why this matters — when you use it, what it sets up."
+                                      placeholder="Why it matters: when you use it and what it sets up."
                                       class="form-textarea w-full text-[12.5px] mt-1.5"
                                       x-on:change="$wire.setNote({{ $mod['block']->id }}, $event.target.value)">{{ $note }}</textarea>
                         @elseif (filled($note))
@@ -116,7 +116,7 @@
             @else
                 <p class="text-[11px] uppercase tracking-[0.13em] text-ink font-semibold mb-1.5">
                     What changes it
-                    <span class="normal-case tracking-normal font-normal text-ink-subtle">— from our own spell data, pick what the point is about</span>
+                    <span class="normal-case tracking-normal font-normal text-ink-subtle">from our spell data: pick what the point is about</span>
                 </p>
                 <div class="flex flex-wrap gap-1.5 max-h-56 overflow-y-auto">
                     @foreach ($available as $candidate)

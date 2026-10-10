@@ -5,8 +5,10 @@ using Microsoft.Web.WebView2.WinForms;
 namespace MindCollector.Desktop;
 
 /// <summary>
-/// The window: a list of the player's games (or Improve, Comps, Classes pages) on the left, the page
-/// on the right, and a tray icon that keeps the app watching the log when the window is closed.
+/// The window, laid out as Spotify's desktop app (2026-10-11): the navigation and the library (the
+/// player's games, or Improve, Comps, Classes pages) in rounded panels on the left, the page on the
+/// right, and a bar along the bottom with the status and the Sync button. A tray icon keeps the app
+/// watching the log when the window is closed.
 ///
 /// The pages are the website's own (BuildCoachPages), fetched with the player's key and shown in
 /// WebView2, Edge's engine: it draws off the window's thread, so a heavy page never freezes the app
@@ -16,12 +18,13 @@ internal sealed class MainForm : Form
 {
     private readonly AppSettings _settings = AppSettings.Load();
     private readonly Syncer _syncer;
-    private readonly ListView _list = new();
+    private readonly LibraryList _list = new();
+    private readonly Label _libTitle = new() { Dock = DockStyle.Top, Height = 44, Font = Theme.Heading, ForeColor = Theme.Ink, BackColor = Theme.Panel, TextAlign = ContentAlignment.MiddleLeft, Padding = new Padding(10, 0, 0, 0) };
     private readonly WebView2 _view = new();
     private readonly Label _status = new() { AutoSize = true, ForeColor = Theme.Muted };
     private readonly NotifyIcon _tray = new();
     private readonly System.Windows.Forms.Timer _timer = new() { Interval = 10_000 };
-    private readonly Dictionary<string, Button> _tabs = new();
+    private readonly Dictionary<string, NavItem> _tabs = new();
     private readonly List<string> _activity = [];
     private readonly string _activityFile = Path.Combine(AppSettings.Dir, "activity.log");
     private readonly bool _startHidden;
@@ -42,9 +45,10 @@ internal sealed class MainForm : Form
         Size = new Size(1400, 880);
         MinimumSize = new Size(900, 560);
         StartPosition = FormStartPosition.CenterScreen;
-        BackColor = Theme.Bg;
+        BackColor = Theme.Frame;
         ForeColor = Theme.Ink;
         Font = Theme.Ui;
+        Theme.DarkTitleBar(this);
 
         BuildLayout();
         BuildTray();
@@ -69,64 +73,87 @@ internal sealed class MainForm : Form
 
     // ------------------------------------------------------------------ layout
 
+    /// <summary>What each library is called, and the icon (Segoe Fluent / MDL2) beside it.</summary>
+    private static readonly (string Name, string Glyph, string Title)[] Pages =
+    [
+        ("Games", "", "Your games"),
+        ("Improve", "", "What to work on"),
+        ("Comps", "", "Comps you've played"),
+        ("Classes", "", "Players you've met"),
+    ];
+
     private void BuildLayout()
     {
-        var header = new Panel { Dock = DockStyle.Top, Height = 64, BackColor = Theme.Panel, Padding = new Padding(16, 10, 16, 8) };
-        var title = new Label { Text = "MindCollector", ForeColor = Theme.Gold, Font = Theme.Title, AutoSize = true, Location = new Point(14, 6) };
-        _status.Location = new Point(16, 38);
-        var buttons = new FlowLayoutPanel { Dock = DockStyle.Right, AutoSize = true, WrapContents = false, Padding = new Padding(0, 8, 0, 0) };
+        // Left: the brand and the navigation, then the library, each in a rounded panel.
+        var nav = new RoundPanel { Dock = DockStyle.Top, Height = 64 + Pages.Length * 42 + 10, Padding = new Padding(8, 0, 8, 8) };
+        // The wordmark as on the site: "Mind" white, "Collector" gold, drawn as one word.
+        var brand = new Panel { Dock = DockStyle.Top, Height = 60, BackColor = Theme.Panel };
+        brand.Paint += (_, e) =>
+        {
+            const TextFormatFlags flags = TextFormatFlags.NoPadding | TextFormatFlags.Left | TextFormatFlags.VerticalCenter;
+            var mind = TextRenderer.MeasureText(e.Graphics, "Mind", Theme.Title, Size.Empty, flags);
+            TextRenderer.DrawText(e.Graphics, "Mind", Theme.Title, new Rectangle(14, 6, mind.Width, 54), Theme.Ink, flags);
+            TextRenderer.DrawText(e.Graphics, "Collector", Theme.Title, new Rectangle(14 + mind.Width, 6, 200, 54), Theme.Gold, flags);
+        };
+        foreach (var (name, glyph, _) in Pages.Reverse())
+        {
+            var item = new NavItem(glyph, name) { Dock = DockStyle.Top };
+            item.Click += (_, _) => { _tab = name; FillList(); };
+            _tabs[name] = item;
+            nav.Controls.Add(item);
+        }
+        nav.Controls.Add(brand);
+
+        _list.Dock = DockStyle.Fill;
+        _list.SelectedIndexChanged += async (_, _) =>
+        {
+            if (_list.SelectedFile is { } file) await ShowPageAsync(file);
+        };
+        var library = new RoundPanel { Dock = DockStyle.Fill, Padding = new Padding(8, 6, 8, 8) };
+        library.Controls.Add(_list);
+        library.Controls.Add(_libTitle);
+
+        var left = new Panel { Dock = DockStyle.Left, Width = 380, BackColor = Theme.Frame, Padding = new Padding(8, 8, 0, 0) };
+        left.Controls.Add(library);
+        left.Controls.Add(new Panel { Dock = DockStyle.Top, Height = 8, BackColor = Theme.Frame });
+        left.Controls.Add(nav);
+
+        // Right: the page. Padding above and below keeps the panel's rounded corners clear of the
+        // web view, which is a square window of its own.
+        _view.Dock = DockStyle.Fill;
+        _view.DefaultBackgroundColor = Theme.Panel;
+        var page = new RoundPanel { Dock = DockStyle.Fill, Padding = new Padding(0, 8, 0, 8) };
+        page.Controls.Add(_view);
+        var right = new Panel { Dock = DockStyle.Fill, BackColor = Theme.Frame, Padding = new Padding(8, 8, 8, 0) };
+        right.Controls.Add(page);
+
+        // Bottom: the status on the left, Sync in the middle, the rest on the right (Spotify's player bar).
+        var bar = new TableLayoutPanel { Dock = DockStyle.Bottom, Height = 72, BackColor = Theme.Frame, ColumnCount = 3, RowCount = 1, Padding = new Padding(16, 0, 16, 0) };
+        bar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40));
+        bar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20));
+        bar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40));
+        bar.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+        _status.AutoSize = false;
+        _status.Dock = DockStyle.Fill;
+        _status.TextAlign = ContentAlignment.MiddleLeft;
+        _status.AutoEllipsis = true;
         var sync = Theme.Button("Sync now", primary: true);
-        var settings = Theme.Button("Settings");
-        var site = Theme.Button("Open the website");
-        var activity = Theme.Button("Activity");
+        sync.Anchor = AnchorStyles.None;
         sync.Click += async (_, _) => await SyncAsync(manual: true);
+        var buttons = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.RightToLeft, WrapContents = false, BackColor = Theme.Frame, Padding = new Padding(0, 18, 0, 0) };
+        var settings = Theme.Button("Settings");
+        var site = Theme.Button("Website");
+        var activity = Theme.Button("Activity");
         settings.Click += (_, _) => OpenSettings();
         site.Click += (_, _) => OpenUrl($"{_settings.ServerUrl}/wow/coach");
         activity.Click += (_, _) => ShowActivity();
-        buttons.Controls.AddRange([activity, site, settings, sync]);
-        header.Controls.AddRange([buttons, title, _status]);
+        buttons.Controls.AddRange([settings, site, activity]);
+        bar.Controls.Add(_status, 0, 0);
+        bar.Controls.Add(sync, 1, 0);
+        bar.Controls.Add(buttons, 2, 0);
 
-        var nav = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 38, BackColor = Theme.Bg, Padding = new Padding(12, 6, 12, 0) };
-        foreach (var name in new[] { "Games", "Improve", "Comps", "Classes" })
-        {
-            var b = new Button { Text = name, FlatStyle = FlatStyle.Flat, AutoSize = true, BackColor = Theme.Bg, Cursor = Cursors.Hand, Tag = name };
-            b.FlatAppearance.BorderSize = 1;
-            b.Click += (_, _) => { _tab = name; FillList(); };
-            _tabs[name] = b;
-            nav.Controls.Add(b);
-        }
-
-        _list.Dock = DockStyle.Fill;
-        _list.View = View.Details;
-        _list.FullRowSelect = true;
-        _list.MultiSelect = false;
-        _list.HideSelection = false;
-        _list.BorderStyle = BorderStyle.None;
-        _list.BackColor = Theme.Panel;
-        _list.ForeColor = Theme.Ink;
-        _list.SelectedIndexChanged += async (_, _) =>
-        {
-            if (_list.SelectedItems.Count == 1 && _list.SelectedItems[0].Tag is string file) await ShowPageAsync(file);
-        };
-
-        _view.Dock = DockStyle.Fill;
-        _view.DefaultBackgroundColor = Theme.Panel;
-
-        var split = new SplitContainer
-        {
-            Dock = DockStyle.Fill,
-            Orientation = Orientation.Vertical,
-            BackColor = Theme.Line,
-            SplitterWidth = 4,
-            FixedPanel = FixedPanel.Panel1,
-        };
-        split.Panel1.Controls.Add(_list);
-        split.Panel2.Controls.Add(_view);
-        Load += (_, _) => split.SplitterDistance = 560;
-
-        var body = new Panel { Dock = DockStyle.Fill, Padding = new Padding(16, 4, 16, 16) };
-        body.Controls.Add(split);
-        Controls.AddRange([body, nav, header]);
+        // Docked last-added first: the bar spans the width, then the left column, then the page.
+        Controls.AddRange([right, left, bar]);
         MarkTab();
     }
 
@@ -248,40 +275,41 @@ internal sealed class MainForm : Form
     private void FillList()
     {
         MarkTab();
-        var selected = _list.SelectedItems.Count == 1 ? _list.SelectedItems[0].Tag as string : null;
-        _list.BeginUpdate();
-        _list.Items.Clear();
-        _list.Columns.Clear();
+        var selected = _list.SelectedFile;
+        var rows = new List<LibraryRow>();
 
         var root = _index?.RootElement;
         if (root is not { } r || !r.TryGetProperty("built", out var built) || !built.GetBoolean())
         {
-            _list.Columns.Add("", 500);
-            _list.Items.Add(new ListViewItem("No games on the website yet. Play an arena game; it is sent when it ends."));
-            _list.EndUpdate();
-            return;
+            rows.Add(new LibraryRow("Nothing here yet", "Play an arena game. It's sent to the website when it ends."));
         }
-
-        switch (_tab)
+        else
         {
-            case "Games": FillGames(r); break;
-            case "Improve": FillSimple(r, "characters", ("Character", 160, "name"), ("Spec", 180, "spec"), ("Games", 70, "games")); break;
-            case "Comps": FillSimple(r, "comps", ("Comp", 320, "name"), ("Games", 70, "games"), ("Won", 60, "won"), ("Lost", 60, "lost")); break;
-            case "Classes": FillSimple(r, "classes", ("Player", 140, "name"), ("Spec", 180, "spec"), ("Why", 260, "why")); break;
+            switch (_tab)
+            {
+                case "Games": rows.AddRange(GameRows(r)); break;
+                case "Improve": rows.AddRange(SimpleRows(r, "characters", e => (Str(e, "name"), $"{Str(e, "spec")} · {Str(e, "games")} games", null, 0))); break;
+                case "Comps": rows.AddRange(SimpleRows(r, "comps", e => (Str(e, "name"), $"{Str(e, "games")} games", $"{Str(e, "won")}-{Str(e, "lost")}", Math.Sign(Num(e, "won") - Num(e, "lost"))))); break;
+                case "Classes": rows.AddRange(SimpleRows(r, "classes", e => (Str(e, "name"), $"{Str(e, "spec")} · {Str(e, "why")}", null, 0))); break;
+            }
         }
 
+        var title = Pages.First(p => p.Name == _tab).Title;
+        var count = rows.Count(x => x.File != null);
+        _libTitle.Text = count > 0 ? $"{title}   {count}" : title;
+
+        _list.BeginUpdate();
+        _list.Items.Clear();
+        foreach (var row in rows) _list.Items.Add(row);
         if (selected != null)
-            foreach (ListViewItem it in _list.Items)
-                if (it.Tag as string == selected) { it.Selected = true; break; }
+            for (var i = 0; i < _list.Items.Count; i++)
+                if (_list.Items[i] is LibraryRow lr && lr.File == selected) { _list.SelectedIndex = i; break; }
         _list.EndUpdate();
     }
 
-    private void FillGames(JsonElement r)
+    private static IEnumerable<LibraryRow> GameRows(JsonElement r)
     {
-        foreach (var (name, width) in new[] { ("Played", 135), ("Bracket", 95), ("Result", 55), ("You", 110), ("Against", 300) })
-            _list.Columns.Add(name, width);
-        if (!r.TryGetProperty("games", out var games)) return;
-
+        if (!r.TryGetProperty("games", out var games)) yield break;
         var rows = games.EnumerateObject()
             .Select(g => (Lobby: g.Name, Game: g.Value, At: Str(g.Value, "playedAt")))
             .OrderByDescending(x => x.At, StringComparer.Ordinal);
@@ -291,34 +319,35 @@ internal sealed class MainForm : Form
             var won = 0; var lost = 0;
             if (g.TryGetProperty("record", out var rec) && rec.GetArrayLength() == 2) { won = rec[0].GetInt32(); lost = rec[1].GetInt32(); }
             var bracket = Str(g, "bracket").Replace("Rated ", "");
-            var result = won + lost == 1 ? (won == 1 ? "Won" : "Lost") : $"{won}-{lost}";
+            var badge = won + lost == 1 ? (won == 1 ? "Won" : "Lost") : $"{won}-{lost}";
             var against = g.TryGetProperty("against", out var a) ? string.Join(", ", a.EnumerateArray().Select(x => x.GetString())) : "";
-            var played = DateTime.TryParse(at, out var d) ? d.ToString("ddd dd MMM  HH:mm") : at;
-
-            var item = new ListViewItem([played, bracket, result, Str(g, "you"), against]) { Tag = lobby + ".html" };
-            item.ForeColor = won > lost ? Theme.Won : lost > won ? Theme.Lost : Theme.Ink;
-            _list.Items.Add(item);
+            var played = DateTime.TryParse(at, out var d) ? d.ToString("ddd d MMM, HH:mm") : at;
+            var you = Str(g, "you");
+            var title = string.IsNullOrEmpty(you) ? bracket : $"{you} · {bracket}";
+            var sub = string.IsNullOrEmpty(against) ? played : $"{played} · vs {against}";
+            yield return new LibraryRow(title, sub, badge, Math.Sign(won - lost), lobby + ".html");
         }
     }
 
-    private void FillSimple(JsonElement r, string key, params (string Title, int Width, string Field)[] columns)
+    private static IEnumerable<LibraryRow> SimpleRows(JsonElement r, string key, Func<JsonElement, (string Title, string Sub, string? Badge, int Tone)> shape)
     {
-        foreach (var (title, width, _) in columns) _list.Columns.Add(title, width);
-        if (!r.TryGetProperty(key, out var set) || set.ValueKind != JsonValueKind.Object) return;
-
-        foreach (var entry in set.EnumerateObject().OrderByDescending(e => e.Value.TryGetProperty("games", out var n) && n.ValueKind == JsonValueKind.Number ? n.GetInt32() : 0))
+        if (!r.TryGetProperty(key, out var set) || set.ValueKind != JsonValueKind.Object) yield break;
+        foreach (var entry in set.EnumerateObject().OrderByDescending(e => Num(e.Value, "games")))
         {
-            var cells = columns.Select(c => Str(entry.Value, c.Field)).ToArray();
-            _list.Items.Add(new ListViewItem(cells) { Tag = Str(entry.Value, "file") });
+            var (title, sub, badge, tone) = shape(entry.Value);
+            yield return new LibraryRow(title, sub, badge, tone, Str(entry.Value, "file"));
         }
     }
+
+    private static int Num(JsonElement e, string name) =>
+        e.TryGetProperty(name, out var n) && n.ValueKind == JsonValueKind.Number ? n.GetInt32() : 0;
 
     private void MarkTab()
     {
-        foreach (var (name, b) in _tabs)
+        foreach (var (name, item) in _tabs)
         {
-            b.ForeColor = name == _tab ? Theme.Gold : Theme.Muted;
-            b.FlatAppearance.BorderColor = name == _tab ? Theme.Gold : Theme.Bg;
+            item.Active = name == _tab;
+            item.Invalidate();
         }
     }
 
@@ -358,8 +387,8 @@ internal sealed class MainForm : Form
 
     private void Blank(string message) =>
         _view.CoreWebView2?.NavigateToString(
-            "<!doctype html><html><body style=\"margin:0;background:#111116;color:#8A8A9A;font-family:Segoe UI,Arial;font-size:13px;padding:18px\">"
-            + System.Net.WebUtility.HtmlEncode(message) + "</body></html>");
+            "<!doctype html><html><body style=\"margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#121212;color:#B3B3B3;font-family:Segoe UI,Arial;font-size:15px\"><p style=\"max-width:420px;text-align:center;line-height:1.5\">"
+            + System.Net.WebUtility.HtmlEncode(message) + "</p></body></html>");
 
     // ------------------------------------------------------------------ bits
 
@@ -422,6 +451,7 @@ internal sealed class MainForm : Form
             Text = text.Length > 0 ? text : "Nothing yet.",
         };
         var f = new Form { Text = "MindCollector activity", Icon = Theme.AppIcon(), Size = new Size(900, 520), StartPosition = FormStartPosition.CenterParent, BackColor = Theme.Panel };
+        Theme.DarkTitleBar(f);
         f.Controls.Add(box);
         f.Shown += (_, _) => { box.SelectionStart = box.TextLength; box.ScrollToCaret(); };
         f.Show(this);

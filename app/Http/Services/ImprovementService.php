@@ -380,7 +380,7 @@ class ImprovementService
                     .', two or more '.$this->pctOf($bucket(2, 99)->where('kill', true)->count(), $bucket(2, 99)->count()).'.',
                 ],
                 $trend($twoPlus),
-                'With two big defensives down, play for time until they are back rather than starting an exchange. It is the whole team\'s, and the log does not say whom each defensive went on.',
+                'With two big defensives down, play for time until they come back instead of starting a fight. This counts the whole team\'s defensives, and the log doesn\'t say who each one was used on.',
             );
         }
 
@@ -390,7 +390,7 @@ class ImprovementService
             $lines = [];
             $needed = fn (Collection $rs) => ($n = $rs->sum('defsWarranted')) > 0 ? $rs->sum('defsNeeded') / $n : null;
             if ($mine->sum('defsWarranted') > 0) {
-                $lines[] = sprintf('Pressed with the target in danger or to break crowd control: %s of yours, %s of theirs. The rest is not wrong, only not explained by the log.',
+                $lines[] = sprintf('Pressed with the target in danger or to break crowd control: %s of yours, %s of theirs. The log can\'t tell us why the rest were pressed.',
                     $this->pct($needed($mine)), $this->pct($needed($others)));
             }
             if ($mine->first()['healer']) {
