@@ -288,7 +288,7 @@ $script:StepLimitMinutes = 15
 function Poll-Step {
     if (-not $script:Running) { return }
     if (-not $script:Running.Proc.HasExited) {
-        if (((Get-Date) - $script:Running.Started).TotalMinutes -lt $script:StepLimitMinutes) { return }
+        if (((Get-Date) - $script:Running.Started).TotalMinutes -lt $script:StepLimitMinutes) { Show-StepProgress; return }
         # cmd runs php under it: end the whole tree, then carry on as a failed step.
         $kill = Start-Hidden "$env:WINDIR\System32\taskkill.exe" "/T /F /PID $($script:Running.Proc.Id)"
         $kill.WaitForExit(5000) | Out-Null
@@ -301,11 +301,34 @@ function Poll-Step {
     try { $output = Get-Content $r.Out -Raw -Encoding UTF8 } catch { }
     Remove-Item $r.Out -Force -ErrorAction SilentlyContinue
     $output = if ($output) { $output.Trim() } else { '' }
-    foreach ($l in ($output -split "`r?`n")) { if ($l.Trim()) { Write-Activity ('    ' + $l.TrimEnd()) } }
+    foreach ($l in ($output -split "`r?`n")) { if ($l.Trim() -and $l -notmatch $script:ProgressLine) { Write-Activity ('    ' + $l.TrimEnd()) } }
     $ok = $r.Proc.HasExited -and $r.Proc.ExitCode -eq 0
     & $r.Step.OnDone $ok $output $r.Step.Data
     if ($script:Steps.Count -eq 0 -and -not $script:Running) { Set-Status (Get-IdleStatus) }
     Start-NextStep
+}
+
+# A step that reports progress prints "  40 of 150 sent" (wow:push-rounds). While it runs, the
+# newest such line goes on the status bar; once it ends, those lines stay out of the Activity log.
+$script:ProgressLine = '^\s*(\d+) of (\d+) sent\s*$'
+
+function Show-StepProgress {
+    $r = $script:Running
+    if (-not $r -or -not (Test-Path $r.Out)) { return }
+    try {
+        $fs = [IO.File]::Open($r.Out, 'Open', 'Read', 'ReadWrite, Delete')
+        try {
+            $len = [Math]::Min($fs.Length, 4096)
+            if ($len -le 0) { return }
+            $fs.Seek(-$len, 'End') | Out-Null
+            $buf = New-Object byte[] $len
+            $read = $fs.Read($buf, 0, $len)
+            $tail = [Text.Encoding]::UTF8.GetString($buf, 0, $read)
+        } finally { $fs.Dispose() }
+    } catch { return }
+    $last = $null
+    foreach ($l in ($tail -split "`r?`n")) { $m = [regex]::Match($l, $script:ProgressLine); if ($m.Success) { $last = $m } }
+    if ($last) { Set-Status ("{0}: {1} of {2}" -f $r.Step.Label, $last.Groups[1].Value, $last.Groups[2].Value) }
 }
 
 function Get-IdleStatus {

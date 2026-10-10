@@ -29,7 +29,8 @@ class PushRounds extends Command
         {--user= : Whose games (id or email). Defaults to the only user who has any.}
         {--all : Send every round again}
         {--limit=150 : Rounds a run; the rest go next time}
-        {--pause=1 : Seconds between rounds, to leave the server (one core) room for its visitors}';
+        {--pause=1 : Seconds between rounds, to leave the server (one core) room for its visitors}
+        {--minutes=10 : Stop after this long and finish properly; the rest go next time}';
 
     protected $description = "Send this PC's games to your account on the website (/wow/coach)";
 
@@ -85,7 +86,15 @@ class PushRounds extends Command
         // so one shared client sent the first round's X-Match on every round after it (2026-10-05).
         $sent = 0;
         $failed = 0;
-        foreach ($todo->take((int) $this->option('limit')) as $r) {
+        // The server measures each round as it arrives (about 4s on its one core), so a batch is
+        // bounded by time too. The desktop app stops any step after 15 minutes; stopping here first
+        // still asks the server to build the pages and reports what is left (2026-10-10).
+        $batch = $todo->take((int) $this->option('limit'))->values();
+        $deadline = microtime(true) + 60 * (float) $this->option('minutes');
+        foreach ($batch as $n => $r) {
+            if (microtime(true) > $deadline) {
+                break;
+            }
             $path = $archive->rawLogPath($r->match_id);
             if (! File::exists($path)) {
                 // Nothing to send, ever: do not ask again every run.
@@ -114,6 +123,8 @@ class PushRounds extends Command
                 $failed++;
             }
             File::put($statePath, json_encode($state));
+            // Read by the desktop app while the step runs, for its status line.
+            $this->line(sprintf('  %d of %d sent', $n + 1, $batch->count()));
             usleep((int) ((float) $this->option('pause') * 1e6));
         }
 
