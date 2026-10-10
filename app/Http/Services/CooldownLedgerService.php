@@ -195,7 +195,7 @@ class CooldownLedgerService
      *
      * @param  array<int, array{who: string, spell: string, cd: float, charges: int}>  $answers  every answer the side could press
      * @param  array<string, array<string, array<int, float>>>  $presses  who => spell => press times
-     * @return array{up: int, all: int, bigDown: int, down: array<int, string>}
+     * @return array{up: int, all: int, bigDown: int, down: array<int, string>, answers: array<int, array{who: string, spell: string, cd: float, up: bool}>}
      */
     public static function coverage(array $answers, array $presses, float $t): array
     {
@@ -203,6 +203,7 @@ class CooldownLedgerService
         $all = 0;
         $bigDown = 0;
         $down = [];
+        $each = [];
 
         foreach ($answers as $a) {
             if ($a['spell'] === self::MEDALLION) {
@@ -212,7 +213,10 @@ class CooldownLedgerService
             // Charges are modelled as independent: each back one cooldown after its own press. In
             // game a second charge starts only once the first is back, so this overstates "up".
             $recent = array_filter($presses[$a['who']][$a['spell']] ?? [], fn ($p) => $p < $t && $t < $p + $a['cd']);
-            if (count($recent) < $a['charges']) {
+            $isUp = count($recent) < $a['charges'];
+            // Every answer by its owner (version 12), so a read can say whose answer was back.
+            $each[] = ['who' => $a['who'], 'spell' => $a['spell'], 'cd' => $a['cd'], 'up' => $isUp];
+            if ($isUp) {
                 $up++;
 
                 continue;
@@ -223,7 +227,7 @@ class CooldownLedgerService
             }
         }
 
-        return ['up' => $up, 'all' => $all, 'bigDown' => $bigDown, 'down' => $down];
+        return ['up' => $up, 'all' => $all, 'bigDown' => $bigDown, 'down' => $down, 'answers' => $each];
     }
 
     private function patchId(): ?int

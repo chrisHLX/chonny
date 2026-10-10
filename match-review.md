@@ -94,6 +94,7 @@ player's side. Its `VERSION` says what a stored round holds:
 | 9 | each defensive row says whether it was needed: whom it went on, health, time to live, warrant.php's reasons, `needed` (danger or breaking crowd control) |
 | 10 | `habits` per player: presses per ability, seconds free to act, control and kicks off the damage target (the macro signal), kicks given and casts kicked by spell, a pet's hits on its owner's target; for the logger only, failed casts by Blizzard's reason (range, line of sight, facing, moving, Medallion not ready). Feeds each game's **Basics** tab, Improve's kicked and line-of-sight habits, and `wow:population` |
 | 11 | cooldowns cast under an id with no cooldown in the data enter the timeline by `cast-aliases.json`: Radiant Glory's Avenging Wrath (833 of 897 Ret wings were missing from every go), Havoc's Metamorphosis, a talented Anti-Magic Shell, Smoke Bomb, Ultimate Sacrifice, The Hunt, Wailing Arrow, Doom Winds; Aura Mastery, Breath of Eons and Predator's Wake tagged (2026-10-08) |
+| 12 | the situation each go met (2026-10-10): `cover.answers` lists every defending answer by owner, cooldown, back or not, and its owner locked out or not at the go's start; `targetHp` at the start; each player's median item level and PvP talents. Read by `tools/match-review/decisions.php` (situation, choice, outcome) through `wow:population` |
 
 | Piece | File | What it decides |
 |---|---|---|

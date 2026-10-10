@@ -62,8 +62,13 @@ class RoundAnalysisService
      * Smoke Bomb, Ultimate Sacrifice, The Hunt's impact, Wailing Arrow, Doom Winds. And three spells
      * tagged from the audit: Aura Mastery (defensive), Breath of Eons and Predator's Wake
      * (offensive). Ret, Havoc, Death Knight and Rogue goes and defensive counts can all differ.
+     * 12 (2026-10-10): the situation each go met, for judging a defensive choice against goes like
+     * it (tools/match-review/decisions.php): `cover.answers` lists every answer of the defending
+     * side by owner, cooldown, whether it was back and whether its owner was locked out as the go
+     * started; `targetHp` is the go's target's health then; each player carries their median item
+     * level and PvP talents from COMBATANT_INFO.
      */
-    public const VERSION = 11;
+    public const VERSION = 12;
 
     /** A defensive pressed this long or less before its owner was locked out went in before the chance was lost. */
     private const BEFORE_LOCKOUT = 4.0;
@@ -164,10 +169,35 @@ class RoundAnalysisService
             }
         }
 
-        // The defending side's damage defensives back as each go started (the cooldown ledger).
-        $cover = $this->cover($lines, $metadata, $roster, $sideOf, $tl);
+        // The defending side's damage defensives back as each go started (the cooldown ledger), and
+        // each player's gear and PvP talents read on the way.
+        $kit = [];
+        $cover = $this->cover($lines, $metadata, $roster, $sideOf, $tl, $kit);
+        $health = [];
+        foreach ($dmg as $x) {
+            if ($x['hpAfter'] !== null) {
+                $health[$x['dst']][] = [$x['t'], $x['hpAfter']];
+            }
+        }
         foreach ($goRows as &$row) {
-            $row['cover'] = $cover ? $cover($row['side'] === 'us' ? 'them' : 'us', (float) $row['from']) : null;
+            $from = (float) $row['from'];
+            $row['cover'] = $cover ? $cover($row['side'] === 'us' ? 'them' : 'us', $from) : null;
+            if ($row['cover']) {
+                // An answer whose owner was locked out as the go started could not be pressed then.
+                foreach ($row['cover']['answers'] as &$ans) {
+                    $ans['locked'] = collect($locked[$ans['who']] ?? [])->contains(fn ($iv) => $from >= $iv[0] && $from <= $iv[1]);
+                }
+                unset($ans);
+            }
+            $hp = null;
+            foreach ($health[$row['target'] ?? ''] ?? [] as $h) {
+                if ($h[0] > $from) {
+                    break;
+                }
+                $hp = $h[1];
+            }
+            // Null when the target had taken no damage yet: as good as full.
+            $row['targetHp'] = $hp;
         }
         unset($row);
 
@@ -175,7 +205,7 @@ class RoundAnalysisService
             'version' => self::VERSION,
             'won' => (int) ($metadata['result'] ?? 0) === 3,
             'mmr' => $this->mmr($end, $metadata),
-            'players' => $this->players($metadata, $roster, $sideOf, $logger['id'] ?? null),
+            'players' => $this->players($metadata, $roster, $sideOf, $logger['id'] ?? null, $kit),
             'goes' => $goRows,
             'deaths' => $this->withAnswers(
                 array_map(fn ($d) => $this->killRead($d, $tl, $dmg, $locked, $healers, $roster, $sideOf, $credit, $goes), $deaths),
@@ -499,7 +529,7 @@ class RoundAnalysisService
      * A function from (side, moment) to that side's damage defensives back at that moment. Null when
      * the cooldowns cannot be resolved; a round is never left unanalysed because of the ledger.
      */
-    private function cover(array $lines, array $metadata, array $roster, callable $sideOf, array $tl): ?\Closure
+    private function cover(array $lines, array $metadata, array $roster, callable $sideOf, array $tl, array &$kit = []): ?\Closure
     {
         try {
             $presses = [];
@@ -518,7 +548,9 @@ class RoundAnalysisService
                 if (! $spec) {
                     continue;
                 }
-                $build = $this->ledger->build($this->arena->extractCombatantInfoFromLog($raw, $guid) ?? [], $spec);
+                $combatant = $this->arena->extractCombatantInfoFromLog($raw, $guid) ?? [];
+                $build = $this->ledger->build($combatant, $spec);
+                $kit[$guid] = ['ilvl' => $combatant['gear']['median'] ?? null, 'pvpTalents' => array_column($build['pvp'] ?? [], 'name')];
                 $names = array_unique(array_merge($this->ledger->profileAnswers($spec->gameClass?->slug, $spec->slug), array_keys($presses[$guid] ?? [])));
                 foreach ($names as $name) {
                     if ($cd = $this->ledger->cooldown($name, $spec, $build)) {
@@ -1393,7 +1425,7 @@ class RoundAnalysisService
         return ['us' => (int) $ours, 'them' => (int) $end[3] === (int) $ours ? (int) $end[4] : (int) $end[3]];
     }
 
-    private function players(array $metadata, array $roster, callable $sideOf, ?string $logger): array
+    private function players(array $metadata, array $roster, callable $sideOf, ?string $logger, array $kit = []): array
     {
         $out = [];
         foreach ($metadata['units'] ?? [] as $u) {
@@ -1410,6 +1442,8 @@ class RoundAnalysisService
                 'side' => $sideOf($u['id']),
                 'healer' => $roster[$u['id']]['healer'],
                 'logger' => $u['id'] === $logger,
+                'ilvl' => $kit[$u['id']]['ilvl'] ?? null,
+                'pvpTalents' => $kit[$u['id']]['pvpTalents'] ?? [],
             ];
         }
 

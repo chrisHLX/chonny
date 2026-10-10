@@ -162,13 +162,34 @@ class BuildPopulation extends Command
                 'kicked' => array_sum($h['kicked'] ?? []),
                 'petHits' => $h['petHits'] ?? 0,
                 'petOnTarget' => $h['petOnTarget'] ?? 0,
+                'ilvl' => $p['ilvl'] ?? null,
+                'pvpTalents' => $p['pvpTalents'] ?? [],
                 'failed' => $p['logger'] ? array_map(fn ($r) => $r['n'], $h['failed'] ?? []) : null,
                 'died' => collect($a['deaths'])->contains('who', $g),
                 'diedFirst' => ($a['deaths'][0]['who'] ?? null) === $g,
             ];
         }
 
-        $goes = array_map(function ($go) {
+        $goes = array_map(function ($go) use ($a, $hash) {
+            // The defending side's answers pressed inside this go, for tools/match-review/decisions.php
+            // (situation, choice, outcome; 2026-10-10). Rows end at the first death, as stored.
+            $defending = $go['side'] === 'us' ? 'them' : 'us';
+            $answers = [];
+            foreach ($a['defensives'][$defending]['rows'] ?? [] as $r) {
+                if ($r['t'] >= $go['from'] && $r['t'] <= $go['to']) {
+                    $answers[] = [
+                        't' => round((float) $r['t'] - (float) $go['from'], 1),
+                        'spell' => $r['spell'],
+                        'who' => $hash($r['who']),
+                        'onTarget' => ($r['on'] ?? $r['who']) === $go['target'],
+                        'hp' => $r['hp'] ?? null,
+                        'ttl' => $r['ttl'] ?? null,
+                        'needed' => (bool) ($r['needed'] ?? false),
+                        'danger' => in_array('danger', $r['reasons'] ?? [], true),
+                    ];
+                }
+            }
+
             // When each player's first offensive cooldown of the go went out: their spread is how
             // far apart "together" was.
             $firsts = [];
@@ -196,6 +217,12 @@ class BuildPopulation extends Command
                 'defs' => (int) ($go['defs'] ?? 0),
                 'kill' => $go['kill'] !== null,
                 'killLater' => (bool) $go['killLater'],
+                'target' => $hash($go['target'] ?? null),
+                // The defending side's answers back as the go started (the cooldown ledger), and
+                // what they pressed inside it.
+                'cover' => isset($go['cover']) ? ['answers' => array_map(fn ($x) => ['who' => $hash($x['who'])] + $x, $go['cover']['answers'] ?? [])] + $go['cover'] : null,
+                'targetHp' => $go['targetHp'] ?? null,
+                'answers' => $answers,
             ];
         }, $a['goes']);
 
@@ -206,6 +233,8 @@ class BuildPopulation extends Command
             'playedAt' => isset($meta['startTime']) ? date('Y-m-d', (int) ($meta['startTime'] / 1000)) : null,
             'duration' => (float) ($meta['durationInSeconds'] ?? 0),
             'mmr' => $a['mmr'],
+            // Defensive rows stop here, so a go starting later says nothing about what was pressed.
+            'firstDeath' => isset($a['deaths'][0]['t']) ? round((float) $a['deaths'][0]['t'], 1) : null,
             'players' => $players,
             'goes' => $goes,
         ];
