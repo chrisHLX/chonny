@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Http\Services\ArenaLogService;
 use App\Http\Services\RoundAnalysisService;
 use App\Models\Specialization;
+use App\Support\PopulationGame;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
@@ -37,7 +38,8 @@ class BuildPopulation extends Command
     protected $signature = 'wow:population
         {--fresh : Measure every game again}
         {--aggregate : Only rebuild the norms from the games already measured}
-        {--limit=0 : Measure at most this many new games (0: all)}';
+        {--limit=0 : Measure at most this many new games (0: all)}
+        {--pool= : A wow:pool-export file from the website: replaces the pool before aggregating}';
 
     protected $description = 'Measure every archived game for every player, and build per-spec norms and outcome tables';
 
@@ -62,12 +64,24 @@ class BuildPopulation extends Command
         return storage_path('app/population');
     }
 
+    /**
+     * Games from the rounds uploaded to the website (wow:pool-export on the server, fetched and
+     * loaded with --pool). Every stored round feeds the pool by default (Chriso, 2026-10-10).
+     */
+    public static function poolDir(): string
+    {
+        return storage_path('app/population-pool');
+    }
+
     public function handle(ArenaLogService $arena, RoundAnalysisService $analysis): int
     {
         File::ensureDirectoryExists(self::dir());
 
         if (! $this->option('aggregate')) {
             $this->measure($arena, $analysis);
+        }
+        if ($pool = $this->option('pool')) {
+            $this->loadPool($pool);
         }
 
         $this->aggregate();
@@ -120,7 +134,7 @@ class BuildPopulation extends Command
                 continue;
             }
 
-            File::put($out, json_encode($this->compact($id, $a, $meta)));
+            File::put($out, json_encode(PopulationGame::compact($id, $a, $meta)));
             $done++;
 
             if ($done % 25 === 0) {
@@ -131,123 +145,44 @@ class BuildPopulation extends Command
         $this->info("{$done} game(s) measured, {$failed} could not be read.");
     }
 
-    /** One game as the aggregate needs it: no names, players under a stable hash. */
-    private function compact(string $id, array $a, array $meta): array
+    /**
+     * Replace the pool with a wow:pool-export file (gzipped, one game per line). Replaced, not added
+     * to: a game gone from the website is gone from the next build.
+     */
+    private function loadPool(string $path): void
     {
-        $hash = fn (?string $guid) => $guid ? substr(sha1('mc-pop:'.$guid), 0, 12) : null;
-        $winner = $a['won'] ? 'us' : 'them';
+        $raw = @gzdecode((string) @file_get_contents($path));
+        if ($raw === false || $raw === '') {
+            $this->error("Could not read the pool file {$path}.");
 
-        $players = [];
-        foreach ($a['players'] as $p) {
-            $g = $p['guid'];
-            $b = $a['breakdown'][$g] ?? [];
-            $h = $a['habits'][$g] ?? [];
-            $sum = fn (string $kind) => array_sum(array_column($b[$kind] ?? [], 'amount'));
-            $players[$hash($g)] = [
-                'spec' => (int) ($p['specExternalId'] ?? 0),
-                'side' => $p['side'],
-                'healer' => (bool) $p['healer'],
-                'logger' => (bool) $p['logger'],
-                'won' => $p['side'] === $winner,
-                'alive' => $b['alive'] ?? 0,
-                'idle' => $b['idle'] ?? 0,
-                'free' => $h['free'] ?? 0,
-                'locked' => $a['lockout'][$g] ?? 0,
-                'damage' => $sum('damage'),
-                'healing' => $sum('healing') + $sum('absorbs'),
-                'casts' => $h['casts'] ?? [],
-                'control' => $h['control'] ?? 0,
-                'offTarget' => $h['offTarget'] ?? 0,
-                'kicks' => $h['kicks'] ?? 0,
-                'kicked' => array_sum($h['kicked'] ?? []),
-                'petHits' => $h['petHits'] ?? 0,
-                'petOnTarget' => $h['petOnTarget'] ?? 0,
-                'ilvl' => $p['ilvl'] ?? null,
-                'pvpTalents' => $p['pvpTalents'] ?? [],
-                'failed' => $p['logger'] ? array_map(fn ($r) => $r['n'], $h['failed'] ?? []) : null,
-                'died' => collect($a['deaths'])->contains('who', $g),
-                'diedFirst' => ($a['deaths'][0]['who'] ?? null) === $g,
-            ];
+            return;
         }
-
-        $goes = array_map(function ($go) use ($a, $hash) {
-            // The defending side's answers pressed inside this go, for tools/match-review/decisions.php
-            // (situation, choice, outcome; 2026-10-10). Rows end at the first death, as stored.
-            $defending = $go['side'] === 'us' ? 'them' : 'us';
-            $answers = [];
-            foreach ($a['defensives'][$defending]['rows'] ?? [] as $r) {
-                if ($r['t'] >= $go['from'] && $r['t'] <= $go['to']) {
-                    $answers[] = [
-                        't' => round((float) $r['t'] - (float) $go['from'], 1),
-                        'spell' => $r['spell'],
-                        'who' => $hash($r['who']),
-                        'onTarget' => ($r['on'] ?? $r['who']) === $go['target'],
-                        'hp' => $r['hp'] ?? null,
-                        'ttl' => $r['ttl'] ?? null,
-                        'needed' => (bool) ($r['needed'] ?? false),
-                        'danger' => in_array('danger', $r['reasons'] ?? [], true),
-                    ];
-                }
+        File::deleteDirectory(self::poolDir());
+        File::ensureDirectoryExists(self::poolDir());
+        $n = 0;
+        foreach (preg_split('/\r?\n/', trim($raw)) as $line) {
+            $g = json_decode($line, true);
+            if (is_array($g) && isset($g['id']) && preg_match('/^[a-f0-9]{32}$/', $g['id'])) {
+                File::put(self::poolDir()."/{$g['id']}.json", $line);
+                $n++;
             }
-
-            // When each player's first offensive cooldown of the go went out: their spread is how
-            // far apart "together" was.
-            $firsts = [];
-            foreach ($go['links'] ?? [] as $l) {
-                if (in_array($l['cat'], ['offensive', 'mixed'], true) && $l['by'] && ! isset($firsts[$l['by']])) {
-                    $firsts[$l['by']] = (float) $l['t'];
-                }
-            }
-
-            return [
-                'side' => $go['side'],
-                // When it started and how long it ran: later goes meet more drained defensives and
-                // dampening, and longer goes have more time to kill, so both are confounds to hold.
-                'from' => round((float) $go['from'], 1),
-                'len' => round((float) $go['to'] - (float) $go['from'], 1),
-                'peakDamage' => (int) ($go['peak']['damage'] ?? 0),
-                'good' => (bool) $go['good'],
-                'healerCc' => (int) $go['healerCc'],
-                'pressers' => count($firsts),
-                'spread' => count($firsts) >= 2 ? round(max($firsts) - min($firsts), 1) : null,
-                'joint' => (bool) ($go['peak']['joint'] ?? false),
-                'healerLocked' => (float) ($go['peak']['healerLocked'] ?? 0),
-                'healerKicked' => (bool) ($go['peak']['healerKicked'] ?? false),
-                'drained' => (int) ($go['drained'] ?? 0),
-                'defs' => (int) ($go['defs'] ?? 0),
-                'kill' => $go['kill'] !== null,
-                'killLater' => (bool) $go['killLater'],
-                'target' => $hash($go['target'] ?? null),
-                // The defending side's answers back as the go started (the cooldown ledger), and
-                // what they pressed inside it.
-                'cover' => isset($go['cover']) ? ['answers' => array_map(fn ($x) => ['who' => $hash($x['who'])] + $x, $go['cover']['answers'] ?? [])] + $go['cover'] : null,
-                'targetHp' => $go['targetHp'] ?? null,
-                'answers' => $answers,
-            ];
-        }, $a['goes']);
-
-        return [
-            'version' => $a['version'],
-            'id' => $id,
-            'bracket' => $meta['startInfo']['bracket'] ?? null,
-            'playedAt' => isset($meta['startTime']) ? date('Y-m-d', (int) ($meta['startTime'] / 1000)) : null,
-            'duration' => (float) ($meta['durationInSeconds'] ?? 0),
-            'mmr' => $a['mmr'],
-            // Defensive rows stop here, so a go starting later says nothing about what was pressed.
-            'firstDeath' => isset($a['deaths'][0]['t']) ? round((float) $a['deaths'][0]['t'], 1) : null,
-            'players' => $players,
-            'goes' => $goes,
-        ];
+        }
+        $this->info("{$n} game(s) loaded from the website's pool.");
     }
 
     // ------------------------------------------------------------------ aggregate
 
     private function aggregate(): void
     {
-        $games = collect(File::files(self::dir()))
+        // The archive's games first, then the website's pool: a match in both is counted once, from
+        // the archive (the server's match ids are the archive's, checked 2026-10-10).
+        $read = fn (string $dir) => collect(File::isDirectory($dir) ? File::files($dir) : [])
             ->map(fn ($f) => json_decode(File::get($f->getPathname()), true))
-            ->filter(fn ($g) => is_array($g) && ($g['version'] ?? 0) === RoundAnalysisService::VERSION)
-            ->values();
+            ->filter(fn ($g) => is_array($g) && ($g['version'] ?? 0) === RoundAnalysisService::VERSION);
+        $archived = $read(self::dir());
+        $pooled = $read(self::poolDir())->reject(fn ($g) => $archived->contains('id', $g['id']));
+        $games = $archived->merge($pooled)->values();
+        $this->line("{$archived->count()} game(s) from the archive, {$pooled->count()} more from the website's pool.");
 
         if ($games->isEmpty()) {
             $this->warn('Nothing measured at this version yet.');
@@ -301,6 +236,8 @@ class BuildPopulation extends Command
             'goes' => $this->goOutcomes($games),
         ];
         $norms['evidence'] = $this->evidence($norms, $rows, $games);
+        $norms['decisions'] = $this->decisions($games);
+        $norms['sources'] = ['archive' => $archived->count(), 'pool' => $pooled->count()];
 
         File::ensureDirectoryExists(base_path(dirname(self::NORMS)));
         File::put(base_path(self::NORMS), json_encode($norms, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)."\n");
@@ -418,6 +355,34 @@ class BuildPopulation extends Command
             'oneDefensiveDrainedOrMore' => $rate($goes->filter(fn ($g) => $g['drained'] >= 1)),
             'noneDrained' => $rate($goes->filter(fn ($g) => $g['drained'] === 0)),
         ];
+    }
+
+    /**
+     * Situation, choice, outcome over every enemy go (DefensiveDecisions, 2026-10-10): for each
+     * situation (`{bigDown}|{pressure}`), how often a defender died and how often the defending side
+     * won the round, by the choice made and by the answers the go drew. Every cell carries its count;
+     * a reader states no rate under 20 goes.
+     */
+    private function decisions($games): array
+    {
+        $rows = $games->flatMap(fn ($g) => $g['decisions'] ?? []);
+        $rate = fn ($set) => [
+            'n' => $set->count(),
+            'died' => $set->count() ? round($set->where('died', true)->count() / $set->count(), 3) : null,
+            'won' => $set->count() ? round($set->where('won', true)->count() / $set->count(), 3) : null,
+        ];
+
+        $cells = [];
+        foreach ($rows->groupBy(fn ($r) => \App\Support\DefensiveDecisions::cell($r)) as $cell => $set) {
+            $cells[$cell] = [
+                'all' => $rate($set),
+                'choice' => $set->groupBy('choice')->map($rate)->all(),
+                'count' => $set->groupBy('count')->map($rate)->all(),
+            ];
+        }
+        ksort($cells);
+
+        return ['goes' => $rows->count(), 'cells' => $cells];
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Console\Commands\BuildPopulation;
 use App\Models\Specialization;
 use App\Models\Spell;
 use App\Quiz\Wow\WowAbilityFacts;
+use App\Support\DefensiveDecisions;
 use Illuminate\Support\Facades\File;
 
 /**
@@ -171,6 +172,7 @@ class GameBasicsService
                     .$this->evidence('theirDefensivesDown', ' Across the archive, goes into defensives already down killed {with}% against {without}%.'),
             ];
         }
+        array_push($rows, ...$this->decisionRows($analyses));
         $rows[] = [
             'label' => 'Answers your team spent per go of theirs',
             'value' => number_format($perGo, 1),
@@ -179,6 +181,71 @@ class GameBasicsService
         ];
 
         return ['title' => 'Your answers to their goes', 'rows' => $rows];
+    }
+
+    /**
+     * Your side's choices against their goes, set against every go like it in the archive and the
+     * website's pool (DefensiveDecisions, norms.json `decisions`; 2026-10-10). Two reads held when
+     * the situation was fixed (docs/learning/population-findings-2026-10-10-decisions.md):
+     *  - into a heavy go with two or more big answers already down, pressing nothing died most;
+     *  - into a light go, holding went with winning the round more than spending two or more.
+     * Said as what happened in goes like it, never as what should have been pressed (rule 8): a
+     * light go that drew two answers may have hit harder than its attackers' cooldowns say.
+     *
+     * @return array<int, array>
+     */
+    private function decisionRows(array $analyses): array
+    {
+        $mine = collect($analyses)->flatMap(fn ($a) => DefensiveDecisions::goRows($a))->where('defending', 'us')->values();
+        $cells = $this->norms()['decisions']['cells'] ?? [];
+        if ($mine->isEmpty() || $cells === []) {
+            return [];
+        }
+        // One rate over several cells, weighted by their goes; null under 20 goes.
+        $pooled = function (array $keys, string $group, string|int $value, string $metric) use ($cells): ?int {
+            $n = 0;
+            $sum = 0.0;
+            foreach ($keys as $k) {
+                $c = $cells[$k][$group][$value] ?? null;
+                if ($c && $c[$metric] !== null) {
+                    $n += $c['n'];
+                    $sum += $c[$metric] * $c['n'];
+                }
+            }
+
+            return $n >= 20 ? (int) round(100 * $sum / $n) : null;
+        };
+
+        $rows = [];
+
+        $drained = $mine->filter(fn ($r) => $r['bigDown'] === 2 && $r['pressure'] === 'heavy');
+        $none = $pooled(['2|heavy'], 'choice', 'none', 'died');
+        $spent = $pooled(['2|heavy'], 'count', 2, 'died');
+        if ($drained->isNotEmpty() && $none !== null && $spent !== null) {
+            $held = $drained->where('choice', 'none')->count();
+            $rows[] = [
+                'label' => 'Heavy goes of theirs met with nothing pressed, your big defensives already down',
+                'value' => "{$held} of {$drained->count()}",
+                'tone' => $held === 0 ? 'good' : 'warn',
+                'text' => "Their go came with two or more of your big defensives on cooldown, and two of them pressing or your healer locked. Across every go like it, a defender died {$none}% of the time when nothing was pressed, against {$spent}% when two or more answers went out. What is left by then is usually the short ones, and in goes like this they were worth pressing.",
+            ];
+        }
+
+        $light = $mine->where('pressure', 'light');
+        $lightKeys = ['0|light', '1|light', '2|light'];
+        $holdWon = $pooled($lightKeys, 'count', 0, 'won');
+        $spendWon = $pooled($lightKeys, 'count', 2, 'won');
+        if ($light->isNotEmpty() && $holdWon !== null && $spendWon !== null) {
+            $over = $light->where('count', 2)->count();
+            $rows[] = [
+                'label' => 'Light goes of theirs that drew two or more answers',
+                'value' => "{$over} of {$light->count()}",
+                'tone' => $over === 0 ? 'good' : 'neutral',
+                'text' => "A light go: one player's cooldowns, your healer free. Across every go like it, the side that pressed nothing won {$holdWon}% of rounds, against {$spendWon}% when two or more answers went out. A go that drew two may have hit harder than it looked, so this is a question to ask of the replay, not a fault.",
+            ];
+        }
+
+        return $rows;
     }
 
     // ------------------------------------------------------------------ your crowd control and casts

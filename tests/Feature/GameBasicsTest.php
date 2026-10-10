@@ -120,4 +120,62 @@ class GameBasicsTest extends TestCase
         $this->assertSame(['n' => 1, 'killRate' => 0.0], $out['cooldownsApart']);
         $this->assertSame(1, $out['oneDefensiveDrainedOrMore']['n']);
     }
+
+    /** A version 12 round: their goes on us, each with the ledger at its start, and our presses. */
+    private function decisionRound(): array
+    {
+        $theirGo = fn (float $from, int $bigDown, array $answersUp, int $pressers, bool $killLater = false) => [
+            'side' => 'them', 'from' => $from, 'to' => $from + 20, 'healerCc' => 0, 'killLater' => $killLater, 'kill' => null,
+            'links' => array_map(fn ($i) => ['by' => "E-{$i}", 'cat' => 'offensive', 't' => 0.0], range(1, $pressers)),
+            'peak' => ['healerLocked' => 0.0, 'joint' => false],
+            'cover' => ['up' => 0, 'all' => 0, 'bigDown' => $bigDown, 'down' => [], 'answers' => $answersUp],
+        ];
+        $up = [['who' => 'P-1', 'spell' => 'Ice Block', 'cd' => 240, 'up' => true, 'locked' => false]];
+        $lockedUp = [['who' => 'P-1', 'spell' => 'Ice Block', 'cd' => 240, 'up' => true, 'locked' => true]];
+
+        return $this->analysis([
+            'version' => 12,
+            'goes' => [
+                $theirGo(10, 2, $up, 2, true),        // heavy, drained, nothing pressed though Ice Block was back
+                $theirGo(40, 2, $lockedUp, 2),        // the same, but its owner was stunned: forced
+                $theirGo(70, 0, $up, 1),              // light, two answers, the first before danger
+                $theirGo(100, 0, $up, 2),             // heavy, one answer pressed in danger
+                $theirGo(200, 0, $up, 2),             // after the first death: left out
+            ],
+            'defensives' => ['us' => ['rows' => [
+                ['t' => 72.0, 'spell' => 'Ice Barrier', 'who' => 'P-1', 'reasons' => []],
+                ['t' => 75.0, 'spell' => 'Ice Block', 'who' => 'P-1', 'reasons' => ['danger']],
+                ['t' => 101.0, 'spell' => "Gladiator's Medallion", 'who' => 'P-1', 'reasons' => []],
+                ['t' => 105.0, 'spell' => 'Ice Block', 'who' => 'P-1', 'reasons' => ['danger']],
+            ]], 'them' => ['rows' => []]],
+            'deaths' => [['t' => 150.0, 'who' => 'P-1']],
+        ]);
+    }
+
+    public function test_each_enemy_go_is_read_as_situation_choice_and_outcome(): void
+    {
+        $rows = \App\Support\DefensiveDecisions::goRows($this->decisionRound());
+
+        $this->assertCount(4, $rows, 'a go after the first death says nothing about what was pressed');
+        $this->assertSame(['us', 2, 'heavy', 'none', 0, true], array_values(array_intersect_key($rows[0], array_flip(['defending', 'bigDown', 'pressure', 'choice', 'count', 'died']))));
+        $this->assertSame('forced', $rows[1]['choice'], 'nothing pressable when the only answer\'s owner was locked out');
+        $this->assertSame(['light', 'early', 2], [$rows[2]['pressure'], $rows[2]['choice'], $rows[2]['count']]);
+        $this->assertSame(['late', 1], [$rows[3]['choice'], $rows[3]['count']], 'the Medallion answers control, not damage');
+        $this->assertSame([], \App\Support\DefensiveDecisions::goRows($this->analysis()), 'needs version 12');
+    }
+
+    public function test_the_basics_set_your_answers_against_goes_like_them(): void
+    {
+        $b = app(GameBasicsService::class)->forRounds([$this->decisionRound()]);
+        $rows = collect(collect($b['sections'])->firstWhere('title', 'Your answers to their goes')['rows'])->keyBy('label');
+
+        $drained = $rows['Heavy goes of theirs met with nothing pressed, your big defensives already down'] ?? null;
+        $this->assertNotNull($drained, 'the committed norms hold the drained-and-heavy cell');
+        $this->assertSame('1 of 2', $drained['value'], 'the forced go is in the count but not held against you');
+        $this->assertMatchesRegularExpression('/died \d+% of the time when nothing was pressed, against \d+%/', $drained['text']);
+
+        $light = $rows['Light goes of theirs that drew two or more answers'] ?? null;
+        $this->assertNotNull($light);
+        $this->assertSame('1 of 1', $light['value']);
+    }
 }

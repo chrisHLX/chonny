@@ -153,6 +153,25 @@ Each one is here because breaking it produced a wrong answer at least once.
    (`arena-structure.md` Part 20.5). An unpressed button is not a fault either: holding can be the
    right trade, and spending can be (Part 20.3).
 
+## The website's pool
+
+Every round players upload to the website feeds the population by default (Chriso, 2026-10-10):
+the norms, the evidence and the decision table are built from the PC's archive **and** the uploads
+together, so a tester's games make every player's comparisons stronger. Only aggregates are
+committed; names never leave the server. A match in both is counted once (the server's match ids
+are the archive's).
+
+```
+server:  php -d memory_limit=1G artisan wow:pool-export      -> storage/app/pool-export.jsonl.gz
+         (fetch it over SSH: base64 through prod_ssh.py, DEPLOY.md "Working from Claude Code")
+PC:      php -d memory_limit=3G artisan wow:population --aggregate --pool=<file>
+         commit data/population/norms.json, deploy
+```
+
+`App\Support\PopulationGame` writes both sources' games; `App\Support\DefensiveDecisions` is the one
+classifier the build and the Basics tab share. Rounds measured at an older version stay out until
+their owner's app sends them again. No scheduler runs, so the pool is as fresh as the last build.
+
 ## The research tools
 
 `tools/match-review/` (indexed, with the question each answered, in `match-review-tools.md`):
@@ -193,7 +212,7 @@ line in `match-review-tools.md`, so the next session runs one command instead of
 
 - The warrant read is stored (version 9) without its replay: whether a defensive *did* its job
   (the damage it removed) still needs `warrant.php` and the raw log.
-- Comp advice needs other players' games against the same comp: pooling uploads needs an opt-in.
+- Comp advice needs other players' games against the same comp: uploads now feed the pool ("The website's pool"); the comp pages do not read it yet.
 - A before-the-gates card needs the addon to read enemy specs in the prep room; the combat log has
   only your own team until the gates open.
 - Clips or screenshots at each enemy cooldown: measure the combat log's write delay first.
